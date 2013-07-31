@@ -1,6 +1,8 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+.classpath
+.project
+.settings/
+target/
+.idea/
+*.iml
+.DS_Store
+/bin
