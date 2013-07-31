@@ -17,8 +17,8 @@ public class TRetEnviNFeTest {
 		TRetEnviNFe reciboLoteLido = persister.read(TRetEnviNFe.class, TRetEnviNFeTest.class.getResourceAsStream("lote_envio_recibo.xml"));
 		try (StringWriter reciboLoteGerado = new StringWriter()) {
 			persister.write(reciboLoteLido, reciboLoteGerado);
-			System.out.println(reciboLoteLido.toString());
-			System.out.println(reciboLoteGerado.toString());
+			// System.out.println(reciboLoteLido.toString());
+			// System.out.println(reciboLoteGerado.toString());
 			Assert.assertEquals(reciboLoteLido.toString(), reciboLoteGerado.toString());
 		}
 	}
