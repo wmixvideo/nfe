@@ -1,4 +1,4 @@
-package com.fincatto.nfe.v200.classes.lote.recibo;
+package com.fincatto.nfe.v200.classes.lote.envio.recibo;
 
 import org.simpleframework.xml.Element;
 
