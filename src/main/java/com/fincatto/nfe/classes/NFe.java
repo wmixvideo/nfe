@@ -1,4 +1,4 @@
-package com.fincatto.nfe.v200.classes;
+package com.fincatto.nfe.classes;
 
 import java.io.StringWriter;
 

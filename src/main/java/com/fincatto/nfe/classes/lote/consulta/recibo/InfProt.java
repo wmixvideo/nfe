@@ -1,4 +1,4 @@
-package com.fincatto.nfe.v200.classes.lote.consulta.recibo;
+package com.fincatto.nfe.classes.lote.consulta.recibo;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.v200.classes.NFe;
+import com.fincatto.nfe.classes.NFe;
 
 public class InfProt extends NFe {
 	

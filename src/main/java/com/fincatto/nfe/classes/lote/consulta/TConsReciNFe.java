@@ -1,13 +1,15 @@
-package com.fincatto.nfe.v200.classes.lote.consulta;
+package com.fincatto.nfe.classes.lote.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.v200.classes.NFe;
+import com.fincatto.nfe.classes.NFe;
 
 @Root(name = "consReciNFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class TConsReciNFe extends NFe {
 	
 	@Attribute(name = "versao", required = true)
