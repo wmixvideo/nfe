@@ -5,4 +5,5 @@ target/
 .idea/
 *.iml
 .DS_Store
-/bin
+bin/
+src/test/*

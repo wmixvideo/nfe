@@ -1,9 +1,9 @@
-package com.fincatto.nfe.v200.classes.lote.consulta.recibo;
+package com.fincatto.nfe.classes.lote.consulta.recibo;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.v200.classes.NFe;
+import com.fincatto.nfe.classes.NFe;
 
 public class TProtNFe extends NFe {
 	

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<retConsReciNFe xmlns="http://www.portalfiscal.inf.br/nfe" versao="2.00">
-	<tpAmb>2</tpAmb>
-	<verAplic>SVRS20111223140923</verAplic>
-	<nRec>423000859676056</nRec>
-	<cStat>106</cStat>
-	<xMotivo>Lote nao localizado</xMotivo>
-	<cUF>42</cUF>
-</retConsReciNFe>

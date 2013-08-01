@@ -1,18 +1,17 @@
-package com.fincatto.nfe.v200.classes.lote.consulta.recibo;
+package com.fincatto.nfe.classes.lote.envio.recibo;
 
-import java.util.List;
+import java.util.Date;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
-import com.fincatto.nfe.v200.classes.NFe;
+import com.fincatto.nfe.classes.NFe;
 
-@Root(name = "retConsReciNFe")
-public class TRetConsReciNFe extends NFe {
+@Root(name = "retEnviNFe")
+public class TRetEnviNFe extends NFe {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
@@ -23,9 +22,6 @@ public class TRetConsReciNFe extends NFe {
 	@Element(name = "verAplic", required = true)
 	private String versaoAplicacao;
 	
-	@Element(name = "nRec", required = true)
-	private String numeroRecibo;
-	
 	@Element(name = "cStat", required = true)
 	private String status;
 	
@@ -35,18 +31,13 @@ public class TRetConsReciNFe extends NFe {
 	@Element(name = "cUF", required = true)
 	private NFUnidadeFederativa uf;
 	
-	@ElementList(entry = "protNFe", inline = true, required = false)
-	protected List<TProtNFe> protocolos;
+	@Element(name = "dhRecbto", required = true)
+	private Date dataRecebimento;
 	
-	public TRetConsReciNFe() {
-		this.versao = null;
-		this.ambiente = null;
-		this.versaoAplicacao = null;
-		this.numeroRecibo = null;
-		this.status = null;
-		this.motivo = null;
-		this.uf = null;
-		this.protocolos = null;
+	@Element(name = "infRec", required = true)
+	private TRetEnviNFeInfRec infoRecebimento;
+	
+	public TRetEnviNFe() {
 	}
 	
 	public String getVersao() {
@@ -73,14 +64,6 @@ public class TRetConsReciNFe extends NFe {
 		this.versaoAplicacao = versaoAplicacao;
 	}
 	
-	public String getNumeroRecibo() {
-		return this.numeroRecibo;
-	}
-	
-	public void setNumeroRecibo(final String numeroRecibo) {
-		this.numeroRecibo = numeroRecibo;
-	}
-	
 	public String getStatus() {
 		return this.status;
 	}
@@ -105,11 +88,19 @@ public class TRetConsReciNFe extends NFe {
 		this.uf = uf;
 	}
 	
-	public List<TProtNFe> getProtocolos() {
-		return this.protocolos;
+	public Date getDataRecebimento() {
+		return this.dataRecebimento;
 	}
 	
-	public void setProtocolos(final List<TProtNFe> protocolos) {
-		this.protocolos = protocolos;
+	public void setDataRecebimento(final Date dataRecebimento) {
+		this.dataRecebimento = dataRecebimento;
+	}
+	
+	public TRetEnviNFeInfRec getInfoRecebimento() {
+		return this.infoRecebimento;
+	}
+	
+	public void setInfoRecebimento(final TRetEnviNFeInfRec infoRecebimento) {
+		this.infoRecebimento = infoRecebimento;
 	}
 }
