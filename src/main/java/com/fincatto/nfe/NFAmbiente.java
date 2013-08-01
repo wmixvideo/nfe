@@ -1,12 +1,12 @@
 package com.fincatto.nfe;
 
-public enum Ambiente {
+public enum NFAmbiente {
 	
 	PRODUCAO("1"), HOMOLOGACAO("2");
 	
 	private final String codigo;
 	
-	private Ambiente(final String codigo) {
+	private NFAmbiente(final String codigo) {
 		this.codigo = codigo;
 	}
 	
@@ -14,8 +14,8 @@ public enum Ambiente {
 		return this.codigo;
 	}
 	
-	public static Ambiente valueOfCodigo(final String codigo) {
-		for (Ambiente ambiente : Ambiente.values()) {
+	public static NFAmbiente valueOfCodigo(final String codigo) {
+		for (NFAmbiente ambiente : NFAmbiente.values()) {
 			if (ambiente.getCodigo().equalsIgnoreCase(codigo)) {
 				return ambiente;
 			}

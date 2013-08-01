@@ -4,7 +4,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe.Ambiente;
+import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.v200.classes.NFe;
 
 @Root(name = "consReciNFe")
@@ -14,7 +14,7 @@ public class TConsReciNFe extends NFe {
 	private String versao;
 	
 	@Element(name = "tpAmb", required = true)
-	private Ambiente ambiente;
+	private NFAmbiente ambiente;
 	
 	@Element(name = "nRec", required = true)
 	private String recibo;
@@ -33,11 +33,11 @@ public class TConsReciNFe extends NFe {
 		this.versao = versao;
 	}
 	
-	public Ambiente getAmbiente() {
+	public NFAmbiente getAmbiente() {
 		return this.ambiente;
 	}
 	
-	public void setAmbiente(final Ambiente ambiente) {
+	public void setAmbiente(final NFAmbiente ambiente) {
 		this.ambiente = ambiente;
 	}
 	
