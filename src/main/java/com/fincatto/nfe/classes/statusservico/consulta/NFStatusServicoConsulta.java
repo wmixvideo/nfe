@@ -7,11 +7,11 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.NFe;
+import com.fincatto.nfe.classes.NFBase;
 
 @Root(name = "consStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFStatusServicoConsulta extends NFe {
+public class NFStatusServicoConsulta extends NFBase {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
