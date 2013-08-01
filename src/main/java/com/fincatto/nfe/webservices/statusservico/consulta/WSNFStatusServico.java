@@ -12,8 +12,8 @@ import org.simpleframework.xml.stream.Format;
 import com.fincatto.nfe.NFAutorizador;
 import com.fincatto.nfe.NFConfig;
 import com.fincatto.nfe.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.statusservico.consulta.TConsStatServ;
-import com.fincatto.nfe.classes.statusservico.consulta.TRetConsStatServ;
+import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsulta;
+import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
 import com.fincatto.nfe.webservices.WSNFBase;
 
@@ -26,18 +26,18 @@ public class WSNFStatusServico extends WSNFBase {
 		super(config);
 	}
 	
-	public TRetConsStatServ consultar(final NFUnidadeFederativa uf) throws Exception {
+	public NFStatusServicoConsultaRetorno consultar(final NFUnidadeFederativa uf) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
 		WSNFStatusServico.log.debug(omElementConsulta);
 		
 		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, uf);
 		WSNFStatusServico.log.debug(omElementResult.toString());
 		
-		return new Persister(new NFRegistryMatcher(), new Format(0)).read(TRetConsStatServ.class, omElementResult.toString());
+		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
 	}
 	
-	private TConsStatServ gerarDadosConsulta(final NFUnidadeFederativa unidadeFederativa) {
-		final TConsStatServ consStatServ = new TConsStatServ();
+	private NFStatusServicoConsulta gerarDadosConsulta(final NFUnidadeFederativa unidadeFederativa) {
+		final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
 		consStatServ.setUf(unidadeFederativa);
 		consStatServ.setAmbiente(super.getConfig().getAmbiente());
 		consStatServ.setVersao(WSNFStatusServico.VERSAO_LEIAUTE);

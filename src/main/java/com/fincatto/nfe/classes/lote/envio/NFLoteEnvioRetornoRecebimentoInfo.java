@@ -1,8 +1,8 @@
-package com.fincatto.nfe.classes.lote.envio.recibo;
+package com.fincatto.nfe.classes.lote.envio;
 
 import org.simpleframework.xml.Element;
 
-public class TRetEnviNFeInfRec {
+public class NFLoteEnvioRetornoRecebimentoInfo {
 
 	@Element(name = "nRec", required = true)
 	private String recibo;
@@ -10,7 +10,7 @@ public class TRetEnviNFeInfRec {
 	@Element(name = "tMed", required = true)
 	private String tempoMedio;
 
-	public TRetEnviNFeInfRec() {
+	public NFLoteEnvioRetornoRecebimentoInfo() {
 		this.recibo = null;
 		this.tempoMedio = null;
 	}

@@ -1,19 +1,19 @@
-package com.fincatto.nfe.classes.lote.consulta.recibo;
+package com.fincatto.nfe.classes.lote.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFe;
 
-public class TProtNFe extends NFe {
+public class NFLoteConsultaRetornoProtocolo extends NFe {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
 	
 	@Element(name = "infProt", required = true)
-	private InfProt protocolo;
+	private NFLoteConsultaRetornoProtocoloInfo protocolo;
 	
-	public TProtNFe() {
+	public NFLoteConsultaRetornoProtocolo() {
 		this.versao = null;
 		this.protocolo = null;
 	}
@@ -22,7 +22,7 @@ public class TProtNFe extends NFe {
 		return this.versao;
 	}
 	
-	public InfProt getProtocolo() {
+	public NFLoteConsultaRetornoProtocoloInfo getProtocolo() {
 		return this.protocolo;
 	}
 	
@@ -30,7 +30,7 @@ public class TProtNFe extends NFe {
 		this.versao = versao;
 	}
 	
-	public void setProtocolo(final InfProt protocolo) {
+	public void setProtocolo(final NFLoteConsultaRetornoProtocoloInfo protocolo) {
 		this.protocolo = protocolo;
 	}
 }

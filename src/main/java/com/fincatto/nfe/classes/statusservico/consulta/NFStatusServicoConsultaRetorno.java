@@ -1,17 +1,19 @@
-package com.fincatto.nfe.classes.lote.envio.recibo;
+package com.fincatto.nfe.classes.statusservico.consulta;
 
 import java.util.Date;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFe;
 
-@Root(name = "retEnviNFe")
-public class TRetEnviNFe extends NFe {
+@Root(name = "retConsStatServ")
+@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
+public class NFStatusServicoConsultaRetorno extends NFe {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
@@ -34,10 +36,26 @@ public class TRetEnviNFe extends NFe {
 	@Element(name = "dhRecbto", required = true)
 	private Date dataRecebimento;
 	
-	@Element(name = "infRec", required = true)
-	private TRetEnviNFeInfRec infoRecebimento;
+	@Element(name = "dhRetorno", required = false)
+	private Date dataRetorno;
 	
-	public TRetEnviNFe() {
+	@Element(name = "xObs", required = false)
+	private String observacao;
+	
+	@Element(name = "tMed", required = true)
+	private String tempoMedio;
+	
+	public NFStatusServicoConsultaRetorno() {
+		this.versao = null;
+		this.ambiente = null;
+		this.versaoAplicacao = null;
+		this.status = null;
+		this.motivo = null;
+		this.uf = null;
+		this.dataRecebimento = null;
+		this.dataRetorno = null;
+		this.observacao = null;
+		this.tempoMedio = null;
 	}
 	
 	public String getVersao() {
@@ -96,11 +114,27 @@ public class TRetEnviNFe extends NFe {
 		this.dataRecebimento = dataRecebimento;
 	}
 	
-	public TRetEnviNFeInfRec getInfoRecebimento() {
-		return this.infoRecebimento;
+	public Date getDataRetorno() {
+		return this.dataRetorno;
 	}
 	
-	public void setInfoRecebimento(final TRetEnviNFeInfRec infoRecebimento) {
-		this.infoRecebimento = infoRecebimento;
+	public void setDataRetorno(final Date dataRetorno) {
+		this.dataRetorno = dataRetorno;
+	}
+	
+	public String getObservacao() {
+		return this.observacao;
+	}
+	
+	public void setObservacao(final String observacao) {
+		this.observacao = observacao;
+	}
+	
+	public String getTempoMedio() {
+		return this.tempoMedio;
+	}
+	
+	public void setTempoMedio(final String tempoMedio) {
+		this.tempoMedio = tempoMedio;
 	}
 }

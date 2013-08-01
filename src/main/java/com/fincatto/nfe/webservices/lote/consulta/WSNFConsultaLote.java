@@ -12,8 +12,8 @@ import org.simpleframework.xml.stream.Format;
 import com.fincatto.nfe.NFAutorizador;
 import com.fincatto.nfe.NFConfig;
 import com.fincatto.nfe.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.lote.consulta.TConsReciNFe;
-import com.fincatto.nfe.classes.lote.consulta.recibo.TRetConsReciNFe;
+import com.fincatto.nfe.classes.lote.consulta.NFLoteConsulta;
+import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
 import com.fincatto.nfe.webservices.WSNFBase;
 import com.fincatto.nfe.webservices.lote.consulta.NfeRetRecepcao2Stub.NfeRetRecepcao2Result;
@@ -27,18 +27,18 @@ public class WSNFConsultaLote extends WSNFBase {
 		super(config);
 	}
 	
-	public TRetConsReciNFe consultar(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {
+	public NFLoteConsultaRetorno consultar(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
 		WSNFConsultaLote.log.debug(omElementConsulta);
 		
 		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, uf);
 		WSNFConsultaLote.log.debug(omElementResult.toString());
 		
-		return new Persister(new NFRegistryMatcher(), new Format(0)).read(TRetConsReciNFe.class, omElementResult.toString());
+		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
 	}
 	
-	private TConsReciNFe gerarDadosConsulta(final String numeroRecibo) {
-		final TConsReciNFe consulta = new TConsReciNFe();
+	private NFLoteConsulta gerarDadosConsulta(final String numeroRecibo) {
+		final NFLoteConsulta consulta = new NFLoteConsulta();
 		consulta.setRecibo(numeroRecibo);
 		consulta.setAmbiente(super.getConfig().getAmbiente());
 		consulta.setVersao(WSNFConsultaLote.VERSAO_LEIAUTE);
