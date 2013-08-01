@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.lote.consulta;
+package com.fincatto.nfe.classes.statusservico.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -6,11 +6,12 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
+import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFe;
 
-@Root(name = "consReciNFe")
+@Root(name = "consStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class TConsReciNFe extends NFe {
+public class NFStatusServicoConsulta extends NFe {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
@@ -18,13 +19,17 @@ public class TConsReciNFe extends NFe {
 	@Element(name = "tpAmb", required = true)
 	private NFAmbiente ambiente;
 	
-	@Element(name = "nRec", required = true)
-	private String recibo;
+	@Element(name = "cUF", required = true)
+	private NFUnidadeFederativa uf;
 	
-	public TConsReciNFe() {
+	@Element(name = "xServ", required = true)
+	private String servico;
+	
+	public NFStatusServicoConsulta() {
 		this.versao = null;
 		this.ambiente = null;
-		this.recibo = null;
+		this.uf = null;
+		this.servico = null;
 	}
 	
 	public String getVersao() {
@@ -43,11 +48,19 @@ public class TConsReciNFe extends NFe {
 		this.ambiente = ambiente;
 	}
 	
-	public String getRecibo() {
-		return this.recibo;
+	public NFUnidadeFederativa getUf() {
+		return this.uf;
 	}
 	
-	public void setRecibo(final String recibo) {
-		this.recibo = recibo;
+	public void setUf(final NFUnidadeFederativa uf) {
+		this.uf = uf;
+	}
+	
+	public String getServico() {
+		return this.servico;
+	}
+	
+	public void setServico(final String servico) {
+		this.servico = servico;
 	}
 }

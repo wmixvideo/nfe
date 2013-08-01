@@ -1,9 +1,10 @@
-package com.fincatto.nfe.classes.statusservico.consulta;
+package com.fincatto.nfe.classes.lote.consulta;
 
-import java.util.Date;
+import java.util.List;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -11,9 +12,9 @@ import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFe;
 
-@Root(name = "retConsStatServ")
+@Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class TRetConsStatServ extends NFe {
+public class NFLoteConsultaRetorno extends NFe {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
@@ -24,6 +25,9 @@ public class TRetConsStatServ extends NFe {
 	@Element(name = "verAplic", required = true)
 	private String versaoAplicacao;
 	
+	@Element(name = "nRec", required = false)
+	private String numeroRecibo;
+	
 	@Element(name = "cStat", required = true)
 	private String status;
 	
@@ -33,21 +37,18 @@ public class TRetConsStatServ extends NFe {
 	@Element(name = "cUF", required = true)
 	private NFUnidadeFederativa uf;
 	
-	@Element(name = "dhRecbto", required = true)
-	private Date dataRecebimento;
+	@ElementList(entry = "protNFe", inline = true, required = false)
+	protected List<NFLoteConsultaRetornoProtocolo> protocolos;
 	
-	@Element(name = "tMed", required = true)
-	private String tempoMedio;
-	
-	public TRetConsStatServ() {
+	public NFLoteConsultaRetorno() {
 		this.versao = null;
 		this.ambiente = null;
 		this.versaoAplicacao = null;
+		this.numeroRecibo = null;
 		this.status = null;
 		this.motivo = null;
 		this.uf = null;
-		this.dataRecebimento = null;
-		this.tempoMedio = null;
+		this.protocolos = null;
 	}
 	
 	public String getVersao() {
@@ -74,6 +75,14 @@ public class TRetConsStatServ extends NFe {
 		this.versaoAplicacao = versaoAplicacao;
 	}
 	
+	public String getNumeroRecibo() {
+		return this.numeroRecibo;
+	}
+	
+	public void setNumeroRecibo(final String numeroRecibo) {
+		this.numeroRecibo = numeroRecibo;
+	}
+	
 	public String getStatus() {
 		return this.status;
 	}
@@ -98,19 +107,11 @@ public class TRetConsStatServ extends NFe {
 		this.uf = uf;
 	}
 	
-	public Date getDataRecebimento() {
-		return this.dataRecebimento;
+	public List<NFLoteConsultaRetornoProtocolo> getProtocolos() {
+		return this.protocolos;
 	}
 	
-	public void setDataRecebimento(final Date dataRecebimento) {
-		this.dataRecebimento = dataRecebimento;
-	}
-	
-	public String getTempoMedio() {
-		return this.tempoMedio;
-	}
-	
-	public void setTempoMedio(final String tempoMedio) {
-		this.tempoMedio = tempoMedio;
+	public void setProtocolos(final List<NFLoteConsultaRetornoProtocolo> protocolos) {
+		this.protocolos = protocolos;
 	}
 }

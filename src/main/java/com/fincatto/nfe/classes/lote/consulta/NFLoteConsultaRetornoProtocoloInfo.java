@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.lote.consulta.recibo;
+package com.fincatto.nfe.classes.lote.consulta;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.classes.NFe;
 
-public class InfProt extends NFe {
+public class NFLoteConsultaRetornoProtocoloInfo extends NFe {
 	
 	@Attribute(name = "Id", required = true)
 	private String identificador;
@@ -37,7 +37,7 @@ public class InfProt extends NFe {
 	@Element(name = "xMotivo", required = true)
 	private String motivo;
 	
-	public InfProt() {
+	public NFLoteConsultaRetornoProtocoloInfo() {
 		this.identificador = null;
 		this.ambiente = null;
 		this.versaoAplicacao = null;
