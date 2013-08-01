@@ -35,7 +35,7 @@ public class NFNotaConsultaRetorno extends NFBase {
 	@Element(name = "chNFe", required = true)
 	private String chave;
 	
-	@Element(name = "protNFe", required = true)
+	@Element(name = "protNFe", required = false)
 	protected NFProtocolo protocolo;
 	
 	public NFNotaConsultaRetorno() {
