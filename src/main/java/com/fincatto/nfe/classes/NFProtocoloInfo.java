@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.lote.consulta;
+package com.fincatto.nfe.classes;
 
 import java.util.Date;
 
@@ -6,9 +6,8 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.classes.NFBase;
 
-public class NFLoteConsultaRetornoProtocoloInfo extends NFBase {
+public class NFProtocoloInfo extends NFBase {
 	
 	@Attribute(name = "Id", required = true)
 	private String identificador;
@@ -37,7 +36,7 @@ public class NFLoteConsultaRetornoProtocoloInfo extends NFBase {
 	@Element(name = "xMotivo", required = true)
 	private String motivo;
 	
-	public NFLoteConsultaRetornoProtocoloInfo() {
+	public NFProtocoloInfo() {
 		this.identificador = null;
 		this.ambiente = null;
 		this.versaoAplicacao = null;
