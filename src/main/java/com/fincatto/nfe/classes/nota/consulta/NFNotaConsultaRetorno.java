@@ -1,10 +1,7 @@
-package com.fincatto.nfe.classes.lote.consulta;
-
-import java.util.List;
+package com.fincatto.nfe.classes.nota.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -13,9 +10,9 @@ import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFProtocolo;
 
-@Root(name = "retConsReciNFe")
+@Root(name = "retConsSitNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFLoteConsultaRetorno extends NFBase {
+public class NFNotaConsultaRetorno extends NFBase {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;
@@ -26,9 +23,6 @@ public class NFLoteConsultaRetorno extends NFBase {
 	@Element(name = "verAplic", required = true)
 	private String versaoAplicacao;
 	
-	@Element(name = "nRec", required = false)
-	private String numeroRecibo;
-	
 	@Element(name = "cStat", required = true)
 	private String status;
 	
@@ -38,18 +32,21 @@ public class NFLoteConsultaRetorno extends NFBase {
 	@Element(name = "cUF", required = true)
 	private NFUnidadeFederativa uf;
 	
-	@ElementList(entry = "protNFe", inline = true, required = false)
-	protected List<NFProtocolo> protocolos;
+	@Element(name = "chNFe", required = true)
+	private String chave;
 	
-	public NFLoteConsultaRetorno() {
+	@Element(name = "protNFe", required = true)
+	protected NFProtocolo protocolo;
+	
+	public NFNotaConsultaRetorno() {
 		this.versao = null;
 		this.ambiente = null;
 		this.versaoAplicacao = null;
-		this.numeroRecibo = null;
 		this.status = null;
 		this.motivo = null;
 		this.uf = null;
-		this.protocolos = null;
+		this.chave = null;
+		this.protocolo = null;
 	}
 	
 	public String getVersao() {
@@ -76,14 +73,6 @@ public class NFLoteConsultaRetorno extends NFBase {
 		this.versaoAplicacao = versaoAplicacao;
 	}
 	
-	public String getNumeroRecibo() {
-		return this.numeroRecibo;
-	}
-	
-	public void setNumeroRecibo(final String numeroRecibo) {
-		this.numeroRecibo = numeroRecibo;
-	}
-	
 	public String getStatus() {
 		return this.status;
 	}
@@ -108,11 +97,19 @@ public class NFLoteConsultaRetorno extends NFBase {
 		this.uf = uf;
 	}
 	
-	public List<NFProtocolo> getProtocolos() {
-		return this.protocolos;
+	public String getChave() {
+		return this.chave;
 	}
 	
-	public void setProtocolos(final List<NFProtocolo> protocolos) {
-		this.protocolos = protocolos;
+	public void setChave(final String chave) {
+		this.chave = chave;
+	}
+	
+	public NFProtocolo getProtocolo() {
+		return this.protocolo;
+	}
+	
+	public void setProtocolo(final NFProtocolo protocolo) {
+		this.protocolo = protocolo;
 	}
 }
