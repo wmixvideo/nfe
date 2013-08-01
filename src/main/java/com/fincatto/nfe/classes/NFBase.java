@@ -7,7 +7,8 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
 
-public abstract class NFe {
+public abstract class NFBase {
+	
 	@Override
 	public String toString() {
 		final Persister persister = new Persister(new NFRegistryMatcher(), new Format(0));

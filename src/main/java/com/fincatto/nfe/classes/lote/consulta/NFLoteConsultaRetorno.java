@@ -10,11 +10,11 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.NFe;
+import com.fincatto.nfe.classes.NFBase;
 
 @Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFLoteConsultaRetorno extends NFe {
+public class NFLoteConsultaRetorno extends NFBase {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;

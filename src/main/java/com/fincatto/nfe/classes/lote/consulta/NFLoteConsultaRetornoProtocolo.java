@@ -3,9 +3,9 @@ package com.fincatto.nfe.classes.lote.consulta;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.classes.NFe;
+import com.fincatto.nfe.classes.NFBase;
 
-public class NFLoteConsultaRetornoProtocolo extends NFe {
+public class NFLoteConsultaRetornoProtocolo extends NFBase {
 	
 	@Attribute(name = "versao", required = true)
 	private String versao;

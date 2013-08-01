@@ -6,9 +6,9 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.classes.NFe;
+import com.fincatto.nfe.classes.NFBase;
 
-public class NFLoteConsultaRetornoProtocoloInfo extends NFe {
+public class NFLoteConsultaRetornoProtocoloInfo extends NFBase {
 	
 	@Attribute(name = "Id", required = true)
 	private String identificador;
