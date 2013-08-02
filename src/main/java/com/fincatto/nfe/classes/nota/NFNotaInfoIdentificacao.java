@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
 import com.fincatto.nfe.classes.NFProgramaEmissor;
@@ -12,7 +13,7 @@ import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
 
-public class NFNotaInfoIdentificacao {
+public class NFNotaInfoIdentificacao extends NFBase {
 	
 	@Element(name = "cUF", required = true)
 	private NFUnidadeFederativa uf;
