@@ -1,7 +1,6 @@
 package com.fincatto.nfe.classes.lote.envio;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -32,7 +31,7 @@ public class NFLoteEnvioRetorno extends NFBase {
 	private NFUnidadeFederativa uf;
 	
 	@Element(name = "dhRecbto", required = true)
-	private Date dataRecebimento;
+	private DateTime dataRecebimento;
 	
 	@Element(name = "infRec", required = true)
 	private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
@@ -96,11 +95,11 @@ public class NFLoteEnvioRetorno extends NFBase {
 		this.uf = uf;
 	}
 	
-	public Date getDataRecebimento() {
+	public DateTime getDataRecebimento() {
 		return this.dataRecebimento;
 	}
 	
-	public void setDataRecebimento(final Date dataRecebimento) {
+	public void setDataRecebimento(final DateTime dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
 	}
 	
