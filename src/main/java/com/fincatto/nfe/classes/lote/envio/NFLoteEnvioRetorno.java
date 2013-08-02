@@ -38,6 +38,14 @@ public class NFLoteEnvioRetorno extends NFBase {
 	private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
 	
 	public NFLoteEnvioRetorno() {
+		this.versao = null;
+		this.ambiente = null;
+		this.versaoAplicacao = null;
+		this.status = null;
+		this.motivo = null;
+		this.uf = null;
+		this.dataRecebimento = null;
+		this.infoRecebimento = null;
 	}
 	
 	public String getVersao() {
