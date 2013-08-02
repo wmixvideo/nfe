@@ -1,7 +1,6 @@
 package com.fincatto.nfe.classes;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -22,7 +21,7 @@ public class NFProtocoloInfo extends NFBase {
 	private String chave;
 	
 	@Element(name = "dhRecbto", required = true)
-	private Date dataRecebimento;
+	private DateTime dataRecebimento;
 	
 	@Element(name = "nProt", required = true)
 	private String numeroProtocolo;
@@ -80,11 +79,11 @@ public class NFProtocoloInfo extends NFBase {
 		this.chave = chave;
 	}
 	
-	public Date getDataRecebimento() {
+	public DateTime getDataRecebimento() {
 		return this.dataRecebimento;
 	}
 	
-	public void setDataRecebimento(final Date dataRecebimento) {
+	public void setDataRecebimento(final DateTime dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
 	}
 	
