@@ -1,7 +1,10 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -20,10 +23,20 @@ public class NFNotaInfo extends NFBase {
 	@Element(name = "ide", required = true)
 	private NFNotaInfoIdentificacao identificacao;
 	
+	@Element(name = "emit", required = true)
+	private NFNotaInfoEmitente emitente;
+	
+	@Element(name = "dest", required = true)
+	private NFNotaInfoDestinatario destinatario;
+	
+	@ElementList(entry = "det", inline = true, required = true)
+	private List<NFNotaInfoItem> itens;
+	
 	public NFNotaInfo() {
 		this.identificador = null;
 		this.versao = null;
 		this.identificacao = null;
+		this.setItens(null);
 	}
 	
 	public String getIdentificador() {
@@ -48,5 +61,13 @@ public class NFNotaInfo extends NFBase {
 	
 	public void setIdentificacao(final NFNotaInfoIdentificacao identificacao) {
 		this.identificacao = identificacao;
+	}
+	
+	public List<NFNotaInfoItem> getItens() {
+		return this.itens;
+	}
+	
+	public void setItens(final List<NFNotaInfoItem> itens) {
+		this.itens = itens;
 	}
 }
