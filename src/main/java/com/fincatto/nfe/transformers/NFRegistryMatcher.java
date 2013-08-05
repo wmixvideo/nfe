@@ -10,12 +10,15 @@ import com.fincatto.nfe.NFAmbiente;
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
+import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.classes.NFProgramaEmissor;
 import com.fincatto.nfe.classes.NFRegimeTributario;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
@@ -26,6 +29,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
 	
 	public NFRegistryMatcher() {
 		super.bind(NFTipo.class, new NFTipoTransformer());
+		super.bind(NFOrigem.class, new NFOrigemTransformer());
 		super.bind(NFAmbiente.class, new NFAmbienteTransformer());
 		super.bind(LocalDate.class, new NFLocalDateTransformer());
 		super.bind(BigDecimal.class, new BigDecimalTransformer());
@@ -43,5 +47,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
 		super.bind(NFNotaInfoItemProdutoVeiculoRestricao.class, new NFNotaInfoItemProdutoVeiculoRestricaoTransformer());
 		super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
 		super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
+		super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloTransformer());
+		super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributariaTransformer());
 	}
 }
