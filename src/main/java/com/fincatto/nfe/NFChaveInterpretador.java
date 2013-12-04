@@ -63,12 +63,6 @@ public class NFChaveInterpretador {
 	}
 	
 	public String getFormatado() {
-		String chaveOriginal = this.chave.toString(); // copiar a string original para nao modifica-la
-		final StringBuilder formatado = new StringBuilder();
-		while (chaveOriginal.length() > 0) {
-			formatado.append(chaveOriginal.substring(0, 4)).append(" ");
-			chaveOriginal = chaveOriginal.substring(4);
-		}
-		return formatado.toString().trim();
+        return this.chave.replaceFirst("(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
 	}
 }
