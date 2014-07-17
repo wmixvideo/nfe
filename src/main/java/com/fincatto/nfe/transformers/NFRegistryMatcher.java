@@ -24,30 +24,32 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoRestricao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.nfe.classes.nota.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFRegistryMatcher extends RegistryMatcher {
-	
-	public NFRegistryMatcher() {
-		super.bind(NFTipo.class, new NFTipoTransformer());
-		super.bind(NFOrigem.class, new NFOrigemTransformer());
-		super.bind(NFAmbiente.class, new NFAmbienteTransformer());
-		super.bind(LocalDate.class, new NFLocalDateTransformer());
-		super.bind(BigDecimal.class, new BigDecimalTransformer());
-		super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
-		super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
-		super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());
-		super.bind(NFTipoImpressao.class, new NFTipoImpressaoTransformer());
-		super.bind(NFFormaPagamento.class, new NFFormaPagamentoTransformer());
-		super.bind(NFProgramaEmissor.class, new NFProgramaEmissorTransformer());
-		super.bind(NFRegimeTributario.class, new NFRegimeTributarioTransformer());
-		super.bind(NFUnidadeFederativa.class, new NFUnidadeFederativaTransformer());
-		super.bind(NFProdutoCompoeValorNota.class, new NFProdutoCompoeValorNotaTransformer());
-		super.bind(NFNotaInfoItemProdutoArmamentoTipo.class, new NFNotaInfoItemProdutoArmamentoTipoTransformer());
-		super.bind(NFNotaInfoItemProdutoVeiculoCondicao.class, new NFNotaInfoItemProdutoVeiculoCondicaoTransformer());
-		super.bind(NFNotaInfoItemProdutoVeiculoRestricao.class, new NFNotaInfoItemProdutoVeiculoRestricaoTransformer());
-		super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
-		super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
-		super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloTransformer());
-		super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributariaTransformer());
-	}
+
+    public NFRegistryMatcher() {
+        super.bind(NFTipo.class, new NFTipoTransformer());
+        super.bind(NFOrigem.class, new NFOrigemTransformer());
+        super.bind(NFAmbiente.class, new NFAmbienteTransformer());
+        super.bind(LocalDate.class, new NFLocalDateTransformer());
+        super.bind(BigDecimal.class, new BigDecimalTransformer());
+        super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
+        super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
+        super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());
+        super.bind(NFTipoImpressao.class, new NFTipoImpressaoTransformer());
+        super.bind(NFFormaPagamento.class, new NFFormaPagamentoTransformer());
+        super.bind(NFProgramaEmissor.class, new NFProgramaEmissorTransformer());
+        super.bind(NFRegimeTributario.class, new NFRegimeTributarioTransformer());
+        super.bind(NFUnidadeFederativa.class, new NFUnidadeFederativaTransformer());
+        super.bind(NFProdutoCompoeValorNota.class, new NFProdutoCompoeValorNotaTransformer());
+        super.bind(NFnotaInfoItemModalidadeBCICMSST.class, new NFnotaInfoItemModalidadeBCICMSSTTransformer());
+        super.bind(NFNotaInfoItemProdutoArmamentoTipo.class, new NFNotaInfoItemProdutoArmamentoTipoTransformer());
+        super.bind(NFNotaInfoItemProdutoVeiculoCondicao.class, new NFNotaInfoItemProdutoVeiculoCondicaoTransformer());
+        super.bind(NFNotaInfoItemProdutoVeiculoRestricao.class, new NFNotaInfoItemProdutoVeiculoRestricaoTransformer());
+        super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
+        super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
+        super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloTransformer());
+        super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributariaTransformer());
+    }
 }
