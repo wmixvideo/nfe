@@ -24,6 +24,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoRestricao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.nfe.classes.nota.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.nota.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFRegistryMatcher extends RegistryMatcher {
@@ -47,6 +48,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFNotaInfoItemProdutoArmamentoTipo.class, new NFNotaInfoItemProdutoArmamentoTipoTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoCondicao.class, new NFNotaInfoItemProdutoVeiculoCondicaoTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoRestricao.class, new NFNotaInfoItemProdutoVeiculoRestricaoTransformer());
+        super.bind(NFNotaSituacaoOperacionalSimplesNacional.class, new NFNotaSituacaoOperacionalSimplesNacionalTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
         super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCaluloTransformer());
