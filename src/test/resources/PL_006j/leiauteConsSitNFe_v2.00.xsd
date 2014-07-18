@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  PL_006h versao alteracao no include para leiautteNFe_2.00 10/06/2011                         -->
+<!--  PL_006f versao com correcoes no xServ para tornar a literal CONSULTAR obrigatoria 21/05/2010 -->
+<!--  PL_006c versao com correcoes 24/12/2009 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="leiauteNFe_v2.00.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
+	<xs:complexType name="TConsSitNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Pedido de Consulta da Situação Atual da Nota Fiscal Eletrônica</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xServ">
+				<xs:annotation>
+					<xs:documentation>Serviço Solicitado</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TServ">
+						<xs:enumeration value="CONSULTAR"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="chNFe" type="TChNFe">
+				<xs:annotation>
+					<xs:documentation>Chaves de acesso da NF-e, compostas por: UF do emitente, AAMM da emissão da NFe, CNPJ do emitente, modelo, série e número da NF-e e código numérico + DV.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerConsSitNFe" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetCancNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo retorno Pedido de Cancelamento da Nota Fiscal Eletrônica</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="infCanc">
+				<xs:annotation>
+					<xs:documentation>Dados do Resultado do Pedido de Cancelamento da Nota Fiscal Eletrônica</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tpAmb" type="TAmb">
+							<xs:annotation>
+								<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="verAplic" type="TVerAplic">
+							<xs:annotation>
+								<xs:documentation>Versão do Aplicativo que processou o pedido de cancelamento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cStat" type="TStat">
+							<xs:annotation>
+								<xs:documentation>Código do status da mensagem enviada.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="xMotivo" type="TMotivo">
+							<xs:annotation>
+								<xs:documentation>Descrição literal do status do serviço solicitado.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="cUF" type="TCodUfIBGE">
+							<xs:annotation>
+								<xs:documentation>código da UF de atendimento</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="chNFe" type="TChNFe" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Chaves de acesso da NF-e, compostas por: UF do emitente, AAMM da emissão da NFe, CNPJ do emitente, modelo, série e número da NF-e e código numérico + DV.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dhRecbto" type="xs:dateTime" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Data e hora de recebimento, no formato AAAA-MM-DDTHH:MM:SS. Deve ser preenchida com data e hora da gravação no Banco em caso de Confirmação.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="nProt" type="TProt" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Número do Protocolo de Status da NF-e. 1 posição (1 – Secretaria de Fazenda Estadual 2 – Receita Federal); 2 - código da UF - 2 posições ano; 10 seqüencial no ano.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Id" type="xs:ID" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCancNFe" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetConsSitNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno de Pedido de Consulta da Situação Atual da Nota Fiscal Eletrônica </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que processou a NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da mensagem enviada.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição literal do status do serviço solicitado.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cUF" type="TCodUfIBGE">
+				<xs:annotation>
+					<xs:documentation>código da UF de atendimento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="chNFe" type="TChNFe">
+				<xs:annotation>
+					<xs:documentation>Chaves de acesso da NF-e consultada</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="protNFe" type="TProtNFe" minOccurs="0"/>
+			<xs:element name="retCancNFe" type="TRetCancNFe" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerConsSitNFe" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="TVerCancNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão do leiaute de Cancelamento de NF-e - 2.00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="2\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TVerConsSitNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão do Leiaute da Cosulta situação NF-e - 2.00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="2\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
