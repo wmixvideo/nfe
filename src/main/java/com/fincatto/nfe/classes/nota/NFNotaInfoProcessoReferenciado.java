@@ -7,17 +7,20 @@ import com.fincatto.nfe.classes.NFBase;
 public class NFNotaInfoProcessoReferenciado extends NFBase {
 
     @Element(name = "nProc", required = true)
-    private String indentificadorProcessoOuAtoCOncessorio;
+    private String identificadorProcessoOuAtoConcessorio;
 
     @Element(name = "indProc", required = true)
     private NFOrigemProcesso indicadorOrigemProcesso;
 
-    public String getIndentificadorProcessoOuAtoCOncessorio() {
-        return this.indentificadorProcessoOuAtoCOncessorio;
+    public String getIdentificadorProcessoOuAtoConcessorio() {
+        return this.identificadorProcessoOuAtoConcessorio;
     }
 
-    public void setIndentificadorProcessoOuAtoCOncessorio(final String indentificadorProcessoOuAtoCOncessorio) {
-        this.indentificadorProcessoOuAtoCOncessorio = indentificadorProcessoOuAtoCOncessorio;
+    public void setIdentificadorProcessoOuAtoConcessorio(final String identificadorProcessoOuAtoConcessorio) {
+        if (identificadorProcessoOuAtoConcessorio.length() < 1 || identificadorProcessoOuAtoConcessorio.length() > 60) {
+            throw new IllegalStateException("Identificador processo ou ato concessorio deve ter entre 1-60 caracteres");
+        }
+        this.identificadorProcessoOuAtoConcessorio = identificadorProcessoOuAtoConcessorio;
     }
 
     public NFOrigemProcesso getIndicadorOrigemProcesso() {
