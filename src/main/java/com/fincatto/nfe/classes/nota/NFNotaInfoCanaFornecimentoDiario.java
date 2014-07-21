@@ -1,5 +1,7 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.math.BigInteger;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -10,54 +12,57 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     private int dia;
 
     @Element(name = "qtde", required = true)
-    private int quantidade;
+    private BigInteger quantidade;
 
     @Element(name = "qTotMes", required = true)
-    private int quantidadeTotalMes;
+    private BigInteger quantidadeTotalMes;
 
     @Element(name = "qTotAnt", required = true)
-    private int quantidadeTotalAnterior;
+    private BigInteger quantidadeTotalAnterior;
 
     @Element(name = "qTotGer", required = true)
-    private int quantidadeTotalGeral;
+    private BigInteger quantidadeTotalGeral;
 
     public int getDia() {
         return this.dia;
     }
 
     public void setDia(final int dia) {
+        if (dia > 31 || dia < 1) {
+            throw new IllegalStateException("valor do dia invalido.");
+        }
         this.dia = dia;
     }
 
-    public int getQuantidade() {
+    public BigInteger getQuantidade() {
         return this.quantidade;
     }
 
-    public void setQuantidade(final int quantidade) {
+    public void setQuantidade(final BigInteger quantidade) {
         this.quantidade = quantidade;
     }
 
-    public int getQuantidadeTotalMes() {
+    public BigInteger getQuantidadeTotalMes() {
         return this.quantidadeTotalMes;
     }
 
-    public void setQuantidadeTotalMes(final int quantidadeTotalMes) {
+    public void setQuantidadeTotalMes(final BigInteger quantidadeTotalMes) {
         this.quantidadeTotalMes = quantidadeTotalMes;
     }
 
-    public int getQuantidadeTotalAnterior() {
+    public BigInteger getQuantidadeTotalAnterior() {
         return this.quantidadeTotalAnterior;
     }
 
-    public void setQuantidadeTotalAnterior(final int quantidadeTotalAnterior) {
+    public void setQuantidadeTotalAnterior(final BigInteger quantidadeTotalAnterior) {
         this.quantidadeTotalAnterior = quantidadeTotalAnterior;
     }
 
-    public int getQuantidadeTotalGeral() {
+    public BigInteger getQuantidadeTotalGeral() {
         return this.quantidadeTotalGeral;
     }
 
-    public void setQuantidadeTotalGeral(final int quantidadeTotalGeral) {
+    public void setQuantidadeTotalGeral(final BigInteger quantidadeTotalGeral) {
         this.quantidadeTotalGeral = quantidadeTotalGeral;
     }
 }

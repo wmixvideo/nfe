@@ -2,6 +2,7 @@ package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
@@ -27,6 +28,12 @@ public class NFNotaInfoCanaDeducao extends NFBase {
     }
 
     public void setDescricaoDeducao(final String descricaoDeducao) {
+        if (StringUtils.isBlank(descricaoDeducao)) {
+            throw new IllegalStateException("descricaoDeducao nao pode ser vazia");
+        }
+        if (descricaoDeducao.length() > 60) {
+            throw new IllegalStateException("descricaoDeducao deve conter 60 ou menos caracteres");
+        }
         this.descricaoDeducao = descricaoDeducao;
     }
 
