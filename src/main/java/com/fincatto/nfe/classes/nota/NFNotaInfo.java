@@ -199,4 +199,12 @@ public class NFNotaInfo extends NFBase {
     public void setSignature(final String signature) {
         this.signature = signature;
     }
+
+    public NFNotaInfoCobranca getCobranca() {
+        return this.cobranca;
+    }
+
+    public void setCobranca(final NFNotaInfoCobranca cobranca) {
+        this.cobranca = cobranca;
+    }
 }
