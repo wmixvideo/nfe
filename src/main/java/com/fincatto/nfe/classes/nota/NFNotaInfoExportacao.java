@@ -25,6 +25,9 @@ public class NFNotaInfoExportacao extends NFBase {
     }
 
     public void setLocalEmbarqueProdutos(final String localEmbarqueProdutos) {
+        if (localEmbarqueProdutos.length() < 1 || localEmbarqueProdutos.length() > 60) {
+            throw new IllegalStateException("Local de embarque de produtos deve ter 1-60 caracteres");
+        }
         this.localEmbarqueProdutos = localEmbarqueProdutos;
     }
 }
