@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoProcessoReferenciado extends NFBase {
 
@@ -17,9 +18,7 @@ public class NFNotaInfoProcessoReferenciado extends NFBase {
     }
 
     public void setIdentificadorProcessoOuAtoConcessorio(final String identificadorProcessoOuAtoConcessorio) {
-        if (identificadorProcessoOuAtoConcessorio.length() < 1 || identificadorProcessoOuAtoConcessorio.length() > 60) {
-            throw new IllegalStateException("Identificador processo ou ato concessorio deve ter entre 1-60 caracteres");
-        }
+        StringValidador.tamanho60(identificadorProcessoOuAtoConcessorio);
         this.identificadorProcessoOuAtoConcessorio = identificadorProcessoOuAtoConcessorio;
     }
 

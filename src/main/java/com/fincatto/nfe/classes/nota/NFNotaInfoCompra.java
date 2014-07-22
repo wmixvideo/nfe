@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoCompra extends NFBase {
 
@@ -20,9 +21,7 @@ public class NFNotaInfoCompra extends NFBase {
     }
 
     public void setNotaDeEmpenho(final String notaDeEmpenho) {
-        if (notaDeEmpenho.length() < 1 || notaDeEmpenho.length() > 22) {
-            throw new IllegalStateException("Nota de empenho deve possuir 1-22 caracteres");
-        }
+        StringValidador.tamanho22(notaDeEmpenho);
         this.notaDeEmpenho = notaDeEmpenho;
     }
 
@@ -31,9 +30,7 @@ public class NFNotaInfoCompra extends NFBase {
     }
 
     public void setPedido(final String pedido) {
-        if (pedido.length() < 1 || pedido.length() > 60) {
-            throw new IllegalStateException("Pedido deve possuir 1-60 caracteres");
-        }
+        StringValidador.tamanho60(pedido);
         this.pedido = pedido;
     }
 
@@ -42,9 +39,7 @@ public class NFNotaInfoCompra extends NFBase {
     }
 
     public void setContrato(final String contrato) {
-        if (contrato.length() < 1 || contrato.length() > 60) {
-            throw new IllegalStateException("Contrato deve possuir 1-60 caracteres ");
-        }
+        StringValidador.tamanho60(contrato);
         this.contrato = contrato;
     }
 }

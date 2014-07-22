@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoExportacao extends NFBase {
     @Element(name = "UFEmbarq", required = true)
@@ -25,9 +26,7 @@ public class NFNotaInfoExportacao extends NFBase {
     }
 
     public void setLocalEmbarqueProdutos(final String localEmbarqueProdutos) {
-        if (localEmbarqueProdutos.length() < 1 || localEmbarqueProdutos.length() > 60) {
-            throw new IllegalStateException("Local de embarque de produtos deve ter 1-60 caracteres");
-        }
+        StringValidador.tamanho60(localEmbarqueProdutos);
         this.localEmbarqueProdutos = localEmbarqueProdutos;
     }
 }
