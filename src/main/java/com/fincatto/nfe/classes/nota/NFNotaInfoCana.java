@@ -1,6 +1,6 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.text.ParseException;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +9,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoCana extends NFBase {
@@ -47,30 +48,25 @@ public class NFNotaInfoCana extends NFBase {
     }
 
     public void setReferencia(final String referencia) {
-        try {
-            StringValidador.mmaaaa(referencia);
-        } catch (final ParseException e) {
-            throw new IllegalStateException("Formato invalido");
-        }
+        StringValidador.mmaaaa(referencia);
         this.referencia = referencia;
     }
 
     public List<NFNotaInfoCanaFornecimentoDiario> getFornecimentosDiario() {
-        return this.fornecimentosDiario;
+        return Collections.unmodifiableList(this.fornecimentosDiario);
     }
 
     public void setFornecimentosDiario(final List<NFNotaInfoCanaFornecimentoDiario> fornecimentosDiario) {
-        if (fornecimentosDiario == null || fornecimentosDiario.isEmpty()) {
-            throw new IllegalStateException("Lista de fornecimento diario deve conter pelo menos um item");
-        }
+        ListValidador.tamanho31Obrigatorio(fornecimentosDiario);
         this.fornecimentosDiario = fornecimentosDiario;
     }
 
     public List<NFNotaInfoCanaDeducao> getDeducoes() {
-        return this.deducoes;
+        return Collections.unmodifiableList(this.deducoes);
     }
 
     public void setDeducoes(final List<NFNotaInfoCanaDeducao> deducoes) {
+        ListValidador.tamanho10(deducoes);
         this.deducoes = deducoes;
     }
 }
