@@ -4,8 +4,9 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
-public class NFNotaInfoObservacaoContribuinte extends NFBase {
+public class NFNotaInfoObservacao extends NFBase {
     @Attribute(name = "xCampo", required = true)
     private String identificacaoCampo;
 
@@ -17,6 +18,7 @@ public class NFNotaInfoObservacaoContribuinte extends NFBase {
     }
 
     public void setIdentificacaoCampo(final String identificacaoCampo) {
+        StringValidador.tamanho20(identificacaoCampo);
         this.identificacaoCampo = identificacaoCampo;
     }
 
@@ -25,6 +27,7 @@ public class NFNotaInfoObservacaoContribuinte extends NFBase {
     }
 
     public void setConteudoCampo(final String conteudoCampo) {
+        StringValidador.tamanho60(conteudoCampo);
         this.conteudoCampo = conteudoCampo;
     }
 }
