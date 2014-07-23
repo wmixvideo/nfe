@@ -47,8 +47,7 @@ public class NFNotaInfoCanaFornecimentoDiarioTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoCanaFornecimentoDiario canaFornecimentoDiario = FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario();
         final String xmlEsperado = "<NFNotaInfoCanaFornecimentoDiario dia=\"15\"><qtde>3</qtde><qTotMes>30</qTotMes><qTotAnt>10</qTotAnt><qTotGer>80</qTotGer></NFNotaInfoCanaFornecimentoDiario>";
-        Assert.assertEquals(xmlEsperado, canaFornecimentoDiario.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario().toString());
     }
 }

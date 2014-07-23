@@ -14,6 +14,10 @@ public class ListValidador {
         ListValidador.validaTamanho(lista, 31);
     }
 
+    public static <E> void tamanho120(final List<E> lista) {
+        ListValidador.validaTamanho(lista, 120);
+    }
+
     private static <E> void validaEstadoDaLista(final List<E> lista) {
         if (lista.isEmpty()) {
             throw new IllegalStateException("Lista obrigatoria esta vazia");

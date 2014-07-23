@@ -1,11 +1,13 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.ListValidador;
 
 public class NFNotaInfoCobranca extends NFBase {
     @Element(name = "fat", required = false)
@@ -23,10 +25,11 @@ public class NFNotaInfoCobranca extends NFBase {
     }
 
     public List<NFNotaInfoDuplicata> getDuplicatas() {
-        return this.duplicatas;
+        return Collections.unmodifiableList(this.duplicatas);
     }
 
     public void setDuplicatas(final List<NFNotaInfoDuplicata> duplicatas) {
+        ListValidador.tamanho120(duplicatas);
         this.duplicatas = duplicatas;
     }
 }

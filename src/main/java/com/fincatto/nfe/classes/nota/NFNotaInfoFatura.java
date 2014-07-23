@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoFatura extends NFBase {
     @Element(name = "nFat", required = false)
@@ -24,6 +25,7 @@ public class NFNotaInfoFatura extends NFBase {
     }
 
     public void setNumeroFatura(final String numeroFatura) {
+        StringValidador.tamanho60(numeroFatura);
         this.numeroFatura = numeroFatura;
     }
 
