@@ -1,27 +1,28 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     @Attribute(name = "dia", required = true)
     private int dia;
 
     @Element(name = "qtde", required = true)
-    private BigInteger quantidade;
+    private String quantidade;
 
     @Element(name = "qTotMes", required = true)
-    private BigInteger quantidadeTotalMes;
+    private String quantidadeTotalMes;
 
     @Element(name = "qTotAnt", required = true)
-    private BigInteger quantidadeTotalAnterior;
+    private String quantidadeTotalAnterior;
 
     @Element(name = "qTotGer", required = true)
-    private BigInteger quantidadeTotalGeral;
+    private String quantidadeTotalGeral;
 
     public int getDia() {
         return this.dia;
@@ -34,35 +35,35 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
         this.dia = dia;
     }
 
-    public BigInteger getQuantidade() {
-        return this.quantidade;
+    public BigDecimal getQuantidade() {
+        return new BigDecimal(this.quantidade);
     }
 
-    public void setQuantidade(final BigInteger quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(final BigDecimal quantidade) {
+        this.quantidade = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidade);
     }
 
-    public BigInteger getQuantidadeTotalMes() {
-        return this.quantidadeTotalMes;
+    public BigDecimal getQuantidadeTotalMes() {
+        return new BigDecimal(this.quantidadeTotalMes);
     }
 
-    public void setQuantidadeTotalMes(final BigInteger quantidadeTotalMes) {
-        this.quantidadeTotalMes = quantidadeTotalMes;
+    public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
+        this.quantidadeTotalMes = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalMes);
     }
 
-    public BigInteger getQuantidadeTotalAnterior() {
-        return this.quantidadeTotalAnterior;
+    public BigDecimal getQuantidadeTotalAnterior() {
+        return new BigDecimal(this.quantidadeTotalAnterior);
     }
 
-    public void setQuantidadeTotalAnterior(final BigInteger quantidadeTotalAnterior) {
-        this.quantidadeTotalAnterior = quantidadeTotalAnterior;
+    public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
+        this.quantidadeTotalAnterior = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalAnterior);
     }
 
-    public BigInteger getQuantidadeTotalGeral() {
-        return this.quantidadeTotalGeral;
+    public BigDecimal getQuantidadeTotalGeral() {
+        return new BigDecimal(this.quantidadeTotalGeral);
     }
 
-    public void setQuantidadeTotalGeral(final BigInteger quantidadeTotalGeral) {
-        this.quantidadeTotalGeral = quantidadeTotalGeral;
+    public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
+        this.quantidadeTotalGeral = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalGeral);
     }
 }

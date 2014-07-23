@@ -1,7 +1,5 @@
 package com.fincatto.nfe.transformers;
 
-import java.math.BigDecimal;
-
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.transform.RegistryMatcher;
@@ -38,7 +36,6 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFAmbiente.class, new NFAmbienteTransformer());
         super.bind(LocalDate.class, new NFLocalDateTransformer());
-        super.bind(BigDecimal.class, new BigDecimalTransformer());
         super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
         super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());

@@ -1,7 +1,6 @@
 package com.fincatto.nfe;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 import org.joda.time.LocalDate;
@@ -30,10 +29,10 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoCanaFornecimentoDiario getNFNotaInfoCanaFornecimentoDiario() {
         final NFNotaInfoCanaFornecimentoDiario canaFornecimentoDiario = new NFNotaInfoCanaFornecimentoDiario();
         canaFornecimentoDiario.setDia(15);
-        canaFornecimentoDiario.setQuantidade(new BigInteger("3"));
-        canaFornecimentoDiario.setQuantidadeTotalAnterior(new BigInteger("10"));
-        canaFornecimentoDiario.setQuantidadeTotalGeral(new BigInteger("80"));
-        canaFornecimentoDiario.setQuantidadeTotalMes(new BigInteger("30"));
+        canaFornecimentoDiario.setQuantidade(new BigDecimal("3"));
+        canaFornecimentoDiario.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        canaFornecimentoDiario.setQuantidadeTotalGeral(new BigDecimal("80"));
+        canaFornecimentoDiario.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
         return canaFornecimentoDiario;
     }
 

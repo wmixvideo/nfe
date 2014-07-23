@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoFatura extends NFBase {
@@ -12,13 +13,13 @@ public class NFNotaInfoFatura extends NFBase {
     private String numeroFatura;
 
     @Element(name = "vOrig", required = false)
-    private BigDecimal valorOriginalFatura;
+    private String valorOriginalFatura;
 
     @Element(name = "vDesc", required = false)
-    private BigDecimal valorDesconto;
+    private String valorDesconto;
 
     @Element(name = "vLiq", required = false)
-    private BigDecimal valorLiquidoFatura;
+    private String valorLiquidoFatura;
 
     public String getNumeroFatura() {
         return this.numeroFatura;
@@ -30,26 +31,26 @@ public class NFNotaInfoFatura extends NFBase {
     }
 
     public BigDecimal getValorOriginalFatura() {
-        return this.valorOriginalFatura;
+        return new BigDecimal(this.valorOriginalFatura);
     }
 
     public void setValorOriginalFatura(final BigDecimal valorOriginalFatura) {
-        this.valorOriginalFatura = valorOriginalFatura;
+        this.valorOriginalFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorOriginalFatura);
     }
 
     public BigDecimal getValorDesconto() {
-        return this.valorDesconto;
+        return new BigDecimal(this.valorDesconto);
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = valorDesconto;
+        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto);
     }
 
     public BigDecimal getValorLiquidoFatura() {
-        return this.valorLiquidoFatura;
+        return new BigDecimal(this.valorLiquidoFatura);
     }
 
     public void setValorLiquidoFatura(final BigDecimal valorLiquidoFatura) {
-        this.valorLiquidoFatura = valorLiquidoFatura;
+        this.valorLiquidoFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFatura);
     }
 }
