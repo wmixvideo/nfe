@@ -3,6 +3,9 @@ package com.fincatto.nfe.validadores;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringValidador {
 
@@ -37,6 +40,20 @@ public class StringValidador {
     private static void validaTamanho(final String string, final int tamanho) {
         if (string.length() < 1 || string.length() > tamanho) {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre 1-{0} caracteres", tamanho));
+        }
+    }
+
+    public static void placaDeVeiculo(final String placaVeiculo) {
+        boolean achou = false;
+        final String[] padroesDePlaca = { "(?i)^[A-Z]{3}[0-9]{4}$", "(?i)^[A-Z]{3}[0-9]{3}$", "(?i)^[A-Z]{2}[0-9]{4}$", "(?i)^[A-Z]{4}[0-9]{3}$" };
+        for (final String padraoDePlaca : Arrays.asList(padroesDePlaca)) {
+            final Matcher matcher = Pattern.compile(padraoDePlaca).matcher(placaVeiculo);
+            if (matcher.find()) {
+                achou = true;
+            }
+        }
+        if (!achou) {
+            throw new IllegalStateException("Nao esta no padrao");
         }
     }
 }
