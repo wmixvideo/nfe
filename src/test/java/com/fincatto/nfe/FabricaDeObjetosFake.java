@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
+import org.joda.time.LocalDate;
+
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
+import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
+import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
@@ -56,5 +60,22 @@ public class FabricaDeObjetosFake {
         processoReferenciado.setIdentificadorProcessoOuAtoConcessorio("SziSRSIRZvYWlxcbmmJfRZsLgVHaHTurUL9ea1kwFe7fssrxTVSK6uaFwGO5");
         processoReferenciado.setIndicadorOrigemProcesso(NFOrigemProcesso.JUSTICA_FEDERAL);
         return processoReferenciado;
+    }
+
+    public static NFNotaInfoFatura getNFNotaInfoFatura() {
+        final NFNotaInfoFatura fatura = new NFNotaInfoFatura();
+        fatura.setNumeroFatura("KDVAp0aewPjmHaTsjbDX1O6NOR9tc7TxGflFLXsMZt2hEKar3oqzZ11uzEQF");
+        fatura.setValorDesconto(new BigDecimal("0.15"));
+        fatura.setValorLiquidoFatura(new BigDecimal("3000"));
+        fatura.setValorOriginalFatura(new BigDecimal("3001.15"));
+        return fatura;
+    }
+
+    public static NFNotaInfoDuplicata getNFNotaInfoDuplicata() {
+        final NFNotaInfoDuplicata duplicata = new NFNotaInfoDuplicata();
+        duplicata.setDataVencimento(new LocalDate(2014, 07, 10));
+        duplicata.setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
+        duplicata.setValorDuplicata(new BigDecimal("999999.99"));
+        return duplicata;
     }
 }

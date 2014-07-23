@@ -27,6 +27,24 @@ public class ListValidadorTest {
         ListValidador.tamanho10(lista);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void deveLancarExcecaoCasoExtrapoleTamanho120() {
+        final List<Object> lista = new ArrayList<>();
+        for (int i = 0; i < 121; i++) {
+            lista.add(new Object());
+        }
+        ListValidador.tamanho120(lista);
+    }
+
+    @Test
+    public void deveValidarListaCom120Itens() {
+        final List<Object> lista = new ArrayList<>();
+        for (int i = 0; i < 120; i++) {
+            lista.add(new Object());
+        }
+        ListValidador.tamanho120(lista);
+    }
+
     @Test
     public void deveValidarListaCom31ItensObrigatorio() {
         ListValidador.tamanho31Obrigatorio(Arrays.asList(new Object[] { new Object() }));

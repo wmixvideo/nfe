@@ -53,6 +53,11 @@ public class NFNotaInfoCanaTest {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirSafraDeFormatoDiferente() {
+        new NFNotaInfoCana().setSafra("2014-2015");
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSafraComTamanhoDiferenteQue9() {
         try {
             new NFNotaInfoCana().setSafra("2013/201");

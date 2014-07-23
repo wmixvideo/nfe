@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoDuplicata extends NFBase {
     @Element(name = "nDup", required = false)
@@ -22,6 +23,7 @@ public class NFNotaInfoDuplicata extends NFBase {
     }
 
     public void setNumeroDuplicata(final String numeroDuplicata) {
+        StringValidador.tamanho60(numeroDuplicata);
         this.numeroDuplicata = numeroDuplicata;
     }
 
