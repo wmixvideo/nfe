@@ -1,7 +1,9 @@
 package com.fincatto.nfe;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.joda.time.LocalDate;
 
@@ -10,8 +12,10 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
 import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
+import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
+import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
@@ -76,5 +80,19 @@ public class FabricaDeObjetosFake {
         duplicata.setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
         duplicata.setValorDuplicata(new BigDecimal("999999.99"));
         return duplicata;
+    }
+
+    public static NFNotaInfoVolume getNFNotaInfoVolume() {
+        final NFNotaInfoVolume volume = new NFNotaInfoVolume();
+        volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
+        final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
+        notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
+        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
+        volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
+        volume.setPesoBruto(new BigDecimal("1.358"));
+        volume.setPesoLiquido(new BigDecimal("1"));
+        volume.setQuantidadeVolumesTransportados(new BigInteger("99999999999"));
+        return volume;
     }
 }

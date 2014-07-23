@@ -3,7 +3,7 @@ package com.fincatto.nfe.validadores;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class StringValidatorTest {
+public class StringValidadorTest {
 
     @Test
     public void deveValidarDataPadraoBrasileiro() {
@@ -69,5 +69,25 @@ public class StringValidatorTest {
             StringValidador.tamanho20("");
         }
         Assert.fail("Validacao falhou");
+    }
+
+    @Test
+    public void deveValidarPlacaDeVeiculo() {
+        StringValidador.placaDeVeiculo("MKZ8851");
+        StringValidador.placaDeVeiculo("MKZ8851");
+        StringValidador.placaDeVeiculo("MKZT885");
+        StringValidador.placaDeVeiculo("MKZ885");
+        StringValidador.placaDeVeiculo("MK8851");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarPlacaDeVeiculoCasoNaoPossua6ou7Caracteres() {
+        try {
+            StringValidador.placaDeVeiculo("MK885");
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+            StringValidador.placaDeVeiculo("MKZT8851");
+        }
+        Assert.fail("Validacao nao funcionou");
     }
 }
