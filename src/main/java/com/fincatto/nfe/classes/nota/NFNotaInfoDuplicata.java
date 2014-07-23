@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoDuplicata extends NFBase {
@@ -16,7 +17,7 @@ public class NFNotaInfoDuplicata extends NFBase {
     private LocalDate dataVencimento;
 
     @Element(name = "vDup", required = false)
-    private BigDecimal valorDuplicata;
+    private String valorDuplicata;
 
     public String getNumeroDuplicata() {
         return this.numeroDuplicata;
@@ -36,10 +37,10 @@ public class NFNotaInfoDuplicata extends NFBase {
     }
 
     public BigDecimal getValorDuplicata() {
-        return this.valorDuplicata;
+        return new BigDecimal(this.valorDuplicata);
     }
 
     public void setValorDuplicata(final BigDecimal valorDuplicata) {
-        this.valorDuplicata = valorDuplicata;
+        this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata);
     }
 }

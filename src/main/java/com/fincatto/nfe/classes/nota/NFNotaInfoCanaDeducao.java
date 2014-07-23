@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoCanaDeducao extends NFBase {
@@ -12,16 +13,16 @@ public class NFNotaInfoCanaDeducao extends NFBase {
     private String descricaoDeducao;
 
     @Element(name = "vDed", required = true)
-    private BigDecimal valorDeducao;
+    private String valorDeducao;
 
     @Element(name = "vFor", required = true)
-    private BigDecimal valorFornecimento;
+    private String valorFornecimento;
 
     @Element(name = "vTotDed", required = true)
-    private BigDecimal valorTotalDeducao;
+    private String valorTotalDeducao;
 
     @Element(name = "vLiqFor", required = true)
-    private BigDecimal valorLiquidoFornecimento;
+    private String valorLiquidoFornecimento;
 
     public String getDescricaoDeducao() {
         return this.descricaoDeducao;
@@ -33,34 +34,34 @@ public class NFNotaInfoCanaDeducao extends NFBase {
     }
 
     public BigDecimal getValorDeducao() {
-        return this.valorDeducao;
+        return new BigDecimal(this.valorDeducao);
     }
 
     public void setValorDeducao(final BigDecimal valorDeducao) {
-        this.valorDeducao = valorDeducao;
+        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao);
     }
 
     public BigDecimal getValorFornecimento() {
-        return this.valorFornecimento;
+        return new BigDecimal(this.valorFornecimento);
     }
 
     public void setValorFornecimento(final BigDecimal valorFornecimento) {
-        this.valorFornecimento = valorFornecimento;
+        this.valorFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorFornecimento);
     }
 
     public BigDecimal getValorTotalDeducao() {
-        return this.valorTotalDeducao;
+        return new BigDecimal(this.valorTotalDeducao);
     }
 
     public void setValorTotalDeducao(final BigDecimal valorTotalDeducao) {
-        this.valorTotalDeducao = valorTotalDeducao;
+        this.valorTotalDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDeducao);
     }
 
     public BigDecimal getValorLiquidoFornecimento() {
-        return this.valorLiquidoFornecimento;
+        return new BigDecimal(this.valorLiquidoFornecimento);
     }
 
     public void setValorLiquidoFornecimento(final BigDecimal valorLiquidoFornecimento) {
-        this.valorLiquidoFornecimento = valorLiquidoFornecimento;
+        this.valorLiquidoFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFornecimento);
     }
 }
