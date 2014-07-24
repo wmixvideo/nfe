@@ -18,7 +18,7 @@ public class NFNotaInfoTransporte extends NFBase {
     private NFNotaInfoRetencaoICMSTransporte icmsTransporte;
 
     @Element(name = "veicTransp", required = false)
-    private NFNotaInfoVeiculoTest veiculo;
+    private NFNotaInfoVeiculo veiculo;
 
     @ElementList(entry = "reboque", inline = true, required = false)
     private List<NFNotaInfoReboque> reboques;
@@ -50,11 +50,11 @@ public class NFNotaInfoTransporte extends NFBase {
         this.icmsTransporte = icmsTransporte;
     }
 
-    public NFNotaInfoVeiculoTest getVeiculo() {
+    public NFNotaInfoVeiculo getVeiculo() {
         return this.veiculo;
     }
 
-    public void setVeiculo(final NFNotaInfoVeiculoTest veiculo) {
+    public void setVeiculo(final NFNotaInfoVeiculo veiculo) {
         this.veiculo = veiculo;
     }
 
