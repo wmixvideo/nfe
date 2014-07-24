@@ -6,7 +6,7 @@ import com.fincatto.nfe.classes.NFBase;
 
 public class NFNotaInfoTotal extends NFBase {
 
-    @Element(name = "ICMStot", required = true)
+    @Element(name = "ICMSTot", required = true)
     private NFNotaInfoICMSTotal icmsTotal;
 
     @Element(name = "ISSQNtot", required = false)
