@@ -5,71 +5,75 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
+import com.fincatto.nfe.validadores.IntegerValidador;
 
 public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
     @Element(name = "vServ", required = true)
-    private BigDecimal valorServico;
+    private String valorServico;
 
     @Element(name = "vBCRet", required = true)
-    private BigDecimal bcRetencaoICMS;
+    private String bcRetencaoICMS;
 
     @Element(name = "pICMSRet", required = true)
-    private BigDecimal aliquotaRetencao;
+    private String aliquotaRetencao;
 
     @Element(name = "vICMSRet", required = true)
-    private BigDecimal valorICMSRetido;
+    private String valorICMSRetido;
 
     @Element(name = "CFOP", required = true)
-    private int cfop;
+    private Integer cfop;
 
     @Element(name = "cMunFG", required = true)
-    private int codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
+    private Integer codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
 
     public BigDecimal getValorServico() {
-        return this.valorServico;
+        return new BigDecimal(this.valorServico);
     }
 
     public void setValorServico(final BigDecimal valorServico) {
-        this.valorServico = valorServico;
+        this.valorServico = BigDecimalParser.tamanho15Com2CasasDecimais(valorServico);
     }
 
     public BigDecimal getBcRetencaoICMS() {
-        return this.bcRetencaoICMS;
+        return new BigDecimal(this.bcRetencaoICMS);
     }
 
     public void setBcRetencaoICMS(final BigDecimal bcRetencaoICMS) {
-        this.bcRetencaoICMS = bcRetencaoICMS;
+        this.bcRetencaoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(bcRetencaoICMS);
     }
 
     public BigDecimal getAliquotaRetencao() {
-        return this.aliquotaRetencao;
+        return new BigDecimal(this.aliquotaRetencao);
     }
 
     public void setAliquotaRetencao(final BigDecimal aliquotaRetencao) {
-        this.aliquotaRetencao = aliquotaRetencao;
+        this.aliquotaRetencao = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaRetencao);
     }
 
     public BigDecimal getValorICMSRetido() {
-        return this.valorICMSRetido;
+        return new BigDecimal(this.valorICMSRetido);
     }
 
     public void setValorICMSRetido(final BigDecimal valorICMSRetido) {
-        this.valorICMSRetido = valorICMSRetido;
+        this.valorICMSRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSRetido);
     }
 
     public int getCfop() {
         return this.cfop;
     }
 
-    public void setCfop(final int cfop) {
+    public void setCfop(final Integer cfop) {
+        IntegerValidador.tamanho4(cfop);
         this.cfop = cfop;
     }
 
-    public int getCodigoMunicioOcorrenciaFatoGeradorICMSTransporte() {
-        return this.codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
+    public int getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte() {
+        return this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
     }
 
-    public void setCodigoMunicioOcorrenciaFatoGeradorICMSTransporte(final int codigoMunicioOcorrenciaFatoGeradorICMSTransporte) {
-        this.codigoMunicioOcorrenciaFatoGeradorICMSTransporte = codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
+    public void setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(final Integer codigoMunicioOcorrenciaFatoGeradorICMSTransporte) {
+        IntegerValidador.tamanho7(codigoMunicioOcorrenciaFatoGeradorICMSTransporte);
+        this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte = codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
     }
 }
