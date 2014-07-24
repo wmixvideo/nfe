@@ -15,10 +15,52 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
+import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
+import com.fincatto.nfe.classes.nota.NFNotaInfoRetencaoICMSTransporte;
+import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
+import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoVeiculo getNFNotaInfoVeiculo() {
+        final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
+        veiculo.setPlacaVeiculo("MKZ8159");
+        veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
+        veiculo.setUf(NFUnidadeFederativa.SP);
+        return veiculo;
+    }
+
+    public static NFNotaInfoTransportador getNFNotaInfoTransportador() {
+        final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
+        transportador.setCnpj("34843274000164");
+        transportador.setEnderecoComplemento("D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY");
+        transportador.setInscricaoEstadual("");
+        transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
+        transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
+        transportador.setUf(NFUnidadeFederativa.SP);
+        return transportador;
+    }
+
+    public static NFNotaInfoReboque getNFNotaInfoReboque() {
+        final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
+        reboque.setPlacaVeiculo("MKZ4891");
+        reboque.setUf(NFUnidadeFederativa.SC);
+        reboque.setVagao("8fFAKefiBQIDTkCCSQk3");
+        return reboque;
+    }
+
+    public static NFNotaInfoRetencaoICMSTransporte getNFNotaInfoRetencaoICMSTransporte() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
+        retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
+        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
+        retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
+        return retencaoICMSTransporte;
+    }
 
     public static NFNotaInfoCanaDeducao getNFNotaInfoCanaDeducao() {
         final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();

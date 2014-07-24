@@ -3,6 +3,8 @@ package com.fincatto.nfe.validadores;
 import java.text.MessageFormat;
 import java.util.List;
 
+import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
+
 public class ListValidador {
 
     public static <E> void tamanho10(final List<E> lista) {
@@ -16,6 +18,10 @@ public class ListValidador {
 
     public static <E> void tamanho120(final List<E> lista) {
         ListValidador.validaTamanho(lista, 120);
+    }
+
+    public static void tamanho5(final List<NFNotaInfoReboque> lista) {
+        ListValidador.validaTamanho(lista, 5);
     }
 
     private static <E> void validaEstadoDaLista(final List<E> lista) {

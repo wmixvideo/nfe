@@ -90,4 +90,48 @@ public class StringValidadorTest {
         }
         Assert.fail("Validacao nao funcionou");
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCPFCasoNaoPossua11Caracteres() {
+        try {
+            StringValidador.cpf("1234567890");
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+            StringValidador.cpf("123456789012");
+        }
+        Assert.fail("Validacao nao funcionou");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCNPJCasoNaoPossua14Caracteres() {
+        try {
+            StringValidador.cnpj("1234567890123");
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+            StringValidador.cnpj("123456789012345");
+        }
+        Assert.fail("Validacao nao funcionou");
+    }
+
+    @Test
+    public void deveValidarInscricaoEstadualCasoEstejaNoPadrao() {
+        StringValidador.inscricaoEstadual("");
+        StringValidador.inscricaoEstadual("ISENTO");
+        StringValidador.inscricaoEstadual("12");
+        StringValidador.inscricaoEstadual("12345678901234");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarInscricaoEstadualCasoNaoEstejaNoTamanho() {
+        try {
+            StringValidador.inscricaoEstadual("1");
+        } catch (final IllegalStateException e) {
+            StringValidador.inscricaoEstadual("123456789012345");
+        }
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarInscricaoEstadualCasoEstejaForaDoPadrao() {
+        StringValidador.inscricaoEstadual("ISENT0");
+    }
 }
