@@ -40,7 +40,7 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidade);
+        this.quantidade = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidade);
     }
 
     public BigDecimal getQuantidadeTotalMes() {
@@ -48,7 +48,7 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     }
 
     public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
-        this.quantidadeTotalMes = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalMes);
+        this.quantidadeTotalMes = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalMes);
     }
 
     public BigDecimal getQuantidadeTotalAnterior() {
@@ -56,7 +56,7 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     }
 
     public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
-        this.quantidadeTotalAnterior = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalAnterior);
+        this.quantidadeTotalAnterior = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalAnterior);
     }
 
     public BigDecimal getQuantidadeTotalGeral() {
@@ -64,6 +64,6 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     }
 
     public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
-        this.quantidadeTotalGeral = BigDecimalParser.tamanho11ComAte10CasasDecimas(quantidadeTotalGeral);
+        this.quantidadeTotalGeral = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalGeral);
     }
 }

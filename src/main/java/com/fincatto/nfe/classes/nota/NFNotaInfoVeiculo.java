@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoVeiculo extends NFBase {
     @Element(name = "placa", required = true)
@@ -20,6 +21,7 @@ public class NFNotaInfoVeiculo extends NFBase {
     }
 
     public void setPlacaVeiculo(final String placaVeiculo) {
+        StringValidador.placaDeVeiculo(placaVeiculo);
         this.placaVeiculo = placaVeiculo;
     }
 
@@ -36,6 +38,7 @@ public class NFNotaInfoVeiculo extends NFBase {
     }
 
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {
+        StringValidador.tamanho20(registroNacionalTransportadorCarga);
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;
     }
 }

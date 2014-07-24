@@ -27,10 +27,10 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValoresComAte10CasasDecimais() {
-        Assert.assertEquals("99999999999.9999999999", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("99999999999.9999999999")));
-        Assert.assertEquals("1", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("1")));
-        Assert.assertEquals("0.1", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("0.1")));
-        Assert.assertEquals("0.156", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("0.156")));
+        Assert.assertEquals("99999999999.9999999999", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("99999999999.9999999999")));
+        Assert.assertEquals("1", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("1")));
+        Assert.assertEquals("0.1", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("0.1")));
+        Assert.assertEquals("0.156", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("0.156")));
     }
 
     @Test
@@ -45,8 +45,8 @@ public class BigDecimalParserTest {
 
     @Test
     public void deveTruncar10CasasDecimais() {
-        Assert.assertEquals("0.0000000001", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("0.00000000019")));
-        Assert.assertEquals("9999999999.9999999999", BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("9999999999.99999999999")));
+        Assert.assertEquals("0.0000000001", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("0.00000000019")));
+        Assert.assertEquals("9999999999.9999999999", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("9999999999.99999999999")));
     }
 
     @Test
@@ -71,6 +71,6 @@ public class BigDecimalParserTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirExtrapolar21Caracteres() {
-        BigDecimalParser.tamanho11ComAte10CasasDecimas(new BigDecimal("999999999999.9999999999"));
+        BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("999999999999.9999999999"));
     }
 }
