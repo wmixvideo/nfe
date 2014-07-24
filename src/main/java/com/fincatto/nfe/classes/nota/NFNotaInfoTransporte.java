@@ -1,11 +1,13 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.ListValidador;
 
 public class NFNotaInfoTransporte extends NFBase {
     @Element(name = "modFrete", required = true)
@@ -59,10 +61,11 @@ public class NFNotaInfoTransporte extends NFBase {
     }
 
     public List<NFNotaInfoReboque> getReboques() {
-        return this.reboques;
+        return Collections.unmodifiableList(this.reboques);
     }
 
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
+        ListValidador.tamanho5(reboques);
         this.reboques = reboques;
     }
 

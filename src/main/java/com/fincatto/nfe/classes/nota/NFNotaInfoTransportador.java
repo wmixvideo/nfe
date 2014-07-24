@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoTransportador extends NFBase {
     @Element(name = "CNPJ", required = false)
@@ -40,6 +41,10 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setCnpj(final String cnpj) {
+        if (this.cpf != null) {
+            throw new IllegalStateException("Nao pode ter CPF e CNPJ ao mesmo tempo");
+        }
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -48,6 +53,10 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setCpf(final String cpf) {
+        if (this.cnpj != null) {
+            throw new IllegalStateException("Nao pode ter CPF e CNPJ ao mesmo tempo");
+        }
+        StringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -56,6 +65,7 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setRazaoSocial(final String razaoSocial) {
+        StringValidador.tamanho60(razaoSocial);
         this.razaoSocial = razaoSocial;
     }
 
@@ -64,6 +74,7 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
+        StringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -72,6 +83,7 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
+        StringValidador.tamanho60(nomeMunicipio);
         this.nomeMunicipio = nomeMunicipio;
     }
 

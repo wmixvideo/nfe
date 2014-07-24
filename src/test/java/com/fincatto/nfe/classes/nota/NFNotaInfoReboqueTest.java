@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
 import com.fincatto.nfe.NFUnidadeFederativa;
 
 public class NFNotaInfoReboqueTest {
@@ -135,12 +136,7 @@ public class NFNotaInfoReboqueTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoComVagao() {
-        final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
-        reboque.setPlacaVeiculo("MKZ4891");
-        reboque.setUf(NFUnidadeFederativa.SC);
-        reboque.setVagao("8fFAKefiBQIDTkCCSQk3");
-
         final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>42</UF><vagao>8fFAKefiBQIDTkCCSQk3</vagao></NFNotaInfoReboque>";
-        Assert.assertEquals(xmlEsperado, reboque.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoReboque().toString());
     }
 }

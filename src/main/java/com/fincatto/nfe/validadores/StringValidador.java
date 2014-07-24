@@ -50,10 +50,32 @@ public class StringValidador {
             final Matcher matcher = Pattern.compile(padraoDePlaca).matcher(placaVeiculo);
             if (matcher.find()) {
                 achou = true;
+                break;
             }
         }
         if (!achou) {
             throw new IllegalStateException("Nao esta no padrao");
+        }
+    }
+
+    public static void cnpj(final String cnpj) {
+        final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Formato CNPJ Invalido");
+        }
+    }
+
+    public static void cpf(final String cpf) {
+        final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Formato CPF Invalido");
+        }
+    }
+
+    public static void inscricaoEstadual(final String inscricaoEstadual) {
+        final Matcher matcher = Pattern.compile("^(ISENTO|[0-9]{2,14}|)$").matcher(inscricaoEstadual);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Inscricao estadual invalido");
         }
     }
 }

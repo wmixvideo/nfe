@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoRetencaoICMSTransporteTest {
 
     @Test
@@ -135,15 +137,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
-        retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
-        retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
-        retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
-
         final String xmlEsperado = "<NFNotaInfoRetencaoICMSTransporte><vServ>999999999999.99</vServ><vBCRet>999999999999.99</vBCRet><pICMSRet>99.99</pICMSRet><vICMSRet>999999999999.99</vICMSRet><CFOP>9999</CFOP><cMunFG>9999999</cMunFG></NFNotaInfoRetencaoICMSTransporte>";
-        Assert.assertEquals(xmlEsperado, retencaoICMSTransporte.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte().toString());
     }
 }

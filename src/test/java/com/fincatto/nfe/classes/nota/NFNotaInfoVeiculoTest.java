@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
 import com.fincatto.nfe.NFUnidadeFederativa;
 
 public class NFNotaInfoVeiculoTest {
@@ -55,12 +56,7 @@ public class NFNotaInfoVeiculoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
-        veiculo.setPlacaVeiculo("MKZ8159");
-        veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
-        veiculo.setUf(NFUnidadeFederativa.SP);
-
         final String xmlEspeardo = "<NFNotaInfoVeiculo><placa>MKZ8159</placa><UF>35</UF><RNTC>8Io5YKSKW1qy3v7zGwLx</RNTC></NFNotaInfoVeiculo>";
-        Assert.assertEquals(xmlEspeardo, veiculo.toString());
+        Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFake.getNFNotaInfoVeiculo().toString());
     }
 }
