@@ -12,17 +12,61 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
 import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
+import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
+import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencaoICMSTransporte;
+import com.fincatto.nfe.classes.nota.NFNotaInfoRetencoesTributos;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoRetencoesTributos getNFNotaInfoRetencoesTributos() {
+        final NFNotaInfoRetencoesTributos retencoesTributos = new NFNotaInfoRetencoesTributos();
+        retencoesTributos.setBaseCalculoIRRF(new BigDecimal("999999999999.99"));
+        retencoesTributos.setBaseCalculoRetencaoPrevidenciaSocial(new BigDecimal("999999999999.99"));
+        retencoesTributos.setValorRetencaoPrevidenciaSocial(new BigDecimal("999999999999.99"));
+        retencoesTributos.setValorRetidoCOFINS(new BigDecimal("999999999999.99"));
+        retencoesTributos.setValorRetidoCSLL(new BigDecimal("999999999999.99"));
+        retencoesTributos.setValorRetidoIRRF(new BigDecimal("999999999999.99"));
+        retencoesTributos.setValorRetidoPIS(new BigDecimal("999999999999.99"));
+        return retencoesTributos;
+    }
+
+    public static NFNotaInfoISSQNTotal getNFNotaInfoISSQNTotal() {
+        final NFNotaInfoISSQNTotal issqnTotal = new NFNotaInfoISSQNTotal();
+        issqnTotal.setBaseCalculoISS(new BigDecimal("999999999999.99"));
+        issqnTotal.setValorCOFINSsobreServicos(new BigDecimal("999999999999.99"));
+        issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
+        issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
+        issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
+        return issqnTotal;
+    }
+
+    public static NFNotaInfoICMSTotal getNFNotaInfoICMSTotal() {
+        final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
+        icmsTotal.setBaseCalculoICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
+        icmsTotal.setValor(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorCOFINS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorPIS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDesconto(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDosProdutosServicos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFrete(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMSST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        return icmsTotal;
+    }
 
     public static NFNotaInfoVeiculo getNFNotaInfoVeiculo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();

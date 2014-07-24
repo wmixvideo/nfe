@@ -5,82 +5,83 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoRetencoesTributos extends NFBase {
     @Element(name = "vRetPIS", required = false)
-    private BigDecimal valorRetidoPIS;
+    private String valorRetidoPIS;
 
     @Element(name = "vRetCOFINS", required = false)
-    private BigDecimal valorRetidoCOFINS;
+    private String valorRetidoCOFINS;
 
     @Element(name = "vRetCSLL", required = false)
-    private BigDecimal valorRetidoCSLL;
+    private String valorRetidoCSLL;
 
     @Element(name = "vBCIRRF", required = false)
-    private BigDecimal baseCalculoIRRF;
+    private String baseCalculoIRRF;
 
     @Element(name = "vIRRF", required = false)
-    private BigDecimal valorRetidoIRRF;
+    private String valorRetidoIRRF;
 
     @Element(name = "vBCRetPrev", required = false)
-    private BigDecimal baseCalculoRetencaoPrevidenciaSocial;
+    private String baseCalculoRetencaoPrevidenciaSocial;
 
     @Element(name = "vRetPrev", required = false)
-    private BigDecimal valorRetencaoPrevidenciaSocial;
+    private String valorRetencaoPrevidenciaSocial;
 
     public BigDecimal getValorRetidoPIS() {
-        return this.valorRetidoPIS;
+        return new BigDecimal(this.valorRetidoPIS);
     }
 
     public void setValorRetidoPIS(final BigDecimal valorRetidoPIS) {
-        this.valorRetidoPIS = valorRetidoPIS;
+        this.valorRetidoPIS = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetidoPIS);
     }
 
     public BigDecimal getValorRetidoCOFINS() {
-        return this.valorRetidoCOFINS;
+        return new BigDecimal(this.valorRetidoCOFINS);
     }
 
     public void setValorRetidoCOFINS(final BigDecimal valorRetidoCOFINS) {
-        this.valorRetidoCOFINS = valorRetidoCOFINS;
+        this.valorRetidoCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetidoCOFINS);
     }
 
     public BigDecimal getValorRetidoCSLL() {
-        return this.valorRetidoCSLL;
+        return new BigDecimal(this.valorRetidoCSLL);
     }
 
     public void setValorRetidoCSLL(final BigDecimal valorRetidoCSLL) {
-        this.valorRetidoCSLL = valorRetidoCSLL;
+        this.valorRetidoCSLL = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetidoCSLL);
     }
 
     public BigDecimal getBaseCalculoIRRF() {
-        return this.baseCalculoIRRF;
+        return new BigDecimal(this.baseCalculoIRRF);
     }
 
     public void setBaseCalculoIRRF(final BigDecimal baseCalculoIRRF) {
-        this.baseCalculoIRRF = baseCalculoIRRF;
+        this.baseCalculoIRRF = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoIRRF);
     }
 
     public BigDecimal getValorRetidoIRRF() {
-        return this.valorRetidoIRRF;
+        return new BigDecimal(this.valorRetidoIRRF);
     }
 
     public void setValorRetidoIRRF(final BigDecimal valorRetidoIRRF) {
-        this.valorRetidoIRRF = valorRetidoIRRF;
+        this.valorRetidoIRRF = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetidoIRRF);
     }
 
     public BigDecimal getBaseCalculoRetencaoPrevidenciaSocial() {
-        return this.baseCalculoRetencaoPrevidenciaSocial;
+        return new BigDecimal(this.baseCalculoRetencaoPrevidenciaSocial);
     }
 
     public void setBaseCalculoRetencaoPrevidenciaSocial(final BigDecimal baseCalculoRetencaoPrevidenciaSocial) {
-        this.baseCalculoRetencaoPrevidenciaSocial = baseCalculoRetencaoPrevidenciaSocial;
+        this.baseCalculoRetencaoPrevidenciaSocial = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoRetencaoPrevidenciaSocial);
     }
 
     public BigDecimal getValorRetencaoPrevidenciaSocial() {
-        return this.valorRetencaoPrevidenciaSocial;
+        return new BigDecimal(this.valorRetencaoPrevidenciaSocial);
     }
 
     public void setValorRetencaoPrevidenciaSocial(final BigDecimal valorRetencaoPrevidenciaSocial) {
-        this.valorRetencaoPrevidenciaSocial = valorRetencaoPrevidenciaSocial;
+        this.valorRetencaoPrevidenciaSocial = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetencaoPrevidenciaSocial);
     }
 }

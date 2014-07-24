@@ -5,60 +5,61 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoISSQNTotal extends NFBase {
     @Element(name = "vServ", required = false)
-    private BigDecimal valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
+    private String valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
 
     @Element(name = "vBC", required = false)
-    private BigDecimal baseCalculoISS;
+    private String baseCalculoISS;
 
     @Element(name = "vISS", required = false)
-    private BigDecimal valorTotalISS;
+    private String valorTotalISS;
 
     @Element(name = "vPIS", required = false)
-    private BigDecimal valorPISsobreServicos;
+    private String valorPISsobreServicos;
 
-    @Element(name = "vCOFINS")
-    private BigDecimal valorCOFINSsobreServicos;
+    @Element(name = "vCOFINS", required = false)
+    private String valorCOFINSsobreServicos;
 
     public BigDecimal getValorTotalServicosSobNaoIncidenciaNaoTributadosICMS() {
-        return this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
+        return new BigDecimal(this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS);
     }
 
     public void setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(final BigDecimal valorTotalServicosSobNaoIncidenciaNaoTributadosICMS) {
-        this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS = valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
+        this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalServicosSobNaoIncidenciaNaoTributadosICMS);
     }
 
     public BigDecimal getBaseCalculoISS() {
-        return this.baseCalculoISS;
+        return new BigDecimal(this.baseCalculoISS);
     }
 
     public void setBaseCalculoISS(final BigDecimal baseCalculoISS) {
-        this.baseCalculoISS = baseCalculoISS;
+        this.baseCalculoISS = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoISS);
     }
 
     public BigDecimal getValorTotalISS() {
-        return this.valorTotalISS;
+        return new BigDecimal(this.valorTotalISS);
     }
 
     public void setValorTotalISS(final BigDecimal valorTotalISS) {
-        this.valorTotalISS = valorTotalISS;
+        this.valorTotalISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalISS);
     }
 
     public BigDecimal getValorPISsobreServicos() {
-        return this.valorPISsobreServicos;
+        return new BigDecimal(this.valorPISsobreServicos);
     }
 
     public void setValorPISsobreServicos(final BigDecimal valorPISsobreServicos) {
-        this.valorPISsobreServicos = valorPISsobreServicos;
+        this.valorPISsobreServicos = BigDecimalParser.tamanho15Com2CasasDecimais(valorPISsobreServicos);
     }
 
     public BigDecimal getValorCOFINSsobreServicos() {
-        return this.valorCOFINSsobreServicos;
+        return new BigDecimal(this.valorCOFINSsobreServicos);
     }
 
     public void setValorCOFINSsobreServicos(final BigDecimal valorCOFINSsobreServicos) {
-        this.valorCOFINSsobreServicos = valorCOFINSsobreServicos;
+        this.valorCOFINSsobreServicos = BigDecimalParser.tamanho15Com2CasasDecimais(valorCOFINSsobreServicos);
     }
 }
