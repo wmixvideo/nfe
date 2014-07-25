@@ -5,81 +5,82 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
 
     @Element(name = "CST", required = true)
-    private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
+    private String codigoSituacaoTributaria;
 
-    @Element(name = "vBC", required = false)
-    private BigDecimal valorBaseCalculo;
+    @Element(name = "vBC", required = true)
+    private String valorBaseCalculo;
 
-    @Element(name = "pCOFINS", required = false)
-    private BigDecimal aliquota;
+    @Element(name = "pCOFINS", required = true)
+    private String percentualCOFINS;
 
-    @Element(name = "qBCProd", required = false)
-    private BigDecimal quantidadeVendida;
+    @Element(name = "qBCProd", required = true)
+    private String quantidadeVendida;
 
-    @Element(name = "vAliqProd", required = false)
-    private BigDecimal valorAliquota;
+    @Element(name = "vAliqProd", required = true)
+    private String valorAliquota;
 
     @Element(name = "vCOFINS", required = true)
-    private BigDecimal valorTributo;
+    private String valorCOFINS;
 
     public NFNotaInfoItemImpostoCOFINSOutrasOperacoes() {
-        this.situacaoTributaria = null;
+        this.codigoSituacaoTributaria = null;
         this.valorBaseCalculo = null;
-        this.aliquota = null;
+        this.percentualCOFINS = null;
         this.quantidadeVendida = null;
         this.valorAliquota = null;
-        this.valorTributo = null;
+        this.valorCOFINS = null;
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
-        return this.situacaoTributaria;
+        return NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo(this.codigoSituacaoTributaria);
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
-        this.situacaoTributaria = situacaoTributaria;
+        this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
     }
 
     public BigDecimal getValorBaseCalculo() {
-        return this.valorBaseCalculo;
+        return new BigDecimal(this.valorBaseCalculo);
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = valorBaseCalculo;
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
     }
 
-    public BigDecimal getAliquota() {
-        return this.aliquota;
+    public BigDecimal getPercentualCOFINS() {
+        return new BigDecimal(this.percentualCOFINS);
     }
 
-    public void setAliquota(final BigDecimal aliquota) {
-        this.aliquota = aliquota;
+    public void setPercentualCOFINS(final BigDecimal percentualCOFINS) {
+        this.percentualCOFINS = BigDecimalParser.tamanho5Com2CasasDecimais(percentualCOFINS);
     }
 
     public BigDecimal getQuantidadeVendida() {
-        return this.quantidadeVendida;
+        return new BigDecimal(this.quantidadeVendida);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = quantidadeVendida;
+        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
     }
 
     public BigDecimal getValorAliquota() {
-        return this.valorAliquota;
+        return new BigDecimal(this.valorAliquota);
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = valorAliquota;
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
     }
 
-    public BigDecimal getValorTributo() {
-        return this.valorTributo;
+    public BigDecimal getValorCOFINS() {
+        return new BigDecimal(this.valorCOFINS);
     }
 
-    public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = valorTributo;
+    public void setValorCOFINS(final BigDecimal valorTributo) {
+        this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
 }
