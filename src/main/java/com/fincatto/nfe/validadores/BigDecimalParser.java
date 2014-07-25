@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 public class BigDecimalParser {
@@ -39,7 +40,7 @@ public class BigDecimalParser {
     }
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
-        if (valor.precision() > tamanho || valor.toPlainString().length() > tamanho) {
+        if (valor.precision() > tamanho || valor.toPlainString().length() > tamanho || (valor.precision() + posicaoPontoFlutuante) > tamanho) {
             throw new IllegalStateException("Valor extrapolou o tamanho de casas");
         }
         try {
@@ -49,5 +50,9 @@ public class BigDecimalParser {
         } catch (final ArithmeticException e) {
             throw new IllegalStateException(MessageFormat.format("Tamanho deve ser no max de {0} digitos", (tamanho)));
         }
+    }
+
+    public static void main(final String[] args) {
+        System.out.println(NumberFormat.getInstance().format(new BigDecimal("999999.9999")));
     }
 }

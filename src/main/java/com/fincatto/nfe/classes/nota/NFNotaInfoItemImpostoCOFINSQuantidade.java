@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSQuantidade extends NFBase {
 
@@ -12,13 +13,13 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends NFBase {
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
     @Element(name = "qBCProd", required = true)
-    private BigDecimal quantidadeVendida;
+    private String quantidadeVendida;
 
     @Element(name = "vAliqProd", required = true)
-    private BigDecimal valorAliquota;
+    private String valorAliquota;
 
     @Element(name = "vCOFINS", required = true)
-    private BigDecimal valorTributo;
+    private String valorTributo;
 
     public NFNotaInfoItemImpostoCOFINSQuantidade() {
         this.situacaoTributaria = null;
@@ -36,26 +37,26 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends NFBase {
     }
 
     public BigDecimal getQuantidadeVendida() {
-        return this.quantidadeVendida;
+        return new BigDecimal(this.quantidadeVendida);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = quantidadeVendida;
+        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
     }
 
     public BigDecimal getValorAliquota() {
-        return this.valorAliquota;
+        return new BigDecimal(this.valorAliquota);
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = valorAliquota;
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
     }
 
     public BigDecimal getValorTributo() {
-        return this.valorTributo;
+        return new BigDecimal(this.valorTributo);
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = valorTributo;
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
 }
