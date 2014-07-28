@@ -6,8 +6,9 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.MessageFormat;
-import java.text.NumberFormat;
 import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class BigDecimalParser {
 
@@ -40,12 +41,11 @@ public class BigDecimalParser {
     }
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
-        if (valor.precision() > tamanho || valor.toPlainString().length() > tamanho || (valor.precision() + posicaoPontoFlutuante) > tamanho) {
+        if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
             throw new IllegalStateException("Valor extrapolou o tamanho de casas");
         }
         try {
             valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
-            valor = valor.setScale(posicaoPontoFlutuante, BigDecimal.ROUND_FLOOR);
             return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);
         } catch (final ArithmeticException e) {
             throw new IllegalStateException(MessageFormat.format("Tamanho deve ser no max de {0} digitos", (tamanho)));
@@ -53,6 +53,7 @@ public class BigDecimalParser {
     }
 
     public static void main(final String[] args) {
-        System.out.println(NumberFormat.getInstance().format(new BigDecimal("999999.9999")));
+        final String plainBigDecimal = new BigDecimal("9999.99").toPlainString();
+        System.out.println(StringUtils.split(plainBigDecimal, ".")[0]);
     }
 }

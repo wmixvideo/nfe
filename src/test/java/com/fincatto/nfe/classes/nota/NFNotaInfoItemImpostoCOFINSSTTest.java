@@ -36,10 +36,9 @@ public class NFNotaInfoItemImpostoCOFINSSTTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoCOFINSST cofins = new NFNotaInfoItemImpostoCOFINSST();
         cofins.setPercentualAliquota(new BigDecimal("99.99"));
-        cofins.setQuantidadeVendida(new BigDecimal("9999999999999999"));
-        cofins.setValorCOFINS(new BigDecimal("999999999999999"));
-
-        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSST><pCOFINS>99.99</pCOFINS><qBCProd>9999999999999999</qBCProd><vCOFINS>999999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSST>";
+        cofins.setQuantidadeVendida(new BigDecimal("99999999999"));
+        cofins.setValorCOFINS(new BigDecimal("999999999999"));
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSST><pCOFINS>99.99</pCOFINS><qBCProd>99999999999</qBCProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSST>";
         Assert.assertEquals(xmlEsperado, cofins.toString());
     }
 }

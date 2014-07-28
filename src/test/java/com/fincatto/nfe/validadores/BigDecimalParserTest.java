@@ -33,32 +33,6 @@ public class BigDecimalParserTest {
         Assert.assertEquals("0.156", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("0.156")));
     }
 
-    @Test
-    public void deveTruncarCom2CasasDecimais() {
-        Assert.assertEquals("0.15", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("0.156")));
-        Assert.assertEquals("0.15", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("0.155")));
-        Assert.assertEquals("0.15", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("0.159")));
-        Assert.assertEquals("0.15", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("0.151")));
-        Assert.assertEquals("0.15", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("0.150")));
-        Assert.assertEquals("99999999999.99", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999.999")));
-    }
-
-    @Test
-    public void deveTruncar10CasasDecimais() {
-        Assert.assertEquals("0.0000000001", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("0.00000000019")));
-        Assert.assertEquals("9999999999.9999999999", BigDecimalParser.tamanho22ComAte10CasasDecimais(new BigDecimal("9999999999.99999999999")));
-    }
-
-    @Test
-    public void deveTruncar3CasasDecimais() {
-        Assert.assertEquals("0.155", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("0.1556")));
-        Assert.assertEquals("0.155", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("0.1555")));
-        Assert.assertEquals("0.155", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("0.1559")));
-        Assert.assertEquals("0.155", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("0.1551")));
-        Assert.assertEquals("0.155", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("0.1550")));
-        Assert.assertEquals("99999999999.999", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("99999999999.999")));
-    }
-
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirExtrapolacaoPor15CaracteresCom2CasasDecimais() {
         BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("9999999999999.99"));
