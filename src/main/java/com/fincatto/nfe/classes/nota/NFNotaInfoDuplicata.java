@@ -19,25 +19,13 @@ public class NFNotaInfoDuplicata extends NFBase {
     @Element(name = "vDup", required = false)
     private String valorDuplicata;
 
-    public String getNumeroDuplicata() {
-        return this.numeroDuplicata;
-    }
-
     public void setNumeroDuplicata(final String numeroDuplicata) {
         StringValidador.tamanho60(numeroDuplicata);
         this.numeroDuplicata = numeroDuplicata;
     }
 
-    public LocalDate getDataVencimento() {
-        return this.dataVencimento;
-    }
-
     public void setDataVencimento(final LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
-    }
-
-    public BigDecimal getValorDuplicata() {
-        return new BigDecimal(this.valorDuplicata);
     }
 
     public void setValorDuplicata(final BigDecimal valorDuplicata) {

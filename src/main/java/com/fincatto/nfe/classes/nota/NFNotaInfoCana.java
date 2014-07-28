@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,10 +24,6 @@ public class NFNotaInfoCana extends NFBase {
     @ElementList(entry = "deduc", inline = true, required = false)
     private List<NFNotaInfoCanaDeducao> deducoes;
 
-    public String getSafra() {
-        return this.safra;
-    }
-
     public void setSafra(final String safra) {
         if (safra.length() != 4 && safra.length() != 9) {
             throw new IllegalStateException("Tamanho invalido");
@@ -43,26 +38,14 @@ public class NFNotaInfoCana extends NFBase {
         this.safra = safra;
     }
 
-    public String getReferencia() {
-        return this.referencia;
-    }
-
     public void setReferencia(final String referencia) {
         StringValidador.mmaaaa(referencia);
         this.referencia = referencia;
     }
 
-    public List<NFNotaInfoCanaFornecimentoDiario> getFornecimentosDiario() {
-        return Collections.unmodifiableList(this.fornecimentosDiario);
-    }
-
     public void setFornecimentosDiario(final List<NFNotaInfoCanaFornecimentoDiario> fornecimentosDiario) {
         ListValidador.tamanho31Obrigatorio(fornecimentosDiario);
         this.fornecimentosDiario = fornecimentosDiario;
-    }
-
-    public List<NFNotaInfoCanaDeducao> getDeducoes() {
-        return Collections.unmodifiableList(this.deducoes);
     }
 
     public void setDeducoes(final List<NFNotaInfoCanaDeducao> deducoes) {

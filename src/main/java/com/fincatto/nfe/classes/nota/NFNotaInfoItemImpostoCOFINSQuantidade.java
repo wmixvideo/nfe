@@ -28,32 +28,16 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends NFBase {
         this.valorTributo = null;
     }
 
-    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
-        return this.situacaoTributaria;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
-    }
-
-    public BigDecimal getQuantidadeVendida() {
-        return new BigDecimal(this.quantidadeVendida);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
         this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
     }
 
-    public BigDecimal getValorAliquota() {
-        return new BigDecimal(this.valorAliquota);
-    }
-
     public void setValorAliquota(final BigDecimal valorAliquota) {
         this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
-    }
-
-    public BigDecimal getValorTributo() {
-        return new BigDecimal(this.valorTributo);
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {

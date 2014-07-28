@@ -25,32 +25,16 @@ public class NFNotaInfoItemImpostoCOFINS extends NFBase {
         this.outrasOperacoes = null;
     }
 
-    public NFNotaInfoItemImpostoCOFINSAliquota getAliquota() {
-        return this.aliquota;
-    }
-
     public void setAliquota(final NFNotaInfoItemImpostoCOFINSAliquota aliquota) {
         this.aliquota = aliquota;
-    }
-
-    public NFNotaInfoItemImpostoCOFINSQuantidade getQuantidade() {
-        return this.quantidade;
     }
 
     public void setQuantidade(final NFNotaInfoItemImpostoCOFINSQuantidade quantidade) {
         this.quantidade = quantidade;
     }
 
-    public NFNotaInfoItemImpostoCOFINSNaoTributavel getNaoTributavel() {
-        return this.naoTributavel;
-    }
-
     public void setNaoTributavel(final NFNotaInfoItemImpostoCOFINSNaoTributavel naoTributavel) {
         this.naoTributavel = naoTributavel;
-    }
-
-    public NFNotaInfoItemImpostoCOFINSOutrasOperacoes getOutrasOperacoes() {
-        return this.outrasOperacoes;
     }
 
     public void setOutrasOperacoes(final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes) {

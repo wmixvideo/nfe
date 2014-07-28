@@ -16,25 +16,13 @@ public class NFNotaInfoVeiculo extends NFBase {
     @Element(name = "RNTC", required = false)
     private String registroNacionalTransportadorCarga;
 
-    public String getPlacaVeiculo() {
-        return this.placaVeiculo;
-    }
-
     public void setPlacaVeiculo(final String placaVeiculo) {
         StringValidador.placaDeVeiculo(placaVeiculo);
         this.placaVeiculo = placaVeiculo;
     }
 
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
-    }
-
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
-    }
-
-    public String getRegistroNacionalTransportadorCarga() {
-        return this.registroNacionalTransportadorCarga;
     }
 
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {

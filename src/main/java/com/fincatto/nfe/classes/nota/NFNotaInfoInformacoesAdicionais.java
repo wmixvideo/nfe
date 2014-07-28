@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
@@ -26,17 +25,9 @@ public class NFNotaInfoInformacoesAdicionais extends NFBase {
     @ElementList(entry = "procRef", inline = true, required = false)
     private List<NFNotaInfoProcessoReferenciado> processosRefenciado;
 
-    public String getInformacoesAdicionaisInteresseFisco() {
-        return this.informacoesAdicionaisInteresseFisco;
-    }
-
     public void setInformacoesAdicionaisInteresseFisco(final String informacoesAdicionaisInteresseFisco) {
         StringValidador.tamanho2000(informacoesAdicionaisInteresseFisco);
         this.informacoesAdicionaisInteresseFisco = informacoesAdicionaisInteresseFisco;
-    }
-
-    public String getInformacoesComplementaresInteresseContribuinte() {
-        return this.informacoesComplementaresInteresseContribuinte;
     }
 
     public void setInformacoesComplementaresInteresseContribuinte(final String informacoesComplementaresInteresseContribuinte) {
@@ -44,26 +35,14 @@ public class NFNotaInfoInformacoesAdicionais extends NFBase {
         this.informacoesComplementaresInteresseContribuinte = informacoesComplementaresInteresseContribuinte;
     }
 
-    public List<NFNotaInfoObservacao> getObservacoesContribuinte() {
-        return this.observacoesContribuinte;
-    }
-
     public void setObservacoesContribuinte(final List<NFNotaInfoObservacao> observacoesContribuinte) {
         ListValidador.tamanho10(observacoesContribuinte);
         this.observacoesContribuinte = observacoesContribuinte;
     }
 
-    public List<NFNotaInfoObservacao> getObservacoesFisco() {
-        return Collections.unmodifiableList(this.observacoesFisco);
-    }
-
     public void setObservacoesFisco(final List<NFNotaInfoObservacao> observacoesFisco) {
         ListValidador.tamanho10(observacoesFisco);
         this.observacoesFisco = observacoesFisco;
-    }
-
-    public List<NFNotaInfoProcessoReferenciado> getProcessosRefenciado() {
-        return this.processosRefenciado;
     }
 
     public void setProcessosRefenciado(final List<NFNotaInfoProcessoReferenciado> processosRefenciado) {

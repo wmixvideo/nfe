@@ -13,10 +13,6 @@ public class NFNotaInfoItemImpostoCOFINSNaoTributavel extends NFBase {
         this.situacaoTributaria = null;
     }
 
-    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
-        return NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo(this.situacaoTributaria);
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria.getCodigo();
     }

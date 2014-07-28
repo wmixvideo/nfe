@@ -13,17 +13,9 @@ public class NFNotaInfoObservacao extends NFBase {
     @Element(name = "xTexto", required = true)
     private String conteudoCampo;
 
-    public String getIdentificacaoCampo() {
-        return this.identificacaoCampo;
-    }
-
     public void setIdentificacaoCampo(final String identificacaoCampo) {
         StringValidador.tamanho20(identificacaoCampo);
         this.identificacaoCampo = identificacaoCampo;
-    }
-
-    public String getConteudoCampo() {
-        return this.conteudoCampo;
     }
 
     public void setConteudoCampo(final String conteudoCampo) {
