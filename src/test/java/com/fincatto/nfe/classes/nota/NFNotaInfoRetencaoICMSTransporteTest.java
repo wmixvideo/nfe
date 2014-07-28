@@ -16,17 +16,17 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
 
     @Test
     public void devePermitirValorICMSRetidoTamanhoValido() {
-        new NFNotaInfoRetencaoICMSTransporte().setValorICMSRetido(new BigDecimal("999999999999999"));
+        new NFNotaInfoRetencaoICMSTransporte().setValorICMSRetido(new BigDecimal("999999999999"));
     }
 
     @Test
     public void devePermitirValorBXRetencaoICMSTamanhoValido() {
-        new NFNotaInfoRetencaoICMSTransporte().setBcRetencaoICMS(new BigDecimal("999999999999999"));
+        new NFNotaInfoRetencaoICMSTransporte().setBcRetencaoICMS(new BigDecimal("999999999999"));
     }
 
     @Test
     public void devePermitirValorICMSRetidoValorServicoTamanhoValido() {
-        new NFNotaInfoRetencaoICMSTransporte().setValorServico(new BigDecimal("999999999999999"));
+        new NFNotaInfoRetencaoICMSTransporte().setValorServico(new BigDecimal("999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
