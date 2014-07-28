@@ -13,16 +13,8 @@ public class NFNotaInfoExportacao extends NFBase {
     @Element(name = "xLocEmbarq", required = true)
     private String localEmbarqueProdutos;
 
-    public NFUnidadeFederativa getUfEmbarqueProduto() {
-        return this.ufEmbarqueProduto;
-    }
-
     public void setUfEmbarqueProduto(final NFUnidadeFederativa ufEmbarqueProduto) {
         this.ufEmbarqueProduto = ufEmbarqueProduto;
-    }
-
-    public String getLocalEmbarqueProdutos() {
-        return this.localEmbarqueProdutos;
     }
 
     public void setLocalEmbarqueProdutos(final String localEmbarqueProdutos) {

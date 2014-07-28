@@ -27,49 +27,25 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
     @Element(name = "cMunFG", required = true)
     private Integer codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
 
-    public BigDecimal getValorServico() {
-        return new BigDecimal(this.valorServico);
-    }
-
     public void setValorServico(final BigDecimal valorServico) {
         this.valorServico = BigDecimalParser.tamanho15Com2CasasDecimais(valorServico);
-    }
-
-    public BigDecimal getBcRetencaoICMS() {
-        return new BigDecimal(this.bcRetencaoICMS);
     }
 
     public void setBcRetencaoICMS(final BigDecimal bcRetencaoICMS) {
         this.bcRetencaoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(bcRetencaoICMS);
     }
 
-    public BigDecimal getAliquotaRetencao() {
-        return new BigDecimal(this.aliquotaRetencao);
-    }
-
     public void setAliquotaRetencao(final BigDecimal aliquotaRetencao) {
         this.aliquotaRetencao = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaRetencao);
-    }
-
-    public BigDecimal getValorICMSRetido() {
-        return new BigDecimal(this.valorICMSRetido);
     }
 
     public void setValorICMSRetido(final BigDecimal valorICMSRetido) {
         this.valorICMSRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSRetido);
     }
 
-    public int getCfop() {
-        return this.cfop;
-    }
-
     public void setCfop(final Integer cfop) {
         IntegerValidador.tamanho4(cfop);
         this.cfop = cfop;
-    }
-
-    public int getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte() {
-        return this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
     }
 
     public void setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(final Integer codigoMunicioOcorrenciaFatoGeradorICMSTransporte) {

@@ -37,32 +37,16 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
         this.tributacaoISSQN = null;
     }
 
-    public BigDecimal getValorBaseCalculo() {
-        return new BigDecimal(this.valorBaseCalculo);
-    }
-
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
         this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
-    }
-
-    public BigDecimal getValorAliquota() {
-        return new BigDecimal(this.valorAliquota);
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
         this.valorAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(valorAliquota);
     }
 
-    public BigDecimal getValor() {
-        return new BigDecimal(this.valor);
-    }
-
     public void setValor(final BigDecimal valor) {
         this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
-    }
-
-    public Integer getCodigoMunicipio() {
-        return this.codigoMunicipio;
     }
 
     public void setCodigoMunicipio(final Integer codigoMunicipio) {
@@ -70,17 +54,9 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
         this.codigoMunicipio = codigoMunicipio;
     }
 
-    public Integer getItemListaServicos() {
-        return this.itemListaServicos;
-    }
-
     public void setItemListaServicos(final Integer itemListaServicos) {
         IntegerValidador.tamanho3e4(itemListaServicos);
         this.itemListaServicos = itemListaServicos;
-    }
-
-    public NFNotaInfoImpostoTributacaoISSQN getCodigoTributacao() {
-        return NFNotaInfoImpostoTributacaoISSQN.valueOfCodigo(this.tributacaoISSQN);
     }
 
     public void setCodigoTributacao(final NFNotaInfoImpostoTributacaoISSQN tributacaoISSQN) {

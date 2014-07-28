@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
@@ -16,16 +15,8 @@ public class NFNotaInfoCobranca extends NFBase {
     @ElementList(entry = "dup", inline = true, required = false)
     private List<NFNotaInfoDuplicata> duplicatas;
 
-    public NFNotaInfoFatura getFatura() {
-        return this.fatura;
-    }
-
     public void setFatura(final NFNotaInfoFatura fatura) {
         this.fatura = fatura;
-    }
-
-    public List<NFNotaInfoDuplicata> getDuplicatas() {
-        return Collections.unmodifiableList(this.duplicatas);
     }
 
     public void setDuplicatas(final List<NFNotaInfoDuplicata> duplicatas) {

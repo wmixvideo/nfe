@@ -28,32 +28,16 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
         this.valor = null;
     }
 
-    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
-        return NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo(this.codigoSituacaoTributaria);
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
-    }
-
-    public BigDecimal getValorBaseCalulo() {
-        return new BigDecimal(this.valorBaseCalulo);
     }
 
     public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
         this.valorBaseCalulo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalulo);
     }
 
-    public BigDecimal getPercentualAliquota() {
-        return new BigDecimal(this.percentualAliquota);
-    }
-
     public void setPercentualAliquota(final BigDecimal aliquota) {
         this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
-    }
-
-    public BigDecimal getValor() {
-        return new BigDecimal(this.valor);
     }
 
     public void setValor(final BigDecimal valor) {

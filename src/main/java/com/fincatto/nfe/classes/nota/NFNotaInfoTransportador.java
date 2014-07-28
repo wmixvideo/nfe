@@ -28,16 +28,8 @@ public class NFNotaInfoTransportador extends NFBase {
     @Element(name = "UF", required = false)
     private NFUnidadeFederativa uf;
 
-    public String getEnderecoComplemento() {
-        return this.enderecoComplemento;
-    }
-
     public void setEnderecoComplemento(final String enderecoComplemento) {
         this.enderecoComplemento = enderecoComplemento;
-    }
-
-    public String getCnpj() {
-        return this.cnpj;
     }
 
     public void setCnpj(final String cnpj) {
@@ -48,10 +40,6 @@ public class NFNotaInfoTransportador extends NFBase {
         this.cnpj = cnpj;
     }
 
-    public String getCpf() {
-        return this.cpf;
-    }
-
     public void setCpf(final String cpf) {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao pode ter CPF e CNPJ ao mesmo tempo");
@@ -60,17 +48,9 @@ public class NFNotaInfoTransportador extends NFBase {
         this.cpf = cpf;
     }
 
-    public String getRazaoSocial() {
-        return this.razaoSocial;
-    }
-
     public void setRazaoSocial(final String razaoSocial) {
         StringValidador.tamanho60(razaoSocial);
         this.razaoSocial = razaoSocial;
-    }
-
-    public String getInscricaoEstadual() {
-        return this.inscricaoEstadual;
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
@@ -78,17 +58,9 @@ public class NFNotaInfoTransportador extends NFBase {
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public String getNomeMunicipio() {
-        return this.nomeMunicipio;
-    }
-
     public void setNomeMunicipio(final String nomeMunicipio) {
         StringValidador.tamanho60(nomeMunicipio);
         this.nomeMunicipio = nomeMunicipio;
-    }
-
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
     }
 
     public void setUf(final NFUnidadeFederativa uf) {

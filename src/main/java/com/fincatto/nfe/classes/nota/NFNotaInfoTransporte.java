@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.nota;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
@@ -28,49 +27,25 @@ public class NFNotaInfoTransporte extends NFBase {
     @ElementList(entry = "vol", inline = true, required = false)
     private List<NFNotaInfoVolume> volumes;
 
-    public NFModalidadeFrete getModalidadeFrete() {
-        return this.modalidadeFrete;
-    }
-
     public void setModalidadeFrete(final NFModalidadeFrete modalidadeFrete) {
         this.modalidadeFrete = modalidadeFrete;
-    }
-
-    public NFNotaInfoTransportador getTransportador() {
-        return this.transportador;
     }
 
     public void setTransportador(final NFNotaInfoTransportador transportador) {
         this.transportador = transportador;
     }
 
-    public NFNotaInfoRetencaoICMSTransporte getIcmsTransporte() {
-        return this.icmsTransporte;
-    }
-
     public void setIcmsTransporte(final NFNotaInfoRetencaoICMSTransporte icmsTransporte) {
         this.icmsTransporte = icmsTransporte;
-    }
-
-    public NFNotaInfoVeiculo getVeiculo() {
-        return this.veiculo;
     }
 
     public void setVeiculo(final NFNotaInfoVeiculo veiculo) {
         this.veiculo = veiculo;
     }
 
-    public List<NFNotaInfoReboque> getReboques() {
-        return Collections.unmodifiableList(this.reboques);
-    }
-
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
         ListValidador.tamanho5(reboques);
         this.reboques = reboques;
-    }
-
-    public List<NFNotaInfoVolume> getVolumes() {
-        return this.volumes;
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
