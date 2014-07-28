@@ -5,57 +5,58 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
 
     @Element(name = "CST", required = true)
-    private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
+    private String codigoSituacaoTributaria;
 
     @Element(name = "vBC", required = true)
-    private BigDecimal valorBaseCalulo;
+    private String valorBaseCalulo;
 
     @Element(name = "pCOFINS", required = true)
-    private BigDecimal aliquota;
+    private String percentualAliquota;
 
     @Element(name = "vCOFINS", required = true)
-    private BigDecimal valor;
+    private String valor;
 
     public NFNotaInfoItemImpostoCOFINSAliquota() {
-        this.situacaoTributaria = null;
+        this.codigoSituacaoTributaria = null;
         this.valorBaseCalulo = null;
-        this.aliquota = null;
+        this.percentualAliquota = null;
         this.valor = null;
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
-        return this.situacaoTributaria;
+        return NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo(this.codigoSituacaoTributaria);
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
-        this.situacaoTributaria = situacaoTributaria;
+        this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
     }
 
     public BigDecimal getValorBaseCalulo() {
-        return this.valorBaseCalulo;
+        return new BigDecimal(this.valorBaseCalulo);
     }
 
     public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
-        this.valorBaseCalulo = valorBaseCalulo;
+        this.valorBaseCalulo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalulo);
     }
 
-    public BigDecimal getAliquota() {
-        return this.aliquota;
+    public BigDecimal getPercentualAliquota() {
+        return new BigDecimal(this.percentualAliquota);
     }
 
-    public void setAliquota(final BigDecimal aliquota) {
-        this.aliquota = aliquota;
+    public void setPercentualAliquota(final BigDecimal aliquota) {
+        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
     }
 
     public BigDecimal getValor() {
-        return this.valor;
+        return new BigDecimal(this.valor);
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = valor;
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
     }
 }

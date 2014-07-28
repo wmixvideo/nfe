@@ -14,18 +14,67 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSNaoTributavel;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSOutrasOperacoes;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSQuantidade;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSST;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencaoICMSTransporte;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencoesTributos;
+import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemImpostoCOFINSST getNFNotaInfoItemImpostoCOFINSST() {
+        final NFNotaInfoItemImpostoCOFINSST cofins = new NFNotaInfoItemImpostoCOFINSST();
+        cofins.setPercentualAliquota(new BigDecimal("99.99"));
+        cofins.setQuantidadeVendida(new BigDecimal("99999999999"));
+        cofins.setValorCOFINS(new BigDecimal("999999999999"));
+        return cofins;
+    }
+
+    public static NFNotaInfoItemImpostoCOFINSQuantidade getNFNotaInfoItemImpostoCOFINSQuantidade() {
+        final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
+        cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999"));
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
+        cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999"));
+        cofinsQuantidade.setValorTributo(new BigDecimal("999999999999"));
+        return cofinsQuantidade;
+    }
+
+    public static NFNotaInfoItemImpostoCOFINSOutrasOperacoes getNFNotaInfoItemImpostoCOFINSOutrasOperacoes() {
+        final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
+        outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setValorAliquota(new BigDecimal("9999999999"));
+        outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
+        outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
+        return outrasOperacoes;
+    }
+
+    public static NFNotaInfoItemImpostoCOFINSNaoTributavel getNFNotaInfoItemImpostoCOFINSNaoTributavel() {
+        final NFNotaInfoItemImpostoCOFINSNaoTributavel cofinsNaoTributado = new NFNotaInfoItemImpostoCOFINSNaoTributavel();
+        cofinsNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        return cofinsNaoTributado;
+    }
+
+    public static NFNotaInfoItemImpostoCOFINSAliquota getNFNotaInfoItemImpostoCOFINSAliquota() {
+        final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
+        cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS);
+        cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        return cofinsAliquota;
+    }
 
     public static NFNotaInfoRetencoesTributos getNFNotaInfoRetencoesTributos() {
         final NFNotaInfoRetencoesTributos retencoesTributos = new NFNotaInfoRetencoesTributos();

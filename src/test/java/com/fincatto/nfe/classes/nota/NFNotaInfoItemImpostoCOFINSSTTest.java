@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoItemImpostoCOFINSSTTest {
 
     @Test(expected = IllegalStateException.class)
@@ -34,11 +36,7 @@ public class NFNotaInfoItemImpostoCOFINSSTTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoItemImpostoCOFINSST cofins = new NFNotaInfoItemImpostoCOFINSST();
-        cofins.setPercentualAliquota(new BigDecimal("99.99"));
-        cofins.setQuantidadeVendida(new BigDecimal("99999999999"));
-        cofins.setValorCOFINS(new BigDecimal("999999999999"));
         final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSST><pCOFINS>99.99</pCOFINS><qBCProd>99999999999</qBCProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSST>";
-        Assert.assertEquals(xmlEsperado, cofins.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST().toString());
     }
 }
