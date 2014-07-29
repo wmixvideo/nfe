@@ -5,7 +5,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.MessageFormat;
 import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,11 +43,7 @@ public class BigDecimalParser {
         if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
             throw new IllegalStateException("Valor extrapolou o tamanho de casas");
         }
-        try {
-            valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
-            return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);
-        } catch (final ArithmeticException e) {
-            throw new IllegalStateException(MessageFormat.format("Um erro ocorreu: ", e.getMessage()));
-        }
+        valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
+        return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);
     }
 }
