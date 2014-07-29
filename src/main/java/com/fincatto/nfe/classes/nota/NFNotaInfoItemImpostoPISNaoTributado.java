@@ -13,10 +13,6 @@ public class NFNotaInfoItemImpostoPISNaoTributado extends NFBase {
         this.situacaoTributaria = null;
     }
 
-    public NFNotaInfoSituacaoTributariaPIS getCodigoSituacaoTributaria() {
-        return this.situacaoTributaria;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
     }

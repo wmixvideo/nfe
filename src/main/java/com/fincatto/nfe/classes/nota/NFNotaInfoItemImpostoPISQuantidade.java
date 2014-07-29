@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoPISQuantidade extends NFBase {
 
@@ -12,13 +13,13 @@ public class NFNotaInfoItemImpostoPISQuantidade extends NFBase {
     private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
 
     @Element(name = "qBCProd", required = true)
-    private BigDecimal quantidadeVendida;
+    private String quantidadeVendida;
 
     @Element(name = "vAliqProd", required = true)
-    private BigDecimal valorAliquota;
+    private String valorAliquota;
 
     @Element(name = "vPIS", required = true)
-    private BigDecimal valorTributo;
+    private String valorTributo;
 
     public NFNotaInfoItemImpostoPISQuantidade() {
         this.situacaoTributaria = null;
@@ -27,35 +28,19 @@ public class NFNotaInfoItemImpostoPISQuantidade extends NFBase {
         this.valorTributo = null;
     }
 
-    public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {
-        return this.situacaoTributaria;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public BigDecimal getQuantidadeVendida() {
-        return this.quantidadeVendida;
-    }
-
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = quantidadeVendida;
-    }
-
-    public BigDecimal getValorAliquota() {
-        return this.valorAliquota;
+        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = valorAliquota;
-    }
-
-    public BigDecimal getValorTributo() {
-        return this.valorTributo;
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = valorTributo;
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
 }

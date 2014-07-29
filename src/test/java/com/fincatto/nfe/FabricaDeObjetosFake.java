@@ -19,6 +19,11 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSNaoTributavel;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISAliquota;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISQuantidade;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISST;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
@@ -26,12 +31,54 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencaoICMSTransporte;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencoesTributos;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaCOFINS;
+import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemImpostoPISST getNFNotaInfoItemImpostoPISST() {
+        final NFNotaInfoItemImpostoPISST impostoPISST = new NFNotaInfoItemImpostoPISST();
+        impostoPISST.setValorAliquota(new BigDecimal("9999999999.9999"));
+        impostoPISST.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+        impostoPISST.setValorTributo(new BigDecimal("999999999999.99"));
+        return impostoPISST;
+    }
+
+    public static NFNotaInfoItemImpostoPISQuantidade getNFNotaInfoItemImpostoPISQuantidade() {
+        final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
+        pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
+        pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
+        return pisQuantidade;
+    }
+
+    public static NFNotaInfoItemImpostoPISOutrasOperacoes getNFNotaInfoItemImpostoPISOutrasOperacoes() {
+        final NFNotaInfoItemImpostoPISOutrasOperacoes pisOutrasOperacoes = new NFNotaInfoItemImpostoPISOutrasOperacoes();
+        pisOutrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OUTRAS_OPERACOES_SAIDA);
+        pisOutrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+        pisOutrasOperacoes.setValorAliquota(new BigDecimal("9999999999.9999"));
+        pisOutrasOperacoes.setValorTributo(new BigDecimal("999999999999.99"));
+        return pisOutrasOperacoes;
+    }
+
+    public static NFNotaInfoItemImpostoPISNaoTributado getNFNotaInfoItemImpostoPISNaoTributado() {
+        final NFNotaInfoItemImpostoPISNaoTributado pisNaoTributado = new NFNotaInfoItemImpostoPISNaoTributado();
+        pisNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_TRIBUTADAS_E_NAO_TRIBUTADAS_MERCADO_INTERNO);
+        return pisNaoTributado;
+    }
+
+    public static NFNotaInfoItemImpostoPISAliquota getNFNotaInfoItemImpostoPISAliquota() {
+        final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
+        pisAliquota.setPercentualAliquota(new BigDecimal("99.99"));
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_NAO_TRIBUTADAS_MERCADO_INTERNO_EXPORTACAO);
+        pisAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        pisAliquota.setValorTributo(new BigDecimal("999999999999.99"));
+        return pisAliquota;
+    }
 
     public static NFNotaInfoItemImpostoCOFINSST getNFNotaInfoItemImpostoCOFINSST() {
         final NFNotaInfoItemImpostoCOFINSST cofins = new NFNotaInfoItemImpostoCOFINSST();
