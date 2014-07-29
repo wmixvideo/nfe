@@ -48,12 +48,7 @@ public class BigDecimalParser {
             valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
             return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);
         } catch (final ArithmeticException e) {
-            throw new IllegalStateException(MessageFormat.format("Tamanho deve ser no max de {0} digitos", (tamanho)));
+            throw new IllegalStateException(MessageFormat.format("Um erro ocorreu: ", e.getMessage()));
         }
-    }
-
-    public static void main(final String[] args) {
-        final String plainBigDecimal = new BigDecimal("9999.99").toPlainString();
-        System.out.println(StringUtils.split(plainBigDecimal, ".")[0]);
     }
 }
