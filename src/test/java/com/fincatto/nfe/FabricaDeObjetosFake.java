@@ -19,6 +19,8 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSNaoTributavel;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoIPINaoTributado;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoIPITributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISAliquota;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
@@ -31,6 +33,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencaoICMSTransporte;
 import com.fincatto.nfe.classes.nota.NFNotaInfoRetencoesTributos;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaCOFINS;
+import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaIPI;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
@@ -38,6 +41,21 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
+        final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
+        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.SAIDA_ISENTA);
+        ipiTributado.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        ipiTributado.setPercentualAliquota(new BigDecimal("99.99"));
+        ipiTributado.setValorTributo(new BigDecimal("999999999999.99"));
+        return ipiTributado;
+    }
+
+    public static NFNotaInfoItemImpostoIPINaoTributado getNFNotaInfoItemImpostoIPINaoTributado() {
+        final NFNotaInfoItemImpostoIPINaoTributado ipiNaoTributado = new NFNotaInfoItemImpostoIPINaoTributado();
+        ipiNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.SAIDA_ISENTA);
+        return ipiNaoTributado;
+    }
 
     public static NFNotaInfoItemImpostoPISST getNFNotaInfoItemImpostoPISST() {
         final NFNotaInfoItemImpostoPISST impostoPISST = new NFNotaInfoItemImpostoPISST();
