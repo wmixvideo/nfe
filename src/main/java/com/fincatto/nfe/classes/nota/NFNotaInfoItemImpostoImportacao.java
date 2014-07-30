@@ -5,57 +5,42 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoImportacao extends NFBase {
-	
-	@Element(name = "vBC", required = true)
-	private BigDecimal valorBaseCalculo;
-	
-	@Element(name = "vDespAdu", required = true)
-	private BigDecimal valorDespesaAduaneira;
-	
-	@Element(name = "vII", required = true)
-	private BigDecimal valorImpostoImportacao;
-	
-	@Element(name = "vIOF", required = true)
-	private BigDecimal valorIOF;
-	
-	public NFNotaInfoItemImpostoImportacao() {
-		this.valorBaseCalculo = null;
-		this.valorDespesaAduaneira = null;
-		this.valorImpostoImportacao = null;
-		this.valorIOF = null;
-	}
-	
-	public BigDecimal getValorBaseCalculo() {
-		return this.valorBaseCalculo;
-	}
-	
-	public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-		this.valorBaseCalculo = valorBaseCalculo;
-	}
-	
-	public BigDecimal getValorDespesaAduaneira() {
-		return this.valorDespesaAduaneira;
-	}
-	
-	public void setValorDespesaAduaneira(final BigDecimal valorDespesaAduaneira) {
-		this.valorDespesaAduaneira = valorDespesaAduaneira;
-	}
-	
-	public BigDecimal getValorImpostoImportacao() {
-		return this.valorImpostoImportacao;
-	}
-	
-	public void setValorImpostoImportacao(final BigDecimal valorImpostoImportacao) {
-		this.valorImpostoImportacao = valorImpostoImportacao;
-	}
-	
-	public BigDecimal getValorIOF() {
-		return this.valorIOF;
-	}
-	
-	public void setValorIOF(final BigDecimal valorIOF) {
-		this.valorIOF = valorIOF;
-	}
+
+    @Element(name = "vBC", required = true)
+    private String valorBaseCalculo;
+
+    @Element(name = "vDespAdu", required = true)
+    private String valorDespesaAduaneira;
+
+    @Element(name = "vII", required = true)
+    private String valorImpostoImportacao;
+
+    @Element(name = "vIOF", required = true)
+    private String valorIOF;
+
+    public NFNotaInfoItemImpostoImportacao() {
+        this.valorBaseCalculo = null;
+        this.valorDespesaAduaneira = null;
+        this.valorImpostoImportacao = null;
+        this.valorIOF = null;
+    }
+
+    public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+    }
+
+    public void setValorDespesaAduaneira(final BigDecimal valorDespesaAduaneira) {
+        this.valorDespesaAduaneira = BigDecimalParser.tamanho15Com2CasasDecimais(valorDespesaAduaneira);
+    }
+
+    public void setValorImpostoImportacao(final BigDecimal valorImpostoImportacao) {
+        this.valorImpostoImportacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoImportacao);
+    }
+
+    public void setValorIOF(final BigDecimal valorIOF) {
+        this.valorIOF = BigDecimalParser.tamanho15Com2CasasDecimais(valorIOF);
+    }
 }

@@ -18,29 +18,23 @@ public class StringValidador {
     }
 
     public static void tamanho60(final String string) {
-        StringValidador.validaTamanho(string, 60);
+        StringValidador.validaTamanhoMaximo(string, 60);
     }
 
     public static void tamanho22(final String string) {
-        StringValidador.validaTamanho(string, 22);
+        StringValidador.validaTamanhoMaximo(string, 22);
     }
 
     public static void tamanho20(final String string) {
-        StringValidador.validaTamanho(string, 20);
+        StringValidador.validaTamanhoMaximo(string, 20);
     }
 
     public static void tamanho2000(final String string) {
-        StringValidador.validaTamanho(string, 2000);
+        StringValidador.validaTamanhoMaximo(string, 2000);
     }
 
     public static void tamanho5000(final String string) {
-        StringValidador.validaTamanho(string, 5000);
-    }
-
-    private static void validaTamanho(final String string, final int tamanho) {
-        if (string.length() < 1 || string.length() > tamanho) {
-            throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre 1-{0} caracteres", tamanho));
-        }
+        StringValidador.validaTamanhoMaximo(string, 5000);
     }
 
     public static void placaDeVeiculo(final String placaVeiculo) {
@@ -76,6 +70,26 @@ public class StringValidador {
         final Matcher matcher = Pattern.compile("^(ISENTO|[0-9]{2,14}|)$").matcher(inscricaoEstadual);
         if (!matcher.find()) {
             throw new IllegalStateException("Inscricao estadual invalido");
+        }
+    }
+
+    public static void exatamente3(final String string) {
+        StringValidador.validaTamanhoExato(string, 3);
+    }
+
+    public static void exatamente5(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 5);
+    }
+
+    private static void validaTamanhoMaximo(final String string, final int tamanho) {
+        if (string.length() < 1 || string.length() > tamanho) {
+            throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre 1-{0} caracteres", tamanho));
+        }
+    }
+
+    private static void validaTamanhoExato(final String string, final int tamanho) {
+        if (string.length() != tamanho) {
+            throw new IllegalStateException(MessageFormat.format("Este campo deve possuir {0} caracteres", tamanho));
         }
     }
 }
