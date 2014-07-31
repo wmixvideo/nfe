@@ -6,148 +6,97 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
     private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBC;
 
     @Element(name = "pRedBC", required = true)
-    private BigDecimal percentualReducaoBC;
+    private String percentualReducaoBC;
 
     @Element(name = "vBC", required = true)
-    private BigDecimal valorBC;
+    private String valorBC;
 
     @Element(name = "pICMS", required = true)
-    private BigDecimal aliquota;
+    private String percentualAliquota;
 
     @Element(name = "vICMS", required = true)
-    private BigDecimal valorTributo;
+    private String valorTributo;
 
     @Element(name = "modBCST", required = true)
     private NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
 
     @Element(name = "pMVAST", required = false)
-    private BigDecimal percentualMargemValorAdicionadoICMSST;
+    private String percentualMargemValorAdicionadoICMSST;
 
     @Element(name = "pRedBCST", required = false)
-    private BigDecimal percentualReducaoBCICMSST;
+    private String percentualReducaoBCICMSST;
 
     @Element(name = "vBCST", required = true)
-    private BigDecimal valorBCST;
+    private String valorBCST;
 
     @Element(name = "pICMSST", required = true)
-    private BigDecimal aliquotaImpostoICMSST;
+    private String percentualAliquotaImpostoICMSST;
 
     @Element(name = "vICMSST", required = true)
-    private BigDecimal valorICMSST;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
+    private String valorICMSST;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public String getCodigoSituacaoTributaria() {
-        return this.codigoSituacaoTributaria;
-    }
-
-    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
-        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-    }
-
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBC() {
-        return this.modalidadeBC;
+    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setModalidadeBC(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBC) {
         this.modalidadeBC = modalidadeBC;
     }
 
-    public BigDecimal getPercentualReducaoBC() {
-        return this.percentualReducaoBC;
-    }
-
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = percentualReducaoBC;
-    }
-
-    public BigDecimal getValorBC() {
-        return this.valorBC;
+        this.percentualReducaoBC = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBC);
     }
 
     public void setValorBC(final BigDecimal valorBC) {
-        this.valorBC = valorBC;
+        this.valorBC = BigDecimalParser.tamanho15Com2CasasDecimais(valorBC);
     }
 
-    public BigDecimal getAliquota() {
-        return this.aliquota;
-    }
-
-    public void setAliquota(final BigDecimal aliquota) {
-        this.aliquota = aliquota;
-    }
-
-    public BigDecimal getValorTributo() {
-        return this.valorTributo;
+    public void setPercentualAliquota(final BigDecimal aliquota) {
+        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = valorTributo;
-    }
-
-    public NFnotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
-        return this.modalidadeDeterminacaoBCICMSST;
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
 
     public void setModalidadeDeterminacaoBCICMSST(final NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
         this.modalidadeDeterminacaoBCICMSST = modalidadeDeterminacaoBCICMSST;
     }
 
-    public BigDecimal getPercentualMargemValorAdicionadoICMSST() {
-        return this.percentualMargemValorAdicionadoICMSST;
-    }
-
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = percentualMargemValorAdicionadoICMSST;
-    }
-
-    public BigDecimal getPercentualReducaoBCICMSST() {
-        return this.percentualReducaoBCICMSST;
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualMargemValorAdicionadoICMSST);
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = percentualReducaoBCICMSST;
-    }
-
-    public BigDecimal getValorBCST() {
-        return this.valorBCST;
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBCICMSST);
     }
 
     public void setValorBCST(final BigDecimal valorBCST) {
-        this.valorBCST = valorBCST;
+        this.valorBCST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCST);
     }
 
-    public BigDecimal getAliquotaImpostoICMSST() {
-        return this.aliquotaImpostoICMSST;
-    }
-
-    public void setAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.aliquotaImpostoICMSST = aliquotaImpostoICMSST;
-    }
-
-    public BigDecimal getValorICMSST() {
-        return this.valorICMSST;
+    public void setPercentualAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaImpostoICMSST);
     }
 
     public void setValorICMSST(final BigDecimal valorICMSST) {
-        this.valorICMSST = valorICMSST;
+        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST);
     }
 }

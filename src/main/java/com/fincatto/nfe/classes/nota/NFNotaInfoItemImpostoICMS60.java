@@ -4,50 +4,36 @@ import java.math.BigDecimal;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
-public class NFNotaInfoItemImpostoICMS60 {
+public class NFNotaInfoItemImpostoICMS60 extends NFBase {
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "vBCSTRet", required = false)
-    private BigDecimal valorBCICMSSTRetido;
+    private String valorBCICMSSTRetido;
 
     @Element(name = "vICMSSTRet", required = false)
-    private BigDecimal valorICMSSTRetido;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
+    private String valorICMSSTRetido;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public String getCodigoSituacaoTributaria() {
-        return this.codigoSituacaoTributaria;
-    }
-
-    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
-        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-    }
-
-    public BigDecimal getValorBCICMSSTRetido() {
-        return this.valorBCICMSSTRetido;
+    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setValorBCICMSSTRetido(final BigDecimal valorBCICMSSTRetido) {
-        this.valorBCICMSSTRetido = valorBCICMSSTRetido;
-    }
-
-    public BigDecimal getValorICMSSTRetido() {
-        return this.valorICMSSTRetido;
+        this.valorBCICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetido);
     }
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
-        this.valorICMSSTRetido = valorICMSSTRetido;
+        this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido);
     }
 }
