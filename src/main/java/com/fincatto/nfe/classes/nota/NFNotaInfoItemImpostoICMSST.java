@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSST extends NFBase {
 
@@ -13,65 +14,41 @@ public class NFNotaInfoItemImpostoICMSST extends NFBase {
     private NFOrigem origem;
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "vBCSTRet", required = true)
-    private BigDecimal valorBCICMSSTRetidoUFRemetente;
+    private String valorBCICMSSTRetidoUFRemetente;
 
     @Element(name = "vICMSSTRet", required = true)
-    private BigDecimal valorICMSSTRetidoUFRemetente;
+    private String valorICMSSTRetidoUFRemetente;
 
     @Element(name = "vBCSTDest", required = true)
-    private BigDecimal valorBCICMSSTUFDestino;
+    private String valorBCICMSSTUFDestino;
 
     @Element(name = "vICMSSTDest", required = true)
-    private BigDecimal valorICMSSTUFDestino;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
+    private String valorICMSSTUFDestino;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public String getCodigoSituacaoTributaria() {
-        return this.codigoSituacaoTributaria;
-    }
-
-    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
-        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-    }
-
-    public BigDecimal getValorBCICMSSTRetidoUFRemetente() {
-        return this.valorBCICMSSTRetidoUFRemetente;
+    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setValorBCICMSSTRetidoUFRemetente(final BigDecimal valorBCICMSSTRetidoUFRemetente) {
-        this.valorBCICMSSTRetidoUFRemetente = valorBCICMSSTRetidoUFRemetente;
-    }
-
-    public BigDecimal getValorICMSSTRetidoUFRemetente() {
-        return this.valorICMSSTRetidoUFRemetente;
+        this.valorBCICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente);
     }
 
     public void setValorICMSSTRetidoUFRemetente(final BigDecimal valorICMSSTRetidoUFRemetente) {
-        this.valorICMSSTRetidoUFRemetente = valorICMSSTRetidoUFRemetente;
-    }
-
-    public BigDecimal getValorBCICMSSTUFDestino() {
-        return this.valorBCICMSSTUFDestino;
+        this.valorICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente);
     }
 
     public void setValorBCICMSSTUFDestino(final BigDecimal valorBCICMSSTUFDestino) {
-        this.valorBCICMSSTUFDestino = valorBCICMSSTUFDestino;
-    }
-
-    public BigDecimal getValorICMSSTUFDestino() {
-        return this.valorICMSSTUFDestino;
+        this.valorBCICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino);
     }
 
     public void setValorICMSSTUFDestino(final BigDecimal valorICMSSTUFDestino) {
-        this.valorICMSSTUFDestino = valorICMSSTUFDestino;
+        this.valorICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTUFDestino);
     }
 }

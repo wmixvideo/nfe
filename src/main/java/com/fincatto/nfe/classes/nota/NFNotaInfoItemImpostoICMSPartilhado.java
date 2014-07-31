@@ -5,168 +5,110 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
-public class NFNotaInfoItemImpostoICMSPartilhado {
+public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
     private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS;
 
     @Element(name = "vBC", required = true)
-    private BigDecimal valorBCICMS;
+    private String valorBCICMS;
 
     @Element(name = "pRedBC", required = false)
-    private BigDecimal percentualReducaoBC;
+    private String percentualReducaoBC;
 
     @Element(name = "pICMS", required = true)
-    private BigDecimal aliquotaImposto;
+    private String percentualAliquotaImposto;
 
     @Element(name = "vICMS", required = true)
-    private BigDecimal valorICMS;
+    private String valorICMS;
 
     @Element(name = "modBCST", required = true)
     private NFnotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
-    private BigDecimal percentualMargemValorAdicionadoICMSST;
+    private String percentualMargemValorAdicionadoICMSST;
 
     @Element(name = "pRedBCST", required = false)
-    private BigDecimal percentualReducaoBCICMSST;
+    private String percentualReducaoBCICMSST;
 
     @Element(name = "vBCST", required = true)
-    private BigDecimal valorBCICMSST;
+    private String valorBCICMSST;
 
     @Element(name = "pICMSST", required = true)
-    private BigDecimal aliquotaImpostoICMSST;
+    private String percentualAliquotaImpostoICMSST;
 
     @Element(name = "vICMSST", required = true)
-    private BigDecimal valorICMSST;
+    private String valorICMSST;
 
     @Element(name = "pBCOp", required = true)
-    private BigDecimal percentual;
+    private String percentualBCOperacaoPropria;
 
     @Element(name = "UFST", required = true)
     private NFUnidadeFederativa ufICMSST;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public String getCodigoSituacaoTributaria() {
-        return this.codigoSituacaoTributaria;
-    }
-
-    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
-        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-    }
-
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeDeterminacaoBCICMS() {
-        return this.modalidadeDeterminacaoBCICMS;
+    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS) {
         this.modalidadeDeterminacaoBCICMS = modalidadeDeterminacaoBCICMS;
     }
 
-    public BigDecimal getValorBCICMS() {
-        return this.valorBCICMS;
-    }
-
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
-        this.valorBCICMS = valorBCICMS;
-    }
-
-    public BigDecimal getPercentualReducaoBC() {
-        return this.percentualReducaoBC;
+        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS);
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = percentualReducaoBC;
+        this.percentualReducaoBC = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBC);
     }
 
-    public BigDecimal getAliquotaImposto() {
-        return this.aliquotaImposto;
-    }
-
-    public void setAliquotaImposto(final BigDecimal aliquotaImposto) {
-        this.aliquotaImposto = aliquotaImposto;
-    }
-
-    public BigDecimal getValorICMS() {
-        return this.valorICMS;
+    public void setPercentualAliquotaImposto(final BigDecimal percentualAliquotaImposto) {
+        this.percentualAliquotaImposto = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaImposto);
     }
 
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = valorICMS;
-    }
-
-    public NFnotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
-        return this.modalidadeBCICMSST;
+        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS);
     }
 
     public void setModalidadeBCICMSST(final NFnotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
 
-    public BigDecimal getPercentualMargemValorAdicionadoICMSST() {
-        return this.percentualMargemValorAdicionadoICMSST;
-    }
-
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = percentualMargemValorAdicionadoICMSST;
-    }
-
-    public BigDecimal getPercentualReducaoBCICMSST() {
-        return this.percentualReducaoBCICMSST;
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualMargemValorAdicionadoICMSST);
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = percentualReducaoBCICMSST;
-    }
-
-    public BigDecimal getValorBCICMSST() {
-        return this.valorBCICMSST;
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBCICMSST);
     }
 
     public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
-        this.valorBCICMSST = valorBCICMSST;
+        this.valorBCICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSST);
     }
 
-    public BigDecimal getAliquotaImpostoICMSST() {
-        return this.aliquotaImpostoICMSST;
-    }
-
-    public void setAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.aliquotaImpostoICMSST = aliquotaImpostoICMSST;
-    }
-
-    public BigDecimal getValorICMSST() {
-        return this.valorICMSST;
+    public void setPercentualAliquotaImpostoICMSST(final BigDecimal percentualAliquotaImpostoICMSST) {
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaImpostoICMSST);
     }
 
     public void setValorICMSST(final BigDecimal valorICMSST) {
-        this.valorICMSST = valorICMSST;
+        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST);
     }
 
-    public BigDecimal getPercentual() {
-        return this.percentual;
-    }
-
-    public void setPercentual(final BigDecimal percentual) {
-        this.percentual = percentual;
-    }
-
-    public NFUnidadeFederativa getUfICMSST() {
-        return this.ufICMSST;
+    public void setPercentualBCOperacaoPropria(final BigDecimal percentual) {
+        this.percentualBCOperacaoPropria = BigDecimalParser.tamanho5Com2CasasDecimais(percentual);
     }
 
     public void setUfICMSST(final NFUnidadeFederativa ufICMSST) {
