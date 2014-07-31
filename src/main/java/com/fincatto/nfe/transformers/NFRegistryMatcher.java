@@ -16,6 +16,7 @@ import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
 import com.fincatto.nfe.classes.nota.NFModalidadeFrete;
+import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamentoTipo;
@@ -47,6 +48,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFRegimeTributario.class, new NFRegimeTributarioTransformer());
         super.bind(NFUnidadeFederativa.class, new NFUnidadeFederativaTransformer());
         super.bind(NFProdutoCompoeValorNota.class, new NFProdutoCompoeValorNotaTransformer());
+        super.bind(NFNotaInfoImpostoTributacaoICMS.class, new NFNotaInfoImpostoTributacaoICMSTransformer());
         super.bind(NFNotaInfoSituacaoTributariaIPI.class, new NFNotaInfoSituacaoTributariaIPITransformer());
         super.bind(NFNotaInfoSituacaoTributariaPIS.class, new NFNotaInfoSituacaoTributariaPISTransformer());
         super.bind(NFnotaInfoItemModalidadeBCICMSST.class, new NFnotaInfoItemModalidadeBCICMSSTTransformer());

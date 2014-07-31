@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSSN101 extends NFBase {
     @Element(name = "orig", required = true)
@@ -15,40 +16,24 @@ public class NFNotaInfoItemImpostoICMSSN101 extends NFBase {
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
     @Element(name = "pCredSN", required = true)
-    private BigDecimal aliquotaAplicavelCalculoCreditoSN;
+    private String percentualAliquotaAplicavelCalculoCreditoSN;
 
     @Element(name = "vCredICMSSN", required = true)
-    private BigDecimal valorCreditoICMSSN;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
+    private String valorCreditoICMSSN;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
-    }
-
-    public NFNotaSituacaoOperacionalSimplesNacional getCodigoSituacaoOperacaoSN() {
-        return this.situacaoOperacaoSN;
     }
 
     public void setCodigoSituacaoOperacaoSN(final NFNotaSituacaoOperacionalSimplesNacional codigoSituacaoOperacaoSN) {
         this.situacaoOperacaoSN = codigoSituacaoOperacaoSN;
     }
 
-    public BigDecimal getAliquotaAplicavelCalculoCreditoSN() {
-        return this.aliquotaAplicavelCalculoCreditoSN;
-    }
-
-    public void setAliquotaAplicavelCalculoCreditoSN(final BigDecimal aliquotaAplicavelCalculoCreditoSN) {
-        this.aliquotaAplicavelCalculoCreditoSN = aliquotaAplicavelCalculoCreditoSN;
-    }
-
-    public BigDecimal getValorCreditoICMSSN() {
-        return this.valorCreditoICMSSN;
+    public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
+        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN);
     }
 
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {
-        this.valorCreditoICMSSN = valorCreditoICMSSN;
+        this.valorCreditoICMSSN = BigDecimalParser.tamanho15Com2CasasDecimais(valorCreditoICMSSN);
     }
 }
