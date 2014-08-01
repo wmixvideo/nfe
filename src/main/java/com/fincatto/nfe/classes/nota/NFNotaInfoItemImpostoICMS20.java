@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMS20 extends NFBase {
 
@@ -13,76 +14,48 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     private NFOrigem origem;
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
     private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBaseCalculo;
 
     @Element(name = "pRedBC", required = true)
-    private BigDecimal percentualReducaoBC;
+    private String percentualReducaoBC;
 
     @Element(name = "vBC", required = true)
-    private BigDecimal valorBCICMS;
+    private String valorBCICMS;
 
     @Element(name = "pICMS", required = true)
-    private BigDecimal aliquota;
+    private String percentualAliquota;
 
     @Element(name = "vICMS", required = true)
-    private BigDecimal valorTributo;
-
-    public NFOrigem getOrigem() {
-        return this.origem;
-    }
+    private String valorTributo;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public String getCodigoSituacaoTributaria() {
-        return this.codigoSituacaoTributaria;
-    }
-
-    public void setCodigoSituacaoTributaria(final String codigoSituacaoTributaria) {
-        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-    }
-
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBaseCalculo() {
-        return this.modalidadeBaseCalculo;
+    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBaseCalculo) {
         this.modalidadeBaseCalculo = modalidadeBaseCalculo;
     }
 
-    public BigDecimal getPercentualReducaoBC() {
-        return this.percentualReducaoBC;
-    }
-
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = percentualReducaoBC;
-    }
-
-    public BigDecimal getValorBCICMS() {
-        return this.valorBCICMS;
+        this.percentualReducaoBC = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBC);
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
-        this.valorBCICMS = valorBCICMS;
+        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS);
     }
 
-    public BigDecimal getAliquota() {
-        return this.aliquota;
-    }
-
-    public void setAliquota(final BigDecimal aliquota) {
-        this.aliquota = aliquota;
-    }
-
-    public BigDecimal getValorTributo() {
-        return this.valorTributo;
+    public void setPercentualAliquota(final BigDecimal aliquota) {
+        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = valorTributo;
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
 }

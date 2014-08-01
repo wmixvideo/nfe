@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import org.joda.time.LocalDate;
 
+import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
@@ -14,13 +15,23 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
+import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoISSQN;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSNaoTributavel;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMS;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMS00;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoIPI;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoIPINaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoIPITributado;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoISSQN;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoImportacao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPIS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISAliquota;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
@@ -41,6 +52,73 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemImpostoPIS getNFNotaInfoItemImpostoPIS() {
+        final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
+        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+        pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
+        pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
+        pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
+        return pis;
+    }
+
+    public static NFNotaInfoItemImpostoISSQN getNFNotaInfoItemImpostoISSQN() {
+        final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
+        impostoISSQN.setCodigoMunicipio(9999999);
+        impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
+        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setValor(new BigDecimal("999999999999.99"));
+        impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
+        impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        return impostoISSQN;
+    }
+
+    public static NFNotaInfoItemImpostoIPI getNFNotaInfoItemImpostoIPI() {
+        final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
+        ipi.setClasseEnquadramento("157br");
+        ipi.setCnpjProdutor("12345678901234");
+        ipi.setCodigoEnquadramento("aT2");
+        ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
+        ipi.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado());
+        ipi.setQuantidadeSelo(new BigInteger("999999999999"));
+        ipi.setTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPITributado());
+        return ipi;
+    }
+
+    public static NFNotaInfoItemImpostoImportacao getNFNotaInfoItemImpostoImportacao() {
+        final NFNotaInfoItemImpostoImportacao importacao = new NFNotaInfoItemImpostoImportacao();
+        importacao.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        importacao.setValorDespesaAduaneira(new BigDecimal("999999999999.99"));
+        importacao.setValorImpostoImportacao(new BigDecimal("999999999999.99"));
+        importacao.setValorIOF(new BigDecimal("999999999999.99"));
+        return importacao;
+    }
+
+    public static NFNotaInfoItemImpostoCOFINS getNFNotaInfoItemImpostoCOFINS() {
+        final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
+        cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
+        cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
+        cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
+        cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
+        return cofins;
+    }
+
+    public static NFNotaInfoItemImpostoICMS getNFNotaInfoItemImpostoICMS() {
+        final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
+        icms.setIcms00(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS00());
+        return icms;
+    }
+
+    public static NFNotaInfoItemImpostoICMS00 getNFNotaInfoItemImpostoICMS00() {
+        final NFNotaInfoItemImpostoICMS00 icms00 = new NFNotaInfoItemImpostoICMS00();
+        icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
+        icms00.setOrigem(NFOrigem.NACIONAL);
+        icms00.setPercentualAliquota(new BigDecimal("99.99"));
+        icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms00.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        icms00.setValorTributo(new BigDecimal("999999999999.99"));
+        return icms00;
+    }
 
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();

@@ -115,16 +115,7 @@ public class NFNotaInfoItemImpostoIPITest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
-        ipi.setCnpjProdutor("12345678901234");
-        ipi.setCodigoEnquadramento("aT2");
-        ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
-        ipi.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado());
-        ipi.setQuantidadeSelo(new BigInteger("999999999999"));
-        ipi.setTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPITributado());
-
         final String xmlEsperado = "<NFNotaInfoItemImpostoIPI><clEnq>157br</clEnq><CNPJProd>12345678901234</CNPJProd><cSelo>iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5</cSelo><qSelo>999999999999</qSelo><cEnq>aT2</cEnq><IPITrib><CST>52</CST><vBC>999999999999.99</vBC><pIPI>99.99</pIPI><vIPI>999999999999.99</vIPI></IPITrib><IPINT><CST>52</CST></IPINT></NFNotaInfoItemImpostoIPI>";
-        Assert.assertEquals(xmlEsperado, ipi.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI().toString());
     }
 }
