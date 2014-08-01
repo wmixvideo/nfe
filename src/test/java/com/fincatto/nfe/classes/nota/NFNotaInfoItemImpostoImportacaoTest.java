@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoItemImpostoImportacaoTest {
 
     @Test(expected = IllegalStateException.class)
@@ -65,13 +67,7 @@ public class NFNotaInfoItemImpostoImportacaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoItemImpostoImportacao importacao = new NFNotaInfoItemImpostoImportacao();
-        importacao.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        importacao.setValorDespesaAduaneira(new BigDecimal("999999999999.99"));
-        importacao.setValorImpostoImportacao(new BigDecimal("999999999999.99"));
-        importacao.setValorIOF(new BigDecimal("999999999999.99"));
-
         final String xmlEsperado = "<NFNotaInfoItemImpostoImportacao><vBC>999999999999.99</vBC><vDespAdu>999999999999.99</vDespAdu><vII>999999999999.99</vII><vIOF>999999999999.99</vIOF></NFNotaInfoItemImpostoImportacao>";
-        Assert.assertEquals(xmlEsperado, importacao.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao().toString());
     }
 }
