@@ -17,12 +17,24 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho256(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 256);
+    }
+
+    public static void tamanho9(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 9);
+    }
+
     public static void tamanho60(final String string) {
         StringValidador.validaTamanhoMaximo(string, 60);
     }
 
     public static void tamanho22(final String string) {
         StringValidador.validaTamanhoMaximo(string, 22);
+    }
+
+    public static void tamanho21(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 21);
     }
 
     public static void tamanho20(final String string) {
@@ -35,6 +47,10 @@ public class StringValidador {
 
     public static void tamanho5000(final String string) {
         StringValidador.validaTamanhoMaximo(string, 5000);
+    }
+
+    public static void tamanho40(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 40);
     }
 
     public static void placaDeVeiculo(final String placaVeiculo) {
@@ -78,7 +94,35 @@ public class StringValidador {
     }
 
     public static void exatamente5(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 5);
+        StringValidador.validaTamanhoExato(string, 5);
+    }
+
+    public static void exatamente9(final String string) {
+        StringValidador.validaTamanhoExato(string, 9);
+    }
+
+    public static void exatamente17(final String string) {
+        StringValidador.validaTamanhoExato(string, 17);
+    }
+
+    public static void exatamente4(final String string) {
+        StringValidador.validaTamanhoExato(string, 4);
+    }
+
+    public static void exatamente6(final String string) {
+        StringValidador.validaTamanhoExato(string, 6);
+    }
+
+    public static void exatamente21(final String string) {
+        StringValidador.validaTamanhoExato(string, 21);
+    }
+
+    public static void exatamente1(final String string) {
+        StringValidador.validaTamanhoExato(string, 1);
+    }
+
+    public static void tamanho15(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 15);
     }
 
     private static void validaTamanhoMaximo(final String string, final int tamanho) {

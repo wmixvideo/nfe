@@ -37,6 +37,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoCombustivelCIDE;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
@@ -52,6 +53,14 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemProdutoCombustivelCIDE getNFNotaInfoItemProdutoCombustivelCIDE() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setQuantidadeBCCIDE(new BigDecimal("99999999999.9999"));
+        cide.setValor(new BigDecimal("999999999999.99"));
+        cide.setValorAliquota(new BigDecimal("9999999999.9999"));
+        return cide;
+    }
 
     public static NFNotaInfoItemImpostoPIS getNFNotaInfoItemImpostoPIS() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();

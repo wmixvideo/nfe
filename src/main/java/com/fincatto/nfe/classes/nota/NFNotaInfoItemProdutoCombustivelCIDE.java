@@ -5,45 +5,34 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemProdutoCombustivelCIDE extends NFBase {
-	
-	@Element(name = "qBCProd", required = true)
-	private BigDecimal quantidade;
-	
-	@Element(name = "vAliqProd", required = true)
-	private BigDecimal valorAliquota;
-	
-	@Element(name = "vCIDE", required = true)
-	private BigDecimal valor;
-	
-	public NFNotaInfoItemProdutoCombustivelCIDE() {
-		this.quantidade = null;
-		this.valorAliquota = null;
-		this.valor = null;
-	}
-	
-	public BigDecimal getQuantidade() {
-		return this.quantidade;
-	}
-	
-	public void setQuantidade(final BigDecimal quantidade) {
-		this.quantidade = quantidade;
-	}
-	
-	public BigDecimal getValorAliquota() {
-		return this.valorAliquota;
-	}
-	
-	public void setValorAliquota(final BigDecimal valorAliquota) {
-		this.valorAliquota = valorAliquota;
-	}
-	
-	public BigDecimal getValor() {
-		return this.valor;
-	}
-	
-	public void setValor(final BigDecimal valor) {
-		this.valor = valor;
-	}
+
+    @Element(name = "qBCProd", required = true)
+    private String quantidadeBCCIDE;
+
+    @Element(name = "vAliqProd", required = true)
+    private String valorAliquota;
+
+    @Element(name = "vCIDE", required = true)
+    private String valor;
+
+    public NFNotaInfoItemProdutoCombustivelCIDE() {
+        this.quantidadeBCCIDE = null;
+        this.valorAliquota = null;
+        this.valor = null;
+    }
+
+    public void setQuantidadeBCCIDE(final BigDecimal quantidade) {
+        this.quantidadeBCCIDE = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade);
+    }
+
+    public void setValorAliquota(final BigDecimal valorAliquota) {
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
+    }
+
+    public void setValor(final BigDecimal valor) {
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+    }
 }

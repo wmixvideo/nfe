@@ -20,6 +20,18 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 100, 9999);
     }
 
+    public static void exatamente4(final int valor) {
+        IntegerValidador.intervalo(valor, 1000, 9999);
+    }
+
+    public static void tamanho3(final int valor) {
+        IntegerValidador.intervalo(valor, 1, 999);
+    }
+
+    public static void exatamente6(final Integer valor) {
+        IntegerValidador.intervalo(valor, 100000, 999999);
+    }
+
     private static void limite(final Integer valor, final int maximo) {
         if (valor > maximo) {
             throw new IllegalStateException("Valor extrapolou o tamanho do campo");
