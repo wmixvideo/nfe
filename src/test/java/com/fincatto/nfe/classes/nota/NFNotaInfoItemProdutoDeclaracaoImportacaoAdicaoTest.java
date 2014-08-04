@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
     @Test(expected = IllegalStateException.class)
@@ -89,13 +91,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
-        importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
-        importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
-        importacaoAdicao.setNumero(999);
-        importacaoAdicao.setSequencial(999);
-
         final String xmlEsperado = "<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao><nAdicao>999</nAdicao><nSeqAdicC>999</nSeqAdicC><cFabricante>sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki</cFabricante><vDescDI>999999999999.99</vDescDI></NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao>";
-        Assert.assertEquals(xmlEsperado, importacaoAdicao.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().toString());
     }
 }

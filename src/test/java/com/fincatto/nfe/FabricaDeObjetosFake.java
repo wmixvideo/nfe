@@ -11,7 +11,9 @@ import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
+import com.fincatto.nfe.classes.nota.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
+import com.fincatto.nfe.classes.nota.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
@@ -37,7 +39,18 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamento;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamentoTipo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoCombustivel;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoCombustivelCIDE;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoDeclaracaoImportacao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoMedicamento;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoRestricao;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoTipoOperacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
@@ -47,12 +60,93 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoRetencoesTributos;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaIPI;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaPIS;
+import com.fincatto.nfe.classes.nota.NFNotaInfoTipoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculoCor;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfoItemProdutoVeiculo getNFNotaInfoItemProdutoVeiculo() {
+        final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();
+        produtoVeiculo.setAnoFabricacao(2014);
+        produtoVeiculo.setAnoModeloFabricacao(2014);
+        produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
+        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setCilindrada("ohNx");
+        produtoVeiculo.setCodigoCor("123A");
+        produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
+        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
+        produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
+        produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
+        produtoVeiculo.setDistanciaEntreEixos("9999");
+        produtoVeiculo.setEspecieVeiculo(NFNotaInfoEspecieVeiculo.CORRIDA);
+        produtoVeiculo.setLotacao(999);
+        produtoVeiculo.setNumeroMotor("u1DU8GZRzJZzevuY49IB9");
+        produtoVeiculo.setNumeroSerie("XBxVyiVVD");
+        produtoVeiculo.setPesoBruto(new BigDecimal("9999.9999"));
+        produtoVeiculo.setPesoLiquido(new BigDecimal("9999.9999"));
+        produtoVeiculo.setPotencia("GZRz");
+        produtoVeiculo.setRestricao(NFNotaInfoItemProdutoVeiculoRestricao.PENHOR);
+        produtoVeiculo.setTipoCombustivel(NFNotaInfoCombustivelTipo.GASOLINA);
+        produtoVeiculo.setTipoOperacao(NFNotaInfoItemProdutoVeiculoTipoOperacao.OUTROS);
+        produtoVeiculo.setTipoPintura("A");
+        produtoVeiculo.setTipoVeiculo(NFNotaInfoTipoVeiculo.AUTOMOVEL);
+        return produtoVeiculo;
+    }
+
+    public static NFNotaInfoItemProdutoMedicamento getNFNotaInfoItemProdutoMedicamento() {
+        final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
+        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
+        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setLote("yq50jVDZsvQVNuWoS45U");
+        medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
+        medicamento.setQuantidade(new BigDecimal("9999999.999"));
+        return medicamento;
+    }
+
+    public static NFNotaInfoItemProdutoDeclaracaoImportacao getNFNotaInfoItemProdutoDeclaracaoImportacao() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
+        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
+        declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
+        declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
+        declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
+        declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
+        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        return declaraoImportacao;
+    }
+
+    public static NFNotaInfoItemProdutoCombustivel getNFNotaInfoItemProdutoCombustivel() {
+        final NFNotaInfoItemProdutoCombustivel combustivel = new NFNotaInfoItemProdutoCombustivel();
+        combustivel.setCide(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivelCIDE());
+        combustivel.setCodigoAutorizacaoCODIF("Cirh89sPDDbnFAzZMPpmG");
+        combustivel.setCodigoProdutoANP("999999999");
+        combustivel.setQuantidade(new BigDecimal("99999999999.9999"));
+        combustivel.setUf(NFUnidadeFederativa.AC);
+        return combustivel;
+    }
+
+    public static NFNotaInfoItemProdutoArmamento getNFNotaInfoItemProdutoArmamento() {
+        final NFNotaInfoItemProdutoArmamento armamento = new NFNotaInfoItemProdutoArmamento();
+        armamento.setDescricao("lkVlEEeoLx8TnDSJ7ZfB0ohZacch9JMIT0lEOsXkSI1KDOWcOI3PjKe6QMAUeLitJ0aAi1LIGpKmN0sVZtp00qqzmgfySvraI98bmPN0RreMa1eDZwLQG2o46TT3vMHkZgBRZ6ofxUCLjUEgU7b2YZynsUuM3szCDup0TuUCjBULJEB8TTr4rCcLD1rCeVBljaFoclt16oQXio2UUEYXjgcCVpftSE0uamx3Ni2GCwlUQ4CCBAaVZv7VA79xWrMV");
+        armamento.setNumeroSerieArma("G2LeQIr4F");
+        armamento.setNumeroSerieCano("DCXuiWRlE");
+        armamento.setTipo(NFNotaInfoItemProdutoArmamentoTipo.PERMITIDO);
+        return armamento;
+    }
+
+    public static NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
+        importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
+        importacaoAdicao.setNumero(999);
+        importacaoAdicao.setSequencial(999);
+        return importacaoAdicao;
+    }
 
     public static NFNotaInfoItemProdutoCombustivelCIDE getNFNotaInfoItemProdutoCombustivelCIDE() {
         final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();

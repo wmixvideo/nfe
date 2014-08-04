@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test(expected = IllegalStateException.class)
@@ -833,33 +835,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();
-        produtoVeiculo.setAnoFabricacao(2014);
-        produtoVeiculo.setAnoModeloFabricacao(2014);
-        produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
-        produtoVeiculo.setCilindrada("ohNx");
-        produtoVeiculo.setCodigoCor("123A");
-        produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
-        produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
-        produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
-        produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
-        produtoVeiculo.setDistanciaEntreEixos("9999");
-        produtoVeiculo.setEspecieVeiculo(NFNotaInfoEspecieVeiculo.CORRIDA);
-        produtoVeiculo.setLotacao(999);
-        produtoVeiculo.setNumeroMotor("u1DU8GZRzJZzevuY49IB9");
-        produtoVeiculo.setNumeroSerie("XBxVyiVVD");
-        produtoVeiculo.setPesoBruto(new BigDecimal("9999.9999"));
-        produtoVeiculo.setPesoLiquido(new BigDecimal("9999.9999"));
-        produtoVeiculo.setPotencia("GZRz");
-        produtoVeiculo.setRestricao(NFNotaInfoItemProdutoVeiculoRestricao.PENHOR);
-        produtoVeiculo.setTipoCombustivel(NFNotaInfoCombustivelTipo.GASOLINA);
-        produtoVeiculo.setTipoOperacao(NFNotaInfoItemProdutoVeiculoTipoOperacao.OUTROS);
-        produtoVeiculo.setTipoPintura("A");
-        produtoVeiculo.setTipoVeiculo(NFNotaInfoTipoVeiculo.AUTOMOVEL);
-
         final String xmlEsperado = "<NFNotaInfoItemProdutoVeiculo><tpOp>0</tpOp><chassi>ks4VTPGohNxYlX7CX</chassi><cCor>123A</cCor><xCor>tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9</xCor><pot>GZRz</pot><cilin>ohNx</cilin><pesoL>9999.9999</pesoL><pesoB>9999.9999</pesoB><nSerie>XBxVyiVVD</nSerie><tpComb>02</tpComb><nMotor>u1DU8GZRzJZzevuY49IB9</nMotor><CMT>9999.9999</CMT><dist>9999</dist><anoMod>2014</anoMod><anoFab>2014</anoFab><tpPint>A</tpPint><tpVeic>06</tpVeic><espVeic>4</espVeic><VIN>N</VIN><condVeic>1</condVeic><cMod>2TR4Fz</cMod><cCorDENATRAN>16</cCorDENATRAN><lota>999</lota><tpRest>4</tpRest></NFNotaInfoItemProdutoVeiculo>";
-        Assert.assertEquals(xmlEsperado, produtoVeiculo.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo().toString());
     }
 }
