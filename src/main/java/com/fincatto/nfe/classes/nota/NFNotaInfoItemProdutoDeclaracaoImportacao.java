@@ -8,6 +8,7 @@ import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
 
@@ -33,6 +34,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     private List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> adicoes;
 
     public void setNumeroRegistro(final String numeroRegistro) {
+        StringValidador.tamanho12(numeroRegistro);
         this.numeroRegistro = numeroRegistro;
     }
 
@@ -41,6 +43,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setLocalDesembaraco(final String localDesembaraco) {
+        StringValidador.tamanho60(localDesembaraco);
         this.localDesembaraco = localDesembaraco;
     }
 
@@ -53,6 +56,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setCodigoExportador(final String codigoExportador) {
+        StringValidador.tamanho60(codigoExportador);
         this.codigoExportador = codigoExportador;
     }
 

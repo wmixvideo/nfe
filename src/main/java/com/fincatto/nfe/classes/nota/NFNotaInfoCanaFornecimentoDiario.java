@@ -32,18 +32,18 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidade);
+        this.quantidade = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidade);
     }
 
     public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
-        this.quantidadeTotalMes = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalMes);
+        this.quantidadeTotalMes = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalMes);
     }
 
     public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
-        this.quantidadeTotalAnterior = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalAnterior);
+        this.quantidadeTotalAnterior = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalAnterior);
     }
 
     public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
-        this.quantidadeTotalGeral = BigDecimalParser.tamanho22ComAte10CasasDecimais(quantidadeTotalGeral);
+        this.quantidadeTotalGeral = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalGeral);
     }
 }

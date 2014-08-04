@@ -17,6 +17,12 @@ public class StringValidador {
         }
     }
 
+    public static void codigoDeBarras(final String codigoDeBarras) {
+        if (codigoDeBarras.length() != 0 && codigoDeBarras.length() != 8 && codigoDeBarras.length() != 12 && codigoDeBarras.length() != 13 && codigoDeBarras.length() != 14) {
+            throw new IllegalStateException("Codigo de barras de tamanho invalido");
+        }
+    }
+
     public static void tamanho256(final String string) {
         StringValidador.validaTamanhoMaximo(string, 256);
     }
@@ -125,6 +131,18 @@ public class StringValidador {
         StringValidador.validaTamanhoMaximo(string, 15);
     }
 
+    public static void tamanho12(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 12);
+    }
+
+    public static void tamanho120(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 120);
+    }
+
+    public static void tamanho6(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 6);
+    }
+
     private static void validaTamanhoMaximo(final String string, final int tamanho) {
         if (string.length() < 1 || string.length() > tamanho) {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre 1-{0} caracteres", tamanho));
@@ -136,4 +154,5 @@ public class StringValidador {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir {0} caracteres", tamanho));
         }
     }
+
 }
