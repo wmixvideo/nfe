@@ -11,6 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BigDecimalParser {
 
+    public static String tamanho11Com3CasasDecimais(final BigDecimal valor) {
+        return BigDecimalParser.parse(valor, "0.000", 11, 3);
+    }
+
     public static String tamanho15Com2CasasDecimais(final BigDecimal valor) {
         return BigDecimalParser.parse(valor, "0.00", 15, 2);
     }
@@ -37,6 +41,14 @@ public class BigDecimalParser {
 
     public static String tamanho16ComAte4CasasDecimais(final BigDecimal valor) {
         return BigDecimalParser.parse(valor, "0.####", 16, 4);
+    }
+
+    public static String tamanho16Com4CasasDecimais(final BigDecimal valor) {
+        return BigDecimalParser.parse(valor, "0.0000", 16, 4);
+    }
+
+    public static String tamanho9Com4CasasDecimais(final BigDecimal valor) {
+        return BigDecimalParser.parse(valor, "0.0000", 9, 4);
     }
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
