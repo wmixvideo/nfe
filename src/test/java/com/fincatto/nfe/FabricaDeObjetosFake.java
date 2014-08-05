@@ -7,7 +7,9 @@ import java.util.Arrays;
 
 import org.joda.time.LocalDate;
 
+import com.fincatto.nfe.classes.NFEndereco;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
@@ -19,6 +21,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoISSQN;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemImposto;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSNaoTributavel;
@@ -39,6 +42,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISNaoTributado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISQuantidade;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoPISST;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItemProduto;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamento;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoCombustivel;
@@ -68,6 +72,65 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFEndereco getNFEndereco() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
+        endereco.setCep("88095550");
+        endereco.setCodigoMunicipio("ZNI5Tgz");
+        endereco.setCodigoPais(999);
+        endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
+        endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
+        endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
+        endereco.setTelefone("12345678901324");
+        endereco.setUf(NFUnidadeFederativa.SC);
+        return endereco;
+    }
+
+    public static NFNotaInfoItemProduto getNFNotaInfoItemProduto() {
+        final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
+        produto.setArmamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoArmamento()));
+        produto.setCfop("qW2d");
+        produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
+        produto.setCodigoDeBarras("EyiQt2RGqEJBPR");
+        produto.setCodigoDeBarrasTributavel("EyiQt2RGqEJBPR");
+        produto.setCombustivel(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivel());
+        produto.setCompoeValotNota(NFProdutoCompoeValorNota.SIM);
+        produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
+        produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
+        produto.setExtipi(999);
+        produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
+        produto.setNcm("U0sDjyan");
+        produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
+        produto.setNumeroPedidoItemCliente(999999);
+        produto.setQuantidadeComercial(new BigDecimal("9999999999.9999"));
+        produto.setQuantidadeTributavel(new BigDecimal("9999999999.9999"));
+        produto.setUnidadeComercial("Bta64y");
+        produto.setUnidadeTributavel("7wqG4h");
+        produto.setValorDesconto(new BigDecimal("999999999999.99"));
+        produto.setValorFrete(new BigDecimal("999999999999.99"));
+        produto.setValorOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
+        produto.setValorSeguro(new BigDecimal("999999999999.99"));
+        produto.setValorTotalBruto(new BigDecimal("999999999999.99"));
+        produto.setValorUnitario(new BigDecimal("9999999999.9999999999"));
+        produto.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
+        produto.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo());
+        return produto;
+    }
+
+    public static NFNotaInfoItemImposto getNFNotaInfoItemImposto() {
+        final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
+        imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());
+        imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());
+        imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
+        imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
+        imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
+        imposto.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
+        imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
+        imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        return imposto;
+    }
 
     public static NFNotaInfoItemProdutoVeiculo getNFNotaInfoItemProdutoVeiculo() {
         final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();

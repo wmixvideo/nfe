@@ -23,6 +23,13 @@ public class StringValidador {
         }
     }
 
+    public static void telefone(final String telefone) {
+        final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Telefone de tamanho invalido");
+        }
+    }
+
     public static void tamanho256(final String string) {
         StringValidador.validaTamanhoMaximo(string, 256);
     }
@@ -141,6 +148,24 @@ public class StringValidador {
 
     public static void tamanho6(final String string) {
         StringValidador.validaTamanhoMaximo(string, 6);
+    }
+
+    public static void tamanho500(final String string) {
+        StringValidador.validaTamanhoMaximo(string, 500);
+    }
+
+    public static void exatamente7(final String string) {
+        StringValidador.validaTamanhoExato(string, 7);
+    }
+
+    public static void exatamente8(final String string) {
+        StringValidador.validaTamanhoExato(string, 8);
+    }
+
+    public static void tamanho8a9(final String string) {
+        if (string.length() < 8 || string.length() > 9) {
+            throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
+        }
     }
 
     private static void validaTamanhoMaximo(final String string, final int tamanho) {
