@@ -93,6 +93,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private NFNotaInfoItemProdutoCombustivel combustivel;
 
     public void setCodigo(final String codigo) {
+        StringValidador.tamanho60(codigo);
         this.codigo = codigo;
     }
 
