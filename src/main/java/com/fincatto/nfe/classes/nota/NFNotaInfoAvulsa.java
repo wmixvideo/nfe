@@ -7,6 +7,8 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoAvulsa extends NFBase {
     @Element(name = "CNPJ", required = true)
@@ -34,7 +36,7 @@ public class NFNotaInfoAvulsa extends NFBase {
     private LocalDate dataEmissaoDocumentoArrecadacao;
 
     @Element(name = "vDAR", required = false)
-    private BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita;
+    private String valorTotalConstanteDocumentoArrecadacaoReceita;
 
     @Element(name = "repEmi", required = true)
     private String reparticaoFiscalEmitente;
@@ -42,88 +44,51 @@ public class NFNotaInfoAvulsa extends NFBase {
     @Element(name = "dPag", required = false)
     private LocalDate dataPagamentoDocumentoArrecadacao;
 
-    public String getCnpj() {
-        return this.cnpj;
-    }
-
     public void setCnpj(final String cnpj) {
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
-    public String getOrgaoEmitente() {
-        return this.orgaoEmitente;
-    }
-
     public void setOrgaoEmitente(final String orgaoEmitente) {
+        StringValidador.tamanho60(orgaoEmitente);
         this.orgaoEmitente = orgaoEmitente;
     }
 
-    public String getMatriculaAgente() {
-        return this.matriculaAgente;
-    }
-
     public void setMatriculaAgente(final String matriculaAgente) {
+        StringValidador.tamanho60(matriculaAgente);
         this.matriculaAgente = matriculaAgente;
     }
 
-    public String getNomeAgente() {
-        return this.nomeAgente;
-    }
-
     public void setNomeAgente(final String nomeAgente) {
+        StringValidador.tamanho60(nomeAgente);
         this.nomeAgente = nomeAgente;
     }
 
-    public String getFone() {
-        return this.fone;
-    }
-
     public void setFone(final String fone) {
+        StringValidador.telefone(fone);
         this.fone = fone;
-    }
-
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
-    public String getNumeroDocumentoArrecadacaoReceita() {
-        return this.numeroDocumentoArrecadacaoReceita;
-    }
-
     public void setNumeroDocumentoArrecadacaoReceita(final String numeroDocumentoArrecadacaoReceita) {
+        StringValidador.tamanho60(numeroDocumentoArrecadacaoReceita);
         this.numeroDocumentoArrecadacaoReceita = numeroDocumentoArrecadacaoReceita;
-    }
-
-    public LocalDate getDataEmissaoDocumentoArrecadacao() {
-        return this.dataEmissaoDocumentoArrecadacao;
     }
 
     public void setDataEmissaoDocumentoArrecadacao(final LocalDate dataEmissaoDocumentoArrecadacao) {
         this.dataEmissaoDocumentoArrecadacao = dataEmissaoDocumentoArrecadacao;
     }
 
-    public BigDecimal getValorTotalConstanteDocumentoArrecadacaoReceita() {
-        return this.valorTotalConstanteDocumentoArrecadacaoReceita;
-    }
-
     public void setValorTotalConstanteDocumentoArrecadacaoReceita(final BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita) {
-        this.valorTotalConstanteDocumentoArrecadacaoReceita = valorTotalConstanteDocumentoArrecadacaoReceita;
-    }
-
-    public String getReparticaoFiscalEmitente() {
-        return this.reparticaoFiscalEmitente;
+        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita);
     }
 
     public void setReparticaoFiscalEmitente(final String reparticaoFiscalEmitente) {
+        StringValidador.tamanho60(reparticaoFiscalEmitente);
         this.reparticaoFiscalEmitente = reparticaoFiscalEmitente;
-    }
-
-    public LocalDate getDataPagamentoDocumentoArrecadacao() {
-        return this.dataPagamentoDocumentoArrecadacao;
     }
 
     public void setDataPagamentoDocumentoArrecadacao(final LocalDate dataPagamentoDocumentoArrecadacao) {

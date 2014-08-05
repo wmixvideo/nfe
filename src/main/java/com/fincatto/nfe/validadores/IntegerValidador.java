@@ -28,12 +28,20 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 1, 999);
     }
 
+    public static void tamanho3maximo990(final int valor) {
+        IntegerValidador.intervalo(valor, 1, 990);
+    }
+
     public static void exatamente6(final Integer valor) {
         IntegerValidador.intervalo(valor, 100000, 999999);
     }
 
     public static void tamanho2ou3(final Integer valor) {
         IntegerValidador.intervalo(valor, 10, 999);
+    }
+
+    public static void tamanho2a4(final Integer valor) {
+        IntegerValidador.intervalo(valor, 10, 9999);
     }
 
     private static void limite(final Integer valor, final int maximo) {
@@ -47,5 +55,4 @@ public class IntegerValidador {
             throw new IllegalStateException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
         }
     }
-
 }

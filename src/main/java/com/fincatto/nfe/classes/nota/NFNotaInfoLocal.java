@@ -4,8 +4,9 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.StringValidador;
 
-public class NFNotaInfoEntrega extends NFBase {
+public class NFNotaInfoLocal extends NFBase {
     @Element(name = "CNPJ", required = false)
     private String cnpj;
 
@@ -16,7 +17,7 @@ public class NFNotaInfoEntrega extends NFBase {
     private String logradouro;
 
     @Element(name = "nro", required = true)
-    private int numero;
+    private String numero;
 
     @Element(name = "xCpl", required = false)
     private String complemento;
@@ -33,72 +34,50 @@ public class NFNotaInfoEntrega extends NFBase {
     @Element(name = "UF", required = true)
     private NFUnidadeFederativa uf;
 
-    public String getCnpj() {
-        return this.cnpj;
-    }
-
-    public void setCnpj(final String cnpj) { // Adicionar validador cnpj
+    public void setCnpj(final String cnpj) {
+        if (this.cpf != null) {
+            throw new IllegalStateException("Nao pode setar CNPJ por que o CPF foi setado");
+        }
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public void setCpf(final String cpf) {// Adicionar validador cpf
+    public void setCpf(final String cpf) {
+        if (this.cnpj != null) {
+            throw new IllegalStateException("Nao pode setar CPF por que o CNPJ foi setado");
+        }
+        StringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
-    public String getLogradouro() {
-        return this.logradouro;
-    }
-
     public void setLogradouro(final String logradouro) {
+        StringValidador.tamanho60(logradouro);
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
-        return this.numero;
-    }
-
-    public void setNumero(final int numero) {
+    public void setNumero(final String numero) {
+        StringValidador.tamanho60(numero);
         this.numero = numero;
     }
 
-    public String getComplemento() {
-        return this.complemento;
-    }
-
     public void setComplemento(final String complemento) {
+        StringValidador.tamanho60(complemento);
         this.complemento = complemento;
     }
 
-    public String getBairro() {
-        return this.bairro;
-    }
-
     public void setBairro(final String bairro) {
+        StringValidador.tamanho60(bairro);
         this.bairro = bairro;
     }
 
-    public String getCodigoMunicipio() {
-        return this.codigoMunicipio;
-    }
-
-    public void setCodigoMunicipio(final String codigoMunicipio) { // Adicionar validador ANEXO IX
+    public void setCodigoMunicipio(final String codigoMunicipio) {
+        StringValidador.exatamente7(codigoMunicipio);
         this.codigoMunicipio = codigoMunicipio;
     }
 
-    public String getNomeMunicipio() {
-        return this.nomeMunicipio;
-    }
-
     public void setNomeMunicipio(final String nomeMunicipio) {
+        StringValidador.tamanho60(nomeMunicipio);
         this.nomeMunicipio = nomeMunicipio;
-    }
-
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
     }
 
     public void setUf(final NFUnidadeFederativa uf) {

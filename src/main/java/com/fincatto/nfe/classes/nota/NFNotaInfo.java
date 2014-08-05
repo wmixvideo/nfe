@@ -36,10 +36,10 @@ public class NFNotaInfo extends NFBase {
     private List<NFNotaInfoItem> itens;
 
     @Element(name = "retirada", required = false)
-    private NFNotaInfoRetirada retirada;
+    private NFNotaInfoLocal retirada;
 
     @Element(name = "entrega", required = false)
-    private NFNotaInfoEntrega entrega;
+    private NFNotaInfoLocal entrega;
 
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
@@ -128,19 +128,19 @@ public class NFNotaInfo extends NFBase {
         this.avulsa = avulsa;
     }
 
-    public NFNotaInfoRetirada getRetirada() {
+    public NFNotaInfoLocal getRetirada() {
         return this.retirada;
     }
 
-    public void setRetirada(final NFNotaInfoRetirada retirada) {
+    public void setRetirada(final NFNotaInfoLocal retirada) {
         this.retirada = retirada;
     }
 
-    public NFNotaInfoEntrega getEntrega() {
+    public NFNotaInfoLocal getEntrega() {
         return this.entrega;
     }
 
-    public void setEntrega(final NFNotaInfoEntrega entrega) {
+    public void setEntrega(final NFNotaInfoLocal entrega) {
         this.entrega = entrega;
     }
 

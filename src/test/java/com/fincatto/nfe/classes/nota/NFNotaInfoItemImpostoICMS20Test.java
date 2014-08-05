@@ -1,4 +1,4 @@
-package com.fincatto.nfe;
+package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
 
