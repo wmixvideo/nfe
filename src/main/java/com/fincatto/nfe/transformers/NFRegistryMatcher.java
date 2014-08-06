@@ -2,6 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
 import com.fincatto.nfe.NFAmbiente;
@@ -41,6 +42,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFAmbiente.class, new NFAmbienteTransformer());
         super.bind(LocalDate.class, new NFLocalDateTransformer());
+        super.bind(LocalTime.class, new NFLocalTimeTransformer());
         super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
         super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());

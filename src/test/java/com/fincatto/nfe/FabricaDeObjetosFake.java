@@ -6,21 +6,45 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
 
 import com.fincatto.nfe.classes.NFEndereco;
+import com.fincatto.nfe.classes.NFFinalidade;
+import com.fincatto.nfe.classes.NFFormaPagamento;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
+import com.fincatto.nfe.classes.NFProgramaEmissor;
+import com.fincatto.nfe.classes.NFRegimeTributario;
+import com.fincatto.nfe.classes.NFTipo;
+import com.fincatto.nfe.classes.NFTipoEmissao;
+import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.nota.NFInfoCupomFiscalReferenciado;
+import com.fincatto.nfe.classes.nota.NFInfoModelo1Por1AReferenciada;
+import com.fincatto.nfe.classes.nota.NFInfoProdutorRuralReferenciada;
+import com.fincatto.nfe.classes.nota.NFInfoReferenciada;
+import com.fincatto.nfe.classes.nota.NFModalidadeFrete;
+import com.fincatto.nfe.classes.nota.NFNotaInfo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoAvulsa;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCanaFornecimentoDiario;
+import com.fincatto.nfe.classes.nota.NFNotaInfoCobranca;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCombustivelTipo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoCompra;
+import com.fincatto.nfe.classes.nota.NFNotaInfoDestinatario;
 import com.fincatto.nfe.classes.nota.NFNotaInfoDuplicata;
+import com.fincatto.nfe.classes.nota.NFNotaInfoEmitente;
 import com.fincatto.nfe.classes.nota.NFNotaInfoEspecieVeiculo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoExportacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoFatura;
 import com.fincatto.nfe.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoISSQNTotal;
+import com.fincatto.nfe.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoImpostoTributacaoISSQN;
+import com.fincatto.nfe.classes.nota.NFNotaInfoInformacoesAdicionais;
+import com.fincatto.nfe.classes.nota.NFNotaInfoItem;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImposto;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
@@ -56,6 +80,7 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoRestricao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemProdutoVeiculoTipoOperacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoLacre;
+import com.fincatto.nfe.classes.nota.NFNotaInfoLocal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoObservacao;
 import com.fincatto.nfe.classes.nota.NFNotaInfoProcessoReferenciado;
 import com.fincatto.nfe.classes.nota.NFNotaInfoReboque;
@@ -65,13 +90,228 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaCOFINS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaIPI;
 import com.fincatto.nfe.classes.nota.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTipoVeiculo;
+import com.fincatto.nfe.classes.nota.NFNotaInfoTotal;
 import com.fincatto.nfe.classes.nota.NFNotaInfoTransportador;
+import com.fincatto.nfe.classes.nota.NFNotaInfoTransporte;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculoCor;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNotaInfo getNFNotaInfo() {
+        final NFNotaInfo info = new NFNotaInfo();
+        info.setAvulsa(FabricaDeObjetosFake.getNFNotaInfoAvulsa());
+        info.setCana(FabricaDeObjetosFake.getNFNotaInfoCana());
+        info.setCobranca(FabricaDeObjetosFake.getNFNotaInfoCobranca());
+        info.setCompra(FabricaDeObjetosFake.getNFNotaInfoCompra());
+        info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
+        info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
+        info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
+        info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
+        info.setIdentificador("ChZ9G0aubajFyQkslfhicTyzggacyZlAtWJrlrvS4JIskg3");
+        info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
+        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setSignature("ASSINATURA XML");
+        info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
+        info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
+        info.setVersao(new BigDecimal("9.99"));
+        return info;
+    }
+
+    public static NFNotaInfoTransporte getNFNotaInfoTransporte() {
+        final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
+        transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
+        transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
+        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
+        transporte.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoVeiculo());
+        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        return transporte;
+    }
+
+    public static NFNotaInfoTotal getNFNotaInfoTotal() {
+        final NFNotaInfoTotal total = new NFNotaInfoTotal();
+        total.setIcmsTotal(FabricaDeObjetosFake.getNFNotaInfoICMSTotal());
+        total.setIssqnTotal(FabricaDeObjetosFake.getNFNotaInfoISSQNTotal());
+        total.setRetencoesTributos(FabricaDeObjetosFake.getNFNotaInfoRetencoesTributos());
+        return total;
+    }
+
+    public static NFNotaInfoItem getNFNotaInfoItem() {
+        final NFNotaInfoItem item = new NFNotaInfoItem();
+        item.setImposto(FabricaDeObjetosFake.getNFNotaInfoItemImposto());
+        item.setInformacoesAdicionais("R3s36BVI9k15xOe3hnlEpZRpPHEom9inv4hE1oo8hzHYG8X6D9sQjt6oLYiH6yToSFM95zueMhE4s270GB7iLUKcQTRHWLcHb1TU2fSYx2NAz5ZflI3hoTnN8zmqJtGzneaNpDRA5gJW7wxMg9IXIuUCxg25MlIQ46AbDQNc3HLl82g3awWKigBMli0bUEWIMf8C2GG2sB2Y9w1GnsfiDvw7RUuU5vATfWWvYFRCehm2UpDhBlrBjjXcWKYzXsT3x2PNtCC82JqY1nkKrgt2AHCPUjM0tCQk5EHFcssb8I0Rkc4s8aNcARXtFrBzmWqXDQPmCpLIGaAo7LlypOKKaqUNqkRkf8c930p8HaRDvQJealZsVnpwJn3Ev7yEaBZ9INe5PXFwkTQEfpNE3B8IokFMh0aUbu8mfzjKLBazSKW2qA4faIo2Wp5FmOmTzCMiPqznOq3Bl0zM4wmuo0rOXbswjaCUzPB0KpM8Yaze9TArOEDrV6Li");
+        item.setNumeroItem(990);
+        item.setProduto(FabricaDeObjetosFake.getNFNotaInfoItemProduto());
+        return item;
+    }
+
+    public static NFNotaInfoInformacoesAdicionais getNFNotaInfoInformacoesAdicionais() {
+        final NFNotaInfoInformacoesAdicionais infoAdicionais = new NFNotaInfoInformacoesAdicionais();
+        infoAdicionais.setInformacoesAdicionaisInteresseFisco("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");
+        infoAdicionais.setInformacoesComplementaresInteresseContribuinte("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");
+
+        final ArrayList<NFNotaInfoObservacao> observacoesFisco = new ArrayList<NFNotaInfoObservacao>();
+        observacoesFisco.add(FabricaDeObjetosFake.getNFNotaInfoObservacao());
+        infoAdicionais.setObservacoesFisco(observacoesFisco);
+
+        final ArrayList<NFNotaInfoObservacao> observacoesContribuinte = new ArrayList<NFNotaInfoObservacao>();
+        observacoesContribuinte.add(FabricaDeObjetosFake.getNFNotaInfoObservacao());
+        infoAdicionais.setObservacoesContribuinte(observacoesContribuinte);
+
+        final ArrayList<NFNotaInfoProcessoReferenciado> processosRefenciado = new ArrayList<NFNotaInfoProcessoReferenciado>();
+        processosRefenciado.add(FabricaDeObjetosFake.getNFNotaInfoProcessoReferenciado());
+        infoAdicionais.setProcessosRefenciado(processosRefenciado);
+        return infoAdicionais;
+    }
+
+    public static NFNotaInfoIdentificacao getNFNotaInfoIdentificacao() {
+        final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
+        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setCodigoMunicipio("surKkNg");
+        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
+        identificacao.setDataSaida(new LocalDate(2013, 9, 24));
+        identificacao.setDigitoVerificador(8);
+        identificacao.setFinalidade(NFFinalidade.NORMAL);
+        identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
+        identificacao.setHoraSaida(new LocalTime(12, 11, 10));
+        identificacao.setModelo("AA");
+        identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
+        identificacao.setNumeroNota(999999999);
+        identificacao.setProgramaEmissor(NFProgramaEmissor.CONTRIBUINTE);
+        identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
+        identificacao.setSerie(999);
+        identificacao.setTipo(NFTipo.ENTRADA);
+        identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
+        identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
+        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
+        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
+        return identificacao;
+    }
+
+    public static NFNotaInfoExportacao getNFNotaInfoExportacao() {
+        final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
+        exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
+        exportacao.setLocalEmbarqueProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
+        return exportacao;
+    }
+
+    public static NFNotaInfoLocal getNFNotaInfoLocal() {
+        final NFNotaInfoLocal local = new NFNotaInfoLocal();
+        local.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
+        local.setCnpj("12345678901234");
+        local.setCodigoMunicipio("QK4av0e");
+        local.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
+        local.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
+        local.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
+        local.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
+        local.setUf(NFUnidadeFederativa.AC);
+        return local;
+    }
+
+    public static NFNotaInfoEmitente getNFNotaInfoEmitente() {
+        final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
+        emitente.setClassificacaoNacionalAtividadesEconomicas("cZKIMR3");
+        emitente.setCpf("12345678901");
+        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setInscricaoEstadual("ISENTO");
+        emitente.setInscricaoEstadualSubstituicaoTributaria("ISENTO");
+        emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
+        emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
+        emitente.setRazaoSocial("Rhass3yMarv7W26gljGNMGXXyPZfSFDEiN472mTU7UWxokviyHMfeD7vCVg3");
+        emitente.setRegimeTributario(NFRegimeTributario.NORMAL);
+        return emitente;
+    }
+
+    public static NFNotaInfoDestinatario getNFNotaInfoDestinatario() {
+        final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
+        destinatario.setCnpj("12345678901234");
+        destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
+        destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        destinatario.setInscricaoEstadual("ISENTO");
+        destinatario.setInscricaoSuframa("4cxG54PXx");
+        destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
+        return destinatario;
+    }
+
+    public static NFNotaInfoCompra getNFNotaInfoCompra() {
+        final NFNotaInfoCompra compra = new NFNotaInfoCompra();
+        compra.setContrato("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzc");
+        compra.setNotaDeEmpenho("abcefghijklmnopqrstuvx");
+        compra.setPedido("1kG8gghJ0YTrUZnt00BJlOsFCtj43eV5mEHHXUzp3rD6QwwUwX4GPavXkMB1");
+        return compra;
+    }
+
+    public static NFNotaInfoCobranca getNFNotaInfoCobranca() {
+        final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
+        cobranca.setFatura(FabricaDeObjetosFake.getNFNotaInfoFatura());
+        cobranca.setDuplicatas(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
+        return cobranca;
+    }
+
+    public static NFNotaInfoAvulsa getNFNotaInfoAvulsa() {
+        final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
+        avulsa.setCnpj("12345678901234");
+        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setFone("81579357");
+        avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
+        avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
+        avulsa.setNumeroDocumentoArrecadacaoReceita("qqDt1f1ulcahrBnUH0otPFkjYqD2tH4ktYsR71WSYZLFW1zZObAqajHHkyxi");
+        avulsa.setOrgaoEmitente("qNre0x2eJthUYIoKBuBbbGSeA4R2wrDLxNwCuDFkYD54flBLbBBMakGDgQUV");
+        avulsa.setReparticaoFiscalEmitente("YQFmDI2HBjjfZpRjR2ghwmSo1oWk5QgUEYf2oG46uEHwY4zsXyH1ORSr8oq3");
+        avulsa.setUf(NFUnidadeFederativa.SC);
+        avulsa.setValorTotalConstanteDocumentoArrecadacaoReceita(new BigDecimal("999999999999.99"));
+        return avulsa;
+    }
+
+    public static NFInfoReferenciada getNFInfoReferenciada() {
+        final NFInfoReferenciada referenciada = new NFInfoReferenciada();
+        referenciada.setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt");
+        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
+        return referenciada;
+    }
+
+    public static NFInfoModelo1Por1AReferenciada getNFInfoModelo1Por1AReferenciada() {
+        final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
+        referenciada.setAnoMesEmissaoNFe("1408");
+        referenciada.setCnpj("12345678901234");
+        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
+        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
+        referenciada.setModeloDocumentoFiscal("A1");
+        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setSerie(999);
+        referenciada.setUf(NFUnidadeFederativa.SC);
+        return referenciada;
+    }
+
+    public static NFInfoProdutorRuralReferenciada getNFInfoProdutorRuralReferenciada() {
+        final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
+        referenciada.setAnoMesEmissao("1402");
+        referenciada.setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L");
+        referenciada.setCnpjEmitente("12345678901234");
+        referenciada.setIeEmitente("ISENTO");
+        referenciada.setModeloDocumentoFiscal("IE");
+        referenciada.setNumeroDocumentoFiscal(999999);
+        referenciada.setSerieDocumentoFiscal(999);
+        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        return referenciada;
+    }
+
+    public static NFInfoCupomFiscalReferenciado getNFInfoCupomFiscalReferenciado() {
+        final NFInfoCupomFiscalReferenciado referenciado = new NFInfoCupomFiscalReferenciado();
+        referenciado.setModeloDocumentoFiscal("A2");
+        referenciado.setNumeroContadorOrdemOperacao("NUQvJH");
+        referenciado.setNumeroOrdemSequencialECF("a71");
+        return referenciado;
+    }
 
     public static NFEndereco getNFEndereco() {
         final NFEndereco endereco = new NFEndereco();

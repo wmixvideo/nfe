@@ -17,6 +17,14 @@ public class StringValidador {
         }
     }
 
+    public static void aamm(final String aamm) {
+        try {
+            new SimpleDateFormat("yymm").parse(aamm);
+        } catch (final ParseException e) {
+            throw new IllegalStateException("Formato invalido (aamm)");
+        }
+    }
+
     public static void codigoDeBarras(final String codigoDeBarras) {
         if (codigoDeBarras.length() != 0 && codigoDeBarras.length() != 8 && codigoDeBarras.length() != 12 && codigoDeBarras.length() != 13 && codigoDeBarras.length() != 14) {
             throw new IllegalStateException("Codigo de barras de tamanho invalido");
@@ -162,10 +170,28 @@ public class StringValidador {
         StringValidador.validaTamanhoExato(string, 8);
     }
 
+    public static void exatamente2(final String string) {
+        StringValidador.validaTamanhoExato(string, 2);
+    }
+
     public static void tamanho8a9(final String string) {
         if (string.length() < 8 || string.length() > 9) {
             throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
         }
+    }
+
+    public static void tamanho15a256(final String string) {
+        if (string.length() < 15 || string.length() > 256) {
+            throw new IllegalStateException("Este campo deve possuir entre 15-256 caracteres");
+        }
+    }
+
+    public static void exatamente44(final String string) {
+        StringValidador.validaTamanhoExato(string, 44);
+    }
+
+    public static void exatamente47(final String string) {
+        StringValidador.validaTamanhoExato(string, 47);
     }
 
     private static void validaTamanhoMaximo(final String string, final int tamanho) {
@@ -179,5 +205,4 @@ public class StringValidador {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir {0} caracteres", tamanho));
         }
     }
-
 }

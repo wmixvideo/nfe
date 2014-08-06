@@ -1,18 +1,18 @@
 package com.fincatto.nfe.classes.nota;
 
-import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.IntegerValidador;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFInfoModelo1Por1AReferenciada extends NFBase {
-
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
 
     @Element(name = "AAMM", required = true)
-    private LocalDate anoMesEmissaoNFe;
+    private String anoMesEmissaoNFe;
 
     @Element(name = "CNPJ", required = true)
     private String cnpj;
@@ -21,10 +21,10 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     private String modeloDocumentoFiscal;
 
     @Element(name = "serie", required = true)
-    private int serie;
+    private Integer serie;
 
     @Element(name = "nNF", required = false)
-    private String numeroDocumentoFiscal;
+    private Integer numeroDocumentoFiscal;
 
     @Element(name = "refNFP", required = false)
     private NFInfoProdutorRuralReferenciada infoNFProdutorRuralReferenciada;
@@ -32,64 +32,37 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     @Element(name = "refECF", required = false)
     private NFInfoCupomFiscalReferenciado cupomFiscalReferenciado;
 
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
-    }
-
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
-    public LocalDate getAnoMesEmissaoNFe() {
-        return this.anoMesEmissaoNFe;
-    }
-
-    public void setAnoMesEmissaoNFe(final LocalDate anoMesEmissaoNFe) {
+    public void setAnoMesEmissaoNFe(final String anoMesEmissaoNFe) {
+        StringValidador.aamm(anoMesEmissaoNFe);
         this.anoMesEmissaoNFe = anoMesEmissaoNFe;
     }
 
-    public String getCnpj() {
-        return this.cnpj;
-    }
-
     public void setCnpj(final String cnpj) {
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
-    public String getModeloDocumentoFiscal() {
-        return this.modeloDocumentoFiscal;
-    }
-
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
+        StringValidador.exatamente2(modeloDocumentoFiscal);
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
-    public int getSerie() {
-        return this.serie;
-    }
-
-    public void setSerie(final int serie) {
+    public void setSerie(final Integer serie) {
+        IntegerValidador.tamanho3(serie);
         this.serie = serie;
     }
 
-    public String getNumeroDocumentoFiscal() {
-        return this.numeroDocumentoFiscal;
-    }
-
-    public void setNumeroDocumentoFiscal(final String numeroDocumentoFiscal) {
+    public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
+        IntegerValidador.tamanho9(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
-    }
-
-    public NFInfoProdutorRuralReferenciada getInfoNFProdutorRuralReferenciada() {
-        return this.infoNFProdutorRuralReferenciada;
     }
 
     public void setInfoNFProdutorRuralReferenciada(final NFInfoProdutorRuralReferenciada infoNFProdutorRuralReferenciada) {
         this.infoNFProdutorRuralReferenciada = infoNFProdutorRuralReferenciada;
-    }
-
-    public NFInfoCupomFiscalReferenciado getCupomFiscalReferenciado() {
-        return this.cupomFiscalReferenciado;
     }
 
     public void setCupomFiscalReferenciado(final NFInfoCupomFiscalReferenciado cupomFiscalReferenciado) {

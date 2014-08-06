@@ -33,12 +33,7 @@ public class NFNotaInfoTotalTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoTotal total = new NFNotaInfoTotal();
-        total.setIcmsTotal(FabricaDeObjetosFake.getNFNotaInfoICMSTotal());
-        total.setIssqnTotal(FabricaDeObjetosFake.getNFNotaInfoISSQNTotal());
-        total.setRetencoesTributos(FabricaDeObjetosFake.getNFNotaInfoRetencoesTributos());
-
         final String xmlEsperado = "<NFNotaInfoTotal><ICMSTot><vBC>999999999999.99</vBC><vICMS>999999999999.99</vICMS><vBCST>999999999999.99</vBCST><vST>999999999999.99</vST><vProd>999999999999.99</vProd><vFrete>999999999999.99</vFrete><vSeg>999999999999.99</vSeg><vDesc>999999999999.99</vDesc><vII>999999999999.99</vII><vIPI>999999999999.99</vIPI><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS><vOutro>999999999999.99</vOutro><vNF>999999999999.99</vNF></ICMSTot><ISSQNtot><vServ>999999999999.99</vServ><vBC>999999999999.99</vBC><vISS>999999999999.99</vISS><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS></ISSQNtot><retTrib><vRetPIS>999999999999.99</vRetPIS><vRetCOFINS>999999999999.99</vRetCOFINS><vRetCSLL>999999999999.99</vRetCSLL><vBCIRRF>999999999999.99</vBCIRRF><vIRRF>999999999999.99</vIRRF><vBCRetPrev>999999999999.99</vBCRetPrev><vRetPrev>999999999999.99</vRetPrev></retTrib></NFNotaInfoTotal>";
-        Assert.assertEquals(xmlEsperado, total.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoTotal().toString());
     }
 }

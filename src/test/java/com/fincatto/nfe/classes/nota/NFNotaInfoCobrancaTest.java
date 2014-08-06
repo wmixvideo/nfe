@@ -45,11 +45,7 @@ public class NFNotaInfoCobrancaTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setFatura(FabricaDeObjetosFake.getNFNotaInfoFatura());
-        cobranca.setDuplicatas(Arrays.asList(new NFNotaInfoDuplicata[] { FabricaDeObjetosFake.getNFNotaInfoDuplicata() }));
         final String xmlEsperado = "<NFNotaInfoCobranca><fat><nFat>KDVAp0aewPjmHaTsjbDX1O6NOR9tc7TxGflFLXsMZt2hEKar3oqzZ11uzEQF</nFat><vOrig>3001.15</vOrig><vDesc>0.15</vDesc><vLiq>3000.00</vLiq></fat><dup><nDup>TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z</nDup><dVenc>2014-07-10</dVenc><vDup>999999.99</vDup></dup></NFNotaInfoCobranca>";
-
-        Assert.assertEquals(xmlEsperado, cobranca.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCobranca().toString());
     }
 }

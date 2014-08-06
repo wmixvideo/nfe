@@ -51,6 +51,10 @@ public class BigDecimalParser {
         return BigDecimalParser.parse(valor, "0.0000", 9, 4);
     }
 
+    public static String tamanho4Com2CasasDecimais(final BigDecimal valor) {
+        return BigDecimalParser.parse(valor, "0.00", 4, 2);
+    }
+
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
         if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
             throw new IllegalStateException("Valor extrapolou o tamanho de casas");
