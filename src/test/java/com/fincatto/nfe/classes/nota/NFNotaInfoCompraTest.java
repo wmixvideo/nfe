@@ -3,6 +3,8 @@ package com.fincatto.nfe.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
+
 public class NFNotaInfoCompraTest {
 
     @Test(expected = IllegalStateException.class)
@@ -64,12 +66,7 @@ public class NFNotaInfoCompraTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoCompra compra = new NFNotaInfoCompra();
-        compra.setContrato("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzc");
-        compra.setNotaDeEmpenho("abcefghijklmnopqrstuvx");
-        compra.setPedido("1kG8gghJ0YTrUZnt00BJlOsFCtj43eV5mEHHXUzp3rD6QwwUwX4GPavXkMB1");
-
         final String xmlEsperado = "<NFNotaInfoCompra><xNEmp>abcefghijklmnopqrstuvx</xNEmp><xPed>1kG8gghJ0YTrUZnt00BJlOsFCtj43eV5mEHHXUzp3rD6QwwUwX4GPavXkMB1</xPed><xCont>9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzc</xCont></NFNotaInfoCompra>";
-        Assert.assertEquals(xmlEsperado, compra.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCompra().toString());
     }
 }

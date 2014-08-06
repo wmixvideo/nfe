@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.FabricaDeObjetosFake;
 import com.fincatto.nfe.NFUnidadeFederativa;
 
 public class NFNotaInfoExportacaoTest {
@@ -34,11 +35,7 @@ public class NFNotaInfoExportacaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
-        exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
-        exportacao.setLocalEmbarqueProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
-
         final String xmlEsperado = "<NFNotaInfoExportacao><UFEmbarq>42</UFEmbarq><xLocEmbarq>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocEmbarq></NFNotaInfoExportacao>";
-        Assert.assertEquals(xmlEsperado, exportacao.toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoExportacao().toString());
     }
 }

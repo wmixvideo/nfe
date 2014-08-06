@@ -7,19 +7,11 @@ import com.fincatto.nfe.classes.NFBase;
 
 @Root(name = "NFe")
 public class NFNota extends NFBase {
-	
-	@Element(name = "infNFe", required = true)
-	private NFNotaInfo info;
-	
-	public NFNota() {
-		this.info = null;
-	}
-	
-	public NFNotaInfo getInfo() {
-		return this.info;
-	}
-	
-	public void setInfo(final NFNotaInfo info) {
-		this.info = info;
-	}
+
+    @Element(name = "infNFe", required = true)
+    private NFNotaInfo info;
+
+    public void setInfo(final NFNotaInfo info) {
+        this.info = info;
+    }
 }

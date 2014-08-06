@@ -25,11 +25,11 @@ public class IntegerValidador {
     }
 
     public static void tamanho3(final int valor) {
-        IntegerValidador.intervalo(valor, 1, 999);
+        IntegerValidador.limite(valor, 999);
     }
 
     public static void tamanho3maximo990(final int valor) {
-        IntegerValidador.intervalo(valor, 1, 990);
+        IntegerValidador.limite(valor, 990);
     }
 
     public static void exatamente6(final Integer valor) {
@@ -44,6 +44,18 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 10, 9999);
     }
 
+    public static void tamanho6(final Integer valor) {
+        IntegerValidador.limite(valor, 999999);
+    }
+
+    public static void tamanho9(final Integer valor) {
+        IntegerValidador.limite(valor, 999999999);
+    }
+
+    public static void exatamente1(final Integer valor) {
+        IntegerValidador.limite(valor, 9);
+    }
+
     private static void limite(final Integer valor, final int maximo) {
         if (valor > maximo) {
             throw new IllegalStateException("Valor extrapolou o tamanho do campo");
@@ -55,4 +67,5 @@ public class IntegerValidador {
             throw new IllegalStateException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
         }
     }
+
 }

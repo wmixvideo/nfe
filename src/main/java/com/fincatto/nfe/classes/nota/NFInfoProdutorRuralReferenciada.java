@@ -1,17 +1,18 @@
 package com.fincatto.nfe.classes.nota;
 
-import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.IntegerValidador;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFInfoProdutorRuralReferenciada extends NFBase {
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa ufEmitente;
 
     @Element(name = "AAMM", required = true)
-    private LocalDate anoMesEmissao;
+    private String anoMesEmissao;
 
     @Element(name = "CNPJ", required = false)
     private String cnpjEmitente;
@@ -26,83 +27,61 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     private String modeloDocumentoFiscal;
 
     @Element(name = "serie", required = true)
-    private int serieDocumentoFiscal;
+    private Integer serieDocumentoFiscal;
 
-    @Element(name = "nNF", required = false)
-    private String numeroDocumentoFiscal;
+    @Element(name = "nNF", required = true)
+    private Integer numeroDocumentoFiscal;
 
-    @Element(name = "refCTe", required = false)
+    @Element(name = "refCTe", required = true)
     private String chaveAcessoCTReferenciada;
-
-    public NFUnidadeFederativa getUfEmitente() {
-        return this.ufEmitente;
-    }
 
     public void setUfEmitente(final NFUnidadeFederativa ufEmitente) {
         this.ufEmitente = ufEmitente;
     }
 
-    public LocalDate getAnoMesEmissao() {
-        return this.anoMesEmissao;
-    }
-
-    public void setAnoMesEmissao(final LocalDate anoMesEmissao) {
+    public void setAnoMesEmissao(final String anoMesEmissao) {
+        StringValidador.aamm(anoMesEmissao);
         this.anoMesEmissao = anoMesEmissao;
     }
 
-    public String getCnpjEmitente() {
-        return this.cnpjEmitente;
-    }
-
     public void setCnpjEmitente(final String cnpjEmitente) {
+        if (this.cpfEmitente != null) {
+            throw new IllegalStateException("Nao pode setar CNPJ pois CPF ja esta setado");
+        }
+        StringValidador.cnpj(cnpjEmitente);
         this.cnpjEmitente = cnpjEmitente;
     }
 
-    public String getCpfEmitente() {
-        return this.cpfEmitente;
-    }
-
     public void setCpfEmitente(final String cpfEmitente) {
+        if (this.cnpjEmitente != null) {
+            throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
+        }
+        StringValidador.cpf(cpfEmitente);
         this.cpfEmitente = cpfEmitente;
     }
 
-    public String getIeEmitente() {
-        return this.ieEmitente;
-    }
-
     public void setIeEmitente(final String ieEmitente) {
+        StringValidador.inscricaoEstadual(ieEmitente);
         this.ieEmitente = ieEmitente;
     }
 
-    public String getModeloDocumentoFiscal() {
-        return this.modeloDocumentoFiscal;
-    }
-
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
+        StringValidador.exatamente2(modeloDocumentoFiscal);
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
-    public int getSerieDocumentoFiscal() {
-        return this.serieDocumentoFiscal;
-    }
-
-    public void setSerieDocumentoFiscal(final int serieDocumentoFiscal) {
+    public void setSerieDocumentoFiscal(final Integer serieDocumentoFiscal) {
+        IntegerValidador.tamanho3(serieDocumentoFiscal);
         this.serieDocumentoFiscal = serieDocumentoFiscal;
     }
 
-    public String getNumeroDocumentoFiscal() {
-        return this.numeroDocumentoFiscal;
-    }
-
-    public void setNumeroDocumentoFiscal(final String numeroDocumentoFiscal) {
+    public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
+        IntegerValidador.tamanho6(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 
-    public String getChaveAcessoCTReferenciada() {
-        return this.chaveAcessoCTReferenciada;
-    }
-
     public void setChaveAcessoCTReferenciada(final String chaveAcessoCTReferenciada) {
+        StringValidador.exatamente44(chaveAcessoCTReferenciada);
         this.chaveAcessoCTReferenciada = chaveAcessoCTReferenciada;
     }
 }
