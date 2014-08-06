@@ -15,10 +15,13 @@ import com.fincatto.nfe.classes.NFFormaPagamento;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.classes.NFProgramaEmissor;
+import com.fincatto.nfe.classes.NFProtocolo;
+import com.fincatto.nfe.classes.NFProtocoloInfo;
 import com.fincatto.nfe.classes.NFRegimeTributario;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import com.fincatto.nfe.classes.nota.NFInfoCupomFiscalReferenciado;
 import com.fincatto.nfe.classes.nota.NFInfoModelo1Por1AReferenciada;
 import com.fincatto.nfe.classes.nota.NFInfoProdutorRuralReferenciada;
@@ -99,6 +102,34 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
 
 public class FabricaDeObjetosFake {
+
+    public static NFLoteEnvioRetornoRecebimentoInfo getNFLoteEnvioRetornoRecebimentoInfo() {
+        final NFLoteEnvioRetornoRecebimentoInfo recebimentoInfo = new NFLoteEnvioRetornoRecebimentoInfo();
+        recebimentoInfo.setRecibo("845e40545");
+        recebimentoInfo.setTempoMedio("430kfszodkgvre");
+        return recebimentoInfo;
+    }
+
+    public static NFProtocolo getNFProtocolo() {
+        final NFProtocolo protocolo = new NFProtocolo();
+        protocolo.setProtocolo(FabricaDeObjetosFake.getNFProtocoloInfo());
+        protocolo.setVersao("2.00");
+        return protocolo;
+    }
+
+    public static NFProtocoloInfo getNFProtocoloInfo() {
+        final NFProtocoloInfo info = new NFProtocoloInfo();
+        info.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        info.setChave("EAIOjea");
+        info.setDataRecebimento(new LocalDateTime(2014, 12, 12, 10, 10, 10));
+        info.setIdentificador("HAIJIEIAe");
+        info.setMotivo("jsoaosk");
+        info.setNumeroProtocolo("490309504");
+        info.setStatus("OK");
+        info.setValidador("gfsfgsrg");
+        info.setVersaoAplicacao("2.00");
+        return info;
+    }
 
     public static NFNotaInfo getNFNotaInfo() {
         final NFNotaInfo info = new NFNotaInfo();
