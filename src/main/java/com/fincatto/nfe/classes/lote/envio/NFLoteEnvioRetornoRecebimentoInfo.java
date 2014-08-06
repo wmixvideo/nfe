@@ -2,32 +2,34 @@ package com.fincatto.nfe.classes.lote.envio;
 
 import org.simpleframework.xml.Element;
 
-public class NFLoteEnvioRetornoRecebimentoInfo {
+import com.fincatto.nfe.classes.NFBase;
 
-	@Element(name = "nRec", required = true)
-	private String recibo;
+public class NFLoteEnvioRetornoRecebimentoInfo extends NFBase {
 
-	@Element(name = "tMed", required = true)
-	private String tempoMedio;
+    @Element(name = "nRec", required = true)
+    private String recibo;
 
-	public NFLoteEnvioRetornoRecebimentoInfo() {
-		this.recibo = null;
-		this.tempoMedio = null;
-	}
+    @Element(name = "tMed", required = true)
+    private String tempoMedio;
 
-	public String getRecibo() {
-		return recibo;
-	}
+    public NFLoteEnvioRetornoRecebimentoInfo() {
+        this.recibo = null;
+        this.tempoMedio = null;
+    }
 
-	public void setRecibo(String recibo) {
-		this.recibo = recibo;
-	}
+    public String getRecibo() {
+        return this.recibo;
+    }
 
-	public String getTempoMedio() {
-		return tempoMedio;
-	}
+    public void setRecibo(final String recibo) {
+        this.recibo = recibo;
+    }
 
-	public void setTempoMedio(String tempoMedio) {
-		this.tempoMedio = tempoMedio;
-	}
+    public String getTempoMedio() {
+        return this.tempoMedio;
+    }
+
+    public void setTempoMedio(final String tempoMedio) {
+        this.tempoMedio = tempoMedio;
+    }
 }
