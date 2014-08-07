@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
+import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS00Test {

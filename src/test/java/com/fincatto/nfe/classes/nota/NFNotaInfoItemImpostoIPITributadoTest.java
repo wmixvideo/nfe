@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
+import com.fincatto.nfe.classes.NFNotaInfoSituacaoTributariaIPI;
 
 public class NFNotaInfoItemImpostoIPITributadoTest {
 

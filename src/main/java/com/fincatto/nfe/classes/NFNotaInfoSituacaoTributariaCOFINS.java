@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.nota;
+package com.fincatto.nfe.classes;
 
 public enum NFNotaInfoSituacaoTributariaCOFINS {
     OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO("01"),

@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFNotaInfoEspecieVeiculo;
+import com.fincatto.nfe.classes.NFNotaInfoEspecieVeiculo;
 
 public class NFNotaInfoEspecieVeiculoTransformer implements Transform<NFNotaInfoEspecieVeiculo> {
 

@@ -5,6 +5,14 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFNotaInfoCombustivelTipo;
+import com.fincatto.nfe.classes.NFNotaInfoEspecieVeiculo;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoCondicao;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoRestricao;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.nfe.classes.NFNotaInfoTipoVeiculo;
+import com.fincatto.nfe.classes.NFNotaInfoVeiculoCor;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;

@@ -3,6 +3,8 @@ package com.fincatto.nfe.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.classes.NFModalidadeFrete;
+
 public class NFModalidadeFreteTest {
 
     @Test

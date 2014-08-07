@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFModalidadeFrete;
+import com.fincatto.nfe.classes.NFModalidadeFrete;
 
 public class NFModalidadeFreteTransformer implements Transform<NFModalidadeFrete> {
 

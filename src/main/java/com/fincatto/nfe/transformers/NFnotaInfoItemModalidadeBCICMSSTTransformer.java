@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFnotaInfoItemModalidadeBCICMSSTTransformer implements Transform<NFnotaInfoItemModalidadeBCICMSST> {
 

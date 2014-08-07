@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFModalidadeFrete;
 import com.fincatto.nfe.validadores.ListValidador;
 
 public class NFNotaInfoTransporte extends NFBase {

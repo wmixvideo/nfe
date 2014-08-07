@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMSSN101Test {

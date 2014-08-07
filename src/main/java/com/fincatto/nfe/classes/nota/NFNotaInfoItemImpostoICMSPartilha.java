@@ -6,7 +6,9 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSPartilha extends NFBase {
     @Element(name = "orig", required = true)

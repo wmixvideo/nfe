@@ -6,7 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSPartilhadoTest {
 

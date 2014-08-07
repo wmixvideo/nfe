@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria;
+import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria;
 
 class NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributariaTransformer implements Transform<NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria> {
 	

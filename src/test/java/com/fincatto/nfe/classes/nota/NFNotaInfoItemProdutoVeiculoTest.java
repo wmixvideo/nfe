@@ -6,6 +6,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
+import com.fincatto.nfe.classes.NFNotaInfoCombustivelTipo;
+import com.fincatto.nfe.classes.NFNotaInfoEspecieVeiculo;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoCondicao;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoRestricao;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.nfe.classes.NFNotaInfoTipoVeiculo;
+import com.fincatto.nfe.classes.NFNotaInfoVeiculoCor;
 
 public class NFNotaInfoItemProdutoVeiculoTest {
 

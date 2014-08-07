@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFNotaSituacaoOperacionalSimplesNacional;
+import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 
 public class NFNotaSituacaoOperacionalSimplesNacionalTransformer implements Transform<NFNotaSituacaoOperacionalSimplesNacional> {
 

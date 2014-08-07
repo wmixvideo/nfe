@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.nota;
+package com.fincatto.nfe.classes;
 
 public enum NFNotaInfoItemImpostoICMSModalidadeBaseCaluloSubstituicaoTributaria {
 	
