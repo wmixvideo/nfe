@@ -4,7 +4,7 @@ public enum NFNotaInfoItemProdutoVeiculoCondicao {
 	
 	ACABADO("1", "Acabado"),
 	INACABADO("2", "Inacabado"),
-	REMARCADO("3", "Semi-acabado");
+	SEMI_ACABADO("3", "Semi-acabado");
 	
 	private final String codigo;
 	private final String descricao;

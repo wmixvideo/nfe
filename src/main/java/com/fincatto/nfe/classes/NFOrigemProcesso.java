@@ -5,7 +5,7 @@ public enum NFOrigemProcesso {
     JUSTICA_FEDERAL("1"),
     JUSTICA_ESTADUAL("2"),
     SECEX_RFB("3"),
-    OUTROS("4");
+    OUTROS("9");
 
     private String codigo;
 
