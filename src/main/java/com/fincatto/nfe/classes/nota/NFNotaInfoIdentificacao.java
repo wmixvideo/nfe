@@ -13,7 +13,7 @@ import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
-import com.fincatto.nfe.classes.NFProgramaEmissor;
+import com.fincatto.nfe.classes.NFProcessoEmissor;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
@@ -77,7 +77,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFFinalidade finalidade;
 
     @Element(name = "procEmi", required = true)
-    private NFProgramaEmissor programaEmissor;
+    private NFProcessoEmissor programaEmissor;
 
     @Element(name = "verProc", required = true)
     private String versaoEmissor;
@@ -167,7 +167,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.finalidade = finalidade;
     }
 
-    public void setProgramaEmissor(final NFProgramaEmissor programaEmissor) {
+    public void setProgramaEmissor(final NFProcessoEmissor programaEmissor) {
         this.programaEmissor = programaEmissor;
     }
 

@@ -2,17 +2,17 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.NFProgramaEmissor;
+import com.fincatto.nfe.classes.NFProcessoEmissor;
 
-class NFProgramaEmissorTransformer implements Transform<NFProgramaEmissor> {
+class NFProgramaEmissorTransformer implements Transform<NFProcessoEmissor> {
 	
 	@Override
-	public NFProgramaEmissor read(final String codigo) throws Exception {
-		return NFProgramaEmissor.valueOfCodigo(codigo);
+	public NFProcessoEmissor read(final String codigo) throws Exception {
+		return NFProcessoEmissor.valueOfCodigo(codigo);
 	}
 	
 	@Override
-	public String write(final NFProgramaEmissor tipo) throws Exception {
+	public String write(final NFProcessoEmissor tipo) throws Exception {
 		return tipo.getCodigo();
 	}
 }

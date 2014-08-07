@@ -29,7 +29,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
     public void naoDeveValorBaseCalculoNulo() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();
     }
@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
     public void naoDeveValorAliquotaNulo() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
         cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();
     }
@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
         cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();

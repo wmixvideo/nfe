@@ -5,7 +5,7 @@ public enum NFNotaInfoItemProdutoVeiculoTipoOperacao {
 	OUTROS("0", "Outros"),
 	VENDA_CONCESSIONARIA("1", "Venda concessionaria"),
 	FATURAMENTO_DIRETO_CONSUMIDOR_FINAL("2", "Faturamento direto para consumidor final"),
-	FATURAMENTO_DIRETO_GRANDES_CONSUMIDORES("3", "Venda direta para grandes consumidores");
+	VENDA_DIRETA_GRANDES_CONSUMIDORES("3", "Venda direta para grandes consumidores");
 	
 	private final String codigo;
 	private final String descricao;

@@ -31,7 +31,7 @@ import com.fincatto.nfe.classes.NFNotaInfoVeiculoCor;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFOrigemProcesso;
 import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
-import com.fincatto.nfe.classes.NFProgramaEmissor;
+import com.fincatto.nfe.classes.NFProcessoEmissor;
 import com.fincatto.nfe.classes.NFProtocolo;
 import com.fincatto.nfe.classes.NFProtocoloInfo;
 import com.fincatto.nfe.classes.NFRegimeTributario;
@@ -214,7 +214,7 @@ public class FabricaDeObjetosFake {
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota(999999999);
-        identificacao.setProgramaEmissor(NFProgramaEmissor.CONTRIBUINTE);
+        identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie(999);
         identificacao.setTipo(NFTipo.ENTRADA);
@@ -650,7 +650,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoCOFINSAliquota getNFNotaInfoItemImpostoCOFINSAliquota() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
         cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
