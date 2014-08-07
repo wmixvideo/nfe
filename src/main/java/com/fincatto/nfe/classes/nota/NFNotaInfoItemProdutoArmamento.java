@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoArmamento extends NFBase {

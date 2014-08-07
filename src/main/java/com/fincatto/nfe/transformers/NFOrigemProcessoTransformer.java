@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.nota.NFOrigemProcesso;
+import com.fincatto.nfe.classes.NFOrigemProcesso;
 
 public class NFOrigemProcessoTransformer implements Transform<NFOrigemProcesso> {
 

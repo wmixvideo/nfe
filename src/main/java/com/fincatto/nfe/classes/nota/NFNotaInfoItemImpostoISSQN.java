@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoISSQN;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.IntegerValidador;
 

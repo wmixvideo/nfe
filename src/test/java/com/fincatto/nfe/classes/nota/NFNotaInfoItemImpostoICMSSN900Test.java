@@ -5,7 +5,10 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSSN900Test {
 
