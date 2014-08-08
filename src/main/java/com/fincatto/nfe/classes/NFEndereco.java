@@ -2,7 +2,6 @@ package com.fincatto.nfe.classes;
 
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 

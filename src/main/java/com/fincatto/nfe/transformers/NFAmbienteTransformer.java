@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.NFAmbiente;
+import com.fincatto.nfe.classes.NFAmbiente;
 
 class NFAmbienteTransformer implements Transform<NFAmbiente> {
 	

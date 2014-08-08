@@ -1,4 +1,4 @@
-package com.fincatto.nfe;
+package com.fincatto.nfe.classes;
 
 import java.util.Arrays;
 

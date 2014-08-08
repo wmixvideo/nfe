@@ -8,8 +8,7 @@ import org.joda.time.LocalTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
@@ -17,6 +16,7 @@ import com.fincatto.nfe.classes.NFProcessoEmissor;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 

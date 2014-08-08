@@ -5,9 +5,9 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 @Root(name = "consStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

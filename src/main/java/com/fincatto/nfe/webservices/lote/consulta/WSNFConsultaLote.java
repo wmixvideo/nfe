@@ -10,9 +10,9 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFAutorizador;
-import com.fincatto.nfe.NFConfig;
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFAutorizador;
+import com.fincatto.nfe.classes.NFConfig;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
