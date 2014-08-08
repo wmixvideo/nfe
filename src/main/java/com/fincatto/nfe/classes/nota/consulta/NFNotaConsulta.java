@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe.NFAmbiente;
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFBase;
 
 @Root(name = "consSitNFe")

@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 

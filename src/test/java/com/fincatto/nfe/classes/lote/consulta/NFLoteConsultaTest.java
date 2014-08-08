@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe.NFAmbiente;
+import com.fincatto.nfe.classes.NFAmbiente;
 
 public class NFLoteConsultaTest {
 

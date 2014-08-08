@@ -1,6 +1,6 @@
 package com.fincatto.nfe.webservices;
 
-import com.fincatto.nfe.NFConfig;
+import com.fincatto.nfe.classes.NFConfig;
 
 public abstract class WSNFBase {
 	

@@ -2,7 +2,7 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 class NFUnidadeFederativaTransformer implements Transform<NFUnidadeFederativa> {
 	

@@ -9,6 +9,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFEndereco;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
@@ -30,19 +31,21 @@ import com.fincatto.nfe.classes.NFNotaInfoTipoVeiculo;
 import com.fincatto.nfe.classes.NFNotaInfoVeiculoCor;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFOrigemProcesso;
-import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.classes.NFProcessoEmissor;
+import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.classes.NFProtocolo;
 import com.fincatto.nfe.classes.NFProtocoloInfo;
 import com.fincatto.nfe.classes.NFRegimeTributario;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import com.fincatto.nfe.classes.nota.NFInfoCupomFiscalReferenciado;
 import com.fincatto.nfe.classes.nota.NFInfoModelo1Por1AReferenciada;
 import com.fincatto.nfe.classes.nota.NFInfoProdutorRuralReferenciada;
 import com.fincatto.nfe.classes.nota.NFInfoReferenciada;
+import com.fincatto.nfe.classes.nota.NFNota;
 import com.fincatto.nfe.classes.nota.NFNotaInfo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoAvulsa;
 import com.fincatto.nfe.classes.nota.NFNotaInfoCana;
@@ -102,6 +105,12 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 
 public class FabricaDeObjetosFake {
+
+    public static NFNota getNFNota() {
+        final NFNota nota = new NFNota();
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+        return nota;
+    }
 
     public static NFLoteEnvioRetornoRecebimentoInfo getNFLoteEnvioRetornoRecebimentoInfo() {
         final NFLoteEnvioRetornoRecebimentoInfo recebimentoInfo = new NFLoteEnvioRetornoRecebimentoInfo();

@@ -9,14 +9,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
-import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFFinalidade;
 import com.fincatto.nfe.classes.NFFormaPagamento;
 import com.fincatto.nfe.classes.NFProcessoEmissor;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 public class NFNotaInfoIdentificacaoTest {
 

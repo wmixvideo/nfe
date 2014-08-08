@@ -4,8 +4,6 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.NFAmbiente;
-
 public class NFProtocoloInfo extends NFBase {
 
     @Attribute(name = "Id", required = true)

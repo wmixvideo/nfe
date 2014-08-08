@@ -8,10 +8,10 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe.NFAmbiente;
-import com.fincatto.nfe.NFUnidadeFederativa;
+import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFProtocolo;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 @Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

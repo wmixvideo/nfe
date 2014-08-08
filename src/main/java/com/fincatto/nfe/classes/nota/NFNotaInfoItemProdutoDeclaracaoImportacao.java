@@ -6,8 +6,8 @@ import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.nfe.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
