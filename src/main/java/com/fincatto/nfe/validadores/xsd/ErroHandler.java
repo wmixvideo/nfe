@@ -35,7 +35,7 @@ class ErroHandler implements ErrorHandler {
     }
 
     public String getMensagemComErros() {
-        final StringBuilder inconsistencias = new StringBuilder("Houve problemas na validacao do XML\n\n");
+        final StringBuilder inconsistencias = new StringBuilder("\nHouve problemas na validacao do XML\n\n");
 
         if (!this.fatals.isEmpty()) {
             inconsistencias.append(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<\n");

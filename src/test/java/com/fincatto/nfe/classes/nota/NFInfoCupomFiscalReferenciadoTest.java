@@ -60,7 +60,7 @@ public class NFInfoCupomFiscalReferenciadoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFInfoCupomFiscalReferenciado><mod>A2</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></NFInfoCupomFiscalReferenciado>";
+        final String xmlEsperado = "<NFInfoCupomFiscalReferenciado><mod>55</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></NFInfoCupomFiscalReferenciado>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado().toString());
     }
 }

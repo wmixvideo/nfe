@@ -151,14 +151,14 @@ public class FabricaDeObjetosFake {
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
-        info.setIdentificador("ChZ9G0aubajFyQkslfhicTyzggacyZlAtWJrlrvS4JIskg3");
+        info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
         info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setSignature("ASSINATURA XML");
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
-        info.setVersao(new BigDecimal("9.99"));
+        info.setVersao(new BigDecimal("2.00"));
         return info;
     }
 
@@ -212,15 +212,15 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoIdentificacao getNFNotaInfoIdentificacao() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo("55");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota(999999999);
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -314,7 +314,7 @@ public class FabricaDeObjetosFake {
 
     public static NFInfoReferenciada getNFInfoReferenciada() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt");
+        referenciada.setChaveAcesso("19506188293993666630760813709064781438945816");
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         return referenciada;
     }
@@ -325,7 +325,7 @@ public class FabricaDeObjetosFake {
         referenciada.setCnpj("12345678901234");
         referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
         referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-        referenciada.setModeloDocumentoFiscal("A1");
+        referenciada.setModeloDocumentoFiscal("01");
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
@@ -335,7 +335,7 @@ public class FabricaDeObjetosFake {
     public static NFInfoProdutorRuralReferenciada getNFInfoProdutorRuralReferenciada() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L");
+        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -347,7 +347,7 @@ public class FabricaDeObjetosFake {
 
     public static NFInfoCupomFiscalReferenciado getNFInfoCupomFiscalReferenciado() {
         final NFInfoCupomFiscalReferenciado referenciado = new NFInfoCupomFiscalReferenciado();
-        referenciado.setModeloDocumentoFiscal("A2");
+        referenciado.setModeloDocumentoFiscal("55");
         referenciado.setNumeroContadorOrdemOperacao("NUQvJH");
         referenciado.setNumeroOrdemSequencialECF("a71");
         return referenciado;

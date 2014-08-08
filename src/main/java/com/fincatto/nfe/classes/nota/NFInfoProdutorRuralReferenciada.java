@@ -81,7 +81,7 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     }
 
     public void setChaveAcessoCTReferenciada(final String chaveAcessoCTReferenciada) {
-        StringValidador.exatamente44(chaveAcessoCTReferenciada);
+        StringValidador.exatamente44N(chaveAcessoCTReferenciada);
         this.chaveAcessoCTReferenciada = chaveAcessoCTReferenciada;
     }
 }

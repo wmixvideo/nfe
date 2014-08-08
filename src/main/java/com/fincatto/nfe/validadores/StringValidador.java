@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class StringValidador {
 
     public static void mmaaaa(final String aamm) {
@@ -190,8 +192,20 @@ public class StringValidador {
         StringValidador.validaTamanhoExato(string, 44);
     }
 
-    public static void exatamente47(final String string) {
-        StringValidador.validaTamanhoExato(string, 47);
+    public static void exatamente7N(final String string) {
+        StringValidador.apenasNumerico(string);
+        StringValidador.exatamente7(string);
+    }
+
+    public static void exatamente44N(final String string) {
+        StringValidador.apenasNumerico(string);
+        StringValidador.exatamente44(string);
+    }
+
+    private static void apenasNumerico(final String string) {
+        if (!StringUtils.isNumeric(string)) {
+            throw new IllegalStateException("a string precisa ser numerica");
+        }
     }
 
     private static void validaTamanhoMaximo(final String string, final int tamanho) {
@@ -205,4 +219,5 @@ public class StringValidador {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir {0} caracteres", tamanho));
         }
     }
+
 }

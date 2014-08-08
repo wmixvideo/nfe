@@ -1,6 +1,7 @@
 package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.simpleframework.xml.Attribute;
@@ -70,8 +71,8 @@ public class NFNotaInfo extends NFBase {
     private String signature;
 
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente47(identificador);
-        this.identificador = identificador;
+        StringValidador.exatamente44N(identificador);
+        this.identificador = MessageFormat.format("NFe{0}", identificador);
     }
 
     public void setVersao(final BigDecimal versao) {

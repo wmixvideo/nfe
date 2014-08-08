@@ -56,6 +56,10 @@ public class IntegerValidador {
         IntegerValidador.limite(valor, 9);
     }
 
+    public static void exatamente8(final Integer codigoRandomico) {
+        IntegerValidador.intervalo(codigoRandomico, 10000000, 99999999);
+    }
+
     private static void limite(final Integer valor, final int maximo) {
         if (valor > maximo) {
             throw new IllegalStateException("Valor extrapolou o tamanho do campo");
@@ -67,5 +71,4 @@ public class IntegerValidador {
             throw new IllegalStateException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
         }
     }
-
 }
