@@ -74,9 +74,9 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoRandomicoComTamanhoInvalido() {
         try {
-            new NFNotaInfoIdentificacao().setCodigoRandomico("qGYcW8I");
+            new NFNotaInfoIdentificacao().setCodigoRandomico(9999999);
         } catch (final IllegalStateException e) {
-            new NFNotaInfoIdentificacao().setCodigoRandomico("qGYcW8I1i");
+            new NFNotaInfoIdentificacao().setCodigoRandomico(100000000);
         }
     }
 
@@ -92,8 +92,8 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAmbienteNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -120,7 +120,7 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirCodigoMunicipioNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -147,7 +147,7 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirCodigoRandomicoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
+        identificacao.setCodigoMunicipio("1612675");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -174,8 +174,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirDataEmissaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -201,8 +201,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void devePermitirDataSaidaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -228,8 +228,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirDigitoVerificadorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -255,8 +255,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirFinalidadeNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -282,8 +282,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirFormaPagamentoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -309,8 +309,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void devePermitirHoraSaidaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -336,8 +336,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirModeloNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -363,8 +363,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirNaturezaOperacaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -390,8 +390,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirNumeroNotaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -417,8 +417,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirProgramaEmissorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -444,8 +444,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void devePermitirReferenciadasNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -471,8 +471,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirSerieNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -498,8 +498,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirTipoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -525,8 +525,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirTipoEmissaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -552,8 +552,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirTipoImpressaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -579,8 +579,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirUfNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -606,8 +606,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirVersaoEmissorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -633,8 +633,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void devePermitirDataHoraContigenciaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -660,8 +660,8 @@ public class NFNotaInfoIdentificacaoTest {
     public void devePermitirJustificativaEntradaContingenciaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoMunicipio("surKkNg");
-        identificacao.setCodigoRandomico("xtPxtRjg");
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -685,7 +685,7 @@ public class NFNotaInfoIdentificacaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoIdentificacao><cUF>42</cUF><cNF>xtPxtRjg</cNF><natOp>qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ</natOp><indPag>1</indPag><mod>AA</mod><serie>999</serie><nNF>999999999</nNF><dEmi>2010-10-27</dEmi><dSaiEnt>2013-09-24</dSaiEnt><hSaiEnt>12:11:10</hSaiEnt><tpNF>0</tpNF><cMunFG>surKkNg</cMunFG><NFref><refNFe>Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt</refNFe><refNF><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>A1</mod><serie>999</serie><nNF>999999999</nNF><refNFP><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L</refCTe></refNFP><refECF><mod>A2</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></refECF></refNF></NFref><tpImp>2</tpImp><tpEmis>1</tpEmis><cDV>8</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><procEmi>0</procEmi><verProc>532ng7VURPgovC5BYaZy</verProc><dhCont>2014-10-10T10:10:10</dhCont><xJust>b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV</xJust></NFNotaInfoIdentificacao>";
+        final String xmlEsperado = "<NFNotaInfoIdentificacao><cUF>42</cUF><cNF>99999999</cNF><natOp>qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ</natOp><indPag>1</indPag><mod>55</mod><serie>999</serie><nNF>999999999</nNF><dEmi>2010-10-27</dEmi><dSaiEnt>2013-09-24</dSaiEnt><hSaiEnt>12:11:10</hSaiEnt><tpNF>0</tpNF><cMunFG>1612675</cMunFG><NFref><refNFe>19506188293993666630760813709064781438945816</refNFe><refNF><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF><refNFP><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>19506188293993666630760813709064781438945816</refCTe></refNFP><refECF><mod>55</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></refECF></refNF></NFref><tpImp>2</tpImp><tpEmis>1</tpEmis><cDV>8</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><procEmi>0</procEmi><verProc>532ng7VURPgovC5BYaZy</verProc><dhCont>2014-10-10T10:10:10</dhCont><xJust>b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV</xJust></NFNotaInfoIdentificacao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoIdentificacao().toString());
     }
 }

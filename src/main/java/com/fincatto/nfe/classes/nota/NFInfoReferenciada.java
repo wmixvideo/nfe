@@ -13,7 +13,7 @@ public class NFInfoReferenciada extends NFBase {
     private NFInfoModelo1Por1AReferenciada modelo1por1Referenciada;
 
     public void setChaveAcesso(final String chaveAcesso) {
-        StringValidador.exatamente44(chaveAcesso);
+        StringValidador.exatamente44N(chaveAcesso);
         this.chaveAcesso = chaveAcesso;
     }
 

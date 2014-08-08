@@ -10,16 +10,16 @@ public class NFInfoReferenciadaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirChaveAcessoComTamanhoInvalido() {
         try {
-            new NFInfoReferenciada().setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qk");
+            new NFInfoReferenciada().setChaveAcesso("9764915454261995620461805935309600511346290");
         } catch (final IllegalStateException e) {
-            new NFInfoReferenciada().setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt1");
+            new NFInfoReferenciada().setChaveAcesso("976491545426199562046180593530960051134629091");
         }
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModelo1por1ReferenciadaNulo() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt");
+        referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
         referenciada.toString();
     }
 
@@ -33,10 +33,10 @@ public class NFInfoReferenciadaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setChaveAcesso("Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt");
+        referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
 
-        final String xmlEsperado = "<NFInfoReferenciada><refNFe>Vrf4YXN3J1cZJpTrnKt1uOAO80JBm6aO4r1zT7Q94Qkt</refNFe><refNF><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>A1</mod><serie>999</serie><nNF>999999999</nNF><refNFP><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L</refCTe></refNFP><refECF><mod>A2</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></refECF></refNF></NFInfoReferenciada>";
+        final String xmlEsperado = "<NFInfoReferenciada><refNFe>97649154542619956204618059353096005113462909</refNFe><refNF><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF><refNFP><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>19506188293993666630760813709064781438945816</refCTe></refNFP><refECF><mod>55</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></refECF></refNF></NFInfoReferenciada>";
         Assert.assertEquals(xmlEsperado, referenciada.toString());
     }
 }

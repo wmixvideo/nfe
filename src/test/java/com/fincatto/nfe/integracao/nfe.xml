@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
-	<infNFe Id="ChZ9G0aubajFyQkslfhicTyzggacyZlAtWJrlrvS4JIskg3" versao="9.99" xmlns="http://www.portalfiscal.inf.br/nfe">
+	<infNFe Id="ChZ9G0aubajFyQkslfhicTyzggacyZlAtWJrlrvS4JIskg3" versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
 		<ide>
 			<cUF>42</cUF>
-			<cNF>xtPxtRjg</cNF>
+			<cNF>99999999</cNF>
 			<natOp>qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ</natOp>
 			<indPag>1</indPag>
 			<mod>AA</mod>
