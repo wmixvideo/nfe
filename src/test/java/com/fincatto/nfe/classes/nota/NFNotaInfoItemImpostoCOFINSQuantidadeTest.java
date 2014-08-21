@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidadeTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSQuantidade><CST>OPERACAO_AQUISICAO_ALIQUOTA_ZERO</CST><qBCProd>99999999999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSQuantidade>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSQuantidade><CST>OPERACAO_AQUISICAO_ALIQUOTA_ZERO</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSQuantidade>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade().toString());
     }
 }
