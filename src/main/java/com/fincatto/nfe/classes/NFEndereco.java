@@ -20,13 +20,13 @@ public class NFEndereco extends NFBase {
     private String bairro;
 
     @Element(name = "cMun", required = true)
-    private String codigoMunicipio;
+    private Integer codigoMunicipio;
 
     @Element(name = "xMun", required = true)
     private String descricaoMunicipio;
 
     @Element(name = "UF", required = true)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     @Element(name = "CEP", required = true)
     private String cep;
@@ -60,8 +60,8 @@ public class NFEndereco extends NFBase {
         this.bairro = bairro;
     }
 
-    public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio);
+    public void setCodigoMunicipio(final Integer codigoMunicipio) {
+        IntegerValidador.exatamente7(codigoMunicipio);
         this.codigoMunicipio = codigoMunicipio;
     }
 
@@ -71,7 +71,7 @@ public class NFEndereco extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 
     public void setCep(final String cep) {

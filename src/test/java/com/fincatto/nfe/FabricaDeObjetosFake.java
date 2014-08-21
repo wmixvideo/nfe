@@ -106,6 +106,57 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 
 public class FabricaDeObjetosFake {
 
+    public static NFNota getNFNota1() {
+        final NFNota nota = new NFNota();
+        final NFNotaInfo info = new NFNotaInfo();
+        info.setAvulsa(FabricaDeObjetosFake.getNFNotaInfoAvulsa());
+        info.setCana(FabricaDeObjetosFake.getNFNotaInfoCana());
+        info.setCobranca(FabricaDeObjetosFake.getNFNotaInfoCobranca());
+        info.setCompra(FabricaDeObjetosFake.getNFNotaInfoCompra());
+        info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
+        info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
+        info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
+        info.setIdentificador("89172658591754401086218048846976493475937081");
+        info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
+        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setSignature("ASSINATURA XML");
+        info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
+        info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
+        info.setVersao(new BigDecimal("2.00"));
+
+        final NFInfoReferenciada referenciada = new NFInfoReferenciada();
+        referenciada.setChaveAcesso("19506188293993666630760813709064781438945816");
+
+        final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
+        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico(99999999);
+        identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
+        identificacao.setDataSaida(new LocalDate(2013, 9, 24));
+        identificacao.setDigitoVerificador(8);
+        identificacao.setFinalidade(NFFinalidade.NORMAL);
+        identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
+        identificacao.setHoraSaida(new LocalTime(12, 11, 10));
+        identificacao.setModelo("55");
+        identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
+        identificacao.setNumeroNota(999999999);
+        identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
+        identificacao.setReferenciadas(Arrays.asList(referenciada));
+        identificacao.setSerie(999);
+        identificacao.setTipo(NFTipo.ENTRADA);
+        identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
+        identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
+        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
+        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
+        info.setIdentificacao(identificacao);
+        nota.setInfo(info);
+        return nota;
+    }
+
     public static NFNota getNFNota() {
         final NFNota nota = new NFNota();
         nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
@@ -258,11 +309,11 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoEmitente getNFNotaInfoEmitente() {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
-        emitente.setClassificacaoNacionalAtividadesEconomicas("cZKIMR3");
+        emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
         emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
-        emitente.setInscricaoEstadualSubstituicaoTributaria("ISENTO");
+        emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
         emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
         emitente.setRazaoSocial("Rhass3yMarv7W26gljGNMGXXyPZfSFDEiN472mTU7UWxokviyHMfeD7vCVg3");
@@ -276,7 +327,7 @@ public class FabricaDeObjetosFake {
         destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
         destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
         destinatario.setInscricaoEstadual("ISENTO");
-        destinatario.setInscricaoSuframa("4cxG54PXx");
+        destinatario.setInscricaoSuframa("999999999");
         destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
         return destinatario;
     }
@@ -314,7 +365,6 @@ public class FabricaDeObjetosFake {
 
     public static NFInfoReferenciada getNFInfoReferenciada() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setChaveAcesso("19506188293993666630760813709064781438945816");
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         return referenciada;
     }
@@ -357,8 +407,8 @@ public class FabricaDeObjetosFake {
         final NFEndereco endereco = new NFEndereco();
         endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
         endereco.setCep("88095550");
-        endereco.setCodigoMunicipio("ZNI5Tgz");
-        endereco.setCodigoPais(999);
+        endereco.setCodigoMunicipio(9999999);
+        endereco.setCodigoPais(1058);
         endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");

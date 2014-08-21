@@ -75,7 +75,7 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setInscricaoEstadualSubstituicaoTributaria(final String inscricaoEstadualSubstituicaoTributaria) {
-        StringValidador.inscricaoEstadual(inscricaoEstadualSubstituicaoTributaria);
+        StringValidador.inscricaoEstadualSemIsencao(inscricaoEstadualSubstituicaoTributaria);
         this.inscricaoEstadualSubstituicaoTributaria = inscricaoEstadualSubstituicaoTributaria;
     }
 
@@ -85,7 +85,7 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setClassificacaoNacionalAtividadesEconomicas(final String classificacaoNacionalAtividadesEconomicas) {
-        StringValidador.exatamente7(classificacaoNacionalAtividadesEconomicas);
+        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas);
         this.classificacaoNacionalAtividadesEconomicas = classificacaoNacionalAtividadesEconomicas;
     }
 
