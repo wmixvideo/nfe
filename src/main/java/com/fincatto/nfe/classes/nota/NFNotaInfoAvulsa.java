@@ -27,7 +27,7 @@ public class NFNotaInfoAvulsa extends NFBase {
     private String fone;
 
     @Element(name = "UF", required = true)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     @Element(name = "nDAR", required = false)
     private String numeroDocumentoArrecadacaoReceita;
@@ -70,7 +70,7 @@ public class NFNotaInfoAvulsa extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 
     public void setNumeroDocumentoArrecadacaoReceita(final String numeroDocumentoArrecadacaoReceita) {

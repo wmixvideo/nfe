@@ -60,7 +60,7 @@ public class NFNotaInfoDestinatario extends NFBase {
     }
 
     public void setInscricaoSuframa(final String inscricaoSuframa) {
-        StringValidador.tamanho8a9(inscricaoSuframa);
+        StringValidador.tamanho8a9N(inscricaoSuframa);
         this.inscricaoSuframa = inscricaoSuframa;
     }
 
