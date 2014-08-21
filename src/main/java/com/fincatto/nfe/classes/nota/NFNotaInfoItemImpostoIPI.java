@@ -25,10 +25,10 @@ public class NFNotaInfoItemImpostoIPI extends NFBase {
     @Element(name = "cEnq", required = true)
     private String codigoEnquadramento;
 
-    @Element(name = "IPITrib", required = true)
+    @Element(name = "IPITrib", required = false)
     private NFNotaInfoItemImpostoIPITributado tributado;
 
-    @Element(name = "IPINT", required = true)
+    @Element(name = "IPINT", required = false)
     private NFNotaInfoItemImpostoIPINaoTributado naoTributado;
 
     public NFNotaInfoItemImpostoIPI() {

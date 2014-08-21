@@ -28,8 +28,9 @@ public class StringValidador {
     }
 
     public static void codigoDeBarras(final String codigoDeBarras) {
-        if (codigoDeBarras.length() != 0 && codigoDeBarras.length() != 8 && codigoDeBarras.length() != 12 && codigoDeBarras.length() != 13 && codigoDeBarras.length() != 14) {
-            throw new IllegalStateException("Codigo de barras de tamanho invalido");
+        final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14})$").matcher(codigoDeBarras);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Codigo de barras com formato invalido");
         }
     }
 
@@ -208,6 +209,23 @@ public class StringValidador {
     public static void exatamente44N(final String string) {
         StringValidador.apenasNumerico(string);
         StringValidador.exatamente44(string);
+    }
+
+    public static void exatamente4N(final String string) {
+        StringValidador.apenasNumerico(string);
+        StringValidador.exatamente4(string);
+    }
+
+    public static void exatamente6N(final String string) {
+        StringValidador.apenasNumerico(string);
+        StringValidador.exatamente6(string);
+    }
+
+    public static void ncm(final String ncm) {
+        final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
+        if (!matcher.find()) {
+            throw new IllegalStateException("NCM fora do padrao");
+        }
     }
 
     private static void apenasNumerico(final String string) {
