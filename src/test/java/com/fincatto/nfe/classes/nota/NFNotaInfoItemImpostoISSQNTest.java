@@ -58,7 +58,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
     public void naoDevePermitirCodigoTributacaoNulo() {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(4001);
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -81,7 +81,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
         impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(4001);
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         impostoISSQN.toString();
@@ -92,7 +92,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
         impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(4001);
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         impostoISSQN.toString();
@@ -103,7 +103,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
         impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(4001);
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.toString();
@@ -111,7 +111,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>9999</cListServ><cSitTrib>I</cSitTrib></NFNotaInfoItemImpostoISSQN>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>4001</cListServ><cSitTrib>I</cSitTrib></NFNotaInfoItemImpostoISSQN>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN().toString());
     }
 }

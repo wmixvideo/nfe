@@ -562,7 +562,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
         impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(4001);
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -642,7 +642,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoPISQuantidade getNFNotaInfoItemImpostoPISQuantidade() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
         pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO);
         pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
         return pisQuantidade;
@@ -682,7 +682,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoCOFINSQuantidade getNFNotaInfoItemImpostoCOFINSQuantidade() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
-        cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999"));
+        cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999"));
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999"));
@@ -692,7 +692,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoCOFINSOutrasOperacoes getNFNotaInfoItemImpostoCOFINSOutrasOperacoes() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorAliquota(new BigDecimal("9999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));

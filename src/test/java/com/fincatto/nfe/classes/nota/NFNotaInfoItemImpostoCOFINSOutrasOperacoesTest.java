@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualCOFINSNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorAliquota(new BigDecimal("999999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setValorAliquota(new BigDecimal("999999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -72,7 +72,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void naoDevePermitirValorAliquotaNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -83,7 +83,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void naoDevePermitirBaseCalculoNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("999999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("999999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorAliquota(new BigDecimal("999999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -94,7 +94,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void naoDevePermitirValorCOFINS() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorAliquota(new BigDecimal("999999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
@@ -103,7 +103,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSOutrasOperacoes><CST>49</CST><vBC>999999999999.00</vBC><pCOFINS>99.99</pCOFINS><qBCProd>99999999999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSOutrasOperacoes>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSOutrasOperacoes><CST>49</CST><vBC>999999999999.00</vBC><pCOFINS>99.99</pCOFINS><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSOutrasOperacoes>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes().toString());
     }
 }
