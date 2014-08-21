@@ -112,6 +112,13 @@ public class StringValidador {
         }
     }
 
+    public static void inscricaoEstadualSemIsencao(final String inscricaoEstadual) {
+        final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Inscricao estadual invalido");
+        }
+    }
+
     public static void exatamente3(final String string) {
         StringValidador.validaTamanhoExato(string, 3);
     }
@@ -177,15 +184,16 @@ public class StringValidador {
     }
 
     public static void tamanho8a9(final String string) {
-        if (string.length() < 8 || string.length() > 9) {
-            throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
-        }
+        StringValidador.intervalo(string, 8, 9);
     }
 
     public static void tamanho15a256(final String string) {
-        if (string.length() < 15 || string.length() > 256) {
-            throw new IllegalStateException("Este campo deve possuir entre 15-256 caracteres");
-        }
+        StringValidador.intervalo(string, 15, 256);
+    }
+
+    public static void tamanho8a9N(final String string) {
+        StringValidador.intervalo(string, 8, 9);
+        StringValidador.apenasNumerico(string);
     }
 
     public static void exatamente44(final String string) {
@@ -217,6 +225,12 @@ public class StringValidador {
     private static void validaTamanhoExato(final String string, final int tamanho) {
         if (string.length() != tamanho) {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir {0} caracteres", tamanho));
+        }
+    }
+
+    private static void intervalo(final String string, final int inicio, final int fim) {
+        if (string.length() < inicio || string.length() > fim) {
+            throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
         }
     }
 
