@@ -44,6 +44,9 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE)) {
+            throw new IllegalStateException("Situacao tributaria invalida");
+        }
         this.situacaoTributaria = situacaoTributaria;
     }
 

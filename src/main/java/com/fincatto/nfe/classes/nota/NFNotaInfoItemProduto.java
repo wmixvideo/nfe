@@ -108,9 +108,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setNcm(final String ncm) {
-        if (ncm.length() != 2 && ncm.length() != 8) {
-            throw new IllegalStateException("NCM de tamanho invalido");
-        }
+        StringValidador.ncm(ncm);
         this.ncm = ncm;
     }
 
@@ -120,7 +118,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setCfop(final String cfop) {
-        StringValidador.exatamente4(cfop);
+        StringValidador.exatamente4N(cfop);
         this.cfop = cfop;
     }
 

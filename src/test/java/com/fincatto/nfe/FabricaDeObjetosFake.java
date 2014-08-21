@@ -119,7 +119,32 @@ public class FabricaDeObjetosFake {
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+
+        final NFNotaInfoItem item = new NFNotaInfoItem();
+        final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
+        imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());
+        imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());
+        imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
+        imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
+
+        final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
+        ipi.setClasseEnquadramento("157br");
+        ipi.setCnpjProdutor("12345678901234");
+        ipi.setCodigoEnquadramento("aT2");
+        ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
+        ipi.setQuantidadeSelo(new BigInteger("999999999999"));
+        ipi.setTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPITributado());
+
+        imposto.setIpi(ipi);
+        imposto.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
+        imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
+        imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+
+        item.setImposto(imposto);
+        item.setNumeroItem(990);
+        item.setProduto(FabricaDeObjetosFake.getProdutoMedicamento());
+
+        info.setItens(Arrays.asList(item));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setSignature("ASSINATURA XML");
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
@@ -155,6 +180,34 @@ public class FabricaDeObjetosFake {
         info.setIdentificacao(identificacao);
         nota.setInfo(info);
         return nota;
+    }
+
+    private static NFNotaInfoItemProduto getProdutoMedicamento() {
+        final NFNotaInfoItemProduto produtoMedicamento = new NFNotaInfoItemProduto();
+        produtoMedicamento.setCfop("1302");
+        produtoMedicamento.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
+        produtoMedicamento.setCodigoDeBarras("36811963532505");
+        produtoMedicamento.setCodigoDeBarrasTributavel("36811963532505");
+        produtoMedicamento.setCompoeValotNota(NFProdutoCompoeValorNota.SIM);
+        produtoMedicamento.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
+        produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
+        produtoMedicamento.setExtipi(999);
+        produtoMedicamento.setNcm("99999999");
+        produtoMedicamento.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
+        produtoMedicamento.setNumeroPedidoItemCliente(999999);
+        produtoMedicamento.setQuantidadeComercial(new BigDecimal("9999999999.9999"));
+        produtoMedicamento.setQuantidadeTributavel(new BigDecimal("9999999999.9999"));
+        produtoMedicamento.setUnidadeComercial("Bta64y");
+        produtoMedicamento.setUnidadeTributavel("7wqG4h");
+        produtoMedicamento.setValorDesconto(new BigDecimal("999999999999.99"));
+        produtoMedicamento.setValorFrete(new BigDecimal("999999999999.99"));
+        produtoMedicamento.setValorOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
+        produtoMedicamento.setValorSeguro(new BigDecimal("999999999999.99"));
+        produtoMedicamento.setValorTotalBruto(new BigDecimal("999999999999.99"));
+        produtoMedicamento.setValorUnitario(new BigDecimal("9999999999.9999999999"));
+        produtoMedicamento.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
+        produtoMedicamento.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo());
+        return produtoMedicamento;
     }
 
     public static NFNota getNFNota() {
@@ -421,17 +474,17 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemProduto getNFNotaInfoItemProduto() {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
         produto.setArmamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoArmamento()));
-        produto.setCfop("qW2d");
+        produto.setCfop("1302");
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
-        produto.setCodigoDeBarras("EyiQt2RGqEJBPR");
-        produto.setCodigoDeBarrasTributavel("EyiQt2RGqEJBPR");
+        produto.setCodigoDeBarras("36811963532505");
+        produto.setCodigoDeBarrasTributavel("36811963532505");
         produto.setCombustivel(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivel());
         produto.setCompoeValotNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produto.setExtipi(999);
         produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
-        produto.setNcm("U0sDjyan");
+        produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produto.setNumeroPedidoItemCliente(999999);
         produto.setQuantidadeComercial(new BigDecimal("9999999999.9999"));
@@ -467,11 +520,11 @@ public class FabricaDeObjetosFake {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -562,7 +615,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoISSQN impostoISSQN = new NFNotaInfoItemImpostoISSQN();
         impostoISSQN.setCodigoMunicipio(9999999);
         impostoISSQN.setCodigoTributacao(NFNotaInfoImpostoTributacaoISSQN.ISENTA);
-        impostoISSQN.setItemListaServicos(9999);
+        impostoISSQN.setItemListaServicos(2501);
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -610,7 +663,7 @@ public class FabricaDeObjetosFake {
         icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
         icms00.setOrigem(NFOrigem.NACIONAL);
         icms00.setPercentualAliquota(new BigDecimal("99.99"));
-        icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
         icms00.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         icms00.setValorTributo(new BigDecimal("999999999999.99"));
         return icms00;
@@ -618,7 +671,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
-        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.SAIDA_ISENTA);
+        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);
         ipiTributado.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         ipiTributado.setPercentualAliquota(new BigDecimal("99.99"));
         ipiTributado.setValorTributo(new BigDecimal("999999999999.99"));
