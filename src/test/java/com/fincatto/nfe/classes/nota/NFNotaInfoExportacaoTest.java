@@ -35,7 +35,7 @@ public class NFNotaInfoExportacaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoExportacao><UFEmbarq>42</UFEmbarq><xLocEmbarq>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocEmbarq></NFNotaInfoExportacao>";
+        final String xmlEsperado = "<NFNotaInfoExportacao><UFEmbarq>SC</UFEmbarq><xLocEmbarq>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocEmbarq></NFNotaInfoExportacao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoExportacao().toString());
     }
 }

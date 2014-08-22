@@ -8,13 +8,13 @@ import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoExportacao extends NFBase {
     @Element(name = "UFEmbarq", required = true)
-    private NFUnidadeFederativa ufEmbarqueProduto;
+    private String ufEmbarqueProduto;
 
     @Element(name = "xLocEmbarq", required = true)
     private String localEmbarqueProdutos;
 
     public void setUfEmbarqueProduto(final NFUnidadeFederativa ufEmbarqueProduto) {
-        this.ufEmbarqueProduto = ufEmbarqueProduto;
+        this.ufEmbarqueProduto = ufEmbarqueProduto.getCodigo();
     }
 
     public void setLocalEmbarqueProdutos(final String localEmbarqueProdutos) {
