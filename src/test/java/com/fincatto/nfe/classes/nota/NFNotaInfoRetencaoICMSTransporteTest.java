@@ -66,7 +66,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
 
     @Test
     public void devePermitirCFOPValorValido() {
-        new NFNotaInfoRetencaoICMSTransporte().setCfop(9999);
+        new NFNotaInfoRetencaoICMSTransporte().setCfop(5351);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -74,7 +74,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
@@ -85,7 +85,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
@@ -96,7 +96,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
@@ -117,7 +117,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
     public void naoDevePermitirBcRetencaOICMSNulo() {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
@@ -128,7 +128,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
     public void naoDevePermitirAliquotaRetencaoNulo() {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
@@ -137,7 +137,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoRetencaoICMSTransporte><vServ>999999999999.99</vServ><vBCRet>999999999999.99</vBCRet><pICMSRet>99.99</pICMSRet><vICMSRet>999999999999.99</vICMSRet><CFOP>9999</CFOP><cMunFG>9999999</cMunFG></NFNotaInfoRetencaoICMSTransporte>";
+        final String xmlEsperado = "<NFNotaInfoRetencaoICMSTransporte><vServ>999999999999.99</vServ><vBCRet>999999999999.99</vBCRet><pICMSRet>99.99</pICMSRet><vICMSRet>999999999999.99</vICMSRet><CFOP>5351</CFOP><cMunFG>9999999</cMunFG></NFNotaInfoRetencaoICMSTransporte>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte().toString());
     }
 }
