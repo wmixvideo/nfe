@@ -21,7 +21,7 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     private String quantidade;
 
     @Element(name = "UFCons", required = true)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     @Element(name = "CIDE", required = false)
     private NFNotaInfoItemProdutoCombustivelCIDE cide;
@@ -49,7 +49,7 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 
     public void setCide(final NFNotaInfoItemProdutoCombustivelCIDE cide) {

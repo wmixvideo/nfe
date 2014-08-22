@@ -351,7 +351,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoLocal local = new NFNotaInfoLocal();
         local.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         local.setCnpj("12345678901234");
-        local.setCodigoMunicipio("QK4av0e");
+        local.setCodigoMunicipio("9999999");
         local.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         local.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         local.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
@@ -695,7 +695,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoPISQuantidade getNFNotaInfoItemImpostoPISQuantidade() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
         pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO);
         pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
         return pisQuantidade;
@@ -735,7 +735,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoCOFINSQuantidade getNFNotaInfoItemImpostoCOFINSQuantidade() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
-        cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999"));
+        cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999"));
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999"));
@@ -745,7 +745,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoCOFINSOutrasOperacoes getNFNotaInfoItemImpostoCOFINSOutrasOperacoes() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999"));
+        outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
         outrasOperacoes.setValorAliquota(new BigDecimal("9999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
@@ -840,7 +840,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
