@@ -26,7 +26,7 @@ public class NFNotaInfoTransportador extends NFBase {
     private String nomeMunicipio;
 
     @Element(name = "UF", required = false)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     public void setEnderecoComplemento(final String enderecoComplemento) {
         this.enderecoComplemento = enderecoComplemento;
@@ -64,6 +64,6 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 }

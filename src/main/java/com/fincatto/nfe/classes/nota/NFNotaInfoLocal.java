@@ -32,7 +32,7 @@ public class NFNotaInfoLocal extends NFBase {
     private String nomeMunicipio;
 
     @Element(name = "UF", required = true)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     public void setCnpj(final String cnpj) {
         if (this.cpf != null) {
@@ -81,6 +81,6 @@ public class NFNotaInfoLocal extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 }
