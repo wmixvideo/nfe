@@ -45,7 +45,7 @@ public class NFNotaInfoItemImpostoPISTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>65</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>61</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>63</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></NFNotaInfoItemImpostoPIS>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>65</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>63</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></NFNotaInfoItemImpostoPIS>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS().toString());
     }
 }
