@@ -183,7 +183,7 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     }
 
     public void setCodigoMarcaModelo(final String codigoMarcaModelo) {
-        StringValidador.exatamente6(codigoMarcaModelo);
+        StringValidador.exatamente6N(codigoMarcaModelo);
         this.codigoMarcaModelo = codigoMarcaModelo;
     }
 

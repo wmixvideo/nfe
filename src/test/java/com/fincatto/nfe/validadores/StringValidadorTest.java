@@ -134,4 +134,29 @@ public class StringValidadorTest {
     public void naoDeveValidarInscricaoEstadualCasoEstejaForaDoPadrao() {
         StringValidador.inscricaoEstadual("ISENT0");
     }
+
+    @Test
+    public void deveValidarCodigoDeBarrasValido() {
+        StringValidador.codigoDeBarras("35647210039861");
+        StringValidador.codigoDeBarras("356472100398");
+        StringValidador.codigoDeBarras("35647210");
+        StringValidador.codigoDeBarras("");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirCodigoDeBarrasComValorInvalido() {
+        try {
+            StringValidador.codigoDeBarras("356472100398610");
+        } catch (final IllegalStateException e) {
+            try {
+                StringValidador.codigoDeBarras("35647210039");
+            } catch (final IllegalStateException e2) {
+                try {
+                    StringValidador.codigoDeBarras("3564721");
+                } catch (final IllegalStateException e3) {
+                    StringValidador.codigoDeBarras("3");
+                }
+            }
+        }
+    }
 }

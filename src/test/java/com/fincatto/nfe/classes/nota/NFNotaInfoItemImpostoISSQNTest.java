@@ -111,7 +111,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>4001</cListServ><cSitTrib>I</cSitTrib></NFNotaInfoItemImpostoISSQN>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>2501</cListServ><cSitTrib>I</cSitTrib></NFNotaInfoItemImpostoISSQN>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN().toString());
     }
 }

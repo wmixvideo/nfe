@@ -22,7 +22,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     private String localDesembaraco;
 
     @Element(name = "UFDesemb", required = true)
-    private NFUnidadeFederativa ufDesembaraco;
+    private String ufDesembaraco;
 
     @Element(name = "dDesemb", required = true)
     private LocalDate dataDesembaraco;
@@ -48,7 +48,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setUfDesembaraco(final NFUnidadeFederativa ufDesembaraco) {
-        this.ufDesembaraco = ufDesembaraco;
+        this.ufDesembaraco = ufDesembaraco.getCodigo();
     }
 
     public void setDataDesembaraco(final LocalDate dataDesembaraco) {
