@@ -56,7 +56,7 @@ public class NFNotaInfoVeiculoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEspeardo = "<NFNotaInfoVeiculo><placa>MKZ8159</placa><UF>35</UF><RNTC>8Io5YKSKW1qy3v7zGwLx</RNTC></NFNotaInfoVeiculo>";
+        final String xmlEspeardo = "<NFNotaInfoVeiculo><placa>MKZ8159</placa><UF>SP</UF><RNTC>8Io5YKSKW1qy3v7zGwLx</RNTC></NFNotaInfoVeiculo>";
         Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFake.getNFNotaInfoVeiculo().toString());
     }
 }

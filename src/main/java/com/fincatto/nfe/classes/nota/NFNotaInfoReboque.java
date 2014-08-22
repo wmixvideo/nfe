@@ -11,7 +11,7 @@ public class NFNotaInfoReboque extends NFBase {
     private String placaVeiculo;
 
     @Element(name = "UF", required = true)
-    private NFUnidadeFederativa uf;
+    private String uf;
 
     @Element(name = "RNTC", required = false)
     private String registroNacionalTransportadorCarga;
@@ -28,7 +28,7 @@ public class NFNotaInfoReboque extends NFBase {
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
-        this.uf = uf;
+        this.uf = uf.getCodigo();
     }
 
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {
