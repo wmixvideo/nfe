@@ -91,7 +91,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         try {
             new NFNotaInfoItemProdutoVeiculo().setCodigoMarcaModelo("");
         } catch (final IllegalStateException e) {
-            new NFNotaInfoItemProdutoVeiculo().setCodigoMarcaModelo("2TR4Fz1");
+            new NFNotaInfoItemProdutoVeiculo().setCodigoMarcaModelo("5425621");
         }
     }
 
@@ -118,7 +118,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         try {
             new NFNotaInfoItemProdutoVeiculo().setChassi("");
         } catch (final IllegalStateException e) {
-            new NFNotaInfoItemProdutoVeiculo().setChassi("ks4VTPGohNxYlX7CX1");
+            new NFNotaInfoItemProdutoVeiculo().setChassi("B31YTE9INXEYDMO4C1");
         }
     }
 
@@ -150,11 +150,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -179,11 +179,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -208,11 +208,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         final NFNotaInfoItemProdutoVeiculo produtoVeiculo = new NFNotaInfoItemProdutoVeiculo();
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -241,7 +241,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -267,10 +267,10 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -296,10 +296,10 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -325,10 +325,10 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -354,7 +354,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
@@ -383,11 +383,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
         produtoVeiculo.setDistanciaEntreEixos("9999");
@@ -412,11 +412,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
         produtoVeiculo.setDistanciaEntreEixos("9999");
@@ -441,11 +441,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDistanciaEntreEixos("9999");
@@ -470,11 +470,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -499,11 +499,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -528,11 +528,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -557,11 +557,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -586,11 +586,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -615,11 +615,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -644,11 +644,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -673,11 +673,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -702,11 +702,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -731,11 +731,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -760,11 +760,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -789,11 +789,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -818,11 +818,11 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         produtoVeiculo.setAnoFabricacao(2014);
         produtoVeiculo.setAnoModeloFabricacao(2014);
         produtoVeiculo.setCapacidadeMaximaTracao(new BigDecimal("9999.9999"));
-        produtoVeiculo.setChassi("ks4VTPGohNxYlX7CX");
+        produtoVeiculo.setChassi("B31YTE9INXEYDMO4C");
         produtoVeiculo.setCilindrada("ohNx");
         produtoVeiculo.setCodigoCor("123A");
         produtoVeiculo.setCodigoCorDENATRAN(NFNotaInfoVeiculoCor.FANTASIA);
-        produtoVeiculo.setCodigoMarcaModelo("2TR4Fz");
+        produtoVeiculo.setCodigoMarcaModelo("542562");
         produtoVeiculo.setCondicao(NFNotaInfoItemProdutoVeiculoCondicao.ACABADO);
         produtoVeiculo.setCondicaoChassi(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL);
         produtoVeiculo.setDescricaoCor("tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9");
@@ -843,7 +843,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemProdutoVeiculo><tpOp>0</tpOp><chassi>ks4VTPGohNxYlX7CX</chassi><cCor>123A</cCor><xCor>tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9</xCor><pot>GZRz</pot><cilin>ohNx</cilin><pesoL>9999.9999</pesoL><pesoB>9999.9999</pesoB><nSerie>XBxVyiVVD</nSerie><tpComb>02</tpComb><nMotor>u1DU8GZRzJZzevuY49IB9</nMotor><CMT>9999.9999</CMT><dist>9999</dist><anoMod>2014</anoMod><anoFab>2014</anoFab><tpPint>A</tpPint><tpVeic>06</tpVeic><espVeic>4</espVeic><VIN>N</VIN><condVeic>1</condVeic><cMod>2TR4Fz</cMod><cCorDENATRAN>16</cCorDENATRAN><lota>999</lota><tpRest>4</tpRest></NFNotaInfoItemProdutoVeiculo>";
+        final String xmlEsperado = "<NFNotaInfoItemProdutoVeiculo><tpOp>0</tpOp><chassi>B31YTE9INXEYDMO4C</chassi><cCor>123A</cCor><xCor>tjRQlvBqVsFLDWUCaOeaXRbV1ipOZH3W5H7Ic2p9</xCor><pot>GZRz</pot><cilin>ohNx</cilin><pesoL>9999.9999</pesoL><pesoB>9999.9999</pesoB><nSerie>XBxVyiVVD</nSerie><tpComb>02</tpComb><nMotor>u1DU8GZRzJZzevuY49IB9</nMotor><CMT>9999.9999</CMT><dist>9999</dist><anoMod>2014</anoMod><anoFab>2014</anoFab><tpPint>A</tpPint><tpVeic>06</tpVeic><espVeic>4</espVeic><VIN>N</VIN><condVeic>1</condVeic><cMod>542562</cMod><cCorDENATRAN>16</cCorDENATRAN><lota>999</lota><tpRest>4</tpRest></NFNotaInfoItemProdutoVeiculo>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo().toString());
     }
 }
