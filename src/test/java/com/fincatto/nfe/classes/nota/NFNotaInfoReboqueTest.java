@@ -119,7 +119,7 @@ public class NFNotaInfoReboqueTest {
         reboque.setUf(NFUnidadeFederativa.SC);
         reboque.setRegistroNacionalTransportadorCarga("8fFAKefiBQIDTkCCSQk3");
 
-        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>42</UF><RNTC>8fFAKefiBQIDTkCCSQk3</RNTC></NFNotaInfoReboque>";
+        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>SC</UF><RNTC>8fFAKefiBQIDTkCCSQk3</RNTC></NFNotaInfoReboque>";
         Assert.assertEquals(xmlEsperado, reboque.toString());
     }
 
@@ -130,13 +130,13 @@ public class NFNotaInfoReboqueTest {
         reboque.setUf(NFUnidadeFederativa.SC);
         reboque.setBalsa("8fFAKefiBQIDTkCCSQk3");
 
-        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>42</UF><balsa>8fFAKefiBQIDTkCCSQk3</balsa></NFNotaInfoReboque>";
+        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>SC</UF><balsa>8fFAKefiBQIDTkCCSQk3</balsa></NFNotaInfoReboque>";
         Assert.assertEquals(xmlEsperado, reboque.toString());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoComVagao() {
-        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>42</UF><vagao>8fFAKefiBQIDTkCCSQk3</vagao></NFNotaInfoReboque>";
+        final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>SC</UF><vagao>8fFAKefiBQIDTkCCSQk3</vagao></NFNotaInfoReboque>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoReboque().toString());
     }
 }

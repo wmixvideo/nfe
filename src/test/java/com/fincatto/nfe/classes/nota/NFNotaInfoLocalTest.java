@@ -89,7 +89,7 @@ public class NFNotaInfoLocalTest {
     public void naoDevePermitirBairroNulo() {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         entrega.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         entrega.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
@@ -116,7 +116,7 @@ public class NFNotaInfoLocalTest {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         entrega.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
         entrega.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
@@ -129,7 +129,7 @@ public class NFNotaInfoLocalTest {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         entrega.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
         entrega.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
@@ -142,7 +142,7 @@ public class NFNotaInfoLocalTest {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         entrega.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         entrega.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
@@ -155,7 +155,7 @@ public class NFNotaInfoLocalTest {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         entrega.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         entrega.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
@@ -168,7 +168,7 @@ public class NFNotaInfoLocalTest {
         final NFNotaInfoLocal entrega = new NFNotaInfoLocal();
         entrega.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         entrega.setCnpj("12345678901234");
-        entrega.setCodigoMunicipio("QK4av0e");
+        entrega.setCodigoMunicipio("9999999");
         entrega.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         entrega.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         entrega.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
@@ -178,7 +178,7 @@ public class NFNotaInfoLocalTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoLocal><CNPJ>12345678901234</CNPJ><xLgr>t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG</xLgr><nro>YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa</nro><xCpl>ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe</xCpl><xBairro>JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil</xBairro><cMun>QK4av0e</cMun><xMun>OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI</xMun><UF>12</UF></NFNotaInfoLocal>";
+        final String xmlEsperado = "<NFNotaInfoLocal><CNPJ>12345678901234</CNPJ><xLgr>t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG</xLgr><nro>YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa</nro><xCpl>ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe</xCpl><xBairro>JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil</xBairro><cMun>9999999</cMun><xMun>OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI</xMun><UF>AC</UF></NFNotaInfoLocal>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoLocal().toString());
     }
 }

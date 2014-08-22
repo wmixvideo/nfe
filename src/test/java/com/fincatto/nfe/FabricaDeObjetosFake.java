@@ -298,7 +298,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoLocal local = new NFNotaInfoLocal();
         local.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         local.setCnpj("12345678901234");
-        local.setCodigoMunicipio("QK4av0e");
+        local.setCodigoMunicipio("9999999");
         local.setComplemento("ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe");
         local.setLogradouro("t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG");
         local.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
@@ -787,7 +787,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCfop(9999);
+        retencaoICMSTransporte.setCfop(5351);
         retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
