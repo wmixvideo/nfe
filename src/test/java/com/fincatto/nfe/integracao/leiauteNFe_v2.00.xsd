@@ -4437,7 +4437,6 @@ concessório</xs:documentation>
 					<xs:field xpath="@nItem"/>
 				</xs:unique>
 			</xs:element>
-			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TProtNFe">
@@ -4497,7 +4496,6 @@ concessório</xs:documentation>
 					<xs:attribute name="Id" type="xs:ID" use="optional"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerNFe" use="required"/>
 	</xs:complexType>
