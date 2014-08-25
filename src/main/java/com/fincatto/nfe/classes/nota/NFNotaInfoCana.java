@@ -1,5 +1,6 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,6 +9,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
@@ -23,6 +25,19 @@ public class NFNotaInfoCana extends NFBase {
 
     @ElementList(entry = "deduc", inline = true, required = false)
     private List<NFNotaInfoCanaDeducao> deducoes;
+
+    @Element(name = "qTotMes", required = true)
+    private String quantidadeTotalMes;
+    @Element(name = "qTotAnt", required = true)
+    private String quantidadeTotalAnterior;
+    @Element(name = "qTotGer", required = true)
+    private String quantidadeTotalGeral;
+    @Element(name = "vFor", required = true)
+    private String valorFornecimento;
+    @Element(name = "vTotDed", required = true)
+    private String valorTotalDeducao;
+    @Element(name = "vLiqFor", required = true)
+    private String valorLiquidoFornecimento;
 
     public void setSafra(final String safra) {
         if (safra.length() != 4 && safra.length() != 9) {
@@ -52,4 +67,29 @@ public class NFNotaInfoCana extends NFBase {
         ListValidador.tamanho10(deducoes);
         this.deducoes = deducoes;
     }
+
+    public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
+        this.quantidadeTotalMes = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalMes);
+    }
+
+    public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
+        this.quantidadeTotalAnterior = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalAnterior);
+    }
+
+    public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
+        this.quantidadeTotalGeral = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalGeral);
+    }
+
+    public void setValorFornecimento(final BigDecimal valorFornecimento) {
+        this.valorFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorFornecimento);
+    }
+
+    public void setValorTotalDeducao(final BigDecimal valorTotalDeducao) {
+        this.valorTotalDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDeducao);
+    }
+
+    public void setValorLiquidoFornecimento(final BigDecimal valorLiquidoFornecimento) {
+        this.valorLiquidoFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFornecimento);
+    }
+
 }
