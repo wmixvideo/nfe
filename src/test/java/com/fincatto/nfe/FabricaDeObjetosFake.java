@@ -1,5 +1,8 @@
 package com.fincatto.nfe;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -106,6 +109,21 @@ import com.fincatto.nfe.classes.nota.NFNotaInfoVolume;
 
 public class FabricaDeObjetosFake {
 
+    public static NFEConfig getConfig() {
+        return new NFEConfig() {
+
+            @Override
+            public String getCertificadoSenha() {
+                return "abc";
+            }
+
+            @Override
+            public InputStream getCertificado() throws IOException {
+                return new ByteArrayInputStream(new byte[] {});
+            }
+        };
+    }
+
     public static NFNota getNFNota1() {
         final NFNota nota = new NFNota();
         final NFNotaInfo info = new NFNotaInfo();
@@ -142,7 +160,6 @@ public class FabricaDeObjetosFake {
 
         info.setItens(Arrays.asList(item));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
-        info.setSignature("ASSINATURA XML");
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("2.00"));
@@ -255,7 +272,6 @@ public class FabricaDeObjetosFake {
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
         info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
-        info.setSignature("ASSINATURA XML");
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("2.00"));

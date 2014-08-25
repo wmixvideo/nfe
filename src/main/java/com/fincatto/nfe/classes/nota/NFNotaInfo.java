@@ -67,9 +67,6 @@ public class NFNotaInfo extends NFBase {
     @Element(name = "cana", required = false)
     private NFNotaInfoCana cana;
 
-    @Element(name = "Signature", required = true)
-    private String signature;
-
     public void setIdentificador(final String identificador) {
         StringValidador.exatamente44N(identificador);
         this.identificador = MessageFormat.format("NFe{0}", identificador);
@@ -134,9 +131,5 @@ public class NFNotaInfo extends NFBase {
 
     public void setCana(final NFNotaInfoCana cana) {
         this.cana = cana;
-    }
-
-    public void setSignature(final String signature) {
-        this.signature = signature;
     }
 }
