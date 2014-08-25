@@ -122,22 +122,18 @@ public class FabricaDeObjetosFake {
 
         final NFNotaInfoItem item = new NFNotaInfoItem();
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
-        imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());
+
+        final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
+        cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
+
+        imposto.setCofins(cofins);
         imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());
-        imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
-        imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
-
-        final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
-        ipi.setCnpjProdutor("12345678901234");
-        ipi.setCodigoEnquadramento("aT2");
-        ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
-        ipi.setQuantidadeSelo(new BigInteger("999999999999"));
-        ipi.setTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPITributado());
-
-        imposto.setIpi(ipi);
         imposto.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
-        imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
+
+        final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
+        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+
+        imposto.setPis(pis);
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
 
         item.setImposto(imposto);
@@ -272,7 +268,6 @@ public class FabricaDeObjetosFake {
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
         transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-        transporte.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoVeiculo());
         transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         return transporte;
     }
@@ -509,7 +504,6 @@ public class FabricaDeObjetosFake {
         imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
         imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
-        imposto.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         return imposto;
@@ -712,14 +706,14 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoPISNaoTributado getNFNotaInfoItemImpostoPISNaoTributado() {
         final NFNotaInfoItemImpostoPISNaoTributado pisNaoTributado = new NFNotaInfoItemImpostoPISNaoTributado();
-        pisNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_TRIBUTADAS_E_NAO_TRIBUTADAS_MERCADO_INTERNO);
+        pisNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_MONOFASICA_ALIQUOTA_ZERO);
         return pisNaoTributado;
     }
 
     public static NFNotaInfoItemImpostoPISAliquota getNFNotaInfoItemImpostoPISAliquota() {
         final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
         pisAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_NAO_TRIBUTADAS_MERCADO_INTERNO_EXPORTACAO);
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
         pisAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         pisAliquota.setValorTributo(new BigDecimal("999999999999.99"));
         return pisAliquota;
@@ -727,8 +721,8 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoCOFINSST getNFNotaInfoItemImpostoCOFINSST() {
         final NFNotaInfoItemImpostoCOFINSST cofins = new NFNotaInfoItemImpostoCOFINSST();
+        cofins.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         cofins.setPercentualAliquota(new BigDecimal("99.99"));
-        cofins.setQuantidadeVendida(new BigDecimal("99999999999"));
         cofins.setValorCOFINS(new BigDecimal("999999999999"));
         return cofins;
     }
@@ -736,7 +730,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoCOFINSQuantidade getNFNotaInfoItemImpostoCOFINSQuantidade() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
         cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999"));
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999"));
         return cofinsQuantidade;
@@ -755,14 +749,14 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoCOFINSNaoTributavel getNFNotaInfoItemImpostoCOFINSNaoTributavel() {
         final NFNotaInfoItemImpostoCOFINSNaoTributavel cofinsNaoTributado = new NFNotaInfoItemImpostoCOFINSNaoTributavel();
-        cofinsNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        cofinsNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_MONOFASICA_ALIQUOTA_ZERO);
         return cofinsNaoTributado;
     }
 
     public static NFNotaInfoItemImpostoCOFINSAliquota getNFNotaInfoItemImpostoCOFINSAliquota() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
         cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
@@ -832,7 +826,6 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
         reboque.setPlacaVeiculo("MKZ4891");
         reboque.setUf(NFUnidadeFederativa.SC);
-        reboque.setVagao("8fFAKefiBQIDTkCCSQk3");
         return reboque;
     }
 

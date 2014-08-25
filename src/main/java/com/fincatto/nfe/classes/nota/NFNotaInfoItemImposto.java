@@ -30,30 +30,31 @@ public class NFNotaInfoItemImposto extends NFBase {
     @Element(name = "COFINSST", required = false)
     private NFNotaInfoItemImpostoCOFINSST cofinsst;
 
-    public NFNotaInfoItemImposto() {
-        this.icms = null;
-        this.ipi = null;
-        this.impostoImportacao = null;
-        this.issqn = null;
-        this.pis = null;
-        this.pisst = null;
-        this.cofins = null;
-        this.cofinsst = null;
-    }
-
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
+        if (this.issqn != null) {
+            throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
+        }
         this.icms = icms;
     }
 
     public void setIpi(final NFNotaInfoItemImpostoIPI ipi) {
+        if (this.issqn != null) {
+            throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
+        }
         this.ipi = ipi;
     }
 
     public void setImpostoImportacao(final NFNotaInfoItemImpostoImportacao impostoImportacao) {
+        if (this.issqn != null) {
+            throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
+        }
         this.impostoImportacao = impostoImportacao;
     }
 
     public void setIssqn(final NFNotaInfoItemImpostoISSQN issqn) {
+        if (this.icms != null || this.ipi != null || this.impostoImportacao != null) {
+            throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
+        }
         this.issqn = issqn;
     }
 

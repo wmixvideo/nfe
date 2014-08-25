@@ -16,12 +16,6 @@ public class NFNotaInfoReboque extends NFBase {
     @Element(name = "RNTC", required = false)
     private String registroNacionalTransportadorCarga;
 
-    @Element(name = "vagao", required = false)
-    private String vagao;
-
-    @Element(name = "balsa", required = false)
-    private String balsa;
-
     public void setPlacaVeiculo(final String placaVeiculo) {
         StringValidador.placaDeVeiculo(placaVeiculo);
         this.placaVeiculo = placaVeiculo;
@@ -32,26 +26,8 @@ public class NFNotaInfoReboque extends NFBase {
     }
 
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {
-        if (this.vagao != null || this.balsa != null) {
-            throw new IllegalStateException("Apenas pode ser setado um");
-        }
         StringValidador.tamanho20(registroNacionalTransportadorCarga);
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;
     }
 
-    public void setVagao(final String vagao) {
-        if (this.balsa != null || this.registroNacionalTransportadorCarga != null) {
-            throw new IllegalStateException("Apenas pode ser setado um");
-        }
-        StringValidador.tamanho20(vagao);
-        this.vagao = vagao;
-    }
-
-    public void setBalsa(final String balsa) {
-        if (this.vagao != null || this.registroNacionalTransportadorCarga != null) {
-            throw new IllegalStateException("Apenas pode ser setado um");
-        }
-        StringValidador.tamanho20(balsa);
-        this.balsa = balsa;
-    }
 }

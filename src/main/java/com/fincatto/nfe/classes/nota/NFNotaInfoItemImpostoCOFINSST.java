@@ -13,7 +13,7 @@ public class NFNotaInfoItemImpostoCOFINSST extends NFBase {
     private String valorBaseCalculo;
 
     @Element(name = "pCOFINS", required = false)
-    private String aliquota;
+    private String percentualAliquota;
 
     @Element(name = "qBCProd", required = false)
     private String quantidadeVendida;
@@ -26,35 +26,35 @@ public class NFNotaInfoItemImpostoCOFINSST extends NFBase {
 
     public NFNotaInfoItemImpostoCOFINSST() {
         this.valorBaseCalculo = null;
-        this.aliquota = null;
+        this.percentualAliquota = null;
         this.quantidadeVendida = null;
         this.valorAliquotaCOFINS = null;
         this.valorCOFINS = null;
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        if (this.quantidadeVendida != null && this.valorAliquotaCOFINS != null) {
+        if (this.quantidadeVendida != null || this.valorAliquotaCOFINS != null) {
             throw new IllegalStateException("Ja foi setado quantidade vendida ou valor aliquota COFINS");
         }
         this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        if (this.quantidadeVendida != null && this.valorAliquotaCOFINS != null) {
+        if (this.quantidadeVendida != null || this.valorAliquotaCOFINS != null) {
             throw new IllegalStateException("Ja foi setado quantidade vendida ou valor aliquota COFINS");
         }
-        this.aliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        if (this.valorBaseCalculo != null && this.aliquota != null) {
+        if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Ja foi setado valor da base de calculo ou percentual aliquota COFINS");
         }
         this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
     }
 
     public void setValorAliquotaCOFINS(final BigDecimal valorAliquota) {
-        if (this.valorBaseCalculo != null && this.aliquota != null) {
+        if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Ja foi setado valor da base de calculo ou percentual aliquota COFINS");
         }
         this.valorAliquotaCOFINS = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);

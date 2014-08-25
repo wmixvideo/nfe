@@ -8,6 +8,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFModalidadeFrete;
 import com.fincatto.nfe.validadores.ListValidador;
+import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoTransporte extends NFBase {
     @Element(name = "modFrete", required = true)
@@ -25,6 +26,12 @@ public class NFNotaInfoTransporte extends NFBase {
     @ElementList(entry = "reboque", inline = true, required = false)
     private List<NFNotaInfoReboque> reboques;
 
+    @Element(name = "vagao", required = false)
+    private String vagao;
+
+    @Element(name = "balsa", required = false)
+    private String balsa;
+
     @ElementList(entry = "vol", inline = true, required = false)
     private List<NFNotaInfoVolume> volumes;
 
@@ -41,15 +48,37 @@ public class NFNotaInfoTransporte extends NFBase {
     }
 
     public void setVeiculo(final NFNotaInfoVeiculo veiculo) {
+        if (this.reboques != null || this.balsa != null || this.vagao != null) {
+            throw new IllegalStateException("Veiculo, balsa, reboque e vagao sao mutuamente exclusivos");
+        }
         this.veiculo = veiculo;
     }
 
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
+        if (this.veiculo != null || this.balsa != null || this.vagao != null) {
+            throw new IllegalStateException("Veiculo, balsa, reboque e vagao sao mutuamente exclusivos");
+        }
         ListValidador.tamanho5(reboques);
         this.reboques = reboques;
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
         this.volumes = volumes;
+    }
+
+    public void setVagao(final String vagao) {
+        if (this.balsa != null || this.reboques != null || this.veiculo != null) {
+            throw new IllegalStateException("Veiculo, balsa, reboque e vagao e reboque sao mutuamente exclusivo");
+        }
+        StringValidador.tamanho20(vagao);
+        this.vagao = vagao;
+    }
+
+    public void setBalsa(final String balsa) {
+        if (this.vagao != null || this.reboques != null || this.veiculo != null) {
+            throw new IllegalStateException("Veiculo, balsa, reboque e vagao e reboque sao mutuamente exclusivo");
+        }
+        StringValidador.tamanho20(balsa);
+        this.balsa = balsa;
     }
 }

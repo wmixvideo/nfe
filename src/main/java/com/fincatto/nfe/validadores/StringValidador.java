@@ -3,7 +3,6 @@ package com.fincatto.nfe.validadores;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,16 +77,8 @@ public class StringValidador {
     }
 
     public static void placaDeVeiculo(final String placaVeiculo) {
-        boolean achou = false;
-        final String[] padroesDePlaca = { "(?i)^[A-Z]{3}[0-9]{4}$", "(?i)^[A-Z]{3}[0-9]{3}$", "(?i)^[A-Z]{2}[0-9]{4}$", "(?i)^[A-Z]{4}[0-9]{3}$" };
-        for (final String padraoDePlaca : Arrays.asList(padroesDePlaca)) {
-            final Matcher matcher = Pattern.compile(padraoDePlaca).matcher(placaVeiculo);
-            if (matcher.find()) {
-                achou = true;
-                break;
-            }
-        }
-        if (!achou) {
+        final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3})$").matcher(placaVeiculo);
+        if (!matcher.find()) {
             throw new IllegalStateException("Nao esta no padrao");
         }
     }
@@ -251,5 +242,4 @@ public class StringValidador {
             throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
         }
     }
-
 }

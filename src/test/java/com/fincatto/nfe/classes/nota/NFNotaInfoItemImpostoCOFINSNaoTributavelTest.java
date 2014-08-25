@@ -14,7 +14,7 @@ public class NFNotaInfoItemImpostoCOFINSNaoTributavelTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSNaoTributavel><CST>61</CST></NFNotaInfoItemImpostoCOFINSNaoTributavel>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSNaoTributavel><CST>04</CST></NFNotaInfoItemImpostoCOFINSNaoTributavel>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel().toString());
     }
 }

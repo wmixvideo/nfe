@@ -6,16 +6,16 @@ import com.fincatto.nfe.classes.NFBase;
 
 public class NFNotaInfoItemImpostoPIS extends NFBase {
 
-    @Element(name = "PISAliq", required = true)
+    @Element(name = "PISAliq", required = false)
     private NFNotaInfoItemImpostoPISAliquota aliquota;
 
-    @Element(name = "PISQtde", required = true)
+    @Element(name = "PISQtde", required = false)
     private NFNotaInfoItemImpostoPISQuantidade quantidade;
 
-    @Element(name = "PISNT", required = true)
+    @Element(name = "PISNT", required = false)
     private NFNotaInfoItemImpostoPISNaoTributado naoTributado;
 
-    @Element(name = "PISOutr", required = true)
+    @Element(name = "PISOutr", required = false)
     private NFNotaInfoItemImpostoPISOutrasOperacoes outrasOperacoes;
 
     public NFNotaInfoItemImpostoPIS() {
