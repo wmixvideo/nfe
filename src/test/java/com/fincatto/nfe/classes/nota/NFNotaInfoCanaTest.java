@@ -1,5 +1,6 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -18,6 +19,12 @@ public class NFNotaInfoCanaTest {
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2014");
         infoCana.setReferencia("06/2013");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
         infoCana.toString();
     }
 
@@ -27,6 +34,12 @@ public class NFNotaInfoCanaTest {
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         infoCana.setSafra("2014");
         infoCana.setReferencia("06/2013");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
         infoCana.toString();
     }
 
@@ -38,6 +51,12 @@ public class NFNotaInfoCanaTest {
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setReferencia("06/2013");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
         infoCana.toString();
     }
 
@@ -49,6 +68,109 @@ public class NFNotaInfoCanaTest {
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirTotalDeducaoNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirLiquidoFornecimentoNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirFornecimentoNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirQtdTotalAnteriorNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirQtdTotalGeralNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.toString();
+
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirQtdTotalMesNulo() {
+        final NFNotaInfoCana infoCana = new NFNotaInfoCana();
+        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
+        infoCana.setSafra("2013/2014");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
         infoCana.toString();
     }
 
@@ -81,7 +203,7 @@ public class NFNotaInfoCanaTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoCana><safra>2013/2014</safra><ref>06/2013</ref><forDia dia=\"15\"><qtde>3</qtde><qTotMes>30.0000001</qTotMes><qTotAnt>10</qTotAnt><qTotGer>80</qTotGer></forDia></NFNotaInfoCana>";
+        final String xmlEsperado = "<NFNotaInfoCana><safra>2013/2014</safra><ref>06/2013</ref><forDia dia=\"15\"><qtde>3</qtde></forDia><qTotMes>30.0000001</qTotMes><qTotAnt>10</qTotAnt><qTotGer>80</qTotGer><vFor>900.00</vFor><vTotDed>2000.70</vTotDed><vLiqFor>980.00</vLiqFor></NFNotaInfoCana>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCana().toString());
     }
 
