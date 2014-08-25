@@ -30,6 +30,10 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
+        if (!NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO.equals(situacaoTributaria) && !NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA.equals(situacaoTributaria)) {
+            throw new IllegalStateException("Situacao tributaria invalido");
+        }
+
         this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
     }
 

@@ -30,6 +30,10 @@ public class NFNotaInfoItemImpostoPISQuantidade extends NFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
+        if (!NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO.equals(situacaoTributaria)) {
+            throw new IllegalStateException("Situacao tributaria invalido");
+        }
+
         this.situacaoTributaria = situacaoTributaria;
     }
 

@@ -37,23 +37,23 @@ public class NFNotaInfo extends NFBase {
     @Element(name = "dest", required = true)
     private NFNotaInfoDestinatario destinatario;
 
-    @ElementList(entry = "det", inline = true, required = true)
-    private List<NFNotaInfoItem> itens;
-
     @Element(name = "retirada", required = false)
     private NFNotaInfoLocal retirada;
 
     @Element(name = "entrega", required = false)
     private NFNotaInfoLocal entrega;
 
-    @Element(name = "cobr", required = false)
-    private NFNotaInfoCobranca cobranca;
+    @ElementList(entry = "det", inline = true, required = true)
+    private List<NFNotaInfoItem> itens;
 
     @Element(name = "total", required = true)
     private NFNotaInfoTotal total;
 
     @Element(name = "transp", required = true)
     private NFNotaInfoTransporte transporte;
+
+    @Element(name = "cobr", required = false)
+    private NFNotaInfoCobranca cobranca;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
@@ -66,9 +66,6 @@ public class NFNotaInfo extends NFBase {
 
     @Element(name = "cana", required = false)
     private NFNotaInfoCana cana;
-
-    @Element(name = "Signature", required = true)
-    private String signature;
 
     public void setIdentificador(final String identificador) {
         StringValidador.exatamente44N(identificador);
@@ -134,9 +131,5 @@ public class NFNotaInfo extends NFBase {
 
     public void setCana(final NFNotaInfoCana cana) {
         this.cana = cana;
-    }
-
-    public void setSignature(final String signature) {
-        this.signature = signature;
     }
 }
