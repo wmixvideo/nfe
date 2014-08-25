@@ -1,4 +1,4 @@
-package com.fincatto.nfe;
+package com.fincatto.nfe.assinatura;
 
 import java.security.Key;
 import java.security.cert.X509Certificate;
