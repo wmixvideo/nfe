@@ -30,6 +30,9 @@ public class NFNotaInfoItemImpostoPISAliquota extends NFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
+        if (!NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO.equals(situacaoTributaria) && !NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA.equals(situacaoTributaria)) {
+            throw new IllegalStateException("Situacao tributaria invalida");
+        }
         this.situacaoTributaria = situacaoTributaria;
     }
 

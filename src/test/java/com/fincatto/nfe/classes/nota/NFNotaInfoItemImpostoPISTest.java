@@ -7,8 +7,8 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoPISTest {
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirAliquotaNulo() {
+    @Test
+    public void devePermitirAliquotaNulo() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
         pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
         pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
@@ -16,8 +16,8 @@ public class NFNotaInfoItemImpostoPISTest {
         pis.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirNaoTributadoNulo() {
+    @Test
+    public void devePermitirNaoTributadoNulo() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
         pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
         pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
@@ -25,8 +25,8 @@ public class NFNotaInfoItemImpostoPISTest {
         pis.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirOutrasOperacoesNulo() {
+    @Test
+    public void devePermitirOutrasOperacoesNulo() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
         pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
         pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
@@ -34,8 +34,8 @@ public class NFNotaInfoItemImpostoPISTest {
         pis.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirQuantidadeNulo() {
+    @Test
+    public void evePermitirQuantidadeNulo() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
         pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
         pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
@@ -45,7 +45,7 @@ public class NFNotaInfoItemImpostoPISTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>65</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>63</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></NFNotaInfoItemImpostoPIS>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>04</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></NFNotaInfoItemImpostoPIS>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS().toString());
     }
 }

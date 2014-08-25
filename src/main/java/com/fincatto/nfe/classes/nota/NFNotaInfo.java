@@ -37,23 +37,23 @@ public class NFNotaInfo extends NFBase {
     @Element(name = "dest", required = true)
     private NFNotaInfoDestinatario destinatario;
 
-    @ElementList(entry = "det", inline = true, required = true)
-    private List<NFNotaInfoItem> itens;
-
     @Element(name = "retirada", required = false)
     private NFNotaInfoLocal retirada;
 
     @Element(name = "entrega", required = false)
     private NFNotaInfoLocal entrega;
 
-    @Element(name = "cobr", required = false)
-    private NFNotaInfoCobranca cobranca;
+    @ElementList(entry = "det", inline = true, required = true)
+    private List<NFNotaInfoItem> itens;
 
     @Element(name = "total", required = true)
     private NFNotaInfoTotal total;
 
     @Element(name = "transp", required = true)
     private NFNotaInfoTransporte transporte;
+
+    @Element(name = "cobr", required = false)
+    private NFNotaInfoCobranca cobranca;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;

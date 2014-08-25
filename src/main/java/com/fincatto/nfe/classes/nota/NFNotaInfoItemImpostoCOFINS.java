@@ -6,16 +6,16 @@ import com.fincatto.nfe.classes.NFBase;
 
 public class NFNotaInfoItemImpostoCOFINS extends NFBase {
 
-    @Element(name = "COFINSAliq", required = true)
+    @Element(name = "COFINSAliq", required = false)
     private NFNotaInfoItemImpostoCOFINSAliquota aliquota;
 
-    @Element(name = "COFINSQtde", required = true)
+    @Element(name = "COFINSQtde", required = false)
     private NFNotaInfoItemImpostoCOFINSQuantidade quantidade;
 
-    @Element(name = "COFINSNT", required = true)
+    @Element(name = "COFINSNT", required = false)
     private NFNotaInfoItemImpostoCOFINSNaoTributavel naoTributavel;
 
-    @Element(name = "COFINSOutr", required = true)
+    @Element(name = "COFINSOutr", required = false)
     private NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes;
 
     public NFNotaInfoItemImpostoCOFINS() {

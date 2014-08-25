@@ -14,7 +14,7 @@ public class NFNotaInfoItemImpostoPISNaoTributadoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoPISNaoTributado><CST>63</CST></NFNotaInfoItemImpostoPISNaoTributado>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoPISNaoTributado><CST>04</CST></NFNotaInfoItemImpostoPISNaoTributado>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado().toString());
     }
 }
