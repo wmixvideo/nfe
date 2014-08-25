@@ -23,39 +23,6 @@ public class NFNotaInfoCadaDeducaoTest {
     public void naoDevePermitirDescricaoDeducaoNulo() {
         final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
         infoCanaDeducao.setValorDeducao(new BigDecimal("1000"));
-        infoCanaDeducao.setValorFornecimento(new BigDecimal("900"));
-        infoCanaDeducao.setValorLiquidoFornecimento(new BigDecimal("980"));
-        infoCanaDeducao.setValorTotalDeducao(new BigDecimal("2000.70"));
-        infoCanaDeducao.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirTotalDeducaoNulo() {
-        final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
-        infoCanaDeducao.setDescricaoDeducao("67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA");
-        infoCanaDeducao.setValorDeducao(new BigDecimal("1000"));
-        infoCanaDeducao.setValorFornecimento(new BigDecimal("900"));
-        infoCanaDeducao.setValorLiquidoFornecimento(new BigDecimal("980"));
-        infoCanaDeducao.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirLiquidoFornecimentoNulo() {
-        final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
-        infoCanaDeducao.setDescricaoDeducao("67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA");
-        infoCanaDeducao.setValorDeducao(new BigDecimal("1000"));
-        infoCanaDeducao.setValorFornecimento(new BigDecimal("900"));
-        infoCanaDeducao.setValorTotalDeducao(new BigDecimal("2000.70"));
-        infoCanaDeducao.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirFornecimentoNulo() {
-        final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
-        infoCanaDeducao.setDescricaoDeducao("67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA");
-        infoCanaDeducao.setValorDeducao(new BigDecimal("1000"));
-        infoCanaDeducao.setValorLiquidoFornecimento(new BigDecimal("980"));
-        infoCanaDeducao.setValorTotalDeducao(new BigDecimal("2000.70"));
         infoCanaDeducao.toString();
     }
 
@@ -63,15 +30,12 @@ public class NFNotaInfoCadaDeducaoTest {
     public void naoDevePermitirDeducaoNulo() {
         final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
         infoCanaDeducao.setDescricaoDeducao("67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA");
-        infoCanaDeducao.setValorFornecimento(new BigDecimal("900"));
-        infoCanaDeducao.setValorLiquidoFornecimento(new BigDecimal("980"));
-        infoCanaDeducao.setValorTotalDeducao(new BigDecimal("2000.7"));
         infoCanaDeducao.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoCanaDeducao><xDed>67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA</xDed><vDed>1000.00</vDed><vFor>900.00</vFor><vTotDed>2000.70</vTotDed><vLiqFor>980.00</vLiqFor></NFNotaInfoCanaDeducao>";
+        final String xmlEsperado = "<NFNotaInfoCanaDeducao><xDed>67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA</xDed><vDed>1000.00</vDed></NFNotaInfoCanaDeducao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCanaDeducao().toString());
     }
 }

@@ -15,15 +15,6 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     @Element(name = "qtde", required = true)
     private String quantidade;
 
-    @Element(name = "qTotMes", required = true)
-    private String quantidadeTotalMes;
-
-    @Element(name = "qTotAnt", required = true)
-    private String quantidadeTotalAnterior;
-
-    @Element(name = "qTotGer", required = true)
-    private String quantidadeTotalGeral;
-
     public void setDia(final int dia) {
         if (dia > 31 || dia < 1) {
             throw new IllegalStateException("valor do dia invalido.");
@@ -33,17 +24,5 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
 
     public void setQuantidade(final BigDecimal quantidade) {
         this.quantidade = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidade);
-    }
-
-    public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
-        this.quantidadeTotalMes = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalMes);
-    }
-
-    public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
-        this.quantidadeTotalAnterior = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalAnterior);
-    }
-
-    public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
-        this.quantidadeTotalGeral = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalGeral);
     }
 }
