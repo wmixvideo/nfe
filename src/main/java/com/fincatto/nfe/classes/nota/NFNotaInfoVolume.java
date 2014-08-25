@@ -15,14 +15,14 @@ public class NFNotaInfoVolume extends NFBase {
     @Element(name = "qVol", required = false)
     private BigInteger quantidadeVolumesTransportados;
 
-    @Element(name = "nVol", required = false)
-    private String numeracaoVolumesTransportados;
-
     @Element(name = "esp", required = false)
     private String especieVolumesTransportados;
 
     @Element(name = "marca", required = false)
     private String marca;
+
+    @Element(name = "nVol", required = false)
+    private String numeracaoVolumesTransportados;
 
     @Element(name = "pesoL", required = false)
     private String pesoLiquido;
