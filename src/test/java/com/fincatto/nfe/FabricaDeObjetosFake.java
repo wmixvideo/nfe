@@ -851,9 +851,6 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoCanaDeducao infoCanaDeducao = new NFNotaInfoCanaDeducao();
         infoCanaDeducao.setDescricaoDeducao("67TgthEHf2gowJBy4PZ3ulgaDDAi80s27pIzYK6DJORNAPqL7vJ5ZbQShDcA");
         infoCanaDeducao.setValorDeducao(new BigDecimal("1000"));
-        infoCanaDeducao.setValorFornecimento(new BigDecimal("900"));
-        infoCanaDeducao.setValorLiquidoFornecimento(new BigDecimal("980"));
-        infoCanaDeducao.setValorTotalDeducao(new BigDecimal("2000.70"));
         return infoCanaDeducao;
     }
 
@@ -861,9 +858,6 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoCanaFornecimentoDiario canaFornecimentoDiario = new NFNotaInfoCanaFornecimentoDiario();
         canaFornecimentoDiario.setDia(15);
         canaFornecimentoDiario.setQuantidade(new BigDecimal("3"));
-        canaFornecimentoDiario.setQuantidadeTotalAnterior(new BigDecimal("10"));
-        canaFornecimentoDiario.setQuantidadeTotalGeral(new BigDecimal("80"));
-        canaFornecimentoDiario.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
         return canaFornecimentoDiario;
     }
 
@@ -875,6 +869,13 @@ public class FabricaDeObjetosFake {
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setReferencia("06/2013");
         infoCana.setSafra("2013/2014");
+        infoCana.setValorFornecimento(new BigDecimal("900"));
+        infoCana.setValorLiquidoFornecimento(new BigDecimal("980"));
+        infoCana.setValorTotalDeducao(new BigDecimal("2000.70"));
+        infoCana.setQuantidadeTotalAnterior(new BigDecimal("10"));
+        infoCana.setQuantidadeTotalGeral(new BigDecimal("80"));
+        infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
+
         return infoCana;
     }
 
