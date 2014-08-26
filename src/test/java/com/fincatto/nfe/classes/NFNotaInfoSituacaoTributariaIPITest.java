@@ -6,6 +6,25 @@ import org.junit.Test;
 public class NFNotaInfoSituacaoTributariaIPITest {
 
     @Test
+    public void deveObterSituacaoTributariaIPIApartirDoSeuCodigo() {
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_RECUPERACAO_CREDITO, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("00"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_TRIBUTADA_ALIQUOTA_ZERO, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("01"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_ISENTA, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("02"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_NAO_TRIBUTADA, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("03"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_IMUNE, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("04"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_COM_SUSPENSAO, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("05"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("49"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_TRIBUTADA, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("50"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_TRIBUTADA_COM_ALIQUOTA_ZERO, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("51"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_ISENTA, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("52"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_NAO_TRIBUTADA, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("53"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_IMUNE, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("54"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.SAIDA_COM_SUSPENSAO, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("55"));
+        Assert.assertEquals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_SAIDAS, NFNotaInfoSituacaoTributariaIPI.valueOfCodigo("99"));
+        Assert.assertNull(NFNotaInfoSituacaoTributariaIPI.valueOfCodigo(""));
+    }
+
+    @Test
     public void deveRepresentarOCodigoCorretamente() {
         Assert.assertEquals("00", NFNotaInfoSituacaoTributariaIPI.ENTRADA_RECUPERACAO_CREDITO.getCodigo());
         Assert.assertEquals("01", NFNotaInfoSituacaoTributariaIPI.ENTRADA_TRIBUTADA_ALIQUOTA_ZERO.getCodigo());

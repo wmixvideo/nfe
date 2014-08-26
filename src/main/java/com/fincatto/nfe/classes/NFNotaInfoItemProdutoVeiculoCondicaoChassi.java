@@ -1,32 +1,26 @@
 package com.fincatto.nfe.classes;
 
 public enum NFNotaInfoItemProdutoVeiculoCondicaoChassi {
-	
-	NORMAL("N", "Normal"),
-	REMARCADO("R", "Remarcado");
-	
-	private final String codigo;
-	private final String descricao;
-	
-	private NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo, final String descricao) {
-		this.codigo = codigo;
-		this.descricao = descricao;
-	}
-	
-	public String getCodigo() {
-		return this.codigo;
-	}
-	
-	public String getDescricao() {
-		return this.descricao;
-	}
-	
-	public static NFNotaInfoItemProdutoVeiculoCondicaoChassi valueOfCodigo(final String codigo) {
-		for (NFNotaInfoItemProdutoVeiculoCondicaoChassi tipo : NFNotaInfoItemProdutoVeiculoCondicaoChassi.values()) {
-			if (tipo.getCodigo().equals(codigo)) {
-				return tipo;
-			}
-		}
-		return null;
-	}
+
+    NORMAL("N"),
+    REMARCADO("R");
+
+    private final String codigo;
+
+    private NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
+    }
+
+    public static NFNotaInfoItemProdutoVeiculoCondicaoChassi valueOfCodigo(final String codigo) {
+        for (final NFNotaInfoItemProdutoVeiculoCondicaoChassi tipo : NFNotaInfoItemProdutoVeiculoCondicaoChassi.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

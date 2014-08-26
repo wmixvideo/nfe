@@ -6,6 +6,20 @@ import org.junit.Test;
 public class NFNotaMotivoDesoneracaoICMSTest {
 
     @Test
+    public void deveObterMotivoDesoneracaoICMSApartirDoSeuCodigo() {
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.TAXI, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(1));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.DEFICIENTE_FISICO, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(2));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.PRODUTOR_AGROPECUARIO, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(3));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.FROTISTA_LOCADORA, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(4));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.DIPLOMATICO_CONSULAR, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(5));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.UTILITARIOS_MOTOCICLETAS_AMAZONIA_OCIDENTAL_AREAS_LIVRE_COMERCIO, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(6));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.SUFRAMA, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(7));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.VENDA_ORGAOS_PUBLICOS, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(8));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.OUTROS, NFNotaMotivoDesoneracaoICMS.valueOfCodigo(9));
+        Assert.assertNull(NFNotaMotivoDesoneracaoICMS.valueOfCodigo(0));
+    }
+
+    @Test
     public void deveRepresentarOCodigoCorretamente() {
         Assert.assertEquals(1, NFNotaMotivoDesoneracaoICMS.TAXI.getCodigo());
         Assert.assertEquals(2, NFNotaMotivoDesoneracaoICMS.DEFICIENTE_FISICO.getCodigo());
