@@ -1,6 +1,8 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +11,24 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 import com.fincatto.nfe.classes.NFModalidadeFrete;
 
 public class NFNotaInfoTransporteTest {
+
+    @Test
+    public void devePermitirVolumesComTamanhoInvalido() {
+        final List<NFNotaInfoVolume> volumes = new ArrayList<>();
+        for (int i = 0; i < 5000; i++) {
+            volumes.add(new NFNotaInfoVolume());
+        }
+        new NFNotaInfoTransporte().setVolumes(volumes);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirVolumesComTamanhoInvalido() {
+        final List<NFNotaInfoVolume> volumes = new ArrayList<>();
+        for (int i = 0; i < 5001; i++) {
+            volumes.add(new NFNotaInfoVolume());
+        }
+        new NFNotaInfoTransporte().setVolumes(volumes);
+    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSetarVagaoCasoBalsaEstejaSetado() {

@@ -63,6 +63,7 @@ public class NFNotaInfoTransporte extends NFBase {
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
+        ListValidador.tamanho5000(volumes);
         this.volumes = volumes;
     }
 

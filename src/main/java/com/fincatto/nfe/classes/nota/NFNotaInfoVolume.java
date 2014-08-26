@@ -9,10 +9,11 @@ import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.validadores.BigDecimalParser;
+import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoVolume extends NFBase {
-    @Element(name = "qVol", required = false)
+    @Element(name = "qVol", required = true)
     private BigInteger quantidadeVolumesTransportados;
 
     @Element(name = "esp", required = false)
@@ -61,6 +62,7 @@ public class NFNotaInfoVolume extends NFBase {
     }
 
     public void setLacres(final List<NFNotaInfoLacre> lacres) {
+        ListValidador.tamanho5000(lacres);
         this.lacres = lacres;
     }
 }

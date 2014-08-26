@@ -8,7 +8,7 @@ public class NFNotaInfoImpostoTributacaoICMSTransformer implements Transform<NFN
 
     @Override
     public NFNotaInfoImpostoTributacaoICMS read(final String icms) throws Exception {
-        return null;
+        return NFNotaInfoImpostoTributacaoICMS.valueOfCodigo(icms);
     }
 
     @Override

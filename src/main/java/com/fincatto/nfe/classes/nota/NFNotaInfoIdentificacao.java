@@ -18,6 +18,7 @@ import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.validadores.IntegerValidador;
+import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoIdentificacao extends NFBase {
@@ -143,6 +144,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
+        ListValidador.tamanho5000(referenciadas);
         this.referenciadas = referenciadas;
     }
 

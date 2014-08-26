@@ -15,8 +15,8 @@ public class NFNotaInfoDuplicataTest {
         new NFNotaInfoDuplicata().setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z1");
     }
 
-    @Test
-    public void devePermitirValorDuplicataNulo() {
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorDuplicataNulo() {
         final NFNotaInfoDuplicata duplicata = new NFNotaInfoDuplicata();
         duplicata.setDataVencimento(new LocalDate(2014, 07, 10));
         duplicata.setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
