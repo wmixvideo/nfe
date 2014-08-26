@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
-import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSSN900Test {
 
@@ -71,7 +71,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
     public void naoDevePermitirAliquotaAplicavelCalculoCreditoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -91,7 +91,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
     public void naoDevePermitirAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -132,7 +132,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icms900.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -152,7 +152,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icms900.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -172,7 +172,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -192,7 +192,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -212,7 +212,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -232,7 +232,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -252,7 +252,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -272,7 +272,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -292,7 +292,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -312,7 +312,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -332,7 +332,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -352,7 +352,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -372,7 +372,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
@@ -392,7 +392,7 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFnotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
         icms900.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.MVA);
         icms900.setOrigem(NFOrigem.NACIONAL);
         icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));

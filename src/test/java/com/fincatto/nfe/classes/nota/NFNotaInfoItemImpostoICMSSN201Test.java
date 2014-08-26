@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
-import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSSN201Test {
 
@@ -64,7 +64,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -79,7 +79,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAliquotaAplicavelCalculoCreditoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -94,7 +94,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -109,7 +109,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test
     public void devePermitirPercentualMargemValorAdicionadoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -124,7 +124,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test
     public void devePermitirPercentualReducaoBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -139,7 +139,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSituacaoOperacaoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -154,7 +154,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -169,7 +169,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorCreditoICMSSNNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -184,7 +184,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -199,7 +199,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
-        icms201.setModalidadeDeterminacaoBCICMSST(NFnotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+        icms201.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
         icms201.setOrigem(NFOrigem.NACIONAL);
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));

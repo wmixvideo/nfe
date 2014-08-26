@@ -170,7 +170,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -328,7 +328,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);

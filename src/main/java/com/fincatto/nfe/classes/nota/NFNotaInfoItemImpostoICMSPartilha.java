@@ -8,7 +8,7 @@ import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMSPartilha extends NFBase {
     @Element(name = "orig", required = true)
@@ -33,7 +33,7 @@ public class NFNotaInfoItemImpostoICMSPartilha extends NFBase {
     private BigDecimal valorTributo;
 
     @Element(name = "modBCST", required = true)
-    private NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
+    private NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
 
     @Element(name = "pMVAST", required = false)
     private BigDecimal percentualMargemValorAdicionadoICMSST;
@@ -152,11 +152,11 @@ public class NFNotaInfoItemImpostoICMSPartilha extends NFBase {
         this.valorTributo = valorTributo;
     }
 
-    public NFnotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
         return this.modalidadeDeterminacaoBCICMSST;
     }
 
-    public void setModalidadeDeterminacaoBCICMSST(final NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
+    public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
         this.modalidadeDeterminacaoBCICMSST = modalidadeDeterminacaoBCICMSST;
     }
 
