@@ -10,6 +10,11 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 public class NFNotaInfoICMSTotalTest {
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorTotalTributosInvalido() {
+        new NFNotaInfoICMSTotal().setValorTotalTributos(new BigDecimal("1000000000000000"));
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTotalSeguroInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalSeguro(new BigDecimal("1000000000000000"));
     }
@@ -79,6 +84,26 @@ public class NFNotaInfoICMSTotalTest {
         new NFNotaInfoICMSTotal().setBaseCalculoICMS(new BigDecimal("1000000000000000"));
     }
 
+    @Test
+    public void devePermitirValorTotalTributosNulo() {
+        final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
+        icmsTotal.setBaseCalculoICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
+        icmsTotal.setValor(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorCOFINS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorPIS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDesconto(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDosProdutosServicos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFrete(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMSST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.toString();
+    }
+
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirBaseCalculoICMSNulo() {
         final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
@@ -95,6 +120,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -114,6 +140,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -133,6 +160,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -152,6 +180,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -171,6 +200,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -190,6 +220,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -209,6 +240,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -228,6 +260,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -247,6 +280,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -266,6 +300,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -285,6 +320,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -304,6 +340,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -323,6 +360,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -342,6 +380,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 

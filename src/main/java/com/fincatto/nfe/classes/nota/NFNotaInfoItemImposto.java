@@ -1,8 +1,11 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImposto extends NFBase {
 
@@ -29,6 +32,9 @@ public class NFNotaInfoItemImposto extends NFBase {
 
     @Element(name = "COFINSST", required = false)
     private NFNotaInfoItemImpostoCOFINSST cofinsst;
+
+    @Element(name = "vTotTrib", required = false)
+    private String valorTotalTributos;
 
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
         if (this.issqn != null) {
@@ -72,5 +78,9 @@ public class NFNotaInfoItemImposto extends NFBase {
 
     public void setCofinsst(final NFNotaInfoItemImpostoCOFINSST cofinsst) {
         this.cofinsst = cofinsst;
+    }
+
+    public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
+        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
     }
 }

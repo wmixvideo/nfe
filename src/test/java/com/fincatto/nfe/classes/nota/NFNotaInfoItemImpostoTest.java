@@ -1,11 +1,18 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoTest {
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorTotalTributosComTamanhoInvalido() {
+        new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("1000000000000"));
+    }
 
     @Test
     public void naoDevePermitirICMSouIPIouIICasoISSQNEstejaSetado() {
@@ -59,6 +66,19 @@ public class NFNotaInfoItemImpostoTest {
         }
     }
 
+    @Test
+    public void devePermitirValorTotalTributosNulo() {
+        final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
+        imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());
+        imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());
+        imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
+        imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
+        imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
+        imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
+        imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.toString();
+    }
+
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCofinsNulo() {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
@@ -68,6 +88,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -80,6 +101,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -92,6 +114,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -104,6 +127,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -116,6 +140,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -129,6 +154,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -141,6 +167,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
@@ -153,12 +180,13 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImposto><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS></ICMS00></ICMS><IPI><clEnq>157br</clEnq><CNPJProd>12345678901234</CNPJProd><cSelo>iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5</cSelo><qSelo>999999999999</qSelo><cEnq>aT2</cEnq><IPITrib><CST>49</CST><vBC>999999999999.99</vBC><pIPI>99.99</pIPI><vIPI>999999999999.99</vIPI></IPITrib><IPINT><CST>52</CST></IPINT></IPI><II><vBC>999999999999.99</vBC><vDespAdu>999999999999.99</vDespAdu><vII>999999999999.99</vII><vIOF>999999999999.99</vIOF></II><PIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>04</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></PIS><PISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISST><COFINS><COFINSAliq><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></COFINSAliq><COFINSQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSQtde><COFINSNT><CST>04</CST></COFINSNT><COFINSOutr><CST>49</CST><vBC>999999999999.00</vBC><pCOFINS>99.99</pCOFINS><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSOutr></COFINS><COFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS></COFINSST></NFNotaInfoItemImposto>";
+        final String xmlEsperado = "<NFNotaInfoItemImposto><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS></ICMS00></ICMS><IPI><clEnq>157br</clEnq><CNPJProd>12345678901234</CNPJProd><cSelo>iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5</cSelo><qSelo>999999999999</qSelo><cEnq>aT2</cEnq><IPITrib><CST>49</CST><vBC>999999999999.99</vBC><pIPI>99.99</pIPI><vIPI>999999999999.99</vIPI></IPITrib><IPINT><CST>52</CST></IPINT></IPI><II><vBC>999999999999.99</vBC><vDespAdu>999999999999.99</vDespAdu><vII>999999999999.99</vII><vIOF>999999999999.99</vIOF></II><PIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>04</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></PIS><PISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISST><COFINS><COFINSAliq><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></COFINSAliq><COFINSQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSQtde><COFINSNT><CST>04</CST></COFINSNT><COFINSOutr><CST>49</CST><vBC>999999999999.00</vBC><pCOFINS>99.99</pCOFINS><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSOutr></COFINS><COFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS></COFINSST><vTotTrib>999999999999.99</vTotTrib></NFNotaInfoItemImposto>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImposto().toString());
     }
 }

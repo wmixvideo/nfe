@@ -522,6 +522,7 @@ public class FabricaDeObjetosFake {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         return imposto;
     }
 

@@ -25,7 +25,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test
     public void devePermitirReferenciadasComTamanhoInvalido() {
         final List<NFInfoReferenciada> referenciadas = new ArrayList<>();
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 500; i++) {
             referenciadas.add(new NFInfoReferenciada());
         }
         new NFNotaInfoIdentificacao().setReferenciadas(referenciadas);
@@ -34,7 +34,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirReferenciadasComTamanhoInvalido() {
         final List<NFInfoReferenciada> referenciadas = new ArrayList<>();
-        for (int i = 0; i < 5001; i++) {
+        for (int i = 0; i < 501; i++) {
             referenciadas.add(new NFInfoReferenciada());
         }
         new NFNotaInfoIdentificacao().setReferenciadas(referenciadas);
