@@ -144,7 +144,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
-        ListValidador.tamanho5000(referenciadas);
+        ListValidador.tamanho500(referenciadas);
         this.referenciadas = referenciadas;
     }
 

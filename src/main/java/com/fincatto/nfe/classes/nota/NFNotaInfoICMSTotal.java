@@ -51,6 +51,9 @@ public class NFNotaInfoICMSTotal extends NFBase {
     @Element(name = "vNF", required = true)
     private String valorTotalNFe;
 
+    @Element(name = "vTotTrib", required = false)
+    private String valorTotalTributos;
+
     public void setBaseCalculoICMS(final BigDecimal baseCalculoICMS) {
         this.baseCalculoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMS);
     }
@@ -105,5 +108,9 @@ public class NFNotaInfoICMSTotal extends NFBase {
 
     public void setValorTotalNFe(final BigDecimal valorTotalNFe) {
         this.valorTotalNFe = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalNFe);
+    }
+
+    public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
+        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
     }
 }

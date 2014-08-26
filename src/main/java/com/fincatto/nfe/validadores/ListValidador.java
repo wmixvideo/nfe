@@ -29,6 +29,10 @@ public class ListValidador {
         ListValidador.validaTamanho(lista, 990);
     }
 
+    public static <E> void tamanho500(final List<E> lista) {
+        ListValidador.validaTamanho(lista, 500);
+    }
+
     public static <E> void tamanho5000(final List<E> lista) {
         ListValidador.validaTamanho(lista, 5000);
     }
