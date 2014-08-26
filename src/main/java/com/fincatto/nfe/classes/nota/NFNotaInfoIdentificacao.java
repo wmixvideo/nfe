@@ -27,7 +27,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFUnidadeFederativa uf;
 
     @Element(name = "cNF", required = true)
-    private Integer codigoRandomico;
+    private String codigoRandomico;
 
     @Element(name = "natOp", required = true)
     private String naturezaOperacao;
@@ -93,8 +93,8 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.uf = uf;
     }
 
-    public void setCodigoRandomico(final Integer codigoRandomico) {
-        IntegerValidador.exatamente8(codigoRandomico);
+    public void setCodigoRandomico(final String codigoRandomico) {
+        StringValidador.exatamente8(codigoRandomico);
         this.codigoRandomico = codigoRandomico;
     }
 

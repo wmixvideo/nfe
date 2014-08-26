@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe.classes.NFOrigem;
-import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 
 public class NFNotaInfoItemImpostoICMS10Test {
 
@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModalidadeBaseCalculoNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -90,7 +90,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
@@ -107,7 +107,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
@@ -124,7 +124,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
@@ -141,7 +141,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void devePermitirPercentualMargemValorICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -158,7 +158,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void devePermitirPercentualReducaoBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -175,7 +175,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -192,7 +192,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirValorBaseCalculoNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -209,7 +209,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirValorBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -226,7 +226,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirValorICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -243,7 +243,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void naoDevePermitirValorTributoNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -260,7 +260,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
-        icms10.setModalidadeDeterminacaoBCICMS(NFnotaInfoItemModalidadeBCICMSST.PAUTA);
+        icms10.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));

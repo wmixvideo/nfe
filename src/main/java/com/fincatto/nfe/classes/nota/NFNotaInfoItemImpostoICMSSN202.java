@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
-import com.fincatto.nfe.classes.NFnotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
@@ -18,7 +18,7 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
     @Element(name = "modBCST", required = true)
-    private NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
+    private NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
 
     @Element(name = "pMVAST", required = false)
     private String percentualMargemValorAdicionadoICMSST;
@@ -43,7 +43,7 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
 
-    public void setModalidadeDeterminacaoBCICMSST(final NFnotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
+    public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
         this.modalidadeDeterminacaoBCICMSST = modalidadeDeterminacaoBCICMSST;
     }
 

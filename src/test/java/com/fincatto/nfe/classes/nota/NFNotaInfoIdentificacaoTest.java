@@ -94,9 +94,9 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoRandomicoComTamanhoInvalido() {
         try {
-            new NFNotaInfoIdentificacao().setCodigoRandomico(9999999);
+            new NFNotaInfoIdentificacao().setCodigoRandomico("9999999");
         } catch (final IllegalStateException e) {
-            new NFNotaInfoIdentificacao().setCodigoRandomico(100000000);
+            new NFNotaInfoIdentificacao().setCodigoRandomico("100000000");
         }
     }
 
@@ -113,7 +113,7 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirAmbienteNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -140,7 +140,7 @@ public class NFNotaInfoIdentificacaoTest {
     public void naoDevePermitirCodigoMunicipioNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -195,7 +195,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -222,7 +222,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -249,7 +249,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setFinalidade(NFFinalidade.NORMAL);
@@ -276,7 +276,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -303,7 +303,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -330,7 +330,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -357,7 +357,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -384,7 +384,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -411,7 +411,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -438,7 +438,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -465,7 +465,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -492,7 +492,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -519,7 +519,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -546,7 +546,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -573,7 +573,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -600,7 +600,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -627,7 +627,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -654,7 +654,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
@@ -681,7 +681,7 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico(99999999);
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataEmissao(new LocalDate(2010, 10, 27));
         identificacao.setDataSaida(new LocalDate(2013, 9, 24));
         identificacao.setDigitoVerificador(8);
