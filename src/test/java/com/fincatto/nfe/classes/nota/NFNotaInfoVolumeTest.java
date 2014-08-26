@@ -2,7 +2,9 @@ package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +12,24 @@ import org.junit.Test;
 import com.fincatto.nfe.FabricaDeObjetosFake;
 
 public class NFNotaInfoVolumeTest {
+
+    @Test
+    public void devePermitirLacresComTamanhoInvalido() {
+        final List<NFNotaInfoLacre> lacres = new ArrayList<>();
+        for (int i = 0; i < 5000; i++) {
+            lacres.add(new NFNotaInfoLacre());
+        }
+        new NFNotaInfoVolume().setLacres(lacres);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirLacresComTamanhoInvalido() {
+        final List<NFNotaInfoLacre> lacres = new ArrayList<>();
+        for (int i = 0; i < 5001; i++) {
+            lacres.add(new NFNotaInfoLacre());
+        }
+        new NFNotaInfoVolume().setLacres(lacres);
+    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumerocaoVolumesComTamanhoInvalido() {
@@ -56,8 +76,8 @@ public class NFNotaInfoVolumeTest {
         volume.toString();
     }
 
-    @Test
-    public void devePermitirQuantidadeVolumesTransportadosNulo() {
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirQuantidadeVolumesTransportadosNulo() {
         final NFNotaInfoVolume volume = new NFNotaInfoVolume();
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
@@ -137,20 +157,6 @@ public class NFNotaInfoVolumeTest {
         volume.setPesoBruto(new BigDecimal("1.358"));
         volume.setPesoLiquido(new BigDecimal("1"));
         volume.setQuantidadeVolumesTransportados(new BigInteger("99999999999"));
-        volume.toString();
-    }
-
-    @Test
-    public void devePermitirQtdVolumesTransportadosNulo() {
-        final NFNotaInfoVolume volume = new NFNotaInfoVolume();
-        volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
-        final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
-        notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
-        volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
-        volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
-        volume.setPesoBruto(new BigDecimal("1.358"));
-        volume.setPesoLiquido(new BigDecimal("1"));
         volume.toString();
     }
 

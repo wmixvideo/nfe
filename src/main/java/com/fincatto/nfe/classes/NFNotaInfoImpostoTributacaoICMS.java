@@ -22,4 +22,13 @@ public enum NFNotaInfoImpostoTributacaoICMS {
     public String getCodigo() {
         return this.codigo;
     }
+
+    public static NFNotaInfoImpostoTributacaoICMS valueOfCodigo(final String codigoICMS) {
+        for (final NFNotaInfoImpostoTributacaoICMS icms : NFNotaInfoImpostoTributacaoICMS.values()) {
+            if (icms.getCodigo().equals(codigoICMS)) {
+                return icms;
+            }
+        }
+        return null;
+    }
 }

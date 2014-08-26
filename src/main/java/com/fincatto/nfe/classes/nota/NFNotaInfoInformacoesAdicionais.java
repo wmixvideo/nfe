@@ -46,6 +46,7 @@ public class NFNotaInfoInformacoesAdicionais extends NFBase {
     }
 
     public void setProcessosRefenciado(final List<NFNotaInfoProcessoReferenciado> processosRefenciado) {
+        ListValidador.tamanho100(processosRefenciado);
         this.processosRefenciado = processosRefenciado;
     }
 }

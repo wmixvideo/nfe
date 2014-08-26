@@ -1,6 +1,8 @@
 package com.fincatto.nfe.classes.nota;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -19,6 +21,24 @@ import com.fincatto.nfe.classes.NFTipoImpressao;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 public class NFNotaInfoIdentificacaoTest {
+
+    @Test
+    public void devePermitirReferenciadasComTamanhoInvalido() {
+        final List<NFInfoReferenciada> referenciadas = new ArrayList<>();
+        for (int i = 0; i < 5000; i++) {
+            referenciadas.add(new NFInfoReferenciada());
+        }
+        new NFNotaInfoIdentificacao().setReferenciadas(referenciadas);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirReferenciadasComTamanhoInvalido() {
+        final List<NFInfoReferenciada> referenciadas = new ArrayList<>();
+        for (int i = 0; i < 5001; i++) {
+            referenciadas.add(new NFInfoReferenciada());
+        }
+        new NFNotaInfoIdentificacao().setReferenciadas(referenciadas);
+    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoEmissorComTamanhoInvalido() {
