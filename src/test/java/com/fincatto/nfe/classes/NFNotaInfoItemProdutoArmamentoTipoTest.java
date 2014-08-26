@@ -3,9 +3,14 @@ package com.fincatto.nfe.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe.classes.NFNotaInfoItemProdutoArmamentoTipo;
-
 public class NFNotaInfoItemProdutoArmamentoTipoTest {
+
+    @Test
+    public void deveObterArmementoTipoDeAcordoComOCodigo() {
+        Assert.assertEquals(NFNotaInfoItemProdutoArmamentoTipo.PERMITIDO, NFNotaInfoItemProdutoArmamentoTipo.valueOfCodigo("0"));
+        Assert.assertEquals(NFNotaInfoItemProdutoArmamentoTipo.RESTRITO, NFNotaInfoItemProdutoArmamentoTipo.valueOfCodigo("1"));
+        Assert.assertNull(NFNotaInfoItemProdutoArmamentoTipo.valueOfCodigo("2"));
+    }
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {

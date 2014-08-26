@@ -33,84 +33,36 @@ public class NFProtocoloInfo extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    public NFProtocoloInfo() {
-        this.identificador = null;
-        this.ambiente = null;
-        this.versaoAplicacao = null;
-        this.chave = null;
-        this.dataRecebimento = null;
-        this.numeroProtocolo = null;
-        this.validador = null;
-        this.status = null;
-        this.motivo = null;
-    }
-
-    public String getIdentificador() {
-        return this.identificador;
-    }
-
     public void setIdentificador(final String identificador) {
         this.identificador = identificador;
-    }
-
-    public NFAmbiente getAmbiente() {
-        return this.ambiente;
     }
 
     public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
-    public String getVersaoAplicacao() {
-        return this.versaoAplicacao;
-    }
-
     public void setVersaoAplicacao(final String versaoAplicacao) {
         this.versaoAplicacao = versaoAplicacao;
-    }
-
-    public String getChave() {
-        return this.chave;
     }
 
     public void setChave(final String chave) {
         this.chave = chave;
     }
 
-    public LocalDateTime getDataRecebimento() {
-        return this.dataRecebimento;
-    }
-
     public void setDataRecebimento(final LocalDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
-    }
-
-    public String getNumeroProtocolo() {
-        return this.numeroProtocolo;
     }
 
     public void setNumeroProtocolo(final String numeroProtocolo) {
         this.numeroProtocolo = numeroProtocolo;
     }
 
-    public String getValidador() {
-        return this.validador;
-    }
-
     public void setValidador(final String validador) {
         this.validador = validador;
     }
 
-    public String getStatus() {
-        return this.status;
-    }
-
     public void setStatus(final String status) {
         this.status = status;
-    }
-
-    public String getMotivo() {
-        return this.motivo;
     }
 
     public void setMotivo(final String motivo) {

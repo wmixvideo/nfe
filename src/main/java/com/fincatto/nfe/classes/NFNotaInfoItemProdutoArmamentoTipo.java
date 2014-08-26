@@ -1,32 +1,25 @@
 package com.fincatto.nfe.classes;
 
 public enum NFNotaInfoItemProdutoArmamentoTipo {
-	
-	PERMITIDO("0", "Uso permitido"),
-	RESTRITO("1", "Uso restrito");
-	
-	private final String codigo;
-	private final String descricao;
-	
-	private NFNotaInfoItemProdutoArmamentoTipo(final String codigo, final String descricao) {
-		this.codigo = codigo;
-		this.descricao = descricao;
-	}
-	
-	public String getCodigo() {
-		return this.codigo;
-	}
-	
-	public String getDescricao() {
-		return this.descricao;
-	}
-	
-	public static NFNotaInfoItemProdutoArmamentoTipo valueOfCodigo(final String codigo) {
-		for (NFNotaInfoItemProdutoArmamentoTipo tipo : NFNotaInfoItemProdutoArmamentoTipo.values()) {
-			if (tipo.getCodigo().equals(codigo)) {
-				return tipo;
-			}
-		}
-		return null;
-	}
+    PERMITIDO("0"),
+    RESTRITO("1");
+
+    private final String codigo;
+
+    private NFNotaInfoItemProdutoArmamentoTipo(final String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
+    }
+
+    public static NFNotaInfoItemProdutoArmamentoTipo valueOfCodigo(final String codigo) {
+        for (final NFNotaInfoItemProdutoArmamentoTipo tipo : NFNotaInfoItemProdutoArmamentoTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

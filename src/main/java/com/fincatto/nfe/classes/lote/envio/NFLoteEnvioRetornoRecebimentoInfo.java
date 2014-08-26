@@ -17,16 +17,8 @@ public class NFLoteEnvioRetornoRecebimentoInfo extends NFBase {
         this.tempoMedio = null;
     }
 
-    public String getRecibo() {
-        return this.recibo;
-    }
-
     public void setRecibo(final String recibo) {
         this.recibo = recibo;
-    }
-
-    public String getTempoMedio() {
-        return this.tempoMedio;
     }
 
     public void setTempoMedio(final String tempoMedio) {

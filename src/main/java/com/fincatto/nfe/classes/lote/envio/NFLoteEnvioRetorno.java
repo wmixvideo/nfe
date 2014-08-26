@@ -36,75 +36,32 @@ public class NFLoteEnvioRetorno extends NFBase {
     @Element(name = "infRec", required = true)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
 
-    public NFLoteEnvioRetorno() {
-        this.versao = null;
-        this.ambiente = null;
-        this.versaoAplicacao = null;
-        this.status = null;
-        this.motivo = null;
-        this.uf = null;
-        this.dataRecebimento = null;
-        this.infoRecebimento = null;
-    }
-
-    public String getVersao() {
-        return this.versao;
-    }
-
     public void setVersao(final String versao) {
         this.versao = versao;
-    }
-
-    public NFAmbiente getAmbiente() {
-        return this.ambiente;
     }
 
     public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
-    public String getVersaoAplicacao() {
-        return this.versaoAplicacao;
-    }
-
     public void setVersaoAplicacao(final String versaoAplicacao) {
         this.versaoAplicacao = versaoAplicacao;
-    }
-
-    public String getStatus() {
-        return this.status;
     }
 
     public void setStatus(final String status) {
         this.status = status;
     }
 
-    public String getMotivo() {
-        return this.motivo;
-    }
-
     public void setMotivo(final String motivo) {
         this.motivo = motivo;
-    }
-
-    public NFUnidadeFederativa getUf() {
-        return this.uf;
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
-    public LocalDateTime getDataRecebimento() {
-        return this.dataRecebimento;
-    }
-
     public void setDataRecebimento(final LocalDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
-    }
-
-    public NFLoteEnvioRetornoRecebimentoInfo getInfoRecebimento() {
-        return this.infoRecebimento;
     }
 
     public void setInfoRecebimento(final NFLoteEnvioRetornoRecebimentoInfo infoRecebimento) {
