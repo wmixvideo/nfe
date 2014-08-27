@@ -212,6 +212,11 @@ public class StringValidador {
         StringValidador.exatamente6(string);
     }
 
+    public static void tamanho15N(final String string) {
+        StringValidador.apenasNumerico(string);
+        StringValidador.validaTamanhoMaximo(string, 15);
+    }
+
     public static void ncm(final String ncm) {
         final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
         if (!matcher.find()) {
@@ -239,7 +244,7 @@ public class StringValidador {
 
     private static void intervalo(final String string, final int inicio, final int fim) {
         if (string.length() < inicio || string.length() > fim) {
-            throw new IllegalStateException("Este campo deve possuir entre 8-9 caracteres");
+            throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre {0}-{1} caracteres", inicio, fim));
         }
     }
 }
