@@ -45,15 +45,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirChaveAcessoCTReferenciadaComTamanhoInvalido() {
-        try {
-            new NFInfoProdutorRuralReferenciada().setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9");
-        } catch (final IllegalStateException e) {
-            new NFInfoProdutorRuralReferenciada().setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L1");
-        }
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCNPJSetadoQuandoCPFEstaSetado() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setCpfEmitente("12345678901");
@@ -70,20 +61,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAnoMesEmissaoReferenciadaNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
-        referenciada.setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L");
-        referenciada.setCnpjEmitente("12345678901234");
-        referenciada.setIeEmitente("ISENTO");
-        referenciada.setModeloDocumentoFiscal("IE");
-        referenciada.setNumeroDocumentoFiscal(999999);
-        referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
-        referenciada.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirChaveAcessoCTReferenciadaNulo() {
-        final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
-        referenciada.setAnoMesEmissao("1402");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -97,7 +74,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void devePermitirCpfEmitenteNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -111,7 +87,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void devePermitirCnpjEmitenteNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCpfEmitente("12345678901");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -125,7 +100,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void naoDevePermitirIeEmitenteNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
@@ -138,7 +112,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void naoDevePermitirModeloDocumentoFiscalNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setNumeroDocumentoFiscal(999999);
@@ -151,7 +124,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void naoDevePermitirNumeroDocumentoFiscalNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -164,7 +136,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void naoDevePermitirSerieDocumentoFiscalNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -177,7 +148,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void naoDevePermitirUfEmitenteNulo() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("y6VaIDjj1UClKz2JxTEJy4YhXqA18sNF7T6HxQpnoJ9L");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -190,7 +160,6 @@ public class NFInfoProdutorRuralReferenciadaTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
-        referenciada.setChaveAcessoCTReferenciada("19506188293993666630760813709064781438945816");
         referenciada.setCnpjEmitente("12345678901234");
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
@@ -198,7 +167,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setSerieDocumentoFiscal(999);
         referenciada.setUfEmitente(NFUnidadeFederativa.SC);
 
-        final String xmlEsperado = "<NFInfoProdutorRuralReferenciada><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>19506188293993666630760813709064781438945816</refCTe></NFInfoProdutorRuralReferenciada>";
+        final String xmlEsperado = "<NFInfoProdutorRuralReferenciada><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF></NFInfoProdutorRuralReferenciada>";
         Assert.assertEquals(xmlEsperado, referenciada.toString());
     }
 }

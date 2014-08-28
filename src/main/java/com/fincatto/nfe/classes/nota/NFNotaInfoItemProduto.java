@@ -80,6 +80,9 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "nItemPed", required = false)
     private Integer numeroPedidoItemCliente;
 
+    @Element(name = "nFCI", required = false)
+    private String numeroControleFCI;
+
     @Element(name = "veicProd", required = false)
     private NFNotaInfoItemProdutoVeiculo veiculo;
 
@@ -173,7 +176,7 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.valorOutrasDespesasAcessorias = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias);
     }
 
-    public void setCompoeValotNota(final NFProdutoCompoeValorNota compoeValorNota) {
+    public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
         this.compoeValorNota = compoeValorNota;
     }
 
@@ -191,19 +194,36 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.numeroPedidoItemCliente = numeroPedidoItemCliente;
     }
 
+    public void setNumeroControleFCI(final String numeroControleFCI) {
+        StringValidador.fci(numeroControleFCI);
+        this.numeroControleFCI = numeroControleFCI;
+    }
+
     public void setVeiculo(final NFNotaInfoItemProdutoVeiculo veiculo) {
+        if (this.medicamentos != null || this.armamentos != null || this.combustivel != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        }
         this.veiculo = veiculo;
     }
 
     public void setMedicamentos(final List<NFNotaInfoItemProdutoMedicamento> medicamentos) {
+        if (this.veiculo != null || this.armamentos != null || this.combustivel != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        }
         this.medicamentos = medicamentos;
     }
 
     public void setArmamentos(final List<NFNotaInfoItemProdutoArmamento> armamentos) {
+        if (this.medicamentos != null || this.veiculo != null || this.combustivel != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        }
         this.armamentos = armamentos;
     }
 
     public void setCombustivel(final NFNotaInfoItemProdutoCombustivel combustivel) {
+        if (this.medicamentos != null || this.armamentos != null || this.veiculo != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        }
         this.combustivel = combustivel;
     }
 }

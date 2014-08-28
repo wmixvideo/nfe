@@ -13,7 +13,7 @@ public class TesteUtil {
 
     public static File[] getArquivosParaTestes(final File caminhoArquivos) throws Exception {
         if (!caminhoArquivos.exists() || !caminhoArquivos.isDirectory()) {
-            throw new Exception("Precisa criar o diretorio e adicionar os arquivos para validacao");
+            return new File[] {};
         }
         final Set<File> arquivos = new TreeSet<>();
         for (final File arquivo : caminhoArquivos.listFiles(TesteUtil.getFilter())) {

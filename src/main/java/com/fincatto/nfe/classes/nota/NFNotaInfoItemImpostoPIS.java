@@ -26,18 +26,30 @@ public class NFNotaInfoItemImpostoPIS extends NFBase {
     }
 
     public void setAliquota(final NFNotaInfoItemImpostoPISAliquota aliquota) {
+        if (this.quantidade != null || this.naoTributado != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributado e outras operacoes sao mutuamente exclusivos");
+        }
         this.aliquota = aliquota;
     }
 
     public void setQuantidade(final NFNotaInfoItemImpostoPISQuantidade quantidade) {
+        if (this.aliquota != null || this.naoTributado != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributado e outras operacoes sao mutuamente exclusivos");
+        }
         this.quantidade = quantidade;
     }
 
     public void setNaoTributado(final NFNotaInfoItemImpostoPISNaoTributado naoTributado) {
+        if (this.aliquota != null || this.quantidade != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributado e outras operacoes sao mutuamente exclusivos");
+        }
         this.naoTributado = naoTributado;
     }
 
     public void setOutrasOperacoes(final NFNotaInfoItemImpostoPISOutrasOperacoes outrasOperacoes) {
+        if (this.aliquota != null || this.quantidade != null || this.naoTributado != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributado e outras operacoes sao mutuamente exclusivos");
+        }
         this.outrasOperacoes = outrasOperacoes;
     }
 }

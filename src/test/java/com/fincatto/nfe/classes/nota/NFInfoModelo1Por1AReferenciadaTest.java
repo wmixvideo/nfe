@@ -40,8 +40,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
     public void naoDevePermitirAnoMesEmissaoNFeNulo() {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setSerie(999);
@@ -53,34 +51,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
     public void naoDevePermitirCnpjNulo() {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-        referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
-        referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
-        referenciada.toString();
-    }
-
-    @Test
-    public void devePermitirCupomFiscalReferenciadoNulo() {
-        final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
-        referenciada.setAnoMesEmissaoNFe("1408");
-        referenciada.setCnpj("12345678901234");
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-        referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
-        referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
-        referenciada.toString();
-    }
-
-    @Test
-    public void devePermitirInfoNFProdutorRuralReferenciadaNulo() {
-        final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
-        referenciada.setAnoMesEmissaoNFe("1408");
-        referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setSerie(999);
@@ -93,8 +63,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
@@ -106,8 +74,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
@@ -119,8 +85,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setUf(NFUnidadeFederativa.SC);
@@ -132,8 +96,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal(999999999);
         referenciada.setSerie(999);
@@ -142,7 +104,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFInfoModelo1Por1AReferenciada><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF><refNFP><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF><refCTe>19506188293993666630760813709064781438945816</refCTe></refNFP><refECF><mod>55</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></refECF></NFInfoModelo1Por1AReferenciada>";
+        final String xmlEsperado = "<NFInfoModelo1Por1AReferenciada><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></NFInfoModelo1Por1AReferenciada>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada().toString());
     }
 }

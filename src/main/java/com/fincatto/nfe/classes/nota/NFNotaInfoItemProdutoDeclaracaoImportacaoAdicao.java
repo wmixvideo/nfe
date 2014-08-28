@@ -14,7 +14,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
     @Element(name = "nAdicao", required = true)
     private Integer numero;
 
-    @Element(name = "nSeqAdicC", required = true)
+    @Element(name = "nSeqAdic", required = true)
     private Integer sequencial;
 
     @Element(name = "cFabricante", required = true)

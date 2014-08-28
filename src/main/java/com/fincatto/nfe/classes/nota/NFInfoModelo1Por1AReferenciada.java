@@ -26,12 +26,6 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     @Element(name = "nNF", required = false)
     private Integer numeroDocumentoFiscal;
 
-    @Element(name = "refNFP", required = false)
-    private NFInfoProdutorRuralReferenciada infoNFProdutorRuralReferenciada;
-
-    @Element(name = "refECF", required = false)
-    private NFInfoCupomFiscalReferenciado cupomFiscalReferenciado;
-
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
@@ -59,13 +53,5 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
         IntegerValidador.tamanho9(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
-    }
-
-    public void setInfoNFProdutorRuralReferenciada(final NFInfoProdutorRuralReferenciada infoNFProdutorRuralReferenciada) {
-        this.infoNFProdutorRuralReferenciada = infoNFProdutorRuralReferenciada;
-    }
-
-    public void setCupomFiscalReferenciado(final NFInfoCupomFiscalReferenciado cupomFiscalReferenciado) {
-        this.cupomFiscalReferenciado = cupomFiscalReferenciado;
     }
 }

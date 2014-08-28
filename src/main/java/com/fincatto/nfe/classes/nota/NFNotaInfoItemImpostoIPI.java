@@ -67,10 +67,16 @@ public class NFNotaInfoItemImpostoIPI extends NFBase {
     }
 
     public void setTributado(final NFNotaInfoItemImpostoIPITributado tributado) {
+        if (this.naoTributado != null) {
+            throw new IllegalStateException("IPI tributado e nao tributado sao mutuamente exclusivos");
+        }
         this.tributado = tributado;
     }
 
     public void setNaoTributado(final NFNotaInfoItemImpostoIPINaoTributado naoTributado) {
+        if (this.tributado != null) {
+            throw new IllegalStateException("IPI tributado e nao tributado sao mutuamente exclusivos");
+        }
         this.naoTributado = naoTributado;
     }
 }
