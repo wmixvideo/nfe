@@ -8,44 +8,92 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 public class NFNotaInfoItemImpostoCOFINSTest {
 
     @Test
-    public void devePermitirQuantidadeNulo() {
+    public void devePermitirApenasUmQuantidade() {
         final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
-        cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
-        cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
-        cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
-        cofins.toString();
+        cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
+        try {
+            cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void devePermitirOutrasOperacoesNulo() {
+    public void devePermitirApenasUmAliquota() {
         final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
         cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
-        cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
-        cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
-        cofins.toString();
+        try {
+            cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void devePermitirNaoTributavelNulo() {
+    public void devePermitirApenasUmNaoTributavel() {
         final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
-        cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
-        cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
-        cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
-        cofins.toString();
+        cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
+        try {
+            cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void devePermitirAliquotaNulo() {
+    public void devePermitirApenasUmOutrasOperacoes() {
         final NFNotaInfoItemImpostoCOFINS cofins = new NFNotaInfoItemImpostoCOFINS();
         cofins.setNaoTributavel(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSNaoTributavel());
-        cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
-        cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
-        cofins.toString();
+        try {
+            cofins.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            cofins.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINS><COFINSAliq><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></COFINSAliq><COFINSQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSQtde><COFINSNT><CST>04</CST></COFINSNT><COFINSOutr><CST>49</CST><vBC>999999999999.00</vBC><pCOFINS>99.99</pCOFINS><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.0000</vAliqProd><vCOFINS>999999999999.00</vCOFINS></COFINSOutr></NFNotaInfoItemImpostoCOFINS>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINS><COFINSAliq><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></COFINSAliq></NFNotaInfoItemImpostoCOFINS>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS().toString());
     }
 }

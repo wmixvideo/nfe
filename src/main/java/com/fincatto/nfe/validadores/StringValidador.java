@@ -217,6 +217,14 @@ public class StringValidador {
         StringValidador.validaTamanhoMaximo(string, 15);
     }
 
+    public static void fci(final String numeroControleFCI) {
+        final Matcher matcher = Pattern.compile("^([A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12})$").matcher(numeroControleFCI);
+        if (!matcher.find()) {
+            throw new IllegalStateException("FCI fora do padrao");
+        }
+
+    }
+
     public static void ncm(final String ncm) {
         final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
         if (!matcher.find()) {

@@ -18,26 +18,31 @@ public class NFNotaInfoItemImpostoCOFINS extends NFBase {
     @Element(name = "COFINSOutr", required = false)
     private NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes;
 
-    public NFNotaInfoItemImpostoCOFINS() {
-        this.aliquota = null;
-        this.quantidade = null;
-        this.naoTributavel = null;
-        this.outrasOperacoes = null;
-    }
-
     public void setAliquota(final NFNotaInfoItemImpostoCOFINSAliquota aliquota) {
+        if (this.quantidade != null || this.naoTributavel != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributavel e outras operacoes sao mutuamente exclusivos");
+        }
         this.aliquota = aliquota;
     }
 
     public void setQuantidade(final NFNotaInfoItemImpostoCOFINSQuantidade quantidade) {
+        if (this.aliquota != null || this.naoTributavel != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributavel e outras operacoes sao mutuamente exclusivos");
+        }
         this.quantidade = quantidade;
     }
 
     public void setNaoTributavel(final NFNotaInfoItemImpostoCOFINSNaoTributavel naoTributavel) {
+        if (this.quantidade != null || this.aliquota != null || this.outrasOperacoes != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributavel e outras operacoes sao mutuamente exclusivos");
+        }
         this.naoTributavel = naoTributavel;
     }
 
     public void setOutrasOperacoes(final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes) {
+        if (this.quantidade != null || this.naoTributavel != null || this.aliquota != null) {
+            throw new IllegalStateException("Aliquota, quantidade, nao tributavel e outras operacoes sao mutuamente exclusivos");
+        }
         this.outrasOperacoes = outrasOperacoes;
     }
 }

@@ -12,14 +12,14 @@ public class NFNotaInfoItem extends NFBase {
     @Attribute(name = "nItem", required = true)
     private Integer numeroItem;
 
-    @Element(name = "infAdProd", required = false)
-    private String informacoesAdicionais;
-
     @Element(name = "prod", required = true)
     private NFNotaInfoItemProduto produto;
 
     @Element(name = "imposto", required = true)
     private NFNotaInfoItemImposto imposto;
+
+    @Element(name = "infAdProd", required = false)
+    private String informacoesAdicionais;
 
     public void setNumeroItem(final Integer numeroItem) {
         IntegerValidador.tamanho3maximo990(numeroItem);

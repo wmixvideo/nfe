@@ -725,8 +725,7 @@ de recepção da NF-e indicada pelo destinatário (v2.0)</xs:documentation>
 											<xs:sequence>
 												<xs:element name="cProd">
 													<xs:annotation>
-														<xs:documentation>Código do produto ou serviço. Preencher com CFOP caso se trate de itens não relacionados com mercadorias/produto e que o contribuinte não possua codificação própria
-Formato ”CFOP9999”.</xs:documentation>
+														<xs:documentation>Código do produto ou serviço. Preencher com CFOP caso se trate de itens não relacionados com mercadorias/produto e que o contribuinte não possua codificação própria Formato ”CFOP9999”.</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="TString">
@@ -864,11 +863,7 @@ Formato ”CFOP9999”.</xs:documentation>
 												</xs:element>
 												<xs:element name="indTot">
 													<xs:annotation>
-														<xs:documentation>Este campo deverá ser preenchido com:
- 0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd)
- 1  – o valor do item (vProd) compõe o valor total da NF-e (vProd)
-(v2.0)
-</xs:documentation>
+														<xs:documentation>Este campo deverá ser preenchido com: 0 – o valor do item (vProd) não compõe o valor total da NF-e (vProd) 1  – o valor do item (rod) compõe o valor total da NF-e (vProd) (v2.0)</xs:documentation>
 													</xs:annotation>
 													<xs:simpleType>
 														<xs:restriction base="xs:string">
@@ -880,8 +875,7 @@ Formato ”CFOP9999”.</xs:documentation>
 												</xs:element>
 												<xs:element name="DI" minOccurs="0" maxOccurs="100">
 													<xs:annotation>
-														<xs:documentation>Delcaração de Importação
-(NT 2011/004)</xs:documentation>
+														<xs:documentation>Delcaração de Importação(NT 2011/004)</xs:documentation>
 													</xs:annotation>
 													<xs:complexType>
 														<xs:sequence>
@@ -950,7 +944,7 @@ Formato ”CFOP9999”.</xs:documentation>
 																				</xs:restriction>
 																			</xs:simpleType>
 																		</xs:element>
-																		<xs:element name="nSeqAdicC">
+																		<xs:element name="nSeqAdic">
 																			<xs:annotation>
 																				<xs:documentation>Número seqüencial do item dentro da Adição</xs:documentation>
 																			</xs:annotation>
@@ -1124,17 +1118,6 @@ Formato ”CFOP9999”.</xs:documentation>
 																	</xs:simpleType>
 																</xs:element>
 																<xs:element name="tpComb">
-																	<xs:annotation>
-																		<xs:documentation>Tipo de combustível - Utilizar Tabela RENAVAM (v2.0)
-01-Álcool
-02-Gasolina
-03-Diesel
-(...)
-16-Álcool/Gasolina
-17-Gasolina/Álcool/GNV
-18-Gasolina/Elétrico
-</xs:documentation>
-																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="TString">
 																			<xs:minLength value="1"/>
@@ -1231,9 +1214,7 @@ Formato ”CFOP9999”.</xs:documentation>
 																</xs:element>
 																<xs:element name="VIN">
 																	<xs:annotation>
-																		<xs:documentation>Informa-se o veículo tem VIN (chassi) remarcado.
-R-Remarcado
-N-NormalVIN </xs:documentation>
+																		<xs:documentation>Informa-se o veículo tem VIN (chassi) remarcado.R-Remarcado N-NormalVIN </xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="TString">
@@ -1269,24 +1250,6 @@ N-NormalVIN </xs:documentation>
 																</xs:element>
 																<xs:element name="cCorDENATRAN">
 																	<xs:annotation>
-																		<xs:documentation>Código da Cor Segundo as regras de pré-cadastro do DENATRAN (v2.0)
-01-AMARELO
-02-AZUL
-03-BEGE
-04-BRANCA
-05-CINZA
-06-DOURADA
-07-GRENA
-08-LARANJA
-09-MARROM
-10-PRATA
-11-PRETA
-12-ROSA
-13-ROXA
-14-VERDE
-15-VERMELHA
-16-FANTASIA
-</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">
@@ -1312,13 +1275,6 @@ N-NormalVIN </xs:documentation>
 																</xs:element>
 																<xs:element name="tpRest">
 																	<xs:annotation>
-																		<xs:documentation>Restrição
-0 - Não há;
-1 - Alienação Fiduciária;
-2 - Arrendamento Mercantil;
-3 - Reserva de Domínio;
-4 - Penhor de Veículos;
-9 - outras. (v2.0)</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">

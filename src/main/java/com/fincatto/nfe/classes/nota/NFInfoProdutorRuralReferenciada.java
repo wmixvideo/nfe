@@ -32,9 +32,6 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     @Element(name = "nNF", required = true)
     private Integer numeroDocumentoFiscal;
 
-    @Element(name = "refCTe", required = true)
-    private String chaveAcessoCTReferenciada;
-
     public void setUfEmitente(final NFUnidadeFederativa ufEmitente) {
         this.ufEmitente = ufEmitente;
     }
@@ -78,10 +75,5 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
         IntegerValidador.tamanho6(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
-    }
-
-    public void setChaveAcessoCTReferenciada(final String chaveAcessoCTReferenciada) {
-        StringValidador.exatamente44N(chaveAcessoCTReferenciada);
-        this.chaveAcessoCTReferenciada = chaveAcessoCTReferenciada;
     }
 }

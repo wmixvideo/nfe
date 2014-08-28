@@ -9,6 +9,9 @@ import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImposto extends NFBase {
 
+    @Element(name = "vTotTrib", required = false)
+    private String valorTotalTributos;
+
     @Element(name = "ICMS", required = false)
     private NFNotaInfoItemImpostoICMS icms;
 
@@ -32,9 +35,6 @@ public class NFNotaInfoItemImposto extends NFBase {
 
     @Element(name = "COFINSST", required = false)
     private NFNotaInfoItemImpostoCOFINSST cofinsst;
-
-    @Element(name = "vTotTrib", required = false)
-    private String valorTotalTributos;
 
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
         if (this.issqn != null) {

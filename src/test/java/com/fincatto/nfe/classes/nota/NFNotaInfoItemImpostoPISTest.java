@@ -8,44 +8,96 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 public class NFNotaInfoItemImpostoPISTest {
 
     @Test
-    public void devePermitirAliquotaNulo() {
+    public void devePermitirApenasUmAliquota() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
-        pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-        pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-        pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-        pis.toString();
+        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+
+        try {
+            pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void devePermitirNaoTributadoNulo() {
+    public void devePermitirApenasUmNaoTributado() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
-        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-        pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-        pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-        pis.toString();
+        pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
+
+        try {
+            pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void devePermitirOutrasOperacoesNulo() {
+    public void devePermitirApenasUmOutrasOperacoes() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
-        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-        pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-        pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-        pis.toString();
+        pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
+
+        try {
+            pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
-    public void evePermitirQuantidadeNulo() {
+    public void devePermitirApenasUmQuantidade() {
         final NFNotaInfoItemImpostoPIS pis = new NFNotaInfoItemImpostoPIS();
-        pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-        pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-        pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-        pis.toString();
+        pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
+
+        try {
+            pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
+        try {
+            pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
+            Assert.fail("Validacao nao funcionou");
+        } catch (final IllegalStateException e) {
+        }
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq><PISQtde><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISQtde><PISNT><CST>04</CST></PISNT><PISOutr><CST>49</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISOutr></NFNotaInfoItemImpostoPIS>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq></NFNotaInfoItemImpostoPIS>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS().toString());
     }
 }
