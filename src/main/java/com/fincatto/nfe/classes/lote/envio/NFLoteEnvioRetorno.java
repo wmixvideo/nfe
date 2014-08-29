@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.lote.envio;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.classes.NFAmbiente;
@@ -10,6 +11,7 @@ import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 @Root(name = "retEnviNFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteEnvioRetorno extends NFBase {
 
     @Attribute(name = "versao", required = true)
@@ -33,7 +35,7 @@ public class NFLoteEnvioRetorno extends NFBase {
     @Element(name = "dhRecbto", required = true)
     private LocalDateTime dataRecebimento;
 
-    @Element(name = "infRec", required = true)
+    @Element(name = "infRec", required = false)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
 
     public void setVersao(final String versao) {
@@ -62,6 +64,10 @@ public class NFLoteEnvioRetorno extends NFBase {
 
     public void setDataRecebimento(final LocalDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
+    }
+
+    public NFLoteEnvioRetornoRecebimentoInfo getInfoRecebimento() {
+        return this.infoRecebimento;
     }
 
     public void setInfoRecebimento(final NFLoteEnvioRetornoRecebimentoInfo infoRecebimento) {

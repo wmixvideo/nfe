@@ -17,6 +17,19 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- Axis2 -->
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-transport-http</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-kernel</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
 		<!-- Simple Xml Framework -->
 		<dependency>
 			<groupId>org.simpleframework</groupId>
