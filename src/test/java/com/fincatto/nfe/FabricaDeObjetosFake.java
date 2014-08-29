@@ -1,10 +1,9 @@
 package com.fincatto.nfe;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -127,8 +126,28 @@ public class FabricaDeObjetosFake {
             }
 
             @Override
-            public InputStream getCertificado() throws IOException {
-                return new ByteArrayInputStream(new byte[] {});
+            public File getCertificado() {
+                return null;
+            }
+
+            @Override
+            public File getCadeiaCertificados() {
+                return null;
+            }
+
+            @Override
+            public URL getWsdl() {
+                return null;
+            }
+
+            @Override
+            public NFUnidadeFederativa getCUF() {
+                return null;
+            }
+
+            @Override
+            public NFAmbiente getAmbiente() {
+                return null;
             }
         };
     }

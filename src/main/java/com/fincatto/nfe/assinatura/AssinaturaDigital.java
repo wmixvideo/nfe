@@ -1,6 +1,7 @@
 package com.fincatto.nfe.assinatura;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -77,7 +78,7 @@ public class AssinaturaDigital {
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
         final KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        try (InputStream certificadoStream = this.config.getCertificado()) {
+        try (InputStream certificadoStream = new FileInputStream(this.config.getCertificado())) {
             keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
         }
 
