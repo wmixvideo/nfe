@@ -42,46 +42,6 @@
 			<systemPath>${project.basedir}/lib/axiom-impl-1.2.10.jar</systemPath>
 		</dependency>
 
-		<!-- <dependency>
-		      <groupId>axis2-adb</groupId>
-		       <artifactId>axis2-adb</artifactId>
-		       <version>1.5.3</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axis2-adb-1.5.3.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axis2-kernel</groupId>
-		       <artifactId>axis2-kernel</artifactId>
-		       <version>1.5.3</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axis2-kernel-1.5.3.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axis2-kernel1</groupId>
-		       <artifactId>axis2-kernel1</artifactId>
-		       <version>1.5.3</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axis2-kernel-1.5.3_1.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axis2-transport-http</groupId>
-		       <artifactId>axis2-transport-http</artifactId>
-		       <version>1.5.3</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axis2-transport-http-1.5.3.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axis2-transport-local</groupId>
-		       <artifactId>axis2-transport-local</artifactId>
-		       <version>1.5.3</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axis2-transport-local-1.5.3.jar</systemPath>
-		</dependency> -->
-
 		<dependency>
 		      <groupId>nfeWs</groupId>
 		       <artifactId>nfeWs</artifactId>
