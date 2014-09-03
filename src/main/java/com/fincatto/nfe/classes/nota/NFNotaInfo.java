@@ -76,6 +76,10 @@ public class NFNotaInfo extends NFBase {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
     }
 
+    public NFNotaInfoIdentificacao getIdentificacao() {
+        return this.identificacao;
+    }
+
     public void setIdentificacao(final NFNotaInfoIdentificacao identificacao) {
         this.identificacao = identificacao;
     }
@@ -86,6 +90,10 @@ public class NFNotaInfo extends NFBase {
 
     public void setAvulsa(final NFNotaInfoAvulsa avulsa) {
         this.avulsa = avulsa;
+    }
+
+    public NFNotaInfoDestinatario getDestinatario() {
+        return this.destinatario;
     }
 
     public void setDestinatario(final NFNotaInfoDestinatario destinatario) {
