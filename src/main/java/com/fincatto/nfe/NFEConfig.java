@@ -1,7 +1,6 @@
 package com.fincatto.nfe;
 
 import java.io.File;
-import java.net.URL;
 
 import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFTipoEmissao;
@@ -20,8 +19,6 @@ public interface NFEConfig {
     public File getCadeiaCertificados();
 
     public String getCertificadoSenha();
-
-    public URL getWsdl();
 
     public NFUnidadeFederativa getCUF();
 
