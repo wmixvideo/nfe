@@ -25,8 +25,8 @@ public class WSFacade {
         this.wsStatusConsulta = new WSStatusConsulta(config);
     }
 
-    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
-        return this.wsLoteEnvio.enviaLote(lote);
+    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFUnidadeFederativa uf) throws Exception {
+        return this.wsLoteEnvio.enviaLote(lote, uf);
     }
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {

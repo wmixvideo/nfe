@@ -9,7 +9,7 @@ import org.apache.axis2.client.Stub;
 /*
  * NfeRecepcao2Stub java implementation
  */
-
+@SuppressWarnings({ "rawtypes", "unchecked", "serial", "unused", "deprecation" })
 public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 

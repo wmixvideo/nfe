@@ -3,7 +3,6 @@ package com.fincatto.nfe;
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -132,11 +131,6 @@ public class FabricaDeObjetosFake {
 
             @Override
             public File getCadeiaCertificados() {
-                return null;
-            }
-
-            @Override
-            public URL getWsdl() {
                 return null;
             }
 

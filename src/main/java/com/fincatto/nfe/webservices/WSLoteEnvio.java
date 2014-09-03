@@ -11,6 +11,8 @@ import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
+import com.fincatto.nfe.classes.NFAutorizador;
+import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
@@ -30,7 +32,7 @@ class WSLoteEnvio {
         this.config = config;
     }
 
-    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFUnidadeFederativa uf) throws Exception {
         final String xml = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
         final OMElement omElement = this.nfeToOMElement(xml);
 
@@ -40,7 +42,7 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
         this.log.debug(omElement);
-        final NfeRecepcaoLote2Result nfeRecepcaoLote2 = new NfeRecepcao2Stub(this.config.getWsdl().toString()).nfeRecepcaoLote2(dados, cabecalhoSOAP);
+        final NfeRecepcaoLote2Result nfeRecepcaoLote2 = new NfeRecepcao2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeRecepcao(this.config.getAmbiente())).nfeRecepcaoLote2(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, nfeRecepcaoLote2.getExtraElement().toString());
         this.log.debug(loteEnvioRetorno.toString());
