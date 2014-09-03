@@ -9,14 +9,13 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import br.inf.portalfiscal.www.nfe.wsdl.nfestatusservico2.NfeStatusServico2Stub;
-
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.classes.NFAutorizador;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
+import com.fincatto.nfe.webservices.statusservico.consulta.NfeStatusServico2Stub;
 
 class WSStatusConsulta {
 

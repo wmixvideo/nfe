@@ -10,15 +10,14 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetRecepcao2Stub;
-import br.inf.portalfiscal.www.nfe.wsdl.nferetrecepcao2.NfeRetRecepcao2Stub.NfeRetRecepcao2Result;
-
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.classes.NFAutorizador;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
+import com.fincatto.nfe.webservices.lote.consulta.NfeRetRecepcao2Stub;
+import com.fincatto.nfe.webservices.lote.consulta.NfeRetRecepcao2Stub.NfeRetRecepcao2Result;
 
 class WSLoteConsulta {
 

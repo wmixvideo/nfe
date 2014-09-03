@@ -176,7 +176,7 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.valorOutrasDespesasAcessorias = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias);
     }
 
-    public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
+    public void setCampoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
         this.compoeValorNota = compoeValorNota;
     }
 

@@ -2,7 +2,6 @@ package com.fincatto.nfe.classes;
 
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFEndereco extends NFBase {
@@ -20,7 +19,7 @@ public class NFEndereco extends NFBase {
     private String bairro;
 
     @Element(name = "cMun", required = true)
-    private Integer codigoMunicipio;
+    private String codigoMunicipio;
 
     @Element(name = "xMun", required = true)
     private String descricaoMunicipio;
@@ -32,7 +31,7 @@ public class NFEndereco extends NFBase {
     private String cep;
 
     @Element(name = "cPais", required = false)
-    private Integer codigoPais;
+    private String codigoPais;
 
     @Element(name = "xPais", required = false)
     private String descricaoPais;
@@ -60,8 +59,8 @@ public class NFEndereco extends NFBase {
         this.bairro = bairro;
     }
 
-    public void setCodigoMunicipio(final Integer codigoMunicipio) {
-        IntegerValidador.exatamente7(codigoMunicipio);
+    public void setCodigoMunicipio(final String codigoMunicipio) {
+        StringValidador.exatamente7(codigoMunicipio);
         this.codigoMunicipio = codigoMunicipio;
     }
 
@@ -79,8 +78,8 @@ public class NFEndereco extends NFBase {
         this.cep = cep;
     }
 
-    public void setCodigoPais(final Integer codigoPais) {
-        IntegerValidador.tamanho2a4(codigoPais);
+    public void setCodigoPais(final String codigoPais) {
+        StringValidador.tamanho2a4(codigoPais);
         this.codigoPais = codigoPais;
     }
 

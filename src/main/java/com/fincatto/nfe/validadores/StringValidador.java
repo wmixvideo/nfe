@@ -41,194 +41,287 @@ public class StringValidador {
     }
 
     public static void tamanho256(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 256);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 256);
+        }
     }
 
     public static void tamanho9(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 9);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 9);
+        }
     }
 
     public static void tamanho60(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 60);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 60);
+        }
     }
 
     public static void tamanho22(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 22);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 22);
+        }
     }
 
     public static void tamanho21(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 21);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 21);
+        }
     }
 
     public static void tamanho20(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 20);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 20);
+        }
     }
 
     public static void tamanho2000(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 2000);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 2000);
+        }
     }
 
     public static void tamanho5000(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 5000);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 5000);
+        }
     }
 
     public static void tamanho40(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 40);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 40);
+        }
     }
 
     public static void placaDeVeiculo(final String placaVeiculo) {
-        final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3})$").matcher(placaVeiculo);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Nao esta no padrao");
+        if (placaVeiculo != null) {
+            final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3})$").matcher(placaVeiculo);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Nao esta no padrao");
+            }
         }
     }
 
     public static void cnpj(final String cnpj) {
-        final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Formato CNPJ Invalido");
+        if (cnpj != null) {
+            final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Formato CNPJ Invalido");
+            }
         }
     }
 
     public static void cpf(final String cpf) {
-        final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Formato CPF Invalido");
+        if (cpf != null) {
+            final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Formato CPF Invalido");
+            }
         }
     }
 
     public static void inscricaoEstadual(final String inscricaoEstadual) {
-        final Matcher matcher = Pattern.compile("^(ISENTO|[0-9]{2,14}|)$").matcher(inscricaoEstadual);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Inscricao estadual invalido");
+        if (inscricaoEstadual != null) {
+            final Matcher matcher = Pattern.compile("^(ISENTO|[0-9]{2,14}|)$").matcher(inscricaoEstadual);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Inscricao estadual invalido");
+            }
         }
     }
 
     public static void inscricaoEstadualSemIsencao(final String inscricaoEstadual) {
-        final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Inscricao estadual invalido");
+        if (inscricaoEstadual != null) {
+            final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Inscricao estadual invalido");
+            }
         }
     }
 
     public static void exatamente3(final String string) {
-        StringValidador.validaTamanhoExato(string, 3);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 3);
+        }
     }
 
     public static void exatamente5(final String string) {
-        StringValidador.validaTamanhoExato(string, 5);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 5);
+        }
     }
 
     public static void exatamente9(final String string) {
-        StringValidador.validaTamanhoExato(string, 9);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 9);
+        }
     }
 
     public static void exatamente17(final String string) {
-        StringValidador.validaTamanhoExato(string, 17);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 17);
+        }
     }
 
     public static void exatamente4(final String string) {
-        StringValidador.validaTamanhoExato(string, 4);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 4);
+        }
     }
 
     public static void exatamente6(final String string) {
-        StringValidador.validaTamanhoExato(string, 6);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 6);
+        }
     }
 
     public static void exatamente21(final String string) {
-        StringValidador.validaTamanhoExato(string, 21);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 21);
+        }
     }
 
     public static void exatamente1(final String string) {
-        StringValidador.validaTamanhoExato(string, 1);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 1);
+        }
     }
 
     public static void tamanho15(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 15);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 15);
+        }
     }
 
     public static void tamanho12(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 12);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 12);
+        }
     }
 
     public static void tamanho120(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 120);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 120);
+        }
     }
 
     public static void tamanho6(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 6);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 6);
+        }
     }
 
     public static void tamanho500(final String string) {
-        StringValidador.validaTamanhoMaximo(string, 500);
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 500);
+        }
+    }
+
+    public static void tamanho3(final String string) {
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 3);
+        }
     }
 
     public static void exatamente7(final String string) {
-        StringValidador.validaTamanhoExato(string, 7);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 7);
+        }
     }
 
     public static void exatamente8(final String string) {
-        StringValidador.validaTamanhoExato(string, 8);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 8);
+        }
     }
 
     public static void exatamente2(final String string) {
-        StringValidador.validaTamanhoExato(string, 2);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 2);
+        }
     }
 
     public static void tamanho8a9(final String string) {
-        StringValidador.intervalo(string, 8, 9);
+        if (string != null) {
+            StringValidador.intervalo(string, 8, 9);
+        }
     }
 
     public static void tamanho15a256(final String string) {
-        StringValidador.intervalo(string, 15, 256);
+        if (string != null) {
+            StringValidador.intervalo(string, 15, 256);
+        }
+    }
+
+    public static void tamanho2a4(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 2, 4);
+        }
     }
 
     public static void tamanho8a9N(final String string) {
-        StringValidador.intervalo(string, 8, 9);
-        StringValidador.apenasNumerico(string);
+        if (string != null) {
+            StringValidador.intervalo(string, 8, 9);
+            StringValidador.apenasNumerico(string);
+        }
     }
 
     public static void exatamente44(final String string) {
-        StringValidador.validaTamanhoExato(string, 44);
+        if (string != null) {
+            StringValidador.validaTamanhoExato(string, 44);
+        }
     }
 
     public static void exatamente7N(final String string) {
-        StringValidador.apenasNumerico(string);
-        StringValidador.exatamente7(string);
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.exatamente7(string);
+        }
     }
 
     public static void exatamente44N(final String string) {
-        StringValidador.apenasNumerico(string);
-        StringValidador.exatamente44(string);
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.exatamente44(string);
+        }
     }
 
     public static void exatamente4N(final String string) {
-        StringValidador.apenasNumerico(string);
-        StringValidador.exatamente4(string);
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.exatamente4(string);
+        }
     }
 
     public static void exatamente6N(final String string) {
-        StringValidador.apenasNumerico(string);
-        StringValidador.exatamente6(string);
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.exatamente6(string);
+        }
     }
 
     public static void tamanho15N(final String string) {
-        StringValidador.apenasNumerico(string);
-        StringValidador.validaTamanhoMaximo(string, 15);
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.validaTamanhoMaximo(string, 15);
+        }
     }
 
     public static void fci(final String numeroControleFCI) {
-        final Matcher matcher = Pattern.compile("^([A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12})$").matcher(numeroControleFCI);
-        if (!matcher.find()) {
-            throw new IllegalStateException("FCI fora do padrao");
+        if (numeroControleFCI != null) {
+            final Matcher matcher = Pattern.compile("^([A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12})$").matcher(numeroControleFCI);
+            if (!matcher.find()) {
+                throw new IllegalStateException("FCI fora do padrao");
+            }
         }
-
     }
 
     public static void ncm(final String ncm) {
-        final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
-        if (!matcher.find()) {
-            throw new IllegalStateException("NCM fora do padrao");
+        if (ncm != null) {
+            final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
+            if (!matcher.find()) {
+                throw new IllegalStateException("NCM fora do padrao");
+            }
         }
     }
 
@@ -255,4 +348,5 @@ public class StringValidador {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre {0}-{1} caracteres", inicio, fim));
         }
     }
+
 }

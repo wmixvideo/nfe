@@ -18,38 +18,6 @@
 
 	<dependencies>
 
-		<dependency>
-		      <groupId>axiom-api</groupId>
-		       <artifactId>axiom-api</artifactId>
-		       <version>1.2.10</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axiom-api-1.2.10.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axiom-dom</groupId>
-		       <artifactId>axiom-dom</artifactId>
-		       <version>1.2.10</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axiom-dom-1.2.10.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>axiom-impl</groupId>
-		       <artifactId>axiom-impl</artifactId>
-		       <version>1.2.10</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/axiom-impl-1.2.10.jar</systemPath>
-		</dependency>
-
-		<dependency>
-		      <groupId>nfeWs</groupId>
-		       <artifactId>nfeWs</artifactId>
-		       <version>0.0.1</version>
-		      <scope>system</scope>
-			<systemPath>${project.basedir}/lib/nfeWs.jar</systemPath>
-		</dependency>
-
 		<!-- Simple Xml Framework -->
 		<dependency>
 			<groupId>org.simpleframework</groupId>
@@ -209,7 +177,6 @@
 					<xmlOutput>true</xmlOutput>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
