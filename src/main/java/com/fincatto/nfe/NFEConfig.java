@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 
 import com.fincatto.nfe.classes.NFAmbiente;
+import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 public interface NFEConfig {
@@ -23,4 +24,6 @@ public interface NFEConfig {
     public URL getWsdl();
 
     public NFUnidadeFederativa getCUF();
+
+    public NFTipoEmissao getTipoEmissao();
 }

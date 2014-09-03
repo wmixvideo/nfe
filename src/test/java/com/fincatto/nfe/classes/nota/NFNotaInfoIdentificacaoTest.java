@@ -60,12 +60,12 @@ public class NFNotaInfoIdentificacaoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSerieComTamanhoInvalido() {
-        new NFNotaInfoIdentificacao().setSerie(1000);
+        new NFNotaInfoIdentificacao().setSerie("1000");
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroNotaComTamanhoInvalido() {
-        new NFNotaInfoIdentificacao().setNumeroNota(1000000000);
+        new NFNotaInfoIdentificacao().setNumeroNota("1000000000");
     }
 
     @Test(expected = IllegalStateException.class)
@@ -122,10 +122,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -149,10 +149,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -176,10 +176,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -203,10 +203,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -230,10 +230,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -257,10 +257,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -284,10 +284,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -311,10 +311,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -338,10 +338,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -365,10 +365,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -392,10 +392,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -422,7 +422,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -447,9 +447,9 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -474,9 +474,9 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -501,7 +501,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setTipo(NFTipo.ENTRADA);
@@ -528,10 +528,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
@@ -555,10 +555,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
@@ -582,10 +582,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setUf(NFUnidadeFederativa.SC);
@@ -609,10 +609,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -636,10 +636,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -663,10 +663,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -690,10 +690,10 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("AA");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);

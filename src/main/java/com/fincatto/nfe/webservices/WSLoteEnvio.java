@@ -9,17 +9,16 @@ import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 
-import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NfeRecepcao2Stub;
-import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NfeRecepcao2Stub.NfeCabecMsg;
-import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NfeRecepcao2Stub.NfeCabecMsgE;
-import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NfeRecepcao2Stub.NfeDadosMsg;
-import br.inf.portalfiscal.www.nfe.wsdl.nferecepcao2.NfeRecepcao2Stub.NfeRecepcaoLote2Result;
-
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
+import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub;
+import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeCabecMsg;
+import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeCabecMsgE;
+import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeDadosMsg;
+import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeRecepcaoLote2Result;
 
 class WSLoteEnvio {
 

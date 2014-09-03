@@ -39,10 +39,10 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String modelo;
 
     @Element(name = "serie", required = true)
-    private Integer serie;
+    private String serie;
 
     @Element(name = "nNF", required = true)
-    private Integer numeroNota;
+    private String numeroNota;
 
     @Element(name = "dEmi", required = true)
     private LocalDate dataEmissao;
@@ -112,13 +112,13 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.modelo = modelo;
     }
 
-    public void setSerie(final Integer serie) {
-        IntegerValidador.tamanho3(serie);
+    public void setSerie(final String serie) {
+        StringValidador.tamanho3(serie);
         this.serie = serie;
     }
 
-    public void setNumeroNota(final Integer numeroNota) {
-        IntegerValidador.tamanho9(numeroNota);
+    public void setNumeroNota(final String numeroNota) {
+        StringValidador.tamanho9(numeroNota);
         this.numeroNota = numeroNota;
     }
 

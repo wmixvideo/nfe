@@ -149,6 +149,11 @@ public class FabricaDeObjetosFake {
             public NFAmbiente getAmbiente() {
                 return null;
             }
+
+            @Override
+            public NFTipoEmissao getTipoEmissao() {
+                return null;
+            }
         };
     }
 
@@ -207,10 +212,10 @@ public class FabricaDeObjetosFake {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("55");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(referenciada));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -229,7 +234,7 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produtoMedicamento.setCodigoDeBarras("36811963532505");
         produtoMedicamento.setCodigoDeBarrasTributavel("36811963532505");
-        produtoMedicamento.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
+        produtoMedicamento.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produtoMedicamento.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produtoMedicamento.setExtipi(999);
@@ -365,10 +370,10 @@ public class FabricaDeObjetosFake {
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
         identificacao.setModelo("55");
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
-        identificacao.setNumeroNota(999999999);
+        identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
-        identificacao.setSerie(999);
+        identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoEmissao(NFTipoEmissao.NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.PAISAGEM);
@@ -497,8 +502,8 @@ public class FabricaDeObjetosFake {
         final NFEndereco endereco = new NFEndereco();
         endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
         endereco.setCep("88095550");
-        endereco.setCodigoMunicipio(9999999);
-        endereco.setCodigoPais(1058);
+        endereco.setCodigoMunicipio("9999999");
+        endereco.setCodigoPais("1058");
         endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
@@ -514,7 +519,7 @@ public class FabricaDeObjetosFake {
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produto.setCodigoDeBarras("36811963532505");
         produto.setCodigoDeBarrasTributavel("36811963532505");
-        produto.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
+        produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produto.setExtipi(999);
