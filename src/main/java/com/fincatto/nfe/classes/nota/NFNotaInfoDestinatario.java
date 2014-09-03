@@ -29,6 +29,10 @@ public class NFNotaInfoDestinatario extends NFBase {
     @Element(name = "email", required = false)
     private String email;
 
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
     public void setCnpj(final String cnpj) {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado");
