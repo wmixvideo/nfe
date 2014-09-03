@@ -1,5 +1,12 @@
 package com.fincatto.nfe.webservices.gerado;
 
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
 
 /**
@@ -9,13 +16,15 @@ import org.apache.axis2.client.Stub;
 /*
  * NfeRecepcao2Stub java implementation
  */
-@SuppressWarnings({ "rawtypes", "unchecked", "serial", "unused", "deprecation" })
 public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     // hashmaps to keep the fault mapping
+    @SuppressWarnings("rawtypes")
     private final java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
+    @SuppressWarnings("rawtypes")
     private final java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
+    @SuppressWarnings("rawtypes")
     private final java.util.HashMap faultMessageMap = new java.util.HashMap();
 
     private static int counter = 0;
@@ -170,12 +179,12 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
                     // make the fault by reflection
                     try {
                         final java.lang.String exceptionClassName = (java.lang.String) this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoLote2"));
-                        final java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-                        final java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
+                        final Class<?> exceptionClass = java.lang.Class.forName(exceptionClassName);
+                        final Constructor<?> constructor = exceptionClass.getConstructor(String.class);
                         final java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
                         // message class
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoLote2"));
-                        final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
+                        final Class<?> messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
                         final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
                         m.invoke(ex, new java.lang.Object[] { messageObject });
@@ -216,8 +225,9 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     /**
      * A utility method that copies the namepaces from the SOAPEnvelope
      */
-    private java.util.Map getEnvelopeNamespaces(final org.apache.axiom.soap.SOAPEnvelope env) {
-        final java.util.Map returnMap = new java.util.HashMap();
+    private java.util.Map<String, String> getEnvelopeNamespaces(final org.apache.axiom.soap.SOAPEnvelope env) {
+        final java.util.Map<String, String> returnMap = new java.util.HashMap<String, String>();
+        @SuppressWarnings("rawtypes")
         final java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
         while (namespaceIterator.hasNext()) {
             final org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
@@ -243,6 +253,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     // https://hom.nfe.fazenda.gov.br/SCAN/NfeRecepcao2/NfeRecepcao2.asmx
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = -2075890141672357050L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeDadosMsg", "ns1");
 
@@ -358,105 +369,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(final java.lang.String namespace, final java.lang.String attName, final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            final java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-            if (attributePrefix == null) {
-                attributePrefix = this.registerPrefix(xmlWriter, attributeNamespace);
-            }
-            java.lang.String attributeValue;
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         * method to handle Qnames
-         */
-
-        private void writeQName(final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String namespaceURI = qname.getNamespaceURI();
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-                if (prefix == null) {
-                    prefix = NfeDadosMsg.generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                }
-
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-            }
-        }
-
-        private void writeQNames(final javax.xml.namespace.QName[] qnames, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-                    namespaceURI = qnames[i].getNamespaceURI();
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = NfeDadosMsg.generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                    }
-                }
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-
-        }
-
-        /**
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
@@ -483,8 +395,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
+            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
+            final List<Object> attribList = new ArrayList<>();
 
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
@@ -508,10 +420,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             public static NfeDadosMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeDadosMsg object = new NfeDadosMsg();
 
-                final int event;
-                final java.lang.String nillableValue = null;
-                final java.lang.String prefix = "";
-                final java.lang.String namespaceuri = "";
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -541,7 +449,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
-                    final java.util.Vector handledAttributes = new java.util.Vector();
 
                     reader.next();
 
@@ -607,6 +514,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         /*
          * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2 Namespace Prefix = ns1
          */
+
+        private static final long serialVersionUID = 5069270050180940676L;
 
         /**
          * field for VersaoDados
@@ -725,9 +634,10 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
                 this.localExtraAttributes = new org.apache.axiom.om.OMAttribute[] {};
             }
 
-            final java.util.List list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
+            @SuppressWarnings("unchecked")
+            final java.util.List<OMAttribute> list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
             list.add(param);
-            this.localExtraAttributes = (org.apache.axiom.om.OMAttribute[]) list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
+            this.localExtraAttributes = list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
 
         }
 
@@ -772,7 +682,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
             if (this.localExtraAttributes != null) {
                 for (int i = 0; i < this.localExtraAttributes.length; i++) {
-                    this.writeAttribute(this.localExtraAttributes[i].getNamespace().getName(), this.localExtraAttributes[i].getLocalName(), this.localExtraAttributes[i].getAttributeValue(), xmlWriter);
+                    this.writeAttribute(this.localExtraAttributes[i].getNamespace().getNamespaceURI(), this.localExtraAttributes[i].getLocalName(), this.localExtraAttributes[i].getAttributeValue(), xmlWriter);
                 }
             }
             if (this.localVersaoDadosTracker) {
@@ -864,93 +774,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(final java.lang.String namespace, final java.lang.String attName, final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            final java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-            if (attributePrefix == null) {
-                attributePrefix = this.registerPrefix(xmlWriter, attributeNamespace);
-            }
-            java.lang.String attributeValue;
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         * method to handle Qnames
-         */
-
-        private void writeQName(final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String namespaceURI = qname.getNamespaceURI();
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-                if (prefix == null) {
-                    prefix = NfeCabecMsg.generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                }
-
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-            }
-        }
-
-        private void writeQNames(final javax.xml.namespace.QName[] qnames, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-                    namespaceURI = qnames[i].getNamespaceURI();
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = NfeCabecMsg.generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                    }
-                }
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-
-        }
-
-        /**
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
@@ -977,8 +800,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
+            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<Serializable>();
+            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
 
             if (this.localVersaoDadosTracker) {
                 elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "versaoDados"));
@@ -1018,10 +841,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             public static NfeCabecMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeCabecMsg object = new NfeCabecMsg();
 
-                final int event;
                 java.lang.String nillableValue = null;
-                final java.lang.String prefix = "";
-                final java.lang.String namespaceuri = "";
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -1051,7 +871,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
-                    final java.util.Vector handledAttributes = new java.util.Vector();
+                    final Vector<String> handledAttributes = new Vector<>();
 
                     // now run through all any or extra attributes
                     // which were not reflected until now
@@ -1138,6 +958,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class NfeRecepcaoLote2Result implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 4229462823152805628L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2Result", "ns1");
 
@@ -1253,105 +1074,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(final java.lang.String namespace, final java.lang.String attName, final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            final java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-            if (attributePrefix == null) {
-                attributePrefix = this.registerPrefix(xmlWriter, attributeNamespace);
-            }
-            java.lang.String attributeValue;
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         * method to handle Qnames
-         */
-
-        private void writeQName(final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String namespaceURI = qname.getNamespaceURI();
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-                if (prefix == null) {
-                    prefix = NfeRecepcaoLote2Result.generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                }
-
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-            }
-        }
-
-        private void writeQNames(final javax.xml.namespace.QName[] qnames, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-                    namespaceURI = qnames[i].getNamespaceURI();
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = NfeRecepcaoLote2Result.generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                    }
-                }
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-
-        }
-
-        /**
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
@@ -1378,8 +1100,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
+            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
+            final List<Object> attribList = new ArrayList<>();
 
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
@@ -1403,10 +1125,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             public static NfeRecepcaoLote2Result parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeRecepcaoLote2Result object = new NfeRecepcaoLote2Result();
 
-                final int event;
-                final java.lang.String nillableValue = null;
-                final java.lang.String prefix = "";
-                final java.lang.String namespaceuri = "";
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -1436,7 +1154,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
-                    final java.util.Vector handledAttributes = new java.util.Vector();
 
                     reader.next();
 
@@ -1484,6 +1201,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 1640281225114274723L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeCabecMsg", "ns1");
 
@@ -1541,164 +1259,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
         }
 
-        private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2")) {
-                return "ns1";
-            }
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * Utility method to write an element start tag.
-         */
-        private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-            if (writerPrefix != null) {
-                xmlWriter.writeStartElement(namespace, localPart);
-            } else {
-                if (namespace.length() == 0) {
-                    prefix = "";
-                } else if (prefix == null) {
-                    prefix = NfeCabecMsgE.generatePrefix(namespace);
-                }
-
-                xmlWriter.writeStartElement(prefix, localPart, namespace);
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (xmlWriter.getPrefix(namespace) == null) {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-            xmlWriter.writeAttribute(namespace, attName, attValue);
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(final java.lang.String namespace, final java.lang.String attName, final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            final java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-            if (attributePrefix == null) {
-                attributePrefix = this.registerPrefix(xmlWriter, attributeNamespace);
-            }
-            java.lang.String attributeValue;
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         * method to handle Qnames
-         */
-
-        private void writeQName(final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String namespaceURI = qname.getNamespaceURI();
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-                if (prefix == null) {
-                    prefix = NfeCabecMsgE.generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                }
-
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-            }
-        }
-
-        private void writeQNames(final javax.xml.namespace.QName[] qnames, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-                    namespaceURI = qnames[i].getNamespaceURI();
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = NfeCabecMsgE.generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                    }
-                }
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-
-        }
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-            if (prefix == null) {
-                prefix = NfeCabecMsgE.generatePrefix(namespace);
-                final javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
-                while (true) {
-                    final java.lang.String uri = nsContext.getNamespaceURI(prefix);
-                    if (uri == null || uri.length() == 0) {
-                        break;
-                    }
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-            return prefix;
-        }
-
         /**
          * databinding method to get an XML representation of this object
          */
@@ -1721,19 +1281,11 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             public static NfeCabecMsgE parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeCabecMsgE object = new NfeCabecMsgE();
 
-                final int event;
-                final java.lang.String nillableValue = null;
-                final java.lang.String prefix = "";
-                final java.lang.String namespaceuri = "";
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    final java.util.Vector handledAttributes = new java.util.Vector();
 
                     while (!reader.isEndElement()) {
                         if (reader.isStartElement()) {
@@ -1765,26 +1317,6 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(final NfeRecepcao2Stub.NfeDadosMsg param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
-
-        try {
-            return param.getOMElement(NfeRecepcao2Stub.NfeDadosMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (final org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-
-    }
-
-    private org.apache.axiom.om.OMElement toOM(final NfeRecepcao2Stub.NfeRecepcaoLote2Result param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
-
-        try {
-            return param.getOMElement(NfeRecepcao2Stub.NfeRecepcaoLote2Result.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (final org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-
-    }
-
     private org.apache.axiom.om.OMElement toOM(final NfeRecepcao2Stub.NfeCabecMsgE param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
         try {
@@ -1810,14 +1342,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
 
-    /**
-     * get the default envelope
-     */
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory) {
-        return factory.getDefaultEnvelope();
-    }
-
-    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class type, final java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault {
+    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final Class<?> type, final java.util.Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
 
         try {
 
