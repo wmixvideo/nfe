@@ -18,7 +18,7 @@ public class ValidacaoXML {
 
     @Test
     public void deveValidarXMLContraXSD() throws Throwable {
-        XMLValidador.valida(FabricaDeObjetosFake.getNFNota1().toString(), this.getClass().getResource("nfe_v2.00.xsd").getFile());
+        XMLValidador.valida(FabricaDeObjetosFake.getNFNota1().toString(), this.getClass().getResource("../../../../schemas/v2/nfe_v2.00.xsd").getFile());
     }
 
     @Test
