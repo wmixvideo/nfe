@@ -20,11 +20,32 @@ public class XMLValidador {
     private static final String SUN_JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
     private static final String SUN_JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
     private static final String W3_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+    private static final String CAMINHO_SCHEMA_LOTE = XMLValidador.class.getResource("../../../../../schemas/v2/enviNFe_v2.00.xsd").getFile();
+    private static final String CAMINHO_SCHEMA_NOTA = XMLValidador.class.getResource("../../../../../schemas/v2/nfe_v2.00.xsd").getFile();
     private static ErroHandler erroHandler;
 
-    public static void valida(final File arquivoXML, final String caminhoSchemaXSD) throws Throwable {
+    public static void validaLote(final File arquivoXML) throws Throwable {
+        XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
+    }
+
+    public static void validaLote(final String caminhoXML) throws Throwable {
+        XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
+    }
+
+    public static void validaNota(final String caminhoXML) throws Throwable {
+        XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
+    }
+
+    public static void validaNota(final File arquivoXML) throws Throwable {
+        XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
+    }
+
+    private static void valida(final String arquivoXML, final String caminhoSchemaXSD) throws Throwable {
         final DocumentBuilder documentBuilder = XMLValidador.getDocumentBuilder(caminhoSchemaXSD);
-        final Document document = documentBuilder.parse(arquivoXML);
+
+        final InputSource inputSource = new InputSource();
+        inputSource.setCharacterStream(new StringReader(arquivoXML));
+        final Document document = documentBuilder.parse(inputSource);
 
         final Schema schema = XMLValidador.getSchema(caminhoSchemaXSD);
         final Validator validator = schema.newValidator();
@@ -36,12 +57,9 @@ public class XMLValidador {
         }
     }
 
-    public static void valida(final String arquivoXML, final String caminhoSchemaXSD) throws Throwable {
+    private static void valida(final File arquivoXML, final String caminhoSchemaXSD) throws Throwable {
         final DocumentBuilder documentBuilder = XMLValidador.getDocumentBuilder(caminhoSchemaXSD);
-
-        final InputSource inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(arquivoXML));
-        final Document document = documentBuilder.parse(inputSource);
+        final Document document = documentBuilder.parse(arquivoXML);
 
         final Schema schema = XMLValidador.getSchema(caminhoSchemaXSD);
         final Validator validator = schema.newValidator();
