@@ -1,6 +1,9 @@
 package com.fincatto.nfe.validadores.xsd;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,24 +23,58 @@ public class XMLValidador {
     private static final String SUN_JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
     private static final String SUN_JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
     private static final String W3_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
-    private static final String CAMINHO_SCHEMA_LOTE = XMLValidador.class.getResource("../../../../../schemas/v2/enviNFe_v2.00.xsd").getFile();
-    private static final String CAMINHO_SCHEMA_NOTA = XMLValidador.class.getResource("../../../../../schemas/v2/nfe_v2.00.xsd").getFile();
+    private static String CAMINHO_SCHEMA_LOTE;
     private static ErroHandler erroHandler;
+    private static String CAMINHO_SCHEMA_NOTA;
 
     public static void validaLote(final File arquivoXML) throws Throwable {
+        XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
     }
 
     public static void validaLote(final String caminhoXML) throws Throwable {
+        XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
     }
 
     public static void validaNota(final String caminhoXML) throws Throwable {
+        XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
     }
 
     public static void validaNota(final File arquivoXML) throws Throwable {
+        XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
+    }
+
+    private static void criaArquivosTemporarios() throws IOException {
+        final String diretorioTemporario = System.getProperty("java.io.tmpdir");
+
+        final String[] xsds = { "nfe_v2.00.xsd", "enviNFe_v2.00.xsd", "leiauteNFe_v2.00.xsd", "tiposBasico_v1.03.xsd", "xmldsig-core-schema_v1.01.xsd" };
+        final String caminhoDiretorioXSD = "../../../../../schemas/v2/";
+
+        for (final String xsd : xsds) {
+            try (final InputStream inputStream = XMLValidador.class.getResourceAsStream(caminhoDiretorioXSD + xsd)) {
+                final File fileXSD = new File(diretorioTemporario + xsd);
+                try (final FileOutputStream outputStream = new FileOutputStream(fileXSD)) {
+                    int read = 0;
+                    final byte[] bytes = new byte[1024];
+
+                    while ((read = inputStream.read(bytes)) != -1) {
+                        outputStream.write(bytes, 0, read);
+                    }
+
+                    if (fileXSD.getName().equals("nfe_v2.00.xsd")) {
+                        XMLValidador.CAMINHO_SCHEMA_NOTA = fileXSD.getAbsolutePath();
+                    }
+
+                    if (fileXSD.getName().equals("enviNFe_v2.00.xsd")) {
+                        XMLValidador.CAMINHO_SCHEMA_LOTE = fileXSD.getAbsolutePath();
+                    }
+                    fileXSD.deleteOnExit();
+                }
+            }
+        }
     }
 
     private static void valida(final String arquivoXML, final String caminhoSchemaXSD) throws Throwable {
