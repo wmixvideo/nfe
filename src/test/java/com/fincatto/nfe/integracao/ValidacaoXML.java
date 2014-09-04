@@ -18,7 +18,7 @@ public class ValidacaoXML {
 
     @Test
     public void deveValidarXMLContraXSD() throws Throwable {
-        XMLValidador.valida(FabricaDeObjetosFake.getNFNota1().toString(), this.getClass().getResource("../../../../schemas/v2/nfe_v2.00.xsd").getFile());
+        XMLValidador.validaNota(FabricaDeObjetosFake.getNFNota1().toString());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ValidacaoXML {
         final Persister persister = new Persister(new NFRegistryMatcher());
         for (final File notaXML : TesteUtil.getArquivosParaTestes(new File(ValidacaoXML.DIRETORIO_XML_NOTAS))) {
             final NFNota notaParser = persister.read(NFNota.class, notaXML);
-            XMLValidador.valida(notaParser.toString(), this.getClass().getResource("nfe_v2.00.xsd").getFile());
+            XMLValidador.validaNota(notaParser.toString());
             Assert.assertEquals(TesteUtil.filepathToString(notaXML.getAbsolutePath()), notaParser.toString());
         }
     }

@@ -13,10 +13,7 @@ public class WSFacade {
     private final WSLoteConsulta wsLoteConsulta;
     private final WSStatusConsulta wsStatusConsulta;
 
-    private final String CAMINHO_SCHEMA_XSD;
-
     public WSFacade(final NFEConfig config) {
-        this.CAMINHO_SCHEMA_XSD = this.getClass().getResource("../../../../schemas/v2/enviNFe_v2.00.xsd").getFile();
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
@@ -30,7 +27,7 @@ public class WSFacade {
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFUnidadeFederativa uf) throws Throwable {
-        XMLValidador.valida(lote.toString(), this.CAMINHO_SCHEMA_XSD);
+        XMLValidador.validaLote(lote.toString());
         return this.wsLoteEnvio.enviaLote(lote, uf);
     }
 
