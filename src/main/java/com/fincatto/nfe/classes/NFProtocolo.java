@@ -9,18 +9,17 @@ public class NFProtocolo extends NFBase {
     private String versao;
 
     @Element(name = "infProt", required = true)
-    private NFProtocoloInfo protocolo;
-
-    public NFProtocolo() {
-        this.versao = null;
-        this.protocolo = null;
-    }
+    private NFProtocoloInfo protocoloInfo;
 
     public void setVersao(final String versao) {
         this.versao = versao;
     }
 
-    public void setProtocolo(final NFProtocoloInfo protocolo) {
-        this.protocolo = protocolo;
+    public void setProtocoloInfo(final NFProtocoloInfo protocoloInfo) {
+        this.protocoloInfo = protocoloInfo;
+    }
+
+    public NFProtocoloInfo getProtocoloInfo() {
+        return this.protocoloInfo;
     }
 }

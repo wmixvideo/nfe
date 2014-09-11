@@ -41,11 +41,11 @@ class WSLoteEnvio {
 
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
-        this.log.debug(omElement);
+        this.log.info(omElement);
         final NfeRecepcaoLote2Result nfeRecepcaoLote2 = new NfeRecepcao2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeRecepcao(this.config.getAmbiente())).nfeRecepcaoLote2(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, nfeRecepcaoLote2.getExtraElement().toString());
-        this.log.debug(loteEnvioRetorno.toString());
+        this.log.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
 
