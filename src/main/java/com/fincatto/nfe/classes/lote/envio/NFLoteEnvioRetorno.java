@@ -73,4 +73,32 @@ public class NFLoteEnvioRetorno extends NFBase {
     public void setInfoRecebimento(final NFLoteEnvioRetornoRecebimentoInfo infoRecebimento) {
         this.infoRecebimento = infoRecebimento;
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public NFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public String getVersaoAplicacao() {
+        return this.versaoAplicacao;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public String getMotivo() {
+        return this.motivo;
+    }
+
+    public NFUnidadeFederativa getUf() {
+        return this.uf;
+    }
+
+    public LocalDateTime getDataRecebimento() {
+        return this.dataRecebimento;
+    }
 }

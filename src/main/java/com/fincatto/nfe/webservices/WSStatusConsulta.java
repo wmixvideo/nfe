@@ -29,10 +29,10 @@ class WSStatusConsulta {
 
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
-        WSStatusConsulta.log.debug(omElementConsulta);
+        WSStatusConsulta.log.info(omElementConsulta);
 
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
-        WSStatusConsulta.log.debug(omElementResult.toString());
+        WSStatusConsulta.log.info(omElementResult.toString());
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
     }

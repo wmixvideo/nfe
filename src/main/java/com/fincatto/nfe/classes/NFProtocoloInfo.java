@@ -68,4 +68,40 @@ public class NFProtocoloInfo extends NFBase {
     public void setMotivo(final String motivo) {
         this.motivo = motivo;
     }
+
+    public String getIdentificador() {
+        return this.identificador;
+    }
+
+    public NFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public String getVersaoAplicacao() {
+        return this.versaoAplicacao;
+    }
+
+    public String getChave() {
+        return this.chave;
+    }
+
+    public LocalDateTime getDataRecebimento() {
+        return this.dataRecebimento;
+    }
+
+    public String getNumeroProtocolo() {
+        return this.numeroProtocolo;
+    }
+
+    public String getValidador() {
+        return this.validador;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public String getMotivo() {
+        return this.motivo;
+    }
 }

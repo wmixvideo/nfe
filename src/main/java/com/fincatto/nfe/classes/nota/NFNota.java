@@ -10,10 +10,27 @@ import com.fincatto.nfe.classes.NFBase;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNota extends NFBase {
 
+    private long identificadorLocal;
+
     @Element(name = "infNFe", required = true)
     private NFNotaInfo info;
 
     public void setInfo(final NFNotaInfo info) {
         this.info = info;
+    }
+
+    public NFNotaInfo getInfo() {
+        return this.info;
+    }
+
+    /**
+     * Utilizado para identificacao interna do sistema
+     */
+    public void setIdentificadorLocal(final long identificadorLocal) {
+        this.identificadorLocal = identificadorLocal;
+    }
+
+    public long getIdentificadorLocal() {
+        return this.identificadorLocal;
     }
 }

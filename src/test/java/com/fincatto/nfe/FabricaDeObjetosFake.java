@@ -265,7 +265,7 @@ public class FabricaDeObjetosFake {
 
     public static NFProtocolo getNFProtocolo() {
         final NFProtocolo protocolo = new NFProtocolo();
-        protocolo.setProtocolo(FabricaDeObjetosFake.getNFProtocoloInfo());
+        protocolo.setProtocoloInfo(FabricaDeObjetosFake.getNFProtocoloInfo());
         protocolo.setVersao("2.00");
         return protocolo;
     }

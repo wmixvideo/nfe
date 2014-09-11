@@ -28,6 +28,10 @@ public class NFLoteEnvio extends NFBase {
     @ElementList(name = "NFe", inline = true, required = true)
     List<NFNota> notas;
 
+    public String getIdLote() {
+        return this.idLote;
+    }
+
     public void setIdLote(final String idLote) {
         StringValidador.tamanho15N(idLote);
         this.idLote = idLote;
@@ -36,6 +40,10 @@ public class NFLoteEnvio extends NFBase {
     public void setNotas(final List<NFNota> notas) {
         ListValidador.tamanho50(notas);
         this.notas = notas;
+    }
+
+    public List<NFNota> getNotas() {
+        return this.notas;
     }
 
     public void setVersao(final BigDecimal versao) {

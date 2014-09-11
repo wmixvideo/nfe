@@ -30,10 +30,10 @@ class WSLoteConsulta {
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        WSLoteConsulta.log.debug(omElementConsulta);
+        WSLoteConsulta.log.info(omElementConsulta);
 
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, uf);
-        WSLoteConsulta.log.debug(omElementResult.toString());
+        WSLoteConsulta.log.info(omElementResult);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
     }
@@ -48,7 +48,6 @@ class WSLoteConsulta {
 
         final NfeRetRecepcao2Stub.NfeDadosMsg dados = new NfeRetRecepcao2Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
-
         final NfeRetRecepcao2Result result = new NfeRetRecepcao2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeRetRecepcao(this.config.getAmbiente())).nfeRetRecepcao2(dados, cabecE);
         return result.getExtraElement();
     }

@@ -27,22 +27,22 @@ public class XMLValidador {
     private static ErroHandler erroHandler;
     private static String CAMINHO_SCHEMA_NOTA;
 
-    public static void validaLote(final File arquivoXML) throws Throwable {
+    public static void validaLote(final File arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
     }
 
-    public static void validaLote(final String caminhoXML) throws Throwable {
+    public static void validaLote(final String arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
-        XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
+        XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);
     }
 
-    public static void validaNota(final String caminhoXML) throws Throwable {
+    public static void validaNota(final String arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
-        XMLValidador.valida(caminhoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
+        XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
     }
 
-    public static void validaNota(final File arquivoXML) throws Throwable {
+    public static void validaNota(final File arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_NOTA);
     }
@@ -77,7 +77,7 @@ public class XMLValidador {
         }
     }
 
-    private static void valida(final String arquivoXML, final String caminhoSchemaXSD) throws Throwable {
+    private static void valida(final String arquivoXML, final String caminhoSchemaXSD) throws Exception {
         final DocumentBuilder documentBuilder = XMLValidador.getDocumentBuilder(caminhoSchemaXSD);
 
         final InputSource inputSource = new InputSource();
@@ -94,7 +94,7 @@ public class XMLValidador {
         }
     }
 
-    private static void valida(final File arquivoXML, final String caminhoSchemaXSD) throws Throwable {
+    private static void valida(final File arquivoXML, final String caminhoSchemaXSD) throws Exception {
         final DocumentBuilder documentBuilder = XMLValidador.getDocumentBuilder(caminhoSchemaXSD);
         final Document document = documentBuilder.parse(arquivoXML);
 

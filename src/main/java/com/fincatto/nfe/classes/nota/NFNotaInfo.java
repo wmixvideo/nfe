@@ -72,6 +72,10 @@ public class NFNotaInfo extends NFBase {
         this.identificador = MessageFormat.format("NFe{0}", identificador);
     }
 
+    public String getIdentificador() {
+        return this.identificador;
+    }
+
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
     }
