@@ -29,6 +29,15 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     @Element(name = "pICMS", required = false)
     private String percentualICMS;
 
+    @Element(name = "vICMSOp", required = false)
+    private String valorICMSOperacao;
+
+    @Element(name = "pDif", required = false)
+    private String percentualDiferimento;
+
+    @Element(name = "vICMSDif", required = false)
+    private String valorICMSDiferimento;
+
     @Element(name = "vICMS", required = false)
     private String valorICMS;
 
@@ -45,7 +54,7 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBC);
+        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC);
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
@@ -58,5 +67,17 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
 
     public void setValorICMS(final BigDecimal valorICMS) {
         this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS);
+    }
+
+    public void setPercentualDiferimento(final BigDecimal percentualDiferimento) {
+        this.percentualDiferimento = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualDiferimento);
+    }
+
+    public void setValorICMSDiferimento(final BigDecimal valorICMSDiferimento) {
+        this.valorICMSDiferimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDiferimento);
+    }
+
+    public void setValorICMSOperacao(final BigDecimal valorICMSOperacao) {
+        this.valorICMSOperacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOperacao);
     }
 }

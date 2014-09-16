@@ -2,6 +2,8 @@ package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
@@ -23,6 +25,27 @@ public class NFNotaInfoISSQNTotal extends NFBase {
     @Element(name = "vCOFINS", required = false)
     private String valorCOFINSsobreServicos;
 
+    @Element(name = "dCompet", required = true)
+    private String dataPrestacaoServico;
+
+    @Element(name = "vDeducao", required = false)
+    private String valorDeducao;
+
+    @Element(name = "vOutro", required = false)
+    private String valorOutros;
+
+    @Element(name = "vDescIncond", required = false)
+    private String valorTotalDescontoIncondicionado;
+
+    @Element(name = "vDescCond", required = false)
+    private String valorTotalDescontoCondicionado;
+
+    @Element(name = "vISSRet", required = false)
+    private String valorTotalRetencaoISS;
+
+    @Element(name = "cRegTrib", required = false)
+    private NFNotaInfoRegimeEspecialTributacao tributacao;
+
     public void setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(final BigDecimal valorTotalServicosSobNaoIncidenciaNaoTributadosICMS) {
         this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalServicosSobNaoIncidenciaNaoTributadosICMS);
     }
@@ -41,5 +64,33 @@ public class NFNotaInfoISSQNTotal extends NFBase {
 
     public void setValorCOFINSsobreServicos(final BigDecimal valorCOFINSsobreServicos) {
         this.valorCOFINSsobreServicos = BigDecimalParser.tamanho15Com2CasasDecimais(valorCOFINSsobreServicos);
+    }
+
+    public void setDataPrestacaoServico(final LocalDate dataPrestacaoServico) {
+        this.dataPrestacaoServico = DateTimeFormat.forPattern("yyyyMMdd").print(dataPrestacaoServico);
+    }
+
+    public void setValorDeducao(final BigDecimal valorDeducao) {
+        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao);
+    }
+
+    public void setTributacao(final NFNotaInfoRegimeEspecialTributacao tributacao) {
+        this.tributacao = tributacao;
+    }
+
+    public void setValorOutros(final BigDecimal valorOutros) {
+        this.valorOutros = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutros);
+    }
+
+    public void setValorTotalDescontoCondicionado(final BigDecimal valorTotalDescontoCondicionado) {
+        this.valorTotalDescontoCondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDescontoCondicionado);
+    }
+
+    public void setValorTotalDescontoIncondicionado(final BigDecimal valorTotalDescontoIncondicionado) {
+        this.valorTotalDescontoIncondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDescontoIncondicionado);
+    }
+
+    public void setValorTotalRetencaoISS(final BigDecimal valorTotalRetencaoISS) {
+        this.valorTotalRetencaoISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalRetencaoISS);
     }
 }

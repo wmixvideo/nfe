@@ -6,8 +6,8 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMS30 extends NFBase {
@@ -35,6 +35,12 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     @Element(name = "vICMSST", required = true)
     private String valorImpostoICMSST;
 
+    @Element(name = "vICMSDeson", required = false)
+    private String valorICMSDesoneracao;
+
+    @Element(name = "motDesICMS", required = false)
+    private NFNotaInfoMotivoDesoneracaoICMS desoneracao;
+
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
@@ -48,11 +54,11 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     }
 
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualMargemValorAdicionadoICMSST);
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST);
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBCICMSST);
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST);
     }
 
     public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
@@ -60,10 +66,18 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     }
 
     public void setPercentualAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaImpostoICMSST);
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST);
     }
 
     public void setValorImpostoICMSST(final BigDecimal valorImpostoICMSST) {
         this.valorImpostoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoICMSST);
+    }
+
+    public void setDesoneracao(final NFNotaInfoMotivoDesoneracaoICMS desoneracao) {
+        this.desoneracao = desoneracao;
+    }
+
+    public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
 }

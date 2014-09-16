@@ -9,4 +9,10 @@ public class BigIntegerValidador {
             throw new IllegalStateException("Tamanho maior que 12");
         }
     }
+
+    public static void tamanho11(final BigInteger valor) {
+        if (valor.compareTo(new BigInteger("99999999999")) > 0) {
+            throw new IllegalStateException("Tamanho maior que 11");
+        }
+    }
 }

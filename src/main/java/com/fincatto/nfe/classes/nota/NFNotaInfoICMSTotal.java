@@ -15,6 +15,9 @@ public class NFNotaInfoICMSTotal extends NFBase {
     @Element(name = "vICMS", required = true)
     private String valorTotalICMS;
 
+    @Element(name = "vICMSDeson", required = true)
+    private String valorICMSDesonerado;
+
     @Element(name = "vBCST", required = true)
     private String valor;
 
@@ -112,5 +115,9 @@ public class NFNotaInfoICMSTotal extends NFBase {
 
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
         this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
+    }
+
+    public void setValorICMSDesonerado(final BigDecimal valorICMSDesonerado) {
+        this.valorICMSDesonerado = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesonerado);
     }
 }

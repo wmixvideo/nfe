@@ -55,7 +55,7 @@ public class NFEndereco extends NFBase {
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho60(bairro);
+        StringValidador.tamanho2ate60(bairro);
         this.bairro = bairro;
     }
 

@@ -43,7 +43,7 @@ public class NFNotaInfoItemImpostoCOFINSST extends NFBase {
         if (this.quantidadeVendida != null || this.valorAliquotaCOFINS != null) {
             throw new IllegalStateException("Ja foi setado quantidade vendida ou valor aliquota COFINS");
         }
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {

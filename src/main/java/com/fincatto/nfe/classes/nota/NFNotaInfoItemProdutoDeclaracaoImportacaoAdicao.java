@@ -1,11 +1,13 @@
 package com.fincatto.nfe.classes.nota;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.validadores.BigDecimalParser;
+import com.fincatto.nfe.validadores.BigIntegerValidador;
 import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
@@ -22,6 +24,9 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
 
     @Element(name = "vDescDI", required = false)
     private String desconto;
+
+    @Element(name = "nDraw", required = false)
+    private BigInteger numeroAtoConcessorioDrawback;
 
     public void setNumero(final Integer numero) {
         IntegerValidador.tamanho3(numero);
@@ -44,5 +49,10 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
 
     public void setDesconto(final String desconto) {
         this.desconto = desconto;
+    }
+
+    public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
+        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback);
+        this.numeroAtoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 }

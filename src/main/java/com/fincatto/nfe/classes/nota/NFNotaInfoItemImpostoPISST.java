@@ -43,7 +43,7 @@ public class NFNotaInfoItemImpostoPISST extends NFBase {
         if (this.valorAliquota != null || this.quantidadeVendida != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota caso valor aliquota ou quantidade vendida esteja setado");
         }
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {

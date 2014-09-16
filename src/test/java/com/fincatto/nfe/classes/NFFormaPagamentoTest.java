@@ -7,8 +7,8 @@ public class NFFormaPagamentoTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("0", NFFormaPagamento.A_VISTA.getCodigo());
-        Assert.assertEquals("1", NFFormaPagamento.A_PRAZO.getCodigo());
-        Assert.assertEquals("2", NFFormaPagamento.OUTROS.getCodigo());
+        Assert.assertEquals("0", NFFormaPagamentoPrazo.A_VISTA.getCodigo());
+        Assert.assertEquals("1", NFFormaPagamentoPrazo.A_PRAZO.getCodigo());
+        Assert.assertEquals("2", NFFormaPagamentoPrazo.OUTROS.getCodigo());
     }
 }

@@ -6,7 +6,6 @@ import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.transform.Transform;
 
 class NFLocalDateTransformer implements Transform<LocalDate> {
-
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
 
     @Override

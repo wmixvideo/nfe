@@ -34,7 +34,7 @@ public class NFNotaInfo extends NFBase {
     @Element(name = "avulsa", required = false)
     private NFNotaInfoAvulsa avulsa;
 
-    @Element(name = "dest", required = true)
+    @Element(name = "dest", required = false)
     private NFNotaInfoDestinatario destinatario;
 
     @Element(name = "retirada", required = false)
@@ -42,6 +42,9 @@ public class NFNotaInfo extends NFBase {
 
     @Element(name = "entrega", required = false)
     private NFNotaInfoLocal entrega;
+
+    @ElementList(entry = "autXML", inline = true, required = false)
+    private List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe;
 
     @ElementList(entry = "det", inline = true, required = true)
     private List<NFNotaInfoItem> itens;
@@ -54,6 +57,9 @@ public class NFNotaInfo extends NFBase {
 
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
+
+    @ElementList(entry = "pag", required = false)
+    private List<NFNotaInfoPagamento> pagamentos;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
@@ -143,5 +149,15 @@ public class NFNotaInfo extends NFBase {
 
     public void setCana(final NFNotaInfoCana cana) {
         this.cana = cana;
+    }
+
+    public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
+        ListValidador.tamanho10(pessoasAutorizadasDownloadNFe);
+        this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
+    }
+
+    public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
+        ListValidador.tamanho100(pagamentos);
+        this.pagamentos = pagamentos;
     }
 }

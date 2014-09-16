@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
     }
 
     public void setPercentualCOFINS(final BigDecimal percentualCOFINS) {
-        this.percentualCOFINS = BigDecimalParser.tamanho5Com2CasasDecimais(percentualCOFINS);
+        this.percentualCOFINS = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualCOFINS);
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {

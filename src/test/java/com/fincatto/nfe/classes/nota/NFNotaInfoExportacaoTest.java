@@ -20,9 +20,18 @@ public class NFNotaInfoExportacaoTest {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirLocalDespachoNulo() {
+        final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
+        exportacao.setLocalEmbarqueProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
+        exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
+        exportacao.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDeveGerarXMLUfEmbarqueProdutoNulo() {
         final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
         exportacao.setLocalEmbarqueProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
+        exportacao.setLocalDespachoProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
         exportacao.toString();
     }
 
@@ -30,12 +39,13 @@ public class NFNotaInfoExportacaoTest {
     public void naoDeveGerarXMLLocalEmbarqueProdutosNulo() {
         final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
         exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
+        exportacao.setLocalDespachoProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
         exportacao.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoExportacao><UFEmbarq>SC</UFEmbarq><xLocEmbarq>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocEmbarq></NFNotaInfoExportacao>";
+        final String xmlEsperado = "<NFNotaInfoExportacao><UFSaidaPais>SC</UFSaidaPais><xLocExporta>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocExporta><xLocDespacho>xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm</xLocDespacho></NFNotaInfoExportacao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoExportacao().toString());
     }
 }

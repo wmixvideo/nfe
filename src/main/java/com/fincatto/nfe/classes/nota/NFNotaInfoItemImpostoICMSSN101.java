@@ -31,7 +31,7 @@ public class NFNotaInfoItemImpostoICMSSN101 extends NFBase {
     }
 
     public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
-        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN);
+        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN);
     }
 
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {

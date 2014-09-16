@@ -2,6 +2,7 @@ package com.fincatto.nfe.classes.lote.consulta;
 
 import java.util.List;
 
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -31,6 +32,9 @@ public class NFLoteConsultaRetorno extends NFBase {
 
     @Element(name = "cStat", required = true)
     private String status;
+
+    @Element(name = "dhRecbto", required = true)
+    private LocalDateTime dataHoraRecebimento;
 
     @Element(name = "xMotivo", required = true)
     private String motivo;
@@ -125,5 +129,13 @@ public class NFLoteConsultaRetorno extends NFBase {
 
     public void setMensagem(final String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public LocalDateTime getDataHoraRecebimento() {
+        return this.dataHoraRecebimento;
+    }
+
+    public void setDataHoraRecebimento(final LocalDateTime dataHoraRecebimento) {
+        this.dataHoraRecebimento = dataHoraRecebimento;
     }
 }

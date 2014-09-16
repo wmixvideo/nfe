@@ -14,6 +14,9 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     @Element(name = "cProdANP", required = true)
     private String codigoProdutoANP;
 
+    @Element(name = "pMixGN", required = false)
+    private String percentualGasNatural;
+
     @Element(name = "CODIF", required = false)
     private String codigoAutorizacaoCOFIF;
 
@@ -54,5 +57,9 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
 
     public void setCide(final NFNotaInfoItemProdutoCombustivelCIDE cide) {
         this.cide = cide;
+    }
+
+    public void setPercentualGasNatural(final BigDecimal percentualGasNatural) {
+        this.percentualGasNatural = BigDecimalParser.tamanho5Com2CasasDecimais(percentualGasNatural);
     }
 }

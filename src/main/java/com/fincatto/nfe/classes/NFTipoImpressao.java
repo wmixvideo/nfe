@@ -1,9 +1,12 @@
 package com.fincatto.nfe.classes;
 
 public enum NFTipoImpressao {
-
-    RETRATO("1"),
-    PAISAGEM("2");
+    SEM_GERACAO_DANFE("0"),
+    DANFE_NORMAL_RETRATO("1"),
+    DANFE_NORMAL_PAISAGEM("2"),
+    DANFE_SIMPLIFICADO("3"),
+    DANFE_NFCE("4"),
+    DANFE_NFCE_MENSAGEM_ELETRONICA("5");
 
     private final String codigo;
 

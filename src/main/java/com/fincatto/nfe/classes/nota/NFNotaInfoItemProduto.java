@@ -10,6 +10,7 @@ import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.IntegerValidador;
+import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
 public class NFNotaInfoItemProduto extends NFBase {
@@ -25,6 +26,9 @@ public class NFNotaInfoItemProduto extends NFBase {
 
     @Element(name = "NCM", required = true)
     private String ncm;
+
+    @ElementList(entry = "NVE", inline = true, required = false)
+    private List<String> nomeclaturaValorAduaneiroEstatistica;
 
     @Element(name = "EXTIPI", required = false)
     private Integer extipi;
@@ -74,6 +78,9 @@ public class NFNotaInfoItemProduto extends NFBase {
     @ElementList(entry = "DI", inline = true, required = false)
     private List<NFNotaInfoItemProdutoDeclaracaoImportacao> declaracoesImportacao;
 
+    @ElementList(entry = "detExport", inline = true, required = false)
+    private List<NFNotaInfoItemDetalheExportacao> detalhesExportacao;
+
     @Element(name = "xPed", required = false)
     private String numeroPedidoCliente;
 
@@ -94,6 +101,9 @@ public class NFNotaInfoItemProduto extends NFBase {
 
     @Element(name = "comb", required = false)
     private NFNotaInfoItemProdutoCombustivel combustivel;
+
+    @Element(name = "nRECOPI", required = false)
+    private String numeroRECOPI;
 
     public void setCodigo(final String codigo) {
         StringValidador.tamanho60(codigo);
@@ -200,30 +210,52 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setVeiculo(final NFNotaInfoItemProdutoVeiculo veiculo) {
-        if (this.medicamentos != null || this.armamentos != null || this.combustivel != null) {
+        if (this.medicamentos != null || this.armamentos != null || this.combustivel != null || this.numeroRECOPI != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
         }
         this.veiculo = veiculo;
     }
 
     public void setMedicamentos(final List<NFNotaInfoItemProdutoMedicamento> medicamentos) {
-        if (this.veiculo != null || this.armamentos != null || this.combustivel != null) {
-            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        if (this.veiculo != null || this.armamentos != null || this.combustivel != null || this.numeroRECOPI != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
+        ListValidador.tamanho500(medicamentos);
         this.medicamentos = medicamentos;
     }
 
     public void setArmamentos(final List<NFNotaInfoItemProdutoArmamento> armamentos) {
-        if (this.medicamentos != null || this.veiculo != null || this.combustivel != null) {
-            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        if (this.medicamentos != null || this.veiculo != null || this.combustivel != null || this.numeroRECOPI != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
+        ListValidador.tamanho500(armamentos);
         this.armamentos = armamentos;
     }
 
     public void setCombustivel(final NFNotaInfoItemProdutoCombustivel combustivel) {
-        if (this.medicamentos != null || this.armamentos != null || this.veiculo != null) {
-            throw new IllegalStateException("veiculos, medicamentos, armamentos e combustivel sao mutuamente exclusivos");
+        if (this.medicamentos != null || this.armamentos != null || this.veiculo != null || this.numeroRECOPI != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
         this.combustivel = combustivel;
+    }
+
+    public void setNomeclaturaValorAduaneiroEstatistica(final List<String> nomeclaturaValorAduaneiroEstatistica) {
+        for (final String nomeclatra : nomeclaturaValorAduaneiroEstatistica) {
+            StringValidador.nve(nomeclatra);
+        }
+        this.nomeclaturaValorAduaneiroEstatistica = nomeclaturaValorAduaneiroEstatistica;
+    }
+
+    public void setDetalhesExportacao(final List<NFNotaInfoItemDetalheExportacao> detalhesExportacao) {
+        ListValidador.tamanho500(detalhesExportacao);
+        this.detalhesExportacao = detalhesExportacao;
+    }
+
+    public void setNumeroRECOPI(final String numeroRECOPI) {
+        if (this.medicamentos != null || this.armamentos != null || this.veiculo != null || this.combustivel != null) {
+            throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
+        }
+        StringValidador.exatamente20N(numeroRECOPI);
+        this.numeroRECOPI = numeroRECOPI;
     }
 }
