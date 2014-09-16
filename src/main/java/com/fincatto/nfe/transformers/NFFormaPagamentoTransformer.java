@@ -2,17 +2,17 @@ package com.fincatto.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.nfe.classes.NFFormaPagamento;
+import com.fincatto.nfe.classes.NFFormaPagamentoPrazo;
 
-class NFFormaPagamentoTransformer implements Transform<NFFormaPagamento> {
+class NFFormaPagamentoTransformer implements Transform<NFFormaPagamentoPrazo> {
 	
 	@Override
-	public NFFormaPagamento read(final String codigo) throws Exception {
-		return NFFormaPagamento.valueOfCodigo(codigo);
+	public NFFormaPagamentoPrazo read(final String codigo) throws Exception {
+		return NFFormaPagamentoPrazo.valueOfCodigo(codigo);
 	}
 	
 	@Override
-	public String write(final NFFormaPagamento formaPagamento) throws Exception {
+	public String write(final NFFormaPagamentoPrazo formaPagamento) throws Exception {
 		return formaPagamento.getCodigo();
 	}
 }

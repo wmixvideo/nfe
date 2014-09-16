@@ -25,6 +25,9 @@ public class NFLoteEnvio extends NFBase {
     @Element(name = "idLote", required = true)
     private String idLote;
 
+    @Element(name = "indSinc", required = true)
+    private NFLoteIndicadorProcessamento indicadorProcessamento;
+
     @ElementList(name = "NFe", inline = true, required = true)
     List<NFNota> notas;
 
@@ -48,5 +51,9 @@ public class NFLoteEnvio extends NFBase {
 
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+    }
+
+    public void setIndicadorProcessamento(final NFLoteIndicadorProcessamento indicadorProcessamento) {
+        this.indicadorProcessamento = indicadorProcessamento;
     }
 }

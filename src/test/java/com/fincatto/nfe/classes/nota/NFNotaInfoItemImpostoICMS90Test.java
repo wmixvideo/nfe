@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
-import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS90Test {
 
@@ -57,6 +57,46 @@ public class NFNotaInfoItemImpostoICMS90Test {
         new NFNotaInfoItemImpostoICMS90().setValorTributo(new BigDecimal("1000000000000"));
     }
 
+    @Test
+    public void devePermitirICMSDesoneracaoNulo() {
+        final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
+        icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
+        icms90.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.VALOR_OPERACAO);
+        icms90.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms90.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+        icms90.setPercentualAliquota(new BigDecimal("99.99"));
+        icms90.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+        icms90.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+        icms90.setPercentualReducaoBC(new BigDecimal("99.99"));
+        icms90.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+        icms90.setValorBC(new BigDecimal("999999999999.99"));
+        icms90.setValorBCST(new BigDecimal("999999999999.99"));
+        icms90.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.toString();
+    }
+
+    @Test
+    public void devePermitirDenoracaoNulo() {
+        final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
+        icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
+        icms90.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.VALOR_OPERACAO);
+        icms90.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms90.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+        icms90.setPercentualAliquota(new BigDecimal("99.99"));
+        icms90.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+        icms90.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+        icms90.setPercentualReducaoBC(new BigDecimal("99.99"));
+        icms90.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+        icms90.setValorBC(new BigDecimal("999999999999.99"));
+        icms90.setValorBCST(new BigDecimal("999999999999.99"));
+        icms90.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+        icms90.toString();
+    }
+
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
@@ -72,6 +112,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -90,6 +132,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -108,6 +152,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -126,6 +172,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -144,6 +192,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -162,6 +212,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -180,6 +232,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -198,6 +252,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -216,6 +272,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -234,6 +292,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -252,6 +312,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBC(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -270,6 +332,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBC(new BigDecimal("999999999999.99"));
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -288,6 +352,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBC(new BigDecimal("999999999999.99"));
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
         icms90.toString();
     }
 
@@ -307,8 +373,10 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.setValorBCST(new BigDecimal("999999999999.99"));
         icms90.setValorICMSST(new BigDecimal("999999999999.99"));
         icms90.setValorTributo(new BigDecimal("999999999999.99"));
+        icms90.setDesoneracao(NFNotaInfoMotivoDesoneracaoICMS.OUTROS);
+        icms90.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS90><orig>2</orig><CST>90</CST><modBC>3</modBC><vBC>999999999999.99</vBC><pRedBC>99.99</pRedBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><modBCST>3</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST></NFNotaInfoItemImpostoICMS90>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS90><orig>2</orig><CST>90</CST><modBC>3</modBC><vBC>999999999999.99</vBC><pRedBC>99.99</pRedBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><modBCST>3</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><vICMSDeson>999999999999.99</vICMSDeson><motDesICMS>9</motDesICMS></NFNotaInfoItemImpostoICMS90>";
         Assert.assertEquals(xmlEsperado, icms90.toString());
     }
 }

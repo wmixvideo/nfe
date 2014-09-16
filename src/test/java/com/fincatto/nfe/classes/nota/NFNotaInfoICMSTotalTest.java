@@ -85,6 +85,28 @@ public class NFNotaInfoICMSTotalTest {
     }
 
     @Test
+    public void devePermitirValorICMSDesoneradoNulo() {
+        final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
+        icmsTotal.setBaseCalculoICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
+        icmsTotal.setValor(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorCOFINS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorPIS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDesconto(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalDosProdutosServicos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFrete(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMS(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalICMSST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalII(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.toString();
+    }
+
+    @Test
     public void devePermitirValorTotalTributosNulo() {
         final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
         icmsTotal.setBaseCalculoICMS(new BigDecimal("999999999999.99"));
@@ -101,6 +123,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -121,6 +144,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -141,6 +165,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -161,6 +186,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -181,6 +207,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -201,6 +228,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -221,6 +249,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -241,6 +270,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -261,6 +291,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -281,6 +312,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -301,6 +333,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -321,6 +354,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -341,6 +375,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -361,6 +396,7 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -381,12 +417,13 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorTotalIPI(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalTributos(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoICMSTotal><vBC>999999999999.99</vBC><vICMS>999999999999.99</vICMS><vBCST>999999999999.99</vBCST><vST>999999999999.99</vST><vProd>999999999999.99</vProd><vFrete>999999999999.99</vFrete><vSeg>999999999999.99</vSeg><vDesc>999999999999.99</vDesc><vII>999999999999.99</vII><vIPI>999999999999.99</vIPI><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS><vOutro>999999999999.99</vOutro><vNF>999999999999.99</vNF></NFNotaInfoICMSTotal>";
+        final String xmlEsperado = "<NFNotaInfoICMSTotal><vBC>999999999999.99</vBC><vICMS>999999999999.99</vICMS><vICMSDeson>999999999999.99</vICMSDeson><vBCST>999999999999.99</vBCST><vST>999999999999.99</vST><vProd>999999999999.99</vProd><vFrete>999999999999.99</vFrete><vSeg>999999999999.99</vSeg><vDesc>999999999999.99</vDesc><vII>999999999999.99</vII><vIPI>999999999999.99</vIPI><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS><vOutro>999999999999.99</vOutro><vNF>999999999999.99</vNF></NFNotaInfoICMSTotal>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoICMSTotal().toString());
     }
 }

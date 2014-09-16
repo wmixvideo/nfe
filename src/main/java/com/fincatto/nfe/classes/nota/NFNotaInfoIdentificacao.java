@@ -2,16 +2,14 @@ package com.fincatto.nfe.classes.nota;
 
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFFinalidade;
-import com.fincatto.nfe.classes.NFFormaPagamento;
+import com.fincatto.nfe.classes.NFFormaPagamentoPrazo;
 import com.fincatto.nfe.classes.NFProcessoEmissor;
 import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
@@ -33,7 +31,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String naturezaOperacao;
 
     @Element(name = "indPag", required = true)
-    private NFFormaPagamento formaPagamento;
+    private NFFormaPagamentoPrazo formaPagamento;
 
     @Element(name = "mod", required = true)
     private String modelo;
@@ -44,23 +42,20 @@ public class NFNotaInfoIdentificacao extends NFBase {
     @Element(name = "nNF", required = true)
     private String numeroNota;
 
-    @Element(name = "dEmi", required = true)
-    private LocalDate dataEmissao;
+    @Element(name = "dhEmi", required = true)
+    private LocalDateTime dataHoraEmissao;
 
-    @Element(name = "dSaiEnt", required = false)
-    private LocalDate dataSaida;
-
-    @Element(name = "hSaiEnt", required = false)
-    private LocalTime horaSaida;
+    @Element(name = "dhSaiEnt", required = false)
+    private LocalDateTime dataHoraSaidaEntrada;
 
     @Element(name = "tpNF", required = true)
     private NFTipo tipo;
 
+    @Element(name = "idDest", required = true)
+    private NFIdentificadorLocalDestinoOperacao identificadorLocalDestinoOperacao;
+
     @Element(name = "cMunFG", required = true)
     private String codigoMunicipio;
-
-    @ElementList(entry = "NFref", inline = true, required = false)
-    private List<NFInfoReferenciada> referenciadas;
 
     @Element(name = "tpImp", required = true)
     private NFTipoImpressao tipoImpressao;
@@ -77,6 +72,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     @Element(name = "finNFe", required = true)
     private NFFinalidade finalidade;
 
+    @Element(name = "indFinal", required = true)
+    private NFOperacaoConsumidorFinal operacaoConsumidorFinal;
+
+    @Element(name = "indPres", required = true)
+    private NFIndicadorPresencaComprador indicadorPresencaComprador;
+
     @Element(name = "procEmi", required = true)
     private NFProcessoEmissor programaEmissor;
 
@@ -88,6 +89,9 @@ public class NFNotaInfoIdentificacao extends NFBase {
 
     @Element(name = "xJust", required = false)
     private String justificativaEntradaContingencia;
+
+    @ElementList(entry = "NFref", inline = true, required = false)
+    private List<NFInfoReferenciada> referenciadas;
 
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
@@ -103,7 +107,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.naturezaOperacao = naturezaOperacao;
     }
 
-    public void setFormaPagamento(final NFFormaPagamento formaPagamento) {
+    public void setFormaPagamento(final NFFormaPagamentoPrazo formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
@@ -122,16 +126,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.numeroNota = numeroNota;
     }
 
-    public void setDataEmissao(final LocalDate dataEmissao) {
-        this.dataEmissao = dataEmissao;
+    public void setDataHoraEmissao(final LocalDateTime dataEmissao) {
+        this.dataHoraEmissao = dataEmissao;
     }
 
-    public void setDataSaida(final LocalDate dataSaida) {
-        this.dataSaida = dataSaida;
-    }
-
-    public void setHoraSaida(final LocalTime horaSaida) {
-        this.horaSaida = horaSaida;
+    public void setDataHoraSaidaEntrada(final LocalDateTime dataHoraSaidaEntrada) {
+        this.dataHoraSaidaEntrada = dataHoraSaidaEntrada;
     }
 
     public void setTipo(final NFTipo tipo) {
@@ -185,5 +185,17 @@ public class NFNotaInfoIdentificacao extends NFBase {
     public void setJustificativaEntradaContingencia(final String justificativaEntradaContingencia) {
         StringValidador.tamanho15a256(justificativaEntradaContingencia);
         this.justificativaEntradaContingencia = justificativaEntradaContingencia;
+    }
+
+    public void setIdentificadorLocalDestinoOperacao(final NFIdentificadorLocalDestinoOperacao identificadorLocalDestinoOperacao) {
+        this.identificadorLocalDestinoOperacao = identificadorLocalDestinoOperacao;
+    }
+
+    public void setOperacaoConsumidorFinal(final NFOperacaoConsumidorFinal operacaoConsumidorFinal) {
+        this.operacaoConsumidorFinal = operacaoConsumidorFinal;
+    }
+
+    public void setIndicadorPresencaComprador(final NFIndicadorPresencaComprador indicadorPresencaComprador) {
+        this.indicadorPresencaComprador = indicadorPresencaComprador;
     }
 }

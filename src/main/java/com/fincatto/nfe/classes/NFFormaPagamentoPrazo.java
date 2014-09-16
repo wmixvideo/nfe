@@ -1,6 +1,6 @@
 package com.fincatto.nfe.classes;
 
-public enum NFFormaPagamento {
+public enum NFFormaPagamentoPrazo {
 	
 	A_VISTA("0", "A vista"),
 	A_PRAZO("1", "A prazo"),
@@ -9,7 +9,7 @@ public enum NFFormaPagamento {
 	private final String codigo;
 	private final String descricao;
 	
-	private NFFormaPagamento(final String codigo, final String descricao) {
+	private NFFormaPagamentoPrazo(final String codigo, final String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -22,8 +22,8 @@ public enum NFFormaPagamento {
 		return this.descricao;
 	}
 	
-	public static NFFormaPagamento valueOfCodigo(final String codigo) {
-		for (NFFormaPagamento formaPagamento : NFFormaPagamento.values()) {
+	public static NFFormaPagamentoPrazo valueOfCodigo(final String codigo) {
+		for (NFFormaPagamentoPrazo formaPagamento : NFFormaPagamentoPrazo.values()) {
 			if (formaPagamento.getCodigo().equals(codigo)) {
 				return formaPagamento;
 			}

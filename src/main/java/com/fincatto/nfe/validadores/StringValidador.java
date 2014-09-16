@@ -58,6 +58,12 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho2ate60(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 2, 60);
+        }
+    }
+
     public static void tamanho22(final String string) {
         if (string != null) {
             StringValidador.validaTamanhoMaximo(string, 22);
@@ -253,6 +259,12 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho5a20(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 5, 20);
+        }
+    }
+
     public static void tamanho2a4(final String string) {
         if (string != null) {
             StringValidador.intervalo(string, 2, 4);
@@ -263,6 +275,12 @@ public class StringValidador {
         if (string != null) {
             StringValidador.intervalo(string, 8, 9);
             StringValidador.apenasNumerico(string);
+        }
+    }
+
+    public static void tamanho30(final String string) {
+        if (string != null) {
+            StringValidador.validaTamanhoMaximo(string, 30);
         }
     }
 
@@ -307,6 +325,13 @@ public class StringValidador {
         }
     }
 
+    public static void exatamente20N(final String string) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.validaTamanhoExato(string, 20);
+        }
+    }
+
     public static void fci(final String numeroControleFCI) {
         if (numeroControleFCI != null) {
             final Matcher matcher = Pattern.compile("^([A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12})$").matcher(numeroControleFCI);
@@ -346,6 +371,20 @@ public class StringValidador {
     private static void intervalo(final String string, final int inicio, final int fim) {
         if (string.length() < inicio || string.length() > fim) {
             throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre {0}-{1} caracteres", inicio, fim));
+        }
+    }
+
+    public static void nve(final String nve) {
+        final Matcher matcher = Pattern.compile("^[A-Z]{2}[0-9]{4}$").matcher(nve);
+        if (!matcher.find()) {
+            throw new IllegalStateException("NVE fora do padrao");
+        }
+    }
+
+    public static void itemListaServico(final String itemListaServicos) {
+        final Matcher matcher = Pattern.compile("^\\d{2}\\.\\d{2}$").matcher(itemListaServicos);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Item Lista de servico fora do padrao");
         }
     }
 

@@ -30,7 +30,7 @@ public class NFNotaInfoItemImposto extends NFBase {
     @Element(name = "PISST", required = false)
     private NFNotaInfoItemImpostoPISST pisst;
 
-    @Element(name = "COFINS", required = true)
+    @Element(name = "COFINS", required = false)
     private NFNotaInfoItemImpostoCOFINS cofins;
 
     @Element(name = "COFINSST", required = false)

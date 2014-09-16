@@ -33,6 +33,12 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
+    @Element(name = "vICMSDeson", required = false)
+    private String valorICMSDesoneracao;
+
+    @Element(name = "motDesICMS", required = false)
+    private NFNotaInfoMotivoDesoneracaoICMS desoneracao;
+
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
@@ -46,7 +52,7 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBC);
+        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC);
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
@@ -59,5 +65,13 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
 
     public void setValorTributo(final BigDecimal valorTributo) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+    }
+
+    public void setDesoneracao(final NFNotaInfoMotivoDesoneracaoICMS desoneracao) {
+        this.desoneracao = desoneracao;
+    }
+
+    public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
 }

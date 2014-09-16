@@ -14,7 +14,7 @@ public class NFNotaInfoItemProdutoArmamentoTest {
         try {
             armamento.setNumeroSerieCano("");
         } catch (final IllegalStateException e) {
-            armamento.setNumeroSerieCano("G2LeQIr412");
+            armamento.setNumeroSerieCano("f7wMGCiyFZOerumL");
         }
     }
 
@@ -24,7 +24,7 @@ public class NFNotaInfoItemProdutoArmamentoTest {
         try {
             armamento.setNumeroSerieArma("");
         } catch (final IllegalStateException e) {
-            armamento.setNumeroSerieArma("G2LeQIr412");
+            armamento.setNumeroSerieArma("f7wMGCiyFZOerumL");
         }
     }
 

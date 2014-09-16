@@ -79,8 +79,8 @@ public class NFNotaInfoItemImpostoTest {
         imposto.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCofinsNulo() {
+    @Test
+    public void devePermitirCofinsNulo() {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());
         imposto.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());

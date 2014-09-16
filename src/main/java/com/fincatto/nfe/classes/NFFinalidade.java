@@ -4,7 +4,8 @@ public enum NFFinalidade {
 
     NORMAL("1", "Normal"),
     COMPLEMENTAR("2", "Complementar"),
-    AJUSTE("3", "Ajuste");
+    AJUSTE("3", "Ajuste"),
+    DEVOLUCAO_RETORNO("4", "Devolucao ou retorno");
 
     private final String codigo;
     private final String descricao;

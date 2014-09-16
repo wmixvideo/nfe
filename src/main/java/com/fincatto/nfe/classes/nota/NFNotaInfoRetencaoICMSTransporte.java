@@ -36,7 +36,7 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
     }
 
     public void setAliquotaRetencao(final BigDecimal aliquotaRetencao) {
-        this.aliquotaRetencao = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaRetencao);
+        this.aliquotaRetencao = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaRetencao);
     }
 
     public void setValorICMSRetido(final BigDecimal valorICMSRetido) {

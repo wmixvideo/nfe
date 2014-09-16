@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoIPITributado extends NFBase {
         if (this.quantidade != null || this.valorUnidadeTributavel != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota se quantidade ou valor unidade tributavel esta setado");
         }
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
     }
 
     public void setQuantidade(final BigDecimal quantidade) {

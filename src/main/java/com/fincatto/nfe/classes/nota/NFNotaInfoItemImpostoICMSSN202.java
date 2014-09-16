@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe.classes.NFOrigem;
-import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
@@ -48,11 +48,11 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
     }
 
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualMargemValorAdicionadoICMSST);
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST);
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualReducaoBCICMSST);
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST);
     }
 
     public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
@@ -60,7 +60,7 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
     }
 
     public void setPercentualAliquotaImpostoICMSST(final BigDecimal percentualAliquotaImpostoICMSST) {
-        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaImpostoICMSST);
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaImpostoICMSST);
     }
 
     public void setValorICMSST(final BigDecimal valorICMSST) {

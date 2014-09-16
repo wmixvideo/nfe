@@ -20,24 +20,17 @@ public class NFNotaInfoItemProdutoArmamento extends NFBase {
     @Element(name = "descr", required = true)
     private String descricao;
 
-    public NFNotaInfoItemProdutoArmamento() {
-        this.tipo = null;
-        this.numeroSerieArma = null;
-        this.numeroSerieCano = null;
-        this.descricao = null;
-    }
-
     public void setTipo(final NFNotaInfoItemProdutoArmamentoTipo tipo) {
         this.tipo = tipo;
     }
 
     public void setNumeroSerieArma(final String numeroSerieArma) {
-        StringValidador.tamanho9(numeroSerieArma);
+        StringValidador.tamanho15(numeroSerieArma);
         this.numeroSerieArma = numeroSerieArma;
     }
 
     public void setNumeroSerieCano(final String numeroSerieCano) {
-        StringValidador.tamanho9(numeroSerieCano);
+        StringValidador.tamanho15(numeroSerieCano);
         this.numeroSerieCano = numeroSerieCano;
     }
 
