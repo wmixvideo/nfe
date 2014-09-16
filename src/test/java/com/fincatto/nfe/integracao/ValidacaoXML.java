@@ -3,7 +3,6 @@ package com.fincatto.nfe.integracao;
 import java.io.File;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.core.Persister;
 
@@ -14,11 +13,9 @@ import com.fincatto.nfe.validadores.xsd.XMLValidador;
 import com.fincatto.util.TesteUtil;
 
 public class ValidacaoXML {
-
     private static final String DIRETORIO_XML_NOTAS = "/tmp/notas";
 
     @Test
-    @Ignore
     public void deveValidarXMLContraXSD() throws Throwable {
         XMLValidador.validaNota(FabricaDeObjetosFake.getNFNota1().toString());
     }

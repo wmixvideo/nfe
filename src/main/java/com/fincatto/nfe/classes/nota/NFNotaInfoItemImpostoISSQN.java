@@ -82,7 +82,7 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     }
 
     public void setCodigoMunicipioIncidenciaImposto(final String codigoMunicipioIncidenciaImposto) {
-        StringValidador.exatamente7(codigoMunicipioIncidenciaImposto);
+        StringValidador.exatamente7N(codigoMunicipioIncidenciaImposto);
         this.codigoMunicipioIncidenciaImposto = codigoMunicipioIncidenciaImposto;
     }
 

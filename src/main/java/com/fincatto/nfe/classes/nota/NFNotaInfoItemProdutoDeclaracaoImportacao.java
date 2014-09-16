@@ -42,7 +42,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     private String cnpj;
 
     @Element(name = "UFTerceiro", required = false)
-    private NFUnidadeFederativa ufTerceiro;
+    private String ufTerceiro;
 
     @Element(name = "cExportador", required = true)
     private String codigoExportador;
@@ -99,6 +99,6 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setUfTerceiro(final NFUnidadeFederativa ufTerceiro) {
-        this.ufTerceiro = ufTerceiro;
+        this.ufTerceiro = ufTerceiro.getCodigo();
     }
 }

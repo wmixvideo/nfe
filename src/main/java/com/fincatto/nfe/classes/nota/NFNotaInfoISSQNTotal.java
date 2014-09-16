@@ -3,7 +3,6 @@ package com.fincatto.nfe.classes.nota;
 import java.math.BigDecimal;
 
 import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe.classes.NFBase;
@@ -26,7 +25,7 @@ public class NFNotaInfoISSQNTotal extends NFBase {
     private String valorCOFINSsobreServicos;
 
     @Element(name = "dCompet", required = true)
-    private String dataPrestacaoServico;
+    private LocalDate dataPrestacaoServico;
 
     @Element(name = "vDeducao", required = false)
     private String valorDeducao;
@@ -67,7 +66,7 @@ public class NFNotaInfoISSQNTotal extends NFBase {
     }
 
     public void setDataPrestacaoServico(final LocalDate dataPrestacaoServico) {
-        this.dataPrestacaoServico = DateTimeFormat.forPattern("yyyyMMdd").print(dataPrestacaoServico);
+        this.dataPrestacaoServico = dataPrestacaoServico;
     }
 
     public void setValorDeducao(final BigDecimal valorDeducao) {
