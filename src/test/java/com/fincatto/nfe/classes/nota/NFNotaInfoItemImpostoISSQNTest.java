@@ -50,7 +50,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -71,7 +71,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -92,8 +92,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
         impostoISSQN.setNumeroProcesso("Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO");
@@ -113,8 +113,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
         impostoISSQN.setNumeroProcesso("Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO");
@@ -134,8 +134,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setNumeroProcesso("Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO");
@@ -155,8 +155,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -176,8 +176,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -197,8 +197,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -218,8 +218,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -239,8 +239,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -260,8 +260,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -280,8 +280,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -301,8 +301,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -322,8 +322,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setItemListaServicos("12.34");
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -343,8 +343,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setItemListaServicos("12.34");
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -364,8 +364,8 @@ public class NFNotaInfoItemImpostoISSQNTest {
         impostoISSQN.setItemListaServicos("12.34");
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -380,7 +380,7 @@ public class NFNotaInfoItemImpostoISSQNTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>25.01</cListServ><vDeducao>99999999999.99</vDeducao><vOutro>99999999999.99</vOutro><vDescIncond>99999999999.99</vDescIncond><vDescCond>99999999999.99</vDescCond><vISSRet>99999999999.99</vISSRet><indISS>1</indISS><cServico>VfsQTgAm60yAqyOMUOIp</cServico><cMun>P3PGx7A</cMun><cPais>8532</cPais><nProcesso>Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO</nProcesso><indIncentivo>1</indIncentivo></NFNotaInfoItemImpostoISSQN>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>25.01</cListServ><vDeducao>99999999999.99</vDeducao><vOutro>99999999999.99</vOutro><vDescIncond>99999999999.99</vDescIncond><vDescCond>99999999999.99</vDescCond><vISSRet>99999999999.99</vISSRet><indISS>1</indISS><cServico>VfsQTgAm60yAqyOMUOIp</cServico><cMun>3813816</cMun><cPais>8486</cPais><nProcesso>Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO</nProcesso><indIncentivo>1</indIncentivo></NFNotaInfoItemImpostoISSQN>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN().toString());
     }
 }

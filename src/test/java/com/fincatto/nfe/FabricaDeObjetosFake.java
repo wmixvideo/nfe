@@ -218,6 +218,7 @@ public class FabricaDeObjetosFake {
 
         imposto.setPis(pis);
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
 
         item.setImposto(imposto);
         item.setNumeroItem(990);
@@ -227,7 +228,7 @@ public class FabricaDeObjetosFake {
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
-        info.setVersao(new BigDecimal("2.00"));
+        info.setVersao(new BigDecimal("3.10"));
 
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         referenciada.setChaveAcesso("19506188293993666630760813709064781438945816");
@@ -254,6 +255,9 @@ public class FabricaDeObjetosFake {
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
+        identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.CONSUMIDOR_FINAL);
+        identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
         info.setIdentificacao(identificacao);
         nota.setInfo(info);
         return nota;
@@ -451,7 +455,7 @@ public class FabricaDeObjetosFake {
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
         emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
-        emitente.setInscricaoEstadual("ISENTO");
+        emitente.setInscricaoEstadual("12345678901234");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
         emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
@@ -465,7 +469,7 @@ public class FabricaDeObjetosFake {
         destinatario.setCnpj("12345678901234");
         destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
         destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
-        destinatario.setInscricaoEstadual("ISENTO");
+        destinatario.setInscricaoEstadual("13245678901234");
         destinatario.setInscricaoSuframa("999999999");
         destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
         destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
@@ -526,7 +530,7 @@ public class FabricaDeObjetosFake {
         final NFInfoProdutorRuralReferenciada referenciada = new NFInfoProdutorRuralReferenciada();
         referenciada.setAnoMesEmissao("1402");
         referenciada.setCnpjEmitente("12345678901234");
-        referenciada.setIeEmitente("ISENTO");
+        referenciada.setIeEmitente("789456");
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
@@ -706,8 +710,8 @@ public class FabricaDeObjetosFake {
         impostoISSQN.setValor(new BigDecimal("999999999999.99"));
         impostoISSQN.setValorAliquota(new BigDecimal("99.99"));
         impostoISSQN.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        impostoISSQN.setCodigoMunicipioIncidenciaImposto("P3PGx7A");
-        impostoISSQN.setCodigoPais("8532");
+        impostoISSQN.setCodigoMunicipioIncidenciaImposto("3813816");
+        impostoISSQN.setCodigoPais("8486");
         impostoISSQN.setCodigoServico("VfsQTgAm60yAqyOMUOIp");
         impostoISSQN.setIndicadorExigibilidadeISS(NFNotaInfoItemIndicadorExigibilidadeISS.EXIGIVEL);
         impostoISSQN.setIndicadorIncentivoFiscal(NFNotaInfoItemIndicadorIncentivoFiscal.SIM);
@@ -923,7 +927,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
         transportador.setCnpj("34843274000164");
         transportador.setEnderecoComplemento("D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY");
-        transportador.setInscricaoEstadual("");
+        transportador.setInscricaoEstadual("ISENTO");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setUf(NFUnidadeFederativa.SP);

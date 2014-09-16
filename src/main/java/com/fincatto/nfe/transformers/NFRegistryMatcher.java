@@ -38,6 +38,7 @@ import com.fincatto.nfe.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe.classes.nota.NFFormaImportacaoIntermediacao;
 import com.fincatto.nfe.classes.nota.NFFormaPagamentoMoeda;
 import com.fincatto.nfe.classes.nota.NFIdentificadorLocalDestinoOperacao;
+import com.fincatto.nfe.classes.nota.NFIndicadorIEDestinatario;
 import com.fincatto.nfe.classes.nota.NFIndicadorPresencaComprador;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemIndicadorExigibilidadeISS;
 import com.fincatto.nfe.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
@@ -71,6 +72,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFNotaInfoTipoVeiculo.class, new NFNotaInfoTipoVeiculoTransformer());
         super.bind(NFNotaInfoEspecieVeiculo.class, new NFNotaInfoEspecieVeiculoTransformer());
         super.bind(NFProdutoCompoeValorNota.class, new NFProdutoCompoeValorNotaTransformer());
+        super.bind(NFIndicadorIEDestinatario.class, new NFIndicadorIEDestinatarioTransformer());
         super.bind(NFOperacaoConsumidorFinal.class, new NFOperacaoConsumidorFinalTransformer());
         super.bind(NFNotaInfoCombustivelTipo.class, new NFNotaInfoCombustivelTipoTransformer());
         super.bind(NFLoteIndicadorProcessamento.class, new NFLoteIndicadorProcessamentoTransformer());
