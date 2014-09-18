@@ -10,7 +10,7 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe.NFEConfig;
-import com.fincatto.nfe.classes.NFAutorizador;
+import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
@@ -57,7 +57,7 @@ class WSStatusConsulta {
         final NfeStatusServico2Stub.NfeDadosMsg dados = new NfeStatusServico2Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
-        final NfeStatusServico2Stub.NfeStatusServicoNF2Result result = new NfeStatusServico2Stub(NFAutorizador.valueOfCodigoUF(unidadeFederativa).getNfeStatusServico(this.config.getAmbiente())).nfeStatusServicoNF2(dados, cabecEnv);
+        final NfeStatusServico2Stub.NfeStatusServicoNF2Result result = new NfeStatusServico2Stub(NFAutorizador31.valueOfCodigoUF(unidadeFederativa).getNfeStatusServico(this.config.getAmbiente())).nfeStatusServicoNF2(dados, cabecEnv);
         return result.getExtraElement();
     }
 }

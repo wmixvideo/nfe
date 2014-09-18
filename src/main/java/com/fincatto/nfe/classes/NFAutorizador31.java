@@ -2,7 +2,7 @@ package com.fincatto.nfe.classes;
 
 import java.util.Arrays;
 
-public enum NFAutorizador {
+public enum NFAutorizador31 {
     SVRS {
 
         @Override
@@ -96,9 +96,9 @@ public enum NFAutorizador {
 
     public abstract NFUnidadeFederativa[] getUFs();
 
-    public static NFAutorizador valueOfCodigoUF(final NFUnidadeFederativa uf) {
+    public static NFAutorizador31 valueOfCodigoUF(final NFUnidadeFederativa uf) {
         if (uf != null) {
-            for (final NFAutorizador aut : NFAutorizador.values()) {
+            for (final NFAutorizador31 aut : NFAutorizador31.values()) {
                 if (Arrays.asList(aut.getUFs()).contains(uf)) {
                     return aut;
                 }
@@ -107,13 +107,14 @@ public enum NFAutorizador {
         return null;
     }
 
-    public static NFAutorizador valueOfChaveAcesso(final String chaveAcesso) {
+    public static NFAutorizador31 valueOfChaveAcesso(final String chaveAcesso) {
         final NFChaveInterpretador chaveInterpretador = new NFChaveInterpretador(chaveAcesso);
+        // @TODO SCAN será desativado em 30/09/2014
         if (chaveInterpretador.isEmitidaContingenciaSCAN()) {
             // return NFAutorizador.SCAN;
             return null;
         }
-        return NFAutorizador.valueOfCodigoUF(chaveInterpretador.getUnidadeFederativa());
+        return NFAutorizador31.valueOfCodigoUF(chaveInterpretador.getUnidadeFederativa());
     }
 
 }
