@@ -11,7 +11,7 @@ import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
-import com.fincatto.nfe.classes.NFAutorizador;
+import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetorno;
@@ -42,7 +42,7 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
         this.log.info(omElement);
-        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(NFAutorizador.valueOfCodigoUF(uf).getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
+        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(NFAutorizador31.valueOfCodigoUF(uf).getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         System.out.println(autorizacaoLoteResult.getExtraElement());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());

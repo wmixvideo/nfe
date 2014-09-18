@@ -11,7 +11,7 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe.NFEConfig;
-import com.fincatto.nfe.classes.NFAutorizador;
+import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe.classes.nota.consulta.NFNotaConsultaRetorno;
@@ -46,7 +46,7 @@ class WSNotaConsulta {
 
         final NfeConsulta2Stub.NfeDadosMsg dados = new NfeConsulta2Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeConsultaProtocolo(this.config.getAmbiente())).nfeConsultaNF2(dados, cabecE);
+        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(NFAutorizador31.valueOfCodigoUF(uf).getNfeConsultaProtocolo(this.config.getAmbiente())).nfeConsultaNF2(dados, cabecE);
         return consultaNF2Result.getExtraElement();
     }
 
