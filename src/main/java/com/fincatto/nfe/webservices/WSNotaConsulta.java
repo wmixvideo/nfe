@@ -39,7 +39,7 @@ class WSNotaConsulta {
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final NFUnidadeFederativa uf) throws AxisFault, RemoteException {
         final NfeConsulta2Stub.NfeCabecMsg cabec = new NfeConsulta2Stub.NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
-        cabec.setVersaoDados("2.01");
+        cabec.setVersaoDados("3.10");
 
         final NfeConsulta2Stub.NfeCabecMsgE cabecE = new NfeConsulta2Stub.NfeCabecMsgE();
         cabecE.setNfeCabecMsg(cabec);
@@ -55,7 +55,7 @@ class WSNotaConsulta {
         notaConsulta.setAmbiente(this.config.getAmbiente());
         notaConsulta.setChave(chaveDeAcesso);
         notaConsulta.setServico("CONSULTAR");
-        notaConsulta.setVersao(new BigDecimal("2.01"));
+        notaConsulta.setVersao(new BigDecimal("3.10"));
         return notaConsulta;
     }
 }

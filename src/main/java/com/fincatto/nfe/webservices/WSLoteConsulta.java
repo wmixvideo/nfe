@@ -16,8 +16,8 @@ import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
-import com.fincatto.nfe.webservices.lote.consulta.NfeRetRecepcao2Stub;
-import com.fincatto.nfe.webservices.lote.consulta.NfeRetRecepcao2Stub.NfeRetRecepcao2Result;
+import com.fincatto.nfe.webservices.gerado.NfeRetAutorizacaoStub;
+import com.fincatto.nfe.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
 
 class WSLoteConsulta {
 
@@ -39,17 +39,17 @@ class WSLoteConsulta {
     }
 
     private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf) throws AxisFault, RemoteException {
-        final NfeRetRecepcao2Stub.NfeCabecMsg cabec = new NfeRetRecepcao2Stub.NfeCabecMsg();
+        final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
         cabec.setVersaoDados(NFEConfig.VERSAO_NFE);
 
-        final NfeRetRecepcao2Stub.NfeCabecMsgE cabecE = new NfeRetRecepcao2Stub.NfeCabecMsgE();
+        final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
         cabecE.setNfeCabecMsg(cabec);
 
-        final NfeRetRecepcao2Stub.NfeDadosMsg dados = new NfeRetRecepcao2Stub.NfeDadosMsg();
+        final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
         dados.setExtraElement(omElement);
-        final NfeRetRecepcao2Result result = new NfeRetRecepcao2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeRetRecepcao(this.config.getAmbiente())).nfeRetRecepcao2(dados, cabecE);
-        return result.getExtraElement();
+        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(NFAutorizador.valueOfCodigoUF(uf).getNfeRetAutorizacao(this.config.getAmbiente())).nfeRetAutorizacaoLote(dados, cabecE);
+        return autorizacaoLoteResult.getExtraElement();
     }
 
     private NFLoteConsulta gerarDadosConsulta(final String numeroRecibo) {

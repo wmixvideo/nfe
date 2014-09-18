@@ -40,7 +40,7 @@ public class BigDecimalParser {
     }
 
     public static String tamanho7ComAte4CasasDecimais(final BigDecimal valor) {
-        return BigDecimalParser.parse(valor, "0.####", 7, 4);
+        return BigDecimalParser.parse(valor, "0.00##", 7, 4);
     }
 
     public static String tamanho16ComAte4CasasDecimais(final BigDecimal valor) {

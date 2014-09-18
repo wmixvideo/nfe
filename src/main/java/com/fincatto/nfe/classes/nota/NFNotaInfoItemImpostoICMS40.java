@@ -20,6 +20,9 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
     @Element(name = "vICMS", required = false)
     private String valorICMS;
 
+    @Element(name = "vICMSDeson", required = false)
+    private String valorICMSDesoneracao;
+
     @Element(name = "motDesICMS", required = false)
     private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMS;
 
@@ -33,6 +36,10 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
 
     public void setValorICMS(final BigDecimal valorICMS) {
         this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS);
+    }
+
+    public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
 
     public void setMotivoDesoneracaoICMS(final NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMS) {

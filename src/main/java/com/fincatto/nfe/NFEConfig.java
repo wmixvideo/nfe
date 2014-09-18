@@ -8,7 +8,7 @@ import com.fincatto.nfe.classes.NFUnidadeFederativa;
 
 public interface NFEConfig {
 
-    final static String VERSAO_NFE = "2.00";
+    final static String VERSAO_NFE = "3.10";
 
     final static String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
 

@@ -33,10 +33,6 @@ public class NFProtocoloInfo extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    public void setIdentificador(final String identificador) {
-        this.identificador = identificador;
-    }
-
     public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
@@ -69,10 +65,6 @@ public class NFProtocoloInfo extends NFBase {
         this.motivo = motivo;
     }
 
-    public String getIdentificador() {
-        return this.identificador;
-    }
-
     public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
@@ -103,5 +95,13 @@ public class NFProtocoloInfo extends NFBase {
 
     public String getMotivo() {
         return this.motivo;
+    }
+
+    public String getIdentificador() {
+        return this.identificador;
+    }
+
+    public void setIdentificador(final String identificador) {
+        this.identificador = identificador;
     }
 }

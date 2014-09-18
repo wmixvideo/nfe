@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe.classes.NFOrigem;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 
@@ -39,7 +40,7 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     private String valorICMSDesoneracao;
 
     @Element(name = "motDesICMS", required = false)
-    private NFNotaInfoMotivoDesoneracaoICMS desoneracao;
+    private NFNotaMotivoDesoneracaoICMS desoneracao;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -73,8 +74,8 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
         this.valorImpostoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoICMSST);
     }
 
-    public void setDesoneracao(final NFNotaInfoMotivoDesoneracaoICMS desoneracao) {
-        this.desoneracao = desoneracao;
+    public void setDesoneracao(final NFNotaMotivoDesoneracaoICMS nfNotaMotivoDesoneracaoICMS) {
+        this.desoneracao = nfNotaMotivoDesoneracaoICMS;
     }
 
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {

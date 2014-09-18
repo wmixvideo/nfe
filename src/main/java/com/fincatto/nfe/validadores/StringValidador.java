@@ -34,9 +34,11 @@ public class StringValidador {
     }
 
     public static void telefone(final String telefone) {
-        final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
-        if (!matcher.find()) {
-            throw new IllegalStateException("Telefone de tamanho invalido");
+        if (telefone != null) {
+            final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
+            if (!matcher.find()) {
+                throw new IllegalStateException("Telefone de tamanho invalido");
+            }
         }
     }
 

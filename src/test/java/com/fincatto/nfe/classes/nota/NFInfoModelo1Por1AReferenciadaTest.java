@@ -104,7 +104,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFInfoModelo1Por1AReferenciada><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></NFInfoModelo1Por1AReferenciada>";
+        final String xmlEsperado = "<NFInfoModelo1Por1AReferenciada><cUF>43</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></NFInfoModelo1Por1AReferenciada>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada().toString());
     }
 }

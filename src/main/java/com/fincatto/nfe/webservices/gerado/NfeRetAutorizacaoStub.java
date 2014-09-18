@@ -1,22 +1,19 @@
+/**
+ * NfeRetAutorizacaoStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+ */
 package com.fincatto.nfe.webservices.gerado;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
 
-/**
- * NfeRecepcao2Stub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+/*
+ * NfeRetAutorizacaoStub java implementation
  */
 
-/*
- * NfeRecepcao2Stub java implementation
- */
-public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
+public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     // hashmaps to keep the fault mapping
@@ -31,17 +28,17 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     private static synchronized java.lang.String getUniqueSuffix() {
         // reset the counter if it is greater than 99999
-        if (NfeRecepcao2Stub.counter > 99999) {
-            NfeRecepcao2Stub.counter = 0;
+        if (NfeRetAutorizacaoStub.counter > 99999) {
+            NfeRetAutorizacaoStub.counter = 0;
         }
-        NfeRecepcao2Stub.counter = NfeRecepcao2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeRecepcao2Stub.counter;
+        NfeRetAutorizacaoStub.counter = NfeRetAutorizacaoStub.counter + 1;
+        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeRetAutorizacaoStub.counter;
     }
 
     private void populateAxisService() throws org.apache.axis2.AxisFault {
 
         // creating the Service with a unique name
-        this._service = new org.apache.axis2.description.AxisService("NfeRecepcao2" + NfeRecepcao2Stub.getUniqueSuffix());
+        this._service = new org.apache.axis2.description.AxisService("NfeRetAutorizacao" + NfeRetAutorizacaoStub.getUniqueSuffix());
         this.addAnonymousOperations();
 
         // creating the operations
@@ -51,7 +48,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
         __operation = new org.apache.axis2.description.OutInAxisOperation();
 
-        __operation.setName(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2"));
+        __operation.setName(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote"));
         this._service.addOperation(__operation);
 
         this._operations[0] = __operation;
@@ -67,14 +64,14 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
      * Constructor that takes in a configContext
      */
 
-    public NfeRecepcao2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+    public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
 
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public NfeRecepcao2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -92,37 +89,37 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
     /**
      * Default Constructor
      */
-    public NfeRecepcao2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
+    public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
 
-        this(configurationContext, "https://hom.nfe.fazenda.gov.br/SCAN/NfeRecepcao2/NfeRecepcao2.asmx");
+        this(configurationContext, "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx");
 
     }
 
     /**
      * Default Constructor
      */
-    public NfeRecepcao2Stub() throws org.apache.axis2.AxisFault {
+    public NfeRetAutorizacaoStub() throws org.apache.axis2.AxisFault {
 
-        this("https://hom.nfe.fazenda.gov.br/SCAN/NfeRecepcao2/NfeRecepcao2.asmx");
+        this("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx");
 
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public NfeRecepcao2Stub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+    public NfeRetAutorizacaoStub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
     /**
-     * Auto generated method signature Serviço destinado à recepção de mensagens de lote de NF-e
-     * @see NfeRecepcao2#nfeRecepcaoLote2
+     * Auto generated method signature
+     * @see sefaz.NfeRetAutorizacao#nfeRetAutorizacaoLote
      * @param nfeDadosMsg @param nfeCabecMsg
      */
 
-    public NfeRecepcao2Stub.NfeRecepcaoLote2Result nfeRecepcaoLote2(
+    public NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult nfeRetAutorizacaoLote(
 
-    final NfeRecepcao2Stub.NfeDadosMsg nfeDadosMsg, final NfeRecepcao2Stub.NfeCabecMsgE nfeCabecMsg)
+    final NfeRetAutorizacaoStub.NfeDadosMsg nfeDadosMsg, final NfeRetAutorizacaoStub.NfeCabecMsgE nfeCabecMsg)
 
     throws java.rmi.RemoteException
 
@@ -130,7 +127,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         org.apache.axis2.context.MessageContext _messageContext = null;
         try {
             final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
-            _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2/nfeRecepcaoLote2");
+            _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao/nfeRetAutorizacaoLote");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
@@ -141,14 +138,14 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
-            env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2"));
+            env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote"));
 
             env.build();
 
             // add the children only if the parameter is not null
             if (nfeCabecMsg != null) {
 
-                final org.apache.axiom.om.OMElement omElementnfeCabecMsg = this.toOM(nfeCabecMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2")));
+                final org.apache.axiom.om.OMElement omElementnfeCabecMsg = this.toOM(nfeCabecMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote")));
                 this.addHeader(omElementnfeCabecMsg, env);
 
             }
@@ -167,23 +164,23 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             final org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
             final org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
-            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), NfeRecepcao2Stub.NfeRecepcaoLote2Result.class, this.getEnvelopeNamespaces(_returnEnv));
+            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult.class, this.getEnvelopeNamespaces(_returnEnv));
 
-            return (NfeRecepcao2Stub.NfeRecepcaoLote2Result) object;
+            return (NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult) object;
 
         } catch (final org.apache.axis2.AxisFault f) {
 
             final org.apache.axiom.om.OMElement faultElt = f.getDetail();
             if (faultElt != null) {
-                if (this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoLote2"))) {
+                if (this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRetAutorizacaoLote"))) {
                     // make the fault by reflection
                     try {
-                        final java.lang.String exceptionClassName = (java.lang.String) this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoLote2"));
+                        final java.lang.String exceptionClassName = (java.lang.String) this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRetAutorizacaoLote"));
                         final Class<?> exceptionClass = java.lang.Class.forName(exceptionClassName);
                         final Constructor<?> constructor = exceptionClass.getConstructor(String.class);
                         final java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
                         // message class
-                        final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoLote2"));
+                        final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRetAutorizacaoLote"));
                         final Class<?> messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
                         final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
@@ -251,11 +248,593 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    // https://hom.nfe.fazenda.gov.br/SCAN/NfeRecepcao2/NfeRecepcao2.asmx
-    public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
-        private static final long serialVersionUID = -2075890141672357050L;
+    // https://homologacao.nfe.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx
+    public static class NfeCabecMsg implements org.apache.axis2.databinding.ADBBean {
+        /*
+         * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao Namespace Prefix = ns1
+         */
+        private static final long serialVersionUID = 4741845686863523870L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeDadosMsg", "ns1");
+        /**
+         * field for CUF
+         */
+
+        protected java.lang.String localCUF;
+
+        /*
+         * This tracker boolean wil be used to detect whether the user called the set method for this attribute. It will be used to determine whether to include this field in the serialized XML
+         */
+        protected boolean localCUFTracker = false;
+
+        public boolean isCUFSpecified() {
+            return this.localCUFTracker;
+        }
+
+        /**
+         * Auto generated getter method
+         * @return java.lang.String
+         */
+        public java.lang.String getCUF() {
+            return this.localCUF;
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param CUF
+         */
+        public void setCUF(final java.lang.String param) {
+            this.localCUFTracker = param != null;
+
+            this.localCUF = param;
+
+        }
+
+        /**
+         * field for VersaoDados
+         */
+
+        protected java.lang.String localVersaoDados;
+
+        /*
+         * This tracker boolean wil be used to detect whether the user called the set method for this attribute. It will be used to determine whether to include this field in the serialized XML
+         */
+        protected boolean localVersaoDadosTracker = false;
+
+        public boolean isVersaoDadosSpecified() {
+            return this.localVersaoDadosTracker;
+        }
+
+        /**
+         * Auto generated getter method
+         * @return java.lang.String
+         */
+        public java.lang.String getVersaoDados() {
+            return this.localVersaoDados;
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param VersaoDados
+         */
+        public void setVersaoDados(final java.lang.String param) {
+            this.localVersaoDadosTracker = param != null;
+
+            this.localVersaoDados = param;
+
+        }
+
+        /**
+         * field for ExtraAttributes This was an Attribute! This was an Array!
+         */
+
+        protected org.apache.axiom.om.OMAttribute[] localExtraAttributes;
+
+        /**
+         * Auto generated getter method
+         * @return org.apache.axiom.om.OMAttribute[]
+         */
+        public org.apache.axiom.om.OMAttribute[] getExtraAttributes() {
+            return this.localExtraAttributes;
+        }
+
+        /**
+         * validate the array for ExtraAttributes
+         */
+        protected void validateExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
+
+            if ((param != null) && (param.length > 1)) {
+                throw new java.lang.RuntimeException();
+            }
+
+            if ((param != null) && (param.length < 1)) {
+                throw new java.lang.RuntimeException();
+            }
+
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param ExtraAttributes
+         */
+        public void setExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
+
+            this.validateExtraAttributes(param);
+
+            this.localExtraAttributes = param;
+        }
+
+        /**
+         * Auto generated add method for the array for convenience
+         * @param param org.apache.axiom.om.OMAttribute
+         */
+        public void addExtraAttributes(final org.apache.axiom.om.OMAttribute param) {
+            if (this.localExtraAttributes == null) {
+                this.localExtraAttributes = new org.apache.axiom.om.OMAttribute[] {};
+            }
+
+            @SuppressWarnings("unchecked")
+            final java.util.List<OMAttribute> list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
+            list.add(param);
+            this.localExtraAttributes = list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
+
+        }
+
+        /**
+         * @param parentQName
+         * @param factory
+         * @return org.apache.axiom.om.OMElement
+         */
+        @Override
+        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+
+            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, parentQName);
+            return factory.createOMElement(dataSource, parentQName);
+
+        }
+
+        @Override
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+            this.serialize(parentQName, xmlWriter, false);
+        }
+
+        @Override
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+
+            java.lang.String prefix = null;
+            java.lang.String namespace = null;
+
+            prefix = parentQName.getPrefix();
+            namespace = parentQName.getNamespaceURI();
+            this.writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
+
+            if (serializeType) {
+
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao");
+                if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":nfeCabecMsg", xmlWriter);
+                } else {
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "nfeCabecMsg", xmlWriter);
+                }
+
+            }
+
+            if (this.localExtraAttributes != null) {
+                for (int i = 0; i < this.localExtraAttributes.length; i++) {
+                    this.writeAttribute(this.localExtraAttributes[i].getNamespace().getNamespaceURI(), this.localExtraAttributes[i].getLocalName(), this.localExtraAttributes[i].getAttributeValue(), xmlWriter);
+                }
+            }
+            if (this.localCUFTracker) {
+                namespace = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao";
+                this.writeStartElement(null, namespace, "cUF", xmlWriter);
+
+                if (this.localCUF == null) {
+                    // write the nil attribute
+
+                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
+
+                } else {
+
+                    xmlWriter.writeCharacters(this.localCUF);
+
+                }
+
+                xmlWriter.writeEndElement();
+            }
+            if (this.localVersaoDadosTracker) {
+                namespace = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao";
+                this.writeStartElement(null, namespace, "versaoDados", xmlWriter);
+
+                if (this.localVersaoDados == null) {
+                    // write the nil attribute
+
+                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
+
+                } else {
+
+                    xmlWriter.writeCharacters(this.localVersaoDados);
+
+                }
+
+                xmlWriter.writeEndElement();
+            }
+            xmlWriter.writeEndElement();
+
+        }
+
+        private static java.lang.String generatePrefix(final java.lang.String namespace) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao")) {
+                return "ns1";
+            }
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
+        /**
+         * Utility method to write an element start tag.
+         */
+        private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
+            if (writerPrefix != null) {
+                xmlWriter.writeStartElement(namespace, localPart);
+            } else {
+                if (namespace.length() == 0) {
+                    prefix = "";
+                } else if (prefix == null) {
+                    prefix = NfeCabecMsg.generatePrefix(namespace);
+                }
+
+                xmlWriter.writeStartElement(prefix, localPart, namespace);
+                xmlWriter.writeNamespace(prefix, namespace);
+                xmlWriter.setPrefix(prefix, namespace);
+            }
+        }
+
+        /**
+         * Util method to write an attribute with the ns prefix
+         */
+        private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            if (xmlWriter.getPrefix(namespace) == null) {
+                xmlWriter.writeNamespace(prefix, namespace);
+                xmlWriter.setPrefix(prefix, namespace);
+            }
+            xmlWriter.writeAttribute(namespace, attName, attValue);
+        }
+
+        /**
+         * Util method to write an attribute without the ns prefix
+         */
+        private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            if (namespace.equals("")) {
+                xmlWriter.writeAttribute(attName, attValue);
+            } else {
+                this.registerPrefix(xmlWriter, namespace);
+                xmlWriter.writeAttribute(namespace, attName, attValue);
+            }
+        }
+
+        /**
+         * Register a namespace prefix
+         */
+        private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
+            java.lang.String prefix = xmlWriter.getPrefix(namespace);
+            if (prefix == null) {
+                prefix = NfeCabecMsg.generatePrefix(namespace);
+                final javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
+                while (true) {
+                    final java.lang.String uri = nsContext.getNamespaceURI(prefix);
+                    if (uri == null || uri.length() == 0) {
+                        break;
+                    }
+                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+                }
+                xmlWriter.writeNamespace(prefix, namespace);
+                xmlWriter.setPrefix(prefix, namespace);
+            }
+            return prefix;
+        }
+
+        /**
+         * databinding method to get an XML representation of this object
+         */
+        @Override
+        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
+
+            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<Serializable>();
+            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
+
+            if (this.localCUFTracker) {
+                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "cUF"));
+
+                if (this.localCUF != null) {
+                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localCUF));
+                } else {
+                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
+                }
+            }
+            if (this.localVersaoDadosTracker) {
+                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "versaoDados"));
+
+                if (this.localVersaoDados != null) {
+                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localVersaoDados));
+                } else {
+                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
+                }
+            }
+            for (int i = 0; i < this.localExtraAttributes.length; i++) {
+                attribList.add(org.apache.axis2.databinding.utils.Constants.OM_ATTRIBUTE_KEY);
+                attribList.add(this.localExtraAttributes[i]);
+            }
+
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+
+        }
+
+        /**
+         * Factory class that keeps the parse method
+         */
+        public static class Factory {
+
+            /**
+             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
+             */
+            public static NfeCabecMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                final NfeCabecMsg object = new NfeCabecMsg();
+
+                java.lang.String nillableValue = null;
+                try {
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) {
+                        reader.next();
+                    }
+
+                    if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
+                        final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
+                        if (fullTypeName != null) {
+                            java.lang.String nsPrefix = null;
+                            if (fullTypeName.indexOf(":") > -1) {
+                                nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
+                            }
+                            nsPrefix = nsPrefix == null ? "" : nsPrefix;
+
+                            final java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
+
+                            if (!"nfeCabecMsg".equals(type)) {
+                                // find namespace for the prefix
+                                final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
+                                return (NfeCabecMsg) ExtensionMapper.getTypeObject(nsUri, type, reader);
+                            }
+
+                        }
+
+                    }
+
+                    // Note all attributes that were handled. Used to differ normal attributes
+                    // from anyAttributes.
+                    final java.util.Vector<String> handledAttributes = new java.util.Vector<>();
+
+                    // now run through all any or extra attributes
+                    // which were not reflected until now
+                    for (int i = 0; i < reader.getAttributeCount(); i++) {
+                        if (!handledAttributes.contains(reader.getAttributeLocalName(i))) {
+                            // this is an anyAttribute and we create
+                            // an OMAttribute for this
+                            final org.apache.axiom.om.OMFactory factory = org.apache.axiom.om.OMAbstractFactory.getOMFactory();
+                            final org.apache.axiom.om.OMAttribute attr = factory.createOMAttribute(reader.getAttributeLocalName(i), factory.createOMNamespace(reader.getAttributeNamespace(i), reader.getAttributePrefix(i)), reader.getAttributeValue(i));
+
+                            // and add it to the extra attributes
+
+                            object.addExtraAttributes(attr);
+
+                        }
+                    }
+
+                    reader.next();
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) {
+                        reader.next();
+                    }
+
+                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "cUF").equals(reader.getName())) {
+
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
+                        if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
+                            throw new org.apache.axis2.databinding.ADBException("The element: " + "cUF" + "  cannot be null");
+                        }
+
+                        final java.lang.String content = reader.getElementText();
+
+                        object.setCUF(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
+
+                        reader.next();
+
+                    } // End of if for expected property start element
+
+                    else {
+
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) {
+                        reader.next();
+                    }
+
+                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "versaoDados").equals(reader.getName())) {
+
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
+                        if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
+                            throw new org.apache.axis2.databinding.ADBException("The element: " + "versaoDados" + "  cannot be null");
+                        }
+
+                        final java.lang.String content = reader.getElementText();
+
+                        object.setVersaoDados(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
+
+                        reader.next();
+
+                    } // End of if for expected property start element
+
+                    else {
+
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) {
+                        reader.next();
+                    }
+
+                    if (reader.isStartElement()) {
+                        // A start element we are not expecting indicates a trailing invalid property
+                        throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                    }
+
+                } catch (final javax.xml.stream.XMLStreamException e) {
+                    throw new java.lang.Exception(e);
+                }
+
+                return object;
+            }
+
+        }// end of factory class
+
+    }
+
+    public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
+
+        private static final long serialVersionUID = 1409703958813033600L;
+
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeCabecMsg", "ns1");
+
+        /**
+         * field for NfeCabecMsg
+         */
+
+        protected NfeCabecMsg localNfeCabecMsg;
+
+        /**
+         * Auto generated getter method
+         * @return NfeCabecMsg
+         */
+        public NfeCabecMsg getNfeCabecMsg() {
+            return this.localNfeCabecMsg;
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param NfeCabecMsg
+         */
+        public void setNfeCabecMsg(final NfeCabecMsg param) {
+
+            this.localNfeCabecMsg = param;
+
+        }
+
+        /**
+         * @param parentQName
+         * @param factory
+         * @return org.apache.axiom.om.OMElement
+         */
+        @Override
+        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+
+            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, NfeCabecMsgE.MY_QNAME);
+            return factory.createOMElement(dataSource, NfeCabecMsgE.MY_QNAME);
+
+        }
+
+        @Override
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+            this.serialize(parentQName, xmlWriter, false);
+        }
+
+        @Override
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+
+            // We can safely assume an element has only one type associated with it
+
+            if (this.localNfeCabecMsg == null) {
+                throw new org.apache.axis2.databinding.ADBException("nfeCabecMsg cannot be null!");
+            }
+            this.localNfeCabecMsg.serialize(NfeCabecMsgE.MY_QNAME, xmlWriter);
+
+        }
+
+        /**
+         * databinding method to get an XML representation of this object
+         */
+        @Override
+        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
+
+            // We can safely assume an element has only one type associated with it
+            return this.localNfeCabecMsg.getPullParser(NfeCabecMsgE.MY_QNAME);
+
+        }
+
+        /**
+         * Factory class that keeps the parse method
+         */
+        public static class Factory {
+
+            /**
+             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
+             */
+            public static NfeCabecMsgE parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                final NfeCabecMsgE object = new NfeCabecMsgE();
+
+                try {
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) {
+                        reader.next();
+                    }
+
+                    // Note all attributes that were handled. Used to differ normal attributes
+                    // from anyAttributes.
+
+                    while (!reader.isEndElement()) {
+                        if (reader.isStartElement()) {
+
+                            if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeCabecMsg").equals(reader.getName())) {
+
+                                object.setNfeCabecMsg(NfeCabecMsg.Factory.parse(reader));
+
+                            } // End of if for expected property start element
+
+                            else {
+                                // A start element we are not expecting indicates an invalid parameter was passed
+                                throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                            }
+
+                        } else {
+                            reader.next();
+                        }
+                    } // end of while loop
+
+                } catch (final javax.xml.stream.XMLStreamException e) {
+                    throw new java.lang.Exception(e);
+                }
+
+                return object;
+            }
+
+        }// end of factory class
+
+    }
+
+    public static class ExtensionMapper {
+
+        public static java.lang.Object getTypeObject(final java.lang.String namespaceURI, final java.lang.String typeName, final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+
+            if ("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao".equals(namespaceURI) && "nfeCabecMsg".equals(typeName)) {
+
+                return NfeCabecMsg.Factory.parse(reader);
+
+            }
+
+            throw new org.apache.axis2.databinding.ADBException("Unsupported type " + namespaceURI + " " + typeName);
+        }
+
+    }
+
+    public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 2307494558545070932L;
+
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeDadosMsg", "ns1");
 
         /**
          * field for ExtraElement
@@ -311,7 +890,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
             if (serializeType) {
 
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2");
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
                     this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":nfeDadosMsg", xmlWriter);
                 } else {
@@ -331,7 +910,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao")) {
                 return "ns1";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -396,7 +975,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
             final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
-            final List<Object> attribList = new ArrayList<>();
+            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<>();
 
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
@@ -495,472 +1074,10 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     }
 
-    public static class ExtensionMapper {
+    public static class NfeRetAutorizacaoLoteResult implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 4017383733776642816L;
 
-        public static java.lang.Object getTypeObject(final java.lang.String namespaceURI, final java.lang.String typeName, final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-
-            if ("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2".equals(namespaceURI) && "nfeCabecMsg".equals(typeName)) {
-
-                return NfeCabecMsg.Factory.parse(reader);
-
-            }
-
-            throw new org.apache.axis2.databinding.ADBException("Unsupported type " + namespaceURI + " " + typeName);
-        }
-
-    }
-
-    public static class NfeCabecMsg implements org.apache.axis2.databinding.ADBBean {
-        /*
-         * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2 Namespace Prefix = ns1
-         */
-
-        private static final long serialVersionUID = 5069270050180940676L;
-
-        /**
-         * field for VersaoDados
-         */
-
-        protected java.lang.String localVersaoDados;
-
-        /*
-         * This tracker boolean wil be used to detect whether the user called the set method for this attribute. It will be used to determine whether to include this field in the serialized XML
-         */
-        protected boolean localVersaoDadosTracker = false;
-
-        public boolean isVersaoDadosSpecified() {
-            return this.localVersaoDadosTracker;
-        }
-
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
-        public java.lang.String getVersaoDados() {
-            return this.localVersaoDados;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param VersaoDados
-         */
-        public void setVersaoDados(final java.lang.String param) {
-            this.localVersaoDadosTracker = param != null;
-
-            this.localVersaoDados = param;
-
-        }
-
-        /**
-         * field for CUF
-         */
-
-        protected java.lang.String localCUF;
-
-        /*
-         * This tracker boolean wil be used to detect whether the user called the set method for this attribute. It will be used to determine whether to include this field in the serialized XML
-         */
-        protected boolean localCUFTracker = false;
-
-        public boolean isCUFSpecified() {
-            return this.localCUFTracker;
-        }
-
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
-        public java.lang.String getCUF() {
-            return this.localCUF;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param CUF
-         */
-        public void setCUF(final java.lang.String param) {
-            this.localCUFTracker = param != null;
-
-            this.localCUF = param;
-
-        }
-
-        /**
-         * field for ExtraAttributes This was an Attribute! This was an Array!
-         */
-
-        protected org.apache.axiom.om.OMAttribute[] localExtraAttributes;
-
-        /**
-         * Auto generated getter method
-         * @return org.apache.axiom.om.OMAttribute[]
-         */
-        public org.apache.axiom.om.OMAttribute[] getExtraAttributes() {
-            return this.localExtraAttributes;
-        }
-
-        /**
-         * validate the array for ExtraAttributes
-         */
-        protected void validateExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
-
-            if ((param != null) && (param.length > 1)) {
-                throw new java.lang.RuntimeException();
-            }
-
-            if ((param != null) && (param.length < 1)) {
-                throw new java.lang.RuntimeException();
-            }
-
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param ExtraAttributes
-         */
-        public void setExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
-
-            this.validateExtraAttributes(param);
-
-            this.localExtraAttributes = param;
-        }
-
-        /**
-         * Auto generated add method for the array for convenience
-         * @param param org.apache.axiom.om.OMAttribute
-         */
-        public void addExtraAttributes(final org.apache.axiom.om.OMAttribute param) {
-            if (this.localExtraAttributes == null) {
-                this.localExtraAttributes = new org.apache.axiom.om.OMAttribute[] {};
-            }
-
-            @SuppressWarnings("unchecked")
-            final java.util.List<OMAttribute> list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
-            list.add(param);
-            this.localExtraAttributes = list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
-
-        }
-
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        @Override
-        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
-
-            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, parentQName);
-            return factory.createOMElement(dataSource, parentQName);
-
-        }
-
-        @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-            this.serialize(parentQName, xmlWriter, false);
-        }
-
-        @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
-
-            prefix = parentQName.getPrefix();
-            namespace = parentQName.getNamespaceURI();
-            this.writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
-
-            if (serializeType) {
-
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2");
-                if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":nfeCabecMsg", xmlWriter);
-                } else {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "nfeCabecMsg", xmlWriter);
-                }
-
-            }
-
-            if (this.localExtraAttributes != null) {
-                for (int i = 0; i < this.localExtraAttributes.length; i++) {
-                    this.writeAttribute(this.localExtraAttributes[i].getNamespace().getNamespaceURI(), this.localExtraAttributes[i].getLocalName(), this.localExtraAttributes[i].getAttributeValue(), xmlWriter);
-                }
-            }
-            if (this.localVersaoDadosTracker) {
-                namespace = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2";
-                this.writeStartElement(null, namespace, "versaoDados", xmlWriter);
-
-                if (this.localVersaoDados == null) {
-                    // write the nil attribute
-
-                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
-
-                } else {
-
-                    xmlWriter.writeCharacters(this.localVersaoDados);
-
-                }
-
-                xmlWriter.writeEndElement();
-            }
-            if (this.localCUFTracker) {
-                namespace = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2";
-                this.writeStartElement(null, namespace, "cUF", xmlWriter);
-
-                if (this.localCUF == null) {
-                    // write the nil attribute
-
-                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
-
-                } else {
-
-                    xmlWriter.writeCharacters(this.localCUF);
-
-                }
-
-                xmlWriter.writeEndElement();
-            }
-            xmlWriter.writeEndElement();
-
-        }
-
-        private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2")) {
-                return "ns1";
-            }
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * Utility method to write an element start tag.
-         */
-        private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-            if (writerPrefix != null) {
-                xmlWriter.writeStartElement(namespace, localPart);
-            } else {
-                if (namespace.length() == 0) {
-                    prefix = "";
-                } else if (prefix == null) {
-                    prefix = NfeCabecMsg.generatePrefix(namespace);
-                }
-
-                xmlWriter.writeStartElement(prefix, localPart, namespace);
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (xmlWriter.getPrefix(namespace) == null) {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-            xmlWriter.writeAttribute(namespace, attName, attValue);
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                this.registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-            if (prefix == null) {
-                prefix = NfeCabecMsg.generatePrefix(namespace);
-                final javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
-                while (true) {
-                    final java.lang.String uri = nsContext.getNamespaceURI(prefix);
-                    if (uri == null || uri.length() == 0) {
-                        break;
-                    }
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-            return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-
-            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<Serializable>();
-            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
-
-            if (this.localVersaoDadosTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "versaoDados"));
-
-                if (this.localVersaoDados != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localVersaoDados));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
-                }
-            }
-            if (this.localCUFTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "cUF"));
-
-                if (this.localCUF != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localCUF));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
-                }
-            }
-            for (int i = 0; i < this.localExtraAttributes.length; i++) {
-                attribList.add(org.apache.axis2.databinding.utils.Constants.OM_ATTRIBUTE_KEY);
-                attribList.add(this.localExtraAttributes[i]);
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-
-        }
-
-        /**
-         * Factory class that keeps the parse method
-         */
-        public static class Factory {
-
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static NfeCabecMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                final NfeCabecMsg object = new NfeCabecMsg();
-
-                java.lang.String nillableValue = null;
-                try {
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) {
-                        reader.next();
-                    }
-
-                    if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
-                        final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
-                        if (fullTypeName != null) {
-                            java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
-                                nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
-                            }
-                            nsPrefix = nsPrefix == null ? "" : nsPrefix;
-
-                            final java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
-
-                            if (!"nfeCabecMsg".equals(type)) {
-                                // find namespace for the prefix
-                                final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (NfeCabecMsg) ExtensionMapper.getTypeObject(nsUri, type, reader);
-                            }
-
-                        }
-
-                    }
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    final Vector<String> handledAttributes = new Vector<>();
-
-                    // now run through all any or extra attributes
-                    // which were not reflected until now
-                    for (int i = 0; i < reader.getAttributeCount(); i++) {
-                        if (!handledAttributes.contains(reader.getAttributeLocalName(i))) {
-                            // this is an anyAttribute and we create
-                            // an OMAttribute for this
-                            final org.apache.axiom.om.OMFactory factory = org.apache.axiom.om.OMAbstractFactory.getOMFactory();
-                            final org.apache.axiom.om.OMAttribute attr = factory.createOMAttribute(reader.getAttributeLocalName(i), factory.createOMNamespace(reader.getAttributeNamespace(i), reader.getAttributePrefix(i)), reader.getAttributeValue(i));
-
-                            // and add it to the extra attributes
-
-                            object.addExtraAttributes(attr);
-
-                        }
-                    }
-
-                    reader.next();
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) {
-                        reader.next();
-                    }
-
-                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "versaoDados").equals(reader.getName())) {
-
-                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
-                        if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
-                            throw new org.apache.axis2.databinding.ADBException("The element: " + "versaoDados" + "  cannot be null");
-                        }
-
-                        final java.lang.String content = reader.getElementText();
-
-                        object.setVersaoDados(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
-
-                        reader.next();
-
-                    } // End of if for expected property start element
-
-                    else {
-
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) {
-                        reader.next();
-                    }
-
-                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "cUF").equals(reader.getName())) {
-
-                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
-                        if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
-                            throw new org.apache.axis2.databinding.ADBException("The element: " + "cUF" + "  cannot be null");
-                        }
-
-                        final java.lang.String content = reader.getElementText();
-
-                        object.setCUF(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
-
-                        reader.next();
-
-                    } // End of if for expected property start element
-
-                    else {
-
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) {
-                        reader.next();
-                    }
-
-                    if (reader.isStartElement()) {
-                        // A start element we are not expecting indicates a trailing invalid property
-                        throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                    }
-
-                } catch (final javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-
-        }// end of factory class
-
-    }
-
-    public static class NfeRecepcaoLote2Result implements org.apache.axis2.databinding.ADBBean {
-        private static final long serialVersionUID = 4229462823152805628L;
-
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeRecepcaoLote2Result", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLoteResult", "ns1");
 
         /**
          * field for ExtraElement
@@ -994,8 +1111,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
-            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, NfeRecepcaoLote2Result.MY_QNAME);
-            return factory.createOMElement(dataSource, NfeRecepcaoLote2Result.MY_QNAME);
+            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, NfeRetAutorizacaoLoteResult.MY_QNAME);
+            return factory.createOMElement(dataSource, NfeRetAutorizacaoLoteResult.MY_QNAME);
 
         }
 
@@ -1016,11 +1133,11 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
             if (serializeType) {
 
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2");
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":nfeRecepcaoLote2Result", xmlWriter);
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":nfeRetAutorizacaoLoteResult", xmlWriter);
                 } else {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "nfeRecepcaoLote2Result", xmlWriter);
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "nfeRetAutorizacaoLoteResult", xmlWriter);
                 }
 
             }
@@ -1036,7 +1153,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao")) {
                 return "ns1";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -1053,7 +1170,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
                 if (namespace.length() == 0) {
                     prefix = "";
                 } else if (prefix == null) {
-                    prefix = NfeRecepcaoLote2Result.generatePrefix(namespace);
+                    prefix = NfeRetAutorizacaoLoteResult.generatePrefix(namespace);
                 }
 
                 xmlWriter.writeStartElement(prefix, localPart, namespace);
@@ -1079,7 +1196,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
             if (prefix == null) {
-                prefix = NfeRecepcaoLote2Result.generatePrefix(namespace);
+                prefix = NfeRetAutorizacaoLoteResult.generatePrefix(namespace);
                 final javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
                 while (true) {
                     final java.lang.String uri = nsContext.getNamespaceURI(prefix);
@@ -1101,7 +1218,7 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
             final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
-            final List<Object> attribList = new ArrayList<>();
+            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<>();
 
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
@@ -1122,9 +1239,8 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
              */
-            public static NfeRecepcaoLote2Result parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                final NfeRecepcaoLote2Result object = new NfeRecepcaoLote2Result();
-
+            public static NfeRetAutorizacaoLoteResult parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                final NfeRetAutorizacaoLoteResult object = new NfeRetAutorizacaoLoteResult();
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -1142,10 +1258,10 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
                             final java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
 
-                            if (!"nfeRecepcaoLote2Result".equals(type)) {
+                            if (!"nfeRetAutorizacaoLoteResult".equals(type)) {
                                 // find namespace for the prefix
                                 final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (NfeRecepcaoLote2Result) ExtensionMapper.getTypeObject(nsUri, type, reader);
+                                return (NfeRetAutorizacaoLoteResult) ExtensionMapper.getTypeObject(nsUri, type, reader);
                             }
 
                         }
@@ -1200,139 +1316,22 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     }
 
-    public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
-        private static final long serialVersionUID = 1640281225114274723L;
-
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeCabecMsg", "ns1");
-
-        /**
-         * field for NfeCabecMsg
-         */
-
-        protected NfeCabecMsg localNfeCabecMsg;
-
-        /**
-         * Auto generated getter method
-         * @return NfeCabecMsg
-         */
-        public NfeCabecMsg getNfeCabecMsg() {
-            return this.localNfeCabecMsg;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param NfeCabecMsg
-         */
-        public void setNfeCabecMsg(final NfeCabecMsg param) {
-
-            this.localNfeCabecMsg = param;
-
-        }
-
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        @Override
-        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
-
-            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, NfeCabecMsgE.MY_QNAME);
-            return factory.createOMElement(dataSource, NfeCabecMsgE.MY_QNAME);
-
-        }
-
-        @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-            this.serialize(parentQName, xmlWriter, false);
-        }
-
-        @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-
-            // We can safely assume an element has only one type associated with it
-
-            if (this.localNfeCabecMsg == null) {
-                throw new org.apache.axis2.databinding.ADBException("nfeCabecMsg cannot be null!");
-            }
-            this.localNfeCabecMsg.serialize(NfeCabecMsgE.MY_QNAME, xmlWriter);
-
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-
-            // We can safely assume an element has only one type associated with it
-            return this.localNfeCabecMsg.getPullParser(NfeCabecMsgE.MY_QNAME);
-
-        }
-
-        /**
-         * Factory class that keeps the parse method
-         */
-        public static class Factory {
-
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static NfeCabecMsgE parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                final NfeCabecMsgE object = new NfeCabecMsgE();
-
-                try {
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) {
-                        reader.next();
-                    }
-
-                    while (!reader.isEndElement()) {
-                        if (reader.isStartElement()) {
-
-                            if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRecepcao2", "nfeCabecMsg").equals(reader.getName())) {
-
-                                object.setNfeCabecMsg(NfeCabecMsg.Factory.parse(reader));
-
-                            } // End of if for expected property start element
-
-                            else {
-                                // A start element we are not expecting indicates an invalid parameter was passed
-                                throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                            }
-
-                        } else {
-                            reader.next();
-                        }
-                    } // end of while loop
-
-                } catch (final javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-
-        }// end of factory class
-
-    }
-
-    private org.apache.axiom.om.OMElement toOM(final NfeRecepcao2Stub.NfeCabecMsgE param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.om.OMElement toOM(final NfeRetAutorizacaoStub.NfeCabecMsgE param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
         try {
-            return param.getOMElement(NfeRecepcao2Stub.NfeCabecMsgE.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+            return param.getOMElement(NfeRetAutorizacaoStub.NfeCabecMsgE.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (final org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
 
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final NfeRecepcao2Stub.NfeDadosMsg param, final boolean optimizeContent, final javax.xml.namespace.QName methodQName) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final NfeRetAutorizacaoStub.NfeDadosMsg param, final boolean optimizeContent, final javax.xml.namespace.QName methodQName) throws org.apache.axis2.AxisFault {
 
         try {
 
             final org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(NfeRecepcao2Stub.NfeDadosMsg.MY_QNAME, factory));
+            emptyEnvelope.getBody().addChild(param.getOMElement(NfeRetAutorizacaoStub.NfeDadosMsg.MY_QNAME, factory));
             return emptyEnvelope;
         } catch (final org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -1342,25 +1341,31 @@ public class NfeRecepcao2Stub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
 
-    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final Class<?> type, final java.util.Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
+    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class<?> type, final java.util.Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
 
         try {
 
-            if (NfeRecepcao2Stub.NfeDadosMsg.class.equals(type)) {
+            if (NfeRetAutorizacaoStub.NfeDadosMsg.class.equals(type)) {
 
-                return NfeRecepcao2Stub.NfeDadosMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-
-            }
-
-            if (NfeRecepcao2Stub.NfeRecepcaoLote2Result.class.equals(type)) {
-
-                return NfeRecepcao2Stub.NfeRecepcaoLote2Result.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return NfeRetAutorizacaoStub.NfeDadosMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
             }
 
-            if (NfeRecepcao2Stub.NfeCabecMsgE.class.equals(type)) {
+            if (NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult.class.equals(type)) {
 
-                return NfeRecepcao2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+            }
+
+            if (NfeRetAutorizacaoStub.NfeCabecMsgE.class.equals(type)) {
+
+                return NfeRetAutorizacaoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+            }
+
+            if (NfeRetAutorizacaoStub.NfeCabecMsgE.class.equals(type)) {
+
+                return NfeRetAutorizacaoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
             }
 
