@@ -16,11 +16,11 @@ import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
-import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub;
-import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeCabecMsg;
-import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeCabecMsgE;
-import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeDadosMsg;
-import com.fincatto.nfe.webservices.gerado.NfeRecepcao2Stub.NfeRecepcaoLote2Result;
+import com.fincatto.nfe.webservices.gerado.NfeAutorizacaoStub;
+import com.fincatto.nfe.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
+import com.fincatto.nfe.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
+import com.fincatto.nfe.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
+import com.fincatto.nfe.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
 
 class WSLoteEnvio {
 
@@ -42,9 +42,10 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
         this.log.info(omElement);
-        final NfeRecepcaoLote2Result nfeRecepcaoLote2 = new NfeRecepcao2Stub(NFAutorizador.valueOfCodigoUF(uf).getNfeRecepcao(this.config.getAmbiente())).nfeRecepcaoLote2(dados, cabecalhoSOAP);
+        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(NFAutorizador.valueOfCodigoUF(uf).getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
-        final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, nfeRecepcaoLote2.getExtraElement().toString());
+        System.out.println(autorizacaoLoteResult.getExtraElement());
+        final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         this.log.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }

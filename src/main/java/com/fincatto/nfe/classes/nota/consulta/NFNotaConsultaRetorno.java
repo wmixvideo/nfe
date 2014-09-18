@@ -1,5 +1,6 @@
 package com.fincatto.nfe.classes.nota.consulta;
 
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -31,6 +32,9 @@ public class NFNotaConsultaRetorno extends NFBase {
 
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
+
+    @Element(name = "dhRecbto", required = true)
+    private LocalDateTime dataHoraRecibo;
 
     @Element(name = "chNFe", required = true)
     private String chave;
@@ -111,5 +115,13 @@ public class NFNotaConsultaRetorno extends NFBase {
 
     public void setProtocolo(final NFProtocolo protocolo) {
         this.protocolo = protocolo;
+    }
+
+    public LocalDateTime getDataHoraRecibo() {
+        return this.dataHoraRecibo;
+    }
+
+    public void setDataHoraRecibo(final LocalDateTime dataHoraRecibo) {
+        this.dataHoraRecibo = dataHoraRecibo;
     }
 }

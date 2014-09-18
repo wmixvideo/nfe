@@ -164,7 +164,7 @@ public class NFInfoReferenciadaTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
-        final String xmlEsperado = "<NFInfoReferenciada><refNF><cUF>42</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></refNF></NFInfoReferenciada>";
+        final String xmlEsperado = "<NFInfoReferenciada><refNF><cUF>43</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></refNF></NFInfoReferenciada>";
         Assert.assertEquals(xmlEsperado, referenciada.toString());
     }
 }

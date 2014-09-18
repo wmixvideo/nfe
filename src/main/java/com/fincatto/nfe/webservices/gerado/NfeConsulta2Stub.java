@@ -1,11 +1,17 @@
+/**
+ * NfeConsulta2Stub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+ */
 package com.fincatto.nfe.webservices.gerado;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.util.Map;
 
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+/*
+ * NfeConsulta2Stub java implementation
+ */
 
 public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -247,7 +253,6 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         /*
          * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/NfeConsulta2 Namespace Prefix = ns1
          */
-
         private static final long serialVersionUID = 816412796985523390L;
 
         /**
@@ -691,7 +696,6 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class NfeConsultaNF2Result implements org.apache.axis2.databinding.ADBBean {
-
         private static final long serialVersionUID = 8436923796058602819L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeConsulta2", "nfeConsultaNF2Result", "ns1");
@@ -835,8 +839,6 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
             final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
-            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
-
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
                 elementList.add(this.localExtraElement);
@@ -844,7 +846,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
 
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<Object>().toArray());
 
         }
 
@@ -935,7 +937,6 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
-
         private static final long serialVersionUID = -551992264287722717L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeConsulta2", "nfeCabecMsg", "ns1");
@@ -1214,8 +1215,6 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
             final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
-            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
-
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
                 elementList.add(this.localExtraElement);
@@ -1223,7 +1222,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
 
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<Object>().toArray());
 
         }
 
@@ -1336,7 +1335,9 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
 
     }
 
-    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final Class<?> type, final Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
+    /* methods to provide back word compatibility */
+
+    private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class<?> type, final java.util.Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
 
         try {
 

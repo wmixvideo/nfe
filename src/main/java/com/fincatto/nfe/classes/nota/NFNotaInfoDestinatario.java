@@ -20,13 +20,13 @@ public class NFNotaInfoDestinatario extends NFBase {
     @Element(name = "xNome", required = true)
     private String razaoSocial;
 
-    @Element(name = "enderDest", required = true)
+    @Element(name = "enderDest", required = false)
     private NFEndereco endereco;
 
     @Element(name = "indIEDest", required = true)
     private NFIndicadorIEDestinatario indicadorIEDestinatario;
 
-    @Element(name = "IE", required = true)
+    @Element(name = "IE", required = false)
     private String inscricaoEstadual;
 
     @Element(name = "ISUF", required = false)
@@ -56,6 +56,10 @@ public class NFNotaInfoDestinatario extends NFBase {
         }
         StringValidador.cpf(cpf);
         this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return this.cpf;
     }
 
     public void setRazaoSocial(final String razaoSocial) {
