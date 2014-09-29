@@ -2,7 +2,9 @@ package com.fincatto.nfe.classes;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root(name = "protNFe")
 public class NFProtocolo extends NFBase {
 
     @Attribute(name = "versao", required = true)

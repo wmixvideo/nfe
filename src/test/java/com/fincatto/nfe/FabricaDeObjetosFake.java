@@ -316,7 +316,7 @@ public class FabricaDeObjetosFake {
     public static NFProtocolo getNFProtocolo() {
         final NFProtocolo protocolo = new NFProtocolo();
         protocolo.setProtocoloInfo(FabricaDeObjetosFake.getNFProtocoloInfo());
-        protocolo.setVersao("2.00");
+        protocolo.setVersao("3.10");
         return protocolo;
     }
 
@@ -324,12 +324,12 @@ public class FabricaDeObjetosFake {
         final NFProtocoloInfo info = new NFProtocoloInfo();
         info.setAmbiente(NFAmbiente.HOMOLOGACAO);
         info.setChave("EAIOjea");
-        info.setDataRecebimento(new LocalDateTime(2014, 12, 12, 10, 10, 10));
+        info.setDataRecebimento("2014-06-10T09:00:00-03:00");
         info.setMotivo("jsoaosk");
         info.setNumeroProtocolo("490309504");
         info.setStatus("OK");
         info.setValidador("gfsfgsrg");
-        info.setVersaoAplicacao("2.00");
+        info.setVersaoAplicacao("3.10");
         info.setIdentificador("ID798456123");
         return info;
     }

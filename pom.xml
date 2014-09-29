@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<axis2.version>1.6.2</axis2.version>
-		<joda.version>2.2</joda.version>
+		<joda.version>2.4</joda.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 
