@@ -48,7 +48,8 @@ class WSLoteConsulta {
 
         final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
         dados.setExtraElement(omElement);
-        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(NFAutorizador31.valueOfCodigoUF(uf).getNfeRetAutorizacao(this.config.getAmbiente())).nfeRetAutorizacaoLote(dados, cabecE);
+        final String urlWebService = NFAutorizador31.valueOfCodigoUF(uf).getNfeRetAutorizacao(this.config.getAmbiente());
+        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }
 

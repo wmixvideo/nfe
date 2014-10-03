@@ -15,6 +15,9 @@ public class NFNota extends NFBase {
     @Element(name = "infNFe", required = true)
     private NFNotaInfo info;
 
+    @Element(name = "Signature", required = false)
+    private String assinatura;
+
     public void setInfo(final NFNotaInfo info) {
         this.info = info;
     }
@@ -32,5 +35,9 @@ public class NFNota extends NFBase {
 
     public long getIdentificadorLocal() {
         return this.identificadorLocal;
+    }
+
+    public void setAssinatura(final String assinatura) {
+        this.assinatura = assinatura;
     }
 }

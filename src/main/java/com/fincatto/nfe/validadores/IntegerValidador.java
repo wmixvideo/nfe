@@ -71,4 +71,8 @@ public class IntegerValidador {
             throw new IllegalStateException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
         }
     }
+
+    public static void tamanho1a2(final int valor) {
+        IntegerValidador.intervalo(valor, 1, 99);
+    }
 }
