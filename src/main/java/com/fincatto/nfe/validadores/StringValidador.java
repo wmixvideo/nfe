@@ -267,6 +267,12 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho5a60(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 5, 60);
+        }
+    }
+
     public static void tamanho2a4(final String string) {
         if (string != null) {
             StringValidador.intervalo(string, 2, 4);
@@ -275,8 +281,14 @@ public class StringValidador {
 
     public static void tamanho8a9N(final String string) {
         if (string != null) {
-            StringValidador.intervalo(string, 8, 9);
             StringValidador.apenasNumerico(string);
+            StringValidador.intervalo(string, 8, 9);
+        }
+    }
+
+    public static void tamanho15a1000(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 15, 1000);
         }
     }
 
@@ -390,4 +402,7 @@ public class StringValidador {
         }
     }
 
+    public static void exatamente54(final String string) {
+        StringValidador.validaTamanhoExato(string, 54);
+    }
 }

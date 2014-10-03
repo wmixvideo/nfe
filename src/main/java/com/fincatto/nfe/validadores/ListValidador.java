@@ -45,6 +45,10 @@ public class ListValidador {
         ListValidador.validaTamanho(lista, 50);
     }
 
+    public static <E> void tamanho20(final List<E> lista) {
+        ListValidador.validaTamanho(lista, 20);
+    }
+
     private static <E> void validaEstadoDaLista(final List<E> lista) {
         if (lista.isEmpty()) {
             throw new IllegalStateException("Lista obrigatoria esta vazia");
@@ -56,4 +60,5 @@ public class ListValidador {
             throw new IllegalStateException(MessageFormat.format("Lista extrapolou o tamanho [{0}]", tamanho));
         }
     }
+
 }

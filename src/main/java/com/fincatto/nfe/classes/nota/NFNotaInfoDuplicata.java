@@ -31,4 +31,20 @@ public class NFNotaInfoDuplicata extends NFBase {
     public void setValorDuplicata(final BigDecimal valorDuplicata) {
         this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata);
     }
+
+    public String getValorDuplicata() {
+        return this.valorDuplicata;
+    }
+
+    public void setValorDuplicata(final String valorDuplicata) {
+        this.valorDuplicata = valorDuplicata;
+    }
+
+    public String getNumeroDuplicata() {
+        return this.numeroDuplicata;
+    }
+
+    public LocalDate getDataVencimento() {
+        return this.dataVencimento;
+    }
 }

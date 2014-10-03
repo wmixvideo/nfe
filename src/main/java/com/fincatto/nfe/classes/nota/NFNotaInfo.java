@@ -160,4 +160,68 @@ public class NFNotaInfo extends NFBase {
         ListValidador.tamanho100(pagamentos);
         this.pagamentos = pagamentos;
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public void setVersao(final String versao) {
+        this.versao = versao;
+    }
+
+    public NFNotaInfoEmitente getEmitente() {
+        return this.emitente;
+    }
+
+    public NFNotaInfoAvulsa getAvulsa() {
+        return this.avulsa;
+    }
+
+    public NFNotaInfoLocal getRetirada() {
+        return this.retirada;
+    }
+
+    public NFNotaInfoLocal getEntrega() {
+        return this.entrega;
+    }
+
+    public List<NFPessoaAutorizadaDownloadNFe> getPessoasAutorizadasDownloadNFe() {
+        return this.pessoasAutorizadasDownloadNFe;
+    }
+
+    public List<NFNotaInfoItem> getItens() {
+        return this.itens;
+    }
+
+    public NFNotaInfoTotal getTotal() {
+        return this.total;
+    }
+
+    public NFNotaInfoTransporte getTransporte() {
+        return this.transporte;
+    }
+
+    public NFNotaInfoCobranca getCobranca() {
+        return this.cobranca;
+    }
+
+    public List<NFNotaInfoPagamento> getPagamentos() {
+        return this.pagamentos;
+    }
+
+    public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
+        return this.informacoesAdicionais;
+    }
+
+    public NFNotaInfoExportacao getExportacao() {
+        return this.exportacao;
+    }
+
+    public NFNotaInfoCompra getCompra() {
+        return this.compra;
+    }
+
+    public NFNotaInfoCana getCana() {
+        return this.cana;
+    }
 }

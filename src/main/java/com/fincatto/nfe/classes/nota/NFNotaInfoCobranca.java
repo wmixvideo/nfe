@@ -23,4 +23,12 @@ public class NFNotaInfoCobranca extends NFBase {
         ListValidador.tamanho120(duplicatas);
         this.duplicatas = duplicatas;
     }
+
+    public NFNotaInfoFatura getFatura() {
+        return this.fatura;
+    }
+
+    public List<NFNotaInfoDuplicata> getDuplicatas() {
+        return this.duplicatas;
+    }
 }
