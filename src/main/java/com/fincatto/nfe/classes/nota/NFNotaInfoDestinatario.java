@@ -99,4 +99,36 @@ public class NFNotaInfoDestinatario extends NFBase {
         StringValidador.tamanho15(inscricaoMunicipal);
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
+
+    public String getIdEstrangeiro() {
+        return this.idEstrangeiro;
+    }
+
+    public String getRazaoSocial() {
+        return this.razaoSocial;
+    }
+
+    public NFEndereco getEndereco() {
+        return this.endereco;
+    }
+
+    public NFIndicadorIEDestinatario getIndicadorIEDestinatario() {
+        return this.indicadorIEDestinatario;
+    }
+
+    public String getInscricaoEstadual() {
+        return this.inscricaoEstadual;
+    }
+
+    public String getInscricaoSuframa() {
+        return this.inscricaoSuframa;
+    }
+
+    public String getInscricaoMunicipal() {
+        return this.inscricaoMunicipal;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
 }

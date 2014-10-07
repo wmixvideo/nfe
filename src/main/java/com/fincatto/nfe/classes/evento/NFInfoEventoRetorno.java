@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.cartacorrecao;
+package com.fincatto.nfe.classes.evento;
 
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;

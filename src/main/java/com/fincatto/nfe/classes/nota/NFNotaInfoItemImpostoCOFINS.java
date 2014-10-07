@@ -45,4 +45,20 @@ public class NFNotaInfoItemImpostoCOFINS extends NFBase {
         }
         this.outrasOperacoes = outrasOperacoes;
     }
+
+    public NFNotaInfoItemImpostoCOFINSAliquota getAliquota() {
+        return this.aliquota;
+    }
+
+    public NFNotaInfoItemImpostoCOFINSQuantidade getQuantidade() {
+        return this.quantidade;
+    }
+
+    public NFNotaInfoItemImpostoCOFINSNaoTributavel getNaoTributavel() {
+        return this.naoTributavel;
+    }
+
+    public NFNotaInfoItemImpostoCOFINSOutrasOperacoes getOutrasOperacoes() {
+        return this.outrasOperacoes;
+    }
 }

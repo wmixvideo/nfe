@@ -92,4 +92,52 @@ public class NFNotaInfoISSQNTotal extends NFBase {
     public void setValorTotalRetencaoISS(final BigDecimal valorTotalRetencaoISS) {
         this.valorTotalRetencaoISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalRetencaoISS);
     }
+
+    public String getValorTotalServicosSobNaoIncidenciaNaoTributadosICMS() {
+        return this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
+    }
+
+    public String getBaseCalculoISS() {
+        return this.baseCalculoISS;
+    }
+
+    public String getValorTotalISS() {
+        return this.valorTotalISS;
+    }
+
+    public String getValorPISsobreServicos() {
+        return this.valorPISsobreServicos;
+    }
+
+    public String getValorCOFINSsobreServicos() {
+        return this.valorCOFINSsobreServicos;
+    }
+
+    public LocalDate getDataPrestacaoServico() {
+        return this.dataPrestacaoServico;
+    }
+
+    public String getValorDeducao() {
+        return this.valorDeducao;
+    }
+
+    public String getValorOutros() {
+        return this.valorOutros;
+    }
+
+    public String getValorTotalDescontoIncondicionado() {
+        return this.valorTotalDescontoIncondicionado;
+    }
+
+    public String getValorTotalDescontoCondicionado() {
+        return this.valorTotalDescontoCondicionado;
+    }
+
+    public String getValorTotalRetencaoISS() {
+        return this.valorTotalRetencaoISS;
+    }
+
+    public NFNotaInfoRegimeEspecialTributacao getTributacao() {
+        return this.tributacao;
+    }
 }

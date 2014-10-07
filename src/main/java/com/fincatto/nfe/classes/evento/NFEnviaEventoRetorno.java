@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.cartacorrecao;
+package com.fincatto.nfe.classes.evento;
 
 import java.util.List;
 

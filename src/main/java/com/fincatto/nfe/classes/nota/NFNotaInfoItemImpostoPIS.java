@@ -52,4 +52,20 @@ public class NFNotaInfoItemImpostoPIS extends NFBase {
         }
         this.outrasOperacoes = outrasOperacoes;
     }
+
+    public NFNotaInfoItemImpostoPISAliquota getAliquota() {
+        return this.aliquota;
+    }
+
+    public NFNotaInfoItemImpostoPISQuantidade getQuantidade() {
+        return this.quantidade;
+    }
+
+    public NFNotaInfoItemImpostoPISNaoTributado getNaoTributado() {
+        return this.naoTributado;
+    }
+
+    public NFNotaInfoItemImpostoPISOutrasOperacoes getOutrasOperacoes() {
+        return this.outrasOperacoes;
+    }
 }

@@ -11,7 +11,7 @@ import com.fincatto.nfe.validadores.BigDecimalParser;
 public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
     @Element(name = "vBC", required = true)
     private String valorBaseCalculo;
@@ -28,17 +28,8 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
     @Element(name = "vCOFINS", required = true)
     private String valorCOFINS;
 
-    public NFNotaInfoItemImpostoCOFINSOutrasOperacoes() {
-        this.codigoSituacaoTributaria = null;
-        this.valorBaseCalculo = null;
-        this.percentualCOFINS = null;
-        this.quantidadeVendida = null;
-        this.valorAliquota = null;
-        this.valorCOFINS = null;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
-        this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
@@ -59,5 +50,29 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
 
     public void setValorCOFINS(final BigDecimal valorTributo) {
         this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+    }
+
+    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualCOFINS() {
+        return this.percentualCOFINS;
+    }
+
+    public String getQuantidadeVendida() {
+        return this.quantidadeVendida;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValorCOFINS() {
+        return this.valorCOFINS;
     }
 }

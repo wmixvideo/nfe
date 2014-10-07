@@ -59,26 +59,6 @@ public class NFNotaInfoItemImpostoICMS extends NFBase {
     @Element(name = "ICMSSN900", required = false)
     private NFNotaInfoItemImpostoICMSSN900 icmssn900;
 
-    public NFNotaInfoItemImpostoICMS() {
-        this.icms00 = null;
-        this.icms10 = null;
-        this.icms20 = null;
-        this.icms30 = null;
-        this.icms40 = null;
-        this.icms51 = null;
-        this.icms60 = null;
-        this.icms70 = null;
-        this.icms90 = null;
-        this.icmsPartilhado = null;
-        this.icmsst = null;
-        this.icmssn101 = null;
-        this.icmssn102 = null;
-        this.icmssn201 = null;
-        this.icmssn202 = null;
-        this.icmssn500 = null;
-        this.icmssn900 = null;
-    }
-
     public void setIcms00(final NFNotaInfoItemImpostoICMS00 icms00) {
         this.validaApenasUmSelecionado();
         this.icms00 = icms00;
@@ -169,5 +149,77 @@ public class NFNotaInfoItemImpostoICMS extends NFBase {
             throw new IllegalStateException("Ja possui ICMS selecionado");
         }
         this.isSelecionado = true;
+    }
+
+    public boolean isSelecionado() {
+        return this.isSelecionado;
+    }
+
+    public NFNotaInfoItemImpostoICMS00 getIcms00() {
+        return this.icms00;
+    }
+
+    public NFNotaInfoItemImpostoICMS10 getIcms10() {
+        return this.icms10;
+    }
+
+    public NFNotaInfoItemImpostoICMS20 getIcms20() {
+        return this.icms20;
+    }
+
+    public NFNotaInfoItemImpostoICMS30 getIcms30() {
+        return this.icms30;
+    }
+
+    public NFNotaInfoItemImpostoICMS40 getIcms40() {
+        return this.icms40;
+    }
+
+    public NFNotaInfoItemImpostoICMS51 getIcms51() {
+        return this.icms51;
+    }
+
+    public NFNotaInfoItemImpostoICMS60 getIcms60() {
+        return this.icms60;
+    }
+
+    public NFNotaInfoItemImpostoICMS70 getIcms70() {
+        return this.icms70;
+    }
+
+    public NFNotaInfoItemImpostoICMS90 getIcms90() {
+        return this.icms90;
+    }
+
+    public NFNotaInfoItemImpostoICMSPartilhado getIcmsPartilhado() {
+        return this.icmsPartilhado;
+    }
+
+    public NFNotaInfoItemImpostoICMSST getIcmsst() {
+        return this.icmsst;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN101 getIcmssn101() {
+        return this.icmssn101;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN102 getIcmssn102() {
+        return this.icmssn102;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN201 getIcmssn201() {
+        return this.icmssn201;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN202 getIcmssn202() {
+        return this.icmssn202;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN500 getIcmssn500() {
+        return this.icmssn500;
+    }
+
+    public NFNotaInfoItemImpostoICMSSN900 getIcmssn900() {
+        return this.icmssn900;
     }
 }

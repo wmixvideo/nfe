@@ -28,4 +28,13 @@ public enum NFNotaInfoVeiculoCor {
     public String getCodigo() {
         return this.codigo;
     }
+
+    public static NFNotaInfoVeiculoCor valueOfCodigo(final String codigo) {
+        for (final NFNotaInfoVeiculoCor veiculoCor : NFNotaInfoVeiculoCor.values()) {
+            if (veiculoCor.getCodigo().equals(codigo)) {
+                return veiculoCor;
+            }
+        }
+        return null;
+    }
 }

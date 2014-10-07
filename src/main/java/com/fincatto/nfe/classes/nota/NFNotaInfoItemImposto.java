@@ -83,4 +83,40 @@ public class NFNotaInfoItemImposto extends NFBase {
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
         this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
     }
+
+    public String getValorTotalTributos() {
+        return this.valorTotalTributos;
+    }
+
+    public NFNotaInfoItemImpostoICMS getIcms() {
+        return this.icms;
+    }
+
+    public NFNotaInfoItemImpostoIPI getIpi() {
+        return this.ipi;
+    }
+
+    public NFNotaInfoItemImpostoImportacao getImpostoImportacao() {
+        return this.impostoImportacao;
+    }
+
+    public NFNotaInfoItemImpostoISSQN getIssqn() {
+        return this.issqn;
+    }
+
+    public NFNotaInfoItemImpostoPIS getPis() {
+        return this.pis;
+    }
+
+    public NFNotaInfoItemImpostoPISST getPisst() {
+        return this.pisst;
+    }
+
+    public NFNotaInfoItemImpostoCOFINS getCofins() {
+        return this.cofins;
+    }
+
+    public NFNotaInfoItemImpostoCOFINSST getCofinsst() {
+        return this.cofinsst;
+    }
 }

@@ -7,8 +7,8 @@ import com.fincatto.nfe.classes.nota.NFIdentificadorLocalDestinoOperacao;
 public class NFIdentificadorLocalDestinoOperacaoTransformer implements Transform<NFIdentificadorLocalDestinoOperacao> {
 
     @Override
-    public NFIdentificadorLocalDestinoOperacao read(final String operacao) throws Exception {
-        return null;
+    public NFIdentificadorLocalDestinoOperacao read(final String codigoOperacao) throws Exception {
+        return NFIdentificadorLocalDestinoOperacao.valueOfCodigo(codigoOperacao);
     }
 
     @Override

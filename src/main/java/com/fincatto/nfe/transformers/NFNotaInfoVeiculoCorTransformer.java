@@ -8,7 +8,7 @@ public class NFNotaInfoVeiculoCorTransformer implements Transform<NFNotaInfoVeic
 
     @Override
     public NFNotaInfoVeiculoCor read(final String codigoVeiculoCor) throws Exception {
-        return null;
+        return NFNotaInfoVeiculoCor.valueOfCodigo(codigoVeiculoCor);
     }
 
     @Override

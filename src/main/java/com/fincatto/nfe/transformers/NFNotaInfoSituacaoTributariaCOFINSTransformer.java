@@ -8,7 +8,7 @@ public class NFNotaInfoSituacaoTributariaCOFINSTransformer implements Transform<
 
     @Override
     public NFNotaInfoSituacaoTributariaCOFINS read(final String codigo) throws Exception {
-        return null;
+        return NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo(codigo);
     }
 
     @Override

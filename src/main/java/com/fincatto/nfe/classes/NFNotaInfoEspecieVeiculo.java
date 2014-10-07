@@ -18,4 +18,13 @@ public enum NFNotaInfoEspecieVeiculo {
     public String getCodigo() {
         return this.codigo;
     }
+
+    public static NFNotaInfoEspecieVeiculo valueOfCodigo(final String codigo) {
+        for (final NFNotaInfoEspecieVeiculo especieVeiculo : NFNotaInfoEspecieVeiculo.values()) {
+            if (especieVeiculo.getCodigo().equals(codigo)) {
+                return especieVeiculo;
+            }
+        }
+        return null;
+    }
 }

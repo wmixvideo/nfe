@@ -8,7 +8,7 @@ public class NFLocalTimeTransformer implements Transform<LocalTime> {
 
     @Override
     public LocalTime read(final String time) throws Exception {
-        return null;
+        return DateTimeFormat.forPattern("HH:mm:ss").parseLocalTime(time);
     }
 
     @Override

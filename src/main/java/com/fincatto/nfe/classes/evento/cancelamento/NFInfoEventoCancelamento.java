@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.cartacorrecao;
+package com.fincatto.nfe.classes.evento.cancelamento;
 
 import java.math.BigDecimal;
 
@@ -13,7 +13,7 @@ import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.IntegerValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
-public class NFInfoEvento extends NFBase {
+public class NFInfoEventoCancelamento extends NFBase {
 
     @Attribute(name = "Id", required = true)
     private String id;
@@ -37,7 +37,7 @@ public class NFInfoEvento extends NFBase {
     private LocalDateTime dataHoraEvento;
 
     @Element(name = "tpEvento", required = true)
-    private String tipoEvento;
+    private String codigoEvento;
 
     @Element(name = "nSeqEvento", required = true)
     private Integer numeroSequencialEvento;
@@ -46,7 +46,7 @@ public class NFInfoEvento extends NFBase {
     private String versaoEvento;
 
     @Element(name = "detEvento", required = true)
-    private NFInfoCartaCorrecao cartaCorrecao;
+    private NFInfoCancelamento cancelamento;
 
     public void setOrgao(final NFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -114,13 +114,13 @@ public class NFInfoEvento extends NFBase {
         this.dataHoraEvento = dataHoraEvento;
     }
 
-    public String getTipoEvento() {
-        return this.tipoEvento;
+    public String getCodigoEvento() {
+        return this.codigoEvento;
     }
 
     public void setTipoEvento(final String tipoEvento) {
         StringValidador.exatamente6N(tipoEvento);
-        this.tipoEvento = tipoEvento;
+        this.codigoEvento = tipoEvento;
     }
 
     public int getNumeroSequencialEvento() {
@@ -136,15 +136,19 @@ public class NFInfoEvento extends NFBase {
         return this.versaoEvento;
     }
 
-    public NFInfoCartaCorrecao getCartaCorrecao() {
-        return this.cartaCorrecao;
+    public NFInfoCancelamento getCancelamento() {
+        return this.cancelamento;
     }
 
-    public void setCartaCorrecao(final NFInfoCartaCorrecao cartaCorrecao) {
-        this.cartaCorrecao = cartaCorrecao;
+    public void setCancelamento(final NFInfoCancelamento cancelamento) {
+        this.cancelamento = cancelamento;
     }
 
     public NFUnidadeFederativa getOrgao() {
         return this.orgao;
+    }
+
+    public void setCodigoEvento(final String codigoEvento) {
+        this.codigoEvento = codigoEvento;
     }
 }

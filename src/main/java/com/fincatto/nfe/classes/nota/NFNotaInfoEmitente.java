@@ -92,4 +92,44 @@ public class NFNotaInfoEmitente extends NFBase {
     public void setRegimeTributario(final NFRegimeTributario regimeTributario) {
         this.regimeTributario = regimeTributario;
     }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getRazaoSocial() {
+        return this.razaoSocial;
+    }
+
+    public String getNomeFantasia() {
+        return this.nomeFantasia;
+    }
+
+    public NFEndereco getEndereco() {
+        return this.endereco;
+    }
+
+    public String getInscricaoEstadual() {
+        return this.inscricaoEstadual;
+    }
+
+    public String getInscricaoEstadualSubstituicaoTributaria() {
+        return this.inscricaoEstadualSubstituicaoTributaria;
+    }
+
+    public String getInscricaoMunicipal() {
+        return this.inscricaoMunicipal;
+    }
+
+    public String getClassificacaoNacionalAtividadesEconomicas() {
+        return this.classificacaoNacionalAtividadesEconomicas;
+    }
+
+    public NFRegimeTributario getRegimeTributario() {
+        return this.regimeTributario;
+    }
 }

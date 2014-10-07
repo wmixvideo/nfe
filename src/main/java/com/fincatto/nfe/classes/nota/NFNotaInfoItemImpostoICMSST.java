@@ -52,4 +52,28 @@ public class NFNotaInfoItemImpostoICMSST extends NFBase {
     public void setValorICMSSTUFDestino(final BigDecimal valorICMSSTUFDestino) {
         this.valorICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTUFDestino);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBCICMSSTRetidoUFRemetente() {
+        return this.valorBCICMSSTRetidoUFRemetente;
+    }
+
+    public String getValorICMSSTRetidoUFRemetente() {
+        return this.valorICMSSTRetidoUFRemetente;
+    }
+
+    public String getValorBCICMSSTUFDestino() {
+        return this.valorBCICMSSTUFDestino;
+    }
+
+    public String getValorICMSSTUFDestino() {
+        return this.valorICMSSTUFDestino;
+    }
 }

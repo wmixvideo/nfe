@@ -405,4 +405,9 @@ public class StringValidador {
     public static void exatamente54(final String string) {
         StringValidador.validaTamanhoExato(string, 54);
     }
+
+    public static void exatamente15N(final String string) {
+        StringValidador.validaTamanhoExato(string, 15);
+        StringValidador.apenasNumerico(string);
+    }
 }

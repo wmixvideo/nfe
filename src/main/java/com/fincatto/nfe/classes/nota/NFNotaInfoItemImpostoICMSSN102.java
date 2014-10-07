@@ -20,4 +20,12 @@ public class NFNotaInfoItemImpostoICMSSN102 extends NFBase {
     public void setSituacaoOperacaoSN(final NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN) {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaSituacaoOperacionalSimplesNacional getSituacaoOperacaoSN() {
+        return this.situacaoOperacaoSN;
+    }
 }

@@ -39,9 +39,9 @@ import com.fincatto.nfe.classes.NFTipo;
 import com.fincatto.nfe.classes.NFTipoEmissao;
 import com.fincatto.nfe.classes.NFTipoImpressao;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.cartacorrecao.NFEvento;
-import com.fincatto.nfe.classes.cartacorrecao.NFInfoCartaCorrecao;
-import com.fincatto.nfe.classes.cartacorrecao.NFInfoEvento;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFEventoCartaCorrecao;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFInfoCartaCorrecao;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFInfoEventoCartaCorrecao;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import com.fincatto.nfe.classes.lote.envio.NFLoteIndicadorProcessamento;
@@ -125,15 +125,15 @@ import com.fincatto.nfe.classes.nota.NFViaTransporteInternacional;
 
 public class FabricaDeObjetosFake {
 
-    public static NFEvento getNFEvento() {
-        final NFEvento evento = new NFEvento();
+    public static NFEventoCartaCorrecao getNFEvento() {
+        final NFEventoCartaCorrecao evento = new NFEventoCartaCorrecao();
         evento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEvento());
         evento.setVersao(new BigDecimal("1.00"));
         return evento;
     }
 
-    public static NFInfoEvento getNFInfoEvento() {
-        final NFInfoEvento infoEvento = new NFInfoEvento();
+    public static NFInfoEventoCartaCorrecao getNFInfoEvento() {
+        final NFInfoEventoCartaCorrecao infoEvento = new NFInfoEventoCartaCorrecao();
         infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
         infoEvento.setCartaCorrecao(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");

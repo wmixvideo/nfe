@@ -20,4 +20,8 @@ public class NFNotaInfoItemImpostoPISNaoTributado extends NFBase {
         }
         this.situacaoTributaria = situacaoTributaria;
     }
+
+    public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
 }

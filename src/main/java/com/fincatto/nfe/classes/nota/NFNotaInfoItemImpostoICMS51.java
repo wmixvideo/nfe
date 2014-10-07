@@ -80,4 +80,44 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     public void setValorICMSOperacao(final BigDecimal valorICMSOperacao) {
         this.valorICMSOperacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOperacao);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBC() {
+        return this.modalidadeBC;
+    }
+
+    public String getPercentualReducaoBC() {
+        return this.percentualReducaoBC;
+    }
+
+    public String getValorBCICMS() {
+        return this.valorBCICMS;
+    }
+
+    public String getPercentualICMS() {
+        return this.percentualICMS;
+    }
+
+    public String getValorICMSOperacao() {
+        return this.valorICMSOperacao;
+    }
+
+    public String getPercentualDiferimento() {
+        return this.percentualDiferimento;
+    }
+
+    public String getValorICMSDiferimento() {
+        return this.valorICMSDiferimento;
+    }
+
+    public String getValorICMS() {
+        return this.valorICMS;
+    }
 }

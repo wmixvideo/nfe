@@ -120,4 +120,68 @@ public class NFNotaInfoICMSTotal extends NFBase {
     public void setValorICMSDesonerado(final BigDecimal valorICMSDesonerado) {
         this.valorICMSDesonerado = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesonerado);
     }
+
+    public String getBaseCalculoICMS() {
+        return this.baseCalculoICMS;
+    }
+
+    public String getValorTotalICMS() {
+        return this.valorTotalICMS;
+    }
+
+    public String getValorICMSDesonerado() {
+        return this.valorICMSDesonerado;
+    }
+
+    public String getValor() {
+        return this.valor;
+    }
+
+    public String getValorTotalICMSST() {
+        return this.valorTotalICMSST;
+    }
+
+    public String getValorTotalDosProdutosServicos() {
+        return this.valorTotalDosProdutosServicos;
+    }
+
+    public String getValorTotalFrete() {
+        return this.valorTotalFrete;
+    }
+
+    public String getValorTotalSeguro() {
+        return this.valorTotalSeguro;
+    }
+
+    public String getValorTotalDesconto() {
+        return this.valorTotalDesconto;
+    }
+
+    public String getValorTotalII() {
+        return this.valorTotalII;
+    }
+
+    public String getValorTotalIPI() {
+        return this.valorTotalIPI;
+    }
+
+    public String getValorPIS() {
+        return this.valorPIS;
+    }
+
+    public String getValorCOFINS() {
+        return this.valorCOFINS;
+    }
+
+    public String getOutrasDespesasAcessorias() {
+        return this.outrasDespesasAcessorias;
+    }
+
+    public String getValorTotalNFe() {
+        return this.valorTotalNFe;
+    }
+
+    public String getValorTotalTributos() {
+        return this.valorTotalTributos;
+    }
 }
