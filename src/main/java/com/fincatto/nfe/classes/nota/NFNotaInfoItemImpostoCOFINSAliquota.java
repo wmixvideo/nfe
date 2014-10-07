@@ -11,7 +11,7 @@ import com.fincatto.nfe.validadores.BigDecimalParser;
 public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
     @Element(name = "vBC", required = true)
     private String valorBaseCalulo;
@@ -22,19 +22,12 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
     @Element(name = "vCOFINS", required = true)
     private String valor;
 
-    public NFNotaInfoItemImpostoCOFINSAliquota() {
-        this.codigoSituacaoTributaria = null;
-        this.valorBaseCalulo = null;
-        this.percentualAliquota = null;
-        this.valor = null;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         if (!NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO.equals(situacaoTributaria) && !NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA.equals(situacaoTributaria)) {
             throw new IllegalStateException("Situacao tributaria invalido");
         }
 
-        this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
@@ -47,5 +40,21 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
 
     public void setValor(final BigDecimal valor) {
         this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+    }
+
+    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBaseCalulo() {
+        return this.valorBaseCalulo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getValor() {
+        return this.valor;
     }
 }

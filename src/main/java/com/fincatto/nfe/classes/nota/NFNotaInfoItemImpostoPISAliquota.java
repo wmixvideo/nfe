@@ -47,4 +47,20 @@ public class NFNotaInfoItemImpostoPISAliquota extends NFBase {
     public void setValorTributo(final BigDecimal valor) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
     }
+
+    public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
 }

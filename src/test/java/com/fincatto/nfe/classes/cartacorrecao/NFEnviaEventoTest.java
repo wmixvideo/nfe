@@ -7,17 +7,18 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe.FabricaDeObjetosFake;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 
 public class NFEnviaEventoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteComTamanhoInvalido() {
-        new NFEnviaEvento().setIdLote("9999999999999999");
+        new NFEnviaEventoCartaCorrecao().setIdLote("9999999999999999");
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirEventoNulo() {
-        final NFEnviaEvento enviaEvento = new NFEnviaEvento();
+        final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.setVersao(new BigDecimal("1.00"));
         enviaEvento.toString();
@@ -25,7 +26,7 @@ public class NFEnviaEventoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteNulo() {
-        final NFEnviaEvento enviaEvento = new NFEnviaEvento();
+        final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setVersao(new BigDecimal("1.00"));
         enviaEvento.toString();
@@ -33,7 +34,7 @@ public class NFEnviaEventoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
-        final NFEnviaEvento enviaEvento = new NFEnviaEvento();
+        final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.toString();
@@ -41,7 +42,7 @@ public class NFEnviaEventoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final NFEnviaEvento enviaEvento = new NFEnviaEvento();
+        final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.setVersao(new BigDecimal("1.00"));

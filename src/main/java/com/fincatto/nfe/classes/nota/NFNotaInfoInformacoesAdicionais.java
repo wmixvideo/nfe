@@ -49,4 +49,24 @@ public class NFNotaInfoInformacoesAdicionais extends NFBase {
         ListValidador.tamanho100(processosRefenciado);
         this.processosRefenciado = processosRefenciado;
     }
+
+    public String getInformacoesAdicionaisInteresseFisco() {
+        return this.informacoesAdicionaisInteresseFisco;
+    }
+
+    public String getInformacoesComplementaresInteresseContribuinte() {
+        return this.informacoesComplementaresInteresseContribuinte;
+    }
+
+    public List<NFNotaInfoObservacao> getObservacoesContribuinte() {
+        return this.observacoesContribuinte;
+    }
+
+    public List<NFNotaInfoObservacao> getObservacoesFisco() {
+        return this.observacoesFisco;
+    }
+
+    public List<NFNotaInfoProcessoReferenciado> getProcessosRefenciado() {
+        return this.processosRefenciado;
+    }
 }

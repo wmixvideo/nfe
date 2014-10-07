@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.cartacorrecao;
+package com.fincatto.nfe.classes.evento.cartacorrecao;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.fincatto.nfe.validadores.StringValidador;
 
 @Root(name = "envEvento")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFEnviaEvento extends NFBase {
+public class NFEnviaEventoCartaCorrecao extends NFBase {
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -25,7 +25,7 @@ public class NFEnviaEvento extends NFBase {
     private String idLote;
 
     @ElementList(entry = "evento", inline = true, required = true)
-    private List<NFEvento> evento;
+    private List<NFEventoCartaCorrecao> evento;
 
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
@@ -44,11 +44,11 @@ public class NFEnviaEvento extends NFBase {
         this.idLote = idLote;
     }
 
-    public List<NFEvento> getEvento() {
+    public List<NFEventoCartaCorrecao> getEvento() {
         return this.evento;
     }
 
-    public void setEvento(final List<NFEvento> evento) {
+    public void setEvento(final List<NFEventoCartaCorrecao> evento) {
         ListValidador.tamanho20(evento);
         this.evento = evento;
     }

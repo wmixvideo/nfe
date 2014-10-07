@@ -75,4 +75,28 @@ public class NFNotaInfoItemImpostoIPITributado extends NFBase {
     public void setValorTributo(final BigDecimal valorTributo) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
+
+    public NFNotaInfoSituacaoTributariaIPI getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getQuantidade() {
+        return this.quantidade;
+    }
+
+    public String getValorUnidadeTributavel() {
+        return this.valorUnidadeTributavel;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
 }

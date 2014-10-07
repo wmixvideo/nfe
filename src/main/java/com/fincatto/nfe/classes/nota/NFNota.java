@@ -5,6 +5,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.classes.NFBase;
+import com.fincatto.nfe.classes.nota.assinatura.NFSignature;
 
 @Root(name = "NFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -16,7 +17,7 @@ public class NFNota extends NFBase {
     private NFNotaInfo info;
 
     @Element(name = "Signature", required = false)
-    private String assinatura;
+    private NFSignature assinatura;
 
     public void setInfo(final NFNotaInfo info) {
         this.info = info;
@@ -37,7 +38,7 @@ public class NFNota extends NFBase {
         return this.identificadorLocal;
     }
 
-    public void setAssinatura(final String assinatura) {
+    public void setAssinatura(final NFSignature assinatura) {
         this.assinatura = assinatura;
     }
 }

@@ -198,4 +198,100 @@ public class NFNotaInfoIdentificacao extends NFBase {
     public void setIndicadorPresencaComprador(final NFIndicadorPresencaComprador indicadorPresencaComprador) {
         this.indicadorPresencaComprador = indicadorPresencaComprador;
     }
+
+    public NFUnidadeFederativa getUf() {
+        return this.uf;
+    }
+
+    public String getCodigoRandomico() {
+        return this.codigoRandomico;
+    }
+
+    public String getNaturezaOperacao() {
+        return this.naturezaOperacao;
+    }
+
+    public NFFormaPagamentoPrazo getFormaPagamento() {
+        return this.formaPagamento;
+    }
+
+    public String getModelo() {
+        return this.modelo;
+    }
+
+    public String getSerie() {
+        return this.serie;
+    }
+
+    public String getNumeroNota() {
+        return this.numeroNota;
+    }
+
+    public LocalDateTime getDataHoraEmissao() {
+        return this.dataHoraEmissao;
+    }
+
+    public LocalDateTime getDataHoraSaidaEntrada() {
+        return this.dataHoraSaidaEntrada;
+    }
+
+    public NFTipo getTipo() {
+        return this.tipo;
+    }
+
+    public NFIdentificadorLocalDestinoOperacao getIdentificadorLocalDestinoOperacao() {
+        return this.identificadorLocalDestinoOperacao;
+    }
+
+    public String getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
+
+    public NFTipoImpressao getTipoImpressao() {
+        return this.tipoImpressao;
+    }
+
+    public NFTipoEmissao getTipoEmissao() {
+        return this.tipoEmissao;
+    }
+
+    public Integer getDigitoVerificador() {
+        return this.digitoVerificador;
+    }
+
+    public NFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public NFFinalidade getFinalidade() {
+        return this.finalidade;
+    }
+
+    public NFOperacaoConsumidorFinal getOperacaoConsumidorFinal() {
+        return this.operacaoConsumidorFinal;
+    }
+
+    public NFIndicadorPresencaComprador getIndicadorPresencaComprador() {
+        return this.indicadorPresencaComprador;
+    }
+
+    public NFProcessoEmissor getProgramaEmissor() {
+        return this.programaEmissor;
+    }
+
+    public String getVersaoEmissor() {
+        return this.versaoEmissor;
+    }
+
+    public LocalDateTime getDataHoraContigencia() {
+        return this.dataHoraContigencia;
+    }
+
+    public String getJustificativaEntradaContingencia() {
+        return this.justificativaEntradaContingencia;
+    }
+
+    public List<NFInfoReferenciada> getReferenciadas() {
+        return this.referenciadas;
+    }
 }

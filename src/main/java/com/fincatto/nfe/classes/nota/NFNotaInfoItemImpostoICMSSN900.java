@@ -116,4 +116,64 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {
         this.valorCreditoICMSSN = BigDecimalParser.tamanho15Com2CasasDecimais(valorCreditoICMSSN);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaSituacaoOperacionalSimplesNacional getSituacaoOperacaoSN() {
+        return this.situacaoOperacaoSN;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeDeterminacaoBCICMS() {
+        return this.modalidadeDeterminacaoBCICMS;
+    }
+
+    public String getValorBCICMS() {
+        return this.valorBCICMS;
+    }
+
+    public String getPercentualReducaoBC() {
+        return this.percentualReducaoBC;
+    }
+
+    public String getPercentualAliquotaImposto() {
+        return this.percentualAliquotaImposto;
+    }
+
+    public String getValorICMS() {
+        return this.valorICMS;
+    }
+
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
+        return this.modalidadeBCICMSST;
+    }
+
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCICMSST() {
+        return this.valorBCICMSST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorICMSST() {
+        return this.valorICMSST;
+    }
+
+    public String getAliquotaAplicavelCalculoCreditoSN() {
+        return this.aliquotaAplicavelCalculoCreditoSN;
+    }
+
+    public String getValorCreditoICMSSN() {
+        return this.valorCreditoICMSSN;
+    }
 }

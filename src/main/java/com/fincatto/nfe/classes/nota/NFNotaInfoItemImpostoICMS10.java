@@ -95,4 +95,52 @@ public class NFNotaInfoItemImpostoICMS10 extends NFBase {
     public void setValorICMSST(final BigDecimal valorICMSST) {
         this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBaseCalculo() {
+        return this.modalidadeBaseCalculo;
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
+
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMS() {
+        return this.modalidadeDeterminacaoBCICMS;
+    }
+
+    public String getPercentualMargemValorICMSST() {
+        return this.percentualMargemValorICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCICMSST() {
+        return this.valorBCICMSST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorICMSST() {
+        return this.valorICMSST;
+    }
 }

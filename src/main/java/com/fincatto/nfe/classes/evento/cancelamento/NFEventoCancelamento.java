@@ -1,4 +1,4 @@
-package com.fincatto.nfe.classes.cartacorrecao;
+package com.fincatto.nfe.classes.evento.cancelamento;
 
 import java.math.BigDecimal;
 
@@ -8,13 +8,13 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.validadores.BigDecimalParser;
 
-public class NFEvento extends NFBase {
+public class NFEventoCancelamento extends NFBase {
 
     @Attribute(name = "versao", required = true)
     private String versao;
 
     @Element(name = "infEvento", required = true)
-    private NFInfoEvento infoEvento;
+    private NFInfoEventoCancelamento infoEvento;
 
     @Element(name = "Signature", required = false)
     private String assinatura;
@@ -23,7 +23,7 @@ public class NFEvento extends NFBase {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
     }
 
-    public NFInfoEvento getInfoEvento() {
+    public NFInfoEventoCancelamento getInfoEvento() {
         return this.infoEvento;
     }
 
@@ -31,7 +31,7 @@ public class NFEvento extends NFBase {
         return this.versao;
     }
 
-    public void setInfoEvento(final NFInfoEvento infoEvento) {
+    public void setInfoEvento(final NFInfoEventoCancelamento infoEvento) {
         this.infoEvento = infoEvento;
     }
 

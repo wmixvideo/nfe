@@ -3,6 +3,7 @@ package com.fincatto.nfe.classes.nota;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -18,7 +19,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "cProd", required = true)
     private String codigo;
 
-    @Element(name = "cEAN", required = true)
+    @Element(name = "cEAN", required = false)
     private String codigoDeBarras;
 
     @Element(name = "xProd", required = true)
@@ -48,7 +49,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "vProd", required = true)
     private String valorTotalBruto;
 
-    @Element(name = "cEANTrib", required = true)
+    @Element(name = "cEANTrib", required = false)
     private String codigoDeBarrasTributavel;
 
     @Element(name = "uTrib", required = true)
@@ -257,5 +258,125 @@ public class NFNotaInfoItemProduto extends NFBase {
         }
         StringValidador.exatamente20N(numeroRECOPI);
         this.numeroRECOPI = numeroRECOPI;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
+    }
+
+    public String getCodigoDeBarras() {
+        return this.codigoDeBarras == null ? StringUtils.EMPTY : this.codigoDeBarras;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public String getNcm() {
+        return this.ncm;
+    }
+
+    public List<String> getNomeclaturaValorAduaneiroEstatistica() {
+        return this.nomeclaturaValorAduaneiroEstatistica;
+    }
+
+    public Integer getExtipi() {
+        return this.extipi;
+    }
+
+    public String getCfop() {
+        return this.cfop;
+    }
+
+    public String getUnidadeComercial() {
+        return this.unidadeComercial;
+    }
+
+    public String getQuantidadeComercial() {
+        return this.quantidadeComercial;
+    }
+
+    public String getValorUnitario() {
+        return this.valorUnitario;
+    }
+
+    public String getValorTotalBruto() {
+        return this.valorTotalBruto;
+    }
+
+    public String getCodigoDeBarrasTributavel() {
+        return this.codigoDeBarrasTributavel == null ? StringUtils.EMPTY : this.codigoDeBarrasTributavel;
+    }
+
+    public String getUnidadeTributavel() {
+        return this.unidadeTributavel;
+    }
+
+    public String getQuantidadeTributavel() {
+        return this.quantidadeTributavel;
+    }
+
+    public String getValorUnitarioTributavel() {
+        return this.valorUnitarioTributavel;
+    }
+
+    public String getValorFrete() {
+        return this.valorFrete;
+    }
+
+    public String getValorSeguro() {
+        return this.valorSeguro;
+    }
+
+    public String getValorDesconto() {
+        return this.valorDesconto;
+    }
+
+    public String getValorOutrasDespesasAcessorias() {
+        return this.valorOutrasDespesasAcessorias;
+    }
+
+    public NFProdutoCompoeValorNota getCompoeValorNota() {
+        return this.compoeValorNota;
+    }
+
+    public List<NFNotaInfoItemProdutoDeclaracaoImportacao> getDeclaracoesImportacao() {
+        return this.declaracoesImportacao;
+    }
+
+    public List<NFNotaInfoItemDetalheExportacao> getDetalhesExportacao() {
+        return this.detalhesExportacao;
+    }
+
+    public String getNumeroPedidoCliente() {
+        return this.numeroPedidoCliente;
+    }
+
+    public Integer getNumeroPedidoItemCliente() {
+        return this.numeroPedidoItemCliente;
+    }
+
+    public String getNumeroControleFCI() {
+        return this.numeroControleFCI;
+    }
+
+    public NFNotaInfoItemProdutoVeiculo getVeiculo() {
+        return this.veiculo;
+    }
+
+    public List<NFNotaInfoItemProdutoMedicamento> getMedicamentos() {
+        return this.medicamentos;
+    }
+
+    public List<NFNotaInfoItemProdutoArmamento> getArmamentos() {
+        return this.armamentos;
+    }
+
+    public NFNotaInfoItemProdutoCombustivel getCombustivel() {
+        return this.combustivel;
+    }
+
+    public String getNumeroRECOPI() {
+        return this.numeroRECOPI;
     }
 }

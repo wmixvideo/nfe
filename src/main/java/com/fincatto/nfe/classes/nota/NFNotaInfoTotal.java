@@ -26,4 +26,16 @@ public class NFNotaInfoTotal extends NFBase {
     public void setRetencoesTributos(final NFNotaInfoRetencoesTributos retencoesTributos) {
         this.retencoesTributos = retencoesTributos;
     }
+
+    public NFNotaInfoICMSTotal getIcmsTotal() {
+        return this.icmsTotal;
+    }
+
+    public NFNotaInfoISSQNTotal getIssqnTotal() {
+        return this.issqnTotal;
+    }
+
+    public NFNotaInfoRetencoesTributos getRetencoesTributos() {
+        return this.retencoesTributos;
+    }
 }

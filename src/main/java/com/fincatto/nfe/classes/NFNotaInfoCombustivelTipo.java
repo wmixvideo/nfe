@@ -30,4 +30,13 @@ public enum NFNotaInfoCombustivelTipo {
     public String getCodigo() {
         return this.codigo;
     }
+
+    public static NFNotaInfoCombustivelTipo valueOfCodigo(final String codigo) {
+        for (final NFNotaInfoCombustivelTipo tipo : NFNotaInfoCombustivelTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

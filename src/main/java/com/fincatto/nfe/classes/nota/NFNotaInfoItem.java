@@ -38,4 +38,20 @@ public class NFNotaInfoItem extends NFBase {
     public void setImposto(final NFNotaInfoItemImposto imposto) {
         this.imposto = imposto;
     }
+
+    public Integer getNumeroItem() {
+        return this.numeroItem;
+    }
+
+    public NFNotaInfoItemProduto getProduto() {
+        return this.produto;
+    }
+
+    public NFNotaInfoItemImposto getImposto() {
+        return this.imposto;
+    }
+
+    public String getInformacoesAdicionais() {
+        return this.informacoesAdicionais;
+    }
 }

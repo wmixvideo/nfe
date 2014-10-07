@@ -11,7 +11,7 @@ import com.fincatto.nfe.validadores.BigDecimalParser;
 public class NFNotaInfoItemImpostoPISOutrasOperacoes extends NFBase {
 
     @Element(name = "CST", required = true)
-    private String codigoSituacaoTributaria;
+    private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
 
     @Element(name = "vBC", required = false)
     private String valorBaseCalculo;
@@ -28,17 +28,8 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoes extends NFBase {
     @Element(name = "vPIS", required = true)
     private String valorTributo;
 
-    public NFNotaInfoItemImpostoPISOutrasOperacoes() {
-        this.codigoSituacaoTributaria = null;
-        this.valorBaseCalculo = null;
-        this.percentualAliquota = null;
-        this.quantidadeVendida = null;
-        this.valorAliquota = null;
-        this.valorTributo = null;
-    }
-
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
-        this.codigoSituacaoTributaria = situacaoTributaria.getCodigo();
+        this.situacaoTributaria = situacaoTributaria;
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
@@ -71,5 +62,29 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoes extends NFBase {
 
     public void setValorTributo(final BigDecimal valorTributo) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getQuantidadeVendida() {
+        return this.quantidadeVendida;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
+
+    public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {
+        return this.situacaoTributaria;
     }
 }

@@ -79,4 +79,32 @@ public class NFNotaInfoItemImpostoIPI extends NFBase {
         }
         this.naoTributado = naoTributado;
     }
+
+    public String getClasseEnquadramento() {
+        return this.classeEnquadramento;
+    }
+
+    public String getCnpjProdutor() {
+        return this.cnpjProdutor;
+    }
+
+    public String getCodigoSelo() {
+        return this.codigoSelo;
+    }
+
+    public BigInteger getQuantidadeSelo() {
+        return this.quantidadeSelo;
+    }
+
+    public String getCodigoEnquadramento() {
+        return this.codigoEnquadramento;
+    }
+
+    public NFNotaInfoItemImpostoIPITributado getTributado() {
+        return this.tributado;
+    }
+
+    public NFNotaInfoItemImpostoIPINaoTributado getNaoTributado() {
+        return this.naoTributado;
+    }
 }

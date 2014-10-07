@@ -45,4 +45,32 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
     public void setMotivoDesoneracaoICMS(final NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMS) {
         this.motivoDesoneracaoICMS = motivoDesoneracaoICMS;
     }
+
+    public void setValorICMS(final String valorICMS) {
+        this.valorICMS = valorICMS;
+    }
+
+    public void setValorICMSDesoneracao(final String valorICMSDesoneracao) {
+        this.valorICMSDesoneracao = valorICMSDesoneracao;
+    }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorICMS() {
+        return this.valorICMS;
+    }
+
+    public String getValorICMSDesoneracao() {
+        return this.valorICMSDesoneracao;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoICMS() {
+        return this.motivoDesoneracaoICMS;
+    }
 }

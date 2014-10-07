@@ -81,4 +81,44 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBC() {
+        return this.modalidadeDeterminacaoBC;
+    }
+
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCICMSST() {
+        return this.valorBCICMSST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorImpostoICMSST() {
+        return this.valorImpostoICMSST;
+    }
+
+    public String getValorICMSDesoneracao() {
+        return this.valorICMSDesoneracao;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getDesoneracao() {
+        return this.desoneracao;
+    }
 }

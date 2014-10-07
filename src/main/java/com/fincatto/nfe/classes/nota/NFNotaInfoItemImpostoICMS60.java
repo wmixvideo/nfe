@@ -37,4 +37,20 @@ public class NFNotaInfoItemImpostoICMS60 extends NFBase {
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
         this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getValorBCICMSSTRetido() {
+        return this.valorBCICMSSTRetido;
+    }
+
+    public String getValorICMSSTRetido() {
+        return this.valorICMSSTRetido;
+    }
 }

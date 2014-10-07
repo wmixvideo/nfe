@@ -92,4 +92,48 @@ public class NFEndereco extends NFBase {
         StringValidador.telefone(telefone);
         this.telefone = telefone;
     }
+
+    public String getLogradouro() {
+        return this.logradouro;
+    }
+
+    public String getNumero() {
+        return this.numero;
+    }
+
+    public String getComplemento() {
+        return this.complemento;
+    }
+
+    public String getBairro() {
+        return this.bairro;
+    }
+
+    public String getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
+
+    public String getDescricaoMunicipio() {
+        return this.descricaoMunicipio;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
+    public String getCep() {
+        return this.cep;
+    }
+
+    public String getCodigoPais() {
+        return this.codigoPais;
+    }
+
+    public String getDescricaoPais() {
+        return this.descricaoPais;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
+    }
 }

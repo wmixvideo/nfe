@@ -37,4 +37,20 @@ public class NFNotaInfoItemImpostoICMSSN101 extends NFBase {
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {
         this.valorCreditoICMSSN = BigDecimalParser.tamanho15Com2CasasDecimais(valorCreditoICMSSN);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaSituacaoOperacionalSimplesNacional getSituacaoOperacaoSN() {
+        return this.situacaoOperacaoSN;
+    }
+
+    public String getPercentualAliquotaAplicavelCalculoCreditoSN() {
+        return this.percentualAliquotaAplicavelCalculoCreditoSN;
+    }
+
+    public String getValorCreditoICMSSN() {
+        return this.valorCreditoICMSSN;
+    }
 }

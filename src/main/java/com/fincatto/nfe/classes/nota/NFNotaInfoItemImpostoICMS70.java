@@ -117,4 +117,64 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBC() {
+        return this.modalidadeBC;
+    }
+
+    public String getPercentualReducaoBC() {
+        return this.percentualReducaoBC;
+    }
+
+    public String getValorBC() {
+        return this.valorBC;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
+
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
+        return this.modalidadeDeterminacaoBCICMSST;
+    }
+
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCST() {
+        return this.valorBCST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorICMSST() {
+        return this.valorICMSST;
+    }
+
+    public String getValorICMSDesoneracao() {
+        return this.valorICMSDesoneracao;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getDesoneracao() {
+        return this.desoneracao;
+    }
 }

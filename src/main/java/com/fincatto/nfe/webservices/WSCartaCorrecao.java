@@ -17,11 +17,11 @@ import org.simpleframework.xml.stream.Format;
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
 import com.fincatto.nfe.classes.NFAutorizador31;
-import com.fincatto.nfe.classes.cartacorrecao.NFEnviaEvento;
-import com.fincatto.nfe.classes.cartacorrecao.NFEnviaEventoRetorno;
-import com.fincatto.nfe.classes.cartacorrecao.NFEvento;
-import com.fincatto.nfe.classes.cartacorrecao.NFInfoCartaCorrecao;
-import com.fincatto.nfe.classes.cartacorrecao.NFInfoEvento;
+import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFEventoCartaCorrecao;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFInfoCartaCorrecao;
+import com.fincatto.nfe.classes.evento.cartacorrecao.NFInfoEventoCartaCorrecao;
 import com.fincatto.nfe.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
 import com.fincatto.nfe.webservices.gerado.RecepcaoEventoStub;
@@ -65,10 +65,11 @@ public class WSCartaCorrecao {
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCartaCorrecao.log.debug(omElementResult.toString());
+
         return omElementResult;
     }
 
-    private NFEnviaEvento gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao) {
+    private NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFInfoCartaCorrecao cartaCorrecao = new NFInfoCartaCorrecao();
@@ -77,7 +78,7 @@ public class WSCartaCorrecao {
         cartaCorrecao.setDescricaoEvento("Carta de Correcao");
         cartaCorrecao.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
 
-        final NFInfoEvento infoEvento = new NFInfoEvento();
+        final NFInfoEventoCartaCorrecao infoEvento = new NFInfoEventoCartaCorrecao();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setCartaCorrecao(cartaCorrecao);
         infoEvento.setChave(chaveAcesso);
@@ -89,11 +90,11 @@ public class WSCartaCorrecao {
         infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CARTA_CORRECAO);
         infoEvento.setVersaoEvento(WSCartaCorrecao.VERSAO_LEIAUTE);
 
-        final NFEvento evento = new NFEvento();
+        final NFEventoCartaCorrecao evento = new NFEventoCartaCorrecao();
         evento.setInfoEvento(infoEvento);
         evento.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
 
-        final NFEnviaEvento enviaEvento = new NFEnviaEvento();
+        final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setEvento(Arrays.asList(evento));
         enviaEvento.setIdLote("1");
         enviaEvento.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);

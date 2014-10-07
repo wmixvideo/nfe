@@ -8,7 +8,7 @@ public class NFNotaInfoCombustivelTipoTransformer implements Transform<NFNotaInf
 
     @Override
     public NFNotaInfoCombustivelTipo read(final String codigoCombustivelTipo) throws Exception {
-        return null;
+        return NFNotaInfoCombustivelTipo.valueOfCodigo(codigoCombustivelTipo);
     }
 
     @Override

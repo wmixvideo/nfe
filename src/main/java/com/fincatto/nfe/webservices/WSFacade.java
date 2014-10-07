@@ -2,7 +2,7 @@ package com.fincatto.nfe.webservices;
 
 import com.fincatto.nfe.NFEConfig;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
-import com.fincatto.nfe.classes.cartacorrecao.NFEnviaEventoRetorno;
+import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe.classes.lote.envio.NFLoteEnvioRetorno;
@@ -16,6 +16,7 @@ public class WSFacade {
     private final WSStatusConsulta wsStatusConsulta;
     private final WSNotaConsulta wsNotaConsulta;
     private final WSCartaCorrecao wsCartaCorrecao;
+    private final WSCancelamento wsCancelamento;
 
     public WSFacade(final NFEConfig config) {
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
@@ -30,6 +31,7 @@ public class WSFacade {
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
+        this.wsCancelamento = new WSCancelamento(config);
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFUnidadeFederativa uf) throws Exception {
@@ -51,5 +53,9 @@ public class WSFacade {
 
     public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao) throws Exception {
         return this.wsCartaCorrecao.corrigirNota(chaveDeAcesso, textoCorrecao);
+    }
+
+    public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+        return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
     }
 }

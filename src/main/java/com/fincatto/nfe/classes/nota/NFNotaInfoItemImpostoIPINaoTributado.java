@@ -17,4 +17,8 @@ public class NFNotaInfoItemImpostoIPINaoTributado extends NFBase {
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaIPI situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
     }
+
+    public NFNotaInfoSituacaoTributariaIPI getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
 }

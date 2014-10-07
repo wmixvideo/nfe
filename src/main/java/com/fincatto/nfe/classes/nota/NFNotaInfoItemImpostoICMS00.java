@@ -30,15 +30,6 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
-    public NFNotaInfoItemImpostoICMS00() {
-        this.origem = null;
-        this.situacaoTributaria = null;
-        this.modalidadeBaseCalculo = null;
-        this.valorBaseCalculo = null;
-        this.percentualAliquota = null;
-        this.valorTributo = null;
-    }
-
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
@@ -64,5 +55,29 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
 
     public void setValorTributo(final BigDecimal valorTributo) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+    }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBaseCalculo() {
+        return this.modalidadeBaseCalculo;
+    }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
     }
 }
