@@ -189,8 +189,8 @@ public class FabricaDeObjetosFake {
         return loteEnvio;
     }
 
-    public static NFEConfig getConfig() {
-        return new NFEConfig() {
+    public static NFeConfig getConfig() {
+        return new NFeConfig() {
 
             @Override
             public String getCertificadoSenha() {

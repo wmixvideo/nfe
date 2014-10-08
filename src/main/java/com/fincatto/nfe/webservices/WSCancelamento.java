@@ -10,7 +10,7 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
@@ -31,9 +31,9 @@ public class WSCancelamento {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
     private static final Logger log = Logger.getLogger(WSCancelamento.class);
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public WSCancelamento(final NFEConfig config) {
+    public WSCancelamento(final NFeConfig config) {
         this.config = config;
     }
 

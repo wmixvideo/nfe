@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsulta;
@@ -21,9 +21,9 @@ class WSStatusConsulta {
 
     private static final String NOME_SERVICO = "STATUS";
     private static final Logger log = Logger.getLogger(WSStatusConsulta.class);
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public WSStatusConsulta(final NFEConfig config) {
+    public WSStatusConsulta(final NFeConfig config) {
         this.config = config;
     }
 
@@ -41,7 +41,7 @@ class WSStatusConsulta {
         final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
         consStatServ.setUf(unidadeFederativa);
         consStatServ.setAmbiente(this.config.getAmbiente());
-        consStatServ.setVersao(NFEConfig.VERSAO_NFE);
+        consStatServ.setVersao(NFeConfig.VERSAO_NFE);
         consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
         return consStatServ;
     }
@@ -49,7 +49,7 @@ class WSStatusConsulta {
     private OMElement efetuaConsultaStatus(final OMElement omElement, final NFUnidadeFederativa unidadeFederativa) throws AxisFault, RemoteException {
         final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
         cabec.setCUF(unidadeFederativa.getCodigoIbge());
-        cabec.setVersaoDados(NFEConfig.VERSAO_NFE);
+        cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
 
         final NfeStatusServico2Stub.NfeCabecMsgE cabecEnv = new NfeStatusServico2Stub.NfeCabecMsgE();
         cabecEnv.setNfeCabecMsg(cabec);

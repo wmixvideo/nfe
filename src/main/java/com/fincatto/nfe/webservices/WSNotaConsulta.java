@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.nota.consulta.NFNotaConsulta;
@@ -20,10 +20,10 @@ import com.fincatto.nfe.webservices.gerado.NfeConsulta2Stub;
 import com.fincatto.nfe.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
 
 class WSNotaConsulta {
-    private final NFEConfig config;
+    private final NFeConfig config;
     private final static Logger log = Logger.getLogger(WSNotaConsulta.class);
 
-    public WSNotaConsulta(final NFEConfig config) {
+    public WSNotaConsulta(final NFeConfig config) {
         this.config = config;
     }
 

@@ -14,7 +14,7 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
@@ -34,9 +34,9 @@ public class WSCartaCorrecao {
     private final static Logger log = Logger.getLogger(WSCartaCorrecao.class);
     private static final String EVENTO_CARTA_CORRECAO = "110110";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public WSCartaCorrecao(final NFEConfig config) {
+    public WSCartaCorrecao(final NFeConfig config) {
         this.config = config;
     }
 
