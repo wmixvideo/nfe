@@ -41,14 +41,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 
 public class AssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
     private static final String[] ELEMENTOS_ASSINAVEIS = new String[] { "infEvento", "infCanc", "infNFe" };
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public AssinaturaDigital(final NFEConfig config) {
+    public AssinaturaDigital(final NFeConfig config) {
         this.config = config;
     }
 

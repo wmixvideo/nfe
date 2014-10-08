@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsulta;
@@ -22,9 +22,9 @@ import com.fincatto.nfe.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizac
 class WSLoteConsulta {
 
     final private static Logger log = Logger.getLogger(WSLoteConsulta.class);
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public WSLoteConsulta(final NFEConfig config) {
+    public WSLoteConsulta(final NFeConfig config) {
         this.config = config;
     }
 
@@ -41,7 +41,7 @@ class WSLoteConsulta {
     private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf) throws AxisFault, RemoteException {
         final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
-        cabec.setVersaoDados(NFEConfig.VERSAO_NFE);
+        cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
 
         final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
         cabecE.setNfeCabecMsg(cabec);
@@ -57,7 +57,7 @@ class WSLoteConsulta {
         final NFLoteConsulta consulta = new NFLoteConsulta();
         consulta.setRecibo(numeroRecibo);
         consulta.setAmbiente(this.config.getAmbiente());
-        consulta.setVersao(new BigDecimal(NFEConfig.VERSAO_NFE));
+        consulta.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
         return consulta;
     }
 }

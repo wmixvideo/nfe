@@ -1,0 +1,46 @@
+package com.fincatto.nfe.classes;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class NFRetornoStatusTest {
+
+    @Test
+    public void valueOfCodigoStringTest() {
+        Assert.assertEquals(NFRetornoStatus.AUTORIZADO_USO_NFE, NFRetornoStatus.valueOfCodigo("100"));
+    }
+
+    @Test
+    public void valueOfCodigoIntegerTest() {
+        Assert.assertEquals(NFRetornoStatus.AUTORIZADO_USO_NFE, NFRetornoStatus.valueOfCodigo(100));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void valueOfCodigoNaoMapeadoTest() {
+        NFRetornoStatus.valueOfCodigo(666);
+    }
+
+    @Test
+    public void isAutorizadoTest() {
+        Assert.assertTrue(NFRetornoStatus.AUTORIZADO_USO_NFE.isAutorizado());
+        Assert.assertFalse(NFRetornoStatus.CHAVE_DE_ACESSO_DIFERENTE_NO_DB_SEFAZ.isAutorizado());
+    }
+
+    @Test
+    public void isDenegadoTest() {
+        Assert.assertTrue(NFRetornoStatus.CODIGO_232.isDenegado());
+        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isDenegado());
+    }
+
+    @Test
+    public void isRejeitadoTest() {
+        Assert.assertTrue(NFRetornoStatus.CODIGO_230.isRejeitado());
+        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isRejeitado());
+    }
+
+    @Test
+    public void isDuplicadoTest() {
+        Assert.assertTrue(NFRetornoStatus.CODIGO_539.isDuplicado());
+        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isDuplicado());
+    }
+}

@@ -1,6 +1,6 @@
 package com.fincatto.nfe.webservices;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -18,7 +18,7 @@ public class WSFacade {
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSCancelamento wsCancelamento;
 
-    public WSFacade(final NFEConfig config) {
+    public WSFacade(final NFeConfig config) {
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());

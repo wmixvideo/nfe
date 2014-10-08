@@ -9,7 +9,7 @@ import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.log4j.Logger;
 import org.simpleframework.xml.core.Persister;
 
-import com.fincatto.nfe.NFEConfig;
+import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.assinatura.AssinaturaDigital;
 import com.fincatto.nfe.classes.NFAutorizador31;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
@@ -26,9 +26,9 @@ class WSLoteEnvio {
 
     private static final String NFE_ELEMENTO = "NFe";
     private final Logger log = Logger.getLogger(WSLoteEnvio.class);
-    private final NFEConfig config;
+    private final NFeConfig config;
 
-    public WSLoteEnvio(final NFEConfig config) {
+    public WSLoteEnvio(final NFeConfig config) {
         this.config = config;
     }
 
@@ -53,7 +53,7 @@ class WSLoteEnvio {
     private NfeCabecMsgE getCabecalhoSOAP() {
         final NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFEConfig.VERSAO_NFE);
+        cabecalho.setVersaoDados(NFeConfig.VERSAO_NFE);
         final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;
@@ -65,7 +65,7 @@ class WSLoteEnvio {
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();
             if ((omElement != null) && (WSLoteEnvio.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFEConfig.NFE_NAMESPACE, null);
+                omElement.addAttribute("xmlns", NFeConfig.NFE_NAMESPACE, null);
             }
         }
         return ome;
