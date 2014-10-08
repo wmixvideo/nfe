@@ -1,5 +1,7 @@
 package com.fincatto.nfe.webservices;
 
+import java.io.IOException;
+
 import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.evento.NFEnviaEventoRetorno;
@@ -11,6 +13,7 @@ import com.fincatto.nfe.classes.statusservico.consulta.NFStatusServicoConsultaRe
 import com.fincatto.nfe.validadores.xsd.XMLValidador;
 
 public class WSFacade {
+
     private final WSLoteEnvio wsLoteEnvio;
     private final WSLoteConsulta wsLoteConsulta;
     private final WSStatusConsulta wsStatusConsulta;
@@ -18,7 +21,7 @@ public class WSFacade {
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSCancelamento wsCancelamento;
 
-    public WSFacade(final NFeConfig config) {
+    public WSFacade(final NFeConfig config) throws IOException {
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
@@ -34,21 +37,21 @@ public class WSFacade {
         this.wsCancelamento = new WSCancelamento(config);
     }
 
-    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFUnidadeFederativa uf) throws Exception {
+    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
         XMLValidador.validaLote(lote.toString());
-        return this.wsLoteEnvio.enviaLote(lote, uf);
+        return this.wsLoteEnvio.enviaLote(lote);
     }
 
-    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {
-        return this.wsLoteConsulta.consultaLote(numeroRecibo, uf);
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
+        return this.wsLoteConsulta.consultaLote(numeroRecibo);
     }
 
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf);
     }
 
-    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso, final NFUnidadeFederativa uf) throws Exception {
-        return this.wsNotaConsulta.consultaNota(chaveDeAcesso, uf);
+    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
     public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao) throws Exception {

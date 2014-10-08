@@ -28,11 +28,11 @@ class WSLoteConsulta {
         this.config = config;
     }
 
-    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFUnidadeFederativa uf) throws Exception {
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
         WSLoteConsulta.log.info(omElementConsulta);
 
-        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, uf);
+        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF());
         WSLoteConsulta.log.info(omElementResult);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());

@@ -12,7 +12,6 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe.NFeConfig;
 import com.fincatto.nfe.classes.NFAutorizador31;
-import com.fincatto.nfe.classes.NFUnidadeFederativa;
 import com.fincatto.nfe.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe.transformers.NFRegistryMatcher;
@@ -27,18 +26,18 @@ class WSNotaConsulta {
         this.config = config;
     }
 
-    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso, final NFUnidadeFederativa uf) throws Exception {
+    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
         WSNotaConsulta.log.info(omElementConsulta);
 
-        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, uf);
+        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta);
         WSNotaConsulta.log.info(omElementRetorno);
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta, final NFUnidadeFederativa uf) throws AxisFault, RemoteException {
+    private OMElement efetuaConsulta(final OMElement omElementConsulta) throws AxisFault, RemoteException {
         final NfeConsulta2Stub.NfeCabecMsg cabec = new NfeConsulta2Stub.NfeCabecMsg();
-        cabec.setCUF(uf.getCodigoIbge());
+        cabec.setCUF(this.config.getCUF().getCodigoIbge());
         cabec.setVersaoDados("3.10");
 
         final NfeConsulta2Stub.NfeCabecMsgE cabecE = new NfeConsulta2Stub.NfeCabecMsgE();
@@ -46,7 +45,7 @@ class WSNotaConsulta {
 
         final NfeConsulta2Stub.NfeDadosMsg dados = new NfeConsulta2Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(NFAutorizador31.valueOfCodigoUF(uf).getNfeConsultaProtocolo(this.config.getAmbiente())).nfeConsultaNF2(dados, cabecE);
+        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeConsultaProtocolo(this.config.getAmbiente())).nfeConsultaNF2(dados, cabecE);
         return consultaNF2Result.getExtraElement();
     }
 
