@@ -1,6 +1,7 @@
 package com.fincatto.nfe;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.fincatto.nfe.classes.NFAmbiente;
 import com.fincatto.nfe.classes.NFTipoEmissao;
@@ -14,9 +15,9 @@ public interface NFeConfig {
 
     public NFAmbiente getAmbiente();
 
-    public File getCertificado();
+    public File getCertificado() throws IOException;
 
-    public File getCadeiaCertificados();
+    public File getCadeiaCertificados() throws IOException;
 
     public String getCertificadoSenha();
 
