@@ -183,7 +183,7 @@ public class FabricaDeObjetosFake {
     public static NFLoteEnvio getNFLoteEnvio() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
         loteEnvio.setIdLote("333972757970401");
-        loteEnvio.setVersao(new BigDecimal("3.10"));
+        loteEnvio.setVersao("3.10");
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota1()));
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         return loteEnvio;
