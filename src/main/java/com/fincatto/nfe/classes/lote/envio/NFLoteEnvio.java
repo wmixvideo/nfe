@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.lote.envio;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.simpleframework.xml.Attribute;
@@ -11,7 +10,6 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe.classes.NFBase;
 import com.fincatto.nfe.classes.nota.NFNota;
-import com.fincatto.nfe.validadores.BigDecimalParser;
 import com.fincatto.nfe.validadores.ListValidador;
 import com.fincatto.nfe.validadores.StringValidador;
 
@@ -49,8 +47,8 @@ public class NFLoteEnvio extends NFBase {
         return this.notas;
     }
 
-    public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+    public void setVersao(final String versao) {
+        this.versao = versao;
     }
 
     public void setIndicadorProcessamento(final NFLoteIndicadorProcessamento indicadorProcessamento) {

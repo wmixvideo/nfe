@@ -1,6 +1,5 @@
 package com.fincatto.nfe.classes.lote.envio;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,16 +11,6 @@ import com.fincatto.nfe.FabricaDeObjetosFake;
 import com.fincatto.nfe.classes.nota.NFNota;
 
 public class NFLoteEnvioTest {
-
-    @Test
-    public void devePermitirVersaoComTamanhoValido() {
-        new NFLoteEnvio().setVersao(new BigDecimal("9.99"));
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirVersaoComTamanhoInvalido() {
-        new NFLoteEnvio().setVersao(new BigDecimal("10"));
-    }
 
     @Test
     public void devePermitirNotasComTamanho50() {
@@ -54,7 +43,7 @@ public class NFLoteEnvioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIndicadorProcessamentoNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
-        loteEnvio.setVersao(new BigDecimal("2.00"));
+        loteEnvio.setVersao("2.00");
         loteEnvio.setIdLote("333972757970401");
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota()));
         loteEnvio.toString();
@@ -72,7 +61,7 @@ public class NFLoteEnvioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
-        loteEnvio.setVersao(new BigDecimal("2.00"));
+        loteEnvio.setVersao("2.00");
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota()));
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         loteEnvio.toString();
@@ -82,7 +71,7 @@ public class NFLoteEnvioTest {
     public void naoDevePermitirNotasNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
         loteEnvio.setIdLote("333972757970401");
-        loteEnvio.setVersao(new BigDecimal("2.00"));
+        loteEnvio.setVersao("2.00");
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         loteEnvio.toString();
     }
@@ -91,7 +80,7 @@ public class NFLoteEnvioTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
         loteEnvio.setIdLote("333972757970401");
-        loteEnvio.setVersao(new BigDecimal("2.00"));
+        loteEnvio.setVersao("2.00");
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota()));
 
