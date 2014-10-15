@@ -24,7 +24,7 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     private Integer serie;
 
     @Element(name = "nNF", required = false)
-    private Integer numeroDocumentoFiscal;
+    private String numeroDocumentoFiscal;
 
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
@@ -50,8 +50,8 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
         this.serie = serie;
     }
 
-    public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
-        IntegerValidador.tamanho9(numeroDocumentoFiscal);
+    public void setNumeroDocumentoFiscal(final String numeroDocumentoFiscal) {
+        StringValidador.tamanho9(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 }

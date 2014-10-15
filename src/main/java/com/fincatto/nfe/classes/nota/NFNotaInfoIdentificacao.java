@@ -46,7 +46,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private LocalDateTime dataHoraEmissao;
 
     @Element(name = "dhSaiEnt", required = false)
-    private LocalDateTime dataHoraSaidaEntrada;
+    private LocalDateTime dataHoraSaidaOuEntrada;
 
     @Element(name = "tpNF", required = true)
     private NFTipo tipo;
@@ -130,8 +130,8 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.dataHoraEmissao = dataEmissao;
     }
 
-    public void setDataHoraSaidaEntrada(final LocalDateTime dataHoraSaidaEntrada) {
-        this.dataHoraSaidaEntrada = dataHoraSaidaEntrada;
+    public void setDataHoraSaidaOuEntrada(final LocalDateTime dataHoraSaidaOuEntrada) {
+        this.dataHoraSaidaOuEntrada = dataHoraSaidaOuEntrada;
     }
 
     public void setTipo(final NFTipo tipo) {
@@ -231,8 +231,8 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.dataHoraEmissao;
     }
 
-    public LocalDateTime getDataHoraSaidaEntrada() {
-        return this.dataHoraSaidaEntrada;
+    public LocalDateTime getDataHoraSaidaOuEntrada() {
+        return this.dataHoraSaidaOuEntrada;
     }
 
     public NFTipo getTipo() {

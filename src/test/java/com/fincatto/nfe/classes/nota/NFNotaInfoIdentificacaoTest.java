@@ -114,7 +114,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -143,7 +143,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -172,7 +172,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -200,7 +200,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -229,7 +229,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -258,7 +258,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -287,7 +287,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -346,7 +346,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
         identificacao.setModelo("AA");
@@ -375,7 +375,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
         identificacao.setModelo("AA");
@@ -404,7 +404,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setModelo("AA");
@@ -433,7 +433,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -462,7 +462,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -491,7 +491,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -520,7 +520,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -549,7 +549,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -578,7 +578,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -607,7 +607,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -636,7 +636,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -665,7 +665,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -694,7 +694,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -723,7 +723,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -752,7 +752,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -781,7 +781,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);

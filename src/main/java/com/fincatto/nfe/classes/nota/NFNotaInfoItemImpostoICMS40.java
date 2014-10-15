@@ -17,9 +17,6 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "vICMS", required = false)
-    private String valorICMS;
-
     @Element(name = "vICMSDeson", required = false)
     private String valorICMSDesoneracao;
 
@@ -34,10 +31,6 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS);
-    }
-
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
     }
@@ -46,24 +39,12 @@ public class NFNotaInfoItemImpostoICMS40 extends NFBase {
         this.motivoDesoneracaoICMS = motivoDesoneracaoICMS;
     }
 
-    public void setValorICMS(final String valorICMS) {
-        this.valorICMS = valorICMS;
-    }
-
-    public void setValorICMSDesoneracao(final String valorICMSDesoneracao) {
-        this.valorICMSDesoneracao = valorICMSDesoneracao;
-    }
-
     public NFOrigem getOrigem() {
         return this.origem;
     }
 
     public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
         return this.situacaoTributaria;
-    }
-
-    public String getValorICMS() {
-        return this.valorICMS;
     }
 
     public String getValorICMSDesoneracao() {

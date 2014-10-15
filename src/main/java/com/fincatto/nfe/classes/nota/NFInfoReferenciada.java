@@ -57,4 +57,24 @@ public class NFInfoReferenciada extends NFBase {
         }
         this.cupomFiscalReferenciado = cupomFiscalReferenciado;
     }
+
+    public String getChaveAcesso() {
+        return this.chaveAcesso;
+    }
+
+    public NFInfoModelo1Por1AReferenciada getModelo1por1Referenciada() {
+        return this.modelo1por1Referenciada;
+    }
+
+    public NFInfoProdutorRuralReferenciada getInfoNFProdutorRuralReferenciada() {
+        return this.infoNFProdutorRuralReferenciada;
+    }
+
+    public String getChaveAcessoCTReferenciada() {
+        return this.chaveAcessoCTReferenciada;
+    }
+
+    public NFInfoCupomFiscalReferenciado getCupomFiscalReferenciado() {
+        return this.cupomFiscalReferenciado;
+    }
 }

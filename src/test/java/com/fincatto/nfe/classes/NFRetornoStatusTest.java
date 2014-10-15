@@ -28,7 +28,10 @@ public class NFRetornoStatusTest {
 
     @Test
     public void isDenegadoTest() {
-        Assert.assertTrue(NFRetornoStatus.CODIGO_232.isDenegado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_110.isDenegado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_301.isDenegado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_302.isDenegado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_303.isDenegado());
         Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isDenegado());
     }
 

@@ -28,7 +28,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroDocumentoFiscalComTamanhoInvalido() {
-        new NFInfoModelo1Por1AReferenciada().setNumeroDocumentoFiscal(1000000000);
+        new NFInfoModelo1Por1AReferenciada().setNumeroDocumentoFiscal("1000000000");
     }
 
     @Test(expected = IllegalStateException.class)
@@ -41,7 +41,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setCnpj("12345678901234");
         referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
         referenciada.toString();
@@ -52,7 +52,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
         referenciada.toString();
@@ -63,7 +63,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         final NFInfoModelo1Por1AReferenciada referenciada = new NFInfoModelo1Por1AReferenciada();
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.SC);
         referenciada.toString();
@@ -86,7 +86,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
         referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setUf(NFUnidadeFederativa.SC);
         referenciada.toString();
     }
@@ -97,7 +97,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setAnoMesEmissaoNFe("1408");
         referenciada.setCnpj("12345678901234");
         referenciada.setModeloDocumentoFiscal("A1");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
         referenciada.toString();
     }
