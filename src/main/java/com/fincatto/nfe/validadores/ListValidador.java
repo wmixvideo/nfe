@@ -57,7 +57,7 @@ public class ListValidador {
 
     private static <E> void validaTamanho(final List<E> lista, final int tamanho) {
         if (lista.size() > tamanho) {
-            throw new IllegalStateException(MessageFormat.format("Lista extrapolou o tamanho [{0}]", tamanho));
+            throw new IllegalStateException(MessageFormat.format("Lista de tamanho {0} extrapolou o tamanho maximo de [{1}]", lista.size(), tamanho));
         }
     }
 

@@ -372,7 +372,7 @@ public class StringValidador {
 
     private static void validaTamanhoMaximo(final String string, final int tamanho) {
         if (string.length() < 1 || string.length() > tamanho) {
-            throw new IllegalStateException(MessageFormat.format("Este campo deve possuir entre 1-{0} caracteres", tamanho));
+            throw new IllegalStateException(MessageFormat.format("Este campo com valor \"{0}\" deve possuir entre 1-{1} caracteres", string, tamanho));
         }
     }
 

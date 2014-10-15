@@ -464,7 +464,7 @@ public enum NFRetornoStatus {
     CODIGO_796(796, "Rejei\u00e7\u00e3o: Empresa sem Chave de Seguran\u00e7a para o QR-Code"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado");
 
-    private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_232, CODIGO_233, CODIGO_301, CODIGO_302, CODIGO_303, CODIGO_210);
+    private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
     private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(AUTORIZADO_USO_NFE, CODIGO_150);
 
     private int codigo;
@@ -497,7 +497,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return this.codigo > 200 && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this);
+        return this.codigo > 200 && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
     }
 
     public boolean isDuplicado() {

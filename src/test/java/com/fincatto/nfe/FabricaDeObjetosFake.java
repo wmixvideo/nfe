@@ -274,7 +274,7 @@ public class FabricaDeObjetosFake {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -442,7 +442,7 @@ public class FabricaDeObjetosFake {
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -556,7 +556,7 @@ public class FabricaDeObjetosFake {
         referenciada.setCnpj("12345678901234");
 
         referenciada.setModeloDocumentoFiscal("01");
-        referenciada.setNumeroDocumentoFiscal(999999999);
+        referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
         referenciada.setUf(NFUnidadeFederativa.RS);
         return referenciada;
