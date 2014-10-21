@@ -31,6 +31,11 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getConsultaCadastro(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://svp-ws.sefazvirtual.rs.gov.br/ws/CadConsultaCadastro/CadConsultaCadastro2.asmx";
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AM, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.MS, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO };
         }
@@ -62,42 +67,14 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getConsultaCadastro(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx";
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.RS };
         }
-    },
-    SCAN {
-
-        @Override
-        public String getNfeAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/SCAN/NfeAutorizacao/NfeAutorizacao.asmx" : "https://www.scan.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx";
-        }
-
-        @Override
-        public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/SCAN/NfeRetAutorizacao/NfeRetAutorizacao.asmx" : "https://www.scan.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx";
-        }
-
-        @Override
-        public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/SCAN/NfeConsulta2/NfeConsulta2.asmx" : "https://www.scan.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx";
-        }
-
-        @Override
-        public String getNfeStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/SCAN/NfeStatusServico2/NfeStatusServico2.asmx" : "https://www.scan.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx";
-        }
-
-        @Override
-        public String getRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/SCAN/RecepcaoEvento/RecepcaoEvento.asmx" : "https://www.scan.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx";
-        }
-
-        @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.SC };
-        }
-
     };
 
     public abstract String getNfeAutorizacao(final NFAmbiente ambiente);
@@ -109,6 +86,8 @@ public enum NFAutorizador31 {
     public abstract String getNfeStatusServico(final NFAmbiente ambiente);
 
     public abstract String getRecepcaoEvento(final NFAmbiente ambiente);
+
+    public abstract String getConsultaCadastro(final NFAmbiente ambiente);
 
     public abstract NFUnidadeFederativa[] getUFs();
 

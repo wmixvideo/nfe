@@ -20,6 +20,7 @@ public class WSFacade {
     private final WSNotaConsulta wsNotaConsulta;
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSCancelamento wsCancelamento;
+    private final WSConsultaCadastro wsConsultaCadastro;
 
     public WSFacade(final NFeConfig config) throws IOException {
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
@@ -35,6 +36,7 @@ public class WSFacade {
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsCancelamento = new WSCancelamento(config);
+        this.wsConsultaCadastro = new WSConsultaCadastro(config);
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
@@ -60,5 +62,9 @@ public class WSFacade {
 
     public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
+    }
+
+    public void consultaCadastro(final String cnpj) throws Exception {
+        this.wsConsultaCadastro.consultaCadastro(cnpj);
     }
 }
