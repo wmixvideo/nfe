@@ -1,0 +1,141 @@
+package com.fincatto.nfe200.classes.nota;
+
+import java.math.BigDecimal;
+
+import org.joda.time.LocalDate;
+import org.simpleframework.xml.Element;
+
+import com.fincatto.nfe200.classes.NFBase;
+import com.fincatto.nfe200.classes.NFUnidadeFederativa;
+import com.fincatto.nfe200.validadores.BigDecimalParser;
+import com.fincatto.nfe200.validadores.StringValidador;
+
+public class NFNotaInfoAvulsa extends NFBase {
+    @Element(name = "CNPJ", required = true)
+    private String cnpj;
+
+    @Element(name = "xOrgao", required = true)
+    private String orgaoEmitente;
+
+    @Element(name = "matr", required = true)
+    private String matriculaAgente;
+
+    @Element(name = "xAgente", required = true)
+    private String nomeAgente;
+
+    @Element(name = "fone", required = false)
+    private String fone;
+
+    @Element(name = "UF", required = true)
+    private String uf;
+
+    @Element(name = "nDAR", required = false)
+    private String numeroDocumentoArrecadacaoReceita;
+
+    @Element(name = "dEmi", required = false)
+    private LocalDate dataEmissaoDocumentoArrecadacao;
+
+    @Element(name = "vDAR", required = false)
+    private String valorTotalConstanteDocumentoArrecadacaoReceita;
+
+    @Element(name = "repEmi", required = true)
+    private String reparticaoFiscalEmitente;
+
+    @Element(name = "dPag", required = false)
+    private LocalDate dataPagamentoDocumentoArrecadacao;
+
+    public void setCnpj(final String cnpj) {
+        StringValidador.cnpj(cnpj);
+        this.cnpj = cnpj;
+    }
+
+    public void setOrgaoEmitente(final String orgaoEmitente) {
+        StringValidador.tamanho60(orgaoEmitente);
+        this.orgaoEmitente = orgaoEmitente;
+    }
+
+    public void setMatriculaAgente(final String matriculaAgente) {
+        StringValidador.tamanho60(matriculaAgente);
+        this.matriculaAgente = matriculaAgente;
+    }
+
+    public void setNomeAgente(final String nomeAgente) {
+        StringValidador.tamanho60(nomeAgente);
+        this.nomeAgente = nomeAgente;
+    }
+
+    public void setFone(final String fone) {
+        StringValidador.telefone(fone);
+        this.fone = fone;
+    }
+
+    public void setUf(final NFUnidadeFederativa uf) {
+        this.uf = uf.getCodigo();
+    }
+
+    public void setNumeroDocumentoArrecadacaoReceita(final String numeroDocumentoArrecadacaoReceita) {
+        StringValidador.tamanho60(numeroDocumentoArrecadacaoReceita);
+        this.numeroDocumentoArrecadacaoReceita = numeroDocumentoArrecadacaoReceita;
+    }
+
+    public void setDataEmissaoDocumentoArrecadacao(final LocalDate dataEmissaoDocumentoArrecadacao) {
+        this.dataEmissaoDocumentoArrecadacao = dataEmissaoDocumentoArrecadacao;
+    }
+
+    public void setValorTotalConstanteDocumentoArrecadacaoReceita(final BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita) {
+        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita);
+    }
+
+    public void setReparticaoFiscalEmitente(final String reparticaoFiscalEmitente) {
+        StringValidador.tamanho60(reparticaoFiscalEmitente);
+        this.reparticaoFiscalEmitente = reparticaoFiscalEmitente;
+    }
+
+    public void setDataPagamentoDocumentoArrecadacao(final LocalDate dataPagamentoDocumentoArrecadacao) {
+        this.dataPagamentoDocumentoArrecadacao = dataPagamentoDocumentoArrecadacao;
+    }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getOrgaoEmitente() {
+        return this.orgaoEmitente;
+    }
+
+    public String getMatriculaAgente() {
+        return this.matriculaAgente;
+    }
+
+    public String getNomeAgente() {
+        return this.nomeAgente;
+    }
+
+    public String getFone() {
+        return this.fone;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
+    public String getNumeroDocumentoArrecadacaoReceita() {
+        return this.numeroDocumentoArrecadacaoReceita;
+    }
+
+    public LocalDate getDataEmissaoDocumentoArrecadacao() {
+        return this.dataEmissaoDocumentoArrecadacao;
+    }
+
+    public String getValorTotalConstanteDocumentoArrecadacaoReceita() {
+        return this.valorTotalConstanteDocumentoArrecadacaoReceita;
+    }
+
+    public String getReparticaoFiscalEmitente() {
+        return this.reparticaoFiscalEmitente;
+    }
+
+    public LocalDate getDataPagamentoDocumentoArrecadacao() {
+        return this.dataPagamentoDocumentoArrecadacao;
+    }
+}
