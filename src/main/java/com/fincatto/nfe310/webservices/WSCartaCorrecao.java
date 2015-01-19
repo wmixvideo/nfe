@@ -40,7 +40,7 @@ public class WSCartaCorrecao {
         this.config = config;
     }
 
-    public NFEnviaEventoRetorno corrigirNota(final String chaveAcesso, final String textoCorrecao) throws Exception {
+    public NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao) throws Exception {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado);

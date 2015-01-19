@@ -10,7 +10,6 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
-import com.fincatto.nfe200.NFEConfig;
 import com.fincatto.nfe200.classes.NFAmbiente;
 import com.fincatto.nfe200.classes.NFEndereco;
 import com.fincatto.nfe200.classes.NFFinalidade;
@@ -142,7 +141,7 @@ public class FabricaDeObjetosFake {
 
             @Override
             public NFAmbiente getAmbiente() {
-                return null;
+                return NFAmbiente.HOMOLOGACAO;
             }
 
             @Override
