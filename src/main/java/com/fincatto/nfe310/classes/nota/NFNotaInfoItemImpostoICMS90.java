@@ -34,7 +34,7 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
-    @Element(name = "modBCST", required = true)
+    @Element(name = "modBCST", required = false)
     private NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
 
     @Element(name = "pMVAST", required = false)
@@ -43,13 +43,13 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
 
-    @Element(name = "vBCST", required = true)
+    @Element(name = "vBCST", required = false)
     private String valorBCST;
 
-    @Element(name = "pICMSST", required = true)
+    @Element(name = "pICMSST", required = false)
     private String percentualAliquotaImpostoICMSST;
 
-    @Element(name = "vICMSST", required = true)
+    @Element(name = "vICMSST", required = false)
     private String valorICMSST;
 
     @Element(name = "vICMSDeson", required = false)
