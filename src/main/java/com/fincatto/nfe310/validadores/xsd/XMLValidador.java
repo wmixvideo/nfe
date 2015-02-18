@@ -50,9 +50,8 @@ public class XMLValidador {
             try (final InputStream inputStream = XMLValidador.class.getResourceAsStream(String.format("schemas/%s", xsd))) {
                 final File fileXSD = new File(diretorioTemporario + xsd);
                 try (final FileOutputStream outputStream = new FileOutputStream(fileXSD)) {
-                    int read = 0;
+                    int read;
                     final byte[] bytes = new byte[1024];
-
                     while ((read = inputStream.read(bytes)) != -1) {
                         outputStream.write(bytes, 0, read);
                     }
