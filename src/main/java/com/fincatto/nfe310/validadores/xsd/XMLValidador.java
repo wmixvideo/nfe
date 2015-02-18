@@ -51,10 +51,8 @@ public class XMLValidador {
     private static void criaArquivosTemporarios() throws IOException {
         final String diretorioTemporario = System.getProperty("java.io.tmpdir");
         final String[] xsds = { "nfe_v3.10.xsd", "enviNFe_v3.10.xsd", "leiauteNFe_v3.10.xsd", "tiposBasico_v3.10.xsd", "xmldsig-core-schema_v1.01.xsd" };
-        final String caminhoDiretorioXSD = "../../../../../schemas/v3.1/";
-
         for (final String xsd : xsds) {
-            try (final InputStream inputStream = XMLValidador.class.getResourceAsStream(caminhoDiretorioXSD + xsd)) {
+            try (final InputStream inputStream = XMLValidador.class.getResourceAsStream(String.format("schemas/%s", xsd))) {
                 final File fileXSD = new File(diretorioTemporario + xsd);
                 try (final FileOutputStream outputStream = new FileOutputStream(fileXSD)) {
                     int read = 0;
