@@ -1,10 +1,8 @@
 package com.fincatto.nfe310.validadores.xsd;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -15,18 +13,15 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import java.io.*;
 
 public class XMLValidador {
     private static final String SUN_JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
     private static final String SUN_JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
     private static final String W3_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
     private static String CAMINHO_SCHEMA_LOTE;
-    private static ErroHandler erroHandler;
     private static String CAMINHO_SCHEMA_NOTA;
+    private static ErroHandler erroHandler;
 
     public static void validaLote(final File arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
