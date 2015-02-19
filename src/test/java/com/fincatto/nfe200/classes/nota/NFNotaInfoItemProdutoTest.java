@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe200.FabricaDeObjetosFake;
 import com.fincatto.nfe200.classes.NFProdutoCompoeValorNota;
-import com.fincatto.nfe200.classes.nota.NFNotaInfoItemProduto;
 
 public class NFNotaInfoItemProdutoTest {
 
@@ -298,19 +297,17 @@ public class NFNotaInfoItemProdutoTest {
         produto.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCodigoDeBarrasNulo() {
+    @Test
+    public void devePermitirCodigoDeBarrasNulo() {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
         produto.setArmamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoArmamento()));
         produto.setCfop("1302");
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produto.setCodigoDeBarrasTributavel("36811963532505");
-        produto.setCombustivel(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivel());
         produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produto.setExtipi(999);
-        produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
         produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produto.setNumeroPedidoItemCliente(999999);
@@ -325,24 +322,20 @@ public class NFNotaInfoItemProdutoTest {
         produto.setValorTotalBruto(new BigDecimal("999999999999.99"));
         produto.setValorUnitario(new BigDecimal("9999999999.9999999999"));
         produto.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
-        produto.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo());
         produto.setNumeroControleFCI("B01F70AF-10BF-4B1F-848C-65FF57F616FE");
         produto.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCodigoDeBarrasTributavelNulo() {
+    @Test
+    public void devePermitirCodigoDeBarrasTributavelNulo() {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-        produto.setArmamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoArmamento()));
         produto.setCfop("1302");
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produto.setCodigoDeBarras("36811963532505");
-        produto.setCombustivel(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivel());
         produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produto.setExtipi(999);
-        produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
         produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produto.setNumeroPedidoItemCliente(999999);
