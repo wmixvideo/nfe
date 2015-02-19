@@ -13,7 +13,6 @@ import com.fincatto.nfe200.validadores.xsd.XMLValidador;
 import com.fincatto.util.TesteUtil;
 
 public class ValidacaoXML {
-
     private static final String DIRETORIO_XML_NOTAS = "/tmp/notas";
 
     @Test
