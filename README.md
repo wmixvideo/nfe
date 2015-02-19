@@ -9,14 +9,14 @@ Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov
 
 ### Exemplo 1, envio do lote para o sefaz
 
-Popule os dados do lote a ser enviado para o SEFAZ
+Popule os dados do lote a ser enviado para o Sefaz
 
 ```java
 NFLoteEnvio lote = new NFLoteEnvio();
 // setando os dados do lote
 ```
 
-Implemente a interface NFeConfig e crie suas configuracoes
+Implemente a interface NFeConfig e adicione suas configuracoes
 ```java
 MeuConfig config = new MeuConfig();
 ```
@@ -26,4 +26,26 @@ Faça o envio do lote atraves do facade
 final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 ```
 
-Pronto, o lote foi enviado e os dados de retorno estará setado no objeto da classe NFLoteEnvioRetorno
+### Exemplo 2, Corrige nota
+
+Implemente a interface NFeConfig e adicione suas configuracoes
+```java
+MeuConfig config = new MeuConfig();
+```
+
+Faça a correcao da nota atraves do facade
+```java
+final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
+```
+
+### Exemplo 3, Cancela nota 
+
+Implemente a interface NFeConfig e adicione suas configuracoes
+```java
+MeuConfig config = new MeuConfig();
+```
+
+Faça o cancelamento da nota atraves do facade
+```java
+final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
+```
