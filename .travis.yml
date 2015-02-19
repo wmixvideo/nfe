@@ -4,3 +4,10 @@ before_script:
 
 jdk:
   - oraclejdk8
+
+notifications:
+    email:
+        recipients:
+            - jefperito@gmail.com
+        on_success: change
+        on_failure: always
