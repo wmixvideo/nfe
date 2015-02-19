@@ -17,7 +17,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "cProd", required = true)
     private String codigo;
 
-    @Element(name = "cEAN", required = true)
+    @Element(name = "cEAN", required = false)
     private String codigoDeBarras;
 
     @Element(name = "xProd", required = true)
@@ -44,7 +44,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "vProd", required = true)
     private String valorTotalBruto;
 
-    @Element(name = "cEANTrib", required = true)
+    @Element(name = "cEANTrib", required = false)
     private String codigoDeBarrasTributavel;
 
     @Element(name = "uTrib", required = true)
@@ -248,6 +248,9 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public String getCfop() {
+        if (this.cfop == null) {
+            this.cfop = "";
+        }
         return this.cfop;
     }
 
@@ -268,6 +271,9 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public String getCodigoDeBarrasTributavel() {
+        if (this.codigoDeBarrasTributavel == null) {
+            this.codigoDeBarrasTributavel = "";
+        }
         return this.codigoDeBarrasTributavel;
     }
 
