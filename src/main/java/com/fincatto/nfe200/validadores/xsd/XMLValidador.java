@@ -1,7 +1,6 @@
 package com.fincatto.nfe200.validadores.xsd;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -16,6 +15,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -52,28 +53,20 @@ public class XMLValidador {
         final String diretorioTemporario = System.getProperty("java.io.tmpdir");
 
         final String[] xsds = { "nfe_v2.00.xsd", "enviNFe_v2.00.xsd", "leiauteNFe_v2.00.xsd", "tiposBasico_v1.03.xsd", "xmldsig-core-schema_v1.01.xsd" };
-        final String caminhoDiretorioXSD = "../../../../../schemas/v2/";
-
         for (final String xsd : xsds) {
-            try (final InputStream inputStream = XMLValidador.class.getResourceAsStream(caminhoDiretorioXSD + xsd)) {
-                final File fileXSD = new File(diretorioTemporario + xsd);
-                try (final FileOutputStream outputStream = new FileOutputStream(fileXSD)) {
-                    int read = 0;
-                    final byte[] bytes = new byte[1024];
+            try (InputStream inputStream = XMLValidador.class.getResourceAsStream(String.format("schemas/%s", xsd))) {
+                final File arquivo = new File(diretorioTemporario + xsd);
+                final String arquivoConteudo = IOUtils.toString(inputStream, "UTF-8");
+                FileUtils.writeStringToFile(arquivo, arquivoConteudo, false);
 
-                    while ((read = inputStream.read(bytes)) != -1) {
-                        outputStream.write(bytes, 0, read);
-                    }
-
-                    if (fileXSD.getName().equals("nfe_v2.00.xsd")) {
-                        XMLValidador.CAMINHO_SCHEMA_NOTA = fileXSD.getAbsolutePath();
-                    }
-
-                    if (fileXSD.getName().equals("enviNFe_v2.00.xsd")) {
-                        XMLValidador.CAMINHO_SCHEMA_LOTE = fileXSD.getAbsolutePath();
-                    }
-                    fileXSD.deleteOnExit();
+                if (arquivo.getName().contains("nfe_v2.00")) {
+                    XMLValidador.CAMINHO_SCHEMA_NOTA = arquivo.getAbsolutePath();
                 }
+
+                if (arquivo.getName().contains("enviNFe_v2.00")) {
+                    XMLValidador.CAMINHO_SCHEMA_LOTE = arquivo.getAbsolutePath();
+                }
+                arquivo.deleteOnExit();
             }
         }
     }
