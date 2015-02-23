@@ -30,7 +30,7 @@ public class WSCancelamento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final Logger log = Logger.getLogger(WSCancelamento.class);
+    private static final Logger LOG = Logger.getLogger(WSCancelamento.class);
     private final NFeConfig config;
 
     public WSCancelamento(final NFeConfig config) {
@@ -55,13 +55,13 @@ public class WSCancelamento {
 
         final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSCancelamento.log.debug(omElementXML);
+        WSCancelamento.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
 
         final String urlWebService = NFAutorizador31.valueOfChaveAcesso(chaveAcesso).getRecepcaoEvento(this.config.getAmbiente());
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSCancelamento.log.debug(omElementResult.toString());
+        WSCancelamento.LOG.debug(omElementResult.toString());
 
         return omElementResult;
     }
