@@ -14,6 +14,7 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
+import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub;
 import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
@@ -30,14 +31,14 @@ class WSNotaConsulta {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
         WSNotaConsulta.log.info(omElementConsulta);
 
-        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta);
+        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, new NotaFiscalChaveParser(chaveDeAcesso));
         WSNotaConsulta.log.info(omElementRetorno);
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta) throws AxisFault, RemoteException {
+    private OMElement efetuaConsulta(final OMElement omElementConsulta, final NotaFiscalChaveParser notaFiscalChaveParser) throws AxisFault, RemoteException {
         final NfeConsulta2Stub.NfeCabecMsg cabec = new NfeConsulta2Stub.NfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigoIbge());
+        cabec.setCUF(notaFiscalChaveParser.getNFUnidadeFederativa().getCodigoIbge());
         cabec.setVersaoDados("3.10");
 
         final NfeConsulta2Stub.NfeCabecMsgE cabecE = new NfeConsulta2Stub.NfeCabecMsgE();
