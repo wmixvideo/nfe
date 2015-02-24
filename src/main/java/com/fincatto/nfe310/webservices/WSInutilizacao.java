@@ -37,7 +37,6 @@ public class WSInutilizacao {
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa).toString();
         final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
-        System.err.println(inutilizacaoXMLAssinado);
         final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
