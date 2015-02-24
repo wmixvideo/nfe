@@ -31,7 +31,7 @@ import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
 
 public class WSCartaCorrecao {
-    private final static Logger log = Logger.getLogger(WSCartaCorrecao.class);
+    private final static Logger LOG = Logger.getLogger(WSCartaCorrecao.class);
     private static final String EVENTO_CARTA_CORRECAO = "110110";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private final NFeConfig config;
@@ -58,13 +58,13 @@ public class WSCartaCorrecao {
 
         final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSCartaCorrecao.log.debug(omElementXML);
+        WSCartaCorrecao.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
 
         final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getRecepcaoEvento(this.config.getAmbiente());
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSCartaCorrecao.log.debug(omElementResult.toString());
+        WSCartaCorrecao.LOG.debug(omElementResult.toString());
 
         return omElementResult;
     }

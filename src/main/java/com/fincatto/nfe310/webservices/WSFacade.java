@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
@@ -21,6 +22,7 @@ public class WSFacade {
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSCancelamento wsCancelamento;
     private final WSConsultaCadastro wsConsultaCadastro;
+    private final WSInutilizacao wsInutilizacao;
 
     public WSFacade(final NFeConfig config) throws IOException {
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
@@ -37,6 +39,7 @@ public class WSFacade {
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsCancelamento = new WSCancelamento(config);
         this.wsConsultaCadastro = new WSConsultaCadastro(config);
+        this.wsInutilizacao = new WSInutilizacao(config);
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
@@ -62,6 +65,10 @@ public class WSFacade {
 
     public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
+    }
+
+    public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
+        return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
     }
 
     public void consultaCadastro(final String cnpj) throws Exception {
