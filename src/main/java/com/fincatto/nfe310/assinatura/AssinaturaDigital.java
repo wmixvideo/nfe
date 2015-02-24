@@ -45,7 +45,7 @@ import com.fincatto.nfe310.NFeConfig;
 
 public class AssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
-    private static final String[] ELEMENTOS_ASSINAVEIS = new String[] { "infEvento", "infCanc", "infNFe" };
+    private static final String[] ELEMENTOS_ASSINAVEIS = new String[] { "infEvento", "infCanc", "infNFe", "infInut" };
     private final NFeConfig config;
 
     public AssinaturaDigital(final NFeConfig config) {
