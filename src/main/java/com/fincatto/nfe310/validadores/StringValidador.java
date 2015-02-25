@@ -261,6 +261,12 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho15a255(final String string) {
+        if (string != null) {
+            StringValidador.intervalo(string, 15, 255);
+        }
+    }
+
     public static void tamanho5a20(final String string) {
         if (string != null) {
             StringValidador.intervalo(string, 5, 20);
@@ -339,6 +345,20 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho9N(final String string) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.validaTamanhoMaximo(string, 9);
+        }
+    }
+
+    public static void tamanho3N(final String string) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.validaTamanhoMaximo(string, 3);
+        }
+    }
+
     public static void exatamente20N(final String string) {
         if (string != null) {
             StringValidador.apenasNumerico(string);
@@ -409,5 +429,18 @@ public class StringValidador {
     public static void exatamente15N(final String string) {
         StringValidador.validaTamanhoExato(string, 15);
         StringValidador.apenasNumerico(string);
+    }
+
+    public static void modeloDocumentoFiscal(final String modeloDocumentoFiscal) {
+        if (!modeloDocumentoFiscal.equals("55")) {
+            throw new IllegalStateException("Modelo Fiscal Invalido");
+        }
+    }
+
+    public static void identificador(final String identificador) {
+        final Matcher matcher = Pattern.compile("^ID\\d{41}$").matcher(identificador);
+        if (!matcher.find()) {
+            throw new IllegalStateException("Identificador fora do padrao");
+        }
     }
 }
