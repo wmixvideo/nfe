@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
-import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFEndereco;
 import com.fincatto.nfe310.classes.NFFinalidade;
@@ -43,6 +42,7 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEventoCartaCorrecao;
 import com.fincatto.nfe310.classes.evento.cartacorrecao.NFInfoCartaCorrecao;
 import com.fincatto.nfe310.classes.evento.cartacorrecao.NFInfoEventoCartaCorrecao;
+import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
@@ -125,6 +125,22 @@ import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
 
 public class FabricaDeObjetosFake {
+
+    public static NFEventoCancelamentoDados getNFEventoCancelamentoDados() {
+        final NFEventoCancelamentoDados dados = new NFEventoCancelamentoDados();
+        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAno(15);
+        dados.setCnpj("12345678901234");
+        dados.setIdentificador("ID55605654557305333405403926218856863798956");
+        dados.setJustificativa("u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5");
+        dados.setModeloDocumentoFiscal("55");
+        dados.setNomeServico("INUTILIZAR");
+        dados.setNumeroNFInicial("1");
+        dados.setNumeroNFFinal("999999999");
+        dados.setSerie("999");
+        dados.setUf(NFUnidadeFederativa.SC);
+        return dados;
+    }
 
     public static NFEventoCartaCorrecao getNFEvento() {
         final NFEventoCartaCorrecao evento = new NFEventoCartaCorrecao();

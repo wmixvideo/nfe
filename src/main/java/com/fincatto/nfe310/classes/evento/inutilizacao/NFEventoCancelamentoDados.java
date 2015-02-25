@@ -6,6 +6,8 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.validadores.IntegerValidador;
+import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFEventoCancelamentoDados extends NFBase {
 
@@ -47,6 +49,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setIdentificador(final String identificador) {
+        StringValidador.identificador(identificador);
         this.identificador = identificador;
     }
 
@@ -63,6 +66,9 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setNomeServico(final String nomeServico) {
+        if (!nomeServico.equals("INUTILIZAR")) {
+            throw new IllegalStateException("Nome de servico invalido");
+        }
         this.nomeServico = nomeServico;
     }
 
@@ -79,6 +85,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setAno(final Integer ano) {
+        IntegerValidador.exatamente2(ano);
         this.ano = ano;
     }
 
@@ -87,6 +94,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setCnpj(final String cnpj) {
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -95,6 +103,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
+        StringValidador.modeloDocumentoFiscal(modeloDocumentoFiscal);
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
@@ -103,6 +112,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setSerie(final String serie) {
+        StringValidador.tamanho3N(serie);
         this.serie = serie;
     }
 
@@ -111,6 +121,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setNumeroNFInicial(final String numeroNFInicial) {
+        StringValidador.tamanho9N(numeroNFInicial);
         this.numeroNFInicial = numeroNFInicial;
     }
 
@@ -119,6 +130,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setNumeroNFFinal(final String numeroNFFinal) {
+        StringValidador.tamanho9N(numeroNFFinal);
         this.numeroNFFinal = numeroNFFinal;
     }
 
@@ -127,6 +139,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setJustificativa(final String justificativa) {
+        StringValidador.tamanho15a255(justificativa);
         this.justificativa = justificativa;
     }
 }
