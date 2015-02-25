@@ -1,6 +1,5 @@
 package com.fincatto.nfe310.validadores;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import com.fincatto.nfe310.classes.nota.NFNotaInfoReboque;
@@ -57,7 +56,7 @@ public class ListValidador {
 
     private static <E> void validaTamanho(final List<E> lista, final int tamanho) {
         if (lista.size() > tamanho) {
-            throw new IllegalStateException(MessageFormat.format("Lista de tamanho {0} extrapolou o tamanho maximo de [{1}]", lista.size(), tamanho));
+            throw new IllegalStateException(String.format("Lista de tamanho %s extrapolou o tamanho maximo de [%s]", lista.size(), tamanho));
         }
     }
 
