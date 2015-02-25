@@ -30,7 +30,7 @@ import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
 
-public class WSCartaCorrecao {
+class WSCartaCorrecao {
     private final static Logger LOG = Logger.getLogger(WSCartaCorrecao.class);
     private static final String EVENTO_CARTA_CORRECAO = "110110";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");

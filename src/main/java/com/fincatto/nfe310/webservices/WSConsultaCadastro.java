@@ -13,7 +13,7 @@ import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecM
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
 
-public class WSConsultaCadastro {
+class WSConsultaCadastro {
 
     private final NFeConfig config;
 
