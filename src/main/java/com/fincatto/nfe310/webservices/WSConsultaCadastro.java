@@ -1,36 +1,53 @@
 package com.fincatto.nfe310.webservices;
 
+import java.rmi.RemoteException;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.axis2.AxisFault;
+import org.apache.log4j.Logger;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.nfe310.classes.cadastro.NFInfoConsultaCadastro;
+import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
+import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub;
-import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.ConsultaCadastro2Result;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
 
 class WSConsultaCadastro {
-
+    private static final Logger LOG = Logger.getLogger(WSConsultaCadastro.class);
+    private static final String NOME_SERVICO = "CONS-CAD";
+    private static final String VERSAO_SERVICO = "2.00";
     private final NFeConfig config;
 
     public WSConsultaCadastro(final NFeConfig config) {
         this.config = config;
     }
 
-    public void consultaCadastro(final String cnpj) throws Exception {
-        final NFConsultaCadastro dadosConsulta = this.getDadosConsulta(cnpj);
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(dadosConsulta.toString());
-        System.out.println(omElementConsulta.toString());
-        // final XMLStreamReader dadosXML = XMLInputFactory.newInstance().createXMLStreamReader(new StringReader(dadosMsg.toString()));
-        // final CadConsultaCadastro2Stub.NfeDadosMsg nfeDadosMsg = CadConsultaCadastro2Stub.NfeDadosMsg.Factory.parse(dadosXML);
+    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+        final NFConsultaCadastro dadosConsulta = this.getDadosConsulta(cnpj, uf);
+        final String xmlConsulta = dadosConsulta.toString();
+        WSConsultaCadastro.LOG.debug(xmlConsulta);
 
+        final OMElement omElementConsulta = AXIOMUtil.stringToOM(xmlConsulta);
+        final OMElement resultado = this.efetuaConsulta(uf, omElementConsulta);
+
+        final String retornoConsulta = resultado.toString();
+        WSConsultaCadastro.LOG.debug(retornoConsulta);
+        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
+    }
+
+    private OMElement efetuaConsulta(final NFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException, AxisFault {
         final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigo());
-        cabec.setVersaoDados("2.00");
+        cabec.setCUF(uf.getCodigoIbge());
+        cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
 
         final NfeCabecMsgE cabecE = new NfeCabecMsgE();
         cabecE.setNfeCabecMsg(cabec);
@@ -38,18 +55,17 @@ class WSConsultaCadastro {
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.setExtraElement(omElementConsulta);
 
-        final String url = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getConsultaCadastro(this.config.getAmbiente());
-        final ConsultaCadastro2Result consultaCadastroResult = new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE);
-        System.out.println(consultaCadastroResult.getExtraElement().toString());
+        final String url = NFAutorizador31.valueOfCodigoUF(uf).getConsultaCadastro(this.config.getAmbiente());
+        return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
     }
 
-    private NFConsultaCadastro getDadosConsulta(final String cnpj) {
+    private NFConsultaCadastro getDadosConsulta(final String cnpj, final NFUnidadeFederativa uf) {
         final NFConsultaCadastro consulta = new NFConsultaCadastro();
-        consulta.setVersao("2.00");
+        consulta.setVersao(WSConsultaCadastro.VERSAO_SERVICO);
         consulta.setConsultaCadastro(new NFInfoConsultaCadastro());
         consulta.getConsultaCadastro().setCnpj(cnpj);
-        consulta.getConsultaCadastro().setServico("CONS-CAD");
-        consulta.getConsultaCadastro().setUf(this.config.getCUF().getCodigo());
+        consulta.getConsultaCadastro().setServico(WSConsultaCadastro.NOME_SERVICO);
+        consulta.getConsultaCadastro().setUf(uf.getCodigo());
         return consulta;
     }
 }
