@@ -3,6 +3,7 @@ package com.fincatto.nfe200.integracao;
 import java.io.File;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.core.Persister;
 
@@ -13,7 +14,6 @@ import com.fincatto.nfe200.validadores.xsd.XMLValidador;
 import com.fincatto.util.TesteUtil;
 
 public class ValidacaoXML {
-
     private static final String DIRETORIO_XML_NOTAS = "/tmp/notas";
 
     @Test
@@ -22,6 +22,7 @@ public class ValidacaoXML {
     }
 
     @Test
+    @Ignore
     public void validaArquivos() throws Throwable {
         final Persister persister = new Persister(new NFRegistryMatcher());
         for (final File notaXML : TesteUtil.getArquivosParaTestes(new File(ValidacaoXML.DIRETORIO_XML_NOTAS))) {
