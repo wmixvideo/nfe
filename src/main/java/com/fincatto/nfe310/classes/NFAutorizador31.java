@@ -448,7 +448,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PR };
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
         }
 
         @Override
