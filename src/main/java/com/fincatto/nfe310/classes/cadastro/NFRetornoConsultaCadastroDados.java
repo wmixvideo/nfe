@@ -24,7 +24,7 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    @Element(name = "UF", required = true)
+    @Element(name = "UF", required = false)
     private NFUnidadeFederativa uf;
 
     @Element(name = "IE", required = false)
@@ -36,7 +36,7 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
     @Element(name = "CPF", required = false)
     private String cpf;
 
-    @Element(name = "dhCons", required = true)
+    @Element(name = "dhCons", required = false)
     private String dataHoraProcessamento;
 
     @Element(name = "cUF", required = true)
