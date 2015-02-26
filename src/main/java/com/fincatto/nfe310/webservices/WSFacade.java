@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -71,7 +72,7 @@ public class WSFacade {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
     }
 
-    public void consultaCadastro(final String cnpj) throws Exception {
-        this.wsConsultaCadastro.consultaCadastro(cnpj);
+    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+        return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
     }
 }

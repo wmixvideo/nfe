@@ -4,6 +4,8 @@ Nota Fiscal Eletronica 2.00 e 3.10
 
 Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx)
 
+Utilizar apenas o pacote 3.10, o 2.00 apenas para questoes de tradução de nota.
+
 
 ## Como usar
 
@@ -38,7 +40,7 @@ Faça a correcao da nota atraves do facade
 final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
 ```
 
-### Exemplo 3, Cancela nota 
+### Exemplo 3, Cancela nota
 
 Implemente a interface NFeConfig e adicione suas configuracoes
 ```java

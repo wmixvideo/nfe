@@ -3,6 +3,7 @@ package com.fincatto.nfe310.classes.cadastro;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFInfoConsultaCadastro extends NFBase {
 
@@ -50,6 +51,7 @@ public class NFInfoConsultaCadastro extends NFBase {
     }
 
     public void setCnpj(final String cnpj) {
+        StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 

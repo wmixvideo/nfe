@@ -22,7 +22,7 @@ import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
 
-public class WSInutilizacao {
+class WSInutilizacao {
 
     private static final String VERSAO_SERVICO = "3.10";
     private static final String NOME_SERVICO = "INUTILIZAR";
