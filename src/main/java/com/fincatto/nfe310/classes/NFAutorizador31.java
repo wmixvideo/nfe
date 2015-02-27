@@ -320,7 +320,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("PE nao possui servico de consulta de cadastro");
+            return "https://nfe.sefaz.pe.gov.br/nfe-service/services/CadConsultaCadastro2";
         }
 
         @Override
@@ -361,7 +361,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl" : "https://nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl" : "https://nfe2.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl";
         }
 
         @Override

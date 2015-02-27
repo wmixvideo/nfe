@@ -7,6 +7,19 @@ Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov
 Utilizar apenas o pacote 3.10, o 2.00 apenas para questoes de tradução de nota.
 
 
+## Serviços disponíveis
+
+| Serviço           | Status              |
+| ----------------- | ------------------- |
+| envio lote        | Estável             |
+| consulta lote     | Estável             |
+| consulta status   | Estável             |
+| consulta nota     | Estável             |
+| corrige nota      | Estável             |
+| cancela nota      | Estável             |
+| inutiliza nota    | Estável             |
+| consulta cadastro | Precisa de + testes |
+
 ## Como usar
 
 ### Exemplo 1, envio do lote para o sefaz

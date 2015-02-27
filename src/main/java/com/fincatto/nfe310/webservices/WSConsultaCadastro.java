@@ -54,8 +54,8 @@ class WSConsultaCadastro {
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.setExtraElement(omElementConsulta);
-
         final String url = NFAutorizador31.valueOfCodigoUF(uf).getConsultaCadastro(this.config.getAmbiente());
+        WSConsultaCadastro.LOG.debug(String.format("Endpoint: %s", url));
         return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
     }
 
