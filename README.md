@@ -71,5 +71,11 @@ Faça o cancelamento da nota atraves do facade
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
+### Funcionalidades
+
+* Possui validação de campos a nível de código
+* Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz
+* Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
+
 ## Licença
 Apache 2.0
