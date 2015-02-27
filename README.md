@@ -57,14 +57,14 @@ Faça o envio do lote atraves do facade
 final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 ```
 
-### Corrige nota
+#### Corrige nota
 
 Faça a correcao da nota atraves do facade
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
 ```
 
-### Cancela nota
+#### Cancela nota
 
 Faça o cancelamento da nota atraves do facade
 ```java
