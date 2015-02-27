@@ -37,7 +37,7 @@ System.out.println(retorno.getStatus());
 System.out.println(retorno.getMotivo());
 ```
 
-O Resultado será (caso o webservice esteja OK):
+O Resultado será (caso o webservice responsável por SC esteja OK):
 ```
 107
 Servico em operacao
