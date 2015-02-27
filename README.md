@@ -23,6 +23,9 @@ A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração
 
 ## Como usar
 
+Basicamente você precisará de uma implementacao de NFeConfig, com informacoes de tipo de emissao, certificados digitais, etc...
+e uma instância da WsFacade, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a comunicação com os webservices da Sefaz.
+
 ### Exemplo 1, envio do lote para o sefaz
 
 Popule os dados do lote a ser enviado para o Sefaz
