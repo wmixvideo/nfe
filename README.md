@@ -1,12 +1,12 @@
-Nota Fiscal Eletronica 3.10
+Nota Fiscal Eletrônica 3.10
 ===
 [![Build Status](https://api.travis-ci.org/fincatto/nfe.png)](http://travis-ci.org/#!/fincatto/nfe)
 
 Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx)
 
 ## Atenção
-O pacote de classes nfe200 trata em relação a versão 2.00 da NFe, ele deve ser utilizado apenas para traduçao de notas antigas,
-A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração com o teu sistema com as classes contida no pacote nfe310
+O pacote de classes nfe200 trata em relação a versão 2.00 da NFe, ele deve ser utilizado apenas para tradução de notas antigas,
+A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração com o teu sistema com as classes contidas no pacote nfe310
 (NFe 3.10)
 
 ## Serviços disponíveis
@@ -23,7 +23,7 @@ A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração
 
 ## Como usar
 
-Basicamente você precisará de uma implementacao de NFeConfig, com informacoes de tipo de emissao, certificados digitais, etc...
+Basicamente você precisará de uma implementação de NFeConfig, com informações de tipo de emissão, certificados digitais, etc...
 e uma instância da WsFacade, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a comunicação com os webservices da Sefaz.
 
 ### Exemplo 1, envio do lote para o sefaz
