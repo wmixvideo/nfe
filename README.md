@@ -23,10 +23,27 @@ A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração
 
 ## Como usar
 
-Basicamente você precisará de uma implementação de NFeConfig, com informações de tipo de emissão, certificados digitais, etc...
-e uma instância da WsFacade, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a comunicação com os webservices da Sefaz.
+Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados digitais, etc...
+e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a comunicação com os webservices da Sefaz.
 
-### Exemplo 1, envio do lote para o sefaz
+### Exemplos
+
+Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**
+
+#### Status dos webservices
+```java
+NFStatusServicoConsultaRetorno retorno = wsFacade.consultaStatus(NFUnidadeFederativa.SC);
+System.out.println(retorno.getStatus());
+System.out.println(retorno.getMotivo());
+```
+
+O Resultado será (caso o webservice esteja OK):
+```
+107
+Servico em operacao
+```
+
+#### Envio do lote para o sefaz
 
 Popule os dados do lote a ser enviado para o Sefaz
 
@@ -35,34 +52,19 @@ NFLoteEnvio lote = new NFLoteEnvio();
 // setando os dados do lote
 ```
 
-Implemente a interface NFeConfig e adicione suas configuracoes
-```java
-MeuConfig config = new MeuConfig();
-```
-
 Faça o envio do lote atraves do facade
 ```java
 final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 ```
 
-### Exemplo 2, Corrige nota
-
-Implemente a interface NFeConfig e adicione suas configuracoes
-```java
-MeuConfig config = new MeuConfig();
-```
+### Corrige nota
 
 Faça a correcao da nota atraves do facade
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
 ```
 
-### Exemplo 3, Cancela nota
-
-Implemente a interface NFeConfig e adicione suas configuracoes
-```java
-MeuConfig config = new MeuConfig();
-```
+### Cancela nota
 
 Faça o cancelamento da nota atraves do facade
 ```java
