@@ -11,7 +11,7 @@ A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração
 
 ## Serviços disponíveis
 | Serviço           | Status              |
-| ----------------- | ------------------- |
+| ----------------- | :-----------------: |
 | envio lote        | Estável             |
 | consulta lote     | Estável             |
 | consulta status   | Estável             |
