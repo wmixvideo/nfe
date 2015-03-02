@@ -320,7 +320,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            return "https://nfe.sefaz.pe.gov.br/nfe-service/services/CadConsultaCadastro2";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/CadConsultaCadastro2" : "https://nfe.sefaz.pe.gov.br/nfe-service/services/CadConsultaCadastro2";
         }
 
         @Override
