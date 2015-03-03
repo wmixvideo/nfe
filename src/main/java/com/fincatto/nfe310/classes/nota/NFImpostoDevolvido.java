@@ -13,7 +13,7 @@ public class NFImpostoDevolvido extends NFBase {
     private String percentualDevolucao;
 
     @Element(name = "IPI", required = true)
-    private NFInformacaoImpostoDevolvido informacaoIPIDevolvido; // Tipo e tamanho nao informado na documentacao da NFe 3.10
+    private NFInformacaoImpostoDevolvido informacaoIPIDevolvido;
 
     public String getPercentualDevolucao() {
         return this.percentualDevolucao;
