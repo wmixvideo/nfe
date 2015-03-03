@@ -8,13 +8,12 @@ import org.junit.Test;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS51;
 
 public class NFNotaInfoItemImpostoICMS51Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualICMSComTamanhoDiferente() {
-        new NFNotaInfoItemImpostoICMS51().setPercentualICMS(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS51().setPercentualICMS(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -24,12 +23,12 @@ public class NFNotaInfoItemImpostoICMS51Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSComTamanhoDiferente() {
-        new NFNotaInfoItemImpostoICMS51().setValorBCICMS(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS51().setValorBCICMS(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSComTamanhoDiferente() {
-        new NFNotaInfoItemImpostoICMS51().setValorICMS(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS51().setValorICMS(new BigDecimal("10000000000000"));
     }
 
     @Test

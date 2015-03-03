@@ -6,13 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoPISST;
 
 public class NFNotaInfoItemImpostoPISSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setValorTributo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoPISST().setValorTributo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -27,7 +26,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setValorBaseCalculo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoPISST().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)

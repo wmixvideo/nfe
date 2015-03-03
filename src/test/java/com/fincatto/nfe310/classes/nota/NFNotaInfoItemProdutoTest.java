@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProduto;
 
 public class NFNotaInfoItemProdutoTest {
 
@@ -29,27 +28,27 @@ public class NFNotaInfoItemProdutoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTotalBrutoComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorTotalBruto(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProduto().setValorTotalBruto(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorSeguroComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorSeguro(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProduto().setValorSeguro(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorOutrasDespesasAcessoriasComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorOutrasDespesasAcessorias(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProduto().setValorOutrasDespesasAcessorias(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorFreteComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorFrete(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProduto().setValorFrete(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorDescontoComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorDesconto(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProduto().setValorDesconto(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

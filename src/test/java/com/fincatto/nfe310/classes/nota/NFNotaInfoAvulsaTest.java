@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoAvulsa;
 
 public class NFNotaInfoAvulsaTest {
 
@@ -77,7 +76,7 @@ public class NFNotaInfoAvulsaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTotalConstanteDocumentoArrecadacaoReceitaComTamanhoInvalido() {
-        new NFNotaInfoAvulsa().setValorTotalConstanteDocumentoArrecadacaoReceita(new BigDecimal("1000000000000"));
+        new NFNotaInfoAvulsa().setValorTotalConstanteDocumentoArrecadacaoReceita(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

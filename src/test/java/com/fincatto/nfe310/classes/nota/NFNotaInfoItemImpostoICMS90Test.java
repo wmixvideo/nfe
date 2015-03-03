@@ -15,7 +15,7 @@ public class NFNotaInfoItemImpostoICMS90Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquota() {
-        new NFNotaInfoItemImpostoICMS90().setPercentualAliquota(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS90().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -40,22 +40,22 @@ public class NFNotaInfoItemImpostoICMS90Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS90().setValorBC(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS90().setValorBC(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCSTTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS90().setValorBCST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS90().setValorBCST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS90().setValorICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS90().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS90().setValorTributo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS90().setValorTributo(new BigDecimal("10000000000000"));
     }
 
     @Test

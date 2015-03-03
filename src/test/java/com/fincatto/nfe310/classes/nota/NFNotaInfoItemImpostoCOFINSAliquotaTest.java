@@ -7,18 +7,17 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
 
 public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setValor(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoCOFINSAliquota().setValor(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCaluloTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalulo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalulo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

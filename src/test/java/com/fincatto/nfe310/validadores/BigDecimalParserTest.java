@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.validadores.BigDecimalParser;
-
 public class BigDecimalParserTest {
 
     @Test
@@ -71,7 +69,7 @@ public class BigDecimalParserTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirExtrapolacaoDeInteiros() {
-        BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("9999999999999.9"));
+        BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999999.9"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -81,7 +79,7 @@ public class BigDecimalParserTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirExtrapolacaoPor15CaracteresCom2CasasDecimais() {
-        BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("9999999999999.99"));
+        BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999999.99"));
     }
 
     @Test(expected = IllegalStateException.class)

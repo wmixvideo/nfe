@@ -6,14 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFFormaPagamentoMoeda;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoPagamento;
 
 public class NFNotaInfoPagamentoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorPagamentoComTamanhoInvalido() {
-        new NFNotaInfoPagamento().setValorPagamento(new BigDecimal("1000000000000"));
+        new NFNotaInfoPagamento().setValorPagamento(new BigDecimal("10000000000000"));
     }
 
     @Test

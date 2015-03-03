@@ -18,6 +18,9 @@ public class NFNotaInfoItem extends NFBase {
     @Element(name = "imposto", required = true)
     private NFNotaInfoItemImposto imposto;
 
+    @Element(name = "impostoDevol", required = false)
+    private NFImpostoDevolvido impostoDevolvido;
+
     @Element(name = "infAdProd", required = false)
     private String informacoesAdicionais;
 
@@ -53,5 +56,13 @@ public class NFNotaInfoItem extends NFBase {
 
     public String getInformacoesAdicionais() {
         return this.informacoesAdicionais;
+    }
+
+    public NFImpostoDevolvido getImpostoDevolvido() {
+        return this.impostoDevolvido;
+    }
+
+    public void setImpostoDevolvido(final NFImpostoDevolvido impostoDevolvido) {
+        this.impostoDevolvido = impostoDevolvido;
     }
 }

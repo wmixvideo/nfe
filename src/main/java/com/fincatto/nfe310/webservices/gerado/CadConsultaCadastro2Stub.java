@@ -250,7 +250,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
 
     public static class NfeCabecMsg implements org.apache.axis2.databinding.ADBBean {
         /*
-         * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2 Namespace Prefix = ns1
+         * This type was generated from the piece of schema that had name = nfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2 Namespace Prefix =
          */
 
         private static final long serialVersionUID = -4687573298709123080L;
@@ -463,7 +463,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -698,7 +698,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = 147700344211352494L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "nfeCabecMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "nfeCabecMsg", "");
 
         /**
          * field for NfeCabecMsg
@@ -818,7 +818,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
     public static class ConsultaCadastro2Result implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -2645890959338742015L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "consultaCadastro2Result", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "consultaCadastro2Result", "");
 
         /**
          * field for ExtraElement
@@ -895,7 +895,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1073,7 +1073,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = 249980700063117388L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2", "nfeDadosMsg", "");
 
         /**
          * field for ExtraElement
@@ -1150,7 +1150,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }

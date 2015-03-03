@@ -6,28 +6,27 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoImportacao;
 
 public class NFNotaInfoItemImpostoImportacaoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoInvalido() {
-        new NFNotaInfoItemImpostoImportacao().setValorBaseCalculo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoImportacao().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorDespesaAduaneiraTamanhoInvalido() {
-        new NFNotaInfoItemImpostoImportacao().setValorDespesaAduaneira(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoImportacao().setValorDespesaAduaneira(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirImpostoImportacaoTamanhoInvalido() {
-        new NFNotaInfoItemImpostoImportacao().setValorImpostoImportacao(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoImportacao().setValorImpostoImportacao(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorIOFTamanhoInvalido() {
-        new NFNotaInfoItemImpostoImportacao().setValorIOF(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoImportacao().setValorIOF(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
