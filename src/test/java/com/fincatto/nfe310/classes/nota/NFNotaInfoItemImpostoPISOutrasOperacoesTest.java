@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
 
 public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
 
@@ -22,7 +21,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISOutrasOperacoes().setValorTributo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoPISOutrasOperacoes().setValorTributo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -37,7 +36,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISOutrasOperacoes().setValorBaseCalculo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoPISOutrasOperacoes().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)

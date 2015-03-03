@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSSN101;
 
 public class NFNotaInfoItemImpostoICMSSN101Test {
 
@@ -18,7 +17,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorCreditoICMSSNComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN101().setValorCreditoICMSSN(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSSN101().setValorCreditoICMSSN(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

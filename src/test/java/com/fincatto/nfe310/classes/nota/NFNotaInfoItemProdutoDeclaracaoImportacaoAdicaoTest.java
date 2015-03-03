@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
@@ -27,7 +26,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDescontoComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setDesconto(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setDesconto(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

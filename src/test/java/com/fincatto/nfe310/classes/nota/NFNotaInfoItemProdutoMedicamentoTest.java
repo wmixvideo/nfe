@@ -6,8 +6,6 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoMedicamento;
-
 public class NFNotaInfoItemProdutoMedicamentoTest {
 
     @Test(expected = IllegalStateException.class)
@@ -21,7 +19,7 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPrecoMaximoConsumidorComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoMedicamento().setPrecoMaximoConsumidor(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProdutoMedicamento().setPrecoMaximoConsumidor(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

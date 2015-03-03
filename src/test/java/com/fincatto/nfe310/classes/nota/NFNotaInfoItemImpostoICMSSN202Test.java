@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSSN202;
 
 public class NFNotaInfoItemImpostoICMSSN202Test {
 
@@ -29,12 +28,12 @@ public class NFNotaInfoItemImpostoICMSSN202Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN202().setValorBCICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSSN202().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICSMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN202().setValorICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSSN202().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

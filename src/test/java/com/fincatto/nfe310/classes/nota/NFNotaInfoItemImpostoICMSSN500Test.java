@@ -7,18 +7,17 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSSN500;
 
 public class NFNotaInfoItemImpostoICMSSN500Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTRetidoTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN500().setValorICMSSTRetido(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSSN500().setValorICMSSTRetido(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTRetidoTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN500().setValorBCICMSSTRetido(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSSN500().setValorBCICMSSTRetido(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

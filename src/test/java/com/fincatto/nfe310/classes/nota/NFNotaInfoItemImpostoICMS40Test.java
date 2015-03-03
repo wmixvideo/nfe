@@ -8,13 +8,12 @@ import org.junit.Test;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS40;
 
 public class NFNotaInfoItemImpostoICMS40Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS40().setValorICMSDesoneracao(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS40().setValorICMSDesoneracao(new BigDecimal("10000000000000"));
     }
 
     @Test

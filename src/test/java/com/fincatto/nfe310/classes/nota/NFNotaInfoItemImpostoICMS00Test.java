@@ -9,7 +9,6 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS00;
 
 public class NFNotaInfoItemImpostoICMS00Test {
 
@@ -20,12 +19,12 @@ public class NFNotaInfoItemImpostoICMS00Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS00().setValorBaseCalculo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS00().setValorBaseCalculo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS00().setValorTributo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS00().setValorTributo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

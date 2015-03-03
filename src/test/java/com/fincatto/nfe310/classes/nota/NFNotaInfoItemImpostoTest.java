@@ -6,13 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImposto;
 
 public class NFNotaInfoItemImpostoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTotalTributosComTamanhoInvalido() {
-        new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("10000000000000"));
     }
 
     @Test

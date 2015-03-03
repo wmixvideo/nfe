@@ -9,7 +9,6 @@ import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS30;
 
 public class NFNotaInfoItemImpostoICMS30Test {
 
@@ -30,12 +29,12 @@ public class NFNotaInfoItemImpostoICMS30Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setValorBCICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS30().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setValorImpostoICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS30().setValorImpostoICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test

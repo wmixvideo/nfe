@@ -9,13 +9,12 @@ import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS10;
 
 public class NFNotaInfoItemImpostoICMS10Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setPercentualAliquota(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS10().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -35,22 +34,22 @@ public class NFNotaInfoItemImpostoICMS10Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setValorBaseCalculo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS10().setValorBaseCalculo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirBCICMSSTTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setValorBCICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS10().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setValorICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS10().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setValorTributo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS10().setValorTributo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

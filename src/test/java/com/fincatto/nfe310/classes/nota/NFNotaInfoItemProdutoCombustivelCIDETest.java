@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoCombustivelCIDE;
 
 public class NFNotaInfoItemProdutoCombustivelCIDETest {
 
@@ -22,7 +21,7 @@ public class NFNotaInfoItemProdutoCombustivelCIDETest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoCombustivelCIDE().setValor(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemProdutoCombustivelCIDE().setValor(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

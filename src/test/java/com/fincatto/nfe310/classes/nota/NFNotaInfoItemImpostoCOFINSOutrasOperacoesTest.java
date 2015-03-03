@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSOutrasOperacoes;
 
 public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
 
@@ -18,7 +17,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSOutrasOperacoes().setValorBaseCalculo(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoCOFINSOutrasOperacoes().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -28,7 +27,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorCOFINSComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSOutrasOperacoes().setValorCOFINS(new BigDecimal("9999999999999"));
+        new NFNotaInfoItemImpostoCOFINSOutrasOperacoes().setValorCOFINS(new BigDecimal("99999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)

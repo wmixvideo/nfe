@@ -10,13 +10,12 @@ import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS70;
 
 public class NFNotaInfoItemImpostoICMS70Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -41,22 +40,22 @@ public class NFNotaInfoItemImpostoICMS70Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorBC(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS70().setValorBC(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorBCST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS70().setValorBCST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorICMSST(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS70().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorTributo(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMS70().setValorTributo(new BigDecimal("10000000000000"));
     }
 
     @Test

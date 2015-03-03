@@ -7,28 +7,27 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSST;
 
 public class NFNotaInfoItemImpostoICMSSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTRetidoUFRemetenteComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTRetidoUFRemetente(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTRetidoUFRemetente(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTUFDestinoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTUFDestino(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTUFDestino(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTRetidoUFRemetenteComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorICMSSTRetidoUFRemetente(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSST().setValorICMSSTRetidoUFRemetente(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSSTUFDestinoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorICMSSTUFDestino(new BigDecimal("1000000000000"));
+        new NFNotaInfoItemImpostoICMSST().setValorICMSSTUFDestino(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
