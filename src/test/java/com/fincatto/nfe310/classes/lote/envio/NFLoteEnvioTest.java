@@ -43,7 +43,7 @@ public class NFLoteEnvioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIndicadorProcessamentoNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
-        loteEnvio.setVersao("2.00");
+        loteEnvio.setVersao("3.10");
         loteEnvio.setIdLote("333972757970401");
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota()));
         loteEnvio.toString();
@@ -61,7 +61,7 @@ public class NFLoteEnvioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
-        loteEnvio.setVersao("2.00");
+        loteEnvio.setVersao("3.10");
         loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota()));
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         loteEnvio.toString();
@@ -71,7 +71,7 @@ public class NFLoteEnvioTest {
     public void naoDevePermitirNotasNulo() {
         final NFLoteEnvio loteEnvio = new NFLoteEnvio();
         loteEnvio.setIdLote("333972757970401");
-        loteEnvio.setVersao("2.00");
+        loteEnvio.setVersao("3.10");
         loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.NAO);
         loteEnvio.toString();
     }

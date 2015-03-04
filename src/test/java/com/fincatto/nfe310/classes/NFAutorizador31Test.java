@@ -189,7 +189,7 @@ public class NFAutorizador31Test {
     @Test
     public void deveBuscarCorretamenteURLWebServiceRS() {
         final NFAutorizador31 autorizador = NFAutorizador31.RS;
-        Assert.assertEquals("https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/CadConsultaCadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.HOMOLOGACAO));
@@ -197,7 +197,7 @@ public class NFAutorizador31Test {
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx", autorizador.getNfeInutilizacao(NFAmbiente.HOMOLOGACAO));
 
-        Assert.assertEquals("https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/CadConsultaCadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.sefaz.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.sefaz.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.PRODUCAO));

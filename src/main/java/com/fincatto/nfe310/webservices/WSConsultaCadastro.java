@@ -54,7 +54,11 @@ class WSConsultaCadastro {
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.setExtraElement(omElementConsulta);
-        final String url = NFAutorizador31.valueOfCodigoUF(uf).getConsultaCadastro(this.config.getAmbiente());
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
+        if (autorizador == null) {
+            throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
+        }
+        final String url = autorizador.getConsultaCadastro(this.config.getAmbiente());
         WSConsultaCadastro.LOG.debug(String.format("Endpoint: %s", url));
         return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
     }

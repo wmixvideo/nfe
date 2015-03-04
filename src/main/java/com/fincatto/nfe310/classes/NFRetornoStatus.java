@@ -465,7 +465,8 @@ public enum NFRetornoStatus {
     CODIGO_794(794, "Rejei\u00e7\u00e3o: NF-e com indicativo de NFC-e com entrega a domic\u00edlio"),
     CODIGO_795(795, "Rejei\u00e7\u00e3o: Total do ICMS Desonerado difere do somatorio dos itens"),
     CODIGO_796(796, "Rejei\u00e7\u00e3o: Empresa sem Chave de Seguran\u00e7a para o QR-Code"),
-    CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado");
+    CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
+    CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
     private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
     private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(AUTORIZADO_USO_NFE, CODIGO_150);

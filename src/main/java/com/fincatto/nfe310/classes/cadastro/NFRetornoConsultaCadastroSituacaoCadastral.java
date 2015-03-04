@@ -23,10 +23,10 @@ public class NFRetornoConsultaCadastroSituacaoCadastral extends NFBase {
     @Element(name = "cSit", required = true)
     private NFSituacaoContribuinte situacaoContribuinte;
 
-    @Element(name = "indCredNFe", required = true)
+    @Element(name = "indCredNFe", required = false)
     private NFIndicadorContribuinteNFe indicadorContribuinteNFe;
 
-    @Element(name = "indCredCTe", required = true)
+    @Element(name = "indCredCTe", required = false)
     private NFIndicadorContribuinteCTe indicaodrContribuinteCTe;
 
     @Element(name = "xNome", required = true)
