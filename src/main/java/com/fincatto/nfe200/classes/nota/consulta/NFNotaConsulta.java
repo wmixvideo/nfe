@@ -28,6 +28,22 @@ public class NFNotaConsulta extends NFBase {
     @Element(name = "chNFe", required = true)
     private String chave;
 
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public NFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public String getServico() {
+        return this.servico;
+    }
+
+    public String getChave() {
+        return this.chave;
+    }
+
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
     }

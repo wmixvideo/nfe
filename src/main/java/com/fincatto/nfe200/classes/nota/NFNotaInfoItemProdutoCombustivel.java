@@ -55,4 +55,24 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     public void setCide(final NFNotaInfoItemProdutoCombustivelCIDE cide) {
         this.cide = cide;
     }
+
+    public String getCodigoProdutoANP() {
+        return this.codigoProdutoANP;
+    }
+
+    public String getCodigoAutorizacaoCOFIF() {
+        return this.codigoAutorizacaoCOFIF;
+    }
+
+    public String getQuantidade() {
+        return this.quantidade;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
+    public NFNotaInfoItemProdutoCombustivelCIDE getCide() {
+        return this.cide;
+    }
 }

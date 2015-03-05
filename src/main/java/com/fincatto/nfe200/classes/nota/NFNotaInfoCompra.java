@@ -30,4 +30,16 @@ public class NFNotaInfoCompra extends NFBase {
         StringValidador.tamanho60(contrato);
         this.contrato = contrato;
     }
+
+    public String getNotaDeEmpenho() {
+        return this.notaDeEmpenho;
+    }
+
+    public String getPedido() {
+        return this.pedido;
+    }
+
+    public String getContrato() {
+        return this.contrato;
+    }
 }

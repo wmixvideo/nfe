@@ -45,4 +45,20 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
     public void setDesconto(final String desconto) {
         this.desconto = desconto;
     }
+
+    public Integer getNumero() {
+        return this.numero;
+    }
+
+    public Integer getSequencial() {
+        return this.sequencial;
+    }
+
+    public String getCodigoFabricante() {
+        return this.codigoFabricante;
+    }
+
+    public String getDesconto() {
+        return this.desconto;
+    }
 }

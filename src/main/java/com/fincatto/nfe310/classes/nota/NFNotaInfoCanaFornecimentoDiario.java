@@ -25,4 +25,12 @@ public class NFNotaInfoCanaFornecimentoDiario extends NFBase {
     public void setQuantidade(final BigDecimal quantidade) {
         this.quantidade = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidade);
     }
+
+    public int getDia() {
+        return this.dia;
+    }
+
+    public String getQuantidade() {
+        return this.quantidade;
+    }
 }

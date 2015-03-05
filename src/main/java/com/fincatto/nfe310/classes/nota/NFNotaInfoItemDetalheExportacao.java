@@ -23,4 +23,12 @@ public class NFNotaInfoItemDetalheExportacao extends NFBase {
     public void setExportacaoIndireta(final NFNotaInfoItemExportacaoIndireta exportacaoIndireta) {
         this.exportacaoIndireta = exportacaoIndireta;
     }
+
+    public BigInteger getAtoConcessorioDrawback() {
+        return this.atoConcessorioDrawback;
+    }
+
+    public NFNotaInfoItemExportacaoIndireta getExportacaoIndireta() {
+        return this.exportacaoIndireta;
+    }
 }

@@ -65,4 +65,32 @@ public class NFNotaInfoVolume extends NFBase {
         ListValidador.tamanho5000(lacres);
         this.lacres = lacres;
     }
+
+    public BigInteger getQuantidadeVolumesTransportados() {
+        return this.quantidadeVolumesTransportados;
+    }
+
+    public String getEspecieVolumesTransportados() {
+        return this.especieVolumesTransportados;
+    }
+
+    public String getMarca() {
+        return this.marca;
+    }
+
+    public String getNumeracaoVolumesTransportados() {
+        return this.numeracaoVolumesTransportados;
+    }
+
+    public String getPesoLiquido() {
+        return this.pesoLiquido;
+    }
+
+    public String getPesoBruto() {
+        return this.pesoBruto;
+    }
+
+    public List<NFNotaInfoLacre> getLacres() {
+        return this.lacres;
+    }
 }

@@ -29,4 +29,16 @@ public class NFNotaInfoPagamento extends NFBase {
     public void setValorPagamento(final BigDecimal valorPagamento) {
         this.valorPagamento = BigDecimalParser.tamanho15Com2CasasDecimais(valorPagamento);
     }
+
+    public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {
+        return this.formaPagamentoMoeda;
+    }
+
+    public String getValorPagamento() {
+        return this.valorPagamento;
+    }
+
+    public NFNotaInfoCartao getCartao() {
+        return this.cartao;
+    }
 }

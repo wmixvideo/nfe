@@ -47,4 +47,20 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends NFBase {
     public void setValorTributo(final BigDecimal valorTributo) {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
+
+    public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public String getQuantidadeVendida() {
+        return this.quantidadeVendida;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValorTributo() {
+        return this.valorTributo;
+    }
 }

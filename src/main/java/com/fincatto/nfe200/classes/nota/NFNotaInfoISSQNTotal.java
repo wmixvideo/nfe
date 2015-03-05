@@ -42,4 +42,24 @@ public class NFNotaInfoISSQNTotal extends NFBase {
     public void setValorCOFINSsobreServicos(final BigDecimal valorCOFINSsobreServicos) {
         this.valorCOFINSsobreServicos = BigDecimalParser.tamanho15Com2CasasDecimais(valorCOFINSsobreServicos);
     }
+
+    public String getValorTotalServicosSobNaoIncidenciaNaoTributadosICMS() {
+        return this.valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
+    }
+
+    public String getBaseCalculoISS() {
+        return this.baseCalculoISS;
+    }
+
+    public String getValorTotalISS() {
+        return this.valorTotalISS;
+    }
+
+    public String getValorPISsobreServicos() {
+        return this.valorPISsobreServicos;
+    }
+
+    public String getValorCOFINSsobreServicos() {
+        return this.valorCOFINSsobreServicos;
+    }
 }

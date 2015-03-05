@@ -52,4 +52,28 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
         IntegerValidador.tamanho7(codigoMunicioOcorrenciaFatoGeradorICMSTransporte);
         this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte = codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
     }
+
+    public String getValorServico() {
+        return this.valorServico;
+    }
+
+    public String getBcRetencaoICMS() {
+        return this.bcRetencaoICMS;
+    }
+
+    public String getAliquotaRetencao() {
+        return this.aliquotaRetencao;
+    }
+
+    public String getValorICMSRetido() {
+        return this.valorICMSRetido;
+    }
+
+    public Integer getCfop() {
+        return this.cfop;
+    }
+
+    public Integer getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte() {
+        return this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
+    }
 }

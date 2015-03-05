@@ -35,4 +35,16 @@ public class NFNotaInfoItemProdutoCombustivelCIDE extends NFBase {
     public void setValor(final BigDecimal valor) {
         this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
     }
+
+    public String getQuantidadeBCCIDE() {
+        return this.quantidadeBCCIDE;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValor() {
+        return this.valor;
+    }
 }

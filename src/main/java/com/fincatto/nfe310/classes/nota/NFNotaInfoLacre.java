@@ -13,4 +13,8 @@ public class NFNotaInfoLacre extends NFBase {
         StringValidador.tamanho60(numeroLacres);
         this.numeroLacres = numeroLacres;
     }
+
+    public String getNumeroLacres() {
+        return this.numeroLacres;
+    }
 }

@@ -54,4 +54,24 @@ public class NFNotaInfoItemProdutoMedicamento extends NFBase {
     public void setPrecoMaximoConsumidor(final BigDecimal precoMaximoConsumidor) {
         this.precoMaximoConsumidor = BigDecimalParser.tamanho15Com2CasasDecimais(precoMaximoConsumidor);
     }
+
+    public String getLote() {
+        return this.lote;
+    }
+
+    public String getQuantidade() {
+        return this.quantidade;
+    }
+
+    public LocalDate getDataFabricacao() {
+        return this.dataFabricacao;
+    }
+
+    public LocalDate getDataValidade() {
+        return this.dataValidade;
+    }
+
+    public String getPrecoMaximoConsumidor() {
+        return this.precoMaximoConsumidor;
+    }
 }

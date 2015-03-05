@@ -45,4 +45,20 @@ public class NFNotaInfoItemProdutoArmamento extends NFBase {
         StringValidador.tamanho256(descricao);
         this.descricao = descricao;
     }
+
+    public NFNotaInfoItemProdutoArmamentoTipo getTipo() {
+        return this.tipo;
+    }
+
+    public String getNumeroSerieArma() {
+        return this.numeroSerieArma;
+    }
+
+    public String getNumeroSerieCano() {
+        return this.numeroSerieCano;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
 }

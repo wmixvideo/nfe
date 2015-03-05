@@ -63,4 +63,28 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     public void setCodigoTributacao(final NFNotaInfoImpostoTributacaoISSQN tributacaoISSQN) {
         this.tributacaoISSQN = tributacaoISSQN.getCodigo();
     }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValor() {
+        return this.valor;
+    }
+
+    public Integer getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
+
+    public Integer getItemListaServicos() {
+        return this.itemListaServicos;
+    }
+
+    public String getTributacaoISSQN() {
+        return this.tributacaoISSQN;
+    }
 }

@@ -22,4 +22,12 @@ public class NFNotaInfoProcessoReferenciado extends NFBase {
     public void setIndicadorOrigemProcesso(final NFOrigemProcesso indicadorOrigemProcesso) {
         this.indicadorOrigemProcesso = indicadorOrigemProcesso;
     }
+
+    public String getIdentificadorProcessoOuAtoConcessorio() {
+        return this.identificadorProcessoOuAtoConcessorio;
+    }
+
+    public NFOrigemProcesso getIndicadorOrigemProcesso() {
+        return this.indicadorOrigemProcesso;
+    }
 }

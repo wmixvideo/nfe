@@ -76,4 +76,36 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
         IntegerValidador.tamanho6(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
+
+    public NFUnidadeFederativa getUfEmitente() {
+        return this.ufEmitente;
+    }
+
+    public String getAnoMesEmissao() {
+        return this.anoMesEmissao;
+    }
+
+    public String getCnpjEmitente() {
+        return this.cnpjEmitente;
+    }
+
+    public String getCpfEmitente() {
+        return this.cpfEmitente;
+    }
+
+    public String getIeEmitente() {
+        return this.ieEmitente;
+    }
+
+    public String getModeloDocumentoFiscal() {
+        return this.modeloDocumentoFiscal;
+    }
+
+    public Integer getSerieDocumentoFiscal() {
+        return this.serieDocumentoFiscal;
+    }
+
+    public Integer getNumeroDocumentoFiscal() {
+        return this.numeroDocumentoFiscal;
+    }
 }

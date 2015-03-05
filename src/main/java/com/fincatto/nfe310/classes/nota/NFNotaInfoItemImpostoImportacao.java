@@ -43,4 +43,20 @@ public class NFNotaInfoItemImpostoImportacao extends NFBase {
     public void setValorIOF(final BigDecimal valorIOF) {
         this.valorIOF = BigDecimalParser.tamanho15Com2CasasDecimais(valorIOF);
     }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getValorDespesaAduaneira() {
+        return this.valorDespesaAduaneira;
+    }
+
+    public String getValorImpostoImportacao() {
+        return this.valorImpostoImportacao;
+    }
+
+    public String getValorIOF() {
+        return this.valorIOF;
+    }
 }

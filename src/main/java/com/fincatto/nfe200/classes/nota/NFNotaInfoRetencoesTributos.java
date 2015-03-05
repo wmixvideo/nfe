@@ -56,4 +56,32 @@ public class NFNotaInfoRetencoesTributos extends NFBase {
     public void setValorRetencaoPrevidenciaSocial(final BigDecimal valorRetencaoPrevidenciaSocial) {
         this.valorRetencaoPrevidenciaSocial = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetencaoPrevidenciaSocial);
     }
+
+    public String getValorRetidoPIS() {
+        return this.valorRetidoPIS;
+    }
+
+    public String getValorRetidoCOFINS() {
+        return this.valorRetidoCOFINS;
+    }
+
+    public String getValorRetidoCSLL() {
+        return this.valorRetidoCSLL;
+    }
+
+    public String getBaseCalculoIRRF() {
+        return this.baseCalculoIRRF;
+    }
+
+    public String getValorRetidoIRRF() {
+        return this.valorRetidoIRRF;
+    }
+
+    public String getBaseCalculoRetencaoPrevidenciaSocial() {
+        return this.baseCalculoRetencaoPrevidenciaSocial;
+    }
+
+    public String getValorRetencaoPrevidenciaSocial() {
+        return this.valorRetencaoPrevidenciaSocial;
+    }
 }

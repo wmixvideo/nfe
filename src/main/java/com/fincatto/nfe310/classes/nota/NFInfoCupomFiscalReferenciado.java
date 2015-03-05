@@ -29,4 +29,16 @@ public class NFInfoCupomFiscalReferenciado extends NFBase {
         StringValidador.exatamente6(numeroContadorOrdemOperacao);
         this.numeroContadorOrdemOperacao = numeroContadorOrdemOperacao;
     }
+
+    public String getModeloDocumentoFiscal() {
+        return this.modeloDocumentoFiscal;
+    }
+
+    public String getNumeroContadorOrdemOperacao() {
+        return this.numeroContadorOrdemOperacao;
+    }
+
+    public String getNumeroOrdemSequencialECF() {
+        return this.numeroOrdemSequencialECF;
+    }
 }

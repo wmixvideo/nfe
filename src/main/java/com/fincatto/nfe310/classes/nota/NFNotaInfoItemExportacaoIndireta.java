@@ -34,4 +34,16 @@ public class NFNotaInfoItemExportacaoIndireta extends NFBase {
     public void setQuantidadeItemEfetivamenteExportado(final BigDecimal quantidadeItemEfetivamenteExportado) {
         this.quantidadeItemEfetivamenteExportado = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeItemEfetivamenteExportado);
     }
+
+    public String getChaveAcessoNFe() {
+        return this.chaveAcessoNFe;
+    }
+
+    public BigInteger getNumeroRegistroExportacao() {
+        return this.numeroRegistroExportacao;
+    }
+
+    public String getQuantidadeItemEfetivamenteExportado() {
+        return this.quantidadeItemEfetivamenteExportado;
+    }
 }

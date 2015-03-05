@@ -55,4 +55,24 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
         BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback);
         this.numeroAtoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
+
+    public Integer getNumero() {
+        return this.numero;
+    }
+
+    public Integer getSequencial() {
+        return this.sequencial;
+    }
+
+    public String getCodigoFabricante() {
+        return this.codigoFabricante;
+    }
+
+    public String getDesconto() {
+        return this.desconto;
+    }
+
+    public BigInteger getNumeroAtoConcessorioDrawback() {
+        return this.numeroAtoConcessorioDrawback;
+    }
 }

@@ -63,4 +63,32 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     public void setAdicoes(final List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> adicoes) {
         this.adicoes = adicoes;
     }
+
+    public String getNumeroRegistro() {
+        return this.numeroRegistro;
+    }
+
+    public LocalDate getDataRegistro() {
+        return this.dataRegistro;
+    }
+
+    public String getLocalDesembaraco() {
+        return this.localDesembaraco;
+    }
+
+    public String getUfDesembaraco() {
+        return this.ufDesembaraco;
+    }
+
+    public LocalDate getDataDesembaraco() {
+        return this.dataDesembaraco;
+    }
+
+    public String getCodigoExportador() {
+        return this.codigoExportador;
+    }
+
+    public List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> getAdicoes() {
+        return this.adicoes;
+    }
 }

@@ -54,4 +54,28 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
         IntegerValidador.tamanho9(numeroDocumentoFiscal);
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
+
+    public NFUnidadeFederativa getUf() {
+        return this.uf;
+    }
+
+    public String getAnoMesEmissaoNFe() {
+        return this.anoMesEmissaoNFe;
+    }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getModeloDocumentoFiscal() {
+        return this.modeloDocumentoFiscal;
+    }
+
+    public Integer getSerie() {
+        return this.serie;
+    }
+
+    public Integer getNumeroDocumentoFiscal() {
+        return this.numeroDocumentoFiscal;
+    }
 }

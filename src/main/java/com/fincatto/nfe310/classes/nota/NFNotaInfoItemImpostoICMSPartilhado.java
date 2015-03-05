@@ -117,4 +117,64 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     public void setUfICMSST(final NFUnidadeFederativa ufICMSST) {
         this.ufICMSST = ufICMSST;
     }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
+        return this.situacaoTributaria;
+    }
+
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeDeterminacaoBCICMS() {
+        return this.modalidadeDeterminacaoBCICMS;
+    }
+
+    public String getValorBCICMS() {
+        return this.valorBCICMS;
+    }
+
+    public String getPercentualReducaoBC() {
+        return this.percentualReducaoBC;
+    }
+
+    public String getPercentualAliquotaImposto() {
+        return this.percentualAliquotaImposto;
+    }
+
+    public String getValorICMS() {
+        return this.valorICMS;
+    }
+
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
+        return this.modalidadeBCICMSST;
+    }
+
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCICMSST() {
+        return this.valorBCICMSST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorICMSST() {
+        return this.valorICMSST;
+    }
+
+    public String getPercentualBCOperacaoPropria() {
+        return this.percentualBCOperacaoPropria;
+    }
+
+    public NFUnidadeFederativa getUfICMSST() {
+        return this.ufICMSST;
+    }
 }

@@ -22,4 +22,8 @@ public class NFProtocolo extends NFBase {
     public NFProtocoloInfo getProtocoloInfo() {
         return this.protocoloInfo;
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
 }

@@ -66,4 +66,32 @@ public class NFNotaInfoTransportador extends NFBase {
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf.getCodigo();
     }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getRazaoSocial() {
+        return this.razaoSocial;
+    }
+
+    public String getInscricaoEstadual() {
+        return this.inscricaoEstadual;
+    }
+
+    public String getEnderecoComplemento() {
+        return this.enderecoComplemento;
+    }
+
+    public String getNomeMunicipio() {
+        return this.nomeMunicipio;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
 }

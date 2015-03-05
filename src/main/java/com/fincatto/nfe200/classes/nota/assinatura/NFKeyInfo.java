@@ -8,4 +8,12 @@ public class NFKeyInfo extends NFBase {
 
     @Element(name = "X509Data", required = false)
     private NFX509Data data;
+
+    public void setData(final NFX509Data data) {
+        this.data = data;
+    }
+
+    public NFX509Data getData() {
+        return this.data;
+    }
 }

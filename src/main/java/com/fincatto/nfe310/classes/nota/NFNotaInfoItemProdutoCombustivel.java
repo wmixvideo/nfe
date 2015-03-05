@@ -62,4 +62,28 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     public void setPercentualGasNatural(final BigDecimal percentualGasNatural) {
         this.percentualGasNatural = BigDecimalParser.tamanho5Com2CasasDecimais(percentualGasNatural);
     }
+
+    public String getCodigoProdutoANP() {
+        return this.codigoProdutoANP;
+    }
+
+    public String getPercentualGasNatural() {
+        return this.percentualGasNatural;
+    }
+
+    public String getCodigoAutorizacaoCOFIF() {
+        return this.codigoAutorizacaoCOFIF;
+    }
+
+    public String getQuantidade() {
+        return this.quantidade;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
+    public NFNotaInfoItemProdutoCombustivelCIDE getCide() {
+        return this.cide;
+    }
 }

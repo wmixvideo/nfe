@@ -92,4 +92,43 @@ public class NFNotaInfoCana extends NFBase {
         this.valorLiquidoFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFornecimento);
     }
 
+    public String getSafra() {
+        return this.safra;
+    }
+
+    public String getReferencia() {
+        return this.referencia;
+    }
+
+    public List<NFNotaInfoCanaFornecimentoDiario> getFornecimentosDiario() {
+        return this.fornecimentosDiario;
+    }
+
+    public List<NFNotaInfoCanaDeducao> getDeducoes() {
+        return this.deducoes;
+    }
+
+    public String getQuantidadeTotalMes() {
+        return this.quantidadeTotalMes;
+    }
+
+    public String getQuantidadeTotalAnterior() {
+        return this.quantidadeTotalAnterior;
+    }
+
+    public String getQuantidadeTotalGeral() {
+        return this.quantidadeTotalGeral;
+    }
+
+    public String getValorFornecimento() {
+        return this.valorFornecimento;
+    }
+
+    public String getValorTotalDeducao() {
+        return this.valorTotalDeducao;
+    }
+
+    public String getValorLiquidoFornecimento() {
+        return this.valorLiquidoFornecimento;
+    }
 }

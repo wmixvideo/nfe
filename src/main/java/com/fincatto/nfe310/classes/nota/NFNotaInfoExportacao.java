@@ -29,4 +29,16 @@ public class NFNotaInfoExportacao extends NFBase {
         StringValidador.tamanho60(localDespachoProdutos);
         this.localDespachoProdutos = localDespachoProdutos;
     }
+
+    public String getLocalDespachoProdutos() {
+        return this.localDespachoProdutos;
+    }
+
+    public String getLocalEmbarqueProdutos() {
+        return this.localEmbarqueProdutos;
+    }
+
+    public String getUfEmbarqueProduto() {
+        return this.ufEmbarqueProduto;
+    }
 }

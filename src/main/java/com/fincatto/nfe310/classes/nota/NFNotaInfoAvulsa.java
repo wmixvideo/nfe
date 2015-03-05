@@ -94,4 +94,48 @@ public class NFNotaInfoAvulsa extends NFBase {
     public void setDataPagamentoDocumentoArrecadacao(final LocalDate dataPagamentoDocumentoArrecadacao) {
         this.dataPagamentoDocumentoArrecadacao = dataPagamentoDocumentoArrecadacao;
     }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getOrgaoEmitente() {
+        return this.orgaoEmitente;
+    }
+
+    public String getMatriculaAgente() {
+        return this.matriculaAgente;
+    }
+
+    public String getNomeAgente() {
+        return this.nomeAgente;
+    }
+
+    public String getFone() {
+        return this.fone;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
+    public String getNumeroDocumentoArrecadacaoReceita() {
+        return this.numeroDocumentoArrecadacaoReceita;
+    }
+
+    public LocalDate getDataEmissaoDocumentoArrecadacao() {
+        return this.dataEmissaoDocumentoArrecadacao;
+    }
+
+    public String getValorTotalConstanteDocumentoArrecadacaoReceita() {
+        return this.valorTotalConstanteDocumentoArrecadacaoReceita;
+    }
+
+    public String getReparticaoFiscalEmitente() {
+        return this.reparticaoFiscalEmitente;
+    }
+
+    public LocalDate getDataPagamentoDocumentoArrecadacao() {
+        return this.dataPagamentoDocumentoArrecadacao;
+    }
 }

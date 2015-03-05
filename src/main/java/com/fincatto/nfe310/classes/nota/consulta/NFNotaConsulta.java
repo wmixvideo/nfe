@@ -44,4 +44,20 @@ public class NFNotaConsulta extends NFBase {
         StringValidador.exatamente44N(chave);
         this.chave = chave;
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public NFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public String getServico() {
+        return this.servico;
+    }
+
+    public String getChave() {
+        return this.chave;
+    }
 }

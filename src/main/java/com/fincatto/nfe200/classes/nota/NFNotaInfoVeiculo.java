@@ -29,4 +29,16 @@ public class NFNotaInfoVeiculo extends NFBase {
         StringValidador.tamanho20(registroNacionalTransportadorCarga);
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;
     }
+
+    public String getPlacaVeiculo() {
+        return this.placaVeiculo;
+    }
+
+    public String getRegistroNacionalTransportadorCarga() {
+        return this.registroNacionalTransportadorCarga;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
 }

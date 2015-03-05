@@ -20,4 +20,14 @@ public class NFInfoCartaCorrecao extends NFTipoEvento {
         StringValidador.tamanho15a1000(correcao);
         this.correcao = correcao;
     }
+
+    @Override
+    public String getVersao() {
+        return super.getVersao();
+    }
+
+    @Override
+    public String getDescricaoEvento() {
+        return super.getDescricaoEvento();
+    }
 }

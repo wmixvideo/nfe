@@ -49,4 +49,8 @@ public class NFLoteEnvio extends NFBase {
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
 }

@@ -41,4 +41,8 @@ public class NFNota extends NFBase {
     public void setAssinatura(final NFSignature assinatura) {
         this.assinatura = assinatura;
     }
+
+    public NFSignature getAssinatura() {
+        return this.assinatura;
+    }
 }

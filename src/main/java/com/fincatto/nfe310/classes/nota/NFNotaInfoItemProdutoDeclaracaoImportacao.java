@@ -101,4 +101,52 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     public void setUfTerceiro(final NFUnidadeFederativa ufTerceiro) {
         this.ufTerceiro = ufTerceiro.getCodigo();
     }
+
+    public String getNumeroRegistro() {
+        return this.numeroRegistro;
+    }
+
+    public LocalDate getDataRegistro() {
+        return this.dataRegistro;
+    }
+
+    public String getLocalDesembaraco() {
+        return this.localDesembaraco;
+    }
+
+    public String getUfDesembaraco() {
+        return this.ufDesembaraco;
+    }
+
+    public LocalDate getDataDesembaraco() {
+        return this.dataDesembaraco;
+    }
+
+    public NFViaTransporteInternacional getTransporteInternacional() {
+        return this.transporteInternacional;
+    }
+
+    public String getValorAFRMM() {
+        return this.valorAFRMM;
+    }
+
+    public NFFormaImportacaoIntermediacao getFormaImportacaoIntermediacao() {
+        return this.formaImportacaoIntermediacao;
+    }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getUfTerceiro() {
+        return this.ufTerceiro;
+    }
+
+    public String getCodigoExportador() {
+        return this.codigoExportador;
+    }
+
+    public List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> getAdicoes() {
+        return this.adicoes;
+    }
 }

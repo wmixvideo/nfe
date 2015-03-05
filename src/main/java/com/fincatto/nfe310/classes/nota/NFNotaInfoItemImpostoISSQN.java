@@ -128,4 +128,68 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     public void setValorRetencaoISS(final BigDecimal valorRetencaoISS) {
         this.valorRetencaoISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetencaoISS);
     }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getValorAliquota() {
+        return this.valorAliquota;
+    }
+
+    public String getValor() {
+        return this.valor;
+    }
+
+    public Integer getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
+
+    public String getItemListaServicos() {
+        return this.itemListaServicos;
+    }
+
+    public String getValorDeducao() {
+        return this.valorDeducao;
+    }
+
+    public String getValorOutro() {
+        return this.valorOutro;
+    }
+
+    public String getValorDescontoIncondicionado() {
+        return this.valorDescontoIncondicionado;
+    }
+
+    public String getValorDescontoCondicionado() {
+        return this.valorDescontoCondicionado;
+    }
+
+    public String getValorRetencaoISS() {
+        return this.valorRetencaoISS;
+    }
+
+    public NFNotaInfoItemIndicadorExigibilidadeISS getIndicadorExigibilidadeISS() {
+        return this.indicadorExigibilidadeISS;
+    }
+
+    public String getCodigoServico() {
+        return this.codigoServico;
+    }
+
+    public String getCodigoMunicipioIncidenciaImposto() {
+        return this.codigoMunicipioIncidenciaImposto;
+    }
+
+    public String getCodigoPais() {
+        return this.codigoPais;
+    }
+
+    public String getNumeroProcesso() {
+        return this.numeroProcesso;
+    }
+
+    public NFNotaInfoItemIndicadorIncentivoFiscal getIndicadorIncentivoFiscal() {
+        return this.indicadorIncentivoFiscal;
+    }
 }

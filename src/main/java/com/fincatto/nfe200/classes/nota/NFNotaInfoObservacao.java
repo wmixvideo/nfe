@@ -22,4 +22,12 @@ public class NFNotaInfoObservacao extends NFBase {
         StringValidador.tamanho60(conteudoCampo);
         this.conteudoCampo = conteudoCampo;
     }
+
+    public String getConteudoCampo() {
+        return this.conteudoCampo;
+    }
+
+    public String getIdentificacaoCampo() {
+        return this.identificacaoCampo;
+    }
 }

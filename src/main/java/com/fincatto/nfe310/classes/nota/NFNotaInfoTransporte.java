@@ -82,4 +82,36 @@ public class NFNotaInfoTransporte extends NFBase {
         StringValidador.tamanho20(balsa);
         this.balsa = balsa;
     }
+
+    public NFModalidadeFrete getModalidadeFrete() {
+        return this.modalidadeFrete;
+    }
+
+    public NFNotaInfoTransportador getTransportador() {
+        return this.transportador;
+    }
+
+    public NFNotaInfoRetencaoICMSTransporte getIcmsTransporte() {
+        return this.icmsTransporte;
+    }
+
+    public NFNotaInfoVeiculo getVeiculo() {
+        return this.veiculo;
+    }
+
+    public List<NFNotaInfoReboque> getReboques() {
+        return this.reboques;
+    }
+
+    public String getVagao() {
+        return this.vagao;
+    }
+
+    public String getBalsa() {
+        return this.balsa;
+    }
+
+    public List<NFNotaInfoVolume> getVolumes() {
+        return this.volumes;
+    }
 }

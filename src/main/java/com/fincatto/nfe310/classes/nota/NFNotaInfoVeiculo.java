@@ -25,6 +25,18 @@ public class NFNotaInfoVeiculo extends NFBase {
         this.uf = uf.getCodigo();
     }
 
+    public String getPlacaVeiculo() {
+        return this.placaVeiculo;
+    }
+
+    public String getRegistroNacionalTransportadorCarga() {
+        return this.registroNacionalTransportadorCarga;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
+
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {
         StringValidador.tamanho20(registroNacionalTransportadorCarga);
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;

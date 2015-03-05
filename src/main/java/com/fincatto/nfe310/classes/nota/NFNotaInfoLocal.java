@@ -83,4 +83,40 @@ public class NFNotaInfoLocal extends NFBase {
     public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf.getCodigo();
     }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getLogradouro() {
+        return this.logradouro;
+    }
+
+    public String getNumero() {
+        return this.numero;
+    }
+
+    public String getComplemento() {
+        return this.complemento;
+    }
+
+    public String getBairro() {
+        return this.bairro;
+    }
+
+    public String getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
+
+    public String getNomeMunicipio() {
+        return this.nomeMunicipio;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
 }

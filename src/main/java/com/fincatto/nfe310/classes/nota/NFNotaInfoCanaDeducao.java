@@ -23,4 +23,12 @@ public class NFNotaInfoCanaDeducao extends NFBase {
     public void setValorDeducao(final BigDecimal valorDeducao) {
         this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao);
     }
+
+    public String getDescricaoDeducao() {
+        return this.descricaoDeducao;
+    }
+
+    public String getValorDeducao() {
+        return this.valorDeducao;
+    }
 }

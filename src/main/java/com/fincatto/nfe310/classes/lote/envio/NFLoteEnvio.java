@@ -54,4 +54,12 @@ public class NFLoteEnvio extends NFBase {
     public void setIndicadorProcessamento(final NFLoteIndicadorProcessamento indicadorProcessamento) {
         this.indicadorProcessamento = indicadorProcessamento;
     }
+
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public NFLoteIndicadorProcessamento getIndicadorProcessamento() {
+        return this.indicadorProcessamento;
+    }
 }

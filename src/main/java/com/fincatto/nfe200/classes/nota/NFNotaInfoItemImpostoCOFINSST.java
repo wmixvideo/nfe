@@ -63,4 +63,24 @@ public class NFNotaInfoItemImpostoCOFINSST extends NFBase {
     public void setValorCOFINS(final BigDecimal valorTributo) {
         this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
     }
+
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
+    }
+
+    public String getPercentualAliquota() {
+        return this.percentualAliquota;
+    }
+
+    public String getQuantidadeVendida() {
+        return this.quantidadeVendida;
+    }
+
+    public String getValorAliquotaCOFINS() {
+        return this.valorAliquotaCOFINS;
+    }
+
+    public String getValorCOFINS() {
+        return this.valorCOFINS;
+    }
 }
