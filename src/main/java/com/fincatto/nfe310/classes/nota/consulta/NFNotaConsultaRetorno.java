@@ -11,7 +11,7 @@ import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
-@Root(name = "retConsSitNFe")
+@Root(name = "retConsSitNFe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaConsultaRetorno extends NFBase {
 

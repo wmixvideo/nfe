@@ -1,6 +1,7 @@
 package com.fincatto.nfe200.classes;
 
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -19,7 +20,7 @@ public class NFProtocoloInfo extends NFBase {
     private String chave;
 
     @Element(name = "dhRecbto", required = true)
-    private LocalDateTime dataRecebimento;
+    private String dataRecebimento;
 
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
@@ -47,10 +48,6 @@ public class NFProtocoloInfo extends NFBase {
 
     public void setChave(final String chave) {
         this.chave = chave;
-    }
-
-    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
-        this.dataRecebimento = dataRecebimento;
     }
 
     public void setNumeroProtocolo(final String numeroProtocolo) {
@@ -85,8 +82,16 @@ public class NFProtocoloInfo extends NFBase {
         return this.chave;
     }
 
+    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
+        this.dataRecebimento = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss").print(dataRecebimento);
+    }
+
     public LocalDateTime getDataRecebimento() {
-        return this.dataRecebimento;
+        try {
+            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        } catch (final Exception e) {
+            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssXXX"));
+        }
     }
 
     public String getNumeroProtocolo() {

@@ -1,10 +1,7 @@
 package com.fincatto.nfe200.classes.nota.consulta;
 
-import java.util.List;
-
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -13,7 +10,7 @@ import com.fincatto.nfe200.classes.NFBase;
 import com.fincatto.nfe200.classes.NFProtocolo;
 import com.fincatto.nfe200.classes.NFUnidadeFederativa;
 
-@Root(name = "retConsSitNFe")
+@Root(name = "retConsSitNFe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaConsultaRetorno extends NFBase {
 
@@ -41,8 +38,9 @@ public class NFNotaConsultaRetorno extends NFBase {
     @Element(name = "protNFe", required = false)
     protected NFProtocolo protocolo;
 
-    @ElementList(entry = "procEventoNFe", inline = true, required = false)
-    private List<NFProtocoloEvento> protocoloEvento;
+    //
+    // @ElementList(entry = "procEventoNFe", inline = true, required = false)
+    // private List<NFProtocoloEvento> protocoloEvento;
 
     public NFNotaConsultaRetorno() {
         this.versao = null;
@@ -118,12 +116,12 @@ public class NFNotaConsultaRetorno extends NFBase {
     public void setProtocolo(final NFProtocolo protocolo) {
         this.protocolo = protocolo;
     }
-
-    public List<NFProtocoloEvento> getProtocoloEvento() {
-        return this.protocoloEvento;
-    }
-
-    public void setProtocoloEvento(final List<NFProtocoloEvento> protocoloEvento) {
-        this.protocoloEvento = protocoloEvento;
-    }
+    //
+    // public List<NFProtocoloEvento> getProtocoloEvento() {
+    // return this.protocoloEvento;
+    // }
+    //
+    // public void setProtocoloEvento(final List<NFProtocoloEvento> protocoloEvento) {
+    // this.protocoloEvento = protocoloEvento;
+    // }
 }

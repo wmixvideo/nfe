@@ -13,7 +13,7 @@ import com.fincatto.nfe200.validadores.ListValidador;
 import com.fincatto.nfe200.validadores.StringValidador;
 
 public class NFNotaInfoVolume extends NFBase {
-    @Element(name = "qVol", required = true)
+    @Element(name = "qVol", required = false)
     private BigInteger quantidadeVolumesTransportados;
 
     @Element(name = "esp", required = false)
