@@ -10,8 +10,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe200.FabricaDeObjetosFake;
-import com.fincatto.nfe200.classes.nota.NFNotaInfoLacre;
-import com.fincatto.nfe200.classes.nota.NFNotaInfoVolume;
 
 public class NFNotaInfoVolumeTest {
 
@@ -78,8 +76,8 @@ public class NFNotaInfoVolumeTest {
         volume.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirQuantidadeVolumesTransportadosNulo() {
+    @Test
+    public void devePermitirQuantidadeVolumesTransportadosNulo() {
         final NFNotaInfoVolume volume = new NFNotaInfoVolume();
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
