@@ -199,4 +199,100 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     public void setRestricao(final NFNotaInfoItemProdutoVeiculoRestricao restricao) {
         this.restricao = restricao;
     }
+
+    public NFNotaInfoItemProdutoVeiculoTipoOperacao getTipoOperacao() {
+        return this.tipoOperacao;
+    }
+
+    public String getChassi() {
+        return this.chassi;
+    }
+
+    public String getCodigoCor() {
+        return this.codigoCor;
+    }
+
+    public String getDescricaoCor() {
+        return this.descricaoCor;
+    }
+
+    public String getPotencia() {
+        return this.potencia;
+    }
+
+    public String getCilindrada() {
+        return this.cilindrada;
+    }
+
+    public String getPesoLiquido() {
+        return this.pesoLiquido;
+    }
+
+    public String getPesoBruto() {
+        return this.pesoBruto;
+    }
+
+    public String getNumeroSerie() {
+        return this.numeroSerie;
+    }
+
+    public NFNotaInfoCombustivelTipo getTipoCombustivel() {
+        return this.tipoCombustivel;
+    }
+
+    public String getNumeroMotor() {
+        return this.numeroMotor;
+    }
+
+    public String getCapacidadeMaximaTracao() {
+        return this.capacidadeMaximaTracao;
+    }
+
+    public String getDistanciaEntreEixos() {
+        return this.distanciaEntreEixos;
+    }
+
+    public Integer getAnoModeloFabricacao() {
+        return this.anoModeloFabricacao;
+    }
+
+    public Integer getAnoFabricacao() {
+        return this.anoFabricacao;
+    }
+
+    public String getTipoPintura() {
+        return this.tipoPintura;
+    }
+
+    public NFNotaInfoTipoVeiculo getTipoVeiculo() {
+        return this.tipoVeiculo;
+    }
+
+    public NFNotaInfoEspecieVeiculo getEspecieVeiculo() {
+        return this.especieVeiculo;
+    }
+
+    public NFNotaInfoItemProdutoVeiculoCondicaoChassi getCondicaoChassi() {
+        return this.condicaoChassi;
+    }
+
+    public NFNotaInfoItemProdutoVeiculoCondicao getCondicao() {
+        return this.condicao;
+    }
+
+    public String getCodigoMarcaModelo() {
+        return this.codigoMarcaModelo;
+    }
+
+    public NFNotaInfoVeiculoCor getCorDENATRAN() {
+        return this.corDENATRAN;
+    }
+
+    public Integer getLotacao() {
+        return this.lotacao;
+    }
+
+    public NFNotaInfoItemProdutoVeiculoRestricao getRestricao() {
+        return this.restricao;
+    }
 }

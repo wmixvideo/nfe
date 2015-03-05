@@ -30,4 +30,15 @@ public class NFNotaInfoReboque extends NFBase {
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;
     }
 
+    public String getPlacaVeiculo() {
+        return this.placaVeiculo;
+    }
+
+    public String getRegistroNacionalTransportadorCarga() {
+        return this.registroNacionalTransportadorCarga;
+    }
+
+    public String getUf() {
+        return this.uf;
+    }
 }

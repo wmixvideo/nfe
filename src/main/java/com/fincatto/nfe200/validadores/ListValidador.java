@@ -7,6 +7,9 @@ import com.fincatto.nfe200.classes.nota.NFNotaInfoReboque;
 
 public class ListValidador {
 
+    private ListValidador() {
+    }
+
     public static <E> void tamanho10(final List<E> lista) {
         ListValidador.validaTamanho(lista, 10);
     }

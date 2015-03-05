@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BigDecimalParser {
 
+    private BigDecimalParser() {
+    }
+
     public static String tamanho11Com3CasasDecimais(final BigDecimal valor) {
         return BigDecimalParser.parse(valor, "0.000", 11, 3);
     }

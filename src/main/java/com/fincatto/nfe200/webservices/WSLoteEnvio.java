@@ -24,7 +24,7 @@ import com.fincatto.nfe200.webservices.gerado.NfeRecepcao2Stub.NfeRecepcaoLote2R
 class WSLoteEnvio {
 
     private static final String NFE_ELEMENTO = "NFe";
-    private final Logger log = Logger.getLogger(WSLoteEnvio.class);
+    private static final Logger LOG = Logger.getLogger(WSLoteEnvio.class);
     private final NFEConfig config;
 
     public WSLoteEnvio(final NFEConfig config) {
@@ -40,11 +40,11 @@ class WSLoteEnvio {
 
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
-        this.log.info(omElement);
+        WSLoteEnvio.LOG.info(omElement);
         final NfeRecepcaoLote2Result nfeRecepcaoLote2 = new NfeRecepcao2Stub(NFAutorizador.valueOfCodigoUF(this.config.getCUF()).getNfeRecepcao(this.config.getAmbiente())).nfeRecepcaoLote2(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, nfeRecepcaoLote2.getExtraElement().toString());
-        this.log.info(loteEnvioRetorno.toString());
+        WSLoteEnvio.LOG.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
 

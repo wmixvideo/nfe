@@ -21,7 +21,7 @@ import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 
 class WSNotaConsulta {
     private final NFEConfig config;
-    private final static Logger log = Logger.getLogger(WSNotaConsulta.class);
+    private static final Logger LOG = Logger.getLogger(WSNotaConsulta.class);
 
     public WSNotaConsulta(final NFEConfig config) {
         this.config = config;
@@ -29,10 +29,10 @@ class WSNotaConsulta {
 
     public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        WSNotaConsulta.log.info(omElementConsulta);
+        WSNotaConsulta.LOG.info(omElementConsulta);
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, new NotaFiscalChaveParser(chaveDeAcesso));
-        WSNotaConsulta.log.info(omElementRetorno);
+        WSNotaConsulta.LOG.info(omElementRetorno);
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 

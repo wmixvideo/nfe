@@ -29,6 +29,9 @@ public class XMLValidador {
     private static ErroHandler erroHandler;
     private static String CAMINHO_SCHEMA_NOTA;
 
+    private XMLValidador() {
+    }
+
     public static void validaLote(final File arquivoXML) throws Exception {
         XMLValidador.criaArquivosTemporarios();
         XMLValidador.valida(arquivoXML, XMLValidador.CAMINHO_SCHEMA_LOTE);

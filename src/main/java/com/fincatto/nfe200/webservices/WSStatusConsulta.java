@@ -20,7 +20,7 @@ import com.fincatto.nfe200.webservices.statusservico.consulta.NfeStatusServico2S
 class WSStatusConsulta {
 
     private static final String NOME_SERVICO = "STATUS";
-    private static final Logger log = Logger.getLogger(WSStatusConsulta.class);
+    private static final Logger LOG = Logger.getLogger(WSStatusConsulta.class);
     private final NFEConfig config;
 
     public WSStatusConsulta(final NFEConfig config) {
@@ -29,10 +29,10 @@ class WSStatusConsulta {
 
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
-        WSStatusConsulta.log.info(omElementConsulta);
+        WSStatusConsulta.LOG.info(omElementConsulta);
 
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
-        WSStatusConsulta.log.info(omElementResult.toString());
+        WSStatusConsulta.LOG.info(omElementResult.toString());
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
     }

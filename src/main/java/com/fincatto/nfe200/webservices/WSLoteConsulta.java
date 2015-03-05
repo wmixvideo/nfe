@@ -21,7 +21,7 @@ import com.fincatto.nfe200.webservices.lote.consulta.NfeRetRecepcao2Stub.NfeRetR
 
 class WSLoteConsulta {
 
-    final private static Logger log = Logger.getLogger(WSLoteConsulta.class);
+    private static final Logger LOG = Logger.getLogger(WSLoteConsulta.class);
     private final NFEConfig config;
 
     public WSLoteConsulta(final NFEConfig config) {
@@ -30,10 +30,10 @@ class WSLoteConsulta {
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        WSLoteConsulta.log.info(omElementConsulta);
+        WSLoteConsulta.LOG.info(omElementConsulta);
 
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta);
-        WSLoteConsulta.log.info(omElementResult);
+        WSLoteConsulta.LOG.info(omElementResult);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
     }

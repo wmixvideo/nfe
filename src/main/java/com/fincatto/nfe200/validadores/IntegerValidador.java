@@ -4,6 +4,9 @@ import java.text.MessageFormat;
 
 public class IntegerValidador {
 
+    private IntegerValidador() {
+    }
+
     public static void tamanho4(final Integer valor) {
         IntegerValidador.limite(valor, 9999);
     }

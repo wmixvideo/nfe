@@ -7,7 +7,7 @@ public enum NFNotaInfoRegimeEspecialTributacao {
     SOCIEDADE_PROFISSIONAIS("3"),
     COOPERATIVA("4"),
     MICROEMPRESARIO_INDIVIDUAL_MEI("5"),
-    MICROEMPRESARIO_E_EMPRESA_PEQUENOPORTE_("6");
+    MICROEMPRESARIO_E_EMPRESA_PEQUENOPORTE("6");
 
     private String codigo;
 

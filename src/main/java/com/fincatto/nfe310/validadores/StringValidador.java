@@ -9,6 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class StringValidador {
 
+    private StringValidador() {
+    }
+
     public static void mmaaaa(final String mmaaaa) {
         try {
             new SimpleDateFormat("mm/yyyy").parse(mmaaaa);

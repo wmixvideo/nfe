@@ -30,4 +30,12 @@ public class NFInfoCartaCorrecao extends NFTipoEvento {
     public String getDescricaoEvento() {
         return super.getDescricaoEvento();
     }
+
+    public String getCondicaoDeUso() {
+        return this.condicaoDeUso;
+    }
+
+    public String getCorrecao() {
+        return this.correcao;
+    }
 }
