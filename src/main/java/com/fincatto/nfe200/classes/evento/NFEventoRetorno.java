@@ -1,10 +1,9 @@
-package com.fincatto.nfe310.classes.evento;
+package com.fincatto.nfe200.classes.evento;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
+import com.fincatto.nfe200.classes.NFBase;
 
 public class NFEventoRetorno extends NFBase {
 
@@ -15,7 +14,7 @@ public class NFEventoRetorno extends NFBase {
     private NFInfoEventoRetorno infoEventoRetorno;
 
     @Element(name = "Signature", required = false)
-    private NFSignature assinatura;
+    private String assinatura;
 
     public NFInfoEventoRetorno getInfoEventoRetorno() {
         return this.infoEventoRetorno;
@@ -25,7 +24,7 @@ public class NFEventoRetorno extends NFBase {
         return this.versao;
     }
 
-    public NFSignature getAssinatura() {
+    public String getAssinatura() {
         return this.assinatura;
     }
 }

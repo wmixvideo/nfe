@@ -59,8 +59,16 @@ public class IntegerValidador {
         IntegerValidador.limite(valor, 9);
     }
 
-    public static void exatamente8(final Integer codigoRandomico) {
-        IntegerValidador.intervalo(codigoRandomico, 10000000, 99999999);
+    public static void exatamente8(final Integer valor) {
+        IntegerValidador.intervalo(valor, 10000000, 99999999);
+    }
+
+    public static void tamanho1a2(final int valor) {
+        IntegerValidador.intervalo(valor, 1, 99);
+    }
+
+    public static void exatamente2(final Integer valor) {
+        IntegerValidador.intervalo(valor, 10, 99);
     }
 
     private static void limite(final Integer valor, final int maximo) {
