@@ -36,9 +36,11 @@ public class NFNotaConsultaRetorno extends NFBase {
     private String chave;
 
     @Element(name = "protNFe", required = false)
-    protected NFProtocolo protocolo;
+    private NFProtocolo protocolo;
 
-    //
+    // @Element(name = "retCancNFe", required = false)
+    // private NFRetornoCancelamento protocoloCancelamento;
+
     // @ElementList(entry = "procEventoNFe", inline = true, required = false)
     // private List<NFProtocoloEvento> protocoloEvento;
 
