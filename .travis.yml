@@ -9,6 +9,6 @@ notifications:
     email:
         recipients:
             - jefperito@gmail.com
-            - diego.fincatto+travisnfe@gmail.com
+            - diego+travisnfe@devmonsters.com
         on_success: change
         on_failure: always
