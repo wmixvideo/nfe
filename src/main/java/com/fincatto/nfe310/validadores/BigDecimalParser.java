@@ -27,7 +27,7 @@ public class BigDecimalParser {
     }
 
     public static String tamanho15Com4CasasDecimais(final BigDecimal valor) {
-        return BigDecimalParser.parse(valor, "0.0000", 15, 4);
+        return BigDecimalParser.parse(valor, "0.0000", 16, 4);
     }
 
     public static String tamanho21ComAte10CasasDecimais(final BigDecimal valor) {

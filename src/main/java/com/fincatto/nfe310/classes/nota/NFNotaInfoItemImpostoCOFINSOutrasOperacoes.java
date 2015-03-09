@@ -13,19 +13,19 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
-    @Element(name = "vBC", required = true)
+    @Element(name = "vBC", required = false)
     private String valorBaseCalculo;
 
-    @Element(name = "pCOFINS", required = true)
+    @Element(name = "pCOFINS", required = false)
     private String percentualCOFINS;
 
-    @Element(name = "qBCProd", required = true)
+    @Element(name = "qBCProd", required = false)
     private String quantidadeVendida;
 
-    @Element(name = "vAliqProd", required = true)
+    @Element(name = "vAliqProd", required = false)
     private String valorAliquota;
 
-    @Element(name = "vCOFINS", required = true)
+    @Element(name = "vCOFINS", required = false)
     private String valorCOFINS;
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
