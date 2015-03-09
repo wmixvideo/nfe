@@ -16,7 +16,7 @@ public class NFNotaInfoItemProdutoCombustivelCIDETest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoCombustivelCIDE().setValorAliquota(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProdutoCombustivelCIDE().setValorAliquota(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
