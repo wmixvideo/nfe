@@ -1,25 +1,26 @@
-package com.fincatto.nfe310.classes.evento.cartacorrecao;
+package com.fincatto.nfe200.classes.evento;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.evento.NFTipoEvento;
-import com.fincatto.nfe310.validadores.BigDecimalParser;
-import com.fincatto.nfe310.validadores.IntegerValidador;
-import com.fincatto.nfe310.validadores.StringValidador;
+import com.fincatto.nfe200.classes.NFAmbiente;
+import com.fincatto.nfe200.classes.NFBase;
+import com.fincatto.nfe200.classes.NFUnidadeFederativa;
+import com.fincatto.nfe200.validadores.BigDecimalParser;
+import com.fincatto.nfe200.validadores.IntegerValidador;
+import com.fincatto.nfe200.validadores.StringValidador;
 
-public class NFInfoEventoCartaCorrecao extends NFBase {
+public class NFInfoEvento extends NFBase {
 
     @Attribute(name = "Id", required = true)
     private String id;
 
-    @Element(name = "cOrgao", required = true)
+    @Element(name = "cOrgao", required = false)
     private NFUnidadeFederativa orgao;
 
     @Element(name = "tpAmb", required = true)
@@ -35,7 +36,7 @@ public class NFInfoEventoCartaCorrecao extends NFBase {
     private String chave;
 
     @Element(name = "dhEvento", required = true)
-    private LocalDateTime dataHoraEvento;
+    private String dataHoraEvento;
 
     @Element(name = "tpEvento", required = true)
     private String codigoEvento;
@@ -47,7 +48,7 @@ public class NFInfoEventoCartaCorrecao extends NFBase {
     private String versaoEvento;
 
     @Element(name = "detEvento", required = true)
-    private NFInfoCartaCorrecao cartaCorrecao;
+    private NFTipoEvento dadosEvento;
 
     public void setOrgao(final NFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -107,12 +108,8 @@ public class NFInfoEventoCartaCorrecao extends NFBase {
         this.chave = chave;
     }
 
-    public LocalDateTime getDataHoraEvento() {
-        return this.dataHoraEvento;
-    }
-
-    public void setDataHoraEvento(final LocalDateTime dataHoraEvento) {
-        this.dataHoraEvento = dataHoraEvento;
+    public LocalDateTime getDataHoraEvento() throws ParseException {
+        return LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataHoraEvento));
     }
 
     public String getCodigoEvento() {
@@ -137,12 +134,12 @@ public class NFInfoEventoCartaCorrecao extends NFBase {
         return this.versaoEvento;
     }
 
-    public NFTipoEvento getCartaCorrecao() {
-        return this.cartaCorrecao;
+    public NFTipoEvento getDadosEvento() {
+        return this.dadosEvento;
     }
 
-    public void setCartaCorrecao(final NFInfoCartaCorrecao cartaCorrecao) {
-        this.cartaCorrecao = cartaCorrecao;
+    public void setDadosEvento(final NFTipoEvento dadosEvento) {
+        this.dadosEvento = dadosEvento;
     }
 
     public NFUnidadeFederativa getOrgao() {
