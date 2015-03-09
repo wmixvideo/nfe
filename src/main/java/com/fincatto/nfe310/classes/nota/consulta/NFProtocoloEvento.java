@@ -1,11 +1,11 @@
-package com.fincatto.nfe200.classes.nota.consulta;
+package com.fincatto.nfe310.classes.nota.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.nfe200.classes.NFBase;
-import com.fincatto.nfe200.classes.evento.NFEvento;
-import com.fincatto.nfe200.classes.evento.NFEventoRetorno;
+import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.evento.NFEvento;
+import com.fincatto.nfe310.classes.evento.NFEventoRetorno;
 
 public class NFProtocoloEvento extends NFBase {
 

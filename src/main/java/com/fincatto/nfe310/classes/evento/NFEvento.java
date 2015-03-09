@@ -1,4 +1,4 @@
-package com.fincatto.nfe310.classes.evento.cartacorrecao;
+package com.fincatto.nfe310.classes.evento;
 
 import java.math.BigDecimal;
 
@@ -6,24 +6,25 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
-public class NFEventoCartaCorrecao extends NFBase {
+public class NFEvento extends NFBase {
 
     @Attribute(name = "versao", required = true)
     private String versao;
 
     @Element(name = "infEvento", required = true)
-    private NFInfoEventoCartaCorrecao infoEvento;
+    private NFInfoEvento infoEvento;
 
     @Element(name = "Signature", required = false)
-    private String assinatura;
+    private NFSignature assinatura;
 
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
     }
 
-    public NFInfoEventoCartaCorrecao getInfoEvento() {
+    public NFInfoEvento getInfoEvento() {
         return this.infoEvento;
     }
 
@@ -31,15 +32,15 @@ public class NFEventoCartaCorrecao extends NFBase {
         return this.versao;
     }
 
-    public void setInfoEvento(final NFInfoEventoCartaCorrecao infoEvento) {
+    public void setInfoEvento(final NFInfoEvento infoEvento) {
         this.infoEvento = infoEvento;
     }
 
-    public void setAssinatura(final String assinatura) {
+    public void setAssinatura(final NFSignature assinatura) {
         this.assinatura = assinatura;
     }
 
-    public String getAssinatura() {
+    public NFSignature getAssinatura() {
         return this.assinatura;
     }
 }

@@ -18,10 +18,10 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.nfe310.classes.evento.NFEvento;
+import com.fincatto.nfe310.classes.evento.NFInfoEvento;
+import com.fincatto.nfe310.classes.evento.NFTipoEvento;
 import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
-import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEventoCartaCorrecao;
-import com.fincatto.nfe310.classes.evento.cartacorrecao.NFInfoCartaCorrecao;
-import com.fincatto.nfe310.classes.evento.cartacorrecao.NFInfoEventoCartaCorrecao;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub;
@@ -72,15 +72,16 @@ class WSCartaCorrecao {
     private NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
-        final NFInfoCartaCorrecao cartaCorrecao = new NFInfoCartaCorrecao();
-        cartaCorrecao.setCondicaoDeUso("A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.");
-        cartaCorrecao.setCorrecao(textoCorrecao);
+        // final NFInfoCartaCorrecao cartaCorrecao = new NFInfoCartaCorrecao();
+        final NFTipoEvento cartaCorrecao = new NFTipoEvento();
+        cartaCorrecao.setCondicaoUso("A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.");
+        cartaCorrecao.setTextoCorrecao(textoCorrecao);
         cartaCorrecao.setDescricaoEvento("Carta de Correcao");
         cartaCorrecao.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
 
-        final NFInfoEventoCartaCorrecao infoEvento = new NFInfoEventoCartaCorrecao();
+        final NFInfoEvento infoEvento = new NFInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
-        infoEvento.setCartaCorrecao(cartaCorrecao);
+        infoEvento.setDadosEvento(cartaCorrecao);
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(LocalDateTime.now());
@@ -90,7 +91,7 @@ class WSCartaCorrecao {
         infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CARTA_CORRECAO);
         infoEvento.setVersaoEvento(WSCartaCorrecao.VERSAO_LEIAUTE);
 
-        final NFEventoCartaCorrecao evento = new NFEventoCartaCorrecao();
+        final NFEvento evento = new NFEvento();
         evento.setInfoEvento(infoEvento);
         evento.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
 

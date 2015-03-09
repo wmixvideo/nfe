@@ -10,6 +10,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe200.classes.NFBase;
+import com.fincatto.nfe200.classes.evento.NFEvento;
 import com.fincatto.nfe200.validadores.BigDecimalParser;
 import com.fincatto.nfe200.validadores.ListValidador;
 import com.fincatto.nfe200.validadores.StringValidador;
@@ -25,7 +26,7 @@ public class NFEnviaEventoCartaCorrecao extends NFBase {
     private String idLote;
 
     @ElementList(entry = "evento", inline = true, required = true)
-    private List<NFEventoCartaCorrecao> evento;
+    private List<NFEvento> evento;
 
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
@@ -44,11 +45,11 @@ public class NFEnviaEventoCartaCorrecao extends NFBase {
         this.idLote = idLote;
     }
 
-    public List<NFEventoCartaCorrecao> getEvento() {
+    public List<NFEvento> getEvento() {
         return this.evento;
     }
 
-    public void setEvento(final List<NFEventoCartaCorrecao> evento) {
+    public void setEvento(final List<NFEvento> evento) {
         ListValidador.tamanho20(evento);
         this.evento = evento;
     }

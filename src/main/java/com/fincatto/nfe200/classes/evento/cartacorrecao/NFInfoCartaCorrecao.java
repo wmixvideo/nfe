@@ -12,12 +12,6 @@ public class NFInfoCartaCorrecao extends NFTipoEvento {
     @Element(name = "xCondUso", required = false)
     private String condicaoDeUso;
 
-    @Element(name = "CTe", required = false)
-    private NFCTe cte;
-
-    @Element(name = "emit", required = false)
-    private NFCTeEmitente emitente;
-
     public void setCondicaoDeUso(final String condicaoDeUso) {
         this.condicaoDeUso = condicaoDeUso;
     }
