@@ -77,5 +77,11 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 * Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
 
+
+### TO-DO LIST
+
+ * Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10)
+ * Envio de notas em contingência
+
 ## Licença
 Apache 2.0
