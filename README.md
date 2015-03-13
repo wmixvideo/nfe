@@ -7,7 +7,7 @@ Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov
 ## Atenção
 O pacote de classes nfe200 trata em relação a versão 2.00 da NFe, ele deve ser utilizado apenas para tradução de notas antigas,
 A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração com o teu sistema com as classes contidas no pacote nfe310
-(NFe 3.10).<br />
+(NFe 3.10).<br /><br />
 Projeto colaborativo, sinta-se a vontade em usar e/ou colaborar com o projeto.
 
 ## Serviços disponíveis
