@@ -3,6 +3,7 @@ Nota Fiscal Eletrônica 3.10
 [![Build Status](https://api.travis-ci.org/fincatto/nfe.png)](http://travis-ci.org/#!/fincatto/nfe)
 
 Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx)
+Projeto colaborativo, sinta-se a vontade em usar e/ou colaborar com o projeto.
 
 ## Atenção
 O pacote de classes nfe200 trata em relação a versão 2.00 da NFe, ele deve ser utilizado apenas para tradução de notas antigas,
