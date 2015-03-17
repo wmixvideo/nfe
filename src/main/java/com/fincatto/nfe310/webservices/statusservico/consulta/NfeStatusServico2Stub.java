@@ -324,7 +324,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
     // https://nfe.sefaz.rs.gov.br/ws/nfeStatusServico/nfeStatusServico2.asmx
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeCabecMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeCabecMsg", "");
 
         protected NfeCabecMsg localNfeCabecMsg;
 
@@ -365,7 +365,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -561,7 +561,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
     public static class NfeStatusServicoNF2Result implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2Result", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2Result", "");
 
         protected org.apache.axiom.om.OMElement localExtraElement;
 
@@ -621,7 +621,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1039,7 +1039,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1335,7 +1335,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeDadosMsg", "");
 
         protected org.apache.axiom.om.OMElement localExtraElement;
 
@@ -1395,7 +1395,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
