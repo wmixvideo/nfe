@@ -255,7 +255,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = 7332017688778139531L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeDadosMsg", "");
 
         /**
          * field for ExtraElement
@@ -332,7 +332,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -513,7 +513,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
     public static class NfeRecepcaoEventoResult implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -7520254300393624342L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeRecepcaoEventoResult", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeRecepcaoEventoResult", "");
 
         /**
          * field for ExtraElement
@@ -590,7 +590,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -756,7 +756,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -1051881154292027306L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeCabecMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeCabecMsg", "");
 
         /**
          * field for NfeCabecMsg
@@ -1087,7 +1087,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }

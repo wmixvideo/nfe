@@ -368,7 +368,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
     public static class NfeAutorizacaoLoteZipResult implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -4497325525608446064L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeAutorizacaoLoteZipResult", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeAutorizacaoLoteZipResult", "");
 
         /**
          * field for ExtraElement
@@ -445,7 +445,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -609,7 +609,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
     public static class NfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -4943739405977852705L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeCabecMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeCabecMsg", "");
 
         /**
          * field for NfeCabecMsg
@@ -729,7 +729,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
     public static class NfeAutorizacaoLoteResult implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -6861369626109193017L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeAutorizacaoLoteResult", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeAutorizacaoLoteResult", "");
 
         /**
          * field for ExtraElement
@@ -806,7 +806,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1182,7 +1182,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1432,7 +1432,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
     public static class NfeDadosMsgZip implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = 3787993308790482193L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeDadosMsgZip", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeDadosMsgZip", "");
 
         /**
          * field for NfeDadosMsgZip
@@ -1512,7 +1512,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -1638,7 +1638,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
         private static final long serialVersionUID = -5672939740534282441L;
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao", "nfeDadosMsg", "");
 
         /**
          * field for ExtraElement
@@ -1715,7 +1715,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/NfeAutorizacao")) {
-                return "ns1";
+                return "";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
