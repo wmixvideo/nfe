@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.lote.envio;
 
 public enum NFLoteIndicadorProcessamento {
 
-    NAO("0"),
+    PROCESSAMENTO_ASSINCRONO("0"),
     PROCESSAMENTO_SINCRONO("1");
 
     private String codigo;
