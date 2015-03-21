@@ -66,14 +66,14 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 ## Serviços disponíveis
 | Serviço           | Status              |
 | ----------------- | :-----------------: |
-| envio lote        | Estável             |
-| consulta lote     | Estável             |
-| consulta status   | Estável             |
-| consulta nota     | Estável             |
-| corrige nota      | Estável             |
-| cancela nota      | Estável             |
-| inutiliza nota    | Estável             |
-| consulta cadastro | Estável             |
+| Envio lote        | Estável             |
+| Consulta lote     | Estável             |
+| Consulta status   | Estável             |
+| Consulta nota     | Estável             |
+| Corrige nota      | Estável             |
+| Cancela nota      | Estável             |
+| Inutiliza nota    | Estável             |
+| Consulta cadastro | Estável             |
 
 ### TO-DO LIST
 * Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
