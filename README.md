@@ -1,13 +1,12 @@
 Nota Fiscal Eletrônica
 ===
-Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx)
+Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/fincatto/nfe.png)](http://travis-ci.org/#!/fincatto/nfe)
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
-Ele deve ser utilizado apenas para tradução de notas antigas pois é prevista sua desativação em 31/03/2015, portanto
+Ele deve ser utilizado apenas para tradução de notas antigas pois é prevista sua desativação em 31/03/2015, portanto,
 faça a integração com o teu sistema com as classes contidas no pacote nfe310.<br/>
-
 <br/>
 Este é um projeto colaborativo, sinta-se a vontade em usar e colaborar com o mesmo.<br/>
 Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que 
@@ -19,7 +18,6 @@ digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade d
 comunicação com os webservices da Sefaz.
 
 ### Alguns exemplos
-
 Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**.
 
 #### Status dos webservices
@@ -61,8 +59,8 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 ```
 
 ### Funcionalidades
-* Possui validação de campos a nível de código
-* Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz
+* Possui validação de campos a nível de código;
+* Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz;
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
 
 ## Serviços disponíveis
@@ -78,8 +76,8 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 | consulta cadastro | Estável             |
 
 ### TO-DO LIST
-* Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10)
-* Envio de notas em contingência
+* Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
+* Envio de notas em contingência.
 
 ## Licença
 Apache 2.0
