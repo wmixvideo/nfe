@@ -79,5 +79,22 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 * Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
 * Envio de notas em contingência.
 
+## Criação do Java KeyStore (JKS)
+Para usar os serviços da nota fiscal são necessarios dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
+
+Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente). Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
+
+Para criação do JKS sera utilizada a ferramenta keytool do java ($JRE_HOME/bin/keytool).
+
+1. Obter os certificados da certificadora raiz
+Estes certificados são disponibilizados por cada SEFAZ.
+https://homologacao.nfe.sefaz.rs.gov.br/
+https://nfe.sefaz.rs.gov.br/
+
+1.1 Apos baixar e instalar os certificado raiz, basta ir no navegador e exportar o certificado raiz para um arquivo .cer
+
+2. Converter o arquivo .cer para jks utilizando keytool:
+keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
+
 ## Licença
 Apache 2.0
