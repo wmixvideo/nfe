@@ -75,7 +75,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 | Inutiliza nota    | Estável             |
 | Consulta cadastro | Estável             |
 
-### TO-DO LIST
+## TO-DO LIST
 * Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
 * Envio de notas em contingência.
 
@@ -88,10 +88,9 @@ Para criação do JKS sera utilizada a ferramenta keytool do java ($JRE_HOME/bin
 
 1. Obter os certificados da certificadora raiz
 Estes certificados são disponibilizados por cada SEFAZ.
-https://homologacao.nfe.sefaz.rs.gov.br/
-https://nfe.sefaz.rs.gov.br/
-
-1.1 Apos baixar e instalar os certificado raiz, basta ir no navegador e exportar o certificado raiz para um arquivo .cer
+- https://homologacao.nfe.sefaz.rs.gov.br/
+- https://nfe.sefaz.rs.gov.br/
+- https://serasa.certificadodigital.com.br/ajuda/instalacao/cadeia-de-certificados/
 
 2. Converter o arquivo .cer para jks utilizando keytool:
 keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
