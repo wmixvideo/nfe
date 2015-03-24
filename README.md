@@ -92,7 +92,7 @@ Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
 * https://serasa.certificadodigital.com.br/ajuda/instalacao/cadeia-de-certificados/
 
 Converter o arquivo .cer para jks utilizando keytool:
-keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
+* keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
 
 ## Licença
 Apache 2.0
