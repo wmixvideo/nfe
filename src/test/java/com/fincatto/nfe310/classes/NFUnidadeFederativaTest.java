@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-
 public class NFUnidadeFederativaTest {
 
     @Test
@@ -89,5 +87,16 @@ public class NFUnidadeFederativaTest {
 
         Assert.assertEquals("TO", NFUnidadeFederativa.TO.getCodigo());
         Assert.assertEquals("17", NFUnidadeFederativa.TO.getCodigoIbge());
+
+        Assert.assertEquals("NC", NFUnidadeFederativa.NACIONAL.getCodigo());
+        Assert.assertEquals("90", NFUnidadeFederativa.NACIONAL.getCodigoIbge());
+
+        Assert.assertEquals("RFB", NFUnidadeFederativa.RFB.getCodigo());
+        Assert.assertEquals("91", NFUnidadeFederativa.RFB.getCodigoIbge());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoTenteBuscarUmCodigoErrado() {
+        NFUnidadeFederativa.valueOfCodigo("1");
     }
 }

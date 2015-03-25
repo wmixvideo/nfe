@@ -29,7 +29,8 @@ public enum NFUnidadeFederativa {
     SC("SC", "Santa Catarina", "42"),
     SE("SE", "Sergipe", "28"),
     TO("TO", "Tocantins", "17"),
-    NACIONAL("NC", "Nacional", "90");
+    NACIONAL("NC", "Nacional", "90"),
+    RFB("RFB", "RFB", "91");
 
     private final String codigo;
     private final String descricao;
@@ -71,6 +72,6 @@ public enum NFUnidadeFederativa {
                 return uf;
             }
         }
-        return null;
+        throw new IllegalArgumentException(String.format("N\u00e3o existe o c\u00f3digo %s no mapeamento.", codigo));
     }
 }
