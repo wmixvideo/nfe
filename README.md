@@ -95,11 +95,12 @@ Converter o arquivo .cer para jks utilizando keytool:
 * keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
 
 ## Dúvidas?
-O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
+O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. 
+Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
 * [Fórum NFe](http://tecnoandroid.com.br/nfe/) 
 
 ## Licença
 Apache 2.0
 
-#Agradecimentos
+##Agradecimentos
 - Edson Moretti: Criação e manutenção do forum;
