@@ -103,4 +103,4 @@ Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementa
 Apache 2.0
 
 ##Agradecimentos
-- Edson Moretti: Criação e manutenção do forum;
+- Edson Moretti: Criação e manutenção do forum
