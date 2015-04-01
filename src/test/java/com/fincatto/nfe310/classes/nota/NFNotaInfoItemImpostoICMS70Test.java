@@ -15,27 +15,27 @@ public class NFNotaInfoItemImpostoICMS70Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("1000"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("10000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualAliquotaImpostoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBC(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBC(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBCICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

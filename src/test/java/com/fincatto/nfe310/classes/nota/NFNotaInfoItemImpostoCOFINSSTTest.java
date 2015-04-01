@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSST;
 
 public class NFNotaInfoItemImpostoCOFINSSTTest {
 
@@ -27,7 +26,7 @@ public class NFNotaInfoItemImpostoCOFINSSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorPercentualAliquotaCOFINSForaDoLimite() {
-        new NFNotaInfoItemImpostoCOFINSST().setPercentualAliquota(new BigDecimal("100.01"));
+        new NFNotaInfoItemImpostoCOFINSST().setPercentualAliquota(new BigDecimal("1000.01"));
     }
 
     @Test(expected = IllegalStateException.class)

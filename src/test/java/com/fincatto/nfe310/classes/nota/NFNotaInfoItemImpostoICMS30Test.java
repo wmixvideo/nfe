@@ -14,17 +14,17 @@ public class NFNotaInfoItemImpostoICMS30Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualAliquotaImpostoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualReducaoBCICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

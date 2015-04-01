@@ -13,12 +13,12 @@ public class NFNotaInfoItemImpostoICMS51Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualICMSComTamanhoDiferente() {
-        new NFNotaInfoItemImpostoICMS51().setPercentualICMS(new BigDecimal("1000"));
+        new NFNotaInfoItemImpostoICMS51().setPercentualICMS(new BigDecimal("10000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCComTamanhoDiferente() {
-        new NFNotaInfoItemImpostoICMS51().setPercentualReducaoBC(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS51().setPercentualReducaoBC(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

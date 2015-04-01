@@ -12,7 +12,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaAplicavelCalculoCreditoSNComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN101().setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN101().setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

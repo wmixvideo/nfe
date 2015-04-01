@@ -22,7 +22,7 @@ public class NFNotaInfoItemImpostoPISQuantidadeTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISQuantidade().setQuantidadeVendida(new BigDecimal("999999999999"));
+        new NFNotaInfoItemImpostoPISQuantidade().setQuantidadeVendida(new BigDecimal("9999999999999"));
     }
 
     @Test(expected = IllegalStateException.class)

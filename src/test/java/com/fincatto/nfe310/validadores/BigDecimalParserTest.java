@@ -84,7 +84,7 @@ public class BigDecimalParserTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirExtrapolacaoPor15CaracteresCom3CasasDecimais() {
-        BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("999999999999.999"));
+        BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("9999999999999.999"));
     }
 
     @Test(expected = IllegalStateException.class)

@@ -14,32 +14,32 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAliquotaAplicavelCalculoCreditoSNComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN900().setAliquotaAplicavelCalculoCreditoSN(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAliquotaImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setPercentualAliquotaImpostoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setPercentualAliquotaImposto(new BigDecimal("1000"));
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualAliquotaImposto(new BigDecimal("10000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setPercentualReducaoBC(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualReducaoBC(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN900().setPercentualReducaoBCICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

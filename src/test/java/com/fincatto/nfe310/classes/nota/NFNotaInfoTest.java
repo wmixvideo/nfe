@@ -21,7 +21,7 @@ public class NFNotaInfoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoComTamanhoInvalido() {
-        new NFNotaInfo().setVersao(new BigDecimal("10"));
+        new NFNotaInfo().setVersao(new BigDecimal("100"));
     }
 
     @Test

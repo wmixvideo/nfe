@@ -22,7 +22,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

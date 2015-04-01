@@ -17,7 +17,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIPITributado().setPercentualAliquota(new BigDecimal("999"));
+        new NFNotaInfoItemImpostoIPITributado().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -27,7 +27,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIPITributado().setQuantidade(new BigDecimal("999999999999"));
+        new NFNotaInfoItemImpostoIPITributado().setQuantidade(new BigDecimal("9999999999999"));
     }
 
     @Test
