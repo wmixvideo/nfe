@@ -78,6 +78,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 ## TO-DO LIST
 * Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
 * Envio de notas em contingência.
+* Permitir uso de certificados A3.
 
 ## Criação do Java KeyStore (JKS)
 Para usar os serviços da nota fiscal são necessarios dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
