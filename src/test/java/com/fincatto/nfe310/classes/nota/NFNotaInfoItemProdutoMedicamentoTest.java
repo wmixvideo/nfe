@@ -24,7 +24,7 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoMedicamento().setQuantidade(new BigDecimal("10000000"));
+        new NFNotaInfoItemProdutoMedicamento().setQuantidade(new BigDecimal("100000000"));
     }
 
     @Test(expected = IllegalStateException.class)

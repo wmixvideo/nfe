@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemExportacaoIndireta;
 
 public class NFNotaInfoItemExportacaoIndiretaTest {
 
@@ -18,7 +17,7 @@ public class NFNotaInfoItemExportacaoIndiretaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeIemEfetivamenteExportadoComTamanhoInvalido() {
-        new NFNotaInfoItemExportacaoIndireta().setQuantidadeItemEfetivamenteExportado(new BigDecimal("10000000000"));
+        new NFNotaInfoItemExportacaoIndireta().setQuantidadeItemEfetivamenteExportado(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

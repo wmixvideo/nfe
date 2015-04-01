@@ -18,12 +18,12 @@ public class NFNotaInfoItemProdutoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorUnitarioTributavelComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorUnitarioTributavel(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProduto().setValorUnitarioTributavel(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorUnitarioComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setValorUnitario(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProduto().setValorUnitario(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -71,12 +71,12 @@ public class NFNotaInfoItemProdutoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeTributavelComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setQuantidadeTributavel(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProduto().setQuantidadeTributavel(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeComercialComTamanhoInvalido() {
-        new NFNotaInfoItemProduto().setQuantidadeComercial(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProduto().setQuantidadeComercial(new BigDecimal("100000000000"));
     }
 
     @Test(expected = IllegalStateException.class)

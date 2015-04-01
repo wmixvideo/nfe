@@ -21,7 +21,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setPercentualAliquota(new BigDecimal("999"));
+        new NFNotaInfoItemImpostoPISST().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -31,7 +31,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setQuantidadeVendida(new BigDecimal("999999999999"));
+        new NFNotaInfoItemImpostoPISST().setQuantidadeVendida(new BigDecimal("9999999999999"));
     }
 
     @Test

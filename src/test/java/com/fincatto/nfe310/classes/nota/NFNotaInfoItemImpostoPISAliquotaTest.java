@@ -17,7 +17,7 @@ public class NFNotaInfoItemImpostoPISAliquotaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorlAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISAliquota().setPercentualAliquota(new BigDecimal("999"));
+        new NFNotaInfoItemImpostoPISAliquota().setPercentualAliquota(new BigDecimal("9999"));
     }
 
     @Test(expected = IllegalStateException.class)

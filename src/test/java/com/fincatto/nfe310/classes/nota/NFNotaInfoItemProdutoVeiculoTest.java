@@ -14,7 +14,6 @@ import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoRestricao;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
 import com.fincatto.nfe310.classes.NFNotaInfoTipoVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoVeiculoCor;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoVeiculo;
 
 public class NFNotaInfoItemProdutoVeiculoTest {
 
@@ -38,12 +37,12 @@ public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPesoLiquidoComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoVeiculo().setPesoLiquido(new BigDecimal("10000"));
+        new NFNotaInfoItemProdutoVeiculo().setPesoLiquido(new BigDecimal("100000"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPesoBrutoComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoVeiculo().setPesoBruto(new BigDecimal("10000"));
+        new NFNotaInfoItemProdutoVeiculo().setPesoBruto(new BigDecimal("100000"));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -125,7 +124,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCapacidadeMaximaTracaoComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoVeiculo().setCapacidadeMaximaTracao(new BigDecimal("10000"));
+        new NFNotaInfoItemProdutoVeiculo().setCapacidadeMaximaTracao(new BigDecimal("100000"));
     }
 
     @Test(expected = IllegalStateException.class)
