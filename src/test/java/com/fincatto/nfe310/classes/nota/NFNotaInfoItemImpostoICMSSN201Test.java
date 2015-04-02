@@ -11,37 +11,37 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMSSN201Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaAplicavelCalculoCreditoSNComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCreditoICMSSNComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setValorCreditoICMSSN(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN201().setValorICMSST(new BigDecimal("10000000000000"));
     }

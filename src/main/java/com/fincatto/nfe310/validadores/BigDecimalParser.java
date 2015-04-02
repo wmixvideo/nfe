@@ -64,7 +64,7 @@ public class BigDecimalParser {
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
         if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
-            throw new IllegalStateException("Valor extrapolou o tamanho de casas");
+            throw new NumberFormatException("Valor extrapolou o tamanho de casas");
         }
         valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
         return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);

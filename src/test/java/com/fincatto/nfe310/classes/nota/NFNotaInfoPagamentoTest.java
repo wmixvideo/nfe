@@ -9,7 +9,7 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoPagamentoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorPagamentoComTamanhoInvalido() {
         new NFNotaInfoPagamento().setValorPagamento(new BigDecimal("10000000000000"));
     }

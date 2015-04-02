@@ -9,22 +9,22 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoImportacaoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoInvalido() {
         new NFNotaInfoItemImpostoImportacao().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorDespesaAduaneiraTamanhoInvalido() {
         new NFNotaInfoItemImpostoImportacao().setValorDespesaAduaneira(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirImpostoImportacaoTamanhoInvalido() {
         new NFNotaInfoItemImpostoImportacao().setValorImpostoImportacao(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorIOFTamanhoInvalido() {
         new NFNotaInfoItemImpostoImportacao().setValorIOF(new BigDecimal("99999999999999"));
     }

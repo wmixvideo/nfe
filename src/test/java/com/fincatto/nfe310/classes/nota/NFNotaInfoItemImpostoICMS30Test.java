@@ -12,27 +12,27 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS30Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorImpostoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setValorImpostoICMSST(new BigDecimal("10000000000000"));
     }

@@ -9,27 +9,27 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoCOFINSSTTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCOFINSForaoDoLimite() {
         new NFNotaInfoItemImpostoCOFINSST().setValorCOFINS(new BigDecimal("99999999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorAliquotaCOFINSForaoDoLimite() {
         new NFNotaInfoItemImpostoCOFINSST().setValorAliquotaCOFINS(new BigDecimal("99999999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeVendidaForaDoLimite() {
         new NFNotaInfoItemImpostoCOFINSST().setQuantidadeVendida(new BigDecimal("999999999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorPercentualAliquotaCOFINSForaDoLimite() {
         new NFNotaInfoItemImpostoCOFINSST().setPercentualAliquota(new BigDecimal("1000.01"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoForaDoLimite() {
         new NFNotaInfoItemImpostoCOFINSST().setValorBaseCalculo(new BigDecimal("99999999999999999"));
     }

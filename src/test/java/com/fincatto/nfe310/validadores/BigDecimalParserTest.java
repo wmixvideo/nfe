@@ -67,27 +67,27 @@ public class BigDecimalParserTest {
         Assert.assertEquals("1", BigDecimalParser.tamanho15comAte4CasasDecimais(new BigDecimal("1")));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolacaoDeInteiros() {
         BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999999.9"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolacaoDeCasasDecimais() {
         BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999.999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolacaoPor15CaracteresCom2CasasDecimais() {
         BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999999.99"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolacaoPor15CaracteresCom3CasasDecimais() {
         BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("9999999999999.999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolar21Caracteres() {
         BigDecimalParser.tamanho21ComAte10CasasDecimais(new BigDecimal("999999999999.9999999999"));
     }

@@ -12,42 +12,42 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS10Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setPercentualAliquota(new BigDecimal("10000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualMargemValorICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setPercentualMargemValorICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setValorBaseCalculo(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirBCICMSSTTributoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS10().setValorTributo(new BigDecimal("10000000000000"));
     }

@@ -11,22 +11,22 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS51Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualICMSComTamanhoDiferente() {
         new NFNotaInfoItemImpostoICMS51().setPercentualICMS(new BigDecimal("10000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualReducaoBCComTamanhoDiferente() {
         new NFNotaInfoItemImpostoICMS51().setPercentualReducaoBC(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBCICMSComTamanhoDiferente() {
         new NFNotaInfoItemImpostoICMS51().setValorBCICMS(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorICMSComTamanhoDiferente() {
         new NFNotaInfoItemImpostoICMS51().setValorICMS(new BigDecimal("10000000000000"));
     }

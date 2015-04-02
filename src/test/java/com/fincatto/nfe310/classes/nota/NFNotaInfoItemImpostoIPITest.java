@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoIPI;
 
 public class NFNotaInfoItemImpostoIPITest {
 
@@ -25,7 +24,7 @@ public class NFNotaInfoItemImpostoIPITest {
         new NFNotaInfoItemImpostoIPI().setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc51");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeSeloTamanhoInvalido() {
         new NFNotaInfoItemImpostoIPI().setQuantidadeSelo(new BigInteger("1000000000000"));
     }

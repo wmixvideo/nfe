@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFInfoModelo1Por1AReferenciada;
 
 public class NFInfoModelo1Por1AReferenciadaTest {
 
@@ -32,7 +31,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         new NFInfoModelo1Por1AReferenciada().setNumeroDocumentoFiscal("1000000000");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirSerieComTamanhoInvalido() {
         new NFInfoModelo1Por1AReferenciada().setSerie(1000);
     }

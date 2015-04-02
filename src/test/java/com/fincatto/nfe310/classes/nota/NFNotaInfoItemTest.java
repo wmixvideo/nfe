@@ -16,7 +16,7 @@ public class NFNotaInfoItemTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroItemComTamanhoInvalido() {
         new NFNotaInfoItem().setNumeroItem(991);
     }
@@ -25,7 +25,7 @@ public class NFNotaInfoItemTest {
     public void naoDevePermitirImpostoNulo() {
         final NFNotaInfoItem item = new NFNotaInfoItem();
         item.setInformacoesAdicionais("R3s36BVI9k15xOe3hnlEpZRpPHEom9inv4hE1oo8hzHYG8X6D9sQjt6oLYiH6yToSFM95zueMhE4s270GB7iLUKcQTRHWLcHb1TU2fSYx2NAz5ZflI3hoTnN8zmqJtGzneaNpDRA5gJW7wxMg9IXIuUCxg25MlIQ46AbDQNc3HLl82g3awWKigBMli0bUEWIMf8C2GG2sB2Y9w1GnsfiDvw7RUuU5vATfWWvYFRCehm2UpDhBlrBjjXcWKYzXsT3x2PNtCC82JqY1nkKrgt2AHCPUjM0tCQk5EHFcssb8I0Rkc4s8aNcARXtFrBzmWqXDQPmCpLIGaAo7LlypOKKaqUNqkRkf8c930p8HaRDvQJealZsVnpwJn3Ev7yEaBZ9INe5PXFwkTQEfpNE3B8IokFMh0aUbu8mfzjKLBazSKW2qA4faIo2Wp5FmOmTzCMiPqznOq3Bl0zM4wmuo0rOXbswjaCUzPB0KpM8Yaze9TArOEDrV6Li");
-        item.setNumeroItem(999);
+        item.setNumeroItem(99);
         item.setProduto(FabricaDeObjetosFake.getNFNotaInfoItemProduto());
         item.toString();
     }

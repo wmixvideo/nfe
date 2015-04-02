@@ -17,11 +17,6 @@ import com.fincatto.nfe310.classes.NFTipo;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFTipoImpressao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFIdentificadorLocalDestinoOperacao;
-import com.fincatto.nfe310.classes.nota.NFIndicadorPresencaComprador;
-import com.fincatto.nfe310.classes.nota.NFInfoReferenciada;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
-import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 
 public class NFNotaInfoIdentificacaoTest {
 
@@ -89,7 +84,7 @@ public class NFNotaInfoIdentificacaoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirDigitoVerificadorComTamanhoInvalido() {
         new NFNotaInfoIdentificacao().setDigitoVerificador(10);
     }

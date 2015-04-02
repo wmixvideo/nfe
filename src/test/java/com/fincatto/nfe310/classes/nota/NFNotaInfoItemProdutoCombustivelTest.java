@@ -28,7 +28,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeComTamanhoInvalido() {
         new NFNotaInfoItemProdutoCombustivel().setQuantidade(new BigDecimal("1000000000000"));
     }

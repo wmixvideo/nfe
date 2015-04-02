@@ -6,41 +6,40 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoRetencoesTributos;
 
 public class NFNotaInfoRetencoesTributosTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorRetidoPISInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setValorRetidoPIS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorRetidoIRRFInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setValorRetidoIRRF(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorRetidoCSLLInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setValorRetidoCSLL(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorRetidoCOFINSInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setValorRetidoCOFINS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorRetencaoPrevidenciaSocialInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setValorRetencaoPrevidenciaSocial(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCalculoRetencaoPrevidenciaSocialInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setBaseCalculoRetencaoPrevidenciaSocial(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCalculoIRRFInvalidosMonetarios() {
         new NFNotaInfoRetencoesTributos().setBaseCalculoIRRF(new BigDecimal("1000000000000000"));
     }
