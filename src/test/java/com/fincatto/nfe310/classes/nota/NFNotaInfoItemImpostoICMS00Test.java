@@ -12,17 +12,17 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS00Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS00().setPercentualAliquota(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS00().setValorBaseCalculo(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS00().setValorTributo(new BigDecimal("10000000000000"));
     }

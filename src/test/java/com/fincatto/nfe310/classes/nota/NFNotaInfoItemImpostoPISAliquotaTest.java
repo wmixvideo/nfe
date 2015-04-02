@@ -10,17 +10,17 @@ import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
 
 public class NFNotaInfoItemImpostoPISAliquotaTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISAliquota().setValorTributo(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorlAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISAliquota().setPercentualAliquota(new BigDecimal("9999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISAliquota().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }

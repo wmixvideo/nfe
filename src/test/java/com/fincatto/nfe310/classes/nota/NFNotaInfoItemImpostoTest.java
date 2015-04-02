@@ -9,7 +9,7 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalTributosComTamanhoInvalido() {
         new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("10000000000000"));
     }

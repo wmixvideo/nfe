@@ -9,17 +9,17 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemProdutoCombustivelCIDETest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorQuantidadeBCCIDEComTamanhoInvalido() {
         new NFNotaInfoItemProdutoCombustivelCIDE().setQuantidadeBCCIDE(new BigDecimal("1000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemProdutoCombustivelCIDE().setValorAliquota(new BigDecimal("100000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorComTamanhoInvalido() {
         new NFNotaInfoItemProdutoCombustivelCIDE().setValor(new BigDecimal("10000000000000"));
     }

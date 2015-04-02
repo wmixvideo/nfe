@@ -32,12 +32,12 @@ public class NFEventoCancelamentoDadosTest {
         dados.setCnpj("1234567890123");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirAnoDiferenteDeDuasCasas() {
         final NFEventoCancelamentoDados dados = new NFEventoCancelamentoDados();
         try {
             dados.setAno(9);
-        } catch (final IllegalStateException e) {
+        } catch (final NumberFormatException e) {
             dados.setAno(100);
         }
     }

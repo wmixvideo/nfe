@@ -7,32 +7,30 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoISSQNTotal;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoRegimeEspecialTributacao;
 
 public class NFNotaInfoISSQNTotalTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalServicosSobNaoIncidenciaNaoTributadosICMSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalISSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalISS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorPISsobreServicosInvalido() {
         new NFNotaInfoISSQNTotal().setValorPISsobreServicos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCOFINSsobreServicosInvalido() {
         new NFNotaInfoISSQNTotal().setValorCOFINSsobreServicos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCalculoINSSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalISS(new BigDecimal("1000000000000000"));
     }

@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoRetencaoICMSTransporte;
 
 public class NFNotaInfoRetencaoICMSTransporteTest {
 
@@ -30,27 +29,27 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         new NFNotaInfoRetencaoICMSTransporte().setValorServico(new BigDecimal("999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirAliquotaRetencaoTamanhoValido() {
         new NFNotaInfoRetencaoICMSTransporte().setAliquotaRetencao(new BigDecimal("100000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorICMSRetidoTamanhoInvalido() {
         new NFNotaInfoRetencaoICMSTransporte().setValorICMSRetido(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirBCRetencaoICMSTamanhoInvalido() {
         new NFNotaInfoRetencaoICMSTransporte().setBcRetencaoICMS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorServicoTamanhoInvalido() {
         new NFNotaInfoRetencaoICMSTransporte().setValorServico(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCodigoMunicipioOcorrenciaFatoGeradorICMSTransporteInvalido() {
         new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(10000000);
     }
@@ -60,7 +59,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCFOPValorInvalido() {
         new NFNotaInfoRetencaoICMSTransporte().setCfop(10000);
     }

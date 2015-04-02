@@ -35,12 +35,12 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPesoLiquidoComTamanhoInvalido() {
         new NFNotaInfoItemProdutoVeiculo().setPesoLiquido(new BigDecimal("100000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPesoBrutoComTamanhoInvalido() {
         new NFNotaInfoItemProdutoVeiculo().setPesoBruto(new BigDecimal("100000"));
     }
@@ -63,7 +63,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirLotacaoComTamanhoInvalido() {
         new NFNotaInfoItemProdutoVeiculo().setLotacao(1000);
     }
@@ -122,25 +122,25 @@ public class NFNotaInfoItemProdutoVeiculoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCapacidadeMaximaTracaoComTamanhoInvalido() {
         new NFNotaInfoItemProdutoVeiculo().setCapacidadeMaximaTracao(new BigDecimal("100000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirAnoModeloFabricacaoComTamanhoInvalido() {
         try {
             new NFNotaInfoItemProdutoVeiculo().setAnoModeloFabricacao(999);
-        } catch (final IllegalStateException e) {
+        } catch (final NumberFormatException e) {
             new NFNotaInfoItemProdutoVeiculo().setAnoModeloFabricacao(10000);
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirAnoFabricacaoComTamanhoInvalido() {
         try {
             new NFNotaInfoItemProdutoVeiculo().setAnoFabricacao(999);
-        } catch (final IllegalStateException e) {
+        } catch (final NumberFormatException e) {
             new NFNotaInfoItemProdutoVeiculo().setAnoFabricacao(10000);
         }
     }

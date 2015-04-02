@@ -73,13 +73,13 @@ public class IntegerValidador {
 
     private static void limite(final Integer valor, final int maximo) {
         if (valor > maximo) {
-            throw new IllegalStateException("Valor extrapolou o tamanho do campo");
+            throw new NumberFormatException("Valor extrapolou o tamanho do campo");
         }
     }
 
     private static void intervalo(final Integer valor, final int minimo, final int maximo) {
         if (valor < minimo || valor > maximo) {
-            throw new IllegalStateException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
+            throw new NumberFormatException(MessageFormat.format("Valor tem tamanho fora do intervalo de [{0}-{1}]", minimo, maximo));
         }
     }
 }

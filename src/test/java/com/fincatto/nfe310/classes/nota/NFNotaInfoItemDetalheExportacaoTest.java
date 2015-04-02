@@ -6,11 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemDetalheExportacao;
 
 public class NFNotaInfoItemDetalheExportacaoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
         new NFNotaInfoItemDetalheExportacao().setNumeroAtoConcessorioDrawback(new BigInteger("100000000000"));
     }

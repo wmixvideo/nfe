@@ -12,7 +12,7 @@ public class NFInformacaoImpostoDevolvidoTest {
         new NFInformacaoImpostoDevolvido().toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorIPIInvalido() {
         final NFInformacaoImpostoDevolvido informacaoImpostoDevolvido = new NFInformacaoImpostoDevolvido();
         informacaoImpostoDevolvido.setValorIPIDevolvido(new BigDecimal("10000000000000.00"));

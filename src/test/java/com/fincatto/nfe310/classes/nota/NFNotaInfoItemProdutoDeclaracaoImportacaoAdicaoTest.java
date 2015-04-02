@@ -19,22 +19,22 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
         new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumeroAtoConcessorioDrawback(new BigInteger("100000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirDescontoComTamanhoInvalido() {
         new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setDesconto(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroComTamanhoInvalido() {
         new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumero(1000);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirSequencialComTamanhoInvalido() {
         new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setSequencial(1000);
     }

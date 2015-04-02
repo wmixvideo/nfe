@@ -6,81 +6,80 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoICMSTotal;
 
 public class NFNotaInfoICMSTotalTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalTributosInvalido() {
         new NFNotaInfoICMSTotal().setValorTotalTributos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalSeguroInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalSeguro(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalNFeInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalNFe(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalIPIInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalIPI(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalIIInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalII(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalICMSSTInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalICMSST(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalICMSInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalICMS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalFreteInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalFrete(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalDosProdutosServicosInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalDosProdutosServicos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalDescontoInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorTotalDesconto(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorPISInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorPIS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCOFINSInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValorCOFINS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setValor(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirOutrasDespesasAcessoriasInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setOutrasDespesasAcessorias(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirBaseCalculoICMSInvalidoMonetario() {
         new NFNotaInfoICMSTotal().setBaseCalculoICMS(new BigDecimal("1000000000000000"));
     }

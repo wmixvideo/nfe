@@ -9,27 +9,27 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoPISSTTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISST().setValorTributo(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorlAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISST().setValorAliquota(new BigDecimal("999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISST().setPercentualAliquota(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISST().setValorBaseCalculo(new BigDecimal("99999999999999"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
         new NFNotaInfoItemImpostoPISST().setQuantidadeVendida(new BigDecimal("9999999999999"));
     }

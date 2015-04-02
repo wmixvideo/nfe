@@ -17,12 +17,12 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPrecoMaximoConsumidorComTamanhoInvalido() {
         new NFNotaInfoItemProdutoMedicamento().setPrecoMaximoConsumidor(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeComTamanhoInvalido() {
         new NFNotaInfoItemProdutoMedicamento().setQuantidade(new BigDecimal("100000000"));
     }

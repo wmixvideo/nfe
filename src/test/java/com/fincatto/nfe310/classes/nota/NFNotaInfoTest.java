@@ -19,7 +19,7 @@ public class NFNotaInfoTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirVersaoComTamanhoInvalido() {
         new NFNotaInfo().setVersao(new BigDecimal("100"));
     }

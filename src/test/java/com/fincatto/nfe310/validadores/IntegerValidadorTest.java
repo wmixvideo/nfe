@@ -2,8 +2,6 @@ package com.fincatto.nfe310.validadores;
 
 import org.junit.Test;
 
-import com.fincatto.nfe310.validadores.IntegerValidador;
-
 public class IntegerValidadorTest {
 
     @Test
@@ -16,12 +14,12 @@ public class IntegerValidadorTest {
         IntegerValidador.tamanho4(9999);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void deveLancarExcecaoCasoValorParaTamanho7SejaInvalido() {
         IntegerValidador.tamanho7(10000000);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void deveLancarExcecaoCasoValorParaTamanho4SejaInvalido() {
         IntegerValidador.tamanho4(10000);
     }

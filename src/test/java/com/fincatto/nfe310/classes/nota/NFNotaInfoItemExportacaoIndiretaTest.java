@@ -10,12 +10,12 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemExportacaoIndiretaTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroRegistroExportacaoComTamanhoInvalido() {
         new NFNotaInfoItemExportacaoIndireta().setNumeroRegistroExportacao(new BigInteger("1000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeIemEfetivamenteExportadoComTamanhoInvalido() {
         new NFNotaInfoItemExportacaoIndireta().setQuantidadeItemEfetivamenteExportado(new BigDecimal("100000000000"));
     }
