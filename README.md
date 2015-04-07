@@ -58,6 +58,18 @@ Faça o cancelamento da nota atraves do facade:
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
+### Obtendo o XML através dos objetos
+Qualquer objeto que seja uma representação XML do documento NFe pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, exemplo, para conseguir o XML do lote, invoque o toString
+
+```java
+NFLoteEnvio lote = new NFLoteEnvio();
+// setando os dados do lote
+...
+
+// Obtendo o xml do objeto
+String xmlGerado = lote.toString();
+```
+
 ### Funcionalidades
 * Possui validação de campos a nível de código;
 * Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz;
