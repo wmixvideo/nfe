@@ -59,7 +59,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 ```
 
 ### Obtendo o XML através dos objetos
-Qualquer objeto que seja uma representação XML do documento NFe pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
+Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
 
 ```java
 NFLoteEnvio lote = new NFLoteEnvio();
