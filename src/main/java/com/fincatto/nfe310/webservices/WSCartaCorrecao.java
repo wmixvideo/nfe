@@ -40,8 +40,8 @@ class WSCartaCorrecao {
         this.config = config;
     }
 
-    public NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao) throws Exception {
-        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao).toString();
+    public NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado);
 
@@ -69,10 +69,9 @@ class WSCartaCorrecao {
         return omElementResult;
     }
 
-    private NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao) {
+    private NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
-        // final NFInfoCartaCorrecao cartaCorrecao = new NFInfoCartaCorrecao();
         final NFTipoEvento cartaCorrecao = new NFTipoEvento();
         cartaCorrecao.setCondicaoUso("A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.");
         cartaCorrecao.setTextoCorrecao(textoCorrecao);
@@ -86,7 +85,7 @@ class WSCartaCorrecao {
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(LocalDateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", WSCartaCorrecao.EVENTO_CARTA_CORRECAO, chaveAcesso, "1"));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CARTA_CORRECAO);
         infoEvento.setVersaoEvento(WSCartaCorrecao.VERSAO_LEIAUTE);
