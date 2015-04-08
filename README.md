@@ -58,6 +58,48 @@ Faça o cancelamento da nota atraves do facade:
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
+### Convertendo objetos Java em XML
+Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
+
+```java
+NFLoteEnvio lote = new NFLoteEnvio();
+// setando os dados do lote
+...
+
+// Obtendo o xml do objeto
+String xmlGerado = lote.toString();
+```
+
+### Convertendo nota XML em Java
+Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
+```java
+final NFNota nota = new NotaParser().paraObjeto(xmlNota);
+```
+
+### Armazenando notas autorizadas
+Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
+```java
+final List<NFNota> notas = lote.getNotas();
+// Armazena os xmls das notas
+...
+```
+Ao fazer a consulta do lote, crie um objeto do tipo **NFNotaProcessada** e adicione o protocolo da nota correspondente, alem da nota assinada:
+```java
+// Carregue o xml da nota do local que foi armazenado
+final String xmlNotaRecuperada;
+// Assine a nota
+final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
+// Converta para objeto java
+final NFNota notaRecuperadaAssinada = new NotaParser().paraObjeto(xmlNota);
+// Crie o objeto NFNotaProcessada
+final NFNotaProcessada notaProcessada = new NFNotaProcessada();
+notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
+notaProcessada.setProtocolo(protocolo);
+notaProcessada.setNota(notaRecuperadaAssinada);
+// Obtenha o xml da nota com protocolo
+String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
+```
+
 ### Funcionalidades
 * Possui validação de campos a nível de código;
 * Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz;
@@ -75,10 +117,6 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 | Inutiliza nota    | Estável             |
 | Consulta cadastro | Estável             |
 
-## TO-DO LIST
-* Envio de nota de forma síncrona (nota a nota, permitido a partir da NF-e 3.10);
-* Envio de notas em contingência.
-
 ## Criação do Java KeyStore (JKS)
 Para usar os serviços da nota fiscal são necessarios dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
 
@@ -94,13 +132,13 @@ Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
 Converter o arquivo .cer para jks utilizando keytool:
 * keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
 
+## Licença
+Apache 2.0
+
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
 Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
 * [Fórum NFe](http://tecnoandroid.com.br/nfe/) 
-
-## Licença
-Apache 2.0
 
 ##Agradecimentos
 - [Edson Moretti](https://github.com/edsonmoretti): Criação e manutenção do forum
