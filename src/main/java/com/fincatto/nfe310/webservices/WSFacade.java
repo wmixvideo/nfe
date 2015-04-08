@@ -64,8 +64,8 @@ public class WSFacade {
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
-    public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao) throws Exception {
-        return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao);
+    public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
     public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
