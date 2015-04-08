@@ -58,7 +58,7 @@ Faça o cancelamento da nota atraves do facade:
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
-### Obtendo o XML através dos objetos
+### Convertendo objetos Java em XML
 Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
 
 ```java
@@ -68,6 +68,12 @@ NFLoteEnvio lote = new NFLoteEnvio();
 
 // Obtendo o xml do objeto
 String xmlGerado = lote.toString();
+```
+
+### Convertendo nota XML em Java
+Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
+```java
+final NFNota nota = new NotaParser().paraObjeto(xmlNota);
 ```
 
 ### Funcionalidades
