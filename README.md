@@ -76,6 +76,30 @@ Existe uma classe que pode receber um File/String e converter para um objeto NFN
 final NFNota nota = new NotaParser().paraObjeto(xmlNota);
 ```
 
+### Armazenando notas autorizadas
+Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
+```java
+final List<NFNota> notas = lote.getNotas();
+// Armazena os xmls das notas
+...
+```
+Ao fazer a consulta do lote, crie um objeto do tipo **NFNotaProcessada** e adicione o protocolo da nota correspondente, alem da nota assinada:
+```java
+// Carregue o xml da nota do local que foi armazenado
+final String xmlNotaRecuperada;
+// Assine a nota
+final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
+// Converta para objeto java
+final NFNota notaRecupearadaAssinada = new NotaParser().paraObjeto(xmlNota);
+// Crie o objeto NFNotaProcessada
+final NFNotaProcessada notaProcessada = new NFNotaProcessada();
+notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
+notaProcessada.setProtocolo(protocolo);
+notaProcessada.setNota(notaRecupearadaAssinada);
+// Obtenha o xml da nota com protocolo
+String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
+```
+
 ### Funcionalidades
 * Possui validação de campos a nível de código;
 * Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz;
