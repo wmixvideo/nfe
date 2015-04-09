@@ -49,7 +49,7 @@ final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 #### Corrige nota
 Faça a correcao da nota atraves do facade:
 ```java
-final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
+final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao, sequencialEventoDaNota);
 ```
 
 #### Cancela nota
