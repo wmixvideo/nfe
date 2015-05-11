@@ -73,8 +73,13 @@ String xmlGerado = lote.toString();
 ### Convertendo nota XML em Java
 Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
 ```java
-final NFNota nota = new NotaParser().paraObjeto(xmlNota);
+final NFNota nota = new NotaParser().notaParaObjeto(xmlNota);
 ```
+Ou para uma nota já processada:
+```java
+final NFNotaProcessada notaProcessada = new NotaParser().notaProcessadaParaObjeto(xmlNota);
+```
+
 
 ### Armazenando notas autorizadas
 Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
