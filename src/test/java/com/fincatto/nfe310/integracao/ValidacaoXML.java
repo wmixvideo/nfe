@@ -23,7 +23,7 @@ public class ValidacaoXML {
     @Ignore
     public void validaArquivos() throws Throwable {
         for (final File notaXML : TesteUtil.getArquivosParaTestes(new File(ValidacaoXML.DIRETORIO_XML_NOTAS))) {
-            Assert.assertEquals(TesteUtil.filepathToString(notaXML.getAbsolutePath()), new NotaParser().paraObjeto(notaXML).toString());
+            Assert.assertEquals(TesteUtil.filepathToString(notaXML.getAbsolutePath()), new NotaParser().notaParaObjeto(notaXML).toString());
         }
     }
 }

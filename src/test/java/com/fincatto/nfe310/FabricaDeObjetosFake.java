@@ -121,6 +121,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoTransportador;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoTransporte;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVolume;
+import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
 import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
@@ -371,6 +372,14 @@ public class FabricaDeObjetosFake {
         final NFNota nota = new NFNota();
         nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
         return nota;
+    }
+
+    public static NFNotaProcessada getNFNotaProcessada() {
+        final NFNotaProcessada notaProcessada = new NFNotaProcessada();
+        notaProcessada.setNota(FabricaDeObjetosFake.getNFNota1());
+        notaProcessada.setProtocolo(FabricaDeObjetosFake.getNFProtocolo());
+        notaProcessada.setVersao(new BigDecimal("3.10"));
+        return notaProcessada;
     }
 
     public static NFLoteEnvioRetornoRecebimentoInfo getNFLoteEnvioRetornoRecebimentoInfo() {
