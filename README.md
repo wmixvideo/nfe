@@ -95,7 +95,7 @@ final String xmlNotaRecuperada;
 // Assine a nota
 final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
 // Converta para objeto java
-final NFNota notaRecuperadaAssinada = new NotaParser().paraObjeto(xmlNota);
+final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNota);
 // Crie o objeto NFNotaProcessada
 final NFNotaProcessada notaProcessada = new NFNotaProcessada();
 notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
