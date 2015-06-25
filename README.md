@@ -123,7 +123,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Consulta cadastro | Estável             |
 
 ## Criação do Java KeyStore (JKS)
-Para usar os serviços da nota fiscal são necessarios dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
+Para usar os serviços da nota fiscal são necessários dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
 
 Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente). Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
 
