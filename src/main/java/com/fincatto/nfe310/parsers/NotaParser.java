@@ -7,7 +7,6 @@ import org.simpleframework.xml.core.Persister;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 
 public class NotaParser {
     private final Persister persister;
@@ -18,9 +17,7 @@ public class NotaParser {
 
     public NFNota notaParaObjeto(final File xml) {
         try {
-            final NFNota nota = this.persister.read(NFNota.class, xml);
-            XMLValidador.validaNota(nota.toString());
-            return nota;
+            return this.persister.read(NFNota.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -28,9 +25,7 @@ public class NotaParser {
 
     public NFNota notaParaObjeto(final String xml) {
         try {
-            final NFNota nota = this.persister.read(NFNota.class, xml);
-            XMLValidador.validaNota(nota.toString());
-            return nota;
+            return this.persister.read(NFNota.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
