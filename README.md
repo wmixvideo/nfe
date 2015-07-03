@@ -9,12 +9,12 @@ Ele deve ser utilizado apenas para tradução de notas antigas pois é prevista 
 faça a integração com o teu sistema com as classes contidas no pacote nfe310.<br/>
 <br/>
 Este é um projeto colaborativo, sinta-se a vontade em usar e colaborar com o mesmo.<br/>
-Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que 
+Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que
 garantam que a funcionalidade funciona como o esperado.
 
 ## Como usar
-Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados 
-digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a 
+Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados
+digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a
 comunicação com os webservices da Sefaz.
 
 ### Alguns exemplos
@@ -90,7 +90,7 @@ final String xmlNotaRecuperada;
 // Assine a nota
 final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
 // Converta para objeto java
-final NFNota notaRecuperadaAssinada = new NotaParser().paraObjeto(xmlNota);
+final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNota);
 // Crie o objeto NFNotaProcessada
 final NFNotaProcessada notaProcessada = new NFNotaProcessada();
 notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
@@ -138,7 +138,7 @@ Apache 2.0
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
 Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
-* [Fórum NFe](http://tecnoandroid.com.br/nfe/) 
+* [Fórum NFe](http://tecnoandroid.com.br/nfe/)
 
 ##Agradecimentos
 - [Edson Moretti](https://github.com/edsonmoretti): Criação e manutenção do forum
