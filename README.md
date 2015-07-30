@@ -5,7 +5,7 @@ Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/pri
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
-Ele deve ser utilizado apenas para tradução de notas antigas pois é prevista sua desativação em 31/03/2015, portanto,
+Ele deve ser utilizado apenas para tradução de notas antigas pois é foi desativado em 31/03/2015, portanto,
 faça a integração com o teu sistema com as classes contidas no pacote nfe310.<br/>
 <br/>
 Este é um projeto colaborativo, sinta-se a vontade em usar e colaborar com o mesmo.<br/>
