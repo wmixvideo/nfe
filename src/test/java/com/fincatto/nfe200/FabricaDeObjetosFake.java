@@ -47,6 +47,7 @@ import com.fincatto.nfe200.classes.nota.NFInfoCupomFiscalReferenciado;
 import com.fincatto.nfe200.classes.nota.NFInfoModelo1Por1AReferenciada;
 import com.fincatto.nfe200.classes.nota.NFInfoProdutorRuralReferenciada;
 import com.fincatto.nfe200.classes.nota.NFInfoReferenciada;
+import com.fincatto.nfe200.classes.nota.NFModelo;
 import com.fincatto.nfe200.classes.nota.NFNota;
 import com.fincatto.nfe200.classes.nota.NFNotaInfo;
 import com.fincatto.nfe200.classes.nota.NFNotaInfoAvulsa;
@@ -204,7 +205,7 @@ public class FabricaDeObjetosFake {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("55");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -362,7 +363,7 @@ public class FabricaDeObjetosFake {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("55");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);

@@ -57,7 +57,7 @@ class WSStatusConsulta {
         final NfeStatusServico2Stub.NfeDadosMsg dados = new NfeStatusServico2Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(unidadeFederativa);
+        final NFAutorizador31 autorizador = this.config.getAutorizador(unidadeFederativa);
         if (autorizador == null) {
             throw new IllegalStateException(String.format("Nao existe autorizador mapeado para este estado: %s", unidadeFederativa.getDescricao()));
         }
