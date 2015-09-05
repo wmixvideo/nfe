@@ -56,8 +56,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
 
     public NFRegistryMatcher() {
         super.bind(NFTipo.class, new NFTipoTransformer());
-        super.bind(NFModelo.NF_E.getClass(), new NFModeloTransformer());
-        super.bind(NFModelo.NFC_E.getClass(), new NFModeloTransformer());
+        super.bind(NFModelo.class, new NFModeloTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFAmbiente.class, new NFAmbienteTransformer());
         super.bind(LocalDate.class, new NFLocalDateTransformer());
