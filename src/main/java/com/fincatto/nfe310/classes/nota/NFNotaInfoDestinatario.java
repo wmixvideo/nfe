@@ -87,7 +87,9 @@ public class NFNotaInfoDestinatario extends NFBase {
     }
 
     public void setIdEstrangeiro(final String idEstrangeiro) {
-        StringValidador.tamanho5a20(idEstrangeiro);
+    	if (!idEstrangeiro.isEmpty()) { 
+    		StringValidador.tamanho5a20(idEstrangeiro);
+    	}
         this.idEstrangeiro = idEstrangeiro;
     }
 

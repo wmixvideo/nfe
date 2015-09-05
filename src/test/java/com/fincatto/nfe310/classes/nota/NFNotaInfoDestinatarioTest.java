@@ -186,6 +186,20 @@ public class NFNotaInfoDestinatarioTest {
         destinatario.setInscricaoMunicipal("5ow5E1mZQPe1VUR");
         destinatario.toString();
     }
+    
+    @Test
+    public void devePermitirIdEstrangeiroComTamanhoZero() {
+        final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
+        destinatario.setCnpj("12345678901234");
+        destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
+        destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        destinatario.setInscricaoEstadual("ISENTO");
+        destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
+        destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
+        destinatario.setInscricaoMunicipal("5ow5E1mZQPe1VUR");
+        destinatario.setIdEstrangeiro("");
+        destinatario.toString();
+    }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
