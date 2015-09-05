@@ -93,6 +93,9 @@ public class NFUnidadeFederativaTest {
 
         Assert.assertEquals("RFB", NFUnidadeFederativa.RFB.getCodigo());
         Assert.assertEquals("91", NFUnidadeFederativa.RFB.getCodigoIbge());
+        
+        Assert.assertEquals("EX", NFUnidadeFederativa.EX.getCodigo());
+        Assert.assertEquals("99", NFUnidadeFederativa.EX.getCodigoIbge());
     }
 
     @Test(expected = IllegalArgumentException.class)

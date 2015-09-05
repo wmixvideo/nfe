@@ -30,7 +30,8 @@ public enum NFUnidadeFederativa {
     SE("SE", "Sergipe", "28"),
     TO("TO", "Tocantins", "17"),
     NACIONAL("NC", "Nacional", "90"),
-    RFB("RFB", "RFB", "91");
+    RFB("RFB", "RFB", "91"),
+    EX("EX", "Exterior", "99");
 
     private final String codigo;
     private final String descricao;
