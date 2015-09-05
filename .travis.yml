@@ -8,8 +8,7 @@ jdk:
 notifications:
     email:
         recipients:
-            - jefperito@gmail.com
-            - diego+travisnfe@devmonsters.com
+            - falci.exe@gmail.com
         on_success: change
         on_failure: always
         
