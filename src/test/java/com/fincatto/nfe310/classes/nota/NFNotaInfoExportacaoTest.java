@@ -19,15 +19,7 @@ public class NFNotaInfoExportacaoTest {
         }
         Assert.fail("Validacao nao esta funcionando corretamente");
     }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirLocalDespachoNulo() {
-        final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
-        exportacao.setLocalEmbarqueProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
-        exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
-        exportacao.toString();
-    }
-
+    
     @Test(expected = IllegalStateException.class)
     public void naoDeveGerarXMLUfEmbarqueProdutoNulo() {
         final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
