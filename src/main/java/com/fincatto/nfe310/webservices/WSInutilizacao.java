@@ -11,7 +11,6 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
-import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
@@ -55,7 +54,7 @@ class WSInutilizacao {
         WSInutilizacao.LOG.debug(omElement);
         dados.setExtraElement(omElement);
 
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeInutilizacao(this.config.getAmbiente());
+        final String urlWebService = this.config.getAutorizador().getNfeInutilizacao(this.config.getAmbiente());
         final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService).nfeInutilizacaoNF2(dados, cabecalhoE);
         final OMElement dadosRetorno = nf2Result.getExtraElement();
         WSInutilizacao.LOG.debug(dadosRetorno);

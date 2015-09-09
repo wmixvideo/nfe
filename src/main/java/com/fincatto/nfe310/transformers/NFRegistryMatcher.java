@@ -9,6 +9,7 @@ import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
 import com.fincatto.nfe310.classes.NFModalidadeFrete;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
@@ -55,6 +56,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
 
     public NFRegistryMatcher() {
         super.bind(NFTipo.class, new NFTipoTransformer());
+        super.bind(NFModelo.class, new NFModeloTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFAmbiente.class, new NFAmbienteTransformer());
         super.bind(LocalDate.class, new NFLocalDateTransformer());

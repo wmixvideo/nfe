@@ -54,7 +54,7 @@ class WSConsultaCadastro {
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.setExtraElement(omElementConsulta);
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
+        final NFAutorizador31 autorizador = this.config.getAutorizador(uf);
         if (autorizador == null) {
             throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
         }

@@ -34,11 +34,13 @@ import com.fincatto.nfe200.classes.NFTipo;
 import com.fincatto.nfe200.classes.NFTipoEmissao;
 import com.fincatto.nfe200.classes.NFTipoImpressao;
 import com.fincatto.nfe200.classes.NFUnidadeFederativa;
+import com.fincatto.nfe200.classes.nota.NFModelo;
 
 public class NFRegistryMatcher extends RegistryMatcher {
 
     public NFRegistryMatcher() {
         super.bind(NFTipo.class, new NFTipoTransformer());
+        super.bind(NFModelo.class, new NFModeloTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFAmbiente.class, new NFAmbienteTransformer());
         super.bind(LocalDate.class, new NFLocalDateTransformer());

@@ -36,7 +36,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFFormaPagamento formaPagamento;
 
     @Element(name = "mod", required = true)
-    private String modelo;
+    private NFModelo modelo;
 
     @Element(name = "serie", required = true)
     private String serie;
@@ -107,8 +107,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.formaPagamento = formaPagamento;
     }
 
-    public void setModelo(final String modelo) {
-        StringValidador.exatamente2(modelo);
+    public void setModelo(final NFModelo modelo) {
         this.modelo = modelo;
     }
 
@@ -203,7 +202,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.formaPagamento;
     }
 
-    public String getModelo() {
+    public NFModelo getModelo() {
         return this.modelo;
     }
 

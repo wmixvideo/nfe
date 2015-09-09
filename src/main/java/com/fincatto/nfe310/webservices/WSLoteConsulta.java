@@ -11,7 +11,6 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -48,7 +47,7 @@ class WSLoteConsulta {
 
         final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
         dados.setExtraElement(omElement);
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(uf).getNfeRetAutorizacao(this.config.getAmbiente());
+        final String urlWebService = this.config.getAutorizador(uf).getNfeRetAutorizacao(this.config.getAmbiente());
         final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }

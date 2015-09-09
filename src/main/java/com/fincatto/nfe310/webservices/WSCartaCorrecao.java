@@ -16,7 +16,6 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
-import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
@@ -61,7 +60,7 @@ class WSCartaCorrecao {
         WSCartaCorrecao.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
 
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getRecepcaoEvento(this.config.getAmbiente());
+        final String urlWebService = this.config.getAutorizador().getRecepcaoEvento(this.config.getAmbiente());
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCartaCorrecao.LOG.debug(omElementResult.toString());

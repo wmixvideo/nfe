@@ -58,7 +58,8 @@ class WSCancelamento {
         WSCancelamento.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
 
-        final String urlWebService = NFAutorizador31.valueOfChaveAcesso(chaveAcesso).getRecepcaoEvento(this.config.getAmbiente());
+        final NFAutorizador31 autorizador = this.config.getAutorizador(chaveAcesso);
+		final String urlWebService = autorizador.getRecepcaoEvento(this.config.getAmbiente());
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCancelamento.LOG.debug(omElementResult.toString());

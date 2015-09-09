@@ -3,11 +3,11 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class NFAutorizador31Test {
+public class NFAutorizadorNFe31Test {
 
     @Test
     public void deveBuscarCorretamenteURLsWebServiceAM() {
-        final NFAutorizador31 autorizador = NFAutorizador31.AM;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.AM;
         Assert.assertEquals("https://homnfe.sefaz.am.gov.br/services2/services/cadconsultacadastro2", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homnfe.sefaz.am.gov.br/services2/services/NfeAutorizacao", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homnfe.sefaz.am.gov.br/services2/services/NfeConsulta2", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -27,7 +27,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceBA() {
-        final NFAutorizador31 autorizador = NFAutorizador31.BA;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.BA;
         Assert.assertEquals("https://hnfe.sefaz.ba.gov.br/webservices/nfenw/CadConsultaCadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.sefaz.ba.gov.br/webservices/NfeAutorizacao/NfeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.sefaz.ba.gov.br/webservices/NfeConsulta/NfeConsulta.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -47,7 +47,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceCE() {
-        final NFAutorizador31 autorizador = NFAutorizador31.CE;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.CE;
         Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe2/services/CadConsultaCadastro2?wsdl", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe2/services/NfeAutorizacao?wsdl", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe2/services/NfeConsulta2?wsdl", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -67,7 +67,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceGO() {
-        final NFAutorizador31 autorizador = NFAutorizador31.GO;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.GO;
         Assert.assertEquals("https://homolog.sefaz.go.gov.br/nfe/services/v2/CadConsultaCadastro2?wsdl", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeAutorizacao?wsdl", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeConsulta2?wsdl", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -87,7 +87,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceMG() {
-        final NFAutorizador31 autorizador = NFAutorizador31.MG;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.MG;
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/cadconsultacadastro2", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/NfeAutorizacao", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/NfeConsulta2", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -107,7 +107,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceMS() {
-        final NFAutorizador31 autorizador = NFAutorizador31.MS;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.MS;
         Assert.assertEquals("https://homologacao.nfe.ms.gov.br/homologacao/services2/CadConsultaCadastro2", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.ms.gov.br/homologacao/services2/NfeAutorizacao", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.ms.gov.br/homologacao/services2/NfeConsulta2", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -127,7 +127,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceMT() {
-        final NFAutorizador31 autorizador = NFAutorizador31.MT;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.MT;
         Assert.assertEquals("https://homologacao.sefaz.mt.gov.br/nfews/v2/services/CadConsultaCadastro2?wsdl", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.sefaz.mt.gov.br/nfews/v2/services/NfeAutorizacao?wsdl", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.sefaz.mt.gov.br/nfews/v2/services/NfeConsulta2?wsdl", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -147,7 +147,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServicePE() {
-        final NFAutorizador31 autorizador = NFAutorizador31.PE;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.PE;
         Assert.assertEquals("https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/NfeAutorizacao?wsdl", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/NfeConsulta2", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/NfeRetAutorizacao?wsdl", autorizador.getNfeRetAutorizacao(NFAmbiente.HOMOLOGACAO));
@@ -167,7 +167,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServicePR() {
-        final NFAutorizador31 autorizador = NFAutorizador31.PR;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.PR;
         Assert.assertEquals("https://homologacao.nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.fazenda.pr.gov.br/nfe/NFeAutorizacao3?wsdl", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.fazenda.pr.gov.br/nfe/NFeConsulta3?wsdl", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -188,7 +188,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceRS() {
-        final NFAutorizador31 autorizador = NFAutorizador31.RS;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.RS;
         Assert.assertEquals("https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/CadConsultaCadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -207,7 +207,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceSP() {
-        final NFAutorizador31 autorizador = NFAutorizador31.SP;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.SP;
         Assert.assertEquals("https://homologacao.nfe.fazenda.sp.gov.br/ws/cadconsultacadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.fazenda.sp.gov.br/ws/nfeautorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.fazenda.sp.gov.br/ws/nfeconsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
@@ -227,7 +227,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceSCAN() {
-        final NFAutorizador31 autorizador = NFAutorizador31.SCAN;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.SCAN;
         Assert.assertEquals("https://hom.svc.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hom.svc.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hom.svc.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.HOMOLOGACAO));
@@ -254,7 +254,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveBuscarCorretamenteURLWebServiceSVRS() {
-        final NFAutorizador31 autorizador = NFAutorizador31.SVRS;
+        final NFAutorizadorNFe31 autorizador = NFAutorizadorNFe31.SVRS;
         Assert.assertEquals("https://homologacao.sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx", autorizador.getConsultaCadastro(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));

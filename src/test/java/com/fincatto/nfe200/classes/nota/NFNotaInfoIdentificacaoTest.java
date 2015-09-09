@@ -80,15 +80,6 @@ public class NFNotaInfoIdentificacaoTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirModeloComTamanhoInvalido() {
-        try {
-            new NFNotaInfoIdentificacao().setModelo("A");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoIdentificacao().setModelo("qGY");
-        }
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDigitoVerificadorComTamanhoInvalido() {
         new NFNotaInfoIdentificacao().setDigitoVerificador(10);
     }
@@ -122,7 +113,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -149,7 +140,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -176,7 +167,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -203,7 +194,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -230,7 +221,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -257,7 +248,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -284,7 +275,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -311,7 +302,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -338,7 +329,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -393,7 +384,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
@@ -420,7 +411,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
@@ -447,7 +438,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
@@ -474,7 +465,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -501,7 +492,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -528,7 +519,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -555,7 +546,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -582,7 +573,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -609,7 +600,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -636,7 +627,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -663,7 +654,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -690,7 +681,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamento.A_PRAZO);
         identificacao.setHoraSaida(new LocalTime(12, 11, 10));
-        identificacao.setModelo("AA");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);

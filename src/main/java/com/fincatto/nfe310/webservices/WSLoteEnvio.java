@@ -41,7 +41,9 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
         WSLoteEnvio.LOG.info(omElement);
-        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
+        final NFAutorizador31 autorizador = this.config.getAutorizador(this.config.getCUF());
+        
+        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(autorizador.getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOG.info(loteEnvioRetorno.toString());

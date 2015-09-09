@@ -10,10 +10,12 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFEndereco;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
 import com.fincatto.nfe310.classes.NFModalidadeFrete;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
@@ -254,6 +256,16 @@ public class FabricaDeObjetosFake {
             public NFTipoEmissao getTipoEmissao() {
                 return null;
             }
+
+			@Override
+			public NFAutorizador31 getAutorizador(final NFUnidadeFederativa uf) {
+				return null;
+			}
+
+			@Override
+			public NFAutorizador31 getAutorizador(String chaveAcesso) {
+				return null;
+			}
         };
     }
 
@@ -312,7 +324,7 @@ public class FabricaDeObjetosFake {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo("55");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -489,7 +501,7 @@ public class FabricaDeObjetosFake {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo("55");
+        identificacao.setModelo(NFModelo.NF_E);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);

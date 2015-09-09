@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
@@ -24,4 +25,12 @@ public interface NFeConfig {
     public NFUnidadeFederativa getCUF();
 
     public NFTipoEmissao getTipoEmissao();
+
+	default NFAutorizador31 getAutorizador(){
+		return getAutorizador(getCUF());
+	}
+	
+	public NFAutorizador31 getAutorizador(final NFUnidadeFederativa uf);
+	
+	public NFAutorizador31 getAutorizador(final String chaveAcesso);
 }
