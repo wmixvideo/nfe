@@ -143,7 +143,7 @@ Apache 2.0
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
 Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
-* [Fórum NFe](http://tecnoandroid.com.br/nfe/)
+* [Fórum NFe](http://www.edsonmoretti.com.br/nfe/)
 
 ##Agradecimentos
 - [Edson Moretti](https://github.com/edsonmoretti): Criação e manutenção do forum
