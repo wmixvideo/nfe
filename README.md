@@ -137,7 +137,7 @@ Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
 Converter o arquivo .cer para jks utilizando keytool:
 * keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
 
-Caso o certificado esteja em formato p7b, você pode convertê-lo para cer com o seguinte comando:
+Caso o certificado esteja em formato p7b, você pode convertê-lo para cer utilizando o openssl para isso:
 * openssl pkcs7 -inform DER -outform PEM -in certificadoBaixadoDoSefaz.p7b -print_certs > certificadoGerado.cer
 
 ## Licença
