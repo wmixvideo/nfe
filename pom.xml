@@ -4,7 +4,7 @@
 	<groupId>com.fincatto</groupId>
 	<artifactId>nfe</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.7</version>
+	<version>1.0.7-SNAPSHOT</version>
 	<name>nfe</name>
 	<url>https://github.com/fincatto/nfe</url>
 
