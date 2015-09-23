@@ -5,7 +5,7 @@ Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/pri
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
-Ele deve ser utilizado apenas para tradução de notas antigas pois é prevista sua desativação em 31/03/2015, portanto,
+Ele deve ser utilizado apenas para tradução de notas antigas pois é foi desativado em 31/03/2015, portanto,
 faça a integração com o teu sistema com as classes contidas no pacote nfe310.<br/>
 <br/>
 Este é um projeto colaborativo, sinta-se a vontade em usar e colaborar com o mesmo.<br/>
@@ -49,7 +49,7 @@ final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 #### Corrige nota
 Faça a correcao da nota atraves do facade:
 ```java
-final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
+final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao, sequencialEventoDaNota);
 ```
 
 #### Cancela nota
@@ -73,8 +73,13 @@ String xmlGerado = lote.toString();
 ### Convertendo nota XML em Java
 Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
 ```java
-final NFNota nota = new NotaParser().paraObjeto(xmlNota);
+final NFNota nota = new NotaParser().notaParaObjeto(xmlNota);
 ```
+Ou para uma nota já processada:
+```java
+final NFNotaProcessada notaProcessada = new NotaParser().notaProcessadaParaObjeto(xmlNota);
+```
+
 
 ### Armazenando notas autorizadas
 Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
@@ -90,7 +95,7 @@ final String xmlNotaRecuperada;
 // Assine a nota
 final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
 // Converta para objeto java
-final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNota);
+final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNotaRecuperadaAssinada);
 // Crie o objeto NFNotaProcessada
 final NFNotaProcessada notaProcessada = new NFNotaProcessada();
 notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
@@ -118,7 +123,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Consulta cadastro | Estável             |
 
 ## Criação do Java KeyStore (JKS)
-Para usar os serviços da nota fiscal são necessarios dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
+Para usar os serviços da nota fiscal são necessários dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
 
 Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente). Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
 
@@ -138,7 +143,7 @@ Apache 2.0
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
 Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
-* [Fórum NFe](http://tecnoandroid.com.br/nfe/)
+* [Fórum NFe](http://www.edsonmoretti.com.br/nfe/)
 
 ##Agradecimentos
 - [Edson Moretti](https://github.com/edsonmoretti): Criação e manutenção do forum

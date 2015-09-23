@@ -1,6 +1,6 @@
 language: java
 before_script:
-  - echo 'America/Sao_Paulo' | sudo tee /etc/timezone
+  - export TZ=America/Sao_Paulo
 
 jdk:
   - oraclejdk8
@@ -12,3 +12,5 @@ notifications:
             - diego+travisnfe@devmonsters.com
         on_success: change
         on_failure: always
+        
+sudo: false
