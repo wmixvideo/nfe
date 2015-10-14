@@ -1,7 +1,7 @@
 Nota Fiscal Eletrônica
 ===
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
-[![Build Status](https://api.travis-ci.org/fincatto/nfe.png)](http://travis-ci.org/#!/fincatto/nfe)
+[![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
