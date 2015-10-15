@@ -12,5 +12,8 @@ notifications:
             - diego+travisnfe@devmonsters.com
         on_success: change
         on_failure: always
-        
+
 sudo: false
+
+after_success:
+  - mvn clean test jacoco:report coveralls:report
