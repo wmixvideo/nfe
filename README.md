@@ -28,8 +28,6 @@ comunicação com os webservices da Sefaz.
 public class ConfiguracaoSefaz implements NFeConfig {
 
     private final boolean ehAmbienteDeTeste;
-    private File certificado = null;
-    private File cadeiaCertificados = null;
 
     public ConfiguracaoSefaz(final boolean ehAmbienteDeTeste) {
         this.ehAmbienteDeTeste = ehAmbienteDeTeste;
