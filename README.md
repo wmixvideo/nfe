@@ -14,9 +14,53 @@ Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure
 garantam que a funcionalidade funciona como o esperado.
 
 ## Como usar
-Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados
+Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
 digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a
 comunicação com os webservices da Sefaz.
+
+```java
+// Exemplo de configuracao para acesso aos serviços da Sefaz.
+public class ConfiguracaoSefaz implements NFeConfig {
+
+    private final boolean ehAmbienteDeTeste;
+    private File certificado = null;
+    private File cadeiaCertificados = null;
+
+    public ConfiguracaoSefaz(final boolean ehAmbienteDeTeste) {
+        this.ehAmbienteDeTeste = ehAmbienteDeTeste;
+    }
+
+    @Override
+    public NFAmbiente getAmbiente() {
+        return this.ehAmbienteDeTeste ? NFAmbiente.HOMOLOGACAO : NFAmbiente.PRODUCAO;
+    }
+
+    @Override
+    public File getCertificado() throws IOException {
+        return new File("certificado.pfx");
+    }
+
+    @Override
+    public File getCadeiaCertificados() throws IOException {
+        return new File("cadeia_certificado.jks");
+    }
+
+    @Override
+    public String getCertificadoSenha() {
+        return "senhaDoCertificado";
+    }
+
+    @Override
+    public NFUnidadeFederativa getCUF() {
+        return NFUnidadeFederativa.SC;
+    }
+
+    @Override
+    public NFTipoEmissao getTipoEmissao() {
+        return NFTipoEmissao.EMISSAO_NORMAL;
+    }
+}
+```
 
 ### Alguns exemplos
 Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**.
