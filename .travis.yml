@@ -16,4 +16,4 @@ notifications:
 sudo: false
 
 after_success:
-  - mvn -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID clean cobertura:cobertura coveralls:report
+  - mvn clean cobertura:cobertura coveralls:report
