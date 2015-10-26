@@ -149,6 +149,7 @@
 			        <instrumentation>
 					    <excludes>
 					    	<exclude>com/fincatto/nfe200/**/*.class</exclude>
+					    	<exclude>com/fincatto/nfe310/webservices/gerado/*.class</exclude>
 					    </excludes>
 					</instrumentation>
 			    </configuration>
