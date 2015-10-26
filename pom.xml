@@ -146,6 +146,12 @@
 			        <format>xml</format>
 			        <maxmem>256m</maxmem>
 			        <aggregate>true</aggregate>
+			        <instrumentation>
+					    <ignores>
+					        <ignore>com.fincatto.nfe200.*</ignore>
+					        <ignore>com.fincatto.nfe310.webservices.gerado.*</ignore>
+					    </ignores>
+					</instrumentation>
 			    </configuration>
 			</plugin>
 			<plugin>
