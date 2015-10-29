@@ -23,4 +23,4 @@ env:
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
   - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>" > ~/settings.xml
-  - mvn deploy --settings ~/settings.xml
+  - mvn deploy -Dgpg.skip=true --settings ~/settings.xml
