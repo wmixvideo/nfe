@@ -22,7 +22,7 @@ env:
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
-  - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>" > ~/settings.xml
-  
+
 install: 
-  - mvn install -Dgpg.skip=true --settings ~/settings.xml
+  - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>" > ~/settings.xml
+  - mvn install -DskipTests=true -Dgpg.skip=true --settings ~/settings.xml
