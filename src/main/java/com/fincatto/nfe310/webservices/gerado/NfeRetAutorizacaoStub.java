@@ -1,6 +1,4 @@
-/**
- * NfeRetAutorizacaoStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
- */
+
 package com.fincatto.nfe310.webservices.gerado;
 
 import java.io.Serializable;
@@ -60,17 +58,10 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
     }
 
-    /**
-     * Constructor that takes in a configContext
-     */
-
     public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
 
-    /**
-     * Constructor that takes in a configContext and useseperate listner
-     */
     public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
@@ -86,36 +77,21 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
     }
 
-    /**
-     * Default Constructor
-     */
     public NfeRetAutorizacaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
 
         this(configurationContext, "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx");
 
     }
 
-    /**
-     * Default Constructor
-     */
     public NfeRetAutorizacaoStub() throws org.apache.axis2.AxisFault {
 
         this("https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx");
 
     }
 
-    /**
-     * Constructor taking the target endpoint
-     */
     public NfeRetAutorizacaoStub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
-
-    /**
-     * Auto generated method signature
-     * @see sefaz.NfeRetAutorizacao#nfeRetAutorizacaoLote
-     * @param nfeDadosMsg @param nfeCabecMsg
-     */
 
     public NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult nfeRetAutorizacaoLote(
 
@@ -219,9 +195,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
         }
     }
 
-    /**
-     * A utility method that copies the namepaces from the SOAPEnvelope
-     */
     private java.util.Map<String, String> getEnvelopeNamespaces(final org.apache.axiom.soap.SOAPEnvelope env) {
         final java.util.Map<String, String> returnMap = new java.util.HashMap<String, String>();
         @SuppressWarnings("rawtypes")
@@ -255,10 +228,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
          */
         private static final long serialVersionUID = 4741845686863523870L;
 
-        /**
-         * field for CUF
-         */
-
         protected java.lang.String localCUF;
 
         /*
@@ -270,28 +239,16 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return this.localCUFTracker;
         }
 
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
         public java.lang.String getCUF() {
             return this.localCUF;
         }
 
-        /**
-         * Auto generated setter method
-         * @param param CUF
-         */
         public void setCUF(final java.lang.String param) {
             this.localCUFTracker = param != null;
 
             this.localCUF = param;
 
         }
-
-        /**
-         * field for VersaoDados
-         */
 
         protected java.lang.String localVersaoDados;
 
@@ -304,18 +261,10 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return this.localVersaoDadosTracker;
         }
 
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
         public java.lang.String getVersaoDados() {
             return this.localVersaoDados;
         }
 
-        /**
-         * Auto generated setter method
-         * @param param VersaoDados
-         */
         public void setVersaoDados(final java.lang.String param) {
             this.localVersaoDadosTracker = param != null;
 
@@ -323,23 +272,12 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * field for ExtraAttributes This was an Attribute! This was an Array!
-         */
-
         protected org.apache.axiom.om.OMAttribute[] localExtraAttributes;
 
-        /**
-         * Auto generated getter method
-         * @return org.apache.axiom.om.OMAttribute[]
-         */
         public org.apache.axiom.om.OMAttribute[] getExtraAttributes() {
             return this.localExtraAttributes;
         }
 
-        /**
-         * validate the array for ExtraAttributes
-         */
         protected void validateExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
 
             if ((param != null) && (param.length > 1)) {
@@ -352,10 +290,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * Auto generated setter method
-         * @param param ExtraAttributes
-         */
         public void setExtraAttributes(final org.apache.axiom.om.OMAttribute[] param) {
 
             this.validateExtraAttributes(param);
@@ -363,10 +297,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             this.localExtraAttributes = param;
         }
 
-        /**
-         * Auto generated add method for the array for convenience
-         * @param param org.apache.axiom.om.OMAttribute
-         */
         public void addExtraAttributes(final org.apache.axiom.om.OMAttribute param) {
             if (this.localExtraAttributes == null) {
                 this.localExtraAttributes = new org.apache.axiom.om.OMAttribute[] {};
@@ -379,11 +309,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
@@ -468,9 +393,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
 
-        /**
-         * Utility method to write an element start tag.
-         */
         private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
             if (writerPrefix != null) {
@@ -488,9 +410,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
         private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
@@ -499,9 +418,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             xmlWriter.writeAttribute(namespace, attName, attValue);
         }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
         private void writeAttribute(final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
@@ -511,9 +427,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * Register a namespace prefix
-         */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
             if (prefix == null) {
@@ -532,9 +445,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        /**
-         * databinding method to get an XML representation of this object
-         */
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
@@ -568,14 +478,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * Factory class that keeps the parse method
-         */
         public static class Factory {
 
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
             public static NfeCabecMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeCabecMsg object = new NfeCabecMsg();
 
@@ -701,35 +605,18 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeCabecMsg", "");
 
-        /**
-         * field for NfeCabecMsg
-         */
-
         protected NfeCabecMsg localNfeCabecMsg;
 
-        /**
-         * Auto generated getter method
-         * @return NfeCabecMsg
-         */
         public NfeCabecMsg getNfeCabecMsg() {
             return this.localNfeCabecMsg;
         }
 
-        /**
-         * Auto generated setter method
-         * @param param NfeCabecMsg
-         */
         public void setNfeCabecMsg(final NfeCabecMsg param) {
 
             this.localNfeCabecMsg = param;
 
         }
 
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
@@ -755,9 +642,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * databinding method to get an XML representation of this object
-         */
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
@@ -766,14 +650,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * Factory class that keeps the parse method
-         */
         public static class Factory {
 
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
             public static NfeCabecMsgE parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeCabecMsgE object = new NfeCabecMsgE();
 
@@ -836,35 +714,18 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeDadosMsg", "");
 
-        /**
-         * field for ExtraElement
-         */
-
         protected org.apache.axiom.om.OMElement localExtraElement;
 
-        /**
-         * Auto generated getter method
-         * @return org.apache.axiom.om.OMElement
-         */
         public org.apache.axiom.om.OMElement getExtraElement() {
             return this.localExtraElement;
         }
 
-        /**
-         * Auto generated setter method
-         * @param param ExtraElement
-         */
         public void setExtraElement(final org.apache.axiom.om.OMElement param) {
 
             this.localExtraElement = param;
 
         }
 
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
@@ -916,9 +777,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
 
-        /**
-         * Utility method to write an element start tag.
-         */
         private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
             if (writerPrefix != null) {
@@ -936,9 +794,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
         private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
@@ -947,9 +802,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             xmlWriter.writeAttribute(namespace, attName, attValue);
         }
 
-        /**
-         * Register a namespace prefix
-         */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
             if (prefix == null) {
@@ -968,9 +820,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        /**
-         * databinding method to get an XML representation of this object
-         */
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
@@ -988,14 +837,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * Factory class that keeps the parse method
-         */
         public static class Factory {
 
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
             public static NfeDadosMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeDadosMsg object = new NfeDadosMsg();
 
@@ -1079,35 +922,18 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLoteResult", "");
 
-        /**
-         * field for ExtraElement
-         */
-
         protected org.apache.axiom.om.OMElement localExtraElement;
 
-        /**
-         * Auto generated getter method
-         * @return org.apache.axiom.om.OMElement
-         */
         public org.apache.axiom.om.OMElement getExtraElement() {
             return this.localExtraElement;
         }
 
-        /**
-         * Auto generated setter method
-         * @param param ExtraElement
-         */
         public void setExtraElement(final org.apache.axiom.om.OMElement param) {
 
             this.localExtraElement = param;
 
         }
 
-        /**
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
 
@@ -1159,9 +985,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
 
-        /**
-         * Utility method to write an element start tag.
-         */
         private void writeStartElement(java.lang.String prefix, final java.lang.String namespace, final java.lang.String localPart, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             final java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
             if (writerPrefix != null) {
@@ -1179,9 +1002,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
         private void writeAttribute(final java.lang.String prefix, final java.lang.String namespace, final java.lang.String attName, final java.lang.String attValue, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
@@ -1190,9 +1010,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             xmlWriter.writeAttribute(namespace, attName, attValue);
         }
 
-        /**
-         * Register a namespace prefix
-         */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
             if (prefix == null) {
@@ -1211,9 +1028,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        /**
-         * databinding method to get an XML representation of this object
-         */
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
@@ -1231,14 +1045,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
         }
 
-        /**
-         * Factory class that keeps the parse method
-         */
         public static class Factory {
 
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
             public static NfeRetAutorizacaoLoteResult parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeRetAutorizacaoLoteResult object = new NfeRetAutorizacaoLoteResult();
                 try {
