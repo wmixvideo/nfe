@@ -5,6 +5,7 @@
 	<packaging>jar</packaging>
 	<version>1.0.20-SNAPSHOT</version>
 	<name>nfe</name>
+	<description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
 	<url>https://github.com/wmixvideo/nfe</url>
 
 	<licenses>
@@ -19,8 +20,8 @@
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
     	<developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,6 +30,24 @@
 		<joda.version>2.4</joda.version>
 		<junit.version>4.11</junit.version>
 	</properties>
+
+	<developers>
+        <developer>
+	        <id>jefperito</id>
+	        <name>Jeferson Viana Perito</name>
+	        <url>https://github.com/jefperito</url>
+        </developer>
+        <developer>
+	        <id>fincatto</id>
+	        <name>Diego Fincatto</name>
+	        <url>https://github.com/fincatto</url>
+        </developer>
+        <developer>
+	        <id>flppsilva</id>
+	        <name>Felippe Silva</name>
+	        <url>https://github.com/flppsilva</url>
+        </developer>
+    </developers>
 
 	<dependencies>
 
