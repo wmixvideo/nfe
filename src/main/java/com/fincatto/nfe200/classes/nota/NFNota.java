@@ -27,9 +27,6 @@ public class NFNota extends NFBase {
         return this.info;
     }
 
-    /**
-     * Utilizado para identificacao interna do sistema
-     */
     public void setIdentificadorLocal(final long identificadorLocal) {
         this.identificadorLocal = identificadorLocal;
     }
