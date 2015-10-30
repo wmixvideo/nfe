@@ -3,7 +3,7 @@
 	<groupId>com.github.wmixvideo</groupId>
 	<artifactId>nfe</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.19-SNAPSHOT</version>
+	<version>1.0.19</version>
 	<name>nfe</name>
 	<url>https://github.com/wmixvideo/nfe</url>
 
@@ -19,7 +19,7 @@
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
     	<developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>nfe-1.0.19</tag>
   </scm>
 
 	<properties>
