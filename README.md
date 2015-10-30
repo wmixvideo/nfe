@@ -18,6 +18,16 @@ Antes de começar a implementar, é altamente recomendável a leitura da documen
 
 Caso não possua conhecimento técnico para criar notas fiscais, um profissional da área (como um contador) pode lhe auxiliar.
 
+## Instalação
+
+```xml
+<dependency>
+  <groupId>com.github.wmixvideo</groupId>
+  <artifactId>nfe</artifactId>
+  <version>1.0.23</version>
+</dependency>
+```
+
 ## Como usar
 Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
 digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a
