@@ -4,16 +4,6 @@ Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/pri
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
 
-## Instalação
-
-```xml
-<dependency>
-  <groupId>com.github.wmixvideo</groupId>
-  <artifactId>nfe</artifactId>
-  <version>1.0.23</version>
-</dependency>
-```
-
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
 Ele deve ser utilizado apenas para tradução de notas antigas pois foi desativado em 31/03/2015. Portanto,
@@ -27,6 +17,16 @@ garantam que a funcionalidade funciona como o esperado.
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
 
 Caso não possua conhecimento técnico para criar notas fiscais, um profissional da área (como um contador) pode lhe auxiliar.
+
+## Instalação
+
+```xml
+<dependency>
+  <groupId>com.github.wmixvideo</groupId>
+  <artifactId>nfe</artifactId>
+  <version>1.0.23</version>
+</dependency>
+```
 
 ## Como usar
 Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
