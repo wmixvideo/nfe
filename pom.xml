@@ -3,7 +3,7 @@
 	<groupId>com.github.wmixvideo</groupId>
 	<artifactId>nfe</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.15-SNAPSHOT</version>
+	<version>1.0.18-SNAPSHOT</version>
 	<name>nfe</name>
 	<url>https://github.com/wmixvideo/nfe</url>
 
@@ -28,7 +28,6 @@
 		<axis2.version>1.6.2</axis2.version>
 		<joda.version>2.4</joda.version>
 		<junit.version>4.11</junit.version>
-		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 	</properties>
 
 	<dependencies>
@@ -202,29 +201,16 @@
 		        </executions>
 		    </plugin>
 		    <plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <executions>
-			        <execution>
-			            <id>attach-javadocs</id>
-			            <goals>
-			                <goal>jar</goal>
-			            </goals>
-			            <configuration> <!-- add this to disable checking -->
-			                <additionalparam>-Xdoclint:none</additionalparam>
-			            </configuration>
-			        </execution>
-			    </executions>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-release-plugin</artifactId>
+			    <version>2.5</version>
+			    <configuration>
+			        <autoVersionSubmodules>true</autoVersionSubmodules>
+			        <useReleaseProfile>false</useReleaseProfile>
+			        <releaseProfiles>release</releaseProfiles>
+			        <goals>deploy</goals>
+			    </configuration>
 			</plugin>
 		</plugins>
-		<pluginManagement>
-		  <plugins>
-		    <plugin>
-		      <groupId>org.apache.maven.plugins</groupId>
-		      <artifactId>maven-javadoc-plugin</artifactId>
-		      <version>2.10.3</version>
-		    </plugin>
-		  </plugins>
-		</pluginManagement>
 	</build>
 </project>
