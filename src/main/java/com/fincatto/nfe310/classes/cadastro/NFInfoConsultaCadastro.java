@@ -13,7 +13,7 @@ public class NFInfoConsultaCadastro extends NFBase {
     @Element(name = "UF", required = true)
     private String uf;
 
-    @Element(name = "IE", required = false)
+    @Element(name = "IE", required = true)
     private String inscricaoEstadual;
 
     @Element(name = "CNPJ", required = false)
@@ -51,6 +51,10 @@ public class NFInfoConsultaCadastro extends NFBase {
     }
 
     public void setCnpj(final String cnpj) {
+        if (this.cpf != null) {
+            throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
+        }
+
         StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -60,6 +64,11 @@ public class NFInfoConsultaCadastro extends NFBase {
     }
 
     public void setCpf(final String cpf) {
+        if (this.cnpj != null) {
+            throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
+        }
+
+        StringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 }
