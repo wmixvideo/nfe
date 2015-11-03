@@ -178,6 +178,8 @@
 						<excludes>
 							<exclude>com/fincatto/nfe200/**/*.class</exclude>
 							<exclude>com/fincatto/nfe310/webservices/gerado/*.class</exclude>
+							<exclude>com/fincatto/nfe310/webservices/nota/consulta/*.class</exclude>
+							<exclude>com/fincatto/nfe310/webservices/statusservico/consulta/*.class</exclude>
 						</excludes>
 					</instrumentation>
 				</configuration>
