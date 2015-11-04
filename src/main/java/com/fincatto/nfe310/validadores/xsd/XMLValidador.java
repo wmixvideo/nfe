@@ -7,10 +7,7 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-public class XMLValidador {
-
-    private XMLValidador() {
-    }
+public final class XMLValidador {
 
     private static boolean validaXml(final String xml, final String xsd) throws Exception {
         final URL xsdPath = XMLValidador.class.getResource(String.format("schemas/%s", xsd));
