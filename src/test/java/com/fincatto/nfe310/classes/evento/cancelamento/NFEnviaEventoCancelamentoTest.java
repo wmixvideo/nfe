@@ -3,6 +3,7 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,30 @@ public class NFEnviaEventoCancelamentoTest {
         final BigDecimal versao = new BigDecimal("3.10");
         eventoCancelamento.setVersao(versao);
         Assert.assertEquals(versao.toString(), eventoCancelamento.getVersao());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirIdLoteInvalidoVazio() {
+        new NFEnviaEventoCancelamento().setIdLote("");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirIdLoteInvalidoComLetra() {
+        new NFEnviaEventoCancelamento().setIdLote("12345678901234A");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirIdLoteInvalidoComTamanhoExtrapolado() {
+        new NFEnviaEventoCancelamento().setIdLote("1234567890123456");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirTamanhoInvalidoDeEventos() {
+        final List<NFEventoCancelamento> eventos = new ArrayList<>();
+        for (int i = 0; i < 21; i++) {
+            eventos.add(new NFEventoCancelamento());
+        }
+        new NFEnviaEventoCancelamento().setEvento(eventos);
     }
 
     @Test(expected = IllegalStateException.class)
