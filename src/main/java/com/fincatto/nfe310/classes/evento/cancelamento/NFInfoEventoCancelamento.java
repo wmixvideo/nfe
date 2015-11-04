@@ -118,9 +118,9 @@ public class NFInfoEventoCancelamento extends NFBase {
         return this.codigoEvento;
     }
 
-    public void setTipoEvento(final String tipoEvento) {
-        StringValidador.exatamente6N(tipoEvento);
-        this.codigoEvento = tipoEvento;
+    public void setCodigoEvento(final String codigoEvento) {
+        StringValidador.exatamente6N(codigoEvento);
+        this.codigoEvento = codigoEvento;
     }
 
     public int getNumeroSequencialEvento() {
@@ -146,9 +146,5 @@ public class NFInfoEventoCancelamento extends NFBase {
 
     public NFUnidadeFederativa getOrgao() {
         return this.orgao;
-    }
-
-    public void setCodigoEvento(final String codigoEvento) {
-        this.codigoEvento = codigoEvento;
     }
 }

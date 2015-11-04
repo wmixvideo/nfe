@@ -42,6 +42,9 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
 import com.fincatto.nfe310.classes.evento.NFTipoEvento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
@@ -140,6 +143,39 @@ public class FabricaDeObjetosFake {
         impostoDevolvido.setInformacaoIPIDevolvido(FabricaDeObjetosFake.getNFInformacaoImpostoDevolvido());
         impostoDevolvido.setPercentualDevolucao(new BigDecimal("100"));
         return impostoDevolvido;
+    }
+
+    public static NFEventoCancelamento getNFEventoCancelamento() {
+        final NFEventoCancelamento eventoCancelamento = new NFEventoCancelamento();
+        eventoCancelamento.setVersao(new BigDecimal("3.10"));
+        eventoCancelamento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamento());
+        return eventoCancelamento;
+    }
+
+    public static NFInfoEventoCancelamento getNFInfoEventoCancelamento() {
+        final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
+        infoEventoCancelamento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEventoCancelamento.setCancelamento(FabricaDeObjetosFake.getNFInfoCancelamento());
+        infoEventoCancelamento.setChave("81568004734874930428983724940883089298523837");
+        infoEventoCancelamento.setCnpj("12345678901234");
+        infoEventoCancelamento.setCodigoEvento("123456");
+        infoEventoCancelamento.setDataHoraEvento(new LocalDateTime(2014, 01, 01, 10, 10, 10));
+        infoEventoCancelamento.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
+        infoEventoCancelamento.setNumeroSequencialEvento(2);
+        infoEventoCancelamento.setOrgao(NFUnidadeFederativa.SC);
+        infoEventoCancelamento.setCodigoEvento("123456");
+        infoEventoCancelamento.setVersaoEvento(new BigDecimal("2.49"));
+        return infoEventoCancelamento;
+    }
+
+    public static NFInfoCancelamento getNFInfoCancelamento() {
+        final NFInfoCancelamento infoCancelamento = new NFInfoCancelamento();
+        infoCancelamento.setDescricaoEvento("Cancelamento");
+        infoCancelamento.setProtocoloAutorizacao("123456789012345");
+        infoCancelamento.setVersao(new BigDecimal("3.10"));
+        infoCancelamento.setJustificativa("Justificativa qualquer coisa");
+
+        return infoCancelamento;
     }
 
     public static NFEventoCancelamentoDados getNFEventoCancelamentoDados() {
