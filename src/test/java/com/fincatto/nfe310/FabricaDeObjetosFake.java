@@ -79,6 +79,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoISSQNTotal;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoInformacoesAdicionais;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItem;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoItemDetalheExportacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemExportacaoIndireta;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImposto;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINS;
@@ -674,6 +675,13 @@ public class FabricaDeObjetosFake {
         endereco.setTelefone("12345678901324");
         endereco.setUf(NFUnidadeFederativa.RS);
         return endereco;
+    }
+
+    public static NFNotaInfoItemDetalheExportacao getNFNotaInfoItemDetalheExportacao() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
+        detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        return detalheExportacao;
     }
 
     public static NFNotaInfoItemProduto getNFNotaInfoItemProduto() {
