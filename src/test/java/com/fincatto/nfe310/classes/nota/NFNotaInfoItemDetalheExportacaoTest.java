@@ -15,6 +15,22 @@ public class NFNotaInfoItemDetalheExportacaoTest {
     }
 
     @Test
+    public void deveObterNumeroAtoConcessorioDrawbackComoFoiSetado() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        final BigInteger numeroAtoConcessorioDrawback = new BigInteger("99999999999");
+        detalheExportacao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
+        Assert.assertEquals(numeroAtoConcessorioDrawback, detalheExportacao.getAtoConcessorioDrawback());
+    }
+
+    @Test
+    public void deveObterExportacaoIndiretaComoFoiSetado() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        final NFNotaInfoItemExportacaoIndireta itemExportacaoIndireta = FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta();
+        detalheExportacao.setExportacaoIndireta(itemExportacaoIndireta);
+        Assert.assertEquals(itemExportacaoIndireta, detalheExportacao.getExportacaoIndireta());
+    }
+
+    @Test
     public void devePermitirExportacaoIndiretaNulo() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
         detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
