@@ -29,4 +29,14 @@ public class NFInfoCancelamento extends NFTipoEvento {
     public String getProtocoloAutorizacao() {
         return this.protocoloAutorizacao;
     }
+
+    @Override
+    public void setCondicaoUso(final String condicaoUso) {
+        throw new UnsupportedOperationException("Evento de cancelamento nao possui condicao de uso");
+    }
+
+    @Override
+    public void setTextoCorrecao(final String textoCorrecao) {
+        throw new UnsupportedOperationException("Evento de cancelamento nao possui texto de correcao");
+    }
 }
