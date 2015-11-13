@@ -82,6 +82,7 @@
 					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerInutNFe" use="required"/>
 	</xs:complexType>
@@ -167,6 +168,7 @@
 					<xs:attribute name="Id" type="xs:ID" use="optional"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerInutNFe" use="required"/>
 	</xs:complexType>

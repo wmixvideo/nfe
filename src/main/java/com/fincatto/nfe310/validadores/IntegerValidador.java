@@ -39,10 +39,6 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 100000, 999999);
     }
 
-    public static void tamanho2ou3(final Integer valor) {
-        IntegerValidador.intervalo(valor, 10, 999);
-    }
-
     public static void tamanho2a4(final Integer valor) {
         IntegerValidador.intervalo(valor, 10, 9999);
     }

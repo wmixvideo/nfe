@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PL_008  - 30/07/2013 - Nova versão nacional 3.10 (NT 2013/005), Resolução 13: FCI (NT 2013/006) -->
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by softwares@procergs.rs.gov.br (PROCERGS) -->
+<!-- PL_008g  alterações de esquema decorrentes da - NT2015.002  - 15/07/2015 -->
+<!-- PL_008h  alterações de esquema decorrentes da - NT2015.003 - 17/09/2015 -->
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
 	<xs:include schemaLocation="tiposBasico_v3.10.xsd"/>
@@ -404,7 +406,7 @@ para tpEmis diferente de 1</xs:documentation>
 														<xs:sequence>
 															<xs:element name="mod">
 																<xs:annotation>
-																	<xs:documentation>Código do modelo do Documento Fiscal 
+																	<xs:documentation>Código do modelo do Documento Fiscal
 Preencher com "2B", quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com "2C", quando se tratar de Cupom Fiscal PDV, ou "2D", quando se tratar de Cupom Fiscal (emitido por ECF)</xs:documentation>
 																</xs:annotation>
 																<xs:simpleType>
@@ -531,7 +533,7 @@ Preencher com "2B", quando se tratar de Cupom Fiscal emitido por máquina regist
 									</xs:sequence>
 									<xs:element name="CRT">
 										<xs:annotation>
-											<xs:documentation>Código de Regime Tributário. 
+											<xs:documentation>Código de Regime Tributário.
 Este campo será obrigatoriamente preenchido com:
 1 – Simples Nacional;
 2 – Simples Nacional – excesso de sublimite de receita bruta;
@@ -851,6 +853,18 @@ Formato ”CFOP9999”.</xs:documentation>
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
+												<xs:element name="CEST" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Codigo especificador da Substuicao Tributaria - CEST, que identifica a mercadoria sujeita aos regimes de  substituicao tributária e de antecipação do recolhimento  do imposto
+														</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:whiteSpace value="preserve"/>
+															<xs:pattern value="[0-9]{7}"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
 												<xs:element name="EXTIPI" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Código EX TIPI (3 posições)</xs:documentation>
@@ -1022,6 +1036,8 @@ Formato ”CFOP9999”.</xs:documentation>
 																		<xs:enumeration value="8"/>
 																		<xs:enumeration value="9"/>
 																		<xs:enumeration value="10"/>
+																		<xs:enumeration value="11"/>
+																		<xs:enumeration value="12"/>
 																	</xs:restriction>
 																</xs:simpleType>
 															</xs:element>
@@ -1032,7 +1048,7 @@ Formato ”CFOP9999”.</xs:documentation>
 															</xs:element>
 															<xs:element name="tpIntermedio">
 																<xs:annotation>
-																	<xs:documentation>Forma de Importação quanto a intermediação 
+																	<xs:documentation>Forma de Importação quanto a intermediação
 																	1-por conta propria;2-por conta e ordem;3-encomenda</xs:documentation>
 																</xs:annotation>
 																<xs:simpleType>
@@ -1454,7 +1470,7 @@ N-NormalVIN </xs:documentation>
 																</xs:element>
 																<xs:element name="cCorDENATRAN">
 																	<xs:annotation>
-																		<xs:documentation>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA 
+																		<xs:documentation>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA
 08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
@@ -1665,6 +1681,58 @@ ambiente.</xs:documentation>
 																		</xs:sequence>
 																	</xs:complexType>
 																</xs:element>
+																<xs:element name="encerrante" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Informações do grupo de "encerrante"</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="nBico">
+																				<xs:annotation>
+																					<xs:documentation>Numero de identificação do Bico utilizado no abastecimento</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:whiteSpace value="preserve"/>
+																						<xs:pattern value="[0-9]{1,3}"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="nBomba" minOccurs="0">
+																				<xs:annotation>
+																					<xs:documentation>Numero de identificação da bomba ao qual o bico está interligado</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:whiteSpace value="preserve"/>
+																						<xs:pattern value="[0-9]{1,3}"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="nTanque">
+																				<xs:annotation>
+																					<xs:documentation>Numero de identificação do tanque ao qual o bico está interligado</xs:documentation>
+																				</xs:annotation>
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:whiteSpace value="preserve"/>
+																						<xs:pattern value="[0-9]{1,3}"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="vEncIni" type="TDec_1203">
+																				<xs:annotation>
+																					<xs:documentation>Valor do Encerrante no ínicio do abastecimento</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																			<xs:element name="vEncFin" type="TDec_1203">
+																				<xs:annotation>
+																					<xs:documentation>Valor do Encerrante no final do abastecimento</xs:documentation>
+																				</xs:annotation>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
 															</xs:sequence>
 														</xs:complexType>
 													</xs:element>
@@ -1712,9 +1780,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -1776,9 +1844,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -1885,9 +1953,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -1976,9 +2044,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2070,26 +2138,26 @@ ambiente.</xs:documentation>
 																	<xs:element name="ICMS40">
 																		<xs:annotation>
 																			<xs:documentation>Tributação pelo ICMS
-40 - Isenta 
-41 - Não tributada 
+40 - Isenta
+41 - Não tributada
 50 - Suspensão  </xs:documentation>
 																		</xs:annotation>
 																		<xs:complexType>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
-40 - Isenta 
-41 - Não tributada 
-50 - Suspensão 
+																						<xs:documentation>Tributação pelo ICMS
+40 - Isenta
+41 - Não tributada
+50 - Suspensão
 51 - Diferimento </xs:documentation>
 																					</xs:annotation>
 																					<xs:simpleType>
@@ -2120,7 +2188,9 @@ Informar o motivo da desoneração:
 8 - Venda a órgão Público;
 9 – Outros
 10- Deficiente Condutor
-11- Deficiente não condutor</xs:documentation>
+11- Deficiente não condutor
+16 - Olimpíadas Rio 2016
+							</xs:documentation>
 																						</xs:annotation>
 																						<xs:simpleType>
 																							<xs:restriction base="xs:string">
@@ -2135,6 +2205,7 @@ Informar o motivo da desoneração:
 																								<xs:enumeration value="9"/>
 																								<xs:enumeration value="10"/>
 																								<xs:enumeration value="11"/>
+																								<xs:enumeration value="16"/>
 																							</xs:restriction>
 																						</xs:simpleType>
 																					</xs:element>
@@ -2152,9 +2223,9 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2235,15 +2306,15 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
+																						<xs:documentation>Tributação pelo ICMS
 60 - ICMS cobrado anteriormente por substituição tributária </xs:documentation>
 																					</xs:annotation>
 																					<xs:simpleType>
@@ -2273,16 +2344,16 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																	</xs:element>
 																	<xs:element name="ICMS70">
 																		<xs:annotation>
-																			<xs:documentation>Tributação pelo ICMS 
+																			<xs:documentation>Tributação pelo ICMS
 70 - Com redução de base de cálculo e cobrança do ICMS por substituição tributária </xs:documentation>
 																		</xs:annotation>
 																		<xs:complexType>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2418,9 +2489,9 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2439,7 +2510,7 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																				<xs:sequence minOccurs="0">
 																					<xs:element name="modBC">
 																						<xs:annotation>
-																							<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																							<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -2560,15 +2631,15 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
+																						<xs:documentation>Tributação pelo ICMS
 10 - Tributada e com cobrança do ICMS por substituição tributária;
 90 – Outros.</xs:documentation>
 																					</xs:annotation>
@@ -2582,7 +2653,7 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																				</xs:element>
 																				<xs:element name="modBC">
 																					<xs:annotation>
-																						<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																						<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -2686,9 +2757,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2735,9 +2806,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 (v2.0)</xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2773,15 +2844,15 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 (v2.0)</xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CSOSN">
 																					<xs:annotation>
-																						<xs:documentation>102- Tributada pelo Simples Nacional sem permissão de crédito. 
+																						<xs:documentation>102- Tributada pelo Simples Nacional sem permissão de crédito.
 103 – Isenção do ICMS  no Simples Nacional para faixa de receita bruta.
 300 – Imune.
 400 – Não tributda pelo Simples Nacional (v.2.0) (v.2.0)</xs:documentation>
@@ -2969,9 +3040,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -3013,9 +3084,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -3033,7 +3104,7 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																				<xs:sequence minOccurs="0">
 																					<xs:element name="modBC">
 																						<xs:annotation>
-																							<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																							<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -3816,6 +3887,55 @@ Substituição Tributaria;</xs:documentation>
 														</xs:sequence>
 													</xs:complexType>
 												</xs:element>
+												<xs:element name="ICMSUFDest" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Grupo a ser informado nas vendas interestarduais para consumidor final, não contribuinte de ICMS</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="vBCUFDest" type="TDec_1302">
+																<xs:annotation>
+																	<xs:documentation>Valor da Base de Cálculo do ICMS na UF do destinatário. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="pFCPUFDest" type="TDec_0302a04">
+																<xs:annotation>
+																	<xs:documentation>Percentual adicional inserido na alíquota interna da UF de destino, relativo ao Fundo de Combate à Pobreza (FCP) naquela UF. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="pICMSUFDest" type="TDec_0302a04">
+																<xs:annotation>
+																	<xs:documentation>Alíquota adotada nas operações internas na UF do destinatário para o produto / mercadoria.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="pICMSInter" type="TDec_0302a04">
+																<xs:annotation>
+																	<xs:documentation>Alíquota interestadual das UF envolvidas: - 4% alíquota interestadual para produtos importados; - 7% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; - 12% para os demais casos.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="pICMSInterPart" type="TDec_0302a04">
+																<xs:annotation>
+																	<xs:documentation>Percentual de partilha para a UF do destinatário: - 40% em 2016; - 60% em 2017; - 80% em 2018; - 100% a partir de 2019.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vFCPUFDest" type="TDec_1302">
+																<xs:annotation>
+																	<xs:documentation>Valor do ICMS relativo ao Fundo de Combate à Pobreza (FCP) da UF de destino.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vICMSUFDest" type="TDec_1302">
+																<xs:annotation>
+																	<xs:documentation>Valor do ICMS de partilha para a UF do destinatário. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vICMSUFRemet" type="TDec_1302">
+																<xs:annotation>
+																	<xs:documentation>Valor do ICMS de partilha para a UF do remetente. Nota: A partir de 2019, este valor será zero.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
@@ -3894,6 +4014,21 @@ Substituição Tributaria;</xs:documentation>
 												<xs:element name="vICMSDeson" type="TDec_1302">
 													<xs:annotation>
 														<xs:documentation>Valor Total do ICMS desonerado</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="vFCPUFDest" type="TDec_1302" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Valor total do ICMS relativo ao Fundo de Combate à Pobreza (FCP) para a UF de destino.</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="vICMSUFDest" type="TDec_1302" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Valor total do ICMS de partilha para a UF do destinatário</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="vICMSUFRemet" type="TDec_1302" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Valor total do ICMS de partilha para a UF do remetente</xs:documentation>
 													</xs:annotation>
 												</xs:element>
 												<xs:element name="vBCST" type="TDec_1302">
@@ -4448,12 +4583,27 @@ Substituição Tributaria;</xs:documentation>
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="CNPJ" type="TCnpj">
+												<xs:element name="tpIntegra" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/
+																1=Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico
+																2=Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS
+														</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:whiteSpace value="preserve"/>
+															<xs:enumeration value="1"/>
+															<xs:enumeration value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="CNPJ" type="TCnpj" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>CNPJ da credenciadora de cartão de crédito/débito</xs:documentation>
 													</xs:annotation>
 												</xs:element>
-												<xs:element name="tBand">
+												<xs:element name="tBand" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Bandeira da operadora de cartão de crédito/débito:01–Visa; 02–Mastercard; 03–American Express; 04–Sorocred; 99–Outros</xs:documentation>
 													</xs:annotation>
@@ -4468,7 +4618,7 @@ Substituição Tributaria;</xs:documentation>
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>
-												<xs:element name="cAut">
+												<xs:element name="cAut" minOccurs="0">
 													<xs:annotation>
 														<xs:documentation>Número de autorização da operação cartão de crédito/débito</xs:documentation>
 													</xs:annotation>
@@ -4826,6 +4976,28 @@ concessório</xs:documentation>
 					<xs:field xpath="@nItem"/>
 				</xs:unique>
 			</xs:element>
+			<xs:element name="infNFeSupl" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Informações suplementares Nota Fiscal</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="qrCode">
+							<xs:annotation>
+								<xs:documentation>Texto com o QR-Code impresso no DANFE NFC-e</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="preserve"/>
+									<xs:minLength value="100"/>
+									<xs:maxLength value="600"/>
+									<xs:pattern value="((HTTPS?|https?)://.*\?chNFe=[0-9]{44}&amp;nVersao=[0-9]{3}&amp;tpAmb=[1-2](&amp;cDest=([A-Za-z0-9.:+-/)(]{0}|[A-Za-z0-9.:+-/)(]{5,20})?)?&amp;dhEmi=[A-Fa-f0-9]{50}&amp;vNF=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&amp;vICMS=(0|0\.[0-9]{2}|[1-9]{1}[0-9]{0,12}(\.[0-9]{2})?)&amp;digVal=[A-Fa-f0-9]{56}&amp;cIdToken=[0-9]{6}&amp;cHashQRCode=[A-Fa-f0-9]{40})"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TProtNFe">
@@ -4885,6 +5057,7 @@ concessório</xs:documentation>
 					<xs:attribute name="Id" type="xs:ID" use="optional"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerNFe" use="required"/>
 	</xs:complexType>
@@ -5042,7 +5215,7 @@ concessório</xs:documentation>
 			<xs:sequence minOccurs="0">
 				<xs:element name="cMsg">
 					<xs:annotation>
-						<xs:documentation>Código da Mensagem (v2.0) 
+						<xs:documentation>Código da Mensagem (v2.0)
 alterado para tamanho variavel 1-4. (NT2011/004)</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
@@ -6806,7 +6979,7 @@ alterado para tamanho variavel 1-4. (NT2011/004)</xs:documentation>
 	</xs:simpleType>
 	<xs:simpleType name="TFinNFe">
 		<xs:annotation>
-			<xs:documentation>Tipo Finalidade da NF-e (!=Normal; 2=Complementar; 3=Ajuste; 4=Devolução/Retorno)</xs:documentation>
+			<xs:documentation>Tipo Finalidade da NF-e (1=Normal; 2=Complementar; 3=Ajuste; 4=Devolução/Retorno)</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:whiteSpace value="preserve"/>

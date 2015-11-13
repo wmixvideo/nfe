@@ -79,6 +79,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoISSQNTotal;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoInformacoesAdicionais;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItem;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoItemDetalheExportacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemExportacaoIndireta;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImposto;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINS;
@@ -384,7 +385,7 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produtoMedicamento.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
-        produtoMedicamento.setExtipi(999);
+        produtoMedicamento.setExtipi("999");
         produtoMedicamento.setNcm("99999999");
         produtoMedicamento.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produtoMedicamento.setNumeroPedidoItemCliente(999999);
@@ -676,6 +677,13 @@ public class FabricaDeObjetosFake {
         return endereco;
     }
 
+    public static NFNotaInfoItemDetalheExportacao getNFNotaInfoItemDetalheExportacao() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
+        detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        return detalheExportacao;
+    }
+
     public static NFNotaInfoItemProduto getNFNotaInfoItemProduto() {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
         produto.setCfop("1302");
@@ -685,7 +693,8 @@ public class FabricaDeObjetosFake {
         produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
-        produto.setExtipi(999);
+        produto.setExtipi("999");
+        produto.setCodigoEspecificadorSituacaoTributaria("9999999");
         produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
         produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");

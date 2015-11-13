@@ -3,8 +3,6 @@ package com.fincatto.nfe310.validadores;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.validadores.StringValidador;
-
 public class StringValidadorTest {
 
     @Test
@@ -37,6 +35,28 @@ public class StringValidadorTest {
             StringValidador.tamanho60("");
         }
         Assert.fail("Validacao falhou");
+    }
+
+    @Test
+    public void deveValidarTamanho2ou3N() {
+        StringValidador.tamanho2ou3N("01");
+        StringValidador.tamanho2ou3N("999");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNaoNumerosParaTamanho2ou3N() {
+        StringValidador.tamanho2ou3N("0N");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirExtrapolarTamanho2ou3N() {
+        try {
+            StringValidador.tamanho2ou3N("9");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.tamanho2ou3N("1000");
+            Assert.fail();
+        }
     }
 
     @Test

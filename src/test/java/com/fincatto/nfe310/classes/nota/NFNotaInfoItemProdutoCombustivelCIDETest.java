@@ -49,6 +49,27 @@ public class NFNotaInfoItemProdutoCombustivelCIDETest {
     }
 
     @Test
+    public void deveObterValorAliquotaComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setValorAliquota(new BigDecimal("9999999999.9999"));
+        Assert.assertEquals("9999999999.9999", cide.getValorAliquota());
+    }
+
+    @Test
+    public void deveObterValorComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setValor(new BigDecimal("999999999999.99"));
+        Assert.assertEquals("999999999999.99", cide.getValor());
+    }
+
+    @Test
+    public void deveObterQuantidadeBCCIDEComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setQuantidadeBCCIDE(new BigDecimal("99999999999.9999"));
+        Assert.assertEquals("99999999999.9999", cide.getQuantidadeBCCIDE());
+    }
+
+    @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemProdutoCombustivelCIDE><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vCIDE>999999999999.99</vCIDE></NFNotaInfoItemProdutoCombustivelCIDE>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivelCIDE().toString());
