@@ -36,6 +36,9 @@ public class NFNotaInfoItemImposto extends NFBase {
     @Element(name = "COFINSST", required = false)
     private NFNotaInfoItemImpostoCOFINSST cofinsst;
 
+    @Element(name = "ICMSUFDest", required = false)
+    private NFNotaaInfoItemImpostoICMSUFDestino icmsUfDestino;
+
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
         if (this.issqn != null) {
             throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
@@ -118,5 +121,13 @@ public class NFNotaInfoItemImposto extends NFBase {
 
     public NFNotaInfoItemImpostoCOFINSST getCofinsst() {
         return this.cofinsst;
+    }
+
+    public NFNotaaInfoItemImpostoICMSUFDestino getIcmsUfDestino() {
+        return icmsUfDestino;
+    }
+
+    public void setIcmsUfDestino(NFNotaaInfoItemImpostoICMSUFDestino icmsUfDestino) {
+        this.icmsUfDestino = icmsUfDestino;
     }
 }

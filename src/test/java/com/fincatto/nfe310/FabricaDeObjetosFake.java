@@ -126,6 +126,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoTransporte;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
+import com.fincatto.nfe310.classes.nota.NFNotaaInfoItemImpostoICMSUFDestino;
 import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
@@ -144,6 +145,19 @@ public class FabricaDeObjetosFake {
         impostoDevolvido.setInformacaoIPIDevolvido(FabricaDeObjetosFake.getNFInformacaoImpostoDevolvido());
         impostoDevolvido.setPercentualDevolucao(new BigDecimal("100"));
         return impostoDevolvido;
+    }
+
+    public static NFNotaaInfoItemImpostoICMSUFDestino getNFNotaaInfoItemImpostoICMSUFDestino() {
+        final NFNotaaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaaInfoItemImpostoICMSUFDestino();
+        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
+        return icmsUFDestino;
     }
 
     public static NFEventoCancelamento getNFEventoCancelamento() {
@@ -723,6 +737,7 @@ public class FabricaDeObjetosFake {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         return imposto;
     }
@@ -1036,6 +1051,9 @@ public class FabricaDeObjetosFake {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
         return icmsTotal;
     }
 
