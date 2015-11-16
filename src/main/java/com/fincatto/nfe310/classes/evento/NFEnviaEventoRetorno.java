@@ -69,4 +69,36 @@ public class NFEnviaEventoRetorno extends NFBase {
     public List<NFEventoRetorno> getEventoRetorno() {
         return this.eventoRetorno;
     }
+
+    public void setVersao(final String versao) {
+        this.versao = versao;
+    }
+
+    public void setIdLote(final String idLote) {
+        this.idLote = idLote;
+    }
+
+    public void setAmbiente(final NFAmbiente ambiente) {
+        this.ambiente = ambiente;
+    }
+
+    public void setVersaoAplicativo(final String versaoAplicativo) {
+        this.versaoAplicativo = versaoAplicativo;
+    }
+
+    public void setOrgao(final NFUnidadeFederativa orgao) {
+        this.orgao = orgao;
+    }
+
+    public void setCodigoStatusReposta(final Integer codigoStatusReposta) {
+        this.codigoStatusReposta = codigoStatusReposta;
+    }
+
+    public void setMotivo(final String motivo) {
+        this.motivo = motivo;
+    }
+
+    public void setEventoRetorno(final List<NFEventoRetorno> eventoRetorno) {
+        this.eventoRetorno = eventoRetorno;
+    }
 }
