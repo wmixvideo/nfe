@@ -18,12 +18,12 @@ public class NFProtocoloEvento extends NFBase {
     @Element(name = "retEvento", required = true)
     private NFEventoRetorno eventoRetorno;
 
-    public NFEvento getEventoCartaCorrecao() {
+    public NFEvento getEvento() {
         return this.evento;
     }
 
-    public void setEventoCartaCorrecao(final NFEvento eventoCartaCorrecao) {
-        this.evento = eventoCartaCorrecao;
+    public void setEvento(final NFEvento evento) {
+        this.evento = evento;
     }
 
     public NFEventoRetorno getInfoEventoRetorno() {
