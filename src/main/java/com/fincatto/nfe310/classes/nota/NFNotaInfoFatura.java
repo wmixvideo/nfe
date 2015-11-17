@@ -42,24 +42,12 @@ public class NFNotaInfoFatura extends NFBase {
         return this.valorOriginalFatura;
     }
 
-    public void setValorOriginalFatura(final String valorOriginalFatura) {
-        this.valorOriginalFatura = valorOriginalFatura;
-    }
-
     public String getValorDesconto() {
         return this.valorDesconto;
     }
 
-    public void setValorDesconto(final String valorDesconto) {
-        this.valorDesconto = valorDesconto;
-    }
-
     public String getValorLiquidoFatura() {
         return this.valorLiquidoFatura;
-    }
-
-    public void setValorLiquidoFatura(final String valorLiquidoFatura) {
-        this.valorLiquidoFatura = valorLiquidoFatura;
     }
 
     public String getNumeroFatura() {

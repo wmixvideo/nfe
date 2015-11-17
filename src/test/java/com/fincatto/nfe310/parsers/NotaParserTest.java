@@ -30,4 +30,24 @@ public class NotaParserTest {
     public void deveParsearCorretamenteArquivoDaNotaProcessada310() {
         Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(new File(NotaParserTest.class.getResource("notaprocessada.xml").getFile())));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmArquivoInvalidoParaNotaProcessada() {
+        new NotaParser().notaProcessadaParaObjeto(new File(""));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmArquivoInvalidoParaNota() {
+        new NotaParser().notaParaObjeto(new File(""));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaNotaProcessada() {
+        new NotaParser().notaProcessadaParaObjeto("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaNota() {
+        new NotaParser().notaParaObjeto("");
+    }
 }

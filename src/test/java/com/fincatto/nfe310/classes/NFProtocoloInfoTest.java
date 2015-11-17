@@ -12,6 +12,70 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 public class NFProtocoloInfoTest {
 
     @Test
+    public void deveObterIdentificadorComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String identificador = "ID798456123";
+        protocoloInfo.setIdentificador(identificador);
+        Assert.assertEquals(identificador, protocoloInfo.getIdentificador());
+    }
+
+    @Test
+    public void deveObterVersaoAplicacaoComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String versaoAplicacao = "3.10";
+        protocoloInfo.setVersaoAplicacao(versaoAplicacao);
+        Assert.assertEquals(versaoAplicacao, protocoloInfo.getVersaoAplicacao());
+    }
+
+    @Test
+    public void deveObterAmbienteComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
+        protocoloInfo.setAmbiente(ambiente);
+        Assert.assertEquals(ambiente, protocoloInfo.getAmbiente());
+    }
+
+    @Test
+    public void deveObterChaveComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String chave = "27453083767543876731879602388114613152665633";
+        protocoloInfo.setChave(chave);
+        Assert.assertEquals(chave, protocoloInfo.getChave());
+    }
+
+    @Test
+    public void deveObterMotivoComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String motivo = "Autorizado o seu uso";
+        protocoloInfo.setMotivo(motivo);
+        Assert.assertEquals(motivo, protocoloInfo.getMotivo());
+    }
+
+    @Test
+    public void deveObterValidadorComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String validador = "validador";
+        protocoloInfo.setValidador(validador);
+        Assert.assertEquals(validador, protocoloInfo.getValidador());
+    }
+
+    @Test
+    public void deveObterNumeroProtocoloComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String numeroProtocolo = "123456789";
+        protocoloInfo.setNumeroProtocolo(numeroProtocolo);
+        Assert.assertEquals(numeroProtocolo, protocoloInfo.getNumeroProtocolo());
+    }
+
+    @Test
+    public void deveObterStatusComoFoiSetado() {
+        final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
+        final String status = "100";
+        protocoloInfo.setStatus(status);
+        Assert.assertEquals(status, protocoloInfo.getStatus());
+    }
+
+    @Test
     public void deveFormatarDataComOuSemTimeZone() throws Exception {
         final LocalDateTime formatoAntigo = LocalDateTime.parse("2015-01-01T10:20:30", DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
         final LocalDateTime formatoNovo = LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse("2015-01-01T10:20:30-05:00"));
