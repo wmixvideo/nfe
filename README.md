@@ -3,6 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.0.23-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.0.23|)
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
