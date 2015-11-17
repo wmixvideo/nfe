@@ -114,4 +114,64 @@ public class NFInfoEventoRetorno extends NFBase {
     public String getNumeroProtocolo() {
         return this.numeroProtocolo;
     }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    public void setAmbiente(final NFAmbiente ambiente) {
+        this.ambiente = ambiente;
+    }
+
+    public void setVersaoAplicativo(final String versaoAplicativo) {
+        this.versaoAplicativo = versaoAplicativo;
+    }
+
+    public void setOrgao(final NFUnidadeFederativa orgao) {
+        this.orgao = orgao;
+    }
+
+    public void setCodigoStatus(final Integer codigoStatus) {
+        this.codigoStatus = codigoStatus;
+    }
+
+    public void setMotivo(final String motivo) {
+        this.motivo = motivo;
+    }
+
+    public void setChave(final String chave) {
+        this.chave = chave;
+    }
+
+    public void setTipoEvento(final String tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+
+    public void setDescricaoEvento(final String descricaoEvento) {
+        this.descricaoEvento = descricaoEvento;
+    }
+
+    public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
+        this.numeroSequencialEvento = numeroSequencialEvento;
+    }
+
+    public void setCpnj(final String cpnj) {
+        this.cpnj = cpnj;
+    }
+
+    public void setCpf(final String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public void setDataHoraRegistro(final LocalDateTime dataHoraRegistro) {
+        this.dataHoraRegistro = dataHoraRegistro;
+    }
+
+    public void setNumeroProtocolo(final String numeroProtocolo) {
+        this.numeroProtocolo = numeroProtocolo;
+    }
 }

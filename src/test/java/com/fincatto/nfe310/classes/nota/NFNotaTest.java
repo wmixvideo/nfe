@@ -4,8 +4,33 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 
 public class NFNotaTest {
+
+    @Test
+    public void deveObterAssinaturaComoFoiObtida() {
+        final NFNota nota = new NFNota();
+        final NFSignature assinatura = new NFSignature();
+        nota.setAssinatura(assinatura);
+        Assert.assertEquals(assinatura, nota.getAssinatura());
+    }
+
+    @Test
+    public void deveObterIdentificadorLocalComoFoiObtida() {
+        final NFNota nota = new NFNota();
+        final int identificadorLocal = 123456;
+        nota.setIdentificadorLocal(identificadorLocal);
+        Assert.assertEquals(identificadorLocal, nota.getIdentificadorLocal(), 0);
+    }
+
+    @Test
+    public void deveObterInfoComoFoiSetado() {
+        final NFNota nota = new NFNota();
+        final NFNotaInfo notaInfo = FabricaDeObjetosFake.getNFNotaInfo();
+        nota.setInfo(notaInfo);
+        Assert.assertEquals(notaInfo, nota.getInfo());
+    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirInfoNulo() {
