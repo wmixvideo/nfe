@@ -1,14 +1,15 @@
 package com.fincatto.nfe310.validadores;
 
-import java.math.BigDecimal;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores15Com2CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho15Com2CasasDecimais(null));
         Assert.assertEquals("0.01", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal(".01")));
         Assert.assertEquals("5.00", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("5")));
         Assert.assertEquals("100.00", BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("100")));
@@ -18,6 +19,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores15Com3CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho15Com3CasasDecimais(null));
         Assert.assertEquals("0.001", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal(".001")));
         Assert.assertEquals("5.000", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("5")));
         Assert.assertEquals("100.000", BigDecimalParser.tamanho15Com3CasasDecimais(new BigDecimal("100")));
@@ -27,6 +29,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores15Com4CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho15Com4CasasDecimais(null));
         Assert.assertEquals("9999999999.9999", BigDecimalParser.tamanho15Com4CasasDecimais(new BigDecimal("9999999999.9999")));
         Assert.assertEquals("0.1000", BigDecimalParser.tamanho15Com4CasasDecimais(new BigDecimal("0.1")));
         Assert.assertEquals("0.0001", BigDecimalParser.tamanho15Com4CasasDecimais(new BigDecimal("0.0001")));
@@ -35,6 +38,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores22ComAte10CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho21ComAte10CasasDecimais(null));
         Assert.assertEquals("9999999999.9999999999", BigDecimalParser.tamanho21ComAte10CasasDecimais(new BigDecimal("9999999999.9999999999")));
         Assert.assertEquals("1", BigDecimalParser.tamanho21ComAte10CasasDecimais(new BigDecimal("1")));
         Assert.assertEquals("0.1", BigDecimalParser.tamanho21ComAte10CasasDecimais(new BigDecimal("0.1")));
@@ -43,6 +47,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores16ComAte4CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho16ComAte4CasasDecimais(null));
         Assert.assertEquals("99999999999.9999", BigDecimalParser.tamanho16ComAte4CasasDecimais(new BigDecimal("99999999999.9999")));
         Assert.assertEquals("0.0001", BigDecimalParser.tamanho16ComAte4CasasDecimais(new BigDecimal("0.0001")));
         Assert.assertEquals("0.1", BigDecimalParser.tamanho16ComAte4CasasDecimais(new BigDecimal("0.1")));
@@ -51,6 +56,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores5Com2CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho5Com2CasasDecimais(null));
         Assert.assertEquals("99.99", BigDecimalParser.tamanho5Com2CasasDecimais(new BigDecimal("99.99")));
         Assert.assertEquals("0.01", BigDecimalParser.tamanho5Com2CasasDecimais(new BigDecimal("0.01")));
         Assert.assertEquals("0.10", BigDecimalParser.tamanho5Com2CasasDecimais(new BigDecimal("0.1")));
@@ -60,6 +66,7 @@ public class BigDecimalParserTest {
 
     @Test
     public void devePermitirValores15ComAte4CasasDecimais() {
+        Assert.assertNull(BigDecimalParser.tamanho15comAte4CasasDecimais(null));
         Assert.assertEquals("9999999999.9999", BigDecimalParser.tamanho15comAte4CasasDecimais(new BigDecimal("9999999999.9999")));
         Assert.assertEquals("9999999999.9", BigDecimalParser.tamanho15comAte4CasasDecimais(new BigDecimal("9999999999.9")));
         Assert.assertEquals("9999999999", BigDecimalParser.tamanho15comAte4CasasDecimais(new BigDecimal("9999999999")));

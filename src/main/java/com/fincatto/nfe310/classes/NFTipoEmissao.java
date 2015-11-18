@@ -14,7 +14,7 @@ public enum NFTipoEmissao {
     private final String codigo;
     private final String descricao;
 
-    private NFTipoEmissao(final String codigo, final String descricao) {
+    NFTipoEmissao(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
