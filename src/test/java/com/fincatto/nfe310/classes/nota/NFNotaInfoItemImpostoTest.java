@@ -76,7 +76,7 @@ public class NFNotaInfoItemImpostoTest {
     @Test
     public void deveObterIcmsUfDestinoComoFoiSetado() {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
-        final NFNotaaInfoItemImpostoICMSUFDestino icmsUfDestino = FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino();
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino = FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino();
         imposto.setIcmsUfDestino(icmsUfDestino);
         Assert.assertEquals(icmsUfDestino, imposto.getIcmsUfDestino());
     }

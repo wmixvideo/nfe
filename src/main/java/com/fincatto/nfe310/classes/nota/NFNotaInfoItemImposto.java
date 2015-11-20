@@ -37,7 +37,7 @@ public class NFNotaInfoItemImposto extends NFBase {
     private NFNotaInfoItemImpostoCOFINSST cofinsst;
 
     @Element(name = "ICMSUFDest", required = false)
-    private NFNotaaInfoItemImpostoICMSUFDestino icmsUfDestino;
+    private NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino;
 
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
         if (this.issqn != null) {
@@ -123,11 +123,11 @@ public class NFNotaInfoItemImposto extends NFBase {
         return this.cofinsst;
     }
 
-    public NFNotaaInfoItemImpostoICMSUFDestino getIcmsUfDestino() {
+    public NFNotaInfoItemImpostoICMSUFDestino getIcmsUfDestino() {
         return icmsUfDestino;
     }
 
-    public void setIcmsUfDestino(NFNotaaInfoItemImpostoICMSUFDestino icmsUfDestino) {
+    public void setIcmsUfDestino(NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
     }
 }

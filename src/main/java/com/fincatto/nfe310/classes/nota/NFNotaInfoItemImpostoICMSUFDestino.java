@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
-public class NFNotaaInfoItemImpostoICMSUFDestino extends NFBase {
+public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     @Element(name = "vBCUFDest", required = true)
     private String valorBaseCalculoDestino;
 
