@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 
-public class NFNotaaInfoItemImpostoICMSUFDestinoTest {
+public class NFNotaInfoItemImpostoICMSUFDestinoTest {
 
     @Test
     public void deveObterPercentualAliquotaInternaDestinoComoFoiSetado() {
