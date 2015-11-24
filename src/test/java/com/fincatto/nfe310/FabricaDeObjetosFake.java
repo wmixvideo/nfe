@@ -126,7 +126,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoTransporte;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVeiculo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVolume;
 import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
-import com.fincatto.nfe310.classes.nota.NFNotaaInfoItemImpostoICMSUFDestino;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSUFDestino;
 import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
@@ -147,8 +147,8 @@ public class FabricaDeObjetosFake {
         return impostoDevolvido;
     }
 
-    public static NFNotaaInfoItemImpostoICMSUFDestino getNFNotaaInfoItemImpostoICMSUFDestino() {
-        final NFNotaaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaaInfoItemImpostoICMSUFDestino();
+    public static NFNotaInfoItemImpostoICMSUFDestino getNFNotaaInfoItemImpostoICMSUFDestino() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
         icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
