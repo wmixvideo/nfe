@@ -26,9 +26,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<axis2.version>1.6.2</axis2.version>
-		<joda.version>2.4</joda.version>
-		<junit.version>4.11</junit.version>
+		<axis2.version>1.6.3</axis2.version>
+		<joda.version>2.9.1</joda.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<developers>
@@ -55,14 +55,14 @@
 		<dependency>
 			<groupId>org.simpleframework</groupId>
 			<artifactId>simple-xml</artifactId>
-			<version>2.7</version>
+			<version>2.7.1</version>
 		</dependency>
 
 		<!-- Commons Lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<version>3.4</version>
 		</dependency>
 
 		<!-- Commons IO -->
