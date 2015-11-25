@@ -377,7 +377,7 @@ public class FabricaDeObjetosFake {
         identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
-        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.CONSUMIDOR_FINAL);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
         info.setIdentificacao(identificacao);
         nota.setInfo(info);
@@ -554,7 +554,7 @@ public class FabricaDeObjetosFake {
         identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
-        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.CONSUMIDOR_FINAL);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
         return identificacao;
     }
