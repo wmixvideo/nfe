@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
+import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
     @Element(name = "vServ", required = true)
@@ -25,7 +26,7 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
     private Integer cfop;
 
     @Element(name = "cMunFG", required = true)
-    private Integer codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
+    private String codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
 
     public void setValorServico(final BigDecimal valorServico) {
         this.valorServico = BigDecimalParser.tamanho15Com2CasasDecimais(valorServico);
@@ -48,8 +49,8 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
         this.cfop = cfop;
     }
 
-    public void setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(final Integer codigoMunicioOcorrenciaFatoGeradorICMSTransporte) {
-        IntegerValidador.tamanho7(codigoMunicioOcorrenciaFatoGeradorICMSTransporte);
+    public void setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(final String codigoMunicioOcorrenciaFatoGeradorICMSTransporte) {
+        StringValidador.exatamente7N(codigoMunicioOcorrenciaFatoGeradorICMSTransporte);
         this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte = codigoMunicioOcorrenciaFatoGeradorICMSTransporte;
     }
 
@@ -73,7 +74,7 @@ public class NFNotaInfoRetencaoICMSTransporte extends NFBase {
         return this.cfop;
     }
 
-    public Integer getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte() {
+    public String getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte() {
         return this.codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
     }
 }

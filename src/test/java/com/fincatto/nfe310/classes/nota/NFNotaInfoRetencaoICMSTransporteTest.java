@@ -49,14 +49,14 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         new NFNotaInfoRetencaoICMSTransporte().setValorServico(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoMunicipioOcorrenciaFatoGeradorICMSTransporteInvalido() {
-        new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(10000000);
+        new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("10000000");
     }
 
     @Test
     public void devePermitirCodigoMunicipioOcorrenciaFatoGeradorICMSTransporteValido() {
-        new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        new NFNotaInfoRetencaoICMSTransporte().setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
     }
 
     @Test(expected = NumberFormatException.class)
@@ -75,7 +75,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setCfop(5351);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
     }
@@ -86,7 +86,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setCfop(5351);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
     }
@@ -107,7 +107,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
@@ -118,7 +118,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setCfop(5351);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();
@@ -129,7 +129,7 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
         final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setCfop(5351);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.toString();

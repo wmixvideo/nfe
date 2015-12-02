@@ -1,5 +1,7 @@
 package com.fincatto.nfe310.classes;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -203,6 +205,7 @@ public class NFAutorizador31Test {
         Assert.assertEquals("https://nfe.sefazrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.sefazrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx", autorizador.getNfeStatusServico(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx", autorizador.getNfeInutilizacao(NFAmbiente.PRODUCAO));
     }
 
     @Test
@@ -252,6 +255,16 @@ public class NFAutorizador31Test {
         }
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void deveLancarExcecaoCasoTenteObterServicoIndisponivelSCAN() {
+        NFAutorizador31.SCAN.getConsultaCadastro(NFAmbiente.HOMOLOGACAO);
+    }
+
+    @Test
+    public void naoDeveTerUFsAtreladaAoSCAN() {
+        Assert.assertArrayEquals(new NFUnidadeFederativa[] {}, NFAutorizador31.SCAN.getUFs());
+    }
+
     @Test
     public void deveBuscarCorretamenteURLWebServiceSVRS() {
         final NFAutorizador31 autorizador = NFAutorizador31.SVRS;
@@ -270,5 +283,55 @@ public class NFAutorizador31Test {
         Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx", autorizador.getNfeStatusServico(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx", autorizador.getNfeInutilizacao(NFAmbiente.PRODUCAO));
+    }
+
+    @Test
+    public void deveBuscarCorretamenteURLWebServiceSVAN() {
+        final NFAutorizador31 autorizador = NFAutorizador31.SVAN;
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx", autorizador.getNfeStatusServico(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hom.sefazvirtual.fazenda.gov.br/NfeInutilizacao2/NfeInutilizacao2.asmx", autorizador.getNfeInutilizacao(NFAmbiente.HOMOLOGACAO));
+
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx", autorizador.getNfeAutorizacao(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx", autorizador.getNfeConsultaProtocolo(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx", autorizador.getNfeStatusServico(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.sefazvirtual.fazenda.gov.br/NfeInutilizacao2/NfeInutilizacao2.asmx", autorizador.getNfeInutilizacao(NFAmbiente.PRODUCAO));
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void deveLancarExcecaoCasoTenteObterServicoIndisponivelSVAN() {
+        NFAutorizador31.SVAN.getConsultaCadastro(NFAmbiente.HOMOLOGACAO);
+    }
+
+    @Test
+    public void deveObterAsFederacoesQueSVANEhResponsavel() {
+        Assert.assertTrue(Arrays.deepEquals(NFAutorizador31.SVAN.getUFs(), new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI }));
+    }
+
+    @Test
+    public void deveObterAutorizadorPelaUF() {
+        Assert.assertEquals(NFAutorizador31.SVRS, NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.AC));
+        Assert.assertEquals(NFAutorizador31.SVRS, NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.SC));
+        Assert.assertEquals(NFAutorizador31.SP, NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.SP));
+    }
+
+    @Test
+    public void deveObterNullCasoPasseUmaUFInvalida() {
+        Assert.assertNull(NFAutorizador31.valueOfCodigoUF(null));
+    }
+
+    @Test
+    public void deveObterAutorizadorDeChaveDeAcessoNFe() {
+        Assert.assertEquals(NFAutorizador31.SVRS, NFAutorizador31.valueOfChaveAcesso("42306447535430986810252619468905605824735937"));
+    }
+
+    @Test
+    public void deveObterSCANCasoEstejaEmContigencia() {
+        Assert.assertEquals(NFAutorizador31.SCAN, NFAutorizador31.valueOfChaveAcesso("42306447535430986810259129468905605824735937"));
     }
 }
