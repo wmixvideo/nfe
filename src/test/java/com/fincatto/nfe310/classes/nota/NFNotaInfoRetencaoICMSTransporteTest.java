@@ -136,6 +136,50 @@ public class NFNotaInfoRetencaoICMSTransporteTest {
     }
 
     @Test
+    public void deveObterAliquotaRetencaoComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        retencaoICMSTransporte.setAliquotaRetencao(BigDecimal.ONE);
+        Assert.assertEquals("1.00", retencaoICMSTransporte.getAliquotaRetencao());
+    }
+
+    @Test
+    public void deveObterBcRetencaoICMSComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        retencaoICMSTransporte.setBcRetencaoICMS(BigDecimal.ONE);
+        Assert.assertEquals("1.00", retencaoICMSTransporte.getBcRetencaoICMS());
+    }
+
+    @Test
+    public void deveObterCfopComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        retencaoICMSTransporte.setCfop(193);
+        Assert.assertEquals(193, retencaoICMSTransporte.getCfop(), 0);
+    }
+
+    @Test
+    public void deveObterCodigoMunicioOcorrenciaFatoGeradorICMSTransporteComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        final String codigoMunicioOcorrenciaFatoGeradorICMSTransporte = "9876541";
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(codigoMunicioOcorrenciaFatoGeradorICMSTransporte);
+        Assert.assertEquals(codigoMunicioOcorrenciaFatoGeradorICMSTransporte, retencaoICMSTransporte.getCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte());
+    }
+
+    @Test
+    public void deveObterValorICMSRetidoComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        retencaoICMSTransporte.setValorICMSRetido(BigDecimal.TEN);
+        Assert.assertEquals("10.00", retencaoICMSTransporte.getValorICMSRetido());
+    }
+
+    @Test
+    public void deveObterValorServicoComoFoiSetado() {
+        final NFNotaInfoRetencaoICMSTransporte retencaoICMSTransporte = new NFNotaInfoRetencaoICMSTransporte();
+        final String valorServico = "100.00";
+        retencaoICMSTransporte.setValorServico(new BigDecimal(valorServico));
+        Assert.assertEquals(valorServico, retencaoICMSTransporte.getValorServico());
+    }
+
+    @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoRetencaoICMSTransporte><vServ>999999999999.99</vServ><vBCRet>999999999999.99</vBCRet><pICMSRet>99.99</pICMSRet><vICMSRet>999999999999.99</vICMSRet><CFOP>5351</CFOP><cMunFG>9999999</cMunFG></NFNotaInfoRetencaoICMSTransporte>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte().toString());
