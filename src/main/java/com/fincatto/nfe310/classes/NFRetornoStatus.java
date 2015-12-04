@@ -375,6 +375,9 @@ public enum NFRetornoStatus {
     CODIGO_688(688, "Rejei\u00e7\u00e3o: NF referenciada de produtor com IE inexistente (nREF: xxx)"),
     CODIGO_689(689, "Rejei\u00e7\u00e3o: NF referenciada de produtor com IE n\u00e3o vinculada ao CNPJ/CPF informado (nREF: xxx)"),
     CODIGO_690(690, "Rejei\u00e7\u00e3o: Pedido de cancelamento para NF-e com CT-e ou MDF-e"),
+    CODIGO_691(691, "Rejei\u00e7\u00e3o: Chave de Acesso da NFe diverge da Chave de Acesso do EPEC"),
+    CODIGO_692(692, "Rejei\u00e7\u00e3o: Existe EPEC registrado para esta S\u00e9rie e N\u00famero"),
+    CODIGO_693(693, "Rejei\u00e7\u00e3o: Al\u00edquota de ICMS superior a definida para a opera\u00e7\u00e3o interestadual"),
     CODIGO_701(701, "Rejei\u00e7\u00e3o: NF-e n\u00e3o pode utilizar ver\u00e3o 3.00"),
     CODIGO_702(702, "Rejei\u00e7\u00e3o: NFC-e n\u00e3o \u00e9 aceita pela UF do Emitente"),
     CODIGO_703(703, "Rejei\u00e7\u00e3o: Data-hora de emiss\u00e3o posterior ao hor\u00e1rio de recebimento"),
@@ -474,7 +477,7 @@ public enum NFRetornoStatus {
     private int codigo;
     private String motivo;
 
-    private NFRetornoStatus(final int codigo, final String motivo) {
+    NFRetornoStatus(final int codigo, final String motivo) {
         this.codigo = codigo;
         this.motivo = motivo;
     }
