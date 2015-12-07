@@ -29,7 +29,7 @@ public class WSFacade {
     public WSFacade(final NFeConfig config) throws IOException {
         //System.setProperty("jdk.tls.client.protocols", "SSLv3,TLSv1");
         System.setProperty("jdk.tls.client.protocols", "TLSv1,TLSv1.1,TLSv1.2");
-        System.setProperty("https.protocols", "TLSv1");
+        System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
