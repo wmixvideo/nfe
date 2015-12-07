@@ -1,7 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.io.IOException;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
@@ -15,7 +13,10 @@ import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 
+import java.io.IOException;
+
 public class WSFacade {
+
     private final WSLoteEnvio wsLoteEnvio;
     private final WSLoteConsulta wsLoteConsulta;
     private final WSStatusConsulta wsStatusConsulta;
@@ -26,7 +27,9 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
 
     public WSFacade(final NFeConfig config) throws IOException {
-        System.setProperty("jdk.tls.client.protocols", "SSLv3,TLSv1");
+        //System.setProperty("jdk.tls.client.protocols", "SSLv3,TLSv1");
+        System.setProperty("jdk.tls.client.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+        System.setProperty("https.protocols", "TLSv1");
         System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
