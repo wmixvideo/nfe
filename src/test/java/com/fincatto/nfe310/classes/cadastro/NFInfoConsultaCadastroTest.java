@@ -23,14 +23,14 @@ public class NFInfoConsultaCadastroTest {
         infoConsultaCadastro.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirIENulo() {
-        final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
-        infoConsultaCadastro.setCnpj("56138725000103");
-        infoConsultaCadastro.setServico("CONS-CAD");
-        infoConsultaCadastro.setUf("SC");
-        infoConsultaCadastro.toString();
-    }
+    //    @Test(expected = IllegalStateException.class)
+    //    public void naoDevePermitirIENulo() {
+    //        final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
+    //        infoConsultaCadastro.setCnpj("56138725000103");
+    //        infoConsultaCadastro.setServico("CONS-CAD");
+    //        infoConsultaCadastro.setUf("SC");
+    //        infoConsultaCadastro.toString();
+    //    }
 
     @Test
     public void devePermitirCnpjNulo() {

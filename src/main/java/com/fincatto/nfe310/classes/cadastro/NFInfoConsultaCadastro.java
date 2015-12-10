@@ -1,9 +1,8 @@
 package com.fincatto.nfe310.classes.cadastro;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoConsultaCadastro extends NFBase {
 
@@ -13,7 +12,7 @@ public class NFInfoConsultaCadastro extends NFBase {
     @Element(name = "UF", required = true)
     private String uf;
 
-    @Element(name = "IE", required = true)
+    @Element(name = "IE", required = false)
     private String inscricaoEstadual;
 
     @Element(name = "CNPJ", required = false)
