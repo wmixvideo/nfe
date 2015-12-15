@@ -1,11 +1,11 @@
 package com.fincatto.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoReferenciada extends NFBase {
+
     @Element(name = "refNFe", required = false)
     private String chaveAcesso;
 
@@ -31,14 +31,14 @@ public class NFInfoReferenciada extends NFBase {
 
     public void setModelo1por1Referenciada(final NFInfoModelo1Por1AReferenciada modelo1por1Referenciada) {
         if (this.chaveAcesso != null || this.infoNFProdutorRuralReferenciada != null || this.chaveAcessoCTReferenciada != null || this.cupomFiscalReferenciado != null) {
-            throw new IllegalStateException("Nao pode setar modelo 1 por 1 referenciada caso chave de acesso esteja setado");
+            throw new IllegalStateException("Nao pode setar modelo 1 por 1 referenciada caso a chave de acesso esteja setada");
         }
         this.modelo1por1Referenciada = modelo1por1Referenciada;
     }
 
     public void setChaveAcessoCTReferenciada(final String chaveAcessoCTReferenciada) {
         if (this.modelo1por1Referenciada != null || this.chaveAcesso != null || this.infoNFProdutorRuralReferenciada != null || this.cupomFiscalReferenciado != null) {
-            throw new IllegalStateException("Nao pode setar modelo 1 por 1 referenciada caso chave de acesso esteja setado");
+            throw new IllegalStateException("Nao pode setar chave de acesso de conhecimento de transporte referenciada caso a chave de acesso esteja setada");
         }
         StringValidador.exatamente44N(chaveAcessoCTReferenciada);
         this.chaveAcessoCTReferenciada = chaveAcessoCTReferenciada;
@@ -46,14 +46,14 @@ public class NFInfoReferenciada extends NFBase {
 
     public void setInfoNFProdutorRuralReferenciada(final NFInfoProdutorRuralReferenciada infoNFProdutorRuralReferenciada) {
         if (this.modelo1por1Referenciada != null || this.chaveAcesso != null || this.cupomFiscalReferenciado != null || this.chaveAcessoCTReferenciada != null) {
-            throw new IllegalStateException("Nao pode setar modelo 1 por 1 referenciada caso chave de acesso esteja setado");
+            throw new IllegalStateException("Nao pode setar nota de produtor rural referenciada caso a chave de acesso esteja setada");
         }
         this.infoNFProdutorRuralReferenciada = infoNFProdutorRuralReferenciada;
     }
 
     public void setCupomFiscalReferenciado(final NFInfoCupomFiscalReferenciado cupomFiscalReferenciado) {
         if (this.modelo1por1Referenciada != null || this.chaveAcesso != null || this.chaveAcessoCTReferenciada != null || this.infoNFProdutorRuralReferenciada != null) {
-            throw new IllegalStateException("Nao pode setar modelo 1 por 1 referenciada caso chave de acesso esteja setado");
+            throw new IllegalStateException("Nao pode setar cupom fiscal referenciado caso a chave de acesso esteja setada");
         }
         this.cupomFiscalReferenciado = cupomFiscalReferenciado;
     }
