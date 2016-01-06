@@ -26,7 +26,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>1.0.23</version>
+  <version>1.1.6</version>
 </dependency>
 ```
 
