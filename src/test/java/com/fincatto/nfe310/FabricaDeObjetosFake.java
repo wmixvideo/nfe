@@ -17,7 +17,7 @@ import com.fincatto.nfe310.classes.NFModalidadeFrete;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicao;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
@@ -923,7 +923,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoICMS00 getNFNotaInfoItemImpostoICMS00() {
         final NFNotaInfoItemImpostoICMS00 icms00 = new NFNotaInfoItemImpostoICMS00();
-        icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
+        icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
         icms00.setOrigem(NFOrigem.NACIONAL);
         icms00.setPercentualAliquota(new BigDecimal("99.99"));
         icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
