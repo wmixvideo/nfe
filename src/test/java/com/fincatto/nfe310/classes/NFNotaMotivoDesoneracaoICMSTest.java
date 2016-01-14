@@ -17,7 +17,7 @@ public class NFNotaMotivoDesoneracaoICMSTest {
         Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.OUTROS, NFNotaMotivoDesoneracaoICMS.valueOfCodigo("9"));
         Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.DEFICIENTE_CONDUTOR, NFNotaMotivoDesoneracaoICMS.valueOfCodigo("10"));
         Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.DEFICIENTE_NAO_CONDUTOR, NFNotaMotivoDesoneracaoICMS.valueOfCodigo("11"));
-        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUÁRIO, NFNotaMotivoDesoneracaoICMS.valueOfCodigo("12"));
+        Assert.assertEquals(NFNotaMotivoDesoneracaoICMS.ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO, NFNotaMotivoDesoneracaoICMS.valueOfCodigo("12"));
         Assert.assertNull(NFNotaMotivoDesoneracaoICMS.valueOfCodigo("0"));
     }
 
@@ -33,6 +33,6 @@ public class NFNotaMotivoDesoneracaoICMSTest {
         Assert.assertEquals("9", NFNotaMotivoDesoneracaoICMS.OUTROS.getCodigo());
         Assert.assertEquals("10", NFNotaMotivoDesoneracaoICMS.DEFICIENTE_CONDUTOR.getCodigo());
         Assert.assertEquals("11", NFNotaMotivoDesoneracaoICMS.DEFICIENTE_NAO_CONDUTOR.getCodigo());
-        Assert.assertEquals("12", NFNotaMotivoDesoneracaoICMS.ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUÁRIO.getCodigo());
+        Assert.assertEquals("12", NFNotaMotivoDesoneracaoICMS.ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO.getCodigo());
     }
 }
