@@ -10,7 +10,8 @@ public enum NFNotaMotivoDesoneracaoICMS {
     VENDA_ORGAOS_PUBLICOS("8"),
     OUTROS("9"),
     DEFICIENTE_CONDUTOR("10"),
-    DEFICIENTE_NAO_CONDUTOR("11");
+    DEFICIENTE_NAO_CONDUTOR("11"),
+    ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUÁRIO("12");
 
     private final String codigo;
 
