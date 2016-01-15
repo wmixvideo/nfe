@@ -150,7 +150,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoICMSUFDestino getNFNotaaInfoItemImpostoICMSUFDestino() {
         final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
         icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualInterestadual(new BigDecimal("7.00"));
         icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
