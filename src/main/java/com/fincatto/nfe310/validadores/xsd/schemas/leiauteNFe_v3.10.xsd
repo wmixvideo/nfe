@@ -406,7 +406,7 @@ para tpEmis diferente de 1</xs:documentation>
 														<xs:sequence>
 															<xs:element name="mod">
 																<xs:annotation>
-																	<xs:documentation>Código do modelo do Documento Fiscal 
+																	<xs:documentation>Código do modelo do Documento Fiscal
 Preencher com "2B", quando se tratar de Cupom Fiscal emitido por máquina registradora (não ECF), com "2C", quando se tratar de Cupom Fiscal PDV, ou "2D", quando se tratar de Cupom Fiscal (emitido por ECF)</xs:documentation>
 																</xs:annotation>
 																<xs:simpleType>
@@ -533,7 +533,7 @@ Preencher com "2B", quando se tratar de Cupom Fiscal emitido por máquina regist
 									</xs:sequence>
 									<xs:element name="CRT">
 										<xs:annotation>
-											<xs:documentation>Código de Regime Tributário. 
+											<xs:documentation>Código de Regime Tributário.
 Este campo será obrigatoriamente preenchido com:
 1 – Simples Nacional;
 2 – Simples Nacional – excesso de sublimite de receita bruta;
@@ -1048,7 +1048,7 @@ Formato ”CFOP9999”.</xs:documentation>
 															</xs:element>
 															<xs:element name="tpIntermedio">
 																<xs:annotation>
-																	<xs:documentation>Forma de Importação quanto a intermediação 
+																	<xs:documentation>Forma de Importação quanto a intermediação
 																	1-por conta propria;2-por conta e ordem;3-encomenda</xs:documentation>
 																</xs:annotation>
 																<xs:simpleType>
@@ -1470,7 +1470,7 @@ N-NormalVIN </xs:documentation>
 																</xs:element>
 																<xs:element name="cCorDENATRAN">
 																	<xs:annotation>
-																		<xs:documentation>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA 
+																		<xs:documentation>Código da Cor Segundo as regras de pré-cadastro do DENATRAN: 01-AMARELO;02-AZUL;03-BEGE;04-BRANCA;05-CINZA;06-DOURADA;07-GRENA
 08-LARANJA;09-MARROM;10-PRATA;11-PRETA;12-ROSA;13-ROXA;14-VERDE;15-VERMELHA;16-FANTASIA</xs:documentation>
 																	</xs:annotation>
 																	<xs:simpleType>
@@ -1786,9 +1786,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -1850,9 +1850,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -1959,9 +1959,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2050,9 +2050,9 @@ ambiente.</xs:documentation>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2144,26 +2144,26 @@ ambiente.</xs:documentation>
 																	<xs:element name="ICMS40">
 																		<xs:annotation>
 																			<xs:documentation>Tributação pelo ICMS
-40 - Isenta 
-41 - Não tributada 
+40 - Isenta
+41 - Não tributada
 50 - Suspensão  </xs:documentation>
 																		</xs:annotation>
 																		<xs:complexType>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
-40 - Isenta 
-41 - Não tributada 
-50 - Suspensão 
+																						<xs:documentation>Tributação pelo ICMS
+40 - Isenta
+41 - Não tributada
+50 - Suspensão
 51 - Diferimento </xs:documentation>
 																					</xs:annotation>
 																					<xs:simpleType>
@@ -2229,9 +2229,9 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2312,15 +2312,15 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
+																						<xs:documentation>Tributação pelo ICMS
 60 - ICMS cobrado anteriormente por substituição tributária </xs:documentation>
 																					</xs:annotation>
 																					<xs:simpleType>
@@ -2350,16 +2350,16 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																	</xs:element>
 																	<xs:element name="ICMS70">
 																		<xs:annotation>
-																			<xs:documentation>Tributação pelo ICMS 
+																			<xs:documentation>Tributação pelo ICMS
 70 - Com redução de base de cálculo e cobrança do ICMS por substituição tributária </xs:documentation>
 																		</xs:annotation>
 																		<xs:complexType>
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2495,9 +2495,9 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2516,7 +2516,7 @@ A exigência do preenchimento das informações do ICMS diferido fica à critér
 																				<xs:sequence minOccurs="0">
 																					<xs:element name="modBC">
 																						<xs:annotation>
-																							<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																							<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -2637,15 +2637,15 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CST">
 																					<xs:annotation>
-																						<xs:documentation>Tributação pelo ICMS 
+																						<xs:documentation>Tributação pelo ICMS
 10 - Tributada e com cobrança do ICMS por substituição tributária;
 90 – Outros.</xs:documentation>
 																					</xs:annotation>
@@ -2659,7 +2659,7 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																				</xs:element>
 																				<xs:element name="modBC">
 																					<xs:annotation>
-																						<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																						<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -2763,9 +2763,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2812,9 +2812,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 (v2.0)</xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -2850,15 +2850,15 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 (v2.0)</xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
 																				<xs:element name="CSOSN">
 																					<xs:annotation>
-																						<xs:documentation>102- Tributada pelo Simples Nacional sem permissão de crédito. 
+																						<xs:documentation>102- Tributada pelo Simples Nacional sem permissão de crédito.
 103 – Isenção do ICMS  no Simples Nacional para faixa de receita bruta.
 300 – Imune.
 400 – Não tributda pelo Simples Nacional (v.2.0) (v.2.0)</xs:documentation>
@@ -3046,9 +3046,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -3090,9 +3090,9 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																			<xs:sequence>
 																				<xs:element name="orig" type="Torig">
 																					<xs:annotation>
-																						<xs:documentation>origem da mercadoria: 0 - Nacional 
-1 - Estrangeira - Importação direta 
-2 - Estrangeira - Adquirida no mercado interno 
+																						<xs:documentation>origem da mercadoria: 0 - Nacional
+1 - Estrangeira - Importação direta
+2 - Estrangeira - Adquirida no mercado interno
 </xs:documentation>
 																					</xs:annotation>
 																				</xs:element>
@@ -3110,7 +3110,7 @@ Operação interestadual para consumidor final com partilha do ICMS  devido na o
 																				<xs:sequence minOccurs="0">
 																					<xs:element name="modBC">
 																						<xs:annotation>
-																							<xs:documentation>Modalidade de determinação da BC do ICMS: 
+																							<xs:documentation>Modalidade de determinação da BC do ICMS:
 0 - Margem Valor Agregado (%);
 1 - Pauta (valor);
 2 - Preço Tabelado Máximo (valor);
@@ -4599,7 +4599,7 @@ Substituição Tributaria;</xs:documentation>
 											<xs:sequence>
 												<xs:element name="tpIntegra" minOccurs="0">
 													<xs:annotation>
-														<xs:documentation>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/ 
+														<xs:documentation>Tipo de Integração do processo de pagamento com o sistema de automação da empresa/
 																1=Pagamento integrado com o sistema de automação da empresa Ex. equipamento TEF , Comercio Eletronico
 																2=Pagamento não integrado com o sistema de automação da empresa Ex: equipamento POS
 														</xs:documentation>
@@ -5012,7 +5012,6 @@ concessório</xs:documentation>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="TProtNFe">
@@ -5230,7 +5229,7 @@ concessório</xs:documentation>
 			<xs:sequence minOccurs="0">
 				<xs:element name="cMsg">
 					<xs:annotation>
-						<xs:documentation>Código da Mensagem (v2.0) 
+						<xs:documentation>Código da Mensagem (v2.0)
 alterado para tamanho variavel 1-4. (NT2011/004)</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
