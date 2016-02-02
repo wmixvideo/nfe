@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.7-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.7|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.8-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.8|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -26,7 +26,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>1.1.7</version>
+  <version>1.1.8</version>
 </dependency>
 ```
 
