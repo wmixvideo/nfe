@@ -19,7 +19,7 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "modBC", required = true)
+    @Element(name = "modBC", required = false)
     private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC;
 
     @Element(name = "vBC", required = false)

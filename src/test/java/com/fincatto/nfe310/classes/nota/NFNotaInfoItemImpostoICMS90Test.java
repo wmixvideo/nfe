@@ -118,8 +118,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirModalidadeBCNulo() {
+    @Test
+    public void devePermitirModalidadeBCNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
         icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icms90.setModalidadeDeterminacaoBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
