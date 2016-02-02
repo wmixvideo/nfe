@@ -22,16 +22,16 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
     @Element(name = "modBC", required = true)
     private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC;
 
-    @Element(name = "vBC", required = true)
+    @Element(name = "vBC", required = false)
     private String valorBC;
 
     @Element(name = "pRedBC", required = false)
     private String percentualReducaoBC;
 
-    @Element(name = "pICMS", required = true)
+    @Element(name = "pICMS", required = false)
     private String percentualAliquota;
 
-    @Element(name = "vICMS", required = true)
+    @Element(name = "vICMS", required = false)
     private String valorTributo;
 
     @Element(name = "modBCST", required = false)

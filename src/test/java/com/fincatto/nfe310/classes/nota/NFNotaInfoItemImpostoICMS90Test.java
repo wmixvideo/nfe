@@ -178,8 +178,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualAliquotaNulo() {
+    @Test
+    public void devePermitirPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
         icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icms90.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
@@ -278,8 +278,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBCNulo() {
+    @Test
+    public void devePermitirValorBCNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
         icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icms90.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
@@ -338,8 +338,8 @@ public class NFNotaInfoItemImpostoICMS90Test {
         icms90.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorTributoNulo() {
+    @Test
+    public void devePermitirValorTributoNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();
         icms90.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icms90.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
