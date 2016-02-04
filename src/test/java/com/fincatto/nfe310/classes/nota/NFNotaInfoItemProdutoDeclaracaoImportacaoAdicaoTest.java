@@ -113,6 +113,45 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
     }
 
     @Test
+    public void deveObterCodigoFabricanteComoFoiSetado() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        final String codigoFabricante = "sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki";
+        importacaoAdicao.setCodigoFabricante(codigoFabricante);
+        Assert.assertEquals(codigoFabricante, importacaoAdicao.getCodigoFabricante());
+    }
+
+    @Test
+    public void deveObterDescontoComoFoiSetado() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
+        Assert.assertEquals("999999999999.99", importacaoAdicao.getDesconto());
+    }
+
+    @Test
+    public void deveObterNumeroComoFoiSetado() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        final Integer numero = 999;
+        importacaoAdicao.setNumero(numero);
+        Assert.assertEquals(numero, importacaoAdicao.getNumero());
+    }
+
+    @Test
+    public void deveObterNumeroAtoConcessorioDrawbackComoFoiSetado() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        final BigInteger numeroAtoConcessorioDrawback = new BigInteger("99999999999");
+        importacaoAdicao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
+        Assert.assertEquals(numeroAtoConcessorioDrawback, importacaoAdicao.getNumeroAtoConcessorioDrawback());
+    }
+
+    @Test
+    public void deveObterSequencialComoFoiSetado() {
+        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+        final Integer sequencial = 999;
+        importacaoAdicao.setSequencial(sequencial);
+        Assert.assertEquals(sequencial, importacaoAdicao.getSequencial());
+    }
+
+    @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao><nAdicao>999</nAdicao><nSeqAdic>999</nSeqAdic><cFabricante>sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki</cFabricante><vDescDI>999999999999.99</vDescDI><nDraw>99999999999</nDraw></NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().toString());

@@ -354,6 +354,13 @@ public class StringValidador {
         }
     }
 
+    public static void tamanho2ou3N(final String string) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string);
+            StringValidador.intervalo(string, 2, 3);
+        }
+    }
+
     public static void tamanho3N(final String string) {
         if (string != null) {
             StringValidador.apenasNumerico(string);

@@ -13,7 +13,7 @@ public class NFNotaInfoExportacao extends NFBase {
     @Element(name = "xLocExporta", required = true)
     private String localEmbarqueProdutos;
 
-    @Element(name = "xLocDespacho", required = true)
+    @Element(name = "xLocDespacho", required = false)
     private String localDespachoProdutos;
 
     public void setUfEmbarqueProduto(final NFUnidadeFederativa ufEmbarqueProduto) {

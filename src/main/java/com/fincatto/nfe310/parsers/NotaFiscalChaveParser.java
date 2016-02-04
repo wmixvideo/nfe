@@ -3,6 +3,7 @@ package com.fincatto.nfe310.parsers;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NotaFiscalChaveParser {
@@ -43,8 +44,8 @@ public class NotaFiscalChaveParser {
         return this.chave.substring(25, 34);
     }
 
-    public String getFormaEmissao() {
-        return this.chave.substring(34, 35);
+    public NFTipoEmissao getFormaEmissao() {
+        return NFTipoEmissao.valueOfCodigo(this.chave.substring(34, 35));
     }
 
     public String getCodigoNumerico() {

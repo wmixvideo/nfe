@@ -1,5 +1,7 @@
 package com.fincatto.nfe310.validadores;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -7,12 +9,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-import org.apache.commons.lang3.StringUtils;
-
-public class BigDecimalParser {
-
-    private BigDecimalParser() {
-    }
+public abstract class BigDecimalParser {
 
     public static String tamanho11Com3CasasDecimais(final BigDecimal valor) {
         return BigDecimalParser.parse(valor, "0.000", 12, 3);
@@ -63,6 +60,9 @@ public class BigDecimalParser {
     }
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante) {
+        if (valor == null) {
+            return null;
+        }
         if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
             throw new NumberFormatException("Valor extrapolou o tamanho de casas");
         }

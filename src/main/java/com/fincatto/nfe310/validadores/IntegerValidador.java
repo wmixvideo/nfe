@@ -19,10 +19,6 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 1000000, 9999999);
     }
 
-    public static void tamanho3e4(final Integer valor) {
-        IntegerValidador.intervalo(valor, 100, 9999);
-    }
-
     public static void exatamente4(final int valor) {
         IntegerValidador.intervalo(valor, 1000, 9999);
     }
@@ -39,28 +35,12 @@ public class IntegerValidador {
         IntegerValidador.intervalo(valor, 100000, 999999);
     }
 
-    public static void tamanho2ou3(final Integer valor) {
-        IntegerValidador.intervalo(valor, 10, 999);
-    }
-
-    public static void tamanho2a4(final Integer valor) {
-        IntegerValidador.intervalo(valor, 10, 9999);
-    }
-
     public static void tamanho6(final Integer valor) {
         IntegerValidador.limite(valor, 999999);
     }
 
-    public static void tamanho9(final Integer valor) {
-        IntegerValidador.limite(valor, 999999999);
-    }
-
     public static void exatamente1(final Integer valor) {
         IntegerValidador.limite(valor, 9);
-    }
-
-    public static void exatamente8(final Integer valor) {
-        IntegerValidador.intervalo(valor, 10000000, 99999999);
     }
 
     public static void tamanho1a2(final int valor) {

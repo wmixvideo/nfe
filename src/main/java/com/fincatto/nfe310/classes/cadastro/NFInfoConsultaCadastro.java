@@ -1,9 +1,8 @@
 package com.fincatto.nfe310.classes.cadastro;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoConsultaCadastro extends NFBase {
 
@@ -51,6 +50,10 @@ public class NFInfoConsultaCadastro extends NFBase {
     }
 
     public void setCnpj(final String cnpj) {
+        if (this.cpf != null) {
+            throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
+        }
+
         StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -60,6 +63,11 @@ public class NFInfoConsultaCadastro extends NFBase {
     }
 
     public void setCpf(final String cpf) {
+        if (this.cnpj != null) {
+            throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
+        }
+
+        StringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 }

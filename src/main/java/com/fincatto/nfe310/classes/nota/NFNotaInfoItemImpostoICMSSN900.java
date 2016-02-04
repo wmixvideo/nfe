@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe310.classes.NFOrigem;
@@ -19,7 +19,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS;
+    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS;
 
     @Element(name = "vBC", required = true)
     private String valorBCICMS;
@@ -65,7 +65,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
 
-    public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS) {
+    public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS) {
         this.modalidadeDeterminacaoBCICMS = modalidadeDeterminacaoBCICMS;
     }
 
@@ -125,7 +125,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
         return this.situacaoOperacaoSN;
     }
 
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeDeterminacaoBCICMS() {
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeDeterminacaoBCICMS() {
         return this.modalidadeDeterminacaoBCICMS;
     }
 

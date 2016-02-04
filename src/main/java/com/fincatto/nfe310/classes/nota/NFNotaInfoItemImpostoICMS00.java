@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
@@ -19,7 +19,7 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBaseCalculo;
+    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo;
 
     @Element(name = "vBC", required = true)
     private String valorBaseCalculo;
@@ -41,7 +41,7 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBaseCalculo) {
+    public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo) {
         this.modalidadeBaseCalculo = modalidadeBaseCalculo;
     }
 
@@ -65,7 +65,7 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBaseCalculo() {
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBaseCalculo() {
         return this.modalidadeBaseCalculo;
     }
 

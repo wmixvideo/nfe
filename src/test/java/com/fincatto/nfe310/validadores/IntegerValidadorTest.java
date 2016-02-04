@@ -14,6 +14,12 @@ public class IntegerValidadorTest {
         IntegerValidador.tamanho4(9999);
     }
 
+    @Test
+    public void deveValidarCasoValorSejaExatamente7() {
+        IntegerValidador.exatamente7(1000000);
+        IntegerValidador.exatamente7(9999999);
+    }
+
     @Test(expected = NumberFormatException.class)
     public void deveLancarExcecaoCasoValorParaTamanho7SejaInvalido() {
         IntegerValidador.tamanho7(10000000);

@@ -1,30 +1,29 @@
 package com.fincatto.nfe310;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
+import java.io.File;
+import java.io.IOException;
+
 public interface NFeConfig {
 
-    final static String VERSAO_NFE = "3.10";
+    String VERSAO_NFE = "3.10";
+    String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
 
-    final static String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
+    NFAmbiente getAmbiente();
 
-    public NFAmbiente getAmbiente();
+    File getCertificado() throws IOException;
 
-    public File getCertificado() throws IOException;
+    File getCadeiaCertificados() throws IOException;
 
-    public File getCadeiaCertificados() throws IOException;
+    String getCertificadoSenha();
 
-    public String getCertificadoSenha();
+    NFUnidadeFederativa getCUF();
 
-    public NFUnidadeFederativa getCUF();
-
-    public NFTipoEmissao getTipoEmissao();
+    NFTipoEmissao getTipoEmissao();
 
 	default NFAutorizador31 getAutorizador(){
 		return getAutorizador(getCUF());

@@ -11,7 +11,9 @@ public enum NFViaTransporteInternacional {
     RODOVIARIA("7"),
     CONDUTO_REDE_TRANSMISSAO("8"),
     MEIOS_PROPRIOS("9"),
-    ENTRADA_SAIDA("10");
+    ENTRADA_SAIDA("10"),
+    COURIER("11"),
+    HANDCARRY("12");
 
     private String codigo;
 

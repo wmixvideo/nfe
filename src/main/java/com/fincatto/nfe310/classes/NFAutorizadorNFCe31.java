@@ -6,7 +6,7 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 
-public enum NFAutorizadorNFCe31 implements NFAutorizador31 {
+public enum NFAutorizadorNFCe31 implements NFCAutorizador31 {
     PR {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
@@ -99,7 +99,7 @@ public enum NFAutorizadorNFCe31 implements NFAutorizador31 {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
         }
     };
-
+    
     public static NFAutorizador31 valueOfCodigoUF(final NFUnidadeFederativa uf) {
         if (uf != null) {
             for (final NFAutorizador31 autorizador : values()) {

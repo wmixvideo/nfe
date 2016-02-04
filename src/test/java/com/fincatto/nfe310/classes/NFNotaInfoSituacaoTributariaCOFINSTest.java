@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-
 public class NFNotaInfoSituacaoTributariaCOFINSTest {
 
     @Test
@@ -13,6 +11,7 @@ public class NFNotaInfoSituacaoTributariaCOFINSTest {
         Assert.assertEquals("02", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA.getCodigo());
         Assert.assertEquals("03", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO.getCodigo());
         Assert.assertEquals("04", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_MONOFASICA_ALIQUOTA_ZERO.getCodigo());
+        Assert.assertEquals("05", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_SUBSTITUICAO_TRIBUTARIA.getCodigo());
         Assert.assertEquals("06", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_ZERO.getCodigo());
         Assert.assertEquals("07", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_ISENTA_CONTRIBUICAO.getCodigo());
         Assert.assertEquals("08", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_SEM_INCIDENCIA_CONTRIBUICAO.getCodigo());

@@ -84,7 +84,7 @@ class WSCancelamento {
         infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
-        infoEvento.setTipoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
+        infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
         infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
         infoEvento.setCancelamento(cancelamento);
 

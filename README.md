@@ -1,21 +1,85 @@
 Nota Fiscal Eletrônica
 ===
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/aurainformatica/nfe.svg)](https://travis-ci.org/aurainformatica/nfe)
+=======
+[![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
+[![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.9-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.9|)
+[![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
+>>>>>>> upstream/master
 
 ## Atenção
 O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
-Ele deve ser utilizado apenas para tradução de notas antigas pois é foi desativado em 31/03/2015, portanto,
-faça a integração com o teu sistema com as classes contidas no pacote nfe310.<br/>
+Ele deve ser utilizado apenas para tradução de notas antigas pois foi desativado em 31/03/2015. Portanto,
+faça a integração do seu sistema com as classes contidas no pacote nfe310.<br/>
 <br/>
-Este é um projeto colaborativo, sinta-se a vontade em usar e colaborar com o mesmo.<br/>
+Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que
 garantam que a funcionalidade funciona como o esperado.
 
+## Antes de usar
+Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
+
+Caso não possua conhecimento técnico para criar notas fiscais, um profissional da área (como um contador) pode lhe auxiliar.
+
+## Instalação
+
+```xml
+<dependency>
+  <groupId>com.github.wmixvideo</groupId>
+  <artifactId>nfe</artifactId>
+  <version>1.1.9</version>
+</dependency>
+```
+
 ## Como usar
-Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados
+Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
 digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a
 comunicação com os webservices da Sefaz.
+
+```java
+// Exemplo de configuracao para acesso aos serviços da Sefaz.
+public class ConfiguracaoSefaz implements NFeConfig {
+
+    private final boolean ehAmbienteDeTeste;
+
+    public ConfiguracaoSefaz(final boolean ehAmbienteDeTeste) {
+        this.ehAmbienteDeTeste = ehAmbienteDeTeste;
+    }
+
+    @Override
+    public NFAmbiente getAmbiente() {
+        return this.ehAmbienteDeTeste ? NFAmbiente.HOMOLOGACAO : NFAmbiente.PRODUCAO;
+    }
+
+    @Override
+    public File getCertificado() throws IOException {
+        return new File("certificado.pfx");
+    }
+
+    @Override
+    public File getCadeiaCertificados() throws IOException {
+        return new File("cadeia_certificado.jks");
+    }
+
+    @Override
+    public String getCertificadoSenha() {
+        return "senhaDoCertificado";
+    }
+
+    @Override
+    public NFUnidadeFederativa getCUF() {
+        return NFUnidadeFederativa.SC;
+    }
+
+    @Override
+    public NFTipoEmissao getTipoEmissao() {
+        return NFTipoEmissao.EMISSAO_NORMAL;
+    }
+}
+```
 
 ### Alguns exemplos
 Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**.
@@ -41,19 +105,19 @@ NFLoteEnvio lote = new NFLoteEnvio();
 // setando os dados do lote
 ```
 
-Faça o envio do lote atraves do facade:
+Faça o envio do lote através do facade:
 ```java
 final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 ```
 
 #### Corrige nota
-Faça a correcao da nota atraves do facade:
+Faça a correção da nota através do facade:
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao, sequencialEventoDaNota);
 ```
 
 #### Cancela nota
-Faça o cancelamento da nota atraves do facade:
+Faça o cancelamento da nota através do facade:
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
@@ -88,7 +152,7 @@ final List<NFNota> notas = lote.getNotas();
 // Armazena os xmls das notas
 ...
 ```
-Ao fazer a consulta do lote, crie um objeto do tipo **NFNotaProcessada** e adicione o protocolo da nota correspondente, alem da nota assinada:
+Ao fazer a consulta do lote, crie um objeto do tipo **NFNotaProcessada** e adicione o protocolo da nota correspondente, além da nota assinada:
 ```java
 // Carregue o xml da nota do local que foi armazenado
 final String xmlNotaRecuperada;
@@ -107,7 +171,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 
 ### Funcionalidades
 * Possui validação de campos a nível de código;
-* Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz;
+* Valida o XML de envio de lote através dos xsd's disponibilizados pela Sefaz;
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
 
 ## Serviços disponíveis
@@ -135,7 +199,14 @@ Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
 * https://serasa.certificadodigital.com.br/ajuda/instalacao/cadeia-de-certificados/
 
 Converter o arquivo .cer para jks utilizando keytool:
-* keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
+```sh
+keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
+```
+
+Caso o certificado esteja em formato *p7b*, você pode convertê-lo para *cer* utilizando o openssl para isso:
+```sh
+openssl pkcs7 -inform DER -outform PEM -in certificadoBaixadoDoSefaz.p7b -print_certs > certificadoGerado.cer
+```
 
 ## Licença
 Apache 2.0
@@ -143,7 +214,7 @@ Apache 2.0
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
 Para ajudar a saná-las, foi disponibilizado um fórum para ajudar na implementação e tirar dúvidas:
-* [Fórum NFe](http://tecnoandroid.com.br/nfe/)
+* [Fórum NFe](http://www.edsonmoretti.com.br/nfe/)
 
 ##Agradecimentos
 - [Edson Moretti](https://github.com/edsonmoretti): Criação e manutenção do forum

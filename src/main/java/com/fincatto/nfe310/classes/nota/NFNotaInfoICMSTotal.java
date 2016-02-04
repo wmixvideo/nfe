@@ -18,6 +18,15 @@ public class NFNotaInfoICMSTotal extends NFBase {
     @Element(name = "vICMSDeson", required = true)
     private String valorICMSDesonerado;
 
+    @Element(name = "vFCPUFDest", required = false)
+    private String valorICMSFundoCombatePobreza;
+
+    @Element(name = "vICMSUFDest", required = false)
+    private String valorICMSPartilhaDestinatario;
+
+    @Element(name = "vICMSUFRemet", required = false)
+    private String valorICMSPartilhaRementente;
+
     @Element(name = "vBCST", required = true)
     private String valor;
 
@@ -183,5 +192,29 @@ public class NFNotaInfoICMSTotal extends NFBase {
 
     public String getValorTotalTributos() {
         return this.valorTotalTributos;
+    }
+
+    public String getValorICMSFundoCombatePobreza() {
+        return this.valorICMSFundoCombatePobreza;
+    }
+
+    public void setValorICMSFundoCombatePobreza(final BigDecimal valorICMSFundoCombatePobreza) {
+        this.valorICMSFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSFundoCombatePobreza);
+    }
+
+    public String getValorICMSPartilhaDestinatario() {
+        return this.valorICMSPartilhaDestinatario;
+    }
+
+    public void setValorICMSPartilhaDestinatario(final BigDecimal valorICMSPartilhaDestinatario) {
+        this.valorICMSPartilhaDestinatario = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSPartilhaDestinatario);
+    }
+
+    public String getValorICMSPartilhaRementente() {
+        return this.valorICMSPartilhaRementente;
+    }
+
+    public void setValorICMSPartilhaRementente(final BigDecimal valorICMSPartilhaRementente) {
+        this.valorICMSPartilhaRementente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSPartilhaRementente);
     }
 }

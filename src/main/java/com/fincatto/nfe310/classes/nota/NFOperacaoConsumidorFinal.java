@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.nota;
 
 public enum NFOperacaoConsumidorFinal {
     NAO("0"),
-    CONSUMIDOR_FINAL("1");
+    SIM("1");
 
     private String codigo;
 

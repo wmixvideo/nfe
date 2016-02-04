@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFOrigem;
-
 public class NFOrigemTest {
 
     @Test
@@ -17,5 +15,6 @@ public class NFOrigemTest {
         Assert.assertEquals("5", NFOrigem.NACIONAL_MERCADORIA_OU_BEM_CONTEUDO_IMPORTACAO_INFERIOR_40_P.getCodigo());
         Assert.assertEquals("6", NFOrigem.ESTRANGEIRA_IMPORTACAO_DIRETA_SEM_SIMILAR_NACIONAL_CONSTANTE_EM_LISTA_CAMEX.getCodigo());
         Assert.assertEquals("7", NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO_SEM_SIMILAR_NACIONAL_CONSTANTE_EM_LISTA_CAMEX.getCodigo());
+        Assert.assertEquals("8", NFOrigem.NACIONAL_MERCADORIA_OU_BEM_COM_CONTEUDO_IMPORTACAO_SUPERIOR_70_P.getCodigo());
     }
 }

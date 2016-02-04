@@ -47,10 +47,6 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
         this.desconto = BigDecimalParser.tamanho15Com2CasasDecimais(desconto);
     }
 
-    public void setDesconto(final String desconto) {
-        this.desconto = desconto;
-    }
-
     public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
         BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback);
         this.numeroAtoConcessorioDrawback = numeroAtoConcessorioDrawback;

@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
@@ -19,19 +19,19 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBC;
+    @Element(name = "modBC", required = false)
+    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC;
 
-    @Element(name = "vBC", required = true)
+    @Element(name = "vBC", required = false)
     private String valorBC;
 
     @Element(name = "pRedBC", required = false)
     private String percentualReducaoBC;
 
-    @Element(name = "pICMS", required = true)
+    @Element(name = "pICMS", required = false)
     private String percentualAliquota;
 
-    @Element(name = "vICMS", required = true)
+    @Element(name = "vICMS", required = false)
     private String valorTributo;
 
     @Element(name = "modBCST", required = false)
@@ -66,7 +66,7 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setModalidadeBC(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeBC) {
+    public void setModalidadeBC(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC) {
         this.modalidadeBC = modalidadeBC;
     }
 
@@ -126,7 +126,7 @@ public class NFNotaInfoItemImpostoICMS90 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeBC() {
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBC() {
         return this.modalidadeBC;
     }
 

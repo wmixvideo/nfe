@@ -1,11 +1,10 @@
 package com.fincatto.nfe200.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe200.classes.NFBase;
 import com.fincatto.nfe200.classes.NFEndereco;
 import com.fincatto.nfe200.classes.NFRegimeTributario;
 import com.fincatto.nfe200.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoEmitente extends NFBase {
 
@@ -40,17 +39,11 @@ public class NFNotaInfoEmitente extends NFBase {
     private NFRegimeTributario regimeTributario;
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("Nao pode setar CNPJ caso CPF esteja setado");
-        }
         StringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("Nao pode setar CPF caso CNPJ esteja setado");
-        }
         StringValidador.cpf(cpf);
         this.cpf = cpf;
     }

@@ -31,8 +31,11 @@ public class NFNotaInfoItemProduto extends NFBase {
     @ElementList(entry = "NVE", inline = true, required = false)
     private List<String> nomeclaturaValorAduaneiroEstatistica;
 
+    @Element(name = "CEST", required = false)
+    private String codigoEspecificadorSituacaoTributaria;
+
     @Element(name = "EXTIPI", required = false)
-    private Integer extipi;
+    private String extipi;
 
     @Element(name = "CFOP", required = true)
     private String cfop;
@@ -126,8 +129,8 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.ncm = ncm;
     }
 
-    public void setExtipi(final Integer extipi) {
-        IntegerValidador.tamanho2ou3(extipi);
+    public void setExtipi(final String extipi) {
+        StringValidador.tamanho2ou3N(extipi);
         this.extipi = extipi;
     }
 
@@ -247,6 +250,11 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.nomeclaturaValorAduaneiroEstatistica = nomeclaturaValorAduaneiroEstatistica;
     }
 
+    public void setCodigoEspecificadorSituacaoTributaria(final String codigoEspecificadorSituacaoTributaria) {
+        StringValidador.exatamente7N(codigoEspecificadorSituacaoTributaria);
+        this.codigoEspecificadorSituacaoTributaria = codigoEspecificadorSituacaoTributaria;
+    }
+
     public void setDetalhesExportacao(final List<NFNotaInfoItemDetalheExportacao> detalhesExportacao) {
         ListValidador.tamanho500(detalhesExportacao);
         this.detalhesExportacao = detalhesExportacao;
@@ -280,7 +288,11 @@ public class NFNotaInfoItemProduto extends NFBase {
         return this.nomeclaturaValorAduaneiroEstatistica;
     }
 
-    public Integer getExtipi() {
+    public String getCodigoEspecificadorSituacaoTributaria() {
+        return this.codigoEspecificadorSituacaoTributaria;
+    }
+
+    public String getExtipi() {
         return this.extipi;
     }
 

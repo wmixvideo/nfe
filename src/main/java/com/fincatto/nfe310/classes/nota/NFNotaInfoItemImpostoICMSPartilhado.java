@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -20,7 +20,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS;
+    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS;
 
     @Element(name = "vBC", required = true)
     private String valorBCICMS;
@@ -66,7 +66,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalulo modalidadeDeterminacaoBCICMS) {
+    public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS) {
         this.modalidadeDeterminacaoBCICMS = modalidadeDeterminacaoBCICMS;
     }
 
@@ -126,7 +126,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         return this.situacaoTributaria;
     }
 
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalulo getModalidadeDeterminacaoBCICMS() {
+    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeDeterminacaoBCICMS() {
         return this.modalidadeDeterminacaoBCICMS;
     }
 

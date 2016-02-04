@@ -19,7 +19,7 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalulo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicao;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
@@ -44,6 +44,9 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
 import com.fincatto.nfe310.classes.evento.NFTipoEvento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
@@ -78,6 +81,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoISSQNTotal;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoInformacoesAdicionais;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItem;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoItemDetalheExportacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemExportacaoIndireta;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImposto;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINS;
@@ -88,6 +92,7 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSQuantidade;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSST;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMS00;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoICMSUFDestino;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoIPI;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoIPINaoTributado;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoIPITributado;
@@ -142,6 +147,52 @@ public class FabricaDeObjetosFake {
         impostoDevolvido.setInformacaoIPIDevolvido(FabricaDeObjetosFake.getNFInformacaoImpostoDevolvido());
         impostoDevolvido.setPercentualDevolucao(new BigDecimal("100"));
         return impostoDevolvido;
+    }
+
+    public static NFNotaInfoItemImpostoICMSUFDestino getNFNotaaInfoItemImpostoICMSUFDestino() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
+        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualInterestadual(new BigDecimal("7.00"));
+        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
+        return icmsUFDestino;
+    }
+
+    public static NFEventoCancelamento getNFEventoCancelamento() {
+        final NFEventoCancelamento eventoCancelamento = new NFEventoCancelamento();
+        eventoCancelamento.setVersao(new BigDecimal("3.10"));
+        eventoCancelamento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamento());
+        return eventoCancelamento;
+    }
+
+    public static NFInfoEventoCancelamento getNFInfoEventoCancelamento() {
+        final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
+        infoEventoCancelamento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEventoCancelamento.setCancelamento(FabricaDeObjetosFake.getNFInfoCancelamento());
+        infoEventoCancelamento.setChave("81568004734874930428983724940883089298523837");
+        infoEventoCancelamento.setCnpj("12345678901234");
+        infoEventoCancelamento.setCodigoEvento("123456");
+        infoEventoCancelamento.setDataHoraEvento(new LocalDateTime(2014, 01, 01, 10, 10, 10));
+        infoEventoCancelamento.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
+        infoEventoCancelamento.setNumeroSequencialEvento(2);
+        infoEventoCancelamento.setOrgao(NFUnidadeFederativa.SC);
+        infoEventoCancelamento.setCodigoEvento("123456");
+        infoEventoCancelamento.setVersaoEvento(new BigDecimal("2.49"));
+        return infoEventoCancelamento;
+    }
+
+    public static NFInfoCancelamento getNFInfoCancelamento() {
+        final NFInfoCancelamento infoCancelamento = new NFInfoCancelamento();
+        infoCancelamento.setDescricaoEvento("Cancelamento");
+        infoCancelamento.setProtocoloAutorizacao("123456789012345");
+        infoCancelamento.setVersao(new BigDecimal("3.10"));
+        infoCancelamento.setJustificativa("Justificativa qualquer coisa");
+
+        return infoCancelamento;
     }
 
     public static NFEventoCancelamentoDados getNFEventoCancelamentoDados() {
@@ -338,11 +389,37 @@ public class FabricaDeObjetosFake {
         identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
-        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.CONSUMIDOR_FINAL);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
         info.setIdentificacao(identificacao);
         nota.setInfo(info);
         return nota;
+    }
+
+    public static NFNotaInfoIdentificacao getInfoIdentificacaoDeTeste() {
+        final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
+        identificacao.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        identificacao.setCodigoMunicipio("4314902");
+        identificacao.setCodigoRandomico("99999999");
+        identificacao.setDataHoraEmissao(LocalDateTime.now());
+        identificacao.setDataHoraSaidaOuEntrada(LocalDateTime.now());
+        identificacao.setDigitoVerificador(8);
+        identificacao.setFinalidade(NFFinalidade.NORMAL);
+        identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
+        identificacao.setModelo(NFModelo.NF_E);
+        identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
+        identificacao.setSerie("101");
+        identificacao.setNumeroNota("4314902");
+        identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
+        identificacao.setTipo(NFTipo.ENTRADA);
+        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
+        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
+        identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
+        identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
+        return identificacao;
     }
 
     public static NFPessoaAutorizadaDownloadNFe getPessoaAutorizadaDownloadNFe() {
@@ -360,7 +437,7 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produtoMedicamento.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
-        produtoMedicamento.setExtipi(999);
+        produtoMedicamento.setExtipi("999");
         produtoMedicamento.setNcm("99999999");
         produtoMedicamento.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produtoMedicamento.setNumeroPedidoItemCliente(999999);
@@ -515,7 +592,7 @@ public class FabricaDeObjetosFake {
         identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
-        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.CONSUMIDOR_FINAL);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
         return identificacao;
     }
@@ -652,6 +729,13 @@ public class FabricaDeObjetosFake {
         return endereco;
     }
 
+    public static NFNotaInfoItemDetalheExportacao getNFNotaInfoItemDetalheExportacao() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
+        detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        return detalheExportacao;
+    }
+
     public static NFNotaInfoItemProduto getNFNotaInfoItemProduto() {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
         produto.setCfop("1302");
@@ -661,7 +745,8 @@ public class FabricaDeObjetosFake {
         produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
-        produto.setExtipi(999);
+        produto.setExtipi("999");
+        produto.setCodigoEspecificadorSituacaoTributaria("9999999");
         produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
         produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
@@ -690,6 +775,7 @@ public class FabricaDeObjetosFake {
         imposto.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
+        imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         return imposto;
     }
@@ -849,7 +935,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoICMS00 getNFNotaInfoItemImpostoICMS00() {
         final NFNotaInfoItemImpostoICMS00 icms00 = new NFNotaInfoItemImpostoICMS00();
-        icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalulo.PAUTA);
+        icms00.setModalidadeBaseCalculo(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
         icms00.setOrigem(NFOrigem.NACIONAL);
         icms00.setPercentualAliquota(new BigDecimal("99.99"));
         icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
@@ -1003,6 +1089,9 @@ public class FabricaDeObjetosFake {
         icmsTotal.setValorTotalNFe(new BigDecimal("999999999999.99"));
         icmsTotal.setValorTotalSeguro(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
         return icmsTotal;
     }
 
@@ -1037,7 +1126,7 @@ public class FabricaDeObjetosFake {
         retencaoICMSTransporte.setAliquotaRetencao(new BigDecimal("99.99"));
         retencaoICMSTransporte.setBcRetencaoICMS(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setCfop(5351);
-        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte(9999999);
+        retencaoICMSTransporte.setCodigoMunicipioOcorrenciaFatoGeradorICMSTransporte("9999999");
         retencaoICMSTransporte.setValorICMSRetido(new BigDecimal("999999999999.99"));
         retencaoICMSTransporte.setValorServico(new BigDecimal("999999999999.99"));
         return retencaoICMSTransporte;

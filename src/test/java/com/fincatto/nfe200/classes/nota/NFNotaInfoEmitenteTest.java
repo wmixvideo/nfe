@@ -1,11 +1,9 @@
 package com.fincatto.nfe200.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.nfe200.FabricaDeObjetosFake;
 import com.fincatto.nfe200.classes.NFRegimeTributario;
-import com.fincatto.nfe200.classes.nota.NFNotaInfoEmitente;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class NFNotaInfoEmitenteTest {
     @Test(expected = IllegalStateException.class)
@@ -24,20 +22,6 @@ public class NFNotaInfoEmitenteTest {
         } catch (final IllegalStateException e) {
             new NFNotaInfoEmitente().setCpf("123456789012");
         }
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCNPJSetadoQuandoCPFEstaSetado() {
-        final NFNotaInfoEmitente entrega = new NFNotaInfoEmitente();
-        entrega.setCpf("12345678901");
-        entrega.setCnpj("12345678901234");
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCPFSetadoQuandoCNPJEstaSetado() {
-        final NFNotaInfoEmitente entrega = new NFNotaInfoEmitente();
-        entrega.setCnpj("12345678901234");
-        entrega.setCpf("12345678901");
     }
 
     @Test(expected = IllegalStateException.class)

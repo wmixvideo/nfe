@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.classes;
 
+
 public interface NFAutorizador31 {
 
     public String getNfeAutorizacao(final NFAmbiente ambiente);
@@ -15,8 +16,7 @@ public interface NFAutorizador31 {
     public String getConsultaCadastro(final NFAmbiente ambiente);
 
     public String getNfeInutilizacao(final NFAmbiente ambiente);
-    
-    public String getQRCode(final NFAmbiente ambiente);
 
     public NFUnidadeFederativa[] getUFs();
+
 }

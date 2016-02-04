@@ -21,11 +21,23 @@ public class NFEventoRetorno extends NFBase {
         return this.infoEventoRetorno;
     }
 
+    public void setInfoEventoRetorno(final NFInfoEventoRetorno infoEventoRetorno) {
+        this.infoEventoRetorno = infoEventoRetorno;
+    }
+
     public String getVersao() {
         return this.versao;
     }
 
+    public void setVersao(final String versao) {
+        this.versao = versao;
+    }
+
     public NFSignature getAssinatura() {
         return this.assinatura;
+    }
+
+    public void setAssinatura(final NFSignature assinatura) {
+        this.assinatura = assinatura;
     }
 }

@@ -93,10 +93,52 @@ public class NFUnidadeFederativaTest {
 
         Assert.assertEquals("RFB", NFUnidadeFederativa.RFB.getCodigo());
         Assert.assertEquals("91", NFUnidadeFederativa.RFB.getCodigoIbge());
+
+        Assert.assertEquals("EX", NFUnidadeFederativa.EX.getCodigo());
+        Assert.assertEquals("99", NFUnidadeFederativa.EX.getCodigoIbge());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void deveLancarExcecaoCasoTenteBuscarUmCodigoErrado() {
         NFUnidadeFederativa.valueOfCodigo("1");
+    }
+
+    @Test
+    public void deveSerADescricaoAoInvocaarToString() {
+        Assert.assertEquals("Santa Catarina", NFUnidadeFederativa.SC.toString());
+    }
+
+    @Test
+    public void deveObterAtravesDaSiglaAUF() {
+        Assert.assertEquals(NFUnidadeFederativa.AC, NFUnidadeFederativa.valueOfCodigo("AC"));
+        Assert.assertEquals(NFUnidadeFederativa.AL, NFUnidadeFederativa.valueOfCodigo("AL"));
+        Assert.assertEquals(NFUnidadeFederativa.AM, NFUnidadeFederativa.valueOfCodigo("AM"));
+        Assert.assertEquals(NFUnidadeFederativa.AP, NFUnidadeFederativa.valueOfCodigo("AP"));
+        Assert.assertEquals(NFUnidadeFederativa.BA, NFUnidadeFederativa.valueOfCodigo("BA"));
+        Assert.assertEquals(NFUnidadeFederativa.CE, NFUnidadeFederativa.valueOfCodigo("CE"));
+        Assert.assertEquals(NFUnidadeFederativa.DF, NFUnidadeFederativa.valueOfCodigo("DF"));
+        Assert.assertEquals(NFUnidadeFederativa.ES, NFUnidadeFederativa.valueOfCodigo("ES"));
+        Assert.assertEquals(NFUnidadeFederativa.EX, NFUnidadeFederativa.valueOfCodigo("EX"));
+        Assert.assertEquals(NFUnidadeFederativa.GO, NFUnidadeFederativa.valueOfCodigo("GO"));
+        Assert.assertEquals(NFUnidadeFederativa.MA, NFUnidadeFederativa.valueOfCodigo("MA"));
+        Assert.assertEquals(NFUnidadeFederativa.MG, NFUnidadeFederativa.valueOfCodigo("MG"));
+        Assert.assertEquals(NFUnidadeFederativa.MS, NFUnidadeFederativa.valueOfCodigo("MS"));
+        Assert.assertEquals(NFUnidadeFederativa.MT, NFUnidadeFederativa.valueOfCodigo("MT"));
+        Assert.assertEquals(NFUnidadeFederativa.NACIONAL, NFUnidadeFederativa.valueOfCodigo("NC"));
+        Assert.assertEquals(NFUnidadeFederativa.PA, NFUnidadeFederativa.valueOfCodigo("PA"));
+        Assert.assertEquals(NFUnidadeFederativa.PB, NFUnidadeFederativa.valueOfCodigo("PB"));
+        Assert.assertEquals(NFUnidadeFederativa.PE, NFUnidadeFederativa.valueOfCodigo("PE"));
+        Assert.assertEquals(NFUnidadeFederativa.PI, NFUnidadeFederativa.valueOfCodigo("PI"));
+        Assert.assertEquals(NFUnidadeFederativa.PR, NFUnidadeFederativa.valueOfCodigo("PR"));
+        Assert.assertEquals(NFUnidadeFederativa.RFB, NFUnidadeFederativa.valueOfCodigo("RFB"));
+        Assert.assertEquals(NFUnidadeFederativa.RJ, NFUnidadeFederativa.valueOfCodigo("RJ"));
+        Assert.assertEquals(NFUnidadeFederativa.RN, NFUnidadeFederativa.valueOfCodigo("RN"));
+        Assert.assertEquals(NFUnidadeFederativa.RO, NFUnidadeFederativa.valueOfCodigo("RO"));
+        Assert.assertEquals(NFUnidadeFederativa.RR, NFUnidadeFederativa.valueOfCodigo("RR"));
+        Assert.assertEquals(NFUnidadeFederativa.RS, NFUnidadeFederativa.valueOfCodigo("RS"));
+        Assert.assertEquals(NFUnidadeFederativa.SC, NFUnidadeFederativa.valueOfCodigo("SC"));
+        Assert.assertEquals(NFUnidadeFederativa.SE, NFUnidadeFederativa.valueOfCodigo("SE"));
+        Assert.assertEquals(NFUnidadeFederativa.SP, NFUnidadeFederativa.valueOfCodigo("SP"));
+        Assert.assertEquals(NFUnidadeFederativa.TO, NFUnidadeFederativa.valueOfCodigo("TO"));
     }
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 
 public enum NFAutorizadorNFe31 implements NFAutorizador31 {
-    AM {
+	AM {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfe.sefaz.am.gov.br/services2/services/NfeAutorizacao" : "https://nfe.sefaz.am.gov.br/services2/services/NfeAutorizacao";
@@ -40,11 +40,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2" : "https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -87,11 +82,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.sefaz.ba.gov.br/webservices/NfeInutilizacao/NfeInutilizacao.asmx" : "https://nfe.sefaz.ba.gov.br/webservices/NfeInutilizacao/NfeInutilizacao.asmx";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.BA };
@@ -132,11 +122,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfeh.sefaz.ce.gov.br/nfe2/services/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.ce.gov.br/nfe2/services/NfeInutilizacao2?wsdl";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -179,11 +164,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.GO };
@@ -224,11 +204,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.fazenda.mg.gov.br/nfe2/services/NfeInutilizacao2" : "https://nfe.fazenda.mg.gov.br/nfe2/services/NfeInutilizacao2";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -272,11 +247,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.ms.gov.br/homologacao/services2/NfeInutilizacao2" : "https://nfe.fazenda.ms.gov.br/producao/services2/NfeInutilizacao2";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.MS };
@@ -317,11 +287,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfews/v2/services/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeInutilizacao2?wsdl";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -365,11 +330,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/NfeInutilizacao2" : "https://nfe.sefaz.pe.gov.br/nfe-service/services/NfeInutilizacao2";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.PE };
@@ -412,11 +372,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.pr.gov.br/nfe/NFeInutilizacao3?wsdl" : "https://nfe.fazenda.pr.gov.br/nfe/NFeInutilizacao3?wsdl";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.PR };
@@ -425,43 +380,38 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
     RS {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx" : "https://nfe.sefaz.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx";
         }
 
         @Override
         public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx" : "https://nfe.sefaz.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx";
         }
 
         @Override
         public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx" : "https://nfe.sefaz.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx";
         }
 
         @Override
         public String getNfeStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx" : "https://nfe.sefaz.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx";
         }
 
         @Override
         public String getRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfe.sefaz.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
         }
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/CadConsultaCadastro2.asmx" : "https://sef.sefaz.rs.gov.br/ws/cadconsultacadastro/CadConsultaCadastro2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cad.sefazrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://cad.sefazrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx";
         }
 
         @Override
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefaz.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfe.sefaz.rs.gov.br/ws/NfeInutilizacao/NfeInutilizacao2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfe.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -504,11 +454,6 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx";
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
@@ -517,43 +462,38 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
     SVRS {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx" : "https://nfe.svrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao.asmx";
         }
 
         @Override
         public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx" : "https://nfe.svrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao.asmx";
         }
 
         @Override
         public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx" : "https://nfe.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta2.asmx";
         }
 
         @Override
         public String getNfeStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx" : "https://nfe.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico2.asmx";
         }
 
         @Override
         public String getRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfe.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
         }
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sef.sefaz.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://svp-ws.sefazvirtual.rs.gov.br/ws/CadConsultaCadastro/CadConsultaCadastro2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx";
         }
 
         @Override
         public String getNfeInutilizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.sefazvirtual.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfe.sefazvirtual.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfe.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
         }
-
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
@@ -596,20 +536,56 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
             throw new UnsupportedOperationException("SCAN nao possui NFe inutilizacao");
         }
 
-		@Override
-		public String getQRCode(NFAmbiente ambiente) {
-			throw new UnsupportedOperationException("Operação não suportada para esse modelo");
-		}
-
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] {};
+        }
+    },
+    SVAN {
+        @Override
+        public String getNfeAutorizacao(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx" : "https://www.sefazvirtual.fazenda.gov.br/NfeAutorizacao/NfeAutorizacao.asmx";
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx" : "https://www.sefazvirtual.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx";
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx" : "https://www.sefazvirtual.fazenda.gov.br/NfeConsulta2/NfeConsulta2.asmx";
+        }
+
+        @Override
+        public String getNfeStatusServico(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx" : "https://www.sefazvirtual.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx";
+        }
+
+        @Override
+        public String getRecepcaoEvento(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx" : "https://www.sefazvirtual.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx";
+        }
+
+        @Override
+        public String getConsultaCadastro(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("SVAN nao possui consulta cadastro");
+        }
+
+        @Override
+        public String getNfeInutilizacao(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.sefazvirtual.fazenda.gov.br/NfeInutilizacao2/NfeInutilizacao2.asmx" : "https://www.sefazvirtual.fazenda.gov.br/NfeInutilizacao2/NfeInutilizacao2.asmx";
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI };
         }
     };
 
     public static NFAutorizador31 valueOfCodigoUF(final NFUnidadeFederativa uf) {
         if (uf != null) {
-            for (final NFAutorizador31 autorizador : values()) {
+            for (final NFAutorizador31 autorizador : NFAutorizadorNFe31.values()) {
                 if (Arrays.asList(autorizador.getUFs()).contains(uf)) {
                     return autorizador;
                 }
@@ -623,6 +599,7 @@ public enum NFAutorizadorNFe31 implements NFAutorizador31 {
         if (chaveParser.isEmitidaContingenciaSCAN()) {
             return NFAutorizadorNFe31.SCAN;
         }
-        return valueOfCodigoUF(chaveParser.getNFUnidadeFederativa());
+        return NFAutorizadorNFe31.valueOfCodigoUF(chaveParser.getNFUnidadeFederativa());
     }
+
 }
