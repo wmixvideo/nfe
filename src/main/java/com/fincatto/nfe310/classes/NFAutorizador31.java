@@ -59,12 +59,12 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.sefaz.ba.gov.br/webservices/NfeConsulta/NfeConsulta.asmx" : "https://nfe.sefaz.ba.gov.br/webservices/nfenw/nfeconsulta2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.sefaz.ba.gov.br/webservices/NfeConsulta/NfeConsulta.asmx" : "https://nfe.sefaz.ba.gov.br/webservices/NfeConsulta/NfeConsulta.asmx";
         }
 
         @Override
         public String getNfeStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.sefaz.ba.gov.br/webservices/NfeStatusServico/NfeStatusServico.asmx" : "https://nfe.sefaz.ba.gov.br/webservices/nfenw/NfeStatusServico2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.sefaz.ba.gov.br/webservices/NfeStatusServico/NfeStatusServico.asmx" : "https://nfe.sefaz.ba.gov.br/webservices/NfeStatusServico/NfeStatusServico.asmx";
         }
 
         @Override
@@ -364,7 +364,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getConsultaCadastro(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl" : "https://nfe2.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl" : "https://nfe.fazenda.pr.gov.br/nfe/CadConsultaCadastro2?wsdl";
         }
 
         @Override
