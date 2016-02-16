@@ -2,6 +2,7 @@ package com.fincatto.nfe310.classes;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -79,7 +80,8 @@ public class NFProtocoloInfo extends NFBase {
     }
 
     public DateTime getDataRecebimento() throws Exception {
-    	return DateTime.parse(this.dataRecebimento, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssXXXZZ"));
+    	DateTimeFormatter df = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+    	return df.withOffsetParsed().parseDateTime(this.dataRecebimento);
     }
 
     public String getNumeroProtocolo() {

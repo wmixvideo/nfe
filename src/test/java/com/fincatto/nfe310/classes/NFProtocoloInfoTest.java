@@ -1,9 +1,8 @@
 package com.fincatto.nfe310.classes;
 
-import java.text.SimpleDateFormat;
-
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -77,8 +76,9 @@ public class NFProtocoloInfoTest {
 
     @Test
     public void deveFormatarDataComOuSemTimeZone() throws Exception {
-        final LocalDateTime formatoAntigo = LocalDateTime.parse("2015-01-01T10:20:30", DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
-        final LocalDateTime formatoNovo = LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse("2015-01-01T10:20:30-05:00"));
+        final DateTime formatoAntigo = DateTime.parse("2015-01-01T10:20:30", DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        DateTimeFormatter df = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        final DateTime formatoNovo = df.withOffsetParsed().parseDateTime("2015-01-01T10:20:30-05:00");
         final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
         protocoloInfo.setDataRecebimento("2015-01-01T10:20:30");
         Assert.assertEquals(formatoAntigo, protocoloInfo.getDataRecebimento());

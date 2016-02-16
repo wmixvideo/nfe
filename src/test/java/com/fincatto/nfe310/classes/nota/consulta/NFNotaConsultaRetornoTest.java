@@ -2,6 +2,7 @@ package com.fincatto.nfe310.classes.nota.consulta;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,7 +40,8 @@ public class NFNotaConsultaRetornoTest {
     @Test
     public void deveObterDataHoraReciboComoFoiSetado() {
         final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
-        final DateTime dataHoraRecibo = DateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
+        DateTimeFormatter df = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        final DateTime dataHoraRecibo = df.withOffsetParsed().parseDateTime("2010-10-10 10:10:10"); 
         consultaRetorno.setDataHoraRecibo(dataHoraRecibo);
         Assert.assertEquals(dataHoraRecibo, consultaRetorno.getDataHoraRecibo());
     }

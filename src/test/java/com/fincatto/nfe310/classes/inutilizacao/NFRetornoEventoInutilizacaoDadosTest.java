@@ -2,6 +2,7 @@ package com.fincatto.nfe310.classes.inutilizacao;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +39,8 @@ public class NFRetornoEventoInutilizacaoDadosTest {
     @Test
     public void deveObterDataHoraRecebimentoComoFoiSetado() {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
-        final DateTime datahoraRecebimento = DateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
+        DateTimeFormatter df = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        final DateTime datahoraRecebimento = df.withOffsetParsed().parseDateTime("2010-10-10 10:10:10"); 
         dados.setDatahoraRecebimento(datahoraRecebimento);
         Assert.assertEquals(datahoraRecebimento, dados.getDatahoraRecebimento());
     }
