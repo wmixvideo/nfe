@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 
 import java.math.BigDecimal;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,7 +47,7 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveObterDataHoraEventoComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final LocalDateTime dataHoraEvento = new LocalDateTime(2010, 10, 10, 10, 10, 10);
+        final DateTime dataHoraEvento = new DateTime(2010, 10, 10, 10, 10, 10);
         infoEventoCancelamento.setDataHoraEvento(dataHoraEvento);
         Assert.assertEquals(dataHoraEvento, infoEventoCancelamento.getDataHoraEvento());
     }

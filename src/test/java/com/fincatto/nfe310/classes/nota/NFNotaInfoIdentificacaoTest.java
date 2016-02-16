@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -113,8 +113,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -129,7 +129,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -142,8 +142,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -158,7 +158,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
@@ -171,8 +171,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -187,7 +187,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
@@ -199,8 +199,8 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -215,7 +215,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -228,8 +228,8 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -244,7 +244,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -257,8 +257,8 @@ public class NFNotaInfoIdentificacaoTest {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -273,7 +273,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -287,7 +287,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -302,7 +302,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -316,7 +316,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -331,7 +331,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -345,8 +345,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
         identificacao.setModelo("AA");
@@ -360,7 +360,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -374,8 +374,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
         identificacao.setModelo("AA");
@@ -389,7 +389,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -403,8 +403,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setModelo("AA");
@@ -418,7 +418,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -432,8 +432,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -447,7 +447,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -461,8 +461,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -476,7 +476,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -490,8 +490,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -505,7 +505,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -519,8 +519,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -534,7 +534,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -548,8 +548,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -563,7 +563,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -577,8 +577,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -592,7 +592,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -606,8 +606,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -621,7 +621,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -635,8 +635,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -650,7 +650,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -664,8 +664,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -679,7 +679,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -693,8 +693,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -708,7 +708,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -722,8 +722,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -737,7 +737,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -751,8 +751,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -780,8 +780,8 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -796,7 +796,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);

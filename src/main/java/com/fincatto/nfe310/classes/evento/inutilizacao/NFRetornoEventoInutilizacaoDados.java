@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento.inutilizacao;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -46,7 +46,7 @@ public class NFRetornoEventoInutilizacaoDados extends NFBase {
     private String numeroNFFinal;
 
     @Element(name = "dhRecbto", required = false)
-    private LocalDateTime datahoraRecebimento;
+    private DateTime datahoraRecebimento;
 
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
@@ -147,11 +147,11 @@ public class NFRetornoEventoInutilizacaoDados extends NFBase {
         this.numeroNFFinal = numeroNFFinal;
     }
 
-    public LocalDateTime getDatahoraRecebimento() {
+    public DateTime getDatahoraRecebimento() {
         return this.datahoraRecebimento;
     }
 
-    public void setDatahoraRecebimento(final LocalDateTime datahoraRecebimento) {
+    public void setDatahoraRecebimento(final DateTime datahoraRecebimento) {
         this.datahoraRecebimento = datahoraRecebimento;
     }
 

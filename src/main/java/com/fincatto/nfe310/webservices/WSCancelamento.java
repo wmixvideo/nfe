@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.log4j.Logger;
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
@@ -79,7 +79,7 @@ class WSCancelamento {
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
-        infoEvento.setDataHoraEvento(LocalDateTime.now());
+        infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());

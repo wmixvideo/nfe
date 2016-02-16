@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.nota.consulta;
 
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -38,7 +38,7 @@ public class NFNotaConsultaRetorno extends NFBase {
     private NFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto", required = true)
-    private LocalDateTime dataHoraRecibo;
+    private DateTime dataHoraRecibo;
 
     @Element(name = "chNFe", required = true)
     private String chave;
@@ -127,11 +127,11 @@ public class NFNotaConsultaRetorno extends NFBase {
         this.protocolo = protocolo;
     }
 
-    public LocalDateTime getDataHoraRecibo() {
+    public DateTime getDataHoraRecibo() {
         return this.dataHoraRecibo;
     }
 
-    public void setDataHoraRecibo(final LocalDateTime dataHoraRecibo) {
+    public void setDataHoraRecibo(final DateTime dataHoraRecibo) {
         this.dataHoraRecibo = dataHoraRecibo;
     }
 }

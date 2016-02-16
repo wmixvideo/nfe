@@ -6,8 +6,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFEndereco;
@@ -174,7 +174,7 @@ public class FabricaDeObjetosFake {
         infoEventoCancelamento.setChave("81568004734874930428983724940883089298523837");
         infoEventoCancelamento.setCnpj("12345678901234");
         infoEventoCancelamento.setCodigoEvento("123456");
-        infoEventoCancelamento.setDataHoraEvento(new LocalDateTime(2014, 01, 01, 10, 10, 10));
+        infoEventoCancelamento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEventoCancelamento.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoCancelamento.setNumeroSequencialEvento(2);
         infoEventoCancelamento.setOrgao(NFUnidadeFederativa.SC);
@@ -222,7 +222,7 @@ public class FabricaDeObjetosFake {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(new LocalDateTime(2014, 01, 01, 10, 10, 10));
+        infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(NFUnidadeFederativa.SC);
@@ -358,8 +358,8 @@ public class FabricaDeObjetosFake {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -374,7 +374,7 @@ public class FabricaDeObjetosFake {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.RS);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -389,8 +389,8 @@ public class FabricaDeObjetosFake {
         identificacao.setAmbiente(NFAmbiente.HOMOLOGACAO);
         identificacao.setCodigoMunicipio("4314902");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(LocalDateTime.now());
-        identificacao.setDataHoraSaidaOuEntrada(LocalDateTime.now());
+        identificacao.setDataHoraEmissao(DateTime.now());
+        identificacao.setDataHoraSaidaOuEntrada(DateTime.now());
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -561,8 +561,8 @@ public class FabricaDeObjetosFake {
         identificacao.setAmbiente(NFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(new LocalDateTime(2010, 10, 27, 10, 10, 10));
-        identificacao.setDataHoraSaidaOuEntrada(new LocalDateTime(2013, 9, 24, 10, 10, 10));
+        identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
+        identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -577,7 +577,7 @@ public class FabricaDeObjetosFake {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(NFUnidadeFederativa.RS);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(new LocalDateTime(2014, 10, 10, 10, 10, 10));
+        identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
