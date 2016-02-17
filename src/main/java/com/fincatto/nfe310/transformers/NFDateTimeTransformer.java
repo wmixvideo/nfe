@@ -7,7 +7,7 @@ import org.simpleframework.xml.transform.Transform;
 
 class NFDateTimeTransformer implements Transform<DateTime> {
 
-	private static final DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+	private static final DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
 
     @Override
     public DateTime read(final String data) throws Exception {
