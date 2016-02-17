@@ -2,7 +2,6 @@ package com.fincatto.nfe310.classes.statusservico.consulta;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
