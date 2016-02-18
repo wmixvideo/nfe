@@ -1,5 +1,8 @@
 package com.fincatto.nfe310.classes.nota.consulta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
@@ -9,6 +12,7 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
 
 public class NFNotaConsultaRetornoTest {
 
@@ -82,5 +86,21 @@ public class NFNotaConsultaRetornoTest {
         final String versaoAplicacao = "v10.0";
         consultaRetorno.setVersaoAplicacao(versaoAplicacao);
         Assert.assertEquals(versaoAplicacao, consultaRetorno.getVersaoAplicacao());
+    }
+
+    @Test
+    public void deveObterProtocoloCancelamentoComoFoiSetado() {
+        final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
+        final NFRetornoCancelamento protocoloCancelamento = new NFRetornoCancelamento();
+        consultaRetorno.setProtocoloCancelamento(protocoloCancelamento);
+        Assert.assertEquals(protocoloCancelamento, consultaRetorno.getProtocoloCancelamento());
+    }
+
+    @Test
+    public void deveObterProtocoloEventoComoFoiSetado() {
+        final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
+        final List<NFProtocoloEvento> protocoloEvento = new ArrayList<>();
+        consultaRetorno.setProtocoloEvento(protocoloEvento);
+        Assert.assertEquals(protocoloEvento, consultaRetorno.getProtocoloEvento());
     }
 }

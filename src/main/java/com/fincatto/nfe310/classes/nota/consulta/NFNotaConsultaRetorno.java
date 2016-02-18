@@ -115,6 +115,14 @@ public class NFNotaConsultaRetorno extends NFBase {
         return this.chave;
     }
 
+    public List<NFProtocoloEvento> getProtocoloEvento() {
+        return this.protocoloEvento;
+    }
+
+    public NFRetornoCancelamento getProtocoloCancelamento() {
+        return this.protocoloCancelamento;
+    }
+
     public void setChave(final String chave) {
         this.chave = chave;
     }
@@ -133,5 +141,13 @@ public class NFNotaConsultaRetorno extends NFBase {
 
     public void setDataHoraRecibo(final LocalDateTime dataHoraRecibo) {
         this.dataHoraRecibo = dataHoraRecibo;
+    }
+
+    public void setProtocoloEvento(final List<NFProtocoloEvento> protocoloEvento) {
+        this.protocoloEvento = protocoloEvento;
+    }
+
+    public void setProtocoloCancelamento(final NFRetornoCancelamento protocoloCancelamento) {
+        this.protocoloCancelamento = protocoloCancelamento;
     }
 }
