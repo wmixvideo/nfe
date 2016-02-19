@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -50,7 +50,7 @@ public class NFInfoEventoRetorno extends NFBase {
     private String email;
 
     @Element(name = "dhRegEvento", required = true)
-    private DateTime dataHoraRegistro;
+    private LocalDateTime dataHoraRegistro;
 
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
@@ -107,7 +107,7 @@ public class NFInfoEventoRetorno extends NFBase {
         return this.email;
     }
 
-    public DateTime getDataHoraRegistro() {
+    public LocalDateTime getDataHoraRegistro() {
         return this.dataHoraRegistro;
     }
 
@@ -167,7 +167,7 @@ public class NFInfoEventoRetorno extends NFBase {
         this.email = email;
     }
 
-    public void setDataHoraRegistro(final DateTime dataHoraRegistro) {
+    public void setDataHoraRegistro(final LocalDateTime dataHoraRegistro) {
         this.dataHoraRegistro = dataHoraRegistro;
     }
 

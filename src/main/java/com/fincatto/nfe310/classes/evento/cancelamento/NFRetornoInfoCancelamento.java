@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento.cancelamento;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -33,7 +33,7 @@ public class NFRetornoInfoCancelamento extends NFBase {
     private String chave;
 
     @Element(name = "dhRecbto", required = false)
-    private DateTime datahoraRecebimento;
+    private LocalDateTime datahoraRecebimento;
 
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
@@ -97,11 +97,11 @@ public class NFRetornoInfoCancelamento extends NFBase {
         this.chave = chave;
     }
 
-    public DateTime getDatahoraRecebimento() {
+    public LocalDateTime getDatahoraRecebimento() {
         return this.datahoraRecebimento;
     }
 
-    public void setDatahoraRecebimento(final DateTime datahoraRecebimento) {
+    public void setDatahoraRecebimento(final LocalDateTime datahoraRecebimento) {
         this.datahoraRecebimento = datahoraRecebimento;
     }
 

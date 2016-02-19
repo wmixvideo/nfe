@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.lote.envio;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class NFLoteEnvioRetornoTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFLoteEnvioRetorno retorno = new NFLoteEnvioRetorno();
         retorno.setAmbiente(NFAmbiente.HOMOLOGACAO);
-        retorno.setDataRecebimento(new DateTime(2014, 1, 1, 10, 10, 10));
+        retorno.setDataRecebimento(new LocalDateTime(2014, 1, 1, 10, 10, 10));
         retorno.setInfoRecebimento(FabricaDeObjetosFake.getNFLoteEnvioRetornoRecebimentoInfo());
         retorno.setMotivo("kdosfksodf");
         retorno.setStatus("iejsasfisf");

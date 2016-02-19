@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.statusservico.consulta;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -33,10 +33,10 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
     private NFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto", required = true)
-    private DateTime dataRecebimento;
+    private LocalDateTime dataRecebimento;
 
     @Element(name = "dhRetorno", required = false)
-    private DateTime dataRetorno;
+    private LocalDateTime dataRetorno;
 
     @Element(name = "xObs", required = false)
     private String observacao;
@@ -105,19 +105,19 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.uf = uf;
     }
 
-    public DateTime getDataRecebimento() {
+    public LocalDateTime getDataRecebimento() {
         return this.dataRecebimento;
     }
 
-    public void setDataRecebimento(final DateTime dataRecebimento) {
+    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
-    public DateTime getDataRetorno() {
+    public LocalDateTime getDataRetorno() {
         return this.dataRetorno;
     }
 
-    public void setDataRetorno(final DateTime dataRetorno) {
+    public void setDataRetorno(final LocalDateTime dataRetorno) {
         this.dataRetorno = dataRetorno;
     }
 

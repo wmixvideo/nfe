@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.statusservico.consulta;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
@@ -61,7 +61,7 @@ public class NFStatusServicoConsultaRetornoTest {
     @Test
     public void deveObterDataRecebimentoComoFoiSetado() {
         final NFStatusServicoConsultaRetorno consultaRetorno = new NFStatusServicoConsultaRetorno();
-        final DateTime dataRecebimento = DateTimeFormat.forPattern("yyyy/MM/dd HH:mm:ss").parseDateTime("2013/12/10 15:10:59");
+        final LocalDateTime dataRecebimento = DateTimeFormat.forPattern("yyyy/MM/dd HH:mm:ss").parseLocalDateTime("2013/12/10 15:10:59");
         consultaRetorno.setDataRecebimento(dataRecebimento);
         Assert.assertEquals(dataRecebimento, consultaRetorno.getDataRecebimento());
     }
@@ -69,7 +69,7 @@ public class NFStatusServicoConsultaRetornoTest {
     @Test
     public void deveObterDataRetornoComoFoiSetado() {
         final NFStatusServicoConsultaRetorno consultaRetorno = new NFStatusServicoConsultaRetorno();
-        final DateTime dataRetorno = DateTime.parse("2015/11/13", DateTimeFormat.forPattern("yyyy/MM/dd"));
+        final LocalDateTime dataRetorno = LocalDateTime.parse("2015/11/13", DateTimeFormat.forPattern("yyyy/MM/dd"));
         consultaRetorno.setDataRetorno(dataRetorno);
         Assert.assertEquals(dataRetorno, consultaRetorno.getDataRetorno());
     }

@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class NFInfoEventoRetornoTest {
     @Test
     public void deveObterDataHoraRegistroComoFoiSetado() {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
-        final DateTime dataHoraRegistro = DateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")); 
+        final LocalDateTime dataHoraRegistro = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")); 
         eventoRetorno.setDataHoraRegistro(dataHoraRegistro);
         Assert.assertEquals(dataHoraRegistro, eventoRetorno.getDataHoraRegistro());
     }
