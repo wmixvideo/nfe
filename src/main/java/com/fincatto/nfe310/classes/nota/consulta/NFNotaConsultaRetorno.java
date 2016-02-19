@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.nota.consulta;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -38,7 +38,7 @@ public class NFNotaConsultaRetorno extends NFBase {
     private NFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto", required = true)
-    private DateTime dataHoraRecibo;
+    private LocalDateTime dataHoraRecibo;
 
     @Element(name = "chNFe", required = true)
     private String chave;
@@ -115,6 +115,14 @@ public class NFNotaConsultaRetorno extends NFBase {
         return this.chave;
     }
 
+    public List<NFProtocoloEvento> getProtocoloEvento() {
+        return this.protocoloEvento;
+    }
+
+    public NFRetornoCancelamento getProtocoloCancelamento() {
+        return this.protocoloCancelamento;
+    }
+
     public void setChave(final String chave) {
         this.chave = chave;
     }
@@ -127,11 +135,19 @@ public class NFNotaConsultaRetorno extends NFBase {
         this.protocolo = protocolo;
     }
 
-    public DateTime getDataHoraRecibo() {
+    public LocalDateTime getDataHoraRecibo() {
         return this.dataHoraRecibo;
     }
 
-    public void setDataHoraRecibo(final DateTime dataHoraRecibo) {
+    public void setDataHoraRecibo(final LocalDateTime dataHoraRecibo) {
         this.dataHoraRecibo = dataHoraRecibo;
+    }
+
+    public void setProtocoloEvento(final List<NFProtocoloEvento> protocoloEvento) {
+        this.protocoloEvento = protocoloEvento;
+    }
+
+    public void setProtocoloCancelamento(final NFRetornoCancelamento protocoloCancelamento) {
+        this.protocoloCancelamento = protocoloCancelamento;
     }
 }
