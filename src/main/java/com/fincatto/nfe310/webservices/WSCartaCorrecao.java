@@ -10,7 +10,7 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.axis2.AxisFault;
 import org.apache.log4j.Logger;
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
@@ -83,7 +83,7 @@ class WSCartaCorrecao {
         infoEvento.setDadosEvento(cartaCorrecao);
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
-        infoEvento.setDataHoraEvento(LocalDateTime.now());
+        infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", WSCartaCorrecao.EVENTO_CARTA_CORRECAO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());

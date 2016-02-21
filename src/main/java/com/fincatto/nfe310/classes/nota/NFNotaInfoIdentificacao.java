@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.nota;
 
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -43,10 +43,10 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String numeroNota;
 
     @Element(name = "dhEmi", required = true)
-    private LocalDateTime dataHoraEmissao;
+    private DateTime dataHoraEmissao;
 
     @Element(name = "dhSaiEnt", required = false)
-    private LocalDateTime dataHoraSaidaOuEntrada;
+    private DateTime dataHoraSaidaOuEntrada;
 
     @Element(name = "tpNF", required = true)
     private NFTipo tipo;
@@ -85,7 +85,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String versaoEmissor;
 
     @Element(name = "dhCont", required = false)
-    private LocalDateTime dataHoraContigencia;
+    private DateTime dataHoraContigencia;
 
     @Element(name = "xJust", required = false)
     private String justificativaEntradaContingencia;
@@ -126,11 +126,11 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.numeroNota = numeroNota;
     }
 
-    public void setDataHoraEmissao(final LocalDateTime dataEmissao) {
+    public void setDataHoraEmissao(final DateTime dataEmissao) {
         this.dataHoraEmissao = dataEmissao;
     }
 
-    public void setDataHoraSaidaOuEntrada(final LocalDateTime dataHoraSaidaOuEntrada) {
+    public void setDataHoraSaidaOuEntrada(final DateTime dataHoraSaidaOuEntrada) {
         this.dataHoraSaidaOuEntrada = dataHoraSaidaOuEntrada;
     }
 
@@ -178,7 +178,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.versaoEmissor = versaoEmissor;
     }
 
-    public void setDataHoraContigencia(final LocalDateTime dataHoraContigencia) {
+    public void setDataHoraContigencia(final DateTime dataHoraContigencia) {
         this.dataHoraContigencia = dataHoraContigencia;
     }
 
@@ -227,11 +227,11 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.numeroNota;
     }
 
-    public LocalDateTime getDataHoraEmissao() {
+    public DateTime getDataHoraEmissao() {
         return this.dataHoraEmissao;
     }
 
-    public LocalDateTime getDataHoraSaidaOuEntrada() {
+    public DateTime getDataHoraSaidaOuEntrada() {
         return this.dataHoraSaidaOuEntrada;
     }
 
@@ -283,7 +283,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.versaoEmissor;
     }
 
-    public LocalDateTime getDataHoraContigencia() {
+    public DateTime getDataHoraContigencia() {
         return this.dataHoraContigencia;
     }
 

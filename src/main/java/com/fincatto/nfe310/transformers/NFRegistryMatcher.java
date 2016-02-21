@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.transformers;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
@@ -61,6 +62,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(LocalTime.class, new NFLocalTimeTransformer());
         super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
+        super.bind(DateTime.class, new NFDateTimeTransformer());
         super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());
         super.bind(NFTipoImpressao.class, new NFTipoImpressaoTransformer());
         super.bind(NFOrigemProcesso.class, new NFOrigemProcessoTransformer());

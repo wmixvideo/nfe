@@ -38,7 +38,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
     @Test
     public void deveObterDataHoraRecebimentoComoFoiSetado() {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
-        final LocalDateTime datahoraRecebimento = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
+        final LocalDateTime datahoraRecebimento = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")); 
         dados.setDatahoraRecebimento(datahoraRecebimento);
         Assert.assertEquals(datahoraRecebimento, dados.getDatahoraRecebimento());
     }

@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 
 import java.math.BigDecimal;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -34,7 +34,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     private String chave;
 
     @Element(name = "dhEvento", required = true)
-    private LocalDateTime dataHoraEvento;
+    private DateTime dataHoraEvento;
 
     @Element(name = "tpEvento", required = true)
     private String codigoEvento;
@@ -106,11 +106,11 @@ public class NFInfoEventoCancelamento extends NFBase {
         this.chave = chave;
     }
 
-    public LocalDateTime getDataHoraEvento() {
+    public DateTime getDataHoraEvento() {
         return this.dataHoraEvento;
     }
 
-    public void setDataHoraEvento(final LocalDateTime dataHoraEvento) {
+    public void setDataHoraEvento(final DateTime dataHoraEvento) {
         this.dataHoraEvento = dataHoraEvento;
     }
 
