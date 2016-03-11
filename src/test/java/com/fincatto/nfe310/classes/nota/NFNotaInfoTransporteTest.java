@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFModalidadeFrete;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoTransporte;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoVolume;
 
 public class NFNotaInfoTransporteTest {
 
@@ -30,34 +28,6 @@ public class NFNotaInfoTransporteTest {
             volumes.add(new NFNotaInfoVolume());
         }
         new NFNotaInfoTransporte().setVolumes(volumes);
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSetarVagaoCasoBalsaEstejaSetado() {
-        final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
-        transporte.setBalsa("lfciRECVL2wtomTP35xm");
-        transporte.setVagao("8fFAKefiBQIDTkCCSQk3");
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSetarBalsaCasoVagaoEstejaSetado() {
-        final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
-        transporte.setVagao("8fFAKefiBQIDTkCCSQk3");
-        transporte.setBalsa("lfciRECVL2wtomTP35xm");
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSetarVeiculoCasoReboquesEstejaSetado() {
-        final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
-        transporte.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoVeiculo());
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSetarReboquesCasoVeiculoEstejaSetado() {
-        final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
-        transporte.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoVeiculo());
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
     }
 
     @Test
