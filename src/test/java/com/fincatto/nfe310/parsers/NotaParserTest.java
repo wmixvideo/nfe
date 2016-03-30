@@ -1,6 +1,7 @@
 package com.fincatto.nfe310.parsers;
 
 import java.io.File;
+import java.net.URI;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,8 +17,8 @@ public class NotaParserTest {
     }
 
     @Test
-    public void deveParsearCorretamenteArquivoDaNota310() {
-        Assert.assertNotNull(new NotaParser().notaParaObjeto(new File(NotaParserTest.class.getResource("nota.xml").getPath())));
+    public void deveParsearCorretamenteArquivoDaNota310() throws Exception {
+        Assert.assertNotNull(new NotaParser().notaParaObjeto(new File(new URI(NotaParserTest.class.getResource("nota.xml").getFile()).getPath())));
     }
 
     @Test
@@ -27,8 +28,8 @@ public class NotaParserTest {
     }
 
     @Test
-    public void deveParsearCorretamenteArquivoDaNotaProcessada310() {
-        Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(new File(NotaParserTest.class.getResource("notaprocessada.xml").getPath())));
+    public void deveParsearCorretamenteArquivoDaNotaProcessada310() throws Exception {
+        Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(new File(new URI(NotaParserTest.class.getResource("notaprocessada.xml").getFile()).getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)
