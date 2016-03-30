@@ -17,7 +17,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDaNota310() {
-        Assert.assertNotNull(new NotaParser().notaParaObjeto(new File(NotaParserTest.class.getResource("nota.xml").getFile())));
+        Assert.assertNotNull(new NotaParser().notaParaObjeto(new File(NotaParserTest.class.getResource("nota.xml").getPath())));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDaNotaProcessada310() {
-        Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(new File(NotaParserTest.class.getResource("notaprocessada.xml").getFile())));
+        Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(new File(NotaParserTest.class.getResource("notaprocessada.xml").getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)
