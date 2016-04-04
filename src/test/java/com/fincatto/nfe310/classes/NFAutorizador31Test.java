@@ -1,6 +1,7 @@
 package com.fincatto.nfe310.classes;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -333,5 +334,11 @@ public class NFAutorizador31Test {
     @Test
     public void deveObterSCANCasoEstejaEmContigencia() {
         Assert.assertEquals(NFAutorizador31.SCAN, NFAutorizador31.valueOfChaveAcesso("42306447535430986810259129468905605824735937"));
+    }
+
+    @Test
+    public void deveObterTodasAsUFsDoSVRS() {
+        final List<NFUnidadeFederativa> ufsDaSVRS = Arrays.asList(NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO);
+        Assert.assertTrue(ufsDaSVRS.equals(Arrays.asList(NFAutorizador31.SVRS.getUFs())));
     }
 }
