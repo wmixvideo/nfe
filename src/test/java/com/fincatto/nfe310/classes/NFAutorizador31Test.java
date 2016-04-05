@@ -186,7 +186,6 @@ public class NFAutorizador31Test {
         Assert.assertEquals("https://nfe.fazenda.pr.gov.br/nfe/NFeStatusServico3?wsdl", autorizador.getNfeStatusServico(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.pr.gov.br/nfe/NFeRecepcaoEvento?wsdl", autorizador.getRecepcaoEvento(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.pr.gov.br/nfe/NFeInutilizacao3?wsdl", autorizador.getNfeInutilizacao(NFAmbiente.PRODUCAO));
-
     }
 
     @Test
@@ -321,9 +320,9 @@ public class NFAutorizador31Test {
         Assert.assertEquals(NFAutorizador31.SP, NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.SP));
     }
 
-    @Test
-    public void deveObterNullCasoPasseUmaUFInvalida() {
-        Assert.assertNull(NFAutorizador31.valueOfCodigoUF(null));
+    @Test(expected = IllegalStateException.class)
+    public void deveLancarExcecaoCasoRecebaUFNaoMapeada() {
+        NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.EX);
     }
 
     @Test

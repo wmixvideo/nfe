@@ -600,14 +600,12 @@ public enum NFAutorizador31 {
     public abstract NFUnidadeFederativa[] getUFs();
 
     public static NFAutorizador31 valueOfCodigoUF(final NFUnidadeFederativa uf) {
-        if (uf != null) {
-            for (final NFAutorizador31 autorizador : NFAutorizador31.values()) {
-                if (Arrays.asList(autorizador.getUFs()).contains(uf)) {
-                    return autorizador;
-                }
+        for (final NFAutorizador31 autorizador : NFAutorizador31.values()) {
+            if (Arrays.asList(autorizador.getUFs()).contains(uf)) {
+                return autorizador;
             }
         }
-        return null;
+        throw new IllegalStateException(String.format("N\u00e3o existe autorizador para a UF %s", uf.getCodigo()));
     }
 
     public static NFAutorizador31 valueOfChaveAcesso(final String chaveAcesso) {
