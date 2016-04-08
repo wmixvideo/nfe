@@ -209,6 +209,4 @@ Apache 2.0
 
 ## Dúvidas?
 O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
-Portanto, em caso de dúvidas, use o nosso canal do Disqus:
-* [Fórum NFe](https://disqus.com/home/channel/nfe/)
-
+Portanto, em caso de dúvidas, use o nosso canal do [Disqus](https://disqus.com/home/channel/nfe/).
