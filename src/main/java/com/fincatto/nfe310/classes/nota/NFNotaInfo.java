@@ -58,7 +58,7 @@ public class NFNotaInfo extends NFBase {
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
 
-    @ElementList(entry = "pag", required = false)
+    @ElementList(entry = "pag", inline = true, required = false)
     private List<NFNotaInfoPagamento> pagamentos;
 
     @Element(name = "infAdic", required = false)
@@ -163,10 +163,6 @@ public class NFNotaInfo extends NFBase {
 
     public String getVersao() {
         return this.versao;
-    }
-
-    public void setVersao(final String versao) {
-        this.versao = versao;
     }
 
     public NFNotaInfoEmitente getEmitente() {
