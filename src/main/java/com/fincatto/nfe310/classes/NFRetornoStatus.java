@@ -380,6 +380,7 @@ public enum NFRetornoStatus {
     CODIGO_693(693, "Rejei\u00e7\u00e3o: Al\u00edquota de ICMS superior a definida para a opera\u00e7\u00e3o interestadual"),
     CODIGO_694(694, "Rejei\u00e7\u00e3o: N\u00e3o informado o grupo de ICMS para a UF de destino"),
     CODIGO_695(695, "Rejei\u00e7\u00e3o: Informado indevidamente o grupo de ICMS para a UF de destino"),
+    CODIGO_696(696, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o com n\u00e3o contribuinte deve indicar opera\u00e7\u00e3o com consumidor final"),
     CODIGO_697(697, "Rejei\u00e7\u00e3o: Al\u00edquota interestadual do ICMS com origem diferente do previsto"),
     CODIGO_698(698, "Rejei\u00e7\u00e3o: Al\u00edquota interestadual do ICMS incompat\u00edvel com as UF"),
     CODIGO_699(699, "Rejei\u00e7\u00e3o: Percentual do ICMS Interestadual para a UF de destino difere do previsto para o ano da Data de Emiss\u00e3o"),
