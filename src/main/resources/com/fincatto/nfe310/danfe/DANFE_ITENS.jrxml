@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="DANFE_ITENS"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="595"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="campoPequeno"
+		isDefault="false"
+		radius="3"
+		hAlign="Center"
+		vAlign="Bottom"
+		fontName="SansSerif"
+		fontSize="5"
+		isBold="false"
+		isItalic="false"
+		isUnderline="false"
+		isStrikeThrough="false"
+	>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+</box>
+	</style>
+	<style 
+		name="itens"
+		isDefault="false"
+		forecolor="#000000"
+		fill="Solid"
+		radius="3"
+		hAlign="Left"
+		vAlign="Middle"
+		fontName="SansSerif"
+		fontSize="7"
+		isBold="false"
+		isItalic="false"
+		isUnderline="false"
+		isStrikeThrough="false"
+	>
+	</style>
+
+
+	<field name="detImpostoConfsaliqCst" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoConfsaliqCst]]></fieldDescription>
+	</field>
+	<field name="detImpostoConfsaliqPcofins" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoConfsaliqPcofins]]></fieldDescription>
+	</field>
+	<field name="detImpostoConfsaliqVBc" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoConfsaliqVBc]]></fieldDescription>
+	</field>
+	<field name="detImpostoConfsaliqVCofins" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoConfsaliqVCofins]]></fieldDescription>
+	</field>
+	<field name="detImpostoIPICenq" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoIPICenq]]></fieldDescription>
+	</field>
+	<field name="detImpostoIPICst" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoIPICst]]></fieldDescription>
+	</field>
+	<field name="detImpostoIPIPercIPI" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIPIPercIPI]]></fieldDescription>
+	</field>
+	<field name="detImpostoIPIVBc" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIPIVBc]]></fieldDescription>
+	</field>
+	<field name="detImpostoIPIValIPI" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIPIValIPI]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00Cst" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoIcms00Cst]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00ModBc" class="java.lang.Integer">
+		<fieldDescription><![CDATA[detImpostoIcms00ModBc]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00Orig" class="java.lang.Integer">
+		<fieldDescription><![CDATA[detImpostoIcms00Orig]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00PIcms" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIcms00PIcms]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00VBc" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIcms00VBc]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms00VIcms" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIcms00VIcms]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms60Cst" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoIcms60Cst]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms60Orig" class="java.lang.Integer">
+		<fieldDescription><![CDATA[detImpostoIcms60Orig]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms60VBcst" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIcms60VBcst]]></fieldDescription>
+	</field>
+	<field name="detImpostoIcms60VIcmsst" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoIcms60VIcmsst]]></fieldDescription>
+	</field>
+	<field name="detImpostoPisaliqCst" class="java.lang.String">
+		<fieldDescription><![CDATA[detImpostoPisaliqCst]]></fieldDescription>
+	</field>
+	<field name="detImpostoPisaliqPPis" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoPisaliqPPis]]></fieldDescription>
+	</field>
+	<field name="detImpostoPisaliqVBc" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoPisaliqVBc]]></fieldDescription>
+	</field>
+	<field name="detImpostoPisaliqVPis" class="java.lang.Double">
+		<fieldDescription><![CDATA[detImpostoPisaliqVPis]]></fieldDescription>
+	</field>
+	<field name="detProdCEan" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdCEan]]></fieldDescription>
+	</field>
+	<field name="detProdCEantrib" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdCEantrib]]></fieldDescription>
+	</field>
+	<field name="detProdCProd" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdCProd]]></fieldDescription>
+	</field>
+	<field name="detProdCfop" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdCfop]]></fieldDescription>
+	</field>
+	<field name="detProdExtipi" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdExtipi]]></fieldDescription>
+	</field>
+	<field name="detProdGenero" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdGenero]]></fieldDescription>
+	</field>
+	<field name="detProdNItem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[detProdNItem]]></fieldDescription>
+	</field>
+	<field name="detProdNcm" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdNcm]]></fieldDescription>
+	</field>
+	<field name="detProdQCom" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdQCom]]></fieldDescription>
+	</field>
+	<field name="detProdQTrib" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdQTrib]]></fieldDescription>
+	</field>
+	<field name="detProdUCom" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdUCom]]></fieldDescription>
+	</field>
+	<field name="detProdUTrib" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdUTrib]]></fieldDescription>
+	</field>
+	<field name="detProdVFrete" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdVFrete]]></fieldDescription>
+	</field>
+	<field name="detProdVProd" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdVProd]]></fieldDescription>
+	</field>
+	<field name="detProdVUnCom" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdVUnCom]]></fieldDescription>
+	</field>
+	<field name="detProdVUnTrib" class="java.lang.Double">
+		<fieldDescription><![CDATA[detProdVUnTrib]]></fieldDescription>
+	</field>
+	<field name="detProdXProd" class="java.lang.String">
+		<fieldDescription><![CDATA[detProdXProd]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_PICMSST" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_PICMSST]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_PMVAST" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_PMVAST]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_PRedBCST" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_PRedBCST]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_VBCST" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_VBCST]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_VICMSST" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_VICMSST]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_mod_bcstc_" class="java.lang.String">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_mod_bcstc_]]></fieldDescription>
+	</field>
+	<field name="det_imposto_ICMS00_v_desc" class="java.lang.Double">
+		<fieldDescription><![CDATA[det_imposto_ICMS00_v_desc]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="26"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="0"
+						y="12"
+						width="28"
+						height="14"
+						key="staticText-1"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ CÓDIGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="28"
+						y="12"
+						width="140"
+						height="14"
+						key="staticText-2"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ DESCRIÇÃO DOS PRODUTOS / SERVIÇOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="168"
+						y="12"
+						width="34"
+						height="14"
+						key="staticText-3"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ NCM/SH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="202"
+						y="12"
+						width="26"
+						height="14"
+						key="staticText-4"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ CST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="228"
+						y="12"
+						width="31"
+						height="14"
+						key="staticText-5"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ CFOP]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="259"
+						y="12"
+						width="26"
+						height="14"
+						key="staticText-6"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[UNIDADE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="285"
+						y="12"
+						width="26"
+						height="14"
+						key="staticText-7"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ QUANT.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="311"
+						y="12"
+						width="27"
+						height="14"
+						key="staticText-8"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[VALOR UNIT.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="338"
+						y="12"
+						width="40"
+						height="14"
+						key="staticText-9"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[VALOR TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="378"
+						y="19"
+						width="25"
+						height="7"
+						key="staticText-10"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ ICMS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="403"
+						y="19"
+						width="25"
+						height="7"
+						key="staticText-11"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ ICMS ST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						mode="Transparent"
+						x="428"
+						y="12"
+						width="81"
+						height="7"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="staticText-12"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="5" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[VALOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="453"
+						y="19"
+						width="28"
+						height="7"
+						key="staticText-13"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ ICMS ST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="481"
+						y="19"
+						width="28"
+						height="7"
+						key="staticText-14"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ IPI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="509"
+						y="19"
+						width="28"
+						height="7"
+						key="staticText-15"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ ICMS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="537"
+						y="19"
+						width="28"
+						height="7"
+						key="staticText-16"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ IPI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="428"
+						y="19"
+						width="25"
+						height="7"
+						key="staticText-17"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ ICMS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="378"
+						y="12"
+						width="50"
+						height="7"
+						key="staticText-18"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[BASE CALCULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="509"
+						y="12"
+						width="56"
+						height="7"
+						key="staticText-19"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+				<text><![CDATA[ALIQUOTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="campoPequeno"
+						x="0"
+						y="2"
+						width="565"
+						height="9"
+						key="staticText-20"
+						positionType="Float"/>
+					<box>					<pen lineWidth="0.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" size="6" isBold="true" isItalic="false"/>
+					</textElement>
+				<text><![CDATA[DADOS DE PRODUTOS / SERVIÇOS]]></text>
+				</staticText>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="10"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="0"
+						y="1"
+						width="28"
+						height="9"
+						key="textField-1"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detProdCProd}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="28"
+						y="1"
+						width="140"
+						height="9"
+						key="textField-2"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detProdXProd}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="168"
+						y="1"
+						width="34"
+						height="9"
+						key="textField-3"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detProdNcm}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="202"
+						y="1"
+						width="26"
+						height="9"
+						key="textField-4"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detImpostoIcms00Cst}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="259"
+						y="1"
+						width="26"
+						height="9"
+						key="textField-5"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detProdUCom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="285"
+						y="1"
+						width="26"
+						height="9"
+						key="textField-6"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detProdQCom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="311"
+						y="1"
+						width="27"
+						height="9"
+						key="textField-7"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detProdVUnCom}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="338"
+						y="1"
+						width="40"
+						height="9"
+						key="textField-8"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new Double($F{detProdQCom}.doubleValue() *
+$F{detProdVUnCom}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="509"
+						y="1"
+						width="28"
+						height="9"
+						key="textField-9"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIcms00PIcms}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="537"
+						y="1"
+						width="28"
+						height="9"
+						key="textField-10"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIPIPercIPI}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="228"
+						y="1"
+						width="31"
+						height="9"
+						key="textField-11"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{detProdCfop}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="378"
+						y="1"
+						width="25"
+						height="9"
+						key="textField-12"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIcms00VBc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="403"
+						y="1"
+						width="25"
+						height="9"
+						key="textField-13"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIcms60VBcst}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="428"
+						y="1"
+						width="25"
+						height="9"
+						key="textField-14"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIcms00VIcms}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="453"
+						y="1"
+						width="28"
+						height="9"
+						key="textField-15"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIcms60VIcmsst}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="itens"
+						x="481"
+						y="1"
+						width="28"
+						height="9"
+						key="textField-16"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{detImpostoIPIValIPI}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>
