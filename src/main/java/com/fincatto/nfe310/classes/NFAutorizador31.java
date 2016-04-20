@@ -4,6 +4,11 @@ import java.util.Arrays;
 
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 
+/**
+ * <h1>URLs dos serviços</h1><br>
+ * <a href="http://hom.nfe.fazenda.gov.br/portal/webServices.aspx?tipoConteudo=Wak0FwB7dKs=">Homologação</a><br>
+ * <a href="http://www.nfe.fazenda.gov.br/portal/webServices.aspx?tipoConteudo=Wak0FwB7dKs=">Produção</a>
+ */
 public enum NFAutorizador31 {
     AM {
         @Override
