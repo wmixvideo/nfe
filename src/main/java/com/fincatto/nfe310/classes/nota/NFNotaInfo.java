@@ -11,6 +11,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
@@ -219,5 +220,9 @@ public class NFNotaInfo extends NFBase {
 
     public NFNotaInfoCana getCana() {
         return this.cana;
+    }
+    
+    public void geraChaveIdentificacao() {
+    	NFGeraChave.geraChave(this);
     }
 }
