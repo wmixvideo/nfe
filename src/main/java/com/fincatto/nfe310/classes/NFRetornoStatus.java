@@ -49,7 +49,7 @@ public enum NFRetornoStatus {
     CODIGO_217(217, "Rejei\u00e7\u00e3o: NF-e n\u00e3o consta na base de dados da SEFAZ"),
     CODIGO_218(218, "Rejei\u00e7\u00e3o: NF-e j\u00e1 esta cancelada na base de dados da SEFAZ"),
     CODIGO_219(219, "Rejei\u00e7\u00e3o: Circula\u00e7\u00e3o da NF-e verificada"),
-    CODIGO_220(220, "Rejei\u00E7\u00E3o: Destinat\u00E1rio com identifica\u00E7\u00E3o igual \u00E0\nidentifica\u00E7\u00E3o do emitente"),
+    CODIGO_220(220, "Rejei\u00E7\u00E3o: Destinat\u00E1rio com identifica\u00E7\u00E3o igual \u00E0 identifica\u00E7\u00E3o do emitente"),
     CODIGO_221(221, "Rejei\u00e7\u00e3o: Confirmado o recebimento da NF-e pelo destinat\u00e1rio"),
     CODIGO_222(222, "Rejei\u00e7\u00e3o: Protocolo de Autoriza\u00e7\u00e3o de Uso difere do cadastrado"),
     CODIGO_223(223, "Rejei\u00e7\u00e3o: CNPJ do transmissor do lote difere do CNPJ do transmissor da consulta"),
@@ -513,7 +513,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return this.codigo > 200 && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
     }
 
     public boolean isDuplicado() {
