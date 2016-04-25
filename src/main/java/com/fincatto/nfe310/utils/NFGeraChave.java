@@ -9,11 +9,10 @@ public class NFGeraChave {
 		StringBuilder chaveAcesso = new StringBuilder();
 		chaveAcesso.append(infoNota.getIdentificacao().getUf().getCodigoIbge());
 		chaveAcesso.append(infoNota.getIdentificacao().getDataHoraEmissao().toString("yyMM"));
-		chaveAcesso.append(infoNota.getEmitente().getCnpj());
-		chaveAcesso.append(infoNota.getIdentificacao().getModelo());
+		chaveAcesso.append(infoNota.getEmitente().getCnpj() == null ? String.format("%014d", Long.parseLong(infoNota.getEmitente().getCpf())) : infoNota.getEmitente().getCnpj());
+		chaveAcesso.append(infoNota.getIdentificacao().getModelo().getCodigo());
 		chaveAcesso.append(infoNota.getIdentificacao().getSerie());
 		chaveAcesso.append(String.format("%09d", Long.parseLong(infoNota.getIdentificacao().getNumeroNota())));
-		// Aplicar somente na versão 2.0
 		chaveAcesso.append(infoNota.getIdentificacao().getTipoEmissao().getCodigo());
 		chaveAcesso.append(String.format("%08d", Long.parseLong(infoNota.getIdentificacao().getCodigoRandomico())));
 		Integer dv = calculoDigitoVerificador(chaveAcesso.toString());

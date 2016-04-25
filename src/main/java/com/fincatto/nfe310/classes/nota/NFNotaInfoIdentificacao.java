@@ -10,6 +10,7 @@ import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFProcessoEmissor;
 import com.fincatto.nfe310.classes.NFTipo;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
@@ -20,6 +21,9 @@ import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoIdentificacao extends NFBase {
+	
+	public static final String MODELO_NFCE = "65";
+	public static final String MODELO_NFE = "55";
 
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
@@ -34,7 +38,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFFormaPagamentoPrazo formaPagamento;
 
     @Element(name = "mod", required = true)
-    private String modelo;
+    private NFModelo modelo;
 
     @Element(name = "serie", required = true)
     private String serie;
@@ -111,8 +115,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.formaPagamento = formaPagamento;
     }
 
-    public void setModelo(final String modelo) {
-        StringValidador.exatamente2(modelo);
+    public void setModelo(final NFModelo modelo) {
         this.modelo = modelo;
     }
 
@@ -215,7 +218,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.formaPagamento;
     }
 
-    public String getModelo() {
+    public NFModelo getModelo() {
         return this.modelo;
     }
 

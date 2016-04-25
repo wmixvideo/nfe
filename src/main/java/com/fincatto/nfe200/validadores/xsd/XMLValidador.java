@@ -58,7 +58,7 @@ public class XMLValidador {
         final String[] xsds = { "nfe_v2.00.xsd", "enviNFe_v2.00.xsd", "leiauteNFe_v2.00.xsd", "tiposBasico_v1.03.xsd", "xmldsig-core-schema_v1.01.xsd" };
         for (final String xsd : xsds) {
             try (InputStream inputStream = XMLValidador.class.getResourceAsStream(String.format("schemas/%s", xsd))) {
-                final File arquivo = new File(diretorioTemporario + xsd);
+                final File arquivo = new File(diretorioTemporario + File.separator + xsd);
                 final String arquivoConteudo = IOUtils.toString(inputStream, "UTF-8");
                 FileUtils.writeStringToFile(arquivo, arquivoConteudo, false);
 

@@ -1,7 +1,5 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.text.MessageFormat;
-
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -18,7 +16,7 @@ public class NFNotaInfoSuplementar extends NFBase {
 
     public void setQrCode(final String qrCode) {
         StringValidador.tamanho100a600(qrCode);
-        this.qrCode = MessageFormat.format("![CDATA[{0}]]", qrCode);
+        this.qrCode = qrCode;
     }
 
     public String getQrCode() {
@@ -26,6 +24,6 @@ public class NFNotaInfoSuplementar extends NFBase {
     }
 
     public void geraQrCode() {
-    	//TODO implementar geração de QRCode
+    	//TODO chamar da classe NFGeraQRCode
     }
 }

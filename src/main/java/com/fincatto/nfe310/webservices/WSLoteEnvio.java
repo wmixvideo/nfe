@@ -14,6 +14,8 @@ import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.nota.NFNota;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
@@ -41,7 +43,27 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
 
         WSLoteEnvio.LOG.info(omElement);
-        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeAutorizacao(this.config.getAmbiente())).nfeAutorizacaoLote(dados, cabecalhoSOAP);
+        
+        NFAutorizador31 aut = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        String endpoint;
+        int countNFCe = 0;
+        
+        for (NFNota nota : lote.getNotas()) {
+        	if (nota.getInfo().getIdentificacao().getModelo().equals(NFNotaInfoIdentificacao.MODELO_NFCE)) {
+        		countNFCe++;
+        	}
+        }
+        
+        if (countNFCe > 0) {
+        	if (countNFCe != lote.getNotas().size()) {
+        		throw new IllegalArgumentException("Lote contendo modelo de NFCe diferente de "+NFNotaInfoIdentificacao.MODELO_NFCE);
+        	}
+        	endpoint = aut.getNfceAutorizacao(this.config.getAmbiente());
+        }else {
+        	endpoint = aut.getNfeAutorizacao(this.config.getAmbiente());
+        }
+        
+        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());
         final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOG.info(loteEnvioRetorno.toString());

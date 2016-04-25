@@ -1,30 +1,30 @@
 package com.fincatto.nfe310.utils;
 
-import java.io.File;  
-import java.io.FileInputStream;  
-import java.io.FileOutputStream;  
-import java.io.InputStream;  
-import java.io.OutputStream;  
-import java.security.KeyStore;  
-import java.security.MessageDigest;  
-import java.security.cert.CertificateException;  
-import java.security.cert.X509Certificate;  
-  
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.KeyStore;
+import java.security.MessageDigest;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
-
-import javax.net.ssl.SSLContext;  
-import javax.net.ssl.SSLException;  
-import javax.net.ssl.SSLHandshakeException;  
-import javax.net.ssl.SSLSocket;  
-import javax.net.ssl.SSLSocketFactory;  
-import javax.net.ssl.TrustManager;  
-import javax.net.ssl.TrustManagerFactory;  
-import javax.net.ssl.X509TrustManager;  
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
   
-public class NFeCadeiaCertificados {
+public class NFGeraCadeiaCertificados {
 	
     private static final String JSSECACERTS = "NFeCacerts";  
     private static final int TIMEOUT_WS = 30;  
@@ -64,9 +64,18 @@ public class NFeCadeiaCertificados {
             in.close();  
            
             for (NFAutorizador31 aut : NFAutorizador31.values()) {
-            	String url = aut.getNfeConsultaProtocolo(ambiente);
-            	url = url.substring(8, url.indexOf("/", 9));
-            	get(url, 443, ks);
+            	
+            	//Para NFe...
+            	String urlNfe = aut.getNfeConsultaProtocolo(ambiente);
+            	urlNfe = getDomainName(urlNfe);
+            	get(urlNfe, 443, ks);
+            	
+            	//Para NFCe...
+            	String urlNfce = aut.getNfceStatusServico(ambiente);
+            	if (urlNfce != null) {
+            		urlNfce = getDomainName(urlNfce);
+            		get(urlNfce, 443, ks);
+            	}
             }
             
             File cafile = new File(diretorio + JSSECACERTS);  
@@ -77,7 +86,13 @@ public class NFeCadeiaCertificados {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-    }  
+    }
+    
+    private static String getDomainName(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        String domain = uri.getHost();
+        return domain.startsWith("www.") ? domain.substring(4) : domain;
+    }
   
     public static void get(String host, int port, KeyStore ks) throws Exception {  
         SSLContext context = SSLContext.getInstance("TLS");  
