@@ -12,6 +12,7 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -29,16 +30,20 @@ class WSLoteConsulta {
     }
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
+    	return consultaLote(numeroRecibo, NFModelo.NFE);
+    }
+    
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
         WSLoteConsulta.LOG.info(omElementConsulta);
 
-        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF());
+        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, config.getCUF(), modelo);
         WSLoteConsulta.LOG.info(omElementResult);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
     }
 
-    private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf) throws AxisFault, RemoteException {
+    private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws AxisFault, RemoteException {
         final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
         cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
@@ -48,7 +53,20 @@ class WSLoteConsulta {
 
         final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
         dados.setExtraElement(omElement);
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(uf).getNfeRetAutorizacao(this.config.getAmbiente());
+        
+        final String urlWebService;
+        final NFAutorizador31 aut = NFAutorizador31.valueOfCodigoUF(uf);
+        
+        if (NFModelo.NFCE.equals(modelo)) {
+        	urlWebService = aut.getNfceRetAutorizacao(config.getAmbiente());
+        }else {
+        	urlWebService = aut.getNfeRetAutorizacao(config.getAmbiente());
+        }
+        
+        if (urlWebService == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao "+modelo.name()+", autorizador "+aut.name());
+        }
+        
         final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }

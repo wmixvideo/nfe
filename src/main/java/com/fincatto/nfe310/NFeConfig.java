@@ -24,7 +24,7 @@ public interface NFeConfig {
 
     NFTipoEmissao getTipoEmissao();
     
-    Integer idCSC();
+    Integer getIdCSC();
     
-    String CSC();
+    String getCSC();
 }

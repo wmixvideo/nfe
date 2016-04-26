@@ -62,6 +62,10 @@ class WSLoteEnvio {
         }else {
         	endpoint = aut.getNfeAutorizacao(this.config.getAmbiente());
         }
+        if (endpoint == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao "+
+        			lote.getNotas().get(0).getInfo().getIdentificacao().getModelo().name()+", autorizador "+aut.name());
+        }
         
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final Persister persister = new Persister(new NFRegistryMatcher());

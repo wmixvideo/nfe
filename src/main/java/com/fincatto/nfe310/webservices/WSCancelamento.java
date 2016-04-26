@@ -13,6 +13,7 @@ import org.simpleframework.xml.stream.Format;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
@@ -58,7 +59,18 @@ class WSCancelamento {
         WSCancelamento.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
 
-        final String urlWebService = NFAutorizador31.valueOfChaveAcesso(chaveAcesso).getRecepcaoEvento(this.config.getAmbiente());
+        NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
+        final String urlWebService;
+        final NFAutorizador31 aut = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
+        if (NFModelo.NFCE.equals(parser.getModelo())) {
+        	urlWebService = aut.getNfceRecepcaoEvento(config.getAmbiente());
+        }else {
+        	urlWebService = aut.getRecepcaoEvento(config.getAmbiente());
+        }
+        if (urlWebService == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento "+parser.getModelo().name()+", autorizador "+aut.name());
+        }
+        
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCancelamento.LOG.debug(omElementResult.toString());

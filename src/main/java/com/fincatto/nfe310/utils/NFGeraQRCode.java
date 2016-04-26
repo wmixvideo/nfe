@@ -32,11 +32,11 @@ public class NFGeraQRCode {
 			throw new IllegalArgumentException("URL para consulta do QRCode não informada para uf "+uf+"!");
 		}
 		
-		if(config.CSC()==null || config.CSC().isEmpty()){
+		if(config.getCSC()==null || config.getCSC().isEmpty()){
 			throw new IllegalArgumentException("CSC não informado nas configurações!");
 		}
 		
-		if(config.idCSC()==null || config.idCSC() == 0){
+		if(config.getIdCSC()==null || config.getIdCSC() == 0){
 			throw new IllegalArgumentException("IdCSC não informado nas configurações!");
 		}
 		
@@ -73,11 +73,11 @@ public class NFGeraQRCode {
 		b.append("digVal=").append(toHex(dig)).append("&");
 		
 		//Identificador do CSC – Código de Segurança do Contribuinte no Banco de Dados da SEFAZ
-		b.append("cIdToken=").append(String.format("%06d", config.idCSC()));
+		b.append("cIdToken=").append(String.format("%06d", config.getIdCSC()));
 		
 		//Código Hash dos Parâmetros
 		String campos = b.toString();
-		String hash = createHash(campos, config.CSC());
+		String hash = createHash(campos, config.getCSC());
 		
 		String qrCode = url+campos+"&cHashQRCode="+hash;
 		

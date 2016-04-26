@@ -11,6 +11,7 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
@@ -28,10 +29,14 @@ class WSStatusConsulta {
     }
 
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
+    	return consultaStatus(uf, NFModelo.NFE);
+    }
+    
+    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
         WSStatusConsulta.LOG.info(omElementConsulta);
 
-        final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
+        final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
         WSStatusConsulta.LOG.info(omElementResult.toString());
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
@@ -46,7 +51,9 @@ class WSStatusConsulta {
         return consStatServ;
     }
 
-    private OMElement efetuaConsultaStatus(final OMElement omElement, final NFUnidadeFederativa unidadeFederativa) throws AxisFault, RemoteException {
+    private OMElement efetuaConsultaStatus(final OMElement omElement, final NFUnidadeFederativa unidadeFederativa, 
+    		final NFModelo modelo) throws AxisFault, RemoteException {
+    	
         final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
         cabec.setCUF(unidadeFederativa.getCodigoIbge());
         cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
@@ -61,7 +68,18 @@ class WSStatusConsulta {
         if (autorizador == null) {
             throw new IllegalStateException(String.format("Nao existe autorizador mapeado para este estado: %s", unidadeFederativa.getDescricao()));
         }
-        final String endpoint = autorizador.getNfeStatusServico(this.config.getAmbiente());
+        
+        final String endpoint;
+        if (NFModelo.NFCE.equals(modelo)) {
+        	endpoint = autorizador.getNfceStatusServico(config.getAmbiente());
+        }else {
+        	endpoint = autorizador.getNfeStatusServico(config.getAmbiente());
+        }
+        if (endpoint == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico "+modelo.name()+", autorizador "+
+        			autorizador.name()+", UF "+unidadeFederativa.name());
+        }
+        
         final NfeStatusServico2Stub.NfeStatusServicoNF2Result result = new NfeStatusServico2Stub(endpoint).nfeStatusServicoNF2(dados, cabecEnv);
         return result.getExtraElement();
     }

@@ -308,12 +308,12 @@ public class FabricaDeObjetosFake {
             }
 
 			@Override
-			public Integer idCSC() {
+			public Integer getIdCSC() {
 				return null;
 			}
 
 			@Override
-			public String CSC() {
+			public String getCSC() {
 				return null;
 			}
         };
