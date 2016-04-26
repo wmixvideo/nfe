@@ -1,6 +1,7 @@
 package com.fincatto.nfe310.webservices;
 
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
@@ -58,9 +59,17 @@ public class WSFacade {
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
         return this.wsLoteConsulta.consultaLote(numeroRecibo);
     }
+    
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, NFModelo modelo) throws Exception {
+    	return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
+    }
 
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf);
+    }
+    
+    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, NFModelo modelo) throws Exception {
+    	return this.wsStatusConsulta.consultaStatus(uf, modelo);
     }
 
     public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {

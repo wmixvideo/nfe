@@ -17,6 +17,7 @@ import org.simpleframework.xml.stream.Format;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
@@ -43,12 +44,12 @@ class WSCartaCorrecao {
     public NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
-        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado);
+        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
 
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private OMElement efetuaCorrecao(final String xmlAssinado) throws XMLStreamException, RemoteException, AxisFault {
+    private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException, AxisFault {
         final RecepcaoEventoStub.NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
         cabecalho.setVersaoDados(WSCartaCorrecao.VERSAO_LEIAUTE.toPlainString());
@@ -60,8 +61,19 @@ class WSCartaCorrecao {
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         WSCartaCorrecao.LOG.debug(omElementXML);
         dados.setExtraElement(omElementXML);
+        
+        NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
+        final String urlWebService;
+        final NFAutorizador31 aut = NFAutorizador31.valueOfCodigoUF(config.getCUF());
+        if (NFModelo.NFCE.equals(parser.getModelo())) {
+        	urlWebService = aut.getNfceRecepcaoEvento(config.getAmbiente());
+        }else {
+        	urlWebService = aut.getRecepcaoEvento(config.getAmbiente());
+        }
+        if (urlWebService == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento "+parser.getModelo().name()+", autorizador "+aut.name());
+        }
 
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getRecepcaoEvento(this.config.getAmbiente());
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCartaCorrecao.LOG.debug(omElementResult.toString());
