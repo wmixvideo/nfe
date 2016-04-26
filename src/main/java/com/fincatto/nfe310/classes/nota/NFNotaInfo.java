@@ -19,6 +19,8 @@ import com.fincatto.nfe310.validadores.StringValidador;
 @Root(name = "infNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaInfo extends NFBase {
+	
+	public static final String IDENT = "NFe";
 
     @Attribute(name = "Id", required = true)
     private String identificador;
@@ -76,8 +78,15 @@ public class NFNotaInfo extends NFBase {
 
     public void setIdentificador(final String identificador) {
         StringValidador.exatamente44N(identificador);
-        this.identificador = MessageFormat.format("NFe{0}", identificador);
+        this.identificador = MessageFormat.format(IDENT+"{0}", identificador);
     }
+    
+    public String getChaveAcesso(){
+    	return identificador.replace(IDENT, "");
+    }
+    
+    @Deprecated
+    public void setChaveAcesso(String chave){}
 
     public String getIdentificador() {
         return this.identificador;

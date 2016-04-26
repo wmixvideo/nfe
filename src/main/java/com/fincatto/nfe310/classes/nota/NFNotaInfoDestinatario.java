@@ -57,6 +57,18 @@ public class NFNotaInfoDestinatario extends NFBase {
         StringValidador.cpf(cpf);
         this.cpf = cpf;
     }
+    
+    public String getCpfj(){
+    	String ret;
+    	if(cpf!=null && !cpf.isEmpty()){
+    		ret = cpf;
+    	}else if(cnpj!=null && !cnpj.isEmpty()){
+    		ret = cnpj;
+    	}else{
+    		ret = idEstrangeiro;
+    	}
+    	return ret;
+    }
 
     public String getCpf() {
         return this.cpf;

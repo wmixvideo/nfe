@@ -1,6 +1,11 @@
 package com.fincatto.nfe310.utils;
 
-import com.fincatto.nfe310.classes.NFAutorizador31;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import org.joda.time.DateTime;
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNota;
 
@@ -19,45 +24,87 @@ public class NFGeraQRCode {
 	 * cIdToken=000001&
 	 * cHashQRCode=852E4B5BC4EB9BF65484AEEBB06BE4A65F0E8E13
 	 */
-	public static void geraURL(NFNota nf){
+	public static void geraURL(NFeConfig config, NFNota nf, NFProtocolo prot){
 		NFUnidadeFederativa uf = nf.getInfo().getIdentificacao().getUf();
-		NFAutorizador31 auto = NFAutorizador31.valueOfCodigoUF(uf);
+		String url = config.getAmbiente().equals(NFAmbiente.PRODUCAO)?uf.getQrCodeProd():uf.getQrCodeHom();
+
+		if(url==null || url.isEmpty()){
+			throw new IllegalArgumentException("URL para consulta do QRCode não informada para uf "+uf+"!");
+		}
+		
+		if(config.CSC()==null || config.CSC().isEmpty()){
+			throw new IllegalArgumentException("CSC não informado nas configurações!");
+		}
+		
+		if(config.idCSC()==null || config.idCSC() == 0){
+			throw new IllegalArgumentException("IdCSC não informado nas configurações!");
+		}
 		
 		StringBuilder b = new StringBuilder();
-		//URL CONSULTA
-		//b.append(auto.getNFCeConsultaQRCode());
 		
 		//Chave de Acesso da NFC-e
-		b.append("chNFe=").append(nf.getInfo().getIdentificador()).append("&");
+		b.append("chNFe=").append(prot.getProtocoloInfo().getChave()).append("&");
 		
 		//Versão do QRCode
 		b.append("nVersao=100").append("&");
 		
 		//AMBIENTE: 1-PRODUÇÃO 2-HOMOLOGAÇÃO
-		b.append("tpAmb=1").append("&");
+		b.append("tpAmb=").append(config.getAmbiente().getCodigo()).append("&");
 		
 		//Documento de Identificação do Consumidor (CNPJ/CPF/ID Estrangeiro)
-		b.append("cDest=00400437031").append("&");
+		String cpfj = nf.getInfo().getDestinatario().getCpfj();
+		if(cpfj!=null && !cpfj.isEmpty()){
+			b.append("cDest=").append(cpfj).append("&");
+		}
 		
 		//Data e Hora de Emissão da NFC-e
-		b.append("dhEmi=323031362d30342d31355431363a32313a35312d30333a3030").append("&");
+		DateTime dt = nf.getInfo().getIdentificacao().getDataHoraEmissao();
+		String dtF = dt.toString("yyyy-MM-dd")+"T"+dt.toString("HH:mm:ssZZ");
+		b.append("dhEmi=").append(toHex(dtF)).append("&");
 		
 		//Valor Total da NFC-e
-		b.append("vNF=88.00").append("&");
+		b.append("vNF=").append(nf.getInfo().getTotal().getIcmsTotal().getValorTotalNFe()).append("&");
 		
 		//NFC-e Valor Total ICMS na NFC-e
-		b.append("vICMS=0.00").append("&");
+		b.append("vICMS=").append(nf.getInfo().getTotal().getIcmsTotal().getValorTotalICMS()).append("&");
 		
 		//Digest Value da NFC-e
-		b.append("digVal=787971704e2f7771446134687070486e6b6b6c34705a39536a36633d").append("&");
+		String dig = prot.getProtocoloInfo().getValidador();
+		b.append("digVal=").append(toHex(dig)).append("&");
 		
 		//Identificador do CSC – Código de Segurança do Contribuinte no Banco de Dados da SEFAZ
-		b.append("cIdToken=000001").append("&");
+		b.append("cIdToken=").append(String.format("%06d", config.idCSC()));
 		
 		//Código Hash dos Parâmetros
-		b.append("cHashQRCode=852E4B5BC4EB9BF65484AEEBB06BE4A65F0E8E13");
+		String campos = b.toString();
+		String hash = createHash(campos, config.CSC());
 		
-		nf.getInfoSuplementar().setQrCode(b.toString());
+		String qrCode = url+campos+"&cHashQRCode="+hash;
+		
+		nf.getInfoSuplementar().setQrCode(qrCode);
 	}
 	
+	public static String createHash(String campos, String csc) {
+		String str = campos+csc;
+		return sha1(str);
+	}
+	
+	public static String toHex(String arg) {
+	    return String.format("%040x", new BigInteger(1, arg.getBytes()));
+	}
+	
+	public static String sha1(String input){
+		try {
+			MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+			byte[] result = mDigest.digest(input.getBytes());
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < result.length; i++) {
+				sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

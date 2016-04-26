@@ -23,4 +23,8 @@ public interface NFeConfig {
     NFUnidadeFederativa getCUF();
 
     NFTipoEmissao getTipoEmissao();
+    
+    Integer idCSC();
+    
+    String CSC();
 }

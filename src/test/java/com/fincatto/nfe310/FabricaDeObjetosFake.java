@@ -306,6 +306,16 @@ public class FabricaDeObjetosFake {
             public NFTipoEmissao getTipoEmissao() {
                 return null;
             }
+
+			@Override
+			public Integer idCSC() {
+				return null;
+			}
+
+			@Override
+			public String CSC() {
+				return null;
+			}
         };
     }
 
