@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import org.joda.time.DateTime;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNota;
 
@@ -24,7 +23,7 @@ public class NFGeraQRCode {
 	 * cIdToken=000001&
 	 * cHashQRCode=852E4B5BC4EB9BF65484AEEBB06BE4A65F0E8E13
 	 */
-	public static void geraURL(NFeConfig config, NFNota nf, NFProtocolo prot){
+	public static void geraURL(NFeConfig config, NFNota nf, String digVal){
 		NFUnidadeFederativa uf = nf.getInfo().getIdentificacao().getUf();
 		String url = config.getAmbiente().equals(NFAmbiente.PRODUCAO)?uf.getQrCodeProd():uf.getQrCodeHom();
 
@@ -43,7 +42,7 @@ public class NFGeraQRCode {
 		StringBuilder b = new StringBuilder();
 		
 		//Chave de Acesso da NFC-e
-		b.append("chNFe=").append(prot.getProtocoloInfo().getChave()).append("&");
+		b.append("chNFe=").append(nf.getInfo().getChaveAcesso()).append("&");
 		
 		//Versão do QRCode
 		b.append("nVersao=100").append("&");
@@ -69,8 +68,7 @@ public class NFGeraQRCode {
 		b.append("vICMS=").append(nf.getInfo().getTotal().getIcmsTotal().getValorTotalICMS()).append("&");
 		
 		//Digest Value da NFC-e
-		String dig = prot.getProtocoloInfo().getValidador();
-		b.append("digVal=").append(toHex(dig)).append("&");
+		b.append("digVal=").append(toHex(digVal)).append("&");
 		
 		//Identificador do CSC – Código de Segurança do Contribuinte no Banco de Dados da SEFAZ
 		b.append("cIdToken=").append(String.format("%06d", config.getIdCSC()));
