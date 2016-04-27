@@ -287,6 +287,11 @@ public class FabricaDeObjetosFake {
             }
 
             @Override
+            public byte[] getCertificadoByteArray() {
+                return null;
+            }
+
+            @Override
             public File getCadeiaCertificados() {
                 return null;
             }
