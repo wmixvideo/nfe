@@ -5,6 +5,7 @@ import java.util.List;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Path;
 
 import com.fincatto.nfe310.classes.NFBase;
 
@@ -13,11 +14,12 @@ public class NFReference extends NFBase {
     @Attribute(name = "URI", required = false)
     private String uri;
 
-    @ElementList(entry = "Transform", required = false, name = "Transforms")
+    @Path("Transforms")
+    @ElementList(entry = "Transform", inline = true, required = false)
     private List<NFTransform> transform;
 
     @Element(name = "DigestMethod", required = false)
-    private String digestMethod;
+    private NFDigestMethod digestMethod;
 
     @Element(name = "DigestValue", required = false)
     private String digestValue;
@@ -38,11 +40,11 @@ public class NFReference extends NFBase {
         this.transform = transform;
     }
 
-    public String getDigestMethod() {
+    public NFDigestMethod getDigestMethod() {
         return this.digestMethod;
     }
 
-    public void setDigestMethod(final String digestMethod) {
+    public void setDigestMethod(final NFDigestMethod digestMethod) {
         this.digestMethod = digestMethod;
     }
 

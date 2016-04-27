@@ -22,9 +22,6 @@ import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoIdentificacao extends NFBase {
 	
-	public static final String MODELO_NFCE = "65";
-	public static final String MODELO_NFE = "55";
-
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
 

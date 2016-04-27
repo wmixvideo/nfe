@@ -12,11 +12,14 @@ import org.simpleframework.xml.core.Persister;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.nota.NFNota;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoIdentificacao;
+import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
+import com.fincatto.nfe310.parsers.NotaParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
@@ -34,7 +37,20 @@ class WSLoteEnvio {
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
-        final String xml = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
+    	
+        String xml = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
+        
+        int countNFCe = 0;
+        NFLoteEnvio loteConvert = new NotaParser().loteParaObjeto(xml);
+        for (NFNota nota : loteConvert.getNotas()) {
+        	if (nota.getInfo().getIdentificacao().getModelo().equals(NFModelo.NFCE)) {
+        		countNFCe++;
+        		nota.setInfoSuplementar(new NFNotaInfoSuplementar());
+        		NFGeraQRCode.geraURL(config, nota, nota.getAssinatura().getSignedInfo().getReference().getDigestValue());
+        	}
+        }
+        xml = loteConvert.toString();
+        
         final OMElement omElement = this.nfeToOMElement(xml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();
@@ -46,17 +62,10 @@ class WSLoteEnvio {
         
         NFAutorizador31 aut = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         String endpoint;
-        int countNFCe = 0;
-        
-        for (NFNota nota : lote.getNotas()) {
-        	if (nota.getInfo().getIdentificacao().getModelo().equals(NFNotaInfoIdentificacao.MODELO_NFCE)) {
-        		countNFCe++;
-        	}
-        }
         
         if (countNFCe > 0) {
         	if (countNFCe != lote.getNotas().size()) {
-        		throw new IllegalArgumentException("Lote contendo modelo de NFCe diferente de "+NFNotaInfoIdentificacao.MODELO_NFCE);
+        		throw new IllegalArgumentException("Lote contendo modelo de NFCe diferente de "+NFModelo.NFCE.getCodigo());
         	}
         	endpoint = aut.getNfceAutorizacao(this.config.getAmbiente());
         }else {

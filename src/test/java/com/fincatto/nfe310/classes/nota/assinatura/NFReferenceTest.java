@@ -35,7 +35,8 @@ public class NFReferenceTest {
     @Test
     public void deveObterDigestMethodComoFoiSetado() {
         final NFReference reference = new NFReference();
-        final String digestMethod = "digest method";
+        final NFDigestMethod digestMethod = new NFDigestMethod();
+        digestMethod.setAlgorithm("digest method");
         reference.setDigestMethod(digestMethod);
         Assert.assertEquals(digestMethod, reference.getDigestMethod());
     }

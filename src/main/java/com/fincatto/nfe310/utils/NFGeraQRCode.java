@@ -51,7 +51,7 @@ public class NFGeraQRCode {
 		b.append("tpAmb=").append(config.getAmbiente().getCodigo()).append("&");
 		
 		//Documento de Identificação do Consumidor (CNPJ/CPF/ID Estrangeiro)
-		String cpfj = nf.getInfo().getDestinatario().getCpfj();
+		String cpfj = nf.getInfo().getDestinatario() == null ? null : nf.getInfo().getDestinatario().getCpfj();
 		if(cpfj!=null && !cpfj.isEmpty()){
 			b.append("cDest=").append(cpfj).append("&");
 		}
@@ -77,7 +77,7 @@ public class NFGeraQRCode {
 		String campos = b.toString();
 		String hash = createHash(campos, config.getCSC());
 		
-		String qrCode = url+campos+"&cHashQRCode="+hash;
+		String qrCode = url+"?"+campos+"&cHashQRCode="+hash;
 		
 		nf.getInfoSuplementar().setQrCode(qrCode);
 	}
