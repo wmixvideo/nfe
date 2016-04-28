@@ -52,18 +52,27 @@ public class ConfiguracaoSefaz implements NFeConfig {
 
     @Override
     public File getCertificado() throws IOException {
-        return new File("certificado.pfx");
+        try (InputStream is = CertificadoUtils.class.getResource("certificado.pfx").openStream()) {
+			return IOUtils.toByteArray(is);
+		}
     }
 
     @Override
     public File getCadeiaCertificados() throws IOException {
-        return new File("cadeia_certificado.jks");
+        try (InputStream is = CertificadoUtils.class.getResource("cadeia_certificado.jks").openStream()) {
+			return IOUtils.toByteArray(is);
+		}
     }
 
     @Override
     public String getCertificadoSenha() {
         return "senhaDoCertificado";
     }
+
+	@Override
+	public String getCadeiaCertificadosSenha() {
+		return "senhaDaCadeiaDeCertificados";
+	}
 
     @Override
     public NFUnidadeFederativa getCUF() {
@@ -74,6 +83,11 @@ public class ConfiguracaoSefaz implements NFeConfig {
     public NFTipoEmissao getTipoEmissao() {
         return NFTipoEmissao.EMISSAO_NORMAL;
     }
+
+    @Override
+	public String getSSLProtocolo() {
+		return "TLSv1";
+	}
 }
 ```
 
