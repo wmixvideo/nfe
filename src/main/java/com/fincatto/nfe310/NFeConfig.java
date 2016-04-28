@@ -23,4 +23,10 @@ public interface NFeConfig {
     NFUnidadeFederativa getCUF();
 
     NFTipoEmissao getTipoEmissao();
+
+    /**
+     *
+     * @return Certificado no modo byte array, caso o usuário o recupere de um banco de dados
+	 */
+    byte[] getCertificadoByteArray();
 }

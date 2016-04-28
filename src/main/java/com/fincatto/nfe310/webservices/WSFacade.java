@@ -12,8 +12,16 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
+import org.apache.commons.httpclient.protocol.Protocol;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
+import java.util.Enumeration;
 
 public class WSFacade {
 
@@ -27,15 +35,18 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
 
     public WSFacade(final NFeConfig config) throws IOException {
-        System.setProperty("jdk.tls.client.protocols", "SSLv3,TLSv1");
-        //System.setProperty("jdk.tls.client.protocols", "TLSv1,TLSv1.1,TLSv1.2");
-        //System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
-        System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
-        System.setProperty("javax.net.ssl.trustStoreType", "JKS");
-        System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
-        System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
-        System.setProperty("javax.net.ssl.keyStore", config.getCertificado().getAbsolutePath());
-        System.setProperty("javax.net.ssl.keyStorePassword", config.getCertificadoSenha());
+        // Alterado para setar diretamente no protocolo
+//      System.setProperty("jdk.tls.client.protocols", "SSLv3,TLSv1");
+//      //System.setProperty("jdk.tls.client.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+//      //System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+//      System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
+//      System.setProperty("javax.net.ssl.trustStoreType", "JKS");
+//      System.setProperty("javax.net.ssl.trustStore", config.getCadeiaCertificados().getAbsolutePath());
+//      System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
+//      System.setProperty("javax.net.ssl.keyStore", config.getCertificado().getAbsolutePath());
+//      System.setProperty("javax.net.ssl.keyStorePassword", config.getCertificadoSenha());
+
+        carregarProtocolo(config);
 
         this.wsLoteEnvio = new WSLoteEnvio(config);
         this.wsLoteConsulta = new WSLoteConsulta(config);
@@ -45,6 +56,49 @@ public class WSFacade {
         this.wsCancelamento = new WSCancelamento(config);
         this.wsConsultaCadastro = new WSConsultaCadastro(config);
         this.wsInutilizacao = new WSInutilizacao(config);
+    }
+
+    /**
+     * Carrega as configurações do certificado e seta o protocolo.
+     * Assim não é nessário setar no System.setProperty
+     *
+     * @param config Configuração do sefaz
+     * @throws IOException Se houver problemas com o certificado
+     */
+    private void carregarProtocolo(final NFeConfig config) throws IOException {
+        InputStream entrada;
+        // Verifico se existe o certificado em bytearray ou no caminho especificado
+        if (config.getCertificadoByteArray() == null) {
+            entrada = new FileInputStream(config.getCertificado());
+        } else {
+            entrada = new ByteArrayInputStream(config.getCertificadoByteArray());
+        }
+
+        KeyStore ks;
+        try {
+            ks = KeyStore.getInstance("pkcs12");
+            ks.load(entrada, config.getCertificadoSenha().toCharArray());
+
+            String alias = "";
+
+            Enumeration<String> aliasesEnum = ks.aliases();
+            while (aliasesEnum.hasMoreElements()) {
+                alias = aliasesEnum.nextElement();
+                if (ks.isKeyEntry(alias)) {
+                    break;
+                }
+            }
+
+            X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
+            PrivateKey privateKey = (PrivateKey) ks.getKey(alias, config.getCertificadoSenha().toCharArray());
+            SocketFactoryDinamico socketFactoryDinamico = new SocketFactoryDinamico(certificate, privateKey);
+            socketFactoryDinamico.setFileCacerts(config.getCadeiaCertificados().getAbsolutePath());
+
+            Protocol protocol = new Protocol("https", socketFactoryDinamico, 443);
+            Protocol.registerProtocol("https", protocol);
+        } catch (Exception e) {
+            throw new IOException("Senha do Certificado Digital esta incorreta ou Certificado inválido.");
+        }
     }
 
     public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
