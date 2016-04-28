@@ -299,6 +299,12 @@ public class StringValidador {
             StringValidador.intervalo(string, 15, 1000);
         }
     }
+    
+    public static void tamanho100a600(final String string) {
+    	if (string != null) {
+    		StringValidador.intervalo(string, 100, 600);
+    	}
+    }
 
     public static void tamanho30(final String string) {
         if (string != null) {

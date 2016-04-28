@@ -26,4 +26,8 @@ public interface NFeConfig {
 	NFTipoEmissao getTipoEmissao();
 
 	String getSSLProtocolo();
+
+	Integer getCodigoSegurancaContribuinteID();
+
+	String getCodigoSegurancaContribuinte();
 }

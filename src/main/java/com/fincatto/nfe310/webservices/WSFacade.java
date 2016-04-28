@@ -10,6 +10,7 @@ import java.security.cert.CertificateException;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
@@ -49,19 +50,31 @@ public class WSFacade {
 	}
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+		return this.wsLoteEnvio.enviaLote(lote, NFModelo.NFE);
+	}
+
+	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFModelo modelo) throws Exception {
 		XMLValidador.validaLote(lote.toString());
 		if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
 			throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
 		}
-		return this.wsLoteEnvio.enviaLote(lote);
+		return this.wsLoteEnvio.enviaLote(lote, modelo);
 	}
 
 	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
-		return this.wsLoteConsulta.consultaLote(numeroRecibo);
+		return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
+	}
+
+	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
+		return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
 	}
 
 	public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
-		return this.wsStatusConsulta.consultaStatus(uf);
+		return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
+	}
+
+	public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
+		return this.wsStatusConsulta.consultaStatus(uf, modelo);
 	}
 
 	public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {

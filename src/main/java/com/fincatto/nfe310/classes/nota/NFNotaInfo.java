@@ -1,7 +1,6 @@
 package com.fincatto.nfe310.classes.nota;
 
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.List;
 
 import org.simpleframework.xml.Attribute;
@@ -19,205 +18,216 @@ import com.fincatto.nfe310.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaInfo extends NFBase {
 
-    @Attribute(name = "Id", required = true)
-    private String identificador;
+	public static final String IDENT = "NFe";
 
-    @Attribute(name = "versao", required = true)
-    private String versao;
+	@Attribute(name = "Id", required = true)
+	private String identificador;
 
-    @Element(name = "ide", required = true)
-    private NFNotaInfoIdentificacao identificacao;
+	@Attribute(name = "versao", required = true)
+	private String versao;
 
-    @Element(name = "emit", required = true)
-    private NFNotaInfoEmitente emitente;
+	@Element(name = "ide", required = true)
+	private NFNotaInfoIdentificacao identificacao;
 
-    @Element(name = "avulsa", required = false)
-    private NFNotaInfoAvulsa avulsa;
+	@Element(name = "emit", required = true)
+	private NFNotaInfoEmitente emitente;
 
-    @Element(name = "dest", required = false)
-    private NFNotaInfoDestinatario destinatario;
+	@Element(name = "avulsa", required = false)
+	private NFNotaInfoAvulsa avulsa;
 
-    @Element(name = "retirada", required = false)
-    private NFNotaInfoLocal retirada;
+	@Element(name = "dest", required = false)
+	private NFNotaInfoDestinatario destinatario;
 
-    @Element(name = "entrega", required = false)
-    private NFNotaInfoLocal entrega;
+	@Element(name = "retirada", required = false)
+	private NFNotaInfoLocal retirada;
 
-    @ElementList(entry = "autXML", inline = true, required = false)
-    private List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe;
+	@Element(name = "entrega", required = false)
+	private NFNotaInfoLocal entrega;
 
-    @ElementList(entry = "det", inline = true, required = true)
-    private List<NFNotaInfoItem> itens;
+	@ElementList(entry = "autXML", inline = true, required = false)
+	private List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe;
 
-    @Element(name = "total", required = true)
-    private NFNotaInfoTotal total;
+	@ElementList(entry = "det", inline = true, required = true)
+	private List<NFNotaInfoItem> itens;
 
-    @Element(name = "transp", required = true)
-    private NFNotaInfoTransporte transporte;
+	@Element(name = "total", required = true)
+	private NFNotaInfoTotal total;
 
-    @Element(name = "cobr", required = false)
-    private NFNotaInfoCobranca cobranca;
+	@Element(name = "transp", required = true)
+	private NFNotaInfoTransporte transporte;
 
-    @ElementList(entry = "pag", inline = true, required = false)
-    private List<NFNotaInfoPagamento> pagamentos;
+	@Element(name = "cobr", required = false)
+	private NFNotaInfoCobranca cobranca;
 
-    @Element(name = "infAdic", required = false)
-    private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
+	@ElementList(entry = "pag", inline = true, required = false)
+	private List<NFNotaInfoPagamento> pagamentos;
 
-    @Element(name = "exporta", required = false)
-    private NFNotaInfoExportacao exportacao;
+	@Element(name = "infAdic", required = false)
+	private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
 
-    @Element(name = "compra", required = false)
-    private NFNotaInfoCompra compra;
+	@Element(name = "exporta", required = false)
+	private NFNotaInfoExportacao exportacao;
 
-    @Element(name = "cana", required = false)
-    private NFNotaInfoCana cana;
+	@Element(name = "compra", required = false)
+	private NFNotaInfoCompra compra;
 
-    public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador);
-        this.identificador = MessageFormat.format("NFe{0}", identificador);
-    }
+	@Element(name = "cana", required = false)
+	private NFNotaInfoCana cana;
 
-    public String getIdentificador() {
-        return this.identificador;
-    }
+	/**
+	 * Pega a chave de acesso a partir do identificador.
+	 *
+	 * @return Chave de acesso.
+	 */
+	public String getChaveAcesso() {
+		return this.identificador.replace(NFNotaInfo.IDENT, "");
+	}
 
-    public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
-    }
+	public void setIdentificador(final String identificador) {
+		StringValidador.exatamente44N(identificador);
+		this.identificador = NFNotaInfo.IDENT + identificador;
+	}
 
-    public NFNotaInfoIdentificacao getIdentificacao() {
-        return this.identificacao;
-    }
+	public String getIdentificador() {
+		return this.identificador;
+	}
 
-    public void setIdentificacao(final NFNotaInfoIdentificacao identificacao) {
-        this.identificacao = identificacao;
-    }
+	public void setVersao(final BigDecimal versao) {
+		this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+	}
 
-    public void setEmitente(final NFNotaInfoEmitente emitente) {
-        this.emitente = emitente;
-    }
+	public NFNotaInfoIdentificacao getIdentificacao() {
+		return this.identificacao;
+	}
 
-    public void setAvulsa(final NFNotaInfoAvulsa avulsa) {
-        this.avulsa = avulsa;
-    }
+	public void setIdentificacao(final NFNotaInfoIdentificacao identificacao) {
+		this.identificacao = identificacao;
+	}
 
-    public NFNotaInfoDestinatario getDestinatario() {
-        return this.destinatario;
-    }
+	public void setEmitente(final NFNotaInfoEmitente emitente) {
+		this.emitente = emitente;
+	}
 
-    public void setDestinatario(final NFNotaInfoDestinatario destinatario) {
-        this.destinatario = destinatario;
-    }
+	public void setAvulsa(final NFNotaInfoAvulsa avulsa) {
+		this.avulsa = avulsa;
+	}
 
-    public void setItens(final List<NFNotaInfoItem> itens) {
-        ListValidador.tamanho990(itens);
-        this.itens = itens;
-    }
+	public NFNotaInfoDestinatario getDestinatario() {
+		return this.destinatario;
+	}
 
-    public void setRetirada(final NFNotaInfoLocal retirada) {
-        this.retirada = retirada;
-    }
+	public void setDestinatario(final NFNotaInfoDestinatario destinatario) {
+		this.destinatario = destinatario;
+	}
 
-    public void setEntrega(final NFNotaInfoLocal entrega) {
-        this.entrega = entrega;
-    }
+	public void setItens(final List<NFNotaInfoItem> itens) {
+		ListValidador.tamanho990(itens);
+		this.itens = itens;
+	}
 
-    public void setCobranca(final NFNotaInfoCobranca cobranca) {
-        this.cobranca = cobranca;
-    }
+	public void setRetirada(final NFNotaInfoLocal retirada) {
+		this.retirada = retirada;
+	}
 
-    public void setTotal(final NFNotaInfoTotal total) {
-        this.total = total;
-    }
+	public void setEntrega(final NFNotaInfoLocal entrega) {
+		this.entrega = entrega;
+	}
 
-    public void setTransporte(final NFNotaInfoTransporte transporte) {
-        this.transporte = transporte;
-    }
+	public void setCobranca(final NFNotaInfoCobranca cobranca) {
+		this.cobranca = cobranca;
+	}
 
-    public void setInformacoesAdicionais(final NFNotaInfoInformacoesAdicionais informacoesAdicionais) {
-        this.informacoesAdicionais = informacoesAdicionais;
-    }
+	public void setTotal(final NFNotaInfoTotal total) {
+		this.total = total;
+	}
 
-    public void setExportacao(final NFNotaInfoExportacao exportacao) {
-        this.exportacao = exportacao;
-    }
+	public void setTransporte(final NFNotaInfoTransporte transporte) {
+		this.transporte = transporte;
+	}
 
-    public void setCompra(final NFNotaInfoCompra compra) {
-        this.compra = compra;
-    }
+	public void setInformacoesAdicionais(final NFNotaInfoInformacoesAdicionais informacoesAdicionais) {
+		this.informacoesAdicionais = informacoesAdicionais;
+	}
 
-    public void setCana(final NFNotaInfoCana cana) {
-        this.cana = cana;
-    }
+	public void setExportacao(final NFNotaInfoExportacao exportacao) {
+		this.exportacao = exportacao;
+	}
 
-    public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
-        ListValidador.tamanho10(pessoasAutorizadasDownloadNFe);
-        this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
-    }
+	public void setCompra(final NFNotaInfoCompra compra) {
+		this.compra = compra;
+	}
 
-    public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
-        ListValidador.tamanho100(pagamentos);
-        this.pagamentos = pagamentos;
-    }
+	public void setCana(final NFNotaInfoCana cana) {
+		this.cana = cana;
+	}
 
-    public String getVersao() {
-        return this.versao;
-    }
+	public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
+		ListValidador.tamanho10(pessoasAutorizadasDownloadNFe);
+		this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
+	}
 
-    public NFNotaInfoEmitente getEmitente() {
-        return this.emitente;
-    }
+	public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
+		ListValidador.tamanho100(pagamentos);
+		this.pagamentos = pagamentos;
+	}
 
-    public NFNotaInfoAvulsa getAvulsa() {
-        return this.avulsa;
-    }
+	public String getVersao() {
+		return this.versao;
+	}
 
-    public NFNotaInfoLocal getRetirada() {
-        return this.retirada;
-    }
+	public NFNotaInfoEmitente getEmitente() {
+		return this.emitente;
+	}
 
-    public NFNotaInfoLocal getEntrega() {
-        return this.entrega;
-    }
+	public NFNotaInfoAvulsa getAvulsa() {
+		return this.avulsa;
+	}
 
-    public List<NFPessoaAutorizadaDownloadNFe> getPessoasAutorizadasDownloadNFe() {
-        return this.pessoasAutorizadasDownloadNFe;
-    }
+	public NFNotaInfoLocal getRetirada() {
+		return this.retirada;
+	}
 
-    public List<NFNotaInfoItem> getItens() {
-        return this.itens;
-    }
+	public NFNotaInfoLocal getEntrega() {
+		return this.entrega;
+	}
 
-    public NFNotaInfoTotal getTotal() {
-        return this.total;
-    }
+	public List<NFPessoaAutorizadaDownloadNFe> getPessoasAutorizadasDownloadNFe() {
+		return this.pessoasAutorizadasDownloadNFe;
+	}
 
-    public NFNotaInfoTransporte getTransporte() {
-        return this.transporte;
-    }
+	public List<NFNotaInfoItem> getItens() {
+		return this.itens;
+	}
 
-    public NFNotaInfoCobranca getCobranca() {
-        return this.cobranca;
-    }
+	public NFNotaInfoTotal getTotal() {
+		return this.total;
+	}
 
-    public List<NFNotaInfoPagamento> getPagamentos() {
-        return this.pagamentos;
-    }
+	public NFNotaInfoTransporte getTransporte() {
+		return this.transporte;
+	}
 
-    public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
-        return this.informacoesAdicionais;
-    }
+	public NFNotaInfoCobranca getCobranca() {
+		return this.cobranca;
+	}
 
-    public NFNotaInfoExportacao getExportacao() {
-        return this.exportacao;
-    }
+	public List<NFNotaInfoPagamento> getPagamentos() {
+		return this.pagamentos;
+	}
 
-    public NFNotaInfoCompra getCompra() {
-        return this.compra;
-    }
+	public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
+		return this.informacoesAdicionais;
+	}
 
-    public NFNotaInfoCana getCana() {
-        return this.cana;
-    }
+	public NFNotaInfoExportacao getExportacao() {
+		return this.exportacao;
+	}
+
+	public NFNotaInfoCompra getCompra() {
+		return this.compra;
+	}
+
+	public NFNotaInfoCana getCana() {
+		return this.cana;
+	}
 }

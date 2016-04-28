@@ -12,6 +12,7 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
@@ -49,7 +50,21 @@ class WSNotaConsulta {
 
         final NfeConsulta2Stub.NfeDadosMsg dados = new NfeConsulta2Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso).getNfeConsultaProtocolo(this.config.getAmbiente())).nfeConsultaNF2(dados, cabecE);
+        
+        String endpoint;
+        NFAutorizador31 aut = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
+        if (NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo())) {
+        	endpoint = aut.getNfceConsultaProtocolo(config.getAmbiente());
+        }else {
+        	endpoint = aut.getNfeConsultaProtocolo(config.getAmbiente());        	
+        }
+        
+        if (endpoint == null) {
+        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo "+
+        			notaFiscalChaveParser.getModelo().name()+", autorizador "+aut.name());
+        }
+        
+        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(endpoint).nfeConsultaNF2(dados, cabecE);
         return consultaNF2Result.getExtraElement();
     }
 

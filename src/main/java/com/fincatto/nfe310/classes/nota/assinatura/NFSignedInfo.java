@@ -7,27 +7,27 @@ import com.fincatto.nfe310.classes.NFBase;
 public class NFSignedInfo extends NFBase {
 
     @Element(name = "CanonicalizationMethod", required = false)
-    private String canonicalizationMethod;
+    private NFCanonicalizationMethod canonicalizationMethod;
 
     @Element(name = "SignatureMethod", required = false)
-    private String signatureMethod;
+    private NFSignatureMethod signatureMethod;
 
     @Element(name = "Reference", required = false)
     private NFReference reference;
 
-    public String getCanonicalizationMethod() {
+    public NFCanonicalizationMethod getCanonicalizationMethod() {
         return this.canonicalizationMethod;
     }
 
-    public void setCanonicalizationMethod(final String canonicalizationMethod) {
+    public void setCanonicalizationMethod(final NFCanonicalizationMethod canonicalizationMethod) {
         this.canonicalizationMethod = canonicalizationMethod;
     }
 
-    public String getSignatureMethod() {
+    public NFSignatureMethod getSignatureMethod() {
         return this.signatureMethod;
     }
 
-    public void setSignatureMethod(final String signatureMethod) {
+    public void setSignatureMethod(final NFSignatureMethod signatureMethod) {
         this.signatureMethod = signatureMethod;
     }
 

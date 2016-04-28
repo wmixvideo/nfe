@@ -14,6 +14,9 @@ public class NFNota extends NFBase {
 
     @Element(name = "infNFe")
     private NFNotaInfo info;
+    
+    @Element(name = "infNFeSupl", required = false)
+    private NFNotaInfoSuplementar infoSuplementar;
 
     @Element(name = "Signature", required = false)
     private NFSignature assinatura;
@@ -25,8 +28,16 @@ public class NFNota extends NFBase {
     public NFNotaInfo getInfo() {
         return this.info;
     }
+    
+    public NFNotaInfoSuplementar getInfoSuplementar() {
+		return infoSuplementar;
+	}
 
-    /**
+	public void setInfoSuplementar(NFNotaInfoSuplementar infoSuplementar) {
+		this.infoSuplementar = infoSuplementar;
+	}
+
+	/**
      * Utilizado para identificacao interna do sistema
      * @param identificadorLocal Identificador.
      */
