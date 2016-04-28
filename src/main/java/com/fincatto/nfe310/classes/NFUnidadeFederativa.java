@@ -39,17 +39,17 @@ public enum NFUnidadeFederativa {
     private final String codigo;
     private final String descricao;
     private final String codigoIbge;
-    private final String qrCodeHom;
-    private final String qrCodeProd;
+    private final String qrCodeHomologacao;
+    private final String qrCodeProducao;
 
-    private NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge, String qrCodeHom, String qrCodeProd) {
+    private NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge, String qrCodeHomologacao, String qrCodeProducao) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.codigoIbge = codigoIbge;
-        this.qrCodeHom = qrCodeHom;
-        this.qrCodeProd = qrCodeProd;
+        this.qrCodeHomologacao = qrCodeHomologacao;
+        this.qrCodeProducao = qrCodeProducao;
     }
-    
+
     private NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge) {
     	this(codigo, descricao, codigoIbge, null, null);
     }
@@ -66,12 +66,12 @@ public enum NFUnidadeFederativa {
         return this.codigoIbge;
     }
 
-    public String getQrCodeHom() {
-		return qrCodeHom;
+    public String getQrCodeHomologacao() {
+		return qrCodeHomologacao;
 	}
 
-	public String getQrCodeProd() {
-		return qrCodeProd;
+	public String getQrCodeProducao() {
+		return qrCodeProducao;
 	}
 
 	@Override

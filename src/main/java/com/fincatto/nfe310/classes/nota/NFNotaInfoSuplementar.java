@@ -11,16 +11,15 @@ import com.fincatto.nfe310.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaInfoSuplementar extends NFBase {
 
-    @Element(data = true, name = "qrCode", required = true)
-    private String qrCode;
+	@Element(data = true, name = "qrCode", required = true)
+	private String qrCode;
 
-    public void setQrCode(final String qrCode) {
-        StringValidador.tamanho100a600(qrCode);
-        this.qrCode = qrCode;
-    }
+	public void setQrCode(final String qrCode) {
+		StringValidador.tamanho100a600(qrCode);
+		this.qrCode = qrCode;
+	}
 
-    public String getQrCode() {
-        return this.qrCode;
-    }
-    
+	public String getQrCode() {
+		return this.qrCode;
+	}
 }

@@ -27,7 +27,7 @@ public interface NFeConfig {
 
 	String getSSLProtocolo();
 
-	Integer getIdCSC();
+	Integer getCodigoSegurancaContribuinteID();
 
-	String getCSC();
+	String getCodigoSegurancaContribuinte();
 }

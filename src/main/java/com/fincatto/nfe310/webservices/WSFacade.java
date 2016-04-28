@@ -50,11 +50,15 @@ public class WSFacade {
 	}
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+		return this.wsLoteEnvio.enviaLote(lote, NFModelo.NFE);
+	}
+
+	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFModelo modelo) throws Exception {
 		XMLValidador.validaLote(lote.toString());
 		if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
 			throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
 		}
-		return this.wsLoteEnvio.enviaLote(lote);
+		return this.wsLoteEnvio.enviaLote(lote, modelo);
 	}
 
 	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
