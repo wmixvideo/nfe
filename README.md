@@ -84,6 +84,16 @@ public class ConfiguracaoSefaz implements NFeConfig {
 	public String getSSLProtocolo() {
 		return "TLSv1";
 	}
+
+	@Override
+	public Integer getCodigoSegurancaContribuinteID() {
+		return null;
+	}
+
+	@Override
+	public String getCodigoSegurancaContribuinte() {
+		return null;
+	}
 }
 ```
 
