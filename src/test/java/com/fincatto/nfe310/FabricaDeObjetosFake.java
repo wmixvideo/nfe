@@ -132,6 +132,9 @@ import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
+import com.fincatto.nfe310.classes.nota.assinatura.NFReference;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignedInfo;
 
 public class FabricaDeObjetosFake {
 
@@ -529,6 +532,33 @@ public class FabricaDeObjetosFake {
 		info.setVersao(new BigDecimal("3.10"));
 		info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
 		return info;
+	}
+	
+	public static NFNota getNotaQRCode(){
+		//CAMPOS CONTIDOS NO EXEMPLO DO MANUAL DA RECEITA PARA GERAÇÃO DO QRCODE
+		NFNota nota = new NFNota();
+		nota.setInfo(new NFNotaInfo());
+		nota.getInfo().setIdentificador("28140300156225000131650110000151341562040824");
+		
+		nota.getInfo().setDestinatario(new NFNotaInfoDestinatario());
+		nota.getInfo().getDestinatario().setCnpj("13017959000181");
+		
+		nota.getInfo().setIdentificacao(new NFNotaInfoIdentificacao());
+		nota.getInfo().getIdentificacao().setDataHoraEmissao(DateTime.parse("2014-03-18T10:55:33-03:00"));
+		nota.getInfo().getIdentificacao().setUf(NFUnidadeFederativa.SE);
+		
+		nota.getInfo().setTotal(new NFNotaInfoTotal());
+		nota.getInfo().getTotal().setIcmsTotal(new NFNotaInfoICMSTotal());
+		nota.getInfo().getTotal().getIcmsTotal().getValorTotalNFe();
+		nota.getInfo().getTotal().getIcmsTotal().setValorTotalNFe(new BigDecimal("60.90"));
+		nota.getInfo().getTotal().getIcmsTotal().setValorTotalICMS(new BigDecimal("12.75"));
+		
+		nota.setAssinatura(new NFSignature());
+		nota.getAssinatura().setSignedInfo(new NFSignedInfo());
+		nota.getAssinatura().getSignedInfo().setReference(new NFReference());
+		nota.getAssinatura().getSignedInfo().getReference().setDigestValue("yzGYhUx1/XYYzksWB+fPR3Qc50c=");
+		
+		return nota;
 	}
 
 	public static NFNotaInfoTransporte getNFNotaInfoTransporte() {

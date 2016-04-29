@@ -40,7 +40,8 @@ class WSLoteEnvio {
 	}
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFModelo modelo) throws Exception {
-		//se for nfe, adiciona a chave e o dv antes de assinar
+		
+		//adiciona a chave e o dv antes de assinar
 		for (final NFNota nota : lote.getNotas()) {
 			final NFGeraChave geraChave = new NFGeraChave(nota);
 			final NFNotaInfo notaInfo = nota.getInfo();
@@ -50,7 +51,7 @@ class WSLoteEnvio {
 
 		//valida o lote gerado (ainda nao assinado)
 		XMLValidador.validaLote(lote.toString());
-
+		
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
 		final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
