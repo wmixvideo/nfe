@@ -21,7 +21,6 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 
 public class WSFacade {
 
@@ -54,7 +53,6 @@ public class WSFacade {
 	}
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFModelo modelo) throws Exception {
-		XMLValidador.validaLote(lote.toString());
 		if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
 			throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
 		}

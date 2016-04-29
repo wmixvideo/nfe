@@ -22,6 +22,7 @@ import com.fincatto.nfe310.parsers.NotaParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
+import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
@@ -40,14 +41,15 @@ class WSLoteEnvio {
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote, final NFModelo modelo) throws Exception {
 		//se for nfe, adiciona a chave e o dv antes de assinar
-		if (NFModelo.NFE.equals(modelo)) {
-			for (final NFNota nota : lote.getNotas()) {
-				final NFGeraChave geraChave = new NFGeraChave(nota);
-				final NFNotaInfo notaInfo = nota.getInfo();
-				notaInfo.setIdentificador(geraChave.getChaveAcesso());
-				notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
-			}
+		for (final NFNota nota : lote.getNotas()) {
+			final NFGeraChave geraChave = new NFGeraChave(nota);
+			final NFNotaInfo notaInfo = nota.getInfo();
+			notaInfo.setIdentificador(geraChave.getChaveAcesso());
+			notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
 		}
+
+		//valida o lote gerado (ainda nao assinado)
+		XMLValidador.validaLote(lote.toString());
 
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());

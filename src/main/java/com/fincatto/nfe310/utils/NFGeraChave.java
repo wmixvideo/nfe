@@ -1,7 +1,8 @@
 package com.fincatto.nfe310.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.nfe310.classes.nota.NFNota;
-import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 
 public class NFGeraChave {
 
@@ -35,16 +36,15 @@ public class NFGeraChave {
 	}
 
 	private String geraChaveAcessoSemDV() {
-		final NFNotaInfo info = this.nota.getInfo();
 		final StringBuilder chaveAcesso = new StringBuilder();
-		chaveAcesso.append(info.getIdentificacao().getUf().getCodigoIbge());
-		chaveAcesso.append(info.getIdentificacao().getDataHoraEmissao().toString("yyMM"));
-		chaveAcesso.append(info.getEmitente().getCnpj() == null ? String.format("%014d", Long.parseLong(info.getEmitente().getCpf())) : info.getEmitente().getCnpj());
-		chaveAcesso.append(info.getIdentificacao().getModelo().getCodigo());
-		chaveAcesso.append(info.getIdentificacao().getSerie());
-		chaveAcesso.append(String.format("%09d", Long.parseLong(info.getIdentificacao().getNumeroNota())));
-		chaveAcesso.append(info.getIdentificacao().getTipoEmissao().getCodigo());
-		chaveAcesso.append(String.format("%08d", Long.parseLong(info.getIdentificacao().getCodigoRandomico())));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getUf().getCodigoIbge(), 2, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().toString("yyMM"), 4, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getEmitente().getCnpj() == null ? this.nota.getInfo().getEmitente().getCpf() : this.nota.getInfo().getEmitente().getCnpj(), 14, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getModelo().getCodigo(), 2, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getSerie(), 3, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getNumeroNota(), 9, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0"));
+		chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0"));
 		return chaveAcesso.toString();
 	}
 }
