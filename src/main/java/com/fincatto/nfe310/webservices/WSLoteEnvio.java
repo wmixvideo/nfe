@@ -58,13 +58,18 @@ class WSLoteEnvio {
 		//verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
 		int qtdNF = 0, qtdNFC = 0;
 		for (final NFNota nota : loteAssinado.getNotas()) {
-			if (NFModelo.NFCE.equals(nota.getInfo().getIdentificacao().getModelo())) {
-				final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
-				nota.setInfoSuplementar(new NFNotaInfoSuplementar());
-				nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
-				qtdNFC++;
-			} else {
-				qtdNF++;
+			switch (nota.getInfo().getIdentificacao().getModelo()) {
+				case NFE:
+					qtdNF++;
+					break;
+				case NFCE:
+					final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
+					nota.setInfoSuplementar(new NFNotaInfoSuplementar());
+					nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
+					qtdNFC++;
+					break;
+				default:
+					throw new IllegalArgumentException(String.format("Modelo de nota desconhecida: %s", nota.getInfo().getIdentificacao().getModelo()));
 			}
 		}
 
