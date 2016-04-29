@@ -7,10 +7,6 @@ Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/pri
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
-O pacote de classes nfe200 refere-se à versão 2.00 da NFe.<br/>
-Ele deve ser utilizado apenas para tradução de notas antigas pois foi desativado em 31/03/2015. Portanto,
-faça a integração do seu sistema com as classes contidas no pacote nfe310.<br/>
-<br/>
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que
 garantam que a funcionalidade funciona como o esperado.
@@ -52,18 +48,27 @@ public class ConfiguracaoSefaz implements NFeConfig {
 
     @Override
     public File getCertificado() throws IOException {
-        return new File("certificado.pfx");
+        try (InputStream is = CertificadoUtils.class.getResource("certificado.pfx").openStream()) {
+			return IOUtils.toByteArray(is);
+		}
     }
 
     @Override
     public File getCadeiaCertificados() throws IOException {
-        return new File("cadeia_certificado.jks");
+        try (InputStream is = CertificadoUtils.class.getResource("cadeia_certificado.jks").openStream()) {
+			return IOUtils.toByteArray(is);
+		}
     }
 
     @Override
     public String getCertificadoSenha() {
         return "senhaDoCertificado";
     }
+
+	@Override
+	public String getCadeiaCertificadosSenha() {
+		return "senhaDaCadeiaDeCertificados";
+	}
 
     @Override
     public NFUnidadeFederativa getCUF() {
@@ -74,6 +79,21 @@ public class ConfiguracaoSefaz implements NFeConfig {
     public NFTipoEmissao getTipoEmissao() {
         return NFTipoEmissao.EMISSAO_NORMAL;
     }
+
+    @Override
+	public String getSSLProtocolo() {
+		return "TLSv1";
+	}
+
+	@Override
+	public Integer getCodigoSegurancaContribuinteID() {
+		return null;
+	}
+
+	@Override
+	public String getCodigoSegurancaContribuinte() {
+		return null;
+	}
 }
 ```
 
@@ -190,8 +210,8 @@ Os certificados são um ponto critico já que estes tem validade de apenas um an
 Para criação do JKS sera utilizada a ferramenta keytool do java ($JRE_HOME/bin/keytool).
 
 Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
-* https://homologacao.nfe.sefaz.rs.gov.br/
-* https://nfe.sefaz.rs.gov.br/
+* http://hom.nfe.fazenda.gov.br/portal/principal.aspx
+* https://www.sefaz.rs.gov.br/NFE/NFEindex.aspx
 * https://serasa.certificadodigital.com.br/ajuda/instalacao/cadeia-de-certificados/
 
 Converter o arquivo .cer para jks utilizando keytool:

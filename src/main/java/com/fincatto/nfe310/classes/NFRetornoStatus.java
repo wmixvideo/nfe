@@ -49,7 +49,7 @@ public enum NFRetornoStatus {
     CODIGO_217(217, "Rejei\u00e7\u00e3o: NF-e n\u00e3o consta na base de dados da SEFAZ"),
     CODIGO_218(218, "Rejei\u00e7\u00e3o: NF-e j\u00e1 esta cancelada na base de dados da SEFAZ"),
     CODIGO_219(219, "Rejei\u00e7\u00e3o: Circula\u00e7\u00e3o da NF-e verificada"),
-    CODIGO_220(220, "Rejei\u00e7\u00e3o: Prazo de Cancelamento Superior ao Previsto na Legisla\u00e7\u00e3o"),
+    CODIGO_220(220, "Rejei\u00E7\u00E3o: Destinat\u00E1rio com identifica\u00E7\u00E3o igual \u00E0 identifica\u00E7\u00E3o do emitente"),
     CODIGO_221(221, "Rejei\u00e7\u00e3o: Confirmado o recebimento da NF-e pelo destinat\u00e1rio"),
     CODIGO_222(222, "Rejei\u00e7\u00e3o: Protocolo de Autoriza\u00e7\u00e3o de Uso difere do cadastrado"),
     CODIGO_223(223, "Rejei\u00e7\u00e3o: CNPJ do transmissor do lote difere do CNPJ do transmissor da consulta"),
@@ -220,7 +220,7 @@ public enum NFRetornoStatus {
     CODIGO_492(492, "Rejei\u00e7\u00e3o: O verEvento informado inv\u00e1lido"),
     CODIGO_493(493, "Rejei\u00e7\u00e3o: Evento n\u00e3o atende o Schema XML espec\u00edfico"),
     CODIGO_494(494, "Rejei\u00e7\u00e3o: Chave de Acesso inexistente"),
-    CODIGO_501(501, "Rejei\u00e7\u00e3o: Verificar NFe autorizada h\u00e1 mais de 30 dias (720) horas"),
+    CODIGO_501(501, "Rejei\u00e7\u00e3o: Rejei\u00e7\u00e3o: Prazo de Cancelamento Superior ao Previsto na Legisla\u00e7\u00e3o"),
     CODIGO_502(502, "Rejei\u00e7\u00e3o: Erro Chave Acesso - Campo Id \u00f1 corresponde \u00e0 conct. dos campos corresp"),
     CODIGO_503(503, "Rejei\u00e7\u00e3o: S\u00e9rie utilizada fora da faixa permitida no SCAN (900-999)"),
     CODIGO_504(504, "Rejei\u00e7\u00e3o: Data de Entrada/Sa\u00edda posterior ao permitido"),
@@ -513,7 +513,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return this.codigo > 200 && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
     }
 
     public boolean isDuplicado() {

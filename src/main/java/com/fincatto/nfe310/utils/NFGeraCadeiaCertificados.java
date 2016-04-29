@@ -74,7 +74,9 @@ public class NFGeraCadeiaCertificados {
             	String urlNfce = aut.getNfceStatusServico(ambiente);
             	if (urlNfce != null) {
             		urlNfce = getDomainName(urlNfce);
-            		get(urlNfce, 443, ks);
+            		if (urlNfce != null) {
+            			get(urlNfce, 443, ks);
+            		}
             	}
             }
             
@@ -89,8 +91,15 @@ public class NFGeraCadeiaCertificados {
     }
     
     private static String getDomainName(String url) throws URISyntaxException {
+    	
+    	if (url == null) {
+    		return null;
+    	}
+    	
         URI uri = new URI(url);
+        System.out.println(uri);
         String domain = uri.getHost();
+        System.out.println("Domínio: "+domain);
         return domain.startsWith("www.") ? domain.substring(4) : domain;
     }
   
