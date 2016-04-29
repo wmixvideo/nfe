@@ -9,14 +9,17 @@ import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
 public abstract class NFBase {
 
-    @Override
-    public String toString() {
-        final Persister persister = new Persister(new NFRegistryMatcher(), new Format(0));
-        try (StringWriter writer = new StringWriter()) {
-            persister.write(this, writer);
-            return writer.toString();
-        } catch (final Exception e) {
-            throw new IllegalStateException(e.getMessage());
-        }
-    }
+	private static final NFRegistryMatcher NF_REGISTRY_MATCHER = new NFRegistryMatcher();
+	private static final Format FORMAT = new Format(0);
+
+	@Override
+	public String toString() {
+		final Persister persister = new Persister(NFBase.NF_REGISTRY_MATCHER, NFBase.FORMAT);
+		try (StringWriter writer = new StringWriter()) {
+			persister.write(this, writer);
+			return writer.toString();
+		} catch (final Exception e) {
+			throw new IllegalStateException(e.getMessage());
+		}
+	}
 }
