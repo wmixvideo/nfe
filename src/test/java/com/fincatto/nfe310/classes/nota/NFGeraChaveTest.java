@@ -12,7 +12,6 @@ public class NFGeraChaveTest {
 	public void geraChaveDeAcessoComCPFConformeEsperado() {
 		final NFNotaInfo info = FabricaDeObjetosFake.getNFNotaInfo();
 		info.getEmitente().setCpf("12345678901");
-		//info.geraChaveIdentificacao();
 
 		final NFNota nota = new NFNota();
 		nota.setInfo(info);
