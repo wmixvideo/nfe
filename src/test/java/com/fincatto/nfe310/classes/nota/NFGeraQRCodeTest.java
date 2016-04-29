@@ -16,7 +16,7 @@ import com.fincatto.nfe310.utils.NFGeraQRCode;
 public class NFGeraQRCodeTest {
 
 	//EXEMPLO DO MANUAL DA RECEITA
-	public static final String URL_TEST = "http://www.nfce.se.gov.br/portal/consultarNFCe.jsp?chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=1&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001&cHashQRCode=329f9d7b9fc5650372c1b2699ab88e9e22e0d33a";
+	public static final String URL_TEST = "?chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=1&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001&cHashQRCode=329f9d7b9fc5650372c1b2699ab88e9e22e0d33a";
 	
 	@Test
 	public void geraQRCodeConformeEsperado() throws NoSuchAlgorithmException {
@@ -29,7 +29,8 @@ public class NFGeraQRCodeTest {
 		nota.setInfoSuplementar(new NFNotaInfoSuplementar());
 		nota.getInfoSuplementar().setQrCode(qrCode);
 		
-		Assert.assertEquals(URL_TEST, nota.getInfoSuplementar().getQrCode());
+		String urlUf = nota.getInfo().getIdentificacao().getUf().getQrCodeProducao();
+		Assert.assertEquals(urlUf+URL_TEST, nota.getInfoSuplementar().getQrCode());
 	}
 	
 	@Test
