@@ -50,27 +50,30 @@ class WSLoteEnvio {
 
 		//valida o lote gerado (ainda nao assinado)
 		XMLValidador.validaLote(lote.toString());
-		
+
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
 		final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
 
-		//verifica se não tem NFCe junto com NFe no lote
+		//verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
 		int countNFCe = 0;
 		for (final NFNota nota : loteAssinado.getNotas()) {
 			if (NFModelo.NFCE.equals(nota.getInfo().getIdentificacao().getModelo())) {
-				//gera o qrcode apos assinar
 				final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
 				nota.setInfoSuplementar(new NFNotaInfoSuplementar());
 				nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
 				countNFCe++;
 			}
 		}
+
+		//verifica se todas as notas do lote sao do mesmo modelo
 		if (countNFCe != loteAssinado.getNotas().size()) {
 			throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
 		}
-		NFModelo modelo = countNFCe > 0 ? NFModelo.NFCE : NFModelo.NFE;
-		
+
+		//guarda o modelo das notas
+		final NFModelo modelo = countNFCe > 0 ? NFModelo.NFCE : NFModelo.NFE;
+
 		//comunica o lote
 		final String xml = loteAssinado.toString();
 		final OMElement omElement = this.nfeToOMElement(xml);
