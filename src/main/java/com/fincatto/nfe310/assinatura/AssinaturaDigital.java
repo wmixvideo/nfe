@@ -96,23 +96,25 @@ public class AssinaturaDigital {
 		final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		documentBuilderFactory.setNamespaceAware(true);
 
-		final Document document = documentBuilderFactory.newDocumentBuilder().parse(IOUtils.toInputStream(conteudoXml));
+		try (InputStream inputStreamXml = IOUtils.toInputStream(conteudoXml)) {
+			final Document document = documentBuilderFactory.newDocumentBuilder().parse(inputStreamXml);
 
-		for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
-			final NodeList elements = document.getElementsByTagName(elementoAssinavel);
-			for (int i = 0; i < elements.getLength(); i++) {
-				final Element element = (Element) elements.item(i);
-				final String id = element.getAttribute("Id");
-				element.setIdAttribute("Id", true);
+			for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
+				final NodeList elements = document.getElementsByTagName(elementoAssinavel);
+				for (int i = 0; i < elements.getLength(); i++) {
+					final Element element = (Element) elements.item(i);
+					final String id = element.getAttribute("Id");
+					element.setIdAttribute("Id", true);
 
-				final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
-				final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
+					final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
+					final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
 
-				final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
-				signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
+					final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+					signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
+				}
 			}
+			return this.converteDocumentParaXml(document);
 		}
-		return this.converteDocumentParaXml(document);
 	}
 
 	private String converteDocumentParaXml(final Document document) throws TransformerFactoryConfigurationError, TransformerException, IOException {
