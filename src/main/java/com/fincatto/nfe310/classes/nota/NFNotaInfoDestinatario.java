@@ -18,7 +18,7 @@ public class NFNotaInfoDestinatario extends NFBase {
 	@Element(name = "idEstrangeiro", required = false)
 	private String idEstrangeiro;
 
-	@Element(name = "xNome", required = true)
+	@Element(name = "xNome", required = false)
 	private String razaoSocial;
 
 	@Element(name = "enderDest", required = false)
