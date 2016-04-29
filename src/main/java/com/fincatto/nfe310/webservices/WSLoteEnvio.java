@@ -40,7 +40,6 @@ class WSLoteEnvio {
 	}
 
 	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
-		
 		//adiciona a chave e o dv antes de assinar
 		for (final NFNota nota : lote.getNotas()) {
 			final NFGeraChave geraChave = new NFGeraChave(nota);
