@@ -56,23 +56,30 @@ class WSLoteEnvio {
 		final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
 
 		//verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
-		int countNFCe = 0;
+		int qtdNF = 0, qtdNFC = 0;
 		for (final NFNota nota : loteAssinado.getNotas()) {
-			if (NFModelo.NFCE.equals(nota.getInfo().getIdentificacao().getModelo())) {
-				final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
-				nota.setInfoSuplementar(new NFNotaInfoSuplementar());
-				nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
-				countNFCe++;
+			switch (nota.getInfo().getIdentificacao().getModelo()) {
+				case NFE:
+					qtdNF++;
+					break;
+				case NFCE:
+					final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
+					nota.setInfoSuplementar(new NFNotaInfoSuplementar());
+					nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
+					qtdNFC++;
+					break;
+				default:
+					throw new IllegalArgumentException(String.format("Modelo de nota desconhecida: %s", nota.getInfo().getIdentificacao().getModelo()));
 			}
 		}
 
 		//verifica se todas as notas do lote sao do mesmo modelo
-		if (countNFCe != loteAssinado.getNotas().size()) {
+		if ((qtdNF > 0) && (qtdNFC > 0)) {
 			throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
 		}
 
 		//guarda o modelo das notas
-		final NFModelo modelo = countNFCe > 0 ? NFModelo.NFCE : NFModelo.NFE;
+		final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
 		//comunica o lote
 		final String xml = loteAssinado.toString();
