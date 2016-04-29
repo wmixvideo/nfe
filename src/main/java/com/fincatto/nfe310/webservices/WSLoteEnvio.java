@@ -49,22 +49,11 @@ class WSLoteEnvio {
 		}
 
 		//valida o lote gerado (ainda nao assinado)
-		//System.err.println("Validando lote nao assinado...");
 		XMLValidador.validaLote(lote.toString());
-		//		FileUtils.write(new File("/tmp/lote.xml"), lote.toString(), false);
 
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
 		final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
-
-		//		System.err.println("Validando string assinada...");
-		//		XMLValidador.validaLote(documentoAssinado);
-		//
-		//		System.err.println("Validando objeto reconstruido...");
-		//		XMLValidador.validaLote(loteAssinado.toString());
-
-		//		System.err.println("Gravando arquivo");
-		//		FileUtils.write(new File("/tmp/lote_assinado.xml"), loteAssinado.toString(), false);
 
 		//verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
 		int qtdNF = 0, qtdNFC = 0;
@@ -93,8 +82,7 @@ class WSLoteEnvio {
 		final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
 		//comunica o lote
-		//final String xml = loteAssinado.toString();
-		final String xml = documentoAssinado;
+		final String xml = loteAssinado.toString();
 		final OMElement omElement = this.nfeToOMElement(xml);
 
 		final NfeDadosMsg dados = new NfeDadosMsg();
