@@ -58,15 +58,15 @@ public class NFGeraQRCode {
 		return url + "?" + parametros.toString() + "&cHashQRCode=" + NFGeraQRCode.createHash(parametros.toString(), this.config.getCodigoSegurancaContribuinte());
 	}
 
-	private static String createHash(final String campos, final String csc) throws NoSuchAlgorithmException {
+	public static String createHash(final String campos, final String csc) throws NoSuchAlgorithmException {
 		return NFGeraQRCode.sha1(campos + csc);
 	}
 
-	private static String toHex(final String arg) {
+	public static String toHex(final String arg) {
 		return String.format("%040x", new BigInteger(1, arg.getBytes()));
 	}
 
-	private static String sha1(final String input) throws NoSuchAlgorithmException {
+	public static String sha1(final String input) throws NoSuchAlgorithmException {
 		final StringBuilder sb = new StringBuilder();
 		for (final byte element : MessageDigest.getInstance("SHA1").digest(input.getBytes())) {
 			sb.append(Integer.toString((element & 0xff) + 0x100, 16).substring(1));
