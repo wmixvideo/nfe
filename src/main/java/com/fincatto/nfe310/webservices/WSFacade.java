@@ -24,70 +24,79 @@ import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsult
 
 public class WSFacade {
 
-	private final WSLoteEnvio wsLoteEnvio;
-	private final WSLoteConsulta wsLoteConsulta;
-	private final WSStatusConsulta wsStatusConsulta;
-	private final WSNotaConsulta wsNotaConsulta;
-	private final WSCartaCorrecao wsCartaCorrecao;
-	private final WSCancelamento wsCancelamento;
-	private final WSConsultaCadastro wsConsultaCadastro;
-	private final WSInutilizacao wsInutilizacao;
+    private final WSLoteEnvio wsLoteEnvio;
+    private final WSLoteConsulta wsLoteConsulta;
+    private final WSStatusConsulta wsStatusConsulta;
+    private final WSNotaConsulta wsNotaConsulta;
+    private final WSCartaCorrecao wsCartaCorrecao;
+    private final WSCancelamento wsCancelamento;
+    private final WSConsultaCadastro wsConsultaCadastro;
+    private final WSInutilizacao wsInutilizacao;
 
-	public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-		//registra o protocolo e o socket factory correspondente
-		Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
+    public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
+        // registra o protocolo e o socket factory correspondente
+        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
 
-		//inicia os servicos disponiveis da nfe
-		this.wsLoteEnvio = new WSLoteEnvio(config);
-		this.wsLoteConsulta = new WSLoteConsulta(config);
-		this.wsStatusConsulta = new WSStatusConsulta(config);
-		this.wsNotaConsulta = new WSNotaConsulta(config);
-		this.wsCartaCorrecao = new WSCartaCorrecao(config);
-		this.wsCancelamento = new WSCancelamento(config);
-		this.wsConsultaCadastro = new WSConsultaCadastro(config);
-		this.wsInutilizacao = new WSInutilizacao(config);
-	}
+        // inicia os servicos disponiveis da nfe
+        this.wsLoteEnvio = new WSLoteEnvio(config);
+        this.wsLoteConsulta = new WSLoteConsulta(config);
+        this.wsStatusConsulta = new WSStatusConsulta(config);
+        this.wsNotaConsulta = new WSNotaConsulta(config);
+        this.wsCartaCorrecao = new WSCartaCorrecao(config);
+        this.wsCancelamento = new WSCancelamento(config);
+        this.wsConsultaCadastro = new WSConsultaCadastro(config);
+        this.wsInutilizacao = new WSInutilizacao(config);
+    }
 
-	public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
-		if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-			throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
-		}
-		return this.wsLoteEnvio.enviaLote(lote);
-	}
+    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
+            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
+        }
+        return this.wsLoteEnvio.enviaLote(lote);
+    }
 
-	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
-		return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
-	}
+    /**
+     * Permite o envio de lote assinado, util para utilizacao de certificados A3
+     *
+     * OBS: Apenas para NF-e
+     */
+    public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
+        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml);
+    }
 
-	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
-		return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
-	}
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
+        return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
+    }
 
-	public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
-		return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
-	}
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
+        return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
+    }
 
-	public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
-		return this.wsStatusConsulta.consultaStatus(uf, modelo);
-	}
+    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
+        return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
+    }
 
-	public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
-		return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
-	}
+    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
+        return this.wsStatusConsulta.consultaStatus(uf, modelo);
+    }
 
-	public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-		return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
-	}
+    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
+    }
 
-	public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
-		return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
-	}
+    public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
+    }
 
-	public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
-		return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
-	}
+    public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+        return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
+    }
 
-	public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
-		return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
-	}
+    public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
+        return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
+    }
+
+    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+        return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
+    }
 }
