@@ -21,7 +21,7 @@ import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.nfe310.parsers.NotaParser;
-import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
@@ -108,8 +108,7 @@ class WSLoteEnvio {
         }
 
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final Persister persister = new Persister(new NFRegistryMatcher());
-        final NFLoteEnvioRetorno loteEnvioRetorno = persister.read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOG.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
