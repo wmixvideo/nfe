@@ -6,9 +6,11 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.convert.Convert;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
+import com.fincatto.nfe310.converters.StringNullConverter;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.ListValidador;
@@ -20,6 +22,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private String codigo;
 
     @Element(name = "cEAN", required = false)
+    @Convert(StringNullConverter.class)
     private String codigoDeBarras;
 
     @Element(name = "xProd", required = true)
@@ -53,6 +56,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
+    @Convert(StringNullConverter.class)
     private String codigoDeBarrasTributavel;
 
     @Element(name = "uTrib", required = true)

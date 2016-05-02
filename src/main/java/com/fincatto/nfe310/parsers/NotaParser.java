@@ -7,13 +7,13 @@ import org.simpleframework.xml.core.Persister;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
-import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.fincatto.nfe310.persister.NFPersister;
 
 public class NotaParser {
     private final Persister persister;
 
     public NotaParser() {
-        this.persister = new Persister(new NFRegistryMatcher());
+        this.persister = new NFPersister();
     }
 
     public NFNota notaParaObjeto(final File xml) {
@@ -31,21 +31,21 @@ public class NotaParser {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
     }
-    
+
     public NFLoteEnvio loteParaObjeto(final File xml) {
-    	try {
-    		return this.persister.read(NFLoteEnvio.class, xml);
-    	} catch (final Exception e) {
-    		throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
-    	}
+        try {
+            return this.persister.read(NFLoteEnvio.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
     }
-    
+
     public NFLoteEnvio loteParaObjeto(final String xml) {
-    	try {
-    		return this.persister.read(NFLoteEnvio.class, xml);
-    	} catch (final Exception e) {
-    		throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
-    	}
+        try {
+            return this.persister.read(NFLoteEnvio.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
     }
 
     public NFNotaProcessada notaProcessadaParaObjeto(final String xml) {
