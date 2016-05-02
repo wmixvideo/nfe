@@ -6,8 +6,6 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
@@ -15,7 +13,7 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
@@ -34,12 +32,17 @@ class WSInutilizacao {
         this.config = config;
     }
 
+    public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
+        final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml);
+        return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+    }
+
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa).toString();
         final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
         final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado);
 
-        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+        return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }
 
     private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado) throws Exception {

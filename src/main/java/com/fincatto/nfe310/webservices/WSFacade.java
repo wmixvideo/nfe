@@ -56,7 +56,7 @@ public class WSFacade {
     }
 
     /**
-     * Permite o envio de lote assinado, util para utilizacao de certificados A3
+     * Permite o envio de lote assinado (Utilize para certificado A3)
      *
      * OBS: Apenas para NF-e
      */
@@ -88,8 +88,29 @@ public class WSFacade {
         return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
+    /**
+     * Permite a correcao de nota assinada (Utilize para certificados A3)
+     */
+    public NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinada(chaveAcesso, eventoAssinadoXml);
+    }
+
+    /**
+     * Permite o cancelamento de nota assinada (Utilize para certificados A3)
+     */
+    public NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wsCancelamento.cancelaNotaAssinada(chaveAcesso, eventoAssinadoXml);
+    }
+
     public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
+    }
+
+    /**
+     * Permite a inutilizacao de nota assinada (Utilize para certificados A3)
+     */
+    public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
+        return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
     }
 
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
