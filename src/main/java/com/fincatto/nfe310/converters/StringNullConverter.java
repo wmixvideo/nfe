@@ -9,8 +9,7 @@ public class StringNullConverter implements Converter<String> {
 
 	@Override
 	public String read(final InputNode node) throws Exception {
-		final String value = node.getValue(); //estranhamente, ao pegar a primeira vez, na segunda ele retorna nulo (deixar setando a variavel)
-		return StringUtils.isNotBlank(value) ? value : StringUtils.EMPTY;
+		return StringUtils.defaultIfBlank(node.getValue(), StringUtils.EMPTY);
 	}
 
 	@Override
