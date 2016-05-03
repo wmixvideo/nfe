@@ -55,10 +55,12 @@ class WSLoteEnvio {
 		}
 
 		// valida o lote gerado (ainda nao assinado)
-		XMLValidador.validaLote(lote.toString());
+		final String loteNaoAssinado = lote.toString();
+		XMLValidador.validaLote(loteNaoAssinado);
+		//FileUtils.write(new File("/tmp/lote_gerado.xml"), loteNaoAssinado, false);
 
 		// assina o lote
-		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
+		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(loteNaoAssinado);
 		final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
 
 		// verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
@@ -92,6 +94,7 @@ class WSLoteEnvio {
 	}
 
 	private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws XMLStreamException, RemoteException, AxisFault, Exception {
+		//FileUtils.write(new File("/tmp/lote_assinado.xml"), loteAssinadoXml, false);
 		final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
 		final NfeDadosMsg dados = new NfeDadosMsg();
