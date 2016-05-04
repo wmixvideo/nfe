@@ -37,6 +37,8 @@ import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFProtocoloInfo;
 import com.fincatto.nfe310.classes.NFRegimeTributario;
 import com.fincatto.nfe310.classes.NFTipo;
+import com.fincatto.nfe310.classes.NFTipoCertificado;
+import com.fincatto.nfe310.classes.NFTipoCertificadoA3;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFTipoImpressao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -327,6 +329,18 @@ public class FabricaDeObjetosFake {
 
 			@Override
 			public String getCodigoSegurancaContribuinte() {
+				return null;
+			}
+
+			@Override
+			public NFTipoCertificado getTipoCertificado() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public NFTipoCertificadoA3 getTipoCertificadoA3() {
+				// TODO Auto-generated method stub
 				return null;
 			}
 		};
