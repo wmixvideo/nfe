@@ -34,40 +34,41 @@ public class NFGeraCaminhoDllCertificadoA3 {
 		
 		if (!caminhoArquivo.exists()) {
 			caminhoArquivo.mkdirs();
+		}	
+		
+		File file;
+		
+		try {
+			file = new File(caminhoArquivo + System.getProperty("file.separator") + (NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()) ? 
+					NFGeraCaminhoDllCertificadoA3.smartCart : NFGeraCaminhoDllCertificadoA3.token ));
 			
-			File file;
-			
-			try {
-				file = new File(caminhoArquivo + System.getProperty("file.separator") + (NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()) ? 
-						NFGeraCaminhoDllCertificadoA3.smartCart : NFGeraCaminhoDllCertificadoA3.token ));
-				
-				if(file.exists()){
-					file.delete();
-				}
-				
-				file.createNewFile();
-				
-				FileWriter arq;
-				PrintWriter gravarArq;
-				
-				arq = new FileWriter(file);
-				gravarArq = new PrintWriter(arq);
-				
-				if((NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()))){
-					gravarArq.println("name = SmartCard");
-					gravarArq.println("library = c:/windows/system32/aetpkss1.dll");
-					gravarArq.println("showInfo = true");
-				}else{
-					gravarArq.println("name = eToken");
-					gravarArq.println("library = c:/windows/system32/eTpkcs11.dll");
-					gravarArq.println("showInfo = true");
-				}
-				
-				arq.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if(file.exists()){
+				file.delete();
 			}
+			
+			file.createNewFile();
+			
+			FileWriter arq;
+			PrintWriter gravarArq;
+			
+			arq = new FileWriter(file);
+			gravarArq = new PrintWriter(arq);
+			
+			if((NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()))){
+				gravarArq.println("name = SmartCard");
+				gravarArq.println("library = c:/windows/system32/aetpkss1.dll");
+				gravarArq.println("showInfo = true");
+			}else{
+				gravarArq.println("name = eToken");
+				gravarArq.println("library = c:/windows/system32/eTpkcs11.dll");
+				gravarArq.println("showInfo = true");
+			}
+			
+			arq.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		
 	}
 }
