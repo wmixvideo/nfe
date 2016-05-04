@@ -13,6 +13,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.security.PrivateKey;
+import java.security.Provider;
+import java.security.Security;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -29,6 +31,8 @@ import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFTipoCertificado;
+import com.fincatto.nfe310.utils.NFGeraCaminhoDllCertificadoA3;
 
 class NFSocketFactory implements ProtocolSocketFactory {
 
@@ -69,15 +73,31 @@ class NFSocketFactory implements ProtocolSocketFactory {
 	}
 
 	private KeyManager[] createKeyManagers(final NFeConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-		try (InputStream certificado = new ByteArrayInputStream(config.getCertificado())) {
-			final KeyStore ks = KeyStore.getInstance("PKCS12");
-			ks.load(certificado, config.getCertificadoSenha().toCharArray());
-
-			final String alias = NFSocketFactory.getAlias(ks);
-			final X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
-			final PrivateKey privateKey = (PrivateKey) ks.getKey(alias, config.getCertificadoSenha().toCharArray());
-			return new KeyManager[] { new HSKeyManager(certificate, privateKey) };
+		KeyStore ks = null;
+		
+		if(NFTipoCertificado.A1.equals(config.getTipoCertificado())){
+			try (InputStream certificado = new ByteArrayInputStream(config.getCertificado())) {
+				ks = KeyStore.getInstance("PKCS12");
+				ks.load(certificado, config.getCertificadoSenha().toCharArray());
+			}
+		}else{
+			NFGeraCaminhoDllCertificadoA3 dll = new NFGeraCaminhoDllCertificadoA3(config);
+			
+            Provider provider = new sun.security.pkcs11.SunPKCS11(dll.getCaminhoArquivo());
+            Security.addProvider(provider);
+            ks = KeyStore.getInstance("pkcs11", provider); 
+            ks.load(null, config.getCertificadoSenha().toCharArray());
 		}
+		
+		return createKeyManagers(config, ks);
+	}
+	
+	private KeyManager[] createKeyManagers(final NFeConfig config, final KeyStore ks) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, IOException {
+		final String alias = NFSocketFactory.getAlias(ks);
+		final X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
+		final PrivateKey privateKey = (PrivateKey) ks.getKey(alias, config.getCertificadoSenha().toCharArray());
+		
+		return new KeyManager[] { new HSKeyManager(certificate, privateKey) };
 	}
 
 	private TrustManager[] createTrustManagers(final NFeConfig config) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
