@@ -36,10 +36,8 @@ public class NFGeraCaminhoDllCertificadoA3 {
 			caminhoArquivo.mkdirs();
 		}	
 		
-		File file;
-		
 		try {
-			file = new File(caminhoArquivo + System.getProperty("file.separator") + (NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()) ? 
+			File file = new File(caminhoArquivo + System.getProperty("file.separator") + (NFTipoCertificadoA3.SMARTCARD.equals(config.getTipoCertificadoA3()) ? 
 					NFGeraCaminhoDllCertificadoA3.smartCart : NFGeraCaminhoDllCertificadoA3.token ));
 			
 			if(file.exists()){
