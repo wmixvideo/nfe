@@ -9,6 +9,8 @@ import org.junit.Test;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFTipoCertificado;
+import com.fincatto.nfe310.classes.NFTipoCertificadoA3;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
@@ -65,6 +67,8 @@ public class NFGeraQRCodeTest {
 			public byte[] getCertificado() throws IOException {return null;}
 			public String getCadeiaCertificadosSenha() {return null;}
 			public byte[] getCadeiaCertificados() throws IOException {return null;}
+			public NFTipoCertificado getTipoCertificado() {return null;}
+			public NFTipoCertificadoA3 getTipoCertificadoA3() {return null;}
 		};
 	}
 
