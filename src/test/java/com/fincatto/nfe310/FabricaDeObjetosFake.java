@@ -1116,7 +1116,7 @@ public class FabricaDeObjetosFake {
 		final NFNotaInfoICMSTotal icmsTotal = new NFNotaInfoICMSTotal();
 		icmsTotal.setBaseCalculoICMS(new BigDecimal("999999999999.99"));
 		icmsTotal.setOutrasDespesasAcessorias(new BigDecimal("999999999999.99"));
-		icmsTotal.setValor(new BigDecimal("999999999999.99"));
+		icmsTotal.setBaseCalculoICMSST(new BigDecimal("999999999999.99"));
 		icmsTotal.setValorCOFINS(new BigDecimal("999999999999.99"));
 		icmsTotal.setValorPIS(new BigDecimal("999999999999.99"));
 		icmsTotal.setValorTotalDesconto(new BigDecimal("999999999999.99"));
