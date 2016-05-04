@@ -5,10 +5,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
+import java.security.PrivateKey;
 import java.security.Provider;
+import java.security.Security;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.xml.crypto.dsig.CanonicalizationMethod;
@@ -35,6 +38,7 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
@@ -42,6 +46,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFTipoCertificado;
 
 public class AssinaturaDigital {
 	private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
@@ -77,11 +82,22 @@ public class AssinaturaDigital {
 	}
 
 	public String assinarDocumento(final String conteudoXml) throws Exception {
-		final KeyStore keyStore = KeyStore.getInstance("PKCS12");
-		try (InputStream certificadoStream = new ByteArrayInputStream(this.config.getCertificado())) {
-			keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
+		KeyStore keyStore = null; 
+		
+		if(NFTipoCertificado.A1.equals(config.getTipoCertificado())){
+			keyStore = KeyStore.getInstance("PKCS12");
+			try (InputStream certificadoStream = new ByteArrayInputStream(this.config.getCertificado())) {
+				keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
+			}
+		}else{
+			/*
+			 * NÃO PRECISA CARREGAR TOTALMENTE O CAMINHO DO CERTIFICADO A3
+			 * ESTE JA FOI CARREGADO NA CLASSE NFSocketFactory
+			 * */
+			keyStore = KeyStore.getInstance("PKCS11");
+			keyStore.load(null, this.config.getCertificadoSenha().toCharArray());
 		}
-
+		
 		final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyStore.aliases().nextElement(), new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray()));
 		final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
 
@@ -116,6 +132,48 @@ public class AssinaturaDigital {
 			return this.converteDocumentParaXml(document);
 		}
 	}
+	
+	/*public String assinarDocumentoA3(final String conteudoXml) throws Exception {
+		final KeyStore keyStore = KeyStore.getInstance("PKCS11");
+		keyStore.load(null, this.config.getCertificadoSenha().toCharArray());
+		//try (InputStream certificadoStream = new ByteArrayInputStream(this.config.getCertificado())) {
+			//keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
+		//}
+
+		final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyStore.aliases().nextElement(), new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray()));
+		final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
+
+		final List<Transform> transforms = new ArrayList<>(2);
+		transforms.add(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null));
+		transforms.add(signatureFactory.newTransform(AssinaturaDigital.C14N_TRANSFORM_METHOD, (TransformParameterSpec) null));
+
+		final KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
+		final X509Data x509Data = keyInfoFactory.newX509Data(Collections.singletonList((X509Certificate) keyEntry.getCertificate()));
+		final KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(x509Data));
+
+		final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		documentBuilderFactory.setNamespaceAware(true);
+
+		try (InputStream inputStreamXml = IOUtils.toInputStream(conteudoXml)) {
+			final Document document = documentBuilderFactory.newDocumentBuilder().parse(inputStreamXml);
+
+			for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
+				final NodeList elements = document.getElementsByTagName(elementoAssinavel);
+				for (int i = 0; i < elements.getLength(); i++) {
+					final Element element = (Element) elements.item(i);
+					final String id = element.getAttribute("Id");
+					element.setIdAttribute("Id", true);
+
+					final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
+					final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
+
+					final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+					signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
+				}
+			}
+			return this.converteDocumentParaXml(document);
+		}
+	}*/
 
 	private String converteDocumentParaXml(final Document document) throws TransformerFactoryConfigurationError, TransformerException, IOException {
 		try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
