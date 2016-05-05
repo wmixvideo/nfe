@@ -28,7 +28,7 @@ public class NFNotaInfoICMSTotal extends NFBase {
     private String valorICMSPartilhaRementente;
 
     @Element(name = "vBCST", required = true)
-    private String valor;
+    private String baseCalculoICMSST;
 
     @Element(name = "vST", required = true)
     private String valorTotalICMSST;
@@ -74,8 +74,16 @@ public class NFNotaInfoICMSTotal extends NFBase {
         this.valorTotalICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalICMS);
     }
 
+    /**
+     * @deprecated Utilize setBaseCalculoICMSST(...)
+     */
+    @Deprecated
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+        this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+    }
+    
+    public void setBaseCalculoICMSST(final BigDecimal baseCalculoICMSST) {
+        this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMSST);
     }
 
     public void setValorTotalICMSST(final BigDecimal valorTotalICMSST) {
@@ -142,8 +150,16 @@ public class NFNotaInfoICMSTotal extends NFBase {
         return this.valorICMSDesonerado;
     }
 
+    /**
+     * @deprecated Utilize getBaseCalculoICMSST()
+     */
+    @Deprecated
     public String getValor() {
-        return this.valor;
+        return this.baseCalculoICMSST;
+    }
+    
+    public String getBaseCalculoICMSST() {
+        return this.baseCalculoICMSST;
     }
 
     public String getValorTotalICMSST() {
