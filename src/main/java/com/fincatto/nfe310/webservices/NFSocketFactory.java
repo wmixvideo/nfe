@@ -85,7 +85,10 @@ class NFSocketFactory implements ProtocolSocketFactory {
 			
             Provider provider = new sun.security.pkcs11.SunPKCS11(dll.getCaminhoArquivo());
             Security.addProvider(provider);
-            ks = KeyStore.getInstance("pkcs11", provider); 
+            ks = KeyStore.getInstance("pkcs11");
+            if(ks.getProvider() == null){
+            	ks = KeyStore.getInstance("pkcs11", provider);
+            }
             ks.load(null, config.getCertificadoSenha().toCharArray());
 		}
 		
