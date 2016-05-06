@@ -1,9 +1,6 @@
 package com.fincatto.nfe310.assinatura;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.Provider;
 import java.security.cert.X509Certificate;
@@ -26,6 +23,7 @@ import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -42,6 +40,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.fincatto.nfe310.NFeConfig;
+import org.xml.sax.InputSource;
 
 public class AssinaturaDigital {
 	private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
@@ -96,8 +95,15 @@ public class AssinaturaDigital {
 		final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		documentBuilderFactory.setNamespaceAware(true);
 
-		try (InputStream inputStreamXml = IOUtils.toInputStream(conteudoXml)) {
-			final Document document = documentBuilderFactory.newDocumentBuilder().parse(inputStreamXml);
+		// Remoção do inputStream para não dar mais o erro
+		// com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException: Byte inválido 2 da sequência UTF-8 do byte 3.
+		// Esse problema normalmente está relacionado a caracteres especiais ou acentuados dentro do XML.
+		// @see http://goo.gl/42aPOh
+		try (StringReader stringReader = new StringReader(conteudoXml)) {
+			InputSource inputSource = new InputSource(stringReader);
+			DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
+			final Document document = docBuilder.parse(inputSource);
+			//final Document document = documentBuilderFactory.newDocumentBuilder().parse(inputStreamXml);
 
 			for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
 				final NodeList elements = document.getElementsByTagName(elementoAssinavel);
