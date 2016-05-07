@@ -1,176 +1,115 @@
 package com.fincatto.nfe310.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.security.KeyStore;
-import java.security.MessageDigest;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFAutorizador31;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+import java.io.ByteArrayOutputStream;
+import java.net.URI;
+import java.security.KeyStore;
+import java.security.MessageDigest;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFAutorizador31;
+public abstract class NFGeraCadeiaCertificados {
 
-public class NFGeraCadeiaCertificados {
+    private static final int PORT = 443;
+    private static final int TIMEOUT = 30 * 1000;
+    private static final String PROTOCOL = "TLS";
+    private static final Logger LOGGER = LogManager.getLogger(NFGeraCadeiaCertificados.class);
 
-	private static final String JSSECACERTS = "NFeCacerts";
-	private static final int TIMEOUT_WS = 30;
+    public static byte[] geraCadeiaCertificados(final NFAmbiente ambiente, final String senha) throws Exception {
+        final KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        keyStore.load(null, senha.toCharArray());
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            for (final NFAutorizador31 aut : NFAutorizador31.values()) {
+                //Para NFe...
+                final String urlNF = aut.getNfeStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlNF)) {
+                    final String host = new URI(urlNF).getHost();
+                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                }
 
-	public static void main(final String[] args) throws Exception {
-		NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.HOMOLOGACAO, "changeit", null);
-	}
+                //Para NFCe...
+                final String urlNFC = aut.getNfceStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlNFC)) {
+                    final String host = new URI(urlNFC).getHost();
+                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                }
+            }
+            keyStore.store(out, senha.toCharArray());
+            return out.toByteArray();
+        }
+    }
 
-	/**
-	 * Gera um arquivo NFeCacerts contento as cadeias dos certificados para o ambiente informado.<br>
-	 * @param ambiente Homologacao ou Producao
-	 * @param senha Senha da cadeia de certificados, configurada em {@link NFeConfig#getCadeiaCertificadosSenha()}
-	 * @param diretorio Diretorio em que o arquivo NFeCacerts sera gerado
-	 */
-	public static void geraCadeiaCertificados(final NFAmbiente ambiente, final String senha, String diretorio) throws Exception {
-		final String sep = File.separator;
-		final char[] passphrase = senha.toCharArray();
+    private static void get(final KeyStore keyStore, final String host, final int port) throws Exception {
+        final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(keyStore);
 
-		if (diretorio == null) {
-			diretorio = "";
-		}
-		if (!diretorio.endsWith(sep) && !diretorio.isEmpty()) {
-			diretorio += sep;
-		}
+        final X509TrustManager defaultTrustManager = (X509TrustManager) trustManagerFactory.getTrustManagers()[0];
+        final SavingTrustManager savingTrustManager = new SavingTrustManager(defaultTrustManager);
 
-		File file = new File(diretorio + NFGeraCadeiaCertificados.JSSECACERTS);
+        final SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
+        sslContext.init(null, new TrustManager[]{savingTrustManager}, null);
 
-		if (file.isFile() == false) {
-			final File dir = new File(System.getProperty("java.home") + sep + "lib" + sep + "security");
-			file = new File(dir, NFGeraCadeiaCertificados.JSSECACERTS);
-			if (file.isFile() == false) {
-				file = new File(dir, "cacerts");
-			}
-		}
+        LOGGER.info(String.format("Abrindo conexao para o servidor: %s:%s", host, port));
+        try (SSLSocket sslSocket = (SSLSocket) sslContext.getSocketFactory().createSocket(host, port)) {
+            sslSocket.setSoTimeout(NFGeraCadeiaCertificados.TIMEOUT);
+            sslSocket.startHandshake();
+        } catch (final SSLHandshakeException e) {
+            LOGGER.error(String.format("SSLHandshakeException: %s", e.toString()));
+        } catch (final SSLException e) {
+            LOGGER.error(String.format("SSLException: %s", e.toString()));
+        }
 
-		final File cafile = new File(diretorio + NFGeraCadeiaCertificados.JSSECACERTS);
+        //se conseguir obter a cadeia de certificados, adiciona no keystore
+        if (savingTrustManager.chain != null) {
+            LOGGER.info(String.format("Certificados enviados pelo servidor: %s", savingTrustManager.chain.length));
+            final MessageDigest sha1 = MessageDigest.getInstance("SHA1");
+            final MessageDigest md5 = MessageDigest.getInstance("MD5");
+            for (int i = 0; i < savingTrustManager.chain.length; i++) {
+                final X509Certificate certificate = savingTrustManager.chain[i];
+                sha1.update(certificate.getEncoded());
+                md5.update(certificate.getEncoded());
 
-		try (InputStream in = new FileInputStream(file); OutputStream out = new FileOutputStream(cafile)) {
+                final String alias = String.format("%s.%s", host, i + 1);
+                keyStore.setCertificateEntry(alias, certificate);
+                LOGGER.info(String.format("Adicionado certificado no keystore com o alias: %s", alias));
+            }
+        }
+    }
 
-			NFGeraCadeiaCertificados.info("| Loading KeyStore " + file + "...");
-			final KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-			ks.load(in, passphrase);
+    private static class SavingTrustManager implements X509TrustManager {
+        private final X509TrustManager trustManager;
+        private X509Certificate[] chain;
 
-			for (final NFAutorizador31 aut : NFAutorizador31.values()) {
-				//Para NFe...
-				String urlNfe = aut.getNfeConsultaProtocolo(ambiente);
-				urlNfe = NFGeraCadeiaCertificados.getDomainName(urlNfe);
-				NFGeraCadeiaCertificados.get(urlNfe, 443, ks);
+        SavingTrustManager(final X509TrustManager trustManager) {
+            this.trustManager = trustManager;
+        }
 
-				//Para NFCe...
-				String urlNfce = aut.getNfceStatusServico(ambiente);
-				if (urlNfce != null) {
-					urlNfce = NFGeraCadeiaCertificados.getDomainName(urlNfce);
-					if (urlNfce != null) {
-						NFGeraCadeiaCertificados.get(urlNfce, 443, ks);
-					}
-				}
-			}
-			ks.store(out, passphrase);
-		}
-	}
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return trustManager.getAcceptedIssuers();
+        }
 
-	private static String getDomainName(final String url) throws URISyntaxException {
-		if (url == null) {
-			return null;
-		}
-		final URI uri = new URI(url);
-		final String domain = uri.getHost();
-		return domain.startsWith("www.") ? domain.substring(4) : domain;
-	}
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {
+            this.trustManager.checkClientTrusted(chain, authType);
+        }
 
-	private static void get(final String host, final int port, final KeyStore ks) throws Exception {
-		final SSLContext context = SSLContext.getInstance("TLS");
-		final TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-		tmf.init(ks);
-		final X509TrustManager defaultTrustManager = (X509TrustManager) tmf.getTrustManagers()[0];
-		final SavingTrustManager tm = new SavingTrustManager(defaultTrustManager);
-		context.init(null, new TrustManager[] { tm }, null);
-		final SSLSocketFactory factory = context.getSocketFactory();
-
-		NFGeraCadeiaCertificados.info("| Opening connection to " + host + ":" + port + "...");
-		final SSLSocket socket = (SSLSocket) factory.createSocket(host, port);
-		socket.setSoTimeout(NFGeraCadeiaCertificados.TIMEOUT_WS * 1000);
-		try {
-			NFGeraCadeiaCertificados.info("| Starting SSL handshake...");
-			socket.startHandshake();
-			socket.close();
-			NFGeraCadeiaCertificados.info("| No errors, certificate is already trusted");
-		} catch (final SSLHandshakeException e) {
-			/**
-			 * PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target Não tratado, pois sempre ocorre essa exceção quando o cacerts nao esta gerado.
-			 */
-		} catch (final SSLException e) {
-			NFGeraCadeiaCertificados.error("| " + e.toString());
-		}
-
-		final X509Certificate[] chain = tm.chain;
-		if (chain == null) {
-			NFGeraCadeiaCertificados.info("| Could not obtain server certificate chain");
-		}
-
-		NFGeraCadeiaCertificados.info("| Server sent " + chain.length + " certificate(s):");
-		final MessageDigest sha1 = MessageDigest.getInstance("SHA1");
-		final MessageDigest md5 = MessageDigest.getInstance("MD5");
-		for (int i = 0; i < chain.length; i++) {
-			final X509Certificate cert = chain[i];
-			sha1.update(cert.getEncoded());
-			md5.update(cert.getEncoded());
-
-			final String alias = host + "-" + (i);
-			ks.setCertificateEntry(alias, cert);
-			NFGeraCadeiaCertificados.info("| Added certificate to keystore '" + NFGeraCadeiaCertificados.JSSECACERTS + "' using alias '" + alias + "'");
-		}
-	}
-
-	private static class SavingTrustManager implements X509TrustManager {
-		private final X509TrustManager tm;
-		private X509Certificate[] chain;
-
-		SavingTrustManager(final X509TrustManager tm) {
-			this.tm = tm;
-		}
-
-		@Override
-		public X509Certificate[] getAcceptedIssuers() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void checkClientTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void checkServerTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {
-			this.chain = chain;
-			this.tm.checkServerTrusted(chain, authType);
-		}
-	}
-
-	private static void info(final String log) {
-		System.out.println("INFO: " + log);
-	}
-
-	private static void error(final String log) {
-		System.out.println("ERROR: " + log);
-	}
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {
+            this.chain = chain;
+            this.trustManager.checkServerTrusted(chain, authType);
+        }
+    }
 }
