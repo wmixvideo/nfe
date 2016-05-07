@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -64,10 +62,8 @@ public abstract class NFGeraCadeiaCertificados {
         try (SSLSocket sslSocket = (SSLSocket) sslContext.getSocketFactory().createSocket(host, port)) {
             sslSocket.setSoTimeout(10000);
             sslSocket.startHandshake();
-        } catch (final SSLHandshakeException e) {
-            LOGGER.error(String.format("SSLHandshakeException: %s", e.toString()));
-        } catch (final SSLException e) {
-            LOGGER.error(String.format("SSLException: %s", e.toString()));
+        } catch (final Exception e) {
+            LOGGER.error(String.format("[%s] %s", host, e.toString()));
         }
 
         //se conseguir obter a cadeia de certificados, adiciona no keystore
