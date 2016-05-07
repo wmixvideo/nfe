@@ -3,8 +3,8 @@ package com.fincatto.nfe310.utils;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
@@ -23,9 +23,8 @@ import java.security.cert.X509Certificate;
 public abstract class NFGeraCadeiaCertificados {
 
     private static final int PORT = 443;
-    private static final int TIMEOUT = 30 * 1000;
     private static final String PROTOCOL = "TLS";
-    private static final Logger LOGGER = LogManager.getLogger(NFGeraCadeiaCertificados.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NFGeraCadeiaCertificados.class);
 
     public static byte[] geraCadeiaCertificados(final NFAmbiente ambiente, final String senha) throws Exception {
         final KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -63,7 +62,7 @@ public abstract class NFGeraCadeiaCertificados {
 
         LOGGER.info(String.format("Abrindo conexao para o servidor: %s:%s", host, port));
         try (SSLSocket sslSocket = (SSLSocket) sslContext.getSocketFactory().createSocket(host, port)) {
-            sslSocket.setSoTimeout(NFGeraCadeiaCertificados.TIMEOUT);
+            sslSocket.setSoTimeout(10000);
             sslSocket.startHandshake();
         } catch (final SSLHandshakeException e) {
             LOGGER.error(String.format("SSLHandshakeException: %s", e.toString()));

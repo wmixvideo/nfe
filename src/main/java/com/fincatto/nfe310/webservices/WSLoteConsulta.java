@@ -1,15 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.axis2.AxisFault;
-import org.apache.log4j.Logger;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
@@ -19,27 +9,36 @@ import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.NfeRetAutorizacaoStub;
 import com.fincatto.nfe310.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSLoteConsulta {
 
-	final private static Logger LOG = Logger.getLogger(WSLoteConsulta.class);
+	final private static Logger LOGGER = LoggerFactory.getLogger(WSLoteConsulta.class);
 	private final NFeConfig config;
 
-	public WSLoteConsulta(final NFeConfig config) {
+	WSLoteConsulta(final NFeConfig config) {
 		this.config = config;
 	}
 
-	public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
+	NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-		WSLoteConsulta.LOG.info(omElementConsulta);
+		WSLoteConsulta.LOGGER.debug(omElementConsulta.toString());
 
 		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF(), modelo);
-		WSLoteConsulta.LOG.info(omElementResult);
+		WSLoteConsulta.LOGGER.debug(omElementResult.toString());
 
 		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
 	}
 
-	private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws AxisFault, RemoteException {
+	private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws RemoteException {
 		final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
 		cabec.setCUF(uf.getCodigoIbge());
 		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);

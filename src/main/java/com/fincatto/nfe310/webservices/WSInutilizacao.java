@@ -1,12 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.math.BigDecimal;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -19,29 +12,35 @@ import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
 
 class WSInutilizacao {
 
     private static final String VERSAO_SERVICO = "3.10";
     private static final String NOME_SERVICO = "INUTILIZAR";
     private static final String MODELO_DOCUMENTO = "55";
+    private static final Logger LOGGER = LoggerFactory.getLogger(WSInutilizacao.class);
     private final NFeConfig config;
-    private static final Logger LOG = Logger.getLogger(WSInutilizacao.class);
 
-    public WSInutilizacao(final NFeConfig config) {
+    WSInutilizacao(final NFeConfig config) {
         this.config = config;
     }
 
-    public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
+    NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml);
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }
 
-    public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
+    NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa).toString();
         final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
         final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado);
-
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }
 
@@ -55,13 +54,13 @@ class WSInutilizacao {
 
         final NfeInutilizacao2Stub.NfeDadosMsg dados = new NfeDadosMsg();
         final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
-        WSInutilizacao.LOG.debug(omElement);
+        WSInutilizacao.LOGGER.debug(omElement.toString());
         dados.setExtraElement(omElement);
 
         final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeInutilizacao(this.config.getAmbiente());
         final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService).nfeInutilizacaoNF2(dados, cabecalhoE);
         final OMElement dadosRetorno = nf2Result.getExtraElement();
-        WSInutilizacao.LOG.debug(dadosRetorno);
+        WSInutilizacao.LOGGER.debug(dadosRetorno.toString());
         return dadosRetorno;
     }
 

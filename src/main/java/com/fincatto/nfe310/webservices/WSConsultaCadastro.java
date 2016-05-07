@@ -1,14 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.axis2.AxisFault;
-import org.apache.log4j.Logger;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -20,9 +11,17 @@ import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.rmi.RemoteException;
 
 class WSConsultaCadastro {
-    private static final Logger LOG = Logger.getLogger(WSConsultaCadastro.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WSConsultaCadastro.class);
     private static final String NOME_SERVICO = "CONS-CAD";
     private static final String VERSAO_SERVICO = "2.00";
     private final NFeConfig config;
@@ -44,7 +43,7 @@ class WSConsultaCadastro {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
     }
 
-    private OMElement efetuaConsulta(final NFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException, AxisFault {
+    private OMElement efetuaConsulta(final NFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
         final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
         cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);

@@ -57,7 +57,7 @@ public class AssinaturaDigital {
         final Document document = dbf.newDocumentBuilder().parse(xmlStream);
         final NodeList nodeList = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         if (nodeList.getLength() == 0) {
-            throw new Exception("N\u00e3o foi encontrada a assinatura do XML.");
+            throw new IllegalStateException("N\u00e3o foi encontrada a assinatura do XML.");
         }
 
         final String providerName = System.getProperty("jsr105Provider", "org.jcp.xml.dsig.internal.dom.XMLDSigRI");
