@@ -1,7 +1,6 @@
 package com.fincatto.nfe310.assinatura;
 
 import com.fincatto.nfe310.NFeConfig;
-import org.apache.commons.io.Charsets;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -120,7 +119,7 @@ public class AssinaturaDigital {
             final Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(new DOMSource(document), new StreamResult(outputStream));
-            return outputStream.toString(Charsets.UTF_8.name());
+            return outputStream.toString("UTF-8");
         }
     }
 }
