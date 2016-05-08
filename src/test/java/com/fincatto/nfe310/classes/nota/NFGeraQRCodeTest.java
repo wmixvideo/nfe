@@ -62,17 +62,22 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public String getCertificadoSenha() {
-                return null;
-            }
-
-            @Override
             public KeyStore getCertificadoKeyStore() throws KeyStoreException {
                 return null;
             }
 
             @Override
+            public String getCertificadoSenha() {
+                return null;
+            }
+
+            @Override
             public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+                return null;
+            }
+
+            @Override
+            public String getCadeiaCertificadosSenha() {
                 return null;
             }
         };
