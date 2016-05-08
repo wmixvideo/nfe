@@ -33,42 +33,15 @@ comunicação com os webservices da Sefaz.
 
 ```java
 // Exemplo de configuracao para acesso aos serviços da Sefaz.
-public class ConfiguracaoSefaz implements NFeConfig {
+public class NFeConfigTeste extends NFeConfig {
 
-    private final boolean ehAmbienteDeTeste;
-
-    public ConfiguracaoSefaz(final boolean ehAmbienteDeTeste) {
-        this.ehAmbienteDeTeste = ehAmbienteDeTeste;
-    }
+    private KeyStore keyStoreCertificado = null;
+    private KeyStore keyStoreCadeia = null;
 
     @Override
     public NFAmbiente getAmbiente() {
-        return this.ehAmbienteDeTeste ? NFAmbiente.HOMOLOGACAO : NFAmbiente.PRODUCAO;
+        return NFAmbiente.HOMOLOGACAO;
     }
-
-    @Override
-    public File getCertificado() throws IOException {
-        try (InputStream is = CertificadoUtils.class.getResource("certificado.pfx").openStream()) {
-			return IOUtils.toByteArray(is);
-		}
-    }
-
-    @Override
-    public File getCadeiaCertificados() throws IOException {
-        try (InputStream is = CertificadoUtils.class.getResource("cadeia_certificado.jks").openStream()) {
-			return IOUtils.toByteArray(is);
-		}
-    }
-
-    @Override
-    public String getCertificadoSenha() {
-        return "senhaDoCertificado";
-    }
-
-	@Override
-	public String getCadeiaCertificadosSenha() {
-		return "senhaDaCadeiaDeCertificados";
-	}
 
     @Override
     public NFUnidadeFederativa getCUF() {
@@ -76,24 +49,48 @@ public class ConfiguracaoSefaz implements NFeConfig {
     }
 
     @Override
-    public NFTipoEmissao getTipoEmissao() {
-        return NFTipoEmissao.EMISSAO_NORMAL;
+    public String getCertificadoSenha() {
+        return "senha_certificado";
     }
 
     @Override
-	public String getSSLProtocolo() {
-		return "TLSv1";
-	}
+    public String getCadeiaCertificadosSenha() {
+        return "senha_cadeia";
+    }
 
-	@Override
-	public Integer getCodigoSegurancaContribuinteID() {
-		return null;
-	}
+    @Override
+    public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        if (keyStoreCertificado == null) {
+            this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
+            try (InputStream certificadoStream = new FileInputStream("/tmp/certificado.pfx")) {
+                keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
+            } catch (CertificateException e) {
+                throw new KeyStoreException("Erro de certificado", e);
+            } catch (NoSuchAlgorithmException e) {
+                throw new KeyStoreException("Erro de algoritmo", e);
+            } catch (IOException e) {
+                throw new KeyStoreException("Erro de IO", e);
+            }
+        }
+        return keyStoreCertificado;
+    }
 
-	@Override
-	public String getCodigoSegurancaContribuinte() {
-		return null;
-	}
+    @Override
+    public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        if (keyStoreCadeia == null) {
+            try (InputStream cadeia = new FileInputStream("/tmp/cadeia.jks")) {
+                this.keyStoreCadeia = KeyStore.getInstance("JKS");
+                keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
+            } catch (CertificateException e) {
+                throw new KeyStoreException("Erro de certificado", e);
+            } catch (NoSuchAlgorithmException e) {
+                throw new KeyStoreException("Erro de algoritmo", e);
+            } catch (IOException e) {
+                throw new KeyStoreException("Erro de IO", e);
+            }
+        }
+        return keyStoreCadeia;
+    }
 }
 ```
 
