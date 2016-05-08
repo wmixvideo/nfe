@@ -60,10 +60,10 @@ public class NFeConfigTeste extends NFeConfig {
 
     @Override
     public KeyStore getCertificadoKeyStore() throws KeyStoreException {
-        if (keyStoreCertificado == null) {
-            this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
+        if (this.keyStoreCertificado == null) {
             try (InputStream certificadoStream = new FileInputStream("/tmp/certificado.pfx")) {
-                keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
+                this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
+                this.keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
             } catch (CertificateException e) {
                 throw new KeyStoreException("Erro de certificado", e);
             } catch (NoSuchAlgorithmException e) {
@@ -72,15 +72,15 @@ public class NFeConfigTeste extends NFeConfig {
                 throw new KeyStoreException("Erro de IO", e);
             }
         }
-        return keyStoreCertificado;
+        return this.keyStoreCertificado;
     }
 
     @Override
     public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
-        if (keyStoreCadeia == null) {
+        if (this.keyStoreCadeia == null) {
             try (InputStream cadeia = new FileInputStream("/tmp/cadeia.jks")) {
                 this.keyStoreCadeia = KeyStore.getInstance("JKS");
-                keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
+                this.keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
             } catch (CertificateException e) {
                 throw new KeyStoreException("Erro de certificado", e);
             } catch (NoSuchAlgorithmException e) {
@@ -89,7 +89,7 @@ public class NFeConfigTeste extends NFeConfig {
                 throw new KeyStoreException("Erro de IO", e);
             }
         }
-        return keyStoreCadeia;
+        return this.keyStoreCadeia;
     }
 }
 ```
