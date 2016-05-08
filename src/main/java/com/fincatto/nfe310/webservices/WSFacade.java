@@ -33,7 +33,6 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        // registra o protocolo e o socket factory correspondente
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
 
         // inicia os servicos disponiveis da nfe

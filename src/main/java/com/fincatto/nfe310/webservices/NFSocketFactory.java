@@ -9,9 +9,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509KeyManager;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -30,16 +28,8 @@ class NFSocketFactory implements ProtocolSocketFactory {
 
     private final SSLContext sslContext;
 
-    NFSocketFactory(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+    NFSocketFactory(final NFeConfig config) throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         this.sslContext = this.createSSLContext(config);
-    }
-
-    private SSLContext createSSLContext(final NFeConfig config) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException, KeyManagementException, UnrecoverableKeyException {
-        final KeyManager[] keyManagers = this.createKeyManagers(config);
-        final TrustManager[] trustManagers = this.createTrustManagers(config);
-        final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolo());
-        sslContext.init(keyManagers, trustManagers, null);
-        return sslContext;
     }
 
     @Override
@@ -60,27 +50,25 @@ class NFSocketFactory implements ProtocolSocketFactory {
         return this.sslContext.getSocketFactory().createSocket(host, port);
     }
 
-    private KeyManager[] createKeyManagers(final NFeConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-        try (InputStream certificado = new ByteArrayInputStream(config.getCertificado())) {
-            final KeyStore ks = KeyStore.getInstance("PKCS12");
-            ks.load(certificado, config.getCertificadoSenha().toCharArray());
+    private SSLContext createSSLContext(final NFeConfig config) throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+        final KeyManager[] keyManagers = this.createKeyManagers(config);
+        final TrustManager[] trustManagers = this.createTrustManagers(config);
+        final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolo());
+        sslContext.init(keyManagers, trustManagers, null);
+        return sslContext;
+    }
 
-            final String alias = NFSocketFactory.getAlias(ks);
-            final X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
-            final PrivateKey privateKey = (PrivateKey) ks.getKey(alias, config.getCertificadoSenha().toCharArray());
-            return new KeyManager[]{new HSKeyManager(certificate, privateKey)};
-        }
+    private KeyManager[] createKeyManagers(final NFeConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+        final String alias = getAlias(config.getCertificadoKeyStore());
+        final X509Certificate certificate = (X509Certificate) config.getCertificadoKeyStore().getCertificate(alias);
+        final PrivateKey privateKey = (PrivateKey) config.getCertificadoKeyStore().getKey(alias, config.getCertificadoSenha().toCharArray());
+        return new KeyManager[]{new NFKeyManager(certificate, privateKey)};
     }
 
     private TrustManager[] createTrustManagers(final NFeConfig config) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-        try (ByteArrayInputStream cadeia = new ByteArrayInputStream(config.getCadeiaCertificados())) {
-            final KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            trustStore.load(cadeia, config.getCadeiaCertificadosSenha().toCharArray());
-
-            final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            trustManagerFactory.init(trustStore);
-            return trustManagerFactory.getTrustManagers();
-        }
+        final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(config.getCadeiaCertificadosKeyStore());
+        return trustManagerFactory.getTrustManagers();
     }
 
     private static String getAlias(final KeyStore ks) throws KeyStoreException {
@@ -91,16 +79,16 @@ class NFSocketFactory implements ProtocolSocketFactory {
                 return alias;
             }
         }
-        return "";
+        throw new KeyStoreException("Nenhum alias encontrado no certificado");
     }
 }
 
-class HSKeyManager implements X509KeyManager {
+class NFKeyManager implements X509KeyManager {
 
     private final X509Certificate certificate;
     private final PrivateKey privateKey;
 
-    HSKeyManager(final X509Certificate certificate, final PrivateKey privateKey) {
+    NFKeyManager(final X509Certificate certificate, final PrivateKey privateKey) {
         this.certificate = certificate;
         this.privateKey = privateKey;
     }

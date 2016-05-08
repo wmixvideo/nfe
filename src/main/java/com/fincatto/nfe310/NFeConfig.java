@@ -1,33 +1,95 @@
 package com.fincatto.nfe310;
 
-import java.io.IOException;
-
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
-public interface NFeConfig {
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 
-	String VERSAO_NFE = "3.10";
-	String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
+/**
+ * Configuração basica do sistema de notas fiscais.
+ */
+public abstract class NFeConfig {
 
-	NFAmbiente getAmbiente();
+    public static final String VERSAO_NFE = "3.10";
+    public static final String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
 
-	byte[] getCertificado() throws IOException;
+    /**
+     * Indica o ambiente de trabalho, se em produção ou homologação.
+     *
+     * @return Ambiente de trabalho.
+     */
+    public abstract NFAmbiente getAmbiente();
 
-	byte[] getCadeiaCertificados() throws IOException;
+    /**
+     * KeyStore contendo o certificado pessoal do emissor. <br/>
+     * Esse certificado é fornecido por uma autoridade certificadora. <br/>
+     * Em caso de dúvidas, consulte seu contador.
+     *
+     * @return KeyStore do certificado pessoal.
+     * @throws KeyStoreException Caso não consiga carregar o KeyStore.
+     */
+    public abstract KeyStore getCertificadoKeyStore() throws KeyStoreException;
 
-	String getCertificadoSenha();
+    /**
+     * Senha do certificado pessoal do emissor, contido dentro do KeyStore do certificado.
+     *
+     * @return Senha do certificado.
+     * @see #getCertificadoKeyStore()
+     */
+    public abstract String getCertificadoSenha();
 
-	String getCadeiaCertificadosSenha();
+    /**
+     * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br/>
+     * Para gerar a cadeia, use o utilitário fornecido com a biblioteca:<br/>
+     * FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
+     *
+     * @return KeyStore da cadeia de certificados.
+     * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
+     */
+    public abstract KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException;
 
-	NFUnidadeFederativa getCUF();
+    /**
+     * Unidade da federação do emissor das notas.
+     *
+     * @return Unidade da federação do emissor.
+     */
+    public abstract NFUnidadeFederativa getCUF();
 
-	NFTipoEmissao getTipoEmissao();
+    /**
+     * ID de contribuinte, somente para NFCe.
+     *
+     * @return ID do contribuinte.
+     */
+    public Integer getCodigoSegurancaContribuinteID() {
+        return null;
+    }
 
-	String getSSLProtocolo();
+    /**
+     * Codigo de seguranca do contribuinte, com 36 caracteres, somente para NFCe.
+     *
+     * @return Codigo de segurança do contribuinte.
+     */
+    public String getCodigoSegurancaContribuinte() {
+        return null;
+    }
 
-	Integer getCodigoSegurancaContribuinteID();
+    /**
+     * Tipo da emissão das notas (se normal ou em contingência).
+     *
+     * @return Tipo da emissão das notas.
+     */
+    public NFTipoEmissao getTipoEmissao() {
+        return NFTipoEmissao.EMISSAO_NORMAL;
+    }
 
-	String getCodigoSegurancaContribuinte();
+    /**
+     * Protocolo de SSL, usado pela SEFAZ para receber as notas.
+     *
+     * @return Protocolo SSL da SEFAZ de origem.
+     */
+    public String getSSLProtocolo() {
+        return "TLSv1";
+    }
 }
