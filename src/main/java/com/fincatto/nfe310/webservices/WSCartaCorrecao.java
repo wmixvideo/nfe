@@ -31,8 +31,10 @@ import java.rmi.RemoteException;
 import java.util.Collections;
 
 class WSCartaCorrecao {
-    private static final String EVENTO_CARTA_CORRECAO = "110110";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
+    private static final String EVENTO_CODIGO = "110110";
+    private static final String EVENTO_DESCRICAO = "Carta de Correcao";
+    private static final String EVENTO_CONDICAO_USO = "A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.";
     private final static Logger LOGGER = LoggerFactory.getLogger(WSCartaCorrecao.class);
     private final NFeConfig config;
 
@@ -44,13 +46,11 @@ class WSCartaCorrecao {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
-
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-
         return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
@@ -85,10 +85,10 @@ class WSCartaCorrecao {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFTipoEvento cartaCorrecao = new NFTipoEvento();
-        cartaCorrecao.setCondicaoUso("A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.");
-        cartaCorrecao.setTextoCorrecao(textoCorrecao);
-        cartaCorrecao.setDescricaoEvento("Carta de Correcao");
         cartaCorrecao.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
+        cartaCorrecao.setDescricaoEvento(EVENTO_DESCRICAO);
+        cartaCorrecao.setCondicaoUso(EVENTO_CONDICAO_USO);
+        cartaCorrecao.setTextoCorrecao(textoCorrecao);
 
         final NFInfoEvento infoEvento = new NFInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
@@ -96,10 +96,10 @@ class WSCartaCorrecao {
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(DateTime.now());
-        infoEvento.setId(String.format("ID%s%s0%s", WSCartaCorrecao.EVENTO_CARTA_CORRECAO, chaveAcesso, numeroSequencialEvento));
+        infoEvento.setId(String.format("ID%s%s0%s", WSCartaCorrecao.EVENTO_CODIGO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
-        infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CARTA_CORRECAO);
+        infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CODIGO);
         infoEvento.setVersaoEvento(WSCartaCorrecao.VERSAO_LEIAUTE);
 
         final NFEvento evento = new NFEvento();
