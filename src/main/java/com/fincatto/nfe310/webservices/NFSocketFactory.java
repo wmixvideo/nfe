@@ -74,7 +74,7 @@ class NFSocketFactory implements ProtocolSocketFactory {
 
     private TrustManager[] createTrustManagers(final NFeConfig config) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
         try (ByteArrayInputStream cadeia = new ByteArrayInputStream(config.getCadeiaCertificados())) {
-            final KeyStore trustStore = KeyStore.getInstance("JKS");
+            final KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
             trustStore.load(cadeia, config.getCadeiaCertificadosSenha().toCharArray());
 
             final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
