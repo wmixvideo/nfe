@@ -23,6 +23,13 @@ public abstract class NFeConfig {
     public abstract NFAmbiente getAmbiente();
 
     /**
+     * Unidade da federação do emissor das notas.
+     *
+     * @return Unidade da federação do emissor.
+     */
+    public abstract NFUnidadeFederativa getCUF();
+
+    /**
      * KeyStore contendo o certificado pessoal do emissor. <br/>
      * Esse certificado é fornecido por uma autoridade certificadora. <br/>
      * Em caso de dúvidas, consulte seu contador.
@@ -51,11 +58,12 @@ public abstract class NFeConfig {
     public abstract KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException;
 
     /**
-     * Unidade da federação do emissor das notas.
+     * Senha da cadeia de certificados, contida dentro do KeyStore da cadeia.
      *
-     * @return Unidade da federação do emissor.
+     * @return Senha da cadeia de certificados.
+     * @see #getCadeiaCertificadosKeyStore()
      */
-    public abstract NFUnidadeFederativa getCUF();
+    public abstract String getCadeiaCertificadosSenha();
 
     /**
      * ID de contribuinte, somente para NFCe.
