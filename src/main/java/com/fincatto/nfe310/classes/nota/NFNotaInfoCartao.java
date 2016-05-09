@@ -1,11 +1,13 @@
 package com.fincatto.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoCartao extends NFBase {
+
+    @Element(name = "tpIntegra", required = true)
+    private NFTipoIntegracaoPagamento tipoIntegracao;
 
     @Element(name = "CNPJ", required = true)
     private String cnpj;
@@ -40,5 +42,13 @@ public class NFNotaInfoCartao extends NFBase {
 
     public NFOperadoraCartao getOperadoraCartao() {
         return this.operadoraCartao;
+    }
+
+    public NFTipoIntegracaoPagamento getTipoIntegracao() {
+        return tipoIntegracao;
+    }
+
+    public void setTipoIntegracao(NFTipoIntegracaoPagamento tipoIntegracao) {
+        this.tipoIntegracao = tipoIntegracao;
     }
 }
