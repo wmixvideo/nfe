@@ -3,7 +3,7 @@
 	<groupId>com.github.wmixvideo</groupId>
 	<artifactId>nfe</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1.14-SNAPSHOT</version>
+	<version>1.1.14</version>
 	<name>nfe</name>
 	<description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
 	<url>https://github.com/wmixvideo/nfe</url>
@@ -27,7 +27,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<axis2.version>1.6.3</axis2.version>
-		<joda.version>2.9.1</joda.version>
+		<joda.version>2.9.3</joda.version>
 		<junit.version>4.12</junit.version>
 	</properties>
 
@@ -65,13 +65,6 @@
 			<version>3.4</version>
 		</dependency>
 
-		<!-- Commons IO -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-
 		<!-- Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -102,9 +95,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.21</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

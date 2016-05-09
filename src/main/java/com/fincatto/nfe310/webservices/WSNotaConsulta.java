@@ -1,15 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.axis2.AxisFault;
-import org.apache.log4j.Logger;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
@@ -19,27 +9,36 @@ import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub;
 import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSNotaConsulta {
     private static final String NOME_SERVICO = "CONSULTAR";
-    private final NFeConfig config;
     private static final String VERSAO_SERVICO = "3.10";
-    private final static Logger LOG = Logger.getLogger(WSNotaConsulta.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(WSNotaConsulta.class);
+    private final NFeConfig config;
 
-    public WSNotaConsulta(final NFeConfig config) {
+    WSNotaConsulta(final NFeConfig config) {
         this.config = config;
     }
 
-    public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+    NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        WSNotaConsulta.LOG.info(omElementConsulta);
+        WSNotaConsulta.LOGGER.debug(omElementConsulta.toString());
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
-        WSNotaConsulta.LOG.info(omElementRetorno);
+        WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws AxisFault, RemoteException {
+    private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws RemoteException {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
         final NfeConsulta2Stub.NfeCabecMsg cabec = new NfeConsulta2Stub.NfeCabecMsg();
         cabec.setCUF(notaFiscalChaveParser.getNFUnidadeFederativa().getCodigoIbge());
@@ -50,20 +49,14 @@ class WSNotaConsulta {
 
         final NfeConsulta2Stub.NfeDadosMsg dados = new NfeConsulta2Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-        
-        String endpoint;
-        NFAutorizador31 aut = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
-        if (NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo())) {
-        	endpoint = aut.getNfceConsultaProtocolo(config.getAmbiente());
-        }else {
-        	endpoint = aut.getNfeConsultaProtocolo(config.getAmbiente());        	
-        }
-        
+
+
+        NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
+        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
         if (endpoint == null) {
-        	throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo "+
-        			notaFiscalChaveParser.getModelo().name()+", autorizador "+aut.name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
-        
+
         final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(endpoint).nfeConsultaNF2(dados, cabecE);
         return consultaNF2Result.getExtraElement();
     }

@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.12-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.12|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.14-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.14|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -22,7 +22,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>1.1.12</version>
+  <version>1.1.14</version>
 </dependency>
 ```
 
@@ -203,25 +203,22 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Consulta cadastro | Estável             |
 
 ## Criação do Java KeyStore (JKS)
-Para usar os serviços da nota fiscal são necessários dois certificados, o certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco e o certificado da SEFAZ que desejamos acesso.
+Para usar os serviços da nota fiscal são necessários dois certificados:
+1) O certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco (fornecido por uma entidade certificadora);
+2) A cadeia de certificados da SEFAZ que queremos acesso;
 
-Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente). Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
-
-Para criação do JKS sera utilizada a ferramenta keytool do java ($JRE_HOME/bin/keytool).
-
-Obter os certificados da certificadora raiz disponibilizados por cada SEFAZ.
-* http://hom.nfe.fazenda.gov.br/portal/principal.aspx
-* https://www.sefaz.rs.gov.br/NFE/NFEindex.aspx
-* https://serasa.certificadodigital.com.br/ajuda/instalacao/cadeia-de-certificados/
-
-Converter o arquivo .cer para jks utilizando keytool:
-```sh
-keytool -importcert -trustcacerts -alias icp_br -file CertificadoACRaiz.cer -keystore keystore.jks
-```
-
-Caso o certificado esteja em formato *p7b*, você pode convertê-lo para *cer* utilizando o openssl para isso:
-```sh
-openssl pkcs7 -inform DER -outform PEM -in certificadoBaixadoDoSefaz.p7b -print_certs > certificadoGerado.cer
+Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente).
+Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
+Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baixa os certificados das SEFAZ e gera o arquivo automaticamente:
+```java
+public static void main(String args[]){
+    try {
+        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.HOMOLOGACAO, "senha"));
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 ```
 
 ## Licença

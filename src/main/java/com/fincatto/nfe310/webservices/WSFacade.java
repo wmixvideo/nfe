@@ -1,14 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -21,6 +12,14 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import org.apache.commons.httpclient.protocol.Protocol;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 public class WSFacade {
 
@@ -55,11 +54,6 @@ public class WSFacade {
         return this.wsLoteEnvio.enviaLote(lote);
     }
 
-    /**
-     * Permite o envio de lote assinado (Utilize para certificado A3)
-     *
-     * OBS: Apenas para NF-e
-     */
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml);
     }
@@ -88,16 +82,10 @@ public class WSFacade {
         return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
-    /**
-     * Permite a correcao de nota assinada (Utilize para certificados A3)
-     */
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsCartaCorrecao.corrigeNotaAssinada(chaveAcesso, eventoAssinadoXml);
     }
 
-    /**
-     * Permite o cancelamento de nota assinada (Utilize para certificados A3)
-     */
     public NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsCancelamento.cancelaNotaAssinada(chaveAcesso, eventoAssinadoXml);
     }
@@ -106,9 +94,6 @@ public class WSFacade {
         return this.wsCancelamento.cancelaNota(chaveAcesso, numeroProtocolo, motivo);
     }
 
-    /**
-     * Permite a inutilizacao de nota assinada (Utilize para certificados A3)
-     */
     public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
     }

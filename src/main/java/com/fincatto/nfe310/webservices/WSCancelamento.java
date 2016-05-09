@@ -1,13 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -24,24 +16,32 @@ import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.util.Collections;
 
 class WSCancelamento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final Logger LOG = Logger.getLogger(WSCancelamento.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WSCancelamento.class);
     private final NFeConfig config;
 
-    public WSCancelamento(final NFeConfig config) {
+    WSCancelamento(final NFeConfig config) {
         this.config = config;
     }
 
-    public NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+    NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
         return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    public NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+    NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
@@ -58,7 +58,7 @@ class WSCancelamento {
 
         final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSCancelamento.LOG.debug(omElementXML);
+        WSCancelamento.LOGGER.debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
@@ -70,7 +70,7 @@ class WSCancelamento {
 
         final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSCancelamento.LOG.debug(omElementResult.toString());
+        WSCancelamento.LOGGER.debug(omElementResult.toString());
         return omElementResult;
     }
 
@@ -100,7 +100,7 @@ class WSCancelamento {
         evento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
 
         final NFEnviaEventoCancelamento enviaEvento = new NFEnviaEventoCancelamento();
-        enviaEvento.setEvento(Arrays.asList(evento));
+        enviaEvento.setEvento(Collections.singletonList(evento));
         enviaEvento.setIdLote("1");
         enviaEvento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         return enviaEvento;
