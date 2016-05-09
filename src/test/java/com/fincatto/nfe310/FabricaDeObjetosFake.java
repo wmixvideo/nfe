@@ -1,14 +1,5 @@
 package com.fincatto.nfe310;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFEndereco;
 import com.fincatto.nfe310.classes.NFFinalidade;
@@ -131,10 +122,19 @@ import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
 import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFPessoaAutorizadaDownloadNFe;
+import com.fincatto.nfe310.classes.nota.NFTipoIntegracaoPagamento;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
 import com.fincatto.nfe310.classes.nota.assinatura.NFReference;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignedInfo;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FabricaDeObjetosFake {
 
@@ -257,6 +257,7 @@ public class FabricaDeObjetosFake {
 		cartao.setCnpj("12345678901234");
 		cartao.setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I90");
 		cartao.setOperadoraCartao(NFOperadoraCartao.MASTERCARD);
+		cartao.setTipoIntegracao(NFTipoIntegracaoPagamento.INTEGRADO);
 		return cartao;
 	}
 

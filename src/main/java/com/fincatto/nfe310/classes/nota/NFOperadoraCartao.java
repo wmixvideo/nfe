@@ -10,7 +10,7 @@ public enum NFOperadoraCartao {
 
     private String codigo;
 
-    private NFOperadoraCartao(final String codigo) {
+    NFOperadoraCartao(final String codigo) {
         this.codigo = codigo;
     }
 

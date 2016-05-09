@@ -1,11 +1,5 @@
 package com.fincatto.nfe310.transformers;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.simpleframework.xml.transform.RegistryMatcher;
-
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
@@ -51,7 +45,13 @@ import com.fincatto.nfe310.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoRegimeEspecialTributacao;
 import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
+import com.fincatto.nfe310.classes.nota.NFTipoIntegracaoPagamento;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.simpleframework.xml.transform.RegistryMatcher;
 
 public class NFRegistryMatcher extends RegistryMatcher {
 
@@ -80,6 +80,7 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFSituacaoContribuinte.class, new NFSituacaoContribuinteTransformer());
         super.bind(NFNotaInfoEspecieVeiculo.class, new NFNotaInfoEspecieVeiculoTransformer());
         super.bind(NFProdutoCompoeValorNota.class, new NFProdutoCompoeValorNotaTransformer());
+        super.bind(NFTipoIntegracaoPagamento.class, new NFTipoIntegracaoPagamentoTransformer());
         super.bind(NFIndicadorIEDestinatario.class, new NFIndicadorIEDestinatarioTransformer());
         super.bind(NFOperacaoConsumidorFinal.class, new NFOperacaoConsumidorFinalTransformer());
         super.bind(NFNotaInfoCombustivelTipo.class, new NFNotaInfoCombustivelTipoTransformer());
