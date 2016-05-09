@@ -1,11 +1,11 @@
 package com.fincatto.nfe310;
 
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 
 /**
  * Configuração basica do sistema de notas fiscais.
@@ -30,8 +30,8 @@ public abstract class NFeConfig {
     public abstract NFUnidadeFederativa getCUF();
 
     /**
-     * KeyStore contendo o certificado pessoal do emissor. <br/>
-     * Esse certificado é fornecido por uma autoridade certificadora. <br/>
+     * KeyStore contendo o certificado pessoal do emissor. <br>
+     * Esse certificado é fornecido por uma autoridade certificadora. <br>
      * Em caso de dúvidas, consulte seu contador.
      *
      * @return KeyStore do certificado pessoal.
@@ -48,8 +48,8 @@ public abstract class NFeConfig {
     public abstract String getCertificadoSenha();
 
     /**
-     * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br/>
-     * Para gerar a cadeia, use o utilitário fornecido com a biblioteca:<br/>
+     * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
+     * Para gerar a cadeia, use o utilitário fornecido com a biblioteca:<br>
      * FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
      *
      * @return KeyStore da cadeia de certificados.

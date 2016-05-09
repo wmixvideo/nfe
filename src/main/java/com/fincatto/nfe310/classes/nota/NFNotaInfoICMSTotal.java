@@ -81,7 +81,7 @@ public class NFNotaInfoICMSTotal extends NFBase {
     public void setValor(final BigDecimal valor) {
         this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
     }
-    
+
     public void setBaseCalculoICMSST(final BigDecimal baseCalculoICMSST) {
         this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMSST);
     }
@@ -157,7 +157,7 @@ public class NFNotaInfoICMSTotal extends NFBase {
     public String getValor() {
         return this.baseCalculoICMSST;
     }
-    
+
     public String getBaseCalculoICMSST() {
         return this.baseCalculoICMSST;
     }
