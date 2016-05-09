@@ -9,13 +9,13 @@ public class NFNotaInfoCartao extends NFBase {
     @Element(name = "tpIntegra", required = true)
     private NFTipoIntegracaoPagamento tipoIntegracao;
 
-    @Element(name = "CNPJ", required = true)
+    @Element(name = "CNPJ", required = false)
     private String cnpj;
 
-    @Element(name = "tBand", required = true)
+    @Element(name = "tBand", required = false)
     private NFOperadoraCartao operadoraCartao;
 
-    @Element(name = "cAut", required = true)
+    @Element(name = "cAut", required = false)
     private String numeroAutorizacaoOperacaoCartao;
 
     public void setCnpj(final String cnpj) {
