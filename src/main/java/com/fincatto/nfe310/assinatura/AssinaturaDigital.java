@@ -29,7 +29,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,12 +74,9 @@ public class AssinaturaDigital {
     }
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
-        final KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        try (InputStream certificadoStream = new ByteArrayInputStream(this.config.getCertificado())) {
-            keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
-        }
-
-        final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyStore.aliases().nextElement(), new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray()));
+        final String certificateAlias = config.getCertificadoKeyStore().aliases().nextElement();
+        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+        final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
 
         final List<Transform> transforms = new ArrayList<>(2);
