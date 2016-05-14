@@ -1,16 +1,17 @@
 package com.fincatto.nfe310.classes.nota;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.utils.NFGeraQRCode;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFTipoEmissao;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.utils.NFGeraQRCode;
 
 public class NFGeraQRCodeTest {
 
@@ -22,20 +23,20 @@ public class NFGeraQRCodeTest {
 
         final NFNota nota = FabricaDeObjetosFake.getNotaQRCode();
 
-        NFGeraQRCode qr = new NFGeraQRCode(nota, createConfigTest());
-        String qrCode = qr.getQRCode();
+        final NFGeraQRCode qr = new NFGeraQRCode(nota, this.createConfigTest());
+        final String qrCode = qr.getQRCode();
 
         nota.setInfoSuplementar(new NFNotaInfoSuplementar());
         nota.getInfoSuplementar().setQrCode(qrCode);
 
-        String urlUf = nota.getInfo().getIdentificacao().getUf().getQrCodeProducao();
-        Assert.assertEquals(urlUf + URL_TEST, nota.getInfoSuplementar().getQrCode());
+        final String urlUf = nota.getInfo().getIdentificacao().getUf().getQrCodeProducao();
+        Assert.assertEquals(urlUf + NFGeraQRCodeTest.URL_TEST, nota.getInfoSuplementar().getQrCode());
     }
 
     @Test
     public void geraSHA1() throws Exception {
-        String entrada = "chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=1&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001SEU-CODIGO-CSC-CONTRIBUINTE-36-CARACTERES";
-        String saida = NFGeraQRCode.sha1(entrada);
+        final String entrada = "chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=1&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001SEU-CODIGO-CSC-CONTRIBUINTE-36-CARACTERES";
+        final String saida = NFGeraQRCode.sha1(entrada);
         Assert.assertEquals(saida, "329f9d7b9fc5650372c1b2699ab88e9e22e0d33a");
     }
 
@@ -62,7 +63,12 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+            public NFTipoEmissao getTipoEmissao() {
+                return null;
+            }
+
+            @Override
+            public String getSSLProtocolo() {
                 return null;
             }
 
@@ -72,12 +78,17 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+            public byte[] getCertificado() throws IOException {
                 return null;
             }
 
             @Override
             public String getCadeiaCertificadosSenha() {
+                return null;
+            }
+
+            @Override
+            public byte[] getCadeiaCertificados() throws IOException {
                 return null;
             }
         };

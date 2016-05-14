@@ -8,7 +8,7 @@ public class NFIndicadorContribuinteCTTransformer implements Transform<NFIndicad
 
     @Override
     public NFIndicadorContribuinteCTe read(final String codigo) throws Exception {
-        return NFIndicadorContribuinteCTe.valueOfCodigo(Integer.valueOf(codigo));
+        return NFIndicadorContribuinteCTe.valueOfCodigo(Integer.parseInt(codigo));
     }
 
     @Override

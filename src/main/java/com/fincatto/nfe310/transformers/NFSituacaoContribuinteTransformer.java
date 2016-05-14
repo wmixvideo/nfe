@@ -8,7 +8,7 @@ public class NFSituacaoContribuinteTransformer implements Transform<NFSituacaoCo
 
     @Override
     public NFSituacaoContribuinte read(final String codigoSituacaoContribuinte) throws Exception {
-        return NFSituacaoContribuinte.valueOfCodigo(Integer.valueOf(codigoSituacaoContribuinte));
+        return NFSituacaoContribuinte.valueOfCodigo(Integer.parseInt(codigoSituacaoContribuinte));
     }
 
     @Override

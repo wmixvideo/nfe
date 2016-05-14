@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.12-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.12|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.14-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.14|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -204,7 +204,7 @@ Para usar os serviços da nota fiscal são necessários dois certificados:
 1) O certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco (fornecido por uma entidade certificadora);
 2) A cadeia de certificados da SEFAZ que queremos acesso;
 
-Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente). 
+Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente).
 Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
 Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baixa os certificados das SEFAZ e gera o arquivo automaticamente:
 ```java
