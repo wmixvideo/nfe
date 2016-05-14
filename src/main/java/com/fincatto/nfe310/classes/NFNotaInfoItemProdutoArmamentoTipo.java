@@ -6,7 +6,7 @@ public enum NFNotaInfoItemProdutoArmamentoTipo {
 
     private final String codigo;
 
-    private NFNotaInfoItemProdutoArmamentoTipo(final String codigo) {
+    NFNotaInfoItemProdutoArmamentoTipo(final String codigo) {
         this.codigo = codigo;
     }
 

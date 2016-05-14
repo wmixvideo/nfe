@@ -7,7 +7,7 @@ public enum NFLoteIndicadorProcessamento {
 
     private String codigo;
 
-    private NFLoteIndicadorProcessamento(final String codigo) {
+    NFLoteIndicadorProcessamento(final String codigo) {
         this.codigo = codigo;
     }
 

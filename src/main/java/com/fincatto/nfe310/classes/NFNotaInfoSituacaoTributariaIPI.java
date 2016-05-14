@@ -18,7 +18,7 @@ public enum NFNotaInfoSituacaoTributariaIPI {
 
     private final String codigo;
 
-    private NFNotaInfoSituacaoTributariaIPI(final String codigo) {
+    NFNotaInfoSituacaoTributariaIPI(final String codigo) {
         this.codigo = codigo;
     }
 

@@ -8,7 +8,7 @@ public enum NFIdentificadorLocalDestinoOperacao {
 
     private String codigo;
 
-    private NFIdentificadorLocalDestinoOperacao(final String codigo) {
+    NFIdentificadorLocalDestinoOperacao(final String codigo) {
         this.codigo = codigo;
     }
 

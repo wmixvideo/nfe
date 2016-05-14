@@ -8,7 +8,7 @@ public enum NFFormaImportacaoIntermediacao {
 
     private String codigo;
 
-    private NFFormaImportacaoIntermediacao(final String codigo) {
+    NFFormaImportacaoIntermediacao(final String codigo) {
         this.codigo = codigo;
     }
 

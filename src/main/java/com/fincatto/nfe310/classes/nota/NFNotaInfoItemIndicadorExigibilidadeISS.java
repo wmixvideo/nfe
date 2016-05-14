@@ -12,7 +12,7 @@ public enum NFNotaInfoItemIndicadorExigibilidadeISS {
 
     private String codigo;
 
-    private NFNotaInfoItemIndicadorExigibilidadeISS(final String codigo) {
+    NFNotaInfoItemIndicadorExigibilidadeISS(final String codigo) {
         this.codigo = codigo;
     }
 

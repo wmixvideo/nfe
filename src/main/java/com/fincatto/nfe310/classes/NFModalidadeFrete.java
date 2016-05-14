@@ -8,7 +8,7 @@ public enum NFModalidadeFrete {
 
     private String codigo;
 
-    private NFModalidadeFrete(final String codigo) {
+    NFModalidadeFrete(final String codigo) {
         this.codigo = codigo;
     }
 

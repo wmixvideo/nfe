@@ -11,7 +11,7 @@ public enum NFNotaInfoItemModalidadeBCICMSST {
     private String codigo;
     private String descricao;
 
-    private NFNotaInfoItemModalidadeBCICMSST(final String codigo, final String descricao) {
+    NFNotaInfoItemModalidadeBCICMSST(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }

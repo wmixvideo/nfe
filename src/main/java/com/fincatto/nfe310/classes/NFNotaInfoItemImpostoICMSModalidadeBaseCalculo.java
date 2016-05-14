@@ -10,7 +10,7 @@ public enum NFNotaInfoItemImpostoICMSModalidadeBaseCalculo {
     private final String codigo;
     private final String descricao;
 
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo(final String codigo, final String descricao) {
+    NFNotaInfoItemImpostoICMSModalidadeBaseCalculo(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
