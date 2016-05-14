@@ -1,11 +1,11 @@
 package com.fincatto.nfe310;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 
 /**
  * Configuração basica do sistema de notas fiscais.
@@ -20,7 +20,9 @@ public abstract class NFeConfig {
      *
      * @return Ambiente de trabalho.
      */
-    public abstract NFAmbiente getAmbiente();
+    public NFAmbiente getAmbiente() {
+        return NFAmbiente.HOMOLOGACAO;
+    }
 
     /**
      * Unidade da federação do emissor das notas.
