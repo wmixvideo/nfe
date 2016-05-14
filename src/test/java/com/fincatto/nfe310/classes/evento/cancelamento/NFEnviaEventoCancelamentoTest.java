@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class NFEnviaEventoCancelamentoTest {
@@ -85,7 +85,7 @@ public class NFEnviaEventoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        eventoCancelamento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEventoCancelamento()));
+        eventoCancelamento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCancelamento()));
         eventoCancelamento.setVersao(new BigDecimal("3.10"));
         eventoCancelamento.setIdLote("1");
 

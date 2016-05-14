@@ -1,17 +1,13 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFFormaImportacaoIntermediacao;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoDeclaracaoImportacao;
-import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
+import java.math.BigDecimal;
+import java.util.Collections;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
 
@@ -54,7 +50,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTransporteInternacionalNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -71,7 +67,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test
     public void devePermitirValorAFRMMNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -88,7 +84,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirFormaImportacaoNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -105,7 +101,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test
     public void devePermitirCnpjNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -122,7 +118,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test
     public void devePermitirUfTerceiroNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -156,7 +152,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoExportadorNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
@@ -173,7 +169,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataDesembaracoNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
@@ -190,7 +186,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataRegistroNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
@@ -207,7 +203,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLocalDesembaracoNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -224,7 +220,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroRegistroNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -241,7 +237,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirUFDesembaracoNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-        declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+        declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
         declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));

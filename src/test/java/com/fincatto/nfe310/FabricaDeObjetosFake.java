@@ -21,7 +21,7 @@ import org.joda.time.LocalDate;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 public class FabricaDeObjetosFake {
 
@@ -160,7 +160,7 @@ public class FabricaDeObjetosFake {
 		final NFLoteEnvio loteEnvio = new NFLoteEnvio();
 		loteEnvio.setIdLote("333972757970401");
 		loteEnvio.setVersao("3.10");
-		loteEnvio.setNotas(Arrays.asList(FabricaDeObjetosFake.getNFNota1()));
+		loteEnvio.setNotas(Collections.singletonList(FabricaDeObjetosFake.getNFNota1()));
 		loteEnvio.setIndicadorProcessamento(NFLoteIndicadorProcessamento.PROCESSAMENTO_ASSINCRONO);
 		return loteEnvio;
 	}
@@ -178,7 +178,7 @@ public class FabricaDeObjetosFake {
 		info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
 		info.setIdentificador("89172658591754401086218048846976493475937081");
 		info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-		info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+		info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
 
 		final NFNotaInfoItem item = new NFNotaInfoItem();
 		final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
@@ -202,7 +202,7 @@ public class FabricaDeObjetosFake {
 		item.setProduto(FabricaDeObjetosFake.getProdutoMedicamento());
 		item.setImpostoDevolvido(FabricaDeObjetosFake.getNFImpostoDevolvido());
 
-		info.setItens(Arrays.asList(item));
+		info.setItens(Collections.singletonList(item));
 		info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 		info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
 		info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
@@ -224,7 +224,7 @@ public class FabricaDeObjetosFake {
 		identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
 		identificacao.setNumeroNota("999999999");
 		identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
-		identificacao.setReferenciadas(Arrays.asList(referenciada));
+		identificacao.setReferenciadas(Collections.singletonList(referenciada));
 		identificacao.setSerie("999");
 		identificacao.setTipo(NFTipo.ENTRADA);
 		identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
@@ -280,7 +280,7 @@ public class FabricaDeObjetosFake {
 		produtoMedicamento.setCodigoDeBarras("36811963532505");
 		produtoMedicamento.setCodigoDeBarrasTributavel("36811963532505");
 		produtoMedicamento.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
-		produtoMedicamento.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
+		produtoMedicamento.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
 		produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
 		produtoMedicamento.setExtipi("999");
 		produtoMedicamento.setNcm("99999999");
@@ -298,7 +298,7 @@ public class FabricaDeObjetosFake {
 		produtoMedicamento.setValorUnitario(new BigDecimal("9999999999.9999999999"));
 		produtoMedicamento.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
 		produtoMedicamento.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo());
-		produtoMedicamento.setNomeclaturaValorAduaneiroEstatistica(Arrays.asList("AZ0123"));
+		produtoMedicamento.setNomeclaturaValorAduaneiroEstatistica(Collections.singletonList("AZ0123"));
 		return produtoMedicamento;
 	}
 
@@ -354,16 +354,16 @@ public class FabricaDeObjetosFake {
 		info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
 		info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
 		info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-		info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+		info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
 		info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
 		info.setIdentificador("89172658591754401086218048846976493475937081");
 		info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-		info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+		info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
 		info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 		info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
 		info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
 		info.setVersao(new BigDecimal("3.10"));
-		info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+		info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
 		return info;
 	}
 
@@ -398,9 +398,9 @@ public class FabricaDeObjetosFake {
 		final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
 		transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
 		transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-		transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+		transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
 		transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-		transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+		transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
 		return transporte;
 	}
 
@@ -455,7 +455,7 @@ public class FabricaDeObjetosFake {
 		identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
 		identificacao.setNumeroNota("999999999");
 		identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
-		identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
+		identificacao.setReferenciadas(Collections.singletonList(FabricaDeObjetosFake.getNFInfoReferenciada()));
 		identificacao.setSerie("999");
 		identificacao.setTipo(NFTipo.ENTRADA);
 		identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
@@ -529,7 +529,7 @@ public class FabricaDeObjetosFake {
 	public static NFNotaInfoCobranca getNFNotaInfoCobranca() {
 		final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
 		cobranca.setFatura(FabricaDeObjetosFake.getNFNotaInfoFatura());
-		cobranca.setDuplicatas(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
+		cobranca.setDuplicatas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
 		return cobranca;
 	}
 
@@ -616,11 +616,11 @@ public class FabricaDeObjetosFake {
 		produto.setCodigoDeBarras("36811963532505");
 		produto.setCodigoDeBarrasTributavel("36811963532505");
 		produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
-		produto.setDeclaracoesImportacao(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
+		produto.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
 		produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
 		produto.setExtipi("999");
 		produto.setCodigoEspecificadorSituacaoTributaria("9999999");
-		produto.setMedicamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
+		produto.setMedicamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoMedicamento()));
 		produto.setNcm("99999999");
 		produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
 		produto.setNumeroPedidoItemCliente(999999);
@@ -634,7 +634,7 @@ public class FabricaDeObjetosFake {
 		produto.setValorSeguro(new BigDecimal("999999999999.99"));
 		produto.setValorTotalBruto(new BigDecimal("999999999999.99"));
 		produto.setValorUnitario(new BigDecimal("9999999999.9999999999"));
-		produto.setNomeclaturaValorAduaneiroEstatistica(Arrays.asList("AZ0123"));
+		produto.setNomeclaturaValorAduaneiroEstatistica(Collections.singletonList("AZ0123"));
 		produto.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
 		return produto;
 	}
@@ -694,7 +694,7 @@ public class FabricaDeObjetosFake {
 
 	public static NFNotaInfoItemProdutoDeclaracaoImportacao getNFNotaInfoItemProdutoDeclaracaoImportacao() {
 		final NFNotaInfoItemProdutoDeclaracaoImportacao declaraoImportacao = new NFNotaInfoItemProdutoDeclaracaoImportacao();
-		declaraoImportacao.setAdicoes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
+		declaraoImportacao.setAdicoes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao()));
 		declaraoImportacao.setCodigoExportador("E9jBqM65b0MiCiRnYil203iNGJOSZs8iU1KGmQsj2N0kw6QMuvhbsQosFGcU");
 		declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
 		declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
@@ -1073,7 +1073,7 @@ public class FabricaDeObjetosFake {
 		volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
 		final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
 		notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-		volume.setLacres(Arrays.asList(notaInfoLacre));
+		volume.setLacres(Collections.singletonList(notaInfoLacre));
 		volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
 		volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
 		volume.setPesoBruto(new BigDecimal("1.358"));
