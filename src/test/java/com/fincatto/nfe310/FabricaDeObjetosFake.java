@@ -65,7 +65,7 @@ public class FabricaDeObjetosFake {
 		infoEventoCancelamento.setChave("81568004734874930428983724940883089298523837");
 		infoEventoCancelamento.setCnpj("12345678901234");
 		infoEventoCancelamento.setCodigoEvento("123456");
-		infoEventoCancelamento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
+		infoEventoCancelamento.setDataHoraEvento(new DateTime(2014, 1, 1, 10, 10, 10));
 		infoEventoCancelamento.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
 		infoEventoCancelamento.setNumeroSequencialEvento(2);
 		infoEventoCancelamento.setOrgao(NFUnidadeFederativa.SC);
@@ -113,7 +113,7 @@ public class FabricaDeObjetosFake {
 		infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
 		infoEvento.setChave("81568004734874930428983724940883089298523837");
 		infoEvento.setCnpj("02224343323426");
-		infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
+		infoEvento.setDataHoraEvento(new DateTime(2014, 1, 1, 10, 10, 10));
 		infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
 		infoEvento.setNumeroSequencialEvento(99);
 		infoEvento.setOrgao(NFUnidadeFederativa.SC);
@@ -935,7 +935,7 @@ public class FabricaDeObjetosFake {
 		issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
 		issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
 		issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-		issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+		issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
 		issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
 		issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
 		issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -1062,7 +1062,7 @@ public class FabricaDeObjetosFake {
 
 	public static NFNotaInfoDuplicata getNFNotaInfoDuplicata() {
 		final NFNotaInfoDuplicata duplicata = new NFNotaInfoDuplicata();
-		duplicata.setDataVencimento(new LocalDate(2014, 07, 10));
+		duplicata.setDataVencimento(new LocalDate(2014, 7, 10));
 		duplicata.setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
 		duplicata.setValorDuplicata(new BigDecimal("999999.99"));
 		return duplicata;
