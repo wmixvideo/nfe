@@ -1,10 +1,12 @@
 package com.fincatto.nfe310.webservices.gerado;
 
-import java.io.Serializable;
-import java.lang.reflect.Constructor;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
+import javax.xml.namespace.QName;
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
 
 /*
  * NfeConsulta2Stub java implementation
@@ -158,26 +160,11 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeConsultaNF2"));
                         final Class<?> messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (final java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.InstantiationException e) {
+                    } catch (final ClassCastException | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                         // we cannot intantiate the class - throw the original Axis fault
                         throw f;
                     }
@@ -195,7 +182,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
     }
 
     private java.util.Map<String, String> getEnvelopeNamespaces(final org.apache.axiom.soap.SOAPEnvelope env) {
-        final java.util.Map<String, String> returnMap = new java.util.HashMap<String, String>();
+        final java.util.Map<String, String> returnMap = new java.util.HashMap<>();
         @SuppressWarnings("rawtypes")
         final java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
         while (namespaceIterator.hasNext()) {
@@ -212,8 +199,8 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         if (this.opNameArray == null) {
             return false;
         }
-        for (int i = 0; i < this.opNameArray.length; i++) {
-            if (opName.equals(this.opNameArray[i])) {
+        for (QName anOpNameArray : this.opNameArray) {
+            if (opName.equals(anOpNameArray)) {
                 return true;
             }
         }
@@ -317,12 +304,12 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -343,8 +330,8 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
             }
 
             if (this.localExtraAttributes != null) {
-                for (int i = 0; i < this.localExtraAttributes.length; i++) {
-                    this.writeAttribute(this.localExtraAttributes[i].getNamespace().getNamespaceURI(), this.localExtraAttributes[i].getLocalName(), this.localExtraAttributes[i].getAttributeValue(), xmlWriter);
+                for (OMAttribute localExtraAttribute : this.localExtraAttributes) {
+                    this.writeAttribute(localExtraAttribute.getNamespace().getNamespaceURI(), localExtraAttribute.getLocalName(), localExtraAttribute.getAttributeValue(), xmlWriter);
                 }
             }
             if (this.localCUFTracker) {
@@ -447,8 +434,8 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<Serializable>();
-            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<Object>();
+            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<>();
+            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<>();
 
             if (this.localCUFTracker) {
                 elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeConsulta2", "cUF"));
@@ -468,9 +455,9 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                     throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
                 }
             }
-            for (int i = 0; i < this.localExtraAttributes.length; i++) {
-                attribList.add(org.apache.axis2.databinding.utils.Constants.OM_ATTRIBUTE_KEY);
-                attribList.add(this.localExtraAttributes[i]);
+            for (OMAttribute localExtraAttribute : this.localExtraAttributes) {
+                attribList.add(Constants.OM_ATTRIBUTE_KEY);
+                attribList.add(localExtraAttribute);
             }
 
             return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
@@ -493,7 +480,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -624,12 +611,12 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -712,7 +699,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
+            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<>();
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
                 elementList.add(this.localExtraElement);
@@ -720,7 +707,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
 
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<Object>().toArray());
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<>().toArray());
 
         }
 
@@ -739,7 +726,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -830,12 +817,12 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             // We can safely assume an element has only one type associated with it
 
@@ -939,12 +926,12 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1027,7 +1014,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
 
-            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<Object>();
+            final java.util.ArrayList<Object> elementList = new java.util.ArrayList<>();
             if (this.localExtraElement != null) {
                 elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
                 elementList.add(this.localExtraElement);
@@ -1035,7 +1022,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
 
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<Object>().toArray());
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), new java.util.ArrayList<>().toArray());
 
         }
 
@@ -1054,7 +1041,7 @@ public class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;

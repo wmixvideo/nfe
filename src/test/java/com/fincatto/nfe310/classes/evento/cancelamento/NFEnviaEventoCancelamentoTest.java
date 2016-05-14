@@ -1,21 +1,20 @@
 package com.fincatto.nfe310.classes.evento.cancelamento;
 
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFEnviaEventoCancelamentoTest {
 
     @Test
     public void deveObterEventosComoFoiSetado() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        final ArrayList<NFEventoCancelamento> eventosCancelamento = new ArrayList<NFEventoCancelamento>();
+        final ArrayList<NFEventoCancelamento> eventosCancelamento = new ArrayList<>();
         eventoCancelamento.setEvento(eventosCancelamento);
         Assert.assertEquals(eventosCancelamento, eventoCancelamento.getEvento());
     }
