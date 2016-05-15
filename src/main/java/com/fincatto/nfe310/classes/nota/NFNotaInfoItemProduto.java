@@ -1,13 +1,5 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.convert.Convert;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe310.converters.StringNullConverter;
@@ -15,13 +7,20 @@ import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.convert.Convert;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProduto extends NFBase {
 
     @Element(name = "cProd", required = true)
     private String codigo;
 
-    @Element(name = "cEAN", required = false)
+    @Element(name = "cEAN", required = true)
     @Convert(StringNullConverter.class)
     private String codigoDeBarras;
 
@@ -55,7 +54,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "vProd", required = true)
     private String valorTotalBruto;
 
-    @Element(name = "cEANTrib", required = false)
+    @Element(name = "cEANTrib", required = true)
     @Convert(StringNullConverter.class)
     private String codigoDeBarrasTributavel;
 
