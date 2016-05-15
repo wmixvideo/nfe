@@ -1,10 +1,10 @@
 package com.fincatto.nfe310.classes;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class NFAutorizador31Test {
 
@@ -242,27 +242,31 @@ public class NFAutorizador31Test {
         Assert.assertEquals("https://www.svc.fazenda.gov.br/NfeRetAutorizacao/NfeRetAutorizacao.asmx", autorizador.getNfeRetAutorizacao(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://www.svc.fazenda.gov.br/NfeStatusServico2/NfeStatusServico2.asmx", autorizador.getNfeStatusServico(NFAmbiente.PRODUCAO));
         Assert.assertEquals("https://www.svc.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx", autorizador.getRecepcaoEvento(NFAmbiente.PRODUCAO));
-
-        try {
-            autorizador.getNfeInutilizacao(NFAmbiente.HOMOLOGACAO);
-            Assert.fail("SCAN nao possui servico de inutilizacao");
-        } catch (final UnsupportedOperationException e) {
-        }
-        try {
-            autorizador.getNfeInutilizacao(NFAmbiente.PRODUCAO);
-            Assert.fail("SCAN nao possui servico de inutilizacao");
-        } catch (final UnsupportedOperationException e) {
-        }
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void deveLancarExcecaoCasoTenteObterServicoIndisponivelSCAN() {
+    public void naoPodeInutilizarNotasNoSCANEmProducao() {
+        NFAutorizador31.SCAN.getNfeInutilizacao(NFAmbiente.PRODUCAO);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void naoPodeInutilizarNotasNoSCANEmHomologacao() {
+        NFAutorizador31.SCAN.getNfeInutilizacao(NFAmbiente.HOMOLOGACAO);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void naoPodeConsultarCadastroNoSCANEmHomologacao() {
         NFAutorizador31.SCAN.getConsultaCadastro(NFAmbiente.HOMOLOGACAO);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void naoPodeConsultarCadastroNoSCANEmProducao() {
+        NFAutorizador31.SCAN.getConsultaCadastro(NFAmbiente.PRODUCAO);
     }
 
     @Test
     public void naoDeveTerUFsAtreladaAoSCAN() {
-        Assert.assertArrayEquals(new NFUnidadeFederativa[] {}, NFAutorizador31.SCAN.getUFs());
+        Assert.assertArrayEquals(new NFUnidadeFederativa[]{}, NFAutorizador31.SCAN.getUFs());
     }
 
     @Test
@@ -310,7 +314,7 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveObterAsFederacoesQueSVANEhResponsavel() {
-        Assert.assertTrue(Arrays.deepEquals(NFAutorizador31.SVAN.getUFs(), new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI }));
+        Assert.assertTrue(Arrays.deepEquals(NFAutorizador31.SVAN.getUFs(), new NFUnidadeFederativa[]{NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI}));
     }
 
     @Test
