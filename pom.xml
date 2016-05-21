@@ -105,6 +105,13 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- http://mvnrepository.com/artifact/jasperreports/jasperreports -->
+		<dependency>
+    		<groupId>jasperreports</groupId>
+    		<artifactId>jasperreports</artifactId>
+    		<version>3.5.3</version>
+		</dependency>
+		
 	</dependencies>
 
 	<distributionManagement>
