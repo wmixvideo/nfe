@@ -8,8 +8,8 @@ Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/pri
 
 ## Atenção
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
-Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que
-garantam que a funcionalidade funciona como o esperado.
+
+Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
 
 ## Antes de usar
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
