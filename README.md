@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.14-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.14|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.2.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.2.0|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -39,11 +39,6 @@ public class NFeConfigTeste extends NFeConfig {
     private KeyStore keyStoreCadeia = null;
 
     @Override
-    public NFAmbiente getAmbiente() {
-        return NFAmbiente.HOMOLOGACAO;
-    }
-
-    @Override
     public NFUnidadeFederativa getCUF() {
         return NFUnidadeFederativa.SC;
     }
@@ -61,15 +56,12 @@ public class NFeConfigTeste extends NFeConfig {
     @Override
     public KeyStore getCertificadoKeyStore() throws KeyStoreException {
         if (this.keyStoreCertificado == null) {
+            this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
             try (InputStream certificadoStream = new FileInputStream("/tmp/certificado.pfx")) {
-                this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
                 this.keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
-            } catch (CertificateException e) {
-                throw new KeyStoreException("Erro de certificado", e);
-            } catch (NoSuchAlgorithmException e) {
-                throw new KeyStoreException("Erro de algoritmo", e);
-            } catch (IOException e) {
-                throw new KeyStoreException("Erro de IO", e);
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com a cadeia de certificados", e);
             }
         }
         return this.keyStoreCertificado;
@@ -78,15 +70,12 @@ public class NFeConfigTeste extends NFeConfig {
     @Override
     public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
         if (this.keyStoreCadeia == null) {
+            this.keyStoreCadeia = KeyStore.getInstance("JKS");
             try (InputStream cadeia = new FileInputStream("/tmp/cadeia.jks")) {
-                this.keyStoreCadeia = KeyStore.getInstance("JKS");
                 this.keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
-            } catch (CertificateException e) {
-                throw new KeyStoreException("Erro de certificado", e);
-            } catch (NoSuchAlgorithmException e) {
-                throw new KeyStoreException("Erro de algoritmo", e);
-            } catch (IOException e) {
-                throw new KeyStoreException("Erro de IO", e);
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com o certificado", e);
             }
         }
         return this.keyStoreCadeia;
