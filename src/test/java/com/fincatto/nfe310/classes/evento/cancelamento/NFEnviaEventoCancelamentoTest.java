@@ -1,21 +1,20 @@
 package com.fincatto.nfe310.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NFEnviaEventoCancelamentoTest {
 
     @Test
     public void deveObterEventosComoFoiSetado() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        final ArrayList<NFEventoCancelamento> eventosCancelamento = new ArrayList<NFEventoCancelamento>();
+        final ArrayList<NFEventoCancelamento> eventosCancelamento = new ArrayList<>();
         eventoCancelamento.setEvento(eventosCancelamento);
         Assert.assertEquals(eventosCancelamento, eventoCancelamento.getEvento());
     }
@@ -86,7 +85,7 @@ public class NFEnviaEventoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        eventoCancelamento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEventoCancelamento()));
+        eventoCancelamento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCancelamento()));
         eventoCancelamento.setVersao(new BigDecimal("3.10"));
         eventoCancelamento.setIdLote("1");
 

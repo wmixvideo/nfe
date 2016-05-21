@@ -10,7 +10,7 @@ public enum NFFinalidade {
     private final String codigo;
     private final String descricao;
 
-    private NFFinalidade(final String codigo, final String descricao) {
+    NFFinalidade(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }

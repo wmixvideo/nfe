@@ -8,7 +8,7 @@ public enum NFNotaInfoImpostoTributacaoISSQN {
 
     private String codigo;
 
-    private NFNotaInfoImpostoTributacaoISSQN(final String codigo) {
+    NFNotaInfoImpostoTributacaoISSQN(final String codigo) {
         this.codigo = codigo;
     }
 

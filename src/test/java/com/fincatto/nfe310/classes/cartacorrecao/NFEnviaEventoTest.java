@@ -1,13 +1,12 @@
 package com.fincatto.nfe310.classes.cartacorrecao;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import java.math.BigDecimal;
+import java.util.Collections;
 
 public class NFEnviaEventoTest {
 
@@ -27,7 +26,7 @@ public class NFEnviaEventoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteNulo() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setVersao(new BigDecimal("1.00"));
         enviaEvento.toString();
     }
@@ -35,7 +34,7 @@ public class NFEnviaEventoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.toString();
     }
@@ -43,7 +42,7 @@ public class NFEnviaEventoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Arrays.asList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.setVersao(new BigDecimal("1.00"));
 

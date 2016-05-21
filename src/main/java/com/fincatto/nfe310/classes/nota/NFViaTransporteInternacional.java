@@ -17,7 +17,7 @@ public enum NFViaTransporteInternacional {
 
     private String codigo;
 
-    private NFViaTransporteInternacional(final String codigo) {
+    NFViaTransporteInternacional(final String codigo) {
         this.codigo = codigo;
     }
 

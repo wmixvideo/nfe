@@ -15,7 +15,7 @@ public enum NFNotaMotivoDesoneracaoICMS {
 
     private final String codigo;
 
-    private NFNotaMotivoDesoneracaoICMS(final String codigo) {
+    NFNotaMotivoDesoneracaoICMS(final String codigo) {
         this.codigo = codigo;
     }
 

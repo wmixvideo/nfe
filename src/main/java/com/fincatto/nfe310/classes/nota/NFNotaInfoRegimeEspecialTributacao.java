@@ -11,7 +11,7 @@ public enum NFNotaInfoRegimeEspecialTributacao {
 
     private String codigo;
 
-    private NFNotaInfoRegimeEspecialTributacao(final String codigo) {
+    NFNotaInfoRegimeEspecialTributacao(final String codigo) {
         this.codigo = codigo;
     }
 

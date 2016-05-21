@@ -9,7 +9,7 @@ public enum NFNotaInfoItemProdutoVeiculoTipoOperacao {
 
     private final String codigo;
 
-    private NFNotaInfoItemProdutoVeiculoTipoOperacao(final String codigo) {
+    NFNotaInfoItemProdutoVeiculoTipoOperacao(final String codigo) {
         this.codigo = codigo;
     }
 

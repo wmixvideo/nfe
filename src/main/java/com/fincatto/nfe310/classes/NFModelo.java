@@ -7,7 +7,7 @@ public enum NFModelo {
 
     private final String codigo;
 
-    private NFModelo(final String codigo) {
+    NFModelo(final String codigo) {
         this.codigo = codigo;
     }
 

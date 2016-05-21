@@ -10,7 +10,7 @@ public enum NFProcessoEmissor {
     private final String codigo;
     private final String descricao;
 
-    private NFProcessoEmissor(final String codigo, final String descricao) {
+    NFProcessoEmissor(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }

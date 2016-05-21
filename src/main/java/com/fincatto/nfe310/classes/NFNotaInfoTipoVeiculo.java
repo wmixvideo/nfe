@@ -19,7 +19,7 @@ public enum NFNotaInfoTipoVeiculo {
 
     private String codigo;
 
-    private NFNotaInfoTipoVeiculo(final String codigo) {
+    NFNotaInfoTipoVeiculo(final String codigo) {
         this.codigo = codigo;
     }
 

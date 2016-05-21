@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-1.1.14-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.1.14|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.2.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.2.0|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -22,7 +22,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>1.1.14</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -33,42 +33,10 @@ comunicação com os webservices da Sefaz.
 
 ```java
 // Exemplo de configuracao para acesso aos serviços da Sefaz.
-public class ConfiguracaoSefaz implements NFeConfig {
+public class NFeConfigTeste extends NFeConfig {
 
-    private final boolean ehAmbienteDeTeste;
-
-    public ConfiguracaoSefaz(final boolean ehAmbienteDeTeste) {
-        this.ehAmbienteDeTeste = ehAmbienteDeTeste;
-    }
-
-    @Override
-    public NFAmbiente getAmbiente() {
-        return this.ehAmbienteDeTeste ? NFAmbiente.HOMOLOGACAO : NFAmbiente.PRODUCAO;
-    }
-
-    @Override
-    public File getCertificado() throws IOException {
-        try (InputStream is = CertificadoUtils.class.getResource("certificado.pfx").openStream()) {
-			return IOUtils.toByteArray(is);
-		}
-    }
-
-    @Override
-    public File getCadeiaCertificados() throws IOException {
-        try (InputStream is = CertificadoUtils.class.getResource("cadeia_certificado.jks").openStream()) {
-			return IOUtils.toByteArray(is);
-		}
-    }
-
-    @Override
-    public String getCertificadoSenha() {
-        return "senhaDoCertificado";
-    }
-
-	@Override
-	public String getCadeiaCertificadosSenha() {
-		return "senhaDaCadeiaDeCertificados";
-	}
+    private KeyStore keyStoreCertificado = null;
+    private KeyStore keyStoreCadeia = null;
 
     @Override
     public NFUnidadeFederativa getCUF() {
@@ -76,24 +44,42 @@ public class ConfiguracaoSefaz implements NFeConfig {
     }
 
     @Override
-    public NFTipoEmissao getTipoEmissao() {
-        return NFTipoEmissao.EMISSAO_NORMAL;
+    public String getCertificadoSenha() {
+        return "senha_certificado";
     }
 
     @Override
-	public String getSSLProtocolo() {
-		return "TLSv1";
-	}
+    public String getCadeiaCertificadosSenha() {
+        return "senha_cadeia";
+    }
 
-	@Override
-	public Integer getCodigoSegurancaContribuinteID() {
-		return null;
-	}
+    @Override
+    public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        if (this.keyStoreCertificado == null) {
+            this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
+            try (InputStream certificadoStream = new FileInputStream("/tmp/certificado.pfx")) {
+                this.keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com a cadeia de certificados", e);
+            }
+        }
+        return this.keyStoreCertificado;
+    }
 
-	@Override
-	public String getCodigoSegurancaContribuinte() {
-		return null;
-	}
+    @Override
+    public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        if (this.keyStoreCadeia == null) {
+            this.keyStoreCadeia = KeyStore.getInstance("JKS");
+            try (InputStream cadeia = new FileInputStream("/tmp/cadeia.jks")) {
+                this.keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com o certificado", e);
+            }
+        }
+        return this.keyStoreCadeia;
+    }
 }
 ```
 

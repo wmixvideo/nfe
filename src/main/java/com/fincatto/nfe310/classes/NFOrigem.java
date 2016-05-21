@@ -14,7 +14,7 @@ public enum NFOrigem {
 
     private final String codigo;
 
-    private NFOrigem(final String codigo) {
+    NFOrigem(final String codigo) {
         this.codigo = codigo;
     }
 

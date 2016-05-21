@@ -1,8 +1,7 @@
 package com.fincatto.nfe310.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.fincatto.nfe310.classes.nota.NFNota;
+import org.apache.commons.lang3.StringUtils;
 
 public class NFGeraChave {
 
@@ -21,8 +20,8 @@ public class NFGeraChave {
         final int[] valoresInt = { 2, 3, 4, 5, 6, 7, 8, 9 };
         int indice = 0;
         int soma = 0;
-        int valorTemp = 0;
-        int multTemp = 0;
+        int valorTemp;
+        int multTemp;
         for (int i = valores.length; i > 0; i--) {
             if (indice >= valoresInt.length) {
                 indice = 0;
@@ -37,15 +36,13 @@ public class NFGeraChave {
     }
 
     private String geraChaveAcessoSemDV() {
-        final StringBuilder chaveAcesso = new StringBuilder();
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getUf().getCodigoIbge(), 2, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().toString("yyMM"), 4, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getEmitente().getCnpj() == null ? this.nota.getInfo().getEmitente().getCpf() : this.nota.getInfo().getEmitente().getCnpj(), 14, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getModelo().getCodigo(), 2, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getSerie(), 3, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getNumeroNota(), 9, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0"));
-        chaveAcesso.append(StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0"));
-        return chaveAcesso.toString();
+        return StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getUf().getCodigoIbge(), 2, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().toString("yyMM"), 4, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getEmitente().getCnpj() == null ? this.nota.getInfo().getEmitente().getCpf() : this.nota.getInfo().getEmitente().getCnpj(), 14, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getModelo().getCodigo(), 2, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getSerie(), 3, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getNumeroNota(), 9, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") +
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0");
     }
 }

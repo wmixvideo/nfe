@@ -1,15 +1,14 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NFNotaInfoVolumeTest {
 
@@ -82,7 +81,7 @@ public class NFNotaInfoVolumeTest {
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
         volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
         volume.setPesoBruto(new BigDecimal("1.358"));
@@ -96,7 +95,7 @@ public class NFNotaInfoVolumeTest {
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
         volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
         volume.setPesoBruto(new BigDecimal("1.358"));
@@ -110,7 +109,7 @@ public class NFNotaInfoVolumeTest {
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
         volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
         volume.setPesoLiquido(new BigDecimal("1"));
@@ -124,7 +123,7 @@ public class NFNotaInfoVolumeTest {
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
         volume.setPesoBruto(new BigDecimal("1.358"));
         volume.setPesoLiquido(new BigDecimal("1"));
@@ -138,7 +137,7 @@ public class NFNotaInfoVolumeTest {
         volume.setEspecieVolumesTransportados("3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb");
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
         volume.setPesoBruto(new BigDecimal("1.358"));
         volume.setPesoLiquido(new BigDecimal("1"));
@@ -151,7 +150,7 @@ public class NFNotaInfoVolumeTest {
         final NFNotaInfoVolume volume = new NFNotaInfoVolume();
         final NFNotaInfoLacre notaInfoLacre = new NFNotaInfoLacre();
         notaInfoLacre.setNumeroLacre("gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2");
-        volume.setLacres(Arrays.asList(notaInfoLacre));
+        volume.setLacres(Collections.singletonList(notaInfoLacre));
         volume.setMarca("lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo");
         volume.setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb");
         volume.setPesoBruto(new BigDecimal("1.358"));
