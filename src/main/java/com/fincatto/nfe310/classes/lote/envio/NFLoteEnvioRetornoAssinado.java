@@ -3,19 +3,19 @@ package com.fincatto.nfe310.classes.lote.envio;
 public class NFLoteEnvioRetornoAssinado {
 
 	private NFLoteEnvioRetorno retorno;
-	private String xmlAssinado;
+	private NFLoteEnvio loteAssinado;
 	
-	public NFLoteEnvioRetornoAssinado(NFLoteEnvioRetorno retorno, String xmlAssinado) {
+	public NFLoteEnvioRetornoAssinado(NFLoteEnvioRetorno retorno, NFLoteEnvio loteAssinado) {
 		this.retorno = retorno;
-		this.xmlAssinado = xmlAssinado;
+		this.loteAssinado = loteAssinado;
 	}
 
 	public NFLoteEnvioRetorno getRetorno() {
 		return retorno;
 	}
 
-	public String getXmlAssinado() {
-		return xmlAssinado;
+	public NFLoteEnvio getLoteAssinado() {
+		return loteAssinado;
 	}
 	
 }
