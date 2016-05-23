@@ -6,6 +6,7 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoAssinado;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
@@ -19,12 +20,14 @@ import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoL
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
+
 import java.util.Iterator;
 
 class WSLoteEnvio {
@@ -37,12 +40,12 @@ class WSLoteEnvio {
         this.config = config;
     }
 
-    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
+    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, NFModelo modelo) throws Exception {
         XMLValidador.validaLote(loteAssinadoXml);
-        return this.comunicaLote(loteAssinadoXml, NFModelo.NFE);
+        return this.comunicaLote(loteAssinadoXml, modelo).getRetorno();
     }
 
-    NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    NFLoteEnvioRetornoAssinado enviaLote(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
@@ -89,7 +92,7 @@ class WSLoteEnvio {
         return this.comunicaLote(loteAssinado.toString(), modelo);
     }
 
-    private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    private NFLoteEnvioRetornoAssinado comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();
@@ -107,7 +110,7 @@ class WSLoteEnvio {
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
-        return loteEnvioRetorno;
+        return new NFLoteEnvioRetornoAssinado(loteEnvioRetorno, loteAssinadoXml);
     }
 
     private NfeCabecMsgE getCabecalhoSOAP() {

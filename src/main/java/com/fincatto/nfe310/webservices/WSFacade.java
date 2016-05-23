@@ -9,9 +9,11 @@ import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizac
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoAssinado;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import java.io.IOException;
@@ -46,7 +48,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
     }
 
-    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    public NFLoteEnvioRetornoAssinado enviaLote(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
             throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
         }
@@ -54,7 +56,11 @@ public class WSFacade {
     }
 
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml);
+        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, NFModelo.NFE);
+    }
+    
+    public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, NFModelo modelo) throws Exception {
+    	return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
