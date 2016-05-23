@@ -7,7 +7,7 @@ public enum NFSituacaoContribuinte {
 
     private int codigo;
 
-    private NFSituacaoContribuinte(final int codigo) {
+    NFSituacaoContribuinte(final int codigo) {
         this.codigo = codigo;
     }
 

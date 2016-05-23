@@ -7,7 +7,7 @@ public enum NFAmbiente {
 
     private final String codigo;
 
-    private NFAmbiente(final String codigo) {
+    NFAmbiente(final String codigo) {
         this.codigo = codigo;
     }
 

@@ -21,7 +21,7 @@ public enum NFNotaInfoVeiculoCor {
 
     private String codigo;
 
-    private NFNotaInfoVeiculoCor(final String codigo) {
+    NFNotaInfoVeiculoCor(final String codigo) {
         this.codigo = codigo;
     }
 

@@ -10,7 +10,7 @@ public enum NFIndicadorPresencaComprador {
 
     private String codigo;
 
-    private NFIndicadorPresencaComprador(final String codigo) {
+    NFIndicadorPresencaComprador(final String codigo) {
         this.codigo = codigo;
     }
 

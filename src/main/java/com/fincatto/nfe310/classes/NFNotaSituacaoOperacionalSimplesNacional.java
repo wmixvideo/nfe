@@ -14,7 +14,7 @@ public enum NFNotaSituacaoOperacionalSimplesNacional {
 
     private final String codigo;
 
-    private NFNotaSituacaoOperacionalSimplesNacional(final String codigo) {
+    NFNotaSituacaoOperacionalSimplesNacional(final String codigo) {
         this.codigo = codigo;
     }
 

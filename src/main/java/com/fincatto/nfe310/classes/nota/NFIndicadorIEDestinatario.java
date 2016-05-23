@@ -7,7 +7,7 @@ public enum NFIndicadorIEDestinatario {
 
     private String codigo;
 
-    private NFIndicadorIEDestinatario(final String codigo) {
+    NFIndicadorIEDestinatario(final String codigo) {
         this.codigo = codigo;
     }
 

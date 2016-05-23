@@ -9,7 +9,7 @@ public enum NFOrigemProcesso {
 
     private String codigo;
 
-    private NFOrigemProcesso(final String codigo) {
+    NFOrigemProcesso(final String codigo) {
         this.codigo = codigo;
     }
 

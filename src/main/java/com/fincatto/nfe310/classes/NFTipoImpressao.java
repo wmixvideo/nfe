@@ -10,7 +10,7 @@ public enum NFTipoImpressao {
 
     private final String codigo;
 
-    private NFTipoImpressao(final String codigo) {
+    NFTipoImpressao(final String codigo) {
         this.codigo = codigo;
     }
 

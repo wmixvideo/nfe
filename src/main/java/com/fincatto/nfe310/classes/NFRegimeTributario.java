@@ -9,7 +9,7 @@ public enum NFRegimeTributario {
     private final String codigo;
     private final String descricao;
 
-    private NFRegimeTributario(final String codigo, final String descricao) {
+    NFRegimeTributario(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }

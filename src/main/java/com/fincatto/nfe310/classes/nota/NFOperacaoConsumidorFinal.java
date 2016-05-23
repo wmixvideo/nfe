@@ -6,7 +6,7 @@ public enum NFOperacaoConsumidorFinal {
 
     private String codigo;
 
-    private NFOperacaoConsumidorFinal(final String codigo) {
+    NFOperacaoConsumidorFinal(final String codigo) {
         this.codigo = codigo;
     }
 

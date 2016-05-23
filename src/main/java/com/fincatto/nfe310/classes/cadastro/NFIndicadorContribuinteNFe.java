@@ -10,7 +10,7 @@ public enum NFIndicadorContribuinteNFe {
 
     private int codigo;
 
-    private NFIndicadorContribuinteNFe(final int codigo) {
+    NFIndicadorContribuinteNFe(final int codigo) {
         this.codigo = codigo;
     }
 

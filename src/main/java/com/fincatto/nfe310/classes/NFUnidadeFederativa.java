@@ -42,7 +42,7 @@ public enum NFUnidadeFederativa {
     private final String qrCodeHomologacao;
     private final String qrCodeProducao;
 
-    private NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge, String qrCodeHomologacao, String qrCodeProducao) {
+    NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge, String qrCodeHomologacao, String qrCodeProducao) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.codigoIbge = codigoIbge;
@@ -50,8 +50,8 @@ public enum NFUnidadeFederativa {
         this.qrCodeProducao = qrCodeProducao;
     }
 
-    private NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge) {
-    	this(codigo, descricao, codigoIbge, null, null);
+    NFUnidadeFederativa(final String codigo, final String descricao, final String codigoIbge) {
+        this(codigo, descricao, codigoIbge, null, null);
     }
 
     public String getCodigo() {

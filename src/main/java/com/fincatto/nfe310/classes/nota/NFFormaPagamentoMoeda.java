@@ -15,7 +15,7 @@ public enum NFFormaPagamentoMoeda {
 
     private String codigo;
 
-    private NFFormaPagamentoMoeda(final String codigo) {
+    NFFormaPagamentoMoeda(final String codigo) {
         this.codigo = codigo;
     }
 

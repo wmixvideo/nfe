@@ -1,10 +1,10 @@
 package com.fincatto.nfe310.classes.nota.assinatura;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NFReferenceTest {
 
@@ -19,7 +19,7 @@ public class NFReferenceTest {
     @Test
     public void deveObterTransformComoFoiSetado() {
         final NFReference reference = new NFReference();
-        final List<NFTransform> transform = new ArrayList<NFTransform>();
+        final List<NFTransform> transform = new ArrayList<>();
         reference.setTransform(transform);
         Assert.assertEquals(transform, reference.getTransform());
     }

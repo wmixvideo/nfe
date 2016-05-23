@@ -1,9 +1,9 @@
 package com.fincatto.nfe310.webservices.statusservico.consulta;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "serial", "unused", "deprecation" })
 public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
@@ -127,26 +127,11 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeStatusServicoNF2"));
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (final java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.InstantiationException e) {
+                    } catch (final ClassCastException | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                         // we cannot intantiate the class - throw the original Axis fault
                         throw f;
                     }
@@ -232,29 +217,11 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
                                 final java.lang.String messageClassName = (java.lang.String) NfeStatusServico2Stub.this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeStatusServicoNF2"));
                                 final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                                 final java.lang.Object messageObject = NfeStatusServico2Stub.this.fromOM(faultElt, messageClass, null);
-                                final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                                m.invoke(ex, new java.lang.Object[] { messageObject });
+                                final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                                m.invoke(ex, messageObject);
 
                                 callback.receiveErrornfeStatusServicoNF2(new java.rmi.RemoteException(ex.getMessage(), ex));
-                            } catch (final java.lang.ClassCastException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final java.lang.ClassNotFoundException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final java.lang.NoSuchMethodException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final java.lang.reflect.InvocationTargetException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final java.lang.IllegalAccessException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final java.lang.InstantiationException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeStatusServicoNF2(f);
-                            } catch (final org.apache.axis2.AxisFault e) {
+                            } catch (final ClassCastException | org.apache.axis2.AxisFault | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                                 // we cannot intantiate the class - throw the original Axis fault
                                 callback.receiveErrornfeStatusServicoNF2(f);
                             }
@@ -347,12 +314,12 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             // We can safely assume an element has only one type associated with it
 
@@ -453,7 +420,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI = null;
                 java.lang.String prefix = null;
 
@@ -584,12 +551,12 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -709,7 +676,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI = null;
                 java.lang.String prefix = null;
 
@@ -794,7 +761,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -969,12 +936,12 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1127,7 +1094,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI = null;
                 java.lang.String prefix = null;
 
@@ -1228,7 +1195,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -1358,12 +1325,12 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1483,7 +1450,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI = null;
                 java.lang.String prefix = null;
 
@@ -1568,7 +1535,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;

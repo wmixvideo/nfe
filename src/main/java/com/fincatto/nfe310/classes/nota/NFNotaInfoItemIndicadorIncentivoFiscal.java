@@ -6,7 +6,7 @@ public enum NFNotaInfoItemIndicadorIncentivoFiscal {
 
     private String codigo;
 
-    private NFNotaInfoItemIndicadorIncentivoFiscal(final String codigo) {
+    NFNotaInfoItemIndicadorIncentivoFiscal(final String codigo) {
         this.codigo = codigo;
     }
 
