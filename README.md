@@ -1,6 +1,6 @@
 Nota Fiscal Eletrônica
 ===
-Comunicador de nota fiscal da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
+Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://api.travis-ci.org/wmixvideo/nfe.png)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
 [![Maven Central](https://img.shields.io/badge/maven%20central-1.2.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|1.2.0|)
@@ -187,6 +187,11 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Cancela nota      | Estável             |
 | Inutiliza nota    | Estável             |
 | Consulta cadastro | Estável             |
+
+## Requisitos
+
+Jdk >= 1.7
+Maven >= 1.x
 
 ## Criação do Java KeyStore (JKS)
 Para usar os serviços da nota fiscal são necessários dois certificados:

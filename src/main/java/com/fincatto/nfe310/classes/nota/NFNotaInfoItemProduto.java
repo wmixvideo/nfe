@@ -20,7 +20,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "cProd", required = true)
     private String codigo;
 
-    @Element(name = "cEAN", required = true)
+    @Element(name = "cEAN", required = false)
     @Convert(StringNullConverter.class)
     private String codigoDeBarras;
 
@@ -54,7 +54,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     @Element(name = "vProd", required = true)
     private String valorTotalBruto;
 
-    @Element(name = "cEANTrib", required = true)
+    @Element(name = "cEANTrib", required = false)
     @Convert(StringNullConverter.class)
     private String codigoDeBarrasTributavel;
 
