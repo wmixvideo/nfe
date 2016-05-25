@@ -190,7 +190,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 
 ## Requisitos
 
-Jdk >= 1.7
+JDK >= 1.7<br>
 Maven >= 1.x
 
 ## Criação do Java KeyStore (JKS)
