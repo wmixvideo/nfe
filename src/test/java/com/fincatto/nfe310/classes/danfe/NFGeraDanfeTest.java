@@ -1,6 +1,5 @@
 package com.fincatto.nfe310.classes.danfe;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
