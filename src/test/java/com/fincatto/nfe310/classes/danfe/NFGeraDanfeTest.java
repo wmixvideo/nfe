@@ -11,7 +11,7 @@ import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 public class NFGeraDanfeTest {
 
 	@Test
-	public void geraDanfeAPartirDoXML() {
+	public void deveGerarDanfeAPartirDoXML() {
 		final NFNota nota = new NFNota();
 		final NFSignature assinatura = new NFSignature();
 		assinatura.setSignatureValue("NFe89172658591754401086218048846976493475937081");
@@ -21,7 +21,7 @@ public class NFGeraDanfeTest {
 		nota.setInfo(notaInfo);
 		nota.setIdentificadorLocal(identificadorLocal);
 		nota.toString();
-		NFDanfeReport.imprimirDanfe(nota, "/tmp/");
+		NFDanfeReport.imprimirDanfe(nota, "/home/felipe/teste.pdf");
 		//Assert.assertTrue(NFDanfeReport.imprimirDanfe(nota, "/tmp/"));
 	}
 

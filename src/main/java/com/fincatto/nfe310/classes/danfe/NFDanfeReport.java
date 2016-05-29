@@ -1,11 +1,14 @@
 package com.fincatto.nfe310.classes.danfe;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -13,18 +16,19 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.JRXmlDataSource;
-import net.sf.jasperreports.engine.util.JRXmlUtils;
+import net.sf.jasperreports.engine.util.JRProperties;
 
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.fincatto.nfe310.classes.nota.NFNota;
 
 public class NFDanfeReport {
 	private static ClassLoader classloader;
-	private static Document document;
+	private static InputStream in = null;
+	private static Document doc;
 	
 	public static boolean imprimirDanfe(NFNota xmlNota,
 			String pathDestino) {
@@ -33,7 +37,9 @@ public class NFDanfeReport {
 	    try {
 	    	String tst = xmlNota.toString();
 	    	System.out.println(tst);
-			document = JRXmlUtils.parse(new InputSource( new StringReader(xmlNota.toString()))); 
+			//document = JRXmlUtils.parse(new InputSource( new StringReader(xmlNota.toString())));
+	    	
+	    	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,12 +47,18 @@ public class NFDanfeReport {
 		boolean retorno = false;
 		try {
 			classloader = Thread.currentThread().getContextClassLoader();
-			InputStream in = classloader.getResourceAsStream("danfe/danfeR2.jrxml");
+			in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
 			JasperReport report = JasperCompileManager.compileReport(in);
-			System.out.println("Passei por aqui");
-			JasperPrint print = JasperFillManager.fillReport(report, null,
-					new JRXmlDataSource(document,"/NFe/infNFe/det"));
+			System.out.println("Compilou...");
+			JRProperties.setProperty("net.sf.jasperreports.xpath.executer.factory"
+                    ,"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
+			JRProperties.setProperty("net.sf.jasperreports.default.pdf.font.name", "Courier");
+			JRProperties.setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1252");
+			JRProperties.setProperty("net.sf.jasperreports.default.pdf.embedded", "true");
+			JasperPrint print = JasperFillManager.fillReport(report, null, new JRXmlDataSource(convertStringXMl2DOM(xmlNota.toString()),"/NFe/infNFe/det"));
+			System.out.println("Passei pelo xml");
 			JasperExportManager.exportReportToPdfFile(print, pathDestino);
+			System.out.println("Gravei PDF");
 			System.out.println("Danfe impresso em: " + pathDestino);
 			retorno = true;
 		} catch (JRException e) {
@@ -55,6 +67,26 @@ public class NFDanfeReport {
 		}
 		return retorno;
 
+	}
+	
+	private static Document convertStringXMl2DOM(String nota) {
+		try {
+			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			InputSource is = new InputSource();
+		    is.setCharacterStream(new StringReader(nota));
+		    doc = db.parse(is);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return doc;
+		 
 	}
 
 }

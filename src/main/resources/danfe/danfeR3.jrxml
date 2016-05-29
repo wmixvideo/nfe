@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.5.0  -->
-<!-- 2016-05-23T22:52:41 -->
+<!-- 2016-05-29T18:18:57 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="danfe" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="14" rightMargin="16" topMargin="14" bottomMargin="14">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -27,36 +27,6 @@
 		<parameterDescription><![CDATA[Local onde está  a imagem do logo da empresa.]]></parameterDescription>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="FAT_NUMERO1" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO1" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR1" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO2" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO2" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR2" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO3" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO3" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR3" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO4" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO4" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR4" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO5" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO5" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR5" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO6" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO6" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR6" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO7" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO7" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR7" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO8" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO8" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR8" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO9" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO9" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR9" class="java.lang.Double" isForPrompting="false"/>
-	<parameter name="FAT_NUMERO10" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="FAT_VENCIMENTO10" class="java.util.Date" isForPrompting="false"/>
-	<parameter name="FAT_VALOR10" class="java.lang.Double" isForPrompting="false"/>
 	<queryString language="xPath">
 		<![CDATA[/NFe/infNFe/det]]>
 	</queryString>
@@ -419,14 +389,6 @@
 					<reportElement x="4" y="4" width="60" height="59"/>
 					<imageExpression><![CDATA[$P{Logo}]]></imageExpression>
 				</image>
-				<componentElement>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="371" y="10" width="194" height="30">
-						<printWhenExpression><![CDATA[$F{Chave}!=null]]></printWhenExpression>
-					</reportElement>
-					<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128C" drawText="false" checksumRequired="true" barWidth="0" barHeight="0">
-						<jr:codeExpression><![CDATA[$F{Chave}]]></jr:codeExpression>
-					</jr:barbecue>
-				</componentElement>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="98" width="303" height="6"/>
 					<text><![CDATA[NATUREZA DA OPERAÇÃO]]></text>
@@ -510,7 +472,7 @@ $F{Emi_CNPJ}.substring(8,12) + "-" + $F{Emi_CNPJ}.substring(12,14) : $F{Emi_CNPJ
 				<textField>
 					<reportElement style="dados" x="2" y="103" width="343" height="17"/>
 					<textElement>
-						<font isPdfEmbedded="true"/>
+						<font fontName="Times" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{NaturezaOperacao}]]></textFieldExpression>
 				</textField>
@@ -518,15 +480,12 @@ $F{Emi_CNPJ}.substring(8,12) + "-" + $F{Emi_CNPJ}.substring(12,14) : $F{Emi_CNPJ
 					<reportElement style="dados" x="348" y="104" width="217" height="17"/>
 					<textFieldExpression><![CDATA[$F{Protocolo}]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement style="dados" x="347" y="48" width="218" height="18"/>
+				<textField pattern="">
+					<reportElement style="dados" x="347" y="48" width="218" height="18" isRemoveLineWhenBlank="true"/>
 					<textElement textAlignment="Center">
 						<font size="6"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new Boolean($F{Chave} != null)? $F{Chave}.substring(0,4) + " " + $F{Chave}.substring(4,8) + " " + $F{Chave}.substring(8,12) + " " +
-$F{Chave}.substring(12,16) + " " + $F{Chave}.substring(16,20) + " " + $F{Chave}.substring(20,24) + " " +
-$F{Chave}.substring(24,28) + " " + $F{Chave}.substring(28,32) + " " + $F{Chave}.substring(32,36) + " " +
-$F{Chave}.substring(36,40) + " " + $F{Chave}.substring(40,44) + " " : "" ]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{Chave}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="campoPequeno" x="276" y="80" width="43" height="7"/>
@@ -944,8 +903,8 @@ $F{Emi_Telefone}.substring(2,6) + "-" + $F{Emi_Telefone}.substring(6,10)]]></tex
 					<textFieldExpression><![CDATA[$F{Dest_IE} != null ? $F{Dest_IE} : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="dados" x="500" y="40" width="64" height="16"/>
-					<textFieldExpression><![CDATA[$F{Data_Saida} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{Data_Saida}) : null]]></textFieldExpression>
+					<reportElement style="dados" x="500" y="40" width="64" height="16" isRemoveLineWhenBlank="true"/>
+					<textFieldExpression><![CDATA[$F{Data_Saida} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{Data_Saida}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField pattern="(##) ####-####">
 					<reportElement style="dados" x="213" y="65" width="104" height="16"/>
@@ -955,7 +914,7 @@ $F{Dest_Telefone}.substring(2,6) + "-" + $F{Dest_Telefone}.substring(6,10)]]></t
 				</textField>
 				<textField pattern="dd/MM/yyyy">
 					<reportElement style="dados" x="500" y="16" width="64" height="16"/>
-					<textFieldExpression><![CDATA[$F{DataEmissao} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{DataEmissao}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{DataEmissao} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{DataEmissao}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="dados" x="2" y="40" width="274" height="16"/>
@@ -978,54 +937,54 @@ $F{Dest_CNPJ}.substring(8,12) + "-" + $F{Dest_CNPJ}.substring(12,14) : $F{Dest_C
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="2" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorBase} == null ? 0.00 : Double.parseDouble($F{ValorBase})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorBase} == null ? 0.00 : Double.parseDouble($F{ValorBase}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" mode="Transparent" x="113" y="135" width="109" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="styled">
 						<font fontName="Courier New" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{ValorICMS} == null ? 0.00 : Double.parseDouble($F{ValorICMS})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorICMS} == null ? 0.00 : Double.parseDouble($F{ValorICMS}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="454" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorProdutos} == null ? 0.00 : Double.parseDouble($F{ValorProdutos})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorProdutos} == null ? 0.00 : Double.parseDouble($F{ValorProdutos}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="228" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorBaseST} == null ? 0.00 : Double.parseDouble($F{ValorBaseST})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorBaseST} == null ? 0.00 : Double.parseDouble($F{ValorBaseST}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="284" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorOutro} == null ? 0.00 : Double.parseDouble($F{ValorOutro})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorOutro} == null ? 0.00 : Double.parseDouble($F{ValorOutro}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="472" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorNF} == null ? 0.00 : Double.parseDouble($F{ValorNF})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorNF} == null ? 0.00 : Double.parseDouble($F{ValorNF}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="378" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorIPI} == null ? 0.00 : Double.parseDouble($F{ValorIPI})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorIPI} == null ? 0.00 : Double.parseDouble($F{ValorIPI}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="96" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorSeguro} == null ? 0.00 : Double.parseDouble($F{ValorSeguro})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorSeguro} == null ? 0.00 : Double.parseDouble($F{ValorSeguro}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="2" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorFrete} == null ? 0.00 : Double.parseDouble($F{ValorFrete})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorFrete} == null ? 0.00 : Double.parseDouble($F{ValorFrete}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="190" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorDesconto} == null ? 0.00 : Double.parseDouble($F{ValorDesconto})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{ValorDesconto} == null ? 0.00 : Double.parseDouble($F{ValorDesconto}))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="194" width="224" height="16"/>
@@ -1069,11 +1028,11 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="368" y="241" width="92" height="18"/>
-					<textFieldExpression><![CDATA[$F{Trans_PesoB} != null ? Double.parseDouble($F{Trans_PesoB}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.valueOf($F{Trans_PesoB}) != null ? Double.parseDouble($F{Trans_PesoB}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="472" y="241" width="92" height="18"/>
-					<textFieldExpression><![CDATA[$F{Trans_PesoL} != null ? Double.parseDouble($F{Trans_PesoL}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{Trans_PesoL} != null ? Double.parseDouble($F{Trans_PesoL}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="241" width="73" height="16"/>
@@ -1086,7 +1045,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="341" y="135" width="108" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ValorST} == null ? 0.00 : Double.parseDouble($F{ValorST})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ValorST}) == 0.00 ? 0.00 : Double.parseDouble($F{ValorST}))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="432" y="194" width="26" height="16"/>
@@ -1108,130 +1067,8 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<reportElement style="dados" x="228" y="241" width="136" height="16"/>
 					<textFieldExpression><![CDATA[$F{Trans_Numeracao}]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="4" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO1}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="4" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO1}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="4" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR1}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="57" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO2}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="57" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO2}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="57" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR2}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="110" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO3}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="110" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO3}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="110" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR3}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="163" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO4}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="163" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO4}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="163" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR4}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="216" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO5}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="216" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO5}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="216" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR5}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="269" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO6}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="269" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO6}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="269" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR6}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="322" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO7}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="322" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO7}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="322" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR7}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="375" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO8}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="375" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO8}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="375" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR8}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="428" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO9}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="428" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO9}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="428" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR9}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="detail" x="481" y="93" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_NUMERO10}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement style="detail" x="481" y="100" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VENCIMENTO10}]]></textFieldExpression>
-				</textField>
-				<textField pattern="#,##0.00" isBlankWhenNull="true">
-					<reportElement style="detail" x="481" y="107" width="53" height="7"/>
-					<textFieldExpression><![CDATA[$P{FAT_VALOR10}]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement mode="Opaque" x="2" y="93" width="557" height="23">
-						<printWhenExpression><![CDATA[$P{FAT_NUMERO1} == null && $P{FAT_VENCIMENTO1} == null && $P{FAT_VALOR1} == null ? true : false]]></printWhenExpression>
-					</reportElement>
+					<reportElement mode="Opaque" x="2" y="93" width="557" height="23"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Courier New" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
 					</textElement>
@@ -1381,7 +1218,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
-					<font fontName="Arial" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier New" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[VALOR]]></text>
 			</staticText>
@@ -1506,7 +1343,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble($F{Prod_Quantidade})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_Quantidade}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.0000;(###0.0000)">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="348" y="0" width="40" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1515,7 +1352,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble($F{Prod_Valor})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{Prod_Valor}))]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;(#,##0.00)">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="388" y="0" width="44" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1524,7 +1361,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble($F{Prod_Total})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{Prod_Total}))]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.##">
 				<reportElement style="detail" positionType="Float" x="521" y="0" width="22" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1533,7 +1370,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[Double.parseDouble(($F{Prod_AliqICMS}!=null?$F{Prod_AliqICMS}:"0"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_AliqICMS}!=null?$F{Prod_AliqICMS}:"0"]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.##">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="543" y="0" width="22" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1542,7 +1379,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[Double.parseDouble(($F{Prod_AliqIPI}!=null ? $F{Prod_AliqIPI} : "0"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_AliqIPI}!=null ? $F{Prod_AliqIPI} : "0"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="277" y="0" width="22" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1556,7 +1393,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble(($F{Prod_BC} !=null ? $F{Prod_BC} : "0"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_BC} !=null ? $F{Prod_BC} : "0"]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;(#,##0.00)">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="494" y="0" width="27" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1565,7 +1402,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble(($F{Prod_ValorIPI}!=null ? $F{Prod_ValorIPI} : "0"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_ValorIPI}!=null ? $F{Prod_ValorIPI} : "0"]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;(#,##0.00)">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="467" y="0" width="27" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1574,7 +1411,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[Double.parseDouble(($F{Prod_ValorICMS}!=null?$F{Prod_ValorICMS}:"0"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Prod_ValorICMS}!=null?$F{Prod_ValorICMS}:"0"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="57" y="0" width="169" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1678,17 +1515,17 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="141" y="18" width="137" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ISSQN_Total} != null ? Double.parseDouble($F{ISSQN_Total}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Total}) != 0.00 ? Double.parseDouble($F{ISSQN_Total}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="284" y="18" width="137" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ISSQN_Base} != null ? Double.parseDouble($F{ISSQN_Base}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Base}) != 0.00 ? Double.parseDouble($F{ISSQN_Base}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="426" y="18" width="138" height="16"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{ISSQN_Valor} != null ? Double.parseDouble($F{ISSQN_Valor}) : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Valor}) != 0.00 ? Double.parseDouble($F{ISSQN_Valor}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="18" width="139" height="16"/>
