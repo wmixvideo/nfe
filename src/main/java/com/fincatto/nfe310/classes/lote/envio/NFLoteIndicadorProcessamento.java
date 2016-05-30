@@ -2,13 +2,15 @@ package com.fincatto.nfe310.classes.lote.envio;
 
 public enum NFLoteIndicadorProcessamento {
 
-    PROCESSAMENTO_ASSINCRONO("0"),
-    PROCESSAMENTO_SINCRONO("1");
+    PROCESSAMENTO_ASSINCRONO("0", "Processamento Assíncrono"),
+    PROCESSAMENTO_SINCRONO("1", "Processamento Síncrono");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFLoteIndicadorProcessamento(final String codigo) {
+    NFLoteIndicadorProcessamento(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -22,5 +24,10 @@ public enum NFLoteIndicadorProcessamento {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

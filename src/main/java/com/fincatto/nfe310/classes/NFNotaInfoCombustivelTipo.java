@@ -2,29 +2,31 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoCombustivelTipo {
 
-    ALCOOL("01"),
-    GASOLINA("02"),
-    DIESEL("03"),
-    GASOGENIO("04"),
-    GAS_METANO("05"),
-    ELETRICO_FONTE_INTERNA("06"),
-    ELETRICO_FONTE_EXTERNA("07"),
-    GASOL_GAS_NATURAL_COMBUSTIVEL("08"),
-    ALCOOL_GAS_NATURAL("09"),
-    DIESEL_GAS_NATURAL("10"),
-    VIDE_CAMPO_OBSERVACAO("11"),
-    ALCOOL_GAS_NATURAL_VEICULAR("12"),
-    GASOLINA_GAS_NATURAL_VEICULAR("13"),
-    DIESEL_GAS_NATURAL_VEICULAR("14"),
-    GAS_NATURAL_VEICULAR("15"),
-    ALCOOL_GASOLINA("16"),
-    GASOLINA_ALCOOL_GAS_NATURAL("17"),
-    GASOLINA_ELETRICO("18");
+    ALCOOL("01", "Álcool"),
+    GASOLINA("02", "Gasolina"),
+    DIESEL("03", "Diesel"),
+    GASOGENIO("04", "Gasogênio"),
+    GAS_METANO("05", "Gás metano"),
+    ELETRICO_FONTE_INTERNA("06", "Elétrico (fonte interna)"),
+    ELETRICO_FONTE_EXTERNA("07", "Elétrico (fonte externa)"),
+    GASOL_GAS_NATURAL_COMBUSTIVEL("08", "Gasol/Gás natural/Combustível"),
+    ALCOOL_GAS_NATURAL("09", "Álcool/Gás natural"),
+    DIESEL_GAS_NATURAL("10", "Diesel/Gás natural"),
+    VIDE_CAMPO_OBSERVACAO("11", "Vide campo observação"),
+    ALCOOL_GAS_NATURAL_VEICULAR("12", "Álcool/Gás natural veicular"),
+    GASOLINA_GAS_NATURAL_VEICULAR("13", "Gasolina/Gás natural veicular"),
+    DIESEL_GAS_NATURAL_VEICULAR("14", "Diesel/Gás natural veicular"),
+    GAS_NATURAL_VEICULAR("15", "Gás natural veicular"),
+    ALCOOL_GASOLINA("16", "Álcool/Gasolina"),
+    GASOLINA_ALCOOL_GAS_NATURAL("17", "Gasolina/Álcool/Gás natural"),
+    GASOLINA_ELETRICO("18", "Gasolina/Elétrico");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoCombustivelTipo(final String codigo) {
+    NFNotaInfoCombustivelTipo(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -39,4 +41,10 @@ public enum NFNotaInfoCombustivelTipo {
         }
         return null;
     }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
+    }
+    
 }

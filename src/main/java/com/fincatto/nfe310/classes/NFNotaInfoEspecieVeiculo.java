@@ -1,18 +1,20 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoEspecieVeiculo {
-    PASSAGEIRO("1"),
-    CARGA("2"),
-    MISTO("3"),
-    CORRIDA("4"),
-    TRACAO("5"),
-    ESPECIAL("6"),
-    COLECAO("7");
+    PASSAGEIRO("1", "Passageiro"),
+    CARGA("2", "Carga"),
+    MISTO("3", "Misto"),
+    CORRIDA("4", "Corrida"),
+    TRACAO("5", "Tração"),
+    ESPECIAL("6", "Especial"),
+    COLECAO("7", "Coleção");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoEspecieVeiculo(final String codigo) {
+    NFNotaInfoEspecieVeiculo(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -26,5 +28,10 @@ public enum NFNotaInfoEspecieVeiculo {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

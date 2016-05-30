@@ -1,22 +1,24 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoImpostoTributacaoICMS {
-    TRIBUTACAO_INTEGRALMENTE("00"),
-    TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA("10"),
-    COM_REDUCAO_BASE_CALCULO("20"),
-    ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA("30"),
-    ISENTA("40"),
-    NAO_TRIBUTADO("41"),
-    SUSPENSAO("50"),
-    DIFERIMENTO("51"),
-    ICMS_COBRADO_ANTERIORMENTE_POR_SUBSTITUICAO_TRIBUTARIA("60"),
-    COM_REDUCAO_BASE_CALCULO_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA_ICMS_SUBSTITUICAO_TRIBUTARIA("70"),
-    OUTROS("90");
+    TRIBUTACAO_INTEGRALMENTE("00", "Tributada integralmente"),
+    TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA("10", "Tributada com cobrança de ICMS por ST"),
+    COM_REDUCAO_BASE_CALCULO("20", "Com redução da base de cálculo"),
+    ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA("30", "Isenta ou não tributada com cobrança de ICMS por ST"),
+    ISENTA("40", "Isenta"),
+    NAO_TRIBUTADO("41", "Não tributada"),
+    SUSPENSAO("50", "Suspensão"),
+    DIFERIMENTO("51", "Diferimento"),
+    ICMS_COBRADO_ANTERIORMENTE_POR_SUBSTITUICAO_TRIBUTARIA("60", "ICMS cobrado anteriormente por ST"),
+    COM_REDUCAO_BASE_CALCULO_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA_ICMS_SUBSTITUICAO_TRIBUTARIA("70", "Com redução da base de cálculo/Cobrança ICMS por ST/ICMS ST"),
+    OUTROS("90", "Outros");
 
-    String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoImpostoTributacaoICMS(final String codigo) {
+    NFNotaInfoImpostoTributacaoICMS(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -30,5 +32,10 @@ public enum NFNotaInfoImpostoTributacaoICMS {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

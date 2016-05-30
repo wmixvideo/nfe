@@ -6,7 +6,7 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
-import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoAssinado;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
@@ -45,7 +45,7 @@ class WSLoteEnvio {
         return this.comunicaLote(loteAssinadoXml, modelo);
     }
 
-    NFLoteEnvioRetornoAssinado enviaLote(final NFLoteEnvio lote) throws Exception {
+    NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
@@ -89,7 +89,7 @@ class WSLoteEnvio {
         final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
         // comunica o lote
-        return new NFLoteEnvioRetornoAssinado(this.comunicaLote(loteAssinado.toString(), modelo), loteAssinado);
+        return new NFLoteEnvioRetornoDados(this.comunicaLote(loteAssinado.toString(), modelo), loteAssinado);
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {

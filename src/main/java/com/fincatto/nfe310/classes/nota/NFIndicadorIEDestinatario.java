@@ -1,14 +1,16 @@
 package com.fincatto.nfe310.classes.nota;
 
 public enum NFIndicadorIEDestinatario {
-    CONTRIBUINTE_ICMS("1"),
-    CONTRIBUINTE_ISENTO_INSCRICAO_CONTRIBUINTES_ICMS("2"),
-    NAO_CONTRIBUINTE("9");
+    CONTRIBUINTE_ICMS("1", "Contribuinte ICMS"),
+    CONTRIBUINTE_ISENTO_INSCRICAO_CONTRIBUINTES_ICMS("2", "Contribuinte isento inscrição contribuintes ICMS"),
+    NAO_CONTRIBUINTE("9", "Não contribuinte");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFIndicadorIEDestinatario(final String codigo) {
+    NFIndicadorIEDestinatario(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -22,5 +24,10 @@ public enum NFIndicadorIEDestinatario {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

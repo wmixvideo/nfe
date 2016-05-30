@@ -4,8 +4,8 @@ public enum NFNotaInfoItemImpostoICMSModalidadeBaseCalculo {
 
     MVA("0", "Margem de valor agregado"),
     PAUTA("1", "Pauta"),
-    PRECO_TABELADO_MAXIMO("2", "Preco tabelado maximo"),
-    VALOR_OPERACAO("3", "Valor da operacao");
+    PRECO_TABELADO_MAXIMO("2", "Preço tabelado máximo"),
+    VALOR_OPERACAO("3", "Valor da operação");
 
     private final String codigo;
     private final String descricao;
@@ -30,5 +30,10 @@ public enum NFNotaInfoItemImpostoICMSModalidadeBaseCalculo {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+descricao;
     }
 }

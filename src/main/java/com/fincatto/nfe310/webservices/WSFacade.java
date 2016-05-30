@@ -9,7 +9,7 @@ import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizac
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
-import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoAssinado;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
@@ -48,7 +48,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
     }
 
-    public NFLoteEnvioRetornoAssinado enviaLote(final NFLoteEnvio lote) throws Exception {
+    public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
             throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
         }

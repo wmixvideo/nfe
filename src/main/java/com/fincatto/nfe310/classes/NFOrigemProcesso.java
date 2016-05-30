@@ -1,16 +1,18 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFOrigemProcesso {
-    SEFAZ("0"),
-    JUSTICA_FEDERAL("1"),
-    JUSTICA_ESTADUAL("2"),
-    SECEX_RFB("3"),
-    OUTROS("9");
+    SEFAZ("0", "Sefaz"),
+    JUSTICA_FEDERAL("1", "Justiça Federal"),
+    JUSTICA_ESTADUAL("2", "Justiça Estadual"),
+    SECEX_RFB("3", "Secex RFB"),
+    OUTROS("9", "Outros");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFOrigemProcesso(final String codigo) {
+    NFOrigemProcesso(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -24,5 +26,10 @@ public enum NFOrigemProcesso {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

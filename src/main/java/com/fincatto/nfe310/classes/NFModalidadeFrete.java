@@ -1,15 +1,17 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFModalidadeFrete {
-    POR_CONTA_DO_EMITENTE("0"),
-    POR_CONTA_DO_DESTINATARIO_REMETENTE("1"),
-    POR_CONTA_DE_TERCEIROS("2"),
-    SEM_FRETE("9");
+    POR_CONTA_DO_EMITENTE("0", "Por conta do emitente"),
+    POR_CONTA_DO_DESTINATARIO_REMETENTE("1", "Por conta do destinatário remetente"),
+    POR_CONTA_DE_TERCEIROS("2", "Por conta de terceiros"),
+    SEM_FRETE("9", "Sem frete");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFModalidadeFrete(final String codigo) {
+    NFModalidadeFrete(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -23,5 +25,10 @@ public enum NFModalidadeFrete {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

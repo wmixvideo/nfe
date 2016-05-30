@@ -1,11 +1,11 @@
 package com.fincatto.nfe310.classes.lote.envio;
 
-public class NFLoteEnvioRetornoAssinado {
+public class NFLoteEnvioRetornoDados {
 
 	private NFLoteEnvioRetorno retorno;
 	private NFLoteEnvio loteAssinado;
 	
-	public NFLoteEnvioRetornoAssinado(NFLoteEnvioRetorno retorno, NFLoteEnvio loteAssinado) {
+	public NFLoteEnvioRetornoDados(NFLoteEnvioRetorno retorno, NFLoteEnvio loteAssinado) {
 		this.retorno = retorno;
 		this.loteAssinado = loteAssinado;
 	}

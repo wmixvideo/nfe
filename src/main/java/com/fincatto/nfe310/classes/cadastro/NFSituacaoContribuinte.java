@@ -2,13 +2,15 @@ package com.fincatto.nfe310.classes.cadastro;
 
 public enum NFSituacaoContribuinte {
 
-    NAO_HABILITADO(0),
-    HABILITADO(1);
+    NAO_HABILITADO(0, "Não habilitado"),
+    HABILITADO(1, "Habilitado");
 
-    private int codigo;
+    private final int codigo;
+    private final String desc;
 
-    NFSituacaoContribuinte(final int codigo) {
+    NFSituacaoContribuinte(final int codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public int getCodigo() {
@@ -22,5 +24,10 @@ public enum NFSituacaoContribuinte {
             }
         }
         throw new IllegalStateException(String.format("Codigo nao mapeado (%s)", codigo));
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

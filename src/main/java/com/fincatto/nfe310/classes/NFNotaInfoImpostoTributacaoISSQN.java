@@ -1,15 +1,17 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoImpostoTributacaoISSQN {
-    NORMAL("N"),
-    RETIDA("R"),
-    SUBSTITUTA("S"),
-    ISENTA("I");
+    NORMAL("N", "Normal"),
+    RETIDA("R", "Retida"),
+    SUBSTITUTA("S", "Substituta"),
+    ISENTA("I", "Isenta");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoImpostoTributacaoISSQN(final String codigo) {
+    NFNotaInfoImpostoTributacaoISSQN(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -23,5 +25,10 @@ public enum NFNotaInfoImpostoTributacaoISSQN {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

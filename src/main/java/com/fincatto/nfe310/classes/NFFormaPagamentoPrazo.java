@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes;
 
 public enum NFFormaPagamentoPrazo {
 
-	A_VISTA("0", "A vista"),
+	A_VISTA("0", "À vista"),
 	A_PRAZO("1", "A prazo"),
 	OUTROS("2", "Outros");
 
@@ -30,4 +30,9 @@ public enum NFFormaPagamentoPrazo {
 		}
 		return null;
 	}
+	
+	@Override
+    public String toString() {
+    	return codigo+" - "+descricao;
+    }
 }

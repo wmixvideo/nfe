@@ -2,25 +2,27 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoTipoVeiculo {
 
-    AUTOMOVEL("06"),
-    CAMINHAO("14"),
-    CAMINHONETA("13"),
-    CARGA_CAM("24"),
-    CICLOMOTO("02"),
-    ESP_ONIBUS("22"),
-    MICROONIBUS("07"),
-    MISTO_CAM("23"),
-    MOTOCICLO("04"),
-    MOTONETA("03"),
-    ONIBUS("08"),
-    REBOQUE("10"),
-    TRICICLO("05"),
-    TRATOR("17");
+    AUTOMOVEL("06", "Automóvel"),
+    CAMINHAO("14", "Caminhão"),
+    CAMINHONETA("13", "Caminhoneta"),
+    CARGA_CAM("24", "Carga"),
+    CICLOMOTO("02", "Ciclomotor"),
+    ESP_ONIBUS("22", "Especial Ônibus"),
+    MICROONIBUS("07", "Microônibus"),
+    MISTO_CAM("23", "Misto"),
+    MOTOCICLO("04", "Motociclo"),
+    MOTONETA("03", "Motoneta"),
+    ONIBUS("08", "Ônibus"),
+    REBOQUE("10", "Reboque"),
+    TRICICLO("05", "Triciclo"),
+    TRATOR("17", "Trator");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoTipoVeiculo(final String codigo) {
+    NFNotaInfoTipoVeiculo(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -34,5 +36,10 @@ public enum NFNotaInfoTipoVeiculo {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

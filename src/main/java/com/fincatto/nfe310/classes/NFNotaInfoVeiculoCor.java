@@ -2,27 +2,29 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoVeiculoCor {
 
-    AMARELA("01"),
-    AZUL("02"),
-    BEGE("03"),
-    BRANCA("04"),
-    CINZA("05"),
-    DOURADA("06"),
-    GRENA("07"),
-    LARANJA("08"),
-    MARROM("09"),
-    PRATA("10"),
-    PRETA("11"),
-    ROSA("12"),
-    ROXA("13"),
-    VERDE("14"),
-    VERMELHA("15"),
-    FANTASIA("16");
+    AMARELA("01", "Amarela"),
+    AZUL("02", "Azul"),
+    BEGE("03", "Bege"),
+    BRANCA("04", "Branca"),
+    CINZA("05", "Cinza"),
+    DOURADA("06", "Dourada"),
+    GRENA("07", "Grená"),
+    LARANJA("08", "Laranja"),
+    MARROM("09", "Marrom"),
+    PRATA("10", "Prata"),
+    PRETA("11", "Preta"),
+    ROSA("12", "Rosa"),
+    ROXA("13", "Roxa"),
+    VERDE("14", "Verde"),
+    VERMELHA("15", "Vermelha"),
+    FANTASIA("16", "Fantasia");
 
-    private String codigo;
+    private final String codigo;
+    private final String desc;
 
-    NFNotaInfoVeiculoCor(final String codigo) {
+    NFNotaInfoVeiculoCor(final String codigo, final String desc) {
         this.codigo = codigo;
+        this.desc = desc;
     }
 
     public String getCodigo() {
@@ -36,5 +38,10 @@ public enum NFNotaInfoVeiculoCor {
             }
         }
         return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return codigo+" - "+desc;
     }
 }

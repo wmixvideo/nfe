@@ -38,7 +38,7 @@ public class NFNotaInfoSituacaoTributariaCOFINSTest {
         Assert.assertEquals("72", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_COM_SUSPENSAO.getCodigo());
         Assert.assertEquals("73", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO.getCodigo());
         Assert.assertEquals("74", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_SEM_INCIDENCIA_CONTRIBUICAO.getCodigo());
-        Assert.assertEquals("75", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_SUBSTITUICAO_TRIBUTARIA.getCodigo());
+        Assert.assertEquals("75", NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_POR_SUBSTITUICAO_TRIBUTARIA.getCodigo());
         Assert.assertEquals("98", NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_ENTRADA.getCodigo());
         Assert.assertEquals("99", NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES.getCodigo());
     }
