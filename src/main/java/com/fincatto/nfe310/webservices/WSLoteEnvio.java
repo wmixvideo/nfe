@@ -1,5 +1,14 @@
 package com.fincatto.nfe310.webservices;
 
+import java.util.Iterator;
+
+import javax.xml.stream.XMLStreamException;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -19,16 +28,9 @@ import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoL
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.xml.stream.XMLStreamException;
-import java.util.Iterator;
 
 class WSLoteEnvio {
-
+	
     private static final String NFE_ELEMENTO = "NFe";
     private static final Logger LOGGER = LoggerFactory.getLogger(WSLoteEnvio.class);
     private final NFeConfig config;
@@ -38,7 +40,6 @@ class WSLoteEnvio {
     }
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        XMLValidador.validaLote(loteAssinadoXml);
         return this.comunicaLote(loteAssinadoXml, NFModelo.NFE);
     }
 
