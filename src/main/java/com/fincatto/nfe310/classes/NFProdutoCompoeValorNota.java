@@ -1,13 +1,16 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFProdutoCompoeValorNota {
-    NAO("0"),
-    SIM("1");
+
+    NAO("0", "N\u00e3o"),
+    SIM("1", "Sim");
 
     private final String codigo;
+    private final String descricao;
 
-    NFProdutoCompoeValorNota(final String codigo) {
+    NFProdutoCompoeValorNota(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -21,5 +24,10 @@ public enum NFProdutoCompoeValorNota {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

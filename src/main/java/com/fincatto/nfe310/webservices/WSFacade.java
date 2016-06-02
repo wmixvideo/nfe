@@ -9,9 +9,11 @@ import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizac
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import java.io.IOException;
@@ -46,7 +48,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
     }
 
-    public NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
             throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
         }
@@ -54,7 +56,11 @@ public class WSFacade {
     }
 
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml);
+        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, NFModelo.NFE);
+    }
+    
+    public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, NFModelo modelo) throws Exception {
+    	return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
@@ -97,8 +103,12 @@ public class WSFacade {
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
     }
 
+    public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, NFModelo modelo) throws Exception {
+        return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
+    }
+    
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
-        return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
+    	return inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, NFModelo.NFE);
     }
 
     public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {

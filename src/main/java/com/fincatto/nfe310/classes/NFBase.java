@@ -15,7 +15,7 @@ public abstract class NFBase {
             persister.write(this, writer);
             return writer.toString();
         } catch (final Exception e) {
-            throw new IllegalStateException(e.getMessage());
+            throw new IllegalStateException(e.getMessage(), e);
         }
     }
 }
