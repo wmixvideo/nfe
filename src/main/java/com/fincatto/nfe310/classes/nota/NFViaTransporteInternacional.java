@@ -2,25 +2,25 @@ package com.fincatto.nfe310.classes.nota;
 
 public enum NFViaTransporteInternacional {
 
-    MARITIMA("1", "Marítima"),
+    MARITIMA("1", "Mar\u00edtima"),
     FLUVIAL("2", "Fluvial"),
     LACUSTRE("3", "Lacustre"),
-    AEREA("4", "Aérea"),
+    AEREA("4", "A\u00e9rea"),
     POSTAL("5", "Postal"),
-    FERROVIARIA("6", "Ferroviária"),
-    RODOVIARIA("7", "Rodoviária"),
-    CONDUTO_REDE_TRANSMISSAO("8", "Conduto rede transmissão"),
-    MEIOS_PROPRIOS("9", "Meios próprios"),
-    ENTRADA_SAIDA("10", "Entrada/Saída"),
+    FERROVIARIA("6", "Ferrovi\u00e1ria"),
+    RODOVIARIA("7", "Rodovi\u00e1ria"),
+    CONDUTO_REDE_TRANSMISSAO("8", "Conduto rede transmiss\u00e3o"),
+    MEIOS_PROPRIOS("9", "Meios pr\u00f3prios"),
+    ENTRADA_SAIDA("10", "Entrada/Sa\u00edda"),
     COURIER("11", "Courier"),
     HANDCARRY("12", "Handcarry");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFViaTransporteInternacional(final String codigo, final String desc) {
+    NFViaTransporteInternacional(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -35,9 +35,9 @@ public enum NFViaTransporteInternacional {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

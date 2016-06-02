@@ -7,11 +7,11 @@ public enum NFNotaInfoItemProdutoVeiculoCondicao {
     SEMI_ACABADO("3", "Semi-acabado");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoVeiculoCondicao(final String codigo, final String desc) {
+    NFNotaInfoItemProdutoVeiculoCondicao(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -26,9 +26,9 @@ public enum NFNotaInfoItemProdutoVeiculoCondicao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

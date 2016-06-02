@@ -2,16 +2,16 @@ package com.fincatto.nfe310.classes.nota;
 
 public enum NFFormaImportacaoIntermediacao {
 
-    IMPORTACAO_CONTA_PROPRIA("1", "Importação conta própria"),
-    IMPORTACAO_CONTA_ORDEM("2", "Importação conta ordem"),
-    IMPORTACAO_ENCOMENDA("3", "Importação encomenda");
+    IMPORTACAO_CONTA_PROPRIA("1", "Importa\u00e7\u00e3o conta pr\u00f3pria"),
+    IMPORTACAO_CONTA_ORDEM("2", "Importa\u00e7\u00e3o conta ordem"),
+    IMPORTACAO_ENCOMENDA("3", "Importa\u00e7\u00e3o encomenda");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFFormaImportacaoIntermediacao(final String codigo, final String desc) {
+    NFFormaImportacaoIntermediacao(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -26,9 +26,9 @@ public enum NFFormaImportacaoIntermediacao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

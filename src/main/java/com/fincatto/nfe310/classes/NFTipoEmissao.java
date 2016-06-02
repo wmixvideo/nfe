@@ -35,9 +35,9 @@ public enum NFTipoEmissao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+descricao;
+        return codigo + " - " + descricao;
     }
 }

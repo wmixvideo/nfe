@@ -8,7 +8,7 @@ public enum NFNotaInfoVeiculoCor {
     BRANCA("04", "Branca"),
     CINZA("05", "Cinza"),
     DOURADA("06", "Dourada"),
-    GRENA("07", "Grená"),
+    GRENA("07", "Gren\u00e1"),
     LARANJA("08", "Laranja"),
     MARROM("09", "Marrom"),
     PRATA("10", "Prata"),
@@ -20,11 +20,11 @@ public enum NFNotaInfoVeiculoCor {
     FANTASIA("16", "Fantasia");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoVeiculoCor(final String codigo, final String desc) {
+    NFNotaInfoVeiculoCor(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -39,9 +39,9 @@ public enum NFNotaInfoVeiculoCor {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

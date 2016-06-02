@@ -3,14 +3,14 @@ package com.fincatto.nfe310.classes;
 public enum NFTipo {
 
     ENTRADA("0", "Entrada"),
-    SAIDA("1", "Saída");
+    SAIDA("1", "Sa\u00edda");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFTipo(final String codigo, final String desc) {
+    NFTipo(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,9 +25,9 @@ public enum NFTipo {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

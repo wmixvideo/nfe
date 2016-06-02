@@ -6,11 +6,11 @@ public enum NFNotaInfoItemProdutoVeiculoCondicaoChassi {
     REMARCADO("R", "Remarcado");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo, final String desc) {
+    NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,9 +25,9 @@ public enum NFNotaInfoItemProdutoVeiculoCondicaoChassi {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

@@ -3,9 +3,9 @@ package com.fincatto.nfe310.classes;
 public enum NFProcessoEmissor {
 
     CONTRIBUINTE("0", "Aplicativo do contribuinte"),
-    AVULSA_FISCO("1", "Emissão de NF-e avulsa pelo Fisco"),
-    AVULSA_CONTRIBUINTE_COM_CERTIFICADO_DIGITAL_FISCO("2", "Emissão de NF-e avulsa, pelo contribuinte com certificado digital através do Fisco"),
-    CONTRIBUINTE_APLICATIVO_FISCO("3", "Emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco");
+    AVULSA_FISCO("1", "Emiss\u00e3o de NF-e avulsa pelo Fisco"),
+    AVULSA_CONTRIBUINTE_COM_CERTIFICADO_DIGITAL_FISCO("2", "Emiss\u00e3o de NF-e avulsa, pelo contribuinte com certificado digital atrav\u00e9s do Fisco"),
+    CONTRIBUINTE_APLICATIVO_FISCO("3", "Emiss\u00e3o de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco");
 
     private final String codigo;
     private final String descricao;
@@ -31,9 +31,9 @@ public enum NFProcessoEmissor {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+descricao;
+        return codigo + " - " + descricao;
     }
 }

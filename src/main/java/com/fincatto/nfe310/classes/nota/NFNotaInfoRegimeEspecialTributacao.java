@@ -6,15 +6,15 @@ public enum NFNotaInfoRegimeEspecialTributacao {
     ESTIMATIVA("2", "Estimativa"),
     SOCIEDADE_PROFISSIONAIS("3", "Sociedade profissionais"),
     COOPERATIVA("4", "Cooperativa"),
-    MICROEMPRESARIO_INDIVIDUAL_MEI("5", "Microempresário individual MEI"),
-    MICROEMPRESARIO_E_EMPRESA_PEQUENOPORTE("6", "Microempresário e empresa de pequeno porte");
+    MICROEMPRESARIO_INDIVIDUAL_MEI("5", "Microempres\u00e1rio individual MEI"),
+    MICROEMPRESARIO_E_EMPRESA_PEQUENOPORTE("6", "Microempres\u00e1rio e empresa de pequeno porte");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoRegimeEspecialTributacao(final String codigo, final String desc) {
+    NFNotaInfoRegimeEspecialTributacao(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -29,9 +29,9 @@ public enum NFNotaInfoRegimeEspecialTributacao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

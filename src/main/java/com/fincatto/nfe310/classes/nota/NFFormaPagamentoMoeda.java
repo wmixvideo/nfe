@@ -4,21 +4,21 @@ public enum NFFormaPagamentoMoeda {
 
     DINHEIRO("01", "Dinheiro"),
     CHEQUE("02", "Cheque"),
-    CARTAO_CREDITO("03", "Cartão de crédito"),
-    CARTAO_DEBITO("04", "Cartão de débito"),
-    CARTAO_LOJA("05", "Cartão da loja"),
-    VALE_ALIMENTACAO("10", "Vale alimentação"),
-    VALE_REFEICAO("11", "Vale refeição"),
+    CARTAO_CREDITO("03", "Cart\u00e3o de cr\u00e9dito"),
+    CARTAO_DEBITO("04", "Cart\u00e3o de d\u00e9bito"),
+    CARTAO_LOJA("05", "Cart\u00e3o da loja"),
+    VALE_ALIMENTACAO("10", "Vale alimenta\u00e7\u00e3o"),
+    VALE_REFEICAO("11", "Vale refei\u00e7\u00e3o"),
     VALE_PRESENTE("12", "Vale presente"),
-    VALE_COMBUSTIVEL("13", "Vale combustível"),
+    VALE_COMBUSTIVEL("13", "Vale combust\u00edvel"),
     OUTRO("99", "Outro");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFFormaPagamentoMoeda(final String codigo, final String desc) {
+    NFFormaPagamentoMoeda(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -33,9 +33,9 @@ public enum NFFormaPagamentoMoeda {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

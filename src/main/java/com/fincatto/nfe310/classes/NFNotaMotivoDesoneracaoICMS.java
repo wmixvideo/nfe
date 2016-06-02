@@ -1,24 +1,25 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaMotivoDesoneracaoICMS {
-    TAXI("1", "Táxi"),
-    PRODUTOR_AGROPECUARIO("3", "Produtor agropecuário"),
+
+    TAXI("1", "T\u00e1xi"),
+    PRODUTOR_AGROPECUARIO("3", "Produtor agropecu\u00e1rio"),
     FROTISTA_LOCADORA("4", "Frotista locadora"),
-    DIPLOMATICO_CONSULAR("5", "Diplomático consular"),
-    UTILITARIOS_MOTOCICLETAS_AMAZONIA_OCIDENTAL_AREAS_LIVRE_COMERCIO("6", "Utilitários motocicletas Amazônia Ocidental áreas livre comércio"),
+    DIPLOMATICO_CONSULAR("5", "Diplom\u00e1tico consular"),
+    UTILITARIOS_MOTOCICLETAS_AMAZONIA_OCIDENTAL_AREAS_LIVRE_COMERCIO("6", "Utilit\u00e1rios motocicletas Amaz\u00f4nia Ocidental \u00e1reas livre com\u00e9rcio"),
     SUFRAMA("7", "Suframa"),
-    VENDA_ORGAOS_PUBLICOS("8", "Venda órgãos públicos"),
+    VENDA_ORGAOS_PUBLICOS("8", "Venda \u00f3rg\u00e3os p\u00fablicos"),
     OUTROS("9", "Outros"),
     DEFICIENTE_CONDUTOR("10", "Deficiente condutor"),
-    DEFICIENTE_NAO_CONDUTOR("11", "Deficiente não condutor"),
-    ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO("12", "Õrgão de fomento desenvolvimento agropecuário");
+    DEFICIENTE_NAO_CONDUTOR("11", "Deficiente n\u00e3o condutor"),
+    ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO("12", "\u00d5rg\u00e3o de fomento desenvolvimento agropecu\u00e1rio");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaMotivoDesoneracaoICMS(final String codigo, final String desc) {
+    NFNotaMotivoDesoneracaoICMS(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -33,9 +34,9 @@ public enum NFNotaMotivoDesoneracaoICMS {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

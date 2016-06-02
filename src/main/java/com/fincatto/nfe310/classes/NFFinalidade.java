@@ -5,7 +5,7 @@ public enum NFFinalidade {
     NORMAL("1", "Normal"),
     COMPLEMENTAR("2", "Complementar"),
     AJUSTE("3", "Ajuste"),
-    DEVOLUCAO_OU_RETORNO("4", "Devolução ou retorno");
+    DEVOLUCAO_OU_RETORNO("4", "Devolu\u00e7\u00e3o ou retorno");
 
     private final String codigo;
     private final String descricao;
@@ -31,9 +31,9 @@ public enum NFFinalidade {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+descricao;
+        return codigo + " - " + descricao;
     }
 }

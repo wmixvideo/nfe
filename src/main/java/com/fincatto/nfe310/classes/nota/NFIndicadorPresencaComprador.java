@@ -1,19 +1,20 @@
 package com.fincatto.nfe310.classes.nota;
 
 public enum NFIndicadorPresencaComprador {
-    NAO_APLICA("0", "Não se aplica"),
-    OPERACAO_PRESENCIAL("1", "Operação presencial"),
-    OPERACAO_NAO_PRESENCIAL_INTERNET("2", "Operação não presencial - Internet"),
-    OPERACAO_NAO_PRESENCIAL_TELEATENDIMENTO("3", "Operação não presencial - Teleatendimento"),
-    NFCE_EM_OPERACAO_COM_ENTREGA_DOMICILIO("4", "NFC-e em operação com entrega a domicílio"),
-    OPERACAO_NAO_PRESENCIAL_OUTROS("9", "Operação não presencial - Outros");
+
+    NAO_APLICA("0", "N\u00e3o se aplica"),
+    OPERACAO_PRESENCIAL("1", "Opera\u00e7\u00e3o presencial"),
+    OPERACAO_NAO_PRESENCIAL_INTERNET("2", "Opera\u00e7\u00e3o n\u00e3o presencial - Internet"),
+    OPERACAO_NAO_PRESENCIAL_TELEATENDIMENTO("3", "Opera\u00e7\u00e3o n\u00e3o presencial - Teleatendimento"),
+    NFCE_EM_OPERACAO_COM_ENTREGA_DOMICILIO("4", "NFC-e em opera\u00e7\u00e3o com entrega a domic\u00edlio"),
+    OPERACAO_NAO_PRESENCIAL_OUTROS("9", "Opera\u00e7\u00e3o n\u00e3o presencial - Outros");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFIndicadorPresencaComprador(final String codigo, final String desc) {
+    NFIndicadorPresencaComprador(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -28,9 +29,9 @@ public enum NFIndicadorPresencaComprador {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

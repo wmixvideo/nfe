@@ -1,19 +1,20 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFTipoImpressao {
-    SEM_GERACAO_DANFE("0", "Sem geração de DANFe"),
+
+    SEM_GERACAO_DANFE("0", "Sem gera\u00e7\u00e3o de DANFe"),
     DANFE_NORMAL_RETRATO("1", "DANFe normal retrato"),
     DANFE_NORMAL_PAISAGEM("2", "DANFe normal paisagem"),
     DANFE_SIMPLIFICADO("3", "DANFe simplificado"),
     DANFE_NFCE("4", "DANFe NFCe"),
-    DANFE_NFCE_MENSAGEM_ELETRONICA("5", "DANFe NFCe mensagem eletrônica");
+    DANFE_NFCE_MENSAGEM_ELETRONICA("5", "DANFe NFCe mensagem eletr\u00f4nica");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFTipoImpressao(final String codigo, final String desc) {
+    NFTipoImpressao(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -28,9 +29,9 @@ public enum NFTipoImpressao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

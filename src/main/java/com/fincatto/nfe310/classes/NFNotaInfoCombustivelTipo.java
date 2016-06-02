@@ -2,31 +2,31 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoCombustivelTipo {
 
-    ALCOOL("01", "Álcool"),
+    ALCOOL("01", "\u00c1lcool"),
     GASOLINA("02", "Gasolina"),
     DIESEL("03", "Diesel"),
-    GASOGENIO("04", "Gasogênio"),
-    GAS_METANO("05", "Gás metano"),
-    ELETRICO_FONTE_INTERNA("06", "Elétrico (fonte interna)"),
-    ELETRICO_FONTE_EXTERNA("07", "Elétrico (fonte externa)"),
-    GASOL_GAS_NATURAL_COMBUSTIVEL("08", "Gasol/Gás natural/Combustível"),
-    ALCOOL_GAS_NATURAL("09", "Álcool/Gás natural"),
-    DIESEL_GAS_NATURAL("10", "Diesel/Gás natural"),
-    VIDE_CAMPO_OBSERVACAO("11", "Vide campo observação"),
-    ALCOOL_GAS_NATURAL_VEICULAR("12", "Álcool/Gás natural veicular"),
-    GASOLINA_GAS_NATURAL_VEICULAR("13", "Gasolina/Gás natural veicular"),
-    DIESEL_GAS_NATURAL_VEICULAR("14", "Diesel/Gás natural veicular"),
-    GAS_NATURAL_VEICULAR("15", "Gás natural veicular"),
-    ALCOOL_GASOLINA("16", "Álcool/Gasolina"),
-    GASOLINA_ALCOOL_GAS_NATURAL("17", "Gasolina/Álcool/Gás natural"),
-    GASOLINA_ELETRICO("18", "Gasolina/Elétrico");
+    GASOGENIO("04", "Gasog\u00eanio"),
+    GAS_METANO("05", "G\u00e1s metano"),
+    ELETRICO_FONTE_INTERNA("06", "El\u00e9trico (fonte interna)"),
+    ELETRICO_FONTE_EXTERNA("07", "El\u00e9trico (fonte externa)"),
+    GASOL_GAS_NATURAL_COMBUSTIVEL("08", "Gasol/G\u00e1s natural/Combust\u00edvel"),
+    ALCOOL_GAS_NATURAL("09", "\u00c1lcool/G\u00e1s natural"),
+    DIESEL_GAS_NATURAL("10", "Diesel/G\u00e1s natural"),
+    VIDE_CAMPO_OBSERVACAO("11", "Vide campo observa\u00e7\u00e3o"),
+    ALCOOL_GAS_NATURAL_VEICULAR("12", "\u00c1lcool/G\u00e1s natural veicular"),
+    GASOLINA_GAS_NATURAL_VEICULAR("13", "Gasolina/G\u00e1s natural veicular"),
+    DIESEL_GAS_NATURAL_VEICULAR("14", "Diesel/G\u00e1s natural veicular"),
+    GAS_NATURAL_VEICULAR("15", "G\u00e1s natural veicular"),
+    ALCOOL_GASOLINA("16", "\u00c1lcool/Gasolina"),
+    GASOLINA_ALCOOL_GAS_NATURAL("17", "Gasolina/\u00c1lcool/G\u00e1s natural"),
+    GASOLINA_ELETRICO("18", "Gasolina/El\u00e9trico");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoCombustivelTipo(final String codigo, final String desc) {
+    NFNotaInfoCombustivelTipo(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -41,10 +41,9 @@ public enum NFNotaInfoCombustivelTipo {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
-    
 }

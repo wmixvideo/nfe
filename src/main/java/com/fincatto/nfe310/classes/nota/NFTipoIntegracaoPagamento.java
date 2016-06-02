@@ -6,11 +6,11 @@ public enum NFTipoIntegracaoPagamento {
     SEPARADO("2", "Separado");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFTipoIntegracaoPagamento(final String codigo, final String desc) {
+    NFTipoIntegracaoPagamento(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,9 +25,9 @@ public enum NFTipoIntegracaoPagamento {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

@@ -1,15 +1,16 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemProdutoArmamentoTipo {
+
     PERMITIDO("0", "Permitido"),
     RESTRITO("1", "Restrito");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoArmamentoTipo(final String codigo, final String desc) {
+    NFNotaInfoItemProdutoArmamentoTipo(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -24,9 +25,9 @@ public enum NFNotaInfoItemProdutoArmamentoTipo {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

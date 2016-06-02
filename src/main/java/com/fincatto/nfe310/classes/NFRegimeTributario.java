@@ -30,9 +30,9 @@ public enum NFRegimeTributario {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+descricao;
+        return codigo + " - " + descricao;
     }
 }

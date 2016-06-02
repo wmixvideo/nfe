@@ -9,11 +9,11 @@ public enum NFOperadoraCartao {
     OUTROS("99", "Outros");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFOperadoraCartao(final String codigo, final String desc) {
+    NFOperadoraCartao(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -28,9 +28,9 @@ public enum NFOperadoraCartao {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

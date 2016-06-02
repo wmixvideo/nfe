@@ -2,15 +2,15 @@ package com.fincatto.nfe310.classes;
 
 public enum NFAmbiente {
 
-    PRODUCAO("1", "Produção"),
-    HOMOLOGACAO("2", "Homologação");
+    PRODUCAO("1", "Produ\u00e7\u00e3o"),
+    HOMOLOGACAO("2", "Homologa\u00e7\u00e3o");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFAmbiente(final String codigo, final String desc) {
+    NFAmbiente(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,9 +25,9 @@ public enum NFAmbiente {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }

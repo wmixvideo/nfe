@@ -6,11 +6,11 @@ public enum NFModelo {
     NFCE("65", "NFC-e");
 
     private final String codigo;
-    private final String desc;
+    private final String descricao;
 
-    NFModelo(final String codigo, final String desc) {
+    NFModelo(final String codigo, final String descricao) {
         this.codigo = codigo;
-        this.desc = desc;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,9 +25,9 @@ public enum NFModelo {
         }
         return null;
     }
-    
+
     @Override
     public String toString() {
-    	return codigo+" - "+desc;
+        return codigo + " - " + descricao;
     }
 }
