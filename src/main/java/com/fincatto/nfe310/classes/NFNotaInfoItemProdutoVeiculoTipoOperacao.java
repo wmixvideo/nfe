@@ -2,15 +2,17 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemProdutoVeiculoTipoOperacao {
 
-    OUTROS("0"),
-    VENDA_CONCESSIONARIA("1"),
-    FATURAMENTO_DIRETO_CONSUMIDOR_FINAL("2"),
-    VENDA_DIRETA_GRANDES_CONSUMIDORES("3");
+    OUTROS("0", "Outros"),
+    VENDA_CONCESSIONARIA("1", "Venda concession\u00e1ria"),
+    FATURAMENTO_DIRETO_CONSUMIDOR_FINAL("2", "Faturamento direto consumidor final"),
+    VENDA_DIRETA_GRANDES_CONSUMIDORES("3", "Venda direta grandes consumidores");
 
     private final String codigo;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoVeiculoTipoOperacao(final String codigo) {
+    NFNotaInfoItemProdutoVeiculoTipoOperacao(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -24,5 +26,10 @@ public enum NFNotaInfoItemProdutoVeiculoTipoOperacao {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }
