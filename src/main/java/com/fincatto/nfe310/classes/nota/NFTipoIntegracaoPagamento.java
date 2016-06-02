@@ -2,13 +2,15 @@ package com.fincatto.nfe310.classes.nota;
 
 public enum NFTipoIntegracaoPagamento {
 
-    INTEGRADO("1"),
-    SEPARADO("2");
+    INTEGRADO("1", "Integrado"),
+    SEPARADO("2", "Separado");
 
-    private String codigo;
+    private final String codigo;
+    private final String descricao;
 
-    NFTipoIntegracaoPagamento(final String codigo) {
+    NFTipoIntegracaoPagamento(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -22,5 +24,10 @@ public enum NFTipoIntegracaoPagamento {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

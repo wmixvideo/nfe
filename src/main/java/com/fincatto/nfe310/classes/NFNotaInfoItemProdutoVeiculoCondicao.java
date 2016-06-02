@@ -2,14 +2,16 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemProdutoVeiculoCondicao {
 
-    ACABADO("1"),
-    INACABADO("2"),
-    SEMI_ACABADO("3");
+    ACABADO("1", "Acabado"),
+    INACABADO("2", "Inacabado"),
+    SEMI_ACABADO("3", "Semi-acabado");
 
     private final String codigo;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoVeiculoCondicao(final String codigo) {
+    NFNotaInfoItemProdutoVeiculoCondicao(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -23,5 +25,10 @@ public enum NFNotaInfoItemProdutoVeiculoCondicao {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }
