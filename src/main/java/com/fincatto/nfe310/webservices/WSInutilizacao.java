@@ -33,8 +33,8 @@ class WSInutilizacao {
         this.config = config;
     }
 
-    NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml);
+    NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, NFModelo modelo) throws Exception {
+        final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml, modelo);
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }
 
@@ -43,11 +43,11 @@ class WSInutilizacao {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, 
         		numeroInicial, numeroFinal, justificativa, modelo).toString();
         final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
-        final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado);
+        final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }
 
-    private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado) throws Exception {
+    private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado, NFModelo modelo) throws Exception {
         final NfeInutilizacao2Stub.NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
         cabecalho.setVersaoDados(WSInutilizacao.VERSAO_SERVICO);
@@ -60,7 +60,9 @@ class WSInutilizacao {
         WSInutilizacao.LOGGER.debug(omElement.toString());
         dados.setExtraElement(omElement);
 
-        final String urlWebService = NFAutorizador31.valueOfCodigoUF(this.config.getCUF()).getNfeInutilizacao(this.config.getAmbiente());
+        NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        final String urlWebService = NFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : 
+        	autorizador.getNfceInutilizacao(this.config.getAmbiente());
         final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService).nfeInutilizacaoNF2(dados, cabecalhoE);
         final OMElement dadosRetorno = nf2Result.getExtraElement();
         WSInutilizacao.LOGGER.debug(dadosRetorno.toString());

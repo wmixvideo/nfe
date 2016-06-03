@@ -74,6 +74,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/RecepcaoEvento" : "https://nfe.sefaz.am.gov.br/services2/services/RecepcaoEvento";
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/NfeInutilizacao2" : "https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2";
+		}
 
 		@Override
 		public NFUnidadeFederativa[] getUFs() {
@@ -128,25 +133,26 @@ public enum NFAutorizador31 {
 
 		@Override
 		public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public String getNfceStatusServico(final NFAmbiente ambiente) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
 			return null;
 		}
 	},
@@ -209,6 +215,11 @@ public enum NFAutorizador31 {
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/RecepcaoEvento?WSDL" : null;
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeInutilizacao2?WSDL" : null;
 		}
 
 		@Override
@@ -275,6 +286,11 @@ public enum NFAutorizador31 {
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/RecepcaoEvento?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/RecepcaoEvento?wsdl";
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl";
 		}
 
 		@Override
@@ -347,6 +363,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return null;
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return null;
+		}
 
 	},
 	MS {
@@ -414,6 +435,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return null;
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return null;
+		}
 	},
 	MT {
 		@Override
@@ -474,6 +500,11 @@ public enum NFAutorizador31 {
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/RecepcaoEvento?wsdl";
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeInutilizacao2?wsdl";
 		}
 
 		@Override
@@ -542,6 +573,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento";
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2";
+		}
 
 		@Override
 		public NFUnidadeFederativa[] getUFs() {
@@ -609,6 +645,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.pr.gov.br/nfce/NFeRecepcaoEvento?wsdl" : "https://nfce.fazenda.pr.gov.br/nfce/NFeRecepcaoEvento?wsdl";
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.pr.gov.br/nfce/NFeInutilizacao3?wsdl" : "https://nfce.fazenda.pr.gov.br/nfce/NFeInutilizacao3?wsdl";
+		}
 
 		@Override
 		public NFUnidadeFederativa[] getUFs() {
@@ -674,6 +715,11 @@ public enum NFAutorizador31 {
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
 		}
 
 		@Override
@@ -741,6 +787,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/recepcaoevento.asmx" : "https://nfe.fazenda.sp.gov.br/ws/recepcaoevento.asmx";
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx";
+		}
 
 		@Override
 		public NFUnidadeFederativa[] getUFs() {
@@ -806,6 +857,11 @@ public enum NFAutorizador31 {
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx" : "https://nfce.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx";
+		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfce.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
 		}
 
 		@Override
@@ -878,6 +934,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return null;
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return null;
+		}
 	},
 	SVAN {
 		@Override
@@ -944,6 +1005,11 @@ public enum NFAutorizador31 {
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
 			return null;
 		}
+		
+		@Override
+		public String getNfceInutilizacao(NFAmbiente ambiente) {
+			return null;
+		}
 	};
 
 	public abstract String getNfeAutorizacao(final NFAmbiente ambiente);
@@ -969,6 +1035,8 @@ public enum NFAutorizador31 {
 	public abstract String getNfceStatusServico(final NFAmbiente ambiente);
 
 	public abstract String getNfceRecepcaoEvento(final NFAmbiente ambiente);
+	
+	public abstract String getNfceInutilizacao(final NFAmbiente ambiente);
 
 	public abstract NFUnidadeFederativa[] getUFs();
 

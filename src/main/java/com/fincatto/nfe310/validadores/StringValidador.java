@@ -447,7 +447,7 @@ public class StringValidador {
     }
 
     public static void modeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        if (!modeloDocumentoFiscal.equals("55")) {
+        if (!modeloDocumentoFiscal.equals("55") && !modeloDocumentoFiscal.equals("65")) {
             throw new IllegalStateException(String.format("Modelo Fiscal Invalido (%s)", modeloDocumentoFiscal));
         }
     }

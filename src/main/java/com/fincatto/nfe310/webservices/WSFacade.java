@@ -100,7 +100,11 @@ public class WSFacade {
     }
 
     public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
-        return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
+        return inutilizaNotaAssinada(eventoAssinadoXml, NFModelo.NFE);
+    }
+    
+    public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, NFModelo modelo) throws Exception {
+    	return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
     }
 
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, NFModelo modelo) throws Exception {
