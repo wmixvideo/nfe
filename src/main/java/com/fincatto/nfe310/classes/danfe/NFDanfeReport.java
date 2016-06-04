@@ -33,16 +33,6 @@ public class NFDanfeReport {
 
 	public static boolean imprimirDanfe(NFNota xmlNota, String pathDestino) {
 
-		try {
-			String tst = xmlNota.toString();
-			System.out.println(tst);
-			// document = JRXmlUtils.parse(new InputSource( new
-			// StringReader(xmlNota.toString())));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		boolean retorno = false;
 		try {
 			classloader = Thread.currentThread().getContextClassLoader();
