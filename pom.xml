@@ -118,7 +118,20 @@
     		<groupId>jasperreports</groupId>
     		<artifactId>jasperreports</artifactId>
     		<version>3.5.3</version>
+    		<exclusions>
+                    <exclusion>
+                        <groupId>eclipse</groupId>
+                        <artifactId>jdtcore</artifactId>
+                    </exclusion>
+            </exclusions>
 		</dependency>
+		
+		<!-- FIX Problema na compilação do jasper em java 8 - Adicionado dependencia como paliativo -->
+		<dependency>
+        	<groupId>org.eclipse.jdt.core.compiler</groupId>
+        	<artifactId>ecj</artifactId>
+        	<version>4.4</version>
+        </dependency>
 			
 		
 	</dependencies>
