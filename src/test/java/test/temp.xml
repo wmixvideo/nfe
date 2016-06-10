@@ -1,0 +1,22 @@
+<retConsReciNFe versao="3.10"
+	xmlns="http://www.portalfiscal.inf.br/nfe">
+	<tpAmb>2</tpAmb>
+	<verAplic>SVAN_3.5.9</verAplic>
+	<nRec>214000004931118</nRec>
+	<cStat>104</cStat>
+	<dhRecbto>2016-06-10T01:20:30-03:00</dhRecbto>
+	<xMotivo>Lote processado</xMotivo>
+	<cUF>21</cUF>
+	<protNFe versao="3.10">
+		<infProt>
+			<tpAmb>2</tpAmb>
+			<verAplic>SVAN_3.5.9</verAplic>
+			<chNFe>21160603526252000147558901231231231110234543</chNFe>
+			<dhRecbto>2016-06-10T01:20:30-03:00</dhRecbto>
+			<digVal>B2/jOjeNlfqs1gdFld0gyuTHYUQ=</digVal>
+			<cStat>999</cStat>
+			<xMotivo>Rejeicao: O CNPJ do orgao emitente informado nao esta
+				autorizado a emitir nota avulsa.</xMotivo>
+		</infProt>
+	</protNFe>
+</retConsReciNFe>
