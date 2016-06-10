@@ -8,6 +8,7 @@ import java.util.Random;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import com.fincatto.nfe310.NFeConfigFake;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFEndereco;
 import com.fincatto.nfe310.classes.NFFinalidade;
@@ -50,8 +51,6 @@ import com.fincatto.nfe310.webservices.WSFacade;
 public class EnviarLoteMain {
 
 	public static void main(String[] args) throws Exception {
-		WSFacade s = new WSFacade(new Config());
-
 		NFNota nota = new NFNota();
 
 		nota.setInfo(new NFNotaInfo());
@@ -275,6 +274,7 @@ public class EnviarLoteMain {
 		lote.setIndicadorProcessamento(NFLoteIndicadorProcessamento.PROCESSAMENTO_ASSINCRONO);
 		lote.setNotas(list);
 
+		WSFacade s = new WSFacade(new NFeConfigFake());
 		NFLoteEnvioRetornoDados enviaLote = s.enviaLote(lote);
 		System.out.println(enviaLote.getRetorno());
 	}
