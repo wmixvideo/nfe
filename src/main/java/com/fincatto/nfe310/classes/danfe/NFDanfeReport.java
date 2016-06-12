@@ -30,10 +30,10 @@ public class NFDanfeReport {
 	private static InputStream in = null;
 	private static Document doc;
 	private static final Logger logger = LoggerFactory.getLogger(NFDanfeReport.class);
+	private static byte[] reportByte;
 
-	public static boolean imprimirDanfe(NFNota xmlNota, String pathDestino) {
+	public static byte[] imprimirDanfe(NFNota xmlNota) {
 
-		boolean retorno = false;
 		try {
 			classloader = Thread.currentThread().getContextClassLoader();
 			in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
@@ -42,20 +42,19 @@ public class NFDanfeReport {
 			JRProperties
 					.setProperty("net.sf.jasperreports.xpath.executer.factory",
 							"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
+			logger.info("Montando estrutura...");
 			JasperPrint print = JasperFillManager.fillReport(report, null,
 					new JRXmlDataSource(
 							convertStringXMl2DOM(xmlNota.toString()),
 							"/NFe/infNFe/det"));
-			logger.info("Montando estrutura...");
-			JasperExportManager.exportReportToPdfFile(print, pathDestino);
-			logger.info("Gravando PDF...");
-			logger.info("Danfe impresso em: " + pathDestino);
-			retorno = true;
+			logger.info("Gerando array de bytes do PDF...");
+			reportByte = JasperExportManager.exportReportToPdf(print);
+			logger.info("danfe gerado!");
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}
-		return retorno;
+		return reportByte;
 
 	}
 
