@@ -18,17 +18,18 @@ public class NFGeraDanfeTest {
 	public void deveGerarDanfeAPartirDoXML() throws IOException {
 		final NFNota nota = new NFNota();
 		final NFSignature assinatura = new NFSignature();
-		assinatura.setSignatureValue("NFe89172658591754401086218048846976493475937081");
+		assinatura
+				.setSignatureValue("NFe89172658591754401086218048846976493475937081");
 		final NFNotaInfo notaInfo = FabricaDeObjetosFake.getNFNotaInfo();
 		final int identificadorLocal = 123456;
 		nota.setAssinatura(assinatura);
 		nota.setInfo(notaInfo);
 		nota.setIdentificadorLocal(identificadorLocal);
 		nota.toString();
-		FileOutputStream fos = new FileOutputStream("/tmp/danfe.pdf");
-		fos.write(NFDanfeReport.imprimirDanfe(nota));
-		fos.close();
-		Assert.assertTrue(new File("/tmp/danfe.pdf").exists());
+		try (FileOutputStream fos = new FileOutputStream(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf")) {
+			fos.write(NFDanfeReport.imprimirDanfe(nota));
+		}
+		Assert.assertTrue(new File(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf").exists());
 	}
 
 }
