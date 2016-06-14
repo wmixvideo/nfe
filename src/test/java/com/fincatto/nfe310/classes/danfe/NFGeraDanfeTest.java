@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import net.sf.jasperreports.engine.JRException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,7 +29,12 @@ public class NFGeraDanfeTest {
 		nota.setIdentificadorLocal(identificadorLocal);
 		nota.toString();
 		try (FileOutputStream fos = new FileOutputStream(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf")) {
-			fos.write(NFDanfeReport.imprimirDanfe(nota));
+			try {
+				fos.write(NFDanfeReport.imprimirDanfe(nota));
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		Assert.assertTrue(new File(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf").exists());
 	}

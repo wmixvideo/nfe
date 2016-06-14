@@ -29,31 +29,27 @@ public class NFDanfeReport {
 	private static ClassLoader classloader;
 	private static InputStream in = null;
 	private static Document doc;
-	private static final Logger logger = LoggerFactory.getLogger(NFDanfeReport.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(NFDanfeReport.class);
 	private static byte[] reportByte;
 
-	public static byte[] imprimirDanfe(NFNota xmlNota) {
+	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException {
 
-		try {
-			classloader = Thread.currentThread().getContextClassLoader();
-			in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
-			JasperReport report = JasperCompileManager.compileReport(in);
-			logger.info("Compilando Relatório...");
-			JRProperties
-					.setProperty("net.sf.jasperreports.xpath.executer.factory",
-							"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
-			logger.info("Montando estrutura...");
-			JasperPrint print = JasperFillManager.fillReport(report, null,
-					new JRXmlDataSource(
-							convertStringXMl2DOM(xmlNota.toString()),
-							"/NFe/infNFe/det"));
-			logger.info("Gerando array de bytes do PDF...");
-			reportByte = JasperExportManager.exportReportToPdf(print);
-			logger.info("danfe gerado!");
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
+		classloader = Thread.currentThread().getContextClassLoader();
+		in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
+		JasperReport report = JasperCompileManager.compileReport(in);
+		logger.info("Compilando Relatório...");
+		JRProperties
+				.setProperty("net.sf.jasperreports.xpath.executer.factory",
+						"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
+		logger.info("Montando estrutura...");
+		JasperPrint print = JasperFillManager.fillReport(report, null,
+				new JRXmlDataSource(convertStringXMl2DOM(xmlNota.toString()),
+						"/NFe/infNFe/det"));
+		logger.info("Gerando array de bytes do PDF...");
+		reportByte = JasperExportManager.exportReportToPdf(print);
+		logger.info("danfe gerado!");
+
 		return reportByte;
 
 	}
@@ -66,14 +62,12 @@ public class NFDanfeReport {
 			is.setCharacterStream(new StringReader(nota));
 			doc = db.parse(is);
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Erro na estrutura do xml! " + e.getMessage());
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Erro no parser do xml! "+e.getMessage());
 		}
 		return doc;
 
