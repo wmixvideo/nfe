@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DANFE_NFCE" pageWidth="226" pageHeight="450" whenNoDataType="AllSectionsNoDetail" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="f2ad8431-eb6a-4415-9a7a-8bcb81e49e5d">
 	<property name="ireport.zoom" value="3.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="288"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -59,7 +59,7 @@ new BigDecimal($F{nota.info.total.icmsTotal.valorTotalDesconto}.replace(".", "")
 	<pageHeader>
 		<band height="82" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="2" y="1" width="222" height="15" uuid="87f0fbca-c7c3-4c5e-a363-e4e9fcb4e626"/>
+				<reportElement key="textField" positionType="Float" x="1" y="1" width="207" height="15" uuid="87f0fbca-c7c3-4c5e-a363-e4e9fcb4e626"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -72,7 +72,7 @@ new BigDecimal($F{nota.info.total.icmsTotal.valorTotalDesconto}.replace(".", "")
 				<textFieldExpression><![CDATA[$F{nota.info.emitente.nomeFantasia}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="2" y="29" width="222" height="13" uuid="dde92dc5-96ba-434f-abea-45dd508d25d7"/>
+				<reportElement key="textField" positionType="Float" x="1" y="29" width="207" height="13" uuid="dde92dc5-96ba-434f-abea-45dd508d25d7"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -93,7 +93,7 @@ $F{nota.info.emitente.endereco.uf}+"\nFone: "+
 $F{nota.info.emitente.endereco.telefone})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="122" y="16" width="102" height="13" uuid="9018ad5e-9fb4-4a66-a89e-453d314a10c2"/>
+				<reportElement key="textField" positionType="Float" x="116" y="16" width="92" height="13" uuid="9018ad5e-9fb4-4a66-a89e-453d314a10c2"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -106,7 +106,7 @@ $F{nota.info.emitente.endereco.telefone})]]></textFieldExpression>
 				<textFieldExpression><![CDATA["IE: "+$F{nota.info.emitente.inscricaoEstadual}]]></textFieldExpression>
 			</textField>
 			<textField pattern="##.###.###/####-##" isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="2" y="16" width="118" height="13" uuid="aa5246fd-7c02-4594-a4fc-a790cbb6e076"/>
+				<reportElement key="textField" positionType="Float" x="1" y="16" width="115" height="13" uuid="aa5246fd-7c02-4594-a4fc-a790cbb6e076"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -119,36 +119,29 @@ $F{nota.info.emitente.endereco.telefone})]]></textFieldExpression>
 				<textFieldExpression><![CDATA["CNPJ: "+$F{nota.info.emitente.cnpj}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="16" y="-108" width="41" height="13" uuid="0aef5e5a-b2d1-4c05-8200-7f9acfec1a5b"/>
-				<textElement>
-					<font fontName="DejaVu Sans" size="9" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[Nome ccccccc:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="46" width="222" height="20" uuid="7af0d1e3-44e3-4fb9-ad16-bfae99d32a75"/>
+				<reportElement key="textField" positionType="Float" x="1" y="46" width="207" height="20" uuid="7af0d1e3-44e3-4fb9-ad16-bfae99d32a75"/>
 				<textElement textAlignment="Center" markup="none">
 					<font size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[DANFE NFC-e DOCUMENTO AUXILIAR DE NOTA FISCAL DE CONSUMIDOR ELETRÔNICA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="66" width="222" height="13" uuid="ebc835b8-d4a2-446f-8767-ed390f439b18"/>
+				<reportElement key="textField" positionType="Float" x="1" y="66" width="207" height="13" uuid="ebc835b8-d4a2-446f-8767-ed390f439b18"/>
 				<textElement textAlignment="Center" markup="none">
 					<font size="7" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[NÃO PERMITE APROVEITAMENTO DE CRÉDITO ICMS]]></text>
 			</staticText>
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="42" width="222" height="1" uuid="45815a89-efc7-4031-866f-8a1001126cba"/>
+				<reportElement key="line" positionType="Float" x="1" y="42" width="207" height="1" uuid="45815a89-efc7-4031-866f-8a1001126cba"/>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="79" width="222" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
+				<reportElement key="line" positionType="Float" x="1" y="79" width="207" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 		</band>
@@ -156,12 +149,12 @@ $F{nota.info.emitente.endereco.telefone})]]></textFieldExpression>
 	<detail>
 		<band height="91" splitType="Prevent">
 			<subreport>
-				<reportElement positionType="Float" x="1" y="62" width="224" height="11" uuid="abe336d3-28b5-4818-bce8-70ee6efab2ad"/>
+				<reportElement positionType="Float" x="1" y="62" width="207" height="11" uuid="abe336d3-28b5-4818-bce8-70ee6efab2ad"/>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($P{PAGAMENTOS})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREL_PAGAMENTOS}]]></subreportExpression>
 			</subreport>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="2" y="77" width="222" height="10" isRemoveLineWhenBlank="true" uuid="8bc82ec3-952a-4830-ae91-cb49ebb31835">
+				<reportElement positionType="Float" x="1" y="77" width="207" height="10" isRemoveLineWhenBlank="true" uuid="8bc82ec3-952a-4830-ae91-cb49ebb31835">
 					<printWhenExpression><![CDATA[$F{nota.info.total.icmsTotal.valorTotalTributos} != null &&
 !$F{nota.info.total.icmsTotal.valorTotalTributos}.equals("0,00")]]></printWhenExpression>
 				</reportElement>
@@ -173,42 +166,42 @@ $F{nota.info.total.icmsTotal.valorTotalTributos}+
 " (Fonte: IBPT)"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="75" width="222" height="1" uuid="7baade66-65a3-4b67-91fa-eb259b7cbb6b"/>
+				<reportElement key="line" positionType="Float" x="1" y="75" width="207" height="1" uuid="7baade66-65a3-4b67-91fa-eb259b7cbb6b"/>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="89" width="222" height="1" isRemoveLineWhenBlank="true" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b">
+				<reportElement key="line" positionType="Float" x="1" y="89" width="207" height="1" isRemoveLineWhenBlank="true" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b">
 					<printWhenExpression><![CDATA[$F{nota.info.total.icmsTotal.valorTotalTributos} != null &&
 !$F{nota.info.total.icmsTotal.valorTotalTributos}.equals("0,00")]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="2" y="15" width="222" height="1" uuid="4637273e-fe55-44a8-aba3-339f1b52dd19"/>
+				<reportElement positionType="Float" x="1" y="15" width="207" height="1" uuid="4637273e-fe55-44a8-aba3-339f1b52dd19"/>
 				<graphicElement>
-					<pen lineStyle="Dashed"/>
+					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="121" y="50" width="103" height="12" uuid="82212bfc-f443-4c12-af2f-f7d77821dfce"/>
+				<reportElement key="textField" positionType="Float" x="111" y="50" width="97" height="12" uuid="82212bfc-f443-4c12-af2f-f7d77821dfce"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font fontName="SansSerif" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[VALOR PAGO]]></text>
 			</staticText>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="121" y="38" width="103" height="12" uuid="52a05c6a-73e3-438d-aefb-38413c998dae"/>
+				<reportElement key="textField" positionType="Float" x="111" y="38" width="97" height="12" uuid="52a05c6a-73e3-438d-aefb-38413c998dae"/>
 				<textElement textAlignment="Right" markup="none">
 					<font fontName="SansSerif" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new BigDecimal($F{nota.info.total.icmsTotal.valorTotalNFe})]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="121" y="28" width="103" height="10" isRemoveLineWhenBlank="true" uuid="96e065a7-d841-4794-afe8-661bc6024992">
+				<reportElement x="111" y="28" width="97" height="10" isRemoveLineWhenBlank="true" uuid="96e065a7-d841-4794-afe8-661bc6024992">
 					<printWhenExpression><![CDATA[$V{ACRESCIMOS}.signum() != 0]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -217,28 +210,28 @@ $F{nota.info.total.icmsTotal.valorTotalTributos}+
 				<textFieldExpression><![CDATA[$V{ACRESCIMOS}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="18" width="118" height="10" uuid="c7129f1b-3655-410c-95fb-0e4bb0a94fdb"/>
+				<reportElement key="textField" positionType="Float" x="1" y="18" width="110" height="10" uuid="c7129f1b-3655-410c-95fb-0e4bb0a94fdb"/>
 				<textElement markup="none">
 					<font fontName="SansSerif" size="7" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[QTDE TOTAL DE ITENS:]]></text>
 			</staticText>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" positionType="Float" x="121" y="18" width="103" height="10" uuid="3ab24ac5-b9a8-4cfc-abc3-c7a8b84c9cc8"/>
+				<reportElement key="textField" positionType="Float" x="111" y="18" width="97" height="10" uuid="3ab24ac5-b9a8-4cfc-abc3-c7a8b84c9cc8"/>
 				<textElement textAlignment="Right" markup="none">
 					<font fontName="SansSerif" size="7" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota.info.itens}.size()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="38" width="118" height="12" uuid="c9f98b94-3d4c-4dae-a139-6c97e1bb8c50"/>
+				<reportElement key="textField" positionType="Float" x="1" y="38" width="110" height="12" uuid="c9f98b94-3d4c-4dae-a139-6c97e1bb8c50"/>
 				<textElement markup="none">
 					<font fontName="SansSerif" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[VALOR TOTAL (R$):]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement key="textField" positionType="Float" x="2" y="28" width="118" height="10" isRemoveLineWhenBlank="true" uuid="de9b850c-64b2-40c2-a275-62b6ba4f44ae">
+				<reportElement key="textField" positionType="Float" x="1" y="28" width="110" height="10" isRemoveLineWhenBlank="true" uuid="de9b850c-64b2-40c2-a275-62b6ba4f44ae">
 					<printWhenExpression><![CDATA[$V{ACRESCIMOS}.signum() != 0]]></printWhenExpression>
 				</reportElement>
 				<textElement markup="none">
@@ -248,14 +241,14 @@ $F{nota.info.total.icmsTotal.valorTotalTributos}+
 $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="50" width="118" height="12" uuid="23700bda-ea5c-44bb-8d22-a7712a653434"/>
+				<reportElement key="textField" positionType="Float" x="1" y="50" width="110" height="12" uuid="23700bda-ea5c-44bb-8d22-a7712a653434"/>
 				<textElement verticalAlignment="Middle" markup="none">
 					<font fontName="SansSerif" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[FORMA DE PAGAMENTO]]></text>
 			</staticText>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="1" width="224" height="13" uuid="1027a0ad-c78a-4f6d-95ed-05989641e369"/>
+				<reportElement positionType="Float" x="1" y="1" width="207" height="13" uuid="1027a0ad-c78a-4f6d-95ed-05989641e369"/>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{nota.info.itens})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREL}]]></subreportExpression>
 			</subreport>
@@ -264,13 +257,13 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 	<pageFooter>
 		<band height="234" splitType="Stretch">
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="65" width="222" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
+				<reportElement key="line" positionType="Float" x="1" y="65" width="207" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="2" y="44" width="222" height="10" uuid="0571906c-2c4c-4f77-83f1-99b9f696178a"/>
+				<reportElement key="staticText" positionType="Float" x="1" y="44" width="207" height="10" uuid="0571906c-2c4c-4f77-83f1-99b9f696178a"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -283,21 +276,21 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				<text><![CDATA[CHAVE DE ACESSO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="2" y="91" width="222" height="10" uuid="ce22f796-aa76-41c5-a134-7d3b27e23e8e"/>
+				<reportElement key="textField" positionType="Float" x="1" y="91" width="207" height="10" uuid="ce22f796-aa76-41c5-a134-7d3b27e23e8e"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
 					<font fontName="SansSerif" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Consulta via leitor de QR Code]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="2" y="1" width="222" height="11" isRemoveLineWhenBlank="true" uuid="fd6c261c-361c-4c75-bc8f-cca70f2415f3"/>
+				<reportElement positionType="Float" x="1" y="1" width="207" height="11" isRemoveLineWhenBlank="true" uuid="fd6c261c-361c-4c75-bc8f-cca70f2415f3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota.info.informacoesAdicionais.informacoesAdicionaisInteresseFisco}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="2" y="12" width="222" height="10" uuid="ce1b0369-cf99-40e5-aaea-f297f7385144"/>
+				<reportElement positionType="Float" x="1" y="12" width="207" height="10" uuid="ce1b0369-cf99-40e5-aaea-f297f7385144"/>
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
@@ -305,7 +298,7 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 " Série "+$F{nota.info.identificacao.serie}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="2" y="22" width="222" height="10" uuid="5819cffc-e82c-4bbf-bba9-5f6b5034f19f"/>
+				<reportElement positionType="Float" x="1" y="22" width="207" height="10" uuid="5819cffc-e82c-4bbf-bba9-5f6b5034f19f"/>
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
@@ -313,27 +306,27 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 .toString("dd/MM/yyyy HH:mm:ss")]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="2" y="32" width="222" height="10" uuid="24e3e04f-3277-4682-99e3-1858346f2d67"/>
+				<reportElement positionType="Float" x="1" y="32" width="207" height="10" uuid="24e3e04f-3277-4682-99e3-1858346f2d67"/>
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Consulte pela Chave de Acesso em\n"+$P{URL_CONSULTA}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="41" y="54" width="143" height="10" uuid="2ad81d22-19eb-4742-89f8-a6fbe97ac6c2"/>
+				<reportElement positionType="Float" x="43" y="54" width="126" height="10" uuid="2ad81d22-19eb-4742-89f8-a6fbe97ac6c2"/>
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{CHAVE_ACESSO_FORMATADA}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line" positionType="Float" x="2" y="88" width="222" height="1" uuid="d6984e4b-deee-48e7-98d5-2e979384e872"/>
+				<reportElement key="line" positionType="Float" x="1" y="88" width="207" height="1" uuid="d6984e4b-deee-48e7-98d5-2e979384e872"/>
 				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dashed"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="2" y="67" width="222" height="10" uuid="ee5e7ec5-c7c7-431d-8767-31861870d7be"/>
+				<reportElement positionType="Float" x="1" y="67" width="207" height="10" uuid="ee5e7ec5-c7c7-431d-8767-31861870d7be"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
@@ -347,7 +340,7 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="2" y="77" width="222" height="10" isRemoveLineWhenBlank="true" uuid="da7be1da-2b42-4688-b6f8-767df1760f45"/>
+				<reportElement positionType="Float" x="1" y="77" width="207" height="10" isRemoveLineWhenBlank="true" uuid="da7be1da-2b42-4688-b6f8-767df1760f45"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
@@ -359,18 +352,18 @@ $F{nota.info.destinatario.razaoSocial} != null ?
 $F{nota.info.destinatario.razaoSocial} : ""]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle" onErrorType="Icon">
-				<reportElement key="image" positionType="Float" x="70" y="101" width="87" height="87" isPrintWhenDetailOverflows="true" uuid="4e2dc02b-2c45-4b9b-80b2-1e8872c134d6"/>
+				<reportElement key="image" positionType="Float" x="62" y="101" width="87" height="87" isPrintWhenDetailOverflows="true" uuid="4e2dc02b-2c45-4b9b-80b2-1e8872c134d6"/>
 				<imageExpression><![CDATA[$P{QR_CODE}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="2" y="188" width="222" height="10" isRemoveLineWhenBlank="true" uuid="deca74d1-703e-4aab-8af6-6844947960e6"/>
+				<reportElement positionType="Float" x="1" y="192" width="207" height="10" isRemoveLineWhenBlank="true" uuid="deca74d1-703e-4aab-8af6-6844947960e6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota.info.informacoesAdicionais.informacoesComplementaresInteresseContribuinte}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="2" y="198" width="222" height="10" isRemoveLineWhenBlank="true" uuid="cf88b2f1-4a43-466b-9779-c2635dfac35f"/>
+				<reportElement positionType="Float" x="1" y="202" width="207" height="10" isRemoveLineWhenBlank="true" uuid="cf88b2f1-4a43-466b-9779-c2635dfac35f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
