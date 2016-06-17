@@ -26,17 +26,13 @@ import org.xml.sax.SAXException;
 import com.fincatto.nfe310.classes.nota.NFNota;
 
 public class NFDanfeReport {
-	private static ClassLoader classloader;
-	private static InputStream in = null;
-	private static Document doc;
 	private static final Logger logger = LoggerFactory
 			.getLogger(NFDanfeReport.class);
-	private static byte[] reportByte;
 
-	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException {
+	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException, ParserConfigurationException, SAXException, IOException {
 
-		classloader = Thread.currentThread().getContextClassLoader();
-		in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		InputStream in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
 		JasperReport report = JasperCompileManager.compileReport(in);
 		logger.info("Compilando Relatório...");
 		JRProperties
@@ -47,28 +43,21 @@ public class NFDanfeReport {
 				new JRXmlDataSource(convertStringXMl2DOM(xmlNota.toString()),
 						"/NFe/infNFe/det"));
 		logger.info("Gerando array de bytes do PDF...");
-		reportByte = JasperExportManager.exportReportToPdf(print);
+		byte[] reportByte = JasperExportManager.exportReportToPdf(print);
 		logger.info("danfe gerado!");
 
 		return reportByte;
 
 	}
 
-	private static Document convertStringXMl2DOM(String nota) {
-		try {
+	private static Document convertStringXMl2DOM(String nota) throws ParserConfigurationException, SAXException, IOException {
+		Document doc = null;
 			DocumentBuilder db = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(nota));
 			doc = db.parse(is);
-		} catch (ParserConfigurationException e) {
-			logger.error("Erro na estrutura do xml! " + e.getMessage());
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			logger.error("Erro no parser do xml! "+e.getMessage());
-		}
+		
 		return doc;
 
 	}

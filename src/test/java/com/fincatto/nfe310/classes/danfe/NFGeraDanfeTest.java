@@ -2,9 +2,6 @@ package com.fincatto.nfe310.classes.danfe;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-
-import net.sf.jasperreports.engine.JRException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +14,7 @@ import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 public class NFGeraDanfeTest {
 
 	@Test
-	public void deveGerarDanfeAPartirDoXML() throws IOException {
+	public void deveGerarDanfeAPartirDoXML() throws Exception {
 		final NFNota nota = new NFNota();
 		final NFSignature assinatura = new NFSignature();
 		assinatura
@@ -28,15 +25,13 @@ public class NFGeraDanfeTest {
 		nota.setInfo(notaInfo);
 		nota.setIdentificadorLocal(identificadorLocal);
 		nota.toString();
-		try (FileOutputStream fos = new FileOutputStream(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf")) {
-			try {
-				fos.write(NFDanfeReport.imprimirDanfe(nota));
-			} catch (JRException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try (FileOutputStream fos = new FileOutputStream(
+				System.getProperty("java.io.tmpdir") + "/" + "danfe.pdf")) {
+			fos.write(NFDanfeReport.imprimirDanfe(nota));
+
 		}
-		Assert.assertTrue(new File(System.getProperty("java.io.tmpdir")+"/"+"danfe.pdf").exists());
+		Assert.assertTrue(new File(System.getProperty("java.io.tmpdir") + "/"
+				+ "danfe.pdf").exists());
 	}
 
 }
