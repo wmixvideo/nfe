@@ -17,8 +17,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRXmlDataSource;
 import net.sf.jasperreports.engine.util.JRProperties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -26,30 +24,25 @@ import org.xml.sax.SAXException;
 import com.fincatto.nfe310.classes.nota.NFNota;
 
 public class NFDanfeReport {
-	private static final Logger logger = LoggerFactory
-			.getLogger(NFDanfeReport.class);
 
 	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException,
 			ParserConfigurationException, SAXException, IOException {
 
 		ClassLoader classloader = Thread.currentThread()
 				.getContextClassLoader();
-		InputStream in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
-		JasperReport report = JasperCompileManager.compileReport(in);
-		logger.info("Compilando Relatório...");
-		JRProperties
-				.setProperty("net.sf.jasperreports.xpath.executer.factory",
-						"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
-		logger.info("Montando estrutura...");
-		JasperPrint print = JasperFillManager.fillReport(report, null,
-				new JRXmlDataSource(convertStringXMl2DOM(xmlNota.toString()),
-						"/NFe/infNFe/det"));
-		logger.info("Gerando array de bytes do PDF...");
-		byte[] reportByte = JasperExportManager.exportReportToPdf(print);
-		logger.info("danfe gerado!");
-
+		byte[] reportByte;
+		try (InputStream in = classloader.getResourceAsStream("danfe/danfeR3.jrxml")) {
+			JasperReport report = JasperCompileManager.compileReport(in);
+			JRProperties
+					.setProperty("net.sf.jasperreports.xpath.executer.factory",
+							"net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
+			JasperPrint print = JasperFillManager.fillReport(report, null,
+					new JRXmlDataSource(
+							convertStringXMl2DOM(xmlNota.toString()),
+							"/NFe/infNFe/det"));
+			reportByte = JasperExportManager.exportReportToPdf(print);
+		}
 		return reportByte;
-
 	}
 
 	private static Document convertStringXMl2DOM(String nota) throws ParserConfigurationException, SAXException, IOException {
