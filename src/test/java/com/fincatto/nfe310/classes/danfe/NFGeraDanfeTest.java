@@ -28,10 +28,8 @@ public class NFGeraDanfeTest {
 		try (FileOutputStream fos = new FileOutputStream(
 				System.getProperty("java.io.tmpdir") + "/" + "danfe.pdf")) {
 			fos.write(NFDanfeReport.imprimirDanfe(nota));
-
 		}
 		Assert.assertTrue(new File(System.getProperty("java.io.tmpdir") + "/"
 				+ "danfe.pdf").exists());
 	}
-
 }

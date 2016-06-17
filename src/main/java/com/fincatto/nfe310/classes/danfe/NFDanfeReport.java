@@ -29,9 +29,11 @@ public class NFDanfeReport {
 	private static final Logger logger = LoggerFactory
 			.getLogger(NFDanfeReport.class);
 
-	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException, ParserConfigurationException, SAXException, IOException {
+	public static byte[] imprimirDanfe(NFNota xmlNota) throws JRException,
+			ParserConfigurationException, SAXException, IOException {
 
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		ClassLoader classloader = Thread.currentThread()
+				.getContextClassLoader();
 		InputStream in = classloader.getResourceAsStream("danfe/danfeR3.jrxml");
 		JasperReport report = JasperCompileManager.compileReport(in);
 		logger.info("Compilando Relatório...");
@@ -52,14 +54,11 @@ public class NFDanfeReport {
 
 	private static Document convertStringXMl2DOM(String nota) throws ParserConfigurationException, SAXException, IOException {
 		Document doc = null;
-			DocumentBuilder db = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			InputSource is = new InputSource();
-			is.setCharacterStream(new StringReader(nota));
-			doc = db.parse(is);
-		
+		DocumentBuilder db = DocumentBuilderFactory.newInstance()
+				.newDocumentBuilder();
+		InputSource is = new InputSource();
+		is.setCharacterStream(new StringReader(nota));
+		doc = db.parse(is);
 		return doc;
-
 	}
-
 }
