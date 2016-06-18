@@ -43,6 +43,13 @@ public class NFGeraChave {
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getSerie(), 3, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getNumeroNota(), 9, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") +
-                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0");
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico() == null || this.nota.getInfo().getIdentificacao().getCodigoRandomico().isEmpty() ? this.gerarCodigoRandomico() : this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0");
     }
+    
+    public String gerarCodigoRandomico() {
+        Random gerador = new Random();
+        Integer numero = gerador.nextInt(100000000);
+        return numero.toString;
+    }
+
 }
