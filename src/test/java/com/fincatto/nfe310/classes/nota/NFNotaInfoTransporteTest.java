@@ -1,14 +1,13 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFModalidadeFrete;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFModalidadeFrete;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NFNotaInfoTransporteTest {
 
@@ -35,7 +34,7 @@ public class NFNotaInfoTransporteTest {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
         transporte.toString();
     }
@@ -45,7 +44,7 @@ public class NFNotaInfoTransporteTest {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
         transporte.toString();
     }
@@ -55,7 +54,7 @@ public class NFNotaInfoTransporteTest {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
         transporte.toString();
     }
@@ -66,7 +65,7 @@ public class NFNotaInfoTransporteTest {
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         transporte.toString();
     }
 
@@ -75,9 +74,9 @@ public class NFNotaInfoTransporteTest {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         transporte.toString();
     }
 
@@ -85,9 +84,9 @@ public class NFNotaInfoTransporteTest {
     public void devePermitirICMSTransporteNulo() {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         transporte.toString();
     }
 
@@ -96,8 +95,8 @@ public class NFNotaInfoTransporteTest {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
         transporte.setModalidadeFrete(NFModalidadeFrete.SEM_FRETE);
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
-        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         transporte.toString();
     }
 
@@ -105,9 +104,9 @@ public class NFNotaInfoTransporteTest {
     public void naoDevePermitirModalidadeFreteNulo() {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());
-        transporte.setReboques(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
+        transporte.setReboques(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoReboque()));
         transporte.setTransportador(FabricaDeObjetosFake.getNFNotaInfoTransportador());
-        transporte.setVolumes(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
+        transporte.setVolumes(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoVolume()));
         transporte.toString();
     }
 

@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class NFNotaInfoTest {
@@ -30,7 +30,7 @@ public class NFNotaInfoTest {
     public void deveObterVersaoComoFoiSetado() {
         final NFNotaInfo notaInfo = new NFNotaInfo();
         notaInfo.setVersao(new BigDecimal("3.1"));
-        Assert.assertEquals("3.10", notaInfo.getVersao().toString());
+        Assert.assertEquals("3.10", notaInfo.getVersao());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class NFNotaInfoTest {
     @Test
     public void deveObterPessoasAutorizadasDownloadNFeComoFoiSetado() {
         final NFNotaInfo notaInfo = new NFNotaInfo();
-        final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe = Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe());
+        final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe = Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe());
         notaInfo.setPessoasAutorizadasDownloadNFe(pessoasAutorizadasDownloadNFe);
         Assert.assertEquals(pessoasAutorizadasDownloadNFe, notaInfo.getPessoasAutorizadasDownloadNFe());
     }
@@ -84,7 +84,7 @@ public class NFNotaInfoTest {
     @Test
     public void deveObterItensComoFoiSetado() {
         final NFNotaInfo notaInfo = new NFNotaInfo();
-        final List<NFNotaInfoItem> itens = Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem());
+        final List<NFNotaInfoItem> itens = Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem());
         notaInfo.setItens(itens);
         Assert.assertEquals(itens, notaInfo.getItens());
     }
@@ -116,7 +116,7 @@ public class NFNotaInfoTest {
     @Test
     public void deveObterPagamentosComoFoiSetado() {
         final NFNotaInfo notaInfo = new NFNotaInfo();
-        final List<NFNotaInfoPagamento> pagamentos = Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento());
+        final List<NFNotaInfoPagamento> pagamentos = Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento());
         notaInfo.setPagamentos(pagamentos);
         Assert.assertEquals(pagamentos, notaInfo.getPagamentos());
     }
@@ -178,16 +178,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -201,17 +201,17 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -225,17 +225,17 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -249,17 +249,17 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -273,17 +273,17 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -297,17 +297,17 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -321,17 +321,17 @@ public class NFNotaInfoTest {
         info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -345,17 +345,17 @@ public class NFNotaInfoTest {
         info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -369,17 +369,17 @@ public class NFNotaInfoTest {
         info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -394,16 +394,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -418,16 +418,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -442,16 +442,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -466,7 +466,7 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
@@ -475,7 +475,7 @@ public class NFNotaInfoTest {
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -490,16 +490,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -514,16 +514,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -538,16 +538,16 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
 
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setVersao(new BigDecimal("9.99"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -562,15 +562,15 @@ public class NFNotaInfoTest {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 
@@ -588,12 +588,12 @@ public class NFNotaInfoTest {
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
-        info.setItens(Arrays.asList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
         info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
         info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
         info.setVersao(new BigDecimal("3.10"));
-        info.setPessoasAutorizadasDownloadNFe(Arrays.asList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
     }
 

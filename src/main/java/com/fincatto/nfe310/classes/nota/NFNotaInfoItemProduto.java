@@ -1,13 +1,5 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.convert.Convert;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe310.converters.StringNullConverter;
@@ -15,6 +7,13 @@ import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.convert.Convert;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProduto extends NFBase {
 
@@ -208,7 +207,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setNumeroPedidoItemCliente(final Integer numeroPedidoItemCliente) {
-        IntegerValidador.exatamente6(numeroPedidoItemCliente);
+        IntegerValidador.tamanho6(numeroPedidoItemCliente);
         this.numeroPedidoItemCliente = numeroPedidoItemCliente;
     }
 

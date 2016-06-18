@@ -1,13 +1,16 @@
 package com.fincatto.nfe310.classes.nota;
 
 public enum NFOperacaoConsumidorFinal {
-    NAO("0"),
-    SIM("1");
 
-    private String codigo;
+    NAO("0", "N\u00e3o"),
+    SIM("1", "Sim");
 
-    private NFOperacaoConsumidorFinal(final String codigo) {
+    private final String codigo;
+    private final String descricao;
+
+    NFOperacaoConsumidorFinal(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public static NFOperacaoConsumidorFinal valueOfCodigo(final String codigo) {
@@ -21,5 +24,10 @@ public enum NFOperacaoConsumidorFinal {
 
     public String getCodigo() {
         return this.codigo;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

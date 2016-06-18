@@ -245,8 +245,8 @@ public class NFNotaInfoItemImpostoTest {
         imposto.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPisNulo() {
+    @Test
+    public void devePermitirPisNulo() {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());
         imposto.setCofinsst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST());

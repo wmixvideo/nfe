@@ -1,12 +1,11 @@
 package com.fincatto.nfe310.classes.evento;
 
-import java.util.ArrayList;
-
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import java.util.ArrayList;
 
 public class NFEnviaEventoRetornoTest {
 
@@ -29,7 +28,7 @@ public class NFEnviaEventoRetornoTest {
     @Test
     public void deveObterEventoRetornoComoFoiSetado() {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
-        final ArrayList<NFEventoRetorno> eventosRetorno = new ArrayList<NFEventoRetorno>();
+        final ArrayList<NFEventoRetorno> eventosRetorno = new ArrayList<>();
         eventoRetorno.setEventoRetorno(eventosRetorno);
         Assert.assertEquals(eventosRetorno, eventoRetorno.getEventoRetorno());
     }

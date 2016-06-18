@@ -13,7 +13,14 @@ public class NFEventoCancelamentoDadosTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModeloInvalido() {
         final NFEventoCancelamentoDados dados = new NFEventoCancelamentoDados();
-        dados.setModeloDocumentoFiscal("65");
+        dados.setModeloDocumentoFiscal("75");
+    }
+    
+    @Test
+    public void devePermitirAmbosModelosDeNFe() {
+    	final NFEventoCancelamentoDados dados = new NFEventoCancelamentoDados();
+    	dados.setModeloDocumentoFiscal("55");
+    	dados.setModeloDocumentoFiscal("65");
     }
 
     @Test(expected = IllegalStateException.class)
