@@ -2,13 +2,15 @@ package com.fincatto.nfe310.classes;
 
 public enum NFModelo {
 
-    NFE("55"),
-    NFCE("65");
+    NFE("55", "NF-e"),
+    NFCE("65", "NFC-e");
 
     private final String codigo;
+    private final String descricao;
 
-    NFModelo(final String codigo) {
+    NFModelo(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -22,5 +24,10 @@ public enum NFModelo {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

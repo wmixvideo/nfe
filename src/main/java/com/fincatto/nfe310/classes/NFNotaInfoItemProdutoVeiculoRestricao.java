@@ -2,17 +2,19 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemProdutoVeiculoRestricao {
 
-    NAO_HA("0"),
-    ALIENACAO_FIDUCIARIA("1"),
-    ARRENDAMENTO_MERCANTIL("2"),
-    RESERVA_DOMINIO("3"),
-    PENHOR("4"),
-    OUTRAS("9");
+    NAO_HA("0", "N\u00e3o h\u00e1"),
+    ALIENACAO_FIDUCIARIA("1", "Aliena\u00e7\u00e3o fiduci\u00e1ria"),
+    ARRENDAMENTO_MERCANTIL("2", "Arrendamento mercantil"),
+    RESERVA_DOMINIO("3", "Reserva dom\u00ednio"),
+    PENHOR("4", "Penhor"),
+    OUTRAS("9", "Outras");
 
     private final String codigo;
+    private final String descricao;
 
-    NFNotaInfoItemProdutoVeiculoRestricao(final String codigo) {
+    NFNotaInfoItemProdutoVeiculoRestricao(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -26,5 +28,10 @@ public enum NFNotaInfoItemProdutoVeiculoRestricao {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

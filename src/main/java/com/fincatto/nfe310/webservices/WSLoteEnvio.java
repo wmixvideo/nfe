@@ -6,6 +6,7 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
@@ -37,12 +38,11 @@ class WSLoteEnvio {
         this.config = config;
     }
 
-    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        XMLValidador.validaLote(loteAssinadoXml);
-        return this.comunicaLote(loteAssinadoXml, NFModelo.NFE);
+    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        return this.comunicaLote(loteAssinadoXml, modelo);
     }
 
-    NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
@@ -51,12 +51,8 @@ class WSLoteEnvio {
             notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
         }
 
-        // valida o lote gerado (ainda nao assinado)
-        final String loteNaoAssinado = lote.toString();
-        XMLValidador.validaLote(loteNaoAssinado);
-
         // assina o lote
-        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(loteNaoAssinado);
+        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
         final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
 
         // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
@@ -86,10 +82,15 @@ class WSLoteEnvio {
         final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
         // comunica o lote
-        return this.comunicaLote(loteAssinado.toString(), modelo);
+        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), modelo);
+        return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+        XMLValidador.validaLote(loteAssinadoXml);
+
+        //envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();

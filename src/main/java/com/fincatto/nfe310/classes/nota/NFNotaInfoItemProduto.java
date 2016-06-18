@@ -207,7 +207,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setNumeroPedidoItemCliente(final Integer numeroPedidoItemCliente) {
-        IntegerValidador.exatamente6(numeroPedidoItemCliente);
+        IntegerValidador.tamanho6(numeroPedidoItemCliente);
         this.numeroPedidoItemCliente = numeroPedidoItemCliente;
     }
 
