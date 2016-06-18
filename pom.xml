@@ -114,10 +114,11 @@
 		
 		<!-- Jasperreports -->
 		<!-- http://mvnrepository.com/artifact/jasperreports/jasperreports -->
+		<!-- http://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
-    		<groupId>jasperreports</groupId>
+    		<groupId>net.sf.jasperreports</groupId>
     		<artifactId>jasperreports</artifactId>
-    		<version>3.5.3</version>
+    		<version>6.2.2</version>
     		<exclusions>
                     <exclusion>
                         <groupId>eclipse</groupId>
@@ -125,7 +126,7 @@
                     </exclusion>
             </exclusions>
 		</dependency>
-		
+
 		<!-- FIX Problema na compilação do jasper em java 8 - Adicionado dependencia como paliativo -->
 		<dependency>
         	<groupId>org.eclipse.jdt.core.compiler</groupId>
