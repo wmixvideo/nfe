@@ -20,7 +20,7 @@ public class NFImpostoDevolvido extends NFBase {
     }
 
     public void setPercentualDevolucao(final BigDecimal percentualDevolucao) {
-        this.percentualDevolucao = BigDecimalParser.tamanho5Com2CasasDecimais(percentualDevolucao);
+        this.percentualDevolucao = BigDecimalParser.tamanho5Com2CasasDecimais(percentualDevolucao, "Percentual Devolucao");
     }
 
     public NFInformacaoImpostoDevolvido getInformacaoIPIDevolvido() {

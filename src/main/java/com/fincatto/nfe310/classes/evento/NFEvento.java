@@ -21,7 +21,7 @@ public class NFEvento extends NFBase {
     private NFSignature assinatura;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public NFInfoEvento getInfoEvento() {

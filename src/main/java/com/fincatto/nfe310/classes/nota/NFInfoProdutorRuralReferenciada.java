@@ -63,17 +63,17 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal);
+        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setSerieDocumentoFiscal(final Integer serieDocumentoFiscal) {
-        IntegerValidador.tamanho3(serieDocumentoFiscal);
+        IntegerValidador.tamanho3(serieDocumentoFiscal, "Serie Documento Fiscal");
         this.serieDocumentoFiscal = serieDocumentoFiscal;
     }
 
     public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
-        IntegerValidador.tamanho6(numeroDocumentoFiscal);
+        IntegerValidador.tamanho6(numeroDocumentoFiscal, "Numero Documento Fiscal");
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 

@@ -56,12 +56,12 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial);
+        StringValidador.tamanho60(razaoSocial, "Razao Social Emitente");
         this.razaoSocial = razaoSocial;
     }
 
     public void setNomeFantasia(final String nomeFantasia) {
-        StringValidador.tamanho60(nomeFantasia);
+        StringValidador.tamanho60(nomeFantasia, "Nome Fantasia Emitente");
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -80,12 +80,12 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setInscricaoMunicipal(final String inscricaoMunicipal) {
-        StringValidador.tamanho15(inscricaoMunicipal);
+        StringValidador.tamanho15(inscricaoMunicipal, "IM Emitente");
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
 
     public void setClassificacaoNacionalAtividadesEconomicas(final String classificacaoNacionalAtividadesEconomicas) {
-        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas);
+        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas, "CNAE Emitente");
         this.classificacaoNacionalAtividadesEconomicas = classificacaoNacionalAtividadesEconomicas;
     }
 

@@ -41,17 +41,17 @@ public class NFInfoModelo1Por1AReferenciada extends NFBase {
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal);
+        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setSerie(final Integer serie) {
-        IntegerValidador.tamanho3(serie);
+        IntegerValidador.tamanho3(serie, "Serie");
         this.serie = serie;
     }
 
     public void setNumeroDocumentoFiscal(final String numeroDocumentoFiscal) {
-        StringValidador.tamanho9(numeroDocumentoFiscal);
+        StringValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 

@@ -21,12 +21,12 @@ public class NFNotaInfoExportacao extends NFBase {
     }
 
     public void setLocalEmbarqueProdutos(final String localEmbarqueProdutos) {
-        StringValidador.tamanho60(localEmbarqueProdutos);
+        StringValidador.tamanho60(localEmbarqueProdutos, "Local Embarque Produtos");
         this.localEmbarqueProdutos = localEmbarqueProdutos;
     }
 
     public void setLocalDespachoProdutos(final String localDespachoProdutos) {
-        StringValidador.tamanho60(localDespachoProdutos);
+        StringValidador.tamanho60(localDespachoProdutos, "Local Despacho Produtos");
         this.localDespachoProdutos = localDespachoProdutos;
     }
 

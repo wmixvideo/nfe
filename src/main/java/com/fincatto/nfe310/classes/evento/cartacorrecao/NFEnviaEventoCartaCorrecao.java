@@ -29,7 +29,7 @@ public class NFEnviaEventoCartaCorrecao extends NFBase {
     private List<NFEvento> evento;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public String getVersao() {
@@ -41,7 +41,7 @@ public class NFEnviaEventoCartaCorrecao extends NFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote);
+        StringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
@@ -50,7 +50,7 @@ public class NFEnviaEventoCartaCorrecao extends NFBase {
     }
 
     public void setEvento(final List<NFEvento> evento) {
-        ListValidador.tamanho20(evento);
+        ListValidador.tamanho20(evento, "Eventos");
         this.evento = evento;
     }
 }

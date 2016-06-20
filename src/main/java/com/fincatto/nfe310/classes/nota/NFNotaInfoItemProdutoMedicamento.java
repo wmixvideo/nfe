@@ -35,12 +35,12 @@ public class NFNotaInfoItemProdutoMedicamento extends NFBase {
     }
 
     public void setLote(final String lote) {
-        StringValidador.tamanho20(lote);
+        StringValidador.tamanho20(lote, "Lote Medicamento");
         this.lote = lote;
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.tamanho11Com3CasasDecimais(quantidade);
+        this.quantidade = BigDecimalParser.tamanho11Com3CasasDecimais(quantidade, "Quantidade Medicamento");
     }
 
     public void setDataFabricacao(final LocalDate dataFabricacao) {
@@ -52,7 +52,7 @@ public class NFNotaInfoItemProdutoMedicamento extends NFBase {
     }
 
     public void setPrecoMaximoConsumidor(final BigDecimal precoMaximoConsumidor) {
-        this.precoMaximoConsumidor = BigDecimalParser.tamanho15Com2CasasDecimais(precoMaximoConsumidor);
+        this.precoMaximoConsumidor = BigDecimalParser.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Preco Maximo Consumidor Medicamento");
     }
 
     public String getLote() {

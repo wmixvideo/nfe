@@ -60,19 +60,19 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     private NFNotaInfoItemIndicadorIncentivoFiscal indicadorIncentivoFiscal;
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC ISSQN Item");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(valorAliquota);
+        this.valorAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(valorAliquota, "Valor Aliquota ISSQN Item");
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor ISSQN Item");
     }
 
     public void setCodigoMunicipio(final Integer codigoMunicipio) {
-        IntegerValidador.exatamente7(codigoMunicipio);
+        IntegerValidador.exatamente7(codigoMunicipio, "Codigo Municipio ISSQN Item");
         this.codigoMunicipio = codigoMunicipio;
     }
 
@@ -82,17 +82,17 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     }
 
     public void setCodigoMunicipioIncidenciaImposto(final String codigoMunicipioIncidenciaImposto) {
-        StringValidador.exatamente7N(codigoMunicipioIncidenciaImposto);
+        StringValidador.exatamente7N(codigoMunicipioIncidenciaImposto, "Codigo Municipio Incidencia Imposto ISSQN Item");
         this.codigoMunicipioIncidenciaImposto = codigoMunicipioIncidenciaImposto;
     }
 
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.exatamente4N(codigoPais);
+        StringValidador.exatamente4N(codigoPais, "Codigo Pais ISSQN Item");
         this.codigoPais = codigoPais;
     }
 
     public void setCodigoServico(final String codigoServico) {
-        StringValidador.tamanho20(codigoServico);
+        StringValidador.tamanho20(codigoServico, "Codigo Servico ISSQN Item");
         this.codigoServico = codigoServico;
     }
 
@@ -105,28 +105,28 @@ public class NFNotaInfoItemImpostoISSQN extends NFBase {
     }
 
     public void setNumeroProcesso(final String numeroProcesso) {
-        StringValidador.tamanho30(numeroProcesso);
+        StringValidador.tamanho30(numeroProcesso, "Numero Processo ISSQN Item");
         this.numeroProcesso = numeroProcesso;
     }
 
     public void setValorDeducao(final BigDecimal valorDeducao) {
-        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao);
+        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao, "Valor Deducao ISSQN Item");
     }
 
     public void setValorDescontoCondicionado(final BigDecimal valorDescontoCondicionado) {
-        this.valorDescontoCondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorDescontoCondicionado);
+        this.valorDescontoCondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorDescontoCondicionado, "Valor Desconto Condicionado ISSQN Item");
     }
 
     public void setValorDescontoIncondicionado(final BigDecimal valorDescontoIncondicionado) {
-        this.valorDescontoIncondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorDescontoIncondicionado);
+        this.valorDescontoIncondicionado = BigDecimalParser.tamanho15Com2CasasDecimais(valorDescontoIncondicionado, "Valor Desconto Incondicionado ISSQN Item");
     }
 
     public void setValorOutro(final BigDecimal valorOutro) {
-        this.valorOutro = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutro);
+        this.valorOutro = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutro, "Valor Outro ISSQN Item");
     }
 
     public void setValorRetencaoISS(final BigDecimal valorRetencaoISS) {
-        this.valorRetencaoISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetencaoISS);
+        this.valorRetencaoISS = BigDecimalParser.tamanho15Com2CasasDecimais(valorRetencaoISS, "Valor Retencao ISS ISSQN Item");
     }
 
     public String getValorBaseCalculo() {
