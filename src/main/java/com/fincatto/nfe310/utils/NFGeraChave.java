@@ -1,6 +1,7 @@
 package com.fincatto.nfe310.utils;
 
 import com.fincatto.nfe310.classes.nota.NFNota;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
@@ -11,6 +12,11 @@ public class NFGeraChave {
 
     public NFGeraChave(final NFNota nota) {
         this.nota = nota;
+    }
+    
+    public String geraCodigoRandomico() {
+    	Random random = new Random(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().getMillis());
+    	return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8);
     }
 
     public String getChaveAcesso() {
@@ -38,7 +44,9 @@ public class NFGeraChave {
     }
 
     private String geraChaveAcessoSemDV() {
-        final String chaveRandomica = String.valueOf(new Random(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().getMillis()).nextInt(100000000));
+    	if (StringUtils.isBlank(this.nota.getInfo().getIdentificacao().getCodigoRandomico())) {
+    		throw new IllegalArgumentException("Codigo randomico deve estar presente para gerar a chave de acesso");
+    	}
         return StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getUf().getCodigoIbge(), 2, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().toString("yyMM"), 4, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getEmitente().getCnpj() == null ? this.nota.getInfo().getEmitente().getCpf() : this.nota.getInfo().getEmitente().getCnpj(), 14, "0") +
@@ -46,6 +54,6 @@ public class NFGeraChave {
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getSerie(), 3, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getNumeroNota(), 9, "0") +
                 StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") +
-                StringUtils.leftPad(StringUtils.defaultIfBlank(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), chaveRandomica), 8, "0");
+                StringUtils.leftPad(this.nota.getInfo().getIdentificacao().getCodigoRandomico(), 8, "0");
     }
 }

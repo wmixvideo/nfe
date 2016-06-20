@@ -47,6 +47,9 @@ class WSLoteEnvio {
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
             final NFNotaInfo notaInfo = nota.getInfo();
+            if (notaInfo.getIdentificacao().getCodigoRandomico() == null) {
+            	notaInfo.getIdentificacao().setCodigoRandomico(geraChave.geraCodigoRandomico());
+            }
             notaInfo.setIdentificador(geraChave.getChaveAcesso());
             notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
         }
