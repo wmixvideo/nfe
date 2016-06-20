@@ -1,10 +1,9 @@
 package com.fincatto.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.utils.NFGeraChave;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class NFGeraChaveTest {
 
@@ -40,6 +39,25 @@ public class NFGeraChaveTest {
 
 		info.setIdentificador(chaveAcesso);
 		Assert.assertEquals("NFe43101012345678901234559999999999991999999999", info.getIdentificador());
+		Assert.assertEquals(47, info.getIdentificador().length());
+	}
+
+	@Test
+	public void geraChaveDeAcessoRandomica() {
+		final NFNotaInfo info = FabricaDeObjetosFake.getNFNotaInfo();
+		info.getEmitente().setCpf(null);
+		info.getEmitente().setCnpj("12345678901234");
+		info.getIdentificacao().setCodigoRandomico(null);
+
+		final NFNota nota = new NFNota();
+		nota.setInfo(info);
+
+		final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
+		Assert.assertEquals("43101012345678901234559999999999991696178050", chaveAcesso);
+		Assert.assertEquals(44, chaveAcesso.length());
+
+		info.setIdentificador(chaveAcesso);
+		Assert.assertEquals("NFe43101012345678901234559999999999991696178050", info.getIdentificador());
 		Assert.assertEquals(47, info.getIdentificador().length());
 	}
 }
