@@ -20,7 +20,7 @@ public class NFNotaInfoCobranca extends NFBase {
     }
 
     public void setDuplicatas(final List<NFNotaInfoDuplicata> duplicatas) {
-        ListValidador.tamanho120(duplicatas);
+        ListValidador.tamanho120(duplicatas, "Duplicatas");
         this.duplicatas = duplicatas;
     }
 

@@ -29,7 +29,7 @@ public class NFNotaConsulta extends NFBase {
     private String chave;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
     public void setAmbiente(final NFAmbiente ambiente) {
@@ -41,7 +41,7 @@ public class NFNotaConsulta extends NFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave);
+        StringValidador.exatamente44N(chave, "Chave de Acesso Nota Consulta");
         this.chave = chave;
     }
 

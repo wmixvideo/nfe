@@ -96,40 +96,40 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     }
 
     public void setChassi(final String chassi) {
-        StringValidador.exatamente17(chassi);
+        StringValidador.exatamente17(chassi, "Chassi Veiculo");
         this.chassi = chassi;
     }
 
     public void setCodigoCor(final String codigoCor) {
-        StringValidador.exatamente4(codigoCor);
+        StringValidador.exatamente4(codigoCor, "Codigo Cor Veiculo");
         this.codigoCor = codigoCor;
     }
 
     public void setDescricaoCor(final String descricaoCor) {
-        StringValidador.tamanho40(descricaoCor);
+        StringValidador.tamanho40(descricaoCor, "Descricao Cor Veiculo");
         this.descricaoCor = descricaoCor;
     }
 
     public void setPotencia(final String potencia) {
-        StringValidador.exatamente4(potencia);
+        StringValidador.exatamente4(potencia, "Potencia Veiculo");
         this.potencia = potencia;
     }
 
     public void setCilindrada(final String cilindrada) {
-        StringValidador.exatamente4(cilindrada);
+        StringValidador.exatamente4(cilindrada, "Cilindrada Veiculo");
         this.cilindrada = cilindrada;
     }
 
     public void setPesoLiquido(final BigDecimal pesoLiquido) {
-        this.pesoLiquido = BigDecimalParser.tamanho9Com4CasasDecimais(pesoLiquido);
+        this.pesoLiquido = BigDecimalParser.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
     }
 
     public void setPesoBruto(final BigDecimal pesoBruto) {
-        this.pesoBruto = BigDecimalParser.tamanho9Com4CasasDecimais(pesoBruto);
+        this.pesoBruto = BigDecimalParser.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
     }
 
     public void setNumeroSerie(final String numeroSerie) {
-        StringValidador.exatamente9(numeroSerie);
+        StringValidador.exatamente9(numeroSerie, "Numero Serie Veiculo");
         this.numeroSerie = numeroSerie;
     }
 
@@ -138,31 +138,31 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     }
 
     public void setNumeroMotor(final String numeroMotor) {
-        StringValidador.exatamente21(numeroMotor);
+        StringValidador.exatamente21(numeroMotor, "Numero Motor Veiculo");
         this.numeroMotor = numeroMotor;
     }
 
     public void setCapacidadeMaximaTracao(final BigDecimal capacidadeMaximaTracao) {
-        this.capacidadeMaximaTracao = BigDecimalParser.tamanho9Com4CasasDecimais(capacidadeMaximaTracao);
+        this.capacidadeMaximaTracao = BigDecimalParser.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
     }
 
     public void setDistanciaEntreEixos(final String distanciaEntreEixos) {
-        StringValidador.exatamente4(distanciaEntreEixos);
+        StringValidador.exatamente4(distanciaEntreEixos, "Distancia Entre Eixos Veiculo");
         this.distanciaEntreEixos = distanciaEntreEixos;
     }
 
     public void setAnoModeloFabricacao(final int anoModeloFabricacao) {
-        IntegerValidador.exatamente4(anoModeloFabricacao);
+        IntegerValidador.exatamente4(anoModeloFabricacao, "Ano Modelo Fabricacao Veiculo");
         this.anoModeloFabricacao = anoModeloFabricacao;
     }
 
     public void setAnoFabricacao(final int anoFabricacao) {
-        IntegerValidador.exatamente4(anoFabricacao);
+        IntegerValidador.exatamente4(anoFabricacao, "Ano Fabricacao Veiculo");
         this.anoFabricacao = anoFabricacao;
     }
 
     public void setTipoPintura(final String tipoPintura) {
-        StringValidador.exatamente1(tipoPintura);
+        StringValidador.exatamente1(tipoPintura, "Tipo Pintura Veiculo");
         this.tipoPintura = tipoPintura;
     }
 
@@ -183,7 +183,7 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     }
 
     public void setCodigoMarcaModelo(final String codigoMarcaModelo) {
-        StringValidador.exatamente6N(codigoMarcaModelo);
+        StringValidador.exatamente6N(codigoMarcaModelo, "Codigo Marca Modelo Veiculo");
         this.codigoMarcaModelo = codigoMarcaModelo;
     }
 
@@ -192,7 +192,7 @@ public class NFNotaInfoItemProdutoVeiculo extends NFBase {
     }
 
     public void setLotacao(final int lotacao) {
-        IntegerValidador.tamanho3(lotacao);
+        IntegerValidador.tamanho3(lotacao, "Lotacao Veiculo");
         this.lotacao = lotacao;
     }
 

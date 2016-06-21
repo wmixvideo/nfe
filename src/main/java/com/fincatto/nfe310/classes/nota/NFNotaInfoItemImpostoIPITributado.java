@@ -48,32 +48,32 @@ public class NFNotaInfoItemImpostoIPITributado extends NFBase {
         if (this.quantidade != null || this.valorUnidadeTributavel != null) {
             throw new IllegalStateException("Nao pode setar valor base calculo se quantidade ou valor unidade tributavel esta setado");
         }
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC IPI Tributado");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
         if (this.quantidade != null || this.valorUnidadeTributavel != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota se quantidade ou valor unidade tributavel esta setado");
         }
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota IPI Tributado");
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Nao pode setar quantidade se valorBaseCalculo ou PercentualAliquota esta setado");
         }
-        this.quantidade = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidade);
+        this.quantidade = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidade, "Quantidade IPI Tributado");
     }
 
     public void setValorUnidadeTributavel(final BigDecimal valorUnitario) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Nao pode setar valor unidade tributavel se valorBaseCalculo ou PercentualAliquota esta setado");
         }
-        this.valorUnidadeTributavel = BigDecimalParser.tamanho15comAte4CasasDecimais(valorUnitario);
+        this.valorUnidadeTributavel = BigDecimalParser.tamanho15comAte4CasasDecimais(valorUnitario, "Valor Unitario IPI Tributado");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo IPI Tributado");
     }
 
     public NFNotaInfoSituacaoTributariaIPI getSituacaoTributaria() {

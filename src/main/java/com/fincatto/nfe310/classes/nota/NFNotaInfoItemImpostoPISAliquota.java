@@ -37,15 +37,15 @@ public class NFNotaInfoItemImpostoPISAliquota extends NFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC PIS Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota PIS Item");
     }
 
     public void setValorTributo(final BigDecimal valor) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor PIS Item");
     }
 
     public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {

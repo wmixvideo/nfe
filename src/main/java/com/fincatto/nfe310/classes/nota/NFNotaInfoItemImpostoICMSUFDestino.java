@@ -37,7 +37,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setValorBaseCalculoDestino(final BigDecimal valorBaseCalculoDestino) {
-        this.valorBaseCalculoDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculoDestino);
+        this.valorBaseCalculoDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculoDestino, "Valor BC Destino");
     }
 
     public String getPercentualRelativoFundoCombatePobrezaDestino() {
@@ -45,7 +45,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setPercentualRelativoFundoCombatePobrezaDestino(final BigDecimal percentualRelativoFundoCombatePobrezaDestino) {
-        this.percentualRelativoFundoCombatePobrezaDestino = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualRelativoFundoCombatePobrezaDestino);
+        this.percentualRelativoFundoCombatePobrezaDestino = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualRelativoFundoCombatePobrezaDestino, "Percentual Relativo Fundo Combate Pobreza Destino");
     }
 
     public String getPercentualAliquotaInternaDestino() {
@@ -53,7 +53,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setPercentualAliquotaInternaDestino(final BigDecimal percentualAliquotaInternaDestino) {
-        this.percentualAliquotaInternaDestino = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaInternaDestino);
+        this.percentualAliquotaInternaDestino = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaInternaDestino, "Percentual Aliquota Interna Destino");
     }
 
     public String getPercentualInterestadual() {
@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setPercentualInterestadual(final BigDecimal percentualInterestadual) {
-        this.percentualInterestadual = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualInterestadual);
+        this.percentualInterestadual = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualInterestadual, "Percentual Interestadual ICMS UF Destino");
     }
 
     public String getPercentualProvisorioPartilha() {
@@ -69,7 +69,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setPercentualProvisorioPartilha(final BigDecimal percentualProvisorioPartilha) {
-        this.percentualProvisorioPartilha = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualProvisorioPartilha);
+        this.percentualProvisorioPartilha = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualProvisorioPartilha, "Percentual Provisorio Partilha ICMS UF Destino");
     }
 
     public String getValorRelativoFundoCombatePobrezaDestino() {
@@ -77,7 +77,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setValorRelativoFundoCombatePobrezaDestino(final BigDecimal valorRelativoFundoCombatePobrezaDestino) {
-        this.valorRelativoFundoCombatePobrezaDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorRelativoFundoCombatePobrezaDestino);
+        this.valorRelativoFundoCombatePobrezaDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorRelativoFundoCombatePobrezaDestino, "Valor Relativo Fundo Combate Pobreza Destino");
     }
 
     public String getValorICMSInterestadualDestino() {
@@ -85,7 +85,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setValorICMSInterestadualDestino(final BigDecimal valorICMSInterestadualDestino) {
-        this.valorICMSInterestadualDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSInterestadualDestino);
+        this.valorICMSInterestadualDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSInterestadualDestino, "Valor ICMS Interestadual ICMS UF Destino");
     }
 
     public String getValorICMSInterestadualRemetente() {
@@ -93,6 +93,6 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends NFBase {
     }
 
     public void setValorICMSInterestadualRemetente(final BigDecimal valorICMSInterestadualRemetente) {
-        this.valorICMSInterestadualRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSInterestadualRemetente);
+        this.valorICMSInterestadualRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSInterestadualRemetente, "Valor ICMS Interestadual Remetente ICMS UF Destino");
     }
 }
