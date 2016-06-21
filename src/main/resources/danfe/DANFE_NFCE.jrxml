@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DANFE_NFCE" pageWidth="226" pageHeight="1000" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="f2ad8431-eb6a-4415-9a7a-8bcb81e49e5d">
 	<property name="ireport.zoom" value="3.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="949"/>
+	<property name="ireport.y" value="1008"/>
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -352,7 +352,7 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="166" splitType="Prevent">
+		<band height="197" splitType="Prevent">
 			<staticText>
 				<reportElement key="textField" positionType="Float" x="1" y="2" width="207" height="10" uuid="ce22f796-aa76-41c5-a134-7d3b27e23e8e"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
@@ -379,19 +379,19 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				<textFieldExpression><![CDATA[$P{INFORMACOES_COMPLEMENTARES}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line" positionType="Float" x="1" y="150" width="207" height="1" isRemoveLineWhenBlank="true" uuid="a0f557d0-284b-4c99-9ef0-a793b4fd37e8">
+				<reportElement key="line" positionType="Float" x="1" y="149" width="207" height="1" isRemoveLineWhenBlank="true" uuid="a0f557d0-284b-4c99-9ef0-a793b4fd37e8">
 					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="0.75" lineStyle="Dotted"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement key="line" positionType="Float" x="1" y="161" width="207" height="1" isRemoveLineWhenBlank="true" uuid="076dcc6d-a216-4e26-bbb1-fd188e407719">
+				<reportElement key="line" positionType="Float" x="1" y="162" width="207" height="1" isRemoveLineWhenBlank="true" uuid="076dcc6d-a216-4e26-bbb1-fd188e407719">
 					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="0.75" lineStyle="Dotted"/>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
@@ -403,6 +403,15 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				</textElement>
 				<text><![CDATA[Fim da DANF-e]]></text>
 			</staticText>
+			<textField>
+				<reportElement key="textField" positionType="Float" x="1" y="165" width="207" height="26" isRemoveLineWhenBlank="true" uuid="c5502d27-b3a6-4eff-bdbd-4e278f9a981a">
+					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".\n.\n."]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>
