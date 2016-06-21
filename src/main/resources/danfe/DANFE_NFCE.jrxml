@@ -372,14 +372,14 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				<textFieldExpression><![CDATA[$F{nota.info.informacoesAdicionais.informacoesComplementaresInteresseContribuinte}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="1" y="114" width="207" height="10" isRemoveLineWhenBlank="true" uuid="cf88b2f1-4a43-466b-9779-c2635dfac35f"/>
+				<reportElement positionType="Float" x="1" y="115" width="207" height="10" isRemoveLineWhenBlank="true" uuid="cf88b2f1-4a43-466b-9779-c2635dfac35f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{INFORMACOES_COMPLEMENTARES}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement key="line" positionType="Float" x="1" y="150" width="207" height="1" uuid="a0f557d0-284b-4c99-9ef0-a793b4fd37e8">
+				<reportElement key="line" positionType="Float" x="1" y="150" width="207" height="1" isRemoveLineWhenBlank="true" uuid="a0f557d0-284b-4c99-9ef0-a793b4fd37e8">
 					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
@@ -387,7 +387,7 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement key="line" positionType="Float" x="1" y="161" width="207" height="1" uuid="076dcc6d-a216-4e26-bbb1-fd188e407719">
+				<reportElement key="line" positionType="Float" x="1" y="161" width="207" height="1" isRemoveLineWhenBlank="true" uuid="076dcc6d-a216-4e26-bbb1-fd188e407719">
 					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
 				</reportElement>
 				<graphicElement>
@@ -395,7 +395,7 @@ $V{ACRESCIMOS}.signum() < 0 ? "DESCONTO:" : "ACRÉSCIMOS:"]]></textFieldExpressi
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement key="textField" positionType="Float" x="1" y="151" width="207" height="10" uuid="4158f4b1-7028-4466-a20b-8ecf2b2c9b4c">
+				<reportElement key="textField" positionType="Float" x="1" y="151" width="207" height="10" isRemoveLineWhenBlank="true" uuid="4158f4b1-7028-4466-a20b-8ecf2b2c9b4c">
 					<printWhenExpression><![CDATA[$P{MOSTRAR_MSG_FINALIZACAO}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
