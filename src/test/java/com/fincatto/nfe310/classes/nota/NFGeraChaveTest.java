@@ -7,58 +7,62 @@ import org.junit.Test;
 
 public class NFGeraChaveTest {
 
-	@Test
-	public void geraChaveDeAcessoComCPFConformeEsperado() {
-		final NFNotaInfo info = FabricaDeObjetosFake.getNFNotaInfo();
-		info.getEmitente().setCpf("12345678901");
+    @Test
+    public void geraChaveDeAcessoComCPFConformeEsperado() {
+        final NFNota nota = new NFNota();
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+        nota.getInfo().getEmitente().setCpf("12345678901");
+        nota.getInfo().getEmitente().setCnpj(null);
 
-		final NFNota nota = new NFNota();
-		nota.setInfo(info);
+        final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
+        Assert.assertEquals("43101000012345678901559999999999991999999993", chaveAcesso);
+        Assert.assertEquals(44, chaveAcesso.length());
 
-		final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
-		Assert.assertEquals("43101000012345678901559999999999991999999993", chaveAcesso);
-		Assert.assertEquals(44, chaveAcesso.length());
+        nota.getInfo().setIdentificador(chaveAcesso);
+        Assert.assertEquals("NFe43101000012345678901559999999999991999999993", nota.getInfo().getIdentificador());
+        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+    }
 
-		info.setIdentificador(chaveAcesso);
-		Assert.assertEquals("NFe43101000012345678901559999999999991999999993", info.getIdentificador());
-		Assert.assertEquals(47, info.getIdentificador().length());
-	}
+    @Test
+    public void geraChaveDeAcessoComCNPJConformeEsperado() {
+        final NFNota nota = new NFNota();
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+        nota.getInfo().getEmitente().setCpf(null);
+        nota.getInfo().getEmitente().setCnpj("12345678901234");
 
-	@Test
-	public void geraChaveDeAcessoComCNPJConformeEsperado() {
-		final NFNotaInfo info = FabricaDeObjetosFake.getNFNotaInfo();
-		info.getEmitente().setCpf(null);
-		info.getEmitente().setCnpj("12345678901234");
+        final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
+        Assert.assertEquals("43101012345678901234559999999999991999999999", chaveAcesso);
+        Assert.assertEquals(44, chaveAcesso.length());
 
-		final NFNota nota = new NFNota();
-		nota.setInfo(info);
+        nota.getInfo().setIdentificador(chaveAcesso);
+        Assert.assertEquals("NFe43101012345678901234559999999999991999999999", nota.getInfo().getIdentificador());
+        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+    }
 
-		final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
-		Assert.assertEquals("43101012345678901234559999999999991999999999", chaveAcesso);
-		Assert.assertEquals(44, chaveAcesso.length());
+    @Test
+    public void geraChaveDeAcessoRandomica() {
+        final NFNota nota = new NFNota();
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+        nota.getInfo().getEmitente().setCpf(null);
+        nota.getInfo().getEmitente().setCnpj("12345678901234");
 
-		info.setIdentificador(chaveAcesso);
-		Assert.assertEquals("NFe43101012345678901234559999999999991999999999", info.getIdentificador());
-		Assert.assertEquals(47, info.getIdentificador().length());
-	}
+        final NFGeraChave geraChave = new NFGeraChave(nota);
+        nota.getInfo().getIdentificacao().setCodigoRandomico(geraChave.geraCodigoRandomico());
 
-	@Test
-	public void geraChaveDeAcessoRandomica() {
-		final NFNotaInfo info = FabricaDeObjetosFake.getNFNotaInfo();
-		info.getEmitente().setCpf(null);
-		info.getEmitente().setCnpj("12345678901234");
+        final String chaveAcesso = geraChave.getChaveAcesso();
+        Assert.assertEquals("43101012345678901234559999999999991696178050", chaveAcesso);
+        Assert.assertEquals(44, chaveAcesso.length());
 
-		final NFNota nota = new NFNota();
-		nota.setInfo(info);
+        nota.getInfo().setIdentificador(chaveAcesso);
+        Assert.assertEquals("NFe43101012345678901234559999999999991696178050", nota.getInfo().getIdentificador());
+        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+    }
 
-		final NFGeraChave geraChave = new NFGeraChave(nota);
-		info.getIdentificacao().setCodigoRandomico(geraChave.geraCodigoRandomico());
-		final String chaveAcesso = geraChave.getChaveAcesso();
-		Assert.assertEquals("43101012345678901234559999999999991696178050", chaveAcesso);
-		Assert.assertEquals(44, chaveAcesso.length());
-
-		info.setIdentificador(chaveAcesso);
-		Assert.assertEquals("NFe43101012345678901234559999999999991696178050", info.getIdentificador());
-		Assert.assertEquals(47, info.getIdentificador().length());
-	}
+    @Test(expected = IllegalStateException.class)
+    public void geraChaveDeAcessoSemCodigoRandomicoRetornaExcecao() {
+        final NFNota nota = new NFNota();
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+        nota.getInfo().getIdentificacao().setCodigoRandomico(null);
+        new NFGeraChave(nota).getChaveAcesso();
+    }
 }
