@@ -69,7 +69,9 @@ public class WSFacade {
      * @param loteAssinadoXml lote assinado no formato XML
      * @return dados do lote retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
      */
+    @Deprecated
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, NFModelo.NFE);
     }
@@ -93,7 +95,9 @@ public class WSFacade {
      * @param numeroRecibo numero do recibo do processamento
      * @return dados da consulta de lote retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
      */
+    @Deprecated
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
         return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
     }
@@ -116,7 +120,9 @@ public class WSFacade {
      * @param uf UF que deseja consultar o status do sefaz responsavel
      * @return dados da consulta de status retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
      */
+    @Deprecated
     public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
     }
@@ -203,7 +209,9 @@ public class WSFacade {
      * @param eventoAssinadoXml evento assinado em XML
      * @return dados da inutilizacao da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
      */
+    @Deprecated
     public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
         return this.inutilizaNotaAssinada(eventoAssinadoXml, NFModelo.NFE);
     }
@@ -249,7 +257,9 @@ public class WSFacade {
      * @param justificativa justificativa da inutilizacao
      * @return dados da inutilizacao da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
      */
+    @Deprecated
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
         return this.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, NFModelo.NFE);
     }
