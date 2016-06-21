@@ -1,16 +1,13 @@
 package com.fincatto.nfe310.validadores;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-
-public class StringValidador {
-
-    private StringValidador() {
-    }
+public abstract class StringValidador {
 
     public static void mmaaaa(final String mmaaaa) {
         try {
