@@ -40,32 +40,32 @@ public class NFEndereco extends NFBase {
     private String telefone;
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro);
+        StringValidador.tamanho60(logradouro, "Logradouro");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero);
+        StringValidador.tamanho60(numero, "Numero do Endereco");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento);
+        StringValidador.tamanho60(complemento, "Complemento");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro);
+        StringValidador.tamanho2ate60(bairro, "Bairro");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio);
+        StringValidador.exatamente7(codigoMunicipio, "Codigo do Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setDescricaoMunicipio(final String descricaoMunicipio) {
-        StringValidador.tamanho60(descricaoMunicipio);
+        StringValidador.tamanho60(descricaoMunicipio, "Descricao do Municipio");
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
@@ -74,17 +74,17 @@ public class NFEndereco extends NFBase {
     }
 
     public void setCep(final String cep) {
-        StringValidador.exatamente8(cep);
+        StringValidador.exatamente8(cep, "CEP");
         this.cep = cep;
     }
 
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho2a4(codigoPais);
+        StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
         this.codigoPais = codigoPais;
     }
 
     public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho60(descricaoPais);
+        StringValidador.tamanho60(descricaoPais, "Descricao do pais");
         this.descricaoPais = descricaoPais;
     }
 

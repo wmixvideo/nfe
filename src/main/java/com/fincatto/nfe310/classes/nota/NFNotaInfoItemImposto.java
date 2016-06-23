@@ -84,7 +84,7 @@ public class NFNotaInfoItemImposto extends NFBase {
     }
 
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
-        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
+        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total Tributos");
     }
 
     public String getValorTotalTributos() {

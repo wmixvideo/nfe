@@ -27,7 +27,7 @@ public class NFNotaInfoPagamento extends NFBase {
     }
 
     public void setValorPagamento(final BigDecimal valorPagamento) {
-        this.valorPagamento = BigDecimalParser.tamanho15Com2CasasDecimais(valorPagamento);
+        this.valorPagamento = BigDecimalParser.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
     }
 
     public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {

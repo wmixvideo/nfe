@@ -10,7 +10,7 @@ public class NFNotaInfoLacre extends NFBase {
     private String numeroLacres;
 
     public void setNumeroLacre(final String numeroLacres) {
-        StringValidador.tamanho60(numeroLacres);
+        StringValidador.tamanho60(numeroLacres, "Numero Lacre");
         this.numeroLacres = numeroLacres;
     }
 

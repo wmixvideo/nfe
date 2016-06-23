@@ -51,7 +51,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     private List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> adicoes;
 
     public void setNumeroRegistro(final String numeroRegistro) {
-        StringValidador.tamanho12(numeroRegistro);
+        StringValidador.tamanho12(numeroRegistro, "Numero Registro Declaracao Importacao");
         this.numeroRegistro = numeroRegistro;
     }
 
@@ -60,7 +60,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setLocalDesembaraco(final String localDesembaraco) {
-        StringValidador.tamanho60(localDesembaraco);
+        StringValidador.tamanho60(localDesembaraco, "Desembaraco Declaracao Importacao");
         this.localDesembaraco = localDesembaraco;
     }
 
@@ -73,7 +73,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setCodigoExportador(final String codigoExportador) {
-        StringValidador.tamanho60(codigoExportador);
+        StringValidador.tamanho60(codigoExportador, "Codigo Exportador Declaracao Importacao");
         this.codigoExportador = codigoExportador;
     }
 
@@ -86,7 +86,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
     }
 
     public void setValorAFRMM(final BigDecimal valorAFRMM) {
-        this.valorAFRMM = BigDecimalParser.tamanho15Com2CasasDecimais(valorAFRMM);
+        this.valorAFRMM = BigDecimalParser.tamanho15Com2CasasDecimais(valorAFRMM, "Valor AFRMM Declaracao Importacao");
     }
 
     public void setFormaImportacaoIntermediacao(final NFFormaImportacaoIntermediacao formaImportacaoIntermediacao) {

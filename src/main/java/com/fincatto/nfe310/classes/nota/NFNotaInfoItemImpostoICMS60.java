@@ -31,11 +31,11 @@ public class NFNotaInfoItemImpostoICMS60 extends NFBase {
     }
 
     public void setValorBCICMSSTRetido(final BigDecimal valorBCICMSSTRetido) {
-        this.valorBCICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetido);
+        this.valorBCICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetido, "Valor BC ICMS ST Retido ICMS60 Item");
     }
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
-        this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido);
+        this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
     }
 
     public NFOrigem getOrigem() {

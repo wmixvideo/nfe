@@ -53,19 +53,19 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC);
+        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC, "Percentual Reducao BC ICMS20 Item");
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
-        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS);
+        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS, "Valor BC ICMS ICMS20 Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota, "Aliquota ICMS20 Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo ICMS20 Item");
     }
 
     public void setDesoneracao(final NFNotaMotivoDesoneracaoICMS outros) {
@@ -73,7 +73,7 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     }
 
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
-        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS20 Item");
     }
 
     public NFOrigem getOrigem() {

@@ -8,7 +8,6 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.nota.NFNota;
-import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.nfe310.parsers.NotaParser;
 import com.fincatto.nfe310.persister.NFPersister;
@@ -22,6 +21,7 @@ import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,9 +46,9 @@ class WSLoteEnvio {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
-            final NFNotaInfo notaInfo = nota.getInfo();
-            notaInfo.setIdentificador(geraChave.getChaveAcesso());
-            notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
+            nota.getInfo().getIdentificacao().setCodigoRandomico(StringUtils.defaultIfBlank(nota.getInfo().getIdentificacao().getCodigoRandomico(), geraChave.geraCodigoRandomico()));
+            nota.getInfo().getIdentificacao().setDigitoVerificador(geraChave.getDV());
+            nota.getInfo().setIdentificador(geraChave.getChaveAcesso());
         }
 
         // assina o lote

@@ -25,6 +25,12 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.Collections;
 
+/**
+ * Classe responsável por conter os métodos de cancelamento de Notas Fiscais assinadas e não Assinadas.
+ * @see NFEnviaEventoRetorno
+ * @see NFEnviaEventoCancelamento
+ *
+ */
 class WSCancelamento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
@@ -36,11 +42,27 @@ class WSCancelamento {
         this.config = config;
     }
 
+    /**
+     * Efetua o cancelamento da nota assinada junto a sefaz.
+     * 
+     * @param chaveAcesso
+     * @param eventoAssinadoXml
+     * @return Status de cancelamento
+     * @throws Exception - caso não consiga efetuar o cancelamento com sucesso
+     */
     NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
         return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
+    /**
+     * Efetua o cancelamento da nota ainda não assinada junto a sefaz
+     * @param chaveAcesso
+     * @param numeroProtocolo
+     * @param motivo
+     * @return Status de cancelamento
+     * @throws Exception
+     */
     NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);

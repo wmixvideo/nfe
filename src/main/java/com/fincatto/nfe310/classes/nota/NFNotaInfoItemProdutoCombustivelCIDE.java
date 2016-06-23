@@ -25,15 +25,15 @@ public class NFNotaInfoItemProdutoCombustivelCIDE extends NFBase {
     }
 
     public void setQuantidadeBCCIDE(final BigDecimal quantidade) {
-        this.quantidadeBCCIDE = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade);
+        this.quantidadeBCCIDE = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel CIDE");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota Combustivel CIDE");
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor Combustivel CIDE");
     }
 
     public String getQuantidadeBCCIDE() {

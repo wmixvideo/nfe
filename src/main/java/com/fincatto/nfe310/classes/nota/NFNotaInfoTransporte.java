@@ -52,22 +52,22 @@ public class NFNotaInfoTransporte extends NFBase {
     }
 
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
-        ListValidador.tamanho5(reboques);
+        ListValidador.tamanho5(reboques, "Reboques");
         this.reboques = reboques;
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
-        ListValidador.tamanho5000(volumes);
+        ListValidador.tamanho5000(volumes, "Volumes");
         this.volumes = volumes;
     }
 
     public void setVagao(final String vagao) {
-        StringValidador.tamanho20(vagao);
+        StringValidador.tamanho20(vagao, "Vagao");
         this.vagao = vagao;
     }
 
     public void setBalsa(final String balsa) {
-        StringValidador.tamanho20(balsa);
+        StringValidador.tamanho20(balsa, "Balsa");
         this.balsa = balsa;
     }
 

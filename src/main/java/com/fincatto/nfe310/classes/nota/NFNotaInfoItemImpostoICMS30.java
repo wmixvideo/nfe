@@ -55,23 +55,23 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     }
 
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST);
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual Margem Valor Adicionado ICMS ST ICMS30 Item");
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST);
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST, "Percentual Reducao BC ICMS ST ICMS30 Item");
     }
 
     public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
-        this.valorBCICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSST);
+        this.valorBCICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSST, "Valor BC ICMS ST ICMS30 Item");
     }
 
     public void setPercentualAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST);
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST, "Aliquota Imposto ICMS ST ICMS30 Item");
     }
 
     public void setValorImpostoICMSST(final BigDecimal valorImpostoICMSST) {
-        this.valorImpostoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoICMSST);
+        this.valorImpostoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoICMSST, "Valor Imposto ICMS ST ICMS30 Item");
     }
 
     public void setDesoneracao(final NFNotaMotivoDesoneracaoICMS nfNotaMotivoDesoneracaoICMS) {
@@ -79,7 +79,7 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
     }
 
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
-        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao");
     }
 
     public NFOrigem getOrigem() {

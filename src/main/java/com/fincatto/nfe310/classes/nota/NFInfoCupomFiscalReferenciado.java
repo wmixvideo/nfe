@@ -16,17 +16,17 @@ public class NFInfoCupomFiscalReferenciado extends NFBase {
     private String numeroContadorOrdemOperacao;
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal);
+        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setNumeroOrdemSequencialECF(final String numeroOrdemSequencialECF) {
-        StringValidador.exatamente3(numeroOrdemSequencialECF);
+        StringValidador.exatamente3(numeroOrdemSequencialECF, "Numero Ordem Sequencial ECF");
         this.numeroOrdemSequencialECF = numeroOrdemSequencialECF;
     }
 
     public void setNumeroContadorOrdemOperacao(final String numeroContadorOrdemOperacao) {
-        StringValidador.exatamente6(numeroContadorOrdemOperacao);
+        StringValidador.exatamente6(numeroContadorOrdemOperacao, "Numero Contador Ordem Operacao");
         this.numeroContadorOrdemOperacao = numeroContadorOrdemOperacao;
     }
 

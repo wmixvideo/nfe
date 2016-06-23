@@ -15,7 +15,7 @@ public class NFNotaInfoSuplementar extends NFBase {
 	private String qrCode;
 
 	public void setQrCode(final String qrCode) {
-		StringValidador.tamanho100a600(qrCode);
+		StringValidador.tamanho100a600(qrCode, "QR Code");
 		this.qrCode = qrCode;
 	}
 

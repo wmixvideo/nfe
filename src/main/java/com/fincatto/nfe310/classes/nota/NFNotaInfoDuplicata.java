@@ -20,7 +20,7 @@ public class NFNotaInfoDuplicata extends NFBase {
     private String valorDuplicata;
 
     public void setNumeroDuplicata(final String numeroDuplicata) {
-        StringValidador.tamanho60(numeroDuplicata);
+        StringValidador.tamanho60(numeroDuplicata, "Numero Duplicata");
         this.numeroDuplicata = numeroDuplicata;
     }
 
@@ -29,7 +29,7 @@ public class NFNotaInfoDuplicata extends NFBase {
     }
 
     public void setValorDuplicata(final BigDecimal valorDuplicata) {
-        this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata);
+        this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
     }
 
     public String getValorDuplicata() {

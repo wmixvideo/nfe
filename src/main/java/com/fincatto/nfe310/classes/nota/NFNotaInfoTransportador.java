@@ -49,7 +49,7 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial);
+        StringValidador.tamanho60(razaoSocial, "Razao Social Transportador");
         this.razaoSocial = razaoSocial;
     }
 
@@ -59,7 +59,7 @@ public class NFNotaInfoTransportador extends NFBase {
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
-        StringValidador.tamanho60(nomeMunicipio);
+        StringValidador.tamanho60(nomeMunicipio, "Nome Municipio Transportador");
         this.nomeMunicipio = nomeMunicipio;
     }
 
