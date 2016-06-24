@@ -29,6 +29,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <axis2.version>1.6.4</axis2.version>
         <joda.version>2.9.3</joda.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -51,7 +52,6 @@
     </developers>
 
     <dependencies>
-
         <!-- Simple Xml Framework -->
         <dependency>
             <groupId>org.simpleframework</groupId>
@@ -95,11 +95,20 @@
             <version>${axis2.version}</version>
         </dependency>
 
+        <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Unit testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
