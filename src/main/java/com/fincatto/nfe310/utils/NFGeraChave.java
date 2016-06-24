@@ -15,7 +15,7 @@ public class NFGeraChave {
     
     public String geraCodigoRandomico() {
         final Random random = new Random(this.nota.getInfo().getIdentificacao().getDataHoraEmissao().getMillis());
-        return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8);
+        return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8, "0");
     }
 
     public String getChaveAcesso() {
