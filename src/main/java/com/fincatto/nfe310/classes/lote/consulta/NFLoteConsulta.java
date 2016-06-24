@@ -29,7 +29,7 @@ public class NFLoteConsulta extends NFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
     public NFAmbiente getAmbiente() {

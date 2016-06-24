@@ -33,23 +33,23 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends NFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo COFINS OA Item");
     }
 
     public void setPercentualCOFINS(final BigDecimal percentualCOFINS) {
-        this.percentualCOFINS = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualCOFINS);
+        this.percentualCOFINS = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualCOFINS, "Percentual COFINS OA Item");
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
+        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida COFINS OA Item");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS OA Item");
     }
 
     public void setValorCOFINS(final BigDecimal valorTributo) {
-        this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+        this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS OA Item");
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {

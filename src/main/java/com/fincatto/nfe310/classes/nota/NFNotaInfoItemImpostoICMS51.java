@@ -54,31 +54,31 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC);
+        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC, "Percentual Reducao BC ICMS51 Item");
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
-        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS);
+        this.valorBCICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMS, "Valor BC ICMS ICMS51 Item");
     }
 
     public void setPercentualICMS(final BigDecimal percentualICMS) {
-        this.percentualICMS = BigDecimalParser.tamanho5Com2CasasDecimais(percentualICMS);
+        this.percentualICMS = BigDecimalParser.tamanho5Com2CasasDecimais(percentualICMS, "Percentual ICMS ICMS51 Item");
     }
 
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS);
+        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS, "Valor ICMS ICMS51 Item");
     }
 
     public void setPercentualDiferimento(final BigDecimal percentualDiferimento) {
-        this.percentualDiferimento = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualDiferimento);
+        this.percentualDiferimento = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualDiferimento, "Percentual Diferimento ICMS51 Item");
     }
 
     public void setValorICMSDiferimento(final BigDecimal valorICMSDiferimento) {
-        this.valorICMSDiferimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDiferimento);
+        this.valorICMSDiferimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDiferimento, "Valor ICMS Diferimento ICMS51 Item");
     }
 
     public void setValorICMSOperacao(final BigDecimal valorICMSOperacao) {
-        this.valorICMSOperacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOperacao);
+        this.valorICMSOperacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOperacao, "Valor ICMS Operacao ICMS51 Item");
     }
 
     public NFOrigem getOrigem() {

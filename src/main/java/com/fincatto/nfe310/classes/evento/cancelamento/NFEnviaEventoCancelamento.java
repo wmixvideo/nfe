@@ -28,7 +28,7 @@ public class NFEnviaEventoCancelamento extends NFBase {
     private List<NFEventoCancelamento> evento;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public String getVersao() {
@@ -40,7 +40,7 @@ public class NFEnviaEventoCancelamento extends NFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote);
+        StringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
@@ -49,7 +49,7 @@ public class NFEnviaEventoCancelamento extends NFBase {
     }
 
     public void setEvento(final List<NFEventoCancelamento> evento) {
-        ListValidador.tamanho20(evento);
+        ListValidador.tamanho20(evento, "Evento de Cancelamento");
         this.evento = evento;
     }
 }

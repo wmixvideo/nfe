@@ -17,17 +17,17 @@ public class NFNotaInfoCompra extends NFBase {
     private String contrato;
 
     public void setNotaDeEmpenho(final String notaDeEmpenho) {
-        StringValidador.tamanho22(notaDeEmpenho);
+        StringValidador.tamanho22(notaDeEmpenho, "Nota de Empenho");
         this.notaDeEmpenho = notaDeEmpenho;
     }
 
     public void setPedido(final String pedido) {
-        StringValidador.tamanho60(pedido);
+        StringValidador.tamanho60(pedido, "Pedido");
         this.pedido = pedido;
     }
 
     public void setContrato(final String contrato) {
-        StringValidador.tamanho60(contrato);
+        StringValidador.tamanho60(contrato, "Contrato");
         this.contrato = contrato;
     }
 

@@ -1,11 +1,10 @@
 package com.fincatto.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFEndereco;
 import com.fincatto.nfe310.classes.NFRegimeTributario;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoEmitente extends NFBase {
 
@@ -40,7 +39,7 @@ public class NFNotaInfoEmitente extends NFBase {
     private NFRegimeTributario regimeTributario;
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
+        if (this.cpf != null && cnpj != null) {
             throw new IllegalStateException("Nao pode setar CNPJ caso CPF esteja setado");
         }
         StringValidador.cnpj(cnpj);
@@ -48,7 +47,7 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
+        if (this.cnpj != null && cpf != null) {
             throw new IllegalStateException("Nao pode setar CPF caso CNPJ esteja setado");
         }
         StringValidador.cpf(cpf);
@@ -56,12 +55,12 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial);
+        StringValidador.tamanho60(razaoSocial, "Razao Social Emitente");
         this.razaoSocial = razaoSocial;
     }
 
     public void setNomeFantasia(final String nomeFantasia) {
-        StringValidador.tamanho60(nomeFantasia);
+        StringValidador.tamanho60(nomeFantasia, "Nome Fantasia Emitente");
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -80,12 +79,12 @@ public class NFNotaInfoEmitente extends NFBase {
     }
 
     public void setInscricaoMunicipal(final String inscricaoMunicipal) {
-        StringValidador.tamanho15(inscricaoMunicipal);
+        StringValidador.tamanho15(inscricaoMunicipal, "IM Emitente");
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
 
     public void setClassificacaoNacionalAtividadesEconomicas(final String classificacaoNacionalAtividadesEconomicas) {
-        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas);
+        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas, "CNAE Emitente");
         this.classificacaoNacionalAtividadesEconomicas = classificacaoNacionalAtividadesEconomicas;
     }
 

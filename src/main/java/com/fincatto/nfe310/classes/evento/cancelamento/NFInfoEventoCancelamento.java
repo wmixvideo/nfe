@@ -53,7 +53,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento);
+        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getId() {
@@ -61,7 +61,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setId(final String id) {
-        StringValidador.exatamente54(id);
+        StringValidador.exatamente54(id, "Info Evento Cancelamento ID");
         this.id = id;
     }
 
@@ -102,7 +102,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave);
+        StringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
         this.chave = chave;
     }
 
@@ -119,7 +119,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setCodigoEvento(final String codigoEvento) {
-        StringValidador.exatamente6N(codigoEvento);
+        StringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
         this.codigoEvento = codigoEvento;
     }
 
@@ -128,7 +128,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setNumeroSequencialEvento(final int numeroSequencialEvento) {
-        IntegerValidador.tamanho1a2(numeroSequencialEvento);
+        IntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 

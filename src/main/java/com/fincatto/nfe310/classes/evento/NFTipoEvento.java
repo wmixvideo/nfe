@@ -25,11 +25,11 @@ public class NFTipoEvento extends NFBase {
     private String condicaoUso;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        StringValidador.tamanho5a60(descricaoEvento);
+        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 

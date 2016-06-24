@@ -20,7 +20,7 @@ public class NFEventoCancelamento extends NFBase {
     private String assinatura;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public NFInfoEventoCancelamento getInfoEvento() {

@@ -25,17 +25,17 @@ public class NFNotaInfoItemProdutoArmamento extends NFBase {
     }
 
     public void setNumeroSerieArma(final String numeroSerieArma) {
-        StringValidador.tamanho15(numeroSerieArma);
+        StringValidador.tamanho15(numeroSerieArma, "Numero Serie Arma Armamento");
         this.numeroSerieArma = numeroSerieArma;
     }
 
     public void setNumeroSerieCano(final String numeroSerieCano) {
-        StringValidador.tamanho15(numeroSerieCano);
+        StringValidador.tamanho15(numeroSerieCano, "Numero Serie Cano Armamento");
         this.numeroSerieCano = numeroSerieCano;
     }
 
     public void setDescricao(final String descricao) {
-        StringValidador.tamanho256(descricao);
+        StringValidador.tamanho256(descricao, "Descricao Armamento");
         this.descricao = descricao;
     }
 

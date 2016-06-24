@@ -38,15 +38,15 @@ public class NFNotaInfoItemImpostoPISQuantidade extends NFBase {
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida);
+        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida PIS Qtde Item");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota);
+        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota PIS Qtde Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo PIS Qtde Item");
     }
 
     public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {

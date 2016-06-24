@@ -31,15 +31,15 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends NFBase {
     }
 
     public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
-        this.valorBaseCalulo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalulo);
+        this.valorBaseCalulo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS Item");
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor);
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor COFINS Item");
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {

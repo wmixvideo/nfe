@@ -16,7 +16,7 @@ public class NFInformacaoImpostoDevolvido extends NFBase {
     }
 
     public void setValorIPIDevolvido(final BigDecimal valorIPIDevolvido) {
-        this.valorIPIDevolvido = BigDecimalParser.tamanho15Com2CasasDecimais(valorIPIDevolvido);
+        this.valorIPIDevolvido = BigDecimalParser.tamanho15Com2CasasDecimais(valorIPIDevolvido, "Valor IPI Devolvido");
     }
 
 }

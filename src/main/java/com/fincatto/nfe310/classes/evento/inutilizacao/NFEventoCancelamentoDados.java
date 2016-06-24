@@ -85,7 +85,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setAno(final Integer ano) {
-        IntegerValidador.exatamente2(ano);
+        IntegerValidador.exatamente2(ano, "Ano");
         this.ano = ano;
     }
 
@@ -112,7 +112,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setSerie(final String serie) {
-        StringValidador.tamanho3N(serie);
+        StringValidador.tamanho3N(serie, "Serie");
         this.serie = serie;
     }
 
@@ -121,7 +121,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setNumeroNFInicial(final String numeroNFInicial) {
-        StringValidador.tamanho9N(numeroNFInicial);
+        StringValidador.tamanho9N(numeroNFInicial, "Numero NF Inicial");
         this.numeroNFInicial = numeroNFInicial;
     }
 
@@ -130,7 +130,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setNumeroNFFinal(final String numeroNFFinal) {
-        StringValidador.tamanho9N(numeroNFFinal);
+        StringValidador.tamanho9N(numeroNFFinal, "Numero NF Final");
         this.numeroNFFinal = numeroNFFinal;
     }
 
@@ -139,7 +139,7 @@ public class NFEventoCancelamentoDados extends NFBase {
     }
 
     public void setJustificativa(final String justificativa) {
-        StringValidador.tamanho15a255(justificativa);
+        StringValidador.tamanho15a255(justificativa, "Justificativa");
         this.justificativa = justificativa;
     }
 }
