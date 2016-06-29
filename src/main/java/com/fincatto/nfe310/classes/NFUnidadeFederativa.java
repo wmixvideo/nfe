@@ -12,7 +12,7 @@ public enum NFUnidadeFederativa {
     BA("BA", "Bahia", "29", "http://hnfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_chave_acesso.aspx", "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_chave_acesso.aspx"),
     CE("CE", "Cear\u00E1", "23"),
     DF("DF", "Distrito Federal", "53", "http://dec.fazenda.df.gov.br/ConsultarNFCe.aspx", "http://dec.fazenda.df.gov.br/ConsultarNFCe.aspx"),
-    GO("GO", "Goi\u00E1s", "52"),
+    GO("GO", "Goi\u00E1s", "52", "http://homolog.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf", "http://nfe.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf"),
     ES("ES", "Esp\u00EDrito Santo", "32"),
     MA("MA", "Maranh\u00E3o", "21"),
     MT("MT", "Mato Grosso", "51", "http://www.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
