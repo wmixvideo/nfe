@@ -115,28 +115,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Jasperreports -->
-        <!-- http://mvnrepository.com/artifact/jasperreports/jasperreports -->
-        <!-- http://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.2.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>eclipse</groupId>
-                    <artifactId>jdtcore</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- FIX Problema na compilação do jasper em java 8 - Adicionado dependencia como paliativo -->
-        <dependency>
-            <groupId>org.eclipse.jdt.core.compiler</groupId>
-            <artifactId>ecj</artifactId>
-            <version>4.4</version>
-        </dependency>
     </dependencies>
 
     <distributionManagement>
