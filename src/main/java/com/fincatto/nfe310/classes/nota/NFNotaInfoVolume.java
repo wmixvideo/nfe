@@ -39,30 +39,30 @@ public class NFNotaInfoVolume extends NFBase {
     }
 
     public void setNumeracaoVolumesTransportados(final String numeracaoVolumesTransportados) {
-        StringValidador.tamanho60(numeracaoVolumesTransportados);
+        StringValidador.tamanho60(numeracaoVolumesTransportados, "Numeracao Volumes Transportados");
         this.numeracaoVolumesTransportados = numeracaoVolumesTransportados;
     }
 
     public void setEspecieVolumesTransportados(final String especieVolumesTransportados) {
-        StringValidador.tamanho60(especieVolumesTransportados);
+        StringValidador.tamanho60(especieVolumesTransportados, "Especie Volumes Transportados");
         this.especieVolumesTransportados = especieVolumesTransportados;
     }
 
     public void setMarca(final String marca) {
-        StringValidador.tamanho60(marca);
+        StringValidador.tamanho60(marca, "Marca Volume");
         this.marca = marca;
     }
 
     public void setPesoLiquido(final BigDecimal pesoLiquido) {
-        this.pesoLiquido = BigDecimalParser.tamanho15Com3CasasDecimais(pesoLiquido);
+        this.pesoLiquido = BigDecimalParser.tamanho15Com3CasasDecimais(pesoLiquido, "Peso Liquido Volume");
     }
 
     public void setPesoBruto(final BigDecimal pesoBruto) {
-        this.pesoBruto = BigDecimalParser.tamanho15Com3CasasDecimais(pesoBruto);
+        this.pesoBruto = BigDecimalParser.tamanho15Com3CasasDecimais(pesoBruto, "Peso Bruto Volume");
     }
 
     public void setLacres(final List<NFNotaInfoLacre> lacres) {
-        ListValidador.tamanho5000(lacres);
+        ListValidador.tamanho5000(lacres, "Lacres");
         this.lacres = lacres;
     }
 

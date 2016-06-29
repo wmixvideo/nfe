@@ -38,17 +38,17 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     }
 
     public void setCodigoProdutoANP(final String codigoProdutoANP) {
-        StringValidador.exatamente9(codigoProdutoANP);
+        StringValidador.exatamente9(codigoProdutoANP, "Codigo Produto ANP Combustivel");
         this.codigoProdutoANP = codigoProdutoANP;
     }
 
-    public void setCodigoAutorizacaoCODIF(final String codigoAutorizacaoCOFIF) {
-        StringValidador.tamanho21(codigoAutorizacaoCOFIF);
-        this.codigoAutorizacaoCOFIF = codigoAutorizacaoCOFIF;
+    public void setCodigoAutorizacaoCODIF(final String codigoAutorizacaoCODIF) {
+        StringValidador.tamanho21(codigoAutorizacaoCODIF, "Codigo Autorizacao CODIF Combustivel");
+        this.codigoAutorizacaoCOFIF = codigoAutorizacaoCODIF;
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade);
+        this.quantidade = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel");
     }
 
     public void setUf(final NFUnidadeFederativa uf) {
@@ -60,7 +60,7 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
     }
 
     public void setPercentualGasNatural(final BigDecimal percentualGasNatural) {
-        this.percentualGasNatural = BigDecimalParser.tamanho5Com2CasasDecimais(percentualGasNatural);
+        this.percentualGasNatural = BigDecimalParser.tamanho5Com2CasasDecimais(percentualGasNatural, "Percentual Gas Natural Combustivel");
     }
 
     public String getCodigoProdutoANP() {

@@ -22,17 +22,17 @@ public class NFNotaInfoItemExportacaoIndireta extends NFBase {
     private String quantidadeItemEfetivamenteExportado;
 
     public void setChaveAcessoNFe(final String chaveAcessoNFe) {
-        StringValidador.exatamente44N(chaveAcessoNFe);
+        StringValidador.exatamente44N(chaveAcessoNFe, "Chave de Acesso NFe");
         this.chaveAcessoNFe = chaveAcessoNFe;
     }
 
     public void setNumeroRegistroExportacao(final BigInteger numeroRegistroExportacao) {
-        BigIntegerValidador.tamanho12(numeroRegistroExportacao);
+        BigIntegerValidador.tamanho12(numeroRegistroExportacao, "Numero Registro Exportacao");
         this.numeroRegistroExportacao = numeroRegistroExportacao;
     }
 
     public void setQuantidadeItemEfetivamenteExportado(final BigDecimal quantidadeItemEfetivamenteExportado) {
-        this.quantidadeItemEfetivamenteExportado = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeItemEfetivamenteExportado);
+        this.quantidadeItemEfetivamenteExportado = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeItemEfetivamenteExportado, "Quantidade Item Evetivamente Exportado");
     }
 
     public String getChaveAcessoNFe() {

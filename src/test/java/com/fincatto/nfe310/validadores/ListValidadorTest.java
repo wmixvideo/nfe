@@ -15,7 +15,7 @@ public class ListValidadorTest {
         for (int i = 0; i < 11; i++) {
             lista.add(new Object());
         }
-        ListValidador.tamanho10(lista);
+        ListValidador.tamanho10(lista, "");
     }
 
     @Test
@@ -24,7 +24,7 @@ public class ListValidadorTest {
         for (int i = 0; i < 10; i++) {
             lista.add(new Object());
         }
-        ListValidador.tamanho10(lista);
+        ListValidador.tamanho10(lista, "");
     }
 
     @Test(expected = IllegalStateException.class)
@@ -33,7 +33,7 @@ public class ListValidadorTest {
         for (int i = 0; i < 121; i++) {
             lista.add(new Object());
         }
-        ListValidador.tamanho120(lista);
+        ListValidador.tamanho120(lista, "");
     }
 
     @Test
@@ -42,30 +42,30 @@ public class ListValidadorTest {
         for (int i = 0; i < 120; i++) {
             lista.add(new Object());
         }
-        ListValidador.tamanho120(lista);
+        ListValidador.tamanho120(lista, "");
     }
 
     @Test
     public void deveValidarListaCom31ItensObrigatorio() {
-        ListValidador.tamanho31Obrigatorio(Collections.singletonList(new Object()));
+        ListValidador.tamanho31Obrigatorio(Collections.singletonList(new Object()), "");
         final List<Object> lista = new ArrayList<>();
         for (int i = 0; i < 31; i++) {
             lista.add(new Object());
         }
-        ListValidador.tamanho31Obrigatorio(lista);
+        ListValidador.tamanho31Obrigatorio(lista, "");
     }
 
     @Test(expected = IllegalStateException.class)
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo() {
         try {
-            ListValidador.tamanho31Obrigatorio(Collections.emptyList());
+            ListValidador.tamanho31Obrigatorio(Collections.emptyList(), "");
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
             final List<Object> lista = new ArrayList<>();
             for (int i = 0; i < 32; i++) {
                 lista.add(new Object());
             }
-            ListValidador.tamanho31Obrigatorio(lista);
+            ListValidador.tamanho31Obrigatorio(lista, "");
         }
         Assert.fail("Validacao nao funcionou");
     }

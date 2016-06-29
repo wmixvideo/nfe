@@ -84,7 +84,7 @@ public class NFNotaInfo extends NFBase {
 	}
 
 	public void setIdentificador(final String identificador) {
-		StringValidador.exatamente44N(identificador);
+		StringValidador.exatamente44N(identificador, "Identificador");
 		this.identificador = NFNotaInfo.IDENT + identificador;
 	}
 
@@ -93,7 +93,7 @@ public class NFNotaInfo extends NFBase {
 	}
 
 	public void setVersao(final BigDecimal versao) {
-		this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
+		this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao");
 	}
 
 	public NFNotaInfoIdentificacao getIdentificacao() {
@@ -121,7 +121,7 @@ public class NFNotaInfo extends NFBase {
 	}
 
 	public void setItens(final List<NFNotaInfoItem> itens) {
-		ListValidador.tamanho990(itens);
+		ListValidador.tamanho990(itens, "Itens da Nota");
 		this.itens = itens;
 	}
 
@@ -162,12 +162,12 @@ public class NFNotaInfo extends NFBase {
 	}
 
 	public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
-		ListValidador.tamanho10(pessoasAutorizadasDownloadNFe);
+		ListValidador.tamanho10(pessoasAutorizadasDownloadNFe, "Pessoas Autorizadas Download NFe");
 		this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
 	}
 
 	public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
-		ListValidador.tamanho100(pagamentos);
+		ListValidador.tamanho100(pagamentos, "Pagamentos");
 		this.pagamentos = pagamentos;
 	}
 

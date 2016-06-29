@@ -29,19 +29,19 @@ public class NFNotaInfoItemImpostoImportacao extends NFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo);
+        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC Importacao Item");
     }
 
     public void setValorDespesaAduaneira(final BigDecimal valorDespesaAduaneira) {
-        this.valorDespesaAduaneira = BigDecimalParser.tamanho15Com2CasasDecimais(valorDespesaAduaneira);
+        this.valorDespesaAduaneira = BigDecimalParser.tamanho15Com2CasasDecimais(valorDespesaAduaneira, "Valor Despesa Aduaneira Importacao Item");
     }
 
     public void setValorImpostoImportacao(final BigDecimal valorImpostoImportacao) {
-        this.valorImpostoImportacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoImportacao);
+        this.valorImpostoImportacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoImportacao, "Valor Imposto Importacao Item");
     }
 
     public void setValorIOF(final BigDecimal valorIOF) {
-        this.valorIOF = BigDecimalParser.tamanho15Com2CasasDecimais(valorIOF);
+        this.valorIOF = BigDecimalParser.tamanho15Com2CasasDecimais(valorIOF, "Valor IOF Importacao Item");
     }
 
     public String getValorBaseCalculo() {

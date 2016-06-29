@@ -34,12 +34,12 @@ public class NFLoteEnvio extends NFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote);
+        StringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
     public void setNotas(final List<NFNota> notas) {
-        ListValidador.tamanho50(notas);
+        ListValidador.tamanho50(notas, "Notas");
         this.notas = notas;
     }
 

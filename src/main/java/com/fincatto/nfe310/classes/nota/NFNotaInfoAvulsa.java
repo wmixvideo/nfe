@@ -50,17 +50,17 @@ public class NFNotaInfoAvulsa extends NFBase {
     }
 
     public void setOrgaoEmitente(final String orgaoEmitente) {
-        StringValidador.tamanho60(orgaoEmitente);
+        StringValidador.tamanho60(orgaoEmitente, "Orgao Emitente");
         this.orgaoEmitente = orgaoEmitente;
     }
 
     public void setMatriculaAgente(final String matriculaAgente) {
-        StringValidador.tamanho60(matriculaAgente);
+        StringValidador.tamanho60(matriculaAgente, "Matricula Agente");
         this.matriculaAgente = matriculaAgente;
     }
 
     public void setNomeAgente(final String nomeAgente) {
-        StringValidador.tamanho60(nomeAgente);
+        StringValidador.tamanho60(nomeAgente, "Nome Agente");
         this.nomeAgente = nomeAgente;
     }
 
@@ -74,7 +74,7 @@ public class NFNotaInfoAvulsa extends NFBase {
     }
 
     public void setNumeroDocumentoArrecadacaoReceita(final String numeroDocumentoArrecadacaoReceita) {
-        StringValidador.tamanho60(numeroDocumentoArrecadacaoReceita);
+        StringValidador.tamanho60(numeroDocumentoArrecadacaoReceita, "Numero Documento Arrecadacao Receita");
         this.numeroDocumentoArrecadacaoReceita = numeroDocumentoArrecadacaoReceita;
     }
 
@@ -83,11 +83,11 @@ public class NFNotaInfoAvulsa extends NFBase {
     }
 
     public void setValorTotalConstanteDocumentoArrecadacaoReceita(final BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita) {
-        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita);
+        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita, "Valor Total Constante Documento Arrecadacao Receita");
     }
 
     public void setReparticaoFiscalEmitente(final String reparticaoFiscalEmitente) {
-        StringValidador.tamanho60(reparticaoFiscalEmitente);
+        StringValidador.tamanho60(reparticaoFiscalEmitente, "Reparticao Fiscal Emitente");
         this.reparticaoFiscalEmitente = reparticaoFiscalEmitente;
     }
 

@@ -14,12 +14,12 @@ public class NFNotaInfoObservacao extends NFBase {
     private String conteudoCampo;
 
     public void setIdentificacaoCampo(final String identificacaoCampo) {
-        StringValidador.tamanho20(identificacaoCampo);
+        StringValidador.tamanho20(identificacaoCampo, "Identificacao Campo Obs");
         this.identificacaoCampo = identificacaoCampo;
     }
 
     public void setConteudoCampo(final String conteudoCampo) {
-        StringValidador.tamanho60(conteudoCampo);
+        StringValidador.tamanho60(conteudoCampo, "Conteudo Campo Obs");
         this.conteudoCampo = conteudoCampo;
     }
 

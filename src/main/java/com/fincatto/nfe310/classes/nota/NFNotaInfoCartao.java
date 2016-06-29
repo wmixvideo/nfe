@@ -24,7 +24,7 @@ public class NFNotaInfoCartao extends NFBase {
     }
 
     public void setNumeroAutorizacaoOperacaoCartao(final String numeroAutorizacaoOperacaoCartao) {
-        StringValidador.tamanho20(numeroAutorizacaoOperacaoCartao);
+        StringValidador.tamanho20(numeroAutorizacaoOperacaoCartao, "Numero Autorizacao Operacao Cartao");
         this.numeroAutorizacaoOperacaoCartao = numeroAutorizacaoOperacaoCartao;
     }
 
