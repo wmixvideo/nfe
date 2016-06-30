@@ -26,11 +26,11 @@ class WSConsultaCadastro {
     private static final String VERSAO_SERVICO = "2.00";
     private final NFeConfig config;
 
-    public WSConsultaCadastro(final NFeConfig config) {
+    WSConsultaCadastro(final NFeConfig config) {
         this.config = config;
     }
 
-    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+    NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
         final NFConsultaCadastro dadosConsulta = this.getDadosConsulta(cnpj, uf);
         final String xmlConsulta = dadosConsulta.toString();
         WSConsultaCadastro.LOG.debug(xmlConsulta);
