@@ -8,6 +8,7 @@ import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NotaFiscalChaveParser {
+
     private final String chave;
 
     public NotaFiscalChaveParser(final String chave) {
@@ -36,9 +37,9 @@ public class NotaFiscalChaveParser {
     public String getCnpjEmitente() {
         return this.chave.substring(6, 20);
     }
-    
+
     public NFModelo getModelo() {
-    	return NFModelo.valueOfCodigo(this.chave.substring(20, 22));
+        return NFModelo.valueOfCodigo(this.chave.substring(20, 22));
     }
 
     public String getSerie() {
@@ -63,6 +64,14 @@ public class NotaFiscalChaveParser {
 
     public boolean isEmitidaContingenciaSCAN() {
         return this.getSerie().matches("9[0-9]{2}");
+    }
+
+    public boolean isEmitidaContingenciaSCVAN() {
+        return this.chave.matches("\\d{34}6\\d{9}");
+    }
+
+    public boolean isEmitidaContingenciaSCVRS() {
+        return this.chave.matches("\\d{34}7\\d{9}");
     }
 
     public String getFormatado() {
