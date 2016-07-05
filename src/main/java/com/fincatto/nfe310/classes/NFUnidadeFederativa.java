@@ -15,7 +15,7 @@ public enum NFUnidadeFederativa {
     GO("GO", "Goi\u00E1s", "52", "http://homolog.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf", "http://nfe.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf"),
     ES("ES", "Esp\u00EDrito Santo", "32"),
     MA("MA", "Maranh\u00E3o", "21"),
-    MT("MT", "Mato Grosso", "51", "http://www.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
+    MT("MT", "Mato Grosso", "51", "http://homologacao.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
     MS("MS", "Mato Grosso do Sul", "50"),
     MG("MG", "Minas Gerais", "31"),
     PA("PA", "Par\u00E1", "15", "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/nfceForm.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/nfceForm.seam"),

@@ -479,32 +479,32 @@ public enum NFAutorizador31 {
 
 		@Override
 		public String getNfceAutorizacao(final NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeAutorizacao?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeAutorizacao?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeAutorizacao?wsdl";
 		}
 
 		@Override
 		public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeRetAutorizacao?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeRetAutorizacao?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeRetAutorizacao?wsdl";
 		}
 
 		@Override
 		public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeConsulta2?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeConsulta2?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeConsulta2?wsdl";
 		}
 
 		@Override
 		public String getNfceStatusServico(final NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeStatusServico2?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeStatusServico2?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeStatusServico2?wsdl";
 		}
 
 		@Override
 		public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/RecepcaoEvento?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/RecepcaoEvento?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/RecepcaoEvento?wsdl";
 		}
 		
 		@Override
 		public String getNfceInutilizacao(NFAmbiente ambiente) {
-			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.mt.gov.br/nfews/v2/services/NfeInutilizacao2?wsdl";
+			return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeInutilizacao2?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeInutilizacao2?wsdl";
 		}
 
 		@Override
