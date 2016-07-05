@@ -4,6 +4,7 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
+import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
@@ -99,7 +100,18 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
         WSLoteEnvio.LOGGER.debug(omElement.toString());
 
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        //define o tipo de emissao
+        NFAutorizador31 autorizador = null;
+        if (this.config.getTipoEmissao().equals(NFTipoEmissao.EMISSAO_NORMAL)) {
+            autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        } else if (this.config.getTipoEmissao().equals(NFTipoEmissao.CONTINGENCIA_SVCRS)) {
+            autorizador = NFAutorizador31.SVRS;
+        } else if (this.config.getTipoEmissao().equals(NFTipoEmissao.CONTINGENCIA_SVCAN)) {
+            autorizador = NFAutorizador31.SCAN;
+        } else {
+            throw new IllegalArgumentException("Não há implementação para o tipo de emissão: " + this.config.getTipoEmissao().getDescricao());
+        }
+        
         final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
