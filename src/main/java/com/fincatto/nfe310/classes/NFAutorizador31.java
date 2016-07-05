@@ -1058,8 +1058,6 @@ public enum NFAutorizador31 {
         if (chaveParser.isEmitidaContingenciaSCVRS()) {
             return NFAutorizador31.SVRS;
         } else if (chaveParser.isEmitidaContingenciaSCVAN()) {
-            return NFAutorizador31.SVAN;
-        } else if (chaveParser.isEmitidaContingenciaSCAN()) {
             return NFAutorizador31.SCAN;
         }
 
