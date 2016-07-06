@@ -1063,4 +1063,16 @@ public enum NFAutorizador31 {
 
         return NFAutorizador31.valueOfCodigoUF(chaveParser.getNFUnidadeFederativa());
     }
+
+    public static NFAutorizador31 valueOfTipoEmissao(final NFTipoEmissao tpEmissao, final NFUnidadeFederativa uf) {
+        if (tpEmissao.equals(NFTipoEmissao.EMISSAO_NORMAL)) {
+            return NFAutorizador31.valueOfCodigoUF(uf);
+        } else if (tpEmissao.equals(NFTipoEmissao.CONTINGENCIA_SVCRS)) {
+            return NFAutorizador31.SVRS;
+        } else if (tpEmissao.equals(NFTipoEmissao.CONTINGENCIA_SVCAN)) {
+            return NFAutorizador31.SCAN;
+        }
+        throw new IllegalArgumentException("Não há implementação para o tipo de emissão: " + tpEmissao.getDescricao());
+
+    }
 }
