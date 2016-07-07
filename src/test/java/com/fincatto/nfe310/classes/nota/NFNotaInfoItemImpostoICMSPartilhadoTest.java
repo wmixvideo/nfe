@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -67,7 +67,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -87,7 +87,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
     public void naoDevePermitirModalidadeBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -128,7 +128,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
@@ -148,7 +148,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
@@ -168,7 +168,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
@@ -188,7 +188,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -208,7 +208,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -228,7 +228,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -248,7 +248,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -268,7 +268,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -288,7 +288,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -308,7 +308,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -328,7 +328,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -348,7 +348,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -368,7 +368,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         final NFNotaInfoItemImpostoICMSPartilhado icmsPartilhado = new NFNotaInfoItemImpostoICMSPartilhado();
         icmsPartilhado.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.OUTROS);
         icmsPartilhado.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icmsPartilhado.setModalidadeDeterminacaoBCICMS(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.PAUTA);
+        icmsPartilhado.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icmsPartilhado.setOrigem(NFOrigem.NACIONAL);
         icmsPartilhado.setPercentualAliquotaImposto(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
