@@ -10,6 +10,8 @@ import org.simpleframework.xml.Root;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.converters.StringNullConverter;
+import org.simpleframework.xml.convert.Convert;
 
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoRetorno extends NFBase {
@@ -17,7 +19,13 @@ public class NFEnviaEventoRetorno extends NFBase {
     @Attribute(name = "versao", required = true)
     private String versao;
 
+    /**
+     * O Converter StringNullConverter está sendo utilizado para<br>
+     * resolver um problema da autorizadora SVAN, que está retornando<br>
+     * o atributo idLote vazio.
+     */
     @Element(name = "idLote", required = true)
+    @Convert(StringNullConverter.class)
     private String idLote;
 
     @Element(name = "tpAmb", required = true)
