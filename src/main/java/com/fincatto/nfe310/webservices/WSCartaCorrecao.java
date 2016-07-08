@@ -128,7 +128,7 @@ class WSCartaCorrecao {
 
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
         enviaEvento.setEvento(Collections.singletonList(evento));
-        enviaEvento.setIdLote("1");
+        enviaEvento.setIdLote(Long.toString(DateTime.now().getMillis()));
         enviaEvento.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
         return enviaEvento;
     }
