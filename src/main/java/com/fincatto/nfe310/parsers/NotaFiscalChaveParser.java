@@ -1,33 +1,32 @@
 package com.fincatto.nfe310.parsers;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.LocalDate;
 
 public class NotaFiscalChaveParser {
 
     private final String chave;
 
     public NotaFiscalChaveParser(final String chave) {
-        if (chave == null || chave.replaceAll("\\D", "").length() != 44) {
+        this.chave = StringUtils.stripToEmpty(chave).replaceAll("\\D", "");
+        if (this.chave.length() != 44) {
             throw new IllegalArgumentException(String.format("A chave deve ter exatos 44 caracteres numericos: %s", chave));
         }
-        this.chave = chave.replaceAll("\\D", "");
     }
 
     public NFUnidadeFederativa getNFUnidadeFederativa() {
         return NFUnidadeFederativa.valueOfCodigo(this.chave.substring(0, 2));
     }
 
-    public Date getDataEmissao() {
-        return new GregorianCalendar(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1).getTime();
+    public LocalDate getDataEmissao() {
+        return new LocalDate(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1);
     }
 
     private int getDataEmissaoMes() {
-        return Integer.parseInt(this.chave.substring(4, 6)) - 1;
+        return Integer.parseInt(this.chave.substring(4, 6));
     }
 
     private int getDataEmissaoAno() {
