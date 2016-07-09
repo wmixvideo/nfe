@@ -18,7 +18,7 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
     @Element(name = "modBCST", required = true)
-    private NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
+    private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
     private String percentualMargemValorAdicionadoICMSST;
@@ -43,8 +43,17 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
 
+    /**
+     * @deprecated Utilizar setModalidadeBCICMSST(...)
+     * @param modalidadeDeterminacaoBCICMSST
+     */
+    @Deprecated
     public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
-        this.modalidadeDeterminacaoBCICMSST = modalidadeDeterminacaoBCICMSST;
+        this.modalidadeBCICMSST = modalidadeDeterminacaoBCICMSST;
+    }
+    
+    public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
+        this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
 
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
@@ -75,8 +84,17 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
         return this.situacaoOperacaoSN;
     }
 
+    /**
+     * @deprecated Utilizar getModalidadeBCICMSST(...)
+     * @return
+     */
+    @Deprecated
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
-        return this.modalidadeDeterminacaoBCICMSST;
+        return this.modalidadeBCICMSST;
+    }
+    
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
+        return this.modalidadeBCICMSST;
     }
 
     public String getPercentualMargemValorAdicionadoICMSST() {

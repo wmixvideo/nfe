@@ -101,7 +101,7 @@ class WSCancelamento {
 
         final NFEnviaEventoCancelamento enviaEvento = new NFEnviaEventoCancelamento();
         enviaEvento.setEvento(Collections.singletonList(evento));
-        enviaEvento.setIdLote("1");
+        enviaEvento.setIdLote(Long.toString(DateTime.now().getMillis()));
         enviaEvento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         return enviaEvento;
     }

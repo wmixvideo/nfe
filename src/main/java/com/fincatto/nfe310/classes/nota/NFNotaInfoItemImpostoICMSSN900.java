@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.nfe310.classes.NFOrigem;
@@ -19,7 +20,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS;
+    private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
 
     @Element(name = "vBC", required = true)
     private String valorBCICMS;
@@ -52,7 +53,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     private String valorICMSST;
 
     @Element(name = "pCredSN", required = true)
-    private String aliquotaAplicavelCalculoCreditoSN;
+    private String percentualAliquotaAplicavelCalculoCreditoSN;
 
     @Element(name = "vCredICMSSN", required = true)
     private String valorCreditoICMSSN;
@@ -65,8 +66,16 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
 
+    /**
+     * @deprecated Utilizar setModalidadeBCICMS(...) 
+     */
+    @Deprecated
     public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS) {
-        this.modalidadeDeterminacaoBCICMS = modalidadeDeterminacaoBCICMS;
+    	this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeDeterminacaoBCICMS.getCodigo());
+    }
+    
+    public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
+        this.modalidadeBCICMS = modalidadeBCICMS;
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
@@ -109,8 +118,17 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
         this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMSSN900");
     }
 
+    /**
+     * @deprecated Utilizar setPercentualAliquotaAplicavelCalculoCreditoSN(...)
+     * @param aliquotaAplicavelCalculoCreditoSN
+     */
+    @Deprecated
     public void setAliquotaAplicavelCalculoCreditoSN(final BigDecimal aliquotaAplicavelCalculoCreditoSN) {
-        this.aliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaAplicavelCalculoCreditoSN, "Aliquota Aplicavel Calculo Credito SN ICMSSN900");
+        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaAplicavelCalculoCreditoSN, "Aliquota Aplicavel Calculo Credito SN ICMSSN900");
+    }
+    
+    public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
+        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN, "Aliquota Aplicavel Calculo Credito SN ICMSSN900");
     }
 
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {
@@ -125,8 +143,16 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
         return this.situacaoOperacaoSN;
     }
 
+    /**
+     * @deprecated Utilizar getModalidadeBCICMS()  
+     */
+    @Deprecated
     public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeDeterminacaoBCICMS() {
-        return this.modalidadeDeterminacaoBCICMS;
+    	return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
+    }
+    
+    public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
+        return this.modalidadeBCICMS;
     }
 
     public String getValorBCICMS() {
@@ -168,9 +194,18 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     public String getValorICMSST() {
         return this.valorICMSST;
     }
+    
+    public String getPercentualAliquotaAplicavelCalculoCreditoSN() {
+        return this.percentualAliquotaAplicavelCalculoCreditoSN;
+    }
 
+    /**
+     * @deprecated Utilizar getPercentualAliquotaAplicavelCalculoCreditoSN().
+     * @return
+     */
+    @Deprecated
     public String getAliquotaAplicavelCalculoCreditoSN() {
-        return this.aliquotaAplicavelCalculoCreditoSN;
+        return this.percentualAliquotaAplicavelCalculoCreditoSN;
     }
 
     public String getValorCreditoICMSSN() {
