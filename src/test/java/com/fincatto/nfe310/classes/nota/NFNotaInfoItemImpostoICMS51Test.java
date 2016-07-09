@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS51Test {
@@ -34,7 +34,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void naoDevePermitirValorICMSDiferimentoNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -49,7 +49,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void naoDevePermitirPercentualDiferimentoNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -64,7 +64,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void naoDevePermitirValorICMSOperacaoNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -94,7 +94,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
         icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
@@ -109,7 +109,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void devePermitirPercentualICMSBCNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
         icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
@@ -124,7 +124,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void devePermitirPercentualReducaoBCNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
@@ -139,7 +139,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -154,7 +154,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void devePermitirValorBCICMSNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -169,7 +169,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void devePermitirValorICMSNulo() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
@@ -184,7 +184,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMS51 icms51 = new NFNotaInfoItemImpostoICMS51();
-        icms51.setModalidadeBC(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.VALOR_OPERACAO);
+        icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
         icms51.setOrigem(NFOrigem.NACIONAL);
         icms51.setPercentualICMS(new BigDecimal("99.99"));
         icms51.setPercentualReducaoBC(new BigDecimal("99.99"));

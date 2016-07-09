@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
@@ -20,7 +21,7 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo;
+    private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
 
     @Element(name = "pRedBC", required = true)
     private String percentualReducaoBC;
@@ -48,8 +49,16 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
+    /**
+     * @deprecated Utilizar setModalidadeBCICMS(...) 
+     */
+    @Deprecated
     public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo) {
-        this.modalidadeBaseCalculo = modalidadeBaseCalculo;
+    	this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeBaseCalculo.getCodigo());
+    }
+    
+    public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
+        this.modalidadeBCICMS = modalidadeBCICMS;
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
@@ -83,9 +92,17 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     public NFNotaInfoImpostoTributacaoICMS getSituacaoTributaria() {
         return this.situacaoTributaria;
     }
-
+    
+    /**
+     * @deprecated Utilizar getModalidadeBCICMS()  
+     */
+    @Deprecated
     public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBaseCalculo() {
-        return this.modalidadeBaseCalculo;
+    	return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
+    }
+    
+    public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
+        return this.modalidadeBCICMS;
     }
 
     public String getPercentualReducaoBC() {
