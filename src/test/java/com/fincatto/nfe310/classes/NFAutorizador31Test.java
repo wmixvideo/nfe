@@ -336,7 +336,24 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveObterSCANCasoEstejaEmContigencia() {
-        Assert.assertEquals(NFAutorizador31.SCAN, NFAutorizador31.valueOfChaveAcesso("42306447535430986810259129468905605824735937"));
+        Assert.assertEquals(NFAutorizador31.SCAN, NFAutorizador31.valueOfChaveAcesso("41170705325301000169550020000608246000000003"));
+    }
+    @Test
+    public void deveObterSCRSCasoEstejaEmContigencia() {
+        Assert.assertEquals(NFAutorizador31.SVRS, NFAutorizador31.valueOfChaveAcesso("41170705325301000169550020000608247000000003"));
+    }
+    
+    @Test
+    public void deveObterSVCRS() {
+        Assert.assertEquals(NFAutorizador31.SVRS, NFAutorizador31.valueOfTipoEmissao(NFTipoEmissao.CONTINGENCIA_SVCRS, NFUnidadeFederativa.RS));
+    }
+    @Test
+    public void deveObterSVCAN() {
+        Assert.assertEquals(NFAutorizador31.SCAN, NFAutorizador31.valueOfTipoEmissao(NFTipoEmissao.CONTINGENCIA_SVCAN, NFUnidadeFederativa.RS));
+    }
+    @Test
+    public void deveObterEmissorNormal() {
+        Assert.assertEquals(NFAutorizador31.RS, NFAutorizador31.valueOfTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL, NFUnidadeFederativa.RS));
     }
 
     @Test

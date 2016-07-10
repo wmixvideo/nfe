@@ -1,32 +1,39 @@
 package com.fincatto.nfe310.parsers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import com.fincatto.nfe310.classes.NFTipoEmissao;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFTipoEmissao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import java.text.ParseException;
 
 public class NotaFiscalChaveParserTest {
 
-    @Test(expected = IllegalArgumentException.class)
-    public void naoDevePermitirChaveDeTamanhoInvalido() {
-        try {
-            new NotaFiscalChaveParser(null);
-            Assert.fail();
-        } catch (final IllegalArgumentException e) {
 
-        }
-        try {
-            new NotaFiscalChaveParser("1734119042676883974264088457913359614139959");
-            Assert.fail();
-        } catch (final IllegalArgumentException e) {
-            new NotaFiscalChaveParser("173411904267688397426408845791335961413995927");
-            Assert.fail();
-        }
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirChaveNula() {
+        new NotaFiscalChaveParser(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirChaveDeTamanhoMenor() {
+        new NotaFiscalChaveParser("1734119042676883974264088457913359614139959");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirChaveDeTamanhoMaior() {
+        new NotaFiscalChaveParser("173411904267688397426408845791335961413995927");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirChaveDeTamanhoMenorMesmoComEspacos() {
+        new NotaFiscalChaveParser("1734119042676883974264088457913359614139959 ");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDevePermitirChaveComLetras() {
+        new NotaFiscalChaveParser("1734119042676883974264088457913359614139959A");
     }
 
     @Test
@@ -36,8 +43,7 @@ public class NotaFiscalChaveParserTest {
 
     @Test
     public void deveObterDataDeEmissaoDaChave() throws ParseException {
-        final Date dataEsperada = new SimpleDateFormat("yyyy/MM").parse("2015/11");
-        Assert.assertEquals(dataEsperada, new NotaFiscalChaveParser("42151190426768839742640884579133596141399591").getDataEmissao());
+        Assert.assertEquals(new LocalDate(2015, 11, 1), new NotaFiscalChaveParser("42151190426768839742640884579133596141399591").getDataEmissao());
     }
 
     @Test
