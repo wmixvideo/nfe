@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 
+/**
+ * @deprecated Utilizar NFNotaInfoItemModalidadeBCICMSTest.class
+ */
+@Deprecated
 public class NFNotaInfoItemImpostoICMSModalidadeBaseCalculoTest {
 
     @Test

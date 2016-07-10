@@ -7,6 +7,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
@@ -18,7 +19,7 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = false)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC;
+    private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
 
     @Element(name = "pRedBC", required = false)
     private String percentualReducaoBC;
@@ -49,8 +50,16 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
+    /**
+     * @deprecated Utilizar setModalidadeBCICMS(...) 
+     */
+    @Deprecated
     public void setModalidadeBC(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC) {
-        this.modalidadeBC = modalidadeBC;
+    	this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeBC.getCodigo());
+    }
+    
+    public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
+        this.modalidadeBCICMS = modalidadeBCICMS;
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
@@ -89,8 +98,16 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
         return this.situacaoTributaria;
     }
 
+    /**
+     * @deprecated Utilizar getModalidadeBCICMS()  
+     */
+    @Deprecated
     public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBC() {
-        return this.modalidadeBC;
+    	return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
+    }
+    
+    public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
+        return this.modalidadeBCICMS;
     }
 
     public String getPercentualReducaoBC() {
