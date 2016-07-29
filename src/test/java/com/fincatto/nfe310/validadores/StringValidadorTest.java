@@ -181,4 +181,34 @@ public class StringValidadorTest {
             }
         }
     }
+
+    @Test
+    public void devePermitirNCMFormatoValido() {
+        StringValidador.ncm("00");
+        StringValidador.ncm("99");
+        StringValidador.ncm("00000000");
+        StringValidador.ncm("99999999");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNCMForaDoLimite2Posicoes() {
+        try {
+            StringValidador.ncm("9");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.ncm("000");
+            Assert.fail();
+        }
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNCMForaDoLimite8Posicoes() {
+        try {
+            StringValidador.ncm("9999999");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.ncm("000000000");
+            Assert.fail();
+        }
+    }
 }

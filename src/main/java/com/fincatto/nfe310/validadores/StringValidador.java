@@ -1,11 +1,11 @@
 package com.fincatto.nfe310.validadores;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
 
 public abstract class StringValidador {
 
@@ -296,11 +296,11 @@ public abstract class StringValidador {
             StringValidador.intervalo(string, 15, 1000, info);
         }
     }
-    
+
     public static void tamanho100a600(final String string, final String info) {
-    	if (string != null) {
-    		StringValidador.intervalo(string, 100, 600, info);
-    	}
+        if (string != null) {
+            StringValidador.intervalo(string, 100, 600, info);
+        }
     }
 
     public static void tamanho30(final String string, final String info) {
@@ -389,7 +389,7 @@ public abstract class StringValidador {
 
     public static void ncm(final String ncm) {
         if (ncm != null) {
-            final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
+            final Matcher matcher = Pattern.compile("^([0-9]{2}|[0-9]{8})$").matcher(ncm);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("NCM fora do padrao (%s)", ncm));
             }
