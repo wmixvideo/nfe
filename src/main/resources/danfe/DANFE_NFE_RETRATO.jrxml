@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_retrato" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="20" uuid="e21b08e1-6159-4fbb-98e9-6837ade5c1f3">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="60"/>
-	<property name="ireport.y" value="527"/>
+	<property name="ireport.y" value="431"/>
 	<parameter name="LOGO_EMPRESA" class="java.io.InputStream" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -555,7 +555,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[(($F{DestLogradouro} != null) ? $F{DestLogradouro} : " ")+", "+
 (($F{DestNumero} != null) ? $F{DestNumero} : " ")+
-(($F{DestComplemento} != null) ? (" - "+$F{DestComplemento}) : null)]]></textFieldExpression>
+(($F{DestComplemento} != null) ? (" - "+$F{DestComplemento}) : "")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="264" y="39" width="109" height="10" uuid="ba54786e-6d97-4bc1-8068-268177b58e64"/>
