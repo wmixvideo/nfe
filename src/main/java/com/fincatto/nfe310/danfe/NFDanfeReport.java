@@ -47,7 +47,7 @@ public class NFDanfeReport {
 	private final NFNotaProcessada nota;
 	
 	public NFDanfeReport(String xml) {
-		this.nota = new NotaParser().notaProcessadaParaObjeto(xml);
+		this(new NotaParser().notaProcessadaParaObjeto(xml));
 	}
 	
 	public NFDanfeReport(NFNotaProcessada nota) {
@@ -62,7 +62,7 @@ public class NFDanfeReport {
 		return toPDF(createJasperPrintNFCe(informacoesComplementares, mostrarMsgFinalizacao, pags));
 	}
 
-    private byte[] toPDF(JasperPrint print) throws JRException {
+    private static byte[] toPDF(JasperPrint print) throws JRException {
     	return JasperExportManager.exportReportToPdf(print);
     }
     

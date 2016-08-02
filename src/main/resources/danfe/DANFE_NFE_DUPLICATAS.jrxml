@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_duplicata" columnCount="4" printOrder="Horizontal" pageWidth="595" pageHeight="200" columnWidth="140" leftMargin="0" rightMargin="35" topMargin="0" bottomMargin="0" isIgnorePagination="true">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_duplicata" columnCount="4" printOrder="Horizontal" pageWidth="595" pageHeight="200" columnWidth="140" leftMargin="0" rightMargin="35" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="1664dd43-fd31-4dcf-94ba-eb1fff24eec5">
 	<property name="ireport.zoom" value="2.120488091862424"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -44,48 +44,48 @@
 	<columnHeader>
 		<band height="9" splitType="Stretch">
 			<staticText>
-				<reportElement x="2" y="0" width="43" height="9"/>
+				<reportElement x="2" y="0" width="43" height="9" uuid="682c7b79-733b-4884-bf6b-ad45de6ee6c8"/>
 				<textElement verticalAlignment="Middle">
-					<font size="6"/>
+					<font fontName="Times New Roman" size="5"/>
 				</textElement>
-				<text><![CDATA[Duplicata]]></text>
+				<text><![CDATA[DUPLICATA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="45" y="0" width="45" height="9"/>
+				<reportElement x="45" y="0" width="40" height="9" uuid="0d6d7232-d043-4002-a48f-749157c70013"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="6"/>
+					<font fontName="Times New Roman" size="5"/>
 				</textElement>
-				<text><![CDATA[Vencimento]]></text>
+				<text><![CDATA[VENCIMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="89" y="0" width="46" height="9"/>
+				<reportElement x="85" y="0" width="46" height="9" uuid="95c63db5-9603-4348-ad05-3cab16614b8c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="6"/>
+					<font fontName="Times New Roman" size="5"/>
 				</textElement>
-				<text><![CDATA[Valor]]></text>
+				<text><![CDATA[VALOR]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="10" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="2" y="2" width="43" height="8"/>
+				<reportElement x="2" y="2" width="43" height="8" uuid="8576e389-88d4-4761-b60a-49acbc658415"/>
 				<textElement>
-					<font size="6"/>
+					<font fontName="Times New Roman" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nDup}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="45" y="2" width="45" height="8"/>
+				<reportElement x="45" y="2" width="40" height="8" uuid="919aea49-9ddb-4326-a9bb-4b42c9f3d7c5"/>
 				<textElement textAlignment="Right">
-					<font size="6"/>
+					<font fontName="Times New Roman" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd").parse($F{dVenc}))]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="89" y="2" width="46" height="8"/>
+				<reportElement x="85" y="2" width="46" height="8" uuid="bd77ca16-b81b-4e81-b937-491f048a803b"/>
 				<textElement textAlignment="Right">
-					<font size="6"/>
+					<font fontName="Times New Roman" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[Double.parseDouble($F{vDup})]]></textFieldExpression>
 			</textField>
