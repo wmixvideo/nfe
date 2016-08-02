@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-02T18:21:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_retrato" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="20" uuid="e21b08e1-6159-4fbb-98e9-6837ade5c1f3">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -60,7 +62,7 @@
 	<field name="EmitIEST" class="java.lang.String">
 		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/emit/IEST]]></fieldDescription>
 	</field>
-	<field name="NFeSerie" class="java.lang.String">
+	<field name="NFeSerie" class="java.lang.Integer">
 		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/ide/serie]]></fieldDescription>
 	</field>
 	<field name="NFeNumero" class="java.lang.Double">
@@ -411,6 +413,9 @@
 	<field name="ProdOrig101" class="java.lang.String">
 		<fieldDescription><![CDATA[imposto/ICMS/ICMSSN101/orig]]></fieldDescription>
 	</field>
+	<field name="ImpTotalTrib" class="java.lang.String">
+		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/total/ICMSTot/vTotTrib]]></fieldDescription>
+	</field>
 	<group name="destinatario">
 		<groupExpression><![CDATA[$F{Destinatario}]]></groupExpression>
 		<groupHeader>
@@ -530,7 +535,7 @@
 				<textField>
 					<reportElement x="2" y="17" width="352" height="14" uuid="52744283-9cf9-4cba-901f-dfd33cc59c7a"/>
 					<textElement>
-						<font fontName="Times New Roman" size="12"/>
+						<font fontName="Times New Roman" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{DestNomeRazao}]]></textFieldExpression>
 				</textField>
@@ -613,7 +618,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{NFeDataEntSaida}))]]></textFieldExpression>
 				</textField>
-				<textField pattern="HH:mm" isBlankWhenNull="true">
+				<textField pattern="HH:mm:ss" isBlankWhenNull="true">
 					<reportElement x="468" y="59" width="78" height="10" uuid="9abef017-3cee-4a84-a105-581e50fb1d6c"/>
 					<textElement>
 						<font fontName="Times New Roman" size="8"/>
@@ -1360,7 +1365,7 @@ $P{REPORT_DATA_SOURCE}).dataSource("/nfeProc/NFe/infNFe/cobr/dup")]]></dataSourc
 				<textElement>
 					<font fontName="Times New Roman" size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["RECEBEMOS DE "+$F{EmitenteNFe}+ " OS PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA AO LADO"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["RECEBEMOS DE "+$F{EmitenteNFe}+ " OS PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA AO ABAIXO"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="48" width="555" height="1" uuid="a79f22b5-0228-42a7-9854-cee1239f685d"/>
@@ -1376,7 +1381,7 @@ $P{REPORT_DATA_SOURCE}).dataSource("/nfeProc/NFe/infNFe/cobr/dup")]]></dataSourc
 				<textElement verticalAlignment="Top">
 					<font fontName="Times New Roman" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{EmitLogradouro}+", "+$F{EmitNum}+ " - "+$F{EmitBairro}+", "+$F{EmitMunicipio}+", "+$F{EmitUF}+" - CEP: "+$F{EmitCEP}+" Fone: "+$F{EmitFone}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{EmitLogradouro}+", "+$F{EmitNum}+ " - "+$F{EmitBairro}+", "+$F{EmitMunicipio}+", "+$F{EmitUF}+" - CEP: "+$F{EmitCEP}+" Fone: "+($F{EmitFone} == null ?  "" : $F{EmitFone})]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center" onErrorType="Blank">
 				<reportElement x="5" y="60" width="46" height="46" uuid="7223798c-5fe2-4d10-827d-951573e7ef54"/>
@@ -1442,7 +1447,7 @@ $P{REPORT_DATA_SOURCE}).dataSource("/nfeProc/NFe/infNFe/cobr/dup")]]></dataSourc
 				<textElement>
 					<font fontName="Times New Roman" size="10" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Página]]></text>
+				<text><![CDATA[Folha]]></text>
 			</staticText>
 			<line>
 				<reportElement x="290" y="96" width="265" height="1" uuid="d2300035-ed74-4735-a9bb-387af76b495d"/>
@@ -1584,7 +1589,7 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				<textElement>
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NFeSerie}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("000").format($F{NFeSerie})]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
 				<reportElement x="477" y="12" width="77" height="11" uuid="42785ae7-cb20-4589-85e1-a0d1c0f1b91b"/>
@@ -1605,7 +1610,7 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				<textElement>
 					<font fontName="Times New Roman" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NFeSerie}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("000").format($F{NFeSerie})]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="306" y="150" width="64" height="10" uuid="0a5d156e-c7ad-4f60-a2fe-bf09ecb32909"/>
@@ -1741,14 +1746,14 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ProdUndMedida}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00" isBlankWhenNull="true">
+			<textField pattern="#,##0.0000" isBlankWhenNull="true">
 				<reportElement x="281" y="0" width="32" height="14" uuid="10d7d2ad-e5ae-4b55-9837-99e85fab0102"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[Double.parseDouble($F{ProdQtd})]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.000" isBlankWhenNull="true">
+			<textField pattern="#,##0.0000" isBlankWhenNull="true">
 				<reportElement x="315" y="0" width="36" height="14" uuid="7e24b914-a1b5-4c9d-a404-2a18ad83540f"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="6"/>
@@ -1900,7 +1905,10 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				<textElement>
 					<font fontName="Times New Roman" size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NFeInfAdicionais}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{NFeInfAdicionais} == null ? "" : $F{NFeInfAdicionais}) + "\n" +
+$F{NFeInfAdFisco} + "\n" + 
+($F{ImpTotalTrib} == null ? "" : ("Valor Aproximado dos Tributos: R$ " + $F{ImpTotalTrib}))  
+]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
