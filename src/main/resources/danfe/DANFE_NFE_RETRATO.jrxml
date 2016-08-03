@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-02T18:21:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_retrato" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="20" uuid="e21b08e1-6159-4fbb-98e9-6837ade5c1f3">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="143"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="LOGO_EMPRESA" class="java.io.InputStream" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -1365,7 +1363,7 @@ $P{REPORT_DATA_SOURCE}).dataSource("/nfeProc/NFe/infNFe/cobr/dup")]]></dataSourc
 				<textElement>
 					<font fontName="Times New Roman" size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA["RECEBEMOS DE "+$F{EmitenteNFe}+ " OS PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA AO ABAIXO"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["RECEBEMOS DE "+$F{EmitenteNFe}+ " OS PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA ABAIXO"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="48" width="555" height="1" uuid="a79f22b5-0228-42a7-9854-cee1239f685d"/>
@@ -1906,9 +1904,8 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 					<font fontName="Times New Roman" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{NFeInfAdicionais} == null ? "" : $F{NFeInfAdicionais}) + "\n" +
-$F{NFeInfAdFisco} + "\n" + 
-($F{ImpTotalTrib} == null ? "" : ("Valor Aproximado dos Tributos: R$ " + $F{ImpTotalTrib}))  
-]]></textFieldExpression>
+$F{NFeInfAdFisco} + "\n" +
+($F{ImpTotalTrib} == null ? "" : ("Valor Aproximado dos Tributos: R$ " + $F{ImpTotalTrib}))]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
