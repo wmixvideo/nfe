@@ -1,0 +1,118 @@
+package com.fincatto.nfe.core.nota;
+
+import com.fincatto.nfe.core.NFBase;
+import com.fincatto.nfe.core.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.nfe.core.NFNotaSituacaoOperacionalSimplesNacional;
+import com.fincatto.nfe.core.NFOrigem;
+import com.fincatto.nfe.core.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+
+public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
+    @Element(name = "orig", required = true)
+    private NFOrigem origem;
+
+    @Element(name = "CSOSN", required = true)
+    private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
+
+    @Element(name = "modBCST", required = true)
+    private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
+
+    @Element(name = "pMVAST", required = false)
+    private String percentualMargemValorAdicionadoICMSST;
+
+    @Element(name = "pRedBCST", required = false)
+    private String percentualReducaoBCICMSST;
+
+    @Element(name = "vBCST", required = true)
+    private String valorBCICMSST;
+
+    @Element(name = "pICMSST", required = true)
+    private String percentualAliquotaImpostoICMSST;
+
+    @Element(name = "vICMSST", required = true)
+    private String valorICMSST;
+
+    public void setOrigem(final NFOrigem origem) {
+        this.origem = origem;
+    }
+
+    public void setSituacaoOperacaoSN(final NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN) {
+        this.situacaoOperacaoSN = situacaoOperacaoSN;
+    }
+
+    /**
+     * @deprecated Utilizar setModalidadeBCICMSST(...)
+     * @param modalidadeDeterminacaoBCICMSST
+     */
+    @Deprecated
+    public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
+        this.modalidadeBCICMSST = modalidadeDeterminacaoBCICMSST;
+    }
+    
+    public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
+        this.modalidadeBCICMSST = modalidadeBCICMSST;
+    }
+
+    public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual Margem Valor Adicionado ICMS ST ICMSSN202");
+    }
+
+    public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST, "Percentual Reducao BC ICMSST ICMSSN202");
+    }
+
+    public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
+        this.valorBCICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSST, "Valor BC ICMS ST ICMSSN202");
+    }
+
+    public void setPercentualAliquotaImpostoICMSST(final BigDecimal percentualAliquotaImpostoICMSST) {
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaImpostoICMSST, "Percentual Aliquota Imposto ICMSST ICMSSN202");
+    }
+
+    public void setValorICMSST(final BigDecimal valorICMSST) {
+        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMSSN202");
+    }
+
+    public NFOrigem getOrigem() {
+        return this.origem;
+    }
+
+    public NFNotaSituacaoOperacionalSimplesNacional getSituacaoOperacaoSN() {
+        return this.situacaoOperacaoSN;
+    }
+
+    /**
+     * @deprecated Utilizar getModalidadeBCICMSST(...)
+     * @return
+     */
+    @Deprecated
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
+        return this.modalidadeBCICMSST;
+    }
+    
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
+        return this.modalidadeBCICMSST;
+    }
+
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
+    }
+
+    public String getPercentualReducaoBCICMSST() {
+        return this.percentualReducaoBCICMSST;
+    }
+
+    public String getValorBCICMSST() {
+        return this.valorBCICMSST;
+    }
+
+    public String getPercentualAliquotaImpostoICMSST() {
+        return this.percentualAliquotaImpostoICMSST;
+    }
+
+    public String getValorICMSST() {
+        return this.valorICMSST;
+    }
+}
