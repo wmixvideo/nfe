@@ -88,6 +88,10 @@ public enum NFAutorizador31 {
             return new NFUnidadeFederativa[]{NFUnidadeFederativa.AM};
         }
     },
+    
+    /**
+     * Links NFC-e segundo site => https://ciranda.me/tsdn/blog-da-tecnospeed/post/como-emitir-nfc-e-na-bahia
+     */
     BA {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
@@ -131,32 +135,32 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceAutorizacao(ambiente);
         }
 
         @Override
         public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceRetAutorizacao(ambiente);
         }
 
         @Override
         public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceConsultaProtocolo(ambiente);
         }
 
         @Override
         public String getNfceStatusServico(final NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceStatusServico(ambiente);
         }
 
         @Override
         public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceRecepcaoEvento(ambiente);
         }
 
         @Override
         public String getNfceInutilizacao(NFAmbiente ambiente) {
-            return null;
+            return SVRS.getNfceInutilizacao(ambiente);
         }
     },
     CE {
