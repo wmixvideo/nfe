@@ -67,13 +67,13 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     }
 
     /**
-     * @deprecated Utilizar setModalidadeBCICMS(...) 
+     * @deprecated Utilizar setModalidadeBCICMS(...)
      */
     @Deprecated
     public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeDeterminacaoBCICMS) {
-    	this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeDeterminacaoBCICMS.getCodigo());
+        this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeDeterminacaoBCICMS.getCodigo());
     }
-    
+
     public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
         this.modalidadeBCICMS = modalidadeBCICMS;
     }
@@ -126,7 +126,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     public void setAliquotaAplicavelCalculoCreditoSN(final BigDecimal aliquotaAplicavelCalculoCreditoSN) {
         this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaAplicavelCalculoCreditoSN, "Aliquota Aplicavel Calculo Credito SN ICMSSN900");
     }
-    
+
     public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
         this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN, "Aliquota Aplicavel Calculo Credito SN ICMSSN900");
     }
@@ -144,13 +144,13 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     }
 
     /**
-     * @deprecated Utilizar getModalidadeBCICMS()  
+     * @deprecated Utilizar getModalidadeBCICMS()
      */
     @Deprecated
     public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeDeterminacaoBCICMS() {
-    	return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
+        return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
     }
-    
+
     public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
         return this.modalidadeBCICMS;
     }
@@ -194,7 +194,7 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     public String getValorICMSST() {
         return this.valorICMSST;
     }
-    
+
     public String getPercentualAliquotaAplicavelCalculoCreditoSN() {
         return this.percentualAliquotaAplicavelCalculoCreditoSN;
     }
