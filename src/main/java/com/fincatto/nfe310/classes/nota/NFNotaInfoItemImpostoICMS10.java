@@ -6,7 +6,6 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
@@ -57,14 +56,6 @@ public class NFNotaInfoItemImpostoICMS10 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar setModalidadeBCICMS(...) 
-     */
-    @Deprecated    
-    public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo) {
-    	this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeBaseCalculo.getCodigo());
-    }
-    
     public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
         this.modalidadeBCICMS = modalidadeBCICMS;
     }
@@ -81,14 +72,6 @@ public class NFNotaInfoItemImpostoICMS10 extends NFBase {
         this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo ICMS10 Item");
     }
 
-    /**
-     * @deprecated Utilizar setModalidadeBCICMSST(...)
-     */
-    @Deprecated     
-    public void setModalidadeDeterminacaoBCICMS(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMS) {
-        this.modalidadeBCICMSST = modalidadeDeterminacaoBCICMS;
-    }
-    
     public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
@@ -121,14 +104,6 @@ public class NFNotaInfoItemImpostoICMS10 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar getModalidadeBCICMS()  
-     */
-    @Deprecated    
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBaseCalculo() {
-    	return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
-    }
-    
     public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
         return this.modalidadeBCICMS;
     }
@@ -145,15 +120,6 @@ public class NFNotaInfoItemImpostoICMS10 extends NFBase {
         return this.valorTributo;
     }
 
-    /**
-     * @deprecated Utilizar getModalidadeBCICMSST(...)
-     * @return
-     */
-    @Deprecated    
-    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMS() {
-        return this.modalidadeBCICMSST;
-    }
-    
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
         return this.modalidadeBCICMSST;
     }

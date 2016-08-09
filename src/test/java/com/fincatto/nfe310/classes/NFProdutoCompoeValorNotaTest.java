@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
-
 public class NFProdutoCompoeValorNotaTest {
 
     @Test
@@ -18,5 +16,10 @@ public class NFProdutoCompoeValorNotaTest {
     public void deveRepresentarOCodigoCorretamente() {
         Assert.assertEquals("0", NFProdutoCompoeValorNota.NAO.getCodigo());
         Assert.assertEquals("1", NFProdutoCompoeValorNota.SIM.getCodigo());
+    }
+
+    @Test
+    public void deveObterStringficadoCorretamente() {
+        Assert.assertEquals("1 - Sim", NFProdutoCompoeValorNota.SIM.toString());
     }
 }
