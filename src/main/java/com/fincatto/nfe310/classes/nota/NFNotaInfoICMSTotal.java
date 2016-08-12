@@ -74,14 +74,6 @@ public class NFNotaInfoICMSTotal extends NFBase {
         this.valorTotalICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalICMS, "Valalor Total ICMS");
     }
 
-    /**
-     * @deprecated Utilize setBaseCalculoICMSST(...)
-     */
-    @Deprecated
-    public void setValor(final BigDecimal valor) {
-        this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Base de Calculo ICMS ST Total");
-    }
-
     public void setBaseCalculoICMSST(final BigDecimal baseCalculoICMSST) {
         this.baseCalculoICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMSST, "Base de Calculo ICMS ST Total");
     }
@@ -148,14 +140,6 @@ public class NFNotaInfoICMSTotal extends NFBase {
 
     public String getValorICMSDesonerado() {
         return this.valorICMSDesonerado;
-    }
-
-    /**
-     * @deprecated Utilize getBaseCalculoICMSST()
-     */
-    @Deprecated
-    public String getValor() {
-        return this.baseCalculoICMSST;
     }
 
     public String getBaseCalculoICMSST() {
