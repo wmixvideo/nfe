@@ -43,15 +43,6 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
         this.situacaoOperacaoSN = situacaoOperacaoSN;
     }
 
-    /**
-     * @deprecated Utilizar setModalidadeBCICMSST(...)
-     * @param modalidadeDeterminacaoBCICMSST
-     */
-    @Deprecated
-    public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
-        this.modalidadeBCICMSST = modalidadeDeterminacaoBCICMSST;
-    }
-    
     public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
@@ -84,15 +75,6 @@ public class NFNotaInfoItemImpostoICMSSN202 extends NFBase {
         return this.situacaoOperacaoSN;
     }
 
-    /**
-     * @deprecated Utilizar getModalidadeBCICMSST(...)
-     * @return
-     */
-    @Deprecated
-    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
-        return this.modalidadeBCICMSST;
-    }
-    
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
         return this.modalidadeBCICMSST;
     }

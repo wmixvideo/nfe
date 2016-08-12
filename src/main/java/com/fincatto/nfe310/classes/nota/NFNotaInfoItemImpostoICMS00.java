@@ -6,7 +6,6 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
@@ -42,14 +41,6 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar setModalidadeBCICMS(...) 
-     */
-    @Deprecated
-    public void setModalidadeBaseCalculo(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBaseCalculo) {
-        this.modalidadeBCICMS = NFNotaInfoItemModalidadeBCICMS.valueOfCodigo(modalidadeBaseCalculo.getCodigo());
-    }
-    
     public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
         this.modalidadeBCICMS = modalidadeBCICMS;
     }
@@ -74,14 +65,6 @@ public class NFNotaInfoItemImpostoICMS00 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar getModalidadeBCICMS()  
-     */
-    @Deprecated
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBaseCalculo() {
-        return NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.valueOfCodigo(this.modalidadeBCICMS.getCodigo());
-    }
-    
     public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
         return this.modalidadeBCICMS;
     }

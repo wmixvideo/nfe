@@ -63,20 +63,6 @@ public class WSFacade {
     }
 
     /**
-     * Faz o envio assinado para a Sefaz de NF-e
-     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
-     *
-     * @param loteAssinadoXml lote assinado no formato XML
-     * @return dados do lote retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
-     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
-     */
-    @Deprecated
-    public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, NFModelo.NFE);
-    }
-
-    /**
      * Faz o envio assinado para a Sefaz de NF-e e NFC-e
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      *
@@ -90,19 +76,6 @@ public class WSFacade {
     }
 
     /**
-     * Faz a consulta do lote na Sefaz (NF-e)
-     *
-     * @param numeroRecibo numero do recibo do processamento
-     * @return dados da consulta de lote retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
-     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
-     */
-    @Deprecated
-    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
-        return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
-    }
-
-    /**
      * Faz a consulta do lote na Sefaz (NF-e e NFC-e)
      *
      * @param numeroRecibo numero do recibo do processamento
@@ -112,19 +85,6 @@ public class WSFacade {
      */
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
         return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
-    }
-
-    /**
-     * Faz a consulta de status da sefaz responsavel pela UF
-     *
-     * @param uf UF que deseja consultar o status do sefaz responsavel
-     * @return dados da consulta de status retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
-     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
-     */
-    @Deprecated
-    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
-        return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
     }
 
     /**
@@ -207,20 +167,6 @@ public class WSFacade {
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      *
      * @param eventoAssinadoXml evento assinado em XML
-     * @return dados da inutilizacao da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
-     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
-     */
-    @Deprecated
-    public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
-        return this.inutilizaNotaAssinada(eventoAssinadoXml, NFModelo.NFE);
-    }
-
-    /**
-     * Inutiliza a nota com o evento assinado
-     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
-     *
-     * @param eventoAssinadoXml evento assinado em XML
      * @param modelo modelo da nota (NF-e ou NFC-e)
      * @return dados da inutilizacao da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
@@ -244,24 +190,6 @@ public class WSFacade {
      */
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final NFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
-    }
-
-    /**
-     * Inutiliza a nota
-     *
-     * @param anoInutilizacaoNumeracao ano de inutilizacao
-     * @param cnpjEmitente CNPJ emitente da nota
-     * @param serie serie da nota
-     * @param numeroInicial numero inicial da nota
-     * @param numeroFinal numero final da nota
-     * @param justificativa justificativa da inutilizacao
-     * @return dados da inutilizacao da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
-     * @deprecated este metodo sera morto na versao 2.1.0, utilize o metodo que possui o modelo no parametro
-     */
-    @Deprecated
-    public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa) throws Exception {
-        return this.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, NFModelo.NFE);
     }
 
     /**

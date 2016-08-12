@@ -50,18 +50,10 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar setModalidadeBCICMSST(...)
-     */
-    @Deprecated    
-    public void setModalidadeDeterminacaoBC(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBC) {
-        this.modalidadeBCICMSST = modalidadeDeterminacaoBC;
-    }
-
     public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
-    
+
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
         this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual Margem Valor Adicionado ICMS ST ICMS30 Item");
     }
@@ -98,15 +90,6 @@ public class NFNotaInfoItemImpostoICMS30 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    /**
-     * @deprecated Utilizar getModalidadeBCICMSST(...)
-     * @return
-     */
-    @Deprecated      
-    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBC() {
-        return this.modalidadeBCICMSST;
-    }
-    
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
         return this.modalidadeBCICMSST;
     }

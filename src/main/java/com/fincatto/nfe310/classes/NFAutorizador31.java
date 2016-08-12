@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.classes;
 
-import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-
 import java.util.Arrays;
+
+import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 
 /**
  * <h1>URLs dos serviços</h1><br>
@@ -79,18 +79,18 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/NfeInutilizacao2" : "https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.AM};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.AM };
         }
     },
-    
+
     /**
-     * Links NFC-e segundo site => https://ciranda.me/tsdn/blog-da-tecnospeed/post/como-emitir-nfc-e-na-bahia
+     * Links NFC-e segundo site: https://ciranda.me/tsdn/blog-da-tecnospeed/post/como-emitir-nfc-e-na-bahia
      */
     BA {
         @Override
@@ -130,7 +130,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.BA};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.BA };
         }
 
         @Override
@@ -159,7 +159,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return SVRS.getNfceInutilizacao(ambiente);
         }
     },
@@ -225,13 +225,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeInutilizacao2?WSDL" : null;
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.CE};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.CE };
         }
     },
     GO {
@@ -296,13 +296,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.GO};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.GO };
         }
     },
     MG {
@@ -343,7 +343,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MG};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MG };
         }
 
         @Override
@@ -372,7 +372,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
         }
 
@@ -415,7 +415,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MS};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MS };
         }
 
         @Override
@@ -444,7 +444,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
         }
     },
@@ -510,13 +510,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/nfcews/services/NfeInutilizacao2?wsdl" : "https://nfce.sefaz.mt.gov.br/nfcews/services/NfeInutilizacao2?wsdl";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MT};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MT };
         }
 
     },
@@ -582,13 +582,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PE};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PE };
         }
 
     },
@@ -654,13 +654,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.pr.gov.br/nfce/NFeInutilizacao3?wsdl" : "https://nfce.fazenda.pr.gov.br/nfce/NFeInutilizacao3?wsdl";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PR};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PR };
         }
     },
     RS {
@@ -725,13 +725,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.RS};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.RS };
         }
     },
     SP {
@@ -796,13 +796,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.SP};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
         }
     },
     SVRS {
@@ -867,13 +867,13 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfce.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO };
         }
     },
     SCAN {
@@ -914,7 +914,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{};
+            return new NFUnidadeFederativa[] {};
         }
 
         @Override
@@ -943,7 +943,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
         }
     },
@@ -985,7 +985,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI};
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI };
         }
 
         @Override
@@ -1014,7 +1014,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceInutilizacao(NFAmbiente ambiente) {
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
         }
     };
