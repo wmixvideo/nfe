@@ -592,6 +592,77 @@ public enum NFAutorizador31 {
         }
 
     },
+    PI {
+        @Override
+        public String getNfeAutorizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
+            return SVAN.getNfeConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfeStatusServico(final NFAmbiente ambiente) {
+            return SVAN.getNfeStatusServico(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEvento(final NFAmbiente ambiente) {
+            return SVAN.getRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getConsultaCadastro(final NFAmbiente ambiente) {
+            return SVAN.getConsultaCadastro(ambiente);
+        }
+
+        @Override
+        public String getNfeInutilizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
+            return SVRS.getNfceConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfceStatusServico(final NFAmbiente ambiente) {
+            return SVRS.getNfceStatusServico(ambiente);
+        }
+
+        @Override
+        public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
+            return SVRS.getNfceRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceInutilizacao(ambiente);
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PI };
+        }
+    },
     PR {
         @Override
         public String getNfeAutorizacao(final NFAmbiente ambiente) {
@@ -985,7 +1056,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA, NFUnidadeFederativa.PI };
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA, NFUnidadeFederativa.PA };
         }
 
         @Override
