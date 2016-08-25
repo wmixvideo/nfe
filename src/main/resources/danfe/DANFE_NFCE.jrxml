@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DANFE_NFCE" pageWidth="226" pageHeight="1000" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="f2ad8431-eb6a-4415-9a7a-8bcb81e49e5d">
-	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.zoom" value="6.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1008"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -133,18 +133,6 @@ $F{nota.info.emitente.endereco.telefone})]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[NÃO PERMITE APROVEITAMENTO DE CRÉDITO ICMS]]></text>
 			</staticText>
-			<line>
-				<reportElement key="line" positionType="Float" x="1" y="42" width="207" height="1" uuid="45815a89-efc7-4031-866f-8a1001126cba"/>
-				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement key="line" positionType="Float" x="1" y="79" width="207" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
-				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 		</band>
 	</pageHeader>
 	<detail>
@@ -175,18 +163,6 @@ $F{nota.info.destinatario.razaoSocial} : ""]]></textFieldExpression>
 "CONSUMIDOR NÃO IDENTIFICADO"
 )]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement key="line" positionType="Float" x="0" y="188" width="207" height="1" uuid="d6984e4b-deee-48e7-98d5-2e979384e872"/>
-				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement key="line" positionType="Float" x="0" y="165" width="207" height="1" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b"/>
-				<graphicElement>
-					<pen lineWidth="1.0" lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="0" y="121" width="207" height="10" uuid="24e3e04f-3277-4682-99e3-1858346f2d67"/>
 				<textElement textAlignment="Center">
@@ -262,27 +238,6 @@ $F{protocolo.protocoloInfo.dataRecebimento}.toString("dd/MM/yyyy HH:mm:ss")]]></
 $F{nota.info.total.icmsTotal.valorTotalTributos}+
 " (Fonte: IBPT)"]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement key="line" positionType="Float" x="1" y="75" width="207" height="1" uuid="7baade66-65a3-4b67-91fa-eb259b7cbb6b"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement key="line" positionType="Float" x="1" y="89" width="207" height="1" isRemoveLineWhenBlank="true" uuid="32b38553-017d-4d5f-a53f-06f9dd96443b">
-					<printWhenExpression><![CDATA[$F{nota.info.total.icmsTotal.valorTotalTributos} != null &&
-!$F{nota.info.total.icmsTotal.valorTotalTributos}.equals("0,00")]]></printWhenExpression>
-				</reportElement>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" x="1" y="15" width="207" height="1" uuid="4637273e-fe55-44a8-aba3-339f1b52dd19"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 			<staticText>
 				<reportElement key="textField" positionType="Float" x="111" y="50" width="97" height="12" uuid="82212bfc-f443-4c12-af2f-f7d77821dfce"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
