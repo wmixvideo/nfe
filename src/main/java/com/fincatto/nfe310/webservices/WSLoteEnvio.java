@@ -109,9 +109,14 @@ class WSLoteEnvio {
         }
 
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
-        return loteEnvioRetorno;
+        try{
+            final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+            WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
+            return loteEnvioRetorno;
+        } catch (Exception e){
+            WSLoteEnvio.LOGGER.error(autorizacaoLoteResult.getExtraElement().toString());
+            throw new IllegalArgumentException("Formato da resposta inesperado", e);
+        }
     }
 
     private NfeCabecMsgE getCabecalhoSOAP() {
