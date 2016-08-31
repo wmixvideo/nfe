@@ -65,12 +65,12 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfe.sefaz.am.gov.br/services2/services/NfeConsulta2";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeConsulta2";
         }
 
         @Override
         public String getNfceStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/NfeStatusServico2" : "https://nfe.sefaz.am.gov.br/services2/services/NfeStatusServico2";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeStatusServico2" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeStatusServico2";
         }
 
         @Override
@@ -80,7 +80,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/NfeInutilizacao2" : "https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeInutilizacao2" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeInutilizacao2";
         }
 
         @Override
