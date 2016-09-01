@@ -9,18 +9,18 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="12" splitType="Stretch">
+		<band height="10" splitType="Stretch">
 			<textField pattern="#,##0.00">
-				<reportElement key="textField" positionType="Float" x="118" y="0" width="89" height="11" uuid="2a55baeb-2468-465c-8dec-9fdf0960ee76"/>
+				<reportElement key="textField" positionType="Float" x="146" y="0" width="63" height="10" uuid="2a55baeb-2468-465c-8dec-9fdf0960ee76"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+					<font fontName="Arial Narrow" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="textField" positionType="Float" x="0" y="0" width="118" height="11" uuid="c4fb7590-7e95-4064-b7b4-df0970be1413"/>
+				<reportElement key="textField" positionType="Float" x="0" y="0" width="110" height="10" uuid="c4fb7590-7e95-4064-b7b4-df0970be1413"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica-Bold"/>
+					<font fontName="Arial Narrow" size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{formaPagamento}]]></textFieldExpression>
 			</textField>
