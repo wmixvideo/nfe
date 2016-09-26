@@ -11,49 +11,75 @@ import java.math.BigDecimal;
 
 @Root(strict = false)
 public class NFTipoEvento extends NFBase {
-    @Attribute(name = "versao", required = true)
-    private String versao;
 
-    @Element(name = "descEvento", required = true)
-    private String descricaoEvento;
+  @Attribute(name = "versao", required = true)
+  private String versao;
 
-    // Carta correcao
-    @Element(name = "xCorrecao", required = false)
-    private String textoCorrecao;
+  @Element(name = "descEvento", required = true)
+  private String descricaoEvento;
 
-    @Element(name = "xCondUso", required = false)
-    private String condicaoUso;
+  // Carta correcao
+  @Element(name = "xCorrecao", required = false)
+  private String textoCorrecao;
 
-    public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
-    }
+  @Element(name = "xCondUso", required = false)
+  private String condicaoUso;
 
-    public void setDescricaoEvento(final String descricaoEvento) {
-        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
-        this.descricaoEvento = descricaoEvento;
-    }
+  //::Edivaldo:: Cancelamento: precisa dos campos "nProt" e "xJust" para pegar o retorno da consulta da NFe
+  @Element(name = "nProt", required = false) // alterado "required = true" para "required = false"
+  private String protocoloAutorizacao;
 
-    public String getDescricaoEvento() {
-        return this.descricaoEvento;
-    }
+  @Element(name = "xJust", required = false) // alterado "required = true" para "required = false"
+  private String justificativa;
 
-    public String getVersao() {
-        return this.versao;
-    }
+  public void setVersao(final BigDecimal versao) {
+    this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+  }
 
-    public void setCondicaoUso(final String condicaoUso) {
-        this.condicaoUso = condicaoUso;
-    }
+  public void setDescricaoEvento(final String descricaoEvento) {
+    StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
+    this.descricaoEvento = descricaoEvento;
+  }
 
-    public void setTextoCorrecao(final String textoCorrecao) {
-        this.textoCorrecao = textoCorrecao;
-    }
+  public String getDescricaoEvento() {
+    return this.descricaoEvento;
+  }
 
-    public String getCondicaoUso() {
-        return this.condicaoUso;
-    }
+  public String getVersao() {
+    return this.versao;
+  }
 
-    public String getTextoCorrecao() {
-        return this.textoCorrecao;
-    }
+  public void setCondicaoUso(final String condicaoUso) {
+    this.condicaoUso = condicaoUso;
+  }
+
+  public void setTextoCorrecao(final String textoCorrecao) {
+    this.textoCorrecao = textoCorrecao;
+  }
+
+  public String getCondicaoUso() {
+    return this.condicaoUso;
+  }
+
+  public String getTextoCorrecao() {
+    return this.textoCorrecao;
+  }
+
+  public void setJustificativa(final String justificativa) {
+    StringValidador.tamanho15a256(justificativa, "Justificativa");
+    this.justificativa = justificativa;
+  }
+
+  public void setProtocoloAutorizacao(final String protocoloAutorizacao) {
+    StringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
+    this.protocoloAutorizacao = protocoloAutorizacao;
+  }
+
+  public String getJustificativa() {
+    return this.justificativa;
+  }
+
+  public String getProtocoloAutorizacao() {
+    return this.protocoloAutorizacao;
+  }
 }

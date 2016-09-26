@@ -19,6 +19,7 @@ public class NFNotaProcessada extends NFBase {
     private String versao;
 
     @Element(name = "NFe")
+    //@Namespace(reference = "http://www.portalfiscal.inf.br/nfe") /*::Edivaldo:: testar futuramento este Namespace*/
     private NFNota nota;
 
     @Element(name = "protNFe")

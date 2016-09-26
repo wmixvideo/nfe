@@ -1,12 +1,11 @@
 package com.fincatto.nfe310.classes.evento.cancelamento;
 
-import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.evento.NFTipoEvento;
-import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFInfoCancelamento extends NFTipoEvento {
-    @Element(name = "nProt", required = true)
+  /** ::Edivaldo::  Este trecho foi eliminado daqui e passado para  classe: NFTipoEvento, pois quando se consulta a nota, não estava exibindo os campos "nProt" e "xJust" no evento.
+  @Element(name = "nProt", required = true)
     private String protocoloAutorizacao;
 
     @Element(name = "xJust", required = true)
@@ -29,6 +28,7 @@ public class NFInfoCancelamento extends NFTipoEvento {
     public String getProtocoloAutorizacao() {
         return this.protocoloAutorizacao;
     }
+    */
 
     @Override
     public void setCondicaoUso(final String condicaoUso) {
