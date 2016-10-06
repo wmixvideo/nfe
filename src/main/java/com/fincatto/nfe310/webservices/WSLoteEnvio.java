@@ -29,6 +29,10 @@ import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoL
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import java.io.StringReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
 class WSLoteEnvio {
 
@@ -125,7 +129,11 @@ class WSLoteEnvio {
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
-        final OMElement ome = AXIOMUtil.stringToOM(documento);
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.IS_COALESCING, false);
+        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));        
+        StAXOMBuilder builder = new StAXOMBuilder(reader);
+        final OMElement ome = builder.getDocumentElement();
         final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();
