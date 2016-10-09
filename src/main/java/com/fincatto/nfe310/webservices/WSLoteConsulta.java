@@ -21,49 +21,49 @@ import java.rmi.RemoteException;
 
 class WSLoteConsulta {
 
-	final private static Logger LOGGER = LoggerFactory.getLogger(WSLoteConsulta.class);
-	private final NFeConfig config;
+    final private static Logger LOGGER = LoggerFactory.getLogger(WSLoteConsulta.class);
+    private final NFeConfig config;
 
-	WSLoteConsulta(final NFeConfig config) {
-		this.config = config;
-	}
+    WSLoteConsulta(final NFeConfig config) {
+        this.config = config;
+    }
 
-	NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
-		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-		WSLoteConsulta.LOGGER.debug(omElementConsulta.toString());
+    NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
+        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
+        WSLoteConsulta.LOGGER.debug(omElementConsulta.toString());
 
-		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF(), modelo);
-		WSLoteConsulta.LOGGER.debug(omElementResult.toString());
+        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF(), modelo);
+        WSLoteConsulta.LOGGER.debug(omElementResult.toString());
 
-		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
-	}
+        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
+    }
 
-	private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws RemoteException {
-		final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
-		cabec.setCUF(uf.getCodigoIbge());
-		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
+    private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws RemoteException {
+        final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
+        cabec.setCUF(uf.getCodigoIbge());
+        cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
 
-		final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
-		cabecE.setNfeCabecMsg(cabec);
+        final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
+        cabecE.setNfeCabecMsg(cabec);
 
-		final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
-		dados.setExtraElement(omElement);
+        final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
+        dados.setExtraElement(omElement);
 
-		final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
-		final String urlWebService = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
-		if (urlWebService == null) {
-			throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
-		}
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+        final String urlWebService = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
+        if (urlWebService == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
+        }
 
-		final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
-		return autorizacaoLoteResult.getExtraElement();
-	}
+        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
+        return autorizacaoLoteResult.getExtraElement();
+    }
 
-	private NFLoteConsulta gerarDadosConsulta(final String numeroRecibo) {
-		final NFLoteConsulta consulta = new NFLoteConsulta();
-		consulta.setRecibo(numeroRecibo);
-		consulta.setAmbiente(this.config.getAmbiente());
-		consulta.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
-		return consulta;
-	}
+    private NFLoteConsulta gerarDadosConsulta(final String numeroRecibo) {
+        final NFLoteConsulta consulta = new NFLoteConsulta();
+        consulta.setRecibo(numeroRecibo);
+        consulta.setAmbiente(this.config.getAmbiente());
+        consulta.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
+        return consulta;
+    }
 }
