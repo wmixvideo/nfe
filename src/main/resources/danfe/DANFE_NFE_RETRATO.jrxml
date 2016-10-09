@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-13T08:41:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_retrato" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="20" uuid="e21b08e1-6159-4fbb-98e9-6837ade5c1f3">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
@@ -1064,7 +1062,7 @@ $P{REPORT_DATA_SOURCE}).dataSource("/nfeProc/NFe/infNFe/cobr/dup")]]></dataSourc
 					<textElement>
 						<font fontName="Times New Roman" size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{TranspCNPJ} != null ? ($F{TranspCNPJ}.substring(0, 2) + "." + $F{TranspCNPJ}.substring(2, 5) + "." + $F{TranspCNPJ}.substring(5, 8) + "/" + $F{TranspCNPJ}.substring(8, 12) + "-" +$F{TranspCNPJ}.substring(12, 14)) 
+					<textFieldExpression><![CDATA[$F{TranspCNPJ} != null ? ($F{TranspCNPJ}.substring(0, 2) + "." + $F{TranspCNPJ}.substring(2, 5) + "." + $F{TranspCNPJ}.substring(5, 8) + "/" + $F{TranspCNPJ}.substring(8, 12) + "-" +$F{TranspCNPJ}.substring(12, 14))
 : ($F{TranspCPF}.substring(0, 3) + "." + $F{TranspCPF}.substring(3, 6) + "." + $F{TranspCPF}.substring(6, 9) + "-" + $F{TranspCPF}.substring(9, 11))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
