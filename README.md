@@ -88,7 +88,7 @@ Considere para os exemplos abaixo que **config** seja uma instância da implemen
 
 #### Status dos webservices
 ```java
-NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(NFUnidadeFederativa.SC);
+NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(NFUnidadeFederativa.SC, NFModelo.NFE);
 System.out.println(retorno.getStatus());
 System.out.println(retorno.getMotivo());
 ```
