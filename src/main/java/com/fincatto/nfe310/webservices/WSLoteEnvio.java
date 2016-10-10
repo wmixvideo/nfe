@@ -5,7 +5,6 @@ import java.util.Iterator;
 import javax.xml.stream.XMLStreamException;
 
 import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
