@@ -55,12 +55,12 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
-        	return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao";			        	
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao";
         }
 
         @Override
         public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-        	return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao";			        	
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao";
         }
 
         @Override
@@ -84,11 +84,111 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.AM };
         }
     },
+    AN {
+        @Override
+        public String getRecepcaoEvento(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx" : "https://www.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx";
+        }
 
+        @Override
+        public String getNfeAutorizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeStatusServico(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getConsultaCadastro(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeInutilizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceAutorizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceRetAutorizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceConsultaProtocolo(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceStatusServico(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceRecepcaoEvento(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceInutilizacao(NFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx" : "https://www.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx";
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx" : "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx";
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/NfeDownloadNF/NfeDownloadNF.asmx" : "https://www.nfe.fazenda.gov.br/NfeDownloadNF/NfeDownloadNF.asmx";
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { };
+        }
+    },
     /**
      * Links NFC-e segundo site: https://ciranda.me/tsdn/blog-da-tecnospeed/post/como-emitir-nfc-e-na-bahia
      */
@@ -129,11 +229,6 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.BA };
-        }
-
-        @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
             return SVRS.getNfceAutorizacao(ambiente);
         }
@@ -161,6 +256,26 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return SVRS.getNfceInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.BA };
         }
     },
     CE {
@@ -227,6 +342,21 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeInutilizacao2?WSDL" : null;
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
         }
 
         @Override
@@ -301,6 +431,21 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.GO };
         }
@@ -370,7 +515,22 @@ public enum NFAutorizador31 {
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return SVRS.getNfceInutilizacao(ambiente);
         }
-        
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
         @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA };
@@ -413,11 +573,6 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MG };
-        }
-
-        @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
             return null;
         }
@@ -447,6 +602,25 @@ public enum NFAutorizador31 {
             return null;
         }
 
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MG };
+        }
     },
     MS {
         @Override
@@ -485,11 +659,6 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MS };
-        }
-
-        @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
             return null;
         }
@@ -517,6 +686,26 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MS };
         }
     },
     MT {
@@ -586,10 +775,24 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.MT };
         }
-
     },
     PE {
         @Override
@@ -658,10 +861,24 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.PE };
         }
-
     },
     PI {
         @Override
@@ -727,6 +944,21 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return SVRS.getNfceInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
         }
 
         @Override
@@ -801,6 +1033,21 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.PR };
         }
@@ -869,6 +1116,21 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx";
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
         }
 
         @Override
@@ -943,6 +1205,21 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
         }
@@ -1014,6 +1291,21 @@ public enum NFAutorizador31 {
         }
 
         @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
         public NFUnidadeFederativa[] getUFs() {
             return new NFUnidadeFederativa[] { NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO };
         }
@@ -1055,11 +1347,6 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] {};
-        }
-
-        @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
             return null;
         }
@@ -1087,6 +1374,26 @@ public enum NFAutorizador31 {
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] {};
         }
     },
     SVAN {
@@ -1126,11 +1433,6 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PA };
-        }
-
-        @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
             return null;
         }
@@ -1159,6 +1461,26 @@ public enum NFAutorizador31 {
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
             return null;
         }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PA };
+        }
     };
 
     public abstract String getNfeAutorizacao(final NFAmbiente ambiente);
@@ -1186,6 +1508,12 @@ public enum NFAutorizador31 {
     public abstract String getNfceRecepcaoEvento(final NFAmbiente ambiente);
 
     public abstract String getNfceInutilizacao(final NFAmbiente ambiente);
+
+    public abstract String getRecepcaoEventoAN(final NFAmbiente ambiente);
+
+    public abstract String getNFeDistribuicaoDFe(final NFAmbiente ambiente);
+
+    public abstract String getNfeDownloadNF(final NFAmbiente ambiente);
 
     public abstract NFUnidadeFederativa[] getUFs();
 
