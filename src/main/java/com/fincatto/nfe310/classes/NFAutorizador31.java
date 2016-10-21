@@ -1176,32 +1176,32 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeautorizacao.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeautorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeautorizacao.asmx" : "https://nfce.fazenda.sp.gov.br/ws/nfeautorizacao.asmx";
         }
 
         @Override
         public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nferetautorizacao.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nferetautorizacao.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nferetautorizacao.asmx" : "https://nfce.fazenda.sp.gov.br/ws/nferetautorizacao.asmx";
         }
 
         @Override
         public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeconsulta2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeconsulta2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeconsulta2.asmx" : "https://nfce.fazenda.sp.gov.br/ws/nfeconsulta2.asmx";
         }
 
         @Override
         public String getNfceStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfestatusservico2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfestatusservico2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfestatusservico2.asmx" : "https://nfce.fazenda.sp.gov.br/ws/nfestatusservico2.asmx";
         }
 
         @Override
         public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/recepcaoevento.asmx" : "https://nfe.fazenda.sp.gov.br/ws/recepcaoevento.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/recepcaoevento.asmx" : "https://nfce.fazenda.sp.gov.br/ws/recepcaoevento.asmx";
         }
 
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx" : "https://nfe.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx" : "https://nfce.fazenda.sp.gov.br/ws/nfeinutilizacao2.asmx";
         }
 
         @Override
