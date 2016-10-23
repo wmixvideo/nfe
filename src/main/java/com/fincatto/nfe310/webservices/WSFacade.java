@@ -15,6 +15,7 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
+import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
@@ -33,6 +34,7 @@ public class WSFacade {
     private final WSCancelamento wsCancelamento;
     private final WSConsultaCadastro wsConsultaCadastro;
     private final WSInutilizacao wsInutilizacao;
+    private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
@@ -45,7 +47,7 @@ public class WSFacade {
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsCancelamento = new WSCancelamento(config);
         this.wsConsultaCadastro = new WSConsultaCadastro(config);
-        this.wsInutilizacao = new WSInutilizacao(config);
+        this.wsInutilizacao = new WSInutilizacao(config);this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
     }
 
     /**
@@ -202,5 +204,32 @@ public class WSFacade {
      */
     public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
         return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
+    }
+    
+    /**
+     * Faz a manifestação do destinatário da nota
+     *
+     * @param chaveAcesso chave de acesso da nota
+     * @param tipoEvento tipo do evento da manifestacao do destinatario
+     * @param motivo motivo do cancelamento
+     * @param cnpj cnpj do autor do evento
+     * @return dados da manifestacao do destinatario da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+        return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chaveAcesso, tipoEvento, motivo, cnpj);
+    }
+
+    /**
+     * Faz a manifestação do destinatário da nota com evento ja assinado
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chaveAcesso chave de acesso da nota
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados da manifestacao do destinatario da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaAssinada(chaveAcesso, eventoAssinadoXml);
     }
 }
