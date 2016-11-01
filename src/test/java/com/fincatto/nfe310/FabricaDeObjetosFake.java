@@ -46,6 +46,9 @@ import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
+import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
+import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
+import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
@@ -211,6 +214,37 @@ public class FabricaDeObjetosFake {
 		dados.setSerie("999");
 		dados.setUf(NFUnidadeFederativa.SC);
 		return dados;
+	}
+
+        public static NFEventoManifestacaoDestinatario getNFEventoManifestacaoDestinatario() {
+		final NFEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEventoManifestacaoDestinatario();
+		eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
+		eventoManifestacaoDestinatario.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoManifestacaoDestinatario());
+		return eventoManifestacaoDestinatario;
+	}
+
+        public static NFInfoEventoManifestacaoDestinatario getNFInfoEventoManifestacaoDestinatario() {
+		final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
+		infoEventoManifestacaoDestinatario.setAmbiente(NFAmbiente.HOMOLOGACAO);
+		infoEventoManifestacaoDestinatario.setManifestacaoDestinatario(FabricaDeObjetosFake.getNFInfoManifestacaoDestinatario());
+		infoEventoManifestacaoDestinatario.setChave("81568004734874930428983724940883089298523837");
+		infoEventoManifestacaoDestinatario.setCnpj("12345678901234");
+		infoEventoManifestacaoDestinatario.setCodigoEvento("123456");
+		infoEventoManifestacaoDestinatario.setDataHoraEvento(new DateTime(2014, 1, 1, 10, 10, 10));
+		infoEventoManifestacaoDestinatario.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
+		infoEventoManifestacaoDestinatario.setNumeroSequencialEvento(2);
+		infoEventoManifestacaoDestinatario.setOrgao(NFUnidadeFederativa.SC);
+		infoEventoManifestacaoDestinatario.setCodigoEvento("123456");
+		infoEventoManifestacaoDestinatario.setVersaoEvento(new BigDecimal("2.49"));
+		return infoEventoManifestacaoDestinatario;
+	}
+
+        public static NFInfoManifestacaoDestinatario getNFInfoManifestacaoDestinatario() {
+		final NFInfoManifestacaoDestinatario infoManifestacaoDestinatario = new NFInfoManifestacaoDestinatario();
+		infoManifestacaoDestinatario.setDescricaoEvento("Operacao nao Realizada");
+		infoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
+		infoManifestacaoDestinatario.setJustificativa("Justificativa qualquer coisa");
+		return infoManifestacaoDestinatario;
 	}
 
 	public static NFEvento getNFEvento() {
