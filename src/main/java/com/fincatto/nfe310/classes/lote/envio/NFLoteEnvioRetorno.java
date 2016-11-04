@@ -8,6 +8,7 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFProtocoloInfo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 @Root(name = "retEnviNFe")
@@ -40,6 +41,9 @@ public class NFLoteEnvioRetorno extends NFBase {
 
     @Element(name = "protNFe", required = false)
     private String protocoloRecebimentoSincrono;
+    
+    @Element(name = "infProt", required = false)
+    private NFProtocoloInfo protocoloInfo;
 
     public void setVersao(final String versao) {
         this.versao = versao;
@@ -108,4 +112,18 @@ public class NFLoteEnvioRetorno extends NFBase {
     public String getProtocoloRecebimentoSincrono() {
         return this.protocoloRecebimentoSincrono;
     }
+
+	public NFProtocoloInfo getProtocoloInfo() {
+		return protocoloInfo;
+	}
+
+	public void setProtocoloInfo(NFProtocoloInfo protocoloInfo) {
+		this.protocoloInfo = protocoloInfo;
+	}
+
+	public void setProtocoloRecebimentoSincrono(String protocoloRecebimentoSincrono) {
+		this.protocoloRecebimentoSincrono = protocoloRecebimentoSincrono;
+	}
+    
+    
 }
