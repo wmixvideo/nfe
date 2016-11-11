@@ -95,7 +95,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -270,7 +270,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -356,7 +356,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -442,7 +442,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -528,7 +528,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -614,7 +614,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -700,7 +700,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -786,7 +786,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -872,7 +872,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -958,7 +958,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1044,7 +1044,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1130,7 +1130,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1216,7 +1216,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1302,7 +1302,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1388,7 +1388,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1474,7 +1474,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
+        	return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
