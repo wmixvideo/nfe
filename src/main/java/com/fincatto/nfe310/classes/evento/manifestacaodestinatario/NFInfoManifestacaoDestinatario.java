@@ -1,9 +1,13 @@
 package com.fincatto.nfe310.classes.evento.manifestacaodestinatario;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe310.classes.evento.NFTipoEvento;
 
+@Root(name = "detEvento")
+@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFInfoManifestacaoDestinatario extends NFTipoEvento {
 
     @Element(name = "xJust", required = false)
