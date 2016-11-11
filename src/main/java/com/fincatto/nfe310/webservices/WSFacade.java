@@ -14,6 +14,7 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -35,6 +36,7 @@ public class WSFacade {
     private final WSConsultaCadastro wsConsultaCadastro;
     private final WSInutilizacao wsInutilizacao;
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
+    private final WSDownladNF wsDownloadNF;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
@@ -48,6 +50,7 @@ public class WSFacade {
         this.wsCancelamento = new WSCancelamento(config);
         this.wsConsultaCadastro = new WSConsultaCadastro(config);
         this.wsInutilizacao = new WSInutilizacao(config);this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
+        this.wsDownloadNF = new WSDownladNF(config);
     }
 
     /**
@@ -231,5 +234,19 @@ public class WSFacade {
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaAssinada(chaveAcesso, eventoAssinadoXml);
+    }
+    
+    /**
+     * Faz o download do xml da nota para um cnpj 
+     * Informando até 10 chaves de acesso
+     *
+     * @param cnpj para quem foi emitida a nota
+     * @param chave chave de acesso da nota
+     * @return dados do download da nota retornado pelo webservice
+     * @throws Exception 
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFDownloadNFeRetorno downloadNF(final String cnpj, final String chave) throws Exception{
+    	return this.wsDownloadNF.downloadNotaFiscal(cnpj, chave);
     }
 }
