@@ -212,6 +212,15 @@ public static void main(String args[]){
 }
 ```
 
+##Sugestão
+Para a cadeia de certificados da SEFAZ necessária para o acesso, utilize a cadeia da unidade certificadora que emitiu o seu certificado. Após fazer o download da cadeia de certificado você obterá um arquivo no formato .cer como o exemplo abaixo:
+* certificado.cer
+
+Com este arquivo é possível gerar a sua chave jks através do seguinte comando:
+<b>
+keytool -import -alias certificado -keystore certificado.jks -file /path_arquivo/certificado.cer
+</b>
+
 ## Licença
 Apache 2.0
 
