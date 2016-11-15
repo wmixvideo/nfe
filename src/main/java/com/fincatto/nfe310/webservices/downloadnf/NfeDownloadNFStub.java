@@ -226,8 +226,8 @@
                         java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                   new java.lang.Class[]{messageClass});
-                        m.invoke(ex,new java.lang.Object[]{messageObject});
+                                messageClass);
+                        m.invoke(ex, messageObject);
                         
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
@@ -356,11 +356,11 @@
 														java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
 													java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
 													java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-															new java.lang.Class[]{messageClass});
-													m.invoke(ex,new java.lang.Object[]{messageObject});
-													
-					
-										            callback.receiveErrornfeDownloadNF(new java.rmi.RemoteException(ex.getMessage(), ex));
+                                                            messageClass);
+                                                m.invoke(ex, messageObject);
+
+
+                                                callback.receiveErrornfeDownloadNF(new java.rmi.RemoteException(ex.getMessage(), ex));
                                             } catch(java.lang.ClassCastException e){
                                                 // we cannot intantiate the class - throw the original Axis fault
                                                 callback.receiveErrornfeDownloadNF(f);
@@ -515,14 +515,14 @@
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                        javax.xml.stream.XMLStreamWriter xmlWriter)
-                                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
                            serialize(parentQName,xmlWriter,false);
          }
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
-            throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
             
                 
 
@@ -938,14 +938,14 @@
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                        javax.xml.stream.XMLStreamWriter xmlWriter)
-                                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
                            serialize(parentQName,xmlWriter,false);
          }
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
-            throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
             
                 
                 //We can safely assume an element has only one type associated with it
@@ -1426,14 +1426,14 @@
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                        javax.xml.stream.XMLStreamWriter xmlWriter)
-                                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
                            serialize(parentQName,xmlWriter,false);
          }
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
-            throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
             
                 
 
@@ -1465,7 +1465,7 @@
                
                              if (localExtraAttributes != null) {
                                  for (int i=0;i <localExtraAttributes.length;i++){
-                                     writeAttribute(localExtraAttributes[i].getNamespace().getName(),
+                                     writeAttribute(localExtraAttributes[i].getNamespace().getNamespaceURI(),
                                                     localExtraAttributes[i].getLocalName(),
                                                     localExtraAttributes[i].getAttributeValue(),xmlWriter);
                                      }
@@ -1946,14 +1946,14 @@
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                        javax.xml.stream.XMLStreamWriter xmlWriter)
-                                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
                            serialize(parentQName,xmlWriter,false);
          }
 
          public void serialize(final javax.xml.namespace.QName parentQName,
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
-            throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException{
+                 throws javax.xml.stream.XMLStreamException {
             
                 
 
