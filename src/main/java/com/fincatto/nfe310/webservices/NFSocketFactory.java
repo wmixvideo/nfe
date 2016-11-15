@@ -4,11 +4,7 @@ import com.fincatto.nfe310.NFeConfig;
 import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509KeyManager;
+import javax.net.ssl.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -35,6 +31,7 @@ class NFSocketFactory implements ProtocolSocketFactory {
     @Override
     public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort, final HttpConnectionParams params) throws IOException {
         final Socket socket = this.sslContext.getSocketFactory().createSocket();
+        ((SSLSocket) socket).setEnabledProtocols(new String[] {"TLSv1"});
         socket.bind(new InetSocketAddress(localAddress, localPort));
         socket.connect(new InetSocketAddress(host, port), 60000);
         return socket;

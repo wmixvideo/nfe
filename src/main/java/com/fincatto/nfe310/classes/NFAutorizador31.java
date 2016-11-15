@@ -100,7 +100,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.AM };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.AM};
         }
     },
     AN {
@@ -186,7 +186,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { };
+            return new NFUnidadeFederativa[]{};
         }
     },
     /**
@@ -275,7 +275,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.BA };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.BA};
         }
     },
     CE {
@@ -361,7 +361,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.CE };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.CE};
         }
     },
     GO {
@@ -447,7 +447,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.GO };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.GO};
         }
     },
     MA {
@@ -533,7 +533,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MA };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MA};
         }
     },
     MG {
@@ -619,7 +619,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MG };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MG};
         }
     },
     MS {
@@ -705,7 +705,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MS };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MS};
         }
     },
     MT {
@@ -791,7 +791,93 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.MT };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.MT};
+        }
+    },
+    PA {
+        @Override
+        public String getNfeAutorizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(final NFAmbiente ambiente) {
+            return SVAN.getNfeConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfeStatusServico(final NFAmbiente ambiente) {
+            return SVAN.getNfeStatusServico(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEvento(final NFAmbiente ambiente) {
+            return SVAN.getRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getConsultaCadastro(final NFAmbiente ambiente) {
+            return SVAN.getConsultaCadastro(ambiente);
+        }
+
+        @Override
+        public String getNfeInutilizacao(final NFAmbiente ambiente) {
+            return SVAN.getNfeInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
+            return SVRS.getNfceConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfceStatusServico(final NFAmbiente ambiente) {
+            return SVRS.getNfceStatusServico(ambiente);
+        }
+
+        @Override
+        public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
+            return SVRS.getNfceRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public String getNfeDownloadNF(final NFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public NFUnidadeFederativa[] getUFs() {
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PA};
         }
     },
     PE {
@@ -877,7 +963,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PE };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PE};
         }
     },
     PI {
@@ -963,7 +1049,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PI };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PI};
         }
     },
     PR {
@@ -1049,7 +1135,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PR };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.PR};
         }
     },
     RS {
@@ -1135,7 +1221,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.RS };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.RS};
         }
     },
     SP {
@@ -1221,7 +1307,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.SP };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.SP};
         }
     },
     SVRS {
@@ -1307,7 +1393,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO };
+            return new NFUnidadeFederativa[]{NFUnidadeFederativa.AC, NFUnidadeFederativa.AL, NFUnidadeFederativa.AP, NFUnidadeFederativa.DF, NFUnidadeFederativa.ES, NFUnidadeFederativa.PA, NFUnidadeFederativa.PB, NFUnidadeFederativa.RJ, NFUnidadeFederativa.RN, NFUnidadeFederativa.RO, NFUnidadeFederativa.RR, NFUnidadeFederativa.SC, NFUnidadeFederativa.SE, NFUnidadeFederativa.TO};
         }
     },
     SCAN {
@@ -1479,7 +1565,7 @@ public enum NFAutorizador31 {
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] { NFUnidadeFederativa.PA };
+            return new NFUnidadeFederativa[]{};
         }
     };
 
