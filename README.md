@@ -177,16 +177,18 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
 
 ## Serviços disponíveis
-| Serviço           | Status              |
-| ----------------- | :-----------------: |
-| Envio lote        | Estável             |
-| Consulta lote     | Estável             |
-| Consulta status   | Estável             |
-| Consulta nota     | Estável             |
-| Corrige nota      | Estável             |
-| Cancela nota      | Estável             |
-| Inutiliza nota    | Estável             |
-| Consulta cadastro | Estável             |
+| Serviço                       | Status              |
+| ----------------------------- | :-----------------: |
+| Envio lote                    | Estável             |
+| Consulta lote                 | Estável             |
+| Consulta status               | Estável             |
+| Consulta nota                 | Estável             |
+| Download nota                 | Estável             |
+| Corrige nota                  | Estável             |
+| Cancela nota                  | Estável             |
+| Inutiliza nota                | Estável             |
+| Consulta cadastro             | Estável             |
+| Manifestação de destinatário  | Estável             |
 
 ## Requisitos
 
