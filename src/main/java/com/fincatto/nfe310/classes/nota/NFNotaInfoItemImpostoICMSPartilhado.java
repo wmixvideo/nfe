@@ -79,7 +79,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     }
 
     public void setPercentualAliquotaImposto(final BigDecimal percentualAliquotaImposto) {
-        this.percentualAliquotaImposto = BigDecimalParser.tamanho5Com2CasasDecimais(percentualAliquotaImposto, "Percentual Aliquota Imposto ICMS Partilhado");
+        this.percentualAliquotaImposto = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaImposto, "Percentual Aliquota Imposto ICMS Partilhado");
     }
 
     public void setValorICMS(final BigDecimal valorICMS) {
