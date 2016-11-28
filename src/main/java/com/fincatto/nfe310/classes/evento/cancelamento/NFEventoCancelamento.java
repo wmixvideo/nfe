@@ -6,6 +6,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
 public class NFEventoCancelamento extends NFBase {
@@ -17,7 +18,7 @@ public class NFEventoCancelamento extends NFBase {
     private NFInfoEventoCancelamento infoEvento;
 
     @Element(name = "Signature", required = false)
-    private String assinatura;
+    private NFSignature assinatura;
 
     public void setVersao(final BigDecimal versao) {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
@@ -35,11 +36,11 @@ public class NFEventoCancelamento extends NFBase {
         this.infoEvento = infoEvento;
     }
 
-    public void setAssinatura(final String assinatura) {
+    public void setAssinatura(final NFSignature assinatura) {
         this.assinatura = assinatura;
     }
 
-    public String getAssinatura() {
+    public NFSignature getAssinatura() {
         return this.assinatura;
     }
 }
