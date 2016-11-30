@@ -8,7 +8,9 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
+import org.simpleframework.xml.Root;
 
+@Root(name = "evento")
 public class NFEventoCancelamento extends NFBase {
 
     @Attribute(name = "versao", required = true)
