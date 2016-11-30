@@ -19,7 +19,7 @@ public class NFEnviaEventoInutilizacao extends NFBase {
     private String versao;
 
     @Element(name = "infInut", required = true)
-    private NFEventoCancelamentoDados dados;
+    private NFEventoInutilizacaoDados dados;
 
     @Element(name = "Signature", required = false)
     private NFSignature assinatura;
@@ -32,11 +32,11 @@ public class NFEnviaEventoInutilizacao extends NFBase {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
-    public NFEventoCancelamentoDados getDados() {
+    public NFEventoInutilizacaoDados getDados() {
         return this.dados;
     }
 
-    public void setDados(final NFEventoCancelamentoDados dados) {
+    public void setDados(final NFEventoInutilizacaoDados dados) {
         this.dados = dados;
     }
 
