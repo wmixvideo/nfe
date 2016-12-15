@@ -56,7 +56,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     private String percentualBCOperacaoPropria;
 
     @Element(name = "UFST", required = true)
-    private NFUnidadeFederativa ufICMSST;
+    private String ufICMSST;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -115,7 +115,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     }
 
     public void setUfICMSST(final NFUnidadeFederativa ufICMSST) {
-        this.ufICMSST = ufICMSST;
+        this.ufICMSST = ufICMSST.getCodigo();
     }
 
     public NFOrigem getOrigem() {
@@ -174,7 +174,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         return this.percentualBCOperacaoPropria;
     }
 
-    public NFUnidadeFederativa getUfICMSST() {
+    public String getUfICMSST() {
         return this.ufICMSST;
     }
 }
