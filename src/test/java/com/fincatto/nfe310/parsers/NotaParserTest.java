@@ -51,4 +51,52 @@ public class NotaParserTest {
     public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaNota() {
         new NotaParser().notaParaObjeto("");
     }
+
+    @Test
+    public void deveParsearCorretamenteUmXMLDoNFEnviaEventoCartaCorrecao() {
+        final String xmlNFEnviaEventoCartaCorrecao = FabricaDeObjetosFake.getNFEnviaEventoCartaCorrecao().toString();
+        Assert.assertNotNull(new NotaParser().enviaEventoCartaCorrecaoParaObjeto(xmlNFEnviaEventoCartaCorrecao));
+    }
+
+    @Test
+    public void deveParsearCorretamenteArquivoDoNFEnviaEventoCartaCorrecao() throws Exception {
+        Assert.assertNotNull(new NotaParser().enviaEventoCartaCorrecaoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoCartaCorrecao.xml").getFile()).getPath())));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaEnviaEventoCartaCorrecao() {
+        new NotaParser().enviaEventoCartaCorrecaoParaObjeto("");
+    }
+
+    @Test
+    public void deveParsearCorretamenteUmXMLDoNFEnviaEventoCancelamento() {
+        final String xmlNFEnviaEventoCancelamento = FabricaDeObjetosFake.getNFEnviaEventoCancelamento().toString();
+        Assert.assertNotNull(new NotaParser().enviaEventoCancelamentoParaObjeto(xmlNFEnviaEventoCancelamento));
+    }
+
+    @Test
+    public void deveParsearCorretamenteArquivoDoNFEnviaEventoCancelamento() throws Exception {
+        Assert.assertNotNull(new NotaParser().enviaEventoCancelamentoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoCancelamento.xml").getFile()).getPath())));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaEnviaEventoCancelamento() {
+        new NotaParser().enviaEventoCancelamentoParaObjeto("");
+    }
+
+    @Test
+    public void deveParsearCorretamenteUmXMLDoNFEnviaEventoInutilizacao() {
+        final String xmlNFEnviaEventoInutilizacao = FabricaDeObjetosFake.getNFEnviaEventoInutilizacao().toString();
+        Assert.assertNotNull(new NotaParser().enviaEventoInutilizacaoParaObjeto(xmlNFEnviaEventoInutilizacao));
+    }
+
+    @Test
+    public void deveParsearCorretamenteArquivoDoNFEnviaEventoInutilizacao() throws Exception {
+        Assert.assertNotNull(new NotaParser().enviaEventoInutilizacaoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoInutilizacao.xml").getFile()).getPath())));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarExcecaoCasoRecebaUmaStringInvalidaParaEnviaEventoInutilizacao() {
+        new NotaParser().enviaEventoInutilizacaoParaObjeto("");
+    }
 }

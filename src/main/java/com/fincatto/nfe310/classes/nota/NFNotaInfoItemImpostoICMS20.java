@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoICMS20 extends NFBase {
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota, "Aliquota ICMS20 Item");
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota ICMS20 Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
