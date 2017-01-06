@@ -40,6 +40,14 @@ public abstract class NFeConfig {
      * @throws KeyStoreException Caso não consiga carregar o KeyStore.
      */
     public abstract KeyStore getCertificadoKeyStore() throws KeyStoreException;
+  
+    /**
+     * Alias do certificado selecionado contido no keystore do emissor. <br>
+     *
+     * @return String Alias do certificado pessoal selecionado.
+     * @throws KeyStoreException Caso não consiga carregar o KeyStore.
+     */
+    public abstract String getCertificadoAlias() throws KeyStoreException;
 
     /**
      * Senha do certificado pessoal do emissor, contido dentro do KeyStore do certificado.

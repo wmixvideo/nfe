@@ -74,7 +74,7 @@ public class AssinaturaDigital {
     }
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
-        final String certificateAlias = config.getCertificadoKeyStore().aliases().nextElement();
+        final String certificateAlias = config.getCertificadoAlias();
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
         final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");

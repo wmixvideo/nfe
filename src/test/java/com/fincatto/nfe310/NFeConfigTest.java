@@ -47,5 +47,10 @@ public class NFeConfigTest {
         public String getCadeiaCertificadosSenha() {
             return null;
         }
+
+		@Override
+		public String getCertificadoAlias() throws KeyStoreException {
+			return null;
+		}
     }
 }

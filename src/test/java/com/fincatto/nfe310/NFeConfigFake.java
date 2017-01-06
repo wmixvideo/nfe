@@ -13,6 +13,7 @@ public class NFeConfigFake extends NFeConfig {
 
     private KeyStore keyStoreCertificado = null;
     private KeyStore keyStoreCadeia = null;
+    
 
     @Override
     public NFUnidadeFederativa getCUF() {
@@ -56,4 +57,9 @@ public class NFeConfigFake extends NFeConfig {
     public String getCadeiaCertificadosSenha() {
         return "senha";
     }
+
+	@Override
+	public String getCertificadoAlias() throws KeyStoreException {
+		return getCertificadoKeyStore().aliases().nextElement();
+	}
 }
