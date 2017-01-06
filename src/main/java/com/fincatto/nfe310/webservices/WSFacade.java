@@ -13,6 +13,7 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
+import com.fincatto.nfe310.classes.distribuicao.RetDistDFeInt;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
@@ -37,6 +38,7 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
+    private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
@@ -52,6 +54,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
+        this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
     }
 
     /**
@@ -248,5 +251,24 @@ public class WSFacade {
      */
     public NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
         return this.wsNotaDownload.downloadNota(cnpj, chave);
+    }
+    
+    /**
+     * Disponibiliza para os atores da NF-e informações e documentos fiscais eletrônicos de seu interesse.
+     * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no 
+     * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário 
+     * (tag:dest, id:E01), no grupo do Transportador (tag:transporta, id:X03) e no grupo de pessoas físicas 
+     * autorizadas a acessar o XML (tag:autXML, id:GA01)
+     * Referência: NT2014.002_v1.02_WsNFeDistribuicaoDFe
+     * 
+     * @param cnpj
+     * @param chave
+     * @param nsu
+     * @param unidadeFederativaAutorizador
+     * @return
+     * @throws Exception 
+     */
+    public RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
+        return this.wsDistribuicaoDocumentoFiscal.consultaDocumentoFiscal(cnpj, chave, nsu, unidadeFederativaAutorizador);
     }
 }

@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.nfe310.persister.NFPersister;
+import javax.xml.bind.JAXB;
+import javax.xml.bind.JAXBException;
 
 public abstract class NFBase {
 
@@ -18,4 +20,11 @@ public abstract class NFBase {
             throw new IllegalStateException(e.getMessage(), e);
         }
     }
+
+    public String marshaller() throws JAXBException {
+        StringWriter stringWriter = new StringWriter();
+        JAXB.marshal(this, stringWriter);
+        return stringWriter.toString();
+    }
+
 }
