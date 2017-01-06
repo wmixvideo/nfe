@@ -3,9 +3,9 @@ package com.fincatto.nfe310.parsers;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.fincatto.nfe310.classes.NFModelo;
-import com.fincatto.nfe310.classes.NFTipoEmissao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFTipoEmissao;
+import com.fincatto.dfe.classes.DFModelo;
 
 public class NotaFiscalChaveParser {
     private final String chave;
@@ -17,8 +17,8 @@ public class NotaFiscalChaveParser {
         this.chave = chave.replaceAll("\\D", "");
     }
 
-    public NFUnidadeFederativa getNFUnidadeFederativa() {
-        return NFUnidadeFederativa.valueOfCodigo(this.chave.substring(0, 2));
+    public DFUnidadeFederativa getNFUnidadeFederativa() {
+        return DFUnidadeFederativa.valueOfCodigo(this.chave.substring(0, 2));
     }
 
     public Date getDataEmissao() {
@@ -37,8 +37,8 @@ public class NotaFiscalChaveParser {
         return this.chave.substring(6, 20);
     }
     
-    public NFModelo getModelo() {
-    	return NFModelo.valueOfCodigo(this.chave.substring(20, 22));
+    public DFModelo getModelo() {
+    	return DFModelo.valueOfCodigo(this.chave.substring(20, 22));
     }
 
     public String getSerie() {
@@ -49,8 +49,8 @@ public class NotaFiscalChaveParser {
         return this.chave.substring(25, 34);
     }
 
-    public NFTipoEmissao getFormaEmissao() {
-        return NFTipoEmissao.valueOfCodigo(this.chave.substring(34, 35));
+    public DFTipoEmissao getFormaEmissao() {
+        return DFTipoEmissao.valueOfCodigo(this.chave.substring(34, 35));
     }
 
     public String getCodigoNumerico() {

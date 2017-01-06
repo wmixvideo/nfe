@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFNotaInfoItemImpostoICMSPartilhadoTest {
 
@@ -75,7 +75,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -95,7 +95,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -115,7 +115,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -135,7 +135,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -155,7 +155,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -175,7 +175,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -195,7 +195,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -215,7 +215,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -235,7 +235,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -255,7 +255,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualBCOperacaoPropria(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -296,7 +296,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMSST(new BigDecimal("999999999999.99"));
@@ -316,7 +316,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMSST(new BigDecimal("999999999999.99"));
@@ -336,7 +336,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMSST(new BigDecimal("999999999999.99"));
@@ -356,7 +356,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));
@@ -376,7 +376,7 @@ public class NFNotaInfoItemImpostoICMSPartilhadoTest {
         icmsPartilhado.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBC(new BigDecimal("99.99"));
         icmsPartilhado.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icmsPartilhado.setUfICMSST(NFUnidadeFederativa.TO);
+        icmsPartilhado.setUfICMSST(DFUnidadeFederativa.TO);
         icmsPartilhado.setValorBCICMS(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icmsPartilhado.setValorICMS(new BigDecimal("999999999999.99"));

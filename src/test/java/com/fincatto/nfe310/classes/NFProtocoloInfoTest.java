@@ -7,6 +7,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFProtocoloInfoTest {
@@ -30,7 +31,7 @@ public class NFProtocoloInfoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
-        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
+        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         protocoloInfo.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, protocoloInfo.getAmbiente());
     }

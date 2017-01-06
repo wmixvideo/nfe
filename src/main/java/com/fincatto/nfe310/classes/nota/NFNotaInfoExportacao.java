@@ -2,8 +2,8 @@ package com.fincatto.nfe310.classes.nota;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoExportacao extends NFBase {
@@ -16,7 +16,7 @@ public class NFNotaInfoExportacao extends NFBase {
     @Element(name = "xLocDespacho", required = false)
     private String localDespachoProdutos;
 
-    public void setUfEmbarqueProduto(final NFUnidadeFederativa ufEmbarqueProduto) {
+    public void setUfEmbarqueProduto(final DFUnidadeFederativa ufEmbarqueProduto) {
         this.ufEmbarqueProduto = ufEmbarqueProduto.getCodigo();
     }
 

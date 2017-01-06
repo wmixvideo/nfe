@@ -6,9 +6,9 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
 
 public class NFInfoEventoCartaCorrecaoTest {
@@ -40,7 +40,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -49,13 +49,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCartaCorrecaoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -64,13 +64,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirChaveNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -79,13 +79,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test
     public void devePermitirCnpjNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -94,13 +94,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataHoraEventoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -109,13 +109,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -124,13 +124,13 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroSequencialEventoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
@@ -139,7 +139,7 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrgaoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
@@ -154,14 +154,14 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTipoEventoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setVersaoEvento(new BigDecimal("1.00"));
         infoEvento.toString();
     }
@@ -169,14 +169,14 @@ public class NFInfoEventoCartaCorrecaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoEventoNulo() {
         final NFInfoEvento infoEvento = new NFInfoEvento();
-        infoEvento.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
         infoEvento.setDataHoraEvento(new DateTime(2014, 01, 01, 10, 10, 10));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
-        infoEvento.setOrgao(NFUnidadeFederativa.SC);
+        infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
         infoEvento.toString();
     }

@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVeiculo;
 
 public class NFNotaInfoVeiculoTest {
@@ -35,7 +35,7 @@ public class NFNotaInfoVeiculoTest {
     public void devePermitirRNCTNulo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
         veiculo.setPlacaVeiculo("MKZ8159");
-        veiculo.setUf(NFUnidadeFederativa.SP);
+        veiculo.setUf(DFUnidadeFederativa.SP);
         veiculo.toString();
     }
 
@@ -51,7 +51,7 @@ public class NFNotaInfoVeiculoTest {
     public void naoDevePermitirPlacaNulo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
         veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
-        veiculo.setUf(NFUnidadeFederativa.SP);
+        veiculo.setUf(DFUnidadeFederativa.SP);
         veiculo.toString();
     }
 

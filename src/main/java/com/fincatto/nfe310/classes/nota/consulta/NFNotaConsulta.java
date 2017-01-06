@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.StringValidador;
@@ -20,7 +20,7 @@ public class NFNotaConsulta extends NFBase {
     private String versao;
 
     @Element(name = "tpAmb", required = true)
-    private NFAmbiente ambiente;
+    private DFAmbiente ambiente;
 
     @Element(name = "xServ", required = true)
     private String servico;
@@ -32,7 +32,7 @@ public class NFNotaConsulta extends NFBase {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao);
     }
 
-    public void setAmbiente(final NFAmbiente ambiente) {
+    public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -49,7 +49,7 @@ public class NFNotaConsulta extends NFBase {
         return this.versao;
     }
 
-    public NFAmbiente getAmbiente() {
+    public DFAmbiente getAmbiente() {
         return this.ambiente;
     }
 

@@ -5,15 +5,15 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 
 public class NFInfoEventoRetornoTest {
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
-        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
+        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         eventoRetorno.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, eventoRetorno.getAmbiente());
     }
@@ -109,7 +109,7 @@ public class NFInfoEventoRetornoTest {
     @Test
     public void deveObterOrgaoComoFoiSetado() {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
-        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.AC;
+        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.AC;
         eventoRetorno.setOrgao(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
     }

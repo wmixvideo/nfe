@@ -1,9 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.nota.NFNota;
@@ -39,7 +39,7 @@ class WSLoteEnvio {
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
         XMLValidador.validaLote(loteAssinadoXml);
-        return this.comunicaLote(loteAssinadoXml, NFModelo.NFE);
+        return this.comunicaLote(loteAssinadoXml, DFModelo.NFE);
     }
 
     NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
@@ -83,13 +83,13 @@ class WSLoteEnvio {
         }
 
         // guarda o modelo das notas
-        final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
+        final DFModelo modelo = qtdNFC > 0 ? DFModelo.NFCE : DFModelo.NFE;
 
         // comunica o lote
         return this.comunicaLote(loteAssinado.toString(), modelo);
     }
 
-    private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();
@@ -99,7 +99,7 @@ class WSLoteEnvio {
         WSLoteEnvio.LOGGER.debug(omElement.toString());
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
-        final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }

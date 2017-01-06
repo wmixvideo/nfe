@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.webservices;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFModelo;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
@@ -59,18 +59,18 @@ public class WSFacade {
     }
 
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo) throws Exception {
-        return this.wsLoteConsulta.consultaLote(numeroRecibo, NFModelo.NFE);
+        return this.wsLoteConsulta.consultaLote(numeroRecibo, DFModelo.NFE);
     }
 
-    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
+    public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final DFModelo modelo) throws Exception {
         return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
     }
 
-    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf) throws Exception {
-        return this.wsStatusConsulta.consultaStatus(uf, NFModelo.NFE);
+    public NFStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf) throws Exception {
+        return this.wsStatusConsulta.consultaStatus(uf, DFModelo.NFE);
     }
 
-    public NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
+    public NFStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf, modelo);
     }
 
@@ -102,7 +102,7 @@ public class WSFacade {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa);
     }
 
-    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+    public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
         return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
     }
 }

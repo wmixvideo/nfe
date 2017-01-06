@@ -7,9 +7,9 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoRetorno extends NFBase {
@@ -21,13 +21,13 @@ public class NFEnviaEventoRetorno extends NFBase {
     private String idLote;
 
     @Element(name = "tpAmb", required = true)
-    private NFAmbiente ambiente;
+    private DFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicativo;
 
     @Element(name = "cOrgao", required = true)
-    private NFUnidadeFederativa orgao;
+    private DFUnidadeFederativa orgao;
 
     @Element(name = "cStat", required = true)
     private Integer codigoStatusReposta;
@@ -46,7 +46,7 @@ public class NFEnviaEventoRetorno extends NFBase {
         return this.idLote;
     }
 
-    public NFAmbiente getAmbiente() {
+    public DFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
@@ -54,7 +54,7 @@ public class NFEnviaEventoRetorno extends NFBase {
         return this.versaoAplicativo;
     }
 
-    public NFUnidadeFederativa getOrgao() {
+    public DFUnidadeFederativa getOrgao() {
         return this.orgao;
     }
 
@@ -78,7 +78,7 @@ public class NFEnviaEventoRetorno extends NFBase {
         this.idLote = idLote;
     }
 
-    public void setAmbiente(final NFAmbiente ambiente) {
+    public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -86,7 +86,7 @@ public class NFEnviaEventoRetorno extends NFBase {
         this.versaoAplicativo = versaoAplicativo;
     }
 
-    public void setOrgao(final NFUnidadeFederativa orgao) {
+    public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
     }
 

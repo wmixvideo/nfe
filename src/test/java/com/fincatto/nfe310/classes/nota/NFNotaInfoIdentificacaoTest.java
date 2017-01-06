@@ -8,16 +8,16 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFTipoEmissao;
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFProcessoEmissor;
 import com.fincatto.nfe310.classes.NFTipo;
-import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFTipoImpressao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFNotaInfoIdentificacaoTest {
 
@@ -102,7 +102,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIndicadorPresencaCompradorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -110,16 +110,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -131,7 +131,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOperacaoConsumidorFinalNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -139,16 +139,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -160,7 +160,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdentificadorLocalDestinoOperacaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -168,16 +168,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -196,16 +196,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -218,23 +218,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoMunicipioNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -247,23 +247,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoRandomicoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -276,23 +276,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataEmissaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -305,23 +305,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test
     public void devePermitirDataSaidaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -334,23 +334,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDigitoVerificadorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -363,23 +363,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirFinalidadeNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -392,23 +392,23 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirFormaPagamentoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
         identificacao.setDataHoraSaidaOuEntrada(new DateTime(2013, 9, 24, 10, 10, 10));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -421,7 +421,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModeloNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -435,9 +435,9 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -450,7 +450,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNaturezaOperacaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -458,15 +458,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -479,7 +479,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroNotaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -487,15 +487,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -508,7 +508,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirProgramaEmissorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -516,15 +516,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -537,7 +537,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test
     public void devePermitirReferenciadasNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -545,15 +545,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -566,7 +566,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSerieNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -574,15 +574,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -595,7 +595,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTipoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -603,15 +603,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -624,7 +624,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTipoEmissaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -632,7 +632,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
@@ -640,7 +640,7 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -653,7 +653,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTipoImpressaoNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -661,15 +661,15 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
@@ -682,7 +682,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirUfNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -690,14 +690,14 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
@@ -711,7 +711,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoEmissorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -719,16 +719,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
@@ -740,7 +740,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test
     public void devePermitirDataHoraContigenciaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -748,16 +748,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
@@ -769,7 +769,7 @@ public class NFNotaInfoIdentificacaoTest {
     @Test
     public void devePermitirJustificativaEntradaContingenciaNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
-        identificacao.setAmbiente(NFAmbiente.PRODUCAO);
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(new DateTime(2010, 10, 27, 10, 10, 10));
@@ -777,16 +777,16 @@ public class NFNotaInfoIdentificacaoTest {
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
-        identificacao.setModelo(NFModelo.NFE);
+        identificacao.setModelo(DFModelo.NFE);
         identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
         identificacao.setNumeroNota("999999999");
         identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
         identificacao.setReferenciadas(Arrays.asList(FabricaDeObjetosFake.getNFInfoReferenciada()));
         identificacao.setSerie("999");
         identificacao.setTipo(NFTipo.ENTRADA);
-        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoEmissao(DFTipoEmissao.EMISSAO_NORMAL);
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
-        identificacao.setUf(NFUnidadeFederativa.SC);
+        identificacao.setUf(DFUnidadeFederativa.SC);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
         identificacao.setDataHoraContigencia(new DateTime(2014, 10, 10, 10, 10, 10));
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);

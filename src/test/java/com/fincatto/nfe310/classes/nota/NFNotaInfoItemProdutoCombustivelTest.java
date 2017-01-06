@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFNotaInfoItemProdutoCombustivelTest {
 
@@ -40,7 +40,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         combustivel.setCodigoAutorizacaoCODIF("Cirh89sPDDbnFAzZMPpmG");
         combustivel.setCodigoProdutoANP("999999999");
         combustivel.setQuantidade(new BigDecimal("99999999999.9999"));
-        combustivel.setUf(NFUnidadeFederativa.AC);
+        combustivel.setUf(DFUnidadeFederativa.AC);
         combustivel.toString();
     }
 
@@ -50,7 +50,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         combustivel.setCodigoAutorizacaoCODIF("Cirh89sPDDbnFAzZMPpmG");
         combustivel.setCodigoProdutoANP("999999999");
         combustivel.setQuantidade(new BigDecimal("99999999999.9999"));
-        combustivel.setUf(NFUnidadeFederativa.AC);
+        combustivel.setUf(DFUnidadeFederativa.AC);
         combustivel.setPercentualGasNatural(new BigDecimal("99.99"));
         combustivel.toString();
     }
@@ -61,7 +61,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         combustivel.setCide(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivelCIDE());
         combustivel.setCodigoProdutoANP("999999999");
         combustivel.setQuantidade(new BigDecimal("99999999999.9999"));
-        combustivel.setUf(NFUnidadeFederativa.AC);
+        combustivel.setUf(DFUnidadeFederativa.AC);
         combustivel.setPercentualGasNatural(new BigDecimal("99.99"));
         combustivel.toString();
     }
@@ -72,7 +72,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         combustivel.setCide(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivelCIDE());
         combustivel.setCodigoAutorizacaoCODIF("Cirh89sPDDbnFAzZMPpmG");
         combustivel.setQuantidade(new BigDecimal("99999999999.9999"));
-        combustivel.setUf(NFUnidadeFederativa.AC);
+        combustivel.setUf(DFUnidadeFederativa.AC);
         combustivel.setPercentualGasNatural(new BigDecimal("99.99"));
         combustivel.toString();
     }
@@ -83,7 +83,7 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         combustivel.setCide(FabricaDeObjetosFake.getNFNotaInfoItemProdutoCombustivelCIDE());
         combustivel.setCodigoAutorizacaoCODIF("Cirh89sPDDbnFAzZMPpmG");
         combustivel.setCodigoProdutoANP("999999999");
-        combustivel.setUf(NFUnidadeFederativa.AC);
+        combustivel.setUf(DFUnidadeFederativa.AC);
         combustivel.setPercentualGasNatural(new BigDecimal("99.99"));
         combustivel.toString();
     }

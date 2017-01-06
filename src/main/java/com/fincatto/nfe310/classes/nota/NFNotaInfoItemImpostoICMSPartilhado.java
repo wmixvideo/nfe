@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
@@ -56,7 +56,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
     private String percentualBCOperacaoPropria;
 
     @Element(name = "UFST", required = true)
-    private NFUnidadeFederativa ufICMSST;
+    private DFUnidadeFederativa ufICMSST;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -114,7 +114,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         this.percentualBCOperacaoPropria = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentual);
     }
 
-    public void setUfICMSST(final NFUnidadeFederativa ufICMSST) {
+    public void setUfICMSST(final DFUnidadeFederativa ufICMSST) {
         this.ufICMSST = ufICMSST;
     }
 
@@ -174,7 +174,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         return this.percentualBCOperacaoPropria;
     }
 
-    public NFUnidadeFederativa getUfICMSST() {
+    public DFUnidadeFederativa getUfICMSST() {
         return this.ufICMSST;
     }
 }

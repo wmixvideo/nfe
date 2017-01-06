@@ -5,8 +5,9 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFStatusServicoConsultaRetornoTest {
 
@@ -21,7 +22,7 @@ public class NFStatusServicoConsultaRetornoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFStatusServicoConsultaRetorno consultaRetorno = new NFStatusServicoConsultaRetorno();
-        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
+        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         consultaRetorno.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, consultaRetorno.getAmbiente());
     }
@@ -53,7 +54,7 @@ public class NFStatusServicoConsultaRetornoTest {
     @Test
     public void deveObterUFComoFoiSetado() {
         final NFStatusServicoConsultaRetorno consultaRetorno = new NFStatusServicoConsultaRetorno();
-        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.AC;
+        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.AC;
         consultaRetorno.setUf(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, consultaRetorno.getUf());
     }
@@ -88,5 +89,11 @@ public class NFStatusServicoConsultaRetornoTest {
         final String tempoMedio = "10";
         consultaRetorno.setTempoMedio(tempoMedio);
         Assert.assertEquals(tempoMedio, consultaRetorno.getTempoMedio());
+    }
+
+    @Test
+    public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
+        final String xmlEsperado = "<retConsStatServ versao=\"3.10\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>1</tpAmb><verAplic>1.01</verAplic><cStat>107</cStat><xMotivo>Servico em Operacao</xMotivo><cUF>52</cUF><dhRecbto>2013-12-10T15:10:59-02:00</dhRecbto><dhRetorno>2015-11-13T00:00:00-02:00</dhRetorno><xObs>Teste</xObs><tMed>10</tMed></retConsStatServ>";
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFStatusServicoConsultaRetorno().toString());
     }
 }

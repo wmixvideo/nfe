@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoReboque;
 
 public class NFNotaInfoReboqueTest {
@@ -31,7 +31,7 @@ public class NFNotaInfoReboqueTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPlacaNulo() {
         final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
-        reboque.setUf(NFUnidadeFederativa.SC);
+        reboque.setUf(DFUnidadeFederativa.SC);
         reboque.setRegistroNacionalTransportadorCarga("8fFAKefiBQIDTkCCSQk3");
         reboque.toString();
     }
@@ -40,7 +40,7 @@ public class NFNotaInfoReboqueTest {
     public void devePermitirRegistroNacionaltransportadorCargaNulo() {
         final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
         reboque.setPlacaVeiculo("MKZ4891");
-        reboque.setUf(NFUnidadeFederativa.SC);
+        reboque.setUf(DFUnidadeFederativa.SC);
         reboque.toString();
     }
 
@@ -48,7 +48,7 @@ public class NFNotaInfoReboqueTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoComRNTC() {
         final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
         reboque.setPlacaVeiculo("MKZ4891");
-        reboque.setUf(NFUnidadeFederativa.SC);
+        reboque.setUf(DFUnidadeFederativa.SC);
         reboque.setRegistroNacionalTransportadorCarga("8fFAKefiBQIDTkCCSQk3");
 
         final String xmlEsperado = "<NFNotaInfoReboque><placa>MKZ4891</placa><UF>SC</UF><RNTC>8fFAKefiBQIDTkCCSQk3</RNTC></NFNotaInfoReboque>";

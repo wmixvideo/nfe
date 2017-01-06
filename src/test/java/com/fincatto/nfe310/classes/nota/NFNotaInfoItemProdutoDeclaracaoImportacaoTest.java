@@ -7,8 +7,8 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFFormaImportacaoIntermediacao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoDeclaracaoImportacao;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
@@ -60,11 +60,11 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -77,11 +77,11 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -94,11 +94,11 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -111,11 +111,11 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -128,7 +128,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
@@ -144,12 +144,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -161,12 +161,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -178,12 +178,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -195,12 +195,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -212,12 +212,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setNumeroRegistro("ZRJihqWLyHnb");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -229,12 +229,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setDataDesembaraco(new LocalDate(2014, 1, 1));
         declaraoImportacao.setDataRegistro(new LocalDate(2014, 2, 2));
         declaraoImportacao.setLocalDesembaraco("kiVfWKB94ggsrWND0XBXwEjJkoiTXhkmX9qKGKzjpnEHHp852bDkYeEUkzpU");
-        declaraoImportacao.setUfDesembaraco(NFUnidadeFederativa.SC);
+        declaraoImportacao.setUfDesembaraco(DFUnidadeFederativa.SC);
         declaraoImportacao.setTransporteInternacional(NFViaTransporteInternacional.AEREA);
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 
@@ -251,7 +251,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         declaraoImportacao.setValorAFRMM(new BigDecimal("999999999999.99"));
         declaraoImportacao.setFormaImportacaoIntermediacao(NFFormaImportacaoIntermediacao.IMPORTACAO_ENCOMENDA);
         declaraoImportacao.setCnpj("12345678901234");
-        declaraoImportacao.setUfTerceiro(NFUnidadeFederativa.AC);
+        declaraoImportacao.setUfTerceiro(DFUnidadeFederativa.AC);
         declaraoImportacao.toString();
     }
 

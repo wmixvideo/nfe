@@ -1,9 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
@@ -63,7 +63,7 @@ class WSCancelamento {
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
-        final String urlWebService = NFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
+        final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }

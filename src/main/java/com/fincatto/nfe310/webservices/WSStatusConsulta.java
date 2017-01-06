@@ -1,9 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
@@ -27,7 +27,7 @@ class WSStatusConsulta {
 		this.config = config;
 	}
 
-	NFStatusServicoConsultaRetorno consultaStatus(final NFUnidadeFederativa uf, final NFModelo modelo) throws Exception {
+	NFStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
 		WSStatusConsulta.LOGGER.debug(omElementConsulta.toString());
 
@@ -37,7 +37,7 @@ class WSStatusConsulta {
 		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
 	}
 
-	private NFStatusServicoConsulta gerarDadosConsulta(final NFUnidadeFederativa unidadeFederativa) {
+	private NFStatusServicoConsulta gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {
 		final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
 		consStatServ.setUf(unidadeFederativa);
 		consStatServ.setAmbiente(this.config.getAmbiente());
@@ -46,7 +46,7 @@ class WSStatusConsulta {
 		return consStatServ;
 	}
 
-	private OMElement efetuaConsultaStatus(final OMElement omElement, final NFUnidadeFederativa unidadeFederativa, final NFModelo modelo) throws RemoteException {
+	private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException {
 		final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
 		cabec.setCUF(unidadeFederativa.getCodigoIbge());
 		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
@@ -58,7 +58,7 @@ class WSStatusConsulta {
 		dados.setExtraElement(omElement);
 
 		final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(unidadeFederativa);
-		final String endpoint = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceStatusServico(this.config.getAmbiente()) : autorizador.getNfeStatusServico(this.config.getAmbiente());
+		final String endpoint = DFModelo.NFCE.equals(modelo) ? autorizador.getNfceStatusServico(this.config.getAmbiente()) : autorizador.getNfeStatusServico(this.config.getAmbiente());
 		if (endpoint == null) {
 			throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + modelo.name() + ", autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
 		}

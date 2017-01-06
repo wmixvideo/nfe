@@ -6,16 +6,16 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFInfoEventoCancelamentoTest {
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final NFAmbiente ambiente = NFAmbiente.PRODUCAO;
+        final DFAmbiente ambiente = DFAmbiente.PRODUCAO;
         infoEventoCancelamento.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, infoEventoCancelamento.getAmbiente());
     }
@@ -71,7 +71,7 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveObterOrgaoComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.BA;
+        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.BA;
         infoEventoCancelamento.setOrgao(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, infoEventoCancelamento.getOrgao());
     }

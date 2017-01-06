@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoExportacao;
 
 public class NFNotaInfoExportacaoTest {
@@ -31,7 +31,7 @@ public class NFNotaInfoExportacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDeveGerarXMLLocalEmbarqueProdutosNulo() {
         final NFNotaInfoExportacao exportacao = new NFNotaInfoExportacao();
-        exportacao.setUfEmbarqueProduto(NFUnidadeFederativa.SC);
+        exportacao.setUfEmbarqueProduto(DFUnidadeFederativa.SC);
         exportacao.setLocalDespachoProdutos("xEb99u9TExujbhMIcO9u9ycsZAg2gtKzIFgsUogoVjuyDAhnlkZz3I5Hpccm");
         exportacao.toString();
     }

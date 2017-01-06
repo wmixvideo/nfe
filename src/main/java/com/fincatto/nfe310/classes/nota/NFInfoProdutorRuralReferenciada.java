@@ -2,14 +2,14 @@ package com.fincatto.nfe310.classes.nota;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFInfoProdutorRuralReferenciada extends NFBase {
     @Element(name = "cUF", required = true)
-    private NFUnidadeFederativa ufEmitente;
+    private DFUnidadeFederativa ufEmitente;
 
     @Element(name = "AAMM", required = true)
     private String anoMesEmissao;
@@ -32,7 +32,7 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
     @Element(name = "nNF", required = true)
     private Integer numeroDocumentoFiscal;
 
-    public void setUfEmitente(final NFUnidadeFederativa ufEmitente) {
+    public void setUfEmitente(final DFUnidadeFederativa ufEmitente) {
         this.ufEmitente = ufEmitente;
     }
 
@@ -77,7 +77,7 @@ public class NFInfoProdutorRuralReferenciada extends NFBase {
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 
-    public NFUnidadeFederativa getUfEmitente() {
+    public DFUnidadeFederativa getUfEmitente() {
         return this.ufEmitente;
     }
 

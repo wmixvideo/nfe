@@ -6,11 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFTipoEmissao;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFTipoEmissao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 
 public class NFGeraQRCodeTest {
@@ -53,17 +53,17 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public NFUnidadeFederativa getCUF() {
-                return NFUnidadeFederativa.SE;
+            public DFUnidadeFederativa getCUF() {
+                return DFUnidadeFederativa.SE;
             }
 
             @Override
-            public NFAmbiente getAmbiente() {
-                return NFAmbiente.PRODUCAO;
+            public DFAmbiente getAmbiente() {
+                return DFAmbiente.PRODUCAO;
             }
 
             @Override
-            public NFTipoEmissao getTipoEmissao() {
+            public DFTipoEmissao getTipoEmissao() {
                 return null;
             }
 
