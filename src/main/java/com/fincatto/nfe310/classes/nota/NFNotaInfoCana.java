@@ -59,37 +59,37 @@ public class NFNotaInfoCana extends NFBase {
     }
 
     public void setFornecimentosDiario(final List<NFNotaInfoCanaFornecimentoDiario> fornecimentosDiario) {
-        ListValidador.tamanho31Obrigatorio(fornecimentosDiario);
+        ListValidador.tamanho31Obrigatorio(fornecimentosDiario, "Fornecimento Diario");
         this.fornecimentosDiario = fornecimentosDiario;
     }
 
     public void setDeducoes(final List<NFNotaInfoCanaDeducao> deducoes) {
-        ListValidador.tamanho10(deducoes);
+        ListValidador.tamanho10(deducoes, "Deducoes");
         this.deducoes = deducoes;
     }
 
     public void setQuantidadeTotalMes(final BigDecimal quantidadeTotalMes) {
-        this.quantidadeTotalMes = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalMes);
+        this.quantidadeTotalMes = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalMes, "Quantidade Total Mes");
     }
 
     public void setQuantidadeTotalAnterior(final BigDecimal quantidadeTotalAnterior) {
-        this.quantidadeTotalAnterior = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalAnterior);
+        this.quantidadeTotalAnterior = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalAnterior, "Quantidade Total Anterior");
     }
 
     public void setQuantidadeTotalGeral(final BigDecimal quantidadeTotalGeral) {
-        this.quantidadeTotalGeral = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalGeral);
+        this.quantidadeTotalGeral = BigDecimalParser.tamanho21ComAte10CasasDecimais(quantidadeTotalGeral, "Quantidade Total Geral");
     }
 
     public void setValorFornecimento(final BigDecimal valorFornecimento) {
-        this.valorFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorFornecimento);
+        this.valorFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorFornecimento, "Valor Fornecimento");
     }
 
     public void setValorTotalDeducao(final BigDecimal valorTotalDeducao) {
-        this.valorTotalDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDeducao);
+        this.valorTotalDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalDeducao, "Valor Total Deducao");
     }
 
     public void setValorLiquidoFornecimento(final BigDecimal valorLiquidoFornecimento) {
-        this.valorLiquidoFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFornecimento);
+        this.valorLiquidoFornecimento = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFornecimento, "Valor Liquido Fornecimento");
     }
 
     public String getSafra() {

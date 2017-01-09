@@ -16,12 +16,12 @@ public class NFNotaInfoCanaDeducao extends NFBase {
     private String valorDeducao;
 
     public void setDescricaoDeducao(final String descricaoDeducao) {
-        StringValidador.tamanho60(descricaoDeducao);
+        StringValidador.tamanho60(descricaoDeducao, "Descricao Deducao");
         this.descricaoDeducao = descricaoDeducao;
     }
 
     public void setValorDeducao(final BigDecimal valorDeducao) {
-        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao);
+        this.valorDeducao = BigDecimalParser.tamanho15Com2CasasDecimais(valorDeducao, "Valor Deducao");
     }
 
     public String getDescricaoDeducao() {

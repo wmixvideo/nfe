@@ -38,19 +38,19 @@ public class NFNotaInfoItemImpostoICMSST extends NFBase {
     }
 
     public void setValorBCICMSSTRetidoUFRemetente(final BigDecimal valorBCICMSSTRetidoUFRemetente) {
-        this.valorBCICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente);
+        this.valorBCICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente, "Valor BC ICMS ST Retido UF Remetente");
     }
 
     public void setValorICMSSTRetidoUFRemetente(final BigDecimal valorICMSSTRetidoUFRemetente) {
-        this.valorICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente);
+        this.valorICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente, "Valor ICMS ST Retido UF Remetente");
     }
 
     public void setValorBCICMSSTUFDestino(final BigDecimal valorBCICMSSTUFDestino) {
-        this.valorBCICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino);
+        this.valorBCICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino, "Valor BC ICMS ST UF Destino");
     }
 
     public void setValorICMSSTUFDestino(final BigDecimal valorICMSSTUFDestino) {
-        this.valorICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTUFDestino);
+        this.valorICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTUFDestino, "Valor ICMS ST UF Destino");
     }
 
     public NFOrigem getOrigem() {

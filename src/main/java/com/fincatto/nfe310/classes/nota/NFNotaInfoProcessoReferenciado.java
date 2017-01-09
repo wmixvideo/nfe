@@ -15,7 +15,7 @@ public class NFNotaInfoProcessoReferenciado extends NFBase {
     private NFOrigemProcesso indicadorOrigemProcesso;
 
     public void setIdentificadorProcessoOuAtoConcessorio(final String identificadorProcessoOuAtoConcessorio) {
-        StringValidador.tamanho60(identificadorProcessoOuAtoConcessorio);
+        StringValidador.tamanho60(identificadorProcessoOuAtoConcessorio, "Identificador Processo Ou Ato Concessorio Processo Referenciado");
         this.identificadorProcessoOuAtoConcessorio = identificadorProcessoOuAtoConcessorio;
     }
 

@@ -1,5 +1,11 @@
 package com.fincatto.nfe310.transformers;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.simpleframework.xml.transform.RegistryMatcher;
+
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
@@ -8,7 +14,7 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicao;
@@ -47,11 +53,6 @@ import com.fincatto.nfe310.classes.nota.NFOperacaoConsumidorFinal;
 import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFTipoIntegracaoPagamento;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.simpleframework.xml.transform.RegistryMatcher;
 
 public class NFRegistryMatcher extends RegistryMatcher {
 
@@ -106,6 +107,6 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFNotaSituacaoOperacionalSimplesNacional.class, new NFNotaSituacaoOperacionalSimplesNacionalTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
-        super.bind(NFNotaInfoItemImpostoICMSModalidadeBaseCalculo.class, new NFNotaInfoItemImpostoICMSModalidadeBaseCalculoTransformer());
+        super.bind(NFNotaInfoItemModalidadeBCICMS.class, new NFNotaInfoItemModalidadeBCICMSTransformer());
     }
 }

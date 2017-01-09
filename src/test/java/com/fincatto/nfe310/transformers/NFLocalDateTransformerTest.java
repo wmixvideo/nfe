@@ -14,6 +14,6 @@ public class NFLocalDateTransformerTest {
 
     @Test
     public void deveTransformarLocalDateEmString() throws Exception {
-        Assert.assertEquals("2015-10-04", new NFLocalDateTransformer().write(new LocalDate(2015, 10, 04)));
+        Assert.assertEquals("2015-10-04", new NFLocalDateTransformer().write(new LocalDate(2015, 10, 4)));
     }
 }

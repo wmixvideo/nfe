@@ -1,13 +1,22 @@
 package com.fincatto.nfe310.webservices;
 
+import java.util.Iterator;
+
+import javax.xml.stream.XMLStreamException;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.nota.NFNota;
-import com.fincatto.nfe310.classes.nota.NFNotaInfo;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.nfe310.parsers.NotaParser;
 import com.fincatto.nfe310.persister.NFPersister;
@@ -19,13 +28,10 @@ import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoL
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.xml.stream.XMLStreamException;
-import java.util.Iterator;
+import java.io.StringReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
 class WSLoteEnvio {
 
@@ -37,26 +43,21 @@ class WSLoteEnvio {
         this.config = config;
     }
 
-    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml) throws Exception {
-        XMLValidador.validaLote(loteAssinadoXml);
-        return this.comunicaLote(loteAssinadoXml, NFModelo.NFE);
+    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        return this.comunicaLote(loteAssinadoXml, modelo);
     }
 
-    NFLoteEnvioRetorno enviaLote(final NFLoteEnvio lote) throws Exception {
+    NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
-            final NFNotaInfo notaInfo = nota.getInfo();
-            notaInfo.setIdentificador(geraChave.getChaveAcesso());
-            notaInfo.getIdentificacao().setDigitoVerificador(geraChave.getDV());
+            nota.getInfo().getIdentificacao().setCodigoRandomico(StringUtils.defaultIfBlank(nota.getInfo().getIdentificacao().getCodigoRandomico(), geraChave.geraCodigoRandomico()));
+            nota.getInfo().getIdentificacao().setDigitoVerificador(geraChave.getDV());
+            nota.getInfo().setIdentificador(geraChave.getChaveAcesso());
         }
 
-        // valida o lote gerado (ainda nao assinado)
-        final String loteNaoAssinado = lote.toString();
-        XMLValidador.validaLote(loteNaoAssinado);
-
         // assina o lote
-        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(loteNaoAssinado);
+        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
         final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
 
         // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
@@ -86,10 +87,15 @@ class WSLoteEnvio {
         final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
         // comunica o lote
-        return this.comunicaLote(loteAssinado.toString(), modelo);
+        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), modelo);
+        return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+        XMLValidador.validaLote(loteAssinadoXml);
+
+        //envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();
@@ -98,7 +104,9 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
         WSLoteEnvio.LOGGER.debug(omElement.toString());
 
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        //define o tipo de emissao
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+
         final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
@@ -120,7 +128,11 @@ class WSLoteEnvio {
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
-        final OMElement ome = AXIOMUtil.stringToOM(documento);
+        final XMLInputFactory factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLInputFactory.IS_COALESCING, false);
+        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));        
+        StAXOMBuilder builder = new StAXOMBuilder(reader);
+        final OMElement ome = builder.getDocumentElement();
         final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();

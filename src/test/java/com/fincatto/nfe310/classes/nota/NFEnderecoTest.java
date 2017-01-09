@@ -72,6 +72,76 @@ public class NFEnderecoTest {
         }
     }
 
+    @Test
+    public void deveObterCepComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setCep("88095550");
+        Assert.assertEquals("88095550", endereco.getCep());
+    }
+
+    @Test
+    public void deveObterBairroComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setBairro("Principal");
+        Assert.assertEquals("Principal", endereco.getBairro());
+    }
+
+    @Test
+    public void deveObterCodigoMunicipioComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setCodigoMunicipio("9999999");
+        Assert.assertEquals("9999999", endereco.getCodigoMunicipio());
+    }
+
+    @Test
+    public void deveObterCodigoPaisComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setCodigoPais("999");
+        Assert.assertEquals("999", endereco.getCodigoPais());
+    }
+
+    @Test
+    public void deveObterComplementoComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        Assert.assertEquals("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw", endereco.getComplemento());
+    }
+
+    @Test
+    public void deveObterDescricaoMunicipioComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setDescricaoMunicipio("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        Assert.assertEquals("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw", endereco.getDescricaoMunicipio());
+    }
+
+    @Test
+    public void deveObterLogradouroComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setLogradouro("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        Assert.assertEquals("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw", endereco.getLogradouro());
+    }
+
+    @Test
+    public void deveObterNumeroComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
+        Assert.assertEquals("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y", endereco.getNumero());
+    }
+
+    @Test
+    public void deveObterTelefoneComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setTelefone("12345678901324");
+        Assert.assertEquals("12345678901324", endereco.getTelefone());
+    }
+
+    @Test
+    public void deveObterUfComoFoiSetado() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setUf(NFUnidadeFederativa.SC);
+        Assert.assertEquals("SC", endereco.getUf());
+    }
+
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirBairroNulo() {
         final NFEndereco endereco = new NFEndereco();

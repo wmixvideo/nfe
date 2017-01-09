@@ -1,14 +1,13 @@
 package com.fincatto.nfe310.classes.evento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.validadores.BigDecimalParser;
+import com.fincatto.nfe310.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.validadores.BigDecimalParser;
-import com.fincatto.nfe310.validadores.StringValidador;
+import java.math.BigDecimal;
 
 @Root(strict = false)
 public class NFTipoEvento extends NFBase {
@@ -20,17 +19,17 @@ public class NFTipoEvento extends NFBase {
 
     // Carta correcao
     @Element(name = "xCorrecao", required = false)
-    private String textoCorrecao;;
+    private String textoCorrecao;
 
     @Element(name = "xCondUso", required = false)
     private String condicaoUso;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao);
+        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        StringValidador.tamanho5a60(descricaoEvento);
+        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 

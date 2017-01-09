@@ -12,8 +12,8 @@ import java.net.URL;
 
 public final class XMLValidador {
 
-    private static boolean validaXml(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/%s", xsd));
+    private static boolean valida(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_008i2/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -21,10 +21,10 @@ public final class XMLValidador {
     }
 
     public static boolean validaLote(final String arquivoXML) throws Exception {
-        return XMLValidador.validaXml(arquivoXML, "enviNFe_v3.10.xsd");
+        return XMLValidador.valida(arquivoXML, "enviNFe_v3.10.xsd");
     }
 
     public static boolean validaNota(final String arquivoXML) throws Exception {
-        return XMLValidador.validaXml(arquivoXML, "nfe_v3.10.xsd");
+        return XMLValidador.valida(arquivoXML, "nfe_v3.10.xsd");
     }
 }

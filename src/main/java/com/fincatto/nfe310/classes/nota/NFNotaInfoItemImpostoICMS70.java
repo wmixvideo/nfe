@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.nfe310.classes.NFNotaInfoItemImpostoICMSModalidadeBaseCalculo;
+import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.nfe310.classes.NFOrigem;
@@ -20,7 +20,7 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = true)
-    private NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC;
+    private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
 
     @Element(name = "pRedBC", required = true)
     private String percentualReducaoBC;
@@ -35,7 +35,7 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     private String valorTributo;
 
     @Element(name = "modBCST", required = true)
-    private NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST;
+    private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
     private String percentualMargemValorAdicionadoICMSST;
@@ -66,48 +66,48 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setModalidadeBC(final NFNotaInfoItemImpostoICMSModalidadeBaseCalculo modalidadeBC) {
-        this.modalidadeBC = modalidadeBC;
+    public void setModalidadeBCICMS(final NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS) {
+        this.modalidadeBCICMS = modalidadeBCICMS;
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC);
+        this.percentualReducaoBC = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBC, "Percentual Reducao BC ICMS70 Item");
     }
 
     public void setValorBC(final BigDecimal valorBC) {
-        this.valorBC = BigDecimalParser.tamanho15Com2CasasDecimais(valorBC);
+        this.valorBC = BigDecimalParser.tamanho15Com2CasasDecimais(valorBC, "Valor BC ICMS70 Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota);
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota ICMS70 Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo);
+        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo ICMS70 Item");
     }
 
-    public void setModalidadeDeterminacaoBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeDeterminacaoBCICMSST) {
-        this.modalidadeDeterminacaoBCICMSST = modalidadeDeterminacaoBCICMSST;
+    public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
+        this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
 
     public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
-        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST);
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual Margem Valor Adicionado ICMS ST ICMS70 Item");
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST);
+        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST, "Percentual Reducao BC ICMS ST ICMS70 Item");
     }
 
     public void setValorBCST(final BigDecimal valorBCST) {
-        this.valorBCST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCST);
+        this.valorBCST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCST, "Valor BC ST ICMS70 Item");
     }
 
     public void setPercentualAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST);
+        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST, "Aliquota Imposto ICMS ST ICMS70 Item");
     }
 
     public void setValorICMSST(final BigDecimal valorICMSST) {
-        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST);
+        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMS70 Item");
     }
 
     public void setDesoneracao(final NFNotaMotivoDesoneracaoICMS desoneracao) {
@@ -115,7 +115,7 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     }
 
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
-        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao);
+        this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS70 Item");
     }
 
     public NFOrigem getOrigem() {
@@ -126,8 +126,8 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
         return this.situacaoTributaria;
     }
 
-    public NFNotaInfoItemImpostoICMSModalidadeBaseCalculo getModalidadeBC() {
-        return this.modalidadeBC;
+    public NFNotaInfoItemModalidadeBCICMS getModalidadeBCICMS() {
+        return this.modalidadeBCICMS;
     }
 
     public String getPercentualReducaoBC() {
@@ -146,8 +146,8 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
         return this.valorTributo;
     }
 
-    public NFNotaInfoItemModalidadeBCICMSST getModalidadeDeterminacaoBCICMSST() {
-        return this.modalidadeDeterminacaoBCICMSST;
+    public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
+        return this.modalidadeBCICMSST;
     }
 
     public String getPercentualMargemValorAdicionadoICMSST() {

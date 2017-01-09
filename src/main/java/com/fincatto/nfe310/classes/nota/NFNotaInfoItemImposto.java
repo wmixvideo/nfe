@@ -24,7 +24,7 @@ public class NFNotaInfoItemImposto extends NFBase {
     @Element(name = "ISSQN", required = false)
     private NFNotaInfoItemImpostoISSQN issqn;
 
-    @Element(name = "PIS", required = true)
+    @Element(name = "PIS", required = false)
     private NFNotaInfoItemImpostoPIS pis;
 
     @Element(name = "PISST", required = false)
@@ -84,7 +84,7 @@ public class NFNotaInfoItemImposto extends NFBase {
     }
 
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
-        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos);
+        this.valorTotalTributos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total Tributos");
     }
 
     public String getValorTotalTributos() {

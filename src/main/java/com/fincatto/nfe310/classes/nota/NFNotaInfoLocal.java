@@ -51,32 +51,32 @@ public class NFNotaInfoLocal extends NFBase {
     }
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro);
+        StringValidador.tamanho60(logradouro, "Logradouro Local");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero);
+        StringValidador.tamanho60(numero, "Numero Local");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento);
+        StringValidador.tamanho60(complemento, "Complemento Local");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro);
+        StringValidador.tamanho2ate60(bairro, "Bairro Local");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio);
+        StringValidador.exatamente7(codigoMunicipio, "Codigo Municipio Local");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
-        StringValidador.tamanho60(nomeMunicipio);
+        StringValidador.tamanho60(nomeMunicipio, "Nome Municipio Local");
         this.nomeMunicipio = nomeMunicipio;
     }
 

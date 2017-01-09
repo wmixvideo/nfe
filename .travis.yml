@@ -12,6 +12,7 @@ notifications:
             - diego+travisnfe@devmonsters.com
         on_success: change
         on_failure: always
+    slack: wmixvideo:vJxjFfWkhyQG1iAilejFF72u
 
 sudo: false
 

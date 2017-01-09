@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DANFE_NFCE_ITENS" pageWidth="226" pageHeight="400" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="def12f58-2365-42c2-bbb8-a546db192e3e">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="produto.codigo" class="java.lang.String"/>
+	<field name="produto.descricao" class="java.lang.String"/>
+	<field name="produto.valorTotalBruto" class="java.lang.String"/>
+	<field name="produto.valorUnitario" class="java.lang.String"/>
+	<field name="produto.unidadeComercial" class="java.lang.String"/>
+	<field name="produto.quantidadeComercial" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="2" width="25" height="12" uuid="2abced94-2e8e-479d-8e37-8e1e3ba57891"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cód.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="2" width="85" height="12" uuid="47e32e08-3a0b-4074-a29d-0014dc22b932"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="2" width="32" height="12" uuid="d2c87c3b-e710-4971-89ac-1852bd3d0cc1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[V. Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="2" width="32" height="12" uuid="ce16e97b-1606-454c-88ad-40ec148b2c4c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[V. Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="2" width="28" height="12" uuid="568029ad-0182-4e48-8811-8f2cf67b0076"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement key="textField" positionType="Float" x="174" y="1" width="32" height="11" uuid="2a55baeb-2468-465c-8dec-9fdf0960ee76"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal($F{produto.valorTotalBruto})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="textField" positionType="Float" x="0" y="1" width="25" height="11" uuid="c4fb7590-7e95-4064-b7b4-df0970be1413"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.codigo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="textField" positionType="Float" x="25" y="1" width="89" height="11" uuid="7af8d86f-7841-4d88-930e-8908bddcea5d"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.descricao}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement key="textField" positionType="Float" x="114" y="1" width="32" height="11" uuid="c1294612-1d8a-48c6-939d-744c233fbdc4"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal($F{produto.valorUnitario})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement key="textField" positionType="Float" x="146" y="1" width="28" height="11" uuid="cb95160d-70b9-4bda-bf6d-8d8c35ac482d"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.quantidadeComercial}+$F{produto.unidadeComercial}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,13 +1,16 @@
 package com.fincatto.nfe310.classes.nota;
 
 public enum NFNotaInfoItemIndicadorIncentivoFiscal {
-    SIM("1"),
-    NAO("2");
 
-    private String codigo;
+    SIM("1", "Sim"),
+    NAO("2", "N\u00e3o");
 
-    private NFNotaInfoItemIndicadorIncentivoFiscal(final String codigo) {
+    private final String codigo;
+    private final String descricao;
+
+    NFNotaInfoItemIndicadorIncentivoFiscal(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -21,5 +24,10 @@ public enum NFNotaInfoItemIndicadorIncentivoFiscal {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

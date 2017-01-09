@@ -73,7 +73,7 @@ public class NFNotaInfoDestinatario extends NFBase {
 	}
 
 	public void setRazaoSocial(final String razaoSocial) {
-		StringValidador.tamanho60(razaoSocial);
+		StringValidador.tamanho60(razaoSocial, "Razao Social Destinatario");
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -87,18 +87,18 @@ public class NFNotaInfoDestinatario extends NFBase {
 	}
 
 	public void setInscricaoSuframa(final String inscricaoSuframa) {
-		StringValidador.tamanho8a9N(inscricaoSuframa);
+		StringValidador.tamanho8a9N(inscricaoSuframa, "Inscricao Suframa Destinatario");
 		this.inscricaoSuframa = inscricaoSuframa;
 	}
 
 	public void setEmail(final String email) {
-		StringValidador.tamanho60(email);
+		StringValidador.tamanho60(email, "Email Destinatario");
 		this.email = email;
 	}
 
 	public void setIdEstrangeiro(final String idEstrangeiro) {
 		if (!idEstrangeiro.isEmpty()) {
-			StringValidador.tamanho5a20(idEstrangeiro);
+			StringValidador.tamanho5a20(idEstrangeiro, "ID Estrangeiro Destinatario");
 		}
 		this.idEstrangeiro = idEstrangeiro;
 	}
@@ -108,7 +108,7 @@ public class NFNotaInfoDestinatario extends NFBase {
 	}
 
 	public void setInscricaoMunicipal(final String inscricaoMunicipal) {
-		StringValidador.tamanho15(inscricaoMunicipal);
+		StringValidador.tamanho15(inscricaoMunicipal, "IM Destinatario");
 		this.inscricaoMunicipal = inscricaoMunicipal;
 	}
 

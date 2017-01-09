@@ -42,7 +42,7 @@ public class NFNotaInfoItemImpostoIPI extends NFBase {
     }
 
     public void setClasseEnquadramento(final String classeEnquadramento) {
-        StringValidador.exatamente5(classeEnquadramento);
+        StringValidador.exatamente5(classeEnquadramento, "Classe Enquadramento IPI Item");
         this.classeEnquadramento = classeEnquadramento;
     }
 
@@ -52,17 +52,17 @@ public class NFNotaInfoItemImpostoIPI extends NFBase {
     }
 
     public void setCodigoSelo(final String codigoSelo) {
-        StringValidador.tamanho60(codigoSelo);
+        StringValidador.tamanho60(codigoSelo, "Codigo Selo IPI Item");
         this.codigoSelo = codigoSelo;
     }
 
     public void setQuantidadeSelo(final BigInteger quantidadeSelo) {
-        BigIntegerValidador.tamanho12(quantidadeSelo);
+        BigIntegerValidador.tamanho12(quantidadeSelo, "Quantidade Selo IPI Item");
         this.quantidadeSelo = quantidadeSelo;
     }
 
     public void setCodigoEnquadramento(final String codigoEnquadramento) {
-        StringValidador.exatamente3(codigoEnquadramento);
+        StringValidador.exatamente3(codigoEnquadramento, "Codigo Enquadramento IPI Item");
         this.codigoEnquadramento = codigoEnquadramento;
     }
 

@@ -99,12 +99,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setCodigoRandomico(final String codigoRandomico) {
-        StringValidador.exatamente8(codigoRandomico);
+        StringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
         this.codigoRandomico = codigoRandomico;
     }
 
     public void setNaturezaOperacao(final String naturezaOperacao) {
-        StringValidador.tamanho60(naturezaOperacao);
+        StringValidador.tamanho60(naturezaOperacao, "Natureza da Operacao");
         this.naturezaOperacao = naturezaOperacao;
     }
 
@@ -117,12 +117,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setSerie(final String serie) {
-        StringValidador.tamanho3(serie);
+        StringValidador.tamanho3(serie, "Serie");
         this.serie = serie;
     }
 
     public void setNumeroNota(final String numeroNota) {
-        StringValidador.tamanho9(numeroNota);
+        StringValidador.tamanho9(numeroNota, "Numero da Nota");
         this.numeroNota = numeroNota;
     }
 
@@ -139,12 +139,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7N(codigoMunicipio);
+        StringValidador.exatamente7N(codigoMunicipio, "Codigo Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
-        ListValidador.tamanho500(referenciadas);
+        ListValidador.tamanho500(referenciadas, "Referenciadas");
         this.referenciadas = referenciadas;
     }
 
@@ -157,7 +157,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador);
+        IntegerValidador.exatamente1(digitoVerificador, "DV");
         this.digitoVerificador = digitoVerificador;
     }
 
@@ -174,7 +174,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setVersaoEmissor(final String versaoEmissor) {
-        StringValidador.tamanho20(versaoEmissor);
+        StringValidador.tamanho20(versaoEmissor, "Versao Emissor");
         this.versaoEmissor = versaoEmissor;
     }
 
@@ -183,7 +183,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setJustificativaEntradaContingencia(final String justificativaEntradaContingencia) {
-        StringValidador.tamanho15a256(justificativaEntradaContingencia);
+        StringValidador.tamanho15a256(justificativaEntradaContingencia, "Justificativa Entrada Contingencia");
         this.justificativaEntradaContingencia = justificativaEntradaContingencia;
     }
 
