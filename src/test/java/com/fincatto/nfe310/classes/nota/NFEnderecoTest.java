@@ -3,9 +3,9 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.NFEndereco;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFEnderecoTest {
 
@@ -138,7 +138,7 @@ public class NFEnderecoTest {
     @Test
     public void deveObterUfComoFoiSetado() {
         final NFEndereco endereco = new NFEndereco();
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         Assert.assertEquals("SC", endereco.getUf());
     }
 
@@ -153,7 +153,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -168,7 +168,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -183,7 +183,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -198,7 +198,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -213,7 +213,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -228,7 +228,7 @@ public class NFEnderecoTest {
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -243,7 +243,7 @@ public class NFEnderecoTest {
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -258,7 +258,7 @@ public class NFEnderecoTest {
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setTelefone("12345678901324");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -273,7 +273,7 @@ public class NFEnderecoTest {
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
-        endereco.setUf(NFUnidadeFederativa.SC);
+        endereco.setUf(DFUnidadeFederativa.SC);
         endereco.toString();
     }
 
@@ -295,6 +295,6 @@ public class NFEnderecoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFEndereco><xLgr>NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV</xLgr><nro>11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y</nro><xCpl>Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw</xCpl><xBairro>67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU</xBairro><cMun>9999999</cMun><xMun>s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG</xMun><UF>RS</UF><CEP>88095550</CEP><cPais>1058</cPais><fone>12345678901324</fone></NFEndereco>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFEndereco().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFEndereco().toString());
     }
 }

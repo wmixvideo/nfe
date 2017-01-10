@@ -6,13 +6,13 @@ import java.net.URI;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDaNota310() {
-        final String xmlNota = FabricaDeObjetosFake.getNFNota().toString();
+        final String xmlNota = FabricaDeObjetosFakeNFe.getNFNota().toString();
         Assert.assertNotNull(new NotaParser().notaParaObjeto(xmlNota));
     }
 
@@ -23,7 +23,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDaNotaProcessada310() {
-        final String xmlNota = FabricaDeObjetosFake.getNFNotaProcessada().toString();
+        final String xmlNota = FabricaDeObjetosFakeNFe.getNFNotaProcessada().toString();
         Assert.assertNotNull(new NotaParser().notaProcessadaParaObjeto(xmlNota));
     }
 
@@ -54,7 +54,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDoNFEnviaEventoCartaCorrecao() {
-        final String xmlNFEnviaEventoCartaCorrecao = FabricaDeObjetosFake.getNFEnviaEventoCartaCorrecao().toString();
+        final String xmlNFEnviaEventoCartaCorrecao = FabricaDeObjetosFakeNFe.getNFEnviaEventoCartaCorrecao().toString();
         Assert.assertNotNull(new NotaParser().enviaEventoCartaCorrecaoParaObjeto(xmlNFEnviaEventoCartaCorrecao));
     }
 
@@ -70,7 +70,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDoNFEnviaEventoCancelamento() {
-        final String xmlNFEnviaEventoCancelamento = FabricaDeObjetosFake.getNFEnviaEventoCancelamento().toString();
+        final String xmlNFEnviaEventoCancelamento = FabricaDeObjetosFakeNFe.getNFEnviaEventoCancelamento().toString();
         Assert.assertNotNull(new NotaParser().enviaEventoCancelamentoParaObjeto(xmlNFEnviaEventoCancelamento));
     }
 
@@ -86,7 +86,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDoNFEnviaEventoInutilizacao() {
-        final String xmlNFEnviaEventoInutilizacao = FabricaDeObjetosFake.getNFEnviaEventoInutilizacao().toString();
+        final String xmlNFEnviaEventoInutilizacao = FabricaDeObjetosFakeNFe.getNFEnviaEventoInutilizacao().toString();
         Assert.assertNotNull(new NotaParser().enviaEventoInutilizacaoParaObjeto(xmlNFEnviaEventoInutilizacao));
     }
 

@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.cadastro;
 import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroSituacaoCadastral extends NFBase {
 
@@ -18,7 +18,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastral extends NFBase {
     private String cpf;
 
     @Element(name = "UF", required = true)
-    private NFUnidadeFederativa uf;
+    private DFUnidadeFederativa uf;
 
     @Element(name = "cSit", required = true)
     private NFSituacaoContribuinte situacaoContribuinte;
@@ -83,11 +83,11 @@ public class NFRetornoConsultaCadastroSituacaoCadastral extends NFBase {
         this.cpf = cpf;
     }
 
-    public NFUnidadeFederativa getUf() {
+    public DFUnidadeFederativa getUf() {
         return this.uf;
     }
 
-    public void setUf(final NFUnidadeFederativa uf) {
+    public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
     }
 

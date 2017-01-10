@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.StringValidador;
 
@@ -17,7 +17,7 @@ public class NFDownloadNFe extends NFBase{
 	private String versao;
 	
 	@Element(name = "tpAmb", required = true)
-	private NFAmbiente ambiente;
+	private DFAmbiente ambiente;
 	
 	@Element(name = "xServ", required = true)
 	private String servico;
@@ -44,11 +44,11 @@ public class NFDownloadNFe extends NFBase{
 		this.versao = versao;
 	}
 
-	public NFAmbiente getAmbiente() {
+	public DFAmbiente getAmbiente() {
 		return ambiente;
 	}
 
-	public void setAmbiente(final NFAmbiente ambiente) {
+	public void setAmbiente(final DFAmbiente ambiente) {
 		this.ambiente = ambiente;
 	}
 
