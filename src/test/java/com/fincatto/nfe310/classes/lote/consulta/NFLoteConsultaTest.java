@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 
 public class NFLoteConsultaTest {
@@ -13,7 +13,7 @@ public class NFLoteConsultaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFLoteConsulta consulta = new NFLoteConsulta();
-        consulta.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        consulta.setAmbiente(DFAmbiente.HOMOLOGACAO);
         consulta.setRecibo("ItbDxsHiXUqeCEM");
         consulta.setVersao(new BigDecimal("2.00"));
 

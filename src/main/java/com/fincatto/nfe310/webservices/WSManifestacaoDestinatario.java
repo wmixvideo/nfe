@@ -1,9 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
@@ -84,7 +84,7 @@ public class WSManifestacaoDestinatario {
         infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", tipoEvento.getCodigo(), chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
-        infoEvento.setOrgao(NFUnidadeFederativa.RFB);
+        infoEvento.setOrgao(DFUnidadeFederativa.RFB);
         infoEvento.setCodigoEvento(tipoEvento.getCodigo());
         infoEvento.setVersaoEvento(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
         infoEvento.setManifestacaoDestinatario(manifestacaoDestinatario);

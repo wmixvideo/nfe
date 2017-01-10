@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
 
 public class NFNotaInfoItemImpostoPISAliquotaTest {
@@ -64,6 +64,6 @@ public class NFNotaInfoItemImpostoPISAliquotaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISAliquota><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></NFNotaInfoItemImpostoPISAliquota>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoItemImpostoPISAliquota().toString());
     }
 }

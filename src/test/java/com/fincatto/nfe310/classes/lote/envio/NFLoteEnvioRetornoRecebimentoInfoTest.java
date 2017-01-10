@@ -3,13 +3,13 @@ package com.fincatto.nfe310.classes.lote.envio;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFLoteEnvioRetornoRecebimentoInfoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFLoteEnvioRetornoRecebimentoInfo><nRec>845e40545</nRec><tMed>430kfszodkgvre</tMed></NFLoteEnvioRetornoRecebimentoInfo>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFLoteEnvioRetornoRecebimentoInfo().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFLoteEnvioRetornoRecebimentoInfo().toString());
     }
 }

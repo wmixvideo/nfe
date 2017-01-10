@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFNotaInfoItemImpostoICMSUFDestinoTest {
 
@@ -181,6 +181,6 @@ public class NFNotaInfoItemImpostoICMSUFDestinoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoICMSUFDestino><vBCUFDest>9999999999999.99</vBCUFDest><pFCPUFDest>999.9999</pFCPUFDest><pICMSUFDest>999.9999</pICMSUFDest><pICMSInter>7.00</pICMSInter><pICMSInterPart>999.9999</pICMSInterPart><vFCPUFDest>9999999999999.99</vFCPUFDest><vICMSUFDest>9999999999999.99</vICMSUFDest><vICMSUFRemet>9999999999999.99</vICMSUFRemet></NFNotaInfoItemImpostoICMSUFDestino>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaaInfoItemImpostoICMSUFDestino().toString());
     }
 }
