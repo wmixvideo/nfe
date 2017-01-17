@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.transform.Transform;
 
-class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
+public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
 
     private static final SimpleDateFormat DATETIME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
 
