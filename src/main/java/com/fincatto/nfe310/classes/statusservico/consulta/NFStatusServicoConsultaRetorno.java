@@ -8,11 +8,13 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.dfe.classes.statusservico.consulta.IStatusServicoConsultaRetorno;
+import com.fincatto.dfe.transformers.DFLocalDateTimeTransformer;
 import com.fincatto.nfe310.classes.NFBase;
 
 @Root(name = "retConsStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFStatusServicoConsultaRetorno extends NFBase {
+public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusServicoConsultaRetorno {
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -57,6 +59,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.tempoMedio = null;
     }
 
+    @Override
     public String getVersao() {
         return this.versao;
     }
@@ -65,6 +68,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.versao = versao;
     }
 
+    @Override
     public DFAmbiente getAmbiente() {
         return this.ambiente;
     }
@@ -73,6 +77,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.ambiente = ambiente;
     }
 
+    @Override
     public String getVersaoAplicacao() {
         return this.versaoAplicacao;
     }
@@ -81,6 +86,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.versaoAplicacao = versaoAplicacao;
     }
 
+    @Override
     public String getStatus() {
         return this.status;
     }
@@ -89,6 +95,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.status = status;
     }
 
+    @Override
     public String getMotivo() {
         return this.motivo;
     }
@@ -97,6 +104,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.motivo = motivo;
     }
 
+    @Override
     public DFUnidadeFederativa getUf() {
         return this.uf;
     }
@@ -121,6 +129,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.dataRetorno = dataRetorno;
     }
 
+    @Override
     public String getObservacao() {
         return this.observacao;
     }
@@ -129,6 +138,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
         this.observacao = observacao;
     }
 
+    @Override
     public String getTempoMedio() {
         return this.tempoMedio;
     }
@@ -136,4 +146,22 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
     public void setTempoMedio(final String tempoMedio) {
         this.tempoMedio = tempoMedio;
     }
+
+	@Override
+	public String getDataRecebimentoString() {
+		try {
+			return new DFLocalDateTimeTransformer().write(getDataRecebimento());
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
+	@Override
+	public String getDataRetornoString() {
+		try {
+			return new DFLocalDateTimeTransformer().write(getDataRetorno());
+		} catch (Exception e) {
+		}
+		return null;
+	}
 }

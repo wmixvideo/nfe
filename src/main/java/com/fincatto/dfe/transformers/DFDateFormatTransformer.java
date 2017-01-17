@@ -7,15 +7,15 @@ import java.util.Locale;
 
 import org.simpleframework.xml.transform.Transform;
 
-class DFDateFormatTransformer implements Transform<Date> {
-	
+public class DFDateFormatTransformer implements Transform<Date> {
+
 	private final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-	
+
 	@Override
 	public Date read(final String value) throws Exception {
 		return this.DATE_FORMAT.parse(value);
 	}
-	
+
 	@Override
 	public String write(final Date value) throws Exception {
 		return this.DATE_FORMAT.format(value);
