@@ -2,24 +2,34 @@ package com.fincatto.nfe310.webservices;
 
 import br.inf.portalfiscal.nfe.DistDFeInt;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NFeDistribuicaoDFe;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NFeDistribuicaoDFeSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresse;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresseResponse;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.webservices.gerado.NFeDistribuicaoDFeStub;
-import java.io.StringReader;
 import java.math.BigDecimal;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
-import javax.xml.bind.JAXB;
+import java.util.List;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.namespace.QName;
+import javax.xml.transform.dom.DOMResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 class WSDistribuicaoDocumentoFiscal {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-
     private static final Logger LOGGER = LoggerFactory.getLogger(WSDistribuicaoDocumentoFiscal.class);
     private final NFeConfig config;
 
@@ -28,11 +38,7 @@ class WSDistribuicaoDocumentoFiscal {
     }
 
     RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativa) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(gerarDadosConsulta(cnpj, chave, nsu, unidadeFederativa).marshaller());
-        WSDistribuicaoDocumentoFiscal.LOGGER.debug(omElementConsulta.toString());
-        final OMElement omElementResult = this.efetuaConsultaDocumentoFiscal(omElementConsulta, unidadeFederativa);
-        WSDistribuicaoDocumentoFiscal.LOGGER.debug(omElementResult.toString());
-        return JAXB.unmarshal(new StringReader(omElementResult.toString()), RetDistDFeInt.class);
+        return efetuaConsultaDocumentoFiscal(gerarDadosConsulta(cnpj, chave, nsu, unidadeFederativa), unidadeFederativa);
     }
 
     private DistDFeInt gerarDadosConsulta(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativa) {
@@ -40,7 +46,7 @@ class WSDistribuicaoDocumentoFiscal {
         /**
          * Segundo a NT2014.002_v1.02_WsNFeDistribuicaoDFe a partir de 09/01/2017 este campo será opcional
          */
-        distDFeInt.setCUFAutor(unidadeFederativa.getCodigoIbge());
+        distDFeInt.setCUFAutor(unidadeFederativa.getCodigoIbge()); //
         distDFeInt.setTpAmb(this.config.getAmbiente().getCodigo());
         distDFeInt.setVersao(VERSAO_LEIAUTE.toPlainString());
         distDFeInt.setCNPJ(cnpj);
@@ -57,20 +63,31 @@ class WSDistribuicaoDocumentoFiscal {
         return distDFeInt;
     }
 
-    private OMElement efetuaConsultaDocumentoFiscal(final OMElement omElement, final NFUnidadeFederativa unidadeFederativa) throws RemoteException {
-        NFeDistribuicaoDFeStub.NfeDadosMsg_type0 dadosMsg_type0 = new NFeDistribuicaoDFeStub.NfeDadosMsg_type0();
-        dadosMsg_type0.setExtraElement(omElement);
-
-        final NFeDistribuicaoDFeStub.NfeDistDFeInteresse dFeInteresse = new NFeDistribuicaoDFeStub.NfeDistDFeInteresse();
-        dFeInteresse.setNfeDadosMsg(dadosMsg_type0);
-
+    private RetDistDFeInt efetuaConsultaDocumentoFiscal(final DistDFeInt distDFeInt, final NFUnidadeFederativa unidadeFederativa) throws RemoteException, JAXBException, MalformedURLException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(unidadeFederativa);
         final String endpoint = autorizador.getNFeDistribuicaoDFe(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDocumentoFiscal NF-e, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        final NFeDistribuicaoDFeStub.NfeDistDFeInteresseResponse result = new NFeDistribuicaoDFeStub(endpoint).nfeDistDFeInteresse(dFeInteresse);
-        return result.getNfeDistDFeInteresseResult().getExtraElement();
+        
+        JAXBContext jaxbContext = JAXBContext.newInstance(DistDFeInt.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        JAXBElement<DistDFeInt> jaxbElement = new JAXBElement<>(new QName("http://www.portalfiscal.inf.br/nfe", "distDFeInt"), DistDFeInt.class, distDFeInt);
+
+        DOMResult dOMResult = new DOMResult();
+        jaxbMarshaller.marshal(jaxbElement, dOMResult);
+
+        NfeDistDFeInteresse.NfeDadosMsg nfeDadosMsg = new br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.ObjectFactory().createNfeDistDFeInteresseNfeDadosMsg();
+        nfeDadosMsg.getContent().add(((Document) dOMResult.getNode()).getDocumentElement());
+
+        NFeDistribuicaoDFeSoap port = new NFeDistribuicaoDFe(new URL(endpoint)).getNFeDistribuicaoDFeSoap12();
+        NfeDistDFeInteresseResponse.NfeDistDFeInteresseResult result = port.nfeDistDFeInteresse(nfeDadosMsg);
+        
+        Object content = ((List) result.getContent()).get(0);
+        JAXBContext context = JAXBContext.newInstance(RetDistDFeInt.class);
+        Unmarshaller um = context.createUnmarshaller();
+        
+        return (RetDistDFeInt) um.unmarshal((Node)content);
     }
 
 }
