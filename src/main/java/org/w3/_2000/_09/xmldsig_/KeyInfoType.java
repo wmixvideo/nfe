@@ -1,49 +1,52 @@
 //
-// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.11 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2017.01.06 às 03:24:55 PM BRT 
+// Gerado em: 2017.01.11 às 06:43:19 PM BRT 
 //
 
 
-package com.fincatto.nfe310.classes.distribuicao;
+package org.w3._2000._09.xmldsig_;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Classe Java de SignatureValueType complex type.
+ * <p>Classe Java de KeyInfoType complex type.
  * 
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="SignatureValueType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>base64Binary">
- *       &lt;attribute name="Id" type="{http://www.w3.org/2001/XMLSchema}ID" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="KeyInfoType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="X509Data" type="{http://www.w3.org/2000/09/xmldsig#}X509DataType"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="Id" type="{http://www.w3.org/2001/XMLSchema}ID" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SignatureValueType", propOrder = {
-    "value"
+@XmlType(name = "KeyInfoType", propOrder = {
+    "x509Data"
 })
-public class SignatureValueType {
+public class KeyInfoType {
 
-    @XmlValue
-    protected byte[] value;
+    @XmlElement(name = "X509Data", required = true)
+    protected X509DataType x509Data;
     @XmlAttribute(name = "Id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -51,25 +54,27 @@ public class SignatureValueType {
     protected String id;
 
     /**
-     * Obtém o valor da propriedade value.
+     * Obtém o valor da propriedade x509Data.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link X509DataType }
+     *     
      */
-    public byte[] getValue() {
-        return value;
+    public X509DataType getX509Data() {
+        return x509Data;
     }
 
     /**
-     * Define o valor da propriedade value.
+     * Define o valor da propriedade x509Data.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link X509DataType }
+     *     
      */
-    public void setValue(byte[] value) {
-        this.value = value;
+    public void setX509Data(X509DataType value) {
+        this.x509Data = value;
     }
 
     /**

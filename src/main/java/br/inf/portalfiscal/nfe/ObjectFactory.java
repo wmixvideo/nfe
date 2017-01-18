@@ -1,12 +1,12 @@
 //
-// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.11 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2017.01.06 às 03:24:54 PM BRT 
+// Gerado em: 2017.01.11 às 06:43:19 PM BRT 
 //
 
 
-package com.fincatto.nfe310.classes.distribuicao;
+package br.inf.portalfiscal.nfe;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.fincatto.classes.distDFeInt_v1_01 package. 
+ * generated in the br.inf.portalfiscal.nfe package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -26,14 +26,14 @@ import javax.xml.bind.annotation.XmlRegistry;
  * 
  */
 @XmlRegistry
-public class DistDFeIntObjectFactory {
+public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.fincatto.classes.distDFeInt_v1_01
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.inf.portalfiscal.nfe
      * 
      */
-    public DistDFeIntObjectFactory() {
+    public ObjectFactory() {
     }
 
     /**
@@ -42,6 +42,22 @@ public class DistDFeIntObjectFactory {
      */
     public DistDFeInt createDistDFeInt() {
         return new DistDFeInt();
+    }
+
+    /**
+     * Create an instance of {@link RetDistDFeInt }
+     * 
+     */
+    public RetDistDFeInt createRetDistDFeInt() {
+        return new RetDistDFeInt();
+    }
+
+    /**
+     * Create an instance of {@link RetDistDFeInt.LoteDistDFeInt }
+     * 
+     */
+    public RetDistDFeInt.LoteDistDFeInt createRetDistDFeIntLoteDistDFeInt() {
+        return new RetDistDFeInt.LoteDistDFeInt();
     }
 
     /**
@@ -66,6 +82,30 @@ public class DistDFeIntObjectFactory {
      */
     public DistDFeInt.ConsChNFe createDistDFeIntConsChNFe() {
         return new DistDFeInt.ConsChNFe();
+    }
+
+    /**
+     * Create an instance of {@link ResEvento }
+     * 
+     */
+    public ResEvento createResEvento() {
+        return new ResEvento();
+    }
+
+    /**
+     * Create an instance of {@link ResNFe }
+     * 
+     */
+    public ResNFe createResNFe() {
+        return new ResNFe();
+    }
+
+    /**
+     * Create an instance of {@link RetDistDFeInt.LoteDistDFeInt.DocZip }
+     * 
+     */
+    public RetDistDFeInt.LoteDistDFeInt.DocZip createRetDistDFeIntLoteDistDFeIntDocZip() {
+        return new RetDistDFeInt.LoteDistDFeInt.DocZip();
     }
 
 }

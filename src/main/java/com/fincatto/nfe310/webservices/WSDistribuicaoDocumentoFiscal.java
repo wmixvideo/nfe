@@ -1,10 +1,10 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.DistDFeInt;
+import br.inf.portalfiscal.nfe.RetDistDFeInt;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.distribuicao.DistDFeInt;
-import com.fincatto.nfe310.classes.distribuicao.RetDistDFeInt;
 import com.fincatto.nfe310.webservices.gerado.NFeDistribuicaoDFeStub;
 import java.io.StringReader;
 import java.math.BigDecimal;
@@ -40,7 +40,7 @@ class WSDistribuicaoDocumentoFiscal {
         /**
          * Segundo a NT2014.002_v1.02_WsNFeDistribuicaoDFe a partir de 09/01/2017 este campo será opcional
          */
-        distDFeInt.setCUFAutor(unidadeFederativa.getCodigoIbge()); //
+        distDFeInt.setCUFAutor(unidadeFederativa.getCodigoIbge());
         distDFeInt.setTpAmb(this.config.getAmbiente().getCodigo());
         distDFeInt.setVersao(VERSAO_LEIAUTE.toPlainString());
         distDFeInt.setCNPJ(cnpj);
@@ -69,7 +69,6 @@ class WSDistribuicaoDocumentoFiscal {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDocumentoFiscal NF-e, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        System.out.println(dFeInteresse.getNfeDadosMsg().getExtraElement().getText());
         final NFeDistribuicaoDFeStub.NfeDistDFeInteresseResponse result = new NFeDistribuicaoDFeStub(endpoint).nfeDistDFeInteresse(dFeInteresse);
         return result.getNfeDistDFeInteresseResult().getExtraElement();
     }

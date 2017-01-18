@@ -1,22 +1,13 @@
 //
-// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.11 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2017.01.06 às 03:24:55 PM BRT 
+// Gerado em: 2017.01.11 às 06:43:19 PM BRT 
 //
 
 
-package com.fincatto.nfe310.classes.distribuicao;
+package org.w3._2000._09.xmldsig_;
 
-import com.fincatto.nfe310.classes.distribuicao.TransformsType;
-import com.fincatto.nfe310.classes.distribuicao.TransformType;
-import com.fincatto.nfe310.classes.distribuicao.X509DataType;
-import com.fincatto.nfe310.classes.distribuicao.SignatureValueType;
-import com.fincatto.nfe310.classes.distribuicao.SignatureType;
-import com.fincatto.nfe310.classes.distribuicao.KeyInfoType;
-import com.fincatto.nfe310.classes.distribuicao.SignedInfoType;
-import com.fincatto.nfe310.classes.distribuicao.ReferenceType;
-import com.fincatto.nfe310.classes.distribuicao.ResEvento;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
@@ -26,7 +17,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.fincatto.classes.resEvento_v1_01 package. 
+ * generated in the org.w3._2000._09.xmldsig_ package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -38,15 +29,15 @@ import javax.xml.namespace.QName;
  * 
  */
 @XmlRegistry
-public class ResEventoObjectFactory {
+public class ObjectFactory {
 
     private final static QName _Signature_QNAME = new QName("http://www.w3.org/2000/09/xmldsig#", "Signature");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.fincatto.classes.resEvento_v1_01
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.w3._2000._09.xmldsig_
      * 
      */
-    public ResEventoObjectFactory() {
+    public ObjectFactory() {
     }
 
     /**
@@ -66,27 +57,11 @@ public class ResEventoObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ResEvento }
-     * 
-     */
-    public ResEvento createResEvento() {
-        return new ResEvento();
-    }
-
-    /**
      * Create an instance of {@link SignatureType }
      * 
      */
     public SignatureType createSignatureType() {
         return new SignatureType();
-    }
-
-    /**
-     * Create an instance of {@link X509DataType }
-     * 
-     */
-    public X509DataType createX509DataType() {
-        return new X509DataType();
     }
 
     /**
@@ -119,6 +94,14 @@ public class ResEventoObjectFactory {
      */
     public KeyInfoType createKeyInfoType() {
         return new KeyInfoType();
+    }
+
+    /**
+     * Create an instance of {@link X509DataType }
+     * 
+     */
+    public X509DataType createX509DataType() {
+        return new X509DataType();
     }
 
     /**

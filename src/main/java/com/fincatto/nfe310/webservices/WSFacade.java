@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.RetDistDFeInt;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -13,7 +14,6 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.nfe310.classes.distribuicao.RetDistDFeInt;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;

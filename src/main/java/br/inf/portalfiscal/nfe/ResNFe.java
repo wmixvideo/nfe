@@ -1,12 +1,12 @@
 //
-// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.8-b130911.1802 
+// Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.11 
 // Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-// Gerado em: 2017.01.06 às 03:24:56 PM BRT 
+// Gerado em: 2017.01.11 às 06:43:19 PM BRT 
 //
 
 
-package com.fincatto.nfe310.classes.distribuicao;
+package br.inf.portalfiscal.nfe;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,53 +22,53 @@ import javax.xml.bind.annotation.XmlType;
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="chNFe" type="{http://www.portalfiscal.inf.br/nfe}TChNFe"/>
- *         &lt;choice>
- *           &lt;element name="CNPJ" type="{http://www.portalfiscal.inf.br/nfe}TCnpj"/>
- *           &lt;element name="CPF" type="{http://www.portalfiscal.inf.br/nfe}TCpf"/>
- *         &lt;/choice>
- *         &lt;element name="xNome">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.portalfiscal.inf.br/nfe}TString">
- *               &lt;maxLength value="60"/>
- *               &lt;minLength value="2"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="IE" type="{http://www.portalfiscal.inf.br/nfe}TIe"/>
- *         &lt;element name="dhEmi" type="{http://www.portalfiscal.inf.br/nfe}TDateTimeUTC"/>
- *         &lt;element name="tpNF">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;whiteSpace value="preserve"/>
- *               &lt;enumeration value="0"/>
- *               &lt;enumeration value="1"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="vNF" type="{http://www.portalfiscal.inf.br/nfe}TDec_1302"/>
- *         &lt;element name="digVal" type="{http://www.w3.org/2000/09/xmldsig#}DigestValueType" minOccurs="0"/>
- *         &lt;element name="dhRecbto" type="{http://www.portalfiscal.inf.br/nfe}TDateTimeUTC"/>
- *         &lt;element name="nProt" type="{http://www.portalfiscal.inf.br/nfe}TProt"/>
- *         &lt;element name="cSitNFe">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;whiteSpace value="preserve"/>
- *               &lt;enumeration value="1"/>
- *               &lt;enumeration value="2"/>
- *               &lt;enumeration value="3"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *       &lt;/sequence>
- *       &lt;attribute name="versao" use="required" type="{http://www.portalfiscal.inf.br/nfe}TVerResNFe" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="chNFe" type="{http://www.portalfiscal.inf.br/nfe}TChNFe"/&gt;
+ *         &lt;choice&gt;
+ *           &lt;element name="CNPJ" type="{http://www.portalfiscal.inf.br/nfe}TCnpj"/&gt;
+ *           &lt;element name="CPF" type="{http://www.portalfiscal.inf.br/nfe}TCpf"/&gt;
+ *         &lt;/choice&gt;
+ *         &lt;element name="xNome"&gt;
+ *           &lt;simpleType&gt;
+ *             &lt;restriction base="{http://www.portalfiscal.inf.br/nfe}TString"&gt;
+ *               &lt;maxLength value="60"/&gt;
+ *               &lt;minLength value="2"/&gt;
+ *             &lt;/restriction&gt;
+ *           &lt;/simpleType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="IE" type="{http://www.portalfiscal.inf.br/nfe}TIe"/&gt;
+ *         &lt;element name="dhEmi" type="{http://www.portalfiscal.inf.br/nfe}TDateTimeUTC"/&gt;
+ *         &lt;element name="tpNF"&gt;
+ *           &lt;simpleType&gt;
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *               &lt;whiteSpace value="preserve"/&gt;
+ *               &lt;enumeration value="0"/&gt;
+ *               &lt;enumeration value="1"/&gt;
+ *             &lt;/restriction&gt;
+ *           &lt;/simpleType&gt;
+ *         &lt;/element&gt;
+ *         &lt;element name="vNF" type="{http://www.portalfiscal.inf.br/nfe}TDec_1302"/&gt;
+ *         &lt;element name="digVal" type="{http://www.w3.org/2000/09/xmldsig#}DigestValueType" minOccurs="0"/&gt;
+ *         &lt;element name="dhRecbto" type="{http://www.portalfiscal.inf.br/nfe}TDateTimeUTC"/&gt;
+ *         &lt;element name="nProt" type="{http://www.portalfiscal.inf.br/nfe}TProt"/&gt;
+ *         &lt;element name="cSitNFe"&gt;
+ *           &lt;simpleType&gt;
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *               &lt;whiteSpace value="preserve"/&gt;
+ *               &lt;enumeration value="1"/&gt;
+ *               &lt;enumeration value="2"/&gt;
+ *               &lt;enumeration value="3"/&gt;
+ *             &lt;/restriction&gt;
+ *           &lt;/simpleType&gt;
+ *         &lt;/element&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="versao" use="required" type="{http://www.portalfiscal.inf.br/nfe}TVerResNFe" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 
@@ -88,32 +88,31 @@ import javax.xml.bind.annotation.XmlType;
     "nProt",
     "cSitNFe"
 })
-@XmlRootElement(name = "resNFe", namespace = "http://www.portalfiscal.inf.br/nfe")
+@XmlRootElement(name = "resNFe")
 public class ResNFe {
 
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String chNFe;
-    @XmlElement(name = "CNPJ", namespace = "http://www.portalfiscal.inf.br/nfe")
+    @XmlElement(name = "CNPJ")
     protected String cnpj;
-    @XmlElement(name = "CPF", namespace = "http://www.portalfiscal.inf.br/nfe")
+    @XmlElement(name = "CPF")
     protected String cpf;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String xNome;
-    @XmlElement(name = "IE", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(name = "IE", required = true)
     protected String ie;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String dhEmi;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String tpNF;
-    @XmlElement(name = "vNF", namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(name = "vNF", required = true)
     protected String vnf;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe")
     protected byte[] digVal;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String dhRecbto;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String nProt;
-    @XmlElement(namespace = "http://www.portalfiscal.inf.br/nfe", required = true)
+    @XmlElement(required = true)
     protected String cSitNFe;
     @XmlAttribute(name = "versao", required = true)
     protected String versao;
