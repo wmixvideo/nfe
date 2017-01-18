@@ -7,8 +7,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-
-import org.apache.commons.httpclient.protocol.Protocol;
+import javax.net.ssl.HttpsURLConnection;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFModelo;
@@ -41,7 +40,7 @@ public class WSFacade {
     private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
+        HttpsURLConnection.setDefaultSSLSocketFactory(new NFSocketFactory(config).createSSLContext().getSocketFactory());
 
         // inicia os servicos disponiveis da nfe
         this.wsLoteEnvio = new WSLoteEnvio(config);
