@@ -1,10 +1,11 @@
 package com.fincatto.nfe310.webservices;
 
-import java.util.Iterator;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacao;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoLoteResult;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeDadosMsg;
 
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,20 +19,17 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoSuplementar;
+import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
 import com.fincatto.nfe310.parsers.NotaParser;
-import com.fincatto.nfe310.persister.NFPersister;
+import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
-import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub;
-import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
-import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
-import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
-import com.fincatto.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
-import java.io.StringReader;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
+import java.net.URL;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
 
 class WSLoteEnvio {
 
@@ -44,7 +42,7 @@ class WSLoteEnvio {
     }
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
-        return this.comunicaLote(loteAssinadoXml, modelo);
+        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteEnvioRetorno.class, this.comunicaLote(loteAssinadoXml, modelo));
     }
 
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
@@ -87,22 +85,21 @@ class WSLoteEnvio {
         final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
 
         // comunica o lote
-        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), modelo);
+        final NFLoteEnvioRetorno loteEnvioRetorno = new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteEnvioRetorno.class, this.comunicaLote(loteAssinado.toString(), modelo));
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
-    private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    private String comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
 
         //envia o lote para a sefaz
-        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-
-        final NfeDadosMsg dados = new NfeDadosMsg();
-        dados.setExtraElement(omElement);
-
-        final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        WSLoteEnvio.LOGGER.debug(omElement.toString());
+        final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
+        nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
+        nfeCabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
+        
+        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+        nfeDadosMsg.getContent().add(StringElementParser.read(loteAssinadoXml));
 
         //define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
@@ -112,34 +109,10 @@ class WSLoteEnvio {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
-        return loteEnvioRetorno;
+        NfeAutorizacaoSoap port = new NfeAutorizacao(new URL(endpoint)).getNfeAutorizacaoSoap12();
+        NfeAutorizacaoLoteResult result = port.nfeAutorizacaoLote(nfeDadosMsg, nfeCabecMsg);
+
+        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
     }
 
-    private NfeCabecMsgE getCabecalhoSOAP() {
-        final NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO_NFE);
-        final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
-        cabecalhoSOAP.setNfeCabecMsg(cabecalho);
-        return cabecalhoSOAP;
-    }
-
-    private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
-        final XMLInputFactory factory = XMLInputFactory.newInstance();
-        factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));        
-        StAXOMBuilder builder = new StAXOMBuilder(reader);
-        final OMElement ome = builder.getDocumentElement();
-        final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
-        while (children.hasNext()) {
-            final OMElement omElement = (OMElement) children.next();
-            if ((omElement != null) && (WSLoteEnvio.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NFE_NAMESPACE, null);
-            }
-        }
-        return ome;
-    }
 }

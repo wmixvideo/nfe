@@ -1,13 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
 import com.fincatto.nfe310.NFeConfig;
-import org.apache.commons.httpclient.params.HttpConnectionParams;
-import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
 import javax.net.ssl.*;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -20,36 +16,15 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
 
-class NFSocketFactory implements ProtocolSocketFactory {
+class NFSocketFactory {
 
     private final NFeConfig config;
-    private final SSLContext context;
 
     NFSocketFactory(final NFeConfig config) throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         this.config = config;
-        this.context = createSSLContext(config);
     }
 
-    @Override
-    public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort, final HttpConnectionParams params) throws IOException {
-        final Socket socket = this.context.getSocketFactory().createSocket();
-        ((SSLSocket) socket).setEnabledProtocols(new String[] {config.getSSLProtocolo()});
-        socket.bind(new InetSocketAddress(localAddress, localPort));
-        socket.connect(new InetSocketAddress(host, port), 60000);
-        return socket;
-    }
-
-    @Override
-    public Socket createSocket(final String host, final int port, final InetAddress clientHost, final int clientPort) throws IOException {
-        return this.context.getSocketFactory().createSocket(host, port, clientHost, clientPort);
-    }
-
-    @Override
-    public Socket createSocket(final String host, final int port) throws IOException {
-        return this.context.getSocketFactory().createSocket(host, port);
-    }
-
-    private static SSLContext createSSLContext(final NFeConfig config) throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+    public SSLContext createSSLContext() throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
         final KeyManager[] keyManagers = createKeyManagers(config);
         final TrustManager[] trustManagers = createTrustManagers(config);
         final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolo());
