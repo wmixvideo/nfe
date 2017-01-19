@@ -11,27 +11,18 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
+import com.fincatto.nfe310.parsers.StringElementParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
 
 class WSStatusConsulta {
 
@@ -63,11 +54,7 @@ class WSStatusConsulta {
         cabecMsg.setCUF(unidadeFederativa.getCodigoIbge());
         cabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
 
-        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        InputSource inputSource = new InputSource();
-        inputSource.setCharacterStream(new StringReader(xml));
-
-        dadosMsg.getContent().add((documentBuilder.parse(inputSource).getDocumentElement()));
+        dadosMsg.getContent().add(StringElementParser.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(unidadeFederativa);
         final String endpoint = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceStatusServico(this.config.getAmbiente()) : autorizador.getNfeStatusServico(this.config.getAmbiente());
@@ -78,21 +65,7 @@ class WSStatusConsulta {
         NfeStatusServico2Soap port = new NfeStatusServico2(new URL(endpoint)).getNfeStatusServico2Soap12();
         NfeStatusServicoNF2Result result = port.nfeStatusServicoNF2(dadosMsg, cabecMsg);
         
-        ElementNSImpl elementNSImpl = (ElementNSImpl) result.getContent().get(0);
-        Document document = elementNSImpl.getOwnerDocument();
-        
-        return documentToString(document);
+        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
     }
     
-    protected static String documentToString(final Document doc) {
-        try {
-            StringWriter sw = new StringWriter();
-            TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer transformer = tf.newTransformer();
-            transformer.transform(new DOMSource(doc), new StreamResult(sw));
-            return sw.toString();
-        } catch (TransformerException ex) {
-            throw new RuntimeException("Erro ao converter objeto Documentto para String", ex);
-        }
-    }
 }

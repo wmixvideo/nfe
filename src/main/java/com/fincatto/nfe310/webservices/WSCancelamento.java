@@ -1,5 +1,10 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -9,20 +14,17 @@ import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
+import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
+import com.fincatto.nfe310.parsers.StringElementParser;
 import com.fincatto.nfe310.persister.NFPersister;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.net.URL;
 import java.util.Collections;
 
 class WSCancelamento {
@@ -36,42 +38,14 @@ class WSCancelamento {
         this.config = config;
     }
 
-    NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+    NFEnviaEventoRetorno cancelaNotaAssinada(final String eventoAssinadoXml, final String chaveAcesso) throws Exception {
+        return new NFPersister().read(NFEnviaEventoRetorno.class, efetuaCancelamento(eventoAssinadoXml, chaveAcesso));
     }
 
     NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
-        final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
-    }
-
-    private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSCancelamento.VERSAO_LEIAUTE.toPlainString());
-
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSCancelamento.LOGGER.debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
-        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
-        final String urlWebService = NFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
-        if (urlWebService == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
-        }
-
-        final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSCancelamento.LOGGER.debug(omElementResult.toString());
-        return omElementResult;
+        return new NFPersister().read(NFEnviaEventoRetorno.class, efetuaCancelamento(xmlAssinado, chaveAcesso));
     }
 
     private NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
@@ -105,4 +79,27 @@ class WSCancelamento {
         enviaEvento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         return enviaEvento;
     }
+
+    private String efetuaCancelamento(final String xml, final String chaveAcesso) throws Exception {
+        final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
+
+        nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
+        nfeCabecMsg.setVersaoDados(WSCancelamento.VERSAO_LEIAUTE.toPlainString());
+
+        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
+        final String endpoint = NFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
+        }
+
+        RecepcaoEventoSoap port = new RecepcaoEvento(new URL(endpoint)).getRecepcaoEventoSoap12();
+        NfeRecepcaoEventoResult result = port.nfeRecepcaoEvento(nfeDadosMsg, nfeCabecMsg);
+
+        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+    }
+    
 }

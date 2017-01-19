@@ -1,5 +1,10 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -10,14 +15,17 @@ import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManif
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
+import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.persister.NFPersister;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub;
+import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.util.Collections;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
 import org.joda.time.DateTime;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,45 +38,17 @@ public class WSManifestacaoDestinatario {
     public WSManifestacaoDestinatario(NFeConfig config) {
         this.config = config;
     }
-    
+
     NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaManifestacaoDestinatario(eventoAssinadoXml, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, efetuaManifestacaoDestinatario(eventoAssinadoXml, chaveAcesso));
     }
-    
+
     NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
         final String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(manifestacaoDestinatarioNotaXML);
-        final OMElement omElementResult = this.efetuaManifestacaoDestinatario(xmlAssinado, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, efetuaManifestacaoDestinatario(xmlAssinado, chaveAcesso));
     }
 
-    private OMElement efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new RecepcaoEventoStub.NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSManifestacaoDestinatario.VERSAO_LEIAUTE.toPlainString());
-
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new RecepcaoEventoStub.NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final RecepcaoEventoStub.NfeDadosMsg dados = new RecepcaoEventoStub.NfeDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSManifestacaoDestinatario.LOGGER.debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
-        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
-        final String urlWebService = autorizador.getRecepcaoEventoAN(this.config.getAmbiente());
-        if (urlWebService == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
-        }
-
-        final RecepcaoEventoStub.NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSManifestacaoDestinatario.LOGGER.debug(omElementResult.toString());
-        return omElementResult;
-    }
-    
     private NFEnviaEventoManifestacaoDestinatario gerarDadosManifestacaoDestinatario(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
@@ -99,5 +79,27 @@ public class WSManifestacaoDestinatario {
         enviaEvento.setVersao(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
         return enviaEvento;
     }
-    
+
+    private String efetuaManifestacaoDestinatario(final String xml, final String chaveAcesso) throws Exception {
+        final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
+
+        nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
+        nfeCabecMsg.setVersaoDados(WSManifestacaoDestinatario.VERSAO_LEIAUTE.toPlainString());
+
+        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
+        final String endpoint = autorizador.getRecepcaoEventoAN(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
+        }
+
+        RecepcaoEventoSoap port = new RecepcaoEvento(new URL(endpoint)).getRecepcaoEventoSoap12();
+        NfeRecepcaoEventoResult result = port.nfeRecepcaoEvento(nfeDadosMsg, nfeCabecMsg);
+
+        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+    }
+
 }
