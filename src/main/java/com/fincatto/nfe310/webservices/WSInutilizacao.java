@@ -36,7 +36,7 @@ class WSInutilizacao {
     }
 
     NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final NFModelo modelo) throws Exception {
-        return new NFPersister().read(NFRetornoEventoInutilizacao.class, eventoAssinadoXml);
+        return new NFPersister().read(NFRetornoEventoInutilizacao.class, efetuaInutilizacao(eventoAssinadoXml, modelo));
     }
 
     NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final NFModelo modelo) throws Exception {

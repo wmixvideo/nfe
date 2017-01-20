@@ -5,26 +5,9 @@
 Este arquivo foi gerado pela Arquitetura JavaTM para Implementação de Referência (JAXB) de Bind XML, v2.2.11 
 Consulte <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 Todas as modificações neste arquivo serão perdidas após a recompilação do esquema de origem. 
-Gerado em: 2017.01.11 às 06:43:19 PM BRT 
+Gerado em: 2017.01.19 às 09:08:27 PM BRT 
 
   -->
-  <bindings scd="x-schema::tns" xmlns:tns="http://www.portalfiscal.inf.br/nfe">
-    <schemaBindings map="false">
-      <package name="br.inf.portalfiscal.nfe"/>
-    </schemaBindings>
-    <bindings scd="tns:distDFeInt">
-      <class ref="br.inf.portalfiscal.nfe.DistDFeInt"/>
-    </bindings>
-    <bindings scd="tns:retDistDFeInt">
-      <class ref="br.inf.portalfiscal.nfe.RetDistDFeInt"/>
-    </bindings>
-    <bindings scd="tns:resEvento">
-      <class ref="br.inf.portalfiscal.nfe.ResEvento"/>
-    </bindings>
-    <bindings scd="tns:resNFe">
-      <class ref="br.inf.portalfiscal.nfe.ResNFe"/>
-    </bindings>
-  </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://www.w3.org/2000/09/xmldsig#">
     <schemaBindings map="false">
       <package name="org.w3._2000._09.xmldsig_"/>
@@ -52,6 +35,98 @@ Gerado em: 2017.01.11 às 06:43:19 PM BRT
     </bindings>
     <bindings scd="~tns:X509DataType">
       <class ref="org.w3._2000._09.xmldsig_.X509DataType"/>
+    </bindings>
+  </bindings>
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.portalfiscal.inf.br/nfe">
+    <schemaBindings map="false">
+      <package name="br.inf.portalfiscal.nfe"/>
+    </schemaBindings>
+    <bindings scd="tns:distDFeInt">
+      <class ref="br.inf.portalfiscal.nfe.DistDFeInt"/>
+    </bindings>
+    <bindings scd="tns:retDistDFeInt">
+      <class ref="br.inf.portalfiscal.nfe.RetDistDFeInt"/>
+    </bindings>
+    <bindings scd="tns:resEvento">
+      <class ref="br.inf.portalfiscal.nfe.ResEvento"/>
+    </bindings>
+    <bindings scd="tns:resNFe">
+      <class ref="br.inf.portalfiscal.nfe.ResNFe"/>
+    </bindings>
+    <bindings scd="~tns:TRetEvento">
+      <class ref="br.inf.portalfiscal.nfe.TRetEvento"/>
+    </bindings>
+    <bindings scd="~tns:TEvento">
+      <class ref="br.inf.portalfiscal.nfe.TEvento"/>
+    </bindings>
+    <bindings scd="~tns:TRetCancNFe">
+      <class ref="br.inf.portalfiscal.nfe.TRetCancNFe"/>
+    </bindings>
+    <bindings scd="~tns:TIpi">
+      <class ref="br.inf.portalfiscal.nfe.TIpi"/>
+    </bindings>
+    <bindings scd="~tns:TProtNFe">
+      <class ref="br.inf.portalfiscal.nfe.TProtNFe"/>
+    </bindings>
+    <bindings scd="~tns:TRetInutNFe">
+      <class ref="br.inf.portalfiscal.nfe.TRetInutNFe"/>
+    </bindings>
+    <bindings scd="~tns:TRetEnviNFe">
+      <class ref="br.inf.portalfiscal.nfe.TRetEnviNFe"/>
+    </bindings>
+    <bindings scd="~tns:TNFe">
+      <class ref="br.inf.portalfiscal.nfe.TNFe"/>
+    </bindings>
+    <bindings scd="~tns:TInutNFe">
+      <class ref="br.inf.portalfiscal.nfe.TInutNFe"/>
+    </bindings>
+    <bindings scd="~tns:TConsReciNFe">
+      <class ref="br.inf.portalfiscal.nfe.TConsReciNFe"/>
+    </bindings>
+    <bindings scd="~tns:TConsSitNFe">
+      <class ref="br.inf.portalfiscal.nfe.TConsSitNFe"/>
+    </bindings>
+    <bindings scd="~tns:TConsStatServ">
+      <class ref="br.inf.portalfiscal.nfe.TConsStatServ"/>
+    </bindings>
+    <bindings scd="~tns:TEnviNFe">
+      <class ref="br.inf.portalfiscal.nfe.TEnviNFe"/>
+    </bindings>
+    <bindings scd="~tns:TProcInutNFe">
+      <class ref="br.inf.portalfiscal.nfe.TProcInutNFe"/>
+    </bindings>
+    <bindings scd="~tns:TNfeProc">
+      <class ref="br.inf.portalfiscal.nfe.TNfeProc"/>
+    </bindings>
+    <bindings scd="~tns:TRetConsReciNFe">
+      <class ref="br.inf.portalfiscal.nfe.TRetConsReciNFe"/>
+    </bindings>
+    <bindings scd="~tns:TRetConsSitNFe">
+      <class ref="br.inf.portalfiscal.nfe.TRetConsSitNFe"/>
+    </bindings>
+    <bindings scd="~tns:TRetConsStatServ">
+      <class ref="br.inf.portalfiscal.nfe.TRetConsStatServ"/>
+    </bindings>
+    <bindings scd="~tns:TEndereco">
+      <class ref="br.inf.portalfiscal.nfe.TEndereco"/>
+    </bindings>
+    <bindings scd="~tns:TEnderEmi">
+      <class ref="br.inf.portalfiscal.nfe.TEnderEmi"/>
+    </bindings>
+    <bindings scd="~tns:TLocal">
+      <class ref="br.inf.portalfiscal.nfe.TLocal"/>
+    </bindings>
+    <bindings scd="~tns:TVeiculo">
+      <class ref="br.inf.portalfiscal.nfe.TVeiculo"/>
+    </bindings>
+    <bindings scd="~tns:TProcEvento">
+      <class ref="br.inf.portalfiscal.nfe.TProcEvento"/>
+    </bindings>
+    <bindings scd="~tns:TUf">
+      <typesafeEnumClass ref="br.inf.portalfiscal.nfe.TUf"/>
+    </bindings>
+    <bindings scd="~tns:TUfEmi">
+      <typesafeEnumClass ref="br.inf.portalfiscal.nfe.TUfEmi"/>
     </bindings>
   </bindings>
 </bindings>

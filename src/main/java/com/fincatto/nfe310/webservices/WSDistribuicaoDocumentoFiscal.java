@@ -9,6 +9,9 @@ import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresseRespon
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
+import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
+import java.io.StringReader;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
-import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -25,7 +27,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.dom.DOMResult;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 class WSDistribuicaoDocumentoFiscal {
 
@@ -83,11 +84,10 @@ class WSDistribuicaoDocumentoFiscal {
         NFeDistribuicaoDFeSoap port = new NFeDistribuicaoDFe(new URL(endpoint)).getNFeDistribuicaoDFeSoap12();
         NfeDistDFeInteresseResponse.NfeDistDFeInteresseResult result = port.nfeDistDFeInteresse(nfeDadosMsg);
         
-        Object content = ((List) result.getContent()).get(0);
-        JAXBContext context = JAXBContext.newInstance(RetDistDFeInt.class);
-        Unmarshaller um = context.createUnmarshaller();
+        JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.nfe");
+        Unmarshaller unmarshaller = context.createUnmarshaller();
         
-        return (RetDistDFeInt) um.unmarshal((Node)content);
+        return (RetDistDFeInt) unmarshaller.unmarshal(new StringReader(ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0))));
     }
 
 }

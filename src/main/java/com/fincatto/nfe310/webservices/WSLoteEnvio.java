@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.TRetEnviNFe;
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacao;
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoLoteResult;
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoSoap;
@@ -27,7 +28,11 @@ import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
+import java.io.StringReader;
 import java.net.URL;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.Unmarshaller;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
@@ -43,6 +48,10 @@ class WSLoteEnvio {
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteEnvioRetorno.class, this.comunicaLote(loteAssinadoXml, modelo));
+    }
+
+    JAXBElement<TRetEnviNFe> enviaLoteAssinadoSincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        return this.comunicaLotesincrono(loteAssinadoXml, modelo);
     }
 
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
@@ -89,6 +98,49 @@ class WSLoteEnvio {
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
+    JAXBElement<TRetEnviNFe> enviaLoteSincrono(final NFLoteEnvio lote) throws Exception {
+        // adiciona a chave e o dv antes de assinar
+        for (final NFNota nota : lote.getNotas()) {
+            final NFGeraChave geraChave = new NFGeraChave(nota);
+            nota.getInfo().getIdentificacao().setCodigoRandomico(StringUtils.defaultIfBlank(nota.getInfo().getIdentificacao().getCodigoRandomico(), geraChave.geraCodigoRandomico()));
+            nota.getInfo().getIdentificacao().setDigitoVerificador(geraChave.getDV());
+            nota.getInfo().setIdentificador(geraChave.getChaveAcesso());
+        }
+
+        // assina o lote
+        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
+        final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
+
+        // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
+        int qtdNF = 0, qtdNFC = 0;
+        for (final NFNota nota : loteAssinado.getNotas()) {
+            switch (nota.getInfo().getIdentificacao().getModelo()) {
+                case NFE:
+                    qtdNF++;
+                    break;
+                case NFCE:
+                    final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
+                    nota.setInfoSuplementar(new NFNotaInfoSuplementar());
+                    nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
+                    qtdNFC++;
+                    break;
+                default:
+                    throw new IllegalArgumentException(String.format("Modelo de nota desconhecida: %s", nota.getInfo().getIdentificacao().getModelo()));
+            }
+        }
+
+        // verifica se todas as notas do lote sao do mesmo modelo
+        if ((qtdNF > 0) && (qtdNFC > 0)) {
+            throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
+        }
+
+        // guarda o modelo das notas
+        final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
+
+        // comunica o lote
+        return this.comunicaLotesincrono(loteAssinado.toString(), modelo);
+    }
+
     private String comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
@@ -97,7 +149,7 @@ class WSLoteEnvio {
         final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
         nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
         nfeCabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
-        
+
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.getContent().add(StringElementParser.read(loteAssinadoXml));
 
@@ -113,6 +165,37 @@ class WSLoteEnvio {
         NfeAutorizacaoLoteResult result = port.nfeAutorizacaoLote(nfeDadosMsg, nfeCabecMsg);
 
         return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+    }
+
+    private JAXBElement<TRetEnviNFe> comunicaLotesincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+        XMLValidador.validaLote(loteAssinadoXml);
+
+        //envia o lote para a sefaz
+        final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
+        nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
+        nfeCabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
+
+        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+        nfeDadosMsg.getContent().add(StringElementParser.read(loteAssinadoXml));
+
+        //define o tipo de emissao
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+
+        final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
+        }
+
+        NfeAutorizacaoSoap port = new NfeAutorizacao(new URL(endpoint)).getNfeAutorizacaoSoap12();
+        NfeAutorizacaoLoteResult result = port.nfeAutorizacaoLote(nfeDadosMsg, nfeCabecMsg);
+
+        JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.nfe");
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        
+        JAXBElement<TRetEnviNFe> jAXBElement = (JAXBElement<TRetEnviNFe>) unmarshaller.unmarshal(new StringReader(ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0))));
+        
+        return jAXBElement;
     }
 
 }
