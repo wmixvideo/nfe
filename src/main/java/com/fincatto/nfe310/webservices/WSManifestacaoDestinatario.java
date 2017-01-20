@@ -15,11 +15,9 @@ import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManif
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.parsers.StringElementParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Collections;
@@ -28,6 +26,7 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 
 public class WSManifestacaoDestinatario {
 
@@ -87,7 +86,7 @@ public class WSManifestacaoDestinatario {
         nfeCabecMsg.setVersaoDados(WSManifestacaoDestinatario.VERSAO_LEIAUTE.toPlainString());
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
@@ -99,7 +98,7 @@ public class WSManifestacaoDestinatario {
         RecepcaoEventoSoap port = new RecepcaoEvento(new URL(endpoint)).getRecepcaoEventoSoap12();
         NfeRecepcaoEventoResult result = port.nfeRecepcaoEvento(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

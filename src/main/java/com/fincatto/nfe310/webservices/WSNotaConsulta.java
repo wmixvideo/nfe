@@ -10,11 +10,9 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.parsers.StringElementParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
@@ -24,6 +22,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import org.w3c.dom.Element;
 
 class WSNotaConsulta {
 
@@ -58,7 +57,7 @@ class WSNotaConsulta {
         nfeCabecMsg.setVersaoDados(WSNotaConsulta.VERSAO_SERVICO);
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
         
         NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
@@ -69,7 +68,7 @@ class WSNotaConsulta {
         NfeConsulta2Soap port = new NfeConsulta2(new URL(endpoint)).getNfeConsulta2Soap12();
         NfeConsultaNF2Result result = port.nfeConsultaNF2(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

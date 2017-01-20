@@ -11,10 +11,8 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.slf4j.Logger;
@@ -23,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import java.rmi.RemoteException;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
 
 class WSStatusConsulta {
 
@@ -54,7 +53,7 @@ class WSStatusConsulta {
         cabecMsg.setCUF(unidadeFederativa.getCodigoIbge());
         cabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
 
-        dadosMsg.getContent().add(StringElementParser.read(xml));
+        dadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(unidadeFederativa);
         final String endpoint = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceStatusServico(this.config.getAmbiente()) : autorizador.getNfeStatusServico(this.config.getAmbiente());
@@ -65,7 +64,7 @@ class WSStatusConsulta {
         NfeStatusServico2Soap port = new NfeStatusServico2(new URL(endpoint)).getNfeStatusServico2Soap12();
         NfeStatusServicoNF2Result result = port.nfeStatusServicoNF2(dadosMsg, cabecMsg);
         
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
     
 }

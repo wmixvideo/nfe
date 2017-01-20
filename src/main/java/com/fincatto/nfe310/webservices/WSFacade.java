@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.mdfe.TRetConsStatServ;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
 import br.inf.portalfiscal.nfe.TRetEnviNFe;
 import java.io.IOException;
@@ -25,7 +26,6 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import javax.xml.bind.JAXBElement;
 
 public class WSFacade {
 
@@ -40,6 +40,7 @@ public class WSFacade {
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
     private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
+    private final WSStatusServicoMDF wsStatusServicoMDF;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         HttpsURLConnection.setDefaultSSLSocketFactory(new NFSocketFactory(config).createSSLContext().getSocketFactory());
@@ -56,6 +57,7 @@ public class WSFacade {
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
         this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
+        this.wsStatusServicoMDF = new WSStatusServicoMDF(config);
     }
 
     /**
@@ -79,7 +81,7 @@ public class WSFacade {
      * @return dados do lote retornado pelo webservice, alem do lote assinado
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public JAXBElement<TRetEnviNFe> enviaLoteSincrono(final NFLoteEnvio lote) throws Exception {
+    public TRetEnviNFe enviaLoteSincrono(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_ASSINCRONO)) {
             throw new IllegalStateException("Utilize o método enviaLote");
         }
@@ -108,7 +110,7 @@ public class WSFacade {
      * @return dados do lote retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public JAXBElement<TRetEnviNFe> enviaLoteAssinadoSincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    public TRetEnviNFe enviaLoteAssinadoSincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinadoSincrono(loteAssinadoXml, modelo);
     }
 
@@ -299,4 +301,9 @@ public class WSFacade {
     public RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
         return this.wsDistribuicaoDocumentoFiscal.consultaDocumentoFiscal(cnpj, chave, nsu, unidadeFederativaAutorizador);
     }
+    
+    public TRetConsStatServ consultaStatus() throws Exception {
+        return this.wsStatusServicoMDF.consultaStatus();
+    }
+            
 }

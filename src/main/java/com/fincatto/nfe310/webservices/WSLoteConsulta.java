@@ -10,10 +10,8 @@ import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +21,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
 
 class WSLoteConsulta {
 
@@ -51,7 +50,7 @@ class WSLoteConsulta {
         nfeCabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
         final String endpoint = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
@@ -62,7 +61,7 @@ class WSLoteConsulta {
         NfeRetAutorizacaoSoap port = new NfeRetAutorizacao(new URL(endpoint)).getNfeRetAutorizacaoSoap12();
         NfeRetAutorizacaoLoteResult result = port.nfeRetAutorizacaoLote(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

@@ -17,12 +17,11 @@ import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFe;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.w3c.dom.Element;
 
 class WSNotaDownload {
 
@@ -55,7 +54,7 @@ class WSNotaDownload {
         nfeCabecMsg.setVersaoDados(WSNotaDownload.VERSAO_LEIAUTE.toPlainString());
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String endpoint = autorizador.getNfeDownloadNF(this.config.getAmbiente());
@@ -66,7 +65,7 @@ class WSNotaDownload {
         NfeDownloadNFSoap port = new NfeDownloadNF(new URL(endpoint)).getNfeDownloadNFSoap12();
         NfeDownloadNFResult result = port.nfeDownloadNF(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

@@ -12,10 +12,8 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.nfe310.classes.cadastro.NFInfoConsultaCadastro;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.simpleframework.xml.core.Persister;
@@ -25,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
 import javax.xml.ws.Holder;
+import org.w3c.dom.Element;
 
 class WSConsultaCadastro {
 
@@ -57,7 +56,7 @@ class WSConsultaCadastro {
         nfeCabecMsg.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
         if (autorizador == null) {
@@ -69,7 +68,7 @@ class WSConsultaCadastro {
         Holder<NfeCabecMsg> holderNfeCabecMsg = new Holder<>(new ObjectFactory().createNfeCabecMsg());
         ConsultaCadastro2Result result = port.consultaCadastro2(nfeDadosMsg, holderNfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

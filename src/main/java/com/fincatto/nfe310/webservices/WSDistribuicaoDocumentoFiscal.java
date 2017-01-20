@@ -9,8 +9,7 @@ import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresseRespon
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
@@ -27,6 +26,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.dom.DOMResult;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 class WSDistribuicaoDocumentoFiscal {
 
@@ -87,7 +87,7 @@ class WSDistribuicaoDocumentoFiscal {
         JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.nfe");
         Unmarshaller unmarshaller = context.createUnmarshaller();
         
-        return (RetDistDFeInt) unmarshaller.unmarshal(new StringReader(ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0))));
+        return (RetDistDFeInt) unmarshaller.unmarshal(new StringReader(ElementStringConverter.write((Element) result.getContent().get(0))));
     }
 
 }

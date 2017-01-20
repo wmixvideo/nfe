@@ -18,11 +18,10 @@ import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
-import com.fincatto.nfe310.parsers.StringElementParser;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.persister.NFPersister;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.net.URL;
+import org.w3c.dom.Element;
 
 class WSInutilizacao {
 
@@ -74,7 +73,7 @@ class WSInutilizacao {
         nfeCabecMsg.setVersaoDados(WSInutilizacao.VERSAO_SERVICO);
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
@@ -85,7 +84,7 @@ class WSInutilizacao {
         NfeInutilizacao2Soap port = new NfeInutilizacao2(new URL(endpoint)).getNfeInutilizacao2Soap12();
         NfeInutilizacaoNF2Result result = port.nfeInutilizacaoNF2(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }
