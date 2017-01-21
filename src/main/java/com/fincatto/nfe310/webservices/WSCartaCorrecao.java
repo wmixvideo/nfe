@@ -14,12 +14,10 @@ import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
 import com.fincatto.nfe310.classes.evento.NFTipoEvento;
 import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
-import com.fincatto.nfe310.converters.ElementNSImplStringConverter;
+import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.parsers.StringElementParser;
 import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import org.joda.time.DateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
@@ -32,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Collections;
+import org.w3c.dom.Element;
 
 class WSCartaCorrecao {
 
@@ -94,7 +93,7 @@ class WSCartaCorrecao {
         nfeCabecMsg.setVersaoDados(WSCartaCorrecao.VERSAO_LEIAUTE.toPlainString());
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(StringElementParser.read(xml));
+        nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
 
@@ -107,7 +106,7 @@ class WSCartaCorrecao {
         RecepcaoEventoSoap port = new RecepcaoEvento(new URL(endpoint)).getRecepcaoEventoSoap12();
         NfeRecepcaoEventoResult result = port.nfeRecepcaoEvento(nfeDadosMsg, nfeCabecMsg);
 
-        return ElementNSImplStringConverter.read((ElementNSImpl) result.getContent().get(0));
+        return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
 }

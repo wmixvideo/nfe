@@ -1,6 +1,8 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.mdfe.TRetConsStatServ;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
+import br.inf.portalfiscal.nfe.TRetEnviNFe;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -38,6 +40,7 @@ public class WSFacade {
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
     private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
+    private final WSStatusServicoMDF wsStatusServicoMDF;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         HttpsURLConnection.setDefaultSSLSocketFactory(new NFSocketFactory(config).createSSLContext().getSocketFactory());
@@ -54,6 +57,7 @@ public class WSFacade {
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
         this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
+        this.wsStatusServicoMDF = new WSStatusServicoMDF(config);
     }
 
     /**
@@ -65,9 +69,23 @@ public class WSFacade {
      */
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
+            throw new IllegalStateException("Utilize o método enviaLoteSincrono");
         }
         return this.wsLoteEnvio.enviaLote(lote);
+    }
+    
+    /**
+     * Faz o envio de lote para a Sefaz
+     *
+     * @param lote o lote a ser enviado para a Sefaz
+     * @return dados do lote retornado pelo webservice, alem do lote assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public TRetEnviNFe enviaLoteSincrono(final NFLoteEnvio lote) throws Exception {
+        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_ASSINCRONO)) {
+            throw new IllegalStateException("Utilize o método enviaLote");
+        }
+        return this.wsLoteEnvio.enviaLoteSincrono(lote);
     }
 
     /**
@@ -81,6 +99,19 @@ public class WSFacade {
      */
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
+    }
+    
+    /**
+     * Faz o envio assinado para a Sefaz de NF-e e NFC-e
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param loteAssinadoXml lote assinado no formato XML
+     * @param modelo          modelo da nota (NF-e ou NFC-e)
+     * @return dados do lote retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public TRetEnviNFe enviaLoteAssinadoSincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+        return this.wsLoteEnvio.enviaLoteAssinadoSincrono(loteAssinadoXml, modelo);
     }
 
     /**
@@ -270,4 +301,9 @@ public class WSFacade {
     public RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
         return this.wsDistribuicaoDocumentoFiscal.consultaDocumentoFiscal(cnpj, chave, nsu, unidadeFederativaAutorizador);
     }
+    
+    public TRetConsStatServ consultaStatus() throws Exception {
+        return this.wsStatusServicoMDF.consultaStatus();
+    }
+            
 }
