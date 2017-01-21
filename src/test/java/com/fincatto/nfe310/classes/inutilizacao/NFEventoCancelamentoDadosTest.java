@@ -3,9 +3,9 @@ package com.fincatto.nfe310.classes.inutilizacao;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 
 public class NFEventoCancelamentoDadosTest {
@@ -94,7 +94,7 @@ public class NFEventoCancelamentoDadosTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdentificadorNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setJustificativa("u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5");
@@ -103,7 +103,7 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
@@ -119,14 +119,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirServicoNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -135,14 +135,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirUFNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -158,7 +158,7 @@ public class NFEventoCancelamentoDadosTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirAnoNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
         dados.setJustificativa("u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5");
@@ -167,14 +167,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCNPJNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
         dados.setJustificativa("u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5");
@@ -183,14 +183,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModeloNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -199,14 +199,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSerieNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -215,14 +215,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNomeServico("INUTILIZAR");
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroNotaInicialNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -231,14 +231,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNomeServico("INUTILIZAR");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroNotaFinalNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -247,14 +247,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNomeServico("INUTILIZAR");
         dados.setNumeroNFInicial("1");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirJustificativaNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(NFAmbiente.HOMOLOGACAO);
+        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
         dados.setAno(15);
         dados.setCnpj("12345678901234");
         dados.setIdentificador("ID55605654557305333405403926218856863798956");
@@ -263,14 +263,14 @@ public class NFEventoCancelamentoDadosTest {
         dados.setNumeroNFInicial("1");
         dados.setNumeroNFFinal("999999999");
         dados.setSerie("999");
-        dados.setUf(NFUnidadeFederativa.SC);
+        dados.setUf(DFUnidadeFederativa.SC);
         dados.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<infInut Id=\"ID42161234567890123455123123456789987654321\"><tpAmb>2</tpAmb><xServ>INUTILIZAR</xServ><cUF>42</cUF><ano>16</ano><CNPJ>12345678901234</CNPJ><mod>55</mod><serie>123</serie><nNFIni>123456789</nNFIni><nNFFin>987654321</nNFFin><xJust>u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5</xJust></infInut>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFEventoInutilizacaoDados().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFEventoInutilizacaoDados().toString());
 
     }
 }

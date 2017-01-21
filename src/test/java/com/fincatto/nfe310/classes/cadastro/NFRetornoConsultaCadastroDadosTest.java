@@ -8,7 +8,7 @@ import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroDadosTest {
 
@@ -66,15 +66,15 @@ public class NFRetornoConsultaCadastroDadosTest {
     @Test
     public void deveObterUFComoFoiSetado() {
         final NFRetornoConsultaCadastroDados retornoConsultaCadastroDados = new NFRetornoConsultaCadastroDados();
-        retornoConsultaCadastroDados.setUf(NFUnidadeFederativa.SC);
-        Assert.assertEquals(NFUnidadeFederativa.SC, retornoConsultaCadastroDados.getUf());
+        retornoConsultaCadastroDados.setUf(DFUnidadeFederativa.SC);
+        Assert.assertEquals(DFUnidadeFederativa.SC, retornoConsultaCadastroDados.getUf());
     }
 
     @Test
     public void deveObterUFAutorizadoraComoFoiSetado() {
         final NFRetornoConsultaCadastroDados retornoConsultaCadastroDados = new NFRetornoConsultaCadastroDados();
-        retornoConsultaCadastroDados.setUfAutorizadora(NFUnidadeFederativa.SP);
-        Assert.assertEquals(NFUnidadeFederativa.SP, retornoConsultaCadastroDados.getUfAutorizadora());
+        retornoConsultaCadastroDados.setUfAutorizadora(DFUnidadeFederativa.SP);
+        Assert.assertEquals(DFUnidadeFederativa.SP, retornoConsultaCadastroDados.getUfAutorizadora());
     }
 
     @Test
