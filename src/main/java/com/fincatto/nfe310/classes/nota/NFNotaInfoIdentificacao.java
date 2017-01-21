@@ -6,16 +6,16 @@ import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFModelo;
-import com.fincatto.dfe.classes.DFTipoEmissao;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFProcessoEmissor;
 import com.fincatto.nfe310.classes.NFTipo;
+import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFTipoImpressao;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
@@ -23,7 +23,7 @@ import com.fincatto.nfe310.validadores.StringValidador;
 public class NFNotaInfoIdentificacao extends NFBase {
 	
     @Element(name = "cUF", required = true)
-    private DFUnidadeFederativa uf;
+    private NFUnidadeFederativa uf;
 
     @Element(name = "cNF", required = true)
     private String codigoRandomico;
@@ -35,7 +35,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFFormaPagamentoPrazo formaPagamento;
 
     @Element(name = "mod", required = true)
-    private DFModelo modelo;
+    private NFModelo modelo;
 
     @Element(name = "serie", required = true)
     private String serie;
@@ -62,13 +62,13 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFTipoImpressao tipoImpressao;
 
     @Element(name = "tpEmis", required = true)
-    private DFTipoEmissao tipoEmissao;
+    private NFTipoEmissao tipoEmissao;
 
     @Element(name = "cDV", required = true)
     private Integer digitoVerificador;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "finNFe", required = true)
     private NFFinalidade finalidade;
@@ -94,7 +94,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     @ElementList(entry = "NFref", inline = true, required = false)
     private List<NFInfoReferenciada> referenciadas;
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
@@ -112,7 +112,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.formaPagamento = formaPagamento;
     }
 
-    public void setModelo(final DFModelo modelo) {
+    public void setModelo(final NFModelo modelo) {
         this.modelo = modelo;
     }
 
@@ -152,7 +152,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.tipoImpressao = tipoImpressao;
     }
 
-    public void setTipoEmissao(final DFTipoEmissao tipoEmissao) {
+    public void setTipoEmissao(final NFTipoEmissao tipoEmissao) {
         this.tipoEmissao = tipoEmissao;
     }
 
@@ -161,7 +161,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.digitoVerificador = digitoVerificador;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -199,7 +199,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.indicadorPresencaComprador = indicadorPresencaComprador;
     }
 
-    public DFUnidadeFederativa getUf() {
+    public NFUnidadeFederativa getUf() {
         return this.uf;
     }
 
@@ -215,7 +215,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.formaPagamento;
     }
 
-    public DFModelo getModelo() {
+    public NFModelo getModelo() {
         return this.modelo;
     }
 
@@ -251,7 +251,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.tipoImpressao;
     }
 
-    public DFTipoEmissao getTipoEmissao() {
+    public NFTipoEmissao getTipoEmissao() {
         return this.tipoEmissao;
     }
 
@@ -259,7 +259,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.digitoVerificador;
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 

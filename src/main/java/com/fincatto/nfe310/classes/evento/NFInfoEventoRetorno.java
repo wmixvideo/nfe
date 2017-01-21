@@ -4,9 +4,9 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFInfoEventoRetorno extends NFBase {
 
@@ -14,13 +14,13 @@ public class NFInfoEventoRetorno extends NFBase {
     private String id;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicativo;
 
     @Element(name = "cOrgao", required = true)
-    private DFUnidadeFederativa orgao;
+    private NFUnidadeFederativa orgao;
 
     @Element(name = "cStat", required = true)
     private Integer codigoStatus;
@@ -59,7 +59,7 @@ public class NFInfoEventoRetorno extends NFBase {
         return this.id;
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
@@ -67,7 +67,7 @@ public class NFInfoEventoRetorno extends NFBase {
         return this.versaoAplicativo;
     }
 
-    public DFUnidadeFederativa getOrgao() {
+    public NFUnidadeFederativa getOrgao() {
         return this.orgao;
     }
 
@@ -119,7 +119,7 @@ public class NFInfoEventoRetorno extends NFBase {
         this.id = id;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -127,7 +127,7 @@ public class NFInfoEventoRetorno extends NFBase {
         this.versaoAplicativo = versaoAplicativo;
     }
 
-    public void setOrgao(final DFUnidadeFederativa orgao) {
+    public void setOrgao(final NFUnidadeFederativa orgao) {
         this.orgao = orgao;
     }
 

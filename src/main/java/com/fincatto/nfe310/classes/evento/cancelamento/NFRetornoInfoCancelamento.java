@@ -4,9 +4,9 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 
 public class NFRetornoInfoCancelamento extends NFBase {
@@ -15,7 +15,7 @@ public class NFRetornoInfoCancelamento extends NFBase {
     private String identificador;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicacao;
@@ -27,7 +27,7 @@ public class NFRetornoInfoCancelamento extends NFBase {
     private String motivo;
 
     @Element(name = "cUF", required = true)
-    private DFUnidadeFederativa uf;
+    private NFUnidadeFederativa uf;
 
     @Element(name = "chNFe", required = false)
     private String chave;
@@ -49,11 +49,11 @@ public class NFRetornoInfoCancelamento extends NFBase {
         this.identificador = identificador;
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -81,11 +81,11 @@ public class NFRetornoInfoCancelamento extends NFBase {
         this.motivo = motivo;
     }
 
-    public DFUnidadeFederativa getUf() {
+    public NFUnidadeFederativa getUf() {
         return this.uf;
     }
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 

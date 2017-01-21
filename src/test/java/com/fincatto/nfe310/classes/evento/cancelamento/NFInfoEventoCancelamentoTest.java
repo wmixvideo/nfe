@@ -6,16 +6,16 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFInfoEventoCancelamentoTest {
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final DFAmbiente ambiente = DFAmbiente.PRODUCAO;
+        final NFAmbiente ambiente = NFAmbiente.PRODUCAO;
         infoEventoCancelamento.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, infoEventoCancelamento.getAmbiente());
     }
@@ -23,7 +23,7 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveObterInfoCancelamentoComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final NFInfoCancelamento infoCancelamento = FabricaDeObjetosFakeNFe.getNFInfoCancelamento();
+        final NFInfoCancelamento infoCancelamento = FabricaDeObjetosFake.getNFInfoCancelamento();
         infoEventoCancelamento.setCancelamento(infoCancelamento);
         Assert.assertEquals(infoCancelamento, infoEventoCancelamento.getCancelamento());
     }
@@ -71,7 +71,7 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveObterOrgaoComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.BA;
+        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.BA;
         infoEventoCancelamento.setOrgao(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, infoEventoCancelamento.getOrgao());
     }
@@ -95,6 +95,6 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoEventoCancelamento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></detEvento></NFInfoEventoCancelamento>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoEventoCancelamento().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoEventoCancelamento().toString());
     }
 }

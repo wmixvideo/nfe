@@ -5,8 +5,8 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacaoDados;
 
 public class NFRetornoEventoInutilizacaoDadosTest {
@@ -14,7 +14,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
         dados.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, dados.getAmbiente());
     }
@@ -111,7 +111,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
     @Test
     public void deveObterUnidadeFederativaComoFoiSetado() {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
-        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
+        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.SC;
         dados.setUf(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, dados.getUf());
     }

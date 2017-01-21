@@ -1,5 +1,7 @@
 package com.fincatto.nfe310;
 
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -7,16 +9,14 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-
 public class NFeConfigFake extends NFeConfig {
 
     private KeyStore keyStoreCertificado = null;
     private KeyStore keyStoreCadeia = null;
 
     @Override
-    public DFUnidadeFederativa getCUF() {
-        return DFUnidadeFederativa.SC;
+    public NFUnidadeFederativa getCUF() {
+        return NFUnidadeFederativa.SC;
     }
 
     @Override

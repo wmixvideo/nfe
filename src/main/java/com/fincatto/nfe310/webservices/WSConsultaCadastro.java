@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.webservices;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.nfe310.classes.cadastro.NFInfoConsultaCadastro;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
@@ -30,7 +30,7 @@ class WSConsultaCadastro {
         this.config = config;
     }
 
-    NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
+    NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
         final NFConsultaCadastro dadosConsulta = this.getDadosConsulta(cnpj, uf);
         final String xmlConsulta = dadosConsulta.toString();
         WSConsultaCadastro.LOG.debug(xmlConsulta);
@@ -43,7 +43,7 @@ class WSConsultaCadastro {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
     }
 
-    private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
+    private OMElement efetuaConsulta(final NFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
         final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
         cabec.setCUF(uf.getCodigoIbge());
         cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
@@ -62,7 +62,7 @@ class WSConsultaCadastro {
         return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
     }
 
-    private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {
+    private NFConsultaCadastro getDadosConsulta(final String cnpj, final NFUnidadeFederativa uf) {
         final NFConsultaCadastro consulta = new NFConsultaCadastro();
         consulta.setVersao(WSConsultaCadastro.VERSAO_SERVICO);
         consulta.setConsultaCadastro(new NFInfoConsultaCadastro());

@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoCobranca;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoDuplicata;
 
@@ -17,7 +17,7 @@ public class NFNotaInfoCobrancaTest {
     public void naoDevePermitirDuplicatasTamanhoInvalido() {
         final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
         for (int i = 0; i < 121; i++) {
-            duplicatas.add(FabricaDeObjetosFakeNFe.getNFNotaInfoDuplicata());
+            duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
         new NFNotaInfoCobranca().setDuplicatas(duplicatas);
     }
@@ -26,7 +26,7 @@ public class NFNotaInfoCobrancaTest {
     public void devePermitirDuplicatasTamanhoValido() {
         final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
         for (int i = 0; i < 120; i++) {
-            duplicatas.add(FabricaDeObjetosFakeNFe.getNFNotaInfoDuplicata());
+            duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
         new NFNotaInfoCobranca().setDuplicatas(duplicatas);
     }
@@ -34,20 +34,20 @@ public class NFNotaInfoCobrancaTest {
     @Test
     public void devePermitirFaturaNulo() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setDuplicatas(Arrays.asList(new NFNotaInfoDuplicata[] { FabricaDeObjetosFakeNFe.getNFNotaInfoDuplicata() }));
+        cobranca.setDuplicatas(Arrays.asList(new NFNotaInfoDuplicata[] { FabricaDeObjetosFake.getNFNotaInfoDuplicata() }));
         cobranca.toString();
     }
 
     @Test
     public void devePermitirDuplicataNulo() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setFatura(FabricaDeObjetosFakeNFe.getNFNotaInfoFatura());
+        cobranca.setFatura(FabricaDeObjetosFake.getNFNotaInfoFatura());
         cobranca.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoCobranca><fat><nFat>KDVAp0aewPjmHaTsjbDX1O6NOR9tc7TxGflFLXsMZt2hEKar3oqzZ11uzEQF</nFat><vOrig>3001.15</vOrig><vDesc>0.15</vDesc><vLiq>3000.00</vLiq></fat><dup><nDup>TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z</nDup><dVenc>2014-07-10</dVenc><vDup>999999.99</vDup></dup></NFNotaInfoCobranca>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoCobranca().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCobranca().toString());
     }
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.nfe310.classes.NFAmbiente;
 
 public class NFNotaConsultaTest {
 
@@ -20,7 +20,7 @@ public class NFNotaConsultaTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
         notaConsulta.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, notaConsulta.getAmbiente());
     }

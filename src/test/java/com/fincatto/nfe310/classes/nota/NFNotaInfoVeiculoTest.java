@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoVeiculo;
 
 public class NFNotaInfoVeiculoTest {
@@ -35,7 +35,7 @@ public class NFNotaInfoVeiculoTest {
     public void devePermitirRNCTNulo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
         veiculo.setPlacaVeiculo("MKZ8159");
-        veiculo.setUf(DFUnidadeFederativa.SP);
+        veiculo.setUf(NFUnidadeFederativa.SP);
         veiculo.toString();
     }
 
@@ -51,13 +51,13 @@ public class NFNotaInfoVeiculoTest {
     public void naoDevePermitirPlacaNulo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
         veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
-        veiculo.setUf(DFUnidadeFederativa.SP);
+        veiculo.setUf(NFUnidadeFederativa.SP);
         veiculo.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEspeardo = "<NFNotaInfoVeiculo><placa>MKZ8159</placa><UF>SP</UF><RNTC>8Io5YKSKW1qy3v7zGwLx</RNTC></NFNotaInfoVeiculo>";
-        Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFakeNFe.getNFNotaInfoVeiculo().toString());
+        Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFake.getNFNotaInfoVeiculo().toString());
     }
 }

@@ -8,8 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
-import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.nota.NFNota;
 
 public class NFGeraQRCode {
@@ -23,7 +23,7 @@ public class NFGeraQRCode {
     }
 
     public String getQRCode() throws NoSuchAlgorithmException {
-        final String url = this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
+        final String url = this.config.getAmbiente().equals(NFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
         if (StringUtils.isBlank(url)) {
             throw new IllegalArgumentException("URL para consulta do QRCode nao informada para uf " + this.nota.getInfo().getIdentificacao().getUf() + "!");
         }

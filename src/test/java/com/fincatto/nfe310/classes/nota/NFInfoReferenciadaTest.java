@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.nota.NFInfoReferenciada;
 
 public class NFInfoReferenciadaTest {
@@ -13,12 +13,12 @@ public class NFInfoReferenciadaTest {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
         try {
-            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado());
+            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFakeNFe.getNFInfoProdutorRuralReferenciada());
+            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -28,7 +28,7 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -39,12 +39,12 @@ public class NFInfoReferenciadaTest {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
         try {
-            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado());
+            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFakeNFe.getNFInfoProdutorRuralReferenciada());
+            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -54,7 +54,7 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -63,9 +63,9 @@ public class NFInfoReferenciadaTest {
     @Test
     public void devePermitirSetarApenasUmInfoNFProdutorRuralReferenciada() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFakeNFe.getNFInfoProdutorRuralReferenciada());
+        referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         try {
-            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado());
+            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -80,7 +80,7 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -89,9 +89,9 @@ public class NFInfoReferenciadaTest {
     @Test
     public void devePermitirSetarApenasUmModelo1Por1Referenciada() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         try {
-            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado());
+            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -106,7 +106,7 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFakeNFe.getNFInfoProdutorRuralReferenciada());
+            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -115,9 +115,9 @@ public class NFInfoReferenciadaTest {
     @Test
     public void devePermitirSetarApenasUmCupomFiscalReferenciadoSetado() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado());
+        referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
         try {
-            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -132,7 +132,7 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
         }
         try {
-            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFakeNFe.getNFInfoProdutorRuralReferenciada());
+            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
             Assert.fail("Validacao nao funcionou");
         } catch (final IllegalStateException e) {
         }
@@ -157,14 +157,14 @@ public class NFInfoReferenciadaTest {
     @Test
     public void devePermitirChaveAcessoNulo() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         referenciada.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada());
+        referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         final String xmlEsperado = "<NFInfoReferenciada><refNF><cUF>43</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></refNF></NFInfoReferenciada>";
         Assert.assertEquals(xmlEsperado, referenciada.toString());
     }

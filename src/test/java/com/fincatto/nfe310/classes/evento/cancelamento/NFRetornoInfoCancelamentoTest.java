@@ -4,8 +4,8 @@ import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 
 public class NFRetornoInfoCancelamentoTest {
@@ -13,7 +13,7 @@ public class NFRetornoInfoCancelamentoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
         retornoInfoCancelamento.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, retornoInfoCancelamento.getAmbiente());
     }
@@ -69,7 +69,7 @@ public class NFRetornoInfoCancelamentoTest {
     @Test
     public void deveObterUfComoFoiSetado() {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
-        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
+        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.SC;
         retornoInfoCancelamento.setUf(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, retornoInfoCancelamento.getUf());
     }

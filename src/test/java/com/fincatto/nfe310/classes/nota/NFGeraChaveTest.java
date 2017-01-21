@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.nota;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class NFGeraChaveTest {
     @Test
     public void geraChaveDeAcessoComCPFConformeEsperado() {
         final NFNota nota = new NFNota();
-        nota.setInfo(FabricaDeObjetosFakeNFe.getNFNotaInfo());
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
         nota.getInfo().getEmitente().setCpf("12345678901");
         nota.getInfo().getEmitente().setCnpj(null);
 
@@ -26,7 +26,7 @@ public class NFGeraChaveTest {
     @Test
     public void geraChaveDeAcessoComCNPJConformeEsperado() {
         final NFNota nota = new NFNota();
-        nota.setInfo(FabricaDeObjetosFakeNFe.getNFNotaInfo());
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
         nota.getInfo().getEmitente().setCpf(null);
         nota.getInfo().getEmitente().setCnpj("12345678901234");
 
@@ -42,7 +42,7 @@ public class NFGeraChaveTest {
     @Test
     public void geraChaveDeAcessoRandomica() {
         final NFNota nota = new NFNota();
-        nota.setInfo(FabricaDeObjetosFakeNFe.getNFNotaInfo());
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
         nota.getInfo().getEmitente().setCpf(null);
         nota.getInfo().getEmitente().setCnpj("12345678901234");
 
@@ -61,7 +61,7 @@ public class NFGeraChaveTest {
     @Test(expected = IllegalStateException.class)
     public void geraChaveDeAcessoSemCodigoRandomicoRetornaExcecao() {
         final NFNota nota = new NFNota();
-        nota.setInfo(FabricaDeObjetosFakeNFe.getNFNotaInfo());
+        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
         nota.getInfo().getIdentificacao().setCodigoRandomico(null);
         new NFGeraChave(nota).getChaveAcesso();
     }

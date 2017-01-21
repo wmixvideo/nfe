@@ -7,7 +7,7 @@ import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroSituacaoCadastralTest {
 
@@ -130,7 +130,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     @Test
     public void deveObterUFComoFoiSetado() {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
-        retorno.setUf(DFUnidadeFederativa.SC);
-        Assert.assertEquals(DFUnidadeFederativa.SC, retorno.getUf());
+        retorno.setUf(NFUnidadeFederativa.SC);
+        Assert.assertEquals(NFUnidadeFederativa.SC, retorno.getUf());
     }
 }

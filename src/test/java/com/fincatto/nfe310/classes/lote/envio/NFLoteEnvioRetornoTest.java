@@ -4,21 +4,21 @@ import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFLoteEnvioRetornoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFLoteEnvioRetorno retorno = new NFLoteEnvioRetorno();
-        retorno.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        retorno.setAmbiente(NFAmbiente.HOMOLOGACAO);
         retorno.setDataRecebimento(new LocalDateTime(2014, 1, 1, 10, 10, 10));
-        retorno.setInfoRecebimento(FabricaDeObjetosFakeNFe.getNFLoteEnvioRetornoRecebimentoInfo());
+        retorno.setInfoRecebimento(FabricaDeObjetosFake.getNFLoteEnvioRetornoRecebimentoInfo());
         retorno.setMotivo("kdosfksodf");
         retorno.setStatus("iejsasfisf");
-        retorno.setUf(DFUnidadeFederativa.BA);
+        retorno.setUf(NFUnidadeFederativa.BA);
         retorno.setVersao("2.00");
         retorno.setVersaoAplicacao("2.00");
 

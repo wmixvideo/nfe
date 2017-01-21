@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
@@ -19,7 +19,7 @@ public class NFLoteConsulta extends NFBase {
     private String versao;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "nRec", required = true)
     private String recibo;
@@ -32,11 +32,11 @@ public class NFLoteConsulta extends NFBase {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 

@@ -2,7 +2,6 @@ package com.fincatto.nfe310.classes;
 
 import org.simpleframework.xml.Element;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFEndereco extends NFBase {
@@ -70,7 +69,7 @@ public class NFEndereco extends NFBase {
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf.getCodigo();
     }
 

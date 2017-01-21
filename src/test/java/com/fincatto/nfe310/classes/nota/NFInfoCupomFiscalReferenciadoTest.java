@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.nota.NFInfoCupomFiscalReferenciado;
 
 public class NFInfoCupomFiscalReferenciadoTest {
@@ -62,6 +62,6 @@ public class NFInfoCupomFiscalReferenciadoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoCupomFiscalReferenciado><mod>55</mod><nECF>a71</nECF><nCOO>NUQvJH</nCOO></NFInfoCupomFiscalReferenciado>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoCupomFiscalReferenciado().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado().toString());
     }
 }

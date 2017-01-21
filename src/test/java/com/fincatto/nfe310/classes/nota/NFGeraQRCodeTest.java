@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.classes.nota;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class NFGeraQRCodeTest {
 
     @Test
     public void geraQRCodeConformeEsperado() throws NoSuchAlgorithmException {
-        final NFNota nota = FabricaDeObjetosFakeNFe.getNotaQRCode();
+        final NFNota nota = FabricaDeObjetosFake.getNotaQRCode();
         nota.setInfoSuplementar(new NFNotaInfoSuplementar());
         nota.getInfoSuplementar().setQrCode(new NFGeraQRCode(nota, this.createConfigTest()).getQRCode());
 
@@ -46,8 +46,8 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public DFUnidadeFederativa getCUF() {
-                return DFUnidadeFederativa.SE;
+            public NFUnidadeFederativa getCUF() {
+                return NFUnidadeFederativa.SE;
             }
 
             @Override

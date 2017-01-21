@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemExportacaoIndiretaTest {
 
@@ -71,6 +71,6 @@ public class NFNotaInfoItemExportacaoIndiretaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoComVagao() {
         final String xmlEsperado = "<NFNotaInfoItemExportacaoIndireta><nRE>999999999999</nRE><chNFe>99921995966146649003423495876439081543214139</chNFe><qExport>9999999999.9999</qExport></NFNotaInfoItemExportacaoIndireta>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoItemExportacaoIndireta().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta().toString());
     }
 }

@@ -8,7 +8,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 
 @Root(name = "retDownloadNFe")
@@ -19,7 +19,7 @@ public class NFDownloadNFeRetorno extends NFBase{
 	private String versao;
 	
 	@Element(name = "tpAmb", required = true)
-	private DFAmbiente ambiente;
+	private NFAmbiente ambiente;
 	
 	@Element(name = "verAplic", required = true)
 	private String versaoAplicacao;
@@ -54,11 +54,11 @@ public class NFDownloadNFeRetorno extends NFBase{
 		this.versao = versao;
 	}
 
-	public DFAmbiente getAmbiente() {
+	public NFAmbiente getAmbiente() {
 		return ambiente;
 	}
 
-	public void setAmbiente(final DFAmbiente ambiente) {
+	public void setAmbiente(final NFAmbiente ambiente) {
 		this.ambiente = ambiente;
 	}
 

@@ -6,21 +6,19 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.dfe.classes.statusservico.consulta.IStatusServicoConsultaRetorno;
-import com.fincatto.dfe.transformers.DFLocalDateTimeTransformer;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 @Root(name = "retConsStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusServicoConsultaRetorno {
+public class NFStatusServicoConsultaRetorno extends NFBase {
 
     @Attribute(name = "versao", required = true)
     private String versao;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicacao;
@@ -32,7 +30,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
     private String motivo;
 
     @Element(name = "cUF", required = true)
-    private DFUnidadeFederativa uf;
+    private NFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto", required = true)
     private LocalDateTime dataRecebimento;
@@ -59,7 +57,6 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.tempoMedio = null;
     }
 
-    @Override
     public String getVersao() {
         return this.versao;
     }
@@ -68,16 +65,14 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.versao = versao;
     }
 
-    @Override
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
-    @Override
     public String getVersaoAplicacao() {
         return this.versaoAplicacao;
     }
@@ -86,7 +81,6 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.versaoAplicacao = versaoAplicacao;
     }
 
-    @Override
     public String getStatus() {
         return this.status;
     }
@@ -95,7 +89,6 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.status = status;
     }
 
-    @Override
     public String getMotivo() {
         return this.motivo;
     }
@@ -104,12 +97,11 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.motivo = motivo;
     }
 
-    @Override
-    public DFUnidadeFederativa getUf() {
+    public NFUnidadeFederativa getUf() {
         return this.uf;
     }
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
@@ -129,7 +121,6 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.dataRetorno = dataRetorno;
     }
 
-    @Override
     public String getObservacao() {
         return this.observacao;
     }
@@ -138,7 +129,6 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.observacao = observacao;
     }
 
-    @Override
     public String getTempoMedio() {
         return this.tempoMedio;
     }
@@ -146,22 +136,4 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
     public void setTempoMedio(final String tempoMedio) {
         this.tempoMedio = tempoMedio;
     }
-
-	@Override
-	public String getDataRecebimentoString() {
-		try {
-			return new DFLocalDateTimeTransformer().write(getDataRecebimento());
-		} catch (Exception e) {
-		}
-		return null;
-	}
-
-	@Override
-	public String getDataRetornoString() {
-		try {
-			return new DFLocalDateTimeTransformer().write(getDataRetorno());
-		} catch (Exception e) {
-		}
-		return null;
-	}
 }

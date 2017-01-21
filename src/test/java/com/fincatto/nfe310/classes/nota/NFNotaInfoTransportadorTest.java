@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoTransportador;
 
 public class NFNotaInfoTransportadorTest {
@@ -86,7 +86,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setEnderecoComplemento("D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY");
         transportador.setInscricaoEstadual("");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -97,7 +97,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setInscricaoEstadual("");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -108,7 +108,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setEnderecoComplemento("D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -120,7 +120,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setInscricaoEstadual("");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -132,7 +132,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setInscricaoEstadual("");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -144,7 +144,7 @@ public class NFNotaInfoTransportadorTest {
         transportador.setInscricaoEstadual("");
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
         transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
-        transportador.setUf(DFUnidadeFederativa.SP);
+        transportador.setUf(NFUnidadeFederativa.SP);
         transportador.toString();
     }
 
@@ -187,6 +187,6 @@ public class NFNotaInfoTransportadorTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoTransportador><CNPJ>34843274000164</CNPJ><xNome>4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn</xNome><IE>ISENTO</IE><xEnder>D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY</xEnder><xMun>4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn</xMun><UF>SP</UF></NFNotaInfoTransportador>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoTransportador().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoTransportador().toString());
     }
 }

@@ -9,10 +9,10 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProtocolo;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
 
 @Root(name = "retConsSitNFe", strict = false)
@@ -23,7 +23,7 @@ public class NFNotaConsultaRetorno extends NFBase {
     private String versao;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicacao;
@@ -35,7 +35,7 @@ public class NFNotaConsultaRetorno extends NFBase {
     private String motivo;
 
     @Element(name = "cUF", required = true)
-    private DFUnidadeFederativa uf;
+    private NFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto", required = true)
     private LocalDateTime dataHoraRecibo;
@@ -71,11 +71,11 @@ public class NFNotaConsultaRetorno extends NFBase {
         this.versao = versao;
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -103,11 +103,11 @@ public class NFNotaConsultaRetorno extends NFBase {
         this.motivo = motivo;
     }
 
-    public DFUnidadeFederativa getUf() {
+    public NFUnidadeFederativa getUf() {
         return this.uf;
     }
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf;
     }
 

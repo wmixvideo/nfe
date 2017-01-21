@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFImpostoDevolvidoTest {
 
@@ -32,6 +32,6 @@ public class NFImpostoDevolvidoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFImpostoDevolvido><pDevol>100.00</pDevol><IPI><vIPIDevol>9999999999999.99</vIPIDevol></IPI></NFImpostoDevolvido>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFImpostoDevolvido().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFImpostoDevolvido().toString());
     }
 }

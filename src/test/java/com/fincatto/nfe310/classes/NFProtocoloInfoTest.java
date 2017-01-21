@@ -7,8 +7,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFProtocoloInfoTest {
 
@@ -31,7 +30,7 @@ public class NFProtocoloInfoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
         protocoloInfo.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, protocoloInfo.getAmbiente());
     }
@@ -90,6 +89,6 @@ public class NFProtocoloInfoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFProtocoloInfo Id=\"ID798456123\"><tpAmb>2</tpAmb><verAplic>3.10</verAplic><chNFe>EAIOjea</chNFe><dhRecbto>2014-06-10T09:00:00-03:00</dhRecbto><nProt>490309504</nProt><digVal>gfsfgsrg</digVal><cStat>OK</cStat><xMotivo>jsoaosk</xMotivo></NFProtocoloInfo>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFProtocoloInfo().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFProtocoloInfo().toString());
     }
 }

@@ -2,8 +2,8 @@ package com.fincatto.nfe310.classes.nota;
 
 import org.simpleframework.xml.Element;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoReboque extends NFBase {
@@ -21,7 +21,7 @@ public class NFNotaInfoReboque extends NFBase {
         this.placaVeiculo = placaVeiculo;
     }
 
-    public void setUf(final DFUnidadeFederativa uf) {
+    public void setUf(final NFUnidadeFederativa uf) {
         this.uf = uf.getCodigo();
     }
 

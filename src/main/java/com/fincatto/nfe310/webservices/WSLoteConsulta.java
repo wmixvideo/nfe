@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.webservices;
 
-import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
@@ -27,7 +27,7 @@ class WSLoteConsulta {
 		this.config = config;
 	}
 
-	NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final DFModelo modelo) throws Exception {
+	NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final NFModelo modelo) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
 		WSLoteConsulta.LOGGER.debug(omElementConsulta.toString());
 
@@ -37,7 +37,7 @@ class WSLoteConsulta {
 		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
 	}
 
-	private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {
+	private OMElement efetuaConsulta(final OMElement omElement, final NFModelo modelo) throws RemoteException {
 		final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
 		cabec.setCUF(this.config.getCUF().getCodigoIbge());
 		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
@@ -49,7 +49,7 @@ class WSLoteConsulta {
 		dados.setExtraElement(omElement);
 
 		final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-		final String urlWebService = DFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
+		final String urlWebService = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
 		if (urlWebService == null) {
 			throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
 		}

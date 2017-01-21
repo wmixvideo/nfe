@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento.manifestacaodestinatario;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -85,7 +85,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setEvento(Collections.singletonList(FabricaDeObjetosFakeNFe.getNFEventoManifestacaoDestinatario()));
+        eventoManifestacaoDestinatario.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoManifestacaoDestinatario()));
         eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
         eventoManifestacaoDestinatario.setIdLote("1");
 

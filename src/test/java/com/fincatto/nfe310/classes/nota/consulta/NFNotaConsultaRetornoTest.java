@@ -8,10 +8,10 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFProtocolo;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
 
 public class NFNotaConsultaRetornoTest {
@@ -27,7 +27,7 @@ public class NFNotaConsultaRetornoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
+        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
         consultaRetorno.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, consultaRetorno.getAmbiente());
     }
@@ -59,7 +59,7 @@ public class NFNotaConsultaRetornoTest {
     @Test
     public void deveObterProtocoloComoFoiSetado() {
         final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
-        final NFProtocolo protocolo = FabricaDeObjetosFakeNFe.getNFProtocolo();
+        final NFProtocolo protocolo = FabricaDeObjetosFake.getNFProtocolo();
         consultaRetorno.setProtocolo(protocolo);
         Assert.assertEquals(protocolo, consultaRetorno.getProtocolo());
     }
@@ -75,7 +75,7 @@ public class NFNotaConsultaRetornoTest {
     @Test
     public void deveObterUfComoFoiSetado() {
         final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
-        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.AL;
+        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.AL;
         consultaRetorno.setUf(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, consultaRetorno.getUf());
     }

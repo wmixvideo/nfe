@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoISSQNTest {
 
@@ -381,6 +381,6 @@ public class NFNotaInfoItemImpostoISSQNTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoISSQN><vBC>999999999999.99</vBC><vAliq>99.99</vAliq><vISSQN>999999999999.99</vISSQN><cMunFG>9999999</cMunFG><cListServ>25.01</cListServ><vDeducao>99999999999.99</vDeducao><vOutro>99999999999.99</vOutro><vDescIncond>99999999999.99</vDescIncond><vDescCond>99999999999.99</vDescCond><vISSRet>99999999999.99</vISSRet><indISS>1</indISS><cServico>VfsQTgAm60yAqyOMUOIp</cServico><cMun>3813816</cMun><cPais>8486</cPais><nProcesso>Sw4CSjke5lhAzlBrzFgKuNjtrRSVfO</nProcesso><indIncentivo>1</indIncentivo></NFNotaInfoItemImpostoISSQN>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoItemImpostoISSQN().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN().toString());
     }
 }

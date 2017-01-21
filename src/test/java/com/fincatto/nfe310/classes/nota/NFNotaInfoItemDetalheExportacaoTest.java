@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemDetalheExportacaoTest {
 
@@ -25,7 +25,7 @@ public class NFNotaInfoItemDetalheExportacaoTest {
     @Test
     public void deveObterExportacaoIndiretaComoFoiSetado() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
-        final NFNotaInfoItemExportacaoIndireta itemExportacaoIndireta = FabricaDeObjetosFakeNFe.getNFNotaInfoItemExportacaoIndireta();
+        final NFNotaInfoItemExportacaoIndireta itemExportacaoIndireta = FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta();
         detalheExportacao.setExportacaoIndireta(itemExportacaoIndireta);
         Assert.assertEquals(itemExportacaoIndireta, detalheExportacao.getExportacaoIndireta());
     }
@@ -40,14 +40,14 @@ public class NFNotaInfoItemDetalheExportacaoTest {
     @Test
     public void devePermitirNumeroAtoConcessorioDrawbackNulo() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
-        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFakeNFe.getNFNotaInfoItemExportacaoIndireta());
+        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
         detalheExportacao.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
-        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFakeNFe.getNFNotaInfoItemExportacaoIndireta());
+        detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
         detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
 
         final String xmlEsperado = "<NFNotaInfoItemDetalheExportacao><nDraw>99999999999</nDraw><exportInd><nRE>999999999999</nRE><chNFe>99921995966146649003423495876439081543214139</chNFe><qExport>9999999999.9999</qExport></exportInd></NFNotaInfoItemDetalheExportacao>";

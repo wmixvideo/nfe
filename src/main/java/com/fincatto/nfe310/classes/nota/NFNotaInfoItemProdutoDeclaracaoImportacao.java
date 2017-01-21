@@ -7,8 +7,8 @@ import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.StringValidador;
 
@@ -64,7 +64,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
         this.localDesembaraco = localDesembaraco;
     }
 
-    public void setUfDesembaraco(final DFUnidadeFederativa ufDesembaraco) {
+    public void setUfDesembaraco(final NFUnidadeFederativa ufDesembaraco) {
         this.ufDesembaraco = ufDesembaraco.getCodigo();
     }
 
@@ -98,7 +98,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends NFBase {
         this.cnpj = cnpj;
     }
 
-    public void setUfTerceiro(final DFUnidadeFederativa ufTerceiro) {
+    public void setUfTerceiro(final NFUnidadeFederativa ufTerceiro) {
         this.ufTerceiro = ufTerceiro.getCodigo();
     }
 

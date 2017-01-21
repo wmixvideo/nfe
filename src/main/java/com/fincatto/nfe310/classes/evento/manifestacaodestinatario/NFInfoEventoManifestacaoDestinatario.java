@@ -6,9 +6,9 @@ import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.dfe.classes.DFAmbiente;
-import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
@@ -19,10 +19,10 @@ public class NFInfoEventoManifestacaoDestinatario extends NFBase {
     private String id;
 
     @Element(name = "cOrgao", required = true)
-    private DFUnidadeFederativa orgao;
+    private NFUnidadeFederativa orgao;
 
     @Element(name = "tpAmb", required = true)
-    private DFAmbiente ambiente;
+    private NFAmbiente ambiente;
 
     @Element(name = "CNPJ", required = false)
     private String cnpj;
@@ -48,7 +48,7 @@ public class NFInfoEventoManifestacaoDestinatario extends NFBase {
     @Element(name = "detEvento", required = true)
     private NFInfoManifestacaoDestinatario manifestacaoDestinatario;
 
-    public void setOrgao(final DFUnidadeFederativa orgao) {
+    public void setOrgao(final NFUnidadeFederativa orgao) {
         this.orgao = orgao;
     }
 
@@ -65,11 +65,11 @@ public class NFInfoEventoManifestacaoDestinatario extends NFBase {
         this.id = id;
     }
 
-    public DFAmbiente getAmbiente() {
+    public NFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
-    public void setAmbiente(final DFAmbiente ambiente) {
+    public void setAmbiente(final NFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -144,7 +144,7 @@ public class NFInfoEventoManifestacaoDestinatario extends NFBase {
         this.manifestacaoDestinatario = manifestacaoDestinatario;
     }
 
-    public DFUnidadeFederativa getOrgao() {
+    public NFUnidadeFederativa getOrgao() {
         return this.orgao;
     }
 }

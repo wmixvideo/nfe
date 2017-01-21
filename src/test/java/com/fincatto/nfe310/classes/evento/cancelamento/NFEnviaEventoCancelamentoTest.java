@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.classes.evento.cancelamento;
 
-import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -85,7 +85,7 @@ public class NFEnviaEventoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        eventoCancelamento.setEvento(Collections.singletonList(FabricaDeObjetosFakeNFe.getNFEventoCancelamento()));
+        eventoCancelamento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCancelamento()));
         eventoCancelamento.setVersao(new BigDecimal("3.10"));
         eventoCancelamento.setIdLote("1");
 
