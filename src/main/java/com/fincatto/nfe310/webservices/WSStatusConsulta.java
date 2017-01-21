@@ -1,5 +1,14 @@
 package com.fincatto.nfe310.webservices;
 
+import java.rmi.RemoteException;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
@@ -8,14 +17,7 @@ import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsult
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.webservices.statusservico.consulta.NfeStatusServico2Stub;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.rmi.RemoteException;
+import com.fincatto.nfe310.webservices.statusservico.consulta.NfeStatusServicoStub;
 
 class WSStatusConsulta {
 
@@ -31,7 +33,12 @@ class WSStatusConsulta {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
 		WSStatusConsulta.LOGGER.debug(omElementConsulta.toString());
 
-		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
+		OMElement omElementResult = null;
+		if (NFUnidadeFederativa.BA.equals(uf) && NFModelo.NFE.equals(modelo)) {
+			omElementResult = this.efetuaConsultaStatusBahia(omElementConsulta);
+		} else {
+			omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
+		}
 		WSStatusConsulta.LOGGER.debug(omElementResult.toString());
 
 		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
@@ -64,6 +71,27 @@ class WSStatusConsulta {
 		}
 
 		final NfeStatusServico2Stub.NfeStatusServicoNF2Result result = new NfeStatusServico2Stub(endpoint).nfeStatusServicoNF2(dados, cabecEnv);
+		return result.getExtraElement();
+	}
+
+	private OMElement efetuaConsultaStatusBahia(final OMElement omElement) throws RemoteException {
+		final NfeStatusServicoStub.NfeCabecMsg cabec = new NfeStatusServicoStub.NfeCabecMsg();
+		cabec.setCUF(NFUnidadeFederativa.BA.getCodigoIbge());
+		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
+
+		final NfeStatusServicoStub.NfeCabecMsgE cabecEnv = new NfeStatusServicoStub.NfeCabecMsgE();
+		cabecEnv.setNfeCabecMsg(cabec);
+
+		final NfeStatusServicoStub.NfeDadosMsg dados = new NfeStatusServicoStub.NfeDadosMsg();
+		dados.setExtraElement(omElement);
+
+		final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(NFUnidadeFederativa.BA);
+		final String endpoint = autorizador.getNfeStatusServico(this.config.getAmbiente());
+		if (endpoint == null) {
+			throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + NFModelo.NFE.name() + ", autorizador " + autorizador.name() + ", UF " + NFUnidadeFederativa.BA.name());
+		}
+
+		final NfeStatusServicoStub.NfeStatusServicoNFResult result = new NfeStatusServicoStub(endpoint).nfeStatusServicoNF(dados, cabecEnv);
 		return result.getExtraElement();
 	}
 }
