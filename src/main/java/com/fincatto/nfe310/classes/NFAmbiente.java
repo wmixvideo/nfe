@@ -1,5 +1,14 @@
 package com.fincatto.nfe310.classes;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.convert.Convert;
+
+import com.fincatto.nfe310.converters.NFAmbienteConverter;
+
+@Element
+@Convert(NFAmbienteConverter.class)
+@Root(name = "tpAmb")
 public enum NFAmbiente {
 
     PRODUCAO("1", "Produ\u00e7\u00e3o"),
