@@ -9,7 +9,6 @@ public class NFAmbienteConverter implements Converter<NFAmbiente> {
 
 	@Override
 	public NFAmbiente read(InputNode node) throws Exception {
-		// TODO Auto-generated method stub
 		NFAmbiente nfAmbiente = null;
 		for (NFAmbiente nfAmbienteAux : NFAmbiente.values()) {
 			nfAmbiente = nfAmbienteAux;
@@ -19,6 +18,6 @@ public class NFAmbienteConverter implements Converter<NFAmbiente> {
 
 	@Override
 	public void write(OutputNode node, NFAmbiente value) throws Exception {
-		node.setValue(value.toString());
+		node.setValue(value.getCodigo());
 	}
 }
