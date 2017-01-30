@@ -1,6 +1,9 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.mdfe.TMDFe;
+import br.inf.portalfiscal.mdfe.TRetConsReciMDFe;
 import br.inf.portalfiscal.mdfe.TRetConsStatServ;
+import br.inf.portalfiscal.mdfe.TRetEnviMDFe;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
 import br.inf.portalfiscal.nfe.TRetEnviNFe;
 import java.io.IOException;
@@ -41,11 +44,13 @@ public class WSFacade {
     private final WSNotaDownload wsNotaDownload;
     private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
     private final WSStatusServicoMDF wsStatusServicoMDF;
+    private final WSRecepcaoMDF wsRecepcaoMDF;
+    private final WSRetornoRecepcaoMDF wsRetornoRecepcaoMDF;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         HttpsURLConnection.setDefaultSSLSocketFactory(new NFSocketFactory(config).createSSLContext().getSocketFactory());
 
-        // inicia os servicos disponiveis da nfe
+        // inicia os servicos disponiveis
         this.wsLoteEnvio = new WSLoteEnvio(config);
         this.wsLoteConsulta = new WSLoteConsulta(config);
         this.wsStatusConsulta = new WSStatusConsulta(config);
@@ -58,6 +63,8 @@ public class WSFacade {
         this.wsNotaDownload = new WSNotaDownload(config);
         this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
         this.wsStatusServicoMDF = new WSStatusServicoMDF(config);
+        this.wsRecepcaoMDF = new WSRecepcaoMDF(config);
+        this.wsRetornoRecepcaoMDF = new WSRetornoRecepcaoMDF(config);
     }
 
     /**
@@ -305,5 +312,12 @@ public class WSFacade {
     public TRetConsStatServ consultaStatus() throws Exception {
         return this.wsStatusServicoMDF.consultaStatus();
     }
-            
+    
+    public TRetEnviMDFe enviaMDFe(final TMDFe mdfe) throws Exception {
+        return this.wsRecepcaoMDF.enviaMDFe(mdfe);
+    }
+    
+    public TRetConsReciMDFe consultaMDFe(final String numeroRecibo) throws Exception {
+        return this.wsRetornoRecepcaoMDF.consultaMDFe(numeroRecibo);
+    }
 }

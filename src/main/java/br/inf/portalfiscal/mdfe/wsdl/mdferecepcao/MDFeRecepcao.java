@@ -3,6 +3,7 @@ package br.inf.portalfiscal.mdfe.wsdl.mdferecepcao;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.jws.HandlerChain;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
@@ -18,6 +19,7 @@ import javax.xml.ws.WebServiceFeature;
  * 
  */
 @WebServiceClient(name = "MDFeRecepcao", targetNamespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", wsdlLocation = "https://mdfe.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx?WSDL")
+@HandlerChain(file="handler-mdferecepcao.xml")
 public class MDFeRecepcao
     extends Service
 {
