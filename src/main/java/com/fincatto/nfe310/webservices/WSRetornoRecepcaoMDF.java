@@ -35,8 +35,8 @@ class WSRetornoRecepcaoMDF {
         ObjectFactory factoryStub = new ObjectFactory();
         TConsReciMDFe consReciMDFe = new TConsReciMDFe();
         consReciMDFe.setNRec(numeroRecibo);
-        consReciMDFe.setTpAmb("1");
-        consReciMDFe.setVersao("1.00");
+        consReciMDFe.setTpAmb("2");
+        consReciMDFe.setVersao("3.00");
         JAXBElement<TConsReciMDFe> jAXBElement = factoryObject.createConsReciMDFe(consReciMDFe);
         
         DOMResult dOMResult = new DOMResult();
@@ -49,7 +49,7 @@ class WSRetornoRecepcaoMDF {
         
         MdfeCabecMsg mdfeCabecMsg = new MdfeCabecMsg();
         mdfeCabecMsg.setCUF("22");
-        mdfeCabecMsg.setVersaoDados("1.00");
+        mdfeCabecMsg.setVersaoDados("3.00");
         
         MdfeDadosMsg mdfeDadosMsg = factoryStub.createMdfeDadosMsg();
         mdfeDadosMsg.getContent().add(element);
