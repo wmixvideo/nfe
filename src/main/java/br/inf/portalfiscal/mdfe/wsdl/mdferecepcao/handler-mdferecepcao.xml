@@ -4,7 +4,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <javaee:handler-chain>
     <javaee:handler>
-      <javaee:handler-class>br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.SOAPHandler</javaee:handler-class>
+      <javaee:handler-class>br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.SOAPHandlerMDFeRecepcao</javaee:handler-class>
     </javaee:handler>
   </javaee:handler-chain>
 </javaee:handler-chains>
