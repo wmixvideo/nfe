@@ -1,16 +1,12 @@
 package com.fincatto.nfe310.transformers;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
-import org.simpleframework.xml.transform.RegistryMatcher;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.dfe.transformers.DFLocalTimeTransformer;
+import com.fincatto.dfe.transformers.DFRegistryMatcher;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
 import com.fincatto.nfe310.classes.NFModalidadeFrete;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.nfe310.classes.NFNotaInfoEspecieVeiculo;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
@@ -34,9 +30,7 @@ import com.fincatto.nfe310.classes.NFProcessoEmissor;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
 import com.fincatto.nfe310.classes.NFRegimeTributario;
 import com.fincatto.nfe310.classes.NFTipo;
-import com.fincatto.nfe310.classes.NFTipoEmissao;
 import com.fincatto.nfe310.classes.NFTipoImpressao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFIndicadorContribuinteCTe;
 import com.fincatto.nfe310.classes.cadastro.NFIndicadorContribuinteNFe;
 import com.fincatto.nfe310.classes.cadastro.NFSituacaoContribuinte;
@@ -54,19 +48,14 @@ import com.fincatto.nfe310.classes.nota.NFOperadoraCartao;
 import com.fincatto.nfe310.classes.nota.NFTipoIntegracaoPagamento;
 import com.fincatto.nfe310.classes.nota.NFViaTransporteInternacional;
 
-public class NFRegistryMatcher extends RegistryMatcher {
+public class NFRegistryMatcher extends DFRegistryMatcher {
 
     public NFRegistryMatcher() {
+    	super();
         super.bind(NFTipo.class, new NFTipoTransformer());
-        super.bind(NFModelo.class, new NFModeloTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
-        super.bind(NFAmbiente.class, new NFAmbienteTransformer());
-        super.bind(LocalDate.class, new NFLocalDateTransformer());
-        super.bind(LocalTime.class, new NFLocalTimeTransformer());
+        super.bind(LocalTime.class, new DFLocalTimeTransformer());
         super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
-        super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
-        super.bind(DateTime.class, new NFDateTimeTransformer());
-        super.bind(LocalDateTime.class, new NFLocalDateTimeTransformer());
         super.bind(NFTipoImpressao.class, new NFTipoImpressaoTransformer());
         super.bind(NFOrigemProcesso.class, new NFOrigemProcessoTransformer());
         super.bind(NFOperadoraCartao.class, new NFOperadoraCartaoTransformer());
@@ -74,7 +63,6 @@ public class NFRegistryMatcher extends RegistryMatcher {
         super.bind(NFModalidadeFrete.class, new NFModalidadeFreteTransformer());
         super.bind(NFRegimeTributario.class, new NFRegimeTributarioTransformer());
         super.bind(NFFormaPagamentoPrazo.class, new NFFormaPagamentoTransformer());
-        super.bind(NFUnidadeFederativa.class, new NFUnidadeFederativaTransformer());
         super.bind(NFNotaInfoVeiculoCor.class, new NFNotaInfoVeiculoCorTransformer());
         super.bind(NFFormaPagamentoMoeda.class, new NFFormaPagamentoMoedaTransformer());
         super.bind(NFNotaInfoTipoVeiculo.class, new NFNotaInfoTipoVeiculoTransformer());

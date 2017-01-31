@@ -3,8 +3,8 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFInfoModelo1Por1AReferenciadaTest {
 
@@ -43,7 +43,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
+        referenciada.setUf(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -54,7 +54,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
+        referenciada.setUf(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -65,7 +65,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setCnpj("12345678901234");
         referenciada.setNumeroDocumentoFiscal("999999999");
         referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
+        referenciada.setUf(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -76,7 +76,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setCnpj("12345678901234");
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setSerie(999);
-        referenciada.setUf(NFUnidadeFederativa.SC);
+        referenciada.setUf(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -87,7 +87,7 @@ public class NFInfoModelo1Por1AReferenciadaTest {
         referenciada.setCnpj("12345678901234");
         referenciada.setModeloDocumentoFiscal("A1");
         referenciada.setNumeroDocumentoFiscal("999999999");
-        referenciada.setUf(NFUnidadeFederativa.SC);
+        referenciada.setUf(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -105,6 +105,6 @@ public class NFInfoModelo1Por1AReferenciadaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoModelo1Por1AReferenciada><cUF>43</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></NFInfoModelo1Por1AReferenciada>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoModelo1Por1AReferenciada().toString());
     }
 }

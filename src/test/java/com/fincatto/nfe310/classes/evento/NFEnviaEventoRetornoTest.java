@@ -1,9 +1,10 @@
 package com.fincatto.nfe310.classes.evento;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class NFEnviaEventoRetornoTest {
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
-        final NFAmbiente ambiente = NFAmbiente.HOMOLOGACAO;
+        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         eventoRetorno.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, eventoRetorno.getAmbiente());
     }
@@ -52,7 +53,7 @@ public class NFEnviaEventoRetornoTest {
     @Test
     public void deveObterOrgaoComoFoiSetado() {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
-        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.SC;
+        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
         eventoRetorno.setOrgao(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
     }
