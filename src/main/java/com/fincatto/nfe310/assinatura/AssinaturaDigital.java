@@ -63,6 +63,10 @@ public class AssinaturaDigital {
     }
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
+        return this.assinarDocumento(conteudoXml, AssinaturaDigital.ELEMENTOS_ASSINAVEIS);
+    }
+
+    public String assinarDocumento(final String conteudoXml, final String... elementosAssinaveis) throws Exception {
         final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
         final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
@@ -81,7 +85,7 @@ public class AssinaturaDigital {
 
         try (StringReader stringReader = new StringReader(conteudoXml)) {
             final Document document = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(stringReader));
-            for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
+            for (final String elementoAssinavel : elementosAssinaveis) {
                 final NodeList elements = document.getElementsByTagName(elementoAssinavel);
                 for (int i = 0; i < elements.getLength(); i++) {
                     final Element element = (Element) elements.item(i);
