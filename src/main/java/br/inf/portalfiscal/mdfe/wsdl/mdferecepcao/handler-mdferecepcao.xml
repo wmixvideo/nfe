@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<javaee:handler-chains
+     xmlns:javaee="http://java.sun.com/xml/ns/javaee"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <javaee:handler-chain>
+    <javaee:handler>
+      <javaee:handler-class>br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.SOAPHandlerMDFeRecepcao</javaee:handler-class>
+    </javaee:handler>
+  </javaee:handler-chain>
+</javaee:handler-chains>
