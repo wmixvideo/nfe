@@ -26,11 +26,8 @@ import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
-import java.io.StringReader;
 import java.net.URL;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.w3c.dom.Element;
@@ -189,12 +186,7 @@ class WSLoteEnvio {
         NfeAutorizacaoSoap port = new NfeAutorizacao(new URL(endpoint)).getNfeAutorizacaoSoap12();
         NfeAutorizacaoLoteResult result = port.nfeAutorizacaoLote(nfeDadosMsg, nfeCabecMsg);
 
-        JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.nfe");
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        
-        JAXBElement<TRetEnviNFe> jAXBElement = (JAXBElement<TRetEnviNFe>) unmarshaller.unmarshal(new StringReader(ElementStringConverter.write((Element) result.getContent().get(0))));
-        
-        return jAXBElement.getValue();
+        return ((JAXBElement<TRetEnviNFe>) result.getContent().get(0)).getValue();
     }
 
 }

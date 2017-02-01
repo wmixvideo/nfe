@@ -1,4 +1,4 @@
-package br.inf.portalfiscal.mdfe.wsdl.mdferecepcao;
+package br.inf.portalfiscal.mdfe.wsdl.mdferecepcaoevento;
 
 import com.fincatto.nfe310.utils.SOAPHandlerUtil;
 import java.util.Set;
@@ -12,7 +12,7 @@ import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 
-public class SOAPHandlerMDFeRecepcao implements SOAPHandler<SOAPMessageContext> {
+public class SOAPHandlerMDFeRecepcaoEvento implements SOAPHandler<SOAPMessageContext> {
 
     @Override
     public Set<QName> getHeaders() {
@@ -28,7 +28,7 @@ public class SOAPHandlerMDFeRecepcao implements SOAPHandler<SOAPMessageContext> 
 
                 SOAPHandlerUtil.addListURIToRemove("http://www.portalfiscal.inf.br/mdfe");
                 SOAPHandlerUtil.addListURIToRemove("http://www.w3.org/2000/09/xmldsig#");
-                SOAPHandlerUtil.addListNamespacetoAdd("MDFe", "http://www.portalfiscal.inf.br/mdfe");
+                SOAPHandlerUtil.addListNamespacetoAdd("eventoMDFe", "http://www.portalfiscal.inf.br/mdfe");
                 SOAPHandlerUtil.addListNamespacetoAdd("Signature", "http://www.w3.org/2000/09/xmldsig#");
 
                 SOAPHandlerUtil.getNamespaces(body.getFirstChild());

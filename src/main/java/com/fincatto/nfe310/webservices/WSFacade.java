@@ -1,9 +1,13 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.mdfe.TMDFe;
+import br.inf.portalfiscal.mdfe.TEnviMDFe;
+import br.inf.portalfiscal.mdfe.TEvento;
+import br.inf.portalfiscal.mdfe.TRetConsMDFeNaoEnc;
 import br.inf.portalfiscal.mdfe.TRetConsReciMDFe;
+import br.inf.portalfiscal.mdfe.TRetConsSitMDFe;
 import br.inf.portalfiscal.mdfe.TRetConsStatServ;
 import br.inf.portalfiscal.mdfe.TRetEnviMDFe;
+import br.inf.portalfiscal.mdfe.TRetEvento;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
 import br.inf.portalfiscal.nfe.TRetEnviNFe;
 import java.io.IOException;
@@ -29,6 +33,7 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import java.net.MalformedURLException;
 
 public class WSFacade {
 
@@ -43,14 +48,17 @@ public class WSFacade {
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
     private final WSDistribuicaoDocumentoFiscal wsDistribuicaoDocumentoFiscal;
-    private final WSStatusServicoMDF wsStatusServicoMDF;
     private final WSRecepcaoMDF wsRecepcaoMDF;
     private final WSRetornoRecepcaoMDF wsRetornoRecepcaoMDF;
+    private final WSConsultaMDF wsConsultaMDF;
+    private final WSConsultaStatusServicoMDF wsConsultaStatusServicoMDF;
+    private final WSConsultaNaoEncerradosMDF wsConsultaNaoEncerradosMDF;
+    private final WSRecepcaoEventoMDF wsRecepcaoEventoMDF;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         HttpsURLConnection.setDefaultSSLSocketFactory(new NFSocketFactory(config).createSSLContext().getSocketFactory());
 
-        // inicia os servicos disponiveis
+        // inicia os servicos disponíveis
         this.wsLoteEnvio = new WSLoteEnvio(config);
         this.wsLoteConsulta = new WSLoteConsulta(config);
         this.wsStatusConsulta = new WSStatusConsulta(config);
@@ -62,9 +70,12 @@ public class WSFacade {
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
         this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
-        this.wsStatusServicoMDF = new WSStatusServicoMDF(config);
         this.wsRecepcaoMDF = new WSRecepcaoMDF(config);
         this.wsRetornoRecepcaoMDF = new WSRetornoRecepcaoMDF(config);
+        this.wsConsultaMDF = new WSConsultaMDF(config);
+        this.wsConsultaStatusServicoMDF = new WSConsultaStatusServicoMDF(config);
+        this.wsConsultaNaoEncerradosMDF = new WSConsultaNaoEncerradosMDF(config);
+        this.wsRecepcaoEventoMDF = new WSRecepcaoEventoMDF(config);
     }
 
     /**
@@ -80,7 +91,7 @@ public class WSFacade {
         }
         return this.wsLoteEnvio.enviaLote(lote);
     }
-    
+
     /**
      * Faz o envio de lote para a Sefaz
      *
@@ -107,7 +118,7 @@ public class WSFacade {
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
-    
+
     /**
      * Faz o envio assinado para a Sefaz de NF-e e NFC-e
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
@@ -289,35 +300,87 @@ public class WSFacade {
     public NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
         return this.wsNotaDownload.downloadNota(cnpj, chave);
     }
-    
+
     /**
      * Disponibiliza para os atores da NF-e informações e documentos fiscais eletrônicos de seu interesse.
-     * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no 
-     * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário 
-     * (tag:dest, id:E01), no grupo do Transportador (tag:transporta, id:X03) e no grupo de pessoas físicas 
+     * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no
+     * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário
+     * (tag:dest, id:E01), no grupo do Transportador (tag:transporta, id:X03) e no grupo de pessoas físicas
      * autorizadas a acessar o XML (tag:autXML, id:GA01)
      * Referência: NT2014.002_v1.02_WsNFeDistribuicaoDFe
-     * 
+     *
      * @param cnpj
      * @param chave
      * @param nsu
      * @param unidadeFederativaAutorizador
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final NFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
         return this.wsDistribuicaoDocumentoFiscal.consultaDocumentoFiscal(cnpj, chave, nsu, unidadeFederativaAutorizador);
     }
-    
-    public TRetConsStatServ consultaStatus() throws Exception {
-        return this.wsStatusServicoMDF.consultaStatus();
+
+    /**
+     * O Serviço de Recepção do MDF-e é o serviço oferecido pelo WS do Ambiente Autorizador
+     * para atualização do repositório dos MDF-e emitidos por usuários autorizados a emitir CT-e ou NF-e.
+     * OBS: Embora no primeiro momento ocorra apenas um MDF-e por lote, esta especificação prevê futuras alterações nessa composição
+     * @param enviMDFe Estrutura XML com o MDF-e
+     * @return Estrutura XML com a mensagem do resultado do envio do MDF-e.
+     * @throws Exception
+     */
+    public TRetEnviMDFe recepcaoMDFe(final TEnviMDFe enviMDFe) throws Exception {
+        return this.wsRecepcaoMDF.enviaMDFe(enviMDFe);
     }
-    
-    public TRetEnviMDFe enviaMDFe(final TMDFe mdfe) throws Exception {
-        return this.wsRecepcaoMDF.enviaMDFe(mdfe);
-    }
-    
-    public TRetConsReciMDFe consultaMDFe(final String numeroRecibo) throws Exception {
+
+    /**
+     * Serviço destinado a devolver o resultado do processamento do MDF-e.
+     * @param numeroRecibo
+     * @return Estrutura XML com o resultado do processamento da mensagem de envio de MDF-e.
+     * @throws Exception
+     */
+    public TRetConsReciMDFe retornoRecepcaoMDFe(final String numeroRecibo) throws Exception {
         return this.wsRetornoRecepcaoMDF.consultaMDFe(numeroRecibo);
     }
+
+    /**
+     * Serviço destinado ao atendimento de solicitações de consulta da situação
+     * atual do MDF-e na Base de Dados do Ambiente Autorizador.
+     * @param chaveMDFe
+     * @return Estrutura XML contendo a mensagem do resultado da consulta de protocolo.
+     * @throws java.net.MalformedURLException
+     */
+    public TRetConsSitMDFe consultaMDFe(final String chaveMDFe) throws MalformedURLException {
+        return this.wsConsultaMDF.consultaMDFe(chaveMDFe);
+    }
+
+    /**
+     * Serviço destinado à consulta do status do serviço prestado pelo Ambiente Autorizador.
+     * @return  Estrutura XML contendo a mensagem do resultado da consulta do status do serviço.
+     * @throws java.net.MalformedURLException
+     */
+    public TRetConsStatServ consultaStatusServicoMDFe() throws MalformedURLException {
+        return this.wsConsultaStatusServicoMDF.consultaStatus();
+    }
+
+    /**
+     * Serviço destinado ao atendimento de solicitações de consulta MDF-e não
+     * encerrados na Base de Dados do Ambiente Autorizador.
+     * @param cnpjEmitente
+     * @return Estrutura XML contendo a mensagem do resultado da consulta não encerrados.
+     * @throws java.net.MalformedURLException
+     */
+    public TRetConsMDFeNaoEnc consultaNaoEncerradosMDFe(final String cnpjEmitente) throws MalformedURLException {
+        return this.wsConsultaNaoEncerradosMDF.consultaNaoEncerrados(cnpjEmitente);
+    }
+
+    /**
+     * Serviço destinado à recepção de mensagem de Evento do MDF-e
+     * @param evento
+     * @return Estrutura XML contendo a mensagem do resultado do evento.
+     * @throws java.lang.Exception
+     */
+    public TRetEvento recepcaoEventoMDFe(TEvento evento) throws Exception {
+        return this.wsRecepcaoEventoMDF.recepcaoEventoMDFe(evento);
+    }
+
 }

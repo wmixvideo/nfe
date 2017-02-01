@@ -19,7 +19,7 @@ import javax.xml.ws.Holder;
 @WebService(name = "MDFeRetRecepcaoSoap12", targetNamespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRetRecepcao")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
-    ObjectFactory.class
+    ObjectFactory.class, br.inf.portalfiscal.mdfe.ObjectFactory.class
 })
 public interface MDFeRetRecepcaoSoap12 {
 
