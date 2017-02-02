@@ -33,18 +33,18 @@ class WSRecepcaoMDF {
 
     TRetEnviMDFe enviaMDFe(TEnviMDFe enviMDFe) throws Exception {
         br.inf.portalfiscal.mdfe.ObjectFactory factoryObject = new br.inf.portalfiscal.mdfe.ObjectFactory();
-        
+
         JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.mdfe");
         Marshaller marshaller = context.createMarshaller();
 
         JAXBElement<TEnviMDFe> tEnviMDFe = factoryObject.createEnviMDFe(enviMDFe);
         StringWriter stringWriter = new StringWriter();
         marshaller.marshal(tEnviMDFe, stringWriter);
-        
+
         //Verificar a melhor forma de remover o namespace da assinatura
-        String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(stringWriter.toString().replace(" xmlns:ns2=\"http://www.w3.org/2000/09/xmldsig#\"", ""));
+        String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(stringWriter.toString().replace(" xmlns:ns2=\"http://www.w3.org/2000/09/xmldsig#\"", ""), "infMDFe");
         StringReader reader = new StringReader(documentoAssinado);
-        
+
         Unmarshaller unmarshaller = context.createUnmarshaller();
         tEnviMDFe = (JAXBElement<TEnviMDFe>) unmarshaller.unmarshal(new StreamSource(reader));
 
@@ -54,14 +54,14 @@ class WSRecepcaoMDF {
         MdfeCabecMsg mdfeCabecMsg = new MdfeCabecMsg();
         mdfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
         mdfeCabecMsg.setVersaoDados(VERSAO_LEIAUTE);
-        
+
         Holder<MdfeCabecMsg> holder = new Holder<>(new ObjectFactory().createMdfeCabecMsg(mdfeCabecMsg).getValue());
-        
+
         MDFeRecepcaoSoap12 port = new MDFeRecepcao(new URL(MDFAutorizador.MDFe.getMDFeRecepcao(this.config.getAmbiente()))).getMDFeRecepcaoSoap12();
         MdfeRecepcaoLoteResult result = port.mdfeRecepcaoLote(mdfeDadosMsg, holder);
-        
+
         return ((JAXBElement<TRetEnviMDFe>) result.getContent().get(0)).getValue();
-       
+
     }
 
 }
