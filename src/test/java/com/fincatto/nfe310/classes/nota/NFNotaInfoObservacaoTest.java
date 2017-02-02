@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoObservacao;
 
 public class NFNotaInfoObservacaoTest {
@@ -47,6 +47,6 @@ public class NFNotaInfoObservacaoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoObservacao xCampo=\"kRkrK4FGWOn27RSjYjMB\"><xTexto>ML73tIXUvsLEMijwgwjHVRfpP6upxiuipvEcQcSp8fpV402GXe3nXEHXJKJo</xTexto></NFNotaInfoObservacao>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoObservacao().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoObservacao().toString());
     }
 }

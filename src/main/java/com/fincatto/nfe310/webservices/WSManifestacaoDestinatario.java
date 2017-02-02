@@ -1,14 +1,18 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.util.Collections;
+
+import org.joda.time.DateTime;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
+
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
@@ -18,20 +22,16 @@ import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoM
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.util.Collections;
-import org.joda.time.DateTime;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Element;
+
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
 
 public class WSManifestacaoDestinatario {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSManifestacaoDestinatario.class);
     private final NFeConfig config;
 
     public WSManifestacaoDestinatario(NFeConfig config) {
@@ -58,12 +58,12 @@ public class WSManifestacaoDestinatario {
 
         final NFInfoEventoManifestacaoDestinatario infoEvento = new NFInfoEventoManifestacaoDestinatario();
         infoEvento.setAmbiente(this.config.getAmbiente());
-        infoEvento.setChave(chaveAcesso);
+        infoEvento.setChave(chaveParser.getChave());
         infoEvento.setCnpj(cnpj);
         infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", tipoEvento.getCodigo(), chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
-        infoEvento.setOrgao(NFUnidadeFederativa.RFB);
+        infoEvento.setOrgao(DFUnidadeFederativa.RFB);
         infoEvento.setCodigoEvento(tipoEvento.getCodigo());
         infoEvento.setVersaoEvento(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
         infoEvento.setManifestacaoDestinatario(manifestacaoDestinatario);

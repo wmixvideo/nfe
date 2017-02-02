@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 
 public class NFEventoCancelamentoTest {
@@ -31,14 +31,14 @@ public class NFEventoCancelamentoTest {
     @Test
     public void deveObterInfoEventoCancelamentoComoFoiSetado() {
         final NFEventoCancelamento eventoCancelamento = new NFEventoCancelamento();
-        eventoCancelamento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamento());
-        Assert.assertEquals(FabricaDeObjetosFake.getNFInfoEventoCancelamento().toString(), eventoCancelamento.getInfoEvento().toString());
+        eventoCancelamento.setInfoEvento(FabricaDeObjetosFakeNFe.getNFInfoEventoCancelamento());
+        Assert.assertEquals(FabricaDeObjetosFakeNFe.getNFInfoEventoCancelamento().toString(), eventoCancelamento.getInfoEvento().toString());
     }
 
     @Test
     public void devePermitirAssinaturaNula() {
         final NFEventoCancelamento eventoCancelamento = new NFEventoCancelamento();
-        eventoCancelamento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamento());
+        eventoCancelamento.setInfoEvento(FabricaDeObjetosFakeNFe.getNFInfoEventoCancelamento());
         eventoCancelamento.setVersao(new BigDecimal("3.10"));
         eventoCancelamento.toString();
     }
@@ -57,7 +57,7 @@ public class NFEventoCancelamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEventoCancelamento eventoCancelamento = new NFEventoCancelamento();
-        eventoCancelamento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamento());
+        eventoCancelamento.setInfoEvento(FabricaDeObjetosFakeNFe.getNFInfoEventoCancelamento());
         final NFSignature assinatura = new NFSignature();
         final String signatureValue = "signature";
         assinatura.setSignatureValue(signatureValue);
@@ -68,6 +68,6 @@ public class NFEventoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<evento versao=\"3.10\"><infEvento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></detEvento></infEvento></evento>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFEventoCancelamento().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFEventoCancelamento().toString());
     }
 }

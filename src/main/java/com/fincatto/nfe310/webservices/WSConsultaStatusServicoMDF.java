@@ -1,5 +1,14 @@
 package com.fincatto.nfe310.webservices;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.ws.Holder;
+
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.MDFAutorizador;
+
 import br.inf.portalfiscal.mdfe.TConsStatServ;
 import br.inf.portalfiscal.mdfe.TRetConsStatServ;
 import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.MDFeStatusServico;
@@ -8,12 +17,6 @@ import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.MdfeCabecMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.MdfeDadosMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.MdfeStatusServicoMDFResult;
 import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.ObjectFactory;
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.MDFAutorizador;
-import java.net.MalformedURLException;
-import java.net.URL;
-import javax.xml.bind.JAXBElement;
-import javax.xml.ws.Holder;
 
 class WSConsultaStatusServicoMDF {
 
@@ -31,18 +34,18 @@ class WSConsultaStatusServicoMDF {
         consStatServ.setVersao(VERSAO_LEIAUTE);
         consStatServ.setXServ(SERVICO_SOLICITADO);
         JAXBElement<TConsStatServ> tConsStatServ = new br.inf.portalfiscal.mdfe.ObjectFactory().createConsStatServMDFe(consStatServ);
-        
+
         MdfeCabecMsg mdfeCabecMsg = new MdfeCabecMsg();
         mdfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
         mdfeCabecMsg.setVersaoDados(VERSAO_LEIAUTE);
-        
+
         MdfeDadosMsg mdfeDadosMsg = new MdfeDadosMsg();
         mdfeDadosMsg.getContent().add(tConsStatServ);
         Holder<MdfeCabecMsg> holder = new Holder<>(new ObjectFactory().createMdfeCabecMsg(mdfeCabecMsg).getValue());
-        
+
         MDFeStatusServicoSoap12 port = new MDFeStatusServico(new URL(MDFAutorizador.MDFe.getMDFeStatusServico(this.config.getAmbiente()))).getMDFeStatusServicoSoap12();
         MdfeStatusServicoMDFResult result = port.mdfeStatusServicoMDF(mdfeDadosMsg, holder);
-        
+
         return ((JAXBElement<TRetConsStatServ>) result.getContent().get(0)).getValue();
     }
 

@@ -1,20 +1,18 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.TRetEnviNFe;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacao;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoLoteResult;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoSoap;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeDadosMsg;
+import java.net.URL;
+
+import javax.xml.bind.JAXBElement;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
 
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
@@ -26,27 +24,27 @@ import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 import com.fincatto.nfe310.utils.NFGeraChave;
 import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
-import java.net.URL;
-import javax.xml.bind.JAXBElement;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.w3c.dom.Element;
+
+import br.inf.portalfiscal.nfe.TRetEnviNFe;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacao;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoLoteResult;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeDadosMsg;
 
 class WSLoteEnvio {
 
-    private static final String NFE_ELEMENTO = "NFe";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSLoteEnvio.class);
     private final NFeConfig config;
 
     WSLoteEnvio(final NFeConfig config) {
         this.config = config;
     }
 
-    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteEnvioRetorno.class, this.comunicaLote(loteAssinadoXml, modelo));
     }
 
-    TRetEnviNFe enviaLoteAssinadoSincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    TRetEnviNFe enviaLoteAssinadoSincrono(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         return this.comunicaLotesincrono(loteAssinadoXml, modelo);
     }
 
@@ -87,7 +85,7 @@ class WSLoteEnvio {
         }
 
         // guarda o modelo das notas
-        final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
+        final DFModelo modelo = qtdNFC > 0 ? DFModelo.NFCE : DFModelo.NFE;
 
         // comunica o lote
         final NFLoteEnvioRetorno loteEnvioRetorno = new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteEnvioRetorno.class, this.comunicaLote(loteAssinado.toString(), modelo));
@@ -131,13 +129,13 @@ class WSLoteEnvio {
         }
 
         // guarda o modelo das notas
-        final NFModelo modelo = qtdNFC > 0 ? NFModelo.NFCE : NFModelo.NFE;
+        final DFModelo modelo = qtdNFC > 0 ? DFModelo.NFCE : DFModelo.NFE;
 
         // comunica o lote
         return this.comunicaLotesincrono(loteAssinado.toString(), modelo);
     }
 
-    private String comunicaLote(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    private String comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
 
@@ -152,7 +150,7 @@ class WSLoteEnvio {
         //define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
-        final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
@@ -163,7 +161,7 @@ class WSLoteEnvio {
         return ElementStringConverter.write((Element) result.getContent().get(0));
     }
 
-    private TRetEnviNFe comunicaLotesincrono(final String loteAssinadoXml, final NFModelo modelo) throws Exception {
+    private TRetEnviNFe comunicaLotesincrono(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
 
@@ -178,7 +176,7 @@ class WSLoteEnvio {
         //define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
-        final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }

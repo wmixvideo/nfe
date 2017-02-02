@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.NFRegimeTributario;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoEmitente;
 
@@ -62,7 +62,7 @@ public class NFNotaInfoEmitenteTest {
     public void devePermitirClassificacaoNacionalAtividadesEconomicasNulo() {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -77,7 +77,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -92,7 +92,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCnpj("12345678901234");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -121,7 +121,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
         emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
@@ -135,7 +135,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
         emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
@@ -149,7 +149,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setNomeFantasia("TKuTABBqcwEOeMwQepTIAvhOPx8qDf8Q5C8fbGgjonxl1ML9NErg9yVk2bGn");
@@ -163,7 +163,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -177,7 +177,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -191,7 +191,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");
@@ -205,7 +205,7 @@ public class NFNotaInfoEmitenteTest {
         final NFNotaInfoEmitente emitente = new NFNotaInfoEmitente();
         emitente.setClassificacaoNacionalAtividadesEconomicas("0111111");
         emitente.setCpf("12345678901");
-        emitente.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        emitente.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
         emitente.setInscricaoEstadual("ISENTO");
         emitente.setInscricaoEstadualSubstituicaoTributaria("84371964648860");
         emitente.setInscricaoMunicipal("zjfBnFVG8TBq8iW");

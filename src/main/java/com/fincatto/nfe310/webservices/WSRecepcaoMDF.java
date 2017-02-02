@@ -1,5 +1,20 @@
 package com.fincatto.nfe310.webservices;
 
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.net.URL;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.ws.Holder;
+
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.assinatura.AssinaturaDigital;
+import com.fincatto.nfe310.classes.MDFAutorizador;
+
 import br.inf.portalfiscal.mdfe.TEnviMDFe;
 import br.inf.portalfiscal.mdfe.TRetEnviMDFe;
 import br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.MDFeRecepcao;
@@ -8,19 +23,6 @@ import br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.MdfeCabecMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.MdfeDadosMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.MdfeRecepcaoLoteResult;
 import br.inf.portalfiscal.mdfe.wsdl.mdferecepcao.ObjectFactory;
-
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.assinatura.AssinaturaDigital;
-import com.fincatto.nfe310.classes.MDFAutorizador;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.net.URL;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.ws.Holder;
 
 class WSRecepcaoMDF {
 
@@ -61,7 +63,5 @@ class WSRecepcaoMDF {
         MdfeRecepcaoLoteResult result = port.mdfeRecepcaoLote(mdfeDadosMsg, holder);
 
         return ((JAXBElement<TRetEnviMDFe>) result.getContent().get(0)).getValue();
-
     }
-
 }

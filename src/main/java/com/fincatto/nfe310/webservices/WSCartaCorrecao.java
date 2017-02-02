@@ -1,14 +1,22 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
+import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.Collections;
+
+import javax.xml.stream.XMLStreamException;
+
+import org.joda.time.DateTime;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
+
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
@@ -18,19 +26,12 @@ import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import org.joda.time.DateTime;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.XMLStreamException;
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.rmi.RemoteException;
-import java.util.Collections;
-import org.w3c.dom.Element;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
 
 class WSCartaCorrecao {
 
@@ -38,7 +39,6 @@ class WSCartaCorrecao {
     private static final String EVENTO_CODIGO = "110110";
     private static final String EVENTO_DESCRICAO = "Carta de Correcao";
     private static final String EVENTO_CONDICAO_USO = "A Carta de Correcao e disciplinada pelo paragrafo 1o-A do art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada para regularizacao de erro ocorrido na emissao de documento fiscal, desde que o erro nao esteja relacionado com: I - as variaveis que determinam o valor do imposto tais como: base de calculo, aliquota, diferenca de preco, quantidade, valor da operacao ou da prestacao; II - a correcao de dados cadastrais que implique mudanca do remetente ou do destinatario; III - a data de emissao ou de saida.";
-    private final static Logger LOGGER = LoggerFactory.getLogger(WSCartaCorrecao.class);
     private final NFeConfig config;
 
     WSCartaCorrecao(final NFeConfig config) {
@@ -98,7 +98,7 @@ class WSCartaCorrecao {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFAutorizador31 autorizacao = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
-        final String endpoint = NFModelo.NFCE.equals(parser.getModelo()) ? autorizacao.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizacao.getRecepcaoEvento(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFCE.equals(parser.getModelo()) ? autorizacao.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizacao.getRecepcaoEvento(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizacao.name());
         }
@@ -108,5 +108,4 @@ class WSCartaCorrecao {
 
         return ElementStringConverter.write((Element) result.getContent().get(0));
     }
-
 }

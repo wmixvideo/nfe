@@ -1,17 +1,13 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNF;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFResult;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFSoap;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.rmi.RemoteException;
 
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
@@ -19,15 +15,17 @@ import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFe;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import java.net.MalformedURLException;
-import java.net.URL;
-import org.w3c.dom.Element;
+
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNF;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFResult;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFSoap;
 
 class WSNotaDownload {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String NOME_SERVICO = "DOWNLOAD NFE";
-    private final static Logger LOGGER = LoggerFactory.getLogger(WSNotaDownload.class);
     private final NFeConfig config;
 
     WSNotaDownload(final NFeConfig config) {
