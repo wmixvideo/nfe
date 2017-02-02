@@ -1,10 +1,11 @@
 package com.fincatto.nfe310.parsers;
 
-import com.fincatto.nfe310.classes.NFTipoEmissao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.dfe.classes.DFTipoEmissao;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 
 import java.text.ParseException;
 
@@ -38,7 +39,7 @@ public class NotaFiscalChaveParserTest {
 
     @Test
     public void deveObterUFDeChave() {
-        Assert.assertEquals(NFUnidadeFederativa.SC, new NotaFiscalChaveParser("42341190426768839742640884579133596141399591").getNFUnidadeFederativa());
+        Assert.assertEquals(DFUnidadeFederativa.SC, new NotaFiscalChaveParser("42341190426768839742640884579133596141399591").getNFUnidadeFederativa());
     }
 
     @Test
@@ -63,7 +64,7 @@ public class NotaFiscalChaveParserTest {
 
     @Test
     public void deveObterFormaEmissaoDaChave() {
-        Assert.assertEquals(NFTipoEmissao.EMISSAO_NORMAL, new NotaFiscalChaveParser("42151103918609000132640884579133591141399591").getFormaEmissao());
+        Assert.assertEquals(DFTipoEmissao.EMISSAO_NORMAL, new NotaFiscalChaveParser("42151103918609000132640884579133591141399591").getFormaEmissao());
     }
 
     @Test

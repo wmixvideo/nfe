@@ -80,6 +80,28 @@
             <version>${slf4j.version}</version>
         </dependency>
 
+        <!-- Axis 2 -->
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-adb</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-local</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-transport-http</artifactId>
+            <version>${axis2.version}</version>
+        </dependency>
+
         <!-- Unit testing -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -163,6 +185,7 @@
                             <exclude>com/fincatto/nfe310/webservices/gerado/*.class</exclude>
                             <exclude>com/fincatto/nfe310/webservices/nota/consulta/*.class</exclude>
                             <exclude>com/fincatto/nfe310/webservices/statusservico/consulta/*.class</exclude>
+                            <exclude>com/fincatto/cte200/webservices/statusservico/consulta/*.class</exclude>
                         </excludes>
                     </instrumentation>
                     <check>

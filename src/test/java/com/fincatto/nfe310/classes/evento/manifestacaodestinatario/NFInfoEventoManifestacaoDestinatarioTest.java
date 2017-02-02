@@ -6,16 +6,16 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFInfoEventoManifestacaoDestinatarioTest {
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
-        final NFAmbiente ambiente = NFAmbiente.PRODUCAO;
+        final DFAmbiente ambiente = DFAmbiente.PRODUCAO;
         infoEventoManifestacaoDestinatario.setAmbiente(ambiente);
         Assert.assertEquals(ambiente, infoEventoManifestacaoDestinatario.getAmbiente());
     }
@@ -23,7 +23,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
     @Test
     public void deveObterInfoCancelamentoComoFoiSetado() {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
-        final NFInfoManifestacaoDestinatario infoManifestacaoDestinatario = FabricaDeObjetosFake.getNFInfoManifestacaoDestinatario();
+        final NFInfoManifestacaoDestinatario infoManifestacaoDestinatario = FabricaDeObjetosFakeNFe.getNFInfoManifestacaoDestinatario();
         infoEventoManifestacaoDestinatario.setManifestacaoDestinatario(infoManifestacaoDestinatario);
         Assert.assertEquals(infoManifestacaoDestinatario, infoEventoManifestacaoDestinatario.getManifestacaoDestinatario());
     }
@@ -71,7 +71,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
     @Test
     public void deveObterOrgaoComoFoiSetado() {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
-        final NFUnidadeFederativa unidadeFederativa = NFUnidadeFederativa.BA;
+        final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.BA;
         infoEventoManifestacaoDestinatario.setOrgao(unidadeFederativa);
         Assert.assertEquals(unidadeFederativa, infoEventoManifestacaoDestinatario.getOrgao());
     }
@@ -95,6 +95,6 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoEventoManifestacaoDestinatario Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Operacao nao Realizada</descEvento><xJust>Justificativa qualquer coisa</xJust></detEvento></NFInfoEventoManifestacaoDestinatario>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoEventoManifestacaoDestinatario().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoEventoManifestacaoDestinatario().toString());
     }
 }

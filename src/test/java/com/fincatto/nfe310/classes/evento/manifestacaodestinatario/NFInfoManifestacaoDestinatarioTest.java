@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.evento.manifestacaodestinatario;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFInfoManifestacaoDestinatarioTest {
 
@@ -28,6 +28,6 @@ public class NFInfoManifestacaoDestinatarioTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoManifestacaoDestinatario versao=\"3.10\"><descEvento>Operacao nao Realizada</descEvento><xJust>Justificativa qualquer coisa</xJust></NFInfoManifestacaoDestinatario>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoManifestacaoDestinatario().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoManifestacaoDestinatario().toString());
     }
 }

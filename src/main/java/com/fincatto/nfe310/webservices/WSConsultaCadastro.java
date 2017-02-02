@@ -1,33 +1,33 @@
 package com.fincatto.nfe310.webservices;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.RemoteException;
+
+import javax.xml.ws.Holder;
+
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
+
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.cadastro.NFConsultaCadastro;
+import com.fincatto.nfe310.classes.cadastro.NFInfoConsultaCadastro;
+import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
+import com.fincatto.nfe310.converters.ElementStringConverter;
+import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.CadConsultaCadastro2;
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.CadConsultaCadastro2Soap;
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.ConsultaCadastro2Result;
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.NfeCabecMsg;
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.NfeDadosMsg;
 import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.ObjectFactory;
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.cadastro.NFConsultaCadastro;
-import com.fincatto.nfe310.classes.cadastro.NFInfoConsultaCadastro;
-import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.nfe310.converters.ElementStringConverter;
-import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import java.net.MalformedURLException;
-import java.net.URL;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.rmi.RemoteException;
-import javax.xml.ws.Holder;
-import org.w3c.dom.Element;
 
 class WSConsultaCadastro {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WSConsultaCadastro.class);
     private static final String NOME_SERVICO = "CONS-CAD";
     private static final String VERSAO_SERVICO = "2.00";
     private final NFeConfig config;
@@ -36,11 +36,11 @@ class WSConsultaCadastro {
         this.config = config;
     }
 
-    NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final NFUnidadeFederativa uf) throws Exception {
+    NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, efetuaConsulta(gerarDadosConsulta(cnpj, uf).toString(), uf));
     }
 
-    private NFConsultaCadastro gerarDadosConsulta(final String cnpj, final NFUnidadeFederativa uf) {
+    private NFConsultaCadastro gerarDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {
         final NFConsultaCadastro consulta = new NFConsultaCadastro();
         consulta.setVersao(WSConsultaCadastro.VERSAO_SERVICO);
         consulta.setConsultaCadastro(new NFInfoConsultaCadastro());
@@ -50,7 +50,7 @@ class WSConsultaCadastro {
         return consulta;
     }
 
-    private String efetuaConsulta(final String xml, final NFUnidadeFederativa uf) throws RemoteException, MalformedURLException {
+    private String efetuaConsulta(final String xml, final DFUnidadeFederativa uf) throws RemoteException, MalformedURLException {
         final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
         nfeCabecMsg.setCUF(uf.getCodigoIbge());
         nfeCabecMsg.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
