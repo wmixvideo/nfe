@@ -353,7 +353,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -439,7 +439,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -525,7 +525,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -611,7 +611,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -697,7 +697,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -783,7 +783,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -869,7 +869,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -955,7 +955,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1041,7 +1041,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1127,7 +1127,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1213,7 +1213,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1299,7 +1299,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1385,7 +1385,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1471,7 +1471,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
@@ -1557,7 +1557,7 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNFeDistribuicaoDFe(final NFAmbiente ambiente) {
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
             return AN.getNFeDistribuicaoDFe(ambiente);
         }
 
