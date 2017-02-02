@@ -8,8 +8,8 @@ import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroDados extends NFBase {
 
@@ -25,7 +25,7 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
     private String motivo;
 
     @Element(name = "UF", required = false)
-    private NFUnidadeFederativa uf;
+    private DFUnidadeFederativa uf;
 
     @Element(name = "IE", required = false)
     private String inscricaoEstadual;
@@ -40,7 +40,7 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
     private String dataHoraProcessamento;
 
     @Element(name = "cUF", required = true)
-    private NFUnidadeFederativa ufAutorizadora;
+    private DFUnidadeFederativa ufAutorizadora;
 
     @ElementList(inline = true, entry = "infCad", required = false)
     private List<NFRetornoConsultaCadastroSituacaoCadastral> situacaoCadastral;
@@ -69,11 +69,11 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
         this.motivo = motivo;
     }
 
-    public NFUnidadeFederativa getUf() {
+    public DFUnidadeFederativa getUf() {
         return this.uf;
     }
 
-    public void setUf(final NFUnidadeFederativa uf) {
+    public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
@@ -113,11 +113,11 @@ public class NFRetornoConsultaCadastroDados extends NFBase {
         this.dataHoraProcessamento = NFRetornoConsultaCadastroDados.DATE_FORMATTER.format(dataHoraProcessamento.toDate());
     }
 
-    public NFUnidadeFederativa getUfAutorizadora() {
+    public DFUnidadeFederativa getUfAutorizadora() {
         return this.ufAutorizadora;
     }
 
-    public void setUfAutorizadora(final NFUnidadeFederativa ufAutorizadora) {
+    public void setUfAutorizadora(final DFUnidadeFederativa ufAutorizadora) {
         this.ufAutorizadora = ufAutorizadora;
     }
 

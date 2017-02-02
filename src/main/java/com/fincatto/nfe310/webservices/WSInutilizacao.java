@@ -1,50 +1,48 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2Soap;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacaoNF2Result;
 import java.math.BigDecimal;
+import java.net.URL;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.persister.NFPersister;
-import java.net.URL;
-import org.w3c.dom.Element;
+
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2Soap;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacaoNF2Result;
 
 class WSInutilizacao {
 
     private static final String VERSAO_SERVICO = "3.10";
     private static final String NOME_SERVICO = "INUTILIZAR";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSInutilizacao.class);
     private final NFeConfig config;
 
     WSInutilizacao(final NFeConfig config) {
         this.config = config;
     }
 
-    NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final NFModelo modelo) throws Exception {
+    NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, efetuaInutilizacao(eventoAssinadoXml, modelo));
     }
 
-    NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final NFModelo modelo) throws Exception {
+    NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo).toString();
         final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
         return new NFPersister().read(NFRetornoEventoInutilizacao.class, efetuaInutilizacao(inutilizacaoXMLAssinado, modelo));
     }
 
-    private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final NFModelo modelo) {
+    private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
         dados.setAmbiente(this.config.getAmbiente());
@@ -67,7 +65,7 @@ class WSInutilizacao {
         return inutilizacao;
     }
 
-    private String efetuaInutilizacao(final String xml, final NFModelo modelo) throws Exception {
+    private String efetuaInutilizacao(final String xml, final DFModelo modelo) throws Exception {
         final NfeCabecMsg nfeCabecMsg = new NfeCabecMsg();
         nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
         nfeCabecMsg.setVersaoDados(WSInutilizacao.VERSAO_SERVICO);
@@ -76,7 +74,7 @@ class WSInutilizacao {
         nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
 
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
-        final String endpoint = NFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Inutilizacao, autorizador " + autorizador.name());
         }

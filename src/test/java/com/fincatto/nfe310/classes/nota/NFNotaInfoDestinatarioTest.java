@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFNotaInfoDestinatarioTest {
 
@@ -71,7 +71,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
 		destinatario.setCnpj("12345678901234");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
 		destinatario.setInscricaoSuframa("999999999");
@@ -84,7 +84,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
 		destinatario.setCnpj("12345678901234");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setInscricaoSuframa("999999999");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
@@ -97,7 +97,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
 		destinatario.setCnpj("12345678901234");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setInscricaoSuframa("999999999");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
@@ -111,7 +111,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
 		destinatario.setCpf("13245678901");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setInscricaoSuframa("999999999");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
@@ -124,7 +124,7 @@ public class NFNotaInfoDestinatarioTest {
 	public void devePermitirEmailNulo() {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setCnpj("12345678901234");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setInscricaoSuframa("999999999");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
@@ -151,7 +151,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setCnpj("12345678901234");
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoSuframa("999999999");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
 		destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
@@ -164,7 +164,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setCnpj("12345678901234");
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
 		destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
@@ -177,7 +177,7 @@ public class NFNotaInfoDestinatarioTest {
 		final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
 		destinatario.setCnpj("12345678901234");
 		destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
-		destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+		destinatario.setEndereco(FabricaDeObjetosFakeNFe.getNFEndereco());
 		destinatario.setInscricaoEstadual("ISENTO");
 		destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
 		destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
@@ -189,6 +189,6 @@ public class NFNotaInfoDestinatarioTest {
 	@Test
 	public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
 		final String xmlEsperado = "<NFNotaInfoDestinatario><CNPJ>12345678901234</CNPJ><xNome>F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR</xNome><enderDest><xLgr>NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV</xLgr><nro>11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y</nro><xCpl>Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw</xCpl><xBairro>67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU</xBairro><cMun>9999999</cMun><xMun>s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG</xMun><UF>RS</UF><CEP>88095550</CEP><cPais>1058</cPais><fone>12345678901324</fone></enderDest><indIEDest>9</indIEDest><IE>13245678901234</IE><ISUF>999999999</ISUF><IM>5ow5E1mZQPe1VUR</IM><email>ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K</email></NFNotaInfoDestinatario>";
-		Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoDestinatario().toString());
+		Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoDestinatario().toString());
 	}
 }

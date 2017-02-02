@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.NFOrigemProcesso;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoProcessoReferenciado;
 
@@ -37,6 +37,6 @@ public class NFNotaInfoProcessoReferenciadoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEspeardo = "<NFNotaInfoProcessoReferenciado><nProc>SziSRSIRZvYWlxcbmmJfRZsLgVHaHTurUL9ea1kwFe7fssrxTVSK6uaFwGO5</nProc><indProc>1</indProc></NFNotaInfoProcessoReferenciado>";
-        Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFake.getNFNotaInfoProcessoReferenciado().toString());
+        Assert.assertEquals(xmlEspeardo, FabricaDeObjetosFakeNFe.getNFNotaInfoProcessoReferenciado().toString());
     }
 }

@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.nfe310.classes.NFOrigem;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
@@ -114,7 +114,7 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends NFBase {
         this.percentualBCOperacaoPropria = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentual, "Percentual Partilhado");
     }
 
-    public void setUfICMSST(final NFUnidadeFederativa ufICMSST) {
+    public void setUfICMSST(final DFUnidadeFederativa ufICMSST) {
         this.ufICMSST = ufICMSST.getCodigo();
     }
 

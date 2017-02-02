@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFInfoCancelamentoTest {
 
@@ -57,6 +57,6 @@ public class NFInfoCancelamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoCancelamento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></NFInfoCancelamento>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoCancelamento().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFInfoCancelamento().toString());
     }
 }

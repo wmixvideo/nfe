@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.StringValidador;
 
@@ -51,7 +51,7 @@ public class NFNotaInfoItemProdutoCombustivel extends NFBase {
         this.quantidade = BigDecimalParser.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel");
     }
 
-    public void setUf(final NFUnidadeFederativa uf) {
+    public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf.getCodigo();
     }
 

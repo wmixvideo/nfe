@@ -7,13 +7,15 @@ import org.joda.time.format.DateTimeFormat;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
+import com.fincatto.dfe.classes.DFAmbiente;
+
 public class NFProtocoloInfo extends NFBase {
 
     @Attribute(name = "Id", required = false)
     private String identificador;
 
     @Element(name = "tpAmb", required = true)
-    private NFAmbiente ambiente;
+    private DFAmbiente ambiente;
 
     @Element(name = "verAplic", required = true)
     private String versaoAplicacao;
@@ -36,7 +38,7 @@ public class NFProtocoloInfo extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    public void setAmbiente(final NFAmbiente ambiente) {
+    public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
@@ -68,7 +70,7 @@ public class NFProtocoloInfo extends NFBase {
         this.motivo = motivo;
     }
 
-    public NFAmbiente getAmbiente() {
+    public DFAmbiente getAmbiente() {
         return this.ambiente;
     }
 
