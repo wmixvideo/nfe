@@ -1,34 +1,33 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2Soap;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsultaNF2Result;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeDadosMsg;
+import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.RemoteException;
+
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.w3c.dom.Element;
+
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.rmi.RemoteException;
-import org.w3c.dom.Element;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2Soap;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsultaNF2Result;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeDadosMsg;
 
 class WSNotaConsulta {
 
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String VERSAO_SERVICO = "3.10";
-    private final static Logger LOGGER = LoggerFactory.getLogger(WSNotaConsulta.class);
     private final NFeConfig config;
 
     WSNotaConsulta(final NFeConfig config) {
@@ -58,9 +57,9 @@ class WSNotaConsulta {
 
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
         nfeDadosMsg.getContent().add(ElementStringConverter.read(xml));
-        
+
         NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
-        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
+        final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }

@@ -1,14 +1,16 @@
 package com.fincatto.nfe310.webservices;
 
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.util.Collections;
+
+import org.joda.time.DateTime;
+import org.w3c.dom.Element;
+
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
@@ -17,20 +19,18 @@ import com.fincatto.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.persister.NFPersister;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
-import java.net.URL;
-import java.util.Collections;
-import org.w3c.dom.Element;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
 
 class WSCancelamento {
+
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSCancelamento.class);
     private final NFeConfig config;
 
     WSCancelamento(final NFeConfig config) {
@@ -90,7 +90,7 @@ class WSCancelamento {
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
-        final String endpoint = NFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
@@ -100,5 +100,5 @@ class WSCancelamento {
 
         return ElementStringConverter.write((Element) result.getContent().get(0));
     }
-    
+
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoCana;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoCanaDeducao;
 import com.fincatto.nfe310.classes.nota.NFNotaInfoCanaFornecimentoDiario;
@@ -17,7 +17,7 @@ public class NFNotaInfoCanaTest {
     @Test
     public void devePermitirListaDeducoesVazia() {
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2014");
@@ -51,7 +51,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setReferencia("06/2013");
         infoCana.setValorFornecimento(new BigDecimal("900"));
@@ -68,7 +68,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setValorFornecimento(new BigDecimal("900"));
@@ -85,7 +85,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setValorFornecimento(new BigDecimal("900"));
@@ -101,7 +101,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
@@ -117,7 +117,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
@@ -133,7 +133,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
@@ -149,7 +149,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setQuantidadeTotalMes(new BigDecimal("30.0000001"));
@@ -166,7 +166,7 @@ public class NFNotaInfoCanaTest {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
-        infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
+        infosCanaFornecimentoDario.add(FabricaDeObjetosFakeNFe.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
         infoCana.setSafra("2013/2014");
         infoCana.setValorFornecimento(new BigDecimal("900"));
@@ -207,7 +207,7 @@ public class NFNotaInfoCanaTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoCana><safra>2013/2014</safra><ref>06/2013</ref><forDia dia=\"15\"><qtde>3</qtde></forDia><qTotMes>30.0000001</qTotMes><qTotAnt>10</qTotAnt><qTotGer>80</qTotGer><vFor>900.00</vFor><vTotDed>2000.70</vTotDed><vLiqFor>980.00</vLiqFor></NFNotaInfoCana>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCana().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoCana().toString());
     }
 
 }

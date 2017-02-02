@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFNotaInfoRetencoesTributosTest {
 
@@ -139,6 +139,6 @@ public class NFNotaInfoRetencoesTributosTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoComVagao() {
         final String xmlEsperado = "<NFNotaInfoRetencoesTributos><vRetPIS>999999999999.99</vRetPIS><vRetCOFINS>999999999999.99</vRetCOFINS><vRetCSLL>999999999999.99</vRetCSLL><vBCIRRF>999999999999.99</vBCIRRF><vIRRF>999999999999.99</vIRRF><vBCRetPrev>999999999999.99</vBCRetPrev><vRetPrev>999999999999.99</vRetPrev></NFNotaInfoRetencoesTributos>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoRetencoesTributos().toString());
+        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeNFe.getNFNotaInfoRetencoesTributos().toString());
     }
 }

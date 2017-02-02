@@ -3,14 +3,14 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 
 public class NFNotaInfoItemImpostoICMSTest {
 
     @Test
     public void deveObterIcms00ComoFoiSetado() {
         final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
-        final NFNotaInfoItemImpostoICMS00 icms00 = FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS00();
+        final NFNotaInfoItemImpostoICMS00 icms00 = FabricaDeObjetosFakeNFe.getNFNotaInfoItemImpostoICMS00();
         icms.setIcms00(icms00);
         Assert.assertEquals(icms00, icms.getIcms00());
     }

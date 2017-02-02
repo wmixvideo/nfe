@@ -3,7 +3,7 @@ package com.fincatto.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.dfe.classes.DFUnidadeFederativa;
 
 public class NFInfoProdutorRuralReferenciadaTest {
 
@@ -66,7 +66,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -79,7 +79,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -92,7 +92,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -104,7 +104,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -116,7 +116,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setIeEmitente("ISENTO");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -128,7 +128,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -140,7 +140,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setIeEmitente("ISENTO");
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
         referenciada.toString();
     }
 
@@ -165,7 +165,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
         referenciada.setModeloDocumentoFiscal("IE");
         referenciada.setNumeroDocumentoFiscal(999999);
         referenciada.setSerieDocumentoFiscal(999);
-        referenciada.setUfEmitente(NFUnidadeFederativa.SC);
+        referenciada.setUfEmitente(DFUnidadeFederativa.SC);
 
         final String xmlEsperado = "<NFInfoProdutorRuralReferenciada><cUF>42</cUF><AAMM>1402</AAMM><CNPJ>12345678901234</CNPJ><IE>ISENTO</IE><mod>IE</mod><serie>999</serie><nNF>999999</nNF></NFInfoProdutorRuralReferenciada>";
         Assert.assertEquals(xmlEsperado, referenciada.toString());
