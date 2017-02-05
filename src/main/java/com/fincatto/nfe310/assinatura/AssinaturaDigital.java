@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.assinatura;
 
+import com.fincatto.dfe.DFeConfig;
 import com.fincatto.nfe310.NFeConfig;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,9 +33,9 @@ import java.util.List;
 public class AssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
     private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe"};
-    private final NFeConfig config;
+    private final DFeConfig config;
 
-    public AssinaturaDigital(final NFeConfig config) {
+    public AssinaturaDigital(final DFeConfig config) {
         this.config = config;
     }
 
