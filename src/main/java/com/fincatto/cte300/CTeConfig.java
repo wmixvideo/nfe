@@ -1,4 +1,4 @@
-package com.fincatto.cte200;
+package com.fincatto.cte300;
 
 import com.fincatto.dfe.DFeConfig;
 
@@ -8,5 +8,5 @@ import com.fincatto.dfe.DFeConfig;
 public abstract class CTeConfig extends DFeConfig {
 
 	public static final String VERSAO_CTE = "3.00";
-	public static final String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/cte";
+	public static final String CTE_NAMESPACE = "http://www.portalfiscal.inf.br/cte";
 }

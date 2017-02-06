@@ -1,4 +1,4 @@
-package com.fincatto.cte200.classes;
+package com.fincatto.cte300.classes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.cte300.classes.CTAutorizador;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 

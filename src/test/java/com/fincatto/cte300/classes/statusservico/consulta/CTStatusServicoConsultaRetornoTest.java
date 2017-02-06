@@ -1,4 +1,4 @@
-package com.fincatto.cte200.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,8 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.cte200.FabricaDeObjetosFakeCTe;
+import com.fincatto.cte300.FabricaDeObjetosFakeCTe;
+import com.fincatto.cte300.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 

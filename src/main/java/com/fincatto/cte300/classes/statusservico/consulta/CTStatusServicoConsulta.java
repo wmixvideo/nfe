@@ -1,24 +1,25 @@
-package com.fincatto.cte200.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.cte200.classes.CTBase;
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.CTBase;
 import com.fincatto.dfe.classes.DFAmbiente;
 
 @Root(name = "consStatServCte")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.CTE_NAMESPACE)
 public class CTStatusServicoConsulta extends CTBase {
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
 
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
-    @Element(name = "xServ", required = true)
+    @Element(name = "xServ")
     private String servico;
 
     public CTStatusServicoConsulta() {

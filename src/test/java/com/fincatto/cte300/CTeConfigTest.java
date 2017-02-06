@@ -1,4 +1,4 @@
-package com.fincatto.cte200;
+package com.fincatto.cte300;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -6,6 +6,7 @@ import java.security.KeyStoreException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.fincatto.cte300.CTeConfig;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFTipoEmissao;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;

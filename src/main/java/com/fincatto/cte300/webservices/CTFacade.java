@@ -1,4 +1,4 @@
-package com.fincatto.cte200.webservices;
+package com.fincatto.cte300.webservices;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -9,9 +9,8 @@ import java.security.cert.CertificateException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import com.fincatto.cte200.CTeConfig;
-import com.fincatto.cte200.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
-import com.fincatto.dfe.classes.DFModelo;
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.dfe.webservices.DFSocketFactory;
 
@@ -34,8 +33,8 @@ public class CTFacade {
      * @return dados da consulta de status retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo) throws Exception {
-        return this.wsStatusConsulta.consultaStatus(uf, modelo);
+    public CTStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf) throws Exception {
+        return this.wsStatusConsulta.consultaStatus(uf);
     }
 
 }

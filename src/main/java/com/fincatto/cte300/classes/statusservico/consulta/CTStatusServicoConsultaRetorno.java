@@ -1,4 +1,4 @@
-package com.fincatto.cte200.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
 import java.util.Date;
 
@@ -7,45 +7,46 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.cte200.classes.CTBase;
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.CTBase;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.dfe.classes.statusservico.consulta.IStatusServicoConsultaRetorno;
 import com.fincatto.dfe.transformers.DFDateFormatTransformer;
 
 @Root(name = "retConsStatServCte")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.CTE_NAMESPACE)
 public class CTStatusServicoConsultaRetorno extends CTBase implements IStatusServicoConsultaRetorno {
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
 
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
-    @Element(name = "verAplic", required = true)
+    @Element(name = "verAplic")
     private String versaoAplicacao;
 
-    @Element(name = "cStat", required = true)
+    @Element(name = "cStat")
     private String status;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo")
     private String motivo;
 
-    @Element(name = "cUF", required = true)
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
 
-    @Element(name = "dhRecbto", required = true)
+    @Element(name = "dhRecbto")
     private Date dataRecebimento;
+
+    @Element(name = "tMed", required = false)
+    private String tempoMedio;
 
     @Element(name = "dhRetorno", required = false)
     private Date dataRetorno;
 
     @Element(name = "xObs", required = false)
     private String observacao;
-
-    @Element(name = "tMed", required = true)
-    private String tempoMedio;
 
     public CTStatusServicoConsultaRetorno() {
         this.versao = null;
@@ -55,9 +56,9 @@ public class CTStatusServicoConsultaRetorno extends CTBase implements IStatusSer
         this.motivo = null;
         this.uf = null;
         this.dataRecebimento = null;
+        this.tempoMedio = null;
         this.dataRetorno = null;
         this.observacao = null;
-        this.tempoMedio = null;
     }
 
     @Override
@@ -122,6 +123,15 @@ public class CTStatusServicoConsultaRetorno extends CTBase implements IStatusSer
         this.dataRecebimento = dataRecebimento;
     }
 
+    @Override
+    public String getTempoMedio() {
+        return this.tempoMedio;
+    }
+
+    public void setTempoMedio(final String tempoMedio) {
+        this.tempoMedio = tempoMedio;
+    }
+
     public Date getDataRetorno() {
         return this.dataRetorno;
     }
@@ -137,15 +147,6 @@ public class CTStatusServicoConsultaRetorno extends CTBase implements IStatusSer
 
     public void setObservacao(final String observacao) {
         this.observacao = observacao;
-    }
-
-    @Override
-    public String getTempoMedio() {
-        return this.tempoMedio;
-    }
-
-    public void setTempoMedio(final String tempoMedio) {
-        this.tempoMedio = tempoMedio;
     }
 
 	@Override
