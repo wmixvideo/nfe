@@ -65,9 +65,15 @@ class WSStatusConsulta {
 
         Holder<CteCabecMsg> holder = new Holder<>(new ObjectFactory().createCteCabecMsg(cabecMsg).getValue());
 
-        CteStatusServicoSoap12 port = new CteStatusServico(new URL(endpoint)).getCteStatusServicoSoap12();
+        CteStatusServicoSoap12 port = null;
+        if (DFUnidadeFederativa.PR.equals(unidadeFederativa)) {
+        	port = new CteStatusServico(new URL(endpoint)).getCteStatusServicoServicePort();
+    	} else {
+        	port = new CteStatusServico(new URL(endpoint)).getCteStatusServicoSoap12();
+        }
         CteStatusServicoCTResult result = port.cteStatusServicoCT(dadosMsg, holder);
 
         return ElementStringConverter.write((Element) result.getContent().get(0));
     }
+
 }
