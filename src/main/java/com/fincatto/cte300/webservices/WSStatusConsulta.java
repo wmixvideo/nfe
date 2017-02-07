@@ -68,6 +68,8 @@ class WSStatusConsulta {
         CteStatusServicoSoap12 port = null;
         if (DFUnidadeFederativa.PR.equals(unidadeFederativa)) {
         	port = new CteStatusServico(new URL(endpoint)).getCteStatusServicoServicePort();
+        } else if (DFUnidadeFederativa.MT.equals(unidadeFederativa)) {
+        	port = new CteStatusServico(new URL(endpoint)).getCteStatusServico();
     	} else {
         	port = new CteStatusServico(new URL(endpoint)).getCteStatusServicoSoap12();
         }

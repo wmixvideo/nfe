@@ -85,13 +85,35 @@ public class CteStatusServico
     }
 
     /**
+     *
+     * @return
+     *     returns CteStatusServicoSoap12
+     */
+    @WebEndpoint(name = "CteStatusServicoServicePort")
+    public CteStatusServicoSoap12 getCteStatusServicoServicePort() {
+        return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServicoServicePort"), CteStatusServicoSoap12.class);
+    }
+
+    /**
+     *
+     * @param features
+     *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     * @return
+     *     returns CteStatusServicoSoap12
+     */
+    @WebEndpoint(name = "CteStatusServicoServicePort")
+    public CteStatusServicoSoap12 getCteStatusServicoServicePort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServicoServicePort"), CteStatusServicoSoap12.class, features);
+    }
+
+    /**
     *
     * @return
     *     returns CteStatusServicoSoap12
     */
-   @WebEndpoint(name = "CteStatusServicoServicePort")
-   public CteStatusServicoSoap12 getCteStatusServicoServicePort() {
-       return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServicoServicePort"), CteStatusServicoSoap12.class);
+   @WebEndpoint(name = "CteStatusServico")
+   public CteStatusServicoSoap12 getCteStatusServico() {
+       return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServico"), CteStatusServicoSoap12.class);
    }
 
    /**
@@ -101,9 +123,9 @@ public class CteStatusServico
     * @return
     *     returns CteStatusServicoSoap12
     */
-   @WebEndpoint(name = "CteStatusServicoServicePort")
-   public CteStatusServicoSoap12 getCteStatusServicoServicePort(WebServiceFeature... features) {
-       return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServicoServicePort"), CteStatusServicoSoap12.class, features);
+   @WebEndpoint(name = "CteStatusServico")
+   public CteStatusServicoSoap12 getCteStatusServico(WebServiceFeature... features) {
+       return super.getPort(new QName("http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico", "CteStatusServico"), CteStatusServicoSoap12.class, features);
    }
 
     private static URL __getWsdlLocation() {
