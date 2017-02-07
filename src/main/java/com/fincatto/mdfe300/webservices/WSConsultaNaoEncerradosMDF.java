@@ -6,7 +6,7 @@ import java.net.URL;
 import javax.xml.bind.JAXBElement;
 import javax.xml.ws.Holder;
 
-import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.mdfe300.MDFeConfig;
 import com.fincatto.mdfe300.classes.MDFAutorizador;
 
 import br.inf.portalfiscal.mdfe.TConsMDFeNaoEnc;
@@ -17,7 +17,6 @@ import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.MdfeCabecMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.MdfeConsNaoEncResult;
 import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.MdfeDadosMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.ObjectFactory;
-import com.fincatto.mdfe300.MDFeConfig;
 
 class WSConsultaNaoEncerradosMDF {
 

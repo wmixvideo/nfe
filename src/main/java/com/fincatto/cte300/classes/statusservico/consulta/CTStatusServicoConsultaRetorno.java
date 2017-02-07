@@ -1,20 +1,22 @@
-package com.fincatto.nfe310.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
-import org.joda.time.LocalDateTime;
+import java.util.Date;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.CTBase;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.dfe.classes.statusservico.consulta.IStatusServicoConsultaRetorno;
-import com.fincatto.dfe.transformers.DFLocalDateTimeTransformer;
-import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.dfe.transformers.DFDateFormatTransformer;
 
-@Root(name = "retConsStatServ")
-@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusServicoConsultaRetorno {
+@Root(name = "retConsStatServCte")
+@Namespace(reference = CTeConfig.CTE_NAMESPACE)
+public class CTStatusServicoConsultaRetorno extends CTBase implements IStatusServicoConsultaRetorno {
 
     @Attribute(name = "versao")
     private String versao;
@@ -35,18 +37,18 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
     private DFUnidadeFederativa uf;
 
     @Element(name = "dhRecbto")
-    private LocalDateTime dataRecebimento;
+    private Date dataRecebimento;
 
     @Element(name = "tMed", required = false)
     private String tempoMedio;
 
     @Element(name = "dhRetorno", required = false)
-    private LocalDateTime dataRetorno;
+    private Date dataRetorno;
 
     @Element(name = "xObs", required = false)
     private String observacao;
 
-    public NFStatusServicoConsultaRetorno() {
+    public CTStatusServicoConsultaRetorno() {
         this.versao = null;
         this.ambiente = null;
         this.versaoAplicacao = null;
@@ -113,11 +115,11 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.uf = uf;
     }
 
-    public LocalDateTime getDataRecebimento() {
+    public Date getDataRecebimento() {
         return this.dataRecebimento;
     }
 
-    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
+    public void setDataRecebimento(final Date dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -130,11 +132,11 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
         this.tempoMedio = tempoMedio;
     }
 
-    public LocalDateTime getDataRetorno() {
+    public Date getDataRetorno() {
         return this.dataRetorno;
     }
 
-    public void setDataRetorno(final LocalDateTime dataRetorno) {
+    public void setDataRetorno(final Date dataRetorno) {
         this.dataRetorno = dataRetorno;
     }
 
@@ -150,7 +152,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
 	@Override
 	public String getDataRecebimentoString() {
 		try {
-			return new DFLocalDateTimeTransformer().write(getDataRecebimento());
+			return new DFDateFormatTransformer().write(getDataRecebimento());
 		} catch (Exception e) {
 		}
 		return null;
@@ -159,7 +161,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase implements IStatusSer
 	@Override
 	public String getDataRetornoString() {
 		try {
-			return new DFLocalDateTimeTransformer().write(getDataRetorno());
+			return new DFDateFormatTransformer().write(getDataRetorno());
 		} catch (Exception e) {
 		}
 		return null;
