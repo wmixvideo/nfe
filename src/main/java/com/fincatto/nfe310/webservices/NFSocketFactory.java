@@ -10,7 +10,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
@@ -18,7 +17,6 @@ import java.security.PrivateKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Enumeration;
 
 class NFSocketFactory implements ProtocolSocketFactory {
 
@@ -33,7 +31,7 @@ class NFSocketFactory implements ProtocolSocketFactory {
     @Override
     public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort, final HttpConnectionParams params) throws IOException {
         final Socket socket = this.context.getSocketFactory().createSocket();
-        ((SSLSocket) socket).setEnabledProtocols(new String[] {config.getSSLProtocolo()});
+        ((SSLSocket) socket).setEnabledProtocols(new String[]{config.getSSLProtocolo()});
         socket.bind(new InetSocketAddress(localAddress, localPort));
         socket.connect(new InetSocketAddress(host, port), 60000);
         return socket;
@@ -58,7 +56,7 @@ class NFSocketFactory implements ProtocolSocketFactory {
     }
 
     private static KeyManager[] createKeyManagers(final NFeConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-        final String alias = getAlias(config.getCertificadoKeyStore());
+        final String alias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
         final X509Certificate certificate = (X509Certificate) config.getCertificadoKeyStore().getCertificate(alias);
         final PrivateKey privateKey = (PrivateKey) config.getCertificadoKeyStore().getKey(alias, config.getCertificadoSenha().toCharArray());
         return new KeyManager[]{new NFKeyManager(certificate, privateKey)};
@@ -68,17 +66,6 @@ class NFSocketFactory implements ProtocolSocketFactory {
         final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(config.getCadeiaCertificadosKeyStore());
         return trustManagerFactory.getTrustManagers();
-    }
-
-    private static String getAlias(final KeyStore ks) throws KeyStoreException {
-        final Enumeration<String> aliasesEnum = ks.aliases();
-        while (aliasesEnum.hasMoreElements()) {
-            final String alias = aliasesEnum.nextElement();
-            if (ks.isKeyEntry(alias)) {
-                return alias;
-            }
-        }
-        throw new KeyStoreException("Nenhum alias encontrado no certificado");
     }
 }
 
