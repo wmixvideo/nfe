@@ -19,9 +19,7 @@ public abstract class DFeConfig {
      *
      * @return Ambiente de trabalho.
      */
-    public DFAmbiente getAmbiente() {
-        return DFAmbiente.HOMOLOGACAO;
-    }
+    public abstract DFAmbiente getAmbiente();
 
     /**
      * Unidade da federação do emissor das notas.
