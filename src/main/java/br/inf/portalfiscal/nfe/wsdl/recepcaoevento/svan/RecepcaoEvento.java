@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.nfe.wsdl.recepcaoevento;
+package br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan;
 
 import java.net.MalformedURLException;
 import java.net.URL;

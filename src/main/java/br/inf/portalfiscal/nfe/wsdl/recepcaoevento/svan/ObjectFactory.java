@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.nfe.wsdl.recepcaoevento;
+package br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

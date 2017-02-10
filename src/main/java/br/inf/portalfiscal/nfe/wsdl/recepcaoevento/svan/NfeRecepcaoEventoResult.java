@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.nfe.wsdl.recepcaoevento;
+package br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "content"
 })
-@XmlRootElement(name = "nfeDadosMsg")
-public class NfeDadosMsg {
+@XmlRootElement(name = "nfeRecepcaoEventoResult")
+public class NfeRecepcaoEventoResult {
 
     @XmlMixed
     @XmlAnyElement(lax = true)

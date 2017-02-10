@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.nfe.wsdl.recepcaoevento;
+package br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan;
 
 import java.util.HashMap;
 import java.util.Map;

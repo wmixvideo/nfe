@@ -27,11 +27,11 @@ import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.NfeRecepcaoEventoResult;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEvento;
-import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.RecepcaoEventoSoap;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan.NfeRecepcaoEventoResult;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan.RecepcaoEvento;
+import br.inf.portalfiscal.nfe.wsdl.recepcaoevento.svan.RecepcaoEventoSoap;
 
 class WSCartaCorrecao {
 
