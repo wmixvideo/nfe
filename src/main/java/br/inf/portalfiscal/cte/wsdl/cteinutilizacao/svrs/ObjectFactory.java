@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.cteinutilizacao;
+package br.inf.portalfiscal.cte.wsdl.cteinutilizacao.svrs;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

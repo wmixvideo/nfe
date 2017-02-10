@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.ctestatusservico;
+package br.inf.portalfiscal.cte.wsdl.ctestatusservico.svrs;
 
 import java.util.ArrayList;
 import java.util.List;

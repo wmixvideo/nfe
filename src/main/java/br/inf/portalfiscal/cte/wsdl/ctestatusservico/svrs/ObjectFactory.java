@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.ctestatusservico;
+package br.inf.portalfiscal.cte.wsdl.ctestatusservico.svrs;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

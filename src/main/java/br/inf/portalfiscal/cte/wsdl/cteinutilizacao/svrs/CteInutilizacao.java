@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.cteinutilizacao;
+package br.inf.portalfiscal.cte.wsdl.cteinutilizacao.svrs;
 
 import java.net.MalformedURLException;
 import java.net.URL;

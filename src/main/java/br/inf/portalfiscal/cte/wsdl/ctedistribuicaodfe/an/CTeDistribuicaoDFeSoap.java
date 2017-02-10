@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe;
+package br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.an;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -33,8 +33,8 @@ public interface CTeDistribuicaoDFeSoap {
     @WebResult(name = "cteDistDFeInteresseResult", targetNamespace = "http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe")
     @RequestWrapper(localName = "cteDistDFeInteresse", targetNamespace = "http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe", className = "br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.CteDistDFeInteresse")
     @ResponseWrapper(localName = "cteDistDFeInteresseResponse", targetNamespace = "http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe", className = "br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.CteDistDFeInteresseResponse")
-    public br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.CteDistDFeInteresseResponse.CteDistDFeInteresseResult cteDistDFeInteresse(
+    public br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.an.CteDistDFeInteresseResponse.CteDistDFeInteresseResult cteDistDFeInteresse(
         @WebParam(name = "cteDadosMsg", targetNamespace = "http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe")
-        br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.CteDistDFeInteresse.CteDadosMsg cteDadosMsg);
+        br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.an.CteDistDFeInteresse.CteDadosMsg cteDadosMsg);
 
 }

@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe;
+package br.inf.portalfiscal.cte.wsdl.ctedistribuicaodfe.an;
 
 import java.net.MalformedURLException;
 import java.net.URL;
