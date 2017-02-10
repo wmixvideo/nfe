@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.cterecepcao;
+package br.inf.portalfiscal.cte.wsdl.cterecepcao.svrs;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

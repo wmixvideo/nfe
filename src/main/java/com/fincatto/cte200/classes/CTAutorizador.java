@@ -3,7 +3,10 @@ package com.fincatto.cte200.classes;
 import java.util.Arrays;
 
 import com.fincatto.dfe.classes.DFAmbiente;
+import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 
 public enum CTAutorizador {
 
@@ -12,6 +15,11 @@ public enum CTAutorizador {
 		public String getCteStatusServico(final DFAmbiente ambiente) {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews/services/CteStatusServico" : "https://cte.sefaz.mt.gov.br/ctews/services/CteStatusServico";
 		}
+
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusMT(ambiente, xml, unidadeFederativa, modelo);
+                }
 
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
@@ -24,6 +32,11 @@ public enum CTAutorizador {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.ms.gov.br/ws/CteStatusServico" : "https://producao.cte.ms.gov.br/ws/CteStatusServico";
 		}
 
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
+
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
 			return new DFUnidadeFederativa[] { DFUnidadeFederativa.MS };
@@ -34,6 +47,11 @@ public enum CTAutorizador {
 		public String getCteStatusServico(final DFAmbiente ambiente) {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hcte.fazenda.mg.gov.br/cte/services/CteStatusServico" : "https://cte.fazenda.mg.gov.br/cte/services/CteStatusServico";
 		}
+
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
 
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
@@ -46,6 +64,11 @@ public enum CTAutorizador {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte/CteStatusServico?wsdl" : "https://cte.fazenda.pr.gov.br/cte/CteStatusServico?wsdl";
 		}
 
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusPR(ambiente, xml, unidadeFederativa, modelo);
+                }
+
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
 			return new DFUnidadeFederativa[] { DFUnidadeFederativa.PR };
@@ -56,6 +79,11 @@ public enum CTAutorizador {
 		public String getCteStatusServico(final DFAmbiente ambiente) {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/ctestatusservico/CteStatusServico.asmx" : "https://cte.svrs.rs.gov.br/ws/ctestatusservico/CteStatusServico.asmx";
 		}
+
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
 
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
@@ -68,6 +96,11 @@ public enum CTAutorizador {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/cteWEB/services/cteStatusServico.asmx" : "https://nfe.fazenda.sp.gov.br/cteWEB/services/cteStatusServico.asmx";
 		}
 
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
+
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
 			return new DFUnidadeFederativa[] { DFUnidadeFederativa.SP };
@@ -78,6 +111,11 @@ public enum CTAutorizador {
 		public String getCteStatusServico(final DFAmbiente ambiente) {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/ctestatusservico/CteStatusServico.asmx" : "https://cte.svrs.rs.gov.br/ws/ctestatusservico/CteStatusServico.asmx";
 		}
+
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
 
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
@@ -90,9 +128,14 @@ public enum CTAutorizador {
 			return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/cteWEB/services/CteStatusServico.asmx" : "https://nfe.fazenda.sp.gov.br/cteWEB/services/CteStatusServico.asmx";
 		}
 
+                @Override
+                public String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException {
+                    return new CTStatusServico().efetuaConsultaStatusSVRS(ambiente, xml, unidadeFederativa, modelo);
+                }
+
 		@Override
 		public DFUnidadeFederativa[] getUFs() {
-			return new DFUnidadeFederativa[] { DFUnidadeFederativa.AP, DFUnidadeFederativa.PE, DFUnidadeFederativa.RR };
+                    return new DFUnidadeFederativa[] { DFUnidadeFederativa.AP, DFUnidadeFederativa.PE, DFUnidadeFederativa.RR };
 		}
 	};
 
@@ -131,6 +174,8 @@ public enum CTAutorizador {
 	}
 
 	public abstract DFUnidadeFederativa[] getUFs();
+
+        public abstract String efetuaConsultaStatus(final DFAmbiente ambiente, final String xml, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException, MalformedURLException;
 
 	public static CTAutorizador valueOfCodigoUF(final DFUnidadeFederativa uf) {
 		for (final CTAutorizador aut : CTAutorizador.values()) {

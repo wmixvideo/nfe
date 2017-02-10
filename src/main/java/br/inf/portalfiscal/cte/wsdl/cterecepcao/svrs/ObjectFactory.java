@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.cterecepcao;
+package br.inf.portalfiscal.cte.wsdl.cterecepcao.svrs;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

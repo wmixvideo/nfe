@@ -1,5 +1,5 @@
 
-package br.inf.portalfiscal.cte.wsdl.cterecepcao;
+package br.inf.portalfiscal.cte.wsdl.cterecepcao.svrs;
 
 import java.util.HashMap;
 import java.util.Map;
