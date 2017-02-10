@@ -58,5 +58,10 @@ public class NFeConfigTest {
         public String getCadeiaCertificadosSenha() {
             return null;
         }
+
+        @Override
+        public DFAmbiente getAmbiente() {
+            return DFAmbiente.HOMOLOGACAO;
+        }
     }
 }

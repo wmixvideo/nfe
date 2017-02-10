@@ -16,11 +16,11 @@ import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNF;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFResult;
-import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.NfeDownloadNFSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.svan.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.svan.NfeDownloadNF;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.svan.NfeDownloadNFResult;
+import br.inf.portalfiscal.nfe.wsdl.nfedownloadnf.svan.NfeDownloadNFSoap;
 
 class WSNotaDownload {
 

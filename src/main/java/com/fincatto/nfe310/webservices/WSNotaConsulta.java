@@ -18,11 +18,11 @@ import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsulta2Soap;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeConsultaNF2Result;
-import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.svan.NfeConsulta2;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.svan.NfeConsulta2Soap;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.svan.NfeConsultaNF2Result;
+import br.inf.portalfiscal.nfe.wsdl.nfeconsulta2.svan.NfeDadosMsg;
 
 class WSNotaConsulta {
 

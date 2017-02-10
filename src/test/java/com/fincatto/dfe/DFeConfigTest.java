@@ -16,7 +16,6 @@ public class DFeConfigTest {
 
     @Test
     public void testaParametrosPadrao() {
-        Assert.assertEquals(DFAmbiente.HOMOLOGACAO, config.getAmbiente());
         Assert.assertEquals(DFTipoEmissao.EMISSAO_NORMAL, config.getTipoEmissao());
         Assert.assertEquals("TLSv1", config.getSSLProtocolo());
     }
@@ -54,6 +53,11 @@ public class DFeConfigTest {
 
         @Override
         public String getCadeiaCertificadosSenha() {
+            return null;
+        }
+
+        @Override
+        public DFAmbiente getAmbiente() {
             return null;
         }
     }

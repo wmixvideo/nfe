@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fincatto.cte200.classes.CTAutorizador;
+import com.fincatto.cte300.classes.CTAutorizador;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 

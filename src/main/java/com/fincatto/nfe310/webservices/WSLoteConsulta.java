@@ -17,11 +17,11 @@ import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.NfeRetAutorizacao;
-import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.NfeRetAutorizacaoLoteResult;
-import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.NfeRetAutorizacaoSoap;
+import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.svan.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.svan.NfeRetAutorizacao;
+import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.svan.NfeRetAutorizacaoLoteResult;
+import br.inf.portalfiscal.nfe.wsdl.nferetautorizacao.svan.NfeRetAutorizacaoSoap;
 
 class WSLoteConsulta {
 

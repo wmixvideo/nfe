@@ -26,11 +26,11 @@ import com.fincatto.nfe310.utils.NFGeraQRCode;
 import com.fincatto.nfe310.validadores.xsd.XMLValidador;
 
 import br.inf.portalfiscal.nfe.TRetEnviNFe;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacao;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoLoteResult;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeAutorizacaoSoap;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeAutorizacao;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeAutorizacaoLoteResult;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeAutorizacaoSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeDadosMsg;
 
 class WSLoteEnvio {
 

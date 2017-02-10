@@ -1,5 +1,6 @@
 package com.fincatto.nfe310;
 
+import com.fincatto.dfe.classes.DFAmbiente;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -55,5 +56,10 @@ public class NFeConfigFake extends NFeConfig {
     @Override
     public String getCadeiaCertificadosSenha() {
         return "senha";
+    }
+
+    @Override
+    public DFAmbiente getAmbiente() {
+        return null;
     }
 }

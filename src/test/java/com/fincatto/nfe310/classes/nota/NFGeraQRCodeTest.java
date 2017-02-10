@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.classes.nota;
 
+import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.nfe310.FabricaDeObjetosFakeNFe;
 import com.fincatto.nfe310.NFeConfig;
@@ -68,6 +69,11 @@ public class NFGeraQRCodeTest {
             @Override
             public String getCadeiaCertificadosSenha() {
                 return null;
+            }
+
+            @Override
+            public DFAmbiente getAmbiente() {
+                return DFAmbiente.HOMOLOGACAO;
             }
         };
     }

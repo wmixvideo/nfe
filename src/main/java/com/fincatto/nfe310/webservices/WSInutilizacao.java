@@ -16,11 +16,11 @@ import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizac
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.persister.NFPersister;
 
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacao2Soap;
-import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.NfeInutilizacaoNF2Result;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.svan.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.svan.NfeInutilizacao2;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.svan.NfeInutilizacao2Soap;
+import br.inf.portalfiscal.nfe.wsdl.nfeinutilizacao2.svan.NfeInutilizacaoNF2Result;
 
 class WSInutilizacao {
 

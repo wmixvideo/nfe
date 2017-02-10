@@ -19,12 +19,12 @@ import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.CadConsultaCadastro2;
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.CadConsultaCadastro2Soap;
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.ConsultaCadastro2Result;
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.ObjectFactory;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.CadConsultaCadastro2;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.CadConsultaCadastro2Soap;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.ConsultaCadastro2Result;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.cadconsultacadastro2.svrs.ObjectFactory;
 
 class WSConsultaCadastro {
 
