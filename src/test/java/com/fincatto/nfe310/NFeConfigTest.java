@@ -61,7 +61,7 @@ public class NFeConfigTest {
 
         @Override
         public DFAmbiente getAmbiente() {
-            return null;
+            return DFAmbiente.HOMOLOGACAO;
         }
     }
 }

@@ -116,7 +116,7 @@ public class NFDanfeReportTest {
 
             @Override
             public DFAmbiente getAmbiente() {
-                return null;
+                return DFAmbiente.HOMOLOGACAO;
             }
         };
     }
