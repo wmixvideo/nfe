@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.5.0  -->
-<!-- 2016-06-17T21:39:29 -->
+<!-- 2016-06-18T13:23:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="danfe" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="14" rightMargin="16" topMargin="14" bottomMargin="14">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="432"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
-	<style name="campoPequeno" hAlign="Left" vAlign="Top" markup="styled" pattern="" fontName="Courier New" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
-	<style name="borda" mode="Transparent" forecolor="#000000" fill="Solid" radius="3" scaleImage="Clip" hAlign="Left" vAlign="Top" markup="none" pattern="" fontName="Courier New" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="true" pdfFontName="Courier" pdfEncoding="cp1252" isPdfEmbedded="true">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="campoPequeno" hAlign="Left" vAlign="Top" markup="styled" pattern="" fontName="SansSerif" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<style name="borda" mode="Transparent" forecolor="#000000" fill="Solid" radius="3" scaleImage="Clip" hAlign="Left" vAlign="Top" markup="none" pattern="" fontName="SansSerif" fontSize="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="true" pdfFontName="SansSerif" pdfEncoding="cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25"/>
 	</style>
-	<style name="dados" forecolor="#000000" fill="Solid" radius="3" hAlign="Left" vAlign="Middle" markup="styled" pattern="" fontName="Courier New" fontSize="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true">
+	<style name="dados" forecolor="#000000" fill="Solid" radius="3" hAlign="Left" vAlign="Middle" markup="styled" pattern="" fontName="SansSerif" fontSize="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25"/>
 	</style>
-	<style name="detail" forecolor="#000000" fill="Solid" radius="3" hAlign="Left" vAlign="Middle" markup="styled" pattern="" fontName="" fontSize="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier" isPdfEmbedded="true">
+	<style name="detail" forecolor="#000000" fill="Solid" radius="3" hAlign="Left" vAlign="Middle" markup="styled" pattern="" fontName="" fontSize="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true">
 		<pen lineWidth="0.25"/>
 		<box>
 			<pen lineWidth="0.25" lineStyle="Solid"/>
@@ -314,42 +314,42 @@
 				<staticText>
 					<reportElement x="478" y="1" width="87" height="6"/>
 					<textElement textAlignment="Center">
-						<font fontName="Arial" size="5"/>
+						<font fontName="SansSerif" size="5" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[NF-e]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="12" width="114" height="6"/>
 					<textElement>
-						<font fontName="Courier New" size="5" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" size="5" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DATA DE RECEBIMENTO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="117" y="12" width="359" height="6"/>
 					<textElement>
-						<font fontName="Courier New" size="5" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" size="5" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR]]></text>
 				</staticText>
 				<textField>
 					<reportElement style="dados" x="482" y="7" width="83" height="11"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" isBold="true"/>
+						<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Nº " + $F{NumeroNF}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" x="482" y="18" width="83" height="14"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["SÉRIE: " + $F{Serie}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="campoPequeno" x="2" y="0" width="474" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["RECEBEMOS DE " + $F{Emi_Nome}.toUpperCase() + " OS PRODUTOS CONSTANTES NA NOTA FISCAL INDICADA AO LADO."]]></textFieldExpression>
 				</textField>
@@ -397,105 +397,105 @@
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="98" width="303" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[NATUREZA DA OPERAÇÃO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="348" y="98" width="217" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[PROTOCOLO DE AUTORIZAÇÃO DE USO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="347" y="43" width="212" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CHAVE DE ACESSO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="190" y="122" width="187" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INSCRIÇÃO ESTADUAL DE SUBST.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="122" width="187" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INSCRIÇÃO ESTADUAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="378" y="122" width="186" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CNPJ / CPF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="276" y="49" width="48" height="7"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[1 - SAÍDA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="276" y="43" width="48" height="7"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[0 - ENTRADA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="dados" x="348" y="68" width="217" height="28"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" size="8"/>
+						<font fontName="SansSerif" size="8" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[Consulta de autenticidade no portal nacional da NF-e www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="347" y="2" width="218" height="6"/>
 					<textElement>
-						<font fontName="Courier New" size="5"/>
+						<font fontName="SansSerif" size="5" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CONTROLE DO FISCO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="271" y="2" width="74" height="9"/>
 					<textElement textAlignment="Center" markup="styled">
-						<font fontName="Courier New" size="7" isBold="true" pdfFontName="Courier" pdfEncoding=""/>
+						<font fontName="SansSerif" size="7" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DANFE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="271" y="13" width="74" height="23"/>
 					<textElement textAlignment="Center" markup="styled">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DOCUMENTO AUXILIAR DE NOTA FISCAL ELETRÔNICA]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="128" width="186" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_IE}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="190" y="128" width="186" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_IEST}!= null ? $F{Emi_IEST} : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="">
 					<reportElement style="dados" x="378" y="128" width="186" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_CNPJ}.length() == 14 ? $F{Emi_CNPJ}.substring(0,2) + "." +
 $F{Emi_CNPJ}.substring(2,5) + "." + $F{Emi_CNPJ}.substring(5,8) + "/" +
@@ -504,21 +504,21 @@ $F{Emi_CNPJ}.substring(8,12) + "-" + $F{Emi_CNPJ}.substring(12,14) : $F{Emi_CNPJ
 				<textField>
 					<reportElement style="dados" x="2" y="103" width="343" height="17"/>
 					<textElement>
-						<font fontName="Courier New" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{NaturezaOperacao}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="348" y="104" width="217" height="17"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Protocolo}]]></textFieldExpression>
 				</textField>
 				<textField pattern="">
 					<reportElement style="dados" x="347" y="48" width="218" height="18" isRemoveLineWhenBlank="true"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Chave} != null ? $F{Chave}.substring(0,4) + " " + $F{Chave}.substring(4,8) + " " + $F{Chave}.substring(8,12) + " " +
 $F{Chave}.substring(12,16) + " " + $F{Chave}.substring(16,20) + " " + $F{Chave}.substring(20,24) + " " +
@@ -528,21 +528,21 @@ $F{Chave}.substring(36,40) + " " + $F{Chave}.substring(40,44) + " " : ""]]></tex
 				<textField>
 					<reportElement style="campoPequeno" x="276" y="80" width="43" height="7"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["FOLHA " + $V{PAGE_NUMBER} + " /"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
 					<reportElement style="campoPequeno" x="319" y="80" width="26" height="7"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="campoPequeno" x="276" y="71" width="69" height="7"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" size="6"/>
+						<font fontName="SansSerif" size="6" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["SÉRIE: " + $F{Serie}]]></textFieldExpression>
 				</textField>
@@ -555,49 +555,49 @@ $F{Chave}.substring(36,40) + " " + $F{Chave}.substring(40,44) + " " : ""]]></tex
 						<rightPen lineWidth="0.25"/>
 					</box>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{TipoNF}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="campoPequeno" x="276" y="56" width="69" height="14"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" size="8" isBold="true"/>
+						<font fontName="SansSerif" size="8" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Nº " + $F{NumeroNF}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" positionType="Float" x="67" y="4" width="202" height="36"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_Nome}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" positionType="Float" x="67" y="42" width="202" height="21"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_Logradouro} + ", " + $F{Emi_Numero} + " - " + $F{Emi_Bairro}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" positionType="Float" x="67" y="64" width="202" height="13"/>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_Municipio} + " - " + $F{Emi_UF}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" positionType="Float" x="67" y="78" width="83" height="13"/>
 					<textElement>
-						<font fontName="Courier New" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["CEP: " + $F{Emi_CEP}.substring(0,5) + "-" + $F{Emi_CEP}.substring(5,8)]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" positionType="Float" x="153" y="78" width="116" height="13"/>
 					<textElement>
-						<font fontName="Courier New" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_Telefone}.length() == 8 ? "FONE: " + $F{Emi_Telefone}.substring(0,4) +
 "-" + $F{Emi_Telefone}.substring(4,8) : "FONE: (" + $F{Emi_Telefone}.substring(0,2) + ") " +
@@ -729,350 +729,350 @@ $F{Emi_Telefone}.substring(2,6) + "-" + $F{Emi_Telefone}.substring(6,10)]]></tex
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="0" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DESTINATÁRIO / REMETENTE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="500" y="59" width="64" height="6"/>
 					<textElement>
-						<font fontName="Courier New" isBold="true"/>
+						<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[HORA ENTRADA / SAÍDA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="35" width="274" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[ENDEREÇO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="500" y="11" width="64" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DATA EMISSÃO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="412" y="35" width="86" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CEP]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="59" width="209" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[MUNICÍPIO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="319" y="59" width="26" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[UF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="213" y="59" width="104" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[FONE / FAX]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="347" y="11" width="151" height="6"/>
 					<textElement>
-						<font fontName="Courier New" isBold="true"/>
+						<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CNPJ / CPF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="500" y="35" width="64" height="6"/>
 					<textElement>
-						<font fontName="Courier New" isBold="true"/>
+						<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DATA ENTRADA / SAÍDA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="11" width="343" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[NOME / RAZÃO SOCIAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="83" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[FATURA / DUPLICATA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[BASE DE CALCULO DO ICMS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="115" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO ICMS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="228" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[BASE DE CALCULO DO ICMS SUBST.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="341" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO ICMS SUBST.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="454" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR TOTAL DOS PRODUTOS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="278" y="35" width="132" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[BAIRRO / DISTRITO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="118" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CALCULO DO IMPOSTO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="347" y="59" width="151" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INSCRIÇÃO ESTADUAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="284" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[OUTRAS DESPESAS ACESSÓRIAS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="378" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR TOTAL DO IPI]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="472" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New" isBold="true"/>
+						<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR TOTAL DA NOTA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="96" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO SEGURO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="190" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DESCONTO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="177" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[TRANSPORTADOR / VOLUMES TRANSPORTADOS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="432" y="188" width="26" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[UF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="460" y="188" width="104" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CNPJ / CPF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="188" width="224" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[NOME / RAZÃO SOCIAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="364" y="188" width="66" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[PLACA DO VEICULO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="228" y="188" width="66" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[FRETE POR CONTA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="296" y="188" width="66" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CÓDIGO ANTT]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO FRETE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="460" y="212" width="104" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INSCRIÇÃO ESTADUAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="432" y="212" width="26" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[UF]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="228" y="212" width="202" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[MUNICÍPIO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="212" width="224" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[ENDEREÇO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="77" y="236" width="73" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[ESPÉCIE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="228" y="236" width="138" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[NUMERAÇÃO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="236" width="73" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[QUANTIDADE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="368" y="236" width="102" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[PESO BRUTO]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="153" y="236" width="73" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[MARCA]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="472" y="236" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[PESO LIQUIDO]]></text>
 				</staticText>
 				<textField>
 					<reportElement style="dados" x="319" y="65" width="26" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_UF}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" x="278" y="40" width="132" height="16"/>
 					<textElement>
-						<font fontName="Courier New" size="9"/>
+						<font fontName="SansSerif" size="9" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_Bairro}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" x="2" y="65" width="209" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_Municipio}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="true">
 					<reportElement style="dados" x="500" y="65" width="64" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Hora_Saida}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" x="347" y="65" width="151" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_IE} != null ? $F{Dest_IE} : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement style="dados" x="500" y="40" width="64" height="16" isRemoveLineWhenBlank="true"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Data_Saida} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{Data_Saida}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField pattern="(##) ####-####">
 					<reportElement style="dados" x="213" y="65" width="104" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_Telefone}.length() == 8 ? $F{Dest_Telefone}.substring(0,4) +
 "-" + $F{Dest_Telefone}.substring(4,8) : "(" + $F{Dest_Telefone}.substring(0,2) + ") " +
@@ -1081,35 +1081,35 @@ $F{Dest_Telefone}.substring(2,6) + "-" + $F{Dest_Telefone}.substring(6,10)]]></t
 				<textField pattern="dd/MM/yyyy">
 					<reportElement style="dados" x="500" y="16" width="64" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{DataEmissao} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{DataEmissao}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="dados" x="2" y="40" width="274" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_Logradouro} + ", " + $F{Dest_Numero} + " " + ($F{Dest_Complemento} != null ? $F{Dest_Complemento} : "" )]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="dados" x="2" y="16" width="343" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_Nome}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#####-###">
 					<reportElement style="dados" x="412" y="40" width="86" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_CEP}.substring( 0, 5 ) + "-" + $F{Dest_CEP}.substring( 5, 8 )]]></textFieldExpression>
 				</textField>
 				<textField pattern="##.###.###/####-##">
 					<reportElement style="dados" x="347" y="16" width="151" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Dest_CNPJ}.length() == 14 ? $F{Dest_CNPJ}.substring(0,2) + "." +
 $F{Dest_CNPJ}.substring(2,5) + "." + $F{Dest_CNPJ}.substring(5,8) + "/" +
@@ -1118,84 +1118,84 @@ $F{Dest_CNPJ}.substring(8,12) + "-" + $F{Dest_CNPJ}.substring(12,14) : $F{Dest_C
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="2" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorBase} == null ? 0.00 : Double.parseDouble($F{ValorBase}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" mode="Transparent" x="113" y="135" width="109" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="styled">
-						<font fontName="Courier New" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<font fontName="SansSerif" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorICMS} == null ? 0.00 : Double.parseDouble($F{ValorICMS}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="454" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorProdutos} == null ? 0.00 : Double.parseDouble($F{ValorProdutos}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="228" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorBaseST} == null ? 0.00 : Double.parseDouble($F{ValorBaseST}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="284" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorOutro} == null ? 0.00 : Double.parseDouble($F{ValorOutro}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="472" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorNF} == null ? 0.00 : Double.parseDouble($F{ValorNF}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="378" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorIPI} == null ? 0.00 : Double.parseDouble($F{ValorIPI}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="96" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorSeguro} == null ? 0.00 : Double.parseDouble($F{ValorSeguro}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="2" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorFrete} == null ? 0.00 : Double.parseDouble($F{ValorFrete}))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="190" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{ValorDesconto} == null ? 0.00 : Double.parseDouble($F{ValorDesconto}))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="194" width="224" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Nome}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="true">
 					<reportElement style="dados" x="460" y="194" width="104" height="17"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_CNPJ}.length() == 14 ? $F{Trans_CNPJ}.substring(0,2) + "." +
 $F{Trans_CNPJ}.substring(2,5) + "." + $F{Trans_CNPJ}.substring(5,8) + "/" +
@@ -1210,7 +1210,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 						<rightPen lineWidth="0.25"/>
 					</box>
 					<textElement textAlignment="Center">
-						<font fontName="Courier New" size="8"/>
+						<font fontName="SansSerif" size="8" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Frete}.equals( "0" ) ? "0-EMITENTE" : $F{Frete}.equals( "1" ) ? "1-DESTINATARIO"
 : $F{Frete}.equals( "2" ) ? "2-TERCEIRO" : "9-SEM FRETE"]]></textFieldExpression>
@@ -1218,105 +1218,105 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="460" y="217" width="104" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_IE}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="217" width="224" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Endereco}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="432" y="217" width="26" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_UF}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="228" y="217" width="202" height="17"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Municipio}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="368" y="241" width="92" height="18"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf(Double.valueOf($F{Trans_PesoB}) != null ? Double.parseDouble($F{Trans_PesoB}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="472" y="241" width="92" height="18"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf($F{Trans_PesoL} != null ? Double.parseDouble($F{Trans_PesoL}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="241" width="73" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Volumes}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="77" y="241" width="73" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Especie}]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="341" y="135" width="108" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ValorST}) == 0.00 ? 0.00 : Double.parseDouble($F{ValorST}))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="432" y="194" width="26" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_PlacaUF}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="364" y="194" width="66" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Placa}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="296" y="194" width="66" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_ANTT}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="153" y="242" width="73" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Marca}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="228" y="241" width="136" height="16"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Trans_Numeracao}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="2" y="93" width="557" height="23"/>
 					<textElement verticalAlignment="Middle">
-						<font fontName="Courier New" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+						<font fontName="SansSerif" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
 					</textElement>
 					<text><![CDATA[Outras Formas de Pagamento, Verifique as Informações no Campo de Dados Adicionais ]]></text>
 				</staticText>
@@ -1334,7 +1334,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ CÓDIGO]]></text>
 			</staticText>
@@ -1347,7 +1347,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ DESCRIÇÃO DOS PRODUTOS / SERVIÇOS]]></text>
 			</staticText>
@@ -1360,7 +1360,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ NCM/SH]]></text>
 			</staticText>
@@ -1373,7 +1373,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[$F{Prod_CST} != null ? "CST" : "CSOSN"]]></text>
 			</staticText>
@@ -1386,7 +1386,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ CFOP]]></text>
 			</staticText>
@@ -1399,7 +1399,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ UNID]]></text>
 			</staticText>
@@ -1412,7 +1412,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ QUANT.]]></text>
 			</staticText>
@@ -1425,7 +1425,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[VALOR UNITÁRIO]]></text>
 			</staticText>
@@ -1438,7 +1438,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ VALOR  TOTAL]]></text>
 			</staticText>
@@ -1451,7 +1451,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Cálculo]]></text>
 			</staticText>
@@ -1464,7 +1464,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
-					<font fontName="Arial" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Courier" pdfEncoding=""/>
+					<font fontName="SansSerif" size="5" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[VALOR]]></text>
 			</staticText>
@@ -1477,7 +1477,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ IPI]]></text>
 			</staticText>
@@ -1490,7 +1490,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ ICMS %]]></text>
 			</staticText>
@@ -1503,7 +1503,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ IPI %]]></text>
 			</staticText>
@@ -1516,7 +1516,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ ICMS]]></text>
 			</staticText>
@@ -1529,7 +1529,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[BASE]]></text>
 			</staticText>
@@ -1542,14 +1542,14 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Courier New" isBold="true"/>
+					<font fontName="SansSerif" isBold="true" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ALIQUOTA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="campoPequeno" x="0" y="0" width="564" height="7"/>
 				<textElement>
-					<font fontName="Courier New" size="6" isBold="true" isItalic="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[DADOS DO PRODUTOS / SERVIÇOS]]></text>
 			</staticText>
@@ -1564,28 +1564,28 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement>
-					<font fontName="Courier New" size="7" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="7" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_Codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="226" y="0" width="35" height="12" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_NCM}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="261" y="0" width="16" height="12" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_CST}!=null? $F{Prod_CST} : $F{Prod_CSOSN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" x="299" y="0" width="20" height="12" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_Unidade}]]></textFieldExpression>
 			</textField>
@@ -1595,7 +1595,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_Quantidade}]]></textFieldExpression>
 			</textField>
@@ -1606,7 +1606,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{Prod_Valor}))]]></textFieldExpression>
 			</textField>
@@ -1617,7 +1617,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{Prod_Total}))]]></textFieldExpression>
 			</textField>
@@ -1628,7 +1628,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_AliqICMS}!=null?$F{Prod_AliqICMS}:"0"]]></textFieldExpression>
 			</textField>
@@ -1639,14 +1639,14 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_AliqIPI}!=null ? $F{Prod_AliqIPI} : "0"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="277" y="0" width="22" height="12" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_CFOP}]]></textFieldExpression>
 			</textField>
@@ -1657,7 +1657,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_BC} !=null ? $F{Prod_BC} : "0"]]></textFieldExpression>
 			</textField>
@@ -1668,7 +1668,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_ValorIPI}!=null ? $F{Prod_ValorIPI} : "0"]]></textFieldExpression>
 			</textField>
@@ -1679,7 +1679,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font fontName="Courier New"/>
+					<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_ValorICMS}!=null?$F{Prod_ValorICMS}:"0"]]></textFieldExpression>
 			</textField>
@@ -1692,7 +1692,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement>
-					<font fontName="Courier New" size="7" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="7" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Prod_Descricao}]]></textFieldExpression>
 			</textField>
@@ -1735,91 +1735,91 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="2" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[CALCULO DO ISSQN]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="12" width="139" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INSCRIÇÃO MUNICIPAL]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="143" y="12" width="139" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR TOTAL DOS SERVIÇOS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="284" y="12" width="139" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[BASE DE CALCULO DO ISSQN]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="426" y="12" width="139" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO ISSQN]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="36" width="563" height="7"/>
 					<textElement>
-						<font fontName="Courier New" size="6" isBold="true" isItalic="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" size="6" isBold="true" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[DADOS ADICIONAIS]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="47" width="362" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[INFORMAÇÕES COMPLEMENTARES]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="366" y="47" width="198" height="6"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[RESERVADO AO FISCO]]></text>
 				</staticText>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="141" y="18" width="137" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Total}) != 0.00 ? Double.parseDouble($F{ISSQN_Total}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="284" y="18" width="137" height="16"/>
 					<textElement textAlignment="Right">
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Base}) != 0.00 ? Double.parseDouble($F{ISSQN_Base}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 					<reportElement style="dados" x="426" y="18" width="138" height="16"/>
 					<textElement textAlignment="Right" markup="styled">
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ISSQN_Valor}) != 0.00 ? Double.parseDouble($F{ISSQN_Valor}) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="18" width="139" height="16"/>
 					<textElement>
-						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Emi_IM}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="4" y="53" width="358" height="83"/>
 					<textElement verticalAlignment="Top">
-						<font fontName="Courier New" isItalic="false" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+						<font fontName="SansSerif" isItalic="false" pdfFontName="SansSerif" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{Informacoes}]]></textFieldExpression>
 				</textField>

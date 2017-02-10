@@ -92,6 +92,42 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Jasperreports -->
+        <!-- http://mvnrepository.com/artifact/jasperreports/jasperreports -->
+        <!-- http://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>eclipse</groupId>
+                    <artifactId>jdtcore</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+		<dependency>
+    		<groupId>com.google.zxing</groupId>
+    		<artifactId>core</artifactId>
+    		<version>3.2.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.barbecue/barbecue -->
+		<dependency>
+    		<groupId>net.sourceforge.barbecue</groupId>
+    		<artifactId>barbecue</artifactId>
+    		<version>1.5-beta1</version>
+		</dependency>
+
+        <!-- FIX Problema na compilação do jasper em java 8 - Adicionado dependencia como paliativo -->
+        <dependency>
+            <groupId>org.eclipse.jdt.core.compiler</groupId>
+            <artifactId>ecj</artifactId>
+            <version>4.4</version>
+        </dependency>
     </dependencies>
 
     <distributionManagement>
