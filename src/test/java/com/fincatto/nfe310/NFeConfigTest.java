@@ -58,5 +58,10 @@ public class NFeConfigTest {
         public String getCadeiaCertificadosSenha() {
             return null;
         }
+
+        @Override
+        public DFAmbiente getAmbiente() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
 }
