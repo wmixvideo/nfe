@@ -19,13 +19,13 @@ import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.MdfeDadosMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfeconsnaoenc.ObjectFactory;
 import com.fincatto.mdfe300.MDFeConfig;
 
-class WSConsultaNaoEncerradosMDF {
+class WSConsultaNaoEncerrados {
 
     private static final String VERSAO_LEIAUTE = "3.00";
     private static final String SERVICO_SOLICITADO = "CONSULTAR NÃO ENCERRADOS";
     private final MDFeConfig config;
 
-    WSConsultaNaoEncerradosMDF(final MDFeConfig config) {
+    WSConsultaNaoEncerrados(final MDFeConfig config) {
         this.config = config;
     }
 

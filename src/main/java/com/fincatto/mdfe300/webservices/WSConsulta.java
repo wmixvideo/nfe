@@ -18,13 +18,13 @@ import br.inf.portalfiscal.mdfe.wsdl.mdfeconsulta.MdfeDadosMsg;
 import br.inf.portalfiscal.mdfe.wsdl.mdfeconsulta.ObjectFactory;
 import com.fincatto.mdfe300.MDFeConfig;
 
-class WSConsultaMDF {
+class WSConsulta {
 
     private static final String VERSAO_LEIAUTE = "3.00";
     private static final String SERVICO_SOLICITADO = "CONSULTAR";
     private final MDFeConfig config;
 
-    WSConsultaMDF(final MDFeConfig config) {
+    WSConsulta(final MDFeConfig config) {
         this.config = config;
     }
 

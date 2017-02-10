@@ -23,23 +23,23 @@ import java.net.MalformedURLException;
 
 public class MDFFacade {
 
-    private final WSRecepcaoMDF wsRecepcaoMDF;
-    private final WSRetornoRecepcaoMDF wsRetornoRecepcaoMDF;
-    private final WSConsultaMDF wsConsultaMDF;
-    private final WSConsultaStatusServicoMDF wsConsultaStatusServicoMDF;
-    private final WSConsultaNaoEncerradosMDF wsConsultaNaoEncerradosMDF;
-    private final WSRecepcaoEventoMDF wsRecepcaoEventoMDF;
+    private final WSRecepcao wsRecepcaoMDF;
+    private final WSRetornoRecepcao wsRetornoRecepcaoMDF;
+    private final WSConsulta wsConsultaMDF;
+    private final WSConsultaStatusServico wsConsultaStatusServicoMDF;
+    private final WSConsultaNaoEncerrados wsConsultaNaoEncerradosMDF;
+    private final WSRecepcaoEvento wsRecepcaoEventoMDF;
 
     public MDFFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
     	HttpsURLConnection.setDefaultSSLSocketFactory(new DFSocketFactory(config).createSSLContext().getSocketFactory());
 
         // inicia os servicos disponíveis
-        this.wsRecepcaoMDF = new WSRecepcaoMDF(config);
-        this.wsRetornoRecepcaoMDF = new WSRetornoRecepcaoMDF(config);
-        this.wsConsultaMDF = new WSConsultaMDF(config);
-        this.wsConsultaStatusServicoMDF = new WSConsultaStatusServicoMDF(config);
-        this.wsConsultaNaoEncerradosMDF = new WSConsultaNaoEncerradosMDF(config);
-        this.wsRecepcaoEventoMDF = new WSRecepcaoEventoMDF(config);
+        this.wsRecepcaoMDF = new WSRecepcao(config);
+        this.wsRetornoRecepcaoMDF = new WSRetornoRecepcao(config);
+        this.wsConsultaMDF = new WSConsulta(config);
+        this.wsConsultaStatusServicoMDF = new WSConsultaStatusServico(config);
+        this.wsConsultaNaoEncerradosMDF = new WSConsultaNaoEncerrados(config);
+        this.wsRecepcaoEventoMDF = new WSRecepcaoEvento(config);
     }
 
     /**

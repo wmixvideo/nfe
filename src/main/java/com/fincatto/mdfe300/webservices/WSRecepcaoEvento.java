@@ -24,12 +24,12 @@ import br.inf.portalfiscal.mdfe.wsdl.mdferecepcaoevento.MdfeRecepcaoEventoResult
 import br.inf.portalfiscal.mdfe.wsdl.mdferecepcaoevento.ObjectFactory;
 import com.fincatto.mdfe300.MDFeConfig;
 
-class WSRecepcaoEventoMDF {
+class WSRecepcaoEvento {
 
     private static final String VERSAO_LEIAUTE = "3.00";
     private final MDFeConfig config;
 
-    WSRecepcaoEventoMDF(final MDFeConfig config) {
+    WSRecepcaoEvento(final MDFeConfig config) {
         this.config = config;
     }
 

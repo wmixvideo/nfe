@@ -18,13 +18,13 @@ import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.MdfeStatusServicoMDFResul
 import br.inf.portalfiscal.mdfe.wsdl.mdfestatusservico.ObjectFactory;
 import com.fincatto.mdfe300.MDFeConfig;
 
-class WSConsultaStatusServicoMDF {
+class WSConsultaStatusServico {
 
     private static final String VERSAO_LEIAUTE = "3.00";
     private static final String SERVICO_SOLICITADO = "STATUS";
     private final MDFeConfig config;
 
-    WSConsultaStatusServicoMDF(final MDFeConfig config) {
+    WSConsultaStatusServico(final MDFeConfig config) {
         this.config = config;
     }
 

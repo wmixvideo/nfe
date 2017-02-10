@@ -17,12 +17,12 @@ import br.inf.portalfiscal.mdfe.wsdl.mdferetrecepcao.MdfeRetRecepcaoResult;
 import br.inf.portalfiscal.mdfe.wsdl.mdferetrecepcao.ObjectFactory;
 import com.fincatto.mdfe300.MDFeConfig;
 
-class WSRetornoRecepcaoMDF {
+class WSRetornoRecepcao {
 
     private static final String VERSAO_LEIAUTE = "3.00";
     private final MDFeConfig config;
 
-    WSRetornoRecepcaoMDF(final MDFeConfig config) {
+    WSRetornoRecepcao(final MDFeConfig config) {
         this.config = config;
     }
 
