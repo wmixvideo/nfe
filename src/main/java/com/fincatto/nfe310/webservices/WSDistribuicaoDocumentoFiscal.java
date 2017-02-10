@@ -24,10 +24,10 @@ import com.fincatto.nfe310.converters.ElementStringConverter;
 
 import br.inf.portalfiscal.nfe.DistDFeInt;
 import br.inf.portalfiscal.nfe.RetDistDFeInt;
-import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NFeDistribuicaoDFe;
-import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NFeDistribuicaoDFeSoap;
-import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresse;
-import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.NfeDistDFeInteresseResponse;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.NFeDistribuicaoDFe;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.NFeDistribuicaoDFeSoap;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.NfeDistDFeInteresse;
+import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.NfeDistDFeInteresseResponse;
 
 class WSDistribuicaoDocumentoFiscal {
 
@@ -78,7 +78,7 @@ class WSDistribuicaoDocumentoFiscal {
         DOMResult dOMResult = new DOMResult();
         jaxbMarshaller.marshal(jaxbElement, dOMResult);
 
-        NfeDistDFeInteresse.NfeDadosMsg nfeDadosMsg = new br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.ObjectFactory().createNfeDistDFeInteresseNfeDadosMsg();
+        NfeDistDFeInteresse.NfeDadosMsg nfeDadosMsg = new br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.ObjectFactory().createNfeDistDFeInteresseNfeDadosMsg();
         nfeDadosMsg.getContent().add(((Document) dOMResult.getNode()).getDocumentElement());
 
         NFeDistribuicaoDFeSoap port = new NFeDistribuicaoDFe(new URL(endpoint)).getNFeDistribuicaoDFeSoap12();

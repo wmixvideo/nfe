@@ -17,11 +17,11 @@ import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsult
 import com.fincatto.nfe310.converters.ElementStringConverter;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
 
-import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.NfeCabecMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.NfeDadosMsg;
-import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.NfeStatusServico2;
-import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.NfeStatusServico2Soap;
-import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.NfeStatusServicoNF2Result;
+import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.svan.NfeCabecMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.svan.NfeDadosMsg;
+import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.svan.NfeStatusServico2;
+import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.svan.NfeStatusServico2Soap;
+import br.inf.portalfiscal.nfe.wsdl.nfestatusservico2.svan.NfeStatusServicoNF2Result;
 
 class WSStatusConsulta {
 
