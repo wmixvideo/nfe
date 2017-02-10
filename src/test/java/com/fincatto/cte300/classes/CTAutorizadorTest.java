@@ -1,5 +1,6 @@
-package com.fincatto.cte200.classes;
+package com.fincatto.cte300.classes;
 
+import com.fincatto.cte300.classes.CTAutorizador;
 import java.util.Arrays;
 import java.util.List;
 

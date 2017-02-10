@@ -1,4 +1,4 @@
-package com.fincatto.cte200.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.cte200.classes.CTBase;
+import com.fincatto.cte300.classes.CTBase;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.dfe.classes.statusservico.consulta.IStatusServicoConsultaRetorno;

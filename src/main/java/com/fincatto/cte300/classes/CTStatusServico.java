@@ -1,6 +1,6 @@
-package com.fincatto.cte200.classes;
+package com.fincatto.cte300.classes;
 
-import com.fincatto.cte200.CTeConfig;
+import com.fincatto.cte300.CTeConfig;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;

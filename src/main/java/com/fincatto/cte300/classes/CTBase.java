@@ -1,10 +1,10 @@
-package com.fincatto.cte200.classes;
+package com.fincatto.cte300.classes;
 
 import java.io.StringWriter;
 
 import org.simpleframework.xml.core.Persister;
 
-import com.fincatto.cte200.persister.CTPersister;
+import com.fincatto.cte300.persister.CTPersister;
 
 public abstract class CTBase {
 

@@ -1,11 +1,11 @@
-package com.fincatto.cte200.classes.statusservico.consulta;
+package com.fincatto.cte300.classes.statusservico.consulta;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.cte200.classes.CTBase;
+import com.fincatto.cte300.classes.CTBase;
 import com.fincatto.dfe.classes.DFAmbiente;
 
 @Root(name = "consStatServCte")

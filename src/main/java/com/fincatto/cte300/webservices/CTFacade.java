@@ -1,4 +1,4 @@
-package com.fincatto.cte200.webservices;
+package com.fincatto.cte300.webservices;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -9,8 +9,8 @@ import java.security.cert.CertificateException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import com.fincatto.cte200.CTeConfig;
-import com.fincatto.cte200.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
 import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;
 import com.fincatto.dfe.webservices.DFSocketFactory;

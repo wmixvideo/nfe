@@ -1,4 +1,4 @@
-package com.fincatto.cte200.webservices;
+package com.fincatto.cte300.webservices;
 
 import java.rmi.RemoteException;
 
@@ -7,11 +7,11 @@ import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fincatto.cte200.CTeConfig;
-import com.fincatto.cte200.classes.CTAutorizador;
-import com.fincatto.cte200.classes.statusservico.consulta.CTStatusServicoConsulta;
-import com.fincatto.cte200.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
-import com.fincatto.cte200.transformers.CTRegistryMatcher;
+import com.fincatto.cte300.CTeConfig;
+import com.fincatto.cte300.classes.CTAutorizador;
+import com.fincatto.cte300.classes.statusservico.consulta.CTStatusServicoConsulta;
+import com.fincatto.cte300.classes.statusservico.consulta.CTStatusServicoConsultaRetorno;
+import com.fincatto.cte300.transformers.CTRegistryMatcher;
 import com.fincatto.dfe.classes.DFAmbiente;
 import com.fincatto.dfe.classes.DFModelo;
 import com.fincatto.dfe.classes.DFUnidadeFederativa;

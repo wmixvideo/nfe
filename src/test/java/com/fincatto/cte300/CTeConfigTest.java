@@ -1,5 +1,6 @@
-package com.fincatto.cte200;
+package com.fincatto.cte300;
 
+import com.fincatto.cte300.CTeConfig;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 
