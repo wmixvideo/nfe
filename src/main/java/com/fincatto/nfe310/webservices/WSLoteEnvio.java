@@ -1,5 +1,6 @@
 package com.fincatto.nfe310.webservices;
 
+import br.inf.portalfiscal.nfe.TEnviNFe;
 import java.net.URL;
 
 import javax.xml.bind.JAXBElement;
@@ -31,6 +32,9 @@ import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeAutorizacaoLoteResult
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeAutorizacaoSoap;
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeCabecMsg;
 import br.inf.portalfiscal.nfe.wsdl.nfeautorizacao.svan.NfeDadosMsg;
+import java.io.StringReader;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 class WSLoteEnvio {
 
@@ -170,8 +174,15 @@ class WSLoteEnvio {
         nfeCabecMsg.setCUF(this.config.getCUF().getCodigoIbge());
         nfeCabecMsg.setVersaoDados(NFeConfig.VERSAO_NFE);
 
+        // Create the JAXBContext
+        JAXBContext context = JAXBContext.newInstance("br.inf.portalfiscal.nfe");
+        
+        Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+        StringReader reader = new StringReader(loteAssinadoXml);
+        JAXBElement<TEnviNFe> tEnviNFe = (JAXBElement<TEnviNFe>) jaxbUnmarshaller.unmarshal(reader);
+        
         final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.getContent().add(ElementStringConverter.read(loteAssinadoXml));
+        nfeDadosMsg.getContent().add(tEnviNFe);
 
         //define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());

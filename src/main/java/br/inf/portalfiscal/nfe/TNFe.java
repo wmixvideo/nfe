@@ -8,6 +8,7 @@
 
 package br.inf.portalfiscal.nfe;
 
+import com.fincatto.dfe.utils.AdaptorCDATA;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.JAXBElement;
@@ -30749,6 +30750,7 @@ public class TNFe {
     public static class InfNFeSupl {
 
         @XmlElement(required = true)
+        @XmlJavaTypeAdapter(value = AdaptorCDATA.class)
         protected String qrCode;
 
         /**
