@@ -38,11 +38,19 @@ class WSDistribuicaoDocumentoFiscal {
         this.config = config;
     }
 
-    RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final DFUnidadeFederativa unidadeFederativa) throws Exception {
-        return efetuaConsultaDocumentoFiscal(gerarDadosConsulta(cnpj, chave, nsu, unidadeFederativa), unidadeFederativa);
+    RetDistDFeInt pedidoDistribuicao(final String cnpj, final String ultNSU, final DFUnidadeFederativa unidadeFederativa) throws Exception {
+        return efetuaConsultaDocumentoFiscal(gerarDadosConsulta(cnpj, "", "", ultNSU, unidadeFederativa), unidadeFederativa);
     }
 
-    private DistDFeInt gerarDadosConsulta(final String cnpj, final String chave, final String nsu, final DFUnidadeFederativa unidadeFederativa) {
+    RetDistDFeInt pedidoDistribuicaoNSU(final String cnpj, final String nsu, final DFUnidadeFederativa unidadeFederativa) throws Exception {
+        return efetuaConsultaDocumentoFiscal(gerarDadosConsulta(cnpj, "", nsu, "", unidadeFederativa), unidadeFederativa);
+    }
+
+    RetDistDFeInt pedidoDistribuicaoChave(final String cnpj, final String chave, final DFUnidadeFederativa unidadeFederativa) throws Exception {
+        return efetuaConsultaDocumentoFiscal(gerarDadosConsulta(cnpj, chave, "", "", unidadeFederativa), unidadeFederativa);
+    }
+
+    private DistDFeInt gerarDadosConsulta(final String cnpj, final String chave, final String nsu, final String ultNSU, final DFUnidadeFederativa unidadeFederativa) {
         final DistDFeInt distDFeInt = new DistDFeInt();
         /**
          * Segundo a NT2014.002_v1.02_WsNFeDistribuicaoDFe a partir de 09/01/2017 este campo será opcional
@@ -60,6 +68,11 @@ class WSDistribuicaoDocumentoFiscal {
             DistDFeInt.ConsChNFe consChave = new DistDFeInt.ConsChNFe();
             consChave.setChNFe(chave);
             distDFeInt.setConsChNFe(consChave);
+        }
+        if (!ultNSU.isEmpty()) {
+            DistDFeInt.DistNSU distNSU = new DistDFeInt.DistNSU();
+            distNSU.setUltNSU(ultNSU);
+            distDFeInt.setDistNSU(distNSU);
         }
         return distDFeInt;
     }

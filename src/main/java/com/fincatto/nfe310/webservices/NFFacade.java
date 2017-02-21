@@ -58,7 +58,7 @@ public class NFFacade {
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
         this.wsDistribuicaoDocumentoFiscal = new WSDistribuicaoDocumentoFiscal(config);
-        
+
     }
 
     /**
@@ -285,6 +285,8 @@ public class NFFacade {
     }
 
     /**
+     * a) distNSU – Distribuição de Conjunto de DF-e a Partir do NSU Informado
+     *
      * Disponibiliza para os atores da NF-e informações e documentos fiscais eletrônicos de seu interesse.
      * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no
      * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário
@@ -293,14 +295,54 @@ public class NFFacade {
      * Referência: NT2014.002_v1.02_WsNFeDistribuicaoDFe
      *
      * @param cnpj
-     * @param chave
+     * @param ultNSU último número sequencial único
+     * @param unidadeFederativaAutorizador
+     * @return
+     * @throws Exception
+     */
+    public RetDistDFeInt pedidoDistribuicao(final String cnpj, final String ultNSU, final DFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
+        return this.wsDistribuicaoDocumentoFiscal.pedidoDistribuicao(cnpj, ultNSU, unidadeFederativaAutorizador);
+    }
+
+    /**
+     * b) consNSU – Consulta DF-e Vinculado ao NSU Informado
+     *
+     * Disponibiliza para os atores da NF-e informações e documentos fiscais eletrônicos de seu interesse.
+     * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no
+     * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário
+     * (tag:dest, id:E01), no grupo do Transportador (tag:transporta, id:X03) e no grupo de pessoas físicas
+     * autorizadas a acessar o XML (tag:autXML, id:GA01)
+     * Referência: NT2014.002_v1.02_WsNFeDistribuicaoDFe
+     *
+     * @param cnpj
      * @param nsu
      * @param unidadeFederativaAutorizador
      * @return
      * @throws Exception
      */
-    public RetDistDFeInt consultaDocumentoFiscal(final String cnpj, final String chave, final String nsu, final DFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
-        return this.wsDistribuicaoDocumentoFiscal.consultaDocumentoFiscal(cnpj, chave, nsu, unidadeFederativaAutorizador);
+    public RetDistDFeInt pedidoDistribuicaoNSU(final String cnpj, final String nsu, final DFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
+        return this.wsDistribuicaoDocumentoFiscal.pedidoDistribuicaoNSU(cnpj, nsu, unidadeFederativaAutorizador);
+    }
+
+    /**
+     * c) consChNFe – Consulta de NF-e por Chave de Acesso Informada
+     *
+     * Disponibiliza para os atores da NF-e informações e documentos fiscais eletrônicos de seu interesse.
+     * A distribuição é realizada para emitentes, destinatários, transportadores e terceiros informados no
+     * conteúdo da NF-e respectivamente no grupo do Emitente (tag:emit, id:C01), no grupo do Destinatário
+     * (tag:dest, id:E01), no grupo do Transportador (tag:transporta, id:X03) e no grupo de pessoas físicas
+     * autorizadas a acessar o XML (tag:autXML, id:GA01)
+     * Referência: NT2014.002_v1.02_WsNFeDistribuicaoDFe
+     *
+     *
+     * @param cnpj
+     * @param chave
+     * @param unidadeFederativaAutorizador
+     * @return
+     * @throws Exception
+     */
+    public RetDistDFeInt pedidoDistribuicaoChave(final String cnpj, final String chave, final DFUnidadeFederativa unidadeFederativaAutorizador) throws Exception {
+        return this.wsDistribuicaoDocumentoFiscal.pedidoDistribuicaoChave(cnpj, chave, unidadeFederativaAutorizador);
     }
 
 }
