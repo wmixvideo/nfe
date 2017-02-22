@@ -487,8 +487,8 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setNcm("99999999");
         produtoMedicamento.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produtoMedicamento.setNumeroPedidoItemCliente(999999);
-        produtoMedicamento.setQuantidadeComercial(new BigDecimal("9999999999.9999"));
-        produtoMedicamento.setQuantidadeTributavel(new BigDecimal("9999999999.9999"));
+        produtoMedicamento.setQuantidadeComercial(new BigDecimal("22.64"));
+        produtoMedicamento.setQuantidadeTributavel(new BigDecimal("22.64"));
         produtoMedicamento.setUnidadeComercial("Bta64y");
         produtoMedicamento.setUnidadeTributavel("7wqG4h");
         produtoMedicamento.setValorDesconto(new BigDecimal("999999999999.99"));
@@ -825,8 +825,10 @@ public class FabricaDeObjetosFake {
         produto.setNcm("99999999");
         produto.setNumeroPedidoCliente("NNxQ9nrQ3HCe5Mc");
         produto.setNumeroPedidoItemCliente(999999);
-        produto.setQuantidadeComercial(new BigDecimal("9999999999.9999"));
-        produto.setQuantidadeTributavel(new BigDecimal("9999999999.9999"));
+//        produto.setQuantidadeComercial(new BigDecimal("22.64"));
+//        produto.setQuantidadeTributavel(new BigDecimal("22.64"));
+        produto.setQuantidadeComercial(new BigDecimal("22.64"));
+        produto.setQuantidadeTributavel(new BigDecimal("22.64"));
         produto.setUnidadeComercial("Bta64y");
         produto.setUnidadeTributavel("7wqG4h");
         produto.setValorDesconto(new BigDecimal("999999999999.99"));

@@ -15,10 +15,6 @@ public abstract class BigDecimalParser {
         return BigDecimalParser.parse(valor, "0.000", 12, 3, info);
     }
 
-    public static String tamanho11ComAte4CasasDecimais(final BigDecimal valor, final String info) {
-        return BigDecimalParser.parse(valor, "0.####", 12, 4, info);
-    }
-
     public static String tamanho15Com2CasasDecimais(final BigDecimal valor, final String info) {
         return BigDecimalParser.parse(valor, "0.00", 16, 2, info);
     }
@@ -37,6 +33,10 @@ public abstract class BigDecimalParser {
 
     public static String tamanho15comAte4CasasDecimais(final BigDecimal valor, final String info) {
         return BigDecimalParser.parse(valor, "0.####", 16, 4, info);
+    }
+
+    public static String tamanho11ComAte4CasasDecimais(final BigDecimal valor, final String info) {
+        return BigDecimalParser.parse(valor, "0.####", 10, 4, info);
     }
 
     public static String tamanho5Com2CasasDecimais(final BigDecimal valor, final String info) {
