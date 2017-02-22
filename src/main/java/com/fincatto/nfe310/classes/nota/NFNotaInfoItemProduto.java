@@ -148,7 +148,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setQuantidadeComercial(final BigDecimal quantidadeComercial) {
-        this.quantidadeComercial = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
+        this.quantidadeComercial = BigDecimalParser.tamanho11ComAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
     }
 
     public void setValorUnitario(final BigDecimal valorUnitario) {
