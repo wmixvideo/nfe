@@ -59,6 +59,9 @@ Gerado em: 2017.01.19 às 09:08:27 PM BRT
     <bindings scd="~tns:TEvento">
       <class ref="br.inf.portalfiscal.nfe.TEvento"/>
     </bindings>
+    <bindings scd="~tns:TEnvEvento">
+      <class ref="br.inf.portalfiscal.nfe.TEnvEvento"/>
+    </bindings>
     <bindings scd="~tns:TRetCancNFe">
       <class ref="br.inf.portalfiscal.nfe.TRetCancNFe"/>
     </bindings>
@@ -121,6 +124,9 @@ Gerado em: 2017.01.19 às 09:08:27 PM BRT
     </bindings>
     <bindings scd="~tns:TProcEvento">
       <class ref="br.inf.portalfiscal.nfe.TProcEvento"/>
+    </bindings>
+    <bindings scd="~tns:TRetEnvEvento">
+      <class ref="br.inf.portalfiscal.nfe.TRetEnvEvento"/>
     </bindings>
     <bindings scd="~tns:TUf">
       <typesafeEnumClass ref="br.inf.portalfiscal.nfe.TUf"/>
