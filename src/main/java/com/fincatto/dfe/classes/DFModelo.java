@@ -4,7 +4,8 @@ public enum DFModelo {
 
     NFE("55", "NF-e"),
     NFCE("65", "NFC-e"),
-    CTE("57", "CT-e");
+    CTE("57", "CT-e"),
+    MDFE("58", "MDF-e");
 
     private final String codigo;
     private final String descricao;
