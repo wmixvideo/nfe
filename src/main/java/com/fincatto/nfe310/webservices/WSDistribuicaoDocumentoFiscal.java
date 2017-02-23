@@ -31,7 +31,7 @@ import br.inf.portalfiscal.nfe.wsdl.nfedistribuicaodfe.an.NfeDistDFeInteresseRes
 
 class WSDistribuicaoDocumentoFiscal {
 
-    private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
+    private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.01");
     private final NFeConfig config;
 
     WSDistribuicaoDocumentoFiscal(final NFeConfig config) {
