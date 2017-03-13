@@ -50,6 +50,16 @@ public abstract class NFeConfig {
     public abstract String getCertificadoAlias() throws KeyStoreException;
 
     /**
+     * Retorna o nome do alias do certificado dentro do {@link KeyStore} retornado por {@link #getCertificadoKeyStore()}.
+     * Caso seja retornado {@code null}, será utilizado o primeiro alias do {@link KeyStore}.
+     *
+     * @return o nome do alias do certificado ou {@code null}
+     */
+    public String getCertificadoAlias() {
+        return null;
+    }
+
+    /**
      * Senha do certificado pessoal do emissor, contido dentro do KeyStore do certificado.
      *
      * @return Senha do certificado.
