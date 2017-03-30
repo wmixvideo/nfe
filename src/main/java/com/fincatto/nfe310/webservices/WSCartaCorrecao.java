@@ -96,7 +96,7 @@ class WSCartaCorrecao {
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(DateTime.now());
-        infoEvento.setId(String.format("ID%s%s0%s", WSCartaCorrecao.EVENTO_CODIGO, chaveAcesso, numeroSequencialEvento));
+        infoEvento.setId(String.format("ID%s%s%02d", WSCartaCorrecao.EVENTO_CODIGO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setTipoEvento(WSCartaCorrecao.EVENTO_CODIGO);
