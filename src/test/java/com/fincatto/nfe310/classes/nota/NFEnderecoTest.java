@@ -157,8 +157,8 @@ public class NFEnderecoTest {
         endereco.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCepNulo() {
+    @Test
+    public void devePermitirCepNulo() {
         final NFEndereco endereco = new NFEndereco();
         endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
         endereco.setCodigoMunicipio("9999999");
@@ -169,7 +169,7 @@ public class NFEnderecoTest {
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
         endereco.setUf(NFUnidadeFederativa.SC);
-        endereco.toString();
+        Assert.assertNotNull(endereco.toString());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -199,7 +199,7 @@ public class NFEnderecoTest {
         endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
         endereco.setTelefone("12345678901324");
         endereco.setUf(NFUnidadeFederativa.SC);
-        endereco.toString();
+        Assert.assertNotNull(endereco.toString());
     }
 
     @Test
