@@ -1,8 +1,8 @@
 package com.fincatto.nfe310.classes;
 
-import java.util.Arrays;
-
 import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
+
+import java.util.Arrays;
 
 /**
  * <h1>URLs dos serviços</h1><br>
