@@ -8,6 +8,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
 @Root(name = "inutNFe")
@@ -18,10 +19,10 @@ public class NFEnviaEventoInutilizacao extends NFBase {
     private String versao;
 
     @Element(name = "infInut", required = true)
-    private NFEventoCancelamentoDados dados;
+    private NFEventoInutilizacaoDados dados;
 
     @Element(name = "Signature", required = false)
-    private String assinatura;
+    private NFSignature assinatura;
 
     public String getVersao() {
         return this.versao;
@@ -31,19 +32,19 @@ public class NFEnviaEventoInutilizacao extends NFBase {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
-    public NFEventoCancelamentoDados getDados() {
+    public NFEventoInutilizacaoDados getDados() {
         return this.dados;
     }
 
-    public void setDados(final NFEventoCancelamentoDados dados) {
+    public void setDados(final NFEventoInutilizacaoDados dados) {
         this.dados = dados;
     }
 
-    public String getAssinatura() {
+    public NFSignature getAssinatura() {
         return this.assinatura;
     }
 
-    public void setAssinatura(final String assinatura) {
+    public void setAssinatura(final NFSignature assinatura) {
         this.assinatura = assinatura;
     }
 }

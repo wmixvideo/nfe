@@ -41,7 +41,7 @@ public class NFStatusServicoConsultaRetorno extends NFBase {
     @Element(name = "xObs", required = false)
     private String observacao;
 
-    @Element(name = "tMed", required = true)
+    @Element(name = "tMed", required = false)
     private String tempoMedio;
 
     public NFStatusServicoConsultaRetorno() {

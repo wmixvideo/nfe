@@ -13,7 +13,7 @@ import com.fincatto.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
-import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoCancelamentoDados;
+import com.fincatto.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.persister.NFPersister;
 import com.fincatto.nfe310.webservices.gerado.NfeInutilizacao2Stub;
@@ -68,7 +68,7 @@ class WSInutilizacao {
 
     private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final NFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
-        final NFEventoCancelamentoDados dados = new NFEventoCancelamentoDados();
+        final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
         dados.setAmbiente(this.config.getAmbiente());
         dados.setAno(anoInutilizacaoNumeracao);
         dados.setCnpj(cnpjEmitente);

@@ -24,6 +24,10 @@ public enum NFNotaSituacaoOperacionalSimplesNacional {
     public String getCodigo() {
         return this.codigo;
     }
+    
+    public String getDescricao() {
+        return this.descricao;
+    }
 
     public static NFNotaSituacaoOperacionalSimplesNacional valueOfCodigo(final String codigo) {
         for (final NFNotaSituacaoOperacionalSimplesNacional situacaoOperacional : NFNotaSituacaoOperacionalSimplesNacional.values()) {

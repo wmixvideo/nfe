@@ -26,7 +26,7 @@ public class NFEnviaEventoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIdLoteNulo() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCartaCorrecao()));
         enviaEvento.setVersao(new BigDecimal("1.00"));
         enviaEvento.toString();
     }
@@ -34,7 +34,7 @@ public class NFEnviaEventoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCartaCorrecao()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.toString();
     }
@@ -42,7 +42,7 @@ public class NFEnviaEventoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEvento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCartaCorrecao()));
         enviaEvento.setIdLote("999999999999999");
         enviaEvento.setVersao(new BigDecimal("1.00"));
 
