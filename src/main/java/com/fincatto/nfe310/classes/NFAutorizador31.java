@@ -75,7 +75,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/RecepcaoEvento" : "https://nfe.sefaz.am.gov.br/services2/services/RecepcaoEvento";
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services/services/RecepcaoEvento" : "https://nfce.sefaz.am.gov.br/nfce-services/services/RecepcaoEvento";
         }
 
         @Override
@@ -660,32 +660,32 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/NfeAutorizacao?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/NfeAutorizacao?wsdl";
         }
 
         @Override
         public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/NfeRetAutorizacao?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/NfeRetAutorizacao?wsdl";
         }
 
         @Override
         public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/NfeConsulta2?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/NfeConsulta2?wsdl";
         }
 
         @Override
         public String getNfceStatusServico(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/NfeStatusServico2?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/NfeStatusServico2?wsdl";
         }
 
         @Override
         public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/RecepcaoEvento?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/RecepcaoEvento?wsdl";
         }
 
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
-            return null;
+            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.ms.gov.br/homologacao/services2/NfeInutilizacao2?wsdl" : "https://nfce.fazenda.ms.gov.br/producao/services2/NfeInutilizacao2?wsdl";
         }
 
         @Override

@@ -16,7 +16,7 @@ public enum NFUnidadeFederativa {
     ES("ES", "Esp\u00EDrito Santo", "32"),
     MA("MA", "Maranh\u00E3o", "21"),
     MT("MT", "Mato Grosso", "51", "http://homologacao.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
-    MS("MS", "Mato Grosso do Sul", "50"),
+    MS("MS", "Mato Grosso do Sul", "50", "http://www.dfe.ms.gov.br/nfce/qrcode", "http://www.dfe.ms.gov.br/nfce/qrcode"),
     MG("MG", "Minas Gerais", "31"),
     PA("PA", "Par\u00E1", "15", "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/nfceForm.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/nfceForm.seam"),
     PB("PB", "Paraiba", "25", "www.receita.pb.gov.br/nfcehom", "www.receita.pb.gov.br/nfce"),
@@ -67,20 +67,21 @@ public enum NFUnidadeFederativa {
     }
 
     public String getQrCodeHomologacao() {
-		return qrCodeHomologacao;
-	}
+        return qrCodeHomologacao;
+    }
 
-	public String getQrCodeProducao() {
-		return qrCodeProducao;
-	}
+    public String getQrCodeProducao() {
+        return qrCodeProducao;
+    }
 
-	@Override
+    @Override
     public String toString() {
         return this.getDescricao();
     }
 
     /**
      * Identifica a UF pela sigla ou pelo codigo IBGE.
+     *
      * @param codigo Sigla ou codigo IBGE da UF.
      * @return Objeto da UF.
      */
