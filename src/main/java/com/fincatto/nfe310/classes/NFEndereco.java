@@ -6,28 +6,28 @@ import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFEndereco extends NFBase {
 
-    @Element(name = "xLgr", required = true)
+    @Element(name = "xLgr")
     private String logradouro;
 
-    @Element(name = "nro", required = true)
+    @Element(name = "nro")
     private String numero;
 
     @Element(name = "xCpl", required = false)
     private String complemento;
 
-    @Element(name = "xBairro", required = true)
+    @Element(name = "xBairro")
     private String bairro;
 
-    @Element(name = "cMun", required = true)
+    @Element(name = "cMun")
     private String codigoMunicipio;
 
-    @Element(name = "xMun", required = true)
+    @Element(name = "xMun")
     private String descricaoMunicipio;
 
-    @Element(name = "UF", required = true)
+    @Element(name = "UF")
     private String uf;
 
-    @Element(name = "CEP", required = true)
+    @Element(name = "CEP", required = false)
     private String cep;
 
     @Element(name = "cPais", required = false)
@@ -40,32 +40,32 @@ public class NFEndereco extends NFBase {
     private String telefone;
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro);
+        StringValidador.tamanho60(logradouro, "Logradouro");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero);
+        StringValidador.tamanho60(numero, "Numero do Endereco");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento);
+        StringValidador.tamanho60(complemento, "Complemento");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro);
+        StringValidador.tamanho2ate60(bairro, "Bairro");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio);
+        StringValidador.exatamente7(codigoMunicipio, "Codigo do Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setDescricaoMunicipio(final String descricaoMunicipio) {
-        StringValidador.tamanho60(descricaoMunicipio);
+        StringValidador.tamanho60(descricaoMunicipio, "Descricao do Municipio");
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
@@ -74,17 +74,17 @@ public class NFEndereco extends NFBase {
     }
 
     public void setCep(final String cep) {
-        StringValidador.exatamente8(cep);
+        StringValidador.exatamente8(cep, "CEP");
         this.cep = cep;
     }
 
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho2a4(codigoPais);
+        StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
         this.codigoPais = codigoPais;
     }
 
     public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho60(descricaoPais);
+        StringValidador.tamanho60(descricaoPais, "Descricao do pais");
         this.descricaoPais = descricaoPais;
     }
 

@@ -1,38 +1,94 @@
-Nota Fiscal Eletrônica 3.10
+Nota Fiscal Eletrônica
 ===
-[![Build Status](https://api.travis-ci.org/fincatto/nfe.png)](http://travis-ci.org/#!/fincatto/nfe)
-
-Comunicador de nota fiscal (versão 3.1) da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx)
+Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
+[![Build Status](https://travis-ci.org/wmixvideo/nfe.svg?branch=master)](http://travis-ci.org/#!/wmixvideo/nfe)
+[![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
+[![Maven Central](https://img.shields.io/badge/maven%20central-2.0.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|2.0.0|)
+[![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
-O pacote de classes nfe200 trata em relação a versão 2.00 da NFe, ele deve ser utilizado apenas para tradução de notas antigas,
-A previsão do governo em remover a NFe 2.00 é 31/03/2015, Faça a integração com o teu sistema com as classes contidas no pacote nfe310
-(NFe 3.10)
+Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 
-## Serviços disponíveis
-| Serviço           | Status              |
-| ----------------- | :-----------------: |
-| envio lote        | Estável             |
-| consulta lote     | Estável             |
-| consulta status   | Estável             |
-| consulta nota     | Estável             |
-| corrige nota      | Estável             |
-| cancela nota      | Estável             |
-| inutiliza nota    | Estável             |
-| consulta cadastro | Precisa de + testes |
+Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
+
+## Antes de usar
+Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
+
+Caso não possua conhecimento técnico para criar notas fiscais, um profissional da área (como um contador) pode lhe auxiliar.
+
+## Instalação
+
+```xml
+<dependency>
+  <groupId>com.github.wmixvideo</groupId>
+  <artifactId>nfe</artifactId>
+  <version>2.0.2</version>
+</dependency>
+```
 
 ## Como usar
+Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
+digitais, e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a
+comunicação com os webservices da Sefaz.
 
-Basicamente você precisará de uma implementação de **NFeConfig**, com informações de tipo de emissão, certificados digitais, etc...
-e uma instância da **WsFacade**, essa classe tem a responsabilidade de fazer a ponte entre o seu sistema e a comunicação com os webservices da Sefaz.
+```java
+// Exemplo de configuracao para acesso aos serviços da Sefaz.
+public class NFeConfigTeste extends NFeConfig {
+
+    private KeyStore keyStoreCertificado = null;
+    private KeyStore keyStoreCadeia = null;
+
+    @Override
+    public NFUnidadeFederativa getCUF() {
+        return NFUnidadeFederativa.SC;
+    }
+
+    @Override
+    public String getCertificadoSenha() {
+        return "senha_certificado";
+    }
+
+    @Override
+    public String getCadeiaCertificadosSenha() {
+        return "senha_cadeia";
+    }
+
+    @Override
+    public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        if (this.keyStoreCertificado == null) {
+            this.keyStoreCertificado = KeyStore.getInstance("PKCS12");
+            try (InputStream certificadoStream = new FileInputStream("/tmp/certificado.pfx")) {
+                this.keyStoreCertificado.load(certificadoStream, this.getCertificadoSenha().toCharArray());
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com a cadeia de certificados", e);
+            }
+        }
+        return this.keyStoreCertificado;
+    }
+
+    @Override
+    public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        if (this.keyStoreCadeia == null) {
+            this.keyStoreCadeia = KeyStore.getInstance("JKS");
+            try (InputStream cadeia = new FileInputStream("/tmp/cadeia.jks")) {
+                this.keyStoreCadeia.load(cadeia, this.getCadeiaCertificadosSenha().toCharArray());
+            } catch (CertificateException | NoSuchAlgorithmException | IOException e) {
+                this.keyStoreCadeia = null;
+                throw new KeyStoreException("Nao foi possibel montar o KeyStore com o certificado", e);
+            }
+        }
+        return this.keyStoreCadeia;
+    }
+}
+```
 
 ### Alguns exemplos
-
-Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**
+Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**.
 
 #### Status dos webservices
 ```java
-NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(NFUnidadeFederativa.SC);
+NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(NFUnidadeFederativa.SC, NFModelo.NFE);
 System.out.println(retorno.getStatus());
 System.out.println(retorno.getMotivo());
 ```
@@ -44,38 +100,132 @@ Servico em operacao
 ```
 
 #### Envio do lote para o sefaz
-
-Popule os dados do lote a ser enviado para o Sefaz
+Popule os dados do lote a ser enviado para o Sefaz:
 
 ```java
 NFLoteEnvio lote = new NFLoteEnvio();
 // setando os dados do lote
 ```
 
-Faça o envio do lote atraves do facade
+Faça o envio do lote através do facade:
 ```java
 final NFLoteEnvioRetorno retorno = new WSFacade(config).enviaLote(lote);
 ```
 
 #### Corrige nota
-
-Faça a correcao da nota atraves do facade
+Faça a correção da nota através do facade:
 ```java
-final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao);
+final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAcessoDaNota, textoCorrecao, sequencialEventoDaNota);
 ```
 
 #### Cancela nota
-
-Faça o cancelamento da nota atraves do facade
+Faça o cancelamento da nota através do facade:
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
-### Funcionalidades
+### Convertendo objetos Java em XML
+Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
 
-* Possui validação de campos a nível de código
-* Valida o XML de envio de lote através dos xsd's disponiblizados pela Sefaz
+```java
+NFLoteEnvio lote = new NFLoteEnvio();
+// setando os dados do lote
+...
+
+// Obtendo o xml do objeto
+String xmlGerado = lote.toString();
+```
+
+### Convertendo nota XML em Java
+Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
+```java
+final NFNota nota = new NotaParser().notaParaObjeto(xmlNota);
+```
+Ou para uma nota já processada:
+```java
+final NFNotaProcessada notaProcessada = new NotaParser().notaProcessadaParaObjeto(xmlNota);
+```
+
+
+### Armazenando notas autorizadas
+Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
+```java
+final List<NFNota> notas = lote.getNotas();
+// Armazena os xmls das notas
+...
+```
+Ao fazer a consulta do lote, crie um objeto do tipo **NFNotaProcessada** e adicione o protocolo da nota correspondente, além da nota assinada:
+```java
+// Carregue o xml da nota do local que foi armazenado
+final String xmlNotaRecuperada;
+// Assine a nota
+final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
+// Converta para objeto java
+final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNotaRecuperadaAssinada);
+// Crie o objeto NFNotaProcessada
+final NFNotaProcessada notaProcessada = new NFNotaProcessada();
+notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
+notaProcessada.setProtocolo(protocolo);
+notaProcessada.setNota(notaRecuperadaAssinada);
+// Obtenha o xml da nota com protocolo
+String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
+```
+
+### Funcionalidades
+* Possui validação de campos a nível de código;
+* Valida o XML de envio de lote através dos xsd's disponibilizados pela Sefaz;
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
+
+## Serviços disponíveis
+| Serviço                       | Status              |
+| ----------------------------- | :-----------------: |
+| Envio lote                    | Estável             |
+| Consulta lote                 | Estável             |
+| Consulta status               | Estável             |
+| Consulta nota                 | Estável             |
+| Download nota                 | Estável             |
+| Corrige nota                  | Estável             |
+| Cancela nota                  | Estável             |
+| Inutiliza nota                | Estável             |
+| Consulta cadastro             | Estável             |
+| Manifestação de destinatário  | Estável             |
+
+## Requisitos
+
+JDK >= 1.7<br>
+Maven >= 1.x
+
+## Criação do Java KeyStore (JKS)
+Para usar os serviços da nota fiscal são necessários dois certificados:
+1) O certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco (fornecido por uma entidade certificadora);
+2) A cadeia de certificados da SEFAZ que queremos acesso;
+
+Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente).
+Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
+Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baixa os certificados das SEFAZ e gera o arquivo automaticamente:
+```java
+public static void main(String args[]){
+    try {
+        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.HOMOLOGACAO, "senha"));
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+```
+
+##Sugestão
+Para a cadeia de certificados da SEFAZ necessária para o acesso, utilize a cadeia da unidade certificadora que emitiu o seu certificado. Após fazer o download da cadeia de certificado você obterá um arquivo no formato .cer como o exemplo abaixo:
+* certificado.cer
+
+Com este arquivo é possível gerar a sua chave jks através do seguinte comando:
+<b>
+keytool -import -alias certificado -keystore certificado.jks -file /path_arquivo/certificado.cer
+</b>
 
 ## Licença
 Apache 2.0
+
+## Dúvidas?
+O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
+Portanto, em caso de dúvidas, use o nosso canal do [Disqus](https://disqus.com/home/channel/nfe/).

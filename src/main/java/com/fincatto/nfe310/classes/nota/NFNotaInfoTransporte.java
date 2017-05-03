@@ -48,38 +48,26 @@ public class NFNotaInfoTransporte extends NFBase {
     }
 
     public void setVeiculo(final NFNotaInfoVeiculo veiculo) {
-        if (this.reboques != null || this.balsa != null || this.vagao != null) {
-            throw new IllegalStateException("Veiculo, balsa, reboque e vagao sao mutuamente exclusivos");
-        }
         this.veiculo = veiculo;
     }
 
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
-        if (this.veiculo != null || this.balsa != null || this.vagao != null) {
-            throw new IllegalStateException("Veiculo, balsa, reboque e vagao sao mutuamente exclusivos");
-        }
-        ListValidador.tamanho5(reboques);
+        ListValidador.tamanho5(reboques, "Reboques");
         this.reboques = reboques;
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
-        ListValidador.tamanho5000(volumes);
+        ListValidador.tamanho5000(volumes, "Volumes");
         this.volumes = volumes;
     }
 
     public void setVagao(final String vagao) {
-        if (this.balsa != null || this.reboques != null || this.veiculo != null) {
-            throw new IllegalStateException("Veiculo, balsa, reboque e vagao e reboque sao mutuamente exclusivo");
-        }
-        StringValidador.tamanho20(vagao);
+        StringValidador.tamanho20(vagao, "Vagao");
         this.vagao = vagao;
     }
 
     public void setBalsa(final String balsa) {
-        if (this.vagao != null || this.reboques != null || this.veiculo != null) {
-            throw new IllegalStateException("Veiculo, balsa, reboque e vagao e reboque sao mutuamente exclusivo");
-        }
-        StringValidador.tamanho20(balsa);
+        StringValidador.tamanho20(balsa, "Balsa");
         this.balsa = balsa;
     }
 

@@ -9,17 +9,17 @@ import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemProdutoCombustivelCIDETest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorQuantidadeBCCIDEComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoCombustivelCIDE().setQuantidadeBCCIDE(new BigDecimal("100000000000"));
+        new NFNotaInfoItemProdutoCombustivelCIDE().setQuantidadeBCCIDE(new BigDecimal("1000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoCombustivelCIDE().setValorAliquota(new BigDecimal("10000000000"));
+        new NFNotaInfoItemProdutoCombustivelCIDE().setValorAliquota(new BigDecimal("100000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorComTamanhoInvalido() {
         new NFNotaInfoItemProdutoCombustivelCIDE().setValor(new BigDecimal("10000000000000"));
     }
@@ -46,6 +46,27 @@ public class NFNotaInfoItemProdutoCombustivelCIDETest {
         cide.setQuantidadeBCCIDE(new BigDecimal("99999999999.9999"));
         cide.setValor(new BigDecimal("999999999999.99"));
         cide.toString();
+    }
+
+    @Test
+    public void deveObterValorAliquotaComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setValorAliquota(new BigDecimal("9999999999.9999"));
+        Assert.assertEquals("9999999999.9999", cide.getValorAliquota());
+    }
+
+    @Test
+    public void deveObterValorComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setValor(new BigDecimal("999999999999.99"));
+        Assert.assertEquals("999999999999.99", cide.getValor());
+    }
+
+    @Test
+    public void deveObterQuantidadeBCCIDEComoFoiSetado() {
+        final NFNotaInfoItemProdutoCombustivelCIDE cide = new NFNotaInfoItemProdutoCombustivelCIDE();
+        cide.setQuantidadeBCCIDE(new BigDecimal("99999999999.9999"));
+        Assert.assertEquals("99999999999.9999", cide.getQuantidadeBCCIDE());
     }
 
     @Test

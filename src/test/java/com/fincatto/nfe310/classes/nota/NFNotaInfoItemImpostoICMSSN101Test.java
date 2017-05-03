@@ -10,12 +10,12 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMSSN101Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaAplicavelCalculoCreditoSNComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSSN101().setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMSSN101().setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCreditoICMSSNComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMSSN101().setValorCreditoICMSSN(new BigDecimal("10000000000000"));
     }
@@ -32,7 +32,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitiOrigemNulo() {
         final NFNotaInfoItemImpostoICMSSN101 icms101 = new NFNotaInfoItemImpostoICMSSN101();
-        icms101.setCodigoSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
+        icms101.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
         icms101.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms101.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms101.toString();
@@ -41,7 +41,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaAplicavelCalculoCreditoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN101 icms101 = new NFNotaInfoItemImpostoICMSSN101();
-        icms101.setCodigoSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
+        icms101.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
         icms101.setOrigem(NFOrigem.NACIONAL);
         icms101.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms101.toString();
@@ -50,7 +50,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorCreditoICMSSNNulo() {
         final NFNotaInfoItemImpostoICMSSN101 icms101 = new NFNotaInfoItemImpostoICMSSN101();
-        icms101.setCodigoSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
+        icms101.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
         icms101.setOrigem(NFOrigem.NACIONAL);
         icms101.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms101.toString();
@@ -59,7 +59,7 @@ public class NFNotaInfoItemImpostoICMSSN101Test {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMSSN101 icms101 = new NFNotaInfoItemImpostoICMSSN101();
-        icms101.setCodigoSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
+        icms101.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.ISENCAO_ICMS_FAIXA_RECEITA_BRUTA);
         icms101.setOrigem(NFOrigem.NACIONAL);
         icms101.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms101.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));

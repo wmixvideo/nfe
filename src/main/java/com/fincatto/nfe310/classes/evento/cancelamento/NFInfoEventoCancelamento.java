@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 
 import java.math.BigDecimal;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -34,7 +34,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     private String chave;
 
     @Element(name = "dhEvento", required = true)
-    private LocalDateTime dataHoraEvento;
+    private DateTime dataHoraEvento;
 
     @Element(name = "tpEvento", required = true)
     private String codigoEvento;
@@ -53,7 +53,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento);
+        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getId() {
@@ -61,7 +61,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setId(final String id) {
-        StringValidador.exatamente54(id);
+        StringValidador.exatamente54(id, "Info Evento Cancelamento ID");
         this.id = id;
     }
 
@@ -102,15 +102,15 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave);
+        StringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
         this.chave = chave;
     }
 
-    public LocalDateTime getDataHoraEvento() {
+    public DateTime getDataHoraEvento() {
         return this.dataHoraEvento;
     }
 
-    public void setDataHoraEvento(final LocalDateTime dataHoraEvento) {
+    public void setDataHoraEvento(final DateTime dataHoraEvento) {
         this.dataHoraEvento = dataHoraEvento;
     }
 
@@ -118,9 +118,9 @@ public class NFInfoEventoCancelamento extends NFBase {
         return this.codigoEvento;
     }
 
-    public void setTipoEvento(final String tipoEvento) {
-        StringValidador.exatamente6N(tipoEvento);
-        this.codigoEvento = tipoEvento;
+    public void setCodigoEvento(final String codigoEvento) {
+        StringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
+        this.codigoEvento = codigoEvento;
     }
 
     public int getNumeroSequencialEvento() {
@@ -128,7 +128,7 @@ public class NFInfoEventoCancelamento extends NFBase {
     }
 
     public void setNumeroSequencialEvento(final int numeroSequencialEvento) {
-        IntegerValidador.tamanho1a2(numeroSequencialEvento);
+        IntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
@@ -146,9 +146,5 @@ public class NFInfoEventoCancelamento extends NFBase {
 
     public NFUnidadeFederativa getOrgao() {
         return this.orgao;
-    }
-
-    public void setCodigoEvento(final String codigoEvento) {
-        this.codigoEvento = codigoEvento;
     }
 }

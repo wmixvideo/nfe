@@ -1,38 +1,35 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.nfe310.FabricaDeObjetosFake;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoISSQNTotal;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoRegimeEspecialTributacao;
+import java.math.BigDecimal;
 
 public class NFNotaInfoISSQNTotalTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalServicosSobNaoIncidenciaNaoTributadosICMSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalISSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalISS(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorPISsobreServicosInvalido() {
         new NFNotaInfoISSQNTotal().setValorPISsobreServicos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorCOFINSsobreServicosInvalido() {
         new NFNotaInfoISSQNTotal().setValorCOFINSsobreServicos(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCalculoINSSComValorInvalido() {
         new NFNotaInfoISSQNTotal().setValorTotalISS(new BigDecimal("1000000000000000"));
     }
@@ -62,7 +59,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -80,7 +77,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -98,7 +95,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -116,7 +113,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoCondicionado(new BigDecimal("999999999999.99"));
@@ -134,7 +131,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoCondicionado(new BigDecimal("999999999999.99"));
@@ -152,7 +149,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoCondicionado(new BigDecimal("999999999999.99"));
@@ -187,7 +184,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -204,7 +201,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorCOFINSsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -221,7 +218,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorCOFINSsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -238,7 +235,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));
@@ -255,7 +252,7 @@ public class NFNotaInfoISSQNTotalTest {
         issqnTotal.setValorPISsobreServicos(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalISS(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalServicosSobNaoIncidenciaNaoTributadosICMS(new BigDecimal("999999999999.99"));
-        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 01, 01));
+        issqnTotal.setDataPrestacaoServico(new LocalDate(2014, 1, 1));
         issqnTotal.setValorDeducao(new BigDecimal("999999999999.99"));
         issqnTotal.setValorOutros(new BigDecimal("999999999999.99"));
         issqnTotal.setValorTotalDescontoIncondicionado(new BigDecimal("999999999999.99"));

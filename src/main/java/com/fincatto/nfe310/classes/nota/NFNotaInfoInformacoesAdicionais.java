@@ -26,27 +26,27 @@ public class NFNotaInfoInformacoesAdicionais extends NFBase {
     private List<NFNotaInfoProcessoReferenciado> processosRefenciado;
 
     public void setInformacoesAdicionaisInteresseFisco(final String informacoesAdicionaisInteresseFisco) {
-        StringValidador.tamanho2000(informacoesAdicionaisInteresseFisco);
+        StringValidador.tamanho2000(informacoesAdicionaisInteresseFisco, "Informacoes Adicionais Interesse Fisco");
         this.informacoesAdicionaisInteresseFisco = informacoesAdicionaisInteresseFisco;
     }
 
     public void setInformacoesComplementaresInteresseContribuinte(final String informacoesComplementaresInteresseContribuinte) {
-        StringValidador.tamanho5000(informacoesComplementaresInteresseContribuinte);
+        StringValidador.tamanho5000(informacoesComplementaresInteresseContribuinte, "Informacoes Adicionais Interesse Contribuinte");
         this.informacoesComplementaresInteresseContribuinte = informacoesComplementaresInteresseContribuinte;
     }
 
     public void setObservacoesContribuinte(final List<NFNotaInfoObservacao> observacoesContribuinte) {
-        ListValidador.tamanho10(observacoesContribuinte);
+        ListValidador.tamanho10(observacoesContribuinte, "Observacoes Contribuinte");
         this.observacoesContribuinte = observacoesContribuinte;
     }
 
     public void setObservacoesFisco(final List<NFNotaInfoObservacao> observacoesFisco) {
-        ListValidador.tamanho10(observacoesFisco);
+        ListValidador.tamanho10(observacoesFisco, "Observacoes Fisco");
         this.observacoesFisco = observacoesFisco;
     }
 
     public void setProcessosRefenciado(final List<NFNotaInfoProcessoReferenciado> processosRefenciado) {
-        ListValidador.tamanho100(processosRefenciado);
+        ListValidador.tamanho100(processosRefenciado, "Processos Referenciados");
         this.processosRefenciado = processosRefenciado;
     }
 

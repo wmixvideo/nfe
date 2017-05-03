@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemImpostoISSQN;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemIndicadorExigibilidadeISS;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
 
 public class NFNotaInfoItemImpostoISSQNTest {
 
@@ -21,26 +18,26 @@ public class NFNotaInfoItemImpostoISSQNTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirCodigoMunicipioComTamanhoInvalido() {
         try {
             new NFNotaInfoItemImpostoISSQN().setCodigoMunicipio(999999);
-        } catch (final IllegalStateException e) {
+        } catch (final NumberFormatException e) {
             new NFNotaInfoItemImpostoISSQN().setCodigoMunicipio(10000000);
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirAliquotaISSQNComTamanhoNulo() {
         new NFNotaInfoItemImpostoISSQN().setValorAliquota(new BigDecimal("100000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
         new NFNotaInfoItemImpostoISSQN().setValorBaseCalculo(new BigDecimal("1000000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorComTamanhoInvalido() {
         new NFNotaInfoItemImpostoISSQN().setValor(new BigDecimal("1000000000000000"));
     }

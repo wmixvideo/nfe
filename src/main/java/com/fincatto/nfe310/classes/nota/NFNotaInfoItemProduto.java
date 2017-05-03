@@ -1,18 +1,19 @@
 package com.fincatto.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProdutoCompoeValorNota;
+import com.fincatto.nfe310.converters.StringNullConverter;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 import com.fincatto.nfe310.validadores.IntegerValidador;
 import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.convert.Convert;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProduto extends NFBase {
 
@@ -20,6 +21,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private String codigo;
 
     @Element(name = "cEAN", required = false)
+    @Convert(StringNullConverter.class)
     private String codigoDeBarras;
 
     @Element(name = "xProd", required = true)
@@ -31,8 +33,11 @@ public class NFNotaInfoItemProduto extends NFBase {
     @ElementList(entry = "NVE", inline = true, required = false)
     private List<String> nomeclaturaValorAduaneiroEstatistica;
 
+    @Element(name = "CEST", required = false)
+    private String codigoEspecificadorSituacaoTributaria;
+
     @Element(name = "EXTIPI", required = false)
-    private Integer extipi;
+    private String extipi;
 
     @Element(name = "CFOP", required = true)
     private String cfop;
@@ -50,6 +55,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
+    @Convert(StringNullConverter.class)
     private String codigoDeBarrasTributavel;
 
     @Element(name = "uTrib", required = true)
@@ -107,7 +113,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     private String numeroRECOPI;
 
     public void setCodigo(final String codigo) {
-        StringValidador.tamanho60(codigo);
+        StringValidador.tamanho60(codigo, "Codigo Produto");
         this.codigo = codigo;
     }
 
@@ -117,7 +123,7 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setDescricao(final String descricao) {
-        StringValidador.tamanho120(descricao);
+        StringValidador.tamanho120(descricao, "Descricao Produto");
         this.descricao = descricao;
     }
 
@@ -126,31 +132,31 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.ncm = ncm;
     }
 
-    public void setExtipi(final Integer extipi) {
-        IntegerValidador.tamanho2ou3(extipi);
+    public void setExtipi(final String extipi) {
+        StringValidador.tamanho2ou3N(extipi, "EX TIPI Produto");
         this.extipi = extipi;
     }
 
     public void setCfop(final String cfop) {
-        StringValidador.exatamente4N(cfop);
+        StringValidador.exatamente4N(cfop, "CFOP Produto");
         this.cfop = cfop;
     }
 
     public void setUnidadeComercial(final String unidadeComercial) {
-        StringValidador.tamanho6(unidadeComercial);
+        StringValidador.tamanho6(unidadeComercial, "Unidade Comercial Produto");
         this.unidadeComercial = unidadeComercial;
     }
 
     public void setQuantidadeComercial(final BigDecimal quantidadeComercial) {
-        this.quantidadeComercial = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeComercial);
+        this.quantidadeComercial = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
     }
 
     public void setValorUnitario(final BigDecimal valorUnitario) {
-        this.valorUnitario = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitario);
+        this.valorUnitario = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitario, "Valor Unitario Produto");
     }
 
     public void setValorTotalBruto(final BigDecimal valorTotalBruto) {
-        this.valorTotalBruto = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalBruto);
+        this.valorTotalBruto = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
     }
 
     public void setCodigoDeBarrasTributavel(final String codigoDeBarrasTributavel) {
@@ -159,32 +165,32 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setUnidadeTributavel(final String unidadeTributavel) {
-        StringValidador.tamanho6(unidadeTributavel);
+        StringValidador.tamanho6(unidadeTributavel, "Unidade Tributavel Produto");
         this.unidadeTributavel = unidadeTributavel;
     }
 
     public void setQuantidadeTributavel(final BigDecimal quantidadeTributavel) {
-        this.quantidadeTributavel = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeTributavel);
+        this.quantidadeTributavel = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeTributavel, "Qtde Tributavel Produto");
     }
 
     public void setValorUnitarioTributavel(final BigDecimal valorUnitarioTributavel) {
-        this.valorUnitarioTributavel = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel);
+        this.valorUnitarioTributavel = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel, "Valor Unitario Tributavel Produto");
     }
 
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete);
+        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Valor Frete Produto");
     }
 
     public void setValorSeguro(final BigDecimal valorSeguro) {
-        this.valorSeguro = BigDecimalParser.tamanho15Com2CasasDecimais(valorSeguro);
+        this.valorSeguro = BigDecimalParser.tamanho15Com2CasasDecimais(valorSeguro, "Valor Seguro Produto");
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto);
+        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Produto");
     }
 
     public void setValorOutrasDespesasAcessorias(final BigDecimal valorOutrasDespesasAcessorias) {
-        this.valorOutrasDespesasAcessorias = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias);
+        this.valorOutrasDespesasAcessorias = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
     }
 
     public void setCampoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
@@ -196,12 +202,12 @@ public class NFNotaInfoItemProduto extends NFBase {
     }
 
     public void setNumeroPedidoCliente(final String numeroPedidoCliente) {
-        StringValidador.tamanho15(numeroPedidoCliente);
+        StringValidador.tamanho15(numeroPedidoCliente, "Numero Pedido Cliente Produto");
         this.numeroPedidoCliente = numeroPedidoCliente;
     }
 
     public void setNumeroPedidoItemCliente(final Integer numeroPedidoItemCliente) {
-        IntegerValidador.exatamente6(numeroPedidoItemCliente);
+        IntegerValidador.tamanho6(numeroPedidoItemCliente, "Numero Pedido Item Cliente Produto");
         this.numeroPedidoItemCliente = numeroPedidoItemCliente;
     }
 
@@ -221,7 +227,7 @@ public class NFNotaInfoItemProduto extends NFBase {
         if (this.veiculo != null || this.armamentos != null || this.combustivel != null || this.numeroRECOPI != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
-        ListValidador.tamanho500(medicamentos);
+        ListValidador.tamanho500(medicamentos, "Medicamentos Produto");
         this.medicamentos = medicamentos;
     }
 
@@ -229,7 +235,7 @@ public class NFNotaInfoItemProduto extends NFBase {
         if (this.medicamentos != null || this.veiculo != null || this.combustivel != null || this.numeroRECOPI != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
-        ListValidador.tamanho500(armamentos);
+        ListValidador.tamanho500(armamentos, "Armamentos Produto");
         this.armamentos = armamentos;
     }
 
@@ -247,8 +253,13 @@ public class NFNotaInfoItemProduto extends NFBase {
         this.nomeclaturaValorAduaneiroEstatistica = nomeclaturaValorAduaneiroEstatistica;
     }
 
+    public void setCodigoEspecificadorSituacaoTributaria(final String codigoEspecificadorSituacaoTributaria) {
+        StringValidador.exatamente7N(codigoEspecificadorSituacaoTributaria, "CEST Produto");
+        this.codigoEspecificadorSituacaoTributaria = codigoEspecificadorSituacaoTributaria;
+    }
+
     public void setDetalhesExportacao(final List<NFNotaInfoItemDetalheExportacao> detalhesExportacao) {
-        ListValidador.tamanho500(detalhesExportacao);
+        ListValidador.tamanho500(detalhesExportacao, "Detalhes Exportacao Produto");
         this.detalhesExportacao = detalhesExportacao;
     }
 
@@ -256,7 +267,7 @@ public class NFNotaInfoItemProduto extends NFBase {
         if (this.medicamentos != null || this.armamentos != null || this.veiculo != null || this.combustivel != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
-        StringValidador.exatamente20N(numeroRECOPI);
+        StringValidador.exatamente20N(numeroRECOPI, "Numero RECOPI Produto");
         this.numeroRECOPI = numeroRECOPI;
     }
 
@@ -280,7 +291,11 @@ public class NFNotaInfoItemProduto extends NFBase {
         return this.nomeclaturaValorAduaneiroEstatistica;
     }
 
-    public Integer getExtipi() {
+    public String getCodigoEspecificadorSituacaoTributaria() {
+        return this.codigoEspecificadorSituacaoTributaria;
+    }
+
+    public String getExtipi() {
         return this.extipi;
     }
 

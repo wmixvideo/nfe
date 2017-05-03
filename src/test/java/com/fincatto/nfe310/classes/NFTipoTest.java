@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFTipo;
-
 public class NFTipoTest {
 
     @Test
@@ -18,5 +16,10 @@ public class NFTipoTest {
     public void deveRepresentarOCodigoCorretamente() {
         Assert.assertEquals("0", NFTipo.ENTRADA.getCodigo());
         Assert.assertEquals("1", NFTipo.SAIDA.getCodigo());
+    }
+
+    @Test
+    public void deveObterStringficadoCorretamente() {
+        Assert.assertEquals("1 - Sa\u00edda", NFTipo.SAIDA.toString());
     }
 }

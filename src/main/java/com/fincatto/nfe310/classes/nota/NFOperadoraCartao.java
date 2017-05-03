@@ -2,16 +2,18 @@ package com.fincatto.nfe310.classes.nota;
 
 public enum NFOperadoraCartao {
 
-    VISA("01"),
-    MASTERCARD("02"),
-    AMERICAN_EXPRESS("03"),
-    SOROCRED("04"),
-    OUTROS("99");
+    VISA("01", "Visa"),
+    MASTERCARD("02", "Mastercard"),
+    AMERICAN_EXPRESS("03", "American Express"),
+    SOROCRED("04", "Sorocred"),
+    OUTROS("99", "Outros");
 
-    private String codigo;
+    private final String codigo;
+    private final String descricao;
 
-    private NFOperadoraCartao(final String codigo) {
+    NFOperadoraCartao(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -25,5 +27,10 @@ public enum NFOperadoraCartao {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

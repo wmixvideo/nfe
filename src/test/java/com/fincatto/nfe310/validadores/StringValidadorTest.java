@@ -3,8 +3,6 @@ package com.fincatto.nfe310.validadores;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.validadores.StringValidador;
-
 public class StringValidadorTest {
 
     @Test
@@ -24,51 +22,73 @@ public class StringValidadorTest {
 
     @Test
     public void deveValidarTamanhoDeStringCasoEstejaDentroIntervalo60() {
-        StringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh");
-        StringValidador.tamanho60("o");
+        StringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh", "");
+        StringValidador.tamanho60("o", "");
     }
 
     @Test(expected = IllegalStateException.class)
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo60() {
         try {
-            StringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh1");
+            StringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh1", "");
             Assert.fail("Validacao falhou");
         } catch (final IllegalStateException e) {
-            StringValidador.tamanho60("");
+            StringValidador.tamanho60("", "");
         }
         Assert.fail("Validacao falhou");
     }
 
     @Test
+    public void deveValidarTamanho2ou3N() {
+        StringValidador.tamanho2ou3N("01", "");
+        StringValidador.tamanho2ou3N("999", "");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNaoNumerosParaTamanho2ou3N() {
+        StringValidador.tamanho2ou3N("0N", "");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirExtrapolarTamanho2ou3N() {
+        try {
+            StringValidador.tamanho2ou3N("9", "");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.tamanho2ou3N("1000", "");
+            Assert.fail();
+        }
+    }
+
+    @Test
     public void deveValidarTamanhoDeStringCasoEstejaDentroIntervalo() {
-        StringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV");
-        StringValidador.tamanho22("o");
+        StringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV", "");
+        StringValidador.tamanho22("o", "");
     }
 
     @Test(expected = IllegalStateException.class)
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo22() {
         try {
-            StringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV1");
+            StringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV1", "");
             Assert.fail("Validacao falhou");
         } catch (final IllegalStateException e) {
-            StringValidador.tamanho22("");
+            StringValidador.tamanho22("", "");
         }
         Assert.fail("Validacao falhou");
     }
 
     @Test
     public void deveValidarTamanhoDeStringCasoEstejaDentroDoIntervalo() {
-        StringValidador.tamanho20("AZgCErXz4DlSwRmsJaey");
-        StringValidador.tamanho20("o");
+        StringValidador.tamanho20("AZgCErXz4DlSwRmsJaey", "");
+        StringValidador.tamanho20("o", "");
     }
 
     @Test(expected = IllegalStateException.class)
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo20() {
         try {
-            StringValidador.tamanho20("AZgCErXz4DlSwRmsJaey1");
+            StringValidador.tamanho20("AZgCErXz4DlSwRmsJaey1", "");
             Assert.fail("Validacao falhou");
         } catch (final IllegalStateException e) {
-            StringValidador.tamanho20("");
+            StringValidador.tamanho20("", "");
         }
         Assert.fail("Validacao falhou");
     }
@@ -159,6 +179,36 @@ public class StringValidadorTest {
                     StringValidador.codigoDeBarras("3");
                 }
             }
+        }
+    }
+
+    @Test
+    public void devePermitirNCMFormatoValido() {
+        StringValidador.ncm("00");
+        StringValidador.ncm("99");
+        StringValidador.ncm("00000000");
+        StringValidador.ncm("99999999");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNCMForaDoLimite2Posicoes() {
+        try {
+            StringValidador.ncm("9");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.ncm("000");
+            Assert.fail();
+        }
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNCMForaDoLimite8Posicoes() {
+        try {
+            StringValidador.ncm("9999999");
+            Assert.fail();
+        } catch (final IllegalStateException e) {
+            StringValidador.ncm("000000000");
+            Assert.fail();
         }
     }
 }

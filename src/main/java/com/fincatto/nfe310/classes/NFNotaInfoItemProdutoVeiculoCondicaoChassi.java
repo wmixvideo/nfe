@@ -2,13 +2,15 @@ package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemProdutoVeiculoCondicaoChassi {
 
-    NORMAL("N"),
-    REMARCADO("R");
+    NORMAL("N", "Normal"),
+    REMARCADO("R", "Remarcado");
 
     private final String codigo;
+    private final String descricao;
 
-    private NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo) {
+    NFNotaInfoItemProdutoVeiculoCondicaoChassi(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
@@ -22,5 +24,10 @@ public enum NFNotaInfoItemProdutoVeiculoCondicaoChassi {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

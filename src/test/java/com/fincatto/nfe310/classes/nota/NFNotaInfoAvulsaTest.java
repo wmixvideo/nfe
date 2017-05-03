@@ -74,7 +74,7 @@ public class NFNotaInfoAvulsaTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTotalConstanteDocumentoArrecadacaoReceitaComTamanhoInvalido() {
         new NFNotaInfoAvulsa().setValorTotalConstanteDocumentoArrecadacaoReceita(new BigDecimal("10000000000000"));
     }

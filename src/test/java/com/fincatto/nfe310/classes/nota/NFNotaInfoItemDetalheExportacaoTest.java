@@ -6,13 +6,28 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemDetalheExportacao;
 
 public class NFNotaInfoItemDetalheExportacaoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
         new NFNotaInfoItemDetalheExportacao().setNumeroAtoConcessorioDrawback(new BigInteger("100000000000"));
+    }
+
+    @Test
+    public void deveObterNumeroAtoConcessorioDrawbackComoFoiSetado() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        final BigInteger numeroAtoConcessorioDrawback = new BigInteger("99999999999");
+        detalheExportacao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
+        Assert.assertEquals(numeroAtoConcessorioDrawback, detalheExportacao.getAtoConcessorioDrawback());
+    }
+
+    @Test
+    public void deveObterExportacaoIndiretaComoFoiSetado() {
+        final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
+        final NFNotaInfoItemExportacaoIndireta itemExportacaoIndireta = FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta();
+        detalheExportacao.setExportacaoIndireta(itemExportacaoIndireta);
+        Assert.assertEquals(itemExportacaoIndireta, detalheExportacao.getExportacaoIndireta());
     }
 
     @Test

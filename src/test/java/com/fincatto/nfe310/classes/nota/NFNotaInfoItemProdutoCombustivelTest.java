@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFNotaInfoItemProdutoCombustivel;
 
 public class NFNotaInfoItemProdutoCombustivelTest {
 
@@ -29,9 +28,9 @@ public class NFNotaInfoItemProdutoCombustivelTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirQuantidadeComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoCombustivel().setQuantidade(new BigDecimal("100000000000"));
+        new NFNotaInfoItemProdutoCombustivel().setQuantidade(new BigDecimal("1000000000000"));
     }
 
     @Test

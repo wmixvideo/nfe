@@ -1,7 +1,8 @@
 package com.fincatto.nfe310.classes;
 
 public enum NFNotaInfoItemModalidadeBCICMSST {
-    PRECO_TABELADO("0", "Preço Tabelado"),
+
+    PRECO_TABELADO("0", "Pre\u00e7o Tabelado"),
     LISTA_NEGATIVA("1", "Lista Negativa"),
     LISTA_POSITIVA("2", "Lista Positiva"),
     LISTA_NEUTRA("3", "Lista Neutra"),
@@ -11,7 +12,7 @@ public enum NFNotaInfoItemModalidadeBCICMSST {
     private String codigo;
     private String descricao;
 
-    private NFNotaInfoItemModalidadeBCICMSST(final String codigo, final String descricao) {
+    NFNotaInfoItemModalidadeBCICMSST(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -31,5 +32,10 @@ public enum NFNotaInfoItemModalidadeBCICMSST {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

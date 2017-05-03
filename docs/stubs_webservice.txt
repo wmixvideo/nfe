@@ -1,0 +1,15 @@
+###################################################################################
+##################################### ATENÇÃO #####################################
+###################################################################################
+#### Esse arquivo é uma documentação interna, não há necessidade de seguir o   ####
+#### passo-a-passo abaixo.                                                     ####
+###################################################################################
+###################################################################################
+
+Para gerar um client (stub) para o webservice do sefaz utilizando axis2:
+	Baixe o .wsdl para a sua maquina.
+	Acesse: https://axis.apache.org/axis2/java/core/download.cgi
+	Faça o download da ultima versao da biblioteca.
+	Extraia e vá ao diretório /bin
+	Utilize o wsdl2java.sh como é mostrado no tópico "Generating Clients" e sub tópico "Axis Data Binding" no link : https://axis.apache.org/axis2/java/core/docs/userguide-creatingclients.html
+	O comando será parecido com isso: sh wsdl2java.sh -uri  ~/Desktop/SefazRecepcao.xml -p sefaz -d adb -s

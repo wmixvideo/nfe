@@ -22,44 +22,32 @@ public class NFNotaInfoFatura extends NFBase {
     private String valorLiquidoFatura;
 
     public void setNumeroFatura(final String numeroFatura) {
-        StringValidador.tamanho60(numeroFatura);
+        StringValidador.tamanho60(numeroFatura, "Numero Fatura");
         this.numeroFatura = numeroFatura;
     }
 
     public void setValorOriginalFatura(final BigDecimal valorOriginalFatura) {
-        this.valorOriginalFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorOriginalFatura);
+        this.valorOriginalFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorOriginalFatura, "Valor Original Fatura");
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto);
+        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Fatura");
     }
 
     public void setValorLiquidoFatura(final BigDecimal valorLiquidoFatura) {
-        this.valorLiquidoFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFatura);
+        this.valorLiquidoFatura = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquidoFatura, "Valor Liquido Fatura");
     }
 
     public String getValorOriginalFatura() {
         return this.valorOriginalFatura;
     }
 
-    public void setValorOriginalFatura(final String valorOriginalFatura) {
-        this.valorOriginalFatura = valorOriginalFatura;
-    }
-
     public String getValorDesconto() {
         return this.valorDesconto;
     }
 
-    public void setValorDesconto(final String valorDesconto) {
-        this.valorDesconto = valorDesconto;
-    }
-
     public String getValorLiquidoFatura() {
         return this.valorLiquidoFatura;
-    }
-
-    public void setValorLiquidoFatura(final String valorLiquidoFatura) {
-        this.valorLiquidoFatura = valorLiquidoFatura;
     }
 
     public String getNumeroFatura() {

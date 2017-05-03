@@ -7,7 +7,6 @@ import org.junit.Test;
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 
 public class NFLoteEnvioRetornoTest {
 

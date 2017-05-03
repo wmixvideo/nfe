@@ -29,30 +29,26 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends NFBase {
     private BigInteger numeroAtoConcessorioDrawback;
 
     public void setNumero(final Integer numero) {
-        IntegerValidador.tamanho3(numero);
+        IntegerValidador.tamanho3(numero, "Numero Declaracao Importacao Adicao");
         this.numero = numero;
     }
 
     public void setSequencial(final Integer sequencial) {
-        IntegerValidador.tamanho3(sequencial);
+        IntegerValidador.tamanho3(sequencial, "Sequencial Declaracao Importacao Adicao");
         this.sequencial = sequencial;
     }
 
     public void setCodigoFabricante(final String codigoFabricante) {
-        StringValidador.tamanho60(codigoFabricante);
+        StringValidador.tamanho60(codigoFabricante, "Codigo Fabricante Declaracao Importacao Adicao");
         this.codigoFabricante = codigoFabricante;
     }
 
     public void setDesconto(final BigDecimal desconto) {
-        this.desconto = BigDecimalParser.tamanho15Com2CasasDecimais(desconto);
-    }
-
-    public void setDesconto(final String desconto) {
-        this.desconto = desconto;
+        this.desconto = BigDecimalParser.tamanho15Com2CasasDecimais(desconto, "Desconto Declaracao Importacao Adicao");
     }
 
     public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
-        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback);
+        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio Declaracao Importacao Adicao");
         this.numeroAtoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 

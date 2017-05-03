@@ -10,19 +10,19 @@ import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
 
 public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorTamanhoInvalido() {
         new NFNotaInfoItemImpostoCOFINSAliquota().setValor(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCaluloTamanhoInvalido() {
         new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalulo(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("1000"));
     }
 
     @Test(expected = IllegalStateException.class)

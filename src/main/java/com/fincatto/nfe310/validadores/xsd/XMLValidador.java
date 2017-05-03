@@ -1,19 +1,19 @@
 package com.fincatto.nfe310.validadores.xsd;
 
-import java.io.StringReader;
-import java.net.URL;
+import org.xml.sax.SAXException;
 
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 
-public class XMLValidador {
+public final class XMLValidador {
 
-    private XMLValidador() {
-    }
-
-    private static boolean validaXml(final String xml, final String xsd) throws Exception {
-        final URL xsdPath = XMLValidador.class.getResource(String.format("schemas/%s", xsd));
+    private static boolean valida(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_008i2/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -21,10 +21,10 @@ public class XMLValidador {
     }
 
     public static boolean validaLote(final String arquivoXML) throws Exception {
-        return XMLValidador.validaXml(arquivoXML, "enviNFe_v3.10.xsd");
+        return XMLValidador.valida(arquivoXML, "enviNFe_v3.10.xsd");
     }
 
     public static boolean validaNota(final String arquivoXML) throws Exception {
-        return XMLValidador.validaXml(arquivoXML, "nfe_v3.10.xsd");
+        return XMLValidador.valida(arquivoXML, "nfe_v3.10.xsd");
     }
 }

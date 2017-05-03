@@ -12,27 +12,27 @@ import com.fincatto.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS30Test {
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualAliquotaImpostoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS30().setPercentualReducaoBCICMSST(new BigDecimal("100"));
+        new NFNotaInfoItemImpostoICMS30().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBCICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setValorBCICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorImpostoICMSSTComTamanhoInvalido() {
         new NFNotaInfoItemImpostoICMS30().setValorImpostoICMSST(new BigDecimal("10000000000000"));
     }
@@ -40,7 +40,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test
     public void devePermitirValorICMSDesoneracaoNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test
     public void devePermitirDesoneracaoNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -85,7 +85,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
@@ -100,7 +100,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
@@ -115,7 +115,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test
     public void devePermitirPercentualMargemValorAdicionadoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
@@ -130,7 +130,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test
     public void devePermitirPercentualReducaoBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -145,7 +145,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -160,7 +160,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -175,7 +175,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
@@ -190,7 +190,7 @@ public class NFNotaInfoItemImpostoICMS30Test {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
-        icms30.setModalidadeDeterminacaoBC(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+        icms30.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
         icms30.setOrigem(NFOrigem.NACIONAL);
         icms30.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms30.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));

@@ -1,8 +1,11 @@
 package com.fincatto.nfe310.classes.nota.consulta;
 
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -10,6 +13,7 @@ import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFProtocolo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
 
 @Root(name = "retConsSitNFe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -41,6 +45,12 @@ public class NFNotaConsultaRetorno extends NFBase {
 
     @Element(name = "protNFe", required = false)
     protected NFProtocolo protocolo;
+
+    @Element(name = "retCancNFe", required = false)
+    private NFRetornoCancelamento protocoloCancelamento;
+
+    @ElementList(entry = "procEventoNFe", inline = true, required = false)
+    private List<NFProtocoloEvento> protocoloEvento;
 
     public NFNotaConsultaRetorno() {
         this.versao = null;
@@ -105,6 +115,14 @@ public class NFNotaConsultaRetorno extends NFBase {
         return this.chave;
     }
 
+    public List<NFProtocoloEvento> getProtocoloEvento() {
+        return this.protocoloEvento;
+    }
+
+    public NFRetornoCancelamento getProtocoloCancelamento() {
+        return this.protocoloCancelamento;
+    }
+
     public void setChave(final String chave) {
         this.chave = chave;
     }
@@ -123,5 +141,13 @@ public class NFNotaConsultaRetorno extends NFBase {
 
     public void setDataHoraRecibo(final LocalDateTime dataHoraRecibo) {
         this.dataHoraRecibo = dataHoraRecibo;
+    }
+
+    public void setProtocoloEvento(final List<NFProtocoloEvento> protocoloEvento) {
+        this.protocoloEvento = protocoloEvento;
+    }
+
+    public void setProtocoloCancelamento(final NFRetornoCancelamento protocoloCancelamento) {
+        this.protocoloCancelamento = protocoloCancelamento;
     }
 }

@@ -49,7 +49,7 @@ public enum NFRetornoStatus {
     CODIGO_217(217, "Rejei\u00e7\u00e3o: NF-e n\u00e3o consta na base de dados da SEFAZ"),
     CODIGO_218(218, "Rejei\u00e7\u00e3o: NF-e j\u00e1 esta cancelada na base de dados da SEFAZ"),
     CODIGO_219(219, "Rejei\u00e7\u00e3o: Circula\u00e7\u00e3o da NF-e verificada"),
-    CODIGO_220(220, "Rejei\u00e7\u00e3o: Prazo de Cancelamento Superior ao Previsto na Legisla\u00e7\u00e3o"),
+    CODIGO_220(220, "Rejei\u00e7\u00e3o: Destinat\u00E1rio com identifica\u00E7\u00E3o igual \u00E0 identifica\u00E7\u00E3o do emitente"),
     CODIGO_221(221, "Rejei\u00e7\u00e3o: Confirmado o recebimento da NF-e pelo destinat\u00e1rio"),
     CODIGO_222(222, "Rejei\u00e7\u00e3o: Protocolo de Autoriza\u00e7\u00e3o de Uso difere do cadastrado"),
     CODIGO_223(223, "Rejei\u00e7\u00e3o: CNPJ do transmissor do lote difere do CNPJ do transmissor da consulta"),
@@ -183,6 +183,9 @@ public enum NFRetornoStatus {
     CODIGO_368(368, "Rejei\u00e7\u00e3o: Total do ISS retido difere do somat\u00f3rio dos itens"),
     CODIGO_369(369, "Rejei\u00e7\u00e3o: N\u00e3o informado o grupo avulsa na emiss\u00e3o pelo Fisco"),
     CODIGO_370(370, "Rejei\u00e7\u00e3o: Nota Fiscal Avusa com tipo de emiss\u00e3o inv\u00e1lido"),
+    CODIGO_382(382, "Rejei\u00e7\u00e3o: CFOP n\u00e3o permitido para o CST informado"),
+    CODIGO_383(383, "Rejei\u00e7\u00e3o: Item com CSOSN indevido"),
+    CODIGO_386(386, "Rejei\u00e7\u00e3o: CFOP n\u00e3o permitido para o CSOSN informado"),
     CODIGO_401(401, "Rejei\u00e7\u00e3o: CPF do remetente inv\u00e1lido"),
     CODIGO_402(402, "Rejei\u00e7\u00e3o: XML da \u00e1rea de dados com codifica\u00e7\u00e3o diferente de UTF-8"),
     CODIGO_403(403, "Rejei\u00e7\u00e3o: O grupo de informa\u00e7\u00f5es da NF-e avulsa \u00e9 de uso exclusivo do Fisco"),
@@ -202,6 +205,9 @@ public enum NFRetornoStatus {
     CODIGO_453(453, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser superior ao Ano atual"),
     CODIGO_454(454, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser inferior a 2006"),
     CODIGO_461(461, "Rejei\u00e7\u00e3o: Informado percentual de g\u00e1s natural na mistura para produto diferente de GLP"),
+    CODIGO_462(462, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code n\u00fao cadastrado na SEFAZ"),
+    CODIGO_463(463, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code foi revogado pela empresa"),
+    CODIGO_464(464, "Rejei\u00e7\u00e3o: C\u00f3digo de Hash no QR-Code difere do calculado"),
     CODIGO_465(465, "Rejei\u00e7\u00e3o: N\u00famero de controle da FCI inexistente"),
     CODIGO_478(478, "Rejei\u00e7\u00e3o: Local da entrega n\u00e3o informado para faturamto direto de ve\u00edculos novos"),
     CODIGO_479(479, "Rejei\u00e7\u00e3o: Emissor em situa\u00e7\u00e3o irregular peranto o fisco"),
@@ -220,7 +226,7 @@ public enum NFRetornoStatus {
     CODIGO_492(492, "Rejei\u00e7\u00e3o: O verEvento informado inv\u00e1lido"),
     CODIGO_493(493, "Rejei\u00e7\u00e3o: Evento n\u00e3o atende o Schema XML espec\u00edfico"),
     CODIGO_494(494, "Rejei\u00e7\u00e3o: Chave de Acesso inexistente"),
-    CODIGO_501(501, "Rejei\u00e7\u00e3o: Verificar NFe autorizada h\u00e1 mais de 30 dias (720) horas"),
+    CODIGO_501(501, "Rejei\u00e7\u00e3o: Rejei\u00e7\u00e3o: Prazo de Cancelamento Superior ao Previsto na Legisla\u00e7\u00e3o"),
     CODIGO_502(502, "Rejei\u00e7\u00e3o: Erro Chave Acesso - Campo Id \u00f1 corresponde \u00e0 conct. dos campos corresp"),
     CODIGO_503(503, "Rejei\u00e7\u00e3o: S\u00e9rie utilizada fora da faixa permitida no SCAN (900-999)"),
     CODIGO_504(504, "Rejei\u00e7\u00e3o: Data de Entrada/Sa\u00edda posterior ao permitido"),
@@ -375,6 +381,15 @@ public enum NFRetornoStatus {
     CODIGO_688(688, "Rejei\u00e7\u00e3o: NF referenciada de produtor com IE inexistente (nREF: xxx)"),
     CODIGO_689(689, "Rejei\u00e7\u00e3o: NF referenciada de produtor com IE n\u00e3o vinculada ao CNPJ/CPF informado (nREF: xxx)"),
     CODIGO_690(690, "Rejei\u00e7\u00e3o: Pedido de cancelamento para NF-e com CT-e ou MDF-e"),
+    CODIGO_691(691, "Rejei\u00e7\u00e3o: Chave de Acesso da NFe diverge da Chave de Acesso do EPEC"),
+    CODIGO_692(692, "Rejei\u00e7\u00e3o: Existe EPEC registrado para esta S\u00e9rie e N\u00famero"),
+    CODIGO_693(693, "Rejei\u00e7\u00e3o: Al\u00edquota de ICMS superior a definida para a opera\u00e7\u00e3o interestadual"),
+    CODIGO_694(694, "Rejei\u00e7\u00e3o: N\u00e3o informado o grupo de ICMS para a UF de destino"),
+    CODIGO_695(695, "Rejei\u00e7\u00e3o: Informado indevidamente o grupo de ICMS para a UF de destino"),
+    CODIGO_696(696, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o com n\u00e3o contribuinte deve indicar opera\u00e7\u00e3o com consumidor final"),
+    CODIGO_697(697, "Rejei\u00e7\u00e3o: Al\u00edquota interestadual do ICMS com origem diferente do previsto"),
+    CODIGO_698(698, "Rejei\u00e7\u00e3o: Al\u00edquota interestadual do ICMS incompat\u00edvel com as UF"),
+    CODIGO_699(699, "Rejei\u00e7\u00e3o: Percentual do ICMS Interestadual para a UF de destino difere do previsto para o ano da Data de Emiss\u00e3o"),
     CODIGO_701(701, "Rejei\u00e7\u00e3o: NF-e n\u00e3o pode utilizar ver\u00e3o 3.00"),
     CODIGO_702(702, "Rejei\u00e7\u00e3o: NFC-e n\u00e3o \u00e9 aceita pela UF do Emitente"),
     CODIGO_703(703, "Rejei\u00e7\u00e3o: Data-hora de emiss\u00e3o posterior ao hor\u00e1rio de recebimento"),
@@ -395,7 +410,7 @@ public enum NFRetornoStatus {
     CODIGO_718(718, "Rejei\u00e7\u00e3o: NFC-e n\u00e3o deve informar IE de substituto tribut\u00e1rio"),
     CODIGO_719(719, "Rejei\u00e7\u00e3o: NF-e sem identifica\u00e7\u00e3o do destinat\u00e1rio"),
     CODIGO_720(720, "Rejei\u00e7\u00e3o: Na opera\u00e7\u00e3o com exterior deve ser informada tag id Estrangeiro"),
-    CODIGO_721(721, "Rejie\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual deve informar CNPJ ou CPF"),
+    CODIGO_721(721, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual deve informar CNPJ ou CPF"),
     CODIGO_722(722, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interna com idEstrangeiro informado deve ser presencial"),
     CODIGO_723(723, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interna com idEstrangeiro informado deve ser para consumidor final"),
     CODIGO_724(724, "Rejei\u00e7\u00e3o: NF-e sem o nome do destinat\u00e1rio"),
@@ -447,24 +462,27 @@ public enum NFRetornoStatus {
     CODIGO_775(775, "Rejei\u00e7\u00e3o: Modelo da NFC-e diferente de 65"),
     CODIGO_777(777, "Rejei\u00e7\u00e3o: NFC-e deve informar NCM completo"),
     CODIGO_778(778, "Rejei\u00e7\u00e3o: Informado NCM inexistente"),
-    CODIGO_779(779, "Rejei\u00e7\u00e3o:NFC-e com NCM incompat\u00edvel"),
+    CODIGO_779(779, "Rejei\u00e7\u00e3o: NFC-e com NCM incompat\u00edvel"),
     CODIGO_780(780, "Rejei\u00e7\u00e3o: Total da NFC-e superior ao valor limite estabelecido pela SEFAZ"),
     CODIGO_781(781, "Rejei\u00e7\u00e3o: Emissor n\u00e3o habilitado para emiss\u00e3o de NFC-e"),
     CODIGO_782(782, "Rejei\u00e7\u00e3o: NFC-e n\u00e3o \u00e9 autorizada pelo SCAN"),
     CODIGO_783(783, "Rejei\u00e7\u00e3o: NFC-e n\u00e3o \u00e9 autorizada pelo SVC"),
     CODIGO_784(784, "Rejei\u00e7\u00e3o: NF-e com indicativo de NFC-e com entrega a domicilio"),
     CODIGO_785(785, "Rejei\u00e7\u00e3o: NFC-e com entrega a domicilio n\u00e3o permitida pela UF"),
-    CODIGO_786(786, "Rejei\u00e7ao: NFC-e de entrega a domicilio sem dados dos transportador"),
+    CODIGO_786(786, "Rejei\u00e7\u00e3o: NFC-e de entrega a domicilio sem dados dos transportador"),
     CODIGO_787(787, "Rejei\u00e7\u00e3o: NFC-e de entrega a domicilio sem a identifica\u00e7\u00e3o do destinat\u00e1rio"),
     CODIGO_788(788, "Rejei\u00e7\u00e3o: NFC-e de entrega a domic\u00edlio sem o endere\u00e7o do destinat\u00e1rio"),
     CODIGO_789(789, "Rejei\u00e7\u00e3o: NFC-e para destinat\u00e1rio contribuinte de ICMS"),
     CODIGO_790(790, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o com exterior para destinat\u00e1rio contribuinte do ICMS"),
     CODIGO_791(791, "Rejei\u00e7\u00e3o: NF-e com indica\u00e7\u00e3o de destinat\u00e1rio isento de IE, com a informa\u00e7\u00e3o da IE do destinatario"),
     CODIGO_792(792, "Rejei\u00e7\u00e3o: Informada a IE do destinat\u00e1rio para opera\u00e7\u00e3o com destinat\u00e1rio do exterior"),
-    CODIGO_793(793, "Rejei\u00e7\u00e3o: Informado cap\u00edtulo do NCM inexistente"),
+    CODIGO_793(793, "Rejei\u00e7\u00e3o: Valor do ICMS relativo ao Fundo de Combate \u00e0 Pobreza na UF de destino difere do calculado"),
     CODIGO_794(794, "Rejei\u00e7\u00e3o: NF-e com indicativo de NFC-e com entrega a domic\u00edlio"),
     CODIGO_795(795, "Rejei\u00e7\u00e3o: Total do ICMS Desonerado difere do somatorio dos itens"),
     CODIGO_796(796, "Rejei\u00e7\u00e3o: Empresa sem Chave de Seguran\u00e7a para o QR-Code"),
+    CODIGO_798(798, "Rejei\u00e7\u00e3o: Valor total do ICMS relativo Fundo de Combate \u00e0 Pobreza (FCP) da UF de destino difere do somat\u00f3rio do valor dos itens"),
+    CODIGO_799(799, "Rejei\u00e7\u00e3o: Valor total do ICMS Interestadual da UF de estino difere do somat\u00f3rio dos itens"),
+    CODIGO_800(800, "Rejei\u00e7\u00e3o: Valor total do ICMS Interestadual da UF do remetente difere do somat\u00f3rio dos itens"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
@@ -474,7 +492,7 @@ public enum NFRetornoStatus {
     private int codigo;
     private String motivo;
 
-    private NFRetornoStatus(final int codigo, final String motivo) {
+    NFRetornoStatus(final int codigo, final String motivo) {
         this.codigo = codigo;
         this.motivo = motivo;
     }
@@ -501,7 +519,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return this.codigo > 200 && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
     }
 
     public boolean isDuplicado() {

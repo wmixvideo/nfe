@@ -3,8 +3,6 @@ package com.fincatto.nfe310.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFTipoImpressao;
-
 public class NFTipoImpressaoTest {
 
     @Test
@@ -24,5 +22,10 @@ public class NFTipoImpressaoTest {
         Assert.assertEquals("3", NFTipoImpressao.DANFE_SIMPLIFICADO.getCodigo());
         Assert.assertEquals("4", NFTipoImpressao.DANFE_NFCE.getCodigo());
         Assert.assertEquals("5", NFTipoImpressao.DANFE_NFCE_MENSAGEM_ELETRONICA.getCodigo());
+    }
+
+    @Test
+    public void deveObterStringficadoCorretamente() {
+        Assert.assertEquals("4 - DANFe NFCe", NFTipoImpressao.DANFE_NFCE.toString());
     }
 }

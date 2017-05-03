@@ -1,11 +1,10 @@
 package com.fincatto.nfe310.classes.nota;
 
+import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.nota.assinatura.NFSignature;
 
 @Root(name = "NFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -13,8 +12,11 @@ public class NFNota extends NFBase {
 
     private long identificadorLocal;
 
-    @Element(name = "infNFe", required = true)
+    @Element(name = "infNFe")
     private NFNotaInfo info;
+    
+    @Element(name = "infNFeSupl", required = false)
+    private NFNotaInfoSuplementar infoSuplementar;
 
     @Element(name = "Signature", required = false)
     private NFSignature assinatura;
@@ -26,9 +28,18 @@ public class NFNota extends NFBase {
     public NFNotaInfo getInfo() {
         return this.info;
     }
+    
+    public NFNotaInfoSuplementar getInfoSuplementar() {
+		return infoSuplementar;
+	}
 
-    /**
+	public void setInfoSuplementar(NFNotaInfoSuplementar infoSuplementar) {
+		this.infoSuplementar = infoSuplementar;
+	}
+
+	/**
      * Utilizado para identificacao interna do sistema
+     * @param identificadorLocal Identificador.
      */
     public void setIdentificadorLocal(final long identificadorLocal) {
         this.identificadorLocal = identificadorLocal;

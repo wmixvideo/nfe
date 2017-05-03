@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.NFInfoProdutorRuralReferenciada;
 
 public class NFInfoProdutorRuralReferenciadaTest {
 
@@ -26,12 +25,12 @@ public class NFInfoProdutorRuralReferenciadaTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirSerieDocumentoFiscalComTamanhoInvalido() {
         new NFInfoProdutorRuralReferenciada().setSerieDocumentoFiscal(1000);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroDocumentoFiscalComTamanhoInvalido() {
         new NFInfoProdutorRuralReferenciada().setNumeroDocumentoFiscal(1000000);
     }

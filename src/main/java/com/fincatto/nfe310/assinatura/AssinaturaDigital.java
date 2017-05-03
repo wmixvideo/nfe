@@ -1,24 +1,12 @@
 package com.fincatto.nfe310.assinatura;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.Provider;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.nfe310.NFeConfig;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
-import javax.xml.crypto.dsig.CanonicalizationMethod;
-import javax.xml.crypto.dsig.DigestMethod;
-import javax.xml.crypto.dsig.Reference;
-import javax.xml.crypto.dsig.SignatureMethod;
-import javax.xml.crypto.dsig.SignedInfo;
-import javax.xml.crypto.dsig.Transform;
-import javax.xml.crypto.dsig.XMLSignature;
-import javax.xml.crypto.dsig.XMLSignatureFactory;
+import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
 import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
@@ -27,25 +15,23 @@ import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.IOUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.fincatto.nfe310.NFeConfig;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.security.KeyStore;
+import java.security.Provider;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
-    private static final String[] ELEMENTOS_ASSINAVEIS = new String[] { "infEvento", "infCanc", "infNFe", "infInut" };
+    private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut"};
     private final NFeConfig config;
 
     public AssinaturaDigital(final NFeConfig config) {
@@ -59,7 +45,7 @@ public class AssinaturaDigital {
         final Document document = dbf.newDocumentBuilder().parse(xmlStream);
         final NodeList nodeList = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         if (nodeList.getLength() == 0) {
-            throw new Exception("N\u00e3o foi encontrada a assinatura do XML.");
+            throw new IllegalStateException("N\u00e3o foi encontrada a assinatura do XML.");
         }
 
         final String providerName = System.getProperty("jsr105Provider", "org.jcp.xml.dsig.internal.dom.XMLDSigRI");
@@ -77,12 +63,13 @@ public class AssinaturaDigital {
     }
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
-        final KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        try (InputStream certificadoStream = new FileInputStream(this.config.getCertificado())) {
-            keyStore.load(certificadoStream, this.config.getCertificadoSenha().toCharArray());
-        }
+        return this.assinarDocumento(conteudoXml, AssinaturaDigital.ELEMENTOS_ASSINAVEIS);
+    }
 
-        final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(keyStore.aliases().nextElement(), new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray()));
+    public String assinarDocumento(final String conteudoXml, final String... elementosAssinaveis) throws Exception {
+        final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
+        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+        final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
 
         final List<Transform> transforms = new ArrayList<>(2);
@@ -96,23 +83,24 @@ public class AssinaturaDigital {
         final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
 
-        final Document document = documentBuilderFactory.newDocumentBuilder().parse(IOUtils.toInputStream(conteudoXml));
+        try (StringReader stringReader = new StringReader(conteudoXml)) {
+            final Document document = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(stringReader));
+            for (final String elementoAssinavel : elementosAssinaveis) {
+                final NodeList elements = document.getElementsByTagName(elementoAssinavel);
+                for (int i = 0; i < elements.getLength(); i++) {
+                    final Element element = (Element) elements.item(i);
+                    final String id = element.getAttribute("Id");
+                    element.setIdAttribute("Id", true);
 
-        for (final String elementoAssinavel : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
-            final NodeList elements = document.getElementsByTagName(elementoAssinavel);
-            for (int i = 0; i < elements.getLength(); i++) {
-                final Element element = (Element) elements.item(i);
-                final String id = element.getAttribute("Id");
-                element.setIdAttribute("Id", true);
+                    final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
+                    final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
 
-                final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
-                final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
-
-                final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
-                signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
+                    final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+                    signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
+                }
             }
+            return this.converteDocumentParaXml(document);
         }
-        return this.converteDocumentParaXml(document);
     }
 
     private String converteDocumentParaXml(final Document document) throws TransformerFactoryConfigurationError, TransformerException, IOException {
@@ -120,7 +108,7 @@ public class AssinaturaDigital {
             final Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             transformer.transform(new DOMSource(document), new StreamResult(outputStream));
-            return outputStream.toString(Charsets.UTF_8.name());
+            return outputStream.toString("UTF-8");
         }
     }
 }

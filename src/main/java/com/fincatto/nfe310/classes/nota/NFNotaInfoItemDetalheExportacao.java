@@ -16,7 +16,7 @@ public class NFNotaInfoItemDetalheExportacao extends NFBase {
     private NFNotaInfoItemExportacaoIndireta exportacaoIndireta;
 
     public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
-        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback);
+        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio");
         this.atoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 

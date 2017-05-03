@@ -1,9 +1,11 @@
 package com.fincatto.nfe310.classes.nota.assinatura;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 
 import com.fincatto.nfe310.classes.NFBase;
 
+@Namespace(reference = "http://www.w3.org/2000/09/xmldsig#")
 public class NFSignature extends NFBase {
 
     @Element(name = "SignedInfo", required = false)

@@ -2,7 +2,7 @@ package com.fincatto.nfe310.classes.nota;
 
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -10,6 +10,7 @@ import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.NFFinalidade;
 import com.fincatto.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFProcessoEmissor;
 import com.fincatto.nfe310.classes.NFTipo;
 import com.fincatto.nfe310.classes.NFTipoEmissao;
@@ -20,7 +21,7 @@ import com.fincatto.nfe310.validadores.ListValidador;
 import com.fincatto.nfe310.validadores.StringValidador;
 
 public class NFNotaInfoIdentificacao extends NFBase {
-
+	
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
 
@@ -34,7 +35,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private NFFormaPagamentoPrazo formaPagamento;
 
     @Element(name = "mod", required = true)
-    private String modelo;
+    private NFModelo modelo;
 
     @Element(name = "serie", required = true)
     private String serie;
@@ -43,10 +44,10 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String numeroNota;
 
     @Element(name = "dhEmi", required = true)
-    private LocalDateTime dataHoraEmissao;
+    private DateTime dataHoraEmissao;
 
     @Element(name = "dhSaiEnt", required = false)
-    private LocalDateTime dataHoraSaidaOuEntrada;
+    private DateTime dataHoraSaidaOuEntrada;
 
     @Element(name = "tpNF", required = true)
     private NFTipo tipo;
@@ -85,7 +86,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     private String versaoEmissor;
 
     @Element(name = "dhCont", required = false)
-    private LocalDateTime dataHoraContigencia;
+    private DateTime dataHoraContigencia;
 
     @Element(name = "xJust", required = false)
     private String justificativaEntradaContingencia;
@@ -98,12 +99,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setCodigoRandomico(final String codigoRandomico) {
-        StringValidador.exatamente8(codigoRandomico);
+        StringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
         this.codigoRandomico = codigoRandomico;
     }
 
     public void setNaturezaOperacao(final String naturezaOperacao) {
-        StringValidador.tamanho60(naturezaOperacao);
+        StringValidador.tamanho60(naturezaOperacao, "Natureza da Operacao");
         this.naturezaOperacao = naturezaOperacao;
     }
 
@@ -111,26 +112,25 @@ public class NFNotaInfoIdentificacao extends NFBase {
         this.formaPagamento = formaPagamento;
     }
 
-    public void setModelo(final String modelo) {
-        StringValidador.exatamente2(modelo);
+    public void setModelo(final NFModelo modelo) {
         this.modelo = modelo;
     }
 
     public void setSerie(final String serie) {
-        StringValidador.tamanho3(serie);
+        StringValidador.tamanho3(serie, "Serie");
         this.serie = serie;
     }
 
     public void setNumeroNota(final String numeroNota) {
-        StringValidador.tamanho9(numeroNota);
+        StringValidador.tamanho9(numeroNota, "Numero da Nota");
         this.numeroNota = numeroNota;
     }
 
-    public void setDataHoraEmissao(final LocalDateTime dataEmissao) {
+    public void setDataHoraEmissao(final DateTime dataEmissao) {
         this.dataHoraEmissao = dataEmissao;
     }
 
-    public void setDataHoraSaidaOuEntrada(final LocalDateTime dataHoraSaidaOuEntrada) {
+    public void setDataHoraSaidaOuEntrada(final DateTime dataHoraSaidaOuEntrada) {
         this.dataHoraSaidaOuEntrada = dataHoraSaidaOuEntrada;
     }
 
@@ -139,12 +139,12 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7N(codigoMunicipio);
+        StringValidador.exatamente7N(codigoMunicipio, "Codigo Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
-        ListValidador.tamanho500(referenciadas);
+        ListValidador.tamanho500(referenciadas, "Referenciadas");
         this.referenciadas = referenciadas;
     }
 
@@ -157,7 +157,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador);
+        IntegerValidador.exatamente1(digitoVerificador, "DV");
         this.digitoVerificador = digitoVerificador;
     }
 
@@ -174,16 +174,16 @@ public class NFNotaInfoIdentificacao extends NFBase {
     }
 
     public void setVersaoEmissor(final String versaoEmissor) {
-        StringValidador.tamanho20(versaoEmissor);
+        StringValidador.tamanho20(versaoEmissor, "Versao Emissor");
         this.versaoEmissor = versaoEmissor;
     }
 
-    public void setDataHoraContigencia(final LocalDateTime dataHoraContigencia) {
+    public void setDataHoraContigencia(final DateTime dataHoraContigencia) {
         this.dataHoraContigencia = dataHoraContigencia;
     }
 
     public void setJustificativaEntradaContingencia(final String justificativaEntradaContingencia) {
-        StringValidador.tamanho15a256(justificativaEntradaContingencia);
+        StringValidador.tamanho15a256(justificativaEntradaContingencia, "Justificativa Entrada Contingencia");
         this.justificativaEntradaContingencia = justificativaEntradaContingencia;
     }
 
@@ -215,7 +215,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.formaPagamento;
     }
 
-    public String getModelo() {
+    public NFModelo getModelo() {
         return this.modelo;
     }
 
@@ -227,11 +227,11 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.numeroNota;
     }
 
-    public LocalDateTime getDataHoraEmissao() {
+    public DateTime getDataHoraEmissao() {
         return this.dataHoraEmissao;
     }
 
-    public LocalDateTime getDataHoraSaidaOuEntrada() {
+    public DateTime getDataHoraSaidaOuEntrada() {
         return this.dataHoraSaidaOuEntrada;
     }
 
@@ -283,7 +283,7 @@ public class NFNotaInfoIdentificacao extends NFBase {
         return this.versaoEmissor;
     }
 
-    public LocalDateTime getDataHoraContigencia() {
+    public DateTime getDataHoraContigencia() {
         return this.dataHoraContigencia;
     }
 

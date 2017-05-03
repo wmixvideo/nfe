@@ -7,10 +7,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class StringValidador {
-
-    private StringValidador() {
-    }
+public abstract class StringValidador {
 
     public static void mmaaaa(final String mmaaaa) {
         try {
@@ -44,63 +41,63 @@ public class StringValidador {
         }
     }
 
-    public static void tamanho256(final String string) {
+    public static void tamanho256(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 256);
+            StringValidador.validaTamanhoMaximo(string, 256, info);
         }
     }
 
-    public static void tamanho9(final String string) {
+    public static void tamanho9(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 9);
+            StringValidador.validaTamanhoMaximo(string, 9, info);
         }
     }
 
-    public static void tamanho60(final String string) {
+    public static void tamanho60(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 60);
+            StringValidador.validaTamanhoMaximo(string, 60, info);
         }
     }
 
-    public static void tamanho2ate60(final String string) {
+    public static void tamanho2ate60(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 2, 60);
+            StringValidador.intervalo(string, 2, 60, info);
         }
     }
 
-    public static void tamanho22(final String string) {
+    public static void tamanho22(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 22);
+            StringValidador.validaTamanhoMaximo(string, 22, info);
         }
     }
 
-    public static void tamanho21(final String string) {
+    public static void tamanho21(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 21);
+            StringValidador.validaTamanhoMaximo(string, 21, info);
         }
     }
 
-    public static void tamanho20(final String string) {
+    public static void tamanho20(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 20);
+            StringValidador.validaTamanhoMaximo(string, 20, info);
         }
     }
 
-    public static void tamanho2000(final String string) {
+    public static void tamanho2000(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 2000);
+            StringValidador.validaTamanhoMaximo(string, 2000, info);
         }
     }
 
-    public static void tamanho5000(final String string) {
+    public static void tamanho5000(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 5000);
+            StringValidador.validaTamanhoMaximo(string, 5000, info);
         }
     }
 
-    public static void tamanho40(final String string) {
+    public static void tamanho40(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 40);
+            StringValidador.validaTamanhoMaximo(string, 40, info);
         }
     }
 
@@ -149,222 +146,235 @@ public class StringValidador {
         }
     }
 
-    public static void exatamente3(final String string) {
+    public static void exatamente3(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 3);
+            StringValidador.validaTamanhoExato(string, 3, info);
         }
     }
 
-    public static void exatamente5(final String string) {
+    public static void exatamente5(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 5);
+            StringValidador.validaTamanhoExato(string, 5, info);
         }
     }
 
-    public static void exatamente9(final String string) {
+    public static void exatamente9(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 9);
+            StringValidador.validaTamanhoExato(string, 9, info);
         }
     }
 
-    public static void exatamente17(final String string) {
+    public static void exatamente17(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 17);
+            StringValidador.validaTamanhoExato(string, 17, info);
         }
     }
 
-    public static void exatamente4(final String string) {
+    public static void exatamente4(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 4);
+            StringValidador.validaTamanhoExato(string, 4, info);
         }
     }
 
-    public static void exatamente6(final String string) {
+    public static void exatamente6(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 6);
+            StringValidador.validaTamanhoExato(string, 6, info);
         }
     }
 
-    public static void exatamente21(final String string) {
+    public static void exatamente21(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 21);
+            StringValidador.validaTamanhoExato(string, 21, info);
         }
     }
 
-    public static void exatamente1(final String string) {
+    public static void exatamente1(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 1);
+            StringValidador.validaTamanhoExato(string, 1, info);
         }
     }
 
-    public static void tamanho15(final String string) {
+    public static void tamanho15(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 15);
+            StringValidador.validaTamanhoMaximo(string, 15, info);
         }
     }
 
-    public static void tamanho12(final String string) {
+    public static void tamanho12(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 12);
+            StringValidador.validaTamanhoMaximo(string, 12, info);
         }
     }
 
-    public static void tamanho120(final String string) {
+    public static void tamanho120(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 120);
+            StringValidador.validaTamanhoMaximo(string, 120, info);
         }
     }
 
-    public static void tamanho6(final String string) {
+    public static void tamanho6(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 6);
+            StringValidador.validaTamanhoMaximo(string, 6, info);
         }
     }
 
-    public static void tamanho500(final String string) {
+    public static void tamanho500(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 500);
+            StringValidador.validaTamanhoMaximo(string, 500, info);
         }
     }
 
-    public static void tamanho3(final String string) {
+    public static void tamanho3(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 3);
+            StringValidador.validaTamanhoMaximo(string, 3, info);
         }
     }
 
-    public static void exatamente7(final String string) {
+    public static void exatamente7(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 7);
+            StringValidador.validaTamanhoExato(string, 7, info);
         }
     }
 
-    public static void exatamente8(final String string) {
+    public static void exatamente8(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 8);
+            StringValidador.validaTamanhoExato(string, 8, info);
         }
     }
 
-    public static void exatamente2(final String string) {
+    public static void exatamente2(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 2);
+            StringValidador.validaTamanhoExato(string, 2, info);
         }
     }
 
-    public static void tamanho8a9(final String string) {
+    public static void tamanho8a9(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 8, 9);
+            StringValidador.intervalo(string, 8, 9, info);
         }
     }
 
-    public static void tamanho15a256(final String string) {
+    public static void tamanho15a256(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 15, 256);
+            StringValidador.intervalo(string, 15, 256, info);
         }
     }
 
-    public static void tamanho15a255(final String string) {
+    public static void tamanho15a255(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 15, 255);
+            StringValidador.intervalo(string, 15, 255, info);
         }
     }
 
-    public static void tamanho5a20(final String string) {
+    public static void tamanho5a20(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 5, 20);
+            StringValidador.intervalo(string, 5, 20, info);
         }
     }
 
-    public static void tamanho5a60(final String string) {
+    public static void tamanho5a60(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 5, 60);
+            StringValidador.intervalo(string, 5, 60, info);
         }
     }
 
-    public static void tamanho2a4(final String string) {
+    public static void tamanho2a4(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 2, 4);
+            StringValidador.intervalo(string, 2, 4, info);
         }
     }
 
-    public static void tamanho8a9N(final String string) {
+    public static void tamanho8a9N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.intervalo(string, 8, 9);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.intervalo(string, 8, 9, info);
         }
     }
 
-    public static void tamanho15a1000(final String string) {
+    public static void tamanho15a1000(final String string, final String info) {
         if (string != null) {
-            StringValidador.intervalo(string, 15, 1000);
+            StringValidador.intervalo(string, 15, 1000, info);
         }
     }
 
-    public static void tamanho30(final String string) {
+    public static void tamanho100a600(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoMaximo(string, 30);
+            StringValidador.intervalo(string, 100, 600, info);
         }
     }
 
-    public static void exatamente44(final String string) {
+    public static void tamanho30(final String string, final String info) {
         if (string != null) {
-            StringValidador.validaTamanhoExato(string, 44);
+            StringValidador.validaTamanhoMaximo(string, 30, info);
         }
     }
 
-    public static void exatamente7N(final String string) {
+    public static void exatamente44(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.exatamente7(string);
+            StringValidador.validaTamanhoExato(string, 44, info);
         }
     }
 
-    public static void exatamente44N(final String string) {
+    public static void exatamente7N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.exatamente44(string);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.exatamente7(string, info);
         }
     }
 
-    public static void exatamente4N(final String string) {
+    public static void exatamente44N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.exatamente4(string);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.exatamente44(string, info);
         }
     }
 
-    public static void exatamente6N(final String string) {
+    public static void exatamente4N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.exatamente6(string);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.exatamente4(string, info);
         }
     }
 
-    public static void tamanho15N(final String string) {
+    public static void exatamente6N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.validaTamanhoMaximo(string, 15);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.exatamente6(string, info);
         }
     }
 
-    public static void tamanho9N(final String string) {
+    public static void tamanho15N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.validaTamanhoMaximo(string, 9);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.validaTamanhoMaximo(string, 15, info);
         }
     }
 
-    public static void tamanho3N(final String string) {
+    public static void tamanho9N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.validaTamanhoMaximo(string, 3);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.validaTamanhoMaximo(string, 9, info);
         }
     }
 
-    public static void exatamente20N(final String string) {
+    public static void tamanho2ou3N(final String string, final String info) {
         if (string != null) {
-            StringValidador.apenasNumerico(string);
-            StringValidador.validaTamanhoExato(string, 20);
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.intervalo(string, 2, 3, info);
+        }
+    }
+
+    public static void tamanho3N(final String string, final String info) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.validaTamanhoMaximo(string, 3, info);
+        }
+    }
+
+    public static void exatamente20N(final String string, final String info) {
+        if (string != null) {
+            StringValidador.apenasNumerico(string, info);
+            StringValidador.validaTamanhoExato(string, 20, info);
         }
     }
 
@@ -379,34 +389,34 @@ public class StringValidador {
 
     public static void ncm(final String ncm) {
         if (ncm != null) {
-            final Matcher matcher = Pattern.compile("^([0-9]{2}|[0][1-9][0-9]{6}|[1-9][0-9]{7})$").matcher(ncm);
+            final Matcher matcher = Pattern.compile("^([0-9]{2}|[0-9]{8})$").matcher(ncm);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("NCM fora do padrao (%s)", ncm));
             }
         }
     }
 
-    private static void apenasNumerico(final String string) {
+    private static void apenasNumerico(final String string, final String info) {
         if (!StringUtils.isNumeric(string)) {
-            throw new IllegalStateException(String.format("a string precisa ser numerica (%s)", string));
+            throw new IllegalStateException(String.format("A string %s precisa ser numerica (%s)", info, string));
         }
     }
 
-    private static void validaTamanhoMaximo(final String string, final int tamanho) {
+    private static void validaTamanhoMaximo(final String string, final int tamanho, final String info) {
         if (string.length() < 1 || string.length() > tamanho) {
-            throw new IllegalStateException(String.format("\"%s\" deve possuir entre 1-%s caracteres", string, tamanho));
+            throw new IllegalStateException(String.format("%s \"%s\" deve possuir entre 1-%s caracteres", info, string, tamanho));
         }
     }
 
-    private static void validaTamanhoExato(final String string, final int tamanho) {
+    private static void validaTamanhoExato(final String string, final int tamanho, final String info) {
         if (string.length() != tamanho) {
-            throw new IllegalStateException(String.format("\"%s\" deve possuir %s caracteres", string, tamanho));
+            throw new IllegalStateException(String.format("%s \"%s\" deve possuir %s caracteres", info, string, tamanho));
         }
     }
 
-    private static void intervalo(final String string, final int inicio, final int fim) {
+    private static void intervalo(final String string, final int inicio, final int fim, final String info) {
         if (string.length() < inicio || string.length() > fim) {
-            throw new IllegalStateException(String.format("\"%s\" deve possuir entre %s-%s caracteres", string, inicio, fim));
+            throw new IllegalStateException(String.format("%s \"%s\" deve possuir entre %s-%s caracteres", info, string, inicio, fim));
         }
     }
 
@@ -424,17 +434,17 @@ public class StringValidador {
         }
     }
 
-    public static void exatamente54(final String string) {
-        StringValidador.validaTamanhoExato(string, 54);
+    public static void exatamente54(final String string, final String info) {
+        StringValidador.validaTamanhoExato(string, 54, info);
     }
 
-    public static void exatamente15N(final String string) {
-        StringValidador.validaTamanhoExato(string, 15);
-        StringValidador.apenasNumerico(string);
+    public static void exatamente15N(final String string, final String info) {
+        StringValidador.validaTamanhoExato(string, 15, info);
+        StringValidador.apenasNumerico(string, info);
     }
 
     public static void modeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        if (!modeloDocumentoFiscal.equals("55")) {
+        if (!modeloDocumentoFiscal.equals("55") && !modeloDocumentoFiscal.equals("65")) {
             throw new IllegalStateException(String.format("Modelo Fiscal Invalido (%s)", modeloDocumentoFiscal));
         }
     }
