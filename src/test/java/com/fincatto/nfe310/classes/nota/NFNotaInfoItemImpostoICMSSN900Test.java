@@ -67,8 +67,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         new NFNotaInfoItemImpostoICMSSN900().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirAliquotaAplicavelCalculoCreditoSNNulo() {
+    @Test
+    public void devePermitirAliquotaAplicavelCalculoCreditoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
@@ -87,8 +87,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirAliquotaImpostoICMSSTNulo() {
+    @Test
+    public void devePermitirAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
@@ -107,8 +107,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDeveModalidadeBCICMSSTNulo() {
+    @Test
+    public void deveModalidadeBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -127,8 +127,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirModalidadeDeterminacaoBCICMSNulo() {
+    @Test
+    public void devePermitirModalidadeDeterminacaoBCICMSNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -167,8 +167,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualAliquotaImpostoNulo() {
+    @Test
+    public void devePermitirPercentualAliquotaImpostoNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -267,8 +267,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBCICMSNulo() {
+    @Test
+    public void devePermitirValorBCICMSNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -287,8 +287,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBCICMSTNulo() {
+    @Test
+    public void devePermitirValorBCICMSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -307,8 +307,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBCICMSSTNulo() {
+    @Test
+    public void devePermitirValorBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -327,8 +327,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorCreditoICMSSNNulo() {
+    @Test
+    public void devePermitirValorCreditoICMSSNNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -347,8 +347,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorICMSNulo() {
+    @Test
+    public void devePermitirValorICMSNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
@@ -367,8 +367,8 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorICMSSTNulo() {
+    @Test
+    public void devePermitirValorICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
         icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
