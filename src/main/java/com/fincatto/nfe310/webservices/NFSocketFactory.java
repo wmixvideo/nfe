@@ -67,45 +67,44 @@ class NFSocketFactory implements ProtocolSocketFactory {
         trustManagerFactory.init(config.getCadeiaCertificadosKeyStore());
         return trustManagerFactory.getTrustManagers();
     }
-}
-
-class NFKeyManager implements X509KeyManager {
-
-    private final X509Certificate certificate;
-    private final PrivateKey privateKey;
-
-    NFKeyManager(final X509Certificate certificate, final PrivateKey privateKey) {
-        this.certificate = certificate;
-        this.privateKey = privateKey;
-    }
-
-    @Override
-    public String chooseClientAlias(final String[] arg0, final Principal[] arg1, final Socket arg2) {
-        return this.certificate.getIssuerDN().getName();
-    }
-
-    @Override
-    public String chooseServerAlias(final String arg0, final Principal[] arg1, final Socket arg2) {
-        return null;
-    }
-
-    @Override
-    public X509Certificate[] getCertificateChain(final String arg0) {
-        return new X509Certificate[]{this.certificate};
-    }
-
-    @Override
-    public String[] getClientAliases(final String arg0, final Principal[] arg1) {
-        return new String[]{this.certificate.getIssuerDN().getName()};
-    }
-
-    @Override
-    public PrivateKey getPrivateKey(final String arg0) {
-        return this.privateKey;
-    }
-
-    @Override
-    public String[] getServerAliases(final String arg0, final Principal[] arg1) {
-        return null;
+    
+    private static class NFKeyManager implements X509KeyManager {
+        private final X509Certificate certificate;
+        private final PrivateKey privateKey;
+        
+        NFKeyManager(final X509Certificate certificate, final PrivateKey privateKey) {
+            this.certificate = certificate;
+            this.privateKey = privateKey;
+        }
+        
+        @Override
+        public String chooseClientAlias(final String[] arg0, final Principal[] arg1, final Socket arg2) {
+            return this.certificate.getIssuerDN().getName();
+        }
+        
+        @Override
+        public String chooseServerAlias(final String arg0, final Principal[] arg1, final Socket arg2) {
+            return null;
+        }
+        
+        @Override
+        public X509Certificate[] getCertificateChain(final String arg0) {
+            return new X509Certificate[]{this.certificate};
+        }
+        
+        @Override
+        public String[] getClientAliases(final String arg0, final Principal[] arg1) {
+            return new String[]{this.certificate.getIssuerDN().getName()};
+        }
+        
+        @Override
+        public PrivateKey getPrivateKey(final String arg0) {
+            return this.privateKey;
+        }
+        
+        @Override
+        public String[] getServerAliases(final String arg0, final Principal[] arg1) {
+            return null;
+        }
     }
 }
