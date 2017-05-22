@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+
+   <fontFamily name="Arial Narrow">
+       <normal><![CDATA[fonts/Arial_Narrow.ttf]]></normal>
+       <bold><![CDATA[fonts/Arial_Narrow_Bold.ttf]]></bold>
+       <italic><![CDATA[fonts/Arial_Narrow_Italic.ttf]]></italic>
+       <boldItalic><![CDATA[fonts/Arial_Narrow_Bold_Italic.ttf]]></boldItalic>
+       <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+   </fontFamily>
+
+
+</fontFamilies>
