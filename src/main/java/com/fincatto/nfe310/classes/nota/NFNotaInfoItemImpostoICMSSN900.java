@@ -18,22 +18,22 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     @Element(name = "CSOSN", required = true)
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
-    @Element(name = "modBC", required = true)
+    @Element(name = "modBC", required = false)
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
 
-    @Element(name = "vBC", required = true)
+    @Element(name = "vBC", required = false)
     private String valorBCICMS;
 
     @Element(name = "pRedBC", required = false)
     private String percentualReducaoBC;
 
-    @Element(name = "pICMS", required = true)
+    @Element(name = "pICMS", required = false)
     private String percentualAliquotaImposto;
 
-    @Element(name = "vICMS", required = true)
+    @Element(name = "vICMS", required = false)
     private String valorICMS;
 
-    @Element(name = "modBCST", required = true)
+    @Element(name = "modBCST", required = false)
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
@@ -42,19 +42,19 @@ public class NFNotaInfoItemImpostoICMSSN900 extends NFBase {
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
 
-    @Element(name = "vBCST", required = true)
+    @Element(name = "vBCST", required = false)
     private String valorBCICMSST;
 
-    @Element(name = "pICMSST", required = true)
+    @Element(name = "pICMSST", required = false)
     private String percentualAliquotaImpostoICMSST;
 
-    @Element(name = "vICMSST", required = true)
+    @Element(name = "vICMSST", required = false)
     private String valorICMSST;
 
-    @Element(name = "pCredSN", required = true)
+    @Element(name = "pCredSN", required = false)
     private String percentualAliquotaAplicavelCalculoCreditoSN;
 
-    @Element(name = "vCredICMSSN", required = true)
+    @Element(name = "vCredICMSSN", required = false)
     private String valorCreditoICMSSN;
 
     public void setOrigem(final NFOrigem origem) {
