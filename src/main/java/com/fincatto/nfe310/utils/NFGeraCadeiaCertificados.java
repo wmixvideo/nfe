@@ -1,16 +1,13 @@
 package com.fincatto.nfe310.utils;
 
+import com.fincatto.mdfe1.classes.MDFAutorizador1;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.*;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.security.KeyStore;
@@ -43,6 +40,15 @@ public abstract class NFGeraCadeiaCertificados {
                     NFGeraCadeiaCertificados.get(keyStore, host, PORT);
                 }
             }
+            //MDFE
+            for(final MDFAutorizador1 aut: MDFAutorizador1.values()){
+                final String urlMDFe = aut.getMDFeStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlMDFe)) {
+                    final String host = new URI(urlMDFe).getHost();
+                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                }
+            }
+
             keyStore.store(out, senha.toCharArray());
             return out.toByteArray();
         }
