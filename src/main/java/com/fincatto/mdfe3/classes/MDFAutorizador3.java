@@ -1,4 +1,4 @@
-package com.fincatto.mdfe1.classes;
+package com.fincatto.mdfe3.classes;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -17,7 +17,7 @@ import java.util.Arrays;
  *
  *
  */
-public enum MDFAutorizador1 {
+public enum MDFAutorizador3 {
 
     RS {
         @Override
@@ -89,8 +89,8 @@ public enum MDFAutorizador1 {
      * @param uf
      * @return
      */
-    public static MDFAutorizador1 valueOfCodigoUF(final NFUnidadeFederativa uf) {
-        for (final MDFAutorizador1 autorizador : MDFAutorizador1.values()) {
+    public static MDFAutorizador3 valueOfCodigoUF(final NFUnidadeFederativa uf) {
+        for (final MDFAutorizador3 autorizador : MDFAutorizador3.values()) {
             if (Arrays.asList(autorizador.getUFs()).contains(uf)) {
                 return autorizador;
             }

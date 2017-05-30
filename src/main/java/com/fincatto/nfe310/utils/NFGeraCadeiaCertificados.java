@@ -1,6 +1,6 @@
 package com.fincatto.nfe310.utils;
 
-import com.fincatto.mdfe1.classes.MDFAutorizador1;
+import com.fincatto.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import org.apache.commons.lang3.StringUtils;
@@ -41,7 +41,7 @@ public abstract class NFGeraCadeiaCertificados {
                 }
             }
             //MDFE
-            for(final MDFAutorizador1 aut: MDFAutorizador1.values()){
+            for(final MDFAutorizador3 aut: MDFAutorizador3.values()){
                 final String urlMDFe = aut.getMDFeStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlMDFe)) {
                     final String host = new URI(urlMDFe).getHost();
