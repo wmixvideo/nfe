@@ -10,90 +10,90 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFDownloadNFeRetorno extends NFBase{
 
-	@Attribute(name = "versao", required = true)
-	private String versao;
-	
-	@Element(name = "tpAmb", required = true)
-	private NFAmbiente ambiente;
-	
-	@Element(name = "verAplic", required = true)
-	private String versaoAplicacao;
-	
-	@Element(name = "cStat", required = true)
-	private String status;
-	
-	@Element(name = "xMotivo", required = true)
-	private String motivo;
-	
-	@Element(name = "dhResp", required = true)
-	private String dataRetorno;
-	
-	@ElementList(name = "retNFe", inline = true, required = false)
-	private List<NFDownloadNFeRetornoInfo> info;
+    @Attribute(name = "versao", required = true)
+    private String versao;
 
-	public NFDownloadNFeRetorno() {
-		this.versao = null;
-		this.ambiente = null;
-		this.versaoAplicacao = null;
-		this.status = null;
-		this.motivo = null;
-		this.dataRetorno = null;
-		this.info = null;
-	}
+    @Element(name = "tpAmb", required = true)
+    private NFAmbiente ambiente;
 
-	public String getVersao() {
-		return versao;
-	}
+    @Element(name = "verAplic", required = true)
+    private String versaoAplicacao;
 
-	public void setVersao(final String versao) {
-		this.versao = versao;
-	}
+    @Element(name = "cStat", required = true)
+    private String status;
 
-	public NFAmbiente getAmbiente() {
-		return ambiente;
-	}
+    @Element(name = "xMotivo", required = true)
+    private String motivo;
 
-	public void setAmbiente(final NFAmbiente ambiente) {
-		this.ambiente = ambiente;
-	}
+    @Element(name = "dhResp", required = true)
+    private String dataRetorno;
 
-	public String getVersaoAplicacao() {
-		return versaoAplicacao;
-	}
+    @ElementList(name = "retNFe", inline = true, required = false)
+    private List<NFDownloadNFeRetornoInfo> info;
 
-	public void setVersaoAplicacao(final String versaoAplicacao) {
-		this.versaoAplicacao = versaoAplicacao;
-	}
+    public NFDownloadNFeRetorno() {
+        this.versao = null;
+        this.ambiente = null;
+        this.versaoAplicacao = null;
+        this.status = null;
+        this.motivo = null;
+        this.dataRetorno = null;
+        this.info = null;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getVersao() {
+        return versao;
+    }
 
-	public void setStatus(final String status) {
-		this.status = status;
-	}
+    public void setVersao(final String versao) {
+        this.versao = versao;
+    }
 
-	public String getMotivo() {
-		return motivo;
-	}
+    public NFAmbiente getAmbiente() {
+        return ambiente;
+    }
 
-	public void setMotivo(final String motivo) {
-		this.motivo = motivo;
-	}
+    public void setAmbiente(final NFAmbiente ambiente) {
+        this.ambiente = ambiente;
+    }
 
-	public String getDataRetorno() {
-		return dataRetorno;
-	}
+    public String getVersaoAplicacao() {
+        return versaoAplicacao;
+    }
 
-	public void setDataRetorno(final String dataRetorno) {
-		this.dataRetorno = dataRetorno;
-	}
+    public void setVersaoAplicacao(final String versaoAplicacao) {
+        this.versaoAplicacao = versaoAplicacao;
+    }
 
-	public List<NFDownloadNFeRetornoInfo> getInfo() {
-		return info;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setInfo(final List<NFDownloadNFeRetornoInfo> info) {
-		this.info = info;
-	}
+    public void setStatus(final String status) {
+        this.status = status;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(final String motivo) {
+        this.motivo = motivo;
+    }
+
+    public String getDataRetorno() {
+        return dataRetorno;
+    }
+
+    public void setDataRetorno(final String dataRetorno) {
+        this.dataRetorno = dataRetorno;
+    }
+
+    public List<NFDownloadNFeRetornoInfo> getInfo() {
+        return info;
+    }
+
+    public void setInfo(final List<NFDownloadNFeRetornoInfo> info) {
+        this.info = info;
+    }
 }
