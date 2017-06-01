@@ -30,6 +30,11 @@ import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.Collections;
 
+/**
+ * 
+ * Classe responsável por tratar eventos de correção da Nota Fiscal
+ *
+ */
 class WSCartaCorrecao {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CODIGO = "110110";
@@ -42,6 +47,14 @@ class WSCartaCorrecao {
         this.config = config;
     }
 
+    /**
+     * Efetua a correção da nota fiscal.
+     * @param chaveAcesso
+     * @param textoCorrecao
+     * @param numeroSequencialEvento
+     * @return Status da requisição
+     * @throws Exception - caso não consiga efetuar a correção com sucesso.
+     */
     NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
@@ -49,6 +62,13 @@ class WSCartaCorrecao {
         return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
+    /**
+     * Efetua a correção de uma nota fiscal já assinada.
+     * @param chaveAcesso
+     * @param eventoAssinadoXml
+     * @return Status da requisição
+     * @throws Exception - caso não consiga efetuar a correção com sucesso.
+     */
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
         return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
