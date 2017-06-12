@@ -12,6 +12,7 @@ import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import org.apache.commons.httpclient.protocol.Protocol;
@@ -60,9 +61,10 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
-//        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-//            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
-//        }
+        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)
+                && lote.getNotas().size()>1) {
+                throw new IllegalArgumentException("Apenas uma nota permitida no modo sincrono!");
+        }
         return this.wsLoteEnvio.enviaLote(lote);
     }
 

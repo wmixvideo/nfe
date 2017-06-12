@@ -71,7 +71,7 @@ public class NFGeraQRCodeTest {
             }
 
 			@Override
-			public String getCertificadoAlias() throws KeyStoreException {
+			public String getCertificadoAlias(){
 				return null;
 			}
         };

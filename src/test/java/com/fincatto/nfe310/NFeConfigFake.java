@@ -58,7 +58,12 @@ public class NFeConfigFake extends NFeConfig {
     }
 
 	@Override
-	public String getCertificadoAlias() throws KeyStoreException {
-		return getCertificadoKeyStore().aliases().nextElement();
-	}
+	public String getCertificadoAlias(){
+        try {
+            return getCertificadoKeyStore().aliases().nextElement();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
