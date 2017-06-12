@@ -13,7 +13,6 @@ public class NFeConfigFake extends NFeConfig {
 
     private KeyStore keyStoreCertificado = null;
     private KeyStore keyStoreCadeia = null;
-    
 
     @Override
     public NFUnidadeFederativa getCUF() {
