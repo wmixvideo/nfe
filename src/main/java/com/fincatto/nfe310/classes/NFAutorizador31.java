@@ -1625,6 +1625,8 @@ public enum NFAutorizador31 {
 
     public static NFAutorizador31 valueOfTipoEmissao(final NFTipoEmissao tpEmissao, final NFUnidadeFederativa uf) {
         switch (tpEmissao) {
+        	case CONTIGENCIA_OFFLINE:
+        	case CONTINGENCIA_FSDA:
             case EMISSAO_NORMAL:
                 return NFAutorizador31.valueOfCodigoUF(uf);
             case CONTINGENCIA_SVCRS:
