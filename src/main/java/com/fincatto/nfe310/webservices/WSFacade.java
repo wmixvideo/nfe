@@ -15,6 +15,8 @@ import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
+import com.fincatto.nfe310.classes.evento.epec.NFEnviaEventoEpec;
+import com.fincatto.nfe310.classes.evento.epec.NFEnviaEventoEpecRetorno;
 import com.fincatto.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -37,6 +39,8 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
+    
+    private final WSEpec wsEpec;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
@@ -52,6 +56,8 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
+        
+        this.wsEpec = new WSEpec(config);
     }
 
     /**
@@ -248,5 +254,27 @@ public class WSFacade {
      */
     public NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
         return this.wsNotaDownload.downloadNota(cnpj, chave);
+    }
+    
+    /**
+     * Faz o envio do epec como evento para o ambiente nacional
+     *
+     * @param epec o epec a ser enviado para a Sefaz
+     * @return dados do epec retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o ambiente nacional da sefaz
+     */
+    public NFEnviaEventoEpecRetorno enviaEpec(final NFEnviaEventoEpec epec) throws Exception {
+        return this.wsEpec.enviaEpec(epec);
+    }
+
+    /**
+     * Faz o envio assinado para o ambiente nacional da Sefaz
+     *
+     * @param loteAssinadoXml lote assinado no formato XML
+     * @return dados do epec retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o ambiente nacional da sefaz
+     */
+    public NFEnviaEventoEpecRetorno enviaEpec(final String epecAssinadoXml) throws Exception {
+        return this.wsEpec.enviaEpecAssinado(epecAssinadoXml);
     }
 }

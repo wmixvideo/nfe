@@ -27,4 +27,12 @@ public final class XMLValidador {
     public static boolean validaNota(final String arquivoXML) throws Exception {
         return XMLValidador.valida(arquivoXML, "nfe_v3.10.xsd");
     }
+    
+    public static boolean validaEpec(final String arquivoXML) throws Exception {
+        return XMLValidador.valida(arquivoXML, "envEPEC_v1.00.xsd");
+    }
+
+    public static boolean validaEventoEpec(final String arquivoXML) throws Exception {
+        return XMLValidador.valida(arquivoXML, "EPEC_v1.00.xsd");
+    }
 }

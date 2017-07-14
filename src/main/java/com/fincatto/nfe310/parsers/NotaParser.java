@@ -1,12 +1,13 @@
 package com.fincatto.nfe310.parsers;
 
-import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
-import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
-import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import java.io.File;
 
 import org.simpleframework.xml.core.Persister;
 
+import com.fincatto.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
+import com.fincatto.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import com.fincatto.nfe310.classes.evento.epec.NFEnviaEventoEpec;
+import com.fincatto.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.nfe310.classes.nota.NFNota;
 import com.fincatto.nfe310.classes.nota.NFNotaProcessada;
@@ -111,6 +112,14 @@ public class NotaParser {
     public NFEnviaEventoInutilizacao enviaEventoInutilizacaoParaObjeto(final String xml) {
         try {
             return this.persister.read(NFEnviaEventoInutilizacao.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+    }
+    
+    public NFEnviaEventoEpec epecParaObjeto(final String xml) {
+        try {
+            return this.persister.read(NFEnviaEventoEpec.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }

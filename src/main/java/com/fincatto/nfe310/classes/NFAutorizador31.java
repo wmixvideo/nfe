@@ -111,7 +111,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeAutorizacao(NFAmbiente ambiente) {
-            return null;
+        	return null;
         }
 
         @Override
