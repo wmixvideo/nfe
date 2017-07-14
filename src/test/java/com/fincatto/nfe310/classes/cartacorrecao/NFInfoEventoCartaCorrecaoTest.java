@@ -1,16 +1,24 @@
 package com.fincatto.nfe310.classes.cartacorrecao;
 
+import java.math.BigDecimal;
+import java.util.TimeZone;
+
+import org.joda.time.DateTime;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.evento.NFInfoEvento;
-import org.joda.time.DateTime;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.math.BigDecimal;
 
 public class NFInfoEventoCartaCorrecaoTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	}
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCNPJComTamanhoInvalido() {

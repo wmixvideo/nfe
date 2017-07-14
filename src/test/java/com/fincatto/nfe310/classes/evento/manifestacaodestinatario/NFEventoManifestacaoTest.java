@@ -1,13 +1,20 @@
 package com.fincatto.nfe310.classes.evento.manifestacaodestinatario;
 
 import java.math.BigDecimal;
+import java.util.TimeZone;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
 
 public class NFEventoManifestacaoTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	}
 
     @Test
     public void deveObterAssinaturaComoFoiSetado() {

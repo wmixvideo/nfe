@@ -1,11 +1,20 @@
 package com.fincatto.nfe310.classes.nota;
 
-import com.fincatto.nfe310.FabricaDeObjetosFake;
-import com.fincatto.nfe310.utils.NFGeraChave;
+import java.util.TimeZone;
+
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.fincatto.nfe310.FabricaDeObjetosFake;
+import com.fincatto.nfe310.utils.NFGeraChave;
+
 public class NFGeraChaveTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	}
 
     @Test
     public void geraChaveDeAcessoComCPFConformeEsperado() {

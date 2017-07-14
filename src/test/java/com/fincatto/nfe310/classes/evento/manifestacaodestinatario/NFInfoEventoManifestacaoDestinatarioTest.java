@@ -1,9 +1,11 @@
 package com.fincatto.nfe310.classes.evento.manifestacaodestinatario;
 
 import java.math.BigDecimal;
+import java.util.TimeZone;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
@@ -11,6 +13,11 @@ import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 
 public class NFInfoEventoManifestacaoDestinatarioTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	}
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {

@@ -1,10 +1,18 @@
 package com.fincatto.nfe310.transformers;
 
+import java.util.TimeZone;
+
 import org.joda.time.LocalDate;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class NFLocalDateTransformerTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
+	}
 
     @Test
     public void deveTransformarDataStringEmLocalDate() throws Exception {
