@@ -3,9 +3,9 @@ package com.fincatto.nfe310.classes.evento.cancelamento;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fincatto.nfe310.FabricaDeObjetosFake;
@@ -40,7 +40,6 @@ public class NFProtocoloEventoCancelamentoTest {
     }
 
     @Test
-    @Ignore
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFProtocoloEventoCancelamento procEvento = new NFProtocoloEventoCancelamento();
         procEvento.setVersao("1.00");
@@ -71,9 +70,12 @@ public class NFProtocoloEventoCancelamentoTest {
         isoFormat.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
         String data = isoFormat.format(infoEventoRetorno.getDataHoraRegistro().toDate());
 
-        String xmlEsperado = "<procEventoNFe versao=\"1.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><evento versao=\"3.10\"><infEvento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>${dhRegEvento}</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></detEvento></infEvento></evento><retEvento versao=\"1.0\"><infEvento Id=\"123456789123456789123456789123456789123456789\"><tpAmb>1</tpAmb><verAplic>SVRS201601161016</verAplic><cOrgao>52</cOrgao><cStat>1</cStat><xMotivo>asdsdsjdslkdjsaldjsldk</xMotivo><chNFe>hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6</chNFe><tpEvento>110111</tpEvento><xEvento>sdskjdkjdsdcklkjdsakndcsakjdckdljsdckjasldnclakjdsalkdcskdjacdsadcsacd</xEvento><CNPJDest>99999999999999</CNPJDest><dhRegEvento>${dhRegEvento}</dhRegEvento><nProt>999999999999999</nProt></infEvento></retEvento></procEventoNFe>";
+        String xmlEsperado = "<procEventoNFe versao=\"1.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><evento versao=\"3.10\"><infEvento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>${dhEvento}</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></detEvento></infEvento></evento><retEvento versao=\"1.0\"><infEvento Id=\"123456789123456789123456789123456789123456789\"><tpAmb>1</tpAmb><verAplic>SVRS201601161016</verAplic><cOrgao>52</cOrgao><cStat>1</cStat><xMotivo>asdsdsjdslkdjsaldjsldk</xMotivo><chNFe>hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6</chNFe><tpEvento>110111</tpEvento><xEvento>sdskjdkjdsdcklkjdsakndcsakjdckdljsdckjasldnclakjdsalkdcskdjacdsadcsacd</xEvento><CNPJDest>99999999999999</CNPJDest><dhRegEvento>${dhRegEvento}</dhRegEvento><nProt>999999999999999</nProt></infEvento></retEvento></procEventoNFe>";
         
+        xmlEsperado = xmlEsperado.replace("${dhEvento}", data); 
         xmlEsperado = xmlEsperado.replace("${dhRegEvento}", data); 
+        
+        procEvento.getEvento().getInfoEvento().setDataHoraEvento(new DateTime(0));
         
         Assert.assertEquals(xmlEsperado, procEvento.toString());
     }
