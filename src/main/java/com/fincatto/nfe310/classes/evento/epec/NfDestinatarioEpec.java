@@ -18,7 +18,7 @@ public class NfDestinatarioEpec {
 	@Element(name = "idEstrangeiro", required = false)
 	protected String idEstrangeiro;
 
-	@Element(name = "IE", required = false)
+	@Element(name = "IE", required = true)
 	protected String inscricaoEstadualDestinatario;
 
 	@Element(name = "vNF", required = true)

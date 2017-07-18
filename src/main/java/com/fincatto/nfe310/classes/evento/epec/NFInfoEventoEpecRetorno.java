@@ -20,6 +20,12 @@ public class NFInfoEventoEpecRetorno extends NFBase {
 
     @Element(name = "cOrgao", required = true)
     private NFUnidadeFederativa orgao;
+    
+    @Element(name = "CNPJDest", required = false)
+    private String cnpjDest;
+    
+    @Element(name = "CPFDest", required = false)
+    private String cpfDest;
 
     @Element(name = "cStat", required = true)
     private Integer codigoStatus;
@@ -81,6 +87,22 @@ public class NFInfoEventoEpecRetorno extends NFBase {
 
 	public void setOrgao(NFUnidadeFederativa orgao) {
 		this.orgao = orgao;
+	}
+
+	public String getCnpjDest() {
+		return cnpjDest;
+	}
+
+	public void setCnpjDest(String cnpjDest) {
+		this.cnpjDest = cnpjDest;
+	}
+
+	public String getCpfDest() {
+		return cpfDest;
+	}
+
+	public void setCpfDest(String cpfDest) {
+		this.cpfDest = cpfDest;
 	}
 
 	public Integer getCodigoStatus() {
