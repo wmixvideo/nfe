@@ -38,7 +38,7 @@ public class NFEnviaEventoEpecRetorno extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    @ElementList(entry = "retEvento", inline = true, required = true)
+    @ElementList(entry = "retEvento", inline = true, required = false)
     private List<NFEventoEpecRetorno> eventoRetorno;
 
     public String getVersao() {

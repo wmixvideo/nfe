@@ -61,7 +61,7 @@ public class NFInfoEventoEpec extends NFBase {
     }
 
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente17(identificador, "Info Evento Conting\u00eancia EPEC ID");
+        StringValidador.exatamente54(identificador, "Info Evento Conting\u00eancia EPEC ID");
         this.identificador = identificador;
     }
 

@@ -29,7 +29,7 @@ public class NFTipoEvento extends NFBase {
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
+//        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 

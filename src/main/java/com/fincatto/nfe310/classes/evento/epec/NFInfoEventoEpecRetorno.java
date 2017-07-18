@@ -42,7 +42,7 @@ public class NFInfoEventoEpecRetorno extends NFBase {
     @Element(name = "cOrgaoAutor", required = false)
     private String orgaoAutor;
     
-    @Element(name = "dhRegEvento", required = false)
+    @Element(name = "dhRegEvento", required = true)
     private String dataHoraRegistroEvento;
 
     @Element(name = "nProt", required = false)

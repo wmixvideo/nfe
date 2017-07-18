@@ -9,16 +9,16 @@ public class NfDestinatarioEpec {
 	@Element(name = "UF", required = true)
 	protected String ufDestinatario;
 
-	@Element(name = "CNPJ")
+	@Element(name = "CNPJ", required = false)
 	protected String cnpj;
 
-	@Element(name = "CPF")
+	@Element(name = "CPF", required = false)
 	protected String cpf;
 
-	@Element(name = "idEstrangeiro")
+	@Element(name = "idEstrangeiro", required = false)
 	protected String idEstrangeiro;
 
-	@Element(name = "IE")
+	@Element(name = "IE", required = false)
 	protected String inscricaoEstadualDestinatario;
 
 	@Element(name = "vNF", required = true)

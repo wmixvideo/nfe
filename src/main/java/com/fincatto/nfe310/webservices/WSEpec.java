@@ -48,8 +48,9 @@ public class WSEpec {
         	final NFNota nota = eventoEpec.getNota();
             final NFGeraChave geraChave = new NFGeraChave(nota);
             String chave = geraChave.getChaveAcesso();
-            eventoEpec.getInfoEvento().setIdentificador("ID" + TIPO_EVENTO_EPEC + chave + nSeqEvento);
+            eventoEpec.getInfoEvento().setIdentificador("ID" + TIPO_EVENTO_EPEC + chave + (nSeqEvento < 10 ? "0" + nSeqEvento : nSeqEvento));
             eventoEpec.getInfoEvento().setNumeroSequencialEvento(nSeqEvento++);
+            eventoEpec.getInfoEvento().setChave(chave);
         }
 
         // assina o epec
@@ -91,7 +92,7 @@ public class WSEpec {
     private RecepcaoEventoStub.NfeCabecMsgE getCabecalhoSOAP() {
         final RecepcaoEventoStub.NfeCabecMsg cabecalho = new RecepcaoEventoStub.NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO_NFE);
+        cabecalho.setVersaoDados(NFeConfig.VERSAO_EPEC);
         final RecepcaoEventoStub.NfeCabecMsgE cabecalhoSOAP = new RecepcaoEventoStub.NfeCabecMsgE();
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;

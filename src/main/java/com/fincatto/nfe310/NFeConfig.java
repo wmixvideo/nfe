@@ -12,6 +12,7 @@ import java.security.KeyStoreException;
  */
 public abstract class NFeConfig {
 
+	public static final String VERSAO_EPEC = "1.0";
     public static final String VERSAO_NFE = "3.10";
     public static final String NFE_NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
 
