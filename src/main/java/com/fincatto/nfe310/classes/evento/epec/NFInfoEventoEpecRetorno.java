@@ -1,7 +1,10 @@
 package com.fincatto.nfe310.classes.evento.epec;
 
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import com.fincatto.nfe310.classes.NFAmbiente;
 import com.fincatto.nfe310.classes.NFBase;
@@ -54,8 +57,8 @@ public class NFInfoEventoEpecRetorno extends NFBase {
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
     
-    @Element(name = "chNFePend", required = false)
-    private String chavePendente;
+    @ElementList(name = "chNFePend", required = false)
+    private List<String> chavePendente;
 
 	public String getId() {
 		return id;
@@ -177,11 +180,11 @@ public class NFInfoEventoEpecRetorno extends NFBase {
 		this.numeroProtocolo = numeroProtocolo;
 	}
 
-	public String getChavePendente() {
+	public List<String> getChavePendente() {
 		return chavePendente;
 	}
 
-	public void setChavePendente(String chavePendente) {
+	public void setChavePendente(List<String> chavePendente) {
 		this.chavePendente = chavePendente;
 	}
 
