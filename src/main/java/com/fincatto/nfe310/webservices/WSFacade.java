@@ -263,8 +263,8 @@ public class WSFacade {
      * @return dados do epec retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o ambiente nacional da sefaz
      */
-    public NFEnviaEventoEpecRetorno enviaEpec(final NFEnviaEventoEpec epec) throws Exception {
-        return this.wsEpec.enviaEpec(epec);
+    public NFEnviaEventoEpecRetorno enviaEpec(final NFLoteEnvio lote) throws Exception {
+        return this.wsEpec.enviaEpec(lote);
     }
 
     /**

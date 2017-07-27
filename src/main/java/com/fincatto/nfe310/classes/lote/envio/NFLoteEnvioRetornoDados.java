@@ -1,6 +1,8 @@
 package com.fincatto.nfe310.classes.lote.envio;
 
-public class NFLoteEnvioRetornoDados {
+import com.fincatto.nfe310.classes.NFBase;
+
+public class NFLoteEnvioRetornoDados extends NFBase {
 
 	private NFLoteEnvioRetorno retorno;
 	private NFLoteEnvio loteAssinado;
