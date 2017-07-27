@@ -73,6 +73,20 @@ public class WSFacade {
         }
         return this.wsLoteEnvio.enviaLote(lote);
     }
+    
+    /**
+     * Faz o envio de lote já enviado em EPEC para a Sefaz
+     *
+     * @param lote o lote a ser enviado para a Sefaz
+     * @return dados do lote retornado pelo webservice, alem do lote assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFLoteEnvioRetornoDados enviaLoteEpec(final NFLoteEnvio lote) throws Exception {
+        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
+            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
+        }
+        return this.wsLoteEnvio.enviaLoteEpec(lote);
+    }
 
     /**
      * Faz o envio assinado para a Sefaz de NF-e e NFC-e

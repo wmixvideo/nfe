@@ -1,13 +1,14 @@
 package com.fincatto.nfe310.webservices;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,30 +36,31 @@ public class WSEpec {
 
 	private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
 	public static final String TIPO_EVENTO_EPEC = "110140";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSEpec.class);
-    private final NFeConfig config;
+	private static final Logger LOGGER = LoggerFactory.getLogger(WSEpec.class);
+	private final NFeConfig config;
 
-    public WSEpec(NFeConfig config) {
-        this.config = config;
-    }
-    
-    NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
-        return this.comunicaEpec(epecAssinadoXml);
-    }
-    
-    private String converterDataParaTexto(DateTime data, String pattern) {
+	public WSEpec(NFeConfig config) {
+		this.config = config;
+	}
+
+	NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
+		return this.comunicaEpec(epecAssinadoXml);
+	}
+
+	private String converterDataParaTexto(DateTime data) {
 		try {
-			DateFormat dateFormat = new SimpleDateFormat(pattern);
-			return dateFormat.format(data);
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
+			return fmt.print(data);
 		} catch (Exception ex) {
 			return "";
 		}
 	}
-    
-    private NFEnviaEventoEpec criaEnvioEpec(NFLoteEnvio loteEnvio) {
+
+	private NFEnviaEventoEpec criaEnvioEpec(NFLoteEnvio loteEnvio) {
 
 		NFEnviaEventoEpec nfEnviaEventoEpec = new NFEnviaEventoEpec();
-		nfEnviaEventoEpec.setIdLote(loteEnvio.getIdLote());
+		nfEnviaEventoEpec.setIdLote(StringUtils.isBlank(loteEnvio.getIdLote())
+				? String.valueOf(new java.util.Date().getTime()) : loteEnvio.getIdLote());
 		nfEnviaEventoEpec.setVersao("1.00");
 		nfEnviaEventoEpec.setEvento(new ArrayList<NFEventoEpec>());
 
@@ -71,8 +73,11 @@ public class WSEpec {
 
 			NFInfoEventoEpec nfInfoEventoEpec = new NFInfoEventoEpec();
 			nfInfoEventoEpec.setAmbiente(this.config.getAmbiente());
-			nfInfoEventoEpec.setCnpj(nfNota.getInfo().getEmitente().getCnpj());
-			nfInfoEventoEpec.setCpf(nfNota.getInfo().getEmitente().getCpf());
+			if (StringUtils.isNotBlank(nfNota.getInfo().getEmitente().getCnpj())) {
+				nfInfoEventoEpec.setCnpj(nfNota.getInfo().getEmitente().getCnpj());
+			} else {
+				nfInfoEventoEpec.setCpf(nfNota.getInfo().getEmitente().getCpf());
+			}
 			nfInfoEventoEpec.setCodigoEvento(WSEpec.TIPO_EVENTO_EPEC);
 			nfInfoEventoEpec.setNumeroSequencialEvento(i++);
 			nfInfoEventoEpec.setOrgao(NFUnidadeFederativa.RFB);
@@ -80,8 +85,8 @@ public class WSEpec {
 			nfInfoEventoEpec.setDataHoraEvento(new DateTime());
 
 			NFInfoEpec nfInfoEpec = new NFInfoEpec();
-			nfInfoEpec.setDataHoraEmissao(converterDataParaTexto(
-					nfNota.getInfo().getIdentificacao().getDataHoraEmissao(), "yyyy-MM-dd'T'HH:mm:ssXXX"));
+			nfInfoEpec.setDataHoraEmissao(
+					converterDataParaTexto(nfNota.getInfo().getIdentificacao().getDataHoraEmissao()));
 			nfInfoEpec.setDescricaoEvento("EPEC");
 			nfInfoEpec.setInscricaoEstadualEmitente(nfNota.getInfo().getEmitente().getInscricaoEstadual());
 			nfInfoEpec.setOrgaoAutor(NFUnidadeFederativa
@@ -95,8 +100,11 @@ public class WSEpec {
 
 			if (nfNota.getInfo().getDestinatario() != null) {
 				NfDestinatarioEpec nfDestinatarioEpec = new NfDestinatarioEpec();
-				nfDestinatarioEpec.setCnpj(nfNota.getInfo().getDestinatario().getCnpj());
-				nfDestinatarioEpec.setCpf(nfNota.getInfo().getDestinatario().getCpfj());
+				if (StringUtils.isNotBlank(nfNota.getInfo().getDestinatario().getCnpj())) {
+					nfDestinatarioEpec.setCnpj(nfNota.getInfo().getDestinatario().getCnpj());
+				} else {
+					nfDestinatarioEpec.setCpf(nfNota.getInfo().getDestinatario().getCpfj());
+				}
 				nfDestinatarioEpec.setIdEstrangeiro(nfNota.getInfo().getDestinatario().getIdEstrangeiro());
 				nfDestinatarioEpec
 						.setInscricaoEstadualDestinatario(nfNota.getInfo().getDestinatario().getInscricaoEstadual());
@@ -122,58 +130,62 @@ public class WSEpec {
 
 	}
 
-    NFEnviaEventoEpecRetorno enviaEpec(NFLoteEnvio loteEnvio) throws Exception {
-    	
-    	final NFEnviaEventoEpec epec = criaEnvioEpec(loteEnvio);
-    	
-        // adiciona a chave e o dv antes de assinar
-        int nSeqEvento = 1;
-    	for (final NFEventoEpec eventoEpec : epec.getEvento()) {
-        	final NFNota nota = eventoEpec.getNota();
-            final NFGeraChave geraChave = new NFGeraChave(nota);
-            String chave = geraChave.getChaveAcesso();
-            eventoEpec.getInfoEvento().setIdentificador("ID" + TIPO_EVENTO_EPEC + chave + (nSeqEvento < 10 ? "0" + nSeqEvento : nSeqEvento));
-            eventoEpec.getInfoEvento().setNumeroSequencialEvento(nSeqEvento++);
-            eventoEpec.getInfoEvento().setChave(chave);
-        }
+	NFEnviaEventoEpecRetorno enviaEpec(NFLoteEnvio loteEnvio) throws Exception {
 
-        // assina o epec
-        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(epec.toString());
-        final NFEnviaEventoEpec epecAssinado = new NotaParser().epecParaObjeto(documentoAssinado);
+		final NFEnviaEventoEpec epec = criaEnvioEpec(loteEnvio);
 
-        // comunica o epec
-        final NFEnviaEventoEpecRetorno epecEnvioRetorno = this.comunicaEpec(epecAssinado.toString());
-        return epecEnvioRetorno;
-    }
+		// adiciona a chave e o dv antes de assinar
+		int nSeqEvento = 1;
+		for (final NFEventoEpec eventoEpec : epec.getEvento()) {
+			final NFNota nota = eventoEpec.getNota();
+			final NFGeraChave geraChave = new NFGeraChave(nota);
+			String chave = geraChave.getChaveAcesso();
+			eventoEpec.getInfoEvento().setIdentificador(
+					"ID" + TIPO_EVENTO_EPEC + chave + (nSeqEvento < 10 ? "0" + nSeqEvento : nSeqEvento));
+			eventoEpec.getInfoEvento().setNumeroSequencialEvento(nSeqEvento++);
+			eventoEpec.getInfoEvento().setChave(chave);
+		}
 
-    private NFEnviaEventoEpecRetorno comunicaEpec(String epecAssinadoXml) throws Exception {
-        //valida o epec assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaEpec(epecAssinadoXml);
-        
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new RecepcaoEventoStub.NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSEpec.VERSAO_LEIAUTE.toPlainString());
-        
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new RecepcaoEventoStub.NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
+		// assina o epec
+		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(epec.toString());
+		final NFEnviaEventoEpec epecAssinado = new NotaParser().epecParaObjeto(documentoAssinado);
 
-        final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(epecAssinadoXml);
-        WSEpec.LOGGER.debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
+		// comunica o epec
+		final NFEnviaEventoEpecRetorno epecEnvioRetorno = this.comunicaEpec(epecAssinado.toString());
+		return epecEnvioRetorno;
+	}
 
-        //define o tipo de emissao
-        final NFAutorizador31 autorizador = NFAutorizador31.AN;
+	private NFEnviaEventoEpecRetorno comunicaEpec(String epecAssinadoXml) throws Exception {
+		// valida o epec assinado, para verificar se o xsd foi satisfeito, antes
+		// de comunicar com a sefaz
+		XMLValidador.validaEpec(epecAssinadoXml);
 
-        final String endpoint = autorizador.getRecepcaoEvento(this.config.getAmbiente());
-        if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao EPEC, autorizador " + autorizador.name());
-        }
+		final RecepcaoEventoStub.NfeCabecMsg cabecalho = new RecepcaoEventoStub.NfeCabecMsg();
+		cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
+		cabecalho.setVersaoDados(WSEpec.VERSAO_LEIAUTE.toPlainString());
 
-        final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(endpoint).nfeRecepcaoEvento(dados, cabecalhoE);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        String xmlRetorno = omElementResult.toString();
-        return new NotaParser().xmlParaEpecRetorno(xmlRetorno);
-    }
-    
+		final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new RecepcaoEventoStub.NfeCabecMsgE();
+		cabecalhoE.setNfeCabecMsg(cabecalho);
+
+		final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
+		final OMElement omElementXML = AXIOMUtil.stringToOM(epecAssinadoXml);
+		WSEpec.LOGGER.debug(omElementXML.toString());
+		dados.setExtraElement(omElementXML);
+
+		// define o tipo de emissao
+		final NFAutorizador31 autorizador = NFAutorizador31.AN;
+
+		final String endpoint = autorizador.getRecepcaoEvento(this.config.getAmbiente());
+		if (endpoint == null) {
+			throw new IllegalArgumentException(
+					"Nao foi possivel encontrar URL para Recepcao EPEC, autorizador " + autorizador.name());
+		}
+
+		final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(endpoint).nfeRecepcaoEvento(dados,
+				cabecalhoE);
+		final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
+		String xmlRetorno = omElementResult.toString();
+		return new NotaParser().xmlParaEpecRetorno(xmlRetorno);
+	}
+
 }
