@@ -39,7 +39,7 @@ public class NFLoteEnvioRetorno extends NFBase {
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
 
     @Element(name = "protNFe", required = false)
-    private String protocoloRecebimentoSincrono;
+    private ProtocoloRecebimentoSincrono protocoloRecebimentoSincrono;
 
     public void setVersao(final String versao) {
         this.versao = versao;
@@ -105,7 +105,7 @@ public class NFLoteEnvioRetorno extends NFBase {
         return this.dataRecebimento;
     }
 
-    public String getProtocoloRecebimentoSincrono() {
+    public ProtocoloRecebimentoSincrono getProtocoloRecebimentoSincrono() {
         return this.protocoloRecebimentoSincrono;
     }
 }

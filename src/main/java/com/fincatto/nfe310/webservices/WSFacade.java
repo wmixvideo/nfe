@@ -68,9 +68,6 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
-        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
-        }
         return this.wsLoteEnvio.enviaLote(lote);
     }
     
@@ -82,9 +79,6 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteEnvioRetornoDados enviaLoteEpec(final NFLoteEnvio lote) throws Exception {
-        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
-        }
         return this.wsLoteEnvio.enviaLoteEpec(lote);
     }
 

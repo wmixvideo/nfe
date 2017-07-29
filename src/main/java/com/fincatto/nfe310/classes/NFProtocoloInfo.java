@@ -87,6 +87,10 @@ public class NFProtocoloInfo extends NFBase {
             return LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataRecebimento));
         }
     }
+    
+    public String getDataRecebimentoTexto() {
+    	return this.dataRecebimento;
+    }
 
     public String getNumeroProtocolo() {
         return this.numeroProtocolo;
