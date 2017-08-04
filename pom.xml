@@ -32,6 +32,7 @@
 		<joda.version>2.9.3</joda.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<junit.version>4.12</junit.version>
+		<additionalparam>-Xdoclint:none</additionalparam>
 	</properties>
 
 	<developers>
