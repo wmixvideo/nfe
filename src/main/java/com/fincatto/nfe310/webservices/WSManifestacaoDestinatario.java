@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +76,9 @@ public class WSManifestacaoDestinatario {
         final NFInfoManifestacaoDestinatario manifestacaoDestinatario = new NFInfoManifestacaoDestinatario();
         manifestacaoDestinatario.setDescricaoEvento(tipoEvento.getDescricao());
         manifestacaoDestinatario.setVersao(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
-        manifestacaoDestinatario.setJustificativa(motivo);
+        if(StringUtils.isNotEmpty(motivo)){
+        	manifestacaoDestinatario.setJustificativa(motivo);
+        }
 
         final NFInfoEventoManifestacaoDestinatario infoEvento = new NFInfoEventoManifestacaoDestinatario();
         infoEvento.setAmbiente(this.config.getAmbiente());
