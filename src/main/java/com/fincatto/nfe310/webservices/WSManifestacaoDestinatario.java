@@ -76,7 +76,7 @@ public class WSManifestacaoDestinatario {
         final NFInfoManifestacaoDestinatario manifestacaoDestinatario = new NFInfoManifestacaoDestinatario();
         manifestacaoDestinatario.setDescricaoEvento(tipoEvento.getDescricao());
         manifestacaoDestinatario.setVersao(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
-        if(StringUtils.isNotEmpty(motivo)){
+        if (StringUtils.isNotEmpty(motivo)) {
         	manifestacaoDestinatario.setJustificativa(motivo);
         }
 
