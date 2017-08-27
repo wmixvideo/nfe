@@ -1,14 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFModelo;
 import com.fincatto.nfe310.classes.NFUnidadeFederativa;
@@ -24,6 +15,14 @@ import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import org.apache.commons.httpclient.protocol.Protocol;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 public class WSFacade {
 
@@ -62,8 +61,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
-        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)) {
-            throw new IllegalStateException("Nao existe ainda a forma de envio sincrona, faca o envio de forma assincrona");
+        if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)
+                && lote.getNotas().size()>1) {
+                throw new IllegalArgumentException("Apenas uma nota permitida no modo sincrono!");
         }
         return this.wsLoteEnvio.enviaLote(lote);
     }

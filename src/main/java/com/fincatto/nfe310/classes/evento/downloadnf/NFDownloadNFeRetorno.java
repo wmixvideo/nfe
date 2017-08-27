@@ -1,15 +1,14 @@
 package com.fincatto.nfe310.classes.evento.downloadnf;
 
-import java.util.List;
-
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFBase;
+import java.util.List;
 
 @Root(name = "retDownloadNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -17,22 +16,22 @@ public class NFDownloadNFeRetorno extends NFBase{
 
 	@Attribute(name = "versao", required = true)
 	private String versao;
-	
+
 	@Element(name = "tpAmb", required = true)
 	private NFAmbiente ambiente;
-	
+
 	@Element(name = "verAplic", required = true)
 	private String versaoAplicacao;
-	
+
 	@Element(name = "cStat", required = true)
 	private String status;
-	
+
 	@Element(name = "xMotivo", required = true)
 	private String motivo;
-	
+
 	@Element(name = "dhResp", required = true)
 	private String dataRetorno;
-	
+
 	@ElementList(name = "retNFe", inline = true, required = false)
 	private List<NFDownloadNFeRetornoInfo> info;
 

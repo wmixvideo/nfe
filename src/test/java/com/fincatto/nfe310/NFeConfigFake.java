@@ -56,4 +56,14 @@ public class NFeConfigFake extends NFeConfig {
     public String getCadeiaCertificadosSenha() {
         return "senha";
     }
+
+	@Override
+	public String getCertificadoAlias(){
+        try {
+            return getCertificadoKeyStore().aliases().nextElement();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -47,7 +47,7 @@ public abstract class NFeConfig {
      *
      * @return o nome do alias do certificado ou {@code null}
      */
-    public String getCertificadoAlias() {
+    public String getCertificadoAlias(){
         return null;
     }
 

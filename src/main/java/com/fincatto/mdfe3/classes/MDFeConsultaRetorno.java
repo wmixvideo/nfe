@@ -1,19 +1,22 @@
-package com.fincatto.nfe310.classes.lote.envio;
+package com.fincatto.mdfe3.classes;
 
+import com.fincatto.nfe310.classes.NFAmbiente;
+import com.fincatto.nfe310.classes.NFBase;
+import com.fincatto.nfe310.classes.NFProtocoloInfo;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.nfe310.classes.NFAmbiente;
-import com.fincatto.nfe310.classes.NFBase;
-import com.fincatto.nfe310.classes.NFProtocoloInfo;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-
-@Root(name = "retEnviNFe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFLoteEnvioRetorno extends NFBase {
+/**
+ * @Author Eldevan Nery Junior on 26/05/17.
+ */
+@Root(name = "retConsReciMDFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
+public class MDFeConsultaRetorno extends NFBase {
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -30,6 +33,9 @@ public class NFLoteEnvioRetorno extends NFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
+    @Element(name = "nRec", required = true)
+    private String reciboConsultado;
+
     @Element(name = "cUF", required = true)
     private NFUnidadeFederativa uf;
 
@@ -39,8 +45,8 @@ public class NFLoteEnvioRetorno extends NFBase {
     @Element(name = "infRec", required = false)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
 
-    @Element(name = "protNFe", required = false)
-    private String protocoloRecebimentoSincrono;
+    @Element(name = "protMDFe", required = false)
+    private MDFProtocolo protocoloRecebimento;
     
     @Element(name = "infProt", required = false)
     private NFProtocoloInfo protocoloInfo;
@@ -109,8 +115,8 @@ public class NFLoteEnvioRetorno extends NFBase {
         return this.dataRecebimento;
     }
 
-    public String getProtocoloRecebimentoSincrono() {
-        return this.protocoloRecebimentoSincrono;
+    public MDFProtocolo getProtocoloRecebimento() {
+        return this.protocoloRecebimento;
     }
 
 	public NFProtocoloInfo getProtocoloInfo() {
@@ -121,8 +127,8 @@ public class NFLoteEnvioRetorno extends NFBase {
 		this.protocoloInfo = protocoloInfo;
 	}
 
-	public void setProtocoloRecebimentoSincrono(String protocoloRecebimentoSincrono) {
-		this.protocoloRecebimentoSincrono = protocoloRecebimentoSincrono;
+	public void setProtocoloRecebimentoSincrono(MDFProtocolo protocoloRecebimento) {
+		this.protocoloRecebimento = protocoloRecebimento;
 	}
     
     

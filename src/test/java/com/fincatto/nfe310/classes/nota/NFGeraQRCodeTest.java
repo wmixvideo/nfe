@@ -69,6 +69,11 @@ public class NFGeraQRCodeTest {
             public String getCadeiaCertificadosSenha() {
                 return null;
             }
+
+			@Override
+			public String getCertificadoAlias(){
+				return null;
+			}
         };
     }
 }

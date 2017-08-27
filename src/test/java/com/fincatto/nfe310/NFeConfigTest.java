@@ -1,13 +1,12 @@
 package com.fincatto.nfe310;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
+import com.fincatto.nfe310.classes.NFTipoEmissao;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.nfe310.classes.NFTipoEmissao;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 
 public class NFeConfigTest {
 
@@ -47,5 +46,10 @@ public class NFeConfigTest {
         public String getCadeiaCertificadosSenha() {
             return null;
         }
+
+		@Override
+		public String getCertificadoAlias(){
+			return null;
+		}
     }
 }

@@ -1,15 +1,5 @@
 package com.fincatto.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.evento.downloadnf.NFDownloadNFe;
@@ -20,6 +10,15 @@ import com.fincatto.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeCabecMsg;
 import com.fincatto.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeCabecMsgE;
 import com.fincatto.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDadosMsg;
 import com.fincatto.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDownloadNFResult;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSNotaDownload {
 
