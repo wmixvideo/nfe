@@ -1,25 +1,23 @@
 package com.fincatto.nfe310.webservices;
 
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.assinatura.AssinaturaDigital;
-import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
-import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
-import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
-import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
-import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
-import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.persister.NFPersister;
-import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub;
 import java.math.BigDecimal;
 import java.util.Collections;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.assinatura.AssinaturaDigital;
+import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.nfe310.classes.evento.manifestacaodestinatario.*;
+import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
+import com.fincatto.nfe310.persister.NFPersister;
+import com.fincatto.nfe310.webservices.gerado.RecepcaoEventoStub;
 
 public class WSManifestacaoDestinatario {
 
@@ -27,15 +25,15 @@ public class WSManifestacaoDestinatario {
     private static final Logger LOGGER = LoggerFactory.getLogger(WSManifestacaoDestinatario.class);
     private final NFeConfig config;
 
-    public WSManifestacaoDestinatario(NFeConfig config) {
+    public WSManifestacaoDestinatario(final NFeConfig config) {
         this.config = config;
     }
-    
+
     NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaManifestacaoDestinatario(eventoAssinadoXml, chaveAcesso);
         return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
-    
+
     NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
         final String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(manifestacaoDestinatarioNotaXML);
@@ -68,9 +66,9 @@ public class WSManifestacaoDestinatario {
         WSManifestacaoDestinatario.LOGGER.debug(omElementResult.toString());
         return omElementResult;
     }
-    
+
     private NFEnviaEventoManifestacaoDestinatario gerarDadosManifestacaoDestinatario(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) {
-        final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
+        // final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFInfoManifestacaoDestinatario manifestacaoDestinatario = new NFInfoManifestacaoDestinatario();
         manifestacaoDestinatario.setDescricaoEvento(tipoEvento.getDescricao());
@@ -99,5 +97,5 @@ public class WSManifestacaoDestinatario {
         enviaEvento.setVersao(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
         return enviaEvento;
     }
-    
+
 }
