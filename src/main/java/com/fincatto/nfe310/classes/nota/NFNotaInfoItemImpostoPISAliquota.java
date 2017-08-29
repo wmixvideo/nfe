@@ -1,6 +1,8 @@
 package com.fincatto.nfe310.classes.nota;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import org.simpleframework.xml.Element;
 
@@ -9,6 +11,7 @@ import com.fincatto.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.nfe310.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoPISAliquota extends NFBase {
+    private static final List<NFNotaInfoSituacaoTributariaPIS> SITUACOES_VALIDAS = Arrays.asList(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO, NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA, NFNotaInfoSituacaoTributariaPIS.OPERACAO_DIREITO_CREDITO_VINCULADA_EXCLUSIVAMENTE_RECEITA_TRIBUTADA_MERCADO_INTERNO);
 
     @Element(name = "CST", required = true)
     private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
@@ -30,7 +33,7 @@ public class NFNotaInfoItemImpostoPISAliquota extends NFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
-        if (!NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO.equals(situacaoTributaria) && !NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA.equals(situacaoTributaria)) {
+        if (!NFNotaInfoItemImpostoPISAliquota.SITUACOES_VALIDAS.contains(situacaoTributaria)) {
             throw new IllegalStateException("Situacao tributaria invalida");
         }
         this.situacaoTributaria = situacaoTributaria;
