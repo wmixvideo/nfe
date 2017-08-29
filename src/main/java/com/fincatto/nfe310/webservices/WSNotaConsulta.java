@@ -1,18 +1,7 @@
 package com.fincatto.nfe310.webservices;
 
-import com.fincatto.nfe310.NFeConfig;
-import com.fincatto.nfe310.classes.NFAutorizador31;
-import com.fincatto.nfe310.classes.NFModelo;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
-import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
-import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
-import com.fincatto.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.nfe310.transformers.NFRegistryMatcher;
-import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub;
-import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
-import com.fincatto.nfe310.webservices.nota.consulta.NfeConsultaStub;
-import com.fincatto.nfe310.webservices.nota.consulta.NfeConsultaStub.NfeConsultaNFResult;
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -21,8 +10,18 @@ import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
+import com.fincatto.nfe310.NFeConfig;
+import com.fincatto.nfe310.classes.NFAutorizador31;
+import com.fincatto.nfe310.classes.NFModelo;
+import com.fincatto.nfe310.classes.NFUnidadeFederativa;
+import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsulta;
+import com.fincatto.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
+import com.fincatto.nfe310.parsers.NotaFiscalChaveParser;
+import com.fincatto.nfe310.transformers.NFRegistryMatcher;
+import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub;
+import com.fincatto.nfe310.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
+import com.fincatto.nfe310.webservices.nota.consulta.NfeConsultaStub;
+import com.fincatto.nfe310.webservices.nota.consulta.NfeConsultaStub.NfeConsultaNFResult;
 
 class WSNotaConsulta {
     private static final String NOME_SERVICO = "CONSULTAR";
@@ -44,13 +43,13 @@ class WSNotaConsulta {
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
-    	final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
+        final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
 
-		boolean consultaNFeBahia = NFUnidadeFederativa.BA.equals(notaFiscalChaveParser.getNFUnidadeFederativa()) && NFModelo.NFE.equals(notaFiscalChaveParser.getModelo());
-        if ( consultaNFeBahia ){
-        	return efetuaConsultaBA(omElementConsulta, chaveDeAcesso);
+        final boolean consultaNFeBahia = NFUnidadeFederativa.BA.equals(notaFiscalChaveParser.getNFUnidadeFederativa()) && NFModelo.NFE.equals(notaFiscalChaveParser.getModelo());
+        if (consultaNFeBahia) {
+            return this.efetuaConsultaBA(omElementConsulta, chaveDeAcesso);
         } else {
-        	return efetuaConsultaSVRS(omElementConsulta, chaveDeAcesso);
+            return this.efetuaConsultaSVRS(omElementConsulta, chaveDeAcesso);
         }
 
     }
@@ -67,9 +66,8 @@ class WSNotaConsulta {
         final NfeConsulta2Stub.NfeDadosMsg dados = new NfeConsulta2Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
 
-
-        NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
-        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
+        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
@@ -90,9 +88,8 @@ class WSNotaConsulta {
         final NfeConsultaStub.NfeDadosMsg dados = new NfeConsultaStub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
 
-
-        NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
-        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(config.getAmbiente());
+        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
+        final String endpoint = NFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
