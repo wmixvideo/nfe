@@ -31,7 +31,7 @@ public class SOAPHandlerMDFeRecepcaoEvento implements SOAPHandler<SOAPMessageCon
                 SOAPHandlerUtil.addListNamespacetoAdd("eventoMDFe", "http://www.portalfiscal.inf.br/mdfe");
                 SOAPHandlerUtil.addListNamespacetoAdd("Signature", "http://www.w3.org/2000/09/xmldsig#");
 
-                SOAPHandlerUtil.getNamespaces(body.getFirstChild());
+                SOAPHandlerUtil.getNamespaces(body);
                 SOAPHandlerUtil.forEachNode(body.getFirstChild());
             } catch (SOAPException ex) {
                 Logger.getLogger(SOAPHandler.class.getName()).log(Level.SEVERE, null, ex);
