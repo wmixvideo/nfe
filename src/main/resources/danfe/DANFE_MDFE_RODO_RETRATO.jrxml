@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-17T17:03:50 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DAMDFE_RODO_RETRATO" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bec55d2c-9681-4c0e-8da0-084370ae6e8f">
+<!-- 2017-03-30T15:27:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DAMDFE_RODO_RETRATO" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="40" bottomMargin="20" uuid="bec55d2c-9681-4c0e-8da0-084370ae6e8f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="429"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="561"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -62,6 +63,7 @@
 	</subDataset>
 	<parameter name="PrtDAD_CODIGO" class="java.lang.String"/>
 	<parameter name="LOGO_EMPRESA" class="java.lang.Object"/>
+	<parameter name="RODAPE" class="java.lang.String"/>
 	<queryString language="XPath">
 		<![CDATA[/mdfeProc]]>
 	</queryString>
@@ -123,7 +125,7 @@
 		<fieldDescription><![CDATA[/mdfeProc/MDFe/infMDFe/emit/enderEmit/xMun]]></fieldDescription>
 	</field>
 	<field name="RNTRC" class="java.lang.String">
-		<fieldDescription><![CDATA[/mdfeProc/MDFe/infMDFe/infModal/rodo/RNTRC]]></fieldDescription>
+		<fieldDescription><![CDATA[/mdfeProc/MDFe/infMDFe/infModal/rodo/infANTT/RNTRC]]></fieldDescription>
 	</field>
 	<field name="placa" class="java.lang.String">
 		<fieldDescription><![CDATA[/mdfeProc/MDFe/infMDFe/infModal/rodo/veicTracao/placa]]></fieldDescription>
@@ -155,13 +157,10 @@
 	<field name="xNome" class="java.lang.String">
 		<fieldDescription><![CDATA[/mdfeProc/MDFe/infMDFe/infModal/rodo/condutor/xNome]]></fieldDescription>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
-		<band height="680" splitType="Stretch">
+		<band height="754" splitType="Stretch">
 			<rectangle radius="6">
-				<reportElement x="3" y="579" width="549" height="100" uuid="8c2327d5-99e1-4bf9-9cf2-a9332a758883"/>
+				<reportElement x="3" y="579" width="549" height="148" uuid="8c2327d5-99e1-4bf9-9cf2-a9332a758883"/>
 			</rectangle>
 			<rectangle radius="6">
 				<reportElement positionType="Float" x="3" y="326" width="550" height="250" uuid="cc99051e-e9e4-4334-93f1-c9fca31e1657"/>
@@ -219,7 +218,7 @@ $F{CNPJ}.substring(12, 14)]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{IE}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="419" y="20" width="31" height="13" uuid="d3a4f9f5-ec60-4fc7-b60a-32892bb247e3">
+				<reportElement x="410" y="20" width="41" height="13" uuid="d3a4f9f5-ec60-4fc7-b60a-32892bb247e3">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -300,7 +299,7 @@ $F{CNPJ}.substring(12, 14)]]></textFieldExpression>
 				<textElement>
 					<font fontName="Times New Roman" size="11" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nMDF}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nro}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="61" y="70" width="67" height="13" uuid="7db27839-d360-4070-bc00-9c523ce951fc">
@@ -440,7 +439,7 @@ $F{CNPJ}.substring(12, 14)]]></textFieldExpression>
 				</reportElement>
 			</rectangle>
 			<componentElement>
-				<reportElement x="7" y="166" width="542" height="44" uuid="97831694-8a54-4f3d-9558-c5af4b379f12"/>
+				<reportElement x="90" y="164" width="370" height="44" uuid="97831694-8a54-4f3d-9558-c5af4b379f12"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128C" drawText="false" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{chMDFe}]]></jr:codeExpression>
 				</jr:barbecue>
@@ -474,13 +473,13 @@ $F{chMDFe}.substring(36, 40)+" "+
 $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="250" width="302" height="15" uuid="fffbe2ff-2c68-4b05-b982-915854665675">
+				<reportElement x="7" y="250" width="539" height="15" uuid="fffbe2ff-2c68-4b05-b982-915854665675">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
 					<font fontName="Times New Roman" size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PROTOCOLO DE AUTORIZAÇÃO]]></text>
+				<text><![CDATA[PROTOCOLO DE AUTORIZAÇÃO DE USO]]></text>
 			</staticText>
 			<textField pattern="">
 				<reportElement x="6" y="267" width="270" height="15" uuid="530e6123-93b6-4374-96d7-913c1e80b1f5">
@@ -650,7 +649,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="319" y="384" width="1" height="192" uuid="5b83ca9b-465b-41e4-a890-b3f718d97817"/>
+				<reportElement x="300" y="384" width="1" height="192" uuid="5b83ca9b-465b-41e4-a890-b3f718d97817"/>
 			</line>
 			<line>
 				<reportElement x="121" y="404" width="1" height="38" uuid="374143d5-edd7-4ac8-b55c-47892d98e6c8"/>
@@ -685,16 +684,16 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="126" y="424" width="189" height="15" uuid="f050aeae-7f5b-4f1d-b5e8-01bd7124bc8c"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="126" y="424" width="175" height="15" uuid="f050aeae-7f5b-4f1d-b5e8-01bd7124bc8c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{prop_RNTRC}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="392" y="404" width="1" height="19" uuid="8be626a3-3eaf-4e5f-b792-4f2ab9b99070"/>
+				<reportElement x="378" y="404" width="1" height="19" uuid="8be626a3-3eaf-4e5f-b792-4f2ab9b99070"/>
 			</line>
 			<staticText>
-				<reportElement x="325" y="406" width="67" height="15" uuid="ee4e90ab-a935-42aa-a962-cdfeea26abc6">
+				<reportElement x="302" y="406" width="67" height="15" uuid="ee4e90ab-a935-42aa-a962-cdfeea26abc6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -704,7 +703,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<text><![CDATA[CPF]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="397" y="406" width="156" height="15" uuid="9f3150f7-1825-4d0b-bf1a-0aa09d9810d7">
+				<reportElement x="380" y="406" width="156" height="15" uuid="9f3150f7-1825-4d0b-bf1a-0aa09d9810d7">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -721,12 +720,12 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Observação]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="7" y="607" width="538" height="16" uuid="3226a9da-41a6-4734-8d6f-268baf34395e"/>
 				<textFieldExpression><![CDATA[$F{infAdFisco}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="3" y="459" width="316" height="1" uuid="bebbab60-e56a-4025-beb7-a6416b8c45f9">
+				<reportElement x="3" y="459" width="297" height="1" uuid="bebbab60-e56a-4025-beb7-a6416b8c45f9">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
@@ -749,7 +748,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<text><![CDATA[Responsável CNPJ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="112" y="459" width="91" height="15" uuid="9db7d07d-4679-4e70-9dba-5e1bece8889a">
+				<reportElement x="99" y="459" width="91" height="15" uuid="9db7d07d-4679-4e70-9dba-5e1bece8889a">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
@@ -759,10 +758,10 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<text><![CDATA[Fornecedora CNPJ]]></text>
 			</staticText>
 			<line>
-				<reportElement x="214" y="460" width="1" height="14" uuid="f5951cb2-875a-4e31-b632-437cb37d517e"/>
+				<reportElement x="191" y="460" width="1" height="14" uuid="f5951cb2-875a-4e31-b632-437cb37d517e"/>
 			</line>
 			<staticText>
-				<reportElement x="226" y="459" width="89" height="15" uuid="d2f62ec8-f778-4720-a430-ca5cc9d89759">
+				<reportElement x="194" y="459" width="104" height="15" uuid="d2f62ec8-f778-4720-a430-ca5cc9d89759">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -770,17 +769,17 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[Nº Comprovante]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="8" y="632" width="535" height="14" uuid="50c55e3f-b8ef-4959-907a-ca4b3b2bb815"/>
 				<textFieldExpression><![CDATA[$F{infCpl}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="5" y="383" width="548" height="1" uuid="bca9af24-f4c5-4a03-8e89-e3aea40573ec">
+				<reportElement x="3" y="383" width="550" height="1" uuid="bca9af24-f4c5-4a03-8e89-e3aea40573ec">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="6" y="346" width="547" height="1" uuid="59dbf83e-b3a0-43c7-b4ec-2da8a69179e8">
+				<reportElement x="3" y="346" width="550" height="1" uuid="59dbf83e-b3a0-43c7-b4ec-2da8a69179e8">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
@@ -843,7 +842,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{qNFe}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="#,##0.0000;(#,##0.0000-)">
 				<reportElement x="218" y="365" width="90" height="15" uuid="f26c3de1-7529-4009-b566-d743d9e2343c">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -853,7 +852,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{qCarga}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="6" y="403" width="547" height="1" uuid="ecdca17f-b849-49d3-8cca-cdccaac916ee">
+				<reportElement x="3" y="403" width="550" height="1" uuid="ecdca17f-b849-49d3-8cca-cdccaac916ee">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
@@ -867,7 +866,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				<text><![CDATA[Veículo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="325" y="386" width="64" height="15" uuid="82b3dafa-1870-4d70-825d-b6280a1b798f">
+				<reportElement x="302" y="386" width="64" height="15" uuid="82b3dafa-1870-4d70-825d-b6280a1b798f">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -881,15 +880,15 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="3" y="441" width="316" height="1" uuid="bb9e6841-d385-48b3-94bd-4d92fe3b7662">
+				<reportElement x="3" y="441" width="297" height="1" uuid="bb9e6841-d385-48b3-94bd-4d92fe3b7662">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
 			<line>
-				<reportElement x="109" y="460" width="1" height="14" uuid="c98bed6f-b9b8-4594-b195-a4108af0eb9c"/>
+				<reportElement x="98" y="460" width="1" height="14" uuid="c98bed6f-b9b8-4594-b195-a4108af0eb9c"/>
 			</line>
 			<line>
-				<reportElement x="3" y="474" width="315" height="1" uuid="7d090c9e-c51b-43d1-81bc-797bc2e22fd8">
+				<reportElement x="3" y="474" width="297" height="1" uuid="7d090c9e-c51b-43d1-81bc-797bc2e22fd8">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
@@ -899,7 +898,7 @@ $F{chMDFe}.substring(40, 44)]]></textFieldExpression>
 				</reportElement>
 			</line>
 			<componentElement>
-				<reportElement x="321" y="425" width="232" height="150" uuid="436bbef6-0b36-46c2-8246-697df2e298a7">
+				<reportElement x="302" y="425" width="249" height="150" uuid="436bbef6-0b36-46c2-8246-697df2e298a7">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
@@ -964,7 +963,7 @@ $F{CPF}.substring(9,11)]]></textFieldExpression>
 				<textFieldExpression><![CDATA["1/1"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="392" y="421" width="1" height="155" uuid="7286245f-3d17-40d8-b576-2e6b56b9f0cc"/>
+				<reportElement x="378" y="421" width="1" height="155" uuid="7286245f-3d17-40d8-b576-2e6b56b9f0cc"/>
 			</line>
 			<textField pattern="dd/MM/yyyy HH:mm:ss">
 				<reportElement x="281" y="267" width="266" height="15" uuid="df53ba5b-b6e5-4d32-9690-9ad673d63648">
@@ -974,6 +973,11 @@ $F{CPF}.substring(9,11)]]></textFieldExpression>
 					<font fontName="Times New Roman" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{dhEmi}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="729" width="550" height="24" uuid="657bb615-47cc-4248-8e13-cc2c7aad2a86"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{RODAPE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

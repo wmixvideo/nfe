@@ -22,20 +22,21 @@ public class MDFeDanfeReport {
         this.xml = xml;
     }
 
-    public byte[] gerarDanfeMDFe(byte[] logoEmpresa) throws Exception {
-        return toPDF(createJasperPrintMDFe(logoEmpresa));
+    public byte[] gerarDanfeMDFe(byte[] logoEmpresa, String rodape) throws Exception {
+        return toPDF(createJasperPrintMDFe(logoEmpresa, rodape));
     }
 
     private static byte[] toPDF(JasperPrint print) throws JRException {
     	return JasperExportManager.exportReportToPdf(print);
     }
 
-    public JasperPrint createJasperPrintMDFe(byte[] logoEmpresa) throws IOException, JRException {
+    public JasperPrint createJasperPrintMDFe(byte[] logoEmpresa, String rodape) throws IOException, JRException {
     	try (InputStream in = MDFeDanfeReport.class.getClassLoader().getResourceAsStream("danfe/DANFE_MDFE_RODO_RETRATO.jasper");) {
             final JRPropertiesUtil jrPropertiesUtil = JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance());
             jrPropertiesUtil.setProperty("net.sf.jasperreports.xpath.executer.factory", "net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("LOGO_EMPRESA", (logoEmpresa == null ? null : new ByteArrayInputStream(logoEmpresa)));
+            parameters.put("RODAPE", rodape);
             return JasperFillManager.fillReport(in, parameters, new JRXmlDataSource(this.xml, "/mdfeProc"));
         }
     }
