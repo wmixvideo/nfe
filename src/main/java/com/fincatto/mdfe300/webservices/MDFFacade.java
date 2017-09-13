@@ -6,7 +6,6 @@ import br.inf.portalfiscal.mdfe.TRetConsMDFeNaoEnc;
 import br.inf.portalfiscal.mdfe.TRetConsReciMDFe;
 import br.inf.portalfiscal.mdfe.TRetConsSitMDFe;
 import br.inf.portalfiscal.mdfe.TRetConsStatServ;
-import br.inf.portalfiscal.mdfe.TRetEnviMDFe;
 import br.inf.portalfiscal.mdfe.TRetEvento;
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -19,6 +18,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import com.fincatto.dfe.webservices.DFSocketFactory;
 import com.fincatto.mdfe300.MDFeConfig;
+import com.fincatto.mdfe300.classes.RetornoEnvioMDFe;
 import java.net.MalformedURLException;
 
 public class MDFFacade {
@@ -50,7 +50,7 @@ public class MDFFacade {
      * @return Estrutura XML com a mensagem do resultado do envio do MDF-e.
      * @throws Exception
      */
-    public TRetEnviMDFe recepcaoMDFe(final TEnviMDFe enviMDFe) throws Exception {
+    public RetornoEnvioMDFe recepcaoMDFe(final TEnviMDFe enviMDFe) throws Exception {
         return this.wsRecepcaoMDF.enviaMDFe(enviMDFe);
     }
 
