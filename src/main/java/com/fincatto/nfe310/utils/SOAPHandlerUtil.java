@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class SOAPHandlerUtil {
-    
+
     private static final List<Node> namespaces = new ArrayList<>();
     private static final List<String> listURIToRemove = new ArrayList<>();
     private static final Map<String, String> listNamespacetoAdd = new HashMap<>();
-    
+
     /**
      * Percorre todos os nós do XML
      * @param node
@@ -36,10 +37,30 @@ public class SOAPHandlerUtil {
      * @param node
      */
     public static void getNamespaces(Node node) {
+        //Análise do nó atual
         NamedNodeMap attributes = node.getAttributes();
+        verificaNamespaces(attributes);
+        //Lógica para percorrer todos os filhos
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            attributes = nodeList.item(i).getAttributes();
+            verificaNamespaces(attributes); //Analisa se o atributo atual pertence a lista para ser removido
+            if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                forEachNode(nodeList.item(i));
+            }
+        }
+    }
+
+    /**
+     * Método que verifica se os atributos de um nó pertencem a lista para ser removido
+     * @param attributes
+     * @throws DOMException
+     */
+    private static void verificaNamespaces(NamedNodeMap attributes) throws DOMException {
         if (attributes != null) {
-            for (int i = 0; i < attributes.getLength(); i++) {
-                Node _node = attributes.item(i);
+            for (int j = 0; j < attributes.getLength(); j++) {
+                Node _node = attributes.item(j);
+                //Analisa se o atributo atual pertence a lista para ser removido
                 if (_node.getNodeType() == Node.ATTRIBUTE_NODE && listURIToRemove.contains(_node.getNodeValue())) {
                     namespaces.add(_node);
                 }
@@ -101,5 +122,5 @@ public class SOAPHandlerUtil {
     public static void addListNamespacetoAdd(String nodeName, String uri) {
         listNamespacetoAdd.put(nodeName, uri);
     }
-    
+
 }

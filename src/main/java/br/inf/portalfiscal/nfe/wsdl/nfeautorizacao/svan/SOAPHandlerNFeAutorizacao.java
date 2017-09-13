@@ -30,7 +30,7 @@ public class SOAPHandlerNFeAutorizacao implements SOAPHandler<SOAPMessageContext
                 SOAPHandlerUtil.addListURIToRemove("http://www.w3.org/2000/09/xmldsig#");
                 SOAPHandlerUtil.addListNamespacetoAdd("Signature", "http://www.w3.org/2000/09/xmldsig#");
 
-                SOAPHandlerUtil.getNamespaces(body.getFirstChild());
+                SOAPHandlerUtil.getNamespaces(body);
                 SOAPHandlerUtil.forEachNode(body.getFirstChild());
             } catch (SOAPException ex) {
                 Logger.getLogger(SOAPHandler.class.getName()).log(Level.SEVERE, null, ex);
