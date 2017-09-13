@@ -972,37 +972,37 @@ public enum NFAutorizador31 {
     PI {
         @Override
         public String getNfeAutorizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeAutorizacao(ambiente);
+            return SVRS.getNfeAutorizacao(ambiente);
         }
 
         @Override
         public String getNfeRetAutorizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeRetAutorizacao(ambiente);
+            return SVRS.getNfeRetAutorizacao(ambiente);
         }
 
         @Override
         public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
-            return SVAN.getNfeConsultaProtocolo(ambiente);
+            return SVRS.getNfeConsultaProtocolo(ambiente);
         }
 
         @Override
         public String getNfeStatusServico(final DFAmbiente ambiente) {
-            return SVAN.getNfeStatusServico(ambiente);
+            return SVRS.getNfeStatusServico(ambiente);
         }
 
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return SVAN.getRecepcaoEvento(ambiente);
+            return SVRS.getRecepcaoEvento(ambiente);
         }
 
         @Override
         public String getConsultaCadastro(final DFAmbiente ambiente) {
-            return SVAN.getConsultaCadastro(ambiente);
+            return SVRS.getConsultaCadastro(ambiente);
         }
 
         @Override
         public String getNfeInutilizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeInutilizacao(ambiente);
+            return SVRS.getNfeInutilizacao(ambiente);
         }
 
         @Override
@@ -1047,7 +1047,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final DFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
