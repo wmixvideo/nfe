@@ -13,7 +13,7 @@ public class InfCteInfNorm {
     private InfCteInfNormDoc infDoc;
 
     @Element
-    private DocAnt docAnt;
+    private InfCteInfNormDocAnt docAnt;
 
     @Element
     private List seg;

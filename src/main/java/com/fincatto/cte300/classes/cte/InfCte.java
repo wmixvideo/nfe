@@ -16,44 +16,42 @@ public class InfCte {
     @Attribute(name = "Id", required = true)
     private String id;
 
-    @Element(required = true)
+    @Element
     private InfCteIde ide;
 
     @Element
     private InfCteCompl compl;
 
-    @Element(required = true)
+    @Element
     private InfCteEmit emit;
 
-    @Element(required = true)
+    @Element
     private InfCteRem rem;
 
-    @Element(required = true)
+    @Element
     private InfCteExped exped;
 
-    @Element(required = true)
+    @Element
     private InfCteReceb receb;
 
-    @Element(required = true)
+    @Element
     private InfCteDest dest;
 
-    @Element(required = true)
+    @Element
     private InfCteVPrest vPrest;
 
-    @Element(required = true)
+    @Element
     private InfCteImp imp;
 
-    @Element(required = true)
+    @Element
     private InfCteInfNorm infCTeNorm;
 
-    @Element(required = true)
+    @Element
     private InfCteComp infCteComp;
 
-    @Element(required = true)
+    @Element
     private InfCteAnu infCteAnu;
 
-    // TODO
-    @ElementList(inline = true, required = true)
-    private List autXML;
-
+    @ElementList(inline = true, required = false)
+    private List<InfCteAutXML> autXML;
 }
