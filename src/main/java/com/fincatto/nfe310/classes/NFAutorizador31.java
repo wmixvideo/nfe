@@ -95,7 +95,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -270,7 +270,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -356,7 +356,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -442,7 +442,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -528,7 +528,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -614,7 +614,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -700,7 +700,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -786,7 +786,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -918,33 +918,34 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfceAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeAutorizacao" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeAutorizacao";
+            return SVRS.getNfceAutorizacao(ambiente);
         }
 
         @Override
         public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeRetAutorizacao" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeRetAutorizacao";
+            return SVRS.getNfceRetAutorizacao(ambiente);
         }
 
         @Override
         public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeConsulta2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeConsulta2";
+            return SVRS.getNfceConsultaProtocolo(ambiente);
         }
 
         @Override
         public String getNfceStatusServico(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeStatusServico2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeStatusServico2";
+            return SVRS.getNfceStatusServico(ambiente);
         }
 
         @Override
         public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento";
+            return SVRS.getNfceRecepcaoEvento(ambiente);
         }
 
         @Override
         public String getNfceInutilizacao(final NFAmbiente ambiente) {
-            return NFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2";
+            return SVRS.getNfceInutilizacao(ambiente);
         }
+
 
         @Override
         public String getRecepcaoEventoAN(final NFAmbiente ambiente) {
@@ -958,7 +959,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1044,7 +1045,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1130,7 +1131,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1216,7 +1217,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1302,7 +1303,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1388,7 +1389,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1474,12 +1475,12 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
         public NFUnidadeFederativa[] getUFs() {
-            return new NFUnidadeFederativa[] {};
+            return new NFUnidadeFederativa[]{};
         }
     },
     SVAN {
@@ -1560,7 +1561,7 @@ public enum NFAutorizador31 {
 
         @Override
         public String getNfeDownloadNF(final NFAmbiente ambiente) {
-        	return AN.getNfeDownloadNF(ambiente);
+            return AN.getNfeDownloadNF(ambiente);
         }
 
         @Override
@@ -1625,8 +1626,8 @@ public enum NFAutorizador31 {
 
     public static NFAutorizador31 valueOfTipoEmissao(final NFTipoEmissao tpEmissao, final NFUnidadeFederativa uf) {
         switch (tpEmissao) {
-        	case CONTIGENCIA_OFFLINE:
-        	case CONTINGENCIA_FSDA:
+            case CONTIGENCIA_OFFLINE:
+            case CONTINGENCIA_FSDA:
             case EMISSAO_NORMAL:
                 return NFAutorizador31.valueOfCodigoUF(uf);
             case CONTINGENCIA_SVCRS:
