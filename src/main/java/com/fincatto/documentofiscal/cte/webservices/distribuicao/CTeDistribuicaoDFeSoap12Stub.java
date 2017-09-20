@@ -11,7 +11,7 @@ import org.apache.axis2.client.Stub;
 /*
  * CTeDistribuicaoDFeCTeDistribuicaoDFeSoap12Stub java implementation
  */
-
+@SuppressWarnings({ "rawtypes", "unchecked", "deprecation", "unused" })
 public class CTeDistribuicaoDFeSoap12Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
@@ -234,6 +234,7 @@ public class CTeDistribuicaoDFeSoap12Stub extends org.apache.axis2.client.Stub {
 
     // https://www1.cte.fazenda.gov.br/CTeDistribuicaoDFe/CTeDistribuicaoDFe.asmx
     public static class CteDistDFeInteresse implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = -8051025413411292922L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe", "cteDistDFeInteresse", "ns1");
 
@@ -613,6 +614,7 @@ public class CTeDistribuicaoDFeSoap12Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteDadosMsg_type0 implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = -4553672779845637815L;
         /*
          * This type was generated from the piece of schema that had name = cteDadosMsg_type0 Namespace URI = http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe Namespace Prefix = ns1
          */
@@ -987,6 +989,7 @@ public class CTeDistribuicaoDFeSoap12Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteDistDFeInteresseResponse implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 4578518674415511260L;
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe", "cteDistDFeInteresseResponse", "ns1");
 
@@ -1388,10 +1391,11 @@ public class CTeDistribuicaoDFeSoap12Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteDistDFeInteresseResult_type0 implements org.apache.axis2.databinding.ADBBean {
+        private static final long serialVersionUID = 7321888723263398590L;
+
         /*
          * This type was generated from the piece of schema that had name = cteDistDFeInteresseResult_type0 Namespace URI = http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe Namespace Prefix = ns1
          */
-
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe")) {
                 return "ns1";
