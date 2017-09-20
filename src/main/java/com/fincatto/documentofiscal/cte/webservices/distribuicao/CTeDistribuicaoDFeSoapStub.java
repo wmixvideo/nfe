@@ -309,7 +309,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     CteDistDFeInteresse.this.serialize(CteDistDFeInteresse.MY_QNAME, factory, xmlWriter);
                 }
             };
-            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(CteDistDFeInteresse.MY_QNAME, factory, dataSource);
+            // return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(CteDistDFeInteresse.MY_QNAME, factory, dataSource);
+            return factory.createOMElement(dataSource, CteDistDFeInteresse.MY_QNAME);
 
         }
 
@@ -678,7 +679,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     CteDadosMsg_type0.this.serialize(this.parentQName, factory, xmlWriter);
                 }
             };
-            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(parentQName, factory, dataSource);
+            // return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(parentQName, factory, dataSource);
+            return factory.createOMElement(dataSource, parentQName);
 
         }
 
@@ -1065,7 +1067,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     CteDistDFeInteresseResponse.this.serialize(CteDistDFeInteresseResponse.MY_QNAME, factory, xmlWriter);
                 }
             };
-            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(CteDistDFeInteresseResponse.MY_QNAME, factory, dataSource);
+            // return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(CteDistDFeInteresseResponse.MY_QNAME, factory, dataSource);
+            return factory.createOMElement(dataSource, CteDistDFeInteresseResponse.MY_QNAME);
 
         }
 
@@ -1455,7 +1458,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     CteDistDFeInteresseResult_type0.this.serialize(this.parentQName, factory, xmlWriter);
                 }
             };
-            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(parentQName, factory, dataSource);
+            // return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(parentQName, factory, dataSource);
+            return factory.createOMElement(dataSource, parentQName);
 
         }
 
