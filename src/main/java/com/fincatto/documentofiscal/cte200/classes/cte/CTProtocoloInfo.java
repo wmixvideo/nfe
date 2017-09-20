@@ -4,8 +4,9 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
 
-public class CTProtocoloInfo {
+public class CTProtocoloInfo extends DFBase {
 
     @Attribute(name = "Id", required = false)
     private String identificador;

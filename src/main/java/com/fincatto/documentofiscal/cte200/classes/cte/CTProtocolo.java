@@ -3,7 +3,9 @@ package com.fincatto.documentofiscal.cte200.classes.cte;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-public class CTProtocolo {
+import com.fincatto.documentofiscal.DFBase;
+
+public class CTProtocolo extends DFBase {
 
     @Attribute(name = "versao")
     private String versao;

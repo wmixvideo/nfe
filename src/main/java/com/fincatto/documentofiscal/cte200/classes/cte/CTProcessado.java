@@ -4,8 +4,10 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFBase;
+
 @Root(name = "cteProc")
-public class CTProcessado {
+public class CTProcessado extends DFBase {
 
     @Attribute(name = "versao")
     private String versao;

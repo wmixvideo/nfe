@@ -60,7 +60,6 @@ public class WSDistribuicaoDFe {
                 while ((line = bf.readLine()) != null) {
                     outStr += line;
                 }
-                System.out.println(outStr);
                 return outStr;
             }
         }
