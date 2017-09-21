@@ -917,34 +917,35 @@ public enum NFAutorizador31 {
         }
 
         @Override
-        public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeAutorizacao" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeAutorizacao";
+        public String getNfceAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceAutorizacao(ambiente);
         }
 
         @Override
-        public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeRetAutorizacao" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeRetAutorizacao";
+        public String getNfceRetAutorizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceRetAutorizacao(ambiente);
         }
 
         @Override
-        public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeConsulta2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeConsulta2";
+        public String getNfceConsultaProtocolo(final NFAmbiente ambiente) {
+            return SVRS.getNfceConsultaProtocolo(ambiente);
         }
 
         @Override
-        public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeStatusServico2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeStatusServico2";
+        public String getNfceStatusServico(final NFAmbiente ambiente) {
+            return SVRS.getNfceStatusServico(ambiente);
         }
 
         @Override
-        public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/RecepcaoEvento";
+        public String getNfceRecepcaoEvento(final NFAmbiente ambiente) {
+            return SVRS.getNfceRecepcaoEvento(ambiente);
         }
 
         @Override
-        public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfcehomolog.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2" : "https://nfce.sefaz.pe.gov.br/nfce-ws/services/NfeInutilizacao2";
+        public String getNfceInutilizacao(final NFAmbiente ambiente) {
+            return SVRS.getNfceInutilizacao(ambiente);
         }
+
 
         @Override
         public String getRecepcaoEventoAN(final DFAmbiente ambiente) {
