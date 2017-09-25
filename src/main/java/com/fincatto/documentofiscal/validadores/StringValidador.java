@@ -270,7 +270,6 @@ public abstract class StringValidador {
 
     public static void tamanho500(final String string, final String info) {
         if (string != null) {
-        	StringValidador.apenasNumerico(string, info);
             StringValidador.validaTamanhoMaximo(string, 500, info);
         }
     }
