@@ -5,7 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.fincatto.documentofiscal.DocumentosFiscaisConfig;
+import com.fincatto.documentofiscal.DFConfig;
 
 import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
@@ -34,9 +34,9 @@ import java.util.List;
 public class AssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
     private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte"};
-    private final DocumentosFiscaisConfig config;
+    private final DFConfig config;
 
-    public AssinaturaDigital(final DocumentosFiscaisConfig config) {
+    public AssinaturaDigital(final DFConfig config) {
         this.config = config;
     }
 

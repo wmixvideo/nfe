@@ -8,7 +8,7 @@ import java.security.KeyStoreException;
  * 
  * Configura��o basica do sistema de documentos fiscais.
  */
-public abstract class DocumentosFiscaisConfig {
+public abstract class DFConfig {
     
     /**
      * Indica o ambiente de trabalho, se em produ��o ou homologa��o.
