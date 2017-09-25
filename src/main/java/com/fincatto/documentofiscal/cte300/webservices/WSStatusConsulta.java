@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.CTConfig;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
@@ -21,9 +21,9 @@ class WSStatusConsulta {
 
 	private static final String NOME_SERVICO = "STATUS";
 	private static final Logger LOGGER = LoggerFactory.getLogger(WSStatusConsulta.class);
-	private final CTConfig config;
+	private final CTeConfig config;
 
-	WSStatusConsulta(final CTConfig config) {
+	WSStatusConsulta(final CTeConfig config) {
 		this.config = config;
 	}
 
@@ -40,7 +40,7 @@ class WSStatusConsulta {
 	private CTeConsStatServ gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {
 		final CTeConsStatServ consStatServ = new CTeConsStatServ();
 		consStatServ.setAmbiente(this.config.getAmbiente());
-		consStatServ.setVersao(CTConfig.VERSAO);
+		consStatServ.setVersao(CTeConfig.VERSAO);
 		consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
 		return consStatServ;
 	}
@@ -48,7 +48,7 @@ class WSStatusConsulta {
 	private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa) throws RemoteException {
 		final CteStatusServicoStub.CteCabecMsg cabec = new CteStatusServicoStub.CteCabecMsg();
 		cabec.setCUF(unidadeFederativa.getCodigoIbge());
-		cabec.setVersaoDados(CTConfig.VERSAO);
+		cabec.setVersaoDados(CTeConfig.VERSAO);
 
 		final CteStatusServicoStub.CteCabecMsgE cabecEnv = new CteStatusServicoStub.CteCabecMsgE();
 		cabecEnv.setCteCabecMsg(cabec);

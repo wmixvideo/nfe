@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
-import com.fincatto.documentofiscal.cte300.CTConfig;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno;
@@ -31,9 +31,9 @@ class WSRecepcaoLote {
 
 	private static final String CTE_ELEMENTO = "CTe";
 	private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLote.class);
-	private final CTConfig config;
+	private final CTeConfig config;
 	
-	WSRecepcaoLote(final CTConfig config){
+	WSRecepcaoLote(final CTeConfig config){
 		this.config = config;
 	}
 	
@@ -76,7 +76,7 @@ class WSRecepcaoLote {
     private CteCabecMsgE getCabecalhoSOAP() {
         final CteCabecMsg cabecalho = new CteCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(CTConfig.VERSAO);
+        cabecalho.setVersaoDados(CTeConfig.VERSAO);
         final CteCabecMsgE cabecalhoSOAP = new CteCabecMsgE();
         cabecalhoSOAP.setCteCabecMsg(cabecalho);
         return cabecalhoSOAP;
@@ -92,7 +92,7 @@ class WSRecepcaoLote {
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();
             if ((omElement != null) && (WSRecepcaoLote.CTE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", CTConfig.NAMESPACE, null);
+                omElement.addAttribute("xmlns", CTeConfig.NAMESPACE, null);
             }
         }
         return ome;

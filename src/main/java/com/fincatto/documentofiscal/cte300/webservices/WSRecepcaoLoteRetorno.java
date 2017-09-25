@@ -9,7 +9,7 @@ import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fincatto.documentofiscal.cte300.CTConfig;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
@@ -20,9 +20,9 @@ import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 public class WSRecepcaoLoteRetorno {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLoteRetorno.class);
-	private final CTConfig config;
+	private final CTeConfig config;
 	
-	WSRecepcaoLoteRetorno(final CTConfig config){
+	WSRecepcaoLoteRetorno(final CTeConfig config){
 		this.config = config;
 	}
 	
@@ -40,7 +40,7 @@ public class WSRecepcaoLoteRetorno {
 		
 		final CteRetRecepcaoStub.CteCabecMsg cabec = new CteRetRecepcaoStub.CteCabecMsg();
 		cabec.setCUF(this.config.getCUF().getCodigoIbge());
-		cabec.setVersaoDados(CTConfig.VERSAO);
+		cabec.setVersaoDados(CTeConfig.VERSAO);
 
 		final CteRetRecepcaoStub.CteCabecMsgE cabecE = new CteRetRecepcaoStub.CteCabecMsgE();
 		cabecE.setCteCabecMsg(cabec);
@@ -64,7 +64,7 @@ public class WSRecepcaoLoteRetorno {
 		final CTeConsultaRecLote consulta = new CTeConsultaRecLote();
 		consulta.setNumeroRecebimento(numeroRecibo);
 		consulta.setAmbiente(this.config.getAmbiente());
-		consulta.setVersao(CTConfig.VERSAO);
+		consulta.setVersao(CTeConfig.VERSAO);
 		return consulta;
 	}
 }

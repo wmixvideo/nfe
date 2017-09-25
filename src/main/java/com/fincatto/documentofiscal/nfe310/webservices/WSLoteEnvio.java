@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
@@ -122,7 +122,7 @@ class WSLoteEnvio {
     private NfeCabecMsgE getCabecalhoSOAP() {
         final NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO_NFE);
+        cabecalho.setVersaoDados(NFeConfig.VERSAO);
         final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;
@@ -138,7 +138,7 @@ class WSLoteEnvio {
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();
             if ((omElement != null) && (WSLoteEnvio.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NFE_NAMESPACE, null);
+                omElement.addAttribute("xmlns", NFeConfig.NAMESPACE, null);
             }
         }
         return ome;

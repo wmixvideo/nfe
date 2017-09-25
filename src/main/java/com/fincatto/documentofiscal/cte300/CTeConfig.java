@@ -8,7 +8,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
  * 
  * Configura��o basica CT-e.
  */
-public abstract class CTConfig extends DFConfig{
+public abstract class CTeConfig extends DFConfig{
 
     public static final String VERSAO = "3.00";
     public static final String NAMESPACE = "http://www.portalfiscal.inf.br/cte";

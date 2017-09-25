@@ -11,7 +11,7 @@ import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.SocketFactory;
-import com.fincatto.documentofiscal.cte300.CTConfig;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
@@ -24,7 +24,7 @@ public class WSFacade {
 	private final WSRecepcaoLote wsRecepcaoLote;
 	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
 
-    public WSFacade(final CTConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
+    public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new SocketFactory(config), 443));
         
         this.wsStatusConsulta = new WSStatusConsulta(config);

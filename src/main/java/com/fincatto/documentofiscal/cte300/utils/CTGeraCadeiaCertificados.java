@@ -19,7 +19,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import com.fincatto.documentofiscal.cte300.CTConfig;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 
 public class CTGeraCadeiaCertificados {
@@ -28,9 +28,9 @@ public class CTGeraCadeiaCertificados {
     private static final char SEPARATOR = File.separatorChar;
     private static final int TIMEOUT_WS = 30; 
 
-    private static CTConfig ctConfig;
+    private static CTeConfig ctConfig;
     
-	public CTGeraCadeiaCertificados(CTConfig cteConfig) {
+	public CTGeraCadeiaCertificados(CTeConfig cteConfig) {
 		this.ctConfig = cteConfig;
 		
 		CACERTS_NAME = "NFeCacerts"+(cteConfig.getAmbiente().getCodigo().equals("1") ? "Producao" : "Homologacao" );
