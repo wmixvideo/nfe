@@ -28,12 +28,12 @@ public class CTGeraCadeiaCertificados {
     private static final char SEPARATOR = File.separatorChar;
     private static final int TIMEOUT_WS = 30; 
 
-    private static CTeConfig ctConfig;
+    private static CTeConfig cteConfig;
     
 	public CTGeraCadeiaCertificados(CTeConfig cteConfig) {
-		this.ctConfig = cteConfig;
+		this.cteConfig = cteConfig;
 		
-		CACERTS_NAME = "NFeCacerts"+(cteConfig.getAmbiente().getCodigo().equals("1") ? "Producao" : "Homologacao" );
+		CACERTS_NAME = "NFeCacerts"+(this.cteConfig.getAmbiente().getCodigo().equals("1") ? "Producao" : "Homologacao" );
 	}
 
 	public String getCaminhoCacerts() {
@@ -44,7 +44,7 @@ public class CTGeraCadeiaCertificados {
 		File fileExixte = new File(CACERTS_NAME);
 		if(!fileExixte.isFile()){
 			//senha do arquivo
-			char[] passphrase = ctConfig.getCadeiaCertificadosSenha().toCharArray();
+			char[] passphrase = cteConfig.getCadeiaCertificadosSenha().toCharArray();
 			
 			//verifica existencia do diret�rio
 			//File diretorio = new File(Config.getConfig().PASTA);
@@ -74,8 +74,8 @@ public class CTGeraCadeiaCertificados {
 
 			for (final CTAutorizador31 aut : CTAutorizador31.values()) {
 				//Para NF-E
-				if(aut.getCteStatusServico(ctConfig.getAmbiente()) != null){
-					String urlNfe [] = aut.getCteStatusServico(ctConfig.getAmbiente()).split("//");
+				if(aut.getCteStatusServico(cteConfig.getAmbiente()) != null){
+					String urlNfe [] = aut.getCteStatusServico(cteConfig.getAmbiente()).split("//");
 					urlNfe = urlNfe[1].split("/");
 					final String urlNF = urlNfe[0];
 					info("");
@@ -92,7 +92,7 @@ public class CTGeraCadeiaCertificados {
 	}
 
 	private static void get(String host, int port, KeyStore ks) throws Exception, SSLHandshakeException, SSLException {
-		SSLContext context = SSLContext.getInstance(ctConfig.getSSLProtocolo());
+		SSLContext context = SSLContext.getInstance(cteConfig.getSSLProtocolo());
 		TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
 		tmf.init(ks);
 		X509TrustManager defaultTrustManager = (X509TrustManager) tmf.getTrustManagers()[0];
@@ -106,7 +106,7 @@ public class CTGeraCadeiaCertificados {
 		socket.setSoTimeout(10000);
 		
 		try {
-			info("| Iniciando SSL ["+ctConfig.getSSLProtocolo()+"] handshake...");
+			info("| Iniciando SSL ["+cteConfig.getSSLProtocolo()+"] handshake...");
 			socket.startHandshake();
 			socket.close();
 			info("| Sem erros, certificado j� � confi�vel");

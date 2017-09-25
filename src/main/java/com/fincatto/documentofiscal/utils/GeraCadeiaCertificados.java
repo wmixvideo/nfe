@@ -1,10 +1,11 @@
-package com.fincatto.documentofiscal.nfe310.utils;
+package com.fincatto.documentofiscal.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 
@@ -13,6 +14,7 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.security.KeyStore;
@@ -20,38 +22,49 @@ import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-public abstract class NFGeraCadeiaCertificados {
+public abstract class GeraCadeiaCertificados {
 
     private static final int PORT = 443;
     private static final String PROTOCOL = "TLS";
-    private static final Logger LOGGER = LoggerFactory.getLogger(NFGeraCadeiaCertificados.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeraCadeiaCertificados.class);
 
     public static byte[] geraCadeiaCertificados(final DFAmbiente ambiente, final String senha) throws Exception {
         final KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
         keyStore.load(null, senha.toCharArray());
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-            for (final NFAutorizador31 aut : NFAutorizador31.values()) {
+            
+        	for (final NFAutorizador31 aut : NFAutorizador31.values()) {
                 //Para NFe...
                 final String urlNF = aut.getNfeStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlNF)) {
                     final String host = new URI(urlNF).getHost();
-                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, PORT);
                 }
 
                 //Para NFCe...
                 final String urlNFC = aut.getNfceStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlNFC)) {
                     final String host = new URI(urlNFC).getHost();
-                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, PORT);
                 }
             }
+            
             //MDFE
             for(final MDFAutorizador3 aut: MDFAutorizador3.values()){
                 final String urlMDFe = aut.getMDFeStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlMDFe)) {
                     final String host = new URI(urlMDFe).getHost();
-                    NFGeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, PORT);
                 }
+            }
+            
+            //CTe
+            for (final CTAutorizador31 aut : CTAutorizador31.values()) {
+            	final String urlCTe = aut.getCteStatusServico(ambiente);
+            	if (StringUtils.isNotBlank(urlCTe)) {
+            		 final String host = new URI(urlCTe).getHost();
+            		 GeraCadeiaCertificados.get(keyStore, host, PORT);
+            	}
             }
 
             keyStore.store(out, senha.toCharArray());
