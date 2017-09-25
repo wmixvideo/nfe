@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.cte300.validadores;
+package com.fincatto.documentofiscal.validadores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

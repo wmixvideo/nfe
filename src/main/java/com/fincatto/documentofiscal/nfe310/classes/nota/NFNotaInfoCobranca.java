@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
 
 public class NFNotaInfoCobranca extends DFBase {
     @Element(name = "fat", required = false)

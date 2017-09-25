@@ -9,8 +9,8 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "consSitNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

@@ -7,8 +7,8 @@ import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFModalidadeFrete;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoTransporte extends DFBase {
     @Element(name = "modFrete", required = true)

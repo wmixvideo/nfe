@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedidaProdPerigosos;
-import com.fincatto.documentofiscal.cte300.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigosoInfo extends DFBase {
 

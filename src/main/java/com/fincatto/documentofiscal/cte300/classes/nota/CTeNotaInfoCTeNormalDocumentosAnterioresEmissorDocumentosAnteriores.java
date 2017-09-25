@@ -7,8 +7,8 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.validadores.ListValidador;
-import com.fincatto.documentofiscal.cte300.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio

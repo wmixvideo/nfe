@@ -9,7 +9,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.cte300.classes.CTBase;
-import com.fincatto.documentofiscal.cte300.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 /**
  * @author Caio

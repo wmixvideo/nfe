@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe310.validadores;
+package com.fincatto.documentofiscal.validadores;
 
 import java.math.BigInteger;
 

@@ -1,16 +1,28 @@
-package com.fincatto.documentofiscal.nfe310.validadores;
+package com.fincatto.documentofiscal.validadores;
 
 import java.util.List;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoReboque;
 
 public class ListValidador {
 
     private ListValidador() {
     }
 
+    public static <E> void tamanho2(final List<E> lista, final String info) {
+    	if(lista != null){
+            ListValidador.validaTamanho(lista, 2, info);
+    	}
+    }
+    
+    public static <E> void tamanho3(final List<E> lista, final String info) {
+    	if(lista != null){
+            ListValidador.validaTamanho(lista, 3, info);
+    	}
+    }
+    
     public static <E> void tamanho10(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 10, info);
+    	if(lista != null){
+            ListValidador.validaTamanho(lista, 10, info);
+    	}
     }
 
     public static <E> void tamanho31Obrigatorio(final List<E> lista, final String info) {
@@ -20,10 +32,6 @@ public class ListValidador {
 
     public static <E> void tamanho120(final List<E> lista, final String info) {
         ListValidador.validaTamanho(lista, 120, info);
-    }
-
-    public static void tamanho5(final List<NFNotaInfoReboque> lista, final String info) {
-        ListValidador.validaTamanho(lista, 5, info);
     }
 
     public static <E> void tamanho990(final List<E> lista, final String info) {
@@ -36,6 +44,10 @@ public class ListValidador {
     }
 
     public static <E> void tamanho5000(final List<E> lista, final String info) {
+        ListValidador.validaTamanho(lista, 5000, info);
+    }
+    
+    public static <E> void tamanho5(final List<E> lista, final String info) {
         ListValidador.validaTamanho(lista, 5000, info);
     }
 

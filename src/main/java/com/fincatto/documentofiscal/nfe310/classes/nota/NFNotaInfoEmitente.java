@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFEndereco;
 import com.fincatto.documentofiscal.nfe310.classes.NFRegimeTributario;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoEmitente extends DFBase {
 

@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFPessoaAutorizadaDownloadNFe extends DFBase {
     @Element(name = "CNPJ", required = false)

@@ -7,8 +7,8 @@ import org.simpleframework.xml.Root;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "infInut")
 public class NFEventoInutilizacaoDados extends DFBase {

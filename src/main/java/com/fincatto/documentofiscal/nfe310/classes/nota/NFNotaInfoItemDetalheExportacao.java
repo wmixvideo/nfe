@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.BigIntegerValidador;
+import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
 
 public class NFNotaInfoItemDetalheExportacao extends DFBase {
 

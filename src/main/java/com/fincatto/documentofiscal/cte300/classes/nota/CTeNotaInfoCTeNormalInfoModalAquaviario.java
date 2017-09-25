@@ -10,9 +10,9 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoDirecao;
-import com.fincatto.documentofiscal.cte300.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.cte300.validadores.ListValidador;
-import com.fincatto.documentofiscal.cte300.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio

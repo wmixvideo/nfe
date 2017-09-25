@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemProdutoArmamentoTipo;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoArmamento extends DFBase {
 

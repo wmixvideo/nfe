@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCanaDeducao extends DFBase {
     @Element(name = "xDed", required = true)

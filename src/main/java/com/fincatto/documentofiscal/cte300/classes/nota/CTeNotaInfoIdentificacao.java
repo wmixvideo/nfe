@@ -19,8 +19,8 @@ import com.fincatto.documentofiscal.cte300.classes.CTRetirada;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoImpressao;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoServico;
-import com.fincatto.documentofiscal.cte300.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.cte300.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio

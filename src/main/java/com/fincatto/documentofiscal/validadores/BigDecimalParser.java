@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe310.validadores;
+package com.fincatto.documentofiscal.validadores;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,6 +35,10 @@ public abstract class BigDecimalParser {
         return BigDecimalParser.parse(valor, "0.####", 16, 4, info);
     }
 
+    public static String tamanho15comAte6CasasDecimais(final BigDecimal valor, final String info) {
+        return BigDecimalParser.parse(valor, "0.######", 16, 6, info);
+    }
+    
     public static String tamanho5Com2CasasDecimais(final BigDecimal valor, final String info) {
         return BigDecimalParser.parse(valor, "0.00", 7, 2, info);
     }

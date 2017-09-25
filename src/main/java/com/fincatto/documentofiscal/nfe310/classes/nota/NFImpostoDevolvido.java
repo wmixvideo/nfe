@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFImpostoDevolvido extends DFBase {
 
