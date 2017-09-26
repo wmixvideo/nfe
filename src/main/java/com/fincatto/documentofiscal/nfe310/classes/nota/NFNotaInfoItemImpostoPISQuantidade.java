@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoPISQuantidade extends DFBase {
 

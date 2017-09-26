@@ -1,16 +1,17 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.util.List;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "enviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

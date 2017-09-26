@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFTipoEvento;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoCancelamento extends NFTipoEvento {
     @Element(name = "nProt", required = true)

@@ -9,9 +9,9 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoEventoCancelamento extends DFBase {
 

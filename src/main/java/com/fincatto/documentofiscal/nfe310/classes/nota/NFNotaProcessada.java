@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 import java.math.BigDecimal;
 

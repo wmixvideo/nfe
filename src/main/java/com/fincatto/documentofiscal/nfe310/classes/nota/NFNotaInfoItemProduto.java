@@ -8,10 +8,10 @@ import org.simpleframework.xml.convert.Convert;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFProdutoCompoeValorNota;
 import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 import java.math.BigDecimal;
 import java.util.List;

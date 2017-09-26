@@ -1,0 +1,38 @@
+package com.fincatto.documentofiscal.cte300.classes.nota;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
+
+/**
+ * @author Caio
+ * @info Entrega sem data definida<br>
+ * Esta opção é proibida para o modal aéreo.
+ * */
+
+@Root(name = "semData")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+public class CTeNotaInfoDadosComplementaresEntregaSemDataDefinida extends DFBase {
+
+	@Element(name = "tpPer", required = true)
+	private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
+
+	public CTeNotaInfoDadosComplementaresEntregaSemDataDefinida() {
+		this.tipoPrazoDataEntrega = null;
+	}
+
+	public CTTipoPrazoDataEntrega getTipoPrazoDataEntrega() {
+		return tipoPrazoDataEntrega;
+	}
+
+	/**
+	 * Tipo de data/período programado para entrega<br>
+	 * 0 - Sem data definida
+	 * */
+	public void setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega tipoPrazoDataEntrega) {
+		this.tipoPrazoDataEntrega = tipoPrazoDataEntrega;
+	}
+}
