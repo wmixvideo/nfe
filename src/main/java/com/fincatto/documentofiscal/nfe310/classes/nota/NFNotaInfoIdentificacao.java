@@ -1,19 +1,23 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
+import com.fincatto.documentofiscal.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.documentofiscal.nfe310.classes.NFProcessoEmissor;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipo;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipoImpressao;
+import com.fincatto.documentofiscal.nfe310.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
+import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
 import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.nfe310.classes.*;
-import com.fincatto.documentofiscal.nfe310.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import java.util.List;
 
 public class NFNotaInfoIdentificacao extends DFBase {
 	

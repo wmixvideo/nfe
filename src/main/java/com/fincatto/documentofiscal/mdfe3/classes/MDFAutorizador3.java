@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.mdfe3.classes;
 
-import java.util.Arrays;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+
+import java.util.Arrays;
 
 /**
  * <h1>URLs dos serviços para MDF-e</h1><br>

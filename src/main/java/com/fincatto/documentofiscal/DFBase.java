@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal;
 
-import java.io.StringWriter;
-
+import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import org.simpleframework.xml.core.Persister;
 
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
+import java.io.StringWriter;
 
 /**
  * Classe utilizada como base para objetos serializaveis.<br>

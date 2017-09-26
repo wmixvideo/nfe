@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
 import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
 
+import java.math.BigDecimal;
+
 @Root(name = "nfeProc")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaProcessada extends DFBase {
