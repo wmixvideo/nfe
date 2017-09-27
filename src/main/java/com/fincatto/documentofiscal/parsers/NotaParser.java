@@ -1,7 +1,8 @@
-package com.fincatto.documentofiscal.nfe310.parsers;
+package com.fincatto.documentofiscal.parsers;
 
 import org.simpleframework.xml.core.Persister;
 
+import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
@@ -21,6 +22,7 @@ public class NotaParser {
         this.persister = new NFPersister();
     }
 
+    // NFe/NFCe
     public NFNota notaParaObjeto(final File xml) {
         try {
             return this.persister.read(NFNota.class, xml);
@@ -124,4 +126,13 @@ public class NotaParser {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
     }
+    
+    //CTe
+	public CTeEnvioLote cteRecepcaoParaObjeto(final String xml) {
+        try {
+            return this.persister.read(CTeEnvioLote.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+	}
 }

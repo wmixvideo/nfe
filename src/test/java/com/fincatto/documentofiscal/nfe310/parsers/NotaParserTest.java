@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.parsers.NotaParser;
+import com.fincatto.documentofiscal.parsers.NotaParser;
 
 public class NotaParserTest {
 

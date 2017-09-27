@@ -18,13 +18,13 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
-import com.fincatto.documentofiscal.cte300.parsers.NotaParser;
 import com.fincatto.documentofiscal.cte300.persister.CTPersister;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
+import com.fincatto.documentofiscal.parsers.NotaParser;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
 class WSRecepcaoLote {

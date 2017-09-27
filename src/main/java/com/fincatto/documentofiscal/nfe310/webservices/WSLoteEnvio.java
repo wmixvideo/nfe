@@ -18,7 +18,6 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoSuplementar;
-import com.fincatto.documentofiscal.nfe310.parsers.NotaParser;
 import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
@@ -27,6 +26,7 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.parsers.NotaParser;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
 import java.io.StringReader;
