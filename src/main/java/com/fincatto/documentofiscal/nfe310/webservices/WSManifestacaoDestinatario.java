@@ -16,7 +16,6 @@ import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.*;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
 
