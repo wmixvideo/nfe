@@ -1,11 +1,11 @@
-package com.fincatto.documentofiscal.nfe310.classes;
+package com.fincatto.documentofiscal.transformers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
-public class NFUnidadeFederativaTest {
+public class DFUnidadeFederativaTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
