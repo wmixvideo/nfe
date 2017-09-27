@@ -23,7 +23,7 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
-import com.fincatto.documentofiscal.parsers.NotaParser;
+import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
@@ -40,7 +40,7 @@ class WSRecepcaoLote {
 	public CTeEnvioLoteRetornoDados envioRecepcao(CTeEnvioLote cteRecepcaoLote) throws Exception {
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString());
-		final CTeEnvioLote loteAssinado = new NotaParser().cteRecepcaoParaObjeto(documentoAssinado);
+		final CTeEnvioLote loteAssinado = new DFParser().cteRecepcaoParaObjeto(documentoAssinado);
 		
 		//comunica o lote
 		final CTeEnvioLoteRetorno retorno = comunicaLote(documentoAssinado);

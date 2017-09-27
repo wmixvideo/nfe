@@ -25,7 +25,7 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.parsers.NotaParser;
+import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
@@ -61,7 +61,7 @@ class WSLoteEnvio {
 
         // assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
-        final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
+        final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
 
         // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
         int qtdNF = 0, qtdNFC = 0;

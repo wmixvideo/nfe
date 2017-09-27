@@ -14,11 +14,11 @@ import com.fincatto.documentofiscal.persister.DFPersister;
 
 import java.io.File;
 
-public class NotaParser {
+public class DFParser {
 
     private final Persister persister;
 
-    public NotaParser() {
+    public DFParser() {
         this.persister = new DFPersister();
     }
 
