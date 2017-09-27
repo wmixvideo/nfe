@@ -8,7 +8,7 @@ import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 public class NFPersister extends Persister {
 
-    public NFPersister() {
+    private NFPersister() {
         super(new AnnotationStrategy(), new DFRegistryMatcher(), new Format(0));
     }
 }

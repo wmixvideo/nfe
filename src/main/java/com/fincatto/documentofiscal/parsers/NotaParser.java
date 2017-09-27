@@ -10,7 +10,7 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItem;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaProcessada;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
+import com.fincatto.documentofiscal.persister.DFPersister;
 
 import java.io.File;
 
@@ -19,7 +19,7 @@ public class NotaParser {
     private final Persister persister;
 
     public NotaParser() {
-        this.persister = new NFPersister();
+        this.persister = new DFPersister();
     }
 
     // NFe/NFCe

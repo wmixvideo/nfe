@@ -24,9 +24,11 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 import javax.xml.stream.XMLStreamException;
+
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.Collections;
@@ -52,7 +54,7 @@ class WSCartaCorrecao {
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {

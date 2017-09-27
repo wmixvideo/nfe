@@ -8,7 +8,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.cte300.classes.CTBase;
+import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 /**
@@ -18,7 +18,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 @Root(name = "vPrest")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
-public class CTeNotaInfoValorPrestacaoServico extends CTBase {
+public class CTeNotaInfoValorPrestacaoServico extends DFBase {
 
 	@Element(name = "vTPrest", required = true)
     private String valorTotalPrestacaoServico;
