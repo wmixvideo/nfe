@@ -22,16 +22,18 @@ import com.fincatto.documentofiscal.nfe310.parsers.NotaParser;
 import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
-import com.fincatto.documentofiscal.nfe310.validadores.xsd.XMLValidador;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
 import java.io.StringReader;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
+
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
 class WSLoteEnvio {

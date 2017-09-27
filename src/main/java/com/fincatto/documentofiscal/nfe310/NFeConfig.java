@@ -1,11 +1,6 @@
 package com.fincatto.documentofiscal.nfe310;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
-import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
 
 /**

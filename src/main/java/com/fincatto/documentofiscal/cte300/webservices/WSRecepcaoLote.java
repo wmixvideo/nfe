@@ -20,12 +20,12 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.cte300.parsers.NotaParser;
 import com.fincatto.documentofiscal.cte300.persister.CTPersister;
-import com.fincatto.documentofiscal.cte300.validadores.xsd.XMLValidador;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
+import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
 class WSRecepcaoLote {
 
@@ -49,7 +49,7 @@ class WSRecepcaoLote {
 	
 	private CTeEnvioLoteRetorno comunicaLote(final String loteAssinadoXml) throws Exception {
 		//valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-		XMLValidador.validaLote(loteAssinadoXml);
+		XMLValidador.validaLoteCTe(loteAssinadoXml);
 		
 		//envia o lote para a sefaz
 		final OMElement omElement = this.cteToOMElement(loteAssinadoXml);
