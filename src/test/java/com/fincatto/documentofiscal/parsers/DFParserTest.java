@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe310.parsers;
+package com.fincatto.documentofiscal.parsers;
 
 import java.io.File;
 import java.net.URI;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.parsers.DFParser;
 
-public class NotaParserTest {
+public class DFParserTest {
 
     @Test
     public void deveParsearCorretamenteUmXMLDaNota310() {
@@ -19,7 +19,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDaNota310() throws Exception {
-        Assert.assertNotNull(new DFParser().notaParaObjeto(new File(new URI(NotaParserTest.class.getResource("nota.xml").getFile()).getPath())));
+        Assert.assertNotNull(new DFParser().notaParaObjeto(new File(new URI(DFParserTest.class.getResource("nota.xml").getFile()).getPath())));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDaNotaProcessada310() throws Exception {
-        Assert.assertNotNull(new DFParser().notaProcessadaParaObjeto(new File(new URI(NotaParserTest.class.getResource("notaprocessada.xml").getFile()).getPath())));
+        Assert.assertNotNull(new DFParser().notaProcessadaParaObjeto(new File(new URI(DFParserTest.class.getResource("notaprocessada.xml").getFile()).getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -61,7 +61,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDoNFEnviaEventoCartaCorrecao() throws Exception {
-        Assert.assertNotNull(new DFParser().enviaEventoCartaCorrecaoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoCartaCorrecao.xml").getFile()).getPath())));
+        Assert.assertNotNull(new DFParser().enviaEventoCartaCorrecaoParaObjeto(new File(new URI(DFParserTest.class.getResource("enviaEventoCartaCorrecao.xml").getFile()).getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -77,7 +77,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDoNFEnviaEventoCancelamento() throws Exception {
-        Assert.assertNotNull(new DFParser().enviaEventoCancelamentoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoCancelamento.xml").getFile()).getPath())));
+        Assert.assertNotNull(new DFParser().enviaEventoCancelamentoParaObjeto(new File(new URI(DFParserTest.class.getResource("enviaEventoCancelamento.xml").getFile()).getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -93,7 +93,7 @@ public class NotaParserTest {
 
     @Test
     public void deveParsearCorretamenteArquivoDoNFEnviaEventoInutilizacao() throws Exception {
-        Assert.assertNotNull(new DFParser().enviaEventoInutilizacaoParaObjeto(new File(new URI(NotaParserTest.class.getResource("enviaEventoInutilizacao.xml").getFile()).getPath())));
+        Assert.assertNotNull(new DFParser().enviaEventoInutilizacaoParaObjeto(new File(new URI(DFParserTest.class.getResource("enviaEventoInutilizacao.xml").getFile()).getPath())));
     }
 
     @Test(expected = IllegalArgumentException.class)

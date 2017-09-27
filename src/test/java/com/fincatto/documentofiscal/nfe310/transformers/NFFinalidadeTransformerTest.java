@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.transformers;
+package com.fincatto.documentofiscal.nfe310.transformers;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
 import com.fincatto.documentofiscal.nfe310.transformers.NFFinalidadeTransformer;
 
-public class DFFinalidadeTransformerTest {
+public class NFFinalidadeTransformerTest {
     @Test
     public void deveTestarLeitura() throws Exception {
         Assert.assertNull(new NFFinalidadeTransformer().read("0"));
