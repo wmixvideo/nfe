@@ -2,12 +2,14 @@ package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "retDistDFeInt")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTDistribuicaoIntRetorno extends DFBase {
 
     @Attribute(name = "versao")
