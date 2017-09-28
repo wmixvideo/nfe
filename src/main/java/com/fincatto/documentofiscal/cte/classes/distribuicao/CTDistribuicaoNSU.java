@@ -13,8 +13,9 @@ public class CTDistribuicaoNSU extends DFBase {
         return this.ultimoNSU;
     }
 
-    public void setUltimoNSU(final java.lang.String ultimoNSU) {
+    public CTDistribuicaoNSU setUltimoNSU(final java.lang.String ultimoNSU) {
         this.ultimoNSU = ultimoNSU;
+        return this;
     }
 
 }
