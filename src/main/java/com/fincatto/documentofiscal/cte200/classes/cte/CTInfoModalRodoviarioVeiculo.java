@@ -1,10 +1,12 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
+@Root(name = "veic")
 public class CTInfoModalRodoviarioVeiculo extends DFBase {
 
     @Element(name = "cInt", required = false)
