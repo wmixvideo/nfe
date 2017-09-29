@@ -43,7 +43,7 @@ public class CTInfo extends DFBase {
     @Element(name = "imp")
     private CTInfoImposto imposto;
 
-    @Element(name = "infCTeNorm")
+    @Element(name = "infCTeNorm", required = false)
     private CTInfoNormal informacaoCte;
 
     @Element(name = "infCteComp", required = false)
