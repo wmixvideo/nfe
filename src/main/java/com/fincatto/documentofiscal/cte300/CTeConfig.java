@@ -6,7 +6,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 /**
  * @author Caio
  * 
- * Configura��o basica CT-e.
+ * Configuracao basica CT-e.
  */
 public abstract class CTeConfig extends DFConfig{
 
@@ -14,9 +14,9 @@ public abstract class CTeConfig extends DFConfig{
     public static final String NAMESPACE = "http://www.portalfiscal.inf.br/cte";
     
     /**
-     * Tipo da emiss�o das notas (se normal ou em conting�ncia).
+     * Tipo da emissao das notas (se normal ou em contingencia).
      *
-     * @return Tipo da emiss�o das notas.
+     * @return Tipo da emissao das notas.
      */
     public CTTipoEmissao getTipoEmissao() {
         return CTTipoEmissao.EMISSAO_NORMAL;

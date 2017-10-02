@@ -23,16 +23,16 @@ public abstract class NFeConfig extends DFConfig {
     /**
      * Codigo de seguranca do contribuinte, com 36 caracteres, somente para NFCe.
      *
-     * @return Codigo de seguran�a do contribuinte.
+     * @return Codigo de seguranca do contribuinte.
      */
     public String getCodigoSegurancaContribuinte() {
         return null;
     }
     
     /**
-     * Tipo da emiss�o das notas (se normal ou em conting�ncia).
+     * Tipo da emissao das notas (se normal ou em contingencia).
      *
-     * @return Tipo da emiss�o das notas.
+     * @return Tipo da emissao das notas.
      */
     public NFTipoEmissao getTipoEmissao() {
         return NFTipoEmissao.EMISSAO_NORMAL;

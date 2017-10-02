@@ -36,7 +36,7 @@ class X509KeySelector extends KeySelector {
                 }
             }
         }
-        throw new KeySelectorException("N�o foi localizada a chave do certificado.");
+        throw new KeySelectorException("Nao foi localizada a chave do certificado.");
     }
 
     private boolean algEquals(final String algURI, final String algName) {
