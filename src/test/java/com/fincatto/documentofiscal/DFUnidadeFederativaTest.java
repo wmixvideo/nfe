@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.transformers;
+package com.fincatto.documentofiscal;
 
 import org.junit.Assert;
 import org.junit.Test;
