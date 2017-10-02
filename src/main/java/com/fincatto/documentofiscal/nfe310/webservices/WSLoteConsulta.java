@@ -41,7 +41,7 @@ class WSLoteConsulta {
 	private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {
 		final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
 		cabec.setCUF(this.config.getCUF().getCodigoIbge());
-		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
+		cabec.setVersaoDados(NFeConfig.VERSAO);
 
 		final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
 		cabecE.setNfeCabecMsg(cabec);
@@ -63,7 +63,7 @@ class WSLoteConsulta {
 		final NFLoteConsulta consulta = new NFLoteConsulta();
 		consulta.setRecibo(numeroRecibo);
 		consulta.setAmbiente(this.config.getAmbiente());
-		consulta.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
+		consulta.setVersao(new BigDecimal(NFeConfig.VERSAO));
 		return consulta;
 	}
 }

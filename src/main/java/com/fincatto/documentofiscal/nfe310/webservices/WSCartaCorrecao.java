@@ -1,5 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.util.Collections;
+
+import javax.xml.stream.XMLStreamException;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.joda.time.DateTime;
@@ -9,8 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
@@ -18,18 +24,13 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.NFInfoEvento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
-
-import javax.xml.stream.XMLStreamException;
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-import java.util.Collections;
 
 class WSCartaCorrecao {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
@@ -52,7 +53,7 @@ class WSCartaCorrecao {
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {

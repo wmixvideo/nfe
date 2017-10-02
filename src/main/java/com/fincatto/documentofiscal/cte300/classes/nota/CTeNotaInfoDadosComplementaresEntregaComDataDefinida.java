@@ -1,0 +1,57 @@
+package com.fincatto.documentofiscal.cte300.classes.nota;
+
+import org.joda.time.LocalDate;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
+
+/**
+ * @author Caio
+ * @info Entrega com data definida
+ * */
+
+@Root(name = "comData")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+public class CTeNotaInfoDadosComplementaresEntregaComDataDefinida extends DFBase {
+
+	@Element(name = "tpPers", required = true)
+    private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
+	
+	@Element(name = "dProg", required = true)
+    private LocalDate dataProgramada;
+
+	public CTeNotaInfoDadosComplementaresEntregaComDataDefinida() {
+		this.tipoPrazoDataEntrega = null;
+		this.dataProgramada = null;
+	}
+
+	public CTTipoPrazoDataEntrega getTipoPrazoDataEntrega() {
+		return tipoPrazoDataEntrega;
+	}
+
+	/**
+	 * Tipo de data/período programado para entrega<br>
+	 * Preencher com:<br>
+	 * 1-Na data;<br>
+	 * 2-Até a data;<br>
+	 * 3-A partir da data
+	 * */
+	public void setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega tipoPrazoDataEntrega) {
+		this.tipoPrazoDataEntrega = tipoPrazoDataEntrega;
+	}
+
+	public LocalDate getDataProgramada() {
+		return dataProgramada;
+	}
+
+	/**
+	 * Data programada<br>
+	 * Formato AAAA-MM-DD
+	 * */
+	public void setDataProgramada(LocalDate dataProgramada) {
+		this.dataProgramada = dataProgramada;
+	}
+}

@@ -8,7 +8,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     private static final List<NFNotaInfoSituacaoTributariaCOFINS> SITUACOES_VALIDAS = Arrays.asList(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO, NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA);

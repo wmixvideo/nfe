@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.*;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub;
+import com.fincatto.documentofiscal.persister.DFPersister;
 
 public class WSManifestacaoDestinatario {
 
@@ -31,14 +31,14 @@ public class WSManifestacaoDestinatario {
 
     NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaManifestacaoDestinatario(eventoAssinadoXml, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
         final String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(manifestacaoDestinatarioNotaXML);
         final OMElement omElementResult = this.efetuaManifestacaoDestinatario(xmlAssinado, chaveAcesso);
-        return new NFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {

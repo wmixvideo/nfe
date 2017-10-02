@@ -9,7 +9,8 @@ public enum DFModelo {
     PRODUTOR("04", "Nota produtor"),
     NFE("55", "NF-e"),
     NFCE("65", "NFC-e"),
-    CTE("57", "CT-e");
+    CTE("57", "CT-e"),
+    CTeOS("67", "CT-e OS");
 
     public static final List<DFModelo> MODELOS_NOTAS_NAO_ELETRONICAS = Arrays.asList(AVULSA, PRODUTOR);
 

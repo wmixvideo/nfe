@@ -9,9 +9,9 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.ListValidador;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCana extends DFBase {
     @Element(name = "safra", required = true)

@@ -4,7 +4,7 @@ import java.io.StringWriter;
 
 import org.simpleframework.xml.core.Persister;
 
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
+import com.fincatto.documentofiscal.persister.DFPersister;
 
 /**
  * Classe utilizada como base para objetos serializaveis.<br>
@@ -14,7 +14,7 @@ public abstract class DFBase {
 
     @Override
     public String toString() {
-        final Persister persister = new NFPersister();
+        final Persister persister = new DFPersister();
         try (StringWriter writer = new StringWriter()) {
             persister.write(this, writer);
             return writer.toString();

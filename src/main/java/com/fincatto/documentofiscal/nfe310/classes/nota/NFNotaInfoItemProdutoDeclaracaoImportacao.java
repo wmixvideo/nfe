@@ -9,8 +9,8 @@ import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.nfe310.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
 
