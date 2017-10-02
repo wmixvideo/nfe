@@ -10,10 +10,10 @@ public class CTInfoTomadorServico4 extends DFBase {
     @Element(name = "toma")
     private CTTomadorServico tomadorServico;
 
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     private String cnpj;
 
-    @Element(name = "CPF")
+    @Element(name = "CPF", required = false)
     private String cpf;
 
     @Element(name = "IE", required = false)
