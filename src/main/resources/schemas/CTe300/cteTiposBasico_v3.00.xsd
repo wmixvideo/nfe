@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
 <xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/cte" targetNamespace="http://www.portalfiscal.inf.br/cte" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
 	<xs:include schemaLocation="tiposGeralCTe_v3.00.xsd"/>
@@ -2569,7 +2570,7 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 									<xs:element name="modal" type="TModTranspOS">
 										<xs:annotation>
 											<xs:documentation>Modal do CT-e OS</xs:documentation>
-											<xs:documentation>Preencher com:01-Rodoviário</xs:documentation>
+											<xs:documentation>Preencher com:01-Rodoviário 02- Aéreo 03 - Aquaviário 04 - Ferroviário</xs:documentation>
 										</xs:annotation>
 									</xs:element>
 									<xs:element name="tpServ">
@@ -3399,6 +3400,89 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 															</xs:complexType>
 														</xs:element>
 													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="refCTeCanc" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Chave de acesso do CT-e Cancelado
+Somente para Transporte de Valores</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="TChNFe"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="cobr" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Dados da cobrança do CT-e</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="fat" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Dados da fatura</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="nFat" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Número da fatura</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="TString">
+																			<xs:minLength value="1"/>
+																			<xs:maxLength value="60"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="vOrig" type="TDec_1302Opc" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor original da fatura</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="vDesc" type="TDec_1302Opc" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor do desconto da fatura</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="vLiq" type="TDec_1302Opc" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor líquido da fatura</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="dup" minOccurs="0" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Dados das duplicatas</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="nDup" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Número da duplicata</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="TString">
+																			<xs:maxLength value="60"/>
+																			<xs:minLength value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="dVenc" type="TData" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Data de vencimento da duplicata (AAAA-MM-DD)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="vDup" type="TDec_1302Opc" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Valor da duplicata</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>

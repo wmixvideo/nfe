@@ -69,6 +69,10 @@ public class WSFacade {
         return this.wsLoteEnvio.enviaLote(lote);
     }
 
+    public NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
+        return this.wsLoteEnvio.getLoteAssinado(lote);
+    }
+
     /**
      * Faz o envio assinado para a Sefaz de NF-e e NFC-e
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
@@ -81,6 +85,8 @@ public class WSFacade {
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
+
+
 
     /**
      * Faz a consulta do lote na Sefaz (NF-e e NFC-e)

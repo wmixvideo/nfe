@@ -45,9 +45,9 @@
 								<xs:documentation>CNPJ do emitente</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="mod" type="TModCT">
+						<xs:element name="mod" type="TModCT_Carga_OS">
 							<xs:annotation>
-								<xs:documentation>Modelo da CT-e (57)</xs:documentation>
+								<xs:documentation>Modelo da CT-e (57 ou 67)</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="serie" type="TSerie">
@@ -148,9 +148,9 @@
 								<xs:documentation>CNPJ do emitente</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="mod" type="TModCT" minOccurs="0">
+						<xs:element name="mod" type="TModCT_Carga_OS" minOccurs="0">
 							<xs:annotation>
-								<xs:documentation>Modelo da CT-e (57)</xs:documentation>
+								<xs:documentation>Modelo da CT-e (57 ou 67)</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="serie" type="TSerie" minOccurs="0">
