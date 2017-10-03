@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/cte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/cte" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="tiposGeralCTe_v3.00.xsd"/>
-	<xs:include schemaLocation="consReciCTeTiposBasico_v3.00.xsd"/>
-	<xs:include schemaLocation="cancCTeTiposBasico_v3.00.xsd"/>
-	<xs:include schemaLocation="eventoCTeTiposBasico_v3.00.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
 	<xs:complexType name="TConsSitCTe">
 		<xs:annotation>
@@ -67,10 +64,70 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:choice>
-				<xs:element name="protCTe" type="TProtCTe" minOccurs="0"/>
-				<xs:element name="retCancCTe" type="TRetCancCTe" minOccurs="0"/>
+				<xs:element name="protCTe" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any processContents="skip">
+								<xs:annotation>
+									<xs:documentation>Retornar protCTe da versão correspondente do CT-e autorizado</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+						<xs:attribute name="versao" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="preserve"/>
+									<xs:enumeration value="1.03"/>
+									<xs:enumeration value="1.04"/>
+									<xs:enumeration value="2.00"/>
+									<xs:enumeration value="3.00"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="retCancCTe" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any processContents="skip">
+								<xs:annotation>
+									<xs:documentation>Retornar retCancCTe da versão correspondente do cancelamento CT-e autorizado</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+						<xs:attribute name="versao" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:whiteSpace value="preserve"/>
+									<xs:enumeration value="1.03"/>
+									<xs:enumeration value="1.04"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
 			</xs:choice>
-			<xs:element name="procEventoCTe" type="TProcEvento" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="procEventoCTe" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any>
+							<xs:annotation>
+								<xs:documentation>Retornar procEventoCTe da versão correspondente do evento CT-e autorizado</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+					<xs:attribute name="versao" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:enumeration value="1.04"/>
+								<xs:enumeration value="2.00"/>
+								<xs:enumeration value="3.00"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerConsSitCTe" use="required"/>
 	</xs:complexType>
