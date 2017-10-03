@@ -44,7 +44,7 @@ class WSStatusConsulta {
         final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
         consStatServ.setUf(unidadeFederativa);
         consStatServ.setAmbiente(this.config.getAmbiente());
-        consStatServ.setVersao(NFeConfig.VERSAO_NFE);
+        consStatServ.setVersao(NFeConfig.VERSAO);
         consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
         return consStatServ;
     }
@@ -52,7 +52,7 @@ class WSStatusConsulta {
     private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException {
         final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
         cabec.setCUF(unidadeFederativa.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
+        cabec.setVersaoDados(NFeConfig.VERSAO);
 
         final NfeStatusServico2Stub.NfeCabecMsgE cabecEnv = new NfeStatusServico2Stub.NfeCabecMsgE();
         cabecEnv.setNfeCabecMsg(cabec);
@@ -72,7 +72,7 @@ class WSStatusConsulta {
     private OMElement efetuaConsultaStatusBahia(final OMElement omElement) throws RemoteException {
         final NfeStatusServicoStub.NfeCabecMsg cabec = new NfeStatusServicoStub.NfeCabecMsg();
         cabec.setCUF(DFUnidadeFederativa.BA.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
+        cabec.setVersaoDados(NFeConfig.VERSAO);
 
         final NfeStatusServicoStub.NfeCabecMsgE cabecEnv = new NfeStatusServicoStub.NfeCabecMsgE();
         cabecEnv.setNfeCabecMsg(cabec);

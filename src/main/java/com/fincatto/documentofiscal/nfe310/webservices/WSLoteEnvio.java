@@ -11,27 +11,29 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoSuplementar;
-import com.fincatto.documentofiscal.nfe310.parsers.NotaParser;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
-import com.fincatto.documentofiscal.nfe310.validadores.xsd.XMLValidador;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.parsers.DFParser;
+import com.fincatto.documentofiscal.persister.DFPersister;
+import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
 import java.io.StringReader;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
+
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
 class WSLoteEnvio {
@@ -59,7 +61,7 @@ class WSLoteEnvio {
 
         // assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
-        final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
+        final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
 
         // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
         int qtdNF = 0, qtdNFC = 0;
@@ -114,7 +116,7 @@ class WSLoteEnvio {
         }
 
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final NFLoteEnvioRetorno loteEnvioRetorno = new DFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
@@ -122,7 +124,7 @@ class WSLoteEnvio {
     private NfeCabecMsgE getCabecalhoSOAP() {
         final NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO_NFE);
+        cabecalho.setVersaoDados(NFeConfig.VERSAO);
         final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;
@@ -138,7 +140,7 @@ class WSLoteEnvio {
         while (children.hasNext()) {
             final OMElement omElement = (OMElement) children.next();
             if ((omElement != null) && (WSLoteEnvio.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NFE_NAMESPACE, null);
+                omElement.addAttribute("xmlns", NFeConfig.NAMESPACE, null);
             }
         }
         return ome;
