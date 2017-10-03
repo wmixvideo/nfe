@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 @Root(name = "infCte")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTInfo extends DFBase {
+    private static final long serialVersionUID = -6897300761081884794L;
 
     @Attribute(name = "versao")
     private String versao;
@@ -43,7 +44,7 @@ public class CTInfo extends DFBase {
     @Element(name = "imp")
     private CTInfoImposto imposto;
 
-    @Element(name = "infCTeNorm")
+    @Element(name = "infCTeNorm", required = false)
     private CTInfoNormal informacaoCte;
 
     @Element(name = "infCteComp", required = false)

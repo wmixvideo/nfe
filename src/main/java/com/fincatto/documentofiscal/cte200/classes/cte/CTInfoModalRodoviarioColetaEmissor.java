@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class CTInfoModalRodoviarioColetaEmissor extends DFBase {
+    private static final long serialVersionUID = 611625457516005270L;
 
     @Element(name = "CNPJ")
     private String cnpj;

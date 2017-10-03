@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 @Root(name = "CTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class CTe extends DFBase {
+    private static final long serialVersionUID = 3664459758546162479L;
 
     @Element(name = "infCte", required = true)
     private CTInfo infCte;

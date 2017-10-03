@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCartao extends DFBase {
+    private static final long serialVersionUID = 8908558834476720280L;
 
     @Element(name = "tpIntegra", required = true)
     private NFTipoIntegracaoPagamento tipoIntegracao;
@@ -46,10 +47,10 @@ public class NFNotaInfoCartao extends DFBase {
     }
 
     public NFTipoIntegracaoPagamento getTipoIntegracao() {
-        return tipoIntegracao;
+        return this.tipoIntegracao;
     }
 
-    public void setTipoIntegracao(NFTipoIntegracaoPagamento tipoIntegracao) {
+    public void setTipoIntegracao(final NFTipoIntegracaoPagamento tipoIntegracao) {
         this.tipoIntegracao = tipoIntegracao;
     }
 }

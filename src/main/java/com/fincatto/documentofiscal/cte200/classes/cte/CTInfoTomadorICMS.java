@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoTomadorICMS extends DFBase {
+    private static final long serialVersionUID = 173570142447312716L;
 
     @Element(name = "refNFe")
     private String chaveAcessoNFe;

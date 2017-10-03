@@ -10,6 +10,8 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoDuplicata extends DFBase {
+    private static final long serialVersionUID = 4401957395684813604L;
+
     @Element(name = "nDup", required = false)
     private String numeroDuplicata;
 

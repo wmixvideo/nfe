@@ -5,10 +5,15 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.*;
+import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
+import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.documentofiscal.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
+import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
+    private static final long serialVersionUID = 4771007345613617306L;
+
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 

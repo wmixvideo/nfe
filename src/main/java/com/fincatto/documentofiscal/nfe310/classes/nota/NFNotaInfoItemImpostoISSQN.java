@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemImpostoISSQN extends DFBase {
+    private static final long serialVersionUID = 5303195667632685433L;
 
     @Element(name = "vBC", required = true)
     private String valorBaseCalculo;

@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 @Root(name = "emiDocAnt")
 public class CTInfoDocumentoAnteriorEmissor extends DFBase {
+    private static final long serialVersionUID = -8415355745574025080L;
 
     @Element(name = "CNPJ")
     private String cnpj;

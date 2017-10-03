@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeTransporte;
 
 @Root(name = "infUnidTransp")
 public class CTInfoDocumentoNFUnidTransp extends DFBase {
+    private static final long serialVersionUID = -6450005169115940136L;
 
     @Element(name = "tpUnidTransp")
     private CTTipoUnidadeTransporte tipoUnidadeTransporte;

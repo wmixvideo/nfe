@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.cte200.classes.*;
 @Root(name = "ide")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTInfoIdentificador extends DFBase {
+    private static final long serialVersionUID = -5863776725486518892L;
 
     @Element(name = "cUF")
     private DFUnidadeFederativa unidadeFederativaEmitente;

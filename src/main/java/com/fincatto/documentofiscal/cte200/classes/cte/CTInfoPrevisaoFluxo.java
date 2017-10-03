@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "fluxo")
 public class CTInfoPrevisaoFluxo extends DFBase {
+    private static final long serialVersionUID = 5781078010759179146L;
 
     @Element(name = "xOrig", required = false)
     private String codigoOrigem;

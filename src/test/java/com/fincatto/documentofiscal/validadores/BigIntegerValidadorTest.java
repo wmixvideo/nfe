@@ -1,7 +1,5 @@
 package com.fincatto.documentofiscal.validadores;
 
-import static org.junit.Assert.*;
-
 import java.math.BigInteger;
 
 import org.junit.Test;

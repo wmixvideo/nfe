@@ -2,11 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
 import java.util.List;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
+import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
@@ -16,6 +12,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Root(name = "enviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteEnvio extends DFBase {
+    private static final long serialVersionUID = 4208444639749964265L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

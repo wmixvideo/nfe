@@ -11,6 +11,8 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaC
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
+    private static final long serialVersionUID = -8079337130690627887L;
+
     private static final List<NFNotaInfoSituacaoTributariaCOFINS> SITUACOES_VALIDAS = Arrays.asList(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO, NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_ALIQUOTA_DIFERENCIADA);
 
     @Element(name = "CST", required = true)

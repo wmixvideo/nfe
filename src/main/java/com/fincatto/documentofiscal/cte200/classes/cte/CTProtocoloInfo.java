@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTProtocoloInfo extends DFBase {
+    private static final long serialVersionUID = -5981619863877878118L;
 
     @Attribute(name = "Id", required = false)
     private String identificador;

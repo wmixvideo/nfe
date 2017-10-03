@@ -5,6 +5,8 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFRetornoConsultaCadastroEndereco extends DFBase {
+    private static final long serialVersionUID = -2380716124076759445L;
+
     @Element(name = "xLgr", required = false)
     private String logradouro;
 

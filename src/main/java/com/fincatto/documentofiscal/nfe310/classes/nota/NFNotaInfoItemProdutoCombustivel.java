@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
+    private static final long serialVersionUID = -2899516480924530882L;
 
     @Element(name = "cProdANP", required = true)
     private String codigoProdutoANP;

@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTDistribuicaoConsultaNSU extends DFBase {
+    private static final long serialVersionUID = -582191692175285331L;
 
     @Element(name = "NSU")
     private String nsu;

@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes;
 
+import java.text.SimpleDateFormat;
+
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.simpleframework.xml.Attribute;
@@ -8,12 +10,11 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 
-import java.text.SimpleDateFormat;
-
 /**
  * @Author Eldevan Nery Junior on 26/05/17.
  */
 public class MDFProtocoloInfo extends DFBase {
+    private static final long serialVersionUID = -6177400359424725162L;
 
     @Attribute(name = "Id", required = false)
     private String identificador;

@@ -7,6 +7,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTDistribuicaoDFeLote extends DFBase {
+    private static final long serialVersionUID = 5213446895183202408L;
 
     @ElementList(name = "docZip", inline = true, required = false)
     private List<CTDistribuicaoDocumentoZip> docZip;
@@ -15,7 +16,8 @@ public class CTDistribuicaoDFeLote extends DFBase {
         return this.docZip;
     }
 
-    public void setDocZip(final List<CTDistribuicaoDocumentoZip> docZip) {
+    public CTDistribuicaoDFeLote setDocZip(final List<CTDistribuicaoDocumentoZip> docZip) {
         this.docZip = docZip;
+        return this;
     }
 }

@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoCargaPerigosa extends DFBase {
+    private static final long serialVersionUID = 5328235036325178938L;
 
     @Element(name = "nOnu")
     private String numeroOnu;

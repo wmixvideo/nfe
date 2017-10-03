@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoFatura extends DFBase {
+    private static final long serialVersionUID = 3308281411924779862L;
+
     @Element(name = "nFat", required = false)
     private String numeroFatura;
 

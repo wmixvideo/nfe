@@ -10,6 +10,8 @@ import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
+    private static final long serialVersionUID = 83636755742035633L;
+
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 

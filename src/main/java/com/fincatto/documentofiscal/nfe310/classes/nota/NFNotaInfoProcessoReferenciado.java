@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFOrigemProcesso;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoProcessoReferenciado extends DFBase {
+    private static final long serialVersionUID = -5213086059996742347L;
 
     @Element(name = "nProc", required = true)
     private String identificadorProcessoOuAtoConcessorio;

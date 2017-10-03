@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends DFBase {
+    private static final long serialVersionUID = -7286071184901675008L;
 
     @Element(name = "nAdicao", required = true)
     private Integer numero;

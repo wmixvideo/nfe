@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "docZip")
 public class CTDistribuicaoDocumentoZip extends DFBase {
+    private static final long serialVersionUID = -6656266954109936292L;
 
     @Text
     private String value;
@@ -26,20 +27,23 @@ public class CTDistribuicaoDocumentoZip extends DFBase {
         return this.nsu;
     }
 
-    public void setNsu(final String nsu) {
+    public CTDistribuicaoDocumentoZip setNsu(final String nsu) {
         this.nsu = nsu;
+        return this;
     }
 
     public String getSchema() {
         return this.schema;
     }
 
-    public void setSchema(final String schema) {
+    public CTDistribuicaoDocumentoZip setSchema(final String schema) {
         this.schema = schema;
+        return this;
     }
 
-    public void setValue(final String value) {
+    public CTDistribuicaoDocumentoZip setValue(final String value) {
         this.value = value;
+        return this;
     }
 
 }

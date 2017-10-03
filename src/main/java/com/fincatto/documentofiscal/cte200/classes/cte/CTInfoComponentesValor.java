@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "Comp")
 public class CTInfoComponentesValor extends DFBase {
+    private static final long serialVersionUID = -4637453857441149321L;
 
     @Element(name = "xNome")
     private String xNome;

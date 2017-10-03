@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "cteProc")
 public class CTProcessado extends DFBase {
+    private static final long serialVersionUID = 172533806473031301L;
 
     @Attribute(name = "versao")
     private String versao;

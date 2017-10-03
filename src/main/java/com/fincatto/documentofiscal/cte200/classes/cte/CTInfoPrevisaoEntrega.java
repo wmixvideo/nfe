@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoPrevisaoEntrega extends DFBase {
+    private static final long serialVersionUID = 1573994802260852308L;
 
     @Element(name = "semData", required = false)
     private CTInfoEntregaSemData semData;

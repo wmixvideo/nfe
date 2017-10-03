@@ -8,6 +8,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoValoresPrestacaoServico extends DFBase {
+    private static final long serialVersionUID = -1168596648594384020L;
 
     @Element(name = "vTPrest")
     private String valorTotalPrestacaoServico;

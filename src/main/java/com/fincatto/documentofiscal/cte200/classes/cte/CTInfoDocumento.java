@@ -7,6 +7,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoDocumento extends DFBase {
+    private static final long serialVersionUID = -4901988621537839552L;
 
     @ElementList(name = "infNF", inline = true, required = false)
     private List<CTInfoDocumentoNF> infNF;

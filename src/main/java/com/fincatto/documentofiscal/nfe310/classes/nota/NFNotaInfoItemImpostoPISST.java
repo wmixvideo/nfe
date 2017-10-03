@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoPISST extends DFBase {
+    private static final long serialVersionUID = 3395149664389917725L;
 
     @Element(name = "vBC", required = false)
     private String valorBaseCalculo;

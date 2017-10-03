@@ -10,6 +10,8 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoRetencaoICMSTransporte extends DFBase {
+    private static final long serialVersionUID = -5222569391852128441L;
+
     @Element(name = "vServ", required = true)
     private String valorServico;
 

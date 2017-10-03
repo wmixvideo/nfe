@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTDistribuicaoNSU extends DFBase {
+    private static final long serialVersionUID = -50569062199740836L;
 
     @Element(name = "ultNSU")
     private String ultimoNSU;
@@ -13,8 +14,9 @@ public class CTDistribuicaoNSU extends DFBase {
         return this.ultimoNSU;
     }
 
-    public void setUltimoNSU(final java.lang.String ultimoNSU) {
+    public CTDistribuicaoNSU setUltimoNSU(final java.lang.String ultimoNSU) {
         this.ultimoNSU = ultimoNSU;
+        return this;
     }
 
 }

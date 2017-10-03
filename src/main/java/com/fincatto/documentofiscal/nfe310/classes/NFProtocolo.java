@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "protNFe")
 public class NFProtocolo extends DFBase {
+    private static final long serialVersionUID = -784305871769382618L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

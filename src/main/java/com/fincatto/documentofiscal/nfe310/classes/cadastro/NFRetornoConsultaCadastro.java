@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "retConsCad")
 public class NFRetornoConsultaCadastro extends DFBase {
+    private static final long serialVersionUID = 3536099917870161262L;
 
     @Attribute(name = "versao")
     private String versao;

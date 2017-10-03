@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Root(name = "nfeProc")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaProcessada extends DFBase {
+    private static final long serialVersionUID = 6979476565566044621L;
 
     @Attribute(name = "versao")
     private String versao;

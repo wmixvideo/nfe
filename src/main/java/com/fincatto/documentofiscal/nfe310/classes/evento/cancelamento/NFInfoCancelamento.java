@@ -6,6 +6,8 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoCancelamento extends NFTipoEvento {
+    private static final long serialVersionUID = 7427073073940993756L;
+
     @Element(name = "nProt", required = true)
     private String protocoloAutorizacao;
 

@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
 
 public class NFNotaInfoItemDetalheExportacao extends DFBase {
+    private static final long serialVersionUID = 8265188954413940773L;
 
     @Element(name = "nDraw", required = false)
     private BigInteger atoConcessorioDrawback;

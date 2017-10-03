@@ -10,12 +10,13 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 @Root(name = "NFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNota extends DFBase {
+    private static final long serialVersionUID = -6327121382813587248L;
 
     private long identificadorLocal;
 
     @Element(name = "infNFe")
     private NFNotaInfo info;
-    
+
     @Element(name = "infNFeSupl", required = false)
     private NFNotaInfoSuplementar infoSuplementar;
 
@@ -29,16 +30,16 @@ public class NFNota extends DFBase {
     public NFNotaInfo getInfo() {
         return this.info;
     }
-    
+
     public NFNotaInfoSuplementar getInfoSuplementar() {
-		return infoSuplementar;
-	}
+        return this.infoSuplementar;
+    }
 
-	public void setInfoSuplementar(NFNotaInfoSuplementar infoSuplementar) {
-		this.infoSuplementar = infoSuplementar;
-	}
+    public void setInfoSuplementar(final NFNotaInfoSuplementar infoSuplementar) {
+        this.infoSuplementar = infoSuplementar;
+    }
 
-	/**
+    /**
      * Utilizado para identificacao interna do sistema
      * @param identificadorLocal Identificador.
      */

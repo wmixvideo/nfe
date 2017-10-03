@@ -3,11 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
+import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
@@ -17,6 +13,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Root(name = "envEvento")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoCancelamento extends DFBase {
+    private static final long serialVersionUID = 2370103749912669480L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class CTInfoEndereco extends DFBase {
+    private static final long serialVersionUID = -3018557372923308651L;
 
     @Element(name = "xLgr")
     private String logradouro;

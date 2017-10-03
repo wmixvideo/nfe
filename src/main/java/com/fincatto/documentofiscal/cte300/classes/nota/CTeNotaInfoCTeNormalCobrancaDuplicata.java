@@ -14,58 +14,59 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 /**
  * @author Caio
  * @info Dados das duplicatas
- * */
+ */
 
 @Root(name = "dup")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalCobrancaDuplicata extends DFBase {
+    private static final long serialVersionUID = -1972813975820125568L;
 
-	@Element(name = "nDup", required = false)
+    @Element(name = "nDup", required = false)
     private String numero;
-	
-	@Element(name = "dVenc", required = false)
+
+    @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
-	
-	@Element(name = "vDup", required = false)
+
+    @Element(name = "vDup", required = false)
     private String valor;
 
-	public CTeNotaInfoCTeNormalCobrancaDuplicata() {
-		this.numero = null;
-		this.dataVencimento = null;
-		this.valor = null;
-	}
+    public CTeNotaInfoCTeNormalCobrancaDuplicata() {
+        this.numero = null;
+        this.dataVencimento = null;
+        this.valor = null;
+    }
 
-	public String getNumero() {
-		return numero;
-	}
+    public String getNumero() {
+        return this.numero;
+    }
 
-	/**
-	 * Número da duplicata
-	 * */
-	public void setNumero(String numero) {
-		StringValidador.tamanho60(numero, "Número da duplicata");
-		this.numero = numero;
-	}
+    /**
+     * Número da duplicata
+     */
+    public void setNumero(final String numero) {
+        StringValidador.tamanho60(numero, "Número da duplicata");
+        this.numero = numero;
+    }
 
-	public LocalDate getDataVencimento() {
-		return dataVencimento;
-	}
+    public LocalDate getDataVencimento() {
+        return this.dataVencimento;
+    }
 
-	/**
-	 * Data de vencimento da duplicata (AAAA-MM-DD)
-	 * */
-	public void setDataVencimento(LocalDate dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
+    /**
+     * Data de vencimento da duplicata (AAAA-MM-DD)
+     */
+    public void setDataVencimento(final LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
 
-	public String getValor() {
-		return valor;
-	}
+    public String getValor() {
+        return this.valor;
+    }
 
-	/**
-	 * Valor da duplicata
-	 * */
-	public void setValor(BigDecimal valor) {
-		this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor da duplicata");
-	}
+    /**
+     * Valor da duplicata
+     */
+    public void setValor(final BigDecimal valor) {
+        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor da duplicata");
+    }
 }

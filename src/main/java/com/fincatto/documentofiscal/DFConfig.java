@@ -6,12 +6,12 @@ import java.security.KeyStoreException;
 /**
  * @author Caio
  * 
- * Configura��o basica do sistema de documentos fiscais.
+ * Configuracao basica do sistema de documentos fiscais.
  */
 public abstract class DFConfig {
     
     /**
-     * Indica o ambiente de trabalho, se em produ��o ou homologa��o.
+     * Indica o ambiente de trabalho, se em producao ou homologacao.
      *
      * @return Ambiente de trabalho.
      */
@@ -29,25 +29,25 @@ public abstract class DFConfig {
     }
     
     /**
-     * Unidade da federa��o do emissor das notas.
+     * Unidade da federacao do emissor das notas.
      *
-     * @return Unidade da federa��o do emissor.
+     * @return Unidade da federacao do emissor.
      */
     public abstract DFUnidadeFederativa getCUF();
     
     /**
      * KeyStore contendo o certificado pessoal do emissor. <br>
-     * Esse certificado � fornecido por uma autoridade certificadora. <br>
-     * Em caso de d�vidas, consulte seu contador.
+     * Esse certificado e fornecido por uma autoridade certificadora. <br>
+     * Em caso de duvidas, consulte seu contador.
      *
      * @return KeyStore do certificado pessoal.
-     * @throws KeyStoreException Caso n�o consiga carregar o KeyStore.
+     * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
      */
     public abstract KeyStore getCertificadoKeyStore() throws KeyStoreException;
     
     /**
      * Retorna o nome do alias do certificado dentro do {@link KeyStore} retornado por {@link #getCertificadoKeyStore()}.
-     * Caso seja retornado {@code null}, ser� utilizado o primeiro alias do {@link KeyStore}.
+     * Caso seja retornado {@code null}, sera utilizado o primeiro alias do {@link KeyStore}.
      *
      * @return o nome do alias do certificado ou {@code null}
      */
@@ -65,7 +65,7 @@ public abstract class DFConfig {
     
     /**
      * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
-     * Para gerar a cadeia, use o utilit�rio fornecido com a biblioteca:<br>
+     * Para gerar a cadeia, use o utilitario fornecido com a biblioteca:<br>
      * FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
      *
      * @return KeyStore da cadeia de certificados.

@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.cte200.classes.CTTipoDocumentoTransporteAnte
 
 @Root(name = "idDocAntPap")
 public class CTInfoDocumentoAnteriorPapel extends DFBase {
+    private static final long serialVersionUID = 4454196068240203651L;
 
     @Element(name = "tpDoc")
     private CTTipoDocumentoTransporteAnterior tipoDocumento;

@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaC
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
+    private static final long serialVersionUID = -7179547773505825448L;
 
     @Element(name = "CST", required = true)
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;

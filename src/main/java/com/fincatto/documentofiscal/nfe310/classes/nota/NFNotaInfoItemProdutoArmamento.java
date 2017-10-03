@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemProdutoArmament
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoArmamento extends DFBase {
+    private static final long serialVersionUID = -4438932795183476289L;
 
     @Element(name = "tpArma", required = true)
     private NFNotaInfoItemProdutoArmamentoTipo tipo;

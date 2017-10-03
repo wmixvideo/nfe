@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFRegimeTributario;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoEmitente extends DFBase {
+    private static final long serialVersionUID = -2236869565066526162L;
 
     @Element(name = "CNPJ", required = false)
     private String cnpj;

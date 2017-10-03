@@ -10,6 +10,8 @@ import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoInformacoesAdicionais extends DFBase {
+    private static final long serialVersionUID = 8661712792020458812L;
+
     @Element(name = "infAdFisco", required = false)
     private String informacoesAdicionaisInteresseFisco;
 

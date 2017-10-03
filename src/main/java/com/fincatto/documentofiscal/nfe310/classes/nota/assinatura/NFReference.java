@@ -10,6 +10,7 @@ import org.simpleframework.xml.Path;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFReference extends DFBase {
+    private static final long serialVersionUID = -4906473217029646581L;
 
     @Attribute(name = "URI", required = false)
     private String uri;

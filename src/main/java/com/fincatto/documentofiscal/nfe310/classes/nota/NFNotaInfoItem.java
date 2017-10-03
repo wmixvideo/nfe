@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItem extends DFBase {
+    private static final long serialVersionUID = 362646693945373643L;
 
     @Attribute(name = "nItem", required = true)
     private Integer numeroItem;

@@ -7,6 +7,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoTransportador extends DFBase {
+    private static final long serialVersionUID = -6810459713123616929L;
+
     @Element(name = "CNPJ", required = false)
     private String cnpj;
 

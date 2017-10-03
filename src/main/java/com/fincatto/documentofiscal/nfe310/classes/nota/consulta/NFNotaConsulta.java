@@ -15,6 +15,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Root(name = "consSitNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaConsulta extends DFBase {
+    private static final long serialVersionUID = 6261821910786634620L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

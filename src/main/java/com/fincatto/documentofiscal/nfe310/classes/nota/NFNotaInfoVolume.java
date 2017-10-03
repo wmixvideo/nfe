@@ -13,6 +13,8 @@ import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoVolume extends DFBase {
+    private static final long serialVersionUID = -7649649556872297786L;
+
     @Element(name = "qVol", required = false)
     private BigInteger quantidadeVolumesTransportados;
 

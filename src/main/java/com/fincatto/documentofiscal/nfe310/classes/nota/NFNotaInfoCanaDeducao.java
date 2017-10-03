@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCanaDeducao extends DFBase {
+    private static final long serialVersionUID = 5519359886554978924L;
+
     @Element(name = "xDed", required = true)
     private String descricaoDeducao;
 

@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeCarga;
 
 @Root(name = "infUnidCarga")
 public class CTInfoDocumentoNFUnidadeCarga extends DFBase {
+    private static final long serialVersionUID = 2569096233760080388L;
 
     @Element(name = "tpUnidCarga")
     private CTTipoUnidadeCarga tipoUnidadeCarga;

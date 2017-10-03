@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "dup")
 public class CTInfoCobrancaDuplicata extends DFBase {
+    private static final long serialVersionUID = -7718510412836786705L;
 
     @Element(name = "nDup", required = false)
     private String numeroDuplicata;

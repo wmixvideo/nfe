@@ -18,6 +18,7 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 @Root(name = "retConsReciMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsultaRetorno extends DFBase {
+    private static final long serialVersionUID = -3300710925743544131L;
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -48,7 +49,7 @@ public class MDFeConsultaRetorno extends DFBase {
 
     @Element(name = "protMDFe", required = false)
     private MDFProtocolo protocoloRecebimento;
-    
+
     @Element(name = "infProt", required = false)
     private NFProtocoloInfo protocoloInfo;
 
@@ -120,17 +121,16 @@ public class MDFeConsultaRetorno extends DFBase {
         return this.protocoloRecebimento;
     }
 
-	public NFProtocoloInfo getProtocoloInfo() {
-		return protocoloInfo;
-	}
+    public NFProtocoloInfo getProtocoloInfo() {
+        return this.protocoloInfo;
+    }
 
-	public void setProtocoloInfo(NFProtocoloInfo protocoloInfo) {
-		this.protocoloInfo = protocoloInfo;
-	}
+    public void setProtocoloInfo(final NFProtocoloInfo protocoloInfo) {
+        this.protocoloInfo = protocoloInfo;
+    }
 
-	public void setProtocoloRecebimentoSincrono(MDFProtocolo protocoloRecebimento) {
-		this.protocoloRecebimento = protocoloRecebimento;
-	}
-    
-    
+    public void setProtocoloRecebimentoSincrono(final MDFProtocolo protocoloRecebimento) {
+        this.protocoloRecebimento = protocoloRecebimento;
+    }
+
 }
