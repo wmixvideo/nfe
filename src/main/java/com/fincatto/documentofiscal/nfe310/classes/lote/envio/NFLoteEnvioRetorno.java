@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFProtocoloInfo;
 @Root(name = "retEnviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteEnvioRetorno extends DFBase {
+    private static final long serialVersionUID = 7457383606779886158L;
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -41,7 +42,7 @@ public class NFLoteEnvioRetorno extends DFBase {
 
     @Element(name = "protNFe", required = false)
     private String protocoloRecebimentoSincrono;
-    
+
     @Element(name = "infProt", required = false)
     private NFProtocoloInfo protocoloInfo;
 
@@ -113,17 +114,16 @@ public class NFLoteEnvioRetorno extends DFBase {
         return this.protocoloRecebimentoSincrono;
     }
 
-	public NFProtocoloInfo getProtocoloInfo() {
-		return protocoloInfo;
-	}
+    public NFProtocoloInfo getProtocoloInfo() {
+        return this.protocoloInfo;
+    }
 
-	public void setProtocoloInfo(NFProtocoloInfo protocoloInfo) {
-		this.protocoloInfo = protocoloInfo;
-	}
+    public void setProtocoloInfo(final NFProtocoloInfo protocoloInfo) {
+        this.protocoloInfo = protocoloInfo;
+    }
 
-	public void setProtocoloRecebimentoSincrono(String protocoloRecebimentoSincrono) {
-		this.protocoloRecebimentoSincrono = protocoloRecebimentoSincrono;
-	}
-    
-    
+    public void setProtocoloRecebimentoSincrono(final String protocoloRecebimentoSincrono) {
+        this.protocoloRecebimentoSincrono = protocoloRecebimentoSincrono;
+    }
+
 }

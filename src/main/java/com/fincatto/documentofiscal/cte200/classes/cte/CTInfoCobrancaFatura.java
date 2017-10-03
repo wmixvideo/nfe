@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoCobrancaFatura extends DFBase {
+    private static final long serialVersionUID = 8102392581536329993L;
 
     @Element(name = "nFat", required = false)
     private String numeroFatura;

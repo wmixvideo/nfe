@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroSituacaoCadastral extends DFBase {
+    private static final long serialVersionUID = 7375181464271665520L;
 
     @Element(name = "IE", required = true)
     private String inscricaoEstadual;

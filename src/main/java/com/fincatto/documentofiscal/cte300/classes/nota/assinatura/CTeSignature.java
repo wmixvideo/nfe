@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Namespace(reference = "http://www.w3.org/2000/09/xmldsig#")
 public class CTeSignature extends DFBase {
+    private static final long serialVersionUID = 4276127880405803317L;
 
     @Element(name = "SignedInfo", required = false)
     private CTeSignedInfo signedInfo;

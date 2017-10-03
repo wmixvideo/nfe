@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoEmitente extends DFBase {
+    private static final long serialVersionUID = -5418277207671257458L;
 
     @Element(name = "CNPJ")
     private String cnpj;

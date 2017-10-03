@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "autXML")
 public class CTInfoAutorizadoXML extends DFBase {
+    private static final long serialVersionUID = 7510024008615524921L;
 
     @Element(name = "CNPJ", required = false)
     private String cnpj;

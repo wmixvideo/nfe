@@ -3,11 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.lote.consulta;
 import java.util.List;
 
 import org.joda.time.LocalDateTime;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
+import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
@@ -17,6 +13,7 @@ import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
 @Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteConsultaRetorno extends DFBase {
+    private static final long serialVersionUID = -4164491132370082153L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

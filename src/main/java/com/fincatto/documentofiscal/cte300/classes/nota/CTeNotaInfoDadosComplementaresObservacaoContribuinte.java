@@ -11,44 +11,45 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 /**
  * @author Caio
  * @info Campo de uso livre do contribuinte
- * */
+ */
 
 @Root(name = "ObsCont")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresObservacaoContribuinte extends DFBase {
+    private static final long serialVersionUID = -7797475815166947317L;
 
-	@Attribute(name = "xCampo", required = true)
-	private String campo;
-	
-	@Element(name = "xTexto", required = true)
-	private String texto;
+    @Attribute(name = "xCampo", required = true)
+    private String campo;
 
-	public CTeNotaInfoDadosComplementaresObservacaoContribuinte() {
-		this.campo = null;
-		this.texto = null;
-	}
-	
-	public String getCampo() {
-		return campo;
-	}
+    @Element(name = "xTexto", required = true)
+    private String texto;
 
-	/**
-	 * Identificação do campo
-	 * */
-	public void setCampo(String campo) {
-		StringValidador.tamanho20(campo, "Identificação do campo");
-		this.campo = campo;
-	}
+    public CTeNotaInfoDadosComplementaresObservacaoContribuinte() {
+        this.campo = null;
+        this.texto = null;
+    }
 
-	public String getTexto() {
-		return texto;
-	}
+    public String getCampo() {
+        return this.campo;
+    }
 
-	/**
-	 * Identificação do texto
-	 * */
-	public void setTexto(String texto) {
-		StringValidador.tamanho160(texto, "Identificação do texto");
-		this.texto = texto;
-	}
+    /**
+     * Identificação do campo
+     */
+    public void setCampo(final String campo) {
+        StringValidador.tamanho20(campo, "Identificação do campo");
+        this.campo = campo;
+    }
+
+    public String getTexto() {
+        return this.texto;
+    }
+
+    /**
+     * Identificação do texto
+     */
+    public void setTexto(final String texto) {
+        StringValidador.tamanho160(texto, "Identificação do texto");
+        this.texto = texto;
+    }
 }

@@ -11,39 +11,40 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
 
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFProtocoloEventoCartaCorrecao extends DFBase{
-    
+public class NFProtocoloEventoCartaCorrecao extends DFBase {
+    private static final long serialVersionUID = 5835358558255982305L;
+
     @Attribute(name = "versao", required = true)
     private String versao;
-    
+
     @Element(name = "evento", required = true)
     private NFEvento evento;
-    
+
     @Element(name = "retEvento", required = true)
     private NFEventoRetorno eventoRetorno;
 
     public String getVersao() {
-        return versao;
+        return this.versao;
     }
 
-    public void setVersao(String versao) {
+    public void setVersao(final String versao) {
         this.versao = versao;
     }
 
     public NFEvento getEvento() {
-        return evento;
+        return this.evento;
     }
 
-    public void setEvento(NFEvento evento) {
+    public void setEvento(final NFEvento evento) {
         this.evento = evento;
     }
 
     public NFEventoRetorno getEventoRetorno() {
-        return eventoRetorno;
+        return this.eventoRetorno;
     }
 
-    public void setEventoRetorno(NFEventoRetorno eventoRetorno) {
+    public void setEventoRetorno(final NFEventoRetorno eventoRetorno) {
         this.eventoRetorno = eventoRetorno;
     }
-    
+
 }

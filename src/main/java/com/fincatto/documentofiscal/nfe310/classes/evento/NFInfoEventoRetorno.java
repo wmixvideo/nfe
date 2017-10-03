@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFInfoEventoRetorno extends DFBase {
+    private static final long serialVersionUID = 3251078839113682275L;
 
     @Attribute(name = "Id", required = false)
     private String id;

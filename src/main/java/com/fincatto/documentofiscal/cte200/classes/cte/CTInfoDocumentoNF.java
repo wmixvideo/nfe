@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.DFModelo;
 
 @Root(name = "infNF")
 public class CTInfoDocumentoNF extends DFBase {
+    private static final long serialVersionUID = 3748244301704556471L;
 
     @Element(name = "nRoma", required = false)
     private String numeroRomaneio;

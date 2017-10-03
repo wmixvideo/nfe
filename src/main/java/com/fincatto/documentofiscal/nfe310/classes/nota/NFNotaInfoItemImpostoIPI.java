@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemImpostoIPI extends DFBase {
+    private static final long serialVersionUID = 3354365738012803301L;
 
     @Element(name = "clEnq", required = false)
     private String classeEnquadramento;

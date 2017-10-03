@@ -7,6 +7,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoExportacao extends DFBase {
+    private static final long serialVersionUID = 3726297203738653822L;
+
     @Element(name = "UFSaidaPais", required = true)
     private String ufEmbarqueProduto;
 

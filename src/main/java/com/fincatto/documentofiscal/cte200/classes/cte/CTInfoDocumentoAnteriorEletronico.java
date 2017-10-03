@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "idDocAntEle")
 public class CTInfoDocumentoAnteriorEletronico extends DFBase {
+    private static final long serialVersionUID = -4502364224640143614L;
 
     @Element(name = "chave")
     private String chaveCte;

@@ -13,57 +13,58 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 /**
  * @author Caio
  * @info Informações do modal Dutoviário
- * */
+ */
 
 @Root(name = "duto")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalDutoviario extends DFBase {
+    private static final long serialVersionUID = -3520350209389875547L;
 
-	@Element(name = "vTar", required = false)
+    @Element(name = "vTar", required = false)
     private String valorTarifa;
-	
-	@Element(name = "dIni", required = true)
+
+    @Element(name = "dIni", required = true)
     private LocalDate dataInicioServico;
-	
-	@Element(name = "dFim", required = true)
+
+    @Element(name = "dFim", required = true)
     private LocalDate dataFimServico;
 
-	public CTeNotaInfoCTeNormalInfoModalDutoviario() {
-		this.valorTarifa = null;
-		this.dataInicioServico = null;
-		this.dataFimServico = null;
-	}
+    public CTeNotaInfoCTeNormalInfoModalDutoviario() {
+        this.valorTarifa = null;
+        this.dataInicioServico = null;
+        this.dataFimServico = null;
+    }
 
-	public String getValorTarifa() {
-		return valorTarifa;
-	}
+    public String getValorTarifa() {
+        return this.valorTarifa;
+    }
 
-	/**
-	 * Valor da tarifa
-	 * */
-	public void setValorTarifa(BigDecimal valorTarifa) {
-		this.valorTarifa = BigDecimalParser.tamanho15comAte6CasasDecimais(valorTarifa, "Valor da tarifa");
-	}
+    /**
+     * Valor da tarifa
+     */
+    public void setValorTarifa(final BigDecimal valorTarifa) {
+        this.valorTarifa = BigDecimalParser.tamanho15comAte6CasasDecimais(valorTarifa, "Valor da tarifa");
+    }
 
-	public LocalDate getDataInicioServico() {
-		return dataInicioServico;
-	}
+    public LocalDate getDataInicioServico() {
+        return this.dataInicioServico;
+    }
 
-	/**
-	 * Data de Início da prestação do serviço
-	 * */
-	public void setDataInicioServico(LocalDate dataInicioServico) {
-		this.dataInicioServico = dataInicioServico;
-	}
+    /**
+     * Data de Início da prestação do serviço
+     */
+    public void setDataInicioServico(final LocalDate dataInicioServico) {
+        this.dataInicioServico = dataInicioServico;
+    }
 
-	public LocalDate getDataFimServico() {
-		return dataFimServico;
-	}
+    public LocalDate getDataFimServico() {
+        return this.dataFimServico;
+    }
 
-	/**
-	 * Data de Fim da prestação do serviço
-	 * */
-	public void setDataFimServico(LocalDate dataFimServico) {
-		this.dataFimServico = dataFimServico;
-	}
+    /**
+     * Data de Fim da prestação do serviço
+     */
+    public void setDataFimServico(final LocalDate dataFimServico) {
+        this.dataFimServico = dataFimServico;
+    }
 }

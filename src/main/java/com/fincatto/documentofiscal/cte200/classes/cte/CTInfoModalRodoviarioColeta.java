@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "occ")
 public class CTInfoModalRodoviarioColeta extends DFBase {
+    private static final long serialVersionUID = -681665118121512351L;
 
     @Element(name = "serie", required = false)
     private String serie;

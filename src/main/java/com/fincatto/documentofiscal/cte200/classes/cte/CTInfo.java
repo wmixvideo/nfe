@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 @Root(name = "infCte")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTInfo extends DFBase {
+    private static final long serialVersionUID = -6897300761081884794L;
 
     @Attribute(name = "versao")
     private String versao;

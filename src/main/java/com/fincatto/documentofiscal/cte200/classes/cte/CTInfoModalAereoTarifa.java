@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoModalAereoTarifa extends DFBase {
+    private static final long serialVersionUID = -1315294836315267992L;
 
     @Element(name = "CL")
     private String classe;

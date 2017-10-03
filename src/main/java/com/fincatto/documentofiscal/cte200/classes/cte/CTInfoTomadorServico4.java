@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTomadorServico;
 
 public class CTInfoTomadorServico4 extends DFBase {
+    private static final long serialVersionUID = 4381954093814405296L;
 
     @Element(name = "toma")
     private CTTomadorServico tomadorServico;

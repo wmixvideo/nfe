@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaData;
 
 public class CTInfoEntregaSemData extends DFBase {
+    private static final long serialVersionUID = 4799720133563113665L;
 
     @Element(name = "tpPer")
     private CTTipoEntregaData tipoPeriodo;

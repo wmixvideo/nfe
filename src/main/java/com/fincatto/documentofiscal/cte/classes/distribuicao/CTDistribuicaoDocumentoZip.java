@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "docZip")
 public class CTDistribuicaoDocumentoZip extends DFBase {
+    private static final long serialVersionUID = -6656266954109936292L;
 
     @Text
     private String value;

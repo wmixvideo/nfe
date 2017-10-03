@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemProdutoCombustivelCIDE extends DFBase {
+    private static final long serialVersionUID = -2869376510830652913L;
 
     @Element(name = "qBCProd", required = true)
     private String quantidadeBCCIDE;

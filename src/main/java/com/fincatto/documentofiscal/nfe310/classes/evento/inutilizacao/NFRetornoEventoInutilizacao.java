@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 @Root(name = "retInutNFe")
 public class NFRetornoEventoInutilizacao extends DFBase {
+    private static final long serialVersionUID = 4619432132223667789L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

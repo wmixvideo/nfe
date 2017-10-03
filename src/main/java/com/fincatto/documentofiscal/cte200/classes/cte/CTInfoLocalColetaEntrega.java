@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class CTInfoLocalColetaEntrega extends DFBase {
+    private static final long serialVersionUID = -304868193559447588L;
 
     @Element(name = "CNPJ")
     private String cnpj;

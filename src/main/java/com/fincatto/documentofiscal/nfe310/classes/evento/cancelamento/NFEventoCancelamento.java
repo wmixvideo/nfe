@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 @Root(name = "evento")
 public class NFEventoCancelamento extends DFBase {
+    private static final long serialVersionUID = -8466800561585040324L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

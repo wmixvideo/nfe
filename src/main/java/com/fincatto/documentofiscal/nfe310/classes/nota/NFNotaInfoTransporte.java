@@ -11,6 +11,8 @@ import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoTransporte extends DFBase {
+    private static final long serialVersionUID = 1172316192774549031L;
+
     @Element(name = "modFrete", required = true)
     private NFModalidadeFrete modalidadeFrete;
 

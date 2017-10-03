@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoAnulacao extends DFBase {
+    private static final long serialVersionUID = -1791655256752167342L;
 
     @Element(name = "chCTe")
     private String chaveAcessoAnulado;

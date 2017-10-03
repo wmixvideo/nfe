@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFImpostoDevolvido extends DFBase {
+    private static final long serialVersionUID = 3300133386344205418L;
 
     @Element(name = "pDevol", required = true)
     private String percentualDevolucao;

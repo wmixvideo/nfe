@@ -11,44 +11,45 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 
 @Root(name = "nfeProc")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class Any extends DFBase{
-	
-	@Attribute(name = "versao", required = true)
-	private String versao;
-	
-	@Element(name = "NFe", required = false)
-	private NFNota nota;
-	
-	@Element(name = "protNFe", required = false)
-	private NFProtocolo protocolo;
-	
-	public Any() {
-		this.versao = null;
-		this.nota = null;
-		this.protocolo = null;
-	}
-	
-	public String getVersao() {
-		return versao;
-	}
+public class Any extends DFBase {
+    private static final long serialVersionUID = 4770990764329708815L;
 
-	public void setVersao(String versao) {
-		this.versao = versao;
-	}
+    @Attribute(name = "versao", required = true)
+    private String versao;
 
-	public NFNota getNota() {
-		return nota;
-	}
+    @Element(name = "NFe", required = false)
+    private NFNota nota;
 
-	public void setNota(NFNota nota) {
-		this.nota = nota;
-	}
+    @Element(name = "protNFe", required = false)
+    private NFProtocolo protocolo;
 
-	public NFProtocolo getProtocolo() {
-		return protocolo;
-	}
+    public Any() {
+        this.versao = null;
+        this.nota = null;
+        this.protocolo = null;
+    }
 
-	public void setProtocolo(NFProtocolo protocolo) {
-		this.protocolo = protocolo;
-	}
+    public String getVersao() {
+        return this.versao;
+    }
+
+    public void setVersao(final String versao) {
+        this.versao = versao;
+    }
+
+    public NFNota getNota() {
+        return this.nota;
+    }
+
+    public void setNota(final NFNota nota) {
+        this.nota = nota;
+    }
+
+    public NFProtocolo getProtocolo() {
+        return this.protocolo;
+    }
+
+    public void setProtocolo(final NFProtocolo protocolo) {
+        this.protocolo = protocolo;
+    }
 }

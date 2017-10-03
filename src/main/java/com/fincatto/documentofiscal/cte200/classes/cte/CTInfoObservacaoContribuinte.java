@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "ObsCont")
 public class CTInfoObservacaoContribuinte extends DFBase {
+    private static final long serialVersionUID = 4590687379510866778L;
 
     @Attribute(name = "xCampo")
     private String identificador;

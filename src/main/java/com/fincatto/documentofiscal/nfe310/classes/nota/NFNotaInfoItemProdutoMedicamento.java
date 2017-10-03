@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoMedicamento extends DFBase {
+    private static final long serialVersionUID = 3127772234811692432L;
 
     @Element(name = "nLote", required = true)
     private String lote;

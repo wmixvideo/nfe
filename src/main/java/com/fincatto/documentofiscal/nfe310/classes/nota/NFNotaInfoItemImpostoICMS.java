@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFNotaInfoItemImpostoICMS extends DFBase {
+    private static final long serialVersionUID = 4231941704888569693L;
 
     private boolean isSelecionado = false;
 

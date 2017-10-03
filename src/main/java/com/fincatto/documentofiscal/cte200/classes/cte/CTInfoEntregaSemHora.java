@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaHorario;
 
 public class CTInfoEntregaSemHora extends DFBase {
+    private static final long serialVersionUID = -8339490222357216168L;
 
     @Element(name = "tpHor")
     private CTTipoEntregaHorario tipoHorario;

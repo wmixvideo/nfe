@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFProtocoloEvento extends DFBase {
+    private static final long serialVersionUID = -1075773716893722198L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

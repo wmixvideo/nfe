@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoModalAereo extends DFBase {
+    private static final long serialVersionUID = 8356136777226843376L;
 
     @Element(name = "nMinu", required = false)
     private String numeroMinuta;

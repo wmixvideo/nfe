@@ -8,15 +8,16 @@ import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.*;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoIdentificacao extends DFBase {
-	
+    private static final long serialVersionUID = -2568396066960865875L;
+
     @Element(name = "cUF", required = true)
     private DFUnidadeFederativa uf;
 

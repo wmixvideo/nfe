@@ -13,6 +13,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
+    private static final long serialVersionUID = 4173954108879768633L;
 
     @Element(name = "nDI", required = true)
     private String numeroRegistro;

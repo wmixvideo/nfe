@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoModal extends DFBase {
+    private static final long serialVersionUID = -6014137294072801459L;
 
     @Attribute(name = "versaoModal")
     private String versaoModal;

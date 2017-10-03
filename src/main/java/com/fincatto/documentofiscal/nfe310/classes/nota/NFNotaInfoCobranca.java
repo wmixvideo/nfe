@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 
 public class NFNotaInfoCobranca extends DFBase {
+    private static final long serialVersionUID = -2471735975201108151L;
+
     @Element(name = "fat", required = false)
     private NFNotaInfoFatura fatura;
 

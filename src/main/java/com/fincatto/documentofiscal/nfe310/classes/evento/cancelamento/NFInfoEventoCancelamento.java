@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoEventoCancelamento extends DFBase {
+    private static final long serialVersionUID = 1491402822907097339L;
 
     @Attribute(name = "Id", required = true)
     private String id;

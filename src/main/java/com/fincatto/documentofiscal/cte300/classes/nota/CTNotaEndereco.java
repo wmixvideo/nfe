@@ -8,175 +8,176 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 /**
  * @author Caio
  * @info Dados do endereço
- * */
+ */
 
 public class CTNotaEndereco extends DFBase {
+    private static final long serialVersionUID = 1528514404620728196L;
 
-	@Element(name = "xLgr", required = true)
+    @Element(name = "xLgr", required = true)
     private String logradouro;
-	
-	@Element(name = "nro", required = true)
+
+    @Element(name = "nro", required = true)
     private String numero;
-	
-	@Element(name = "xCpl", required = false)
+
+    @Element(name = "xCpl", required = false)
     private String complemento;
-	
-	@Element(name = "xBairro", required = true)
+
+    @Element(name = "xBairro", required = true)
     private String bairro;
-	
-	@Element(name = "cMun", required = true)
+
+    @Element(name = "cMun", required = true)
     private String codigoMunicipio;
-	
-	@Element(name = "xMun", required = true)
+
+    @Element(name = "xMun", required = true)
     private String descricaoMunicipio;
-	
-	@Element(name = "CEP", required = false)
+
+    @Element(name = "CEP", required = false)
     private String cep;
-	
-	@Element(name = "UF", required = true)
+
+    @Element(name = "UF", required = true)
     private String siglaUF;
-	
-	@Element(name = "cPais", required = false)
+
+    @Element(name = "cPais", required = false)
     private String codigoPais;
-	
-	@Element(name = "xPais", required = false)
+
+    @Element(name = "xPais", required = false)
     private String descricaoPais;
-	
-	public CTNotaEndereco() {
-		this.logradouro = null;
-		this.numero = null;
-		this.complemento = null;
-		this.bairro = null;
-		this.codigoMunicipio = null;
-		this.descricaoMunicipio = null;
-		this.cep = null;
-		this.siglaUF = null;
-		this.codigoPais = null;
-		this.descricaoPais = null;
-	}
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+    public CTNotaEndereco() {
+        this.logradouro = null;
+        this.numero = null;
+        this.complemento = null;
+        this.bairro = null;
+        this.codigoMunicipio = null;
+        this.descricaoMunicipio = null;
+        this.cep = null;
+        this.siglaUF = null;
+        this.codigoPais = null;
+        this.descricaoPais = null;
+    }
 
-	/**
-	 * Logradouro
-	 * */
-	public void setLogradouro(String logradouro) {
-		StringValidador.tamanho2ate60(logradouro, "Logradouro");
-		this.logradouro = logradouro;
-	}
+    public String getLogradouro() {
+        return this.logradouro;
+    }
 
-	public String getNumero() {
-		return numero;
-	}
+    /**
+     * Logradouro
+     */
+    public void setLogradouro(final String logradouro) {
+        StringValidador.tamanho2ate60(logradouro, "Logradouro");
+        this.logradouro = logradouro;
+    }
 
-	/**
-	 * Número
-	 * */
-	public void setNumero(String numero) {
-		StringValidador.tamanho60(numero, "Número");
-		this.numero = numero;
-	}
+    public String getNumero() {
+        return this.numero;
+    }
 
-	public String getComplemento() {
-		return complemento;
-	}
+    /**
+     * Número
+     */
+    public void setNumero(final String numero) {
+        StringValidador.tamanho60(numero, "Número");
+        this.numero = numero;
+    }
 
-	/**
-	 * Complemento
-	 * */
-	public void setComplemento(String complemento) {
-		StringValidador.tamanho60(complemento, "Complemento");
-		this.complemento = complemento;
-	}
+    public String getComplemento() {
+        return this.complemento;
+    }
 
-	public String getBairro() {
-		return bairro;
-	}
+    /**
+     * Complemento
+     */
+    public void setComplemento(final String complemento) {
+        StringValidador.tamanho60(complemento, "Complemento");
+        this.complemento = complemento;
+    }
 
-	/**
-	 * Bairro
-	 * */
-	public void setBairro(String bairro) {
-		StringValidador.tamanho2ate60(bairro, "Bairro");
-		this.bairro = bairro;
-	}
+    public String getBairro() {
+        return this.bairro;
+    }
 
-	public String getCodigoMunicipio() {
-		return codigoMunicipio;
-	}
+    /**
+     * Bairro
+     */
+    public void setBairro(final String bairro) {
+        StringValidador.tamanho2ate60(bairro, "Bairro");
+        this.bairro = bairro;
+    }
 
-	/**
-	 * Código do município (utilizar a tabela do IBGE)<br>
-	 * Informar 9999999 para operações com o exterior.
-	 * */
-	public void setCodigoMunicipio(String codigoMunicipio) {
-		StringValidador.exatamente7N(codigoMunicipio, "Código do município");
-		this.codigoMunicipio = codigoMunicipio;
-	}
+    public String getCodigoMunicipio() {
+        return this.codigoMunicipio;
+    }
 
-	public String getDescricaoMunicipio() {
-		return descricaoMunicipio;
-	}
+    /**
+     * Código do município (utilizar a tabela do IBGE)<br>
+     * Informar 9999999 para operações com o exterior.
+     */
+    public void setCodigoMunicipio(final String codigoMunicipio) {
+        StringValidador.exatamente7N(codigoMunicipio, "Código do município");
+        this.codigoMunicipio = codigoMunicipio;
+    }
 
-	/**
-	 * Nome do município<br>
-	 * Informar EXTERIOR para operações com o exterior.
-	 * */
-	public void setDescricaoMunicipio(String descricaoMunicipio) {
-		StringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município");
-		this.descricaoMunicipio = descricaoMunicipio;
-	}
+    public String getDescricaoMunicipio() {
+        return this.descricaoMunicipio;
+    }
 
-	public String getCep() {
-		return cep;
-	}
+    /**
+     * Nome do município<br>
+     * Informar EXTERIOR para operações com o exterior.
+     */
+    public void setDescricaoMunicipio(final String descricaoMunicipio) {
+        StringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município");
+        this.descricaoMunicipio = descricaoMunicipio;
+    }
 
-	/**
-	 * CEP<br>
-	 * Informar os zeros não significativos
-	 * */
-	public void setCep(String cep) {
-		StringValidador.exatamente8N(cep, "CEP");
-		this.cep = cep;
-	}
+    public String getCep() {
+        return this.cep;
+    }
 
-	public String getSiglaUF() {
-		return siglaUF;
-	}
+    /**
+     * CEP<br>
+     * Informar os zeros não significativos
+     */
+    public void setCep(final String cep) {
+        StringValidador.exatamente8N(cep, "CEP");
+        this.cep = cep;
+    }
 
-	/**
-	 * Sigla da UF<br>
-	 * Informar EX para operações com o exterior.
-	 * */
-	public void setSiglaUF(String siglaUf) {
-		StringValidador.exatamente2(siglaUf, "Sigla da UF");
-		this.siglaUF = siglaUf;
-	}
+    public String getSiglaUF() {
+        return this.siglaUF;
+    }
 
-	public String getCodigoPais() {
-		return codigoPais;
-	}
+    /**
+     * Sigla da UF<br>
+     * Informar EX para operações com o exterior.
+     */
+    public void setSiglaUF(final String siglaUf) {
+        StringValidador.exatamente2(siglaUf, "Sigla da UF");
+        this.siglaUF = siglaUf;
+    }
 
-	/**
-	 * Código do país<br>
-	 * Utilizar a tabela do BACEN
-	 * */
-	public void setCodigoPais(String codigoPais) {
-		StringValidador.tamanho4N(codigoPais, "Código do país");
-		this.codigoPais = codigoPais;
-	}
+    public String getCodigoPais() {
+        return this.codigoPais;
+    }
 
-	public String getDescricaoPais() {
-		return descricaoPais;
-	}
+    /**
+     * Código do país<br>
+     * Utilizar a tabela do BACEN
+     */
+    public void setCodigoPais(final String codigoPais) {
+        StringValidador.tamanho4N(codigoPais, "Código do país");
+        this.codigoPais = codigoPais;
+    }
 
-	/**
-	 * Nome do país
-	 * */
-	public void setDescricaoPais(String descricaoPais) {
-		StringValidador.tamanho2ate60(descricaoPais, "Nome do país");
-		this.descricaoPais = descricaoPais;
-	}
+    public String getDescricaoPais() {
+        return this.descricaoPais;
+    }
+
+    /**
+     * Nome do país
+     */
+    public void setDescricaoPais(final String descricaoPais) {
+        StringValidador.tamanho2ate60(descricaoPais, "Nome do país");
+        this.descricaoPais = descricaoPais;
+    }
 }

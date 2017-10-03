@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoSubstituicao extends DFBase {
+    private static final long serialVersionUID = -5556727730775695778L;
 
     @Element(name = "chCte")
     private String chaveAcesso;

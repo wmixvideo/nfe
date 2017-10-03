@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 @Root(name = "distDFeInt")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTDistribuicaoInt extends DFBase {
+    private static final long serialVersionUID = -7079002577486035141L;
 
     @Attribute(name = "versao")
     private String versao;

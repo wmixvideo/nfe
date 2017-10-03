@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "retCancNFe")
 public class NFRetornoCancelamento extends DFBase {
+    private static final long serialVersionUID = 93128697872980852L;
 
     @Attribute(name = "versao", required = false)
     private String versao;

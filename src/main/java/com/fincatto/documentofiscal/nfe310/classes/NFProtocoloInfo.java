@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFProtocoloInfo extends DFBase {
+    private static final long serialVersionUID = -7256753142051587115L;
 
     @Attribute(name = "Id", required = false)
     private String identificador;

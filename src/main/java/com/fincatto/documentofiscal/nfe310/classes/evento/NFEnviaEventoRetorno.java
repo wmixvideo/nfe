@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento;
 
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -11,15 +13,14 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
 
-import java.util.List;
-
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoRetorno extends DFBase {
+    private static final long serialVersionUID = 8581761565026410859L;
 
     @Attribute(name = "versao", required = true)
     private String versao;
 
-    //O Converter StringNullConverter esta sendo utilizado para resolver um problema da autorizadora SVAN, que esta retornandoo atributo idLote vazio.
+    // O Converter StringNullConverter esta sendo utilizado para resolver um problema da autorizadora SVAN, que esta retornandoo atributo idLote vazio.
     @Element(name = "idLote", required = true)
     @Convert(StringNullConverter.class)
     private String idLote;

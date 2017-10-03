@@ -10,6 +10,8 @@ import com.fincatto.documentofiscal.DFBase;
 @Root(name = "ConsCad")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFConsultaCadastro extends DFBase {
+    private static final long serialVersionUID = 2326624765798718455L;
+
     @Attribute(name = "versao", required = true)
     private String versao;
 

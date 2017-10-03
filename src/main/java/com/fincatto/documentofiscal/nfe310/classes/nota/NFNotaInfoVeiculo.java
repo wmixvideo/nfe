@@ -7,6 +7,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoVeiculo extends DFBase {
+    private static final long serialVersionUID = 6774439413962070444L;
+
     @Element(name = "placa", required = true)
     private String placaVeiculo;
 

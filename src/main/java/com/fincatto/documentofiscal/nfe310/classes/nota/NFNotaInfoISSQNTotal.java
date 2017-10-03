@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoISSQNTotal extends DFBase {
+    private static final long serialVersionUID = 5902409212301825888L;
+
     @Element(name = "vServ", required = false)
     private String valorTotalServicosSobNaoIncidenciaNaoTributadosICMS;
 

@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTProtocolo extends DFBase {
+    private static final long serialVersionUID = -8180971313952866825L;
 
     @Attribute(name = "versao")
     private String versao;

@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoModalAereoNaturezaCarga extends DFBase {
+    private static final long serialVersionUID = 5943065004363585994L;
 
     @Element(name = "xDime", required = false)
     private String dimensao;

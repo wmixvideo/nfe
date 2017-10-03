@@ -15,94 +15,94 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 /**
  * @author Caio
  * @info Detalhamento de informações para o tráfego mútuo
- * */
+ */
 
 @Root(name = "trafMut")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo extends DFBase {
+    private static final long serialVersionUID = -1418176957547086575L;
 
-	@Element(name = "respFat", required = true)
+    @Element(name = "respFat", required = true)
     private CTTipoFerrovia responsavel;
-	
-	@Element(name = "ferrEmi", required = true)
+
+    @Element(name = "ferrEmi", required = true)
     private CTTipoFerrovia emitente;
-	
-	@Element(name = "vFrete", required = true)
+
+    @Element(name = "vFrete", required = true)
     private String valorFrete;
-	
-	@Element(name = "chCTeFerroOrigem", required = false)
+
+    @Element(name = "chCTeFerroOrigem", required = false)
     private String chaveCTeFerroviaOrigem;
-	
-	@ElementList(name = "ferroEnv", inline = true, required = false)
+
+    @ElementList(name = "ferroEnv", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas> ferroviasEnvolvidas;
 
-	public CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo() {
-		this.responsavel = null;
-		this.emitente = null;
-		this.valorFrete = null;
-		this.chaveCTeFerroviaOrigem = null;
-		this.ferroviasEnvolvidas = null;
-	}
+    public CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo() {
+        this.responsavel = null;
+        this.emitente = null;
+        this.valorFrete = null;
+        this.chaveCTeFerroviaOrigem = null;
+        this.ferroviasEnvolvidas = null;
+    }
 
-	public CTTipoFerrovia getResponsavel() {
-		return responsavel;
-	}
+    public CTTipoFerrovia getResponsavel() {
+        return this.responsavel;
+    }
 
-	/**
-	 * Responsável pelo Faturamento<br>
-	 * Preencher com:<br>
-	 * 1-Ferrovia de origem;<br>
-	 * 2-Ferrovia de destino
-	 * */
-	public void setResponsavel(CTTipoFerrovia responsavel) {
-		this.responsavel = responsavel;
-	}
+    /**
+     * Responsável pelo Faturamento<br>
+     * Preencher com:<br>
+     * 1-Ferrovia de origem;<br>
+     * 2-Ferrovia de destino
+     */
+    public void setResponsavel(final CTTipoFerrovia responsavel) {
+        this.responsavel = responsavel;
+    }
 
-	public CTTipoFerrovia getEmitente() {
-		return emitente;
-	}
+    public CTTipoFerrovia getEmitente() {
+        return this.emitente;
+    }
 
-	/**
-	 * Responsável pelo Faturamento<br>
-	 * Preencher com:<br>
-	 * 1-Ferrovia de origem;<br>
-	 * 2-Ferrovia de destino
-	 * */
-	public void setEmitente(CTTipoFerrovia emitente) {
-		this.emitente = emitente;
-	}
+    /**
+     * Responsável pelo Faturamento<br>
+     * Preencher com:<br>
+     * 1-Ferrovia de origem;<br>
+     * 2-Ferrovia de destino
+     */
+    public void setEmitente(final CTTipoFerrovia emitente) {
+        this.emitente = emitente;
+    }
 
-	public String getValorFrete() {
-		return valorFrete;
-	}
+    public String getValorFrete() {
+        return this.valorFrete;
+    }
 
-	/**
-	 * Valor do Frete do Tráfego Mútuo
-	 * */
-	public void setValorFrete(BigDecimal valorFrete) {
-		this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Valor do Frete do Tráfego Mútuo");
-	}
+    /**
+     * Valor do Frete do Tráfego Mútuo
+     */
+    public void setValorFrete(final BigDecimal valorFrete) {
+        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Valor do Frete do Tráfego Mútuo");
+    }
 
-	public String getChaveCTeFerroviaOrigem() {
-		return chaveCTeFerroviaOrigem;
-	}
+    public String getChaveCTeFerroviaOrigem() {
+        return this.chaveCTeFerroviaOrigem;
+    }
 
-	/**
-	 * Chave de acesso do CT-e emitido pelo ferrovia de origem
-	 * */
-	public void setChaveCTeFerroviaOrigem(String chaveCTeFerroviaOrigem) {
-		this.chaveCTeFerroviaOrigem = chaveCTeFerroviaOrigem;
-	}
+    /**
+     * Chave de acesso do CT-e emitido pelo ferrovia de origem
+     */
+    public void setChaveCTeFerroviaOrigem(final String chaveCTeFerroviaOrigem) {
+        this.chaveCTeFerroviaOrigem = chaveCTeFerroviaOrigem;
+    }
 
-	public List<CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas> getFerroviasEnvolvidas() {
-		return ferroviasEnvolvidas;
-	}
+    public List<CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas> getFerroviasEnvolvidas() {
+        return this.ferroviasEnvolvidas;
+    }
 
-	/**
-	 * Informações das Ferrovias Envolvidas
-	 * */
-	public void setFerroviasEnvolvidas(
-			List<CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas> ferroviasEnvolvidas) {
-		this.ferroviasEnvolvidas = ferroviasEnvolvidas;
-	}
+    /**
+     * Informações das Ferrovias Envolvidas
+     */
+    public void setFerroviasEnvolvidas(final List<CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas> ferroviasEnvolvidas) {
+        this.ferroviasEnvolvidas = ferroviasEnvolvidas;
+    }
 }

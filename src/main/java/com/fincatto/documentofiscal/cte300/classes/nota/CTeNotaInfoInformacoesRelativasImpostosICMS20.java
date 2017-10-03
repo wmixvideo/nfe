@@ -13,88 +13,89 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 /**
  * @author Caio
  * @info Prestação sujeito à tributação com redução de BC do ICMS
- * */
+ */
 
 @Root(name = "ICMS20")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMS20 extends DFBase {
+    private static final long serialVersionUID = 8005865742494337097L;
 
-	@Element(name = "CST", required = true)
+    @Element(name = "CST", required = true)
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
-	
-	@Element(name = "pRedBC", required = true)
+
+    @Element(name = "pRedBC", required = true)
     private String aliquotaReducaoBaseCalculoICMS;
-	
-	@Element(name = "vBC", required = true)
+
+    @Element(name = "vBC", required = true)
     private String baseCalculoICMS;
-	
-	@Element(name = "pICMS", required = true)
+
+    @Element(name = "pICMS", required = true)
     private String aliquotaICMS;
-	
-	@Element(name = "vICMS", required = true)
+
+    @Element(name = "vICMS", required = true)
     private String valorICMS;
 
-	public CTeNotaInfoInformacoesRelativasImpostosICMS20() {
-		this.codigoSituacaoTributaria = null;
-		this.aliquotaReducaoBaseCalculoICMS = null;
-		this.baseCalculoICMS = null;
-		this.aliquotaICMS = null;
-		this.valorICMS = null;
-	}
+    public CTeNotaInfoInformacoesRelativasImpostosICMS20() {
+        this.codigoSituacaoTributaria = null;
+        this.aliquotaReducaoBaseCalculoICMS = null;
+        this.baseCalculoICMS = null;
+        this.aliquotaICMS = null;
+        this.valorICMS = null;
+    }
 
-	public CTCodigoSituacaoTributariaICMS getCodigoSituacaoTributaria() {
-		return codigoSituacaoTributaria;
-	}
+    public CTCodigoSituacaoTributariaICMS getCodigoSituacaoTributaria() {
+        return this.codigoSituacaoTributaria;
+    }
 
-	/**
-	 * Classificação Tributária do serviço<br>
-	 * 20 - tributação com BC reduzida do ICMS
-	 * */
-	public void setCodigoSituacaoTributaria(CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria) {
-		this.codigoSituacaoTributaria = codigoSituacaoTributaria;
-	}
+    /**
+     * Classificação Tributária do serviço<br>
+     * 20 - tributação com BC reduzida do ICMS
+     */
+    public void setCodigoSituacaoTributaria(final CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria) {
+        this.codigoSituacaoTributaria = codigoSituacaoTributaria;
+    }
 
-	public String getAliquotaReducaoBaseCalculoICMS() {
-		return aliquotaReducaoBaseCalculoICMS;
-	}
+    public String getAliquotaReducaoBaseCalculoICMS() {
+        return this.aliquotaReducaoBaseCalculoICMS;
+    }
 
-	/**
-	 * Percentual de redução da BC
-	 * */
-	public void setAliquotaReducaoBaseCalculoICMS(BigDecimal aliquotaReducaoBaseCalculoICMS) {
-		this.aliquotaReducaoBaseCalculoICMS = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMS, "Percentual de redução da BC");
-	}
+    /**
+     * Percentual de redução da BC
+     */
+    public void setAliquotaReducaoBaseCalculoICMS(final BigDecimal aliquotaReducaoBaseCalculoICMS) {
+        this.aliquotaReducaoBaseCalculoICMS = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMS, "Percentual de redução da BC");
+    }
 
-	public String getBaseCalculoICMS() {
-		return baseCalculoICMS;
-	}
+    public String getBaseCalculoICMS() {
+        return this.baseCalculoICMS;
+    }
 
-	/**
-	 * Valor da BC do ICMS
-	 * */
-	public void setBaseCalculoICMS(BigDecimal baseCalculoICMS) {
-		this.baseCalculoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMS, "Valor da BC do ICMS");
-	}
+    /**
+     * Valor da BC do ICMS
+     */
+    public void setBaseCalculoICMS(final BigDecimal baseCalculoICMS) {
+        this.baseCalculoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMS, "Valor da BC do ICMS");
+    }
 
-	public String getAliquotaICMS() {
-		return aliquotaICMS;
-	}
+    public String getAliquotaICMS() {
+        return this.aliquotaICMS;
+    }
 
-	/**
-	 * Alíquota do ICMS
-	 * */
-	public void setAliquotaICMS(BigDecimal aliquotaICMS) {
-		this.aliquotaICMS = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaICMS, "Alíquota do ICMS");
-	}
+    /**
+     * Alíquota do ICMS
+     */
+    public void setAliquotaICMS(final BigDecimal aliquotaICMS) {
+        this.aliquotaICMS = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaICMS, "Alíquota do ICMS");
+    }
 
-	public String getValorICMS() {
-		return valorICMS;
-	}
+    public String getValorICMS() {
+        return this.valorICMS;
+    }
 
-	/**
-	 * Valor do ICMS
-	 * */
-	public void setValorICMS(BigDecimal valorICMS) {
-		this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
-	}
+    /**
+     * Valor do ICMS
+     */
+    public void setValorICMS(final BigDecimal valorICMS) {
+        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
+    }
 }

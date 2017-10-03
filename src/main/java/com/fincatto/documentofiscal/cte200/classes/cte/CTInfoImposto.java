@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoImposto extends DFBase {
+    private static final long serialVersionUID = -8185617317777830794L;
 
     @Element(name = "ICMS")
     private CTInfoImpostoICMS icms;

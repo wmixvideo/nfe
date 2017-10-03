@@ -7,6 +7,8 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaSituacaoOperacionalSimp
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMSSN102 extends DFBase {
+    private static final long serialVersionUID = 8991323254446222797L;
+
     @Element(name = "orig", required = true)
     private NFOrigem origem;
 
