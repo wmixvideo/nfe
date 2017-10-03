@@ -8,17 +8,17 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetornoDados;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoSuplementar;
-import com.fincatto.documentofiscal.nfe310.parsers.NotaParser;
-import com.fincatto.documentofiscal.nfe310.persister.NFPersister;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
-import com.fincatto.documentofiscal.nfe310.validadores.xsd.XMLValidador;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.parsers.DFParser;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.utils.Unthrow;
+import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
@@ -51,7 +51,7 @@ class WSLoteEnvio {
         final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(),
                 loteAssinado.getNotas().parallelStream().findAny()
                         .orElseThrow(() -> new Exception("Nenhuma nota encontrada"))
-                .getInfo().getIdentificacao().getModelo());
+                        .getInfo().getIdentificacao().getModelo());
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
@@ -73,7 +73,7 @@ class WSLoteEnvio {
         });
         // assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
-        final NFLoteEnvio loteAssinado = new NotaParser().loteParaObjeto(documentoAssinado);
+        final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
         //gera qrcode para nfce
         lote.getNotas().parallelStream().filter(nota
                 -> nota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFCE))
@@ -113,7 +113,7 @@ class WSLoteEnvio {
         }
 
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final NFLoteEnvioRetorno loteEnvioRetorno = new NFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final NFLoteEnvioRetorno loteEnvioRetorno = new DFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
@@ -130,7 +130,7 @@ class WSLoteEnvio {
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));        
+        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
         StAXOMBuilder builder = new StAXOMBuilder(reader);
         final OMElement ome = builder.getDocumentElement();
         final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
