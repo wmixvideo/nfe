@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFSignedInfo extends DFBase {
+    private static final long serialVersionUID = -5878065134465400530L;
 
     @Element(name = "CanonicalizationMethod", required = false)
     private NFCanonicalizationMethod canonicalizationMethod;

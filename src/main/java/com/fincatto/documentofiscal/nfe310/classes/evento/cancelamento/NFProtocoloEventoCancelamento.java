@@ -7,11 +7,11 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEventoCancelamento;
 
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFProtocoloEventoCancelamento extends DFBase {
+    private static final long serialVersionUID = 8058424887014735846L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

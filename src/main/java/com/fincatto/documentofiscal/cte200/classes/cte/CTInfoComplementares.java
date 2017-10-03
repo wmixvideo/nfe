@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "compl")
 public class CTInfoComplementares extends DFBase {
+    private static final long serialVersionUID = 7923086023597656069L;
 
     @Element(name = "xCaracAd", required = false)
     private String caracteristicaAdicionalTransporte;

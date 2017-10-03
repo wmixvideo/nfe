@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaIPI;
 
 public class NFNotaInfoItemImpostoIPINT extends DFBase {
+    private static final long serialVersionUID = -3247957187868898218L;
 
     @Element(name = "IPINT", required = true)
     private NFNotaInfoSituacaoTributariaIPI situacaoTributariaIPI;

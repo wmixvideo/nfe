@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "idDocAnt")
 public class CTInfoDocumentoAnteriorIndentificacao extends DFBase {
+    private static final long serialVersionUID = 1619816713594438278L;
 
     @ElementList(name = "idDocAntPap", inline = true)
     private List<CTInfoDocumentoAnteriorPapel> documentosAnterioresPapel;

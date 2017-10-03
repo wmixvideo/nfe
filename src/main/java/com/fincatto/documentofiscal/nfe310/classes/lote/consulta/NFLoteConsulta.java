@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 @Root(name = "consReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteConsulta extends DFBase {
+    private static final long serialVersionUID = 205828108320121890L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

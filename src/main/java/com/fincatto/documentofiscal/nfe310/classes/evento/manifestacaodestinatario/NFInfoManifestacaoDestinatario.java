@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFTipoEvento;
 
 public class NFInfoManifestacaoDestinatario extends NFTipoEvento {
+    private static final long serialVersionUID = 8512309132142299111L;
 
     @Element(name = "xJust", required = false)
     private String justificativa;

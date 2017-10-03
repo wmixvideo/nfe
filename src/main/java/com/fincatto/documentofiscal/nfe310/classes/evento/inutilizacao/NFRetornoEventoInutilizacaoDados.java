@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoEventoInutilizacaoDados extends DFBase {
+    private static final long serialVersionUID = -6732103693589079116L;
+
     @Attribute(name = "Id", required = false)
     private String identificador;
 

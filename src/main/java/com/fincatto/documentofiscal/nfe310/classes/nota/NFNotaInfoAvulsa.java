@@ -11,6 +11,8 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoAvulsa extends DFBase {
+    private static final long serialVersionUID = 724335920156427201L;
+
     @Element(name = "CNPJ", required = true)
     private String cnpj;
 

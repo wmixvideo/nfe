@@ -9,44 +9,45 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "procNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFDownloadNFeRetornoInfoProcNfe extends DFBase{
+public class NFDownloadNFeRetornoInfoProcNfe extends DFBase {
+    private static final long serialVersionUID = -5065140465119799277L;
 
-	@Attribute(name = "schema", required = false)
-	private String schema;
-	
-	@Element(name = "nfeProc", required = true)//ver coma var ser tratado esse elemento
-	private Any any;
-	
-	@Element(name = "procNFeGrupoZip", required = false)
-	private NFDownloadNFeRetornoInfoProcNfeGrupoZip grupoZip;
+    @Attribute(name = "schema", required = false)
+    private String schema;
 
-	public NFDownloadNFeRetornoInfoProcNfe() {
-		this.schema = null;
-		this.any = null;
-		this.grupoZip = null;
-	}
+    @Element(name = "nfeProc", required = true) // ver coma var ser tratado esse elemento
+    private Any any;
 
-	public String getSchema() {
-		return schema;
-	}
+    @Element(name = "procNFeGrupoZip", required = false)
+    private NFDownloadNFeRetornoInfoProcNfeGrupoZip grupoZip;
 
-	public void setSchema(final String schema) {
-		this.schema = schema;
-	}
+    public NFDownloadNFeRetornoInfoProcNfe() {
+        this.schema = null;
+        this.any = null;
+        this.grupoZip = null;
+    }
 
-	public Any getAny() {
-		return any;
-	}
+    public String getSchema() {
+        return this.schema;
+    }
 
-	public void setAny(final Any any) {
-		this.any = any;
-	}
+    public void setSchema(final String schema) {
+        this.schema = schema;
+    }
 
-	public NFDownloadNFeRetornoInfoProcNfeGrupoZip getGrupoZip() {
-		return grupoZip;
-	}
+    public Any getAny() {
+        return this.any;
+    }
 
-	public void setGrupoZip(final NFDownloadNFeRetornoInfoProcNfeGrupoZip grupoZip) {
-		this.grupoZip = grupoZip;
-	}
+    public void setAny(final Any any) {
+        this.any = any;
+    }
+
+    public NFDownloadNFeRetornoInfoProcNfeGrupoZip getGrupoZip() {
+        return this.grupoZip;
+    }
+
+    public void setGrupoZip(final NFDownloadNFeRetornoInfoProcNfeGrupoZip grupoZip) {
+        this.grupoZip = grupoZip;
+    }
 }

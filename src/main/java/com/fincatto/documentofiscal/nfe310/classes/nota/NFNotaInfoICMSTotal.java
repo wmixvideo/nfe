@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoICMSTotal extends DFBase {
+    private static final long serialVersionUID = 1644701343314788528L;
 
     @Element(name = "vBC", required = true)
     private String baseCalculoICMS;

@@ -8,6 +8,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoNormal extends DFBase {
+    private static final long serialVersionUID = -3910233186856567020L;
 
     @Element(name = "infCarga")
     private CTInfoCarga carga;

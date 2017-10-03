@@ -11,60 +11,61 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
 /**
  * @author Caio
  * @info Entrega no período definido
- * */
+ */
 
 @Root(name = "noPeriodo")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresEntregaPeriodo extends DFBase {
+    private static final long serialVersionUID = 6194788171489727124L;
 
-	@Element(name = "tpPer", required = true)
+    @Element(name = "tpPer", required = true)
     private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
-	
-	@Element(name = "dIni", required = true)
-	private LocalDate dataInicio;
-	
-	@Element(name = "dFim", required = true)
-	private LocalDate dataFim;
 
-	public CTeNotaInfoDadosComplementaresEntregaPeriodo() {
-		this.tipoPrazoDataEntrega = null;
-		this.dataInicio = null;
-		this.dataFim = null;
-	}
+    @Element(name = "dIni", required = true)
+    private LocalDate dataInicio;
 
-	public CTTipoPrazoDataEntrega getTipoPrazoDataEntrega() {
-		return tipoPrazoDataEntrega;
-	}
+    @Element(name = "dFim", required = true)
+    private LocalDate dataFim;
 
-	/**
-	 * Tipo período<br>
-	 * 4 - no período
-	 * */
-	public void setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega tipoPrazoDataEntrega) {
-		this.tipoPrazoDataEntrega = tipoPrazoDataEntrega;
-	}
+    public CTeNotaInfoDadosComplementaresEntregaPeriodo() {
+        this.tipoPrazoDataEntrega = null;
+        this.dataInicio = null;
+        this.dataFim = null;
+    }
 
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-	
-	/**
-	 * Data inicial<br>
-	 * Formato AAAA-MM-DD
-	 * */
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
+    public CTTipoPrazoDataEntrega getTipoPrazoDataEntrega() {
+        return this.tipoPrazoDataEntrega;
+    }
 
-	public LocalDate getDataFim() {
-		return dataFim;
-	}
+    /**
+     * Tipo período<br>
+     * 4 - no período
+     */
+    public void setTipoPrazoDataEntrega(final CTTipoPrazoDataEntrega tipoPrazoDataEntrega) {
+        this.tipoPrazoDataEntrega = tipoPrazoDataEntrega;
+    }
 
-	/**
-	 * Data inicial<br>
-	 * Formato AAAA-MM-DD
-	 * */
-	public void setDataFim(LocalDate dataFim) {
-		this.dataFim = dataFim;
-	}
+    public LocalDate getDataInicio() {
+        return this.dataInicio;
+    }
+
+    /**
+     * Data inicial<br>
+     * Formato AAAA-MM-DD
+     */
+    public void setDataInicio(final LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return this.dataFim;
+    }
+
+    /**
+     * Data inicial<br>
+     * Formato AAAA-MM-DD
+     */
+    public void setDataFim(final LocalDate dataFim) {
+        this.dataFim = dataFim;
+    }
 }

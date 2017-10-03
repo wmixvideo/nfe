@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoCanaFornecimentoDiario extends DFBase {
+    private static final long serialVersionUID = 4997480383513451707L;
+
     @Attribute(name = "dia", required = true)
     private int dia;
 

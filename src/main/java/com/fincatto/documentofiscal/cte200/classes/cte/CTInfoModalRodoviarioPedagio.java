@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "valePed")
 public class CTInfoModalRodoviarioPedagio extends DFBase {
+    private static final long serialVersionUID = 6645629540113129837L;
 
     @Element(name = "CNPJForn")
     private String cnpjFornecedora;

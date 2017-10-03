@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTeX509Data extends DFBase {
+    private static final long serialVersionUID = -4525112525396207859L;
 
     @Element(name = "X509Certificate", required = false)
     private String x509certificate;

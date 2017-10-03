@@ -13,6 +13,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 @Root(name = "retConsStatServ")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFStatusServicoConsultaRetorno extends DFBase {
+    private static final long serialVersionUID = -5022679215397514727L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.cte200.classes.CTTipoDocumentoOutro;
 
 @Root(name = "infOutros")
 public class CTInfoDocumentoOutro extends DFBase {
+    private static final long serialVersionUID = -2628837709003447868L;
 
     @Element(name = "tpDoc")
     protected CTTipoDocumentoOutro tpDoc;

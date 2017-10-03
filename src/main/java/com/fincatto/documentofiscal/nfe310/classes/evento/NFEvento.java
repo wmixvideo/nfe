@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFEvento extends DFBase {
+    private static final long serialVersionUID = 8494204773888020693L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

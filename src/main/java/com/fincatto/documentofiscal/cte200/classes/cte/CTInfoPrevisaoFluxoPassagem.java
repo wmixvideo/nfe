@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "pass")
 public class CTInfoPrevisaoFluxoPassagem extends DFBase {
+    private static final long serialVersionUID = -5069909939885596855L;
 
     @Element(name = "xPass")
     private String codigoPassagem;

@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 @Root(name = "veic")
 public class CTInfoModalRodoviarioVeiculo extends DFBase {
+    private static final long serialVersionUID = 4907049342684105628L;
 
     @Element(name = "cInt", required = false)
     private String codigoInterno;

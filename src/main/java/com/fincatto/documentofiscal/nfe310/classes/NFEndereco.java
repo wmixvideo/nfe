@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFEndereco extends DFBase {
+    private static final long serialVersionUID = 417768837786948754L;
 
     @Element(name = "xLgr")
     private String logradouro;

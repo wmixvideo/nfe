@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemExportacaoIndireta extends DFBase {
+    private static final long serialVersionUID = 2911935204123851926L;
 
     @Element(name = "nRE", required = true)
     private BigInteger numeroRegistroExportacao;

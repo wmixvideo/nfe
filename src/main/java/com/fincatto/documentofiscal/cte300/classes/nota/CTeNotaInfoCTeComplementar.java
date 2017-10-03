@@ -10,28 +10,28 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 /**
  * @author Caio
  * @info Detalhamento do CT-e complementado
- * */
+ */
 
 @Root(name = "infCteComp")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeComplementar extends DFBase {
+    private static final long serialVersionUID = -5820790322163765078L;
+    @Element(name = "chCTe", required = true)
+    private String chave;
 
-	@Element(name = "chCTe", required = true)
-	private String chave;
+    public CTeNotaInfoCTeComplementar() {
+        this.chave = null;
+    }
 
-	public CTeNotaInfoCTeComplementar() {
-		this.chave = null;
-	}
+    public String getChave() {
+        return this.chave;
+    }
 
-	public String getChave() {
-		return chave;
-	}
-
-	/**
-	 * Chave do CT-e complementado
-	 * */
-	public void setChave(String chave) {
-		StringValidador.exatamente44N(chave, "Chave do CT-e complementado");
-		this.chave = chave;
-	}
+    /**
+     * Chave do CT-e complementado
+     */
+    public void setChave(final String chave) {
+        StringValidador.exatamente44N(chave, "Chave do CT-e complementado");
+        this.chave = chave;
+    }
 }

@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTResponsavelSeguro;
 
 public class CTInfoSeguro extends DFBase {
+    private static final long serialVersionUID = 9195752068106292630L;
 
     @Element(name = "respSeg")
     private CTResponsavelSeguro responsavelSeguro;

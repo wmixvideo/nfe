@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "lacRodo")
 public class CTInfoModalRodoviarioLacre extends DFBase {
+    private static final long serialVersionUID = 1550578780383431040L;
 
     @Element(name = "nLacre")
     private String numeroLacre;

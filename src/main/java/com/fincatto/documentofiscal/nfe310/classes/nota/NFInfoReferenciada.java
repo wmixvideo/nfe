@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoReferenciada extends DFBase {
+    private static final long serialVersionUID = -2843595557163782224L;
 
     @Element(name = "refNFe", required = false)
     private String chaveAcesso;

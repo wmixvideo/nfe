@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "infNFe")
 public class CTInfoDocumentoNFE extends DFBase {
+    private static final long serialVersionUID = 3996548074758272722L;
 
     @Element(name = "chave")
     private String chave;

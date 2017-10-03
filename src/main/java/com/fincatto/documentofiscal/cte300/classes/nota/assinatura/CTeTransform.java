@@ -5,6 +5,8 @@ import org.simpleframework.xml.Attribute;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTeTransform extends DFBase {
+    private static final long serialVersionUID = 4404647911665495803L;
+
     @Attribute(name = "Algorithm", required = false)
     private String algorithm;
 

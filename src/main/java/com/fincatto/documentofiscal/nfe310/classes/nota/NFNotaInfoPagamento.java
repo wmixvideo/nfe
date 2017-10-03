@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoPagamento extends DFBase {
+    private static final long serialVersionUID = -2613537583415054150L;
 
     @Element(name = "tPag", required = true)
     private NFFormaPagamentoMoeda formaPagamentoMoeda;

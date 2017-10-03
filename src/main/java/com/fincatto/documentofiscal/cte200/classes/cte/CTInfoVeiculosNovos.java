@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "veicNovos")
 public class CTInfoVeiculosNovos extends DFBase {
+    private static final long serialVersionUID = 3722531180038594161L;
 
     @Element(name = "chassi")
     private String chassi;

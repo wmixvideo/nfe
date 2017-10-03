@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFNotaInfoItemImpostoCOFINS extends DFBase {
+    private static final long serialVersionUID = -2776137091542174644L;
 
     @Element(name = "COFINSAliq", required = false)
     private NFNotaInfoItemImpostoCOFINSAliquota aliquota;

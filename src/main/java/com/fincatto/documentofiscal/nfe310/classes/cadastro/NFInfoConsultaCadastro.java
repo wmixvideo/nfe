@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoConsultaCadastro extends DFBase {
+    private static final long serialVersionUID = 2846137738770858117L;
 
     @Element(name = "xServ", required = true)
     private String servico;

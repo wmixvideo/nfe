@@ -8,6 +8,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFInformacaoImpostoDevolvido extends DFBase {
+    private static final long serialVersionUID = 4422209113713178240L;
+
     @Element(name = "vIPIDevol", required = true)
     private String valorIPIDevolvido;
 

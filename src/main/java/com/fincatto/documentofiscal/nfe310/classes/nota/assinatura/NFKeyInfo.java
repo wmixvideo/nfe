@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFKeyInfo extends DFBase {
+    private static final long serialVersionUID = 7949034334524924221L;
 
     @Element(name = "X509Data", required = false)
     private NFX509Data data;

@@ -6,6 +6,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFPessoaAutorizadaDownloadNFe extends DFBase {
+    private static final long serialVersionUID = -2909265137420776696L;
+
     @Element(name = "CNPJ", required = false)
     private String cnpj;
 

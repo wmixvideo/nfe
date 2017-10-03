@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 
 public class CTInfoTomadorICMSDocumento extends DFBase {
+    private static final long serialVersionUID = -3179160439021168796L;
 
     @Element(name = "CNPJ")
     private String cnpj;

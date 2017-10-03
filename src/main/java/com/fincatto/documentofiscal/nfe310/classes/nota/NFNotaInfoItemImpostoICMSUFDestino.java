@@ -8,6 +8,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
+    private static final long serialVersionUID = -3012887551710007397L;
+
     @Element(name = "vBCUFDest", required = true)
     private String valorBaseCalculoDestino;
 

@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFEventoManifestacaoDestinatario extends DFBase {
+    private static final long serialVersionUID = 4608659349977367804L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

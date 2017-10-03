@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCompra extends DFBase {
+    private static final long serialVersionUID = 6305778041346992962L;
 
     @Element(name = "xNEmp", required = false)
     private String notaDeEmpenho;

@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoItemProdutoVeiculo extends DFBase {
+    private static final long serialVersionUID = -8723829235875523827L;
 
     @Element(name = "tpOp", required = true)
     private NFNotaInfoItemProdutoVeiculoTipoOperacao tipoOperacao;

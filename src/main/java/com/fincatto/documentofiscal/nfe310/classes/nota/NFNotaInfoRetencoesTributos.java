@@ -8,6 +8,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoRetencoesTributos extends DFBase {
+    private static final long serialVersionUID = 8153484835418045075L;
+
     @Element(name = "vRetPIS", required = false)
     private String valorRetidoPIS;
 

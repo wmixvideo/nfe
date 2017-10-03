@@ -14,6 +14,8 @@ import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFNotaInfoCana extends DFBase {
+    private static final long serialVersionUID = 5219843108064204554L;
+
     @Element(name = "safra", required = true)
     private String safra;
 

@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "moto")
 public class CTInfoModalRodoviarioMotorista extends DFBase {
+    private static final long serialVersionUID = 1166950008074525948L;
 
     @Element(name = "xNome")
     private String nome;

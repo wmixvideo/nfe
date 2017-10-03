@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTeSignedInfo extends DFBase {
+    private static final long serialVersionUID = 1072808318641459095L;
 
     @Element(name = "CanonicalizationMethod", required = false)
     private CTeCanonicalizationMethod canonicalizationMethod;

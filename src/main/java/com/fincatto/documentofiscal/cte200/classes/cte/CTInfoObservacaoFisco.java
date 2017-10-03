@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "ObsFisco")
 public class CTInfoObservacaoFisco extends DFBase {
+    private static final long serialVersionUID = -1816423666185748482L;
 
     @Attribute(name = "xCampo")
     private String identificador;

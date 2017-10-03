@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImposto extends DFBase {
+    private static final long serialVersionUID = 8579628067567740408L;
 
     @Element(name = "vTotTrib", required = false)
     private String valorTotalTributos;
@@ -124,10 +125,10 @@ public class NFNotaInfoItemImposto extends DFBase {
     }
 
     public NFNotaInfoItemImpostoICMSUFDestino getIcmsUfDestino() {
-        return icmsUfDestino;
+        return this.icmsUfDestino;
     }
 
-    public void setIcmsUfDestino(NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
+    public void setIcmsUfDestino(final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
     }
 }

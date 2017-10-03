@@ -9,6 +9,7 @@ import org.simpleframework.xml.ElementList;
 import com.fincatto.documentofiscal.DFBase;
 
 public class CTInfoModalRodoviario extends DFBase {
+    private static final long serialVersionUID = 3232064596106386289L;
 
     @Element(name = "RNTRC")
     private String registroNacionalTrasportadoras;

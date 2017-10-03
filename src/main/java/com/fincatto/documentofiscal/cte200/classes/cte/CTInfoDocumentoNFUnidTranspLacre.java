@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "lacUnidTransp")
 public class CTInfoDocumentoNFUnidTranspLacre extends DFBase {
+    private static final long serialVersionUID = -7312811578255936535L;
 
     @Element(name = "nLacre")
     private String numeroLacre;

@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoEventoManifestacaoDestinatario extends DFBase {
+    private static final long serialVersionUID = 6263292490448480599L;
 
     @Attribute(name = "Id", required = true)
     private String id;
@@ -137,10 +138,10 @@ public class NFInfoEventoManifestacaoDestinatario extends DFBase {
     }
 
     public NFInfoManifestacaoDestinatario getManifestacaoDestinatario() {
-        return manifestacaoDestinatario;
+        return this.manifestacaoDestinatario;
     }
 
-    public void setManifestacaoDestinatario(NFInfoManifestacaoDestinatario manifestacaoDestinatario) {
+    public void setManifestacaoDestinatario(final NFInfoManifestacaoDestinatario manifestacaoDestinatario) {
         this.manifestacaoDestinatario = manifestacaoDestinatario;
     }
 

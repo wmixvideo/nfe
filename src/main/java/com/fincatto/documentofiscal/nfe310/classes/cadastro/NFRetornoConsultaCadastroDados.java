@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroDados extends DFBase {
+    private static final long serialVersionUID = -7130690235919558202L;
 
     private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 

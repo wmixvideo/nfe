@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.cte200.classes.CTUnidadeMedida;
 
 @Root(name = "infQ")
 public class CTInfoCargaQuantidade extends DFBase {
+    private static final long serialVersionUID = -1838442006421644885L;
 
     @Element(name = "cUnid")
     private CTUnidadeMedida unidadeMedida;

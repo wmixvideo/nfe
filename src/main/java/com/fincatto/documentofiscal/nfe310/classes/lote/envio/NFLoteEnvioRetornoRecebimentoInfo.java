@@ -5,6 +5,7 @@ import org.simpleframework.xml.Element;
 import com.fincatto.documentofiscal.DFBase;
 
 public class NFLoteEnvioRetornoRecebimentoInfo extends DFBase {
+    private static final long serialVersionUID = -7792241080891283618L;
 
     @Element(name = "nRec", required = true)
     private String recibo;

@@ -10,28 +10,29 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoHoraEntrega;
 /**
  * @author Caio
  * @info Entrega sem hora definida
- * */
+ */
 
 @Root(name = "semHora")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida extends DFBase {
-	
-	@Element(name = "tpHor", required = true)
-	private CTTipoPrazoHoraEntrega tipoPrazoHoraEntrega;
+    private static final long serialVersionUID = 8715534516011562469L;
 
-	public CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida() {
-		this.tipoPrazoHoraEntrega = null;
-	}
+    @Element(name = "tpHor", required = true)
+    private CTTipoPrazoHoraEntrega tipoPrazoHoraEntrega;
 
-	public CTTipoPrazoHoraEntrega getTipoPrazoHoraEntrega() {
-		return tipoPrazoHoraEntrega;
-	}
+    public CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida() {
+        this.tipoPrazoHoraEntrega = null;
+    }
 
-	/**
-	 * Tipo de hora<br>
-	 * 0 - Sem hora definida
-	 * */
-	public void setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega tipoPrazoHoraEntrega) {
-		this.tipoPrazoHoraEntrega = tipoPrazoHoraEntrega;
-	}
+    public CTTipoPrazoHoraEntrega getTipoPrazoHoraEntrega() {
+        return this.tipoPrazoHoraEntrega;
+    }
+
+    /**
+     * Tipo de hora<br>
+     * 0 - Sem hora definida
+     */
+    public void setTipoPrazoHoraEntrega(final CTTipoPrazoHoraEntrega tipoPrazoHoraEntrega) {
+        this.tipoPrazoHoraEntrega = tipoPrazoHoraEntrega;
+    }
 }

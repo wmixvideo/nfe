@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFBase;
 
 @Namespace(reference = "http://www.w3.org/2000/09/xmldsig#")
 public class NFSignature extends DFBase {
+    private static final long serialVersionUID = 4057860940440076358L;
 
     @Element(name = "SignedInfo", required = false)
     private NFSignedInfo signedInfo;

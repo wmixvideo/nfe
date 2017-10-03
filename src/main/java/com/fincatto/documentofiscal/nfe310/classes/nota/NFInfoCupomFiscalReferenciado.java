@@ -6,6 +6,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoCupomFiscalReferenciado extends DFBase {
+    private static final long serialVersionUID = -8337973110998173462L;
+
     @Element(name = "mod", required = true)
     private String modeloDocumentoFiscal;
 

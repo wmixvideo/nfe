@@ -8,6 +8,8 @@ import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoProdutorRuralReferenciada extends DFBase {
+    private static final long serialVersionUID = -2718285687811273188L;
+
     @Element(name = "cUF", required = true)
     private DFUnidadeFederativa ufEmitente;
 
