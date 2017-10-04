@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     private static final long serialVersionUID = -2899516480924530882L;
@@ -30,12 +29,16 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     @Element(name = "CIDE", required = false)
     private NFNotaInfoItemProdutoCombustivelCIDE cide;
 
+    @Element(name = "encerrante", required = false)
+    private NFNotaInfoItemProdutoCombustivelEncerrante encerrante;
+
     public NFNotaInfoItemProdutoCombustivel() {
         this.codigoProdutoANP = null;
         this.codigoAutorizacaoCOFIF = null;
         this.quantidade = null;
         this.uf = null;
         this.cide = null;
+        this.encerrante = null;
     }
 
     public void setCodigoProdutoANP(final String codigoProdutoANP) {
@@ -64,6 +67,10 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
         this.percentualGasNatural = BigDecimalParser.tamanho5Com2CasasDecimais(percentualGasNatural, "Percentual Gas Natural Combustivel");
     }
 
+    public void setEncerrante(final NFNotaInfoItemProdutoCombustivelEncerrante encerrante) {
+        this.encerrante = encerrante;
+    }
+
     public String getCodigoProdutoANP() {
         return this.codigoProdutoANP;
     }
@@ -86,5 +93,9 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
 
     public NFNotaInfoItemProdutoCombustivelCIDE getCide() {
         return this.cide;
+    }
+
+    public NFNotaInfoItemProdutoCombustivelEncerrante getEncerrante() {
+        return encerrante;
     }
 }

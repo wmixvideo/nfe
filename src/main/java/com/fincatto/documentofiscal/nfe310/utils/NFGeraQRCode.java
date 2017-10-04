@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.utils;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 
 public class NFGeraQRCode {
 
