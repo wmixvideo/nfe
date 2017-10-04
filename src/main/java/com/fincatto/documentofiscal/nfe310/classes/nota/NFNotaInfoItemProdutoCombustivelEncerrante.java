@@ -45,11 +45,6 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     private String valorEncerramentoFinal;
 
     public NFNotaInfoItemProdutoCombustivelEncerrante() {
-        this.numeroBico = null;
-        this.numeroBomba = null;
-        this.numeroTanque = null;
-        this.valorEncerramentoInicial = null;
-        this.valorEncerramentoFinal = null;
     }
 
     public String getNumeroBico() {
