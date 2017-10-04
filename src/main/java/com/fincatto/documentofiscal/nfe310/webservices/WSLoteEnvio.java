@@ -75,7 +75,7 @@ class WSLoteEnvio {
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
         final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
         //gera qrcode para nfce
-        lote.getNotas().parallelStream().filter(nota
+        loteAssinado.getNotas().parallelStream().filter(nota
                 -> nota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFCE))
                 .map(nota -> Unthrow.wrap(()-> {
                     final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
@@ -84,11 +84,11 @@ class WSLoteEnvio {
                     return nota;
                 }));
         //verifica se tem as duas notas no mesmo lote
-        if(lote.getNotas().parallelStream().anyMatch(nfNota -> nfNota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFCE))
-                && lote.getNotas().parallelStream().anyMatch(nfNota -> nfNota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFE))){
+        if(loteAssinado.getNotas().parallelStream().anyMatch(nfNota -> nfNota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFCE))
+                && loteAssinado.getNotas().parallelStream().anyMatch(nfNota -> nfNota.getInfo().getIdentificacao().getModelo().equals(DFModelo.NFE))){
             throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
         }
-        return lote;
+        return loteAssinado;
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
