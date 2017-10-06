@@ -28,7 +28,7 @@ public class CTeNotaInfoRemetente extends DFBase {
     private String inscricaoEstadual;
 
     @Element(name = "xNome", required = true)
-    private String razaosocial;
+    private String razaoSocial;
 
     @Element(name = "xFant", required = false)
     private String nomeFantasia;
@@ -46,7 +46,7 @@ public class CTeNotaInfoRemetente extends DFBase {
         this.cnpj = null;
         this.cpf = null;
         this.inscricaoEstadual = null;
-        this.razaosocial = null;
+        this.razaoSocial = null;
         this.nomeFantasia = null;
         this.telefone = null;
         this.endereco = null;
@@ -92,16 +92,16 @@ public class CTeNotaInfoRemetente extends DFBase {
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public String getRazaosocial() {
-        return this.razaosocial;
+    public String getRazaoSocial() {
+        return this.razaoSocial;
     }
 
     /**
      * Razão social ou nome do remetente
      */
-    public void setRazaosocial(final String razaosocial) {
-        StringValidador.tamanho2ate60(razaosocial, "Razão social ou nome do remetente");
-        this.razaosocial = razaosocial;
+    public void setRazaoSocial(final String razaoSocial) {
+        StringValidador.tamanho2ate60(razaoSocial, "Razão social ou nome do remetente");
+        this.razaoSocial = razaoSocial;
     }
 
     public String getNomeFantasia() {
