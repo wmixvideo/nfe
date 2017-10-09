@@ -1567,8 +1567,8 @@ Opcional para Redespacho Intermediario e Serviço vinculado a multimodal.</xs:do
 																	<xs:element name="mod" type="TModNF">
 																		<xs:annotation>
 																			<xs:documentation>Modelo da Nota Fiscal</xs:documentation>
-																			<xs:documentation>Preencher com: 
-01 - NF Modelo 01/1A e Avulsa; 
+																			<xs:documentation>Preencher com:
+01 - NF Modelo 01/1A e Avulsa;
 04 - NF de Produtor</xs:documentation>
 																		</xs:annotation>
 																	</xs:element>

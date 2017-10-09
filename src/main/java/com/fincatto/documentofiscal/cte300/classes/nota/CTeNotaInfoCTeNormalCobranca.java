@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 /**
  * @author Caio
@@ -21,7 +21,7 @@ public class CTeNotaInfoCTeNormalCobranca extends DFBase {
     @Element(name = "fat", required = false)
     private CTeNotaInfoCTeNormalCobrancaFatura fatura;
 
-    @Element(name = "dup", required = false)
+    @ElementList(entry = "dup", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalCobrancaDuplicata> duplicata;
 
     public CTeNotaInfoCTeNormalCobranca() {
