@@ -11,7 +11,12 @@ public class CTInfoTomadorServico3 extends DFBase {
     @Element(name = "toma")
     private CTTomadorServico tomadorServico;
 
+    public CTInfoTomadorServico3(){
+        super();
+    }
+
     public CTInfoTomadorServico3(CTTomadorServico tomadorServico) {
+        this();
         setTomadorServico(tomadorServico);
     }
 
