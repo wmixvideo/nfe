@@ -12,7 +12,7 @@ public class CTInfoModalAereo extends DFBase {
     private String numeroMinuta;
 
     @Element(name = "nOCA", required = false)
-    private LocalDate numeroOperacional;
+    private String numeroOperacional;
 
     @Element(name = "dPrevAereo")
     private LocalDate dataPrevisaoEntrega;
