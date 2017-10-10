@@ -64,7 +64,7 @@ public class WSFacade {
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO)
                 && lote.getNotas().size()>1) {
-                throw new IllegalArgumentException("Apenas uma nota permitida no modo sincrono!");
+            throw new IllegalArgumentException("Apenas uma nota permitida no modo sincrono!");
         }
         return this.wsLoteEnvio.enviaLote(lote);
     }

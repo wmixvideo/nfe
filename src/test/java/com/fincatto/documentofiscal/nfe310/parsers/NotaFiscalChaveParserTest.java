@@ -1,12 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.parsers;
 
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
 
 import java.text.ParseException;
 

@@ -1,17 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.util.Iterator;
-
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.nfe310.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
@@ -28,13 +19,17 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
-
-import java.io.StringReader;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import java.io.StringReader;
+import java.util.Iterator;
 
 class WSLoteEnvio {
 
@@ -133,7 +128,7 @@ class WSLoteEnvio {
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));        
+        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
         StAXOMBuilder builder = new StAXOMBuilder(reader);
         final OMElement ome = builder.getDocumentElement();
         final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
