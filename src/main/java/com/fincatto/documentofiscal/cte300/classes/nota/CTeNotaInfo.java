@@ -1,11 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.util.List;
 
 /**
  * @author Caio
@@ -16,6 +20,11 @@ import com.fincatto.documentofiscal.validadores.ListValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfo extends DFBase {
     private static final long serialVersionUID = 7580534488249283958L;
+
+    public static final String IDENT = "CTe";
+
+    @Attribute(name = "Id", required = true)
+    private String identificador;
 
     @Element(name = "ide", required = true)
     private CTeNotaInfoIdentificacao identificacao;
@@ -59,9 +68,6 @@ public class CTeNotaInfo extends DFBase {
     @Attribute(name = "versao", required = true)
     private String versao;
 
-    @Attribute(name = "Id", required = true)
-    private String identificador;
-
     public CTeNotaInfo() {
         this.identificacao = null;
         this.dadosComplementares = null;
@@ -78,6 +84,27 @@ public class CTeNotaInfo extends DFBase {
         this.autorizacaoDownload = null;
         this.versao = null;
         this.identificador = null;
+    }
+
+    public String getIdentificador() {
+        return this.identificador;
+    }
+
+    /**
+     * Identificador da tag a ser assinada<br>
+     * Informar a chave de acesso do CT-e e precedida do literal "CTe"
+     */
+    public void setIdentificador(final String identificador) {
+        StringValidador.exatamente44N(identificador, "Identificador");
+        this.identificador = CTeNotaInfo.IDENT + identificador;
+    }
+
+    /**
+     * Pega a chave de acesso a partir do identificador.
+     * @return Chave de acesso.
+     */
+    public String getChaveAcesso() {
+        return this.identificador.replace(CTeNotaInfo.IDENT, "");
     }
 
     public CTeNotaInfoIdentificacao getIdentificacao() {
@@ -238,15 +265,4 @@ public class CTeNotaInfo extends DFBase {
         this.versao = versao;
     }
 
-    public String getIdentificador() {
-        return this.identificador;
-    }
-
-    /**
-     * Identificador da tag a ser assinada<br>
-     * Informar a chave de acesso do CT-e e precedida do literal "CTe"
-     */
-    public void setIdentificador(final String identificador) {
-        this.identificador = identificador;
-    }
 }

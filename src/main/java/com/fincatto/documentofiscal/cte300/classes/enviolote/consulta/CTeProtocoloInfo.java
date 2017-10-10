@@ -31,10 +31,10 @@ public class CTeProtocoloInfo extends DFBase {
     @Element(name = "dhRecbto", required = true)
     private String dataRecebimento;
 
-    @Element(name = "nProt", required = true)
+    @Element(name = "nProt", required = false)
     private String numeroProtocolo;
 
-    @Element(name = "digVal", required = true)
+    @Element(name = "digVal", required = false)
     private String validador;
 
     @Element(name = "cStat", required = true)

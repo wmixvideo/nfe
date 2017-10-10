@@ -25,10 +25,10 @@ public class CTeNotaInfoRemetente extends DFBase {
     private String cpf;
 
     @Element(name = "IE", required = false)
-    private String inscriacoEstadual;
+    private String inscricaoEstadual;
 
     @Element(name = "xNome", required = true)
-    private String razaosocial;
+    private String razaoSocial;
 
     @Element(name = "xFant", required = false)
     private String nomeFantasia;
@@ -45,8 +45,8 @@ public class CTeNotaInfoRemetente extends DFBase {
     public CTeNotaInfoRemetente() {
         this.cnpj = null;
         this.cpf = null;
-        this.inscriacoEstadual = null;
-        this.razaosocial = null;
+        this.inscricaoEstadual = null;
+        this.razaoSocial = null;
         this.nomeFantasia = null;
         this.telefone = null;
         this.endereco = null;
@@ -79,29 +79,29 @@ public class CTeNotaInfoRemetente extends DFBase {
         this.cpf = cpf;
     }
 
-    public String getInscriacoEstadual() {
-        return this.inscriacoEstadual;
+    public String getInscricaoEstadual() {
+        return this.inscricaoEstadual;
     }
 
     /**
      * Inscrição Estadual<br>
      * Informar a IE do remetente ou ISENTO se remetente é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o remetente não seja contribuinte do ICMS não informar a tag.
      */
-    public void setInscriacoEstadual(final String inscriacoEstadual) {
-        StringValidador.inscricaoEstadual(inscriacoEstadual);
-        this.inscriacoEstadual = inscriacoEstadual;
+    public void setInscricaoEstadual(final String inscricaoEstadual) {
+        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public String getRazaosocial() {
-        return this.razaosocial;
+    public String getRazaoSocial() {
+        return this.razaoSocial;
     }
 
     /**
      * Razão social ou nome do remetente
      */
-    public void setRazaosocial(final String razaosocial) {
-        StringValidador.tamanho2ate60(razaosocial, "Razão social ou nome do remetente");
-        this.razaosocial = razaosocial;
+    public void setRazaoSocial(final String razaoSocial) {
+        StringValidador.tamanho2ate60(razaoSocial, "Razão social ou nome do remetente");
+        this.razaoSocial = razaoSocial;
     }
 
     public String getNomeFantasia() {
@@ -148,6 +148,7 @@ public class CTeNotaInfoRemetente extends DFBase {
      */
     public void setEmail(final String email) {
         StringValidador.tamanho60(email, "Endereço de email");
+        StringValidador.email(email);
         this.email = email;
     }
 }

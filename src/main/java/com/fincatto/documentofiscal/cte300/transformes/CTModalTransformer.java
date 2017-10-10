@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
+import com.fincatto.documentofiscal.cte300.classes.CTModal;
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.documentofiscal.cte200.classes.CTModal;
 
 public class CTModalTransformer implements Transform<CTModal> {
 

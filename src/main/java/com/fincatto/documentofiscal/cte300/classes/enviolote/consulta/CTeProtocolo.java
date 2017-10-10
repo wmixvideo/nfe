@@ -18,7 +18,7 @@ import com.fincatto.documentofiscal.cte300.classes.nota.assinatura.CTeSignature;
 public class CTeProtocolo extends DFBase {
     private static final long serialVersionUID = 4634629801463718104L;
 
-    @Element(name = "infProt", required = true)
+    @Element(name = "infProt", required = false)
     private CTeProtocoloInfo info;
 
     @Element(name = "Signature", required = false)

@@ -149,6 +149,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      */
     public void setEmail(final String email) {
         StringValidador.tamanho60(email, "Endereço de email");
+        StringValidador.email(email);
         this.email = email;
     }
 }
