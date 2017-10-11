@@ -5,7 +5,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "retCancNFe")
+@Root(name = "retCancCTe")
 public class CTeRetornoCancelamento extends DFBase {
 
     @Attribute(name = "versao", required = false)

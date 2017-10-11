@@ -37,7 +37,6 @@ class WSNotaConsulta {
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
-        final CTChaveParser notaFiscalChaveParser = new CTChaveParser(chaveDeAcesso);
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveDeAcesso);
         final CteConsultaStub.CteCabecMsg cabec = new CteConsultaStub.CteCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
