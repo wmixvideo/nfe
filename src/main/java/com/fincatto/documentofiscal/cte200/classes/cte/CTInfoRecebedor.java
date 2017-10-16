@@ -7,10 +7,10 @@ import com.fincatto.documentofiscal.DFBase;
 public class CTInfoRecebedor extends DFBase {
     private static final long serialVersionUID = 6364028832707270314L;
 
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     private String cnpj;
 
-    @Element(name = "CPF")
+    @Element(name = "CPF", required = false)
     private String cpf;
 
     @Element(name = "IE")
