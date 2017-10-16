@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
+import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -22,14 +23,17 @@ public class WSFacade {
 
 	private final WSStatusConsulta wsStatusConsulta;
 	private final WSRecepcaoLote wsRecepcaoLote;
+	private final WSNotaConsulta wsNotaConsulta;
+
 	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new SocketFactory(config), 443));
-        
+
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsRecepcaoLote = new WSRecepcaoLote(config);
         this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
+        this.wsNotaConsulta = new WSNotaConsulta(config);
     }
     
     /**
@@ -57,11 +61,22 @@ public class WSFacade {
     /**
      * Faz a consulta do processamento do lote na SEFAZ
      * 
-     * @param numero do recebimento do lote
+     * @param numRecibo do recebimento do lote
      * @return dados da consulta do processamento do lote
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeConsultaRecLoteRet consultaEnvioRecepcaoLote(String numRecibo) throws Exception {
     	return this.wsRecepcaoLoteRetorno.consultaLote(numRecibo);
+    }
+
+    /**
+     * Faz a consulta do CTe
+     *
+     * @param chaveDeAcesso chave de acesso do cte
+     * @return dados da consulta da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 }

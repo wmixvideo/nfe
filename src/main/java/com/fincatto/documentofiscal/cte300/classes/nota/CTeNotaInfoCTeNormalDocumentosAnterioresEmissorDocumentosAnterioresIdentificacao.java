@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
-import org.simpleframework.xml.Element;
+import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 /**
  * @author Caio
@@ -18,10 +17,10 @@ import com.fincatto.documentofiscal.DFBase;
 public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacao extends DFBase {
     private static final long serialVersionUID = -3320719905693854938L;
 
-    @Element(name = "idDocAntPap", required = false)
+    @ElementList(name = "idDocAntPap", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacaoPapel> identificacaoPapel;
 
-    @Element(name = "idDocAntEle", required = false)
+    @ElementList(name = "idDocAntEle", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacaoEletronico> identificacaoEletronico;
 
     public CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacao() {

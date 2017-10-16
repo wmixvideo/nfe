@@ -1,17 +1,5 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import java.io.StringReader;
-import java.util.Iterator;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
@@ -26,6 +14,16 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.StringReader;
+import java.util.Iterator;
 
 class WSRecepcaoLote {
 
@@ -39,7 +37,7 @@ class WSRecepcaoLote {
 	
 	public CTeEnvioLoteRetornoDados envioRecepcao(CTeEnvioLote cteRecepcaoLote) throws Exception {
 		//assina o lote
-		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString());
+		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString(), "infCte");
 		final CTeEnvioLote loteAssinado = new DFParser().cteRecepcaoParaObjeto(documentoAssinado);
 		
 		//comunica o lote
@@ -67,9 +65,9 @@ class WSRecepcaoLote {
 		}
 		WSRecepcaoLote.LOGGER.info(endpoint);
 		final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint).cteRecepcaoLote(dados, cabecalhoSOAP);
-		final CTeEnvioLoteRetorno retorno = new DFPersister().read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+		final CTeEnvioLoteRetorno retorno = new DFPersister().read(CTeEnvioLoteRetorno.class,
+                autorizacaoLoteResult.getExtraElement().toString());
 		WSRecepcaoLote.LOGGER.info(retorno.toString());
-		
 		return retorno;
 	}
 	

@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.StringUtils;
 
 public abstract class StringValidador {
 
@@ -40,6 +40,18 @@ public abstract class StringValidador {
             }
         }
     }
+
+    public static void email(final String email) {
+        if (email != null) {
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            final Matcher matcher = Pattern.compile(regex).matcher(email);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Email invalido (%s)", email));
+            }
+        }
+    }
+
+
 
     public static void tamanho256(final String string, final String info) {
         if (string != null) {
