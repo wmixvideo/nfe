@@ -1,55 +1,52 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-@Root(name = "envEvento")
+@Root(name = "evCancCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoCancelamento extends DFBase {
 
-    @Attribute(name = "versao", required = true)
-    private String versao;
+    @Element(name = "descEvento")
+    private String descricaoEvento = "Cancelamento";
 
-    @Element(name = "idLote", required = true)
-    private String idLote;
+    @Element(name = "nProt")
+    private String protocoloAutorizacao;
 
-    @ElementList(entry = "evento", inline = true, required = true)
-    private List<CTeEventoCancelamento> evento;
+    @Element(name = "xJust")
+    private String justificativa;
 
-    public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+
+    public void setJustificativa(final String justificativa) {
+        StringValidador.tamanho15a256(justificativa, "Justificativa");
+        this.justificativa = justificativa;
     }
 
-    public String getVersao() {
-        return this.versao;
+    public void setProtocoloAutorizacao(final String protocoloAutorizacao) {
+        StringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
+        this.protocoloAutorizacao = protocoloAutorizacao;
     }
 
-    public String getIdLote() {
-        return this.idLote;
+    public String getJustificativa() {
+        return this.justificativa;
     }
 
-    public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote, "ID do Lote");
-        this.idLote = idLote;
+    public String getProtocoloAutorizacao() {
+        return this.protocoloAutorizacao;
     }
 
-    public List<CTeEventoCancelamento> getEvento() {
-        return this.evento;
+    public void setDescricaoEvento(final String descricaoEvento) {
+        String defaultValue = "Cancelamento";
+        StringValidador.tamanho12(descricaoEvento, defaultValue);
+        StringValidador.equals(defaultValue, descricaoEvento);
+        this.descricaoEvento = descricaoEvento;
     }
 
-    public void setEvento(final List<CTeEventoCancelamento> evento) {
-        ListValidador.tamanho20(evento, "Evento de Cancelamento");
-        this.evento = evento;
+    public String getDescricaoEvento() {
+        return this.descricaoEvento;
     }
 
 }

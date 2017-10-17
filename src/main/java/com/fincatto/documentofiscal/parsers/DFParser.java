@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.parsers;
 
+import com.fincatto.documentofiscal.cte300.classes.nota.CTeProcessado;
 import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -135,4 +136,14 @@ public class DFParser {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
 	}
+
+
+    public CTeProcessado cteProcessadoParaObjeto(final String xml) {
+        try {
+            return this.persister.read(CTeProcessado.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+    }
+
 }
