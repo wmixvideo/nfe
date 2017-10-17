@@ -3,13 +3,19 @@ package com.fincatto.documentofiscal.cte300.webservices;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeDetalhamentoEventoCancelamento;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeEnviaEventoCancelamento;
+import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeEventoCancelamento;
+import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeInfoEventoCancelamento;
+import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeProtocoloEventoCancelamento;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +48,7 @@ class WSCancelamento {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         final RecepcaoEventoStub.CteCabecMsg cabec = new RecepcaoEventoStub.CteCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        cabec.setVersaoDados(VERSAO_LEIAUTE.toString());
+        cabec.setVersaoDados( BigDecimalParser.tamanho5Com2CasasDecimais(VERSAO_LEIAUTE, "Versao do Evento"));
 
         final RecepcaoEventoStub.CteCabecMsgE cabecE = new RecepcaoEventoStub.CteCabecMsgE();
         cabecE.setCteCabecMsg(cabec);
@@ -67,11 +73,37 @@ class WSCancelamento {
         return omElementResult;
     }
 
-    private CTeEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    private CTeProtocoloEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+        final CTChaveParser chaveParser = new CTChaveParser(chaveAcesso);
         final CTeEnviaEventoCancelamento cancelamento = new CTeEnviaEventoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
         cancelamento.setJustificativa(motivo);
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
-        return cancelamento;
+        CTeDetalhamentoEventoCancelamento cTeDetalhamentoEventoCancelamento = new CTeDetalhamentoEventoCancelamento();
+        cTeDetalhamentoEventoCancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
+        cTeDetalhamentoEventoCancelamento.setEventoCancelamento(cancelamento);
+//        cancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
+        final CTeInfoEventoCancelamento infoEvento = new CTeInfoEventoCancelamento();
+        infoEvento.setAmbiente(this.config.getAmbiente());
+        infoEvento.setChave(chaveAcesso);
+        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setDataHoraEvento(DateTime.now());
+        infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, "1"));
+        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
+        infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
+//        infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
+        infoEvento.setCancelamento(cTeDetalhamentoEventoCancelamento);
+
+        CTeEventoCancelamento cTeEventoCancelamento = new CTeEventoCancelamento();
+        cTeEventoCancelamento.setInfoEvento(infoEvento);
+        cTeEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
+
+        CTeProtocoloEventoCancelamento cTeProtocoloEventoCancelamento = new CTeProtocoloEventoCancelamento();
+        cTeProtocoloEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
+        cTeProtocoloEventoCancelamento.setEvento(cTeEventoCancelamento);
+//        cTeProtocoloEventoCancelamento.setEventoRetorno();
+
+        return cTeProtocoloEventoCancelamento;
     }
 }

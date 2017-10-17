@@ -10,14 +10,15 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoCancelamento extends DFBase {
 
+    @Element(name = "descEvento")
+    private String descricaoEvento = "Cancelamento";
+
     @Element(name = "nProt")
     private String protocoloAutorizacao;
 
     @Element(name = "xJust")
     private String justificativa;
 
-    @Element(name = "descEvento")
-    private String descricaoEvento = "Cancelamento";
 
     public void setJustificativa(final String justificativa) {
         StringValidador.tamanho15a256(justificativa, "Justificativa");

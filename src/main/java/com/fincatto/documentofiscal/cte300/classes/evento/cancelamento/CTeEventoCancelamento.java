@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "evento")
+@Root(name = "eventoCTe")
 public class CTeEventoCancelamento extends DFBase {
 
     @Attribute(name = "versao", required = true)

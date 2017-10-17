@@ -1,10 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
+
+import java.math.BigDecimal;
 
 public class CTeEventoRetorno extends DFBase {
 
@@ -29,8 +32,8 @@ public class CTeEventoRetorno extends DFBase {
         return this.versao;
     }
 
-    public void setVersao(final String versao) {
-        this.versao = versao;
+    public void setVersao(final BigDecimal versao) {
+        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
     public NFSignature getAssinatura() {

@@ -14,10 +14,10 @@ import java.math.BigDecimal;
 
 public class CTeInfoEventoCancelamento extends DFBase {
 
-    @Attribute(name = "Id", required = true)
+    @Attribute(name = "Id", required = false)
     private String id;
 
-    @Element(name = "cOrgao", required = true)
+    @Element(name = "cOrgao", required = false)
     private DFUnidadeFederativa orgao;
 
     @Element(name = "tpAmb", required = true)
@@ -29,7 +29,7 @@ public class CTeInfoEventoCancelamento extends DFBase {
     @Element(name = "CPF", required = false)
     private String cpf;
 
-    @Element(name = "chNFe", required = true)
+    @Element(name = "chCTe", required = true)
     private String chave;
 
     @Element(name = "dhEvento", required = true)
@@ -41,11 +41,11 @@ public class CTeInfoEventoCancelamento extends DFBase {
     @Element(name = "nSeqEvento", required = true)
     private Integer numeroSequencialEvento;
 
-    @Element(name = "verEvento", required = true)
+    @Element(name = "verEvento", required = false)
     private String versaoEvento;
 
-    @Element(name = "detEvento", required = true)
-    private CTeInfoCancelamento cancelamento;
+    @Element(name = "detEvento")
+    private CTeDetalhamentoEventoCancelamento cancelamento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -139,5 +139,19 @@ public class CTeInfoEventoCancelamento extends DFBase {
         return this.orgao;
     }
 
+    public void setNumeroSequencialEvento(Integer numeroSequencialEvento) {
+        this.numeroSequencialEvento = numeroSequencialEvento;
+    }
 
+    public void setVersaoEvento(String versaoEvento) {
+        this.versaoEvento = versaoEvento;
+    }
+
+    public CTeDetalhamentoEventoCancelamento getCancelamento() {
+        return cancelamento;
+    }
+
+    public void setCancelamento(CTeDetalhamentoEventoCancelamento cancelamento) {
+        this.cancelamento = cancelamento;
+    }
 }
