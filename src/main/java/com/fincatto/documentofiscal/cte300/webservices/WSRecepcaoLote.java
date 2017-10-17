@@ -65,9 +65,9 @@ class WSRecepcaoLote {
 		}
 		WSRecepcaoLote.LOGGER.info(endpoint);
 		final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint).cteRecepcaoLote(dados, cabecalhoSOAP);
-		final CTeEnvioLoteRetorno retorno = new DFPersister().read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+		final CTeEnvioLoteRetorno retorno = new DFPersister().read(CTeEnvioLoteRetorno.class,
+                autorizacaoLoteResult.getExtraElement().toString());
 		WSRecepcaoLote.LOGGER.info(retorno.toString());
-		
 		return retorno;
 	}
 	

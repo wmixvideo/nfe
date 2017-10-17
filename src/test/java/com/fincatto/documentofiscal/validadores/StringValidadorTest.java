@@ -211,4 +211,36 @@ public class StringValidadorTest {
             Assert.fail();
         }
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void stringNotEquals(){
+        StringValidador.equals("teste", "test");
+    }
+
+    @Test
+    public void stringEquals(){
+        StringValidador.equals("teste", "teste");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void emailError(){
+        try {
+            StringValidador.email("teste@teste");
+        } catch (final IllegalStateException e) {
+            try {
+                StringValidador.email("teste@");
+            } catch (final IllegalStateException e2) {
+                    StringValidador.email("@teste");
+            }
+        }
+    }
+
+    @Test
+    public void email(){
+        StringValidador.email("teste@teste.com");
+    }
+
+
+
+
 }

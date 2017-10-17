@@ -68,6 +68,9 @@ public class CTeNotaInfoIdentificacaoTomadorServico4 extends DFBase {
      * Obs: Informar os dados cadastrais do tomador do serviço
      */
     public void setTomadorServico(final CTTomadorServico tomadorServico) {
+        if (!CTTomadorServico.TOMADOR_4.contains(tomadorServico)) {
+            throw new IllegalArgumentException("O tomador do servico n\u00e3o \u00e9 v\u00e1lido para este papel");
+        }
         this.tomadorServico = tomadorServico;
     }
 

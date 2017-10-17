@@ -1,14 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.util.List;
 
 /**
  * @author Caio
@@ -35,7 +35,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
     @Element(name = "xNome", required = true)
     private String razaoSocial;
 
-    @Element(name = "idDocAnt", required = false)
+    @ElementList(name = "idDocAnt", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacao> identificacaoDocumentosAnteriores;
 
     public CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores() {
