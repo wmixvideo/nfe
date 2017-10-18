@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS00 extends DFBase {
     private static final long serialVersionUID = 2963380942671908304L;
@@ -37,7 +36,7 @@ public class NFNotaInfoItemImpostoICMS00 extends DFBase {
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
         if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE)) {
-            throw new IllegalStateException("Situacao tributaria invalida");
+            throw new IllegalStateException("Situacao tributaria invalida no item ICMS00 ");
         }
         this.situacaoTributaria = situacaoTributaria;
     }
