@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class NFNotaInfoItemImpostoPISAliquota extends DFBase {
     private static final long serialVersionUID = 4109084296960847091L;
@@ -36,7 +35,7 @@ public class NFNotaInfoItemImpostoPISAliquota extends DFBase {
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
         if (!NFNotaInfoItemImpostoPISAliquota.SITUACOES_VALIDAS.contains(situacaoTributaria)) {
-            throw new IllegalStateException("Situacao tributaria invalida");
+            throw new IllegalStateException("Situacao tributaria invalida no item PIS aliquota");
         }
         this.situacaoTributaria = situacaoTributaria;
     }
