@@ -576,4 +576,10 @@ public abstract class StringValidador {
             throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
         }
     }
+
+    public static void equals(String test, String tested){
+        if(!StringUtils.equals(test, tested)){
+            throw new IllegalStateException(String.format("Valor('%s') não corresponde com o padrao('%s')", (Object[]) new String[]{tested, test}));
+        }
+    }
 }
