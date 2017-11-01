@@ -18,7 +18,6 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 @Root(name = "retConsReciMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsultaRetorno extends DFBase {
-    private static final long serialVersionUID = -3300710925743544131L;
 
     @Attribute(name = "versao", required = true)
     private String versao;
