@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTNotaEnderecoEmitente;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -30,7 +29,7 @@ public class MDFInfoEmitente extends DFBase {
     private String nomeFantasia;
 
     @Element(name = "enderEmit", required = true)
-    private CTNotaEnderecoEmitente endereco;
+    private MDFInfoEmitenteEndereco endereco;
 
     public String getCnpj() {
         return this.cnpj;
@@ -79,14 +78,15 @@ public class MDFInfoEmitente extends DFBase {
         this.nomeFantasia = xFant;
     }
 
-    public CTNotaEnderecoEmitente getEnderEmit() {
-        return this.endereco;
-    }
-
     /**
      * Endereço do emitente
      */
-    public void setEnderEmit(final CTNotaEnderecoEmitente enderEmit) {
-        this.endereco = enderEmit;
+    public MDFInfoEmitenteEndereco getEndereco() {
+        return endereco;
     }
+
+    public void setEndereco(MDFInfoEmitenteEndereco endereco) {
+        this.endereco = endereco;
+    }
+
 }
