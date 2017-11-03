@@ -42,6 +42,16 @@ public abstract class StringValidador {
         }
     }
 
+    public static String telefone(final String telefone, final String info) {
+        if (telefone != null) {
+            final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Telefone de tamanho invalido (%s) em %s", telefone, info));
+            }
+        }
+        return telefone;
+    }
+
     public static void email(final String email) {
         if (email != null) {
             String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
@@ -50,6 +60,17 @@ public abstract class StringValidador {
                 throw new IllegalStateException(String.format("Email invalido (%s)", email));
             }
         }
+    }
+
+    public static String email(final String email, final String info) {
+        if (email != null) {
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            final Matcher matcher = Pattern.compile(regex).matcher(email);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Email invalido (%s) em %s", email, info));
+            }
+        }
+        return email;
     }
 
 
@@ -160,6 +181,16 @@ public abstract class StringValidador {
         }
     }
 
+    public static String cnpj(final String cnpj, final String info) {
+        if (cnpj != null) {
+            final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Formato CNPJ Invalido (%s) em %s", cnpj, info));
+            }
+        }
+        return cnpj;
+    }
+
     public static void cpf(final String cpf) {
         if (cpf != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
@@ -169,13 +200,14 @@ public abstract class StringValidador {
         }
     }
 
-    public static void cpf(final String cpf, final String info) {
+    public static String cpf(final String cpf, final String info) {
         if (cpf != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("Formato CPF Invalido (%s) em %s", cpf, info));
             }
         }
+        return cpf;
     }
 
     public static void inscricaoEstadual(final String inscricaoEstadual) {
@@ -194,6 +226,16 @@ public abstract class StringValidador {
                 throw new IllegalStateException(String.format("Inscricao estadual invalido (%s)", inscricaoEstadual));
             }
         }
+    }
+
+    public static String inscricaoEstadualSemIsencao(final String inscricaoEstadual, final String info) {
+        if (inscricaoEstadual != null) {
+            final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Inscricao estadual invalido (%s) em %s", inscricaoEstadual, info));
+            }
+        }
+        return inscricaoEstadual;
     }
 
     public static void exatamente3(final String string, final String info) {

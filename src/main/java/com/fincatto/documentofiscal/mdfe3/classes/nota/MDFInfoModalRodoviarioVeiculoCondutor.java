@@ -32,7 +32,6 @@ public class MDFInfoModalRodoviarioVeiculoCondutor extends DFBase{
     }
 
     public void setCpf(String cpf) {
-        StringValidador.cpf(cpf, "Condutor veiculo");
-        this.cpf = cpf;
+        this.cpf = StringValidador.cpf(cpf, "Condutor veiculo");
     }
 }

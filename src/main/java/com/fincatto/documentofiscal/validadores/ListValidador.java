@@ -74,6 +74,12 @@ public class ListValidador {
         return lista;
     }
 
+    public static <E> List<E> validaListaNaoObrigatoria(final List<E> lista, final int tamanho, final String info){
+        validaTamanho(lista, tamanho, info);
+        return lista;
+    }
+
+
     private static <E> void validaEstadoDaLista(final List<E> lista, final String info) {
         if (lista.isEmpty()) {
             throw new IllegalStateException(String.format("Lista %s obrigatoria esta vazia", info));
