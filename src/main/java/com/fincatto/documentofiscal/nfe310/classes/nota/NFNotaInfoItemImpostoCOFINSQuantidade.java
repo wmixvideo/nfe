@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
     private static final long serialVersionUID = -7179547773505825448L;
@@ -32,7 +31,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         if (!NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO.equals(situacaoTributaria)) {
-            throw new IllegalStateException("Situacao tributaria invalida");
+            throw new IllegalStateException("Situacao tributaria invalida no item COFINS quantidade.");
         }
         this.situacaoTributaria = situacaoTributaria;
     }

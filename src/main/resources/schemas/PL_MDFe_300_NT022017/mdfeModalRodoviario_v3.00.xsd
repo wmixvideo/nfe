@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-sofwares@procergs.rs.gov.br (PROCERGS) -->
-<xs:schema xmlns="http://www.portalfiscal.inf.br/mdfe" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/mdfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns="http://www.portalfiscal.inf.br/mdfe" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/mdfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:include schemaLocation="tiposGeralMDFe_v3.00.xsd"/>
 	<xs:simpleType name="TRNTRC">
 		<xs:annotation>

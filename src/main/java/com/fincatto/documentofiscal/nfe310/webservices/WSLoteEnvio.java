@@ -46,6 +46,21 @@ class WSLoteEnvio {
     }
 
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
+        final NFLoteEnvio loteAssinado = getLoteAssinado(lote);
+        // comunica o lote
+        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(),
+                loteAssinado.getNotas().get(0).getInfo().getIdentificacao().getModelo());
+        return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
+    }
+
+    /**
+     * Retorna o Lote assinado.
+     *
+     * @param lote
+     * @return
+     * @throws Exception
+     */
+    NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote)  throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
@@ -53,7 +68,6 @@ class WSLoteEnvio {
             nota.getInfo().getIdentificacao().setDigitoVerificador(geraChave.getDV());
             nota.getInfo().setIdentificador(geraChave.getChaveAcesso());
         }
-
         // assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
         final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
@@ -75,18 +89,11 @@ class WSLoteEnvio {
                     throw new IllegalArgumentException(String.format("Modelo de nota desconhecida: %s", nota.getInfo().getIdentificacao().getModelo()));
             }
         }
-
         // verifica se todas as notas do lote sao do mesmo modelo
         if ((qtdNF > 0) && (qtdNFC > 0)) {
             throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
         }
-
-        // guarda o modelo das notas
-        final DFModelo modelo = qtdNFC > 0 ? DFModelo.NFCE : DFModelo.NFE;
-
-        // comunica o lote
-        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), modelo);
-        return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
+        return loteAssinado;
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {

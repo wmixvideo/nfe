@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaIPI;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoIPITributado extends DFBase {
     private static final long serialVersionUID = 8601910032276263880L;
@@ -40,7 +39,7 @@ public class NFNotaInfoItemImpostoIPITributado extends DFBase {
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaIPI situacaoTributaria) {
         if (!situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_RECUPERACAO_CREDITO) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.SAIDA_TRIBUTADA) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_SAIDAS)) {
-            throw new IllegalStateException("Situacao tributaria invalido");
+            throw new IllegalStateException("Situacao tributaria invalido no item IPI tributado.");
         }
         this.situacaoTributaria = situacaoTributaria;
     }
