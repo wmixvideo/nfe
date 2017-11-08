@@ -37,9 +37,9 @@ public class MDFInfoInformacoesCTe {
 
 
     /**
-     * TODO Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
+     * Preenchido quando for  transporte de produtos classificados pela ONU como perigosos.
      */
-//    @ElementList(entry = "peri", inline = true, required = false)
+    @ElementList(entry = "peri", inline = true, required = false)
     private List<MDFInfoPerigosos> perigosos;
 
     public String getChaveCTe() {

@@ -25,8 +25,8 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     private String xMunDescarga;
     @ElementList(entry = "infCTe", inline = true, required = false)
     private List<MDFInfoInformacoesCTe> infCTe;
-    @ElementList(entry = "infNFe", inline = true, required = false)
-    private List<InfNFe> infNFe;
-    @ElementList(entry = "infMDFeTransp", inline = true, required = false)
-    private List<InfMDFeTransp> infMDFeTransp;
+//    @ElementList(entry = "infNFe", inline = true, required = false)
+//    private List<InfNFe> infNFe;
+//    @ElementList(entry = "infMDFeTransp", inline = true, required = false)
+//    private List<InfMDFeTransp> infMDFeTransp;
 }
