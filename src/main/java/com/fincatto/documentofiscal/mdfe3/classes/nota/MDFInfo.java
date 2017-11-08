@@ -14,16 +14,22 @@ import java.util.List;
 /**
  * Created by Eldevan Nery Junior on 03/11/17.
  *
+ * Informações do MDF-e.
+ *
  */
 @Root(name = "infMdfe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfo extends DFBase {
 
-    public static final String IDENT = "MDF";
+    public static final String IDENT = "MDFe";
 
+    /**
+     * Tipo Versão do MDF-e - 3.00.
+     */
     @Attribute(name = "versao")
-    private String versao;
-    
+    private String versao = MDFe.VERSAO;
+
+
     @Attribute(name = "Id")
     private String identificador;
 
@@ -64,7 +70,7 @@ public class MDFInfo extends DFBase {
 
     /**
      * Identificador da tag a ser assinada<br>
-     * Informar a chave de acesso do MDF-e e precedida do literal "MDF"
+     * Informar a chave de acesso do MDF-e e precedida do literal "MDFe"
      */
     public void setIdentificador(final String identificador) {
         StringValidador.exatamente44N(identificador, "Identificador");
@@ -115,6 +121,7 @@ public class MDFInfo extends DFBase {
      * Versão do leiaute
      */
     public void setVersao(final String versao) {
+        StringValidador.equals(MDFe.VERSAO, versao);
         this.versao = versao;
     }
 

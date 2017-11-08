@@ -16,6 +16,8 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFe extends DFBase {
 
+    public static final String VERSAO = "3.00";
+
     @Element(name = "infMdfe", required = true)
     private MDFInfo info;
 
