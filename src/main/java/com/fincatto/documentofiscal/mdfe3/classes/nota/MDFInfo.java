@@ -36,8 +36,27 @@ public class MDFInfo extends DFBase {
     @Element(name = "infModal")
     private MDFInfoModal mdfInfoModal;
 
+    /**
+     * Informações dos Documentos fiscais vinculados ao manifesto.
+     */
+    @Element(name = "infDoc")
+    private MDFInfoInformacoesDocumentos informacoesDocumentos;
+
+    //TODO Informações de Seguro da Carga, terminar.
+//    @Element(name = "seg", required = false)
+//    private MDFInfoSeguro seguro
+
+    @Element(name = "tot")
+    private MDFInfoTotal infoTotal;
+
+    @ElementList(entry = "lacres", inline = true, required = false)
+    private List<MDFInfoLacre1A60> lacres;
+
     @ElementList(name = "autXML", inline = true, required = false)
     private List<MDFInfoAutorizacaoDownload> autorizacaoDownload;
+
+    @Element(name = "infAdic", required = false)
+    private MDFInfoInformacoesAdicionais informacoesAdicionais;
 
     public String getIdentificador() {
         return this.identificador;

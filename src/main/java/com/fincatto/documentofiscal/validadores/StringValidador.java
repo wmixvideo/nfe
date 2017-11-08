@@ -584,6 +584,8 @@ public abstract class StringValidador {
             }
             if(exatamente){
                 StringValidador.validaTamanhoExato(paraValidar, tamanho, info);
+            }else{
+                StringValidador.validaTamanhoMaximo(paraValidar, tamanho, info);
             }
         }
         return paraValidar;
