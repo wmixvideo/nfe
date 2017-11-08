@@ -7,22 +7,17 @@ import org.simpleframework.xml.ElementList;
 import java.util.List;
 
 /**
- * Created by Eldevan Nery Junior on 06/11/17.
+ * Created by Eldevan Nery Junior on 08/11/17.
  *
- * Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte.
+ * Manifesto Eletrônico de Documentos Fiscais. Somente para modal Aquaviário (vide regras MOC).
  */
-public class MDFInfoInformacoesCTe {
+public class MDFInfoInformacoesMDFe {
 
     /**
-     * Conhecimento Eletrônico - Chave de Acesso
+     * Nota Fiscal Eletronica - Chave de Acesso
      */
-    @Element(name = "chCTe" )
-    private String chaveCTe;
-    /**
-     * Segundo código de barras
-     */
-    @Element(name = "SegCodBarra", required = false)
-    private String segCodBarra;
+    @Element(name = "chMDFe" )
+    private String chaveMDFe;
     /**
      * Indicador de Reentrega
      */
@@ -41,21 +36,13 @@ public class MDFInfoInformacoesCTe {
     @ElementList(entry = "peri", inline = true, required = false)
     private List<MDFInfoPerigosos> perigosos;
 
-    public String getChaveCTe() {
-        return chaveCTe;
+    public String getChaveMDFe() {
+        return chaveMDFe;
     }
 
-    public void setChaveCTe(String chaveCTe) {
-        StringValidador.exatamente44N(chaveCTe, "Chave CT-e informações");
-        this.chaveCTe = chaveCTe;
-    }
-
-    public String getSegCodBarra() {
-        return segCodBarra;
-    }
-
-    public void setSegCodBarra(String segCodBarra) {
-        this.segCodBarra = StringValidador.validador(segCodBarra, "Segundo codigo barras", 36, true, true);
+    public void setChaveMDFe(String chaveMDFe) {
+        StringValidador.exatamente44N(chaveMDFe, "Chave NF-e informações");
+        this.chaveMDFe = chaveMDFe;
     }
 
     public String getIndicadorReentrega() {

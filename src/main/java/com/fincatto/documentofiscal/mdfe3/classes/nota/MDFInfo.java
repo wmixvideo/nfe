@@ -118,4 +118,47 @@ public class MDFInfo extends DFBase {
         this.versao = versao;
     }
 
+    public void setIdentificacao(MDFInfoIdentificacao identificacao) {
+        this.identificacao = identificacao;
+    }
+
+    public MDFInfoModal getMdfInfoModal() {
+        return mdfInfoModal;
+    }
+
+    public void setMdfInfoModal(MDFInfoModal mdfInfoModal) {
+        this.mdfInfoModal = mdfInfoModal;
+    }
+
+    public MDFInfoInformacoesDocumentos getInformacoesDocumentos() {
+        return informacoesDocumentos;
+    }
+
+    public void setInformacoesDocumentos(MDFInfoInformacoesDocumentos informacoesDocumentos) {
+        this.informacoesDocumentos = informacoesDocumentos;
+    }
+
+    public MDFInfoTotal getInfoTotal() {
+        return infoTotal;
+    }
+
+    public void setInfoTotal(MDFInfoTotal infoTotal) {
+        this.infoTotal = infoTotal;
+    }
+
+    public List<MDFInfoLacre1A60> getLacres() {
+        return lacres;
+    }
+
+    public void setLacres(List<MDFInfoLacre1A60> lacres) {
+        this.lacres = lacres;
+    }
+
+    public MDFInfoInformacoesAdicionais getInformacoesAdicionais() {
+        return informacoesAdicionais;
+    }
+
+    public void setInformacoesAdicionais(MDFInfoInformacoesAdicionais informacoesAdicionais) {
+        this.informacoesAdicionais = informacoesAdicionais;
+    }
 }

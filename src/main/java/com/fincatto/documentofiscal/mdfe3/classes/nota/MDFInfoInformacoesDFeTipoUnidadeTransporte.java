@@ -14,7 +14,7 @@ import java.util.List;
  * Informações das Unidades de Transporte (Carreta/Reboque/Vagão)
  * Deve ser preenchido com as informações das unidades de transporte utilizadas.
  */
-public class MDFInfoInformacoesCTeTipoUnidadeTransporte {
+public class MDFInfoInformacoesDFeTipoUnidadeTransporte {
 
     /**
      * Tipo da Unidade de Transporte
@@ -38,7 +38,7 @@ public class MDFInfoInformacoesCTeTipoUnidadeTransporte {
      * Informações das Unidades de Carga (Containeres/ULD/Outros).
      */
     @ElementList(entry = "infUnidCarga", inline = true, required = false)
-    private List<MDFInfoInformacoesCTeTipoUnidadeCarga> infUnidCarga;
+    private List<MDFInfoInformacoesDFeTipoUnidadeCarga> infUnidCarga;
 
     @Element(name = "qtdRat")
     private String qtdRateada;

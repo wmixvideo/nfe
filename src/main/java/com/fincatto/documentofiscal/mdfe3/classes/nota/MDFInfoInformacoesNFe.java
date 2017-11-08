@@ -7,17 +7,17 @@ import org.simpleframework.xml.ElementList;
 import java.util.List;
 
 /**
- * Created by Eldevan Nery Junior on 06/11/17.
+ * Created by Eldevan Nery Junior on 08/11/17.
  *
- * Conhecimentos de Tranporte - usar este grupo quando for prestador de serviço de transporte.
+ * Nota Fiscal Eletronica.
  */
-public class MDFInfoInformacoesCTe {
+public class MDFInfoInformacoesNFe {
 
     /**
-     * Conhecimento Eletrônico - Chave de Acesso
+     * Nota Fiscal Eletronica - Chave de Acesso
      */
-    @Element(name = "chCTe" )
-    private String chaveCTe;
+    @Element(name = "chNFe" )
+    private String chaveNFe;
     /**
      * Segundo código de barras
      */
@@ -41,13 +41,13 @@ public class MDFInfoInformacoesCTe {
     @ElementList(entry = "peri", inline = true, required = false)
     private List<MDFInfoPerigosos> perigosos;
 
-    public String getChaveCTe() {
-        return chaveCTe;
+    public String getChaveNFe() {
+        return chaveNFe;
     }
 
-    public void setChaveCTe(String chaveCTe) {
-        StringValidador.exatamente44N(chaveCTe, "Chave CT-e informações");
-        this.chaveCTe = chaveCTe;
+    public void setChaveNFe(String chaveNFe) {
+        StringValidador.exatamente44N(chaveNFe, "Chave NF-e informações");
+        this.chaveNFe = chaveNFe;
     }
 
     public String getSegCodBarra() {

@@ -6,7 +6,10 @@ import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
-public class MDFInfoInformacoesCTeTipoUnidadeCarga {
+/**
+ *  Created by Eldevan Nery Junior on 06/11/17.
+ */
+public class MDFInfoInformacoesDFeTipoUnidadeCarga {
 
     @Element(name = "tpUnidCarga")
     private MDFTipoUnidadeCarga tipoUnidadeCarga;
