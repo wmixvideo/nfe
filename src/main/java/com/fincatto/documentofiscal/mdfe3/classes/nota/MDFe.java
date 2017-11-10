@@ -18,7 +18,7 @@ public class MDFe extends DFBase {
 
     public static final String VERSAO = "3.00";
 
-    @Element(name = "infMdfe", required = true)
+    @Element(name = "infMdfe")
     private MDFInfo info;
 
     @Element(name = "Signature", required = false)

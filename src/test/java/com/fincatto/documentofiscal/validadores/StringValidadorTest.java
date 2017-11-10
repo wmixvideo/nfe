@@ -238,6 +238,7 @@ public class StringValidadorTest {
     @Test
     public void email(){
         StringValidador.email("teste@teste.com");
+
     }
 
     @Test
