@@ -238,9 +238,44 @@ public class StringValidadorTest {
     @Test
     public void email(){
         StringValidador.email("teste@teste.com");
+
     }
 
+    @Test
+    public void tara(){
+        StringValidador.capacidadeNDigitos("0", "capacidadeNDigitos",0);
+        StringValidador.capacidadeNDigitos("20", "capacidadeNDigitos",1);
+        StringValidador.capacidadeNDigitos("10000", "capacidadeNDigitos",4);
+    }
 
+    @Test(expected = IllegalStateException.class)
+    public void taraError(){
+        try {
+            StringValidador.capacidadeNDigitos("10000.0", "capacidadeNDigitos",5);
+        } catch (final IllegalStateException e) {
+            try {
+                StringValidador.capacidadeNDigitos("1000KG", "capacidadeNDigitos",5);
+            } catch (final IllegalStateException e2) {
+                StringValidador.capacidadeNDigitos("", "capacidadeNDigitos",5);
+            }
+        }
+    }
 
+    @Test(expected = IllegalStateException.class)
+    public void validadorStrings(){
+        try {
+            StringValidador.validador("1000000",
+                    "Totais", 6,false, true);
+        } catch (final IllegalStateException e) {
+            try {
+                StringValidador.validador("a",
+                        "Totais", 6,false, true);
+            } catch (final IllegalStateException e2) {
+                StringValidador.validador("10000",
+                        "Totais", 6,true, true);
+            }
+        }
+
+    }
 
 }
