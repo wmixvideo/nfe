@@ -44,7 +44,7 @@ public enum MDFAutorizador3 {
         @Override
         public String getMDFeStatusServico(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
-                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx "
+                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx"
                     : "https://mdfe.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx";
         }
 
