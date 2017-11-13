@@ -84,7 +84,6 @@ public abstract class BigDecimalParser {
 
 
     private static String parse(BigDecimal valor, final String formato, final int tamanho, final int posicaoPontoFlutuante, final String info) {
-        System.out.println(formato);
         if (valor == null) {
             return null;
         }
