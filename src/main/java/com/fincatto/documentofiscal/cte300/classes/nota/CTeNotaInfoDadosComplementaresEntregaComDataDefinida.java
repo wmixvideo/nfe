@@ -18,7 +18,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
 public class CTeNotaInfoDadosComplementaresEntregaComDataDefinida extends DFBase {
     private static final long serialVersionUID = -2993904878236899549L;
 
-    @Element(name = "tpPers", required = true)
+    @Element(name = "tpPer", required = true)
     private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
 
     @Element(name = "dProg", required = true)
