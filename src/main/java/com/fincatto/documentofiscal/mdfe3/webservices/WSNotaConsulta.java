@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
-import com.fincatto.documentofiscal.cte300.CTeConfig;
-import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsulta;
-import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
-import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
-import com.fincatto.documentofiscal.cte300.webservices.consulta.CteConsultaStub;
+import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
+import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsulta;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
+import com.fincatto.documentofiscal.mdfe3.webservices.consulta.MDFeConsultaStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -18,50 +18,50 @@ class WSNotaConsulta {
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String VERSAO_SERVICO = "3.00";
     private final static Logger LOGGER = LoggerFactory.getLogger(WSNotaConsulta.class);
-    private final CTeConfig config;
+    private final MDFeConfig config;
 
-    WSNotaConsulta(final CTeConfig config) {
+    WSNotaConsulta(final MDFeConfig config) {
         this.config = config;
     }
 
-    public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+    public MDFeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
         WSNotaConsulta.LOGGER.debug(omElementConsulta.toString());
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
-        final CTeNotaConsultaRetorno retorno = new DFPersister().read(CTeNotaConsultaRetorno.class,
+        final MDFeNotaConsultaRetorno retorno = new DFPersister().read(MDFeNotaConsultaRetorno.class,
                 omElementRetorno.toString());
         WSNotaConsulta.LOGGER.info(retorno.toString());
         return retorno;
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
-        final CTChaveParser ctChaveParser = new CTChaveParser(chaveDeAcesso);
-        final CteConsultaStub.CteCabecMsg cabec = new CteConsultaStub.CteCabecMsg();
+        final MDFChaveParser ctChaveParser = new MDFChaveParser(chaveDeAcesso);
+        final MDFeConsultaStub.MdfeCabecMsg cabec = new MDFeConsultaStub.MdfeCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
         cabec.setVersaoDados(WSNotaConsulta.VERSAO_SERVICO);
 
-        final CteConsultaStub.CteCabecMsgE cabecE = new CteConsultaStub.CteCabecMsgE();
-        cabecE.setCteCabecMsg(cabec);
+        final MDFeConsultaStub.MdfeCabecMsgE cabecE = new MDFeConsultaStub.MdfeCabecMsgE();
+        cabecE.setMdfeCabecMsg(cabec);
 
-        final CteConsultaStub.CteDadosMsg dados = new CteConsultaStub.CteDadosMsg();
+        final MDFeConsultaStub.MdfeDadosMsg dados = new MDFeConsultaStub.MdfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
 
         WSNotaConsulta.LOGGER.info(cabec.toString());
 
-        final CTAutorizador31 autorizador = CTAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-        final String endpoint = autorizador.getCteConsultaProtocolo(this.config.getAmbiente());
+        final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(this.config.getCUF());
+        final String endpoint = autorizador.getMDFeConsulta(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         WSNotaConsulta.LOGGER.info(endpoint);
-        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint).cteConsultaCT(dados, cabecE);
-        return cteConsultaCTResult.getExtraElement();
+        final MDFeConsultaStub.MdfeConsultaMDFResult mdfeConsultaMDFResult = new MDFeConsultaStub(endpoint).mdfeConsultaMDF(dados, cabecE);
+        return mdfeConsultaMDFResult.getExtraElement();
     }
 
-    private CTeNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {
-        final CTeNotaConsulta notaConsulta = new CTeNotaConsulta();
+    private MDFeNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {
+        final MDFeNotaConsulta notaConsulta = new MDFeNotaConsulta();
         notaConsulta.setAmbiente(this.config.getAmbiente());
         notaConsulta.setChave(chaveDeAcesso);
         notaConsulta.setServico(WSNotaConsulta.NOME_SERVICO);

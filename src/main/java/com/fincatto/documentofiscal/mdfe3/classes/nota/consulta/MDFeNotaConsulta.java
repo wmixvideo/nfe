@@ -11,20 +11,20 @@ import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "consSitCTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Root(name = "consSitMDFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeNotaConsulta extends DFBase {
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
 
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
-    @Element(name = "xServ", required = true)
-    private String servico;
+    @Element(name = "xServ")
+    private String servico ;
 
-    @Element(name = "chCTe", required = true)
+    @Element(name = "chMDFe")
     private String chave;
 
     public void setVersao(final BigDecimal versao) {

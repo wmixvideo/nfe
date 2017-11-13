@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.SocketFactory;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class WSFacade {
 
 	private final WSStatusConsulta wsStatusConsulta;
 //	private final WSRecepcaoLote wsRecepcaoLote;
-//	private final WSNotaConsulta wsNotaConsulta;
+	private final WSNotaConsulta wsNotaConsulta;
 //    private final WSCancelamento wsCancelamento;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
@@ -28,7 +29,7 @@ public class WSFacade {
         this.wsStatusConsulta = new WSStatusConsulta(config);
 //        this.wsRecepcaoLote = new WSRecepcaoLote(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
-//        this.wsNotaConsulta = new WSNotaConsulta(config);
+        this.wsNotaConsulta = new WSNotaConsulta(config);
 //        this.wsCancelamento = new WSCancelamento(config);
     }
     
@@ -51,5 +52,17 @@ public class WSFacade {
     public MDFeConsStatServRet consultaStatus() throws Exception {
         return this.wsStatusConsulta.consultaStatus(DFUnidadeFederativa.RS);
     }
-    
+
+    /**
+     * Faz a consulta do MDF-e
+     *
+     * @param chaveDeAcesso chave de acesso do MDF-e
+     * @return dados da consulta da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public MDFeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
+    }
+
+
 }
