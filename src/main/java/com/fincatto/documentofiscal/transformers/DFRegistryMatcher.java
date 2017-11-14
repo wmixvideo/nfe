@@ -93,44 +93,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(CTIdentificadorEmissor.class, new CTIdentificadorEmissorTransformer());
         super.bind(CTTipoUnidadeTransporte.class, new CTTipoUnidadeTransporteTransformer());
         super.bind(CTTipoDocumentoTransporteAnterior.class, new CTTipoDocumentoTransporteAnteriorTransformer());
-        // CTe 300
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoEmissaoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTFinalidade.class, new com.fincatto.documentofiscal.cte300.transformes.CTFinalidadeTransformes());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTProcessoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTProcessoEmissaoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTModal.class, new com.fincatto.documentofiscal.cte300.transformes.CTModalTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoServico.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoServicoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTRetirada.class, new com.fincatto.documentofiscal.cte300.transformes.CTRetiradaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTIndicadorTomador.class, new com.fincatto.documentofiscal.cte300.transformes.CTIndicadorTomadorTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoImpressao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoImpressaoTransformes());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTomadorServico.class, new com.fincatto.documentofiscal.cte300.transformes.CTTomadorServicoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoPrazoDataEntregaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedida.class, new com.fincatto.documentofiscal.cte300.transformes.CTUnidadeMedidaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTModeloNF.class, new com.fincatto.documentofiscal.cte300.transformes.CTModeloNFTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeCarga.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoUnidadeCargaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeTransporte.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoUnidadeTransporteTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoDocumento.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoDocumentoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoDocumentoTransporteAnteriorTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS.class, new com.fincatto.documentofiscal.cte300.transformes.CTCodigoSituacaoTributariaICMSTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTInformacoesManuseio.class, new com.fincatto.documentofiscal.cte300.transformes.CTInformacoesManuseioTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTClasseTarifa.class, new com.fincatto.documentofiscal.cte300.transformes.CTClasseTarifaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedidaProdPerigosos.class, new com.fincatto.documentofiscal.cte300.transformes.CTUnidadeMedidaProdPerigososTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoDirecao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoDirecaoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoTrafegoTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoFerroviaTransformer());
-    	super.bind(com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte300.transformes.CTIndicadoNegociavelTransformer());
-        //MDF-e
-        super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());
-        super.bind(MDFProcessoEmissao.class, new MDFProcessoEmissaoTransformer());
-        super.bind(MDFTipoCarroceria.class, new MDFTipoCarroceriaTransformer());
-        super.bind(MDFTipoEmissao.class, new MDFTipoEmissaoTransformer());
-        super.bind(MDFTipoEmitente.class, new MDFTipoEmitenteTransformer());
-        super.bind(MDFTipoProprietario.class, new MDFTipoProprietarioTransformer());
-        super.bind(MDFTipoRodado.class, new MDFTipoRodadoTransformer());
-        super.bind(MDFTipoTranportador.class, new MDFTipoTranportadorTransformer());
-        super.bind(MDFTipoUnidadeCarga.class, new MDFTipoUnidadeCargaTransformer());
-        super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
-        super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
 
+        // CTe 300
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoEmissaoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTFinalidade.class, new com.fincatto.documentofiscal.cte300.transformes.CTFinalidadeTransformes());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTProcessoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTProcessoEmissaoTransformer());
@@ -156,5 +120,19 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoTrafegoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoFerroviaTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte300.transformes.CTIndicadoNegociavelTransformer());
+
+        //MDF-e
+        super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());
+        super.bind(MDFProcessoEmissao.class, new MDFProcessoEmissaoTransformer());
+        super.bind(MDFTipoCarroceria.class, new MDFTipoCarroceriaTransformer());
+        super.bind(MDFTipoEmissao.class, new MDFTipoEmissaoTransformer());
+        super.bind(MDFTipoEmitente.class, new MDFTipoEmitenteTransformer());
+        super.bind(MDFTipoProprietario.class, new MDFTipoProprietarioTransformer());
+        super.bind(MDFTipoRodado.class, new MDFTipoRodadoTransformer());
+        super.bind(MDFTipoTranportador.class, new MDFTipoTranportadorTransformer());
+        super.bind(MDFTipoUnidadeCarga.class, new MDFTipoUnidadeCargaTransformer());
+        super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
+        super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
+
     }
 }
