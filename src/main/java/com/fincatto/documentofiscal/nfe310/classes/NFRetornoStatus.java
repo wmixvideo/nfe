@@ -483,6 +483,10 @@ public enum NFRetornoStatus {
     CODIGO_798(798, "Rejei\u00e7\u00e3o: Valor total do ICMS relativo Fundo de Combate \u00e0 Pobreza (FCP) da UF de destino difere do somat\u00f3rio do valor dos itens"),
     CODIGO_799(799, "Rejei\u00e7\u00e3o: Valor total do ICMS Interestadual da UF de estino difere do somat\u00f3rio dos itens"),
     CODIGO_800(800, "Rejei\u00e7\u00e3o: Valor total do ICMS Interestadual da UF do remetente difere do somat\u00f3rio dos itens"),
+    CODIGO_805(805, "Rejei\u00E7\u00E3o: A SEFAZ do destinat\u00E1rio n\u00E3o permite Contribuinte Isento de Inscri\u00E7\u00E3o Estadual"),
+    CODIGO_806(806, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com ICMS-ST sem informa\u00E7\u00E3o do CEST"),
+    CODIGO_807(807, "Rejei\u00E7\u00E3o: NFC-e com grupo de ICMS para a UF do destinat\u00E1rio"),
+    CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comércio Exterior"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
