@@ -4,6 +4,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.SocketFactory;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
+import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
+import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
 import org.apache.commons.httpclient.protocol.Protocol;
 
@@ -18,7 +20,7 @@ public class WSFacade {
 
 
 	private final WSStatusConsulta wsStatusConsulta;
-//	private final WSRecepcaoLote wsRecepcaoLote;
+	private final WSRecepcaoLote wsRecepcaoLote;
 	private final WSNotaConsulta wsNotaConsulta;
 //    private final WSCancelamento wsCancelamento;
 
@@ -27,10 +29,21 @@ public class WSFacade {
     public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new SocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
-//        this.wsRecepcaoLote = new WSRecepcaoLote(config);
+        this.wsRecepcaoLote = new WSRecepcaoLote(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
 //        this.wsCancelamento = new WSCancelamento(config);
+    }
+
+    /**
+     * Faz o envio do lote para a SEFAZ
+     *
+     * @param mdfEnvioLote a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do lote e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
+    public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
+        return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
     }
     
     /**

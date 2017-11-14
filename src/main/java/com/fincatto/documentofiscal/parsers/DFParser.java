@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.parsers;
 
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeProcessado;
+import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -143,6 +144,15 @@ public class DFParser {
             return this.persister.read(CTeProcessado.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+    }
+
+    //MDFe
+    public MDFEnvioLote mdfeRecepcaoParaObjeto(final String xml) {
+        try {
+            return this.persister.read(MDFEnvioLote.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml do Lote MDFe: %s", e.getMessage()));
         }
     }
 

@@ -16,7 +16,7 @@ import org.simpleframework.xml.Root;
  */
 @Root(name = "enviMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
-public class MDFLoteEnvio extends DFBase {
+public class MDFEnvioLote extends DFBase {
 
     @Attribute(name = "versao")
     private String versao = MDFe.VERSAO;
