@@ -1,7 +1,6 @@
-package com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento;
+package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeInfoEvento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;

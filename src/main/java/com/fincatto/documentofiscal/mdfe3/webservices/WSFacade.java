@@ -7,7 +7,10 @@ import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeCons
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetornoCancelamento;
 import org.apache.commons.httpclient.protocol.Protocol;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -22,7 +25,8 @@ public class WSFacade {
 	private final WSStatusConsulta wsStatusConsulta;
 	private final WSRecepcaoLote wsRecepcaoLote;
 	private final WSNotaConsulta wsNotaConsulta;
-//    private final WSCancelamento wsCancelamento;
+    private final WSCancelamento wsCancelamento;
+    private final WSEncerramento wsEncerramento;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
 
@@ -32,7 +36,8 @@ public class WSFacade {
         this.wsRecepcaoLote = new WSRecepcaoLote(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
-//        this.wsCancelamento = new WSCancelamento(config);
+        this.wsCancelamento = new WSCancelamento(config);
+        this.wsEncerramento = new WSEncerramento(config);
     }
 
     /**
@@ -73,9 +78,47 @@ public class WSFacade {
      * @return dados da consulta da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public MDFeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+    public MDFeNotaConsultaRetorno consultaMdfe(final String chaveDeAcesso) throws Exception {
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
+    /**
+     * Faz o cancelamento do MDFe
+     *
+     * @param chave     chave de acesso da nota
+     * @param numeroProtocolo numero do protocolo da nota
+     * @param motivo          motivo do cancelamento
+     * @return dados do cancelamento da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public MDFeRetornoCancelamento cancelaMdfe(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
+    }
+
+    /**
+     * Faz o cancelamento da nota com evento ja assinado
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave       chave de acesso da nota
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do cancelamento da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public MDFeRetornoCancelamento cancelaMdfeAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Faz o cancelamento do MDFe
+     *
+     * @param chaveAcesso     chave de acesso da nota
+     * @param numeroProtocolo numero do protocolo da nota
+     * @return dados do encerramento da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public MDFeRetorno encerramento(final String chaveAcesso, final String numeroProtocolo
+            , final String codigoMunicipio, final LocalDate dataEncerramento, final DFUnidadeFederativa unidadeFederativa) throws Exception {
+        return this.wsEncerramento.encerraMdfe(chaveAcesso, numeroProtocolo, codigoMunicipio, dataEncerramento, unidadeFederativa);
+    }
 
 }
