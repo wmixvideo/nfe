@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 
 public class MDFeEventoRetorno extends DFBase {
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
 
-    @Element(name = "infEvento", required = true)
+    @Element(name = "infEvento")
     private MDFeInfoEventoRetorno infoEventoRetorno;
 
     @Element(name = "Signature", required = false)

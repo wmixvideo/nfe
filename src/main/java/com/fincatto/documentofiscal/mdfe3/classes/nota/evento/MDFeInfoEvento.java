@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
@@ -15,13 +14,13 @@ import java.math.BigDecimal;
 /**
  * Tipo Evento
  */
-public abstract  class MDFeInfoEvento<T> extends DFBase {
+public class MDFeInfoEvento extends DFBase {
 
     @Attribute(name = "Id", required = false)
     private String id;
 
     @Element(name = "cOrgao", required = false)
-    private DFUnidadeFederativa orgao;
+    private String orgao;
 
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
@@ -49,9 +48,9 @@ public abstract  class MDFeInfoEvento<T> extends DFBase {
      * (cancelamento, encerramento, registro de passagem).
      */
     @Element(name = "detEvento")
-    private T detEvento;
+    private MDFeDetalhamentoEvento detEvento;
 
-    public void setOrgao(final DFUnidadeFederativa orgao) {
+    public void setOrgao(final String orgao) {
         this.orgao = orgao;
     }
 
@@ -124,7 +123,7 @@ public abstract  class MDFeInfoEvento<T> extends DFBase {
         return this.versaoEvento;
     }
 
-    public DFUnidadeFederativa getOrgao() {
+    public String getOrgao() {
         return this.orgao;
     }
 
@@ -136,11 +135,11 @@ public abstract  class MDFeInfoEvento<T> extends DFBase {
         this.versaoEvento = versaoEvento;
     }
 
-    public T getDetEvento() {
+    public MDFeDetalhamentoEvento getDetEvento() {
         return detEvento;
     }
 
-    public void setDetEvento(T detEvento) {
+    public void setDetEvento(MDFeDetalhamentoEvento detEvento) {
         this.detEvento = detEvento;
     }
 }

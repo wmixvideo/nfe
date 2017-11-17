@@ -12,19 +12,22 @@ public class MDFeInfoEventoRetorno extends DFBase {
     @Attribute(name = "Id", required = false)
     private String id;
 
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "verEvento", required = false)
+    private String versaoEvento;
+
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
-    @Element(name = "verAplic", required = true)
+    @Element(name = "verAplic")
     private String versaoAplicativo;
 
-    @Element(name = "cOrgao", required = true)
+    @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
 
-    @Element(name = "cStat", required = true)
+    @Element(name = "cStat")
     private Integer codigoStatus;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo")
     private String motivo;
 
     @Element(name = "chMDFe", required = false)
@@ -39,7 +42,7 @@ public class MDFeInfoEventoRetorno extends DFBase {
     @Element(name = "nSeqEvento", required = false)
     private Integer numeroSequencialEvento;
 
-    @Element(name = "dhRegEvento", required = true)
+    @Element(name = "dhRegEvento")
     private LocalDateTime dataHoraRegistro;
 
     @Element(name = "nProt", required = false)
@@ -139,5 +142,13 @@ public class MDFeInfoEventoRetorno extends DFBase {
 
     public void setNumeroProtocolo(String numeroProtocolo) {
         this.numeroProtocolo = numeroProtocolo;
+    }
+
+    public String getVersaoEvento() {
+        return versaoEvento;
+    }
+
+    public void setVersaoEvento(String versaoEvento) {
+        this.versaoEvento = versaoEvento;
     }
 }
