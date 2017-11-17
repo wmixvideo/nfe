@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFProtocolo;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeProtocoloEvento;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeProtocoloEvento;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;

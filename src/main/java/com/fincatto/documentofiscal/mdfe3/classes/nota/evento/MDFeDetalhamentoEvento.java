@@ -2,8 +2,11 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeEnviaEventoCancelamento;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
@@ -29,8 +32,8 @@ public class MDFeDetalhamentoEvento extends DFBase {
         return versaoEvento;
     }
 
-    public void setVersaoEvento(String versaoEvento) {
-        this.versaoEvento = versaoEvento;
+    public void setVersaoEvento(BigDecimal versaoEvento) {
+        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "versao do Evento");
     }
 
     public MDFeEnviaEventoCancelamento getMdFeEnviaEventoCancelamento() {
