@@ -11,13 +11,13 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 
 @Root(name = "eventoMDFe")
-public class MDFeEvento<T extends MDFeInfoEvento> extends DFBase {
+public class MDFeEvento extends DFBase {
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
 
-    @Element(name = "infEvento", required = true)
-    private T infoEvento;
+    @Element(name = "infEvento")
+    private MDFeInfoEvento infoEvento;
 
     @Element(name = "Signature", required = false)
     private NFSignature assinatura;
@@ -30,11 +30,11 @@ public class MDFeEvento<T extends MDFeInfoEvento> extends DFBase {
         this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
-    public T getInfoEvento() {
+    public MDFeInfoEvento getInfoEvento() {
         return infoEvento;
     }
 
-    public void setInfoEvento(T infoEvento) {
+    public void setInfoEvento(MDFeInfoEvento infoEvento) {
         this.infoEvento = infoEvento;
     }
 
