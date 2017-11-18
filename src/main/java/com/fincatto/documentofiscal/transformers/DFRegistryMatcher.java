@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.transformers;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.*;
+import com.fincatto.documentofiscal.mdfe3.transformers.*;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -91,6 +93,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(CTIdentificadorEmissor.class, new CTIdentificadorEmissorTransformer());
         super.bind(CTTipoUnidadeTransporte.class, new CTTipoUnidadeTransporteTransformer());
         super.bind(CTTipoDocumentoTransporteAnterior.class, new CTTipoDocumentoTransporteAnteriorTransformer());
+
         // CTe 300
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoEmissaoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTFinalidade.class, new com.fincatto.documentofiscal.cte300.transformes.CTFinalidadeTransformes());
@@ -117,5 +120,19 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoTrafegoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoFerroviaTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte300.transformes.CTIndicadoNegociavelTransformer());
+
+        //MDF-e
+        super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());
+        super.bind(MDFProcessoEmissao.class, new MDFProcessoEmissaoTransformer());
+        super.bind(MDFTipoCarroceria.class, new MDFTipoCarroceriaTransformer());
+        super.bind(MDFTipoEmissao.class, new MDFTipoEmissaoTransformer());
+        super.bind(MDFTipoEmitente.class, new MDFTipoEmitenteTransformer());
+        super.bind(MDFTipoProprietario.class, new MDFTipoProprietarioTransformer());
+        super.bind(MDFTipoRodado.class, new MDFTipoRodadoTransformer());
+        super.bind(MDFTipoTranportador.class, new MDFTipoTranportadorTransformer());
+        super.bind(MDFTipoUnidadeCarga.class, new MDFTipoUnidadeCargaTransformer());
+        super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
+        super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
+
     }
 }

@@ -48,7 +48,7 @@ public class MDFInfoModalRodoviario extends DFBase {
      * <h1>Lacres</h1>
      */
     @ElementList(entry = "lacRodo", inline = true, required = false)
-    private List<MDFInfoModalRodoviarioLacre> lacres;
+    private List<MDFInfoLacre1A20> lacres;
 
     public MDFInfoModalRodoviarioANTT getMdfInfoModalRodoviarioANTT() {
         return mdfInfoModalRodoviarioANTT;
@@ -82,11 +82,11 @@ public class MDFInfoModalRodoviario extends DFBase {
         this.codAgPorto = codAgPorto;
     }
 
-    public List<MDFInfoModalRodoviarioLacre> getLacres() {
+    public List<MDFInfoLacre1A20> getLacres() {
         return lacres;
     }
 
-    public void setLacres(List<MDFInfoModalRodoviarioLacre> lacres) {
+    public void setLacres(List<MDFInfoLacre1A20> lacres) {
         this.lacres = lacres;
     }
 }

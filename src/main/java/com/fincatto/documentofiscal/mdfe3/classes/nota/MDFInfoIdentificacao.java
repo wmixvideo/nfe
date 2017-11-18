@@ -10,11 +10,15 @@ import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmitente;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoTranportador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
+
+import java.util.List;
 
 
 /**
@@ -34,7 +38,7 @@ public class MDFInfoIdentificacao extends DFBase {
     @Element(name = "tpEmit")
     private MDFTipoEmitente tipoEmitente;
 
-    @Element(name = "tpTransp")
+    @Element(name = "tpTransp", required = false)
     private MDFTipoTranportador tipoTranportador;
 
     /**
@@ -81,6 +85,19 @@ public class MDFInfoIdentificacao extends DFBase {
      */
     @Element(name = "UFFim")
     private DFUnidadeFederativa unidadeFederativaFim;
+
+    /**
+     * Municípios onde ocorreram os carregamentos
+     */
+    @ElementList(entry = "infMunCarrega", inline = true)
+    private List<MDFInfoIdentificacaoMunicipioCarregamento> municipioCarregamentos;
+
+    /**
+     * Municípios onde ocorreram os carregamentos
+     */
+    @ElementList(entry = "infPercurso", inline = true, required = false)
+    private List<MDFInfoIdentificacaoUfPercurso> identificacaoUfPercursos;
+
 
     /**
      * Data e hora previstos de inicio da viagem.
@@ -171,7 +188,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * que deve ser calculado com a aplicação do algoritmo módulo 11 (base 2,9) da chave de acesso.
      */
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador, "DV");
+        IntegerValidador.exatamente1(digitoVerificador, "Digito verificador MDF-e");
         this.digitoVerificador = digitoVerificador;
     }
 
@@ -222,5 +239,59 @@ public class MDFInfoIdentificacao extends DFBase {
         this.modalidadeFrete = modalidadeFrete;
     }
 
+    public MDFTipoEmitente getTipoEmitente() {
+        return tipoEmitente;
+    }
 
+    public void setTipoEmitente(MDFTipoEmitente tipoEmitente) {
+        this.tipoEmitente = tipoEmitente;
+    }
+
+    public MDFTipoTranportador getTipoTranportador() {
+        return tipoTranportador;
+    }
+
+    public void setTipoTranportador(MDFTipoTranportador tipoTranportador) {
+        this.tipoTranportador = tipoTranportador;
+    }
+
+    public DFUnidadeFederativa getUnidadeFederativaInicio() {
+        return unidadeFederativaInicio;
+    }
+
+    public void setUnidadeFederativaInicio(DFUnidadeFederativa unidadeFederativaInicio) {
+        this.unidadeFederativaInicio = unidadeFederativaInicio;
+    }
+
+    public DFUnidadeFederativa getUnidadeFederativaFim() {
+        return unidadeFederativaFim;
+    }
+
+    public void setUnidadeFederativaFim(DFUnidadeFederativa unidadeFederativaFim) {
+        this.unidadeFederativaFim = unidadeFederativaFim;
+    }
+
+    public List<MDFInfoIdentificacaoMunicipioCarregamento> getMunicipioCarregamentos() {
+        return municipioCarregamentos;
+    }
+
+    public void setMunicipioCarregamentos(List<MDFInfoIdentificacaoMunicipioCarregamento> municipioCarregamentos) {
+        this.municipioCarregamentos = ListValidador.validaListaObrigatoria(municipioCarregamentos, 50, "Municípios carregamento MDF-e" );
+    }
+
+    public List<MDFInfoIdentificacaoUfPercurso> getIdentificacaoUfPercursos() {
+        return identificacaoUfPercursos;
+    }
+
+    public void setIdentificacaoUfPercursos(List<MDFInfoIdentificacaoUfPercurso> identificacaoUfPercursos) {
+        this.identificacaoUfPercursos = ListValidador.validaListaNaoObrigatoria(identificacaoUfPercursos, 25, "UF percurso MDF-e");
+    }
+
+    public LocalDateTime getDataHoraDoInicioViagem() {
+        return dataHoraDoInicioViagem;
+    }
+
+    public void setDataHoraDoInicioViagem(LocalDateTime dataHoraDoInicioViagem) {
+        this.dataHoraDoInicioViagem = dataHoraDoInicioViagem;
+    }
 }

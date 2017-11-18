@@ -238,6 +238,7 @@ public class StringValidadorTest {
     @Test
     public void email(){
         StringValidador.email("teste@teste.com");
+
     }
 
     @Test
@@ -260,6 +261,21 @@ public class StringValidadorTest {
         }
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void validadorStrings(){
+        try {
+            StringValidador.validador("1000000",
+                    "Totais", 6,false, true);
+        } catch (final IllegalStateException e) {
+            try {
+                StringValidador.validador("a",
+                        "Totais", 6,false, true);
+            } catch (final IllegalStateException e2) {
+                StringValidador.validador("10000",
+                        "Totais", 6,true, true);
+            }
+        }
 
+    }
 
 }
