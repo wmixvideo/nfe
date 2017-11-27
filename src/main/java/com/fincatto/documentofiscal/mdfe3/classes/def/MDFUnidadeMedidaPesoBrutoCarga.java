@@ -8,8 +8,8 @@ public enum MDFUnidadeMedidaPesoBrutoCarga {
     /**
      * 01 – KG; 02 - TON
      */
-    KG("1", "Kilograma"),
-    TON("2", "Tonelada");
+    KG("01", "Kilograma"),
+    TON("02", "Tonelada");
 
     private final String codigo;
     private final String descricao;

@@ -24,42 +24,42 @@ public enum MDFAutorizador3 {
         public String getMDFeRecepcao(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx";
         }
 
         @Override
         public String getMDFeRetornoRecepcao(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRetRecepcao/MDFeRetRecepcao.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFeRetRecepcao/MDFeRetRecepcao.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeRetRecepcao/MDFeRetRecepcao.asmx";
         }
 
         @Override
         public String getMDFeRecepcaoEvento(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFerecepcao/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx";
         }
 
         @Override
         public String getMDFeStatusServico(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
-                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx";
+                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx"
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeStatusServico/MDFeStatusServico.asmx";
         }
 
         @Override
         public String getMDFeConsulta(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeConsulta/MDFeConsulta.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFeConsulta/MDFeConsulta.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeConsulta/MDFeConsulta.asmx";
         }
 
         @Override
         public String getMDFeConsNaoEnc(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx"
-                    : "https://mdfe.sefaz.rs.gov.br/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeConsNaoEnc/MDFeConsNaoEnc.asmx";
         }
 
         @Override

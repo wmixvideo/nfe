@@ -584,6 +584,8 @@ public abstract class StringValidador {
             }
             if(exatamente){
                 StringValidador.validaTamanhoExato(paraValidar, tamanho, info);
+            }else{
+                StringValidador.validaTamanhoMaximo(paraValidar, tamanho, info);
             }
         }
         return paraValidar;
@@ -647,9 +649,18 @@ public abstract class StringValidador {
     }
 
     public static String validaIntervalo(final String string, final int inicio, final int fim, final String info) {
+        return validaIntervalo(string, inicio, fim, info, false);
+    }
+
+    public static String validaIntervalo(final String string, final int inicio, final int fim, final String info, Boolean isNumeric) {
+        isNumeric = ObjectUtils.defaultIfNull(isNumeric, false);
+        if(isNumeric){
+            apenasNumerico(string, info);
+        }
         intervalo(string, inicio, fim, info);
         return string;
     }
+
 
     /**
      * Valida um número com N {@param digitos}.

@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.validadores;
 
-import java.math.BigDecimal;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 public class BigDecimalParserTest {
 
@@ -141,4 +141,25 @@ public class BigDecimalParserTest {
     public void naoDevePermitirExtrapolar21Caracteres() {
         BigDecimalParser.tamanho21ComAte10CasasDecimais(new BigDecimal("999999999999.9999999999"), "");
     }
+
+    @Test(expected = NumberFormatException.class)
+    public void validaTamanhoErro() {
+        BigDecimalParser.validaTamanho(new BigDecimal("10.00000"),
+                "", 11,4, true);
+    }
+
+    @Test
+    public void validaTamanho() {
+        BigDecimalParser.validaTamanho(new BigDecimal("10.00000"),
+                "", 11,5, true);
+
+        BigDecimalParser.validaTamanho(new BigDecimal("10.000"),
+                "", 11,5, false);
+
+        BigDecimalParser.validaTamanho(new BigDecimal("99999.99999"),
+                "", 11,5, false);
+
+    }
+
+
 }
