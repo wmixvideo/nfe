@@ -6,10 +6,9 @@ import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeDetalhamentoEvento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoEncerramento;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEvento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeInfoEvento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeProtocoloEvento;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
@@ -78,15 +77,22 @@ class WSEncerramento {
         return omElementResult;
     }
 
-    private MDFeProtocoloEvento gerarDadosEncerramento(final String chaveAcesso, final String numeroProtocolo
+    private MDFeEvento gerarDadosEncerramento(final String chaveAcesso, final String numeroProtocolo
             , final String codigoMunicipio, final LocalDate dataEncerramento, final DFUnidadeFederativa unidadeFederativa) {
+
         final MDFChaveParser chaveParser = new MDFChaveParser(chaveAcesso);
+
         final MDFeEnviaEventoEncerramento encerramento = new MDFeEnviaEventoEncerramento();
         encerramento.setDescricaoEvento(WSEncerramento.DESCRICAO_EVENTO);
         encerramento.setCodigoMunicipio(codigoMunicipio);
         encerramento.setDataEncerramento(dataEncerramento);
         encerramento.setUf(unidadeFederativa);
         encerramento.setProtocoloAutorizacao(numeroProtocolo);
+
+        final MDFeDetalhamentoEvento mdFeDetalhamentoEvento = new MDFeDetalhamentoEvento();
+        mdFeDetalhamentoEvento.setEnviaEventoEncerramento(encerramento);
+        mdFeDetalhamentoEvento.setVersaoEvento(WSEncerramento.VERSAO_LEIAUTE);
+
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
@@ -94,22 +100,14 @@ class WSEncerramento {
         infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", WSEncerramento.EVENTO_ENCERRAMENTO, chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
-        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigo());
+        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigoIbge());
         infoEvento.setCodigoEvento(WSEncerramento.EVENTO_ENCERRAMENTO);
-
-        MDFeDetalhamentoEvento mdFeDetalhamentoEvento = new MDFeDetalhamentoEvento();
-        mdFeDetalhamentoEvento.setEnviaEventoEncerramento(encerramento);
-        mdFeDetalhamentoEvento.setVersaoEvento(WSEncerramento.VERSAO_LEIAUTE);
         infoEvento.setDetEvento(mdFeDetalhamentoEvento);
 
-        MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
+        final MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
         mdfeEventoEncerramento.setInfoEvento(infoEvento);
         mdfeEventoEncerramento.setVersao(WSEncerramento.VERSAO_LEIAUTE);
 
-        MDFeProtocoloEvento mdfeProtocoloEventoCancelamento = new MDFeProtocoloEvento();
-        mdfeProtocoloEventoCancelamento.setVersao(WSEncerramento.VERSAO_LEIAUTE);
-        mdfeProtocoloEventoCancelamento.setEvento(mdfeEventoEncerramento);
-
-        return mdfeProtocoloEventoCancelamento;
+        return mdfeEventoEncerramento;
     }
 }
