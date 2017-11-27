@@ -45,7 +45,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * Modelo do Manifesto Eletrônico: 58
      */
     @Element(name = "mod")
-    private static final DFModelo MOD = DFModelo.MDFE;
+    public static final DFModelo MOD = DFModelo.MDFE;
 
     @Element(name = "serie")
     private Integer serie;

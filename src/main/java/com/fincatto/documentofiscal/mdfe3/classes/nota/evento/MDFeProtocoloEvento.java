@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "procEventoMDFe")
+@Root(name = "eventoMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeProtocoloEvento extends DFBase {
 

@@ -4,12 +4,10 @@ import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeDetalhamentoEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeInfoEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetornoCancelamento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeDetalhamentoEventoCancelamento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeProtocoloEvento;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeInfoEvento;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
@@ -36,16 +34,16 @@ class WSCancelamento {
         this.config = config;
     }
 
-    MDFeRetornoCancelamento cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+    MDFeRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister().read(MDFeRetornoCancelamento.class, omElementResult.toString());
+        return new DFPersister().read(MDFeRetorno.class, omElementResult.toString());
     }
 
-    MDFeRetornoCancelamento cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+    MDFeRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return new DFPersister().read(MDFeRetornoCancelamento.class, omElementResult.toString());
+        return new DFPersister().read(MDFeRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
@@ -76,16 +74,18 @@ class WSCancelamento {
         return omElementResult;
     }
 
-    private MDFeProtocoloEvento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    private MDFeEvento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
         final MDFChaveParser chaveParser = new MDFChaveParser(chaveAcesso);
+
         final MDFeEnviaEventoCancelamento cancelamento = new MDFeEnviaEventoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
-        cancelamento.setJustificativa(motivo);
+        cancelamento.setJustificativa(motivo.trim());
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
-        MDFeDetalhamentoEventoCancelamento mdfeDetalhamentoEventoCancelamento = new MDFeDetalhamentoEventoCancelamento();
-        mdfeDetalhamentoEventoCancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
-        mdfeDetalhamentoEventoCancelamento.setEventoCancelamento(cancelamento);
-//        cancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
+
+        MDFeDetalhamentoEvento mdFeDetalhamentoEvento = new MDFeDetalhamentoEvento();
+        mdFeDetalhamentoEvento.setMdFeEnviaEventoCancelamento(cancelamento);
+        mdFeDetalhamentoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
+
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
@@ -93,22 +93,14 @@ class WSCancelamento {
         infoEvento.setDataHoraEvento(DateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
-        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigo());
+        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigoIbge());
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
-//        infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
-        MDFeDetalhamentoEvento mdFeDetalhamentoEvento = new MDFeDetalhamentoEvento();
-        mdFeDetalhamentoEvento.setMdFeEnviaEventoCancelamento(cancelamento);
         infoEvento.setDetEvento(mdFeDetalhamentoEvento);
 
         MDFeEvento mdfeEventoCancelamento = new MDFeEvento();
         mdfeEventoCancelamento.setInfoEvento(infoEvento);
         mdfeEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
 
-        MDFeProtocoloEvento mdfeProtocoloEventoCancelamento = new MDFeProtocoloEvento();
-        mdfeProtocoloEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
-        mdfeProtocoloEventoCancelamento.setEvento(mdfeEventoCancelamento);
-//        mdfeProtocoloEventoCancelamento.setEventoRetorno();
-
-        return mdfeProtocoloEventoCancelamento;
+        return mdfeEventoCancelamento;
     }
 }
