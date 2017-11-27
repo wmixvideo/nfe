@@ -13,7 +13,7 @@ public class CTInfoRecebedor extends DFBase {
     @Element(name = "CPF", required = false)
     private String cpf;
 
-    @Element(name = "IE")
+    @Element(name = "IE", required = false)
     private String inscricaoEstadual;
 
     @Element(name = "xNome")
