@@ -19,6 +19,10 @@ public class MDFInfoIdentificacaoUfPercurso extends DFBase{
     @Element(name = "UFPer")
     private DFUnidadeFederativa ufPercurso;
 
+    public MDFInfoIdentificacaoUfPercurso(DFUnidadeFederativa ufPercurso) {
+        this.ufPercurso = ufPercurso;
+    }
+
     public DFUnidadeFederativa getUfPercurso() {
         return ufPercurso;
     }

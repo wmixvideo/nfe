@@ -30,4 +30,19 @@ public class MDFInfoModal extends DFBase {
 //    private MDFInfoModalModalFerroviario ferroviario;
 
 
+    public String getVersao() {
+        return versao;
+    }
+
+    public void setVersao(String versao) {
+        this.versao = versao;
+    }
+
+    public MDFInfoModalRodoviario getRodoviario() {
+        return rodoviario;
+    }
+
+    public void setRodoviario(MDFInfoModalRodoviario rodoviario) {
+        this.rodoviario = rodoviario;
+    }
 }

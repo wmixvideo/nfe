@@ -78,13 +78,13 @@ public class MDFInfoIdentificacao extends DFBase {
      * Sigla da UF do Carregamento.
      */
     @Element(name = "UFIni")
-    private DFUnidadeFederativa unidadeFederativaInicio;
+    private String unidadeFederativaInicio;
 
     /**
      * Sigla da UF do Descarregamento.
      */
     @Element(name = "UFFim")
-    private DFUnidadeFederativa unidadeFederativaFim;
+    private String unidadeFederativaFim;
 
     /**
      * Municípios onde ocorreram os carregamentos
@@ -93,7 +93,8 @@ public class MDFInfoIdentificacao extends DFBase {
     private List<MDFInfoIdentificacaoMunicipioCarregamento> municipioCarregamentos;
 
     /**
-     * Municípios onde ocorreram os carregamentos
+     * Sigla das Unidades da Federação do percurso do veículo.
+     * Não é necessário repetir as UF de Início e Fim
      */
     @ElementList(entry = "infPercurso", inline = true, required = false)
     private List<MDFInfoIdentificacaoUfPercurso> identificacaoUfPercursos;
@@ -255,20 +256,20 @@ public class MDFInfoIdentificacao extends DFBase {
         this.tipoTranportador = tipoTranportador;
     }
 
-    public DFUnidadeFederativa getUnidadeFederativaInicio() {
+    public String getUnidadeFederativaInicio() {
         return unidadeFederativaInicio;
     }
 
     public void setUnidadeFederativaInicio(DFUnidadeFederativa unidadeFederativaInicio) {
-        this.unidadeFederativaInicio = unidadeFederativaInicio;
+        this.unidadeFederativaInicio = unidadeFederativaInicio.getCodigo();
     }
 
-    public DFUnidadeFederativa getUnidadeFederativaFim() {
+    public String getUnidadeFederativaFim() {
         return unidadeFederativaFim;
     }
 
     public void setUnidadeFederativaFim(DFUnidadeFederativa unidadeFederativaFim) {
-        this.unidadeFederativaFim = unidadeFederativaFim;
+        this.unidadeFederativaFim = unidadeFederativaFim.getCodigo();
     }
 
     public List<MDFInfoIdentificacaoMunicipioCarregamento> getMunicipioCarregamentos() {
