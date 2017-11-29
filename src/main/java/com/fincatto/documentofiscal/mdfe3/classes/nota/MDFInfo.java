@@ -17,7 +17,7 @@ import java.util.List;
  * Informações do MDF-e.
  *
  */
-@Root(name = "infMdfe")
+@Root(name = "infMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfo extends DFBase {
 

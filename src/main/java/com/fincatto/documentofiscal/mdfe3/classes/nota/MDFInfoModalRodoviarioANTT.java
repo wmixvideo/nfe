@@ -36,5 +36,35 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
     @ElementList(entry ="infContratante", inline = true, required = false)
     protected List<MDFInfoModalRodoviarioInfContratante> infContratante;
 
+    public String getRntrc() {
+        return rntrc;
+    }
 
+    public void setRntrc(String rntrc) {
+        this.rntrc = rntrc;
+    }
+
+    public List<MDFInfoModalRodoviarioInfCIOT> getInfCIOT() {
+        return infCIOT;
+    }
+
+    public void setInfCIOT(List<MDFInfoModalRodoviarioInfCIOT> infCIOT) {
+        this.infCIOT = infCIOT;
+    }
+
+    public MDFInfoModalRodoviarioPedagio getValePedagio() {
+        return valePedagio;
+    }
+
+    public void setValePedagio(MDFInfoModalRodoviarioPedagio valePedagio) {
+        this.valePedagio = valePedagio;
+    }
+
+    public List<MDFInfoModalRodoviarioInfContratante> getInfContratante() {
+        return infContratante;
+    }
+
+    public void setInfContratante(List<MDFInfoModalRodoviarioInfContratante> infContratante) {
+        this.infContratante = infContratante;
+    }
 }
