@@ -23,15 +23,13 @@ public class MDFInfo extends DFBase {
 
     public static final String IDENT = "MDFe";
 
+    @Attribute(name = "Id")
+    private String identificador;
     /**
      * Tipo Versão do MDF-e - 3.00.
      */
     @Attribute(name = "versao")
     private String versao = MDFe.VERSAO;
-
-
-    @Attribute(name = "Id")
-    private String identificador;
 
     @Element(name = "ide")
     private MDFInfoIdentificacao identificacao;

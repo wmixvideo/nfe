@@ -40,6 +40,10 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
+    public void setVersao(String versao) {
+        this.versao = versao;
+    }
+
     public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }

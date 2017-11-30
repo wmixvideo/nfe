@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
-import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServ;
-import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
-import com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub;
+import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerrados;
+import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
+import com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -24,7 +23,7 @@ import java.rmi.RemoteException;
  */
 class WSConsultaNaoEncerrados {
 
-	private static final String NOME_SERVICO = "STATUS";
+	private static final String NOME_SERVICO = "CONSULTAR NÃO ENCERRADOS";
 	private static final Logger LOGGER = LoggerFactory.getLogger(WSConsultaNaoEncerrados.class);
 	private final MDFeConfig config;
 
@@ -32,42 +31,43 @@ class WSConsultaNaoEncerrados {
 		this.config = config;
 	}
 
-	MDFeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
-		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
+	MDFeConsultaNaoEncerradosRetorno consultaNaoEncerrados(final String cnpj) throws Exception {
+		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(cnpj).toString());
 		WSConsultaNaoEncerrados.LOGGER.info(omElementConsulta.toString());
 
-		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
+		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta);
 		WSConsultaNaoEncerrados.LOGGER.info(omElementResult.toString());
 
-		return new Persister(new DFRegistryMatcher(), new Format(0)).read(MDFeConsStatServRet.class, omElementResult.toString());
+		return new Persister(new DFRegistryMatcher(), new Format(0)).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
 	}
 
-	private MDFeConsStatServ gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {
-		final MDFeConsStatServ consStatServ = new MDFeConsStatServ();
-		consStatServ.setAmbiente(this.config.getAmbiente());
-		consStatServ.setVersao(MDFeConfig.VERSAO);
-		consStatServ.setServico(WSConsultaNaoEncerrados.NOME_SERVICO);
-		return consStatServ;
+	private MDFeConsultaNaoEncerrados gerarDadosConsulta(final String cnpj) {
+		final MDFeConsultaNaoEncerrados encerrados = new MDFeConsultaNaoEncerrados();
+		encerrados.setAmbiente(this.config.getAmbiente());
+		encerrados.setVersao(MDFeConfig.VERSAO);
+		encerrados.setCnpj(cnpj);
+		encerrados.setServico(WSConsultaNaoEncerrados.NOME_SERVICO);
+		return encerrados;
 	}
 
-	private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa) throws RemoteException {
-		final MDFeStatusServicoStub.MdfeCabecMsg cabec = new MDFeStatusServicoStub.MdfeCabecMsg();
-		cabec.setCUF(unidadeFederativa.getCodigoIbge());
+	private OMElement efetuaConsultaStatus(final OMElement omElement) throws RemoteException {
+		final MDFeConsNaoEncStub.MdfeCabecMsg cabec = new MDFeConsNaoEncStub.MdfeCabecMsg();
+		cabec.setCUF(this.config.getCUF().getCodigoIbge());
 		cabec.setVersaoDados(MDFeConfig.VERSAO);
 
-		final MDFeStatusServicoStub.MdfeCabecMsgE cabecEnv = new MDFeStatusServicoStub.MdfeCabecMsgE();
+		final MDFeConsNaoEncStub.MdfeCabecMsgE cabecEnv = new MDFeConsNaoEncStub.MdfeCabecMsgE();
 		cabecEnv.setMdfeCabecMsg(cabec);
 
-		final MDFeStatusServicoStub.MdfeDadosMsg dados = new MDFeStatusServicoStub.MdfeDadosMsg();
+		final MDFeConsNaoEncStub.MdfeDadosMsg dados = new MDFeConsNaoEncStub.MdfeDadosMsg();
 		dados.setExtraElement(omElement);
 
-		final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(unidadeFederativa);
-		final String endpoint = autorizador.getMDFeStatusServico(this.config.getAmbiente());
+		final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(this.config.getCUF());
+		final String endpoint = autorizador.getMDFeConsNaoEnc(this.config.getAmbiente());
 		if (endpoint == null) {
-			throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
+			throw new IllegalArgumentException("Nao foi possivel encontrar URL para CONSULTAR NÃO ENCERRADOS, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
 		}
 		WSConsultaNaoEncerrados.LOGGER.info(endpoint);
-		final MDFeStatusServicoStub.MdfeStatusServicoMDFResult result = new MDFeStatusServicoStub(endpoint).mdfeStatusServicoMDF(dados, cabecEnv);
+		final MDFeConsNaoEncStub.MdfeConsNaoEncResult result = new MDFeConsNaoEncStub(endpoint).mdfeConsNaoEnc(dados, cabecEnv);
 		return result.getExtraElement();
 	}
 }
