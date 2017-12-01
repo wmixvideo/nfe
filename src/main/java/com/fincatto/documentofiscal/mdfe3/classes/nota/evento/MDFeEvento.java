@@ -5,11 +5,13 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
 @Root(name = "eventoMDFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeEvento extends DFBase {
 
     @Attribute(name = "versao")
