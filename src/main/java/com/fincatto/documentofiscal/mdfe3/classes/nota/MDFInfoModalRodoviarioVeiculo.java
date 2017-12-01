@@ -31,7 +31,7 @@ public abstract class MDFInfoModalRodoviarioVeiculo extends DFBase {
     protected MDFTipoCarroceria tipoCarroceria;
 
     @Element(name = "UF")
-    protected DFUnidadeFederativa unidadeFederativa;
+    protected String unidadeFederativa;
 
     public String getCodigoInterno() {
         return codigoInterno;
@@ -79,11 +79,15 @@ public abstract class MDFInfoModalRodoviarioVeiculo extends DFBase {
         this.tipoCarroceria = tipoCarroceria;
     }
 
-    public DFUnidadeFederativa getUnidadeFederativa() {
+    public String getUnidadeFederativa() {
         return unidadeFederativa;
     }
 
-    public void setUnidadeFederativa(DFUnidadeFederativa unidadeFederativa) {
+    public void setUnidadeFederativa(String unidadeFederativa) {
         this.unidadeFederativa = unidadeFederativa;
+    }
+
+    public void setUnidadeFederativa(DFUnidadeFederativa unidadeFederativa) {
+        this.unidadeFederativa = unidadeFederativa.getCodigo();
     }
 }

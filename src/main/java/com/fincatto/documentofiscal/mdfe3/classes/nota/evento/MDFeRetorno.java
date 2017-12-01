@@ -10,7 +10,7 @@ public class MDFeRetorno extends DFBase {
     private String versao;
 
     @Element(name = "infEvento")
-    private MDFeInfoEventoRetorno infoCancelamento;
+    private MDFeInfoEventoRetorno eventoRetorno;
 
     public String getVersao() {
         return versao;
@@ -20,11 +20,11 @@ public class MDFeRetorno extends DFBase {
         this.versao = versao;
     }
 
-    public MDFeInfoEventoRetorno getInfoCancelamento() {
-        return infoCancelamento;
+    public MDFeInfoEventoRetorno getEventoRetorno() {
+        return eventoRetorno;
     }
 
-    public void setInfoCancelamento(MDFeInfoEventoRetorno infoCancelamento) {
-        this.infoCancelamento = infoCancelamento;
+    public void setEventoRetorno(MDFeInfoEventoRetorno eventoRetorno) {
+        this.eventoRetorno = eventoRetorno;
     }
 }

@@ -74,8 +74,12 @@ public class NFInfoProdutorRuralReferenciada extends DFBase {
         this.serieDocumentoFiscal = serieDocumentoFiscal;
     }
 
+    /**
+     * Número do Documento Fiscal - 1 – 999999999
+     * @param numeroDocumentoFiscal
+     */
     public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
-        IntegerValidador.tamanho6(numeroDocumentoFiscal, "Numero Documento Fiscal");
+        IntegerValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 
