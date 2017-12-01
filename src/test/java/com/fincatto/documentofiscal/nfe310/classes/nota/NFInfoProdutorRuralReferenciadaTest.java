@@ -1,10 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFInfoProdutorRuralReferenciada;
 
 public class NFInfoProdutorRuralReferenciadaTest {
 
@@ -33,7 +31,7 @@ public class NFInfoProdutorRuralReferenciadaTest {
 
     @Test(expected = NumberFormatException.class)
     public void naoDevePermitirNumeroDocumentoFiscalComTamanhoInvalido() {
-        new NFInfoProdutorRuralReferenciada().setNumeroDocumentoFiscal(1000000);
+        new NFInfoProdutorRuralReferenciada().setNumeroDocumentoFiscal(1000000000);
     }
 
     @Test(expected = IllegalStateException.class)
