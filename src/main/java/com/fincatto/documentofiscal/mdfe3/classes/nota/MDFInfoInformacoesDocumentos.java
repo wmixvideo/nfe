@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.validadores.ListValidador;
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public  class MDFInfoInformacoesDocumentos {
     /**
      * Informações dos Municípios de descarregamento
      */
-    @Element(name = "infMunDescarga")
+    @ElementList(entry = "infMunDescarga", inline = true)
     private List<MDFInfoInformacoesMunicipioDescarga> informacoesMunicipioDescargas;
 
     public List<MDFInfoInformacoesMunicipioDescarga> getInformacoesMunicipioDescargas() {

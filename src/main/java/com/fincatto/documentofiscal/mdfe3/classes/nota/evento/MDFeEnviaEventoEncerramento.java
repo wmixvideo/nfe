@@ -22,6 +22,12 @@ public class MDFeEnviaEventoEncerramento extends DFBase {
     private String protocoloAutorizacao;
 
     /**
+     * Data que o Manifesto foi encerrado
+     */
+    @Element(name = "dtEnc")
+    private LocalDate dataEncerramento;
+
+    /**
      * UF de encerramento do Manifesto
      */
     @Element(name = "cUF")
@@ -32,13 +38,6 @@ public class MDFeEnviaEventoEncerramento extends DFBase {
      */
     @Element(name = "cMun")
     private String codigoMunicipio;
-
-
-    /**
-     * Data que o Manifesto foi encerrado
-     */
-    @Element(name = "dtEnc")
-    private LocalDate dataEncerramento;
 
 
     public void setProtocoloAutorizacao(final String protocoloAutorizacao) {

@@ -17,13 +17,24 @@ public class MDFInfoIdentificacaoUfPercurso extends DFBase{
      * Não é necessário repetir as UF de Início e Fim.
      */
     @Element(name = "UFPer")
-    private DFUnidadeFederativa ufPercurso;
+    private String ufPercurso;
 
-    public DFUnidadeFederativa getUfPercurso() {
+    public MDFInfoIdentificacaoUfPercurso() {
+    }
+
+    public MDFInfoIdentificacaoUfPercurso(DFUnidadeFederativa ufPercurso) {
+        this.ufPercurso = ufPercurso.getCodigo();
+    }
+
+    public String getUfPercurso() {
         return ufPercurso;
     }
 
-    public void setUfPercurso(DFUnidadeFederativa ufPercurso) {
+    public void setUfPercurso(String ufPercurso) {
         this.ufPercurso = ufPercurso;
+    }
+
+    public void setUfPercurso(DFUnidadeFederativa ufPercurso) {
+        this.ufPercurso = ufPercurso.getCodigo();
     }
 }
