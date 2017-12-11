@@ -38,7 +38,7 @@ public enum MDFAutorizador3 {
         public String getMDFeRecepcaoEvento(DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente)
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx"
-                    : "https://mdfe.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx";
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoEvento/MDFeRecepcaoEvento.asmx";
         }
 
         @Override
