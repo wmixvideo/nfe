@@ -46,9 +46,8 @@ public class MDFInfo extends DFBase {
     @Element(name = "infDoc")
     private MDFInfoInformacoesDocumentos informacoesDocumentos;
 
-    //TODO Informações de Seguro da Carga, terminar.
-//    @Element(name = "seg", required = false)
-//    private MDFInfoSeguro seguro
+    @Element(name = "seg", required = false)
+    private MDFInfoSeguro seguro;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -165,5 +164,13 @@ public class MDFInfo extends DFBase {
 
     public void setInformacoesAdicionais(MDFInfoInformacoesAdicionais informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
+    }
+
+    public MDFInfoSeguro getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(MDFInfoSeguro seguro) {
+        this.seguro = seguro;
     }
 }
