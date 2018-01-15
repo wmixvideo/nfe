@@ -133,6 +133,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoUnidadeCarga.class, new MDFTipoUnidadeCargaTransformer());
         super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
         super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
+        super.bind(MDFTipoResponsavelSeguro.class, new MDFTipoResponsavelSeguroTransformer());
 
     }
 }
