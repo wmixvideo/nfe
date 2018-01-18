@@ -6,6 +6,11 @@ public enum NFOperadoraCartao {
     MASTERCARD("02", "Mastercard"),
     AMERICAN_EXPRESS("03", "American Express"),
     SOROCRED("04", "Sorocred"),
+    DINERS_CLUB("05", "Diners Club"),
+    ELO("06", "Elo"),
+    HIPERCARD("07", "Hibercard"),
+    AURA("08", "Aura"),
+    CABAL("09", "Cabal"),
     OUTROS("99", "Outros");
 
     private final String codigo;
@@ -31,6 +36,6 @@ public enum NFOperadoraCartao {
 
     @Override
     public String toString() {
-        return codigo + " - " + descricao;
+        return this.codigo + " - " + this.descricao;
     }
 }

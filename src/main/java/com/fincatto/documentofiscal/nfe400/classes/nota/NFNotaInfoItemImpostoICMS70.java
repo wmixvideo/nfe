@@ -32,6 +32,15 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
+    @Element(name = "vBCFCP", required = true)
+    private String valorBCFundoCombatePobreza;
+
+    @Element(name = "pFCP", required = true)
+    private String percentualFundoCombatePobreza;
+
+    @Element(name = "vFCP", required = true)
+    private String valorFundoCombatePobreza;
+
     @Element(name = "modBCST", required = true)
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
@@ -49,6 +58,15 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     @Element(name = "vICMSST", required = true)
     private String valorICMSST;
+
+    @Element(name = "vBCFCPST", required = true)
+    private String valorBCFundoCombatePobrezaST;
+
+    @Element(name = "pFCPST", required = true)
+    private String percentualFundoCombatePobrezaST;
+
+    @Element(name = "vFCPST", required = true)
+    private String valorFundoCombatePobrezaST;
 
     @Element(name = "vICMSDeson", required = false)
     private String valorICMSDesoneracao;
@@ -116,6 +134,30 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS70 Item");
     }
 
+    public void setValorBCFundoCombatePobreza(final BigDecimal valorBCFundoCombatePobreza) {
+        this.valorBCFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobreza, "Valor base calculo fundo combate pobreza");
+    }
+
+    public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
+        this.percentualFundoCombatePobreza = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
+    }
+
+    public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
+        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");;
+    }
+
+    public void setValorBCFundoCombatePobrezaST(final BigDecimal valorBCFundoCombatePobrezaST) {
+        this.valorBCFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaST, "Base calculo fundo combate pobreza ST");;
+    }
+
+    public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
+        this.percentualFundoCombatePobrezaST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
+    }
+
+    public void setValorFundoCombatePobrezaST(final BigDecimal valorFundoCombatePobrezaST) {
+        this.valorFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -174,5 +216,29 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     public NFNotaMotivoDesoneracaoICMS getDesoneracao() {
         return this.desoneracao;
+    }
+
+    public String getValorBCFundoCombatePobreza() {
+        return this.valorBCFundoCombatePobreza;
+    }
+
+    public String getPercentualFundoCombatePobreza() {
+        return this.percentualFundoCombatePobreza;
+    }
+
+    public String getValorFundoCombatePobreza() {
+        return this.valorFundoCombatePobreza;
+    }
+
+    public String getPercentualFundoCombatePobrezaST() {
+        return this.percentualFundoCombatePobrezaST;
+    }
+
+    public String getValorBCFundoCombatePobrezaST() {
+        return this.valorBCFundoCombatePobrezaST;
+    }
+
+    public String getValorFundoCombatePobrezaST() {
+        return this.valorFundoCombatePobrezaST;
     }
 }

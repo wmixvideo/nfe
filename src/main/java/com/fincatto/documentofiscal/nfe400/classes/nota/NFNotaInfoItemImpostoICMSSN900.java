@@ -53,6 +53,15 @@ public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
     @Element(name = "vICMSST", required = false)
     private String valorICMSST;
 
+    @Element(name = "vBCFCPST", required = true)
+    private String valorBCFundoCombatePobrezaST;
+
+    @Element(name = "pFCPST", required = true)
+    private String percentualFundoCombatePobrezaST;
+
+    @Element(name = "vFCPST", required = true)
+    private String valorFundoCombatePobrezaST;
+
     @Element(name = "pCredSN", required = false)
     private String percentualAliquotaAplicavelCalculoCreditoSN;
 
@@ -109,6 +118,18 @@ public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
 
     public void setValorICMSST(final BigDecimal valorICMSST) {
         this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMSSN900");
+    }
+
+    public void setValorBCFundoCombatePobrezaST(final BigDecimal valorBCFundoCombatePobrezaST) {
+        this.valorBCFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaST, "Base calculo fundo combate pobreza ST");;
+    }
+
+    public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
+        this.percentualFundoCombatePobrezaST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
+    }
+
+    public void setValorFundoCombatePobrezaST(final BigDecimal valorFundoCombatePobrezaST) {
+        this.valorFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
     }
 
     public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
@@ -169,6 +190,18 @@ public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
 
     public String getValorICMSST() {
         return this.valorICMSST;
+    }
+
+    public String getValorBCFundoCombatePobrezaST() {
+        return this.valorBCFundoCombatePobrezaST;
+    }
+
+    public String getPercentualFundoCombatePobrezaST() {
+        return this.percentualFundoCombatePobrezaST;
+    }
+
+    public String getValorFundoCombatePobrezaST() {
+        return this.valorFundoCombatePobrezaST;
     }
 
     public String getPercentualAliquotaAplicavelCalculoCreditoSN() {

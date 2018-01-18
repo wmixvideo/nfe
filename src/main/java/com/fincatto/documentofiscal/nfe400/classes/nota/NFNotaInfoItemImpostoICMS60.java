@@ -18,11 +18,23 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "vBCSTRet", required = false)
+    @Element(name = "vBCSTRet", required = true)
     private String valorBCICMSSTRetido;
 
-    @Element(name = "vICMSSTRet", required = false)
+    @Element(name = "pBCSTRet", required = true)
+    private String percentualAliquotaICMSST;
+
+    @Element(name = "vICMSSTRet", required = true)
     private String valorICMSSTRetido;
+
+    @Element(name = "vBCFCPSTRet", required = true)
+    private String valorBCFundoCombatePobrezaRetidoST;
+
+    @Element(name = "pFCPSTRet", required = true)
+    private String percentualFundoCombatePobrezaRetidoST;
+
+    @Element(name = "vFCPSTRet", required = true)
+    private String valorFundoCombatePobrezaRetidoST;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -40,6 +52,22 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
     }
 
+    public void setPercentualAliquotaICMSST(final BigDecimal percentualAliquotaICMSST) {
+        this.percentualAliquotaICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaICMSST, "Valor ICMS ST Retido ICMS60 Item");
+    }
+
+    public void setValorBCFundoCombatePobrezaRetidoST(final BigDecimal valorBCFundoCombatePobrezaRetidoST) {
+        this.valorBCFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaRetidoST, "Valor base calculo fundo combate pobreza retido ST");
+    }
+
+    public void setPercentualFundoCombatePobrezaRetidoST(final BigDecimal percentualFundoCombatePobrezaRetidoST) {
+        this.percentualFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaRetidoST, "Percentual fundo combate pobreza retido ST");;
+    }
+
+    public void setValorFundoCombatePobrezaRetidoST(final BigDecimal valorFundoCombatePobrezaRetidoST) {
+        this.valorFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaRetidoST, "Valor fundo combate pobreza retido ST");;
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -54,5 +82,21 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
 
     public String getValorICMSSTRetido() {
         return this.valorICMSSTRetido;
+    }
+
+    public String getPercentualAliquotaICMSST() {
+        return this.percentualAliquotaICMSST;
+    }
+
+    public String getValorBCFundoCombatePobrezaRetidoST() {
+        return this.valorBCFundoCombatePobrezaRetidoST;
+    }
+
+    public String getPercentualFundoCombatePobrezaRetidoST() {
+        return this.percentualFundoCombatePobrezaRetidoST;
+    }
+
+    public String getValorFundoCombatePobrezaRetidoST() {
+        return this.valorFundoCombatePobrezaRetidoST;
     }
 }

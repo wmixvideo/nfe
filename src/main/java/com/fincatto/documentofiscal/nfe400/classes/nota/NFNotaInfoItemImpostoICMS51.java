@@ -43,6 +43,15 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
     @Element(name = "vICMS", required = false)
     private String valorICMS;
 
+    @Element(name = "vBCFCP", required = true)
+    private String valorBCFundoCombatePobreza;
+
+    @Element(name = "pFCP", required = true)
+    private String percentualFundoCombatePobreza;
+
+    @Element(name = "vFCP", required = true)
+    private String valorFundoCombatePobreza;
+
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
@@ -83,6 +92,18 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
         this.valorICMSOperacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOperacao, "Valor ICMS Operacao ICMS51 Item");
     }
 
+    public void setValorBCFundoCombatePobreza(final BigDecimal valorBCFundoCombatePobreza) {
+        this.valorBCFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobreza, "Valor base calculo fundo combate pobreza");
+    }
+
+    public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
+        this.percentualFundoCombatePobreza = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
+    }
+
+    public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
+        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");;
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -121,5 +142,17 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
 
     public String getValorICMS() {
         return this.valorICMS;
+    }
+
+    public String getValorBCFundoCombatePobreza() {
+        return this.valorBCFundoCombatePobreza;
+    }
+
+    public String getPercentualFundoCombatePobreza() {
+        return this.percentualFundoCombatePobreza;
+    }
+
+    public String getValorFundoCombatePobreza() {
+        return this.valorFundoCombatePobreza;
     }
 }

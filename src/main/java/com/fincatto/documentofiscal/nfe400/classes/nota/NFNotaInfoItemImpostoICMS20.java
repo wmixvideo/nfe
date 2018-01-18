@@ -35,6 +35,15 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
+    @Element(name = "vBCFCP", required = true)
+    private String valorBCFundoCombatePobreza;
+
+    @Element(name = "pFCP", required = true)
+    private String percentualFundoCombatePobreza;
+
+    @Element(name = "vFCP", required = true)
+    private String valorFundoCombatePobreza;
+
     @Element(name = "vICMSDeson", required = false)
     private String valorICMSDesoneracao;
 
@@ -77,6 +86,18 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS20 Item");
     }
 
+    public void setValorBCFundoCombatePobreza(final BigDecimal valorBCFundoCombatePobreza) {
+        this.valorBCFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobreza, "Valor base calculo fundo combate pobreza");
+    }
+
+    public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
+        this.percentualFundoCombatePobreza = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
+    }
+
+    public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
+        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");;
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -111,5 +132,17 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
 
     public NFNotaMotivoDesoneracaoICMS getDesoneracao() {
         return this.desoneracao;
+    }
+
+    public String getValorBCFundoCombatePobreza() {
+        return this.valorBCFundoCombatePobreza;
+    }
+
+    public String getPercentualFundoCombatePobreza() {
+        return this.percentualFundoCombatePobreza;
+    }
+
+    public String getValorFundoCombatePobreza() {
+        return this.valorFundoCombatePobreza;
     }
 }

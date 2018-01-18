@@ -15,6 +15,9 @@ public class NFNotaInfoSuplementar extends DFBase {
     @Element(data = true, name = "qrCode", required = true)
     private String qrCode;
 
+    @Element(name = "urlChave", required = true)
+    private NFNotaInfoEmitente urlConsultaChaveAcesso;
+
     public void setQrCode(final String qrCode) {
         StringValidador.tamanho100a600(qrCode, "QR Code");
         this.qrCode = qrCode;
@@ -22,5 +25,13 @@ public class NFNotaInfoSuplementar extends DFBase {
 
     public String getQrCode() {
         return this.qrCode;
+    }
+
+    public NFNotaInfoEmitente getUrlConsultaChaveAcesso() {
+        return this.urlConsultaChaveAcesso;
+    }
+
+    public void setUrlConsultaChaveAcesso(final NFNotaInfoEmitente urlConsultaChaveAcesso) {
+        this.urlConsultaChaveAcesso = urlConsultaChaveAcesso;
     }
 }

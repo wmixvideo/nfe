@@ -1,45 +1,24 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
+import java.util.List;
 
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.ListValidador;
 
 public class NFNotaInfoPagamento extends DFBase {
     private static final long serialVersionUID = -2613537583415054150L;
 
-    @Element(name = "tPag", required = true)
-    private NFFormaPagamentoMoeda formaPagamentoMoeda;
+    @ElementList(entry = "detPag", inline = true, required = true)
+    private List<NFNotaInfoFormaPagamento> detalhamentoFormasPagamento;
 
-    @Element(name = "vPag", required = true)
-    private String valorPagamento;
-
-    @Element(name = "card", required = false)
-    private NFNotaInfoCartao cartao;
-
-    public void setCartao(final NFNotaInfoCartao cartao) {
-        this.cartao = cartao;
+    public void setDetalhamentoFormasPagamento(final List<NFNotaInfoFormaPagamento> detalhamentoFormasPagamento) {
+        ListValidador.tamanho100(detalhamentoFormasPagamento, "Detalhamento de formas de pagamento");
+        this.detalhamentoFormasPagamento = detalhamentoFormasPagamento;
     }
 
-    public void setFormaPagamentoMoeda(final NFFormaPagamentoMoeda formaPagamentoMoeda) {
-        this.formaPagamentoMoeda = formaPagamentoMoeda;
-    }
-
-    public void setValorPagamento(final BigDecimal valorPagamento) {
-        this.valorPagamento = BigDecimalParser.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
-    }
-
-    public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {
-        return this.formaPagamentoMoeda;
-    }
-
-    public String getValorPagamento() {
-        return this.valorPagamento;
-    }
-
-    public NFNotaInfoCartao getCartao() {
-        return this.cartao;
+    public List<NFNotaInfoFormaPagamento> getDetalhamentoFormasPagamento() {
+        return this.detalhamentoFormasPagamento;
     }
 }

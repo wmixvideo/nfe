@@ -200,12 +200,12 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
         return this.valorFundoCombatePobreza;
     }
 
-    public String getPercentualFundoCombatePobrezaST() {
-        return this.percentualFundoCombatePobrezaST;
-    }
-
     public String getValorBCFundoCombatePobrezaST() {
         return this.valorBCFundoCombatePobrezaST;
+    }
+
+    public String getPercentualFundoCombatePobrezaST() {
+        return this.percentualFundoCombatePobrezaST;
     }
 
     public String getValorFundoCombatePobrezaST() {

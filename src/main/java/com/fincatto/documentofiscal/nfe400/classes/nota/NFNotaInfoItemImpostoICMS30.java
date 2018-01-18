@@ -38,6 +38,15 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
     @Element(name = "vICMSST", required = true)
     private String valorImpostoICMSST;
 
+    @Element(name = "vBCFCPST", required = true)
+    private String valorBCFundoCombatePobrezaST;
+
+    @Element(name = "pFCPST", required = true)
+    private String percentualFundoCombatePobrezaST;
+
+    @Element(name = "vFCPST", required = true)
+    private String valorFundoCombatePobrezaST;
+
     @Element(name = "vICMSDeson", required = false)
     private String valorICMSDesoneracao;
 
@@ -84,6 +93,18 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
         this.valorICMSDesoneracao = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao");
     }
 
+    public void setValorBCFundoCombatePobrezaST(final BigDecimal valorBCFundoCombatePobrezaST) {
+        this.valorBCFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaST, "Base calculo fundo combate pobreza ST");;
+    }
+
+    public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
+        this.percentualFundoCombatePobrezaST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
+    }
+
+    public void setValorFundoCombatePobrezaST(final BigDecimal valorFundoCombatePobrezaST) {
+        this.valorFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -122,5 +143,17 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
 
     public NFNotaMotivoDesoneracaoICMS getDesoneracao() {
         return this.desoneracao;
+    }
+
+    public String getPercentualFundoCombatePobrezaST() {
+        return this.percentualFundoCombatePobrezaST;
+    }
+
+    public String getValorBCFundoCombatePobrezaST() {
+        return this.valorBCFundoCombatePobrezaST;
+    }
+
+    public String getValorFundoCombatePobrezaST() {
+        return this.valorFundoCombatePobrezaST;
     }
 }

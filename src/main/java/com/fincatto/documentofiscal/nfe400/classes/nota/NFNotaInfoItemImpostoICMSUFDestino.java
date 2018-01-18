@@ -13,6 +13,9 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     @Element(name = "vBCUFDest", required = true)
     private String valorBaseCalculoDestino;
 
+    @Element(name = "vBCFCPUFDest", required = true)
+    private String valorBCFundoCombatePobrezaDestino;
+
     @Element(name = "pFCPUFDest", required = true)
     private String percentualRelativoFundoCombatePobrezaDestino;
 
@@ -40,6 +43,14 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
 
     public void setValorBaseCalculoDestino(final BigDecimal valorBaseCalculoDestino) {
         this.valorBaseCalculoDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculoDestino, "Valor BC Destino");
+    }
+
+    public String getValorBCFundoCombatePobrezaDestino() {
+        return this.valorBCFundoCombatePobrezaDestino;
+    }
+
+    public void setValorBCFundoCombatePobrezaDestino(final BigDecimal valorBCFundoCombatePobrezaDestino) {
+        this.valorBCFundoCombatePobrezaDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaDestino, "Valor BC fundo combate pobreza destino");
     }
 
     public String getPercentualRelativoFundoCombatePobrezaDestino() {

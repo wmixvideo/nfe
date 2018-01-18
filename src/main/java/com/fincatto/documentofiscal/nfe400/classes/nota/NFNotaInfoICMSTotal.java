@@ -19,6 +19,9 @@ public class NFNotaInfoICMSTotal extends DFBase {
     @Element(name = "vICMSDeson", required = true)
     private String valorICMSDesonerado;
 
+    @Element(name = "vFCP", required = true)
+    private String valorTotalFundoCombatePobreza;
+
     @Element(name = "vFCPUFDest", required = false)
     private String valorICMSFundoCombatePobreza;
 
@@ -33,6 +36,12 @@ public class NFNotaInfoICMSTotal extends DFBase {
 
     @Element(name = "vST", required = true)
     private String valorTotalICMSST;
+
+    @Element(name = "vFCPST", required = true)
+    private String valorTotalFundoCombatePobrezaST;
+
+    @Element(name = "vFCPSTRet", required = true)
+    private String valorTotalFundoCombatePobrezaSTRetido;
 
     @Element(name = "vProd", required = true)
     private String valorTotalDosProdutosServicos;
@@ -51,6 +60,9 @@ public class NFNotaInfoICMSTotal extends DFBase {
 
     @Element(name = "vIPI", required = true)
     private String valorTotalIPI;
+
+    @Element(name = "vIPIDevol", required = true)
+    private String valorTotalIPIDevolvido;
 
     @Element(name = "vPIS", required = true)
     private String valorPIS;
@@ -217,5 +229,37 @@ public class NFNotaInfoICMSTotal extends DFBase {
 
     public void setValorICMSPartilhaRementente(final BigDecimal valorICMSPartilhaRementente) {
         this.valorICMSPartilhaRementente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSPartilhaRementente, "Valor ICMS Partilha Remetente");
+    }
+
+    public void setValorTotalFundoCombatePobreza(final BigDecimal valorTotalFundoCombatePobreza) {
+        this.valorTotalFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalFundoCombatePobreza, "Valor total fundo combate a pobreza");
+    }
+
+    public String getValorTotalFundoCombatePobreza() {
+        return this.valorTotalFundoCombatePobreza;
+    }
+
+    public void setValorTotalFundoCombatePobrezaST(final BigDecimal valorTotalFundoCombatePobrezaST) {
+        this.valorTotalFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalFundoCombatePobrezaST, "Valor total fundo combate a pobreza ST");
+    }
+
+    public String getValorTotalFundoCombatePobrezaST() {
+        return this.valorTotalFundoCombatePobrezaST;
+    }
+
+    public void setValorTotalFundoCombatePobrezaSTRetido(final BigDecimal valorTotalFundoCombatePobrezaSTRetido) {
+        this.valorTotalFundoCombatePobrezaSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalFundoCombatePobrezaSTRetido, "Valor total fundo combate a pobreza ST retido");
+    }
+
+    public String getValorTotalFundoCombatePobrezaSTRetido() {
+        return this.valorTotalFundoCombatePobrezaSTRetido;
+    }
+
+    public void setValorTotalIPIDevolvido(final BigDecimal valorTotalIPIDevolvido) {
+        this.valorTotalIPIDevolvido = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalIPIDevolvido, "Valor total IPI devolvido");
+    }
+
+    public String getValorTotalIPIDevolvido() {
+        return this.valorTotalIPIDevolvido;
     }
 }
