@@ -111,7 +111,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "", required = false)
 
     @ElementList(entry = "rastro", inline = true, required = false)
-    private List<NFNotaInfoItemProdutoRastreabilidade> rastro;
+    private List<NFNotaInfoItemProdutoRastreabilidade> rastros;
 
     @Element(name = "veicProd", required = false)
     private NFNotaInfoItemProdutoVeiculo veiculo;
@@ -286,9 +286,9 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.numeroRECOPI = numeroRECOPI;
     }
 
-    public void setRastro(final List<NFNotaInfoItemProdutoRastreabilidade> rastro) {
-        ListValidador.tamanho500(rastro, "Medicamentos Produto");
-        this.rastro = rastro;
+    public void setRastros(final List<NFNotaInfoItemProdutoRastreabilidade> rastros) {
+        ListValidador.tamanho500(rastros, "Rastreios do produto");
+        this.rastros = rastros;
     }
 
     public void setIndicadorEscalaRelevante(final NFIndicadorEscalaRelevante indicadorEscalaRelevante) {
@@ -439,7 +439,7 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.indicadorEscalaRelevante;
     }
 
-    public List<NFNotaInfoItemProdutoRastreabilidade> getRastro() {
-        return this.rastro;
+    public List<NFNotaInfoItemProdutoRastreabilidade> getRastros() {
+        return this.rastros;
     }
 }

@@ -33,7 +33,7 @@ public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
     }
 
     public void setQuantidadeLote(final BigDecimal quantidadeLote) {
-        this.quantidadeLote = BigDecimalParser.tamanho8Com2CasasDecimais(quantidadeLote, "Quantidade lote rastreio produto");
+        this.quantidadeLote = BigDecimalParser.tamanho11Com3CasasDecimais(quantidadeLote, "Quantidade lote rastreio produto");
     }
 
     public void setDataFabricacao(final LocalDate dataFabricacao) {
