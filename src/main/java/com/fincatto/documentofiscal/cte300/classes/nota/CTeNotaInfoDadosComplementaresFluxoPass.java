@@ -12,7 +12,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
  * @info
  */
 
-@Root(name = "xPass")
+@Root(name = "pass")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresFluxoPass extends DFBase {
     private static final long serialVersionUID = 4588200408170529980L;

@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -23,7 +24,7 @@ public class CTeNotaInfoDadosComplementaresFluxo extends DFBase {
     @Element(name = "xOrig", required = false)
     private String origem;
 
-    @Element(name = "pass", required = false)
+    @ElementList(name = "pass", inline = true, required = false)
     private List<CTeNotaInfoDadosComplementaresFluxoPass> pass;
 
     @Element(name = "xDest", required = false)
