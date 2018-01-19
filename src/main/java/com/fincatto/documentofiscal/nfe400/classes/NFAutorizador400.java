@@ -44,7 +44,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfe.sefaz.am.gov.br/services2/services/cadconsultacadastro2" : "https://nfe.sefaz.am.gov.br/services2/services/CadConsultaCadastro2";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfe.sefaz.am.gov.br/services2/services/cadconsultacadastro2" : "https://nfe.sefaz.am.gov.br/services2/services/cadconsultacadastro2";
         }
 
         @Override
@@ -295,7 +295,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfeInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "  https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl" : "https://nfe.sefaz.ce.gov.br/nfe2/services/NfeInutilizacao2?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl" : "https://nfe.sefaz.ce.gov.br/nfe2/services/NfeInutilizacao2?wsdl";
         }
 
         @Override
@@ -1263,12 +1263,12 @@ public enum NFAutorizador400 {
 
         @Override
         public String getConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx" : "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro2.asmx" : "https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx";
         }
 
         @Override
         public String getNfeInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao2.asmx" : "https://nfe.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfe-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx" : "https://nfe.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx";
         }
 
         @Override
