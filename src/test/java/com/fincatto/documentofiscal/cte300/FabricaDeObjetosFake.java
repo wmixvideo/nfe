@@ -60,7 +60,7 @@ public class FabricaDeObjetosFake {
     public static CTeNotaInfoDadosComplementaresEntregaComHoraDefinida getEntregaComHoraDefinida() {
         final CTeNotaInfoDadosComplementaresEntregaComHoraDefinida entregaComHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaComHoraDefinida();
         entregaComHoraDefinida.setHoraProgramada(FabricaDeObjetosFake.getLocalTime());
-        entregaComHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.ATE_A_HORARIO);
+        entregaComHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_HORARIO);
         return entregaComHoraDefinida;
     }
 
@@ -68,19 +68,19 @@ public class FabricaDeObjetosFake {
         final CTeNotaInfoDadosComplementaresEntregaIntervalo entregaIntervalo = new CTeNotaInfoDadosComplementaresEntregaIntervalo();
         entregaIntervalo.setHoraInicio(FabricaDeObjetosFake.getLocalTime());
         entregaIntervalo.setHoraFim(FabricaDeObjetosFake.getLocalTime());
-        entregaIntervalo.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.ATE_A_HORARIO);
+        entregaIntervalo.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_INTERVALO_DE_TEMPO);
         return entregaIntervalo;
     }
 
     public static CTeNotaInfoDadosComplementaresEntregaSemDataDefinida getEntregaSemDataDefinida() {
         final CTeNotaInfoDadosComplementaresEntregaSemDataDefinida entregaSemDataDefinida = new CTeNotaInfoDadosComplementaresEntregaSemDataDefinida();
-        entregaSemDataDefinida.setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega.A_PARTIR_DA_DATA);
+        entregaSemDataDefinida.setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega.SEM_DATA_DEFINIDA);
         return entregaSemDataDefinida;
     }
 
     public static CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida getEntregaSemHoraDefinida() {
         final CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida entregaSemHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida();
-        entregaSemHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.A_PARTIR_DO_HORARIO);
+        entregaSemHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.SEM_HORA_DEFINIDA);
         return entregaSemHoraDefinida;
     }
 
