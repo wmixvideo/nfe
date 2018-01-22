@@ -1,6 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
@@ -10,8 +12,10 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
  * @info Dados do endereço
  */
 
-public class CTNotaEndereco extends DFBase {
-    private static final long serialVersionUID = 1528514404620728196L;
+@Root(name = "enderFerro")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+public class CTeNotaEnderecoFerrovia extends DFBase {
+    private static final long serialVersionUID = -3577887454042477166L;
 
     @Element(name = "xLgr", required = true)
     private String logradouro;
@@ -37,13 +41,7 @@ public class CTNotaEndereco extends DFBase {
     @Element(name = "UF", required = true)
     private String siglaUF;
 
-    @Element(name = "cPais", required = false)
-    private String codigoPais;
-
-    @Element(name = "xPais", required = false)
-    private String descricaoPais;
-
-    public CTNotaEndereco() {
+    public CTeNotaEnderecoFerrovia() {
         this.logradouro = null;
         this.numero = null;
         this.complemento = null;
@@ -52,8 +50,6 @@ public class CTNotaEndereco extends DFBase {
         this.descricaoMunicipio = null;
         this.cep = null;
         this.siglaUF = null;
-        this.codigoPais = null;
-        this.descricaoPais = null;
     }
 
     public String getLogradouro() {
@@ -64,7 +60,7 @@ public class CTNotaEndereco extends DFBase {
      * Logradouro
      */
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho2ate60(logradouro, "Logradouro");
+        StringValidador.tamanho2ate60(logradouro, "Logradouro no endereço do Emitente");
         this.logradouro = logradouro;
     }
 
@@ -76,7 +72,7 @@ public class CTNotaEndereco extends DFBase {
      * Número
      */
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Número");
+        StringValidador.tamanho60(numero, "Número no endereço do Emitente");
         this.numero = numero;
     }
 
@@ -88,7 +84,7 @@ public class CTNotaEndereco extends DFBase {
      * Complemento
      */
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento, "Complemento");
+        StringValidador.tamanho60(complemento, "Complemento no endereço do Emitente");
         this.complemento = complemento;
     }
 
@@ -100,7 +96,7 @@ public class CTNotaEndereco extends DFBase {
      * Bairro
      */
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro, "Bairro");
+        StringValidador.tamanho2ate60(bairro, "Bairro no endereço do Emitente");
         this.bairro = bairro;
     }
 
@@ -113,7 +109,7 @@ public class CTNotaEndereco extends DFBase {
      * Informar 9999999 para operações com o exterior.
      */
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7N(codigoMunicipio, "Código do município");
+        StringValidador.exatamente7N(codigoMunicipio, "Código do município no endereço do Emitente");
         this.codigoMunicipio = codigoMunicipio;
     }
 
@@ -126,7 +122,7 @@ public class CTNotaEndereco extends DFBase {
      * Informar EXTERIOR para operações com o exterior.
      */
     public void setDescricaoMunicipio(final String descricaoMunicipio) {
-        StringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município");
+        StringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município no endereço do Emitente");
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
@@ -139,7 +135,7 @@ public class CTNotaEndereco extends DFBase {
      * Informar os zeros não significativos
      */
     public void setCep(final String cep) {
-        StringValidador.exatamente8N(cep, "CEP");
+        StringValidador.exatamente8N(cep, "CEP no endereço do Emitente");
         this.cep = cep;
     }
 
@@ -151,33 +147,8 @@ public class CTNotaEndereco extends DFBase {
      * Sigla da UF<br>
      * Informar EX para operações com o exterior.
      */
-    public void setSiglaUF(final String siglaUf) {
-        StringValidador.exatamente2(siglaUf, "Sigla da UF");
-        this.siglaUF = siglaUf;
-    }
-
-    public String getCodigoPais() {
-        return this.codigoPais;
-    }
-
-    /**
-     * Código do país<br>
-     * Utilizar a tabela do BACEN
-     */
-    public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho4N(codigoPais, "Código do país");
-        this.codigoPais = codigoPais;
-    }
-
-    public String getDescricaoPais() {
-        return this.descricaoPais;
-    }
-
-    /**
-     * Nome do país
-     */
-    public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho2ate60(descricaoPais, "Nome do país");
-        this.descricaoPais = descricaoPais;
+    public void setSiglaUF(final String siglaUF) {
+        StringValidador.exatamente2(siglaUF, "Sigla da UF no endereço do Emitente");
+        this.siglaUF = siglaUF;
     }
 }

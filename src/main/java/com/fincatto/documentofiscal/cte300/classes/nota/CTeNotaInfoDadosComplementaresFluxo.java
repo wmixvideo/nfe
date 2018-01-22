@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 import java.util.List;
 
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -16,14 +16,13 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
  */
 
 @Root(name = "fluxo")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresFluxo extends DFBase {
     private static final long serialVersionUID = 512911768559316038L;
 
     @Element(name = "xOrig", required = false)
     private String origem;
 
-    @Element(name = "pass", required = false)
+    @ElementList(name = "pass", inline = true, required = false)
     private List<CTeNotaInfoDadosComplementaresFluxoPass> pass;
 
     @Element(name = "xDest", required = false)
