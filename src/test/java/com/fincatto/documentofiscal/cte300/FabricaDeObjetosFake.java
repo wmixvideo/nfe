@@ -112,7 +112,7 @@ public class FabricaDeObjetosFake {
         identificacao.setCodigoUF(DFUnidadeFederativa.SC);
         identificacao.setCodigoNumerico("67890123");
         identificacao.setCfop("5353");
-        identificacao.setNaturezaOperacao("Prestacao de servico de transporte a estabelecimento comercial");
+        identificacao.setNaturezaOperacao("Prestacao de servico de transporte");
         identificacao.setModelo(DFModelo.CTE);
         identificacao.setSerie(1);
         identificacao.setNumero(123);
