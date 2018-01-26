@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemIndicadorExigibilidadeISS;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemIndicadorExigibilidadeISS;
 
 public class NFNotaInfoItemIndicadorExigibilidadeISSTransformer implements Transform<NFNotaInfoItemIndicadorExigibilidadeISS> {
 

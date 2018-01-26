@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
 
 public class NFNotaInfoItemIndicadorIncentivoFiscalTransformer implements Transform<NFNotaInfoItemIndicadorIncentivoFiscal> {
 

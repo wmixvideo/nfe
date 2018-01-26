@@ -84,6 +84,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -104,6 +107,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -124,6 +130,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -144,6 +153,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -164,6 +176,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -184,6 +199,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -204,6 +222,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -224,6 +245,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -244,6 +268,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -264,6 +291,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -284,6 +314,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -304,6 +337,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -324,6 +360,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -344,6 +383,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -364,6 +406,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -384,6 +429,9 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorBCICMSST(new BigDecimal("999999999999.99"));
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms900.toString();
     }
 
@@ -405,8 +453,11 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
         icms900.setValorICMS(new BigDecimal("999999999999.99"));
         icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMSSN900><orig>0</orig><CSOSN>300</CSOSN><modBC>0</modBC><vBC>999999999999.99</vBC><pRedBC>99.99</pRedBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><modBCST>1</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><pCredSN>99.99</pCredSN><vCredICMSSN>999999999999.99</vCredICMSSN></NFNotaInfoItemImpostoICMSSN900>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMSSN900><orig>0</orig><CSOSN>300</CSOSN><modBC>0</modBC><vBC>999999999999.99</vBC><pRedBC>99.99</pRedBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><modBCST>1</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><vBCFCPST>999999999999.99</vBCFCPST><pFCPST>99.99</pFCPST><vFCPST>999999999999.99</vFCPST><pCredSN>99.99</pCredSN><vCredICMSSN>999999999999.99</vCredICMSSN></NFNotaInfoItemImpostoICMSSN900>";
         Assert.assertEquals(xmlEsperado, icms900.toString());
     }
 }

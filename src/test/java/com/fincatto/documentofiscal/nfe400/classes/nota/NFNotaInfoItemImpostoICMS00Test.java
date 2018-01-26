@@ -95,7 +95,7 @@ public class NFNotaInfoItemImpostoICMS00Test {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS00><orig>0</orig><CST>00</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS></NFNotaInfoItemImpostoICMS00>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS00><orig>0</orig><CST>00</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP></NFNotaInfoItemImpostoICMS00>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS00().toString());
     }
 }

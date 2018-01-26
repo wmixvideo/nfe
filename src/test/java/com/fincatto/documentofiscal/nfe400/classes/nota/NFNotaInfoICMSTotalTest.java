@@ -106,6 +106,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -130,6 +134,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -154,6 +162,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -178,6 +190,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -202,6 +218,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -226,6 +246,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -250,6 +274,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -274,6 +302,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -298,6 +330,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -322,6 +358,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -346,6 +386,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -370,6 +414,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -394,6 +442,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -418,6 +470,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -442,6 +498,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -466,6 +526,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -489,6 +553,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -512,6 +580,10 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaRementente(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
@@ -535,12 +607,16 @@ public class NFNotaInfoICMSTotalTest {
         icmsTotal.setValorICMSDesonerado(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSFundoCombatePobreza(new BigDecimal("999999999999.99"));
         icmsTotal.setValorICMSPartilhaDestinatario(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalFundoCombatePobrezaSTRetido(new BigDecimal("999999999999.99"));
+        icmsTotal.setValorTotalIPIDevolvido(new BigDecimal("999999999999.99"));
         icmsTotal.toString();
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoICMSTotal><vBC>999999999999.99</vBC><vICMS>999999999999.99</vICMS><vICMSDeson>999999999999.99</vICMSDeson><vFCPUFDest>999999999999.99</vFCPUFDest><vICMSUFDest>999999999999.99</vICMSUFDest><vICMSUFRemet>999999999999.99</vICMSUFRemet><vBCST>999999999999.99</vBCST><vST>999999999999.99</vST><vProd>999999999999.99</vProd><vFrete>999999999999.99</vFrete><vSeg>999999999999.99</vSeg><vDesc>999999999999.99</vDesc><vII>999999999999.99</vII><vIPI>999999999999.99</vIPI><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS><vOutro>999999999999.99</vOutro><vNF>999999999999.99</vNF></NFNotaInfoICMSTotal>";
+        final String xmlEsperado = "<NFNotaInfoICMSTotal><vBC>999999999999.99</vBC><vICMS>999999999999.99</vICMS><vICMSDeson>999999999999.99</vICMSDeson><vFCP>999999999999.99</vFCP><vFCPUFDest>999999999999.99</vFCPUFDest><vICMSUFDest>999999999999.99</vICMSUFDest><vICMSUFRemet>999999999999.99</vICMSUFRemet><vBCST>999999999999.99</vBCST><vST>999999999999.99</vST><vFCPST>999999999999.99</vFCPST><vFCPSTRet>999999999999.99</vFCPSTRet><vProd>999999999999.99</vProd><vFrete>999999999999.99</vFrete><vSeg>999999999999.99</vSeg><vDesc>999999999999.99</vDesc><vII>999999999999.99</vII><vIPI>999999999999.99</vIPI><vIPIDevol>999999999999.99</vIPIDevol><vPIS>999999999999.99</vPIS><vCOFINS>999999999999.99</vCOFINS><vOutro>999999999999.99</vOutro><vNF>999999999999.99</vNF></NFNotaInfoICMSTotal>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoICMSTotal().toString());
     }
 }

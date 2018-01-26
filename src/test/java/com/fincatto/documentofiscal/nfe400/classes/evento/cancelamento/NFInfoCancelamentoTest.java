@@ -56,7 +56,7 @@ public class NFInfoCancelamentoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFInfoCancelamento versao=\"3.10\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></NFInfoCancelamento>";
+        final String xmlEsperado = "<NFInfoCancelamento versao=\"4.00\"><descEvento>Cancelamento</descEvento><nProt>123456789012345</nProt><xJust>Justificativa qualquer coisa</xJust></NFInfoCancelamento>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoCancelamento().toString());
     }
 }

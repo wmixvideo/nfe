@@ -30,7 +30,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test
     public void deveObterVersaoStringComoFoiSetado() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        final BigDecimal versao = new BigDecimal("3.10");
+        final BigDecimal versao = new BigDecimal("4.00");
         eventoManifestacaoDestinatario.setVersao(versao);
         Assert.assertEquals(versao.toString(), eventoManifestacaoDestinatario.getVersao());
     }
@@ -63,7 +63,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     public void naoDevePermitirEventosNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
         eventoManifestacaoDestinatario.setIdLote("1");
-        eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
+        eventoManifestacaoDestinatario.setVersao(new BigDecimal("4.00"));
         eventoManifestacaoDestinatario.toString();
     }
 
@@ -71,7 +71,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     public void naoDevePermitirLoteNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
         eventoManifestacaoDestinatario.setEvento(new ArrayList<NFEventoManifestacaoDestinatario>());
-        eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
+        eventoManifestacaoDestinatario.setVersao(new BigDecimal("4.00"));
         eventoManifestacaoDestinatario.toString();
     }
 
@@ -87,10 +87,10 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
         eventoManifestacaoDestinatario.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoManifestacaoDestinatario()));
-        eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
+        eventoManifestacaoDestinatario.setVersao(new BigDecimal("4.00"));
         eventoManifestacaoDestinatario.setIdLote("1");
 
-        final String xmlEsperado = "<envEvento versao=\"3.10\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><idLote>1</idLote><evento versao=\"3.10\"><infEvento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Operacao nao Realizada</descEvento><xJust>Justificativa qualquer coisa</xJust></detEvento></infEvento></evento></envEvento>";
+        final String xmlEsperado = "<envEvento versao=\"4.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><idLote>1</idLote><evento versao=\"4.00\"><infEvento Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"4.00\"><descEvento>Operacao nao Realizada</descEvento><xJust>Justificativa qualquer coisa</xJust></detEvento></infEvento></evento></envEvento>";
         Assert.assertEquals(xmlEsperado, eventoManifestacaoDestinatario.toString());
     }
 }
