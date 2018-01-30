@@ -25,11 +25,8 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.documentofiscal.nfe400.parsers.DFParser;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraQRCode;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeAutorizacaoStub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeAutorizacaoStub.NfeAutorizacaoLoteResult;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 
@@ -98,16 +95,16 @@ class WSLoteEnvio {
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaLote(loteAssinadoXml);
+        XMLValidador.validaLote400(loteAssinadoXml);
 
         // envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
-        final NfeDadosMsg dados = new NfeDadosMsg();
+        final com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg dados = new com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
-        final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        WSLoteEnvio.LOGGER.debug(omElement.toString());
+        // final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
+        // WSLoteEnvio.LOGGER.debug(omElement.toString());
 
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
@@ -117,20 +114,20 @@ class WSLoteEnvio {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
+        final NfeResultMsg autorizacaoLoteResult = new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
         final NFLoteEnvioRetorno loteEnvioRetorno = new DFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
 
-    private NfeCabecMsgE getCabecalhoSOAP() {
-        final NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO);
-        final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
-        cabecalhoSOAP.setNfeCabecMsg(cabecalho);
-        return cabecalhoSOAP;
-    }
+    // private NfeCabecMsgE getCabecalhoSOAP() {
+    // final NfeCabecMsg cabecalho = new NfeCabecMsg();
+    // cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
+    // cabecalho.setVersaoDados(NFeConfig.VERSAO);
+    // final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
+    // cabecalhoSOAP.setNfeCabecMsg(cabecalho);
+    // return cabecalhoSOAP;
+    // }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();

@@ -15,8 +15,8 @@ import com.fincatto.documentofiscal.nfe400.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeRetAutorizacaoStub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRetAutorizacao4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRetAutorizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 class WSLoteConsulta {
@@ -39,14 +39,7 @@ class WSLoteConsulta {
     }
 
     private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {
-        final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.VERSAO);
-
-        final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
-        cabecE.setNfeCabecMsg(cabec);
-
-        final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
+        final NFeRetAutorizacao4Stub.NfeDadosMsg dados = new NFeRetAutorizacao4Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
@@ -54,8 +47,7 @@ class WSLoteConsulta {
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
-
-        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
+        final NfeResultMsg autorizacaoLoteResult = new NFeRetAutorizacao4Stub(urlWebService).nfeRetAutorizacaoLote(dados);
         return autorizacaoLoteResult.getExtraElement();
     }
 

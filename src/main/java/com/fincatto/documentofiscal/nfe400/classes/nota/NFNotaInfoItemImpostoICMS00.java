@@ -31,10 +31,10 @@ public class NFNotaInfoItemImpostoICMS00 extends DFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
-    @Element(name = "pFCP", required = true)
+    @Element(name = "pFCP", required = false)
     private String percentualFundoCombatePobreza;
 
-    @Element(name = "vFCP", required = true)
+    @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
 
     public void setOrigem(final NFOrigem origem) {
