@@ -15,10 +15,7 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFInfoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro2Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 class WSConsultaCadastro {
@@ -45,22 +42,19 @@ class WSConsultaCadastro {
     }
 
     private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
-        final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
-        cabec.setCUF(uf.getCodigoIbge());
-        cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
 
-        final NfeCabecMsgE cabecE = new NfeCabecMsgE();
-        cabecE.setNfeCabecMsg(cabec);
-
-        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+        final CadConsultaCadastro4Stub.NfeDadosMsg_type0 nfeDadosMsg = new CadConsultaCadastro4Stub.NfeDadosMsg_type0();
         nfeDadosMsg.setExtraElement(omElementConsulta);
+
+        final CadConsultaCadastro4Stub.ConsultaCadastro consultaCadastro = new CadConsultaCadastro4Stub.ConsultaCadastro();
+        consultaCadastro.setNfeDadosMsg(nfeDadosMsg);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);
         if (autorizador == null) {
             throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
         }
         final String url = autorizador.getConsultaCadastro(this.config.getAmbiente());
         WSConsultaCadastro.LOG.debug(String.format("Endpoint: %s", url));
-        return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
+        return new CadConsultaCadastro4Stub(url).consultaCadastro(consultaCadastro).getConsultaCadastroResult().getExtraElement();
     }
 
     private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {

@@ -19,11 +19,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEventoC
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 
 class WSCancelamento {
@@ -50,14 +47,7 @@ class WSCancelamento {
     }
 
     private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSCancelamento.VERSAO_LEIAUTE.toPlainString());
-
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
+        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         WSCancelamento.LOGGER.debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
@@ -69,7 +59,7 @@ class WSCancelamento {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
+        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCancelamento.LOGGER.debug(omElementResult.toString());
         return omElementResult;

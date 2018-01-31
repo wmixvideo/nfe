@@ -15,11 +15,8 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeInutilizacao2Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 
 class WSInutilizacao {
@@ -46,22 +43,15 @@ class WSInutilizacao {
     }
 
     private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws Exception {
-        final NfeInutilizacao2Stub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSInutilizacao.VERSAO_SERVICO);
-
-        final NfeInutilizacao2Stub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final NfeInutilizacao2Stub.NfeDadosMsg dados = new NfeDadosMsg();
+        final NFeInutilizacao4Stub.NfeDadosMsg dados = new NFeInutilizacao4Stub.NfeDadosMsg();
         final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
         WSInutilizacao.LOGGER.debug(omElement.toString());
         dados.setExtraElement(omElement);
 
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
-        final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService).nfeInutilizacaoNF2(dados, cabecalhoE);
-        final OMElement dadosRetorno = nf2Result.getExtraElement();
+        final NfeResultMsg nf4Result = new NFeInutilizacao4Stub(urlWebService).nfeInutilizacaoNF(dados);
+        final OMElement dadosRetorno = nf4Result.getExtraElement();
         WSInutilizacao.LOGGER.debug(dadosRetorno.toString());
         return dadosRetorno;
     }
@@ -83,7 +73,6 @@ class WSInutilizacao {
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
         dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + String.valueOf(anoInutilizacaoNumeracao) + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
-
         inutilizacao.setVersao(new BigDecimal(WSInutilizacao.VERSAO_SERVICO));
         inutilizacao.setDados(dados);
         return inutilizacao;

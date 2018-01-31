@@ -38,7 +38,6 @@ public final class XMLValidador {
     }
 
     public static boolean validaLote400(final String arquivoXML) throws Exception {
-        System.out.println(arquivoXML);
         return XMLValidador.valida400(arquivoXML, "enviNFe_v4.00.xsd");
     }
 

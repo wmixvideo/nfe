@@ -103,9 +103,6 @@ class WSLoteEnvio {
         final com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg dados = new com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
-        // final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        // WSLoteEnvio.LOGGER.debug(omElement.toString());
-
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
@@ -119,15 +116,6 @@ class WSLoteEnvio {
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
-
-    // private NfeCabecMsgE getCabecalhoSOAP() {
-    // final NfeCabecMsg cabecalho = new NfeCabecMsg();
-    // cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-    // cabecalho.setVersaoDados(NFeConfig.VERSAO);
-    // final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
-    // cabecalhoSOAP.setNfeCabecMsg(cabecalho);
-    // return cabecalhoSOAP;
-    // }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();

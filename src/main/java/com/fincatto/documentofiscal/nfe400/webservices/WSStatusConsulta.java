@@ -15,8 +15,7 @@ import com.fincatto.documentofiscal.nfe400.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta.NfeStatusServico2Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta.NfeStatusServicoStub;
+import com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta.NfeStatusServico4Stub;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 class WSStatusConsulta {
@@ -33,8 +32,7 @@ class WSStatusConsulta {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
         WSStatusConsulta.LOGGER.debug(omElementConsulta.toString());
 
-        final boolean consultaNotaBahiaWorkaround = DFUnidadeFederativa.BA.equals(uf) && DFModelo.NFE.equals(modelo);
-        final OMElement omElementResult = consultaNotaBahiaWorkaround ? this.efetuaConsultaStatusBahia(omElementConsulta) : this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
+        final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
         WSStatusConsulta.LOGGER.debug(omElementResult.toString());
 
         return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
@@ -50,14 +48,7 @@ class WSStatusConsulta {
     }
 
     private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException {
-        final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
-        cabec.setCUF(unidadeFederativa.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.VERSAO);
-
-        final NfeStatusServico2Stub.NfeCabecMsgE cabecEnv = new NfeStatusServico2Stub.NfeCabecMsgE();
-        cabecEnv.setNfeCabecMsg(cabec);
-
-        final NfeStatusServico2Stub.NfeDadosMsg dados = new NfeStatusServico2Stub.NfeDadosMsg();
+        final NfeStatusServico4Stub.NfeDadosMsg dados = new NfeStatusServico4Stub.NfeDadosMsg();
         dados.setExtraElement(omElement);
 
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(unidadeFederativa);
@@ -65,27 +56,6 @@ class WSStatusConsulta {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + modelo.name() + ", autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        return new NfeStatusServico2Stub(endpoint).nfeStatusServicoNF2(dados, cabecEnv).getExtraElement();
-    }
-
-    // este metodo teve que ser implementado pois a Bahia trata de forma diferente
-    private OMElement efetuaConsultaStatusBahia(final OMElement omElement) throws RemoteException {
-        final NfeStatusServicoStub.NfeCabecMsg cabec = new NfeStatusServicoStub.NfeCabecMsg();
-        cabec.setCUF(DFUnidadeFederativa.BA.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.VERSAO);
-
-        final NfeStatusServicoStub.NfeCabecMsgE cabecEnv = new NfeStatusServicoStub.NfeCabecMsgE();
-        cabecEnv.setNfeCabecMsg(cabec);
-
-        final NfeStatusServicoStub.NfeDadosMsg dados = new NfeStatusServicoStub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
-
-        final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(DFUnidadeFederativa.BA);
-        final String endpoint = autorizador.getNfeStatusServico(this.config.getAmbiente());
-        if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + DFModelo.NFE.name() + ", autorizador " + autorizador.name() + ", UF " + DFUnidadeFederativa.BA.name());
-        }
-
-        return new NfeStatusServicoStub(endpoint).nfeStatusServicoNF(dados, cabecEnv).getExtraElement();
+        return new NfeStatusServico4Stub(endpoint).nfeStatusServicoNF(dados).getExtraElement();
     }
 }

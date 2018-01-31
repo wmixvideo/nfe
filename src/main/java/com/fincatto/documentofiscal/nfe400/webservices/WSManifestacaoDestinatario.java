@@ -16,7 +16,8 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.*;
 import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 
 public class WSManifestacaoDestinatario {
@@ -42,14 +43,7 @@ public class WSManifestacaoDestinatario {
     }
 
     private OMElement efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new RecepcaoEventoStub.NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSManifestacaoDestinatario.VERSAO_LEIAUTE.toPlainString());
-
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new RecepcaoEventoStub.NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final RecepcaoEventoStub.NfeDadosMsg dados = new RecepcaoEventoStub.NfeDadosMsg();
+        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         WSManifestacaoDestinatario.LOGGER.debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
@@ -61,7 +55,7 @@ public class WSManifestacaoDestinatario {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final RecepcaoEventoStub.NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
+        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSManifestacaoDestinatario.LOGGER.debug(omElementResult.toString());
         return omElementResult;

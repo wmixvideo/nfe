@@ -24,11 +24,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
@@ -57,14 +54,7 @@ class WSCartaCorrecao {
     }
 
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSCartaCorrecao.VERSAO_LEIAUTE.toPlainString());
-
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-
-        final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
+        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         WSCartaCorrecao.LOGGER.debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
@@ -77,7 +67,7 @@ class WSCartaCorrecao {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizacao.name());
         }
 
-        final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService).nfeRecepcaoEvento(dados, cabecalhoE);
+        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         WSCartaCorrecao.LOGGER.debug(omElementResult.toString());
         return omElementResult;
