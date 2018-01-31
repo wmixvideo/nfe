@@ -11,9 +11,6 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 public class NFNotaInfoItemImpostoIPI extends DFBase {
     private static final long serialVersionUID = 3354365738012803301L;
 
-    @Element(name = "clEnq", required = false)
-    private String classeEnquadramento;
-
     @Element(name = "CNPJProd", required = false)
     private String cnpjProdutor;
 
@@ -33,18 +30,12 @@ public class NFNotaInfoItemImpostoIPI extends DFBase {
     private NFNotaInfoItemImpostoIPINaoTributado naoTributado;
 
     public NFNotaInfoItemImpostoIPI() {
-        this.classeEnquadramento = null;
         this.cnpjProdutor = null;
         this.codigoSelo = null;
         this.quantidadeSelo = null;
         this.codigoEnquadramento = null;
         this.tributado = null;
         this.naoTributado = null;
-    }
-
-    public void setClasseEnquadramento(final String classeEnquadramento) {
-        StringValidador.exatamente5(classeEnquadramento, "Classe Enquadramento IPI Item");
-        this.classeEnquadramento = classeEnquadramento;
     }
 
     public void setCnpjProdutor(final String cnpjProdutor) {
@@ -79,10 +70,6 @@ public class NFNotaInfoItemImpostoIPI extends DFBase {
             throw new IllegalStateException("IPI tributado e nao tributado sao mutuamente exclusivos");
         }
         this.naoTributado = naoTributado;
-    }
-
-    public String getClasseEnquadramento() {
-        return this.classeEnquadramento;
     }
 
     public String getCnpjProdutor() {

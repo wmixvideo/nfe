@@ -10,11 +10,6 @@ import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 public class NFNotaInfoItemImpostoIPITest {
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirClasseEnquadramentoTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIPI().setClasseEnquadramento("NEFiL1");
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoEnquadramentoTamanhoInvalido() {
         new NFNotaInfoItemImpostoIPI().setCodigoEnquadramento("iNEF");
     }
@@ -57,7 +52,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test
     public void devePermitirCnojProdutorNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
         ipi.setQuantidadeSelo(new BigInteger("999999999999"));
@@ -68,7 +62,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCodigoEnquadramentoNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
         ipi.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado());
@@ -80,7 +73,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test
     public void devePermitirCodigoSeloNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado());
@@ -91,7 +83,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test
     public void devePermitirNaoTributadoNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
@@ -103,7 +94,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test
     public void devePermitirQuantidadeSeloNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");
@@ -114,7 +104,6 @@ public class NFNotaInfoItemImpostoIPITest {
     @Test
     public void devePermitirTributadoNulo() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");

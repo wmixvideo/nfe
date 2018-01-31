@@ -879,7 +879,6 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoIPI getNFNotaInfoItemImpostoIPI() {
         final NFNotaInfoItemImpostoIPI ipi = new NFNotaInfoItemImpostoIPI();
-        ipi.setClasseEnquadramento("157br");
         ipi.setCnpjProdutor("12345678901234");
         ipi.setCodigoEnquadramento("aT2");
         ipi.setCodigoSelo("iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5");

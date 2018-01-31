@@ -35,13 +35,13 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     @Element(name = "vICMS", required = true)
     private String valorTributo;
 
-    @Element(name = "vBCFCP", required = true)
+    @Element(name = "vBCFCP", required = false)
     private String valorBCFundoCombatePobreza;
 
-    @Element(name = "pFCP", required = true)
+    @Element(name = "pFCP", required = false)
     private String percentualFundoCombatePobreza;
 
-    @Element(name = "vFCP", required = true)
+    @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
 
     @Element(name = "vICMSDeson", required = false)
@@ -91,6 +91,9 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     }
 
     public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
+        if (percentualFundoCombatePobreza.signum() < 0) {
+            throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
+        }
         this.percentualFundoCombatePobreza = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
     }
 

@@ -53,13 +53,13 @@ public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
     @Element(name = "vICMSST", required = false)
     private String valorICMSST;
 
-    @Element(name = "vBCFCPST", required = true)
+    @Element(name = "vBCFCPST", required = false)
     private String valorBCFundoCombatePobrezaST;
 
-    @Element(name = "pFCPST", required = true)
+    @Element(name = "pFCPST", required = false)
     private String percentualFundoCombatePobrezaST;
 
-    @Element(name = "vFCPST", required = true)
+    @Element(name = "vFCPST", required = false)
     private String valorFundoCombatePobrezaST;
 
     @Element(name = "pCredSN", required = false)
@@ -125,6 +125,9 @@ public class NFNotaInfoItemImpostoICMSSN900 extends DFBase {
     }
 
     public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
+        if (percentualFundoCombatePobrezaST.signum() < 0) {
+            throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
+        }
         this.percentualFundoCombatePobrezaST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
     }
 

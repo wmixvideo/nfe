@@ -108,8 +108,6 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "nFCI", required = false)
     private String numeroControleFCI;
 
-    @Element(name = "", required = false)
-
     @ElementList(entry = "rastro", inline = true, required = false)
     private List<NFNotaInfoItemProdutoRastreabilidade> rastros;
 
