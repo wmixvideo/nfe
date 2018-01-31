@@ -1,6 +1,3 @@
-/**
- * CadConsultaCadastro4Stub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
- */
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
 import javax.xml.namespace.QName;
@@ -9,9 +6,6 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.apache.axis2.client.Stub;
 
-/*
- * CadConsultaCadastro4Stub java implementation
- */
 public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -91,11 +85,11 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4#consultaCadastro
+     * @see CadConsultaCadastro4#consultaCadastro
      * @param consultaCadastro0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.NfeResultMsg consultaCadastro(final com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.ConsultaCadastro consultaCadastro0) throws java.rmi.RemoteException {
+    public NfeResultMsg consultaCadastro(final ConsultaCadastro consultaCadastro0) throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = null;
 
         try {
@@ -127,9 +121,9 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             final org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
             final org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
-            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.NfeResultMsg.class);
+            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), NfeResultMsg.class);
 
-            return (com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.NfeResultMsg) object;
+            return (NfeResultMsg) object;
         } catch (final org.apache.axis2.AxisFault f) {
             final org.apache.axiom.om.OMElement faultElt = f.getDetail();
 
@@ -196,10 +190,10 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.ConsultaCadastro param, final boolean optimizeContent, final javax.xml.namespace.QName elementQName) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final ConsultaCadastro param, final boolean optimizeContent, final javax.xml.namespace.QName elementQName) throws org.apache.axis2.AxisFault {
         try {
             final org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.ConsultaCadastro.MY_QNAME, factory));
+            emptyEnvelope.getBody().addChild(param.getOMElement(ConsultaCadastro.MY_QNAME, factory));
 
             return emptyEnvelope;
         } catch (final org.apache.axis2.databinding.ADBException e) {
@@ -210,12 +204,12 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("rawtypes")
     private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class type) throws org.apache.axis2.AxisFault {
         try {
-            if (com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.ConsultaCadastro.class.equals(type)) {
-                return com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.ConsultaCadastro.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+            if (ConsultaCadastro.class.equals(type)) {
+                return ConsultaCadastro.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
-            if (com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.NfeResultMsg.class.equals(type)) {
-                return com.fincatto.documentofiscal.nfe400.webservices.gerado.CadConsultaCadastro4Stub.NfeResultMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+            if (NfeResultMsg.class.equals(type)) {
+                return NfeResultMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
         } catch (final java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
