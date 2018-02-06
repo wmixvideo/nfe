@@ -1,7 +1,5 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.Date;
-
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -122,7 +120,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     private CTeNotaInfoIdentificacaoTomadorServico4 tomadorServico4;
 
     @Element(name = "dhCont", required = false)
-    private Date dataContingencia;
+    private LocalDateTime dataContingencia;
 
     @Element(name = "xJust", required = false)
     private String justificativa;
@@ -587,7 +585,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
         this.tomadorServico4 = toma4;
     }
 
-    public Date getDataContingencia() {
+    public LocalDateTime getDataContingencia() {
         return this.dataContingencia;
     }
 
@@ -595,7 +593,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Data e Hora da entrada em contingência<br>
      * Informar a data e hora no formato AAAA-MM-DDTHH:MM:SS
      */
-    public void setDataContingencia(final Date dataContingencia) {
+    public void setDataContingencia(final LocalDateTime dataContingencia) {
         this.dataContingencia = dataContingencia;
     }
 

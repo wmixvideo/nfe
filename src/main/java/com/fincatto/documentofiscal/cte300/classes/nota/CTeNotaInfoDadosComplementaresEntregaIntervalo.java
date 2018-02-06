@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import org.joda.time.LocalTime;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -14,7 +13,6 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoHoraEntrega;
  */
 
 @Root(name = "noInter")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoDadosComplementaresEntregaIntervalo extends DFBase {
     private static final long serialVersionUID = 733372678080043594L;
 

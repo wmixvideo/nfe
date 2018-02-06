@@ -6,8 +6,6 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.transformers.DFDateFormatTransformer;
-
 public class DFDateFormatTransformerTest {
 
     @Test

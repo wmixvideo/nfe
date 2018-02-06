@@ -40,7 +40,7 @@ public class CTeNotaInfoIdentificacaoTomadorServico4 extends DFBase {
     private String telefone;
 
     @Element(name = "enderToma", required = true)
-    private CTNotaEndereco enderTomadorServico;
+    private CTeNotaEndereco enderTomadorServico;
 
     @Element(name = "email", required = false)
     private String email;
@@ -149,14 +149,14 @@ public class CTeNotaInfoIdentificacaoTomadorServico4 extends DFBase {
         this.telefone = telefone;
     }
 
-    public CTNotaEndereco getEnderTomadorServico() {
+    public CTeNotaEndereco getEnderTomadorServico() {
         return this.enderTomadorServico;
     }
 
     /**
      * Dados do endereço
      */
-    public void setEnderTomadorServico(final CTNotaEndereco enderTomadorServico) {
+    public void setEnderTomadorServico(final CTeNotaEndereco enderTomadorServico) {
         this.enderTomadorServico = enderTomadorServico;
     }
 
