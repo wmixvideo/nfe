@@ -37,6 +37,11 @@ public class NFNotaInfoItemImpostoICMSSN202Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMSSN202().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN202 icms202 = new NFNotaInfoItemImpostoICMSSN202();
         icms202.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_POSITIVA);

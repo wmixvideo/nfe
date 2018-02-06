@@ -47,6 +47,11 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMSSN201().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModalidadeDeterminacaoBCICMSSTNulo() {
         final NFNotaInfoItemImpostoICMSSN201 icms201 = new NFNotaInfoItemImpostoICMSSN201();
         icms201.setOrigem(NFOrigem.NACIONAL);

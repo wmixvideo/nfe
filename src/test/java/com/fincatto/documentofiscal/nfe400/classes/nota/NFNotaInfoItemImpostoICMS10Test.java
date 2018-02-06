@@ -53,6 +53,11 @@ public class NFNotaInfoItemImpostoICMS10Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMS10().setPercentualFundoCombatePobreza(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModalidadeBaseCalculoNulo() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
         icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PAUTA);

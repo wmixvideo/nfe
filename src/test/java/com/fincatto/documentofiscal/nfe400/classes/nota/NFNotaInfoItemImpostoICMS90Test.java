@@ -54,6 +54,16 @@ public class NFNotaInfoItemImpostoICMS90Test {
         new NFNotaInfoItemImpostoICMS90().setValorTributo(new BigDecimal("10000000000000"));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMS90().setPercentualFundoCombatePobreza(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobrezaST() {
+        new NFNotaInfoItemImpostoICMS90().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+    }
+
     @Test
     public void devePermitirICMSDesoneracaoNulo() {
         final NFNotaInfoItemImpostoICMS90 icms90 = new NFNotaInfoItemImpostoICMS90();

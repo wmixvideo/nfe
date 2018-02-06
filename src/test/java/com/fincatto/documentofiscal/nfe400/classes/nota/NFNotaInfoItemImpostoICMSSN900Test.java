@@ -67,6 +67,11 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         new NFNotaInfoItemImpostoICMSSN900().setValorICMSST(new BigDecimal("10000000000000"));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobrezaRetidoST() {
+        new NFNotaInfoItemImpostoICMSSN900().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+    }
+
     @Test
     public void devePermitirAliquotaAplicavelCalculoCreditoSNNulo() {
         final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();

@@ -21,6 +21,11 @@ public class NFNotaInfoItemImpostoICMSSN500Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobrezaRetidoST() {
+        new NFNotaInfoItemImpostoICMSSN500().setPercentualFundoCombatePobrezaRetidoST(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemSNNulo() {
         final NFNotaInfoItemImpostoICMSSN500 icms500 = new NFNotaInfoItemImpostoICMSSN500();
         icms500.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);

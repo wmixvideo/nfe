@@ -21,6 +21,11 @@ public class NFNotaInfoItemImpostoICMS60Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMS00().setPercentualFundoCombatePobreza(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDeveSituacaoTributariaNulo() {
         final NFNotaInfoItemImpostoICMS60 icms60 = new NFNotaInfoItemImpostoICMS60();
         icms60.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);

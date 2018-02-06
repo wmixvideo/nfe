@@ -28,6 +28,11 @@ public class NFNotaInfoItemImpostoICMS00Test {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMS00().setPercentualFundoCombatePobreza(BigDecimal.ZERO);
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModalidadeBaseCalculoNulo() {
         final NFNotaInfoItemImpostoICMS00 icms00 = new NFNotaInfoItemImpostoICMS00();
         icms00.setOrigem(NFOrigem.NACIONAL);

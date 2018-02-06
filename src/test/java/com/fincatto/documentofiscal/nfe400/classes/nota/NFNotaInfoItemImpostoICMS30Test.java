@@ -37,6 +37,11 @@ public class NFNotaInfoItemImpostoICMS30Test {
         new NFNotaInfoItemImpostoICMS30().setValorImpostoICMSST(new BigDecimal("10000000000000"));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
+        new NFNotaInfoItemImpostoICMS30().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+    }
+
     @Test
     public void devePermitirValorICMSDesoneracaoNulo() {
         final NFNotaInfoItemImpostoICMS30 icms30 = new NFNotaInfoItemImpostoICMS30();
