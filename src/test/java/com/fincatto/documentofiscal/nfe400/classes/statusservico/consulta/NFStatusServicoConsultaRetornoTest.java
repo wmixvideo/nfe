@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 
 public class NFStatusServicoConsultaRetornoTest {
 
@@ -89,5 +89,11 @@ public class NFStatusServicoConsultaRetornoTest {
         final String tempoMedio = "10";
         consultaRetorno.setTempoMedio(tempoMedio);
         Assert.assertEquals(tempoMedio, consultaRetorno.getTempoMedio());
+    }
+
+    @Test
+    public void deveGerarXmlCorretamente() {
+        String xml = "<retConsStatServ versao=\"4.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>2</tpAmb><verAplic>SC-v1</verAplic><cStat>280</cStat><xMotivo>Rejeicao: Certificado Transmissor invalido</xMotivo><cUF>42</cUF><dhRecbto>2018-02-08T10:10:10-02:00</dhRecbto><dhRetorno>2018-02-08T10:10:10-02:00</dhRetorno></retConsStatServ>";
+        Assert.assertEquals(xml, FabricaDeObjetosFake.getNFStatusServicoConsultaRetorno().toString());
     }
 }

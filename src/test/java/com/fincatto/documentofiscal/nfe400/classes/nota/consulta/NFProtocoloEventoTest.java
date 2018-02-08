@@ -1,20 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.consulta;
 
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFProtocoloEvento;
 
 public class NFProtocoloEventoTest {
 
     @Test
     public void deveObterVersaoComoFoiSetado() {
         final NFProtocoloEvento evento = new NFProtocoloEvento();
-        final String versao = "3.10";
-        evento.setVersao(versao);
-        Assert.assertEquals(versao, evento.getVersao());
+        evento.setVersao("4.00");
+        Assert.assertEquals("4.00", evento.getVersao());
     }
 
     @Test

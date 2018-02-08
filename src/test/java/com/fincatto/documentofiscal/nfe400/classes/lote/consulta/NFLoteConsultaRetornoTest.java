@@ -1,16 +1,22 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.consulta;
 
-import java.util.Collections;
-
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import java.util.Collections;
 
 public class NFLoteConsultaRetornoTest {
+
+    @Test
+    public void deveGerarAmbienteHomologacao() {
+        final NFLoteConsultaRetorno retorno = new NFLoteConsultaRetorno();
+        retorno.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        Assert.assertEquals(DFAmbiente.HOMOLOGACAO, retorno.getAmbiente());
+    }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {

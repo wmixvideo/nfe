@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 
-import org.joda.time.LocalDateTime;
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import org.joda.time.LocalDateTime;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class NFLoteEnvioRetornoTest {
 
@@ -19,10 +18,10 @@ public class NFLoteEnvioRetornoTest {
         retorno.setMotivo("kdosfksodf");
         retorno.setStatus("iejsasfisf");
         retorno.setUf(DFUnidadeFederativa.BA);
-        retorno.setVersao("2.00");
+        retorno.setVersao("4.00");
         retorno.setVersaoAplicacao("2.00");
 
-        final String xmlEsperado = "<retEnviNFe versao=\"2.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>2</tpAmb><verAplic>2.00</verAplic><cStat>iejsasfisf</cStat><xMotivo>kdosfksodf</xMotivo><cUF>29</cUF><dhRecbto>2014-01-01T10:10:10-02:00</dhRecbto><infRec><nRec>845e40545</nRec><tMed>430kfszodkgvre</tMed></infRec></retEnviNFe>";
+        final String xmlEsperado = "<retEnviNFe versao=\"4.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>2</tpAmb><verAplic>2.00</verAplic><cStat>iejsasfisf</cStat><xMotivo>kdosfksodf</xMotivo><cUF>29</cUF><dhRecbto>2014-01-01T10:10:10-02:00</dhRecbto><infRec><nRec>845e40545</nRec><tMed>430kfszodkgvre</tMed></infRec></retEnviNFe>";
         Assert.assertEquals(xmlEsperado, retorno.toString());
     }
 }

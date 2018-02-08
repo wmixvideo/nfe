@@ -1,45 +1,39 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.consulta;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFAmbiente;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFNotaConsulta;
+import java.math.BigDecimal;
 
 public class NFNotaConsultaTest {
 
     @Test
     public void deveObterVersaoComoFoiSetado() {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
-        final String versao = "3.10";
-        notaConsulta.setVersao(new BigDecimal(versao));
-        Assert.assertEquals(versao, notaConsulta.getVersao());
+        notaConsulta.setVersao(new BigDecimal("4.00"));
+        Assert.assertEquals("4.00", notaConsulta.getVersao());
     }
 
     @Test
     public void deveObterAmbienteComoFoiSetado() {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
-        final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
-        notaConsulta.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, notaConsulta.getAmbiente());
+        notaConsulta.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        Assert.assertEquals(DFAmbiente.HOMOLOGACAO, notaConsulta.getAmbiente());
     }
 
     @Test
     public void deveObterServicoComoFoiSetado() {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
-        final String servico = "CONSULTAR";
-        notaConsulta.setServico(servico);
-        Assert.assertEquals(servico, notaConsulta.getServico());
+        notaConsulta.setServico("CONSULTAR");
+        Assert.assertEquals("CONSULTAR", notaConsulta.getServico());
     }
 
     @Test
     public void deveObterChaveComoFoiSetado() {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
-        final String chave = "40153917432140336471309459374276926791686520";
-        notaConsulta.setChave(chave);
-        Assert.assertEquals(chave, notaConsulta.getChave());
+        notaConsulta.setChave("40153917432140336471309459374276926791686520");
+        Assert.assertEquals("40153917432140336471309459374276926791686520", notaConsulta.getChave());
     }
 
     @Test(expected = IllegalStateException.class)

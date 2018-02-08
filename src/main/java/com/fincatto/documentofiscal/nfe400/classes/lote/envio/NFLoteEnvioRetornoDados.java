@@ -1,6 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 
-public class NFLoteEnvioRetornoDados {
+import com.fincatto.documentofiscal.DFBase;
+
+public class NFLoteEnvioRetornoDados extends DFBase {
 
 	private NFLoteEnvioRetorno retorno;
 	private NFLoteEnvio loteAssinado;
