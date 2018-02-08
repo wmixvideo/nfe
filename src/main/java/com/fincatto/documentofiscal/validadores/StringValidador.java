@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 
 public abstract class StringValidador {
 
@@ -441,7 +441,7 @@ public abstract class StringValidador {
     public static void tamanho2a9N(final String string, final String info) {
         if (string != null) {
             StringValidador.apenasNumerico(string, info);
-            StringValidador.intervalo(string, 2, 4, info);
+            StringValidador.intervalo(string, 2, 9, info);
         }
     }
 

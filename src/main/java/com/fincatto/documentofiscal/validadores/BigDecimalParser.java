@@ -1,14 +1,14 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 
 public abstract class BigDecimalParser {
 
@@ -49,7 +49,7 @@ public abstract class BigDecimalParser {
     }
 
     public static String tamanho1Com4CasasDecimais(final BigDecimal valor, final String info) {
-        return BigDecimalParser.parse(valor, "0.000", 2, 4, info);
+        return BigDecimalParser.parse(valor, "0.0000", 6, 4, info);
     }
 
     public static String tamanho7ComAte4CasasDecimais(final BigDecimal valor, final String info) {
@@ -70,10 +70,6 @@ public abstract class BigDecimalParser {
 
     public static String tamanho4Com2CasasDecimais(final BigDecimal valor, final String info) {
         return BigDecimalParser.parse(valor, "0.00", 5, 2, info);
-    }
-
-    public static String tamanho8Com2CasasDecimais(final BigDecimal valor, final String info) {
-        return BigDecimalParser.parse(valor, "0.00", 9, 2, info);
     }
 
     public static String validaTamanho(BigDecimal valor, final String info, Integer tamanho, Integer posicaoPontoFlutuante, Boolean pontoFlutuanteExato) {
