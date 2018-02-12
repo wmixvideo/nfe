@@ -30,7 +30,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
     private String razaoSocial;
 
     @Element(name = "enderFerro", required = true)
-    private CTNotaEnderecoFerrovia endereco;
+    private CTeNotaEnderecoFerrovia endereco;
 
     public CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolvidas() {
         this.cnpj = null;
@@ -90,14 +90,14 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
         this.razaoSocial = razaoSocial;
     }
 
-    public CTNotaEnderecoFerrovia getEndereco() {
+    public CTeNotaEnderecoFerrovia getEndereco() {
         return this.endereco;
     }
 
     /**
      * Dados do endereço da ferrovia envolvida
      */
-    public void setEndereco(final CTNotaEnderecoFerrovia endereco) {
+    public void setEndereco(final CTeNotaEnderecoFerrovia endereco) {
         this.endereco = endereco;
     }
 }

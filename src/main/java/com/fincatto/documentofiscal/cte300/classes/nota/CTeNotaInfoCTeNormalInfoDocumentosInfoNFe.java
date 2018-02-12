@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -29,17 +30,16 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNFe extends DFBase {
     @Element(name = "dPrev", required = false)
     private LocalDate dataPrevistaEntrega;
 
-    @Element(name = "infUnidCarga", required = false)
+    @ElementList(name = "infUnidCarga", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga> infoUnidCarga;
 
-    @Element(name = "infUnidTransp", required = false)
+    @ElementList(name = "infUnidTransp", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte> infoUnidTransporte;
 
     public CTeNotaInfoCTeNormalInfoDocumentosInfoNFe() {
         this.chave = null;
         this.pinSUFRAMA = null;
         this.dataPrevistaEntrega = null;
-        this.infoUnidCarga = null;
         this.infoUnidTransporte = null;
     }
 

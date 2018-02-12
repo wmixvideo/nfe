@@ -10,7 +10,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
  * @info Dados do endereço
  */
 
-public class CTNotaEnderecoEmitente extends DFBase {
+public class CTeNotaEnderecoEmitente extends DFBase {
     private static final long serialVersionUID = -2160520606630444661L;
 
     @Element(name = "xLgr", required = true)
@@ -40,7 +40,7 @@ public class CTNotaEnderecoEmitente extends DFBase {
     @Element(name = "fone", required = false)
     private String telefone;
 
-    public CTNotaEnderecoEmitente() {
+    public CTeNotaEnderecoEmitente() {
         this.logradouro = null;
         this.numero = null;
         this.complemento = null;
