@@ -1,19 +1,27 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import org.apache.commons.httpclient.params.HttpConnectionParams;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509KeyManager;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.security.*;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.Principal;
+import java.security.PrivateKey;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
-import javax.net.ssl.*;
-
-import org.apache.commons.httpclient.params.HttpConnectionParams;
-import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
 
 public class NFSocketFactory implements ProtocolSocketFactory {
 
@@ -28,7 +36,7 @@ public class NFSocketFactory implements ProtocolSocketFactory {
     @Override
     public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort, final HttpConnectionParams params) throws IOException {
         final Socket socket = this.context.getSocketFactory().createSocket();
-        ((SSLSocket) socket).setEnabledProtocols(new String[] { this.config.getSSLProtocolo() });
+        ((SSLSocket) socket).setEnabledProtocols(this.config.getSSLProtocolos()!=null? this.config.getSSLProtocolos() : new String[] { this.config.getSSLProtocolo() });
         socket.bind(new InetSocketAddress(localAddress, localPort));
         socket.connect(new InetSocketAddress(host, port), 60000);
         return socket;
