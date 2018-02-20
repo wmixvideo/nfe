@@ -1,5 +1,14 @@
 package com.fincatto.documentofiscal.utils;
 
+import java.io.ByteArrayOutputStream;
+import java.net.URI;
+import java.security.KeyStore;
+import java.security.MessageDigest;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.*;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,19 +17,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
-
-import java.io.ByteArrayOutputStream;
-import java.net.URI;
-import java.security.KeyStore;
-import java.security.MessageDigest;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 
 public abstract class GeraCadeiaCertificados {
 
@@ -32,39 +29,55 @@ public abstract class GeraCadeiaCertificados {
         final KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
         keyStore.load(null, senha.toCharArray());
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-            
-        	for (final NFAutorizador31 aut : NFAutorizador31.values()) {
-                //Para NFe...
+
+            for (final NFAutorizador31 aut : NFAutorizador31.values()) {
+                // Para NFe...
                 final String urlNF = aut.getNfeStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlNF)) {
                     final String host = new URI(urlNF).getHost();
-                    GeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
                 }
 
-                //Para NFCe...
+                // Para NFCe...
                 final String urlNFC = aut.getNfceStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlNFC)) {
                     final String host = new URI(urlNFC).getHost();
-                    GeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
                 }
             }
-            
-            //MDFE
-            for(final MDFAutorizador3 aut: MDFAutorizador3.values()){
+
+            for (final NFAutorizador400 aut : NFAutorizador400.values()) {
+                // Para NFe...
+                final String urlNF = aut.getNfeStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlNF)) {
+                    final String host = new URI(urlNF).getHost();
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
+                }
+
+                // Para NFCe...
+                final String urlNFC = aut.getNfceStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlNFC)) {
+                    final String host = new URI(urlNFC).getHost();
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
+                }
+            }
+
+            // MDFE
+            for (final MDFAutorizador3 aut : MDFAutorizador3.values()) {
                 final String urlMDFe = aut.getMDFeStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlMDFe)) {
                     final String host = new URI(urlMDFe).getHost();
-                    GeraCadeiaCertificados.get(keyStore, host, PORT);
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
                 }
             }
-            
-            //CTe
+
+            // CTe
             for (final CTAutorizador31 aut : CTAutorizador31.values()) {
-            	final String urlCTe = aut.getCteStatusServico(ambiente);
-            	if (StringUtils.isNotBlank(urlCTe)) {
-            		 final String host = new URI(urlCTe).getHost();
-            		 GeraCadeiaCertificados.get(keyStore, host, PORT);
-            	}
+                final String urlCTe = aut.getCteStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlCTe)) {
+                    final String host = new URI(urlCTe).getHost();
+                    GeraCadeiaCertificados.get(keyStore, host, GeraCadeiaCertificados.PORT);
+                }
             }
 
             keyStore.store(out, senha.toCharArray());
@@ -79,20 +92,20 @@ public abstract class GeraCadeiaCertificados {
         final X509TrustManager defaultTrustManager = (X509TrustManager) trustManagerFactory.getTrustManagers()[0];
         final SavingTrustManager savingTrustManager = new SavingTrustManager(defaultTrustManager);
 
-        final SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
-        sslContext.init(null, new TrustManager[]{savingTrustManager}, null);
+        final SSLContext sslContext = SSLContext.getInstance(GeraCadeiaCertificados.PROTOCOL);
+        sslContext.init(null, new TrustManager[] { savingTrustManager }, null);
 
-        LOGGER.info(String.format("Abrindo conexao para o servidor: %s:%s", host, port));
+        GeraCadeiaCertificados.LOGGER.info(String.format("Abrindo conexao para o servidor: %s:%s", host, port));
         try (SSLSocket sslSocket = (SSLSocket) sslContext.getSocketFactory().createSocket(host, port)) {
             sslSocket.setSoTimeout(10000);
             sslSocket.startHandshake();
         } catch (final Exception e) {
-            LOGGER.error(String.format("[%s] %s", host, e.toString()));
+            GeraCadeiaCertificados.LOGGER.error(String.format("[%s] %s", host, e.toString()));
         }
 
-        //se conseguir obter a cadeia de certificados, adiciona no keystore
+        // se conseguir obter a cadeia de certificados, adiciona no keystore
         if (savingTrustManager.chain != null) {
-            LOGGER.info(String.format("Certificados enviados pelo servidor: %s", savingTrustManager.chain.length));
+            GeraCadeiaCertificados.LOGGER.info(String.format("Certificados enviados pelo servidor: %s", savingTrustManager.chain.length));
             final MessageDigest sha1 = MessageDigest.getInstance("SHA1");
             final MessageDigest md5 = MessageDigest.getInstance("MD5");
             for (int i = 0; i < savingTrustManager.chain.length; i++) {
@@ -102,7 +115,7 @@ public abstract class GeraCadeiaCertificados {
 
                 final String alias = String.format("%s.%s", host, i + 1);
                 keyStore.setCertificateEntry(alias, certificate);
-                LOGGER.info(String.format("Adicionado certificado no keystore com o alias: %s", alias));
+                GeraCadeiaCertificados.LOGGER.info(String.format("Adicionado certificado no keystore com o alias: %s", alias));
             }
         }
     }
@@ -117,7 +130,7 @@ public abstract class GeraCadeiaCertificados {
 
         @Override
         public X509Certificate[] getAcceptedIssuers() {
-            return trustManager.getAcceptedIssuers();
+            return this.trustManager.getAcceptedIssuers();
         }
 
         @Override

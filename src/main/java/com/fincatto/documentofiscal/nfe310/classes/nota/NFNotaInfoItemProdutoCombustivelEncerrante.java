@@ -1,18 +1,18 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.simpleframework.xml.Element;
-
-import java.math.BigDecimal;
 
 /**
- * @Author Eldevan Nery Junior on 04/10/17.
- *
- * Informações do grupo de "encerrante"
+ * @Author Eldevan Nery Junior on 04/10/17. Informações do grupo de "encerrante"
  */
 public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
+    private static final long serialVersionUID = 7349316876219960529L;
 
     /**
      * Numero de identificação do Bico utilizado no abastecimento.
@@ -48,48 +48,46 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     }
 
     public String getNumeroBico() {
-        return numeroBico;
+        return this.numeroBico;
     }
 
     public String getNumeroBomba() {
-        return numeroBomba;
+        return this.numeroBomba;
     }
 
     public String getNumeroTanque() {
-        return numeroTanque;
+        return this.numeroTanque;
     }
 
     public String getValorEncerramentoInicial() {
-        return valorEncerramentoInicial;
+        return this.valorEncerramentoInicial;
     }
 
     public String getValorEncerramentoFinal() {
-        return valorEncerramentoFinal;
+        return this.valorEncerramentoFinal;
     }
 
-    public void setNumeroBomba(String numeroBomba) {
+    public void setNumeroBomba(final String numeroBomba) {
         StringValidador.tamanho3N(numeroBomba, "Numero de identificação da bomba ");
         this.numeroBomba = numeroBomba;
     }
 
-    public void setNumeroBico(String numeroBico) {
+    public void setNumeroBico(final String numeroBico) {
         StringValidador.tamanho3N(numeroBico, "Numero de identificação do Bico ");
         this.numeroBico = numeroBico;
     }
 
-    public void setNumeroTanque(String numeroTanque) {
+    public void setNumeroTanque(final String numeroTanque) {
         StringValidador.tamanho3N(numeroTanque, "Numero de identificação do Tanque ");
         this.numeroTanque = numeroTanque;
     }
 
-    public void setValorEncerramentoInicial(final BigDecimal  valorEncerramentoInicial) {
-        this.valorEncerramentoInicial = BigDecimalParser.tamanho11Com3CasasDecimais(valorEncerramentoInicial,
-                "Valor do Encerrante no inicio do abastecimento");
+    public void setValorEncerramentoInicial(final BigDecimal valorEncerramentoInicial) {
+        this.valorEncerramentoInicial = BigDecimalParser.tamanho11Com3CasasDecimais(valorEncerramentoInicial, "Valor do Encerrante no inicio do abastecimento");
     }
 
-    public void setValorEncerramentoFinal(final BigDecimal  valorEncerramentoFinal) {
-        this.valorEncerramentoFinal =  BigDecimalParser.tamanho11Com3CasasDecimais(valorEncerramentoFinal,
-                "Valor do Encerrante no final do abastecimento");
+    public void setValorEncerramentoFinal(final BigDecimal valorEncerramentoFinal) {
+        this.valorEncerramentoFinal = BigDecimalParser.tamanho11Com3CasasDecimais(valorEncerramentoFinal, "Valor do Encerrante no final do abastecimento");
     }
 
 }

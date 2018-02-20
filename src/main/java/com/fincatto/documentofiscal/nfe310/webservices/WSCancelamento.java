@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import java.math.BigDecimal;
+import java.util.Collections;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.joda.time.DateTime;
@@ -7,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
@@ -22,9 +25,6 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
 import com.fincatto.documentofiscal.persister.DFPersister;
-
-import java.math.BigDecimal;
-import java.util.Collections;
 
 class WSCancelamento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";

@@ -1,15 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.parsers;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
+import java.text.ParseException;
+
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.text.ParseException;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NotaFiscalChaveParserTest {
-
 
     @Test(expected = IllegalArgumentException.class)
     public void naoDevePermitirChaveNula() {
