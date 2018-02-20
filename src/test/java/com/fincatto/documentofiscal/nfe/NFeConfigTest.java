@@ -14,7 +14,7 @@ public class NFeConfigTest {
     public void testaParametrosPadrao() {
         final NFeConfigTeste config = new NFeConfigTeste();
 
-        Assert.assertEquals("TLSv1.2", config.getSSLProtocolo());
+        Assert.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
         Assert.assertEquals(NFTipoEmissao.EMISSAO_NORMAL, config.getTipoEmissao());
         Assert.assertNull(config.getCodigoSegurancaContribuinte());
         Assert.assertNull(config.getCodigoSegurancaContribuinteID());

@@ -11,12 +11,10 @@ import javax.xml.stream.XMLStreamException;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFSocketFactory;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaNSU;
@@ -37,7 +35,6 @@ public class WSDistribuicaoDFe {
      * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
      */
     public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
-        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(this.config), 443));
         try {
             final OMElement ome = AXIOMUtil.stringToOM(this.gerarNFDistribuicaoInt(cnpj, uf, chaveAcesso, nsu).toString());
 
