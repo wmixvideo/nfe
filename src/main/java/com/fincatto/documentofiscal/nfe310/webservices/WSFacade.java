@@ -10,8 +10,8 @@ import java.security.cert.CertificateException;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFSocketFactory;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoDFe;
@@ -43,7 +43,7 @@ public class WSFacade {
     private final WSDistribuicaoDFe wSDistribuicaoDFe;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
+        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
 
         // inicia os servicos disponiveis da nfe
         this.wsLoteEnvio = new WSLoteEnvio(config);
