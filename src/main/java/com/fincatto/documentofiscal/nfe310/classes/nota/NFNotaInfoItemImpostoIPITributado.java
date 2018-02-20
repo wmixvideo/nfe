@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoIPITributado extends DFBase {
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaIPI situacaoTributaria) {
         if (!situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.ENTRADA_RECUPERACAO_CREDITO) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.SAIDA_TRIBUTADA) && !situacaoTributaria.equals(NFNotaInfoSituacaoTributariaIPI.OUTRAS_SAIDAS)) {
-            throw new IllegalStateException("Situacao tributaria invalido no item IPI tributado.");
+            throw new IllegalStateException("Situacao tributaria:" +situacaoTributaria.getCodigo() + " invalido no item IPI tributado.");
         }
         this.situacaoTributaria = situacaoTributaria;
     }
