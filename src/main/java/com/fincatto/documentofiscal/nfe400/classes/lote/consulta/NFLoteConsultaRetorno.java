@@ -1,14 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.consulta;
 
-import java.util.List;
-
-import org.joda.time.LocalDateTime;
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocolo;
+import org.joda.time.LocalDateTime;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.util.List;
 
 @Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
