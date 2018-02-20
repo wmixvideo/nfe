@@ -89,4 +89,14 @@ public abstract class DFConfig {
     public String getSSLProtocolo() {
         return "TLSv1.2";
     }
+
+    /**
+     * Habilita mais de um parâmetro pra ssl.
+     * @return
+     */
+    public String[] getSSLProtocolos() {
+        return null;
+    }
+
+
 }
