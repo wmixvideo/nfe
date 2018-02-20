@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-
 public class DFUnidadeFederativaTest {
 
     @Test
@@ -108,6 +106,7 @@ public class DFUnidadeFederativaTest {
     @Test
     public void deveSerADescricaoAoInvocaarToString() {
         Assert.assertEquals("Santa Catarina", DFUnidadeFederativa.SC.toString());
+        Assert.assertEquals("Rio Grande do Sul", DFUnidadeFederativa.RS.toString());
     }
 
     @Test

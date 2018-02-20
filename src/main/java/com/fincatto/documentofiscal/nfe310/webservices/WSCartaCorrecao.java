@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
@@ -88,8 +88,8 @@ class WSCartaCorrecao {
 
         final NFTipoEvento cartaCorrecao = new NFTipoEvento();
         cartaCorrecao.setVersao(WSCartaCorrecao.VERSAO_LEIAUTE);
-        cartaCorrecao.setDescricaoEvento(EVENTO_DESCRICAO);
-        cartaCorrecao.setCondicaoUso(EVENTO_CONDICAO_USO);
+        cartaCorrecao.setDescricaoEvento(WSCartaCorrecao.EVENTO_DESCRICAO);
+        cartaCorrecao.setCondicaoUso(WSCartaCorrecao.EVENTO_CONDICAO_USO);
         cartaCorrecao.setTextoCorrecao(textoCorrecao);
 
         final NFInfoEvento infoEvento = new NFInfoEvento();
