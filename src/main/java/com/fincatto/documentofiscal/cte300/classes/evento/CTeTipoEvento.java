@@ -1,16 +1,18 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(strict = false)
 public class CTeTipoEvento extends DFBase {
+    private static final long serialVersionUID = -6842953941510024781L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

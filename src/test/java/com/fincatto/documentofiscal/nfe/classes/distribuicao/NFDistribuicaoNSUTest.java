@@ -11,6 +11,13 @@ public class NFDistribuicaoNSUTest {
     }
 
     @Test
+    public void deveEnviarUltimoNSU() {
+        final NFDistribuicaoNSU distribuicaoNSU = new NFDistribuicaoNSU();
+        distribuicaoNSU.setUltimoNSU("000000000000012");
+        Assert.assertEquals("000000000000012", distribuicaoNSU.getUltimoNSU());
+    }
+
+    @Test
     public void deveGerarXmlCorretamente() {
         final NFDistribuicaoNSU distribuicaoNSU = new NFDistribuicaoNSU();
         distribuicaoNSU.setUltimoNSU("000000000000000");

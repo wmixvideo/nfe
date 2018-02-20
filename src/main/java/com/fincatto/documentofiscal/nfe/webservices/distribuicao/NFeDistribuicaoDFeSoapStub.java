@@ -1,16 +1,9 @@
-
-/**
- * NFeDistribuicaoDFeNFeDistribuicaoDFeSoapStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.5.6 Built on : Aug 30, 2011 (10:00:16 CEST)
- */
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
-
-import javax.xml.namespace.QName;
 
 import org.apache.axis2.client.Stub;
 
-/*
- * NFeDistribuicaoDFeNFeDistribuicaoDFeSoapStub java implementation
- */
+import javax.xml.namespace.QName;
+
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation", "unused" })
 public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -33,7 +26,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
     private void populateAxisService() throws org.apache.axis2.AxisFault {
 
-        // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("NFeDistribuicaoDFe" + NFeDistribuicaoDFeSoapStub.getUniqueSuffix());
         this.addAnonymousOperations();
 
@@ -48,7 +40,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         this._service.addOperation(__operation);
 
         this._operations[0] = __operation;
-
     }
 
     // populates the faults
@@ -56,67 +47,33 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
     }
 
-    /**
-     * Constructor that takes in a configContext
-     */
-
     public NFeDistribuicaoDFeSoapStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
 
-    /**
-     * Constructor that takes in a configContext and useseperate listner
-     */
     public NFeDistribuicaoDFeSoapStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
 
         this._serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext, this._service);
-
         this._serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(targetEndpoint));
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
-
     }
 
-    /**
-     * Default Constructor
-     */
     public NFeDistribuicaoDFeSoapStub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-
         this(configurationContext, "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx");
-
     }
 
-    /**
-     * Default Constructor
-     */
     public NFeDistribuicaoDFeSoapStub() throws org.apache.axis2.AxisFault {
-
         this("https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx");
-
     }
 
-    /**
-     * Constructor taking the target endpoint
-     */
     public NFeDistribuicaoDFeSoapStub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
-    /**
-     * Auto generated method signature
-     * @see com.fincatto.documentofiscal.nfe.distribuicao.NFeDistribuicaoDFeNFeDistribuicaoDFeSoap#nfeDistDFeInteresse
-     * @param nfeDistDFeInteresse
-     */
-
-    public com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse nfeDistDFeInteresse(
-
-            final com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse nfeDistDFeInteresse)
-
-            throws java.rmi.RemoteException
-
-    {
+    public NFeDistDFeInteresseResponse nfeDistDFeInteresse(final NFeDistDFeInteresse nfeDistDFeInteresse) throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = null;
         try {
             final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
@@ -147,9 +104,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             final org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
             final org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
-            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse.class, this.getEnvelopeNamespaces(_returnEnv));
+            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), NFeDistDFeInteresseResponse.class, this.getEnvelopeNamespaces(_returnEnv));
 
-            return (com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse) object;
+            return (NFeDistDFeInteresseResponse) object;
 
         } catch (final org.apache.axis2.AxisFault f) {
 
@@ -266,17 +223,13 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @param param NFeDadosMsg
          */
         public void setNFeDadosMsg(final NFeDadosMsg_type0 param) {
-
             if (param != null) {
                 // update the setting tracker
                 this.localNFeDadosMsgTracker = true;
             } else {
                 this.localNFeDadosMsgTracker = false;
-
             }
-
             this.localNFeDadosMsg = param;
-
         }
 
         /**
@@ -285,7 +238,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
             boolean isReaderMTOMAware = false;
-
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
             } catch (final java.lang.IllegalArgumentException e) {
@@ -311,7 +263,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             };
             // return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(NFeDistDFeInteresse.MY_QNAME, factory, dataSource);
             return factory.createOMElement(dataSource, NFeDistDFeInteresse.MY_QNAME);
-
         }
 
         @Override
@@ -361,7 +312,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 } else {
                     this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "nfeDistDFeInteresse", xmlWriter);
                 }
-
             }
             if (this.localNFeDadosMsgTracker) {
                 if (this.localNFeDadosMsg == null) {
@@ -370,7 +320,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 this.localNFeDadosMsg.serialize(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDadosMsg"), factory, xmlWriter);
             }
             xmlWriter.writeEndElement();
-
         }
 
         /**
@@ -380,11 +329,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
-
             }
-
             xmlWriter.writeAttribute(namespace, attName, attValue);
-
         }
 
         /**
@@ -399,11 +345,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
         private void writeQNameAttribute(final java.lang.String namespace, final java.lang.String attName, final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
             final java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
             if (attributePrefix == null) {
@@ -424,10 +366,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             }
         }
 
-        /**
-         * method to handle Qnames
-         */
-
         private void writeQName(final javax.xml.namespace.QName qname, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             final java.lang.String namespaceURI = qname.getNamespaceURI();
             if (namespaceURI != null) {
@@ -437,11 +375,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     xmlWriter.writeNamespace(prefix, namespaceURI);
                     xmlWriter.setPrefix(prefix, namespaceURI);
                 }
-
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
                 } else {
-                    // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
                 }
 
@@ -451,7 +387,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(final javax.xml.namespace.QName[] qnames, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -483,7 +418,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 }
                 xmlWriter.writeCharacters(stringToWrite.toString());
             }
-
         }
 
         /**
@@ -491,18 +425,14 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
-
             if (prefix == null) {
                 prefix = NFeDistDFeInteresse.generatePrefix(namespace);
-
                 while (xmlWriter.getNamespaceContext().getNamespaceURI(prefix) != null) {
                     prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
                 }
-
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
             }
-
             return prefix;
         }
 
@@ -511,31 +441,20 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-
             final java.util.ArrayList elementList = new java.util.ArrayList();
             final java.util.ArrayList attribList = new java.util.ArrayList();
-
             if (this.localNFeDadosMsgTracker) {
                 elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDadosMsg"));
-
                 if (this.localNFeDadosMsg == null) {
                     throw new org.apache.axis2.databinding.ADBException("nfeDadosMsg cannot be null!!");
                 }
                 elementList.add(this.localNFeDadosMsg);
             }
-
             return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-
         }
 
-        /**
-         * Factory class that keeps the parse method
-         */
         public static class Factory {
 
-            /**
-             * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
             public static NFeDistDFeInteresse parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NFeDistDFeInteresse object = new NFeDistDFeInteresse();
 
@@ -544,11 +463,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 final java.lang.String prefix = "";
                 final java.lang.String namespaceuri = "";
                 try {
-
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-
                     if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
@@ -565,9 +482,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                                 final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
                                 return (NFeDistDFeInteresse) ExtensionMapper.getTypeObject(nsUri, type, reader);
                             }
-
                         }
-
                     }
 
                     // Note all attributes that were handled. Used to differ normal attributes
@@ -581,15 +496,10 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     }
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDadosMsg").equals(reader.getName())) {
-
                         object.setNFeDadosMsg(NFeDadosMsg_type0.Factory.parse(reader));
-
                         reader.next();
-
                     } // End of if for expected property start element
-
                     else {
-
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -600,16 +510,12 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         // A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getLocalName());
                     }
-
                 } catch (final javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
                 }
-
                 return object;
             }
-
         }// end of factory class
-
     }
 
     public static class NFeDadosMsg_type0 implements org.apache.axis2.databinding.ADBBean {
@@ -644,9 +550,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @param param ExtraElement
          */
         public void setExtraElement(final org.apache.axiom.om.OMElement param) {
-
             this.localExtraElement = param;
-
         }
 
         /**
@@ -655,7 +559,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
             boolean isReaderMTOMAware = false;
-
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
             } catch (final java.lang.IllegalArgumentException e) {
@@ -671,7 +574,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
-
             final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, parentQName) {
 
                 @Override
@@ -699,7 +601,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -739,9 +640,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             } else {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
-
             xmlWriter.writeEndElement();
-
         }
 
         /**
@@ -751,11 +650,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (xmlWriter.getPrefix(namespace) == null) {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
-
             }
-
             xmlWriter.writeAttribute(namespace, attName, attValue);
-
         }
 
         /**
@@ -808,14 +704,12 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     xmlWriter.writeNamespace(prefix, namespaceURI);
                     xmlWriter.setPrefix(prefix, namespaceURI);
                 }
-
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
                 }
-
             } else {
                 xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
             }
@@ -842,7 +736,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                             xmlWriter.writeNamespace(prefix, namespaceURI);
                             xmlWriter.setPrefix(prefix, namespaceURI);
                         }
-
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
                         } else {
@@ -854,7 +747,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 }
                 xmlWriter.writeCharacters(stringToWrite.toString());
             }
-
         }
 
         /**
@@ -869,11 +761,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 while (xmlWriter.getNamespaceContext().getNamespaceURI(prefix) != null) {
                     prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
                 }
-
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
             }
-
             return prefix;
         }
 
@@ -892,9 +782,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             } else {
                 throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
             }
-
             return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-
         }
 
         /**
@@ -913,11 +801,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 final java.lang.String prefix = "";
                 final java.lang.String namespaceuri = "";
                 try {
-
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-
                     if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
@@ -934,9 +820,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                                 final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
                                 return (NFeDadosMsg_type0) ExtensionMapper.getTypeObject(nsUri, type, reader);
                             }
-
                         }
-
                     }
 
                     // Note all attributes that were handled. Used to differ normal attributes
@@ -948,9 +832,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-
                     if (reader.isStartElement()) {
-
                         // use the QName from the parser as the name for the builder
                         final javax.xml.namespace.QName startQname1 = reader.getName();
 
@@ -980,12 +862,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 } catch (final javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
                 }
-
                 return object;
             }
-
         }// end of factory class
-
     }
 
     public static class NFeDistDFeInteresseResponse implements org.apache.axis2.databinding.ADBBean {
@@ -1767,32 +1646,32 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(final com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.om.OMElement toOM(final NFeDistDFeInteresse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
         try {
-            return param.getOMElement(com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+            return param.getOMElement(NFeDistDFeInteresse.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (final org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(final com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.om.OMElement toOM(final NFeDistDFeInteresseResponse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
         try {
-            return param.getOMElement(com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+            return param.getOMElement(NFeDistDFeInteresseResponse.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (final org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
 
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final NFeDistDFeInteresse param, final boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
         try {
 
             final org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse.MY_QNAME, factory));
+            emptyEnvelope.getBody().addChild(param.getOMElement(NFeDistDFeInteresse.MY_QNAME, factory));
             return emptyEnvelope;
         } catch (final org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -1813,15 +1692,15 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
         try {
 
-            if (com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse.class.equals(type)) {
+            if (NFeDistDFeInteresse.class.equals(type)) {
 
-                return com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return NFeDistDFeInteresse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
             }
 
-            if (com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse.class.equals(type)) {
+            if (NFeDistDFeInteresseResponse.class.equals(type)) {
 
-                return com.fincatto.documentofiscal.nfe.webservices.distribuicao.NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return NFeDistDFeInteresseResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
             }
 

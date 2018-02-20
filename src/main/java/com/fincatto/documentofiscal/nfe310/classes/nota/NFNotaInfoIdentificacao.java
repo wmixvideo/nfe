@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.classes.*;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;

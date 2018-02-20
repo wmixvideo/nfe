@@ -1,11 +1,38 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-
 public class NFDistribuicaoIntTest {
+
+    @Test
+    public void deveGerarAmbienteHomologacao() {
+        final NFDistribuicaoInt distribuicaoInt = new NFDistribuicaoInt();
+        distribuicaoInt.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        Assert.assertEquals(DFAmbiente.HOMOLOGACAO, distribuicaoInt.getAmbiente());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveAceitarVersaoNula(){
+        final NFDistribuicaoInt distribuicaoInt = new NFDistribuicaoInt();
+        distribuicaoInt.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        distribuicaoInt.toString();
+    }
+
+    @Test
+    public void deveGerarVersao100() {
+        final NFDistribuicaoInt distribuicaoInt = new NFDistribuicaoInt();
+        distribuicaoInt.setVersao("1.00");
+        Assert.assertEquals("1.00", distribuicaoInt.getVersao());
+    }
+
+    public void deveGerarConsultaDaBA(){
+        final NFDistribuicaoInt distribuicaoInt = new NFDistribuicaoInt();
+        distribuicaoInt.setUnidadeFederativaAutor(DFUnidadeFederativa.BA);
+        Assert.assertEquals(DFUnidadeFederativa.BA, distribuicaoInt.getUnidadeFederativaAutor());
+    }
 
     @Test
     public void deveGerarXmlCorretamente() {

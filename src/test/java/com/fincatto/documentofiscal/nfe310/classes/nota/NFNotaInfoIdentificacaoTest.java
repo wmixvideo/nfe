@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.*;
 

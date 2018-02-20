@@ -1,18 +1,20 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
+import java.math.BigDecimal;
+
+import org.joda.time.DateTime;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.joda.time.DateTime;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
-import java.math.BigDecimal;
 
 public class EventoCTe extends DFBase {
+    private static final long serialVersionUID = 8560202237533495525L;
 
     @Attribute(name = "Id", required = true)
     private String id;
@@ -46,8 +48,6 @@ public class EventoCTe extends DFBase {
 
     @Element(name = "detEvento", required = true)
     private CTeTipoEvento dadosEvento;
-
-
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;

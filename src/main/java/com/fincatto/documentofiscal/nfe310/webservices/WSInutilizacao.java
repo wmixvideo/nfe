@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
