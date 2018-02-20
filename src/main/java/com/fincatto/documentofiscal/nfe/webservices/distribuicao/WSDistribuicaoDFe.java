@@ -12,26 +12,34 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFSocketFactory;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 public class WSDistribuicaoDFe {
 
+    private final NFeConfig config;
+
+    public WSDistribuicaoDFe(final NFeConfig config) {
+        this.config = config;
+    }
+
     /**
-     * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
-     * É importante salvar esta String para não perder nenhuma informacao<br>
-     * A receita não disponibiliza o conhecimento várias vezes para consultar, retorna rejeicao: Consumo indevido
+     * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
      */
-    public static String consultar(final NFDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
-        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
+    public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
+        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(this.config), 443));
         try {
-            final OMElement ome = AXIOMUtil.stringToOM(distDFeInt.toString());
+            final OMElement ome = AXIOMUtil.stringToOM(this.gerarNFDistribuicaoInt(cnpj, uf, chaveAcesso, nsu).toString());
 
             final NFeDistribuicaoDFeSoapStub.NFeDadosMsg_type0 dadosMsgType0 = new NFeDistribuicaoDFeSoapStub.NFeDadosMsg_type0();
             dadosMsgType0.setExtraElement(ome);
@@ -39,10 +47,12 @@ public class WSDistribuicaoDFe {
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse distDFeInteresse = new NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse();
             distDFeInteresse.setNFeDadosMsg(dadosMsgType0);
 
-            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(config.getAmbiente()));
+            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()));
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse result = stub.nfeDistDFeInteresse(distDFeInteresse);
+            final String resultadoConsulta = result.getNFeDistDFeInteresseResult().getExtraElement().toString();
 
-            return result.getNFeDistDFeInteresseResult().getExtraElement().toString();
+            return new Persister(new DFRegistryMatcher()).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
+
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }
@@ -65,8 +75,19 @@ public class WSDistribuicaoDFe {
         }
     }
 
-    public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(classe, xml);
+    private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) {
+        final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
+        distDFeInt.setVersao("1.01");
+        distDFeInt.setAmbiente(this.config.getAmbiente());
+        distDFeInt.setCnpj(cnpj);
+        distDFeInt.setUnidadeFederativaAutor(uf);
+
+        if (StringUtils.isNotBlank(chaveAcesso)) {
+            distDFeInt.setConsultaChaveAcesso(new NFDistribuicaoConsultaChaveAcesso().setChaveAcesso(chaveAcesso));
+        } else {
+            distDFeInt.setConsultaNSU(new NFDistribuicaoConsultaNSU().setNsu(nsu));
+        }
+        return distDFeInt;
     }
 
 }

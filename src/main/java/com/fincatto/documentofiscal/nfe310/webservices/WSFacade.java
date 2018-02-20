@@ -13,6 +13,8 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFSocketFactory;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoDFe;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
@@ -38,6 +40,7 @@ public class WSFacade {
     private final WSInutilizacao wsInutilizacao;
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSNotaDownload wsNotaDownload;
+    private final WSDistribuicaoDFe wSDistribuicaoDFe;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
@@ -53,6 +56,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wsNotaDownload = new WSNotaDownload(config);
+        this.wSDistribuicaoDFe = new WSDistribuicaoDFe(config);
     }
 
     /**
@@ -234,5 +238,18 @@ public class WSFacade {
      */
     public NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
         return this.wsNotaDownload.downloadNota(cnpj, chave);
+    }
+
+    /**
+     * Faz consulta de distribuicao das notas fiscais. Pode ser feita pela chave de acesso ou utilizando o NSU (numero sequencial unico) da receita.
+     * @param cnpj CNPJ da pessoa juridica a consultar
+     * @param uf Unidade federativa da pessoa juridica a consultar
+     * @param chave Chave de acesso da nota
+     * @param nsu Numero sequencial unico fornecido pela receita ao fazer a consulta. Enviar 0 para trazer os ultimos 3 meses
+     * @return dados da consulta retornado pelo webservice limitando um total de 50 registros
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
+        return this.wSDistribuicaoDFe.consultar(cnpj, uf, chaveAcesso, nsu);
     }
 }
