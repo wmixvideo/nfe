@@ -1,8 +1,8 @@
-package com.fincatto.documentofiscal.nfe310.transformers;
+package com.fincatto.documentofiscal.nfe.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NFTipoEmissaoTransformer implements Transform<NFTipoEmissao> {
 

@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe310.webservices;
+package com.fincatto.documentofiscal.nfe;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -12,8 +12,6 @@ import javax.net.ssl.*;
 
 import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
 
 public class NFSocketFactory implements ProtocolSocketFactory {
 

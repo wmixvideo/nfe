@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe400.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 
 public class NFGeraQRCode {

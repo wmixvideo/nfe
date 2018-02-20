@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.classes;
+package com.fincatto.documentofiscal.nfe;
 
 public enum NFTipoEmissao {
 
@@ -38,6 +38,6 @@ public enum NFTipoEmissao {
 
     @Override
     public String toString() {
-        return codigo + " - " + descricao;
+        return this.codigo + " - " + this.descricao;
     }
 }

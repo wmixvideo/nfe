@@ -15,10 +15,10 @@ import org.apache.commons.httpclient.protocol.Protocol;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
+import com.fincatto.documentofiscal.nfe.NFSocketFactory;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.nfe310.webservices.NFSocketFactory;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 public class WSDistribuicaoDFe {

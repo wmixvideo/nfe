@@ -13,6 +13,8 @@ import com.fincatto.documentofiscal.cte200.classes.*;
 import com.fincatto.documentofiscal.cte200.transformers.*;
 import com.fincatto.documentofiscal.mdfe3.classes.def.*;
 import com.fincatto.documentofiscal.mdfe3.transformers.*;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe.transformers.NFTipoEmissaoTransformer;
 import com.fincatto.documentofiscal.nfe310.classes.*;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFIndicadorContribuinteCTe;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFIndicadorContribuinteNFe;
@@ -31,12 +33,12 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(DateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
+        super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
 
         // NFE 3.10
         super.bind(NFTipo.class, new NFTipoTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
         super.bind(NFFinalidade.class, new NFFinalidadeTransformer());
-        super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
         super.bind(NFTipoImpressao.class, new NFTipoImpressaoTransformer());
         super.bind(NFOrigemProcesso.class, new NFOrigemProcessoTransformer());
         super.bind(NFOperadoraCartao.class, new NFOperadoraCartaoTransformer());
@@ -82,7 +84,6 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipo.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOrigemTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFFinalidade.class, new com.fincatto.documentofiscal.nfe400.transformers.NFFinalidadeTransformer());
-        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipoEmissao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoEmissaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoImpressaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFOrigemProcesso.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOrigemProcessoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFOperadoraCartao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOperadoraCartaoTransformer());

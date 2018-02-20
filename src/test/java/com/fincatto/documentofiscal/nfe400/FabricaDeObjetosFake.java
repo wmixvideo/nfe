@@ -1,8 +1,19 @@
 package com.fincatto.documentofiscal.nfe400;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
@@ -26,15 +37,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class FabricaDeObjetosFake {
 
@@ -266,8 +268,8 @@ public class FabricaDeObjetosFake {
         return loteEnvio;
     }
 
-    public static NFStatusServicoConsulta getNFStatusServicoConsulta(){
-        NFStatusServicoConsulta statusServicoConsulta = new NFStatusServicoConsulta();
+    public static NFStatusServicoConsulta getNFStatusServicoConsulta() {
+        final NFStatusServicoConsulta statusServicoConsulta = new NFStatusServicoConsulta();
         statusServicoConsulta.setAmbiente(DFAmbiente.HOMOLOGACAO);
         statusServicoConsulta.setServico("STATUS");
         statusServicoConsulta.setUf(DFUnidadeFederativa.SC);
@@ -275,8 +277,8 @@ public class FabricaDeObjetosFake {
         return statusServicoConsulta;
     }
 
-    public static NFStatusServicoConsultaRetorno getNFStatusServicoConsultaRetorno(){
-        NFStatusServicoConsultaRetorno retorno = new NFStatusServicoConsultaRetorno();
+    public static NFStatusServicoConsultaRetorno getNFStatusServicoConsultaRetorno() {
+        final NFStatusServicoConsultaRetorno retorno = new NFStatusServicoConsultaRetorno();
         retorno.setAmbiente(DFAmbiente.HOMOLOGACAO);
         retorno.setDataRecebimento(new LocalDateTime(2018, 2, 8, 10, 10, 10));
         retorno.setDataRetorno(new LocalDateTime(2018, 2, 8, 10, 10, 10));

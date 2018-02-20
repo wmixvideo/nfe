@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NFAutorizador400Test {
 

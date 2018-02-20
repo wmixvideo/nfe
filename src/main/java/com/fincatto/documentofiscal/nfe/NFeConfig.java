@@ -1,14 +1,12 @@
-package com.fincatto.documentofiscal.nfe400;
+package com.fincatto.documentofiscal.nfe;
 
 import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.nfe400.classes.NFTipoEmissao;
 
 /**
  * Configuração basica do sistema de notas fiscais.
  */
 public abstract class NFeConfig extends DFConfig {
 
-    public static final String VERSAO = "4.00";
     public static final String NAMESPACE = "http://www.portalfiscal.inf.br/nfe";
 
     /**
@@ -33,5 +31,9 @@ public abstract class NFeConfig extends DFConfig {
      */
     public NFTipoEmissao getTipoEmissao() {
         return NFTipoEmissao.EMISSAO_NORMAL;
+    }
+
+    public static String getVersao() {
+        return "3.10";
     }
 }

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
@@ -42,7 +42,7 @@ class WSStatusConsulta {
         final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
         consStatServ.setUf(unidadeFederativa);
         consStatServ.setAmbiente(this.config.getAmbiente());
-        consStatServ.setVersao(NFeConfig.VERSAO);
+        consStatServ.setVersao(NFeConfig.getVersao());
         consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
         return consStatServ;
     }

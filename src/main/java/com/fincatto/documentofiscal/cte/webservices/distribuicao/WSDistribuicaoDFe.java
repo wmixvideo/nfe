@@ -17,8 +17,8 @@ import org.simpleframework.xml.stream.Format;
 
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.webservices.NFSocketFactory;
+import com.fincatto.documentofiscal.nfe.NFSocketFactory;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 public class WSDistribuicaoDFe {

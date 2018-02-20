@@ -5,7 +5,7 @@ import org.joda.time.LocalDate;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.classes.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NotaFiscalChaveParser {
 

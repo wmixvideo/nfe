@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400;
+package com.fincatto.documentofiscal.nfe;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.classes.NFTipoEmissao;
 
 public class NFeConfigTest {
 

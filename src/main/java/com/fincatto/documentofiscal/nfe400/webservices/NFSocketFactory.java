@@ -13,7 +13,7 @@ import javax.net.ssl.*;
 import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
-import com.fincatto.documentofiscal.nfe400.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 
 public class NFSocketFactory implements ProtocolSocketFactory {
 

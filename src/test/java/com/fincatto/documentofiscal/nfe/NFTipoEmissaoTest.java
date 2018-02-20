@@ -1,9 +1,7 @@
-package com.fincatto.documentofiscal.nfe310.classes;
+package com.fincatto.documentofiscal.nfe;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
 
 public class NFTipoEmissaoTest {
 

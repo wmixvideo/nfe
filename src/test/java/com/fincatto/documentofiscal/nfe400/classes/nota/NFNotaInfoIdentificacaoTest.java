@@ -11,8 +11,12 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.*;
+import com.fincatto.documentofiscal.nfe400.classes.NFFinalidade;
+import com.fincatto.documentofiscal.nfe400.classes.NFProcessoEmissor;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao;
 
 public class NFNotaInfoIdentificacaoTest {
 

@@ -3,9 +3,9 @@ package com.fincatto.documentofiscal.nfe310.parsers;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoEmissao;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NotaFiscalChaveParser {
 
@@ -19,7 +19,7 @@ public class NotaFiscalChaveParser {
     }
 
     public String getChave() {
-        return chave;
+        return this.chave;
     }
 
     public DFUnidadeFederativa getNFUnidadeFederativa() {

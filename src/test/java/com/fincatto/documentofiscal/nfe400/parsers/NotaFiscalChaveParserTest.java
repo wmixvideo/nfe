@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.classes.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NotaFiscalChaveParserTest {
 

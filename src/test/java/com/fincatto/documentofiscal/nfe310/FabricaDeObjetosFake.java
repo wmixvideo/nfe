@@ -5,12 +5,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.classes.*;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFInfoEvento;
@@ -32,8 +34,6 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFReference;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignedInfo;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class FabricaDeObjetosFake {
 
@@ -65,7 +65,7 @@ public class FabricaDeObjetosFake {
 
     public static NFEnviaEventoCancelamento getNFEnviaEventoCancelamento() {
         final NFEnviaEventoCancelamento enviaEvento = new NFEnviaEventoCancelamento();
-        enviaEvento.setEvento(Collections.singletonList(getNFEventoCancelamento()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCancelamento()));
         enviaEvento.setIdLote(Long.toString(DateTime.now().getMillis()));
         enviaEvento.setVersao(new BigDecimal("1.00"));
         return enviaEvento;
@@ -187,7 +187,7 @@ public class FabricaDeObjetosFake {
 
     public static NFEnviaEventoCartaCorrecao getNFEnviaEventoCartaCorrecao() {
         final NFEnviaEventoCartaCorrecao enviaEvento = new NFEnviaEventoCartaCorrecao();
-        enviaEvento.setEvento(Collections.singletonList(getNFEventoCartaCorrecao()));
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCartaCorrecao()));
         enviaEvento.setIdLote(Long.toString(DateTime.now().getMillis()));
         enviaEvento.setVersao(new BigDecimal("1.00"));
         return enviaEvento;
@@ -461,8 +461,8 @@ public class FabricaDeObjetosFake {
     }
 
     public static NFNota getNotaQRCode() {
-        //CAMPOS CONTIDOS NO EXEMPLO DO MANUAL DA RECEITA PARA GERAÇÃO DO QRCODE
-        NFNota nota = new NFNota();
+        // CAMPOS CONTIDOS NO EXEMPLO DO MANUAL DA RECEITA PARA GERAÇÃO DO QRCODE
+        final NFNota nota = new NFNota();
         nota.setInfo(new NFNotaInfo());
         nota.getInfo().setIdentificador("28140300156225000131650110000151341562040824");
 
