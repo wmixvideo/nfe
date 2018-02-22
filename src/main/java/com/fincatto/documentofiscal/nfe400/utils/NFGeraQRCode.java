@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.utils;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 
 public class NFGeraQRCode {
 
@@ -73,5 +72,9 @@ public class NFGeraQRCode {
             sb.append(Integer.toString((element & 0xff) + 0x100, 16).substring(1));
         }
         return sb.toString();
+    }
+
+    public String urlConsultaChaveAcesso(){
+        return this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoProducao() : this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoHomologacao();
     }
 }
