@@ -30,7 +30,7 @@ public class NFGeraQRCode {
          * corrigir em DFUnidadeFederativa quando a URL da versao 3.10 do PR for desabilitada.
         */
         if(this.nota.getInfo().getIdentificacao().getUf().equals(DFUnidadeFederativa.PR) &&this.nota.getInfo().getVersao().equals("4.00")){
-           url = "http://www.fazenda.pr.gov.br/nfce/qrcode?";
+           url = "http://www.fazenda.pr.gov.br/nfce/qrcode";
         }
 
 
