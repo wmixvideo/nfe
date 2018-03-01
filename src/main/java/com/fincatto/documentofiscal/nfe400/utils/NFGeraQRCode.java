@@ -1,16 +1,16 @@
 package com.fincatto.documentofiscal.nfe400.utils;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 
 public class NFGeraQRCode {
 
@@ -23,7 +23,17 @@ public class NFGeraQRCode {
     }
 
     public String getQRCode() throws NoSuchAlgorithmException {
-        final String url = this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
+        String url = this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
+
+        /* FIXME TODO Workaround para corrigir erro :
+         *<cStat>395</cStat><xMotivo>Endereco do site da UF da Consulta via QR-Code diverge do previsto. Novo endereco:http://www.fazenda.pr.gov.br/nfce/qrcode</xMotivo>
+         * corrigir em DFUnidadeFederativa quando a URL da versao 3.10 do PR for desabilitada.
+        */
+        if(this.nota.getInfo().getIdentificacao().getUf().equals(DFUnidadeFederativa.PR) &&this.nota.getInfo().getVersao().equals("4.00")){
+           url = "http://www.fazenda.pr.gov.br/nfce/qrcode";
+        }
+
+
         if (StringUtils.isBlank(url)) {
             throw new IllegalArgumentException("URL para consulta do QRCode nao informada para uf " + this.nota.getInfo().getIdentificacao().getUf() + "!");
         }
@@ -73,5 +83,9 @@ public class NFGeraQRCode {
             sb.append(Integer.toString((element & 0xff) + 0x100, 16).substring(1));
         }
         return sb.toString();
+    }
+
+    public String urlConsultaChaveAcesso(){
+        return this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoProducao() : this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoHomologacao();
     }
 }

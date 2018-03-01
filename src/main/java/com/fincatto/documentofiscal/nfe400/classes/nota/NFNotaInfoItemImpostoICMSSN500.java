@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
     private static final long serialVersionUID = 83636755742035633L;
@@ -18,13 +17,13 @@ public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
     @Element(name = "CSOSN", required = true)
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
 
-    @Element(name = "vBCSTRet", required = true)
+    @Element(name = "vBCSTRet", required = false)
     private String valorBCICMSSTRetido;
 
-    @Element(name = "pST", required = true)
+    @Element(name = "pST", required = false)
     private String percentualICMSSTRetido;
 
-    @Element(name = "vICMSSTRet", required = true)
+    @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
 
     @Element(name = "vBCFCPSTRet", required = false)
