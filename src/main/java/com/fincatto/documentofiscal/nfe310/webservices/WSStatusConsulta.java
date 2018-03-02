@@ -1,14 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -18,6 +9,14 @@ import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta.NfeStatusServico2Stub;
 import com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta.NfeStatusServicoStub;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.rmi.RemoteException;
 
 class WSStatusConsulta {
 
@@ -44,7 +43,7 @@ class WSStatusConsulta {
         final NFStatusServicoConsulta consStatServ = new NFStatusServicoConsulta();
         consStatServ.setUf(unidadeFederativa);
         consStatServ.setAmbiente(this.config.getAmbiente());
-        consStatServ.setVersao(NFeConfig.getVersao());
+        consStatServ.setVersao(this.config.getVersao());
         consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
         return consStatServ;
     }
@@ -52,7 +51,7 @@ class WSStatusConsulta {
     private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa, final DFModelo modelo) throws RemoteException {
         final NfeStatusServico2Stub.NfeCabecMsg cabec = new NfeStatusServico2Stub.NfeCabecMsg();
         cabec.setCUF(unidadeFederativa.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.getVersao());
+        cabec.setVersaoDados(this.config.getVersao());
 
         final NfeStatusServico2Stub.NfeCabecMsgE cabecEnv = new NfeStatusServico2Stub.NfeCabecMsgE();
         cabecEnv.setNfeCabecMsg(cabec);
@@ -72,7 +71,7 @@ class WSStatusConsulta {
     private OMElement efetuaConsultaStatusBahia(final OMElement omElement) throws RemoteException {
         final NfeStatusServicoStub.NfeCabecMsg cabec = new NfeStatusServicoStub.NfeCabecMsg();
         cabec.setCUF(DFUnidadeFederativa.BA.getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.getVersao());
+        cabec.setVersaoDados(this.config.getVersao());
 
         final NfeStatusServicoStub.NfeCabecMsgE cabecEnv = new NfeStatusServicoStub.NfeCabecMsgE();
         cabecEnv.setNfeCabecMsg(cabec);
