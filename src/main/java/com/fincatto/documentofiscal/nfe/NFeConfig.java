@@ -33,7 +33,11 @@ public abstract class NFeConfig extends DFConfig {
         return NFTipoEmissao.EMISSAO_NORMAL;
     }
 
-    public static String getVersao() {
+    /**
+     * Retorna a versão do XML na receita.
+     * @return versão nota fiscal
+     */
+    public String getVersao() {
         return "3.10";
     }
 }
