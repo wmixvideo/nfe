@@ -27,7 +27,7 @@ public abstract class StringValidador {
     }
 
     public static void codigoDeBarras(final String codigoDeBarras) {
-        final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14})$").matcher(codigoDeBarras);
+        final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14}|SEM GTIN)$").matcher(codigoDeBarras);
         if (!matcher.find()) {
             throw new IllegalStateException(String.format("Codigo de barras com formato invalido (%s)", codigoDeBarras));
         }
