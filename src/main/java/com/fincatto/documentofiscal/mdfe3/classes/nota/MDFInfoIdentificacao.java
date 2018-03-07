@@ -12,12 +12,14 @@ import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoTranportador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -105,6 +107,13 @@ public class MDFInfoIdentificacao extends DFBase {
      */
     @Element(name = "dhIniViagem", required = false)
     private LocalDateTime dataHoraDoInicioViagem;
+
+
+    /**
+     * Indicador de participação do Canal Verde.
+     */
+    @Element(name = "indCanalVerde", required = false)
+    private String indicadorCanalVerde;
 
 
     public DFUnidadeFederativa getCodigoUF() {
@@ -294,5 +303,17 @@ public class MDFInfoIdentificacao extends DFBase {
 
     public void setDataHoraDoInicioViagem(LocalDateTime dataHoraDoInicioViagem) {
         this.dataHoraDoInicioViagem = dataHoraDoInicioViagem;
+    }
+
+    public String getIndicadorCanalVerde() {
+        return indicadorCanalVerde;
+    }
+
+    public void setIndicadorCanalVerde(String indicadorCanalVerde) {
+        String[] enumeration = new String[]{"1"};
+        if(StringUtils.isNotBlank(indicadorCanalVerde) && !StringUtils.equalsAny(indicadorCanalVerde, enumeration )){
+            throw new IllegalStateException(String.format("Indicador canal verde \"%s\" deve possuir um dos seguintes:'%s' caracteres", indicadorCanalVerde, Arrays.toString(enumeration)));
+        }
+        this.indicadorCanalVerde = indicadorCanalVerde;
     }
 }
