@@ -27,8 +27,6 @@ public enum DFModelo {
         return this.codigo;
     }
 
-    public String getDescricao() { return descricao; }
-
     public static DFModelo valueOfCodigo(final String codigo) {
         for (final DFModelo tipo : DFModelo.values()) {
             if (tipo.getCodigo().equals(codigo)) {
