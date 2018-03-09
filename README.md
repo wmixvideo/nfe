@@ -88,7 +88,7 @@ Considere para os exemplos abaixo que **config** seja uma instância da implemen
 
 #### Status dos webservices
 ```java
-NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(NFUnidadeFederativa.SC, NFModelo.NFE);
+NFStatusServicoConsultaRetorno retorno = new WSFacade(config).consultaStatus(DFUnidadeFederativa.SC, DFModelo.NFE);
 System.out.println(retorno.getStatus());
 System.out.println(retorno.getMotivo());
 ```
@@ -122,6 +122,12 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAce
 Faça o cancelamento da nota através do facade:
 ```java
 final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
+```
+
+#### Consulta nota por chave de acesso ou NSU
+Faça a consulta da nota através do facade:
+```java
+final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu);
 ```
 
 ### Convertendo objetos Java em XML

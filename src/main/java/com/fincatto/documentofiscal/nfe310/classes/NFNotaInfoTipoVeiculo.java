@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum NFNotaInfoTipoVeiculo {
 
     AUTOMOVEL("06", "Autom\u00f3vel"),
@@ -21,7 +23,7 @@ public enum NFNotaInfoTipoVeiculo {
     private final String descricao;
 
     NFNotaInfoTipoVeiculo(final String codigo, final String descricao) {
-        this.codigo = codigo;
+        this.codigo = StringUtils.leftPad(codigo,2,"0");
         this.descricao = descricao;
     }
 
@@ -31,7 +33,7 @@ public enum NFNotaInfoTipoVeiculo {
 
     public static NFNotaInfoTipoVeiculo valueOfCodigo(final String codigo) {
         for (final NFNotaInfoTipoVeiculo tipoVeiculo : NFNotaInfoTipoVeiculo.values()) {
-            if (tipoVeiculo.getCodigo().equals(codigo)) {
+            if (tipoVeiculo.getCodigo().equals(StringUtils.leftPad(codigo,2,"0"))) {
                 return tipoVeiculo;
             }
         }

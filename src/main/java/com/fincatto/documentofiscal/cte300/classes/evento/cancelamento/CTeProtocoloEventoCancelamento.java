@@ -1,18 +1,20 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 @Root(name = "procEventoCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeProtocoloEventoCancelamento extends DFBase {
+    private static final long serialVersionUID = -5921322695285609605L;
 
     @Attribute(name = "versao", required = true)
     private String versao;
@@ -23,8 +25,6 @@ public class CTeProtocoloEventoCancelamento extends DFBase {
     @Element(name = "retEventoCTe", required = false)
     private CTeEventoRetorno eventoRetorno;
 
-
-
     public String getVersao() {
         return this.versao;
     }
@@ -34,10 +34,10 @@ public class CTeProtocoloEventoCancelamento extends DFBase {
     }
 
     public CTeEventoCancelamento getEvento() {
-        return evento;
+        return this.evento;
     }
 
-    public void setEvento(CTeEventoCancelamento evento) {
+    public void setEvento(final CTeEventoCancelamento evento) {
         this.evento = evento;
     }
 
@@ -46,6 +46,6 @@ public class CTeProtocoloEventoCancelamento extends DFBase {
     }
 
     public CTeEventoRetorno getEventoRetorno() {
-        return eventoRetorno;
+        return this.eventoRetorno;
     }
 }

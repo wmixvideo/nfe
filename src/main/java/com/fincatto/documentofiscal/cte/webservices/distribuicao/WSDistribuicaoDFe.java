@@ -15,10 +15,10 @@ import org.apache.commons.httpclient.protocol.Protocol;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
+import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.webservices.NFSocketFactory;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 public class WSDistribuicaoDFe {
@@ -29,7 +29,7 @@ public class WSDistribuicaoDFe {
      * A receita não disponibiliza o conhecimento várias vezes para consultar, retorna rejeicao: Consumo indevido
      */
     public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
-        Protocol.registerProtocol("https", new Protocol("https", new NFSocketFactory(config), 443));
+        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         try {
             final OMElement ome = AXIOMUtil.stringToOM(distDFeInt.toString());
 

@@ -1,22 +1,20 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoSuplementar;
-import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
+
 public class NFGeraQRCodeTest {
 
-    //EXEMPLO DO MANUAL DA RECEITA
+    // EXEMPLO DO MANUAL DA RECEITA
     private static final String URL_TEST = "?chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=2&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001&cHashQRCode=fb49da11e94fccbbccb6862617f7d77163ab6bc2";
 
     @Test
@@ -73,10 +71,10 @@ public class NFGeraQRCodeTest {
                 return null;
             }
 
-			@Override
-			public String getCertificadoAlias(){
-				return null;
-			}
+            @Override
+            public String getCertificadoAlias() {
+                return null;
+            }
         };
     }
 }
