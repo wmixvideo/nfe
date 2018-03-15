@@ -29,7 +29,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <axis2.version>1.6.4</axis2.version>
         <joda.version>2.9.9</joda.version>
-        <slf4j.version>1.8.0-beta0</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <junit.version>4.12</junit.version>
     </properties>
 
