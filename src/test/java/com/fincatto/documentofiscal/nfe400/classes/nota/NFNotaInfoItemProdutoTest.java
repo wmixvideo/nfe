@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
+import com.fincatto.documentofiscal.persister.DFPersister;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
-import com.fincatto.documentofiscal.persister.DFPersister;
 
 public class NFNotaInfoItemProdutoTest {
 
@@ -1533,8 +1532,8 @@ public class NFNotaInfoItemProdutoTest {
     }
 
     @Test
-    public void deveRetornarVazioCasoNaoPossuaCodigoDeBarras() {
-        Assert.assertEquals("", new NFNotaInfoItemProduto().getCodigoDeBarras());
+    public void deveRetornarSEMGTINCasoNaoPossuaCodigoDeBarras() {
+        Assert.assertEquals("SEM GTIN", new NFNotaInfoItemProduto().getCodigoDeBarras());
     }
 
     @Test
