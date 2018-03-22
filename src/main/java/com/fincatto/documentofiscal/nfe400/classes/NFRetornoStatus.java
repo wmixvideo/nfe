@@ -491,7 +491,7 @@ public enum NFRetornoStatus {
     CODIGO_855(855, "Rejei\u00e7\u00e3o:  Somat\u00f3rio percentuais de GLP derivado do petr\u00f3leo, GLGNn e GLGNi diferente de 1 [nItem:nnn]"),
     CODIGO_856(856, "Rejei\u00e7\u00e3o:  Campo valor de partida n\u00e3o preenchido para produto GLP"),
     CODIGO_857(857, "Rejei\u00e7\u00e3o: Informado Duplicata Mercantil como Forma de Pagamento"),
-    CODIGO_858(858, " Rejei\u00e7\u00e3o: Grupo de Tributa\u00e7\u00e3o informado indevidamente"),
+    CODIGO_858(858, "Rejei\u00e7\u00e3o: Grupo de Tributa\u00e7\u00e3o informado indevidamente"),
     CODIGO_859(859, "Rejei\u00e7\u00e3o: Total do FCP retido anteriormente por Substitui\u00e7\u00e3o Tribut\u00e1ria difere do somat\u00f3rio dos itens"),
     CODIGO_860(860, "Rejei\u00e7\u00e3o: Valor do FCP informado difere de base de c\u00e1lculo*al\u00edquota [nItem:nnn]"),
     CODIGO_861(861, "Rejei\u00e7\u00e3o: Total do FCP difere do somat\u00f3rio dos itens"),
