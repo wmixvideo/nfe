@@ -1,19 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-import java.util.Collections;
-
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.joda.time.DateTime;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -23,11 +9,25 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
+import com.fincatto.documentofiscal.nfe400.parsers.DFParser;
 import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.joda.time.DateTime;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.xml.stream.XMLStreamException;
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.util.Collections;
 
 class WSCartaCorrecao {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
@@ -42,10 +42,26 @@ class WSCartaCorrecao {
     }
 
     NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
-        final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
+        final String xmlAssinado = getXmlAssinado(chaveAcesso, textoCorrecao, numeroSequencialEvento);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
         return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+    }
+
+    NFEnviaEventoRetorno corrigeNotaAssinada(final String xmlAssinado) throws Exception {
+        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, new DFParser()
+                .enviaEventoCartaCorrecaoParaObjeto(xmlAssinado).getEvento().get(0).getInfoEvento().getChave());
+        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+    }
+
+    NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String xmlAssinado) throws Exception {
+        NFEnviaEventoCartaCorrecao evento = new DFParser()
+                .enviaEventoCartaCorrecaoParaObjeto(xmlAssinado);
+        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, evento.getEvento().get(0).getInfoEvento().getChave());
+        NFEnviaEventoRetorno retorno = new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        NFProtocoloEventoCartaCorrecao nfProtocoloEventoCartaCorrecao = new NFProtocoloEventoCartaCorrecao();
+        nfProtocoloEventoCartaCorrecao.setEvento(evento.getEvento().get(0));
+        nfProtocoloEventoCartaCorrecao.setEventoRetorno(retorno.getEventoRetorno().get(0));
+        return nfProtocoloEventoCartaCorrecao;
     }
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
@@ -73,7 +89,21 @@ class WSCartaCorrecao {
         return omElementResult;
     }
 
-    private NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) {
+    /**
+     * Retorna XML assinado para uso externo.
+     * @param chaveAcesso
+     * @param textoCorrecao
+     * @param numeroSequencialEvento
+     * @return
+     * @throws Exception
+     */
+    public String getXmlAssinado(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
+        final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
+        return xmlAssinado;
+    }
+
+    public NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFTipoEvento cartaCorrecao = new NFTipoEvento();
