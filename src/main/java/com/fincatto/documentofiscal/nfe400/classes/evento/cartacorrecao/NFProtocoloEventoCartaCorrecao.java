@@ -14,13 +14,13 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 public class NFProtocoloEventoCartaCorrecao extends DFBase {
     private static final long serialVersionUID = 5835358558255982305L;
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao", required = false)
     private String versao;
 
-    @Element(name = "evento", required = true)
+    @Element(name = "evento", required = false)
     private NFEvento evento;
 
-    @Element(name = "retEvento", required = true)
+    @Element(name = "retEvento", required = false)
     private NFEventoRetorno eventoRetorno;
 
     public String getVersao() {

@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFModelo;
@@ -140,6 +141,30 @@ public class WSFacade {
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
     }
+
+    /**
+     * Faz a correcao da nota com o evento ja assinado.
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados da correcao da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFEnviaEventoRetorno corrigeNotaAssinada(final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinada(eventoAssinadoXml);
+    }
+
+    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(eventoAssinadoXml);
+    }
+
+    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento));
+    }
+
+    public String getXmlAssinado(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
+    }
+
+
 
     /**
      * Faz o cancelamento da nota

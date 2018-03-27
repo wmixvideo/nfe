@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -41,6 +42,7 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
     }
 
     public void setRntrc(String rntrc) {
+        StringValidador.validador(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true,true);
         this.rntrc = rntrc;
     }
 
