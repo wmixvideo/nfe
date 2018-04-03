@@ -1,11 +1,5 @@
 package com.fincatto.documentofiscal.transformers;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.simpleframework.xml.transform.RegistryMatcher;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -22,6 +16,11 @@ import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFSituacaoContribuin
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.transformers.*;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.simpleframework.xml.transform.RegistryMatcher;
 
 public class DFRegistryMatcher extends RegistryMatcher {
 
@@ -107,6 +106,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFViaTransporteInternacional.class, new com.fincatto.documentofiscal.nfe400.transformers.NFViaTransporteInternacionalTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorPresencaComprador.class, new com.fincatto.documentofiscal.nfe400.transformers.NFIndicadorPresencaCompradorTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFFormaImportacaoIntermediacao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFFormaImportacaoIntermediacaoTransformer());
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorEscalaRelevante.class, new com.fincatto.documentofiscal.nfe400.transformers.NFIndicadorEscalaRelevanteTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoImpostoTributacaoICMSTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoSituacaoTributariaIPITransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoSituacaoTributariaPISTransformer());

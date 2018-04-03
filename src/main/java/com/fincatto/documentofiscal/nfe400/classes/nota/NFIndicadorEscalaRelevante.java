@@ -27,7 +27,7 @@ public enum NFIndicadorEscalaRelevante {
                 return indicador;
             }
         }
-        return null;
+        throw new IllegalStateException(String.format("Nao existe o codigo %s", codigo));
     }
 
     @Override
