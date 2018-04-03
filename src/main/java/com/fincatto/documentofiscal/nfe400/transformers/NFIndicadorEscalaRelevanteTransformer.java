@@ -12,7 +12,7 @@ public class NFIndicadorEscalaRelevanteTransformer implements Transform<NFIndica
     }
 
     @Override
-    public String write(final NFIndicadorEscalaRelevante indicadorPresencaComprador) throws Exception {
-        return indicadorPresencaComprador.getCodigo();
+    public String write(final NFIndicadorEscalaRelevante nfIndicadorEscalaRelevante) throws Exception {
+        return nfIndicadorEscalaRelevante.getCodigo();
     }
 }
