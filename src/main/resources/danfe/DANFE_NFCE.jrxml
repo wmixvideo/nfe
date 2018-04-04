@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-22T10:53:22 -->
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-01T18:13:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DANFE_NFCE" pageWidth="226" pageHeight="1000" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="f2ad8431-eb6a-4415-9a7a-8bcb81e49e5d">
 	<property name="ireport.zoom" value="7.0"/>
 	<property name="ireport.x" value="0"/>
@@ -308,7 +308,17 @@ $F{nota.info.emitente.endereco.descricaoMunicipio} + " - " + $F{nota.info.emiten
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Narrow" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nota.info.informacoesAdicionais.informacoesComplementaresInteresseContribuinte}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{nota.info.informacoesAdicionais.informacoesComplementaresInteresseContribuinte}!=null?
+	$F{nota.info.informacoesAdicionais.informacoesComplementaresInteresseContribuinte}:""
+)+ "\n" +
+($F{nota.info.informacoesAdicionais.informacoesAdicionaisInteresseFisco} != null ? 
+	$F{nota.info.informacoesAdicionais.informacoesAdicionaisInteresseFisco} :""
+) + "\n" +
+($F{nota.info.total.icmsTotal.valorTotalTributos}== null ? "" :
+("Valor Aproximado dos Tributos: R$ " + new DecimalFormat ("#,##0.00")
+	.format(Double.parseDouble($F{nota.info.total.icmsTotal.valorTotalTributos}))
+)
+)]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement key="line" positionType="Float" x="9" y="151" width="200" height="1" isRemoveLineWhenBlank="true" uuid="7f311dee-203d-4f34-a694-5a9a22beab6a">

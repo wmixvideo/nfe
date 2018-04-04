@@ -6,7 +6,11 @@ import org.simpleframework.xml.Element;
 import com.fincatto.nfe310.classes.NFBase;
 import com.fincatto.nfe310.classes.evento.NFEvento;
 import com.fincatto.nfe310.classes.evento.NFEventoRetorno;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
+@Root(name = "procEventoNFe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFProtocoloEvento extends NFBase {
 
     @Attribute(name = "versao", required = true)

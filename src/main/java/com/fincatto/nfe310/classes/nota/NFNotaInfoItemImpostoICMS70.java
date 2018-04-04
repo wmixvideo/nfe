@@ -79,7 +79,7 @@ public class NFNotaInfoItemImpostoICMS70 extends NFBase {
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho5Com2CasasDecimais(aliquota, "Aliquota ICMS70 Item");
+        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota ICMS70 Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {

@@ -20,6 +20,10 @@ public enum NFIndicadorPresencaComprador {
     public String getCodigo() {
         return this.codigo;
     }
+    
+    public String getDescricao() {
+        return this.descricao;
+    }
 
     public static NFIndicadorPresencaComprador valueOfCodigo(final String codigo) {
         for (final NFIndicadorPresencaComprador indicador : NFIndicadorPresencaComprador.values()) {

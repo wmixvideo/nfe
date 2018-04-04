@@ -62,7 +62,7 @@ public class NFNotaInfoItemImpostoICMS51 extends NFBase {
     }
 
     public void setPercentualICMS(final BigDecimal percentualICMS) {
-        this.percentualICMS = BigDecimalParser.tamanho5Com2CasasDecimais(percentualICMS, "Percentual ICMS ICMS51 Item");
+        this.percentualICMS = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualICMS, "Percentual ICMS ICMS51 Item");
     }
 
     public void setValorICMS(final BigDecimal valorICMS) {
