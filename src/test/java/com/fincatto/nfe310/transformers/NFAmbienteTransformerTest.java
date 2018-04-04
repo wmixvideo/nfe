@@ -19,4 +19,10 @@ public class NFAmbienteTransformerTest {
         Assert.assertEquals("1", new NFAmbienteTransformer().write(NFAmbiente.PRODUCAO));
         Assert.assertEquals("2", new NFAmbienteTransformer().write(NFAmbiente.HOMOLOGACAO));
     }
+    
+    @Test
+    public void deveRepresentarOCodigoCorretamente() {
+        Assert.assertEquals("1", NFAmbiente.PRODUCAO.getCodigo());
+        Assert.assertEquals("2", NFAmbiente.HOMOLOGACAO.getCodigo());        
+    }
 }

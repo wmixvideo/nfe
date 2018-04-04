@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nfe_danfe_retrato" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="25" bottomMargin="20" uuid="e21b08e1-6159-4fbb-98e9-6837ade5c1f3">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="672"/>
 	<parameter name="LOGO_EMPRESA" class="java.io.InputStream" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -80,6 +80,9 @@
 	</field>
 	<field name="DestIE" class="java.lang.String">
 		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/dest/IE]]></fieldDescription>
+	</field>
+	<field name="DestIM" class="java.lang.String">
+		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/dest/IM]]></fieldDescription>
 	</field>
 	<field name="DestLogradouro" class="java.lang.String">
 		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/dest/enderDest/xLgr]]></fieldDescription>
@@ -419,6 +422,9 @@
 	</field>
 	<field name="NFETpAmb" class="java.lang.String">
 		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/ide/tpAmb]]></fieldDescription>
+	</field>
+	<field name="ValorIssqn" class="java.lang.String">
+		<fieldDescription><![CDATA[/nfeProc/NFe/infNFe/det/imposto/ISSQN/vISSQN]]></fieldDescription>
 	</field>
 	<group name="destinatario">
 		<groupExpression><![CDATA[$F{Destinatario}]]></groupExpression>
@@ -1891,7 +1897,7 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 		<band height="90">
 			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
 			<rectangle>
-				<reportElement x="0" y="9" width="555" height="20" uuid="4d323bc7-97c8-466b-bfb4-9ef776c19dc8"/>
+				<reportElement x="0" y="8" width="555" height="20" uuid="4d323bc7-97c8-466b-bfb4-9ef776c19dc8"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="3" y="11" width="74" height="7" uuid="170f4fbd-ccb2-4496-8346-178e7c958ba8"/>
@@ -1910,6 +1916,13 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				</textElement>
 				<text><![CDATA[VALOR TOTAL DOS SERVIÇOS]]></text>
 			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="174" y="17" width="105" height="10" uuid="5f01b7ab-01c6-4e58-ae1b-4c7dc7355106"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Double.parseDouble($F{ImpValorNF})]]></textFieldExpression>
+			</textField>
 			<line>
 				<reportElement x="281" y="9" width="1" height="20" uuid="d7720f67-3cac-4002-8664-584b90c97089"/>
 			</line>
@@ -1920,6 +1933,13 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				</textElement>
 				<text><![CDATA[BASE DE CÁLCULO DO ISSQN]]></text>
 			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="320" y="16" width="100" height="10" uuid="8cde8086-0035-451a-8e8e-6908f8c85428"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Double.parseDouble($F{ImpValorNF})]]></textFieldExpression>
+			</textField>
 			<line>
 				<reportElement x="422" y="9" width="1" height="20" uuid="aafb21ad-7a48-468e-9974-4c3b35923a3f"/>
 			</line>
@@ -1930,6 +1950,13 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				</textElement>
 				<text><![CDATA[VALOR DO ISSQN]]></text>
 			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="446" y="17" width="108" height="10" uuid="e4521fa8-91dc-4a66-b6ae-801621301c91"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Double.parseDouble($F{ValorIssqn})]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="108" height="9" uuid="b6e686e0-feb7-4ff9-822b-d76549d3240b"/>
 				<textElement>
@@ -1965,6 +1992,13 @@ $F{ChaveNFe}.substring(3, $F{ChaveNFe}.length()).substring(40, 44)]]></textField
 				<textFieldExpression><![CDATA[($F{NFeInfAdicionais} == null ? "" : $F{NFeInfAdicionais}) + "\n" +
 ($F{NFeInfAdFisco} == null ? "" : $F{NFeInfAdFisco}) + "\n" +
 ($F{ImpTotalTrib} == null ? "" : ("Valor Aproximado dos Tributos: R$ " + new DecimalFormat ("#,##0.00").format(Double.parseDouble($F{ImpTotalTrib}))))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="19" width="103" height="9" uuid="a788621f-bdda-4130-a0bb-672dd5f69a9f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DestIM} == null ? "" : $F{DestIM}]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
