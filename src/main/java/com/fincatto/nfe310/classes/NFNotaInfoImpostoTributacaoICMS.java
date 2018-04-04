@@ -25,6 +25,10 @@ public enum NFNotaInfoImpostoTributacaoICMS {
     public String getCodigo() {
         return this.codigo;
     }
+    
+    public String getDescricao() {
+        return this.descricao;
+    }
 
     public static NFNotaInfoImpostoTributacaoICMS valueOfCodigo(final String codigoICMS) {
         for (final NFNotaInfoImpostoTributacaoICMS icms : NFNotaInfoImpostoTributacaoICMS.values()) {

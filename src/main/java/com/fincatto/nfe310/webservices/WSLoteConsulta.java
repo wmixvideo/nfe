@@ -3,7 +3,6 @@ package com.fincatto.nfe310.webservices;
 import com.fincatto.nfe310.NFeConfig;
 import com.fincatto.nfe310.classes.NFAutorizador31;
 import com.fincatto.nfe310.classes.NFModelo;
-import com.fincatto.nfe310.classes.NFUnidadeFederativa;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.nfe310.transformers.NFRegistryMatcher;
@@ -32,15 +31,15 @@ class WSLoteConsulta {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
 		WSLoteConsulta.LOGGER.debug(omElementConsulta.toString());
 
-		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, this.config.getCUF(), modelo);
+		final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, modelo);
 		WSLoteConsulta.LOGGER.debug(omElementResult.toString());
 
 		return new Persister(new NFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
 	}
 
-	private OMElement efetuaConsulta(final OMElement omElement, final NFUnidadeFederativa uf, final NFModelo modelo) throws RemoteException {
+	private OMElement efetuaConsulta(final OMElement omElement, final NFModelo modelo) throws RemoteException {
 		final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
-		cabec.setCUF(uf.getCodigoIbge());
+		cabec.setCUF(this.config.getCUF().getCodigoIbge());
 		cabec.setVersaoDados(NFeConfig.VERSAO_NFE);
 
 		final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
@@ -49,7 +48,7 @@ class WSLoteConsulta {
 		final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
 		dados.setExtraElement(omElement);
 
-		final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
+		final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 		final String urlWebService = NFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
 		if (urlWebService == null) {
 			throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());

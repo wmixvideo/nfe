@@ -17,6 +17,10 @@ public class NotaFiscalChaveParser {
         }
     }
 
+    public String getChave() {
+        return chave;
+    }
+
     public NFUnidadeFederativa getNFUnidadeFederativa() {
         return NFUnidadeFederativa.valueOfCodigo(this.chave.substring(0, 2));
     }
