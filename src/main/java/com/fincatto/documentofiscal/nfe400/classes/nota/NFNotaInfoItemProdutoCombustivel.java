@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     private static final long serialVersionUID = -2899516480924530882L;
@@ -60,7 +58,7 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     }
 
     public void setDescricaoProdutoANP(final String descricaoProdutoANP) {
-        StringValidador.exatamente9(descricaoProdutoANP, "Descricao Produto ANP Combustivel");
+        StringValidador.tamanho2a95(descricaoProdutoANP, "Descricao Produto ANP Combustivel");
         this.descricaoProdutoANP = descricaoProdutoANP;
     }
 
