@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota.assinatura;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class CTeKeyInfo extends DFBase {
     private static final long serialVersionUID = 2107560216949120375L;

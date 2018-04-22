@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 @Root(name = "enviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFTipoEvento;
+import org.simpleframework.xml.Element;
 
 public class NFInfoManifestacaoDestinatario extends NFTipoEvento {
     private static final long serialVersionUID = 8512309132142299111L;

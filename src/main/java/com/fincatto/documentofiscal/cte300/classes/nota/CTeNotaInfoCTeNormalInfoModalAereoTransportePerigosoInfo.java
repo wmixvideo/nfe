@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedidaProdPerigosos;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigosoInfo extends DFBase {
     private static final long serialVersionUID = 1399533868716793539L;

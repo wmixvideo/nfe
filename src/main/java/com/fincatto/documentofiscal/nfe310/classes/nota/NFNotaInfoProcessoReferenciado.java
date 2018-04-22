@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigemProcesso;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoProcessoReferenciado extends DFBase {
     private static final long serialVersionUID = -5213086059996742347L;

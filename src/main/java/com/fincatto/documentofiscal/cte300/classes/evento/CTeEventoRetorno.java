@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class CTeEventoRetorno extends DFBase {
     private static final long serialVersionUID = -8952520263707135185L;

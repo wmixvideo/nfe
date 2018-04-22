@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTomadorServico;
+import org.simpleframework.xml.Element;
 
 public class CTInfoTomadorServico3 extends DFBase {
     private static final long serialVersionUID = -8253978359700650423L;

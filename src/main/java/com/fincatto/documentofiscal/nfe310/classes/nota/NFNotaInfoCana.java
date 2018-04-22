@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NFNotaInfoCana extends DFBase {
     private static final long serialVersionUID = 5219843108064204554L;

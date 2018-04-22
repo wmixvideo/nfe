@@ -5,10 +5,10 @@
 
 package com.fincatto.documentofiscal.nfe310.webservices.downloadnf;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * NfeDownloadNFStub java implementation

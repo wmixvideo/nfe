@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 @Root(name = "evento")
 public class NFEventoCancelamento extends DFBase {

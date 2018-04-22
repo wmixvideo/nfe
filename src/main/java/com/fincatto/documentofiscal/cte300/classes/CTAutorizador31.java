@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import java.util.Arrays;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
+
+import java.util.Arrays;
 
 public enum CTAutorizador31 {
 

@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer implements Transform<NFNotaInfoItemProdutoVeiculoCondicaoChassi> {
 

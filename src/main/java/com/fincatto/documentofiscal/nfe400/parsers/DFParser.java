@@ -1,9 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.parsers;
 
-import java.io.File;
-
-import org.simpleframework.xml.core.Persister;
-
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeProcessado;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
@@ -15,6 +11,9 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItem;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.persister.DFPersister;
+import org.simpleframework.xml.core.Persister;
+
+import java.io.File;
 
 public class DFParser {
 

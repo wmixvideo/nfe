@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "downloadNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

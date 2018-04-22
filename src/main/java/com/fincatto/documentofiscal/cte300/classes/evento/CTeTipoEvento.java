@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 @Root(strict = false)
 public class CTeTipoEvento extends DFBase {

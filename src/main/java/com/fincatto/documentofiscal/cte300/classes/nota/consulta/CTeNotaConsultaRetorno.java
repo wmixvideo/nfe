@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota.consulta;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeProtocolo;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeProtocoloEventoCancelamento;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 @Root(name = "retConsSitCTe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")

@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.enviolote.consulta;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 /**
  * @author Caio

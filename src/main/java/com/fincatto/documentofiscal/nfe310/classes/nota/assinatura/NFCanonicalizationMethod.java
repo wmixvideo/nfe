@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 
-import java.io.Serializable;
-
 import org.simpleframework.xml.Attribute;
+
+import java.io.Serializable;
 
 public class NFCanonicalizationMethod implements Serializable {
     private static final long serialVersionUID = 8973536078416422021L;

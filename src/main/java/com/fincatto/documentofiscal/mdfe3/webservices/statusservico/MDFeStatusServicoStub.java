@@ -6,10 +6,10 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.statusservico;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * MDFeStatusServicoStub java implementation

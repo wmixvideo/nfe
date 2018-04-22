@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.enviolote;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 /**
  * @author Caio

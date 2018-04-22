@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigInteger;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigInteger;
 
 public class NFNotaInfoItemDetalheExportacao extends DFBase {
     private static final long serialVersionUID = 8265188954413940773L;

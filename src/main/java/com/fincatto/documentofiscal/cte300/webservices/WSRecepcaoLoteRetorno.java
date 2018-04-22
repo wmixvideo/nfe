@@ -1,14 +1,5 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLote;
@@ -16,6 +7,14 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.rmi.RemoteException;
 
 public class WSRecepcaoLoteRetorno {
 

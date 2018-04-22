@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 /**
  * @author Caio

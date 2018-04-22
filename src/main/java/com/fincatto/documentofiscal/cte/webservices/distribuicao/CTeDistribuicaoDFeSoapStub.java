@@ -4,9 +4,9 @@
  */
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * CTeDistribuicaoDFeCTeDistribuicaoDFeSoapStub java implementation

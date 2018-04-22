@@ -3,10 +3,10 @@
  */
 package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * NfeConsultaStub java implementation

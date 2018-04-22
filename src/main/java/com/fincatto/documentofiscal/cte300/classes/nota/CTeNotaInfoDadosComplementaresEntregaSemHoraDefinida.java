@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoHoraEntrega;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * @author Caio

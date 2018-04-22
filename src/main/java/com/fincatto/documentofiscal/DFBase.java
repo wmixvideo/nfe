@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal;
 
-import java.io.Serializable;
-import java.io.StringWriter;
-
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.simpleframework.xml.core.Persister;
 
-import com.fincatto.documentofiscal.persister.DFPersister;
+import java.io.Serializable;
+import java.io.StringWriter;
 
 /**
  * Classe utilizada como base para objetos serializaveis.<br>

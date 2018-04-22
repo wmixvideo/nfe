@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota.assinatura;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
-
-import com.fincatto.documentofiscal.DFBase;
 
 @Namespace(reference = "http://www.w3.org/2000/09/xmldsig#")
 public class CTeSignature extends DFBase {

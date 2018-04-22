@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Root(name = "envEvento")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
