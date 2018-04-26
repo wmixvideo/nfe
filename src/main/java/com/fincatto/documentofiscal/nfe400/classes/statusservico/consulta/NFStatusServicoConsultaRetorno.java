@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;

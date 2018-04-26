@@ -3,8 +3,7 @@ package com.fincatto.documentofiscal.validadores;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,16 +11,16 @@ public abstract class StringValidador {
 
     public static void mmaaaa(final String mmaaaa) {
         try {
-            new SimpleDateFormat("mm/yyyy").parse(mmaaaa);
-        } catch (final ParseException e) {
+            DateTimeFormatter.ofPattern("mm/yyyy").parse(mmaaaa);
+        } catch (final Exception e) {
             throw new IllegalStateException(String.format("Formato invalido (mm/aaaa) (%s)", mmaaaa));
         }
     }
 
     public static void aamm(final String aamm) {
         try {
-            new SimpleDateFormat("yymm").parse(aamm);
-        } catch (final ParseException e) {
+            DateTimeFormatter.ofPattern("yymm").parse(aamm);
+        } catch (final Exception e) {
             throw new IllegalStateException(String.format("Formato invalido (aamm) (%s)", aamm));
         }
     }

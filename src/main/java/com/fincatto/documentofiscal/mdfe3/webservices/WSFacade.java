@@ -11,7 +11,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
 import org.apache.commons.httpclient.protocol.Protocol;
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 import java.io.IOException;
 import java.security.KeyManagementException;

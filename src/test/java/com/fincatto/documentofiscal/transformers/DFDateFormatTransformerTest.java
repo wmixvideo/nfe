@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.transformers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DFDateFormatTransformerTest {
 

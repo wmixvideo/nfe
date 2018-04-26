@@ -1,15 +1,22 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.joda.time.LocalDateTime;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte200.classes.*;
+import com.fincatto.documentofiscal.cte200.classes.CTFormaPagamento;
+import com.fincatto.documentofiscal.cte200.classes.CTIdentificadorEmissor;
+import com.fincatto.documentofiscal.cte200.classes.CTModal;
+import com.fincatto.documentofiscal.cte200.classes.CTRetiraMercadoria;
+import com.fincatto.documentofiscal.cte200.classes.CTTipoCte;
+import com.fincatto.documentofiscal.cte200.classes.CTTipoEmissao;
+import com.fincatto.documentofiscal.cte200.classes.CTTipoImpressao;
+import com.fincatto.documentofiscal.cte200.classes.CTTipoServico;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.time.LocalDateTime;
 
 @Root(name = "ide")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")

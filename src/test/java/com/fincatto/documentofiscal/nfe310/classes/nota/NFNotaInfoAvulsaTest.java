@@ -1,14 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.joda.time.LocalDate;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoAvulsa;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class NFNotaInfoAvulsaTest {
 
@@ -83,8 +81,8 @@ public class NFNotaInfoAvulsaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirCnpjNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -100,7 +98,7 @@ public class NFNotaInfoAvulsaTest {
     public void devePermitirDataEmissaoDocumentoArrecadacaoNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -116,7 +114,7 @@ public class NFNotaInfoAvulsaTest {
     public void devePermitirDataPagamentoDocumentoArrecadacaoNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -132,8 +130,8 @@ public class NFNotaInfoAvulsaTest {
     public void devePermitirFoneNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
         avulsa.setNumeroDocumentoArrecadacaoReceita("qqDt1f1ulcahrBnUH0otPFkjYqD2tH4ktYsR71WSYZLFW1zZObAqajHHkyxi");
@@ -148,8 +146,8 @@ public class NFNotaInfoAvulsaTest {
     public void naoDevePermitirMatriculaAgenteNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
         avulsa.setNumeroDocumentoArrecadacaoReceita("qqDt1f1ulcahrBnUH0otPFkjYqD2tH4ktYsR71WSYZLFW1zZObAqajHHkyxi");
@@ -164,8 +162,8 @@ public class NFNotaInfoAvulsaTest {
     public void naoDevePermitirNomeAgenteNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNumeroDocumentoArrecadacaoReceita("qqDt1f1ulcahrBnUH0otPFkjYqD2tH4ktYsR71WSYZLFW1zZObAqajHHkyxi");
@@ -180,8 +178,8 @@ public class NFNotaInfoAvulsaTest {
     public void devePermitirNumeroDocumentoArrecadacaoReceitaNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -196,8 +194,8 @@ public class NFNotaInfoAvulsaTest {
     public void naoDevePermitirOrgaoEmitenteNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -212,8 +210,8 @@ public class NFNotaInfoAvulsaTest {
     public void naoDevePermitirReparticaoFiscalEmitenteNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -228,8 +226,8 @@ public class NFNotaInfoAvulsaTest {
     public void naoDevePermitirUFNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");
@@ -244,8 +242,8 @@ public class NFNotaInfoAvulsaTest {
     public void devePermitirValorTotalConstanteDocumentoArrecadacaoReceitaNulo() {
         final NFNotaInfoAvulsa avulsa = new NFNotaInfoAvulsa();
         avulsa.setCnpj("12345678901234");
-        avulsa.setDataEmissaoDocumentoArrecadacao(new LocalDate(2014, 1, 13));
-        avulsa.setDataPagamentoDocumentoArrecadacao(new LocalDate(2014, 3, 21));
+        avulsa.setDataEmissaoDocumentoArrecadacao(LocalDate.of(2014, 1, 13));
+        avulsa.setDataPagamentoDocumentoArrecadacao(LocalDate.of(2014, 3, 21));
         avulsa.setFone("81579357");
         avulsa.setMatriculaAgente("Nn5PPREBbkfmmk4lBFwgvkuKg8prnY5CPqHIzqGiD1lTnZJ37nAZ4NBc8XwM");
         avulsa.setNomeAgente("lkLip3hIYSAIzH3Tf1LWQsaybqB76V66lMgWBcHVwcOKInuJ8mGUyY8DT4NL");

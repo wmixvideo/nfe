@@ -1,20 +1,23 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe310.classes.*;
+import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
+import com.fincatto.documentofiscal.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.documentofiscal.nfe310.classes.NFProcessoEmissor;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipo;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipoImpressao;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
+import java.time.ZonedDateTime;
+import java.util.List;
 
 public class NFNotaInfoIdentificacao extends DFBase {
     private static final long serialVersionUID = -2568396066960865875L;
@@ -41,10 +44,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
     private String numeroNota;
 
     @Element(name = "dhEmi", required = true)
-    private DateTime dataHoraEmissao;
+    private ZonedDateTime dataHoraEmissao;
 
     @Element(name = "dhSaiEnt", required = false)
-    private DateTime dataHoraSaidaOuEntrada;
+    private ZonedDateTime dataHoraSaidaOuEntrada;
 
     @Element(name = "tpNF", required = true)
     private NFTipo tipo;
@@ -83,7 +86,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
     private String versaoEmissor;
 
     @Element(name = "dhCont", required = false)
-    private DateTime dataHoraContigencia;
+    private ZonedDateTime dataHoraContigencia;
 
     @Element(name = "xJust", required = false)
     private String justificativaEntradaContingencia;
@@ -123,11 +126,11 @@ public class NFNotaInfoIdentificacao extends DFBase {
         this.numeroNota = numeroNota;
     }
 
-    public void setDataHoraEmissao(final DateTime dataEmissao) {
+    public void setDataHoraEmissao(final ZonedDateTime dataEmissao) {
         this.dataHoraEmissao = dataEmissao;
     }
 
-    public void setDataHoraSaidaOuEntrada(final DateTime dataHoraSaidaOuEntrada) {
+    public void setDataHoraSaidaOuEntrada(final ZonedDateTime dataHoraSaidaOuEntrada) {
         this.dataHoraSaidaOuEntrada = dataHoraSaidaOuEntrada;
     }
 
@@ -175,7 +178,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
         this.versaoEmissor = versaoEmissor;
     }
 
-    public void setDataHoraContigencia(final DateTime dataHoraContigencia) {
+    public void setDataHoraContigencia(final ZonedDateTime dataHoraContigencia) {
         this.dataHoraContigencia = dataHoraContigencia;
     }
 
@@ -224,11 +227,11 @@ public class NFNotaInfoIdentificacao extends DFBase {
         return this.numeroNota;
     }
 
-    public DateTime getDataHoraEmissao() {
+    public ZonedDateTime getDataHoraEmissao() {
         return this.dataHoraEmissao;
     }
 
-    public DateTime getDataHoraSaidaOuEntrada() {
+    public ZonedDateTime getDataHoraSaidaOuEntrada() {
         return this.dataHoraSaidaOuEntrada;
     }
 
@@ -280,7 +283,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
         return this.versaoEmissor;
     }
 
-    public DateTime getDataHoraContigencia() {
+    public ZonedDateTime getDataHoraContigencia() {
         return this.dataHoraContigencia;
     }
 

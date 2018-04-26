@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import org.joda.time.LocalDate;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class NFRetornoConsultaCadastroSituacaoCadastralTest {
 
@@ -35,7 +34,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     @Test
     public void deveObterDataInicioAtividadeComoFoiSetado() throws ParseException {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
-        final LocalDate dataInicioAtividade = LocalDate.fromDateFields(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+        final LocalDate dataInicioAtividade = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataInicioAtividade(dataInicioAtividade);
         Assert.assertEquals(dataInicioAtividade, retorno.getDataInicioAtividade());
     }
@@ -43,7 +42,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     @Test
     public void deveObterDataOcorrenciaBaixaComoFoiSetado() throws ParseException {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
-        final LocalDate dataOcorrenciaBaixa = LocalDate.fromDateFields(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+        final LocalDate dataOcorrenciaBaixa = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataOcorrenciaBaixa(dataOcorrenciaBaixa);
         Assert.assertEquals(dataOcorrenciaBaixa, retorno.getDataOcorrenciaBaixa());
     }
@@ -51,7 +50,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     @Test
     public void deveObterDataUltimaModificacaoComoFoiSetado() throws ParseException {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
-        final LocalDate dataUltimaModificacaoSituacaoCadastral = LocalDate.fromDateFields(new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2010"));
+        final LocalDate dataUltimaModificacaoSituacaoCadastral = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataUltimaModificacaoSituacaoCadastral(dataUltimaModificacaoSituacaoCadastral);
         Assert.assertEquals(dataUltimaModificacaoSituacaoCadastral, retorno.getDataUltimaModificacaoSituacaoCadastral());
     }
