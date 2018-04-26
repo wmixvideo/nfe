@@ -1,18 +1,18 @@
 package com.fincatto.documentofiscal.cte300;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Collections;
-
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.*;
 import com.fincatto.documentofiscal.cte300.classes.nota.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Collections;
 
 public class FabricaDeObjetosFake {
 
@@ -369,18 +369,14 @@ public class FabricaDeObjetosFake {
     public static LocalDateTime getLocalDateTime() {
         final Calendar calendar = Calendar.getInstance();
         calendar.set(2018, Calendar.JANUARY, 22, 10, 10, 10);
-        return LocalDateTime.fromCalendarFields(calendar);
+        return LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
     }
 
     public static LocalDate getLocalDate() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, Calendar.JANUARY, 22, 10, 10, 10);
-        return LocalDate.fromCalendarFields(calendar);
+        return LocalDate.of(2018, 1 , 22);
     }
 
     public static LocalTime getLocalTime() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, Calendar.JANUARY, 22, 10, 10, 10);
-        return LocalTime.fromCalendarFields(calendar);
+        return LocalTime.of(10, 10, 10);
     }
 }

@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.joda.time.LocalDate;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaData;
+import org.simpleframework.xml.Element;
+
+import java.time.LocalDate;
 
 public class CTInfoEntregaNoPeriodo extends DFBase {
     private static final long serialVersionUID = 6342618887263922740L;

@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 public class MDFChaveParser {
 
@@ -26,7 +26,7 @@ public class MDFChaveParser {
     }
 
     public LocalDate getDataEmissao() {
-        return new LocalDate(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1);
+        return LocalDate.of(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1);
     }
 
     private int getDataEmissaoMes() {

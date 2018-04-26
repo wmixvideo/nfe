@@ -16,11 +16,12 @@ import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFSituacaoContribuin
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.transformers.*;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 import org.simpleframework.xml.transform.RegistryMatcher;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 public class DFRegistryMatcher extends RegistryMatcher {
 
@@ -29,7 +30,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(DFAmbiente.class, new DFAmbienteTransformer());
         super.bind(LocalDate.class, new DFLocalDateTransformer());
         super.bind(LocalTime.class, new DFLocalTimeTransformer());
-        super.bind(DateTime.class, new DFDateTimeTransformer());
+        super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());

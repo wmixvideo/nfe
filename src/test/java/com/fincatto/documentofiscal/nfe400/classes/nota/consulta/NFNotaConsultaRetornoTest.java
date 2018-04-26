@@ -5,8 +5,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocolo;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFRetornoCancelamento;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,7 +42,7 @@ public class NFNotaConsultaRetornoTest {
     @Test
     public void deveObterDataHoraReciboComoFoiSetado() {
         final NFNotaConsultaRetorno consultaRetorno = new NFNotaConsultaRetorno();
-        final LocalDateTime dataHoraRecibo = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")); 
+        final LocalDateTime dataHoraRecibo = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         consultaRetorno.setDataHoraRecibo(dataHoraRecibo);
         Assert.assertEquals(dataHoraRecibo, consultaRetorno.getDataHoraRecibo());
     }
