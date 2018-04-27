@@ -27,7 +27,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
   <version>2.0.2</version>
 </dependency>
 ```
-### Fazendo o clone do projeto
+### Fazendo o clone do projeto(última versão em desenvolvimento)
 1. Faça o clone do projeto com o comando:
  ```console
     git clone https://github.com/wmixvideo/nfe
