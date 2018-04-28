@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.webservices;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno;
@@ -46,21 +46,19 @@ class WSLoteEnvio {
     }
 
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
-        final NFLoteEnvio loteAssinado = getLoteAssinado(lote);
+        final NFLoteEnvio loteAssinado = this.getLoteAssinado(lote);
         // comunica o lote
-        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(),
-                loteAssinado.getNotas().get(0).getInfo().getIdentificacao().getModelo());
+        final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), loteAssinado.getNotas().get(0).getInfo().getIdentificacao().getModelo());
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
 
     /**
      * Retorna o Lote assinado.
-     *
      * @param lote
      * @return
      * @throws Exception
      */
-    NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote)  throws Exception {
+    NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);
@@ -97,10 +95,10 @@ class WSLoteEnvio {
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+        // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
 
-        //envia o lote para a sefaz
+        // envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
 
         final NfeDadosMsg dados = new NfeDadosMsg();
@@ -109,7 +107,7 @@ class WSLoteEnvio {
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
         WSLoteEnvio.LOGGER.debug(omElement.toString());
 
-        //define o tipo de emissao
+        // define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
         final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
@@ -126,7 +124,7 @@ class WSLoteEnvio {
     private NfeCabecMsgE getCabecalhoSOAP() {
         final NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(NFeConfig.VERSAO);
+        cabecalho.setVersaoDados(this.config.getVersao());
         final NfeCabecMsgE cabecalhoSOAP = new NfeCabecMsgE();
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;
@@ -135,8 +133,8 @@ class WSLoteEnvio {
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
-        StAXOMBuilder builder = new StAXOMBuilder(reader);
+        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
+        final StAXOMBuilder builder = new StAXOMBuilder(reader);
         final OMElement ome = builder.getDocumentElement();
         final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
         while (children.hasNext()) {

@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import java.rmi.RemoteException;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.simpleframework.xml.core.Persister;
@@ -8,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.NFeConfig;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFInfoConsultaCadastro;
@@ -18,8 +20,6 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastr
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
-
-import java.rmi.RemoteException;
 
 class WSConsultaCadastro {
     private static final Logger LOG = LoggerFactory.getLogger(WSConsultaCadastro.class);

@@ -17,21 +17,19 @@ import java.util.List;
  * Informações do MDF-e.
  *
  */
-@Root(name = "infMdfe")
+@Root(name = "infMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfo extends DFBase {
 
     public static final String IDENT = "MDFe";
 
+    @Attribute(name = "Id")
+    private String identificador;
     /**
      * Tipo Versão do MDF-e - 3.00.
      */
     @Attribute(name = "versao")
     private String versao = MDFe.VERSAO;
-
-
-    @Attribute(name = "Id")
-    private String identificador;
 
     @Element(name = "ide")
     private MDFInfoIdentificacao identificacao;
@@ -48,9 +46,8 @@ public class MDFInfo extends DFBase {
     @Element(name = "infDoc")
     private MDFInfoInformacoesDocumentos informacoesDocumentos;
 
-    //TODO Informações de Seguro da Carga, terminar.
-//    @Element(name = "seg", required = false)
-//    private MDFInfoSeguro seguro
+    @Element(name = "seg", required = false)
+    private MDFInfoSeguro seguro;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -167,5 +164,13 @@ public class MDFInfo extends DFBase {
 
     public void setInformacoesAdicionais(MDFInfoInformacoesAdicionais informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
+    }
+
+    public MDFInfoSeguro getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(MDFInfoSeguro seguro) {
+        this.seguro = seguro;
     }
 }

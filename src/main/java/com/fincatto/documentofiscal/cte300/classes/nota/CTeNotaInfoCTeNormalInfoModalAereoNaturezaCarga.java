@@ -24,7 +24,7 @@ public class CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga extends DFBase {
     @Element(name = "xDime", required = false)
     private String dimensao;
 
-    @ElementList(name = "cInfManu", inline = true, required = false)
+    @ElementList(name = "cInfManu", inline = false, required = false)
     private List<CTInformacoesManuseio> informacoesManuseio;
 
     public CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga() {

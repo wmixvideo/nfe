@@ -1,13 +1,40 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class ListValidadorTest {
+
+    @Test
+    public void deveValidarTamanhoDasListas(){
+        ListValidador.tamanho2(gerarList(2), "");
+        ListValidador.tamanho3(gerarList(3), "");
+        ListValidador.tamanho5(gerarList(5), "");
+        ListValidador.tamanho10(gerarList(10), "");
+        ListValidador.tamanho20(gerarList(20), "");
+        ListValidador.tamanho50(gerarList(50), "");
+        ListValidador.tamanho100(gerarList(100), "");
+        ListValidador.tamanho120(gerarList(120), "");
+        ListValidador.tamanho500(gerarList(500), "");
+        ListValidador.tamanho990(gerarList(990), "");
+        ListValidador.tamanho5000(gerarList(5000), "");
+        ListValidador.tamanho31Obrigatorio(gerarList(31), "");
+        ListValidador.validaListaObrigatoria(gerarList(1), "");
+        ListValidador.validaListaObrigatoria(gerarList(2), 2, "");
+        ListValidador.validaListaNaoObrigatoria(new ArrayList<>(), 2, "");
+    }
+
+    private List<Integer> gerarList(int quantidade){
+        ArrayList<Integer> lista = new ArrayList<>();
+        for (int i = 0; i <quantidade; i++) {
+            lista.add(i);
+        }
+        return lista;
+    }
 
     @Test(expected = IllegalStateException.class)
     public void deveLancarExcecaoCasoExtrapoleTamanho10() {

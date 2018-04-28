@@ -12,12 +12,14 @@ import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoTranportador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -45,7 +47,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * Modelo do Manifesto Eletrônico: 58
      */
     @Element(name = "mod")
-    private static final DFModelo MOD = DFModelo.MDFE;
+    public static final DFModelo MOD = DFModelo.MDFE;
 
     @Element(name = "serie")
     private Integer serie;
@@ -78,13 +80,13 @@ public class MDFInfoIdentificacao extends DFBase {
      * Sigla da UF do Carregamento.
      */
     @Element(name = "UFIni")
-    private DFUnidadeFederativa unidadeFederativaInicio;
+    private String unidadeFederativaInicio;
 
     /**
      * Sigla da UF do Descarregamento.
      */
     @Element(name = "UFFim")
-    private DFUnidadeFederativa unidadeFederativaFim;
+    private String unidadeFederativaFim;
 
     /**
      * Municípios onde ocorreram os carregamentos
@@ -93,7 +95,8 @@ public class MDFInfoIdentificacao extends DFBase {
     private List<MDFInfoIdentificacaoMunicipioCarregamento> municipioCarregamentos;
 
     /**
-     * Municípios onde ocorreram os carregamentos
+     * Sigla das Unidades da Federação do percurso do veículo.
+     * Não é necessário repetir as UF de Início e Fim
      */
     @ElementList(entry = "infPercurso", inline = true, required = false)
     private List<MDFInfoIdentificacaoUfPercurso> identificacaoUfPercursos;
@@ -104,6 +107,13 @@ public class MDFInfoIdentificacao extends DFBase {
      */
     @Element(name = "dhIniViagem", required = false)
     private LocalDateTime dataHoraDoInicioViagem;
+
+
+    /**
+     * Indicador de participação do Canal Verde.
+     */
+    @Element(name = "indCanalVerde", required = false)
+    private String indicadorCanalVerde;
 
 
     public DFUnidadeFederativa getCodigoUF() {
@@ -255,20 +265,20 @@ public class MDFInfoIdentificacao extends DFBase {
         this.tipoTranportador = tipoTranportador;
     }
 
-    public DFUnidadeFederativa getUnidadeFederativaInicio() {
+    public String getUnidadeFederativaInicio() {
         return unidadeFederativaInicio;
     }
 
     public void setUnidadeFederativaInicio(DFUnidadeFederativa unidadeFederativaInicio) {
-        this.unidadeFederativaInicio = unidadeFederativaInicio;
+        this.unidadeFederativaInicio = unidadeFederativaInicio.getCodigo();
     }
 
-    public DFUnidadeFederativa getUnidadeFederativaFim() {
+    public String getUnidadeFederativaFim() {
         return unidadeFederativaFim;
     }
 
     public void setUnidadeFederativaFim(DFUnidadeFederativa unidadeFederativaFim) {
-        this.unidadeFederativaFim = unidadeFederativaFim;
+        this.unidadeFederativaFim = unidadeFederativaFim.getCodigo();
     }
 
     public List<MDFInfoIdentificacaoMunicipioCarregamento> getMunicipioCarregamentos() {
@@ -293,5 +303,17 @@ public class MDFInfoIdentificacao extends DFBase {
 
     public void setDataHoraDoInicioViagem(LocalDateTime dataHoraDoInicioViagem) {
         this.dataHoraDoInicioViagem = dataHoraDoInicioViagem;
+    }
+
+    public String getIndicadorCanalVerde() {
+        return indicadorCanalVerde;
+    }
+
+    public void setIndicadorCanalVerde(String indicadorCanalVerde) {
+        String[] enumeration = new String[]{"1"};
+        if(StringUtils.isNotBlank(indicadorCanalVerde) && !StringUtils.equalsAny(indicadorCanalVerde, enumeration )){
+            throw new IllegalStateException(String.format("Indicador canal verde \"%s\" deve possuir um dos seguintes:'%s' caracteres", indicadorCanalVerde, Arrays.toString(enumeration)));
+        }
+        this.indicadorCanalVerde = indicadorCanalVerde;
     }
 }

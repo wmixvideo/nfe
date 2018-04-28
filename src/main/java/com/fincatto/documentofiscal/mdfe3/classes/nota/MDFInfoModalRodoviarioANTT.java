@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -36,5 +37,36 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
     @ElementList(entry ="infContratante", inline = true, required = false)
     protected List<MDFInfoModalRodoviarioInfContratante> infContratante;
 
+    public String getRntrc() {
+        return rntrc;
+    }
 
+    public void setRntrc(String rntrc) {
+        StringValidador.validador(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true,true);
+        this.rntrc = rntrc;
+    }
+
+    public List<MDFInfoModalRodoviarioInfCIOT> getInfCIOT() {
+        return infCIOT;
+    }
+
+    public void setInfCIOT(List<MDFInfoModalRodoviarioInfCIOT> infCIOT) {
+        this.infCIOT = infCIOT;
+    }
+
+    public MDFInfoModalRodoviarioPedagio getValePedagio() {
+        return valePedagio;
+    }
+
+    public void setValePedagio(MDFInfoModalRodoviarioPedagio valePedagio) {
+        this.valePedagio = valePedagio;
+    }
+
+    public List<MDFInfoModalRodoviarioInfContratante> getInfContratante() {
+        return infContratante;
+    }
+
+    public void setInfContratante(List<MDFInfoModalRodoviarioInfContratante> infContratante) {
+        this.infContratante = infContratante;
+    }
 }

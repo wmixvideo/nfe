@@ -33,7 +33,7 @@ public class CTeNotaInfoEmitente extends DFBase {
     private String nomeFantasia;
 
     @Element(name = "enderEmit", required = true)
-    private CTNotaEnderecoEmitente endereco;
+    private CTeNotaEnderecoEmitente endereco;
 
     public CTeNotaInfoEmitente() {
         this.cnpj = null;
@@ -105,14 +105,14 @@ public class CTeNotaInfoEmitente extends DFBase {
         this.nomeFantasia = xFant;
     }
 
-    public CTNotaEnderecoEmitente getEnderEmit() {
+    public CTeNotaEnderecoEmitente getEnderEmit() {
         return this.endereco;
     }
 
     /**
      * Endereço do emitente
      */
-    public void setEnderEmit(final CTNotaEnderecoEmitente enderEmit) {
+    public void setEnderEmit(final CTeNotaEnderecoEmitente enderEmit) {
         this.endereco = enderEmit;
     }
 }

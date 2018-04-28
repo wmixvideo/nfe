@@ -33,7 +33,7 @@ public class CTeNotaInfoExpedidorCarga extends DFBase {
     private String telefone;
 
     @Element(name = "enderExped", required = true)
-    private CTNotaEndereco endereco;
+    private CTeNotaEndereco endereco;
 
     @Element(name = "email", required = false)
     private String email;
@@ -111,14 +111,14 @@ public class CTeNotaInfoExpedidorCarga extends DFBase {
         this.telefone = telefone;
     }
 
-    public CTNotaEndereco getEndereco() {
+    public CTeNotaEndereco getEndereco() {
         return this.endereco;
     }
 
     /**
      * Dados do endereço
      */
-    public void setEndereco(final CTNotaEndereco endereco) {
+    public void setEndereco(final CTeNotaEndereco endereco) {
         this.endereco = endereco;
     }
 
