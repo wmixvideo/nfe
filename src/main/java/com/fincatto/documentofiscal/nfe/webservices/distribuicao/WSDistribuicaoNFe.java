@@ -16,14 +16,6 @@ import org.simpleframework.xml.core.Persister;
 import javax.xml.stream.XMLStreamException;
 import java.rmi.RemoteException;
 
-import javax.xml.stream.XMLStreamException;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
 public class WSDistribuicaoNFe {
 
     private final NFeConfig config;
