@@ -1,5 +1,5 @@
-
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
+
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
@@ -12,6 +12,9 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.core.Persister;
+
+import javax.xml.stream.XMLStreamException;
+import java.rmi.RemoteException;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
@@ -53,22 +56,22 @@ public class WSDistribuicaoNFe {
         }
     }
 
-    public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
-        if (conteudoEncode == null || conteudoEncode.length() == 0) {
-            return "";
-        }
-        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
-        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
-            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
-                String outStr = "";
-                String line;
-                while ((line = bf.readLine()) != null) {
-                    outStr += line;
-                }
-                return outStr;
-            }
-        }
-    }
+//    public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
+//        if (conteudoEncode == null || conteudoEncode.length() == 0) {
+//            return "";
+//        }
+//        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
+//        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
+//            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
+//                String outStr = "";
+//                String line;
+//                while ((line = bf.readLine()) != null) {
+//                    outStr += line;
+//                }
+//                return outStr;
+//            }
+//        }
+//    }
 
     private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) {
         final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
