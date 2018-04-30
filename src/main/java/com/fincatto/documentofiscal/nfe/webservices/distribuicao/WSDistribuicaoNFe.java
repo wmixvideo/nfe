@@ -1,19 +1,5 @@
+
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.core.Persister;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
@@ -22,12 +8,24 @@ import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.core.Persister;
 
-public class WSDistribuicaoDFe {
+import javax.xml.stream.XMLStreamException;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.rmi.RemoteException;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
+
+public class WSDistribuicaoNFe {
 
     private final NFeConfig config;
 
-    public WSDistribuicaoDFe(final NFeConfig config) {
+    public WSDistribuicaoNFe(final NFeConfig config) {
         this.config = config;
     }
 
