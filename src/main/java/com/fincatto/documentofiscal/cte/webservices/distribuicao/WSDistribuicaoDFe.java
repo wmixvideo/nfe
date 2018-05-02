@@ -1,25 +1,23 @@
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
-import javax.xml.stream.XMLStreamException;
-
+import com.fincatto.documentofiscal.DFSocketFactory;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
+import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import com.fincatto.documentofiscal.DFSocketFactory;
-import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
-import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.stream.XMLStreamException;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.rmi.RemoteException;
+import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoDFe {
 
@@ -52,7 +50,8 @@ public class WSDistribuicaoDFe {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
         }
-        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
+        //final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
+        final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
             try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
                 String outStr = "";
@@ -68,5 +67,4 @@ public class WSDistribuicaoDFe {
     public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
         return new Persister(new DFRegistryMatcher(), new Format(0)).read(classe, xml);
     }
-
 }

@@ -1,19 +1,5 @@
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.core.Persister;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
@@ -22,6 +8,18 @@ import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.core.Persister;
+
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.stream.XMLStreamException;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.rmi.RemoteException;
+import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoDFe {
 
@@ -49,7 +47,6 @@ public class WSDistribuicaoDFe {
             final String resultadoConsulta = result.getNFeDistDFeInteresseResult().getExtraElement().toString();
 
             return new Persister(new DFRegistryMatcher()).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
-
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }
@@ -59,7 +56,8 @@ public class WSDistribuicaoDFe {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
         }
-        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
+        //final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
+        final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
             try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
                 String outStr = "";
@@ -86,5 +84,4 @@ public class WSDistribuicaoDFe {
         }
         return distDFeInt;
     }
-
 }
