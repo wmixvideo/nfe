@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe400;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -37,6 +27,14 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 public class FabricaDeObjetosFake {
 
@@ -236,6 +234,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoFormaPagamento getNFNotaInfoFormaPagamento() {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+        formaPagamento.setIndicadorFormaPagamento(NFIndicadorFormaPagamento.A_PRAZO);
         formaPagamento.setCartao(FabricaDeObjetosFake.getNFNotaInfoCartao());
         formaPagamento.setValorPagamento(new BigDecimal("999999999999.99"));
         formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);

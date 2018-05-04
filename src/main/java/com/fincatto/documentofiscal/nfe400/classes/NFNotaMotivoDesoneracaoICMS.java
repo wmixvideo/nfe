@@ -12,7 +12,8 @@ public enum NFNotaMotivoDesoneracaoICMS {
     OUTROS("9", "Outros"),
     DEFICIENTE_CONDUTOR("10", "Deficiente condutor"),
     DEFICIENTE_NAO_CONDUTOR("11", "Deficiente n\u00e3o condutor"),
-    ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO("12", "\u00d5rg\u00e3o de fomento desenvolvimento agropecu\u00e1rio");
+    ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO("12", "\u00d5rg\u00e3o de fomento desenvolvimento agropecu\u00e1rio"),
+    SOLICITADO_PELO_FISCO("90", "Solicitado pelo Fisco");
 
     private final String codigo;
     private final String descricao;
