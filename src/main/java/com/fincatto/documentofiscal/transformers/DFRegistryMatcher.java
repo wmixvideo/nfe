@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.transformers;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte200.classes.*;
 import com.fincatto.documentofiscal.cte200.transformers.*;
@@ -34,6 +35,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
+        super.bind(DFPais.class, new DFPaisTransformer());
 
         // NFE 3.10
         super.bind(NFTipo.class, new NFTipoTransformer());
