@@ -35,10 +35,10 @@ public class NFEndereco extends DFBase {
     private String cep;
 
     @Element(name = "cPais", required = false)
-    private DFPais codigoPais = DFPais.BRASIL;
+    private DFPais codigoPais;
 
     @Element(name = "xPais", required = false)
-    private String descricaoPais = DFPais.BRASIL.getDescricao();
+    private String descricaoPais;
 
     @Element(name = "fone", required = false)
     private String telefone;
