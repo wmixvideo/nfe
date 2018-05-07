@@ -309,22 +309,27 @@ public enum DFPais {
         this.dataInicio = dataInicio;
     }
 
+    @Override
+    public String toString() {
+        return this.getDescricao();
+    }
+
     //TODO gerar testes para os métodos abaixo
-    public static DFPais getByCodigo(Integer codigo){
+    public static DFPais valueOfCodigo(Integer codigo){
         return  Arrays.asList(DFPais.values()).stream()
                 .filter(dfPais -> dfPais.getCodigo().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }
 
-    public static DFPais getByCodigo(String codigo){
+    public static DFPais valueOfCodigo(String codigo){
         return  Arrays.asList(DFPais.values()).stream()
                 .filter(dfPais -> dfPais.getCodigo().toString().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }
 
-    public static List<DFPais> getByDesc(String codigo){
+    public static List<DFPais> getListByDesc(String codigo){
         return  Arrays.asList(DFPais.values()).stream()
                 .filter(dfPais -> StringUtils.containsIgnoreCase(dfPais.getDescricao(),codigo))
                 .collect(Collectors.toList());
