@@ -77,7 +77,6 @@ public enum DFPais {
     COSTA_DO_MARFIM(1937, "COSTA DO MARFIM", LocalDate.of(2006,1,1)),
     CROACIA_REPUBLICA_DA(1953, "CROACIA (REPUBLICA DA)", LocalDate.of(2006,1,1)),
     COSTA_RICA(1961, "COSTA RICA", LocalDate.of(2006,1,1)),
-    COVEITE(1988, "COVEITE", LocalDate.of(2006,1,1)),
     KUWAIT(1988, "KUWAIT", LocalDate.of(2006,1,1)),
     CUBA(1996, "CUBA", LocalDate.of(2006,1,1)),
     CURACAO(2003, "CURACAO", LocalDate.of(2017,1,1)),
@@ -314,7 +313,6 @@ public enum DFPais {
         return this.getDescricao();
     }
 
-    //TODO gerar testes para os métodos abaixo
     public static DFPais valueOfCodigo(Integer codigo){
         return  Arrays.asList(DFPais.values()).stream()
                 .filter(dfPais -> dfPais.getCodigo().equals(codigo))
