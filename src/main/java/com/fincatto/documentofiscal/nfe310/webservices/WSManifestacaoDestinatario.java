@@ -1,23 +1,26 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.*;
+import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
 
 public class WSManifestacaoDestinatario {
 
@@ -79,7 +82,7 @@ public class WSManifestacaoDestinatario {
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(cnpj);
-        infoEvento.setDataHoraEvento(DateTime.now());
+        infoEvento.setDataHoraEvento(ZonedDateTime.now());
         infoEvento.setId(String.format("ID%s%s0%s", tipoEvento.getCodigo(), chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
         infoEvento.setOrgao(DFUnidadeFederativa.RFB);
@@ -93,7 +96,7 @@ public class WSManifestacaoDestinatario {
 
         final NFEnviaEventoManifestacaoDestinatario enviaEvento = new NFEnviaEventoManifestacaoDestinatario();
         enviaEvento.setEvento(Collections.singletonList(evento));
-        enviaEvento.setIdLote(Long.toString(DateTime.now().getMillis()));
+        enviaEvento.setIdLote(Long.toString(ZonedDateTime.now().toInstant().toEpochMilli()));
         enviaEvento.setVersao(WSManifestacaoDestinatario.VERSAO_LEIAUTE);
         return enviaEvento;
     }

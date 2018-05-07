@@ -1067,7 +1067,7 @@ $F{Emi_Telefone}.substring(2,6) + "-" + $F{Emi_Telefone}.substring(6,10)]]></tex
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Data_Saida} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{Data_Saida}).toString() : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{Data_Saida} != null ? DateTimeFormatter.ofPattern("yyyy-MM-dd").parse($F{Data_Saida}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField pattern="(##) ####-####">
 					<reportElement style="dados" x="213" y="65" width="104" height="16"/>
@@ -1083,7 +1083,7 @@ $F{Dest_Telefone}.substring(2,6) + "-" + $F{Dest_Telefone}.substring(6,10)]]></t
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{DataEmissao} != null ? new SimpleDateFormat("yyyy-MM-dd").parse($F{DataEmissao}).toString() : null]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{DataEmissao} != null ? DateTimeFormatter.ofPattern("yyyy-MM-dd").parse($F{DataEmissao}).toString() : null]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="dados" x="2" y="40" width="274" height="16"/>

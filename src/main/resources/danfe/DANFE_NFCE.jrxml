@@ -36,9 +36,9 @@
     <field name="nota.info.informacoesAdicionais.informacoesAdicionaisInteresseFisco" class="java.lang.String"/>
     <field name="nota.info.identificacao.numeroNota" class="java.lang.String"/>
     <field name="nota.info.identificacao.serie" class="java.lang.String"/>
-    <field name="nota.info.identificacao.dataHoraEmissao" class="org.joda.time.DateTime"/>
+    <field name="nota.info.identificacao.dataHoraEmissao" class="java.time.ZonedDateTime"/>
     <field name="nota.info.chaveAcesso" class="java.lang.String"/>
-    <field name="protocolo.protocoloInfo.dataRecebimento" class="org.joda.time.LocalDateTime"/>
+    <field name="protocolo.protocoloInfo.dataRecebimento" class="java.time.LocalDateTime"/>
     <field name="protocolo.protocoloInfo.numeroProtocolo" class="java.lang.String"/>
     <field name="nota.info.destinatario.cnpj" class="java.lang.String"/>
     <field name="nota.info.destinatario.cpf" class="java.lang.String"/>

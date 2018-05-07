@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
+import com.fincatto.documentofiscal.DFPais;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -33,7 +35,7 @@ public class CTInfoEndereco extends DFBase {
     private DFUnidadeFederativa unidadeFederativa;
 
     @Element(name = "cPais", required = false)
-    private String codigoPais;
+    private DFPais codigoPais;
 
     @Element(name = "xPais", required = false)
     private String descricaoPais;
@@ -106,11 +108,12 @@ public class CTInfoEndereco extends DFBase {
         this.unidadeFederativa = unidadeFederativa;
     }
 
-    public String getCodigoPais() {
-        return this.codigoPais;
+    public void setCodigoPais(final String codigoPais) {
+        StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
+        this.codigoPais = DFPais.valueOfCodigo(codigoPais);
     }
 
-    public void setCodigoPais(final String codigoPais) {
+    public void setCodigoPais(final DFPais codigoPais) {
         this.codigoPais = codigoPais;
     }
 

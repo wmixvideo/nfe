@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum NFNotaInfoVeiculoCor {
 
     AMARELA("01", "Amarela"),
@@ -23,7 +25,7 @@ public enum NFNotaInfoVeiculoCor {
     private final String descricao;
 
     NFNotaInfoVeiculoCor(final String codigo, final String descricao) {
-        this.codigo = codigo;
+        this.codigo = StringUtils.leftPad(codigo,2,"0");
         this.descricao = descricao;
     }
 
@@ -33,7 +35,7 @@ public enum NFNotaInfoVeiculoCor {
 
     public static NFNotaInfoVeiculoCor valueOfCodigo(final String codigo) {
         for (final NFNotaInfoVeiculoCor veiculoCor : NFNotaInfoVeiculoCor.values()) {
-            if (veiculoCor.getCodigo().equals(codigo)) {
+            if (veiculoCor.getCodigo().equals(StringUtils.leftPad(codigo,2,"0"))) {
                 return veiculoCor;
             }
         }

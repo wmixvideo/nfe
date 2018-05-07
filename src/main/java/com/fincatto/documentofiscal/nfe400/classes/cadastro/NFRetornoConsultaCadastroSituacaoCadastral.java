@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;

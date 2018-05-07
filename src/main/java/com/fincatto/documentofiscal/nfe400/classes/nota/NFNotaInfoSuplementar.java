@@ -16,7 +16,7 @@ public class NFNotaInfoSuplementar extends DFBase {
     private String qrCode;
 
     @Element(name = "urlChave", required = true)
-    private NFNotaInfoEmitente urlConsultaChaveAcesso;
+    private String urlConsultaChaveAcesso;
 
     public void setQrCode(final String qrCode) {
         StringValidador.tamanho100a600(qrCode, "QR Code");
@@ -27,11 +27,17 @@ public class NFNotaInfoSuplementar extends DFBase {
         return this.qrCode;
     }
 
-    public NFNotaInfoEmitente getUrlConsultaChaveAcesso() {
+    public String getUrlConsultaChaveAcesso() {
         return this.urlConsultaChaveAcesso;
     }
 
-    public void setUrlConsultaChaveAcesso(final NFNotaInfoEmitente urlConsultaChaveAcesso) {
+    /**
+     * Informar a URL da &quot;Consulta por chave de acesso da NFC-e&quot;.
+     *  A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso.
+     * @param urlConsultaChaveAcesso
+     */
+    public void setUrlConsultaChaveAcesso(final String urlConsultaChaveAcesso) {
+        StringValidador.validaIntervalo(urlConsultaChaveAcesso, 21,85, "Url Consulta Chave Acesso ");
         this.urlConsultaChaveAcesso = urlConsultaChaveAcesso;
     }
 }

@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
@@ -18,6 +8,15 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsultaR
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSLoteConsulta {
 
@@ -41,7 +40,7 @@ class WSLoteConsulta {
     private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {
         final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
         cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(NFeConfig.getVersao());
+        cabec.setVersaoDados(this.config.getVersao());
 
         final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
         cabecE.setNfeCabecMsg(cabec);
@@ -63,7 +62,7 @@ class WSLoteConsulta {
         final NFLoteConsulta consulta = new NFLoteConsulta();
         consulta.setRecibo(numeroRecibo);
         consulta.setAmbiente(this.config.getAmbiente());
-        consulta.setVersao(new BigDecimal(NFeConfig.getVersao()));
+        consulta.setVersao(new BigDecimal(this.config.getVersao()));
         return consulta;
     }
 }

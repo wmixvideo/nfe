@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFModelo;
@@ -14,7 +15,7 @@ import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
-import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoDFe;
+import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
@@ -38,7 +39,7 @@ public class WSFacade {
     private final WSConsultaCadastro wsConsultaCadastro;
     private final WSInutilizacao wsInutilizacao;
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
-    private final WSDistribuicaoDFe wSDistribuicaoDFe;
+    private final WSDistribuicaoNFe wSDistribuicaoNFe;
 
     public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -53,7 +54,7 @@ public class WSFacade {
         this.wsConsultaCadastro = new WSConsultaCadastro(config);
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
-        this.wSDistribuicaoDFe = new WSDistribuicaoDFe(config);
+        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
     }
 
     /**
@@ -140,6 +141,30 @@ public class WSFacade {
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
     }
+
+    /**
+     * Faz a correcao da nota com o evento ja assinado.
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados da correcao da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFEnviaEventoRetorno corrigeNotaAssinada(final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinada(eventoAssinadoXml);
+    }
+
+    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(eventoAssinadoXml);
+    }
+
+    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento));
+    }
+
+    public String getXmlAssinado(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
+    }
+
+
 
     /**
      * Faz o cancelamento da nota
@@ -236,7 +261,7 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
-        return this.wSDistribuicaoDFe.consultar(cnpj, uf, chaveAcesso, nsu);
+        return this.wSDistribuicaoNFe.consultar(cnpj, uf, chaveAcesso, nsu);
     }
 
 }

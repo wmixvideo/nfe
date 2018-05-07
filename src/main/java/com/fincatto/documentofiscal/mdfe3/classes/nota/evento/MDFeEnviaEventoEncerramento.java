@@ -3,10 +3,11 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.joda.time.LocalDate;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
+
+import java.time.LocalDate;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
