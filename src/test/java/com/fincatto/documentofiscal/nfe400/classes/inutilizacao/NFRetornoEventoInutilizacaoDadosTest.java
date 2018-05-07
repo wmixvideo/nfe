@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.inutilizacao;
 
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
     @Test
     public void deveObterDataHoraRecebimentoComoFoiSetado() {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
-        final LocalDateTime datahoraRecebimento = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
+        final LocalDateTime datahoraRecebimento = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         dados.setDatahoraRecebimento(datahoraRecebimento);
         Assert.assertEquals(datahoraRecebimento, dados.getDatahoraRecebimento());
     }

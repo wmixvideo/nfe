@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.lote.consulta;
 
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFAmbiente;

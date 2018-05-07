@@ -21,11 +21,11 @@ import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.util.zip.GZIPInputStream;
 
-public class WSDistribuicaoDFe {
+public class WSDistribuicaoNFe {
 
     private final NFeConfig config;
 
-    public WSDistribuicaoDFe(final NFeConfig config) {
+    public WSDistribuicaoNFe(final NFeConfig config) {
         this.config = config;
     }
 

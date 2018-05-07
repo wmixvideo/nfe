@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
+import com.fincatto.documentofiscal.DFPais;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -34,7 +35,7 @@ public class NFEndereco extends DFBase {
     private String cep;
 
     @Element(name = "cPais", required = false)
-    private String codigoPais;
+    private DFPais codigoPais;
 
     @Element(name = "xPais", required = false)
     private String descricaoPais;
@@ -83,6 +84,10 @@ public class NFEndereco extends DFBase {
 
     public void setCodigoPais(final String codigoPais) {
         StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
+        this.codigoPais = DFPais.valueOfCodigo(codigoPais);
+    }
+
+    public void setCodigoPais(final DFPais codigoPais) {
         this.codigoPais = codigoPais;
     }
 
@@ -128,7 +133,7 @@ public class NFEndereco extends DFBase {
         return this.cep;
     }
 
-    public String getCodigoPais() {
+    public DFPais getCodigoPais() {
         return this.codigoPais;
     }
 

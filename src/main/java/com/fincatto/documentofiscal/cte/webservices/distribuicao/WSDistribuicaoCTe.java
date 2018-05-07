@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.util.zip.GZIPInputStream;
 
-public class WSDistribuicaoDFe {
+public class WSDistribuicaoCTe {
 
     /**
      * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>

@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import java.math.BigDecimal;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,7 +32,7 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataFabricacaoNulo() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setDataValidade(LocalDate.of(2015, 1, 1));
         medicamento.setLote("yq50jVDZsvQVNuWoS45U");
         medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
         medicamento.setQuantidade(new BigDecimal("9999999.999"));
@@ -42,7 +42,7 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDataValidadeNulo() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
+        medicamento.setDataFabricacao(LocalDate.of(2014, 1, 1));
         medicamento.setLote("yq50jVDZsvQVNuWoS45U");
         medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
         medicamento.setQuantidade(new BigDecimal("9999999.999"));
@@ -52,8 +52,8 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLoteNulo() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
-        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setDataFabricacao(LocalDate.of(2014, 1, 1));
+        medicamento.setDataValidade(LocalDate.of(2015, 1, 1));
         medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
         medicamento.setQuantidade(new BigDecimal("9999999.999"));
         medicamento.toString();
@@ -62,8 +62,8 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPrecoMaximoConsumidorNulo() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
-        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setDataFabricacao(LocalDate.of(2014, 1, 1));
+        medicamento.setDataValidade(LocalDate.of(2015, 1, 1));
         medicamento.setLote("yq50jVDZsvQVNuWoS45U");
         medicamento.setQuantidade(new BigDecimal("9999999.999"));
         medicamento.toString();
@@ -72,8 +72,8 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeNulo() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
-        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setDataFabricacao(LocalDate.of(2014, 1, 1));
+        medicamento.setDataValidade(LocalDate.of(2015, 1, 1));
         medicamento.setLote("yq50jVDZsvQVNuWoS45U");
         medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
         medicamento.toString();
@@ -82,8 +82,8 @@ public class NFNotaInfoItemProdutoMedicamentoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemProdutoMedicamento medicamento = new NFNotaInfoItemProdutoMedicamento();
-        medicamento.setDataFabricacao(new LocalDate(2014, 1, 1));
-        medicamento.setDataValidade(new LocalDate(2015, 1, 1));
+        medicamento.setDataFabricacao(LocalDate.of(2014, 1, 1));
+        medicamento.setDataValidade(LocalDate.of(2015, 1, 1));
         medicamento.setLote("yq50jVDZsvQVNuWoS45U");
         medicamento.setPrecoMaximoConsumidor(new BigDecimal("999999999999.99"));
         medicamento.setQuantidade(new BigDecimal("9999999.999"));
