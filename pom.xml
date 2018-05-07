@@ -51,6 +51,11 @@
             <name>Felippe Silva</name>
             <url>https://github.com/flppsilva</url>
         </developer>
+        <developer>
+            <id>cbockorny</id>
+            <name>Carine Bockorny</name>
+            <url>https://github.com/cbockorny</url>
+        </developer>
     </developers>
 
     <dependencies>
