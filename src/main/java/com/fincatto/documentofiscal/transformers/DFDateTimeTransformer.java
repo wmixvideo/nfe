@@ -12,7 +12,7 @@ public class DFDateTimeTransformer implements Transform<ZonedDateTime> {
 
     @Override
     public ZonedDateTime read(final String data) throws Exception {
-        return ZonedDateTime.parse(data, format.withZone(ZoneId.systemDefault()));
+        return ZonedDateTime.parse(data, format);
     }
 
     @Override
