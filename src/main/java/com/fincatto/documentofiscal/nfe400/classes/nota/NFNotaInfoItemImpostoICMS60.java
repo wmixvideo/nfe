@@ -18,10 +18,10 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "CST", required = true)
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "vBCSTRet", required = true)
+    @Element(name = "vBCSTRet", required = false)
     private String valorBCICMSSTRetido;
 
-    @Element(name = "pST", required = true)
+    @Element(name = "pST", required = false)
     private String percentualAliquotaICMSST;
 
     @Element(name = "vICMSSTRet", required = true)
