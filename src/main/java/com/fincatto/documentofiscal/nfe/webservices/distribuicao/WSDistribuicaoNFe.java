@@ -89,8 +89,7 @@ public class WSDistribuicaoNFe {
 
         if (StringUtils.isNotBlank(chaveAcesso)) {
             distDFeInt.setConsultaChaveAcesso(new NFDistribuicaoConsultaChaveAcesso().setChaveAcesso(chaveAcesso));
-        }
-        if (StringUtils.isNotBlank(ultNsu)) {
+        } else if (StringUtils.isNotBlank(ultNsu)) {
             distDFeInt.setDistribuicaoNSU(new NFDistribuicaoNSU().setUltimoNSU(ultNsu));
         } else {
             distDFeInt.setConsultaNSU(new NFDistribuicaoConsultaNSU().setNsu(nsu));
