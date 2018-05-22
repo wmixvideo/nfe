@@ -548,7 +548,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeConsulta4" : "https://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsulta4";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4" : "https://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4";
         }
 
         @Override
