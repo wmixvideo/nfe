@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
+
 import java.util.Arrays;
 
 /**
@@ -548,7 +549,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeConsulta4" : "https://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsulta4";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4" : "https://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4";
         }
 
         @Override
