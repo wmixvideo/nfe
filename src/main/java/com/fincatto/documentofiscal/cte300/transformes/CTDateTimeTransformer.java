@@ -1,21 +1,22 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.transform.Transform;
 
-class CTDateTimeTransformer implements Transform<DateTime> {
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
-	private static final DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ");
+class CTDateTimeTransformer implements Transform<ZonedDateTime> {
+
+	private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     @Override
-    public DateTime read(final String data) throws Exception {
-    	return format.withOffsetParsed().parseDateTime(data);
+    public ZonedDateTime read(final String data) throws Exception {
+    	return ZonedDateTime.parse(data, format.withZone(ZoneId.systemDefault()));
     }
 
     @Override
-    public String write(final DateTime data) throws Exception {
-        return data.toString(format);
+    public String write(final ZonedDateTime data) throws Exception {
+        return format.format(data);
     }
 }

@@ -96,8 +96,8 @@ public class NFEnderecoTest {
     @Test
     public void deveObterCodigoPaisComoFoiSetado() {
         final NFEndereco endereco = new NFEndereco();
-        endereco.setCodigoPais("999");
-        Assert.assertEquals("999", endereco.getCodigoPais());
+        endereco.setCodigoPais("1058");
+        Assert.assertEquals(new Integer(1058), endereco.getCodigoPais().getCodigo());
     }
 
     @Test

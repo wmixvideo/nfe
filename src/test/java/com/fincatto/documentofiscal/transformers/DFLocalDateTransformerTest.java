@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.transformers;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.time.LocalDate;
 
 public class DFLocalDateTransformerTest {
 
@@ -14,6 +15,6 @@ public class DFLocalDateTransformerTest {
 
     @Test
     public void deveTransformarLocalDateEmString() throws Exception {
-        Assert.assertEquals("2015-10-04", new DFLocalDateTransformer().write(new LocalDate(2015, 10, 4)));
+        Assert.assertEquals("2015-10-04", new DFLocalDateTransformer().write(LocalDate.of(2015, 10, 4)));
     }
 }

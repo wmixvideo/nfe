@@ -1,27 +1,28 @@
 package com.fincatto.documentofiscal.transformers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import org.joda.time.LocalDateTime;
 import org.simpleframework.xml.transform.Transform;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
 
-    private static final SimpleDateFormat SIMPLE_DATETIME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    private static final SimpleDateFormat DATETIME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+    private static final DateTimeFormatter SIMPLE_DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     @Override
     public LocalDateTime read(final String data) throws Exception {
         try {
-            return LocalDateTime.fromDateFields(DFLocalDateTimeTransformer.DATETIME_FORMATTER.parse(data));
-        } catch (final ParseException e) {
-            return LocalDateTime.fromDateFields(DFLocalDateTimeTransformer.SIMPLE_DATETIME_FORMATTER.parse(data));
+            return LocalDateTime.parse(data, DFLocalDateTimeTransformer.DATETIME_FORMATTER);
+        } catch (final Exception e) {
+            return  LocalDateTime.from(DFLocalDateTimeTransformer.SIMPLE_DATETIME_FORMATTER.parse(data))
+                    .atZone(ZoneId.systemDefault()).toLocalDateTime();
         }
     }
 
     @Override
     public String write(final LocalDateTime data) throws Exception {
-        return DFLocalDateTimeTransformer.DATETIME_FORMATTER.format(data.toDate());
+        return DFLocalDateTimeTransformer.DATETIME_FORMATTER.format(data.atZone(ZoneId.systemDefault()));
     }
 }

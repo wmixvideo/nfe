@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 

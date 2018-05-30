@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;

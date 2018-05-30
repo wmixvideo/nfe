@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.joda.time.LocalTime;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaHorario;
+import org.simpleframework.xml.Element;
+
+import java.time.LocalTime;
 
 public class CTInfoEntregaNoInter extends DFBase {
     private static final long serialVersionUID = -4692215517978664073L;

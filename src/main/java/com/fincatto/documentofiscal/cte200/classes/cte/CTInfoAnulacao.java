@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.joda.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.time.LocalDate;
 
 public class CTInfoAnulacao extends DFBase {
     private static final long serialVersionUID = -1791655256752167342L;
