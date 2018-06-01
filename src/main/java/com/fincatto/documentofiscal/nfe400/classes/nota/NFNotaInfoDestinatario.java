@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoDestinatario extends DFBase {
     private static final long serialVersionUID = 5245421887189198219L;

@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "infNFeSupl")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

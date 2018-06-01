@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFEvento extends DFBase {
     private static final long serialVersionUID = 8494204773888020693L;

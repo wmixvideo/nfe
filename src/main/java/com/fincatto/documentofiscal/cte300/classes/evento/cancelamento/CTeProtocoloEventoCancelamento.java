@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 @Root(name = "procEventoCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")

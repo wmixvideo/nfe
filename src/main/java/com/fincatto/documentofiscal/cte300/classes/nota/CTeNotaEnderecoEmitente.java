@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 /**
  * @author Caio

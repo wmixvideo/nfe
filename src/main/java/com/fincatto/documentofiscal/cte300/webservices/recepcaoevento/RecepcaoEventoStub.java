@@ -4,10 +4,10 @@
  */
 package com.fincatto.documentofiscal.cte300.webservices.recepcaoevento;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * RecepcaoEventoStub java implementation

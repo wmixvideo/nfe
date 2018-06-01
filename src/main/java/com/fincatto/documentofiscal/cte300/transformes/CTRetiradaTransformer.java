@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.cte300.classes.CTRetirada;
+import org.simpleframework.xml.transform.Transform;
 
 public class CTRetiradaTransformer implements Transform<CTRetirada> {
 

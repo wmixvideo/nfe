@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class CTeDetalhamentoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 8502078404626629549L;

@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaHorario;
+import org.simpleframework.xml.Element;
 
 public class CTInfoEntregaSemHora extends DFBase {
     private static final long serialVersionUID = -8339490222357216168L;

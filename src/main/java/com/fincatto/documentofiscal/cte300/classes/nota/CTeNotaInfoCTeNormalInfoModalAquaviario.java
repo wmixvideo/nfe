@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoDirecao;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Caio

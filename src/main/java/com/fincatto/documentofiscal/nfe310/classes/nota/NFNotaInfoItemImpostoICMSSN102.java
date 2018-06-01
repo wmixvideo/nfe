@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemImpostoICMSSN102 extends DFBase {
     private static final long serialVersionUID = 8991323254446222797L;

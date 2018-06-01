@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeCarga;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeCarga;
+import java.util.List;
 
 @Root(name = "infUnidCarga")
 public class CTInfoDocumentoNFUnidadeCarga extends DFBase {

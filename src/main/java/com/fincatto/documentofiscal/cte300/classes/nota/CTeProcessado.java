@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeProtocolo;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeProtocolo;
 
 /**
  * Created by Eldevan Nery Junior on 09/10/17.

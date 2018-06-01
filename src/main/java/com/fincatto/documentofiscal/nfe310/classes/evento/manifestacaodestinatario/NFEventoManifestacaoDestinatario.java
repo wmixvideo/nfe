@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class NFEventoManifestacaoDestinatario extends DFBase {
     private static final long serialVersionUID = 4608659349977367804L;

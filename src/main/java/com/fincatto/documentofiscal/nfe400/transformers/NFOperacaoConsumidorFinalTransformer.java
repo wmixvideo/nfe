@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFOperacaoConsumidorFinal;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFOperacaoConsumidorFinalTransformer implements Transform<NFOperacaoConsumidorFinal> {
 

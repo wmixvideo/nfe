@@ -1,10 +1,8 @@
 package com.fincatto.documentofiscal.parsers;
 
+import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeProcessado;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
-import org.simpleframework.xml.core.Persister;
-
-import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
@@ -13,6 +11,7 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItem;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.persister.DFPersister;
+import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
 
@@ -33,9 +32,17 @@ public class DFParser {
         }
     }
 
-    public NFNota notaParaObjeto(final String xml) {
+    public com.fincatto.documentofiscal.nfe310.classes.nota.NFNota nota310ParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFNota.class, xml);
+            return this.persister.read(com.fincatto.documentofiscal.nfe310.classes.nota.NFNota.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+    }
+
+    public com.fincatto.documentofiscal.nfe400.classes.nota.NFNota nota400ParaObjeto(final String xml) {
+        try {
+            return this.persister.read(com.fincatto.documentofiscal.nfe400.classes.nota.NFNota.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }

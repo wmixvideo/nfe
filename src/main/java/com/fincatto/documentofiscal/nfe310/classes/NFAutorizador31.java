@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import java.util.Arrays;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
+
+import java.util.Arrays;
 
 /**
  * <h1>URLs dos serviços</h1><br>

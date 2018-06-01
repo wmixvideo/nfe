@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.*;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 @Root(name = "infCte")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")

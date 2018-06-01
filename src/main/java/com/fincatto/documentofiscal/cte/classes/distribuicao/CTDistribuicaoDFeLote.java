@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 public class CTDistribuicaoDFeLote extends DFBase {
     private static final long serialVersionUID = 5213446895183202408L;

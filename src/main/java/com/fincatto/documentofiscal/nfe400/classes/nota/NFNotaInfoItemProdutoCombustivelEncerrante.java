@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 /**
  * @Author Eldevan Nery Junior on 04/10/17. Informações do grupo de "encerrante"

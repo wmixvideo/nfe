@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoCancelamento extends NFTipoEvento {
     private static final long serialVersionUID = 7427073073940993756L;

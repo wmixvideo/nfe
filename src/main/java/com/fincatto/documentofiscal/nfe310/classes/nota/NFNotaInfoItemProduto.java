@@ -1,13 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.convert.Convert;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFProdutoCompoeValorNota;
 import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
@@ -15,6 +7,13 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.convert.Convert;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProduto extends DFBase {
     private static final long serialVersionUID = -2271625077897052364L;

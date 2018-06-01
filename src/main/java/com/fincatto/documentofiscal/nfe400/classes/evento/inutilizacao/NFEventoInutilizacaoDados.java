@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 @Root(name = "infInut")
 public class NFEventoInutilizacaoDados extends DFBase {

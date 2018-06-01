@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
+import org.apache.axis2.client.Stub;
+
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-
-import org.apache.axis2.client.Stub;
 
 public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;

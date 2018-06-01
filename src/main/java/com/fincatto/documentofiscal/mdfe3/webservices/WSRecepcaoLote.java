@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub;
-import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;

@@ -1,17 +1,11 @@
 package com.fincatto.documentofiscal.assinatura;
 
-import java.security.Key;
-import java.security.cert.X509Certificate;
-
-import javax.xml.crypto.AlgorithmMethod;
-import javax.xml.crypto.KeySelector;
-import javax.xml.crypto.KeySelectorException;
-import javax.xml.crypto.KeySelectorResult;
-import javax.xml.crypto.XMLCryptoContext;
-import javax.xml.crypto.XMLStructure;
+import javax.xml.crypto.*;
 import javax.xml.crypto.dsig.SignatureMethod;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
+import java.security.Key;
+import java.security.cert.X509Certificate;
 
 class X509KeySelector extends KeySelector {
 

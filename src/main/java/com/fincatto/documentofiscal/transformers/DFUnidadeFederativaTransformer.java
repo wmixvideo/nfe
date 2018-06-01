@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import org.simpleframework.xml.transform.Transform;
 
 public class DFUnidadeFederativaTransformer implements Transform<DFUnidadeFederativa> {
 

@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 public class NFDistribuicaoDFeLote extends DFBase {
     private static final long serialVersionUID = -4707748830153224762L;

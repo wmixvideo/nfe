@@ -3,11 +3,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
+import org.simpleframework.xml.*;
 
 import java.util.List;
 

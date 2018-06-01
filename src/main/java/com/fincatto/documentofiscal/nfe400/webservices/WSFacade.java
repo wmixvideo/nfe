@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -18,6 +8,7 @@ import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRe
 import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
@@ -27,6 +18,14 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import org.apache.commons.httpclient.protocol.Protocol;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 public class WSFacade {
 

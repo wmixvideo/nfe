@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class NFKeyInfo extends DFBase {
     private static final long serialVersionUID = 7949034334524924221L;

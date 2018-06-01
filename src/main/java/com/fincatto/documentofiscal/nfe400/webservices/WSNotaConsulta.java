@@ -1,14 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.math.BigDecimal;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
@@ -18,6 +9,14 @@ import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub.NfeConsultaNFResult;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
 
 class WSNotaConsulta {
     private static final String NOME_SERVICO = "CONSULTAR";

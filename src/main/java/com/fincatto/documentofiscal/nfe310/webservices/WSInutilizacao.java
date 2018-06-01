@@ -1,13 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.math.BigDecimal;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -21,6 +13,13 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2St
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
 import com.fincatto.documentofiscal.persister.DFPersister;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
 
 class WSInutilizacao {
 

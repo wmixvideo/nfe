@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class CTDistribuicaoNSU extends DFBase {
     private static final long serialVersionUID = -50569062199740836L;

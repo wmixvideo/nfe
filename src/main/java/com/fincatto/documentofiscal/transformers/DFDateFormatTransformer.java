@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.transformers;
 
+import org.simpleframework.xml.transform.Transform;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.simpleframework.xml.transform.Transform;
 
 class DFDateFormatTransformer implements Transform<Date> {
 

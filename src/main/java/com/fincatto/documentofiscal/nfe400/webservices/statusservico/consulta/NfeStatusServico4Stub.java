@@ -3,11 +3,11 @@
  */
 package com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta;
 
+import org.apache.axis2.client.Stub;
+
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-
-import org.apache.axis2.client.Stub;
 
 /*
  * NfeStatusServico4Stub java implementation

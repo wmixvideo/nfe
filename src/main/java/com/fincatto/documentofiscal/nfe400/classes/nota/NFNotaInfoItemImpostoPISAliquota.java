@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class NFNotaInfoItemImpostoPISAliquota extends DFBase {
     private static final long serialVersionUID = 4109084296960847091L;

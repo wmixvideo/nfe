@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.util.List;
 
 @Root(name = "emiDocAnt")
 public class CTInfoDocumentoAnteriorEmissor extends DFBase {

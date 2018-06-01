@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaCOFINS;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     private static final long serialVersionUID = -8079337130690627887L;

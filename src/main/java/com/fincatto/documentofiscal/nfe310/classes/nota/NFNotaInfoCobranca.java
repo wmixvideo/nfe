@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.ListValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
+import java.util.List;
 
 public class NFNotaInfoCobranca extends DFBase {
     private static final long serialVersionUID = -2471735975201108151L;

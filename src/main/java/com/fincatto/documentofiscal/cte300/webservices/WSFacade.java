@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.DFSocketFactory;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;

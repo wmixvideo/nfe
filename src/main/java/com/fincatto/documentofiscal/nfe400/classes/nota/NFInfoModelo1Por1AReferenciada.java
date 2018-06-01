@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoModelo1Por1AReferenciada extends DFBase {
     private static final long serialVersionUID = 4441065943167631316L;

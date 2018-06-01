@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.DFAmbiente;
+import org.simpleframework.xml.transform.Transform;
 
 public class DFAmbienteTransformer implements Transform<DFAmbiente> {
 

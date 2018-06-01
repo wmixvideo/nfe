@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoReboque extends DFBase {
     private static final long serialVersionUID = 5653075594659818560L;

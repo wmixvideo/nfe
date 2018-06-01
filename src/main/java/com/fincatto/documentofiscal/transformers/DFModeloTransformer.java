@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.DFModelo;
+import org.simpleframework.xml.transform.Transform;
 
 public class DFModeloTransformer implements Transform<DFModelo> {
 

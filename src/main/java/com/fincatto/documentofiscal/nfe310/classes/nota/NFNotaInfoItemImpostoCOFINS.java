@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemImpostoCOFINS extends DFBase {
     private static final long serialVersionUID = -2776137091542174644L;

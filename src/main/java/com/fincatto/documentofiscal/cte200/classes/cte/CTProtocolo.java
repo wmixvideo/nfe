@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-
-import com.fincatto.documentofiscal.DFBase;
 
 public class CTProtocolo extends DFBase {
     private static final long serialVersionUID = -8180971313952866825L;

@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 @Root(name = "retDownloadNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")

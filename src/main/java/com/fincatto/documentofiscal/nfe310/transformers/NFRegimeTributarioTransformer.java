@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe310.classes.NFRegimeTributario;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFRegimeTributarioTransformer implements Transform<NFRegimeTributario> {
 

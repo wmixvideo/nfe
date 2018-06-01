@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte200.classes.CTResponsavelSeguro;
+import org.simpleframework.xml.Element;
 
 public class CTInfoSeguro extends DFBase {
     private static final long serialVersionUID = 9195752068106292630L;

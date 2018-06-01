@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.NFProcessoEmissor;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFProgramaEmissorTransformer implements Transform<NFProcessoEmissor> {
 

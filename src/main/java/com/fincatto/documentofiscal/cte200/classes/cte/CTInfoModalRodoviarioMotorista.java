@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "moto")
 public class CTInfoModalRodoviarioMotorista extends DFBase {

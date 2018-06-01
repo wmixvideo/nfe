@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class NFRetornoConsultaCadastroEndereco extends DFBase {
     private static final long serialVersionUID = -2380716124076759445L;

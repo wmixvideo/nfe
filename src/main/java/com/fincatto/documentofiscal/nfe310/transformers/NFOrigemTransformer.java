@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFOrigemTransformer implements Transform<NFOrigem> {
 
