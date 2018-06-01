@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
+
 import java.util.Arrays;
 
 /**
