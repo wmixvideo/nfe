@@ -10,8 +10,8 @@ package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
 import com.fincatto.documentofiscal.nfe310.webservices.nota.consulta.NfeConsulta2Stub.NfeConsultaNF2Result;
 
 abstract class NfeConsulta2CallbackHandler {
-	
-	protected Object clientData;
+
+    protected final Object clientData;
 	
 	public NfeConsulta2CallbackHandler(final Object clientData) {
 		this.clientData = clientData;

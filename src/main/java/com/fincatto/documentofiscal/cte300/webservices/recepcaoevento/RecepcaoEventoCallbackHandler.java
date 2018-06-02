@@ -6,9 +6,7 @@ package com.fincatto.documentofiscal.cte300.webservices.recepcaoevento;
      */
     public abstract class RecepcaoEventoCallbackHandler{
 
-
-
-    protected Object clientData;
+        protected final Object clientData;
 
     /**
     * User can pass in any object that needs to be accessed once the NonBlocking

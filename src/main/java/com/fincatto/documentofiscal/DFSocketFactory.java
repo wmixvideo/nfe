@@ -9,7 +9,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.*;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
 
@@ -18,7 +17,7 @@ public class DFSocketFactory implements ProtocolSocketFactory {
     private final DFConfig config;
     private final SSLContext sslContext;
 
-    public DFSocketFactory(final DFConfig config) throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public DFSocketFactory(final DFConfig config) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         this.config = config;
         this.sslContext = this.createSSLContext(config);
     }

@@ -18,9 +18,9 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     //hashmaps to keep the fault mapping
-    private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
-    private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
-    private java.util.HashMap faultMessageMap = new java.util.HashMap();
+    private final java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
+    private final java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
+    private final java.util.HashMap faultMessageMap = new java.util.HashMap();
 
     private static int counter = 0;
 
@@ -262,7 +262,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
         return returnMap;
     }
 
-    private javax.xml.namespace.QName[] opNameArray = null;
+    private final javax.xml.namespace.QName[] opNameArray = null;
 
     private boolean optimizeContent(javax.xml.namespace.QName opName) {
         if (opNameArray == null) {
@@ -317,7 +317,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
          * @param factory
          * @return org.apache.axiom.om.OMElement
          */
-        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) {
             org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME);
             return factory.createOMElement(dataSource, MY_QNAME);
         }
@@ -611,7 +611,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
          * @param factory
          * @return org.apache.axiom.om.OMElement
          */
-        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+        public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) {
             org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME);
             return factory.createOMElement(dataSource, MY_QNAME);
         }
@@ -871,31 +871,30 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             }
         }//end of factory class
     }
+    //    private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    //        try {
+    //            return param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+    //        } catch (org.apache.axis2.databinding.ADBException e) {
+    //            throw org.apache.axis2.AxisFault.makeFault(e);
+    //        }
+    //    }
+    //
+    //    private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeResultMsg param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
+    //        try {
+    //            return param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeResultMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+    //        } catch (org.apache.axis2.databinding.ADBException e) {
+    //            throw org.apache.axis2.AxisFault.makeFault(e);
+    //        }
+    //    }
 
-    private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
-        try {
-            return param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-    }
-
-    private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeResultMsg param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
-        try {
-            return param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeResultMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-    }
-
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg param, boolean optimizeContent, javax.xml.namespace.QName methodQName) throws org.apache.axis2.AxisFault {
-        try {
-            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg.MY_QNAME, factory));
-            return emptyEnvelope;
-        } catch (org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg param, boolean optimizeContent, javax.xml.namespace.QName methodQName) {
+        //try {
+        org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
+        emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg.MY_QNAME, factory));
+        return emptyEnvelope;
+        //        } catch (org.apache.axis2.databinding.ADBException e) {
+        //            throw org.apache.axis2.AxisFault.makeFault(e);
+        //        }
     }
 
 

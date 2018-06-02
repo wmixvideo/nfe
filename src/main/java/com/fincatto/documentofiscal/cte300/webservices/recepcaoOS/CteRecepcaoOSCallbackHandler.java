@@ -6,9 +6,7 @@ package com.fincatto.documentofiscal.cte300.webservices.recepcaoOS;
      */
     public abstract class CteRecepcaoOSCallbackHandler{
 
-
-
-    protected Object clientData;
+        protected final Object clientData;
 
     /**
     * User can pass in any object that needs to be accessed once the NonBlocking

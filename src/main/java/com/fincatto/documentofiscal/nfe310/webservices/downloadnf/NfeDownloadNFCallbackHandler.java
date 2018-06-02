@@ -13,7 +13,7 @@ package com.fincatto.documentofiscal.nfe310.webservices.downloadnf;
  */
 public abstract class NfeDownloadNFCallbackHandler{
 
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

@@ -13,7 +13,7 @@ package com.fincatto.documentofiscal.nfe400.webservices.consultacadastro;
  */
 public abstract class CadConsultaCadastro4CallbackHandler{
 
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

@@ -12,7 +12,7 @@ package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
  *  their own receiveResult and receiveError methods.
  */
 public abstract class NfeConsultaCallbackHandler {
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

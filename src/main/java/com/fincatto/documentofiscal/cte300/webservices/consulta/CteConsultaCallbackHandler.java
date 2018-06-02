@@ -6,9 +6,7 @@ package com.fincatto.documentofiscal.cte300.webservices.consulta;
      */
     public abstract class CteConsultaCallbackHandler{
 
-
-
-    protected Object clientData;
+        protected final Object clientData;
 
     /**
     * User can pass in any object that needs to be accessed once the NonBlocking

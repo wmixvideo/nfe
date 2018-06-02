@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFProcessoEmissaoTransformer implements Transform<MDFProcessoEmissao> {
 
     @Override
-    public MDFProcessoEmissao read(String value) throws Exception {
+    public MDFProcessoEmissao read(String value) {
         return MDFProcessoEmissao.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFProcessoEmissao value) throws Exception {
+    public String write(MDFProcessoEmissao value) {
         return value.getCodigo();
     }
 }

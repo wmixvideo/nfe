@@ -13,8 +13,7 @@ package com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao;
  */
 public abstract class MDFeRetRecepcaoCallbackHandler {
 
-
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

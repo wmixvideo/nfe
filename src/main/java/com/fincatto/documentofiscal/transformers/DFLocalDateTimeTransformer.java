@@ -12,7 +12,7 @@ public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     @Override
-    public LocalDateTime read(final String data) throws Exception {
+    public LocalDateTime read(final String data) {
         try {
             return LocalDateTime.parse(data, DFLocalDateTimeTransformer.DATETIME_FORMATTER);
         } catch (final Exception e) {
@@ -22,7 +22,7 @@ public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
     }
 
     @Override
-    public String write(final LocalDateTime data) throws Exception {
+    public String write(final LocalDateTime data) {
         return DFLocalDateTimeTransformer.DATETIME_FORMATTER.format(data.atZone(ZoneId.systemDefault()));
     }
 }
