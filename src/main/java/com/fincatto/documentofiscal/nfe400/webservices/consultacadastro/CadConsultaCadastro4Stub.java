@@ -164,7 +164,7 @@
               
 
               // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env = null;
+                  org.apache.axiom.soap.SOAPEnvelope env;
                     
                                                     
                                                     env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
@@ -277,7 +277,7 @@
 
 
               // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env=null;
+                    org.apache.axiom.soap.SOAPEnvelope env;
               final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
                     
@@ -384,9 +384,9 @@
                                 }
                             }
                 });
-                        
 
-          org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+
+                    org.apache.axis2.util.CallbackReceiver _callbackReceiver;
         if ( _operations[0].getMessageReceiver()==null &&  _operationClient.getOptions().isUseSeparateListener()) {
            _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
           _operations[0].setMessageReceiver(
@@ -512,12 +512,10 @@
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
                  throws javax.xml.stream.XMLStreamException {
-            
-                
 
 
-                java.lang.String prefix = null;
-                java.lang.String namespace = null;
+             java.lang.String prefix;
+             java.lang.String namespace;
                 
 
                     prefix = parentQName.getPrefix();
@@ -666,8 +664,8 @@
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -935,12 +933,10 @@
                                javax.xml.stream.XMLStreamWriter xmlWriter,
                                boolean serializeType)
                  throws javax.xml.stream.XMLStreamException {
-            
-                
 
 
-                java.lang.String prefix = null;
-                java.lang.String namespace = null;
+             java.lang.String prefix;
+             java.lang.String namespace;
                 
 
                     prefix = parentQName.getPrefix();
@@ -1089,8 +1085,8 @@
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {

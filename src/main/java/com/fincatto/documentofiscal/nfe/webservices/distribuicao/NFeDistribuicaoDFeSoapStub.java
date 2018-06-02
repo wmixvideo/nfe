@@ -86,7 +86,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             _messageContext = new org.apache.axis2.context.MessageContext();
 
             // create SOAP envelope with that payload
-            org.apache.axiom.soap.SOAPEnvelope env = null;
+            org.apache.axiom.soap.SOAPEnvelope env;
 
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDistDFeInteresse, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDistDFeInteresse")));
 
@@ -233,7 +233,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
-            boolean isReaderMTOMAware = false;
+            boolean isReaderMTOMAware;
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
             } catch (final java.lang.IllegalArgumentException e) {
@@ -277,8 +277,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -386,9 +386,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                final StringBuilder stringToWrite = new StringBuilder();
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -466,7 +466,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -495,8 +495,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         object.setNFeDadosMsg(NFeDadosMsg_type0.Factory.parse(reader));
                         reader.next();
                     } // End of if for expected property start element
-                    else {
-                    }
+
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -554,7 +553,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
-            boolean isReaderMTOMAware = false;
+            boolean isReaderMTOMAware;
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
             } catch (final java.lang.IllegalArgumentException e) {
@@ -597,8 +596,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -716,9 +715,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                final StringBuilder stringToWrite = new StringBuilder();
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -804,7 +803,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -912,7 +911,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
-            boolean isReaderMTOMAware = false;
+            boolean isReaderMTOMAware;
 
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
@@ -958,8 +957,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -1083,9 +1082,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                final StringBuilder stringToWrite = new StringBuilder();
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1181,7 +1180,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
@@ -1216,9 +1215,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
                     } // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -1303,7 +1299,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(final javax.xml.stream.XMLStreamReader reader) {
-            boolean isReaderMTOMAware = false;
+            boolean isReaderMTOMAware;
 
             try {
                 isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
@@ -1349,8 +1345,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -1475,9 +1471,9 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                final StringBuilder stringToWrite = new StringBuilder();
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1571,7 +1567,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;

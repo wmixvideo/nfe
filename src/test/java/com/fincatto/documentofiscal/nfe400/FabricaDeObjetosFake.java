@@ -1158,7 +1158,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoCana getNFNotaInfoCana() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);

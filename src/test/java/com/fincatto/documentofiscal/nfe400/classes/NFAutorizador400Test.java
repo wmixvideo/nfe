@@ -489,7 +489,7 @@ public class NFAutorizador400Test {
     @Test
     public void deveObterTodasAsUFsDoSVRS() {
         final List<DFUnidadeFederativa> ufsDaSVRS = Arrays.asList(DFUnidadeFederativa.AC, DFUnidadeFederativa.AL, DFUnidadeFederativa.AP, DFUnidadeFederativa.DF, DFUnidadeFederativa.ES, DFUnidadeFederativa.PA, DFUnidadeFederativa.PB, DFUnidadeFederativa.RJ, DFUnidadeFederativa.RN, DFUnidadeFederativa.RO, DFUnidadeFederativa.RR, DFUnidadeFederativa.SC, DFUnidadeFederativa.SE, DFUnidadeFederativa.TO);
-        Assert.assertTrue(ufsDaSVRS.equals(Arrays.asList(NFAutorizador400.SVRS.getUFs())));
+        Assert.assertEquals(ufsDaSVRS, Arrays.asList(NFAutorizador400.SVRS.getUFs()));
     }
 
     @Test

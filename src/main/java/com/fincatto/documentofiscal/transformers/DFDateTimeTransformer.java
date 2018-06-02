@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 

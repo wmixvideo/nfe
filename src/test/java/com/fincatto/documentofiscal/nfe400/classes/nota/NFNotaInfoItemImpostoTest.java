@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoTest {
 
@@ -101,14 +100,14 @@ public class NFNotaInfoItemImpostoTest {
 
         try {
             imposto1.setIcms(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         final NFNotaInfoItemImposto imposto2 = new NFNotaInfoItemImposto();
         imposto2.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
 
         try {
             imposto2.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImposto imposto3 = new NFNotaInfoItemImposto();
@@ -116,7 +115,7 @@ public class NFNotaInfoItemImpostoTest {
 
         try {
             imposto3.setImpostoImportacao(FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -127,14 +126,14 @@ public class NFNotaInfoItemImpostoTest {
 
         try {
             imposto1.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         final NFNotaInfoItemImposto imposto2 = new NFNotaInfoItemImposto();
         imposto2.setIpi(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI());
 
         try {
             imposto2.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImposto imposto3 = new NFNotaInfoItemImposto();
@@ -142,7 +141,7 @@ public class NFNotaInfoItemImpostoTest {
 
         try {
             imposto3.setIssqn(FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN());
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 

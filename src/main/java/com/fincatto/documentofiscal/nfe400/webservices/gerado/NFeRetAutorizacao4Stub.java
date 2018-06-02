@@ -105,7 +105,7 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
             _messageContext = new org.apache.axis2.context.MessageContext();
 
             // create SOAP envelope with that payload
-            org.apache.axiom.soap.SOAPEnvelope env = null;
+            org.apache.axiom.soap.SOAPEnvelope env;
 
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeRetAutorizacao4", "nfeRetAutorizacaoLote")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeRetAutorizacao4", "nfeDadosMsg"));
 
@@ -268,8 +268,8 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -507,8 +507,8 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -621,7 +621,7 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
                 final int event;
                 javax.xml.namespace.QName currentQName = null;
-                java.lang.String nillableValue = null;
+                java.lang.String nillableValue;
                 final java.lang.String prefix = "";
                 final java.lang.String namespaceuri = "";
 

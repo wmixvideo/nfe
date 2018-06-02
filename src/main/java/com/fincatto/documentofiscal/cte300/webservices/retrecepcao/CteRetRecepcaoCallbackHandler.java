@@ -1,12 +1,4 @@
-
-/**
- * CteRetRecepcaoCallbackHandler.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST)
- */
-
-    package com.fincatto.documentofiscal.cte300.webservices.retrecepcao;
+package com.fincatto.documentofiscal.cte300.webservices.retrecepcao;
 
     /**
      *  CteRetRecepcaoCallbackHandler Callback class, Users can extend this class and implement

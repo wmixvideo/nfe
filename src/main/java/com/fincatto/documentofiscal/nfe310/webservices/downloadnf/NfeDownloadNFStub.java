@@ -135,7 +135,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
             _messageContext = new org.apache.axis2.context.MessageContext();
 
             // create SOAP envelope with that payload
-            org.apache.axiom.soap.SOAPEnvelope env = null;
+            org.apache.axiom.soap.SOAPEnvelope env;
 
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeDownloadNF", "nfeDownloadNF")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeDownloadNF", "nfeDownloadNF"));
 
@@ -239,7 +239,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
         this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
 
         // create SOAP envelope with that payload
-        org.apache.axiom.soap.SOAPEnvelope env = null;
+        org.apache.axiom.soap.SOAPEnvelope env;
         final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         // Style is Doc.
@@ -346,7 +346,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
             }
         });
 
-        org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+        org.apache.axis2.util.CallbackReceiver _callbackReceiver;
         if (this._operations[0].getMessageReceiver() == null && _operationClient.getOptions().isUseSeparateListener()) {
             _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
             this._operations[0].setMessageReceiver(_callbackReceiver);
@@ -436,8 +436,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -571,8 +571,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -899,8 +899,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1156,7 +1156,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
 
             final java.util.List list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
             list.add(param);
-            this.localExtraAttributes = (org.apache.axiom.om.OMAttribute[]) list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
+            this.localExtraAttributes = (org.apache.axiom.om.OMAttribute[]) list.toArray(new OMAttribute[0]);
 
         }
 
@@ -1181,8 +1181,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -1349,8 +1349,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1448,7 +1448,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
                 final NfeCabecMsg object = new NfeCabecMsg();
 
                 final int event;
-                java.lang.String nillableValue = null;
+                java.lang.String nillableValue;
                 final java.lang.String prefix = "";
                 final java.lang.String namespaceuri = "";
                 try {
@@ -1519,9 +1519,6 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
 
                     } // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -1542,9 +1539,6 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
 
                     } // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -1616,8 +1610,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -1751,8 +1745,8 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {

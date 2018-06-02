@@ -114,7 +114,7 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             _messageContext = new org.apache.axis2.context.MessageContext();
 
             // create SOAP envelope with that payload
-            org.apache.axiom.soap.SOAPEnvelope env = null;
+            org.apache.axiom.soap.SOAPEnvelope env;
 
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao", "nfeRetAutorizacaoLote"));
 
@@ -292,7 +292,7 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             @SuppressWarnings("unchecked")
             final java.util.List<OMAttribute> list = org.apache.axis2.databinding.utils.ConverterUtil.toList(this.localExtraAttributes);
             list.add(param);
-            this.localExtraAttributes = list.toArray(new org.apache.axiom.om.OMAttribute[list.size()]);
+            this.localExtraAttributes = list.toArray(new OMAttribute[0]);
 
         }
 
@@ -312,8 +312,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -470,7 +470,7 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             public static NfeCabecMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 final NfeCabecMsg object = new NfeCabecMsg();
 
-                java.lang.String nillableValue = null;
+                java.lang.String nillableValue;
                 try {
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
@@ -539,9 +539,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
                     } // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -562,9 +559,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
 
                     } // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
@@ -729,8 +723,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
@@ -937,8 +931,8 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();

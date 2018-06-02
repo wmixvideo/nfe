@@ -157,7 +157,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
 
             // create SOAP envelope with that payload
-            org.apache.axiom.soap.SOAPEnvelope env = null;
+            org.apache.axiom.soap.SOAPEnvelope env;
 
 
             env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
@@ -281,7 +281,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
 
         // create SOAP envelope with that payload
-        org.apache.axiom.soap.SOAPEnvelope env = null;
+        org.apache.axiom.soap.SOAPEnvelope env;
         final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
 
@@ -397,7 +397,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
         });
 
 
-        org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+        org.apache.axis2.util.CallbackReceiver _callbackReceiver;
         if (_operations[0].getMessageReceiver() == null && _operationClient.getOptions().isUseSeparateListener()) {
             _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
             _operations[0].setMessageReceiver(
@@ -654,8 +654,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -853,8 +853,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 throws javax.xml.stream.XMLStreamException {
 
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
 
             prefix = parentQName.getPrefix();
@@ -1004,8 +1004,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1256,8 +1256,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 throws javax.xml.stream.XMLStreamException {
 
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
 
             prefix = parentQName.getPrefix();
@@ -1407,8 +1407,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -1744,7 +1744,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
             list.add(param);
             this.localExtraAttributes =
                     (org.apache.axiom.om.OMAttribute[]) list.toArray(
-                            new org.apache.axiom.om.OMAttribute[list.size()]);
+                            new org.apache.axiom.om.OMAttribute[0]);
 
         }
 
@@ -1778,8 +1778,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 throws javax.xml.stream.XMLStreamException {
 
 
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
+            java.lang.String prefix;
+            java.lang.String namespace;
 
 
             prefix = parentQName.getPrefix();
@@ -1967,8 +1967,8 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
                 java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
+                java.lang.String namespaceURI;
+                java.lang.String prefix;
 
                 for (int i = 0; i < qnames.length; i++) {
                     if (i > 0) {
@@ -2081,7 +2081,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
                         new MdfeCabecMsg();
 
                 int event;
-                java.lang.String nillableValue = null;
+                java.lang.String nillableValue;
                 java.lang.String prefix = "";
                 java.lang.String namespaceuri = "";
                 try {
@@ -2166,10 +2166,6 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
                     }  // End of if for expected property start element
 
-                    else {
-
-                    }
-
 
                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
 
@@ -2190,9 +2186,6 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
 
                     }  // End of if for expected property start element
 
-                    else {
-
-                    }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
                         reader.next();
