@@ -36,6 +36,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TimeZone;
 
 public class FabricaDeObjetosFake {
 
@@ -170,7 +171,8 @@ public class FabricaDeObjetosFake {
         infoEventoManifestacaoDestinatario.setChave("81568004734874930428983724940883089298523837");
         infoEventoManifestacaoDestinatario.setCnpj("12345678901234");
         infoEventoManifestacaoDestinatario.setCodigoEvento("123456");
-        infoEventoManifestacaoDestinatario.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        TimeZone timeZone = TimeZone.getTimeZone("America/Sao_Paulo");
+        infoEventoManifestacaoDestinatario.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), timeZone.toZoneId()));
         infoEventoManifestacaoDestinatario.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoManifestacaoDestinatario.setNumeroSequencialEvento(2);
         infoEventoManifestacaoDestinatario.setOrgao(DFUnidadeFederativa.SC);

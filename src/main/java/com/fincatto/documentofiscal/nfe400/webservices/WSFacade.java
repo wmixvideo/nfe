@@ -6,6 +6,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.TimeZone;
 
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import org.apache.commons.httpclient.protocol.Protocol;
@@ -233,11 +234,26 @@ public class WSFacade {
      * @param tipoEvento tipo do evento da manifestacao do destinatario
      * @param motivo motivo do cancelamento
      * @param cnpj cnpj do autor do evento
+     * @param timeZone  timeZone a ser considerado para trabalhar com datas
+     * @return dados da manifestacao do destinatario da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj, TimeZone timeZone) throws Exception {
+        System.out.println("MANIFESTACAO - Inicio - chamada metodo");
+        return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj, timeZone);
+    }
+
+    /**
+     * Faz a manifestação do destinatário da nota
+     * @param chave chave de acesso da nota
+     * @param tipoEvento tipo do evento da manifestacao do destinatario
+     * @param motivo motivo do cancelamento
+     * @param cnpj cnpj do autor do evento
      * @return dados da manifestacao do destinatario da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
-        return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj);
+        return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj, null);
     }
 
     /**

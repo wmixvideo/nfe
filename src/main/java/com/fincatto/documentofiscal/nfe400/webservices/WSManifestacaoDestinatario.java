@@ -6,6 +6,8 @@ import java.util.Collections;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +37,8 @@ public class WSManifestacaoDestinatario {
         return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
-        final String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj).toString();
+    NFEnviaEventoRetorno manifestaDestinatarioNota(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj, TimeZone timeZone) throws Exception {
+        final String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj, timeZone).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(manifestacaoDestinatarioNotaXML);
         final OMElement omElementResult = this.efetuaManifestacaoDestinatario(xmlAssinado, chaveAcesso);
         return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
@@ -61,7 +63,7 @@ public class WSManifestacaoDestinatario {
         return omElementResult;
     }
 
-    private NFEnviaEventoManifestacaoDestinatario gerarDadosManifestacaoDestinatario(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) {
+    private NFEnviaEventoManifestacaoDestinatario gerarDadosManifestacaoDestinatario(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj, TimeZone timeZone) {
         // final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFInfoManifestacaoDestinatario manifestacaoDestinatario = new NFInfoManifestacaoDestinatario();
@@ -73,7 +75,11 @@ public class WSManifestacaoDestinatario {
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(cnpj);
-        infoEvento.setDataHoraEvento(ZonedDateTime.now());
+        if(timeZone != null){
+            infoEvento.setDataHoraEvento(ZonedDateTime.now().withZoneSameInstant(timeZone.toZoneId()));
+        }else{
+            infoEvento.setDataHoraEvento(ZonedDateTime.now());
+        }
         infoEvento.setId(String.format("ID%s%s0%s", tipoEvento.getCodigo(), chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
         infoEvento.setOrgao(DFUnidadeFederativa.RFB);
