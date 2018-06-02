@@ -1,8 +1,7 @@
-
-/**
- * MDFeStatusServicoStub.java
- * <p>
- * This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+/*
+  MDFeStatusServicoStub.java
+  <p>
+  This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.statusservico;
 
@@ -114,7 +113,6 @@ public class MDFeStatusServicoStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServico#mdfeStatusServicoMDF
      * @param mdfeDadosMsg0
      * @param mdfeCabecMsg1
      */
@@ -209,7 +207,6 @@ public class MDFeStatusServicoStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature for Asynchronous Invocations
-     * @see com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServico#startmdfeStatusServicoMDF
      * @param mdfeDadosMsg0
      * @param mdfeCabecMsg1
      */

@@ -1,5 +1,5 @@
-/**
- * NfeConsultaStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
+/*
+  NfeConsultaStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
  */
 package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
 
@@ -102,7 +102,6 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature Serviço destinado à consulta da NF-e.
-     * @see com.fincatto.nfe310.webservices.nota.consulta.NfeConsulta#nfeConsultaNF
      * @param nfeDadosMsg0
      * @param nfeCabecMsg1
      */
@@ -188,7 +187,6 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature for Asynchronous Invocations Serviço destinado à consulta da NF-e.
-     * @see com.fincatto.nfe310.webservices.nota.consulta.NfeConsulta#startnfeConsultaNF
      * @param nfeDadosMsg0
      * @param nfeCabecMsg1
      */

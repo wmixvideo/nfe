@@ -87,7 +87,6 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see NFeRetAutorizacao4#nfeRetAutorizacaoLote
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

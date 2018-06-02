@@ -87,7 +87,6 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature Serviço destinado ao atendimento de solicitações de consulta da situação atual da NF-e na Base de Dados do Portal da Sefaz Virtual do Ambiente Nacional
-     * @see NFeConsultaProtocolo4#nfeConsultaNF
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

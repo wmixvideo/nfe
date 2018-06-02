@@ -1,5 +1,5 @@
-/**
- * NfeStatusServico4Stub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
+/*
+  NfeStatusServico4Stub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
  */
 package com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta;
 
@@ -90,7 +90,6 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta.NfeStatusServico4#nfeStatusServicoNF
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

@@ -84,7 +84,6 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see NFeInutilizacao4#nfeInutilizacaoNF
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

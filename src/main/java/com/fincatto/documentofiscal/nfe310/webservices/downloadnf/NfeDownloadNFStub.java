@@ -1,6 +1,5 @@
-
-/**
- * NfeDownloadNFStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+/*
+  NfeDownloadNFStub.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
  */
 
 package com.fincatto.documentofiscal.nfe310.webservices.downloadnf;
@@ -111,7 +110,6 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature Serviço destinado ao atendimento de solicitações de download de Notas Fiscais Eletrônicas por seus destinatários.
-     * @see com.wsdl.gerado.NfeDownloadNF#nfeDownloadNF
      * @param nfeDadosMsg0
      * @param nfeCabecMsg1
      */
@@ -205,7 +203,6 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature for Asynchronous Invocations Serviço destinado ao atendimento de solicitações de download de Notas Fiscais Eletrônicas por seus destinatários.
-     * @see com.wsdl.gerado.NfeDownloadNF#startnfeDownloadNF
      * @param nfeDadosMsg0
      * @param nfeCabecMsg1
      */

@@ -101,7 +101,6 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see NFeRecepcaoEvento4#nfeRecepcaoEvento
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

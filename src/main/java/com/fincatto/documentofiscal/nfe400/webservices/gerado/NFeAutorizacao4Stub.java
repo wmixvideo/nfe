@@ -91,7 +91,6 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see NFeAutorizacao4#nfeAutorizacaoLote
      * @param nfeDadosMsg1
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -169,7 +168,6 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature
-     * @see com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4#nfeAutorizacaoLoteZip
      * @param nfeDadosMsgZip3
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

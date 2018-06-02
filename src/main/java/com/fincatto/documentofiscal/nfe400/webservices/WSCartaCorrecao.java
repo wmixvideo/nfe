@@ -18,7 +18,6 @@ import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import java.time.ZonedDateTime;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
@@ -27,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 
 class WSCartaCorrecao {
@@ -99,8 +99,7 @@ class WSCartaCorrecao {
      */
     public String getXmlAssinado(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
-        final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
-        return xmlAssinado;
+        return new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
     }
 
     public NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) {

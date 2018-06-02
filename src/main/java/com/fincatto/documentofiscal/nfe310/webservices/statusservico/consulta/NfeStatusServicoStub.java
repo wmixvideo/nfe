@@ -114,7 +114,6 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * Serviço destinado à consulta do status do serviço da NF-e.
-     * @see com.fincatto.nfe310.webservices.statusservico.consulta.NfeStatusServico#nfeStatusServicoNF
      * @param nfeDadosMsg
      * @param nfeCabecMsg
      */
