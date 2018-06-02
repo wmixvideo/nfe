@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal;
 
 import java.security.KeyStore;
 import java.security.KeyStoreException;
+import java.util.TimeZone;
 
 /**
  * @author Caio Configuracao basica do sistema de documentos fiscais.
@@ -78,4 +79,13 @@ public abstract class DFConfig {
         return new String[] { "TLSv1.2" };
     }
 
+    /**
+     * Retorna o timezone a ser usado no sistema.
+     * Por padrao, vai usar o timezone default da maquina.
+     *
+     * @return TimeZone a ser utilizado.
+     */
+    public TimeZone getTimeZone() {
+        return TimeZone.getDefault();
+    }
 }
