@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta;
 
 import org.apache.axiom.om.OMAttribute;
 
+import javax.xml.namespace.QName;
+
 @SuppressWarnings({ "rawtypes", "unchecked", "serial", "unused", "deprecation" })
 public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
@@ -206,22 +208,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
                         m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.InstantiationException e) {
+                    } catch (ClassCastException | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                         // we cannot intantiate the class - throw the original Axis fault
                         throw f;
                     }
@@ -243,9 +230,8 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
         if (opNameArray == null) {
             return false;
         }
-
-        for (int i = 0; i < opNameArray.length; i++) {
-            if (opName.equals(opNameArray[i])) {
+        for (QName anOpNameArray : opNameArray) {
+            if (opName.equals(anOpNameArray)) {
                 return true;
             }
         }
@@ -515,11 +501,8 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             }
 
             if (localExtraAttributes != null) {
-                for (int i = 0; i < localExtraAttributes.length; i++) {
-                    writeAttribute(localExtraAttributes[i].getNamespace()
-                                                          .getName(),
-                        localExtraAttributes[i].getLocalName(),
-                        localExtraAttributes[i].getAttributeValue(), xmlWriter);
+                for (OMAttribute localExtraAttribute : localExtraAttributes) {
+                    writeAttribute(localExtraAttribute.getNamespace().getName(), localExtraAttribute.getLocalName(), localExtraAttribute.getAttributeValue(), xmlWriter);
                 }
             }
 
@@ -694,7 +677,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -801,8 +784,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0,
                                         fullTypeName.indexOf(":"));
                             }
@@ -1163,7 +1145,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -1525,7 +1507,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -1632,8 +1614,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0,
                                         fullTypeName.indexOf(":"));
                             }
@@ -1937,7 +1918,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -2044,8 +2025,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0,
                                         fullTypeName.indexOf(":"));
                             }

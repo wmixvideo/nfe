@@ -4,25 +4,19 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeDetalhamentoEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoEncerramento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeInfoEvento;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.*;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import java.time.ZonedDateTime;
-
-import java.time.LocalDate;
-import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.

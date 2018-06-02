@@ -180,22 +180,7 @@ public class CteConsultaStub extends org.apache.axis2.client.Stub {
                         m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (final java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.InstantiationException e) {
+                    } catch (final ClassCastException | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                         // we cannot intantiate the class - throw the original Axis fault
                         throw f;
                     }
@@ -290,25 +275,7 @@ public class CteConsultaStub extends org.apache.axis2.client.Stub {
                                 m.invoke(ex, messageObject);
 
                                 callback.receiveErrorcteConsultaCT(new java.rmi.RemoteException(ex.getMessage(), ex));
-                            } catch (final java.lang.ClassCastException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final java.lang.ClassNotFoundException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final java.lang.NoSuchMethodException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final java.lang.reflect.InvocationTargetException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final java.lang.IllegalAccessException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final java.lang.InstantiationException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrorcteConsultaCT(f);
-                            } catch (final org.apache.axis2.AxisFault e) {
+                            } catch (final ClassCastException | org.apache.axis2.AxisFault | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                                 // we cannot intantiate the class - throw the original Axis fault
                                 callback.receiveErrorcteConsultaCT(f);
                             }

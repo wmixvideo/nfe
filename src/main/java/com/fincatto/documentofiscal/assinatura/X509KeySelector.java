@@ -18,7 +18,7 @@ class X509KeySelector extends KeySelector {
                     if (certificado instanceof X509Certificate) {
                         final X509Certificate x509Certificate = (X509Certificate) certificado;
                         if (this.algEquals(method.getAlgorithm(), x509Certificate.getPublicKey().getAlgorithm())) {
-                            return () -> x509Certificate.getPublicKey();
+                            return x509Certificate::getPublicKey;
                         }
                     }
                 }

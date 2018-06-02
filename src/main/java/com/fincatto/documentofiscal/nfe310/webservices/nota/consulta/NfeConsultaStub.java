@@ -169,22 +169,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
                         m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (final java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (final java.lang.InstantiationException e) {
+                    } catch (final ClassCastException | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                         // we cannot intantiate the class - throw the original Axis fault
                         throw f;
                     }
@@ -271,25 +256,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
                                 m.invoke(ex, messageObject);
 
                                 callback.receiveErrornfeConsultaNF(new java.rmi.RemoteException(ex.getMessage(), ex));
-                            } catch (final java.lang.ClassCastException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final java.lang.ClassNotFoundException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final java.lang.NoSuchMethodException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final java.lang.reflect.InvocationTargetException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final java.lang.IllegalAccessException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final java.lang.InstantiationException e) {
-                                // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrornfeConsultaNF(f);
-                            } catch (final org.apache.axis2.AxisFault e) {
+                            } catch (final ClassCastException | org.apache.axis2.AxisFault | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                                 // we cannot intantiate the class - throw the original Axis fault
                                 callback.receiveErrornfeConsultaNF(f);
                             }
@@ -591,7 +558,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -700,8 +667,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
 
@@ -1064,7 +1030,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -1189,8 +1155,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
 
@@ -1473,7 +1438,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
@@ -1582,8 +1547,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
 
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
+                            if (fullTypeName.contains(":")) {
                                 nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
                             }
 
@@ -1807,7 +1771,7 @@ public class NfeConsultaStub extends org.apache.axis2.client.Stub {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
-                final java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                final StringBuilder stringToWrite = new StringBuilder();
                 java.lang.String namespaceURI;
                 java.lang.String prefix;
 
