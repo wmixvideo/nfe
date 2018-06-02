@@ -5,10 +5,10 @@
 
 package com.fincatto.documentofiscal.nfe310.webservices.downloadnf;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * NfeDownloadNFStub java implementation
@@ -33,7 +33,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeDownloadNFStub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("NfeDownloadNF" + NfeDownloadNFStub.getUniqueSuffix());

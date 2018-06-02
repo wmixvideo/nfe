@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.parsers;
 
-import java.text.ParseException;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import java.time.LocalDate;
 
 public class NotaFiscalChaveParserTest {
 
@@ -42,7 +40,7 @@ public class NotaFiscalChaveParserTest {
     }
 
     @Test
-    public void deveObterDataDeEmissaoDaChave() throws ParseException {
+    public void deveObterDataDeEmissaoDaChave() {
         Assert.assertEquals(LocalDate.of(2015, 11, 1), new NotaFiscalChaveParser("42151190426768839742640884579133596141399591").getDataEmissao());
     }
 

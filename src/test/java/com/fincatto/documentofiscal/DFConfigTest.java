@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.security.KeyStore;
 
 public class DFConfigTest {
 
@@ -26,7 +25,7 @@ public class DFConfigTest {
         }
 
         @Override
-        public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        public KeyStore getCertificadoKeyStore() {
             // TODO Auto-generated method stub
             return null;
         }
@@ -38,7 +37,7 @@ public class DFConfigTest {
         }
 
         @Override
-        public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        public KeyStore getCadeiaCertificadosKeyStore() {
             // TODO Auto-generated method stub
             return null;
         }

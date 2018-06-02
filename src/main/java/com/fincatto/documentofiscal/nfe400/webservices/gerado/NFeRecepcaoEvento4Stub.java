@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamReader;
 
 /*
  * NFeRecepcaoEvento4Stub java implementation
@@ -78,7 +77,7 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeRecepcaoEvento4Stub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
         // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("NFeRecepcaoEvento4" + NFeRecepcaoEvento4Stub.getUniqueSuffix());
         this.addAnonymousOperations();
@@ -157,8 +156,8 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "nfeRecepcaoEvento"));
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (final java.lang.ClassCastException e) {
@@ -278,12 +277,12 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -487,7 +486,7 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
         } // end of factory class
 
         @Override
-        public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
+        public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }
     }
@@ -528,12 +527,12 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -726,7 +725,7 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
         } // end of factory class
 
         @Override
-        public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
+        public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }
     }

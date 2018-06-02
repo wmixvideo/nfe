@@ -34,7 +34,7 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
     }
 
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         //creating the Service with a unique name
         _service = new org.apache.axis2.description.AxisService("MDFeRetRecepcao" + getUniqueSuffix());
@@ -217,8 +217,8 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
                         java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         java.lang.Object messageObject = fromOM(faultElt, messageClass, null);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new java.lang.Class[]{messageClass});
-                        m.invoke(ex, new java.lang.Object[]{messageObject});
+                                messageClass);
+                        m.invoke(ex, messageObject);
 
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
@@ -344,8 +344,8 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
                                 java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                                 java.lang.Object messageObject = fromOM(faultElt, messageClass, null);
                                 java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                        new java.lang.Class[]{messageClass});
-                                m.invoke(ex, new java.lang.Object[]{messageObject});
+                                        messageClass);
+                                m.invoke(ex, messageObject);
 
 
                                 callback.receiveErrormdfeRetRecepcao(new java.rmi.RemoteException(ex.getMessage(), ex));
@@ -617,14 +617,14 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter,
                               boolean serializeType)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
 
 
             java.lang.String prefix = null;
@@ -1143,14 +1143,14 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter,
                               boolean serializeType)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
 
 
             java.lang.String prefix = null;
@@ -1546,14 +1546,14 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter,
                               boolean serializeType)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
 
 
             java.lang.String prefix = null;
@@ -1949,14 +1949,14 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
                               javax.xml.stream.XMLStreamWriter xmlWriter,
                               boolean serializeType)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
 
 
             //We can safely assume an element has only one type associated with it

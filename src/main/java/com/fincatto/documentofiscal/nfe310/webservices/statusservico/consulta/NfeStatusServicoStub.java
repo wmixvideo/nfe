@@ -84,7 +84,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
         "_" + counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
         //creating the Service with a unique name
         _service = new org.apache.axis2.description.AxisService(
                 "NfeStatusServico" + getUniqueSuffix());
@@ -202,8 +202,8 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
                         java.lang.Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                                messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (java.lang.ClassCastException e) {
@@ -483,15 +483,13 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -1015,15 +1013,13 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             //We can safely assume an element has only one type associated with it
             if (localNfeCabecMsg == null) {
                 throw new org.apache.axis2.databinding.ADBException(
@@ -1354,15 +1350,13 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -1768,15 +1762,13 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
             javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 

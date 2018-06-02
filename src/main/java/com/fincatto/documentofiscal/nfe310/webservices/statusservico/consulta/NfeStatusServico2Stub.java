@@ -22,7 +22,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeStatusServico2Stub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
         this._service = new org.apache.axis2.description.AxisService("NfeStatusServico2" + NfeStatusServico2Stub.getUniqueSuffix());
         this.addAnonymousOperations();
         org.apache.axis2.description.AxisOperation __operation;

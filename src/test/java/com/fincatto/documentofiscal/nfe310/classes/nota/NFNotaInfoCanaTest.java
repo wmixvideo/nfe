@@ -1,16 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.util.ArrayList;
-
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCana;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCanaDeducao;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCanaFornecimentoDiario;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class NFNotaInfoCanaTest {
 
@@ -47,7 +42,7 @@ public class NFNotaInfoCanaTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSafraNulo() throws ParseException {
+    public void naoDevePermitirSafraNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
@@ -64,7 +59,7 @@ public class NFNotaInfoCanaTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirReferenciaNulo() throws ParseException {
+    public void naoDevePermitirReferenciaNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
         infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();

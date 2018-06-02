@@ -4,10 +4,10 @@
  */
 package com.fincatto.documentofiscal.cte300.webservices.recepcaoOS;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * CteRecepcaoOSStub java implementation
@@ -33,7 +33,7 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteRecepcaoOSStub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("CteRecepcaoOS" + CteRecepcaoOSStub.getUniqueSuffix());
@@ -182,8 +182,8 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "cteRecepcaoOS"));
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (final java.lang.ClassCastException e) {
@@ -293,8 +293,8 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
                                 final java.lang.String messageClassName = (java.lang.String) CteRecepcaoOSStub.this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "cteRecepcaoOS"));
                                 final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                                 final java.lang.Object messageObject = CteRecepcaoOSStub.this.fromOM(faultElt, messageClass, null);
-                                final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                                m.invoke(ex, new java.lang.Object[] { messageObject });
+                                final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                                m.invoke(ex, messageObject);
 
                                 callback.receiveErrorcteRecepcaoOS(new java.rmi.RemoteException(ex.getMessage(), ex));
                             } catch (final java.lang.ClassCastException e) {
@@ -429,12 +429,12 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             // We can safely assume an element has only one type associated with it
 
@@ -812,12 +812,12 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1262,12 +1262,12 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1609,12 +1609,12 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, xmlWriter, false);
         }
 
         @Override
-        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;

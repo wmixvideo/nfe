@@ -24,7 +24,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeDistribuicaoDFeSoapStub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         this._service = new org.apache.axis2.description.AxisService("NFeDistribuicaoDFe" + NFeDistribuicaoDFeSoapStub.getUniqueSuffix());
         this.addAnonymousOperations();
@@ -122,8 +122,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(faultElt.getQName());
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (final java.lang.ClassCastException e) {
@@ -223,12 +223,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          * @param param NFeDadosMsg
          */
         public void setNFeDadosMsg(final NFeDadosMsg_type0 param) {
-            if (param != null) {
-                // update the setting tracker
-                this.localNFeDadosMsgTracker = true;
-            } else {
-                this.localNFeDadosMsgTracker = false;
-            }
+            // update the setting tracker
+            this.localNFeDadosMsgTracker = param != null;
             this.localNFeDadosMsg = param;
         }
 
@@ -275,11 +271,11 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -596,11 +592,11 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
 
@@ -904,13 +900,8 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         public void setNFeDistDFeInteresseResult(final NFeDistDFeInteresseResult_type0 param) {
 
-            if (param != null) {
-                // update the setting tracker
-                this.localNFeDistDFeInteresseResultTracker = true;
-            } else {
-                this.localNFeDistDFeInteresseResultTracker = false;
-
-            }
+            // update the setting tracker
+            this.localNFeDistDFeInteresseResultTracker = param != null;
 
             this.localNFeDistDFeInteresseResult = param;
 
@@ -961,11 +952,11 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1352,11 +1343,11 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;

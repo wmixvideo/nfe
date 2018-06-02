@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     private static final long serialVersionUID = -7632059708755735047L;
@@ -98,7 +97,7 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     }
 
     public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
-        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");;
+        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");
     }
 
     public NFOrigem getOrigem() {

@@ -4,9 +4,9 @@
  */
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
-import javax.xml.namespace.QName;
-
 import org.apache.axis2.client.Stub;
+
+import javax.xml.namespace.QName;
 
 /*
  * CTeDistribuicaoDFeCTeDistribuicaoDFeSoapStub java implementation
@@ -31,7 +31,7 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CTeDistribuicaoDFeSoapStub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("CTeDistribuicaoDFe" + CTeDistribuicaoDFeSoapStub.getUniqueSuffix());
@@ -165,8 +165,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                         final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(faultElt.getQName());
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
-                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                        final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
+                        m.invoke(ex, messageObject);
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (final java.lang.ClassCastException e) {
@@ -267,13 +267,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         public void setCteDadosMsg(final CteDadosMsg_type0 param) {
 
-            if (param != null) {
-                // update the setting tracker
-                this.localCteDadosMsgTracker = true;
-            } else {
-                this.localCteDadosMsgTracker = false;
-
-            }
+            // update the setting tracker
+            this.localCteDadosMsgTracker = param != null;
 
             this.localCteDadosMsg = param;
 
@@ -324,11 +319,11 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -694,11 +689,11 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1025,13 +1020,8 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
          */
         public void setCteDistDFeInteresseResult(final CteDistDFeInteresseResult_type0 param) {
 
-            if (param != null) {
-                // update the setting tracker
-                this.localCteDistDFeInteresseResultTracker = true;
-            } else {
-                this.localCteDistDFeInteresseResultTracker = false;
-
-            }
+            // update the setting tracker
+            this.localCteDistDFeInteresseResultTracker = param != null;
 
             this.localCteDistDFeInteresseResult = param;
 
@@ -1082,11 +1072,11 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1473,11 +1463,11 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
             this.serialize(parentQName, factory, xmlWriter, false);
         }
 
-        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+        public void serialize(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
 
             java.lang.String prefix = null;
             java.lang.String namespace = null;

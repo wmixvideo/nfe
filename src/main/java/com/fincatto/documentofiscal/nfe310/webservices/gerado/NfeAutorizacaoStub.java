@@ -36,7 +36,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeAutorizacaoStub.counter;
     }
 
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+    private void populateAxisService() {
 
         // creating the Service with a unique name
         this._service = new org.apache.axis2.description.AxisService("NfeAutorizacao" + NfeAutorizacaoStub.getUniqueSuffix());
