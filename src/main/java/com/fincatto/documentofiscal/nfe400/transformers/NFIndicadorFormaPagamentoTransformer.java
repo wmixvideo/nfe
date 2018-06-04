@@ -23,12 +23,12 @@ import org.simpleframework.xml.transform.Transform;
 public class NFIndicadorFormaPagamentoTransformer implements Transform<NFIndicadorFormaPagamento> {
 
     @Override
-    public NFIndicadorFormaPagamento read(final String codigo) throws Exception {
+    public NFIndicadorFormaPagamento read(final String codigo) {
         return NFIndicadorFormaPagamento.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(NFIndicadorFormaPagamento indicadorFormaPagamento) throws Exception {
+    public String write(NFIndicadorFormaPagamento indicadorFormaPagamento) {
         return indicadorFormaPagamento.getCodigo();
     }
 

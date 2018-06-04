@@ -205,6 +205,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 * Possui validação de campos a nível de código;
 * Valida o XML de envio de lote através dos xsd's disponibilizados pela Sefaz;
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
+* Suporta diferentes TimeZones, com a implementacao do devido metodo na classe de configuração (DFConfig e suas subclasses).
 
 ## Serviços disponíveis
 | Serviço                       | Status              |

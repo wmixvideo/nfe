@@ -111,22 +111,22 @@ public class NFNotaInfoItemProdutoTest {
         try {
             new NFNotaInfoItemProduto().setNcm("999999991");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setNcm("U0sDjya");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setNcm("U0s");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setNcm("U");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -149,27 +149,27 @@ public class NFNotaInfoItemProdutoTest {
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarrasTributavel("368119635325051");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarrasTributavel("EyiQt2RGqEJ");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarrasTributavel("EyiQt2RGq");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarrasTributavel("EyiQt2R");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarrasTributavel("E");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -178,27 +178,27 @@ public class NFNotaInfoItemProdutoTest {
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarras("356472100398615");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarras("EyiQt2RGqEJ");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarras("EyiQt2RGq");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarras("EyiQt2R");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             new NFNotaInfoItemProduto().setCodigoDeBarras("E");
             Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -1087,28 +1087,28 @@ public class NFNotaInfoItemProdutoTest {
             produto.setNumeroRECOPI("13245678901234567890");
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setCombustivel(new NFNotaInfoItemProdutoCombustivel());
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -1116,31 +1116,31 @@ public class NFNotaInfoItemProdutoTest {
     public void naoDevePermitirSetarArmamentoCasoVeiculoMedicamentoCombustivelOuRECOPISetado() {
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setCombustivel(new NFNotaInfoItemProdutoCombustivel());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setNumeroRECOPI("12346578901234567890");
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -1151,28 +1151,28 @@ public class NFNotaInfoItemProdutoTest {
             produto.setNumeroRECOPI("12346578901234567890");
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setNumeroRECOPI("12346578901234567890");
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setNumeroRECOPI("12346578901234567890");
             produto.setCombustivel(new NFNotaInfoItemProdutoCombustivel());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setNumeroRECOPI("12346578901234567890");
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -1183,28 +1183,28 @@ public class NFNotaInfoItemProdutoTest {
             produto.setVeiculo(new NFNotaInfoItemProdutoVeiculo());
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
-            produto.setArmamentos(new ArrayList<NFNotaInfoItemProdutoArmamento>());
+            produto.setArmamentos(new ArrayList<>());
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setNumeroRECOPI("013246578901234657890");
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
             produto.setCombustivel(new NFNotaInfoItemProdutoCombustivel());
             produto.setMedicamento(new NFNotaInfoItemProdutoMedicamento());
             Assert.fail();
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 

@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorEscalaRelevante;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFIndicadorEscalaRelevanteTransformer implements Transform<NFIndicadorEscalaRelevante> {
 
     @Override
-    public NFIndicadorEscalaRelevante read(final String codigo) throws Exception {
+    public NFIndicadorEscalaRelevante read(final String codigo) {
         return NFIndicadorEscalaRelevante.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFIndicadorEscalaRelevante nfIndicadorEscalaRelevante) throws Exception {
+    public String write(final NFIndicadorEscalaRelevante nfIndicadorEscalaRelevante) {
         return nfIndicadorEscalaRelevante.getCodigo();
     }
 }

@@ -5,7 +5,6 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -102,7 +101,7 @@ public class NFRetornoConsultaCadastroDados extends DFBase {
         this.cpf = cpf;
     }
 
-    public LocalDateTime getDataHoraProcessamento()  throws ParseException {
+    public LocalDateTime getDataHoraProcessamento() {
         try {
             return LocalDateTime.parse(this.dataHoraProcessamento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {

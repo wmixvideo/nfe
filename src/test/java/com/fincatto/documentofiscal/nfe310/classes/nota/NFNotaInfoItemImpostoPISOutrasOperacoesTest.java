@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoPISOutrasOperacoes;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
 
@@ -52,7 +50,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes1.setQuantidadeVendida(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoPISOutrasOperacoes impostoOutrasOperacoes2 = new NFNotaInfoItemImpostoPISOutrasOperacoes();
@@ -60,7 +58,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes2.setQuantidadeVendida(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -71,7 +69,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes1.setValorBaseCalculo(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoPISOutrasOperacoes impostoOutrasOperacoes2 = new NFNotaInfoItemImpostoPISOutrasOperacoes();
@@ -79,7 +77,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes2.setValorBaseCalculo(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -90,7 +88,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes1.setValorAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoPISOutrasOperacoes impostoOutrasOperacoes2 = new NFNotaInfoItemImpostoPISOutrasOperacoes();
@@ -98,7 +96,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes2.setValorAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -109,7 +107,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes1.setPercentualAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoPISOutrasOperacoes impostoOutrasOperacoes2 = new NFNotaInfoItemImpostoPISOutrasOperacoes();
@@ -117,7 +115,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
         try {
             impostoOutrasOperacoes2.setPercentualAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 

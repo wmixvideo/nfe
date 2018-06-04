@@ -493,8 +493,8 @@ public enum NFRetornoStatus {
     private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
     private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(AUTORIZADO_USO_NFE, CODIGO_150);
 
-    private int codigo;
-    private String motivo;
+    private final int codigo;
+    private final String motivo;
 
     NFRetornoStatus(final int codigo, final String motivo) {
         this.codigo = codigo;

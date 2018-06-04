@@ -10,7 +10,7 @@ public class CTIndicadorTomadorTest {
     	Assert.assertNull(CTIndicadorTomador.valueOfCodigo(null));
     	Assert.assertEquals("1", CTIndicadorTomador.CONTRIBUINTE_ICMS.getCodigo());
     	Assert.assertEquals("2", CTIndicadorTomador.CONTRIBUINTE_ISENTO.getCodigo());
-    	Assert.assertEquals("9", CTIndicadorTomador.NÃO_CONTRIBUINTE.getCodigo());
+        Assert.assertEquals("9", CTIndicadorTomador.NAO_CONTRIBUINTE.getCodigo());
     }
 
 }

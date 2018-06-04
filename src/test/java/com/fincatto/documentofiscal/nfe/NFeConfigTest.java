@@ -1,12 +1,10 @@
 package com.fincatto.documentofiscal.nfe;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.security.KeyStore;
 
 public class NFeConfigTest {
 
@@ -28,7 +26,7 @@ public class NFeConfigTest {
         }
 
         @Override
-        public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        public KeyStore getCertificadoKeyStore() {
             return null;
         }
 
@@ -38,7 +36,7 @@ public class NFeConfigTest {
         }
 
         @Override
-        public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        public KeyStore getCadeiaCertificadosKeyStore() {
             return null;
         }
 

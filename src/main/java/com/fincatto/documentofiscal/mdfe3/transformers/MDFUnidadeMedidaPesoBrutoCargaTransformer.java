@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFUnidadeMedidaPesoBrutoCargaTransformer implements Transform<MDFUnidadeMedidaPesoBrutoCarga> {
 
     @Override
-    public MDFUnidadeMedidaPesoBrutoCarga read(String value) throws Exception {
+    public MDFUnidadeMedidaPesoBrutoCarga read(String value) {
         return MDFUnidadeMedidaPesoBrutoCarga.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFUnidadeMedidaPesoBrutoCarga value) throws Exception {
+    public String write(MDFUnidadeMedidaPesoBrutoCarga value) {
         return value.getCodigo();
     }
 }

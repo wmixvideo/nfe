@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.cte200.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.cte200.classes.CTTipoEntregaData;
+import org.simpleframework.xml.transform.Transform;
 
 public class CTTipoEntregaDataTransformer implements Transform<CTTipoEntregaData> {
 
     @Override
-    public CTTipoEntregaData read(final String codigo) throws Exception {
+    public CTTipoEntregaData read(final String codigo) {
         return CTTipoEntregaData.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final CTTipoEntregaData tipo) throws Exception {
+    public String write(final CTTipoEntregaData tipo) {
         return tipo.getCodigo();
     }
 }
