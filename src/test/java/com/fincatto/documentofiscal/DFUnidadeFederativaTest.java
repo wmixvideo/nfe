@@ -46,13 +46,13 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("ES", DFUnidadeFederativa.ES.getCodigo());
         Assert.assertEquals("32", DFUnidadeFederativa.ES.getCodigoIbge());
-        Assert.assertEquals(null, DFUnidadeFederativa.ES.getQrCodeHomologacao());
-        Assert.assertEquals(null, DFUnidadeFederativa.ES.getQrCodeProducao());
+        Assert.assertEquals("http://homologacao.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx", DFUnidadeFederativa.ES.getQrCodeHomologacao());
+        Assert.assertEquals("http://app.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx", DFUnidadeFederativa.ES.getQrCodeProducao());
 
         Assert.assertEquals("GO", DFUnidadeFederativa.GO.getCodigo());
         Assert.assertEquals("52", DFUnidadeFederativa.GO.getCodigoIbge());
-        Assert.assertEquals("http://homolog.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf", DFUnidadeFederativa.GO.getQrCodeHomologacao());
-        Assert.assertEquals("http://nfe.sefaz.go.gov.br/nfeweb/jsp/ConsultaDANFENFCe.jsf", DFUnidadeFederativa.GO.getQrCodeProducao());
+        Assert.assertEquals("http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe", DFUnidadeFederativa.GO.getQrCodeHomologacao());
+        Assert.assertEquals("http://nfe.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe", DFUnidadeFederativa.GO.getQrCodeProducao());
 
         Assert.assertEquals("MA", DFUnidadeFederativa.MA.getCodigo());
         Assert.assertEquals("21", DFUnidadeFederativa.MA.getCodigoIbge());
@@ -66,8 +66,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("MS", DFUnidadeFederativa.MS.getCodigo());
         Assert.assertEquals("50", DFUnidadeFederativa.MS.getCodigoIbge());
-        Assert.assertEquals(null, DFUnidadeFederativa.MS.getQrCodeHomologacao());
-        Assert.assertEquals(null, DFUnidadeFederativa.MS.getQrCodeProducao());
+        Assert.assertEquals("http://www.dfe.ms.gov.br/nfce/qrcode", DFUnidadeFederativa.MS.getQrCodeHomologacao());
+        Assert.assertEquals("http://www.dfe.ms.gov.br/nfce/qrcode", DFUnidadeFederativa.MS.getQrCodeProducao());
 
         Assert.assertEquals("MT", DFUnidadeFederativa.MT.getCodigo());
         Assert.assertEquals("51", DFUnidadeFederativa.MT.getCodigoIbge());
@@ -81,8 +81,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("PB", DFUnidadeFederativa.PB.getCodigo());
         Assert.assertEquals("25", DFUnidadeFederativa.PB.getCodigoIbge());
-        Assert.assertEquals("www.receita.pb.gov.br/nfcehom", DFUnidadeFederativa.PB.getQrCodeHomologacao());
-        Assert.assertEquals("www.receita.pb.gov.br/nfce", DFUnidadeFederativa.PB.getQrCodeProducao());
+        Assert.assertEquals("http://www.receita.pb.gov.br/nfcehom", DFUnidadeFederativa.PB.getQrCodeHomologacao());
+        Assert.assertEquals("http://www.receita.pb.gov.br/nfce", DFUnidadeFederativa.PB.getQrCodeProducao());
 
         Assert.assertEquals("PE", DFUnidadeFederativa.PE.getCodigo());
         Assert.assertEquals("26", DFUnidadeFederativa.PE.getCodigoIbge());
