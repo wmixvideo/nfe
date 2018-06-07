@@ -69,15 +69,15 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     }
 
     public void setPercentualGLPDerivadoPetroleo(final BigDecimal percentualGLPDerivadoPetroleo) {
-        this.percentualGLPDerivadoPetroleo = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGLPDerivadoPetroleo, "Percentual GLP derivado petr\u00f3leo");
+        this.percentualGLPDerivadoPetroleo = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGLPDerivadoPetroleo, "Percentual GLP derivado petr\u00f3leo");
     }
 
     public void setPercentualGasNaturalImportado(final BigDecimal percentualGasNaturalImportado) {
-        this.percentualGasNaturalImportado = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGasNaturalImportado, "Percentual gas natural importado");
+        this.percentualGasNaturalImportado = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGasNaturalImportado, "Percentual gas natural importado");
     }
 
     public void setPercentualGasNaturalNacional(final BigDecimal percentualGasNaturalNacional) {
-        this.percentualGasNaturalNacional = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGasNaturalNacional, "Percentual gas natural nacional");
+        this.percentualGasNaturalNacional = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGasNaturalNacional, "Percentual gas natural nacional");
     }
 
     public void setValorPartida(final BigDecimal valorPartida) {
