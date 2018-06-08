@@ -152,7 +152,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 #### Consulta nota por chave de acesso ou NSU
 Faça a consulta da nota através do facade:
 ```java
-final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu);
+final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu, ultNsu);
 ```
 
 ### Convertendo objetos Java em XML
