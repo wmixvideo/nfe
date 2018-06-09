@@ -75,7 +75,7 @@ public class NFProtocoloInfoTest {
     }
 
     @Test
-    public void deveFormatarDataComOuSemTimeZone() throws Exception {
+    public void deveFormatarDataComOuSemTimeZone() {
     	final LocalDateTime formatoAntigo = LocalDateTime.parse("2015-01-01T10:20:30", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
     	final LocalDateTime formatoNovo = LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").parse("2015-01-01T10:20:30-05:00"));
         final NFProtocoloInfo protocoloInfo = new NFProtocoloInfo();

@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.utils;
 
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoIdentificacao;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 import org.apache.commons.lang3.StringUtils;
 
@@ -51,7 +52,7 @@ public class MDFGeraChave {
         return StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getCodigoUF().getCodigoIbge(), 2, "0") +
                 StringUtils.leftPad(DateTimeFormatter.ofPattern("yyMM").format(this.mdfe.getInfo().getIdentificacao().getDataEmissao()), 4, "0") +
                 StringUtils.leftPad(this.mdfe.getInfo().getEmitente().getCnpj(), 14, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().MOD.getCodigo(), 2, "0") +
+                StringUtils.leftPad(MDFInfoIdentificacao.MOD.getCodigo(), 2, "0") +
                 StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getSerie()+"", 3, "0") +
                 StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getNumero()+"", 9, "0") +
                 StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") +

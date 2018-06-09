@@ -4,8 +4,8 @@ import com.fincatto.documentofiscal.DFBase;
 
 public class NFLoteEnvioRetornoDados extends DFBase {
 
-	private NFLoteEnvioRetorno retorno;
-	private NFLoteEnvio loteAssinado;
+    private final NFLoteEnvioRetorno retorno;
+    private final NFLoteEnvio loteAssinado;
 	
 	public NFLoteEnvioRetornoDados(NFLoteEnvioRetorno retorno, NFLoteEnvio loteAssinado) {
 		this.retorno = retorno;

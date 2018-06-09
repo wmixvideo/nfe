@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFEnviaEventoCancelamentoTest {
 
@@ -70,7 +69,7 @@ public class NFEnviaEventoCancelamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLoteNulo() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        eventoCancelamento.setEvento(new ArrayList<NFEventoCancelamento>());
+        eventoCancelamento.setEvento(new ArrayList<>());
         eventoCancelamento.setVersao(new BigDecimal("3.10"));
         eventoCancelamento.toString();
     }
@@ -78,7 +77,7 @@ public class NFEnviaEventoCancelamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEnviaEventoCancelamento eventoCancelamento = new NFEnviaEventoCancelamento();
-        eventoCancelamento.setEvento(new ArrayList<NFEventoCancelamento>());
+        eventoCancelamento.setEvento(new ArrayList<>());
         eventoCancelamento.setIdLote("1");
         eventoCancelamento.toString();
     }

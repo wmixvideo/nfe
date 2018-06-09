@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFModalidadeTransporteTransformer implements Transform<MDFModalidadeTransporte> {
 
     @Override
-    public MDFModalidadeTransporte read(String value) throws Exception {
+    public MDFModalidadeTransporte read(String value) {
         return MDFModalidadeTransporte.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFModalidadeTransporte value) throws Exception {
+    public String write(MDFModalidadeTransporte value) {
         return value.getCodigo();
     }
 }
