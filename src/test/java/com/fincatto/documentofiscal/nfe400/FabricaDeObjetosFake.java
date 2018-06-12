@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe400.classes.*;
@@ -237,6 +238,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoFormaPagamento getNFNotaInfoFormaPagamento() {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+        formaPagamento.setIndicadorFormaPagamento(NFIndicadorFormaPagamento.A_PRAZO);
         formaPagamento.setCartao(FabricaDeObjetosFake.getNFNotaInfoCartao());
         formaPagamento.setValorPagamento(new BigDecimal("999999999999.99"));
         formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);
@@ -715,7 +717,7 @@ public class FabricaDeObjetosFake {
         endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
         endereco.setCep("88095550");
         endereco.setCodigoMunicipio("9999999");
-        endereco.setCodigoPais("1058");
+        endereco.setCodigoPais(DFPais.BRASIL);
         endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
         endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
         endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");

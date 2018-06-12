@@ -13,8 +13,13 @@ import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.core.Persister;
 
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.stream.XMLStreamException;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.rmi.RemoteException;
+import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoNFe {
 
@@ -42,28 +47,28 @@ public class WSDistribuicaoNFe {
             final String resultadoConsulta = result.getNFeDistDFeInteresseResult().getExtraElement().toString();
 
             return new Persister(new DFRegistryMatcher()).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
-
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }
     }
 
-//    public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
-//        if (conteudoEncode == null || conteudoEncode.length() == 0) {
-//            return "";
-//        }
-//        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
-//        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
-//            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
-//                String outStr = "";
-//                String line;
-//                while ((line = bf.readLine()) != null) {
-//                    outStr += line;
-//                }
-//                return outStr;
-//            }
-//        }
-//    }
+    public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
+        if (conteudoEncode == null || conteudoEncode.length() == 0) {
+            return "";
+        }
+        //final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
+        final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
+        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
+            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
+                String outStr = "";
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    outStr += line;
+                }
+                return outStr;
+            }
+        }
+    }
 
     private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) {
         final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
@@ -79,5 +84,4 @@ public class WSDistribuicaoNFe {
         }
         return distDFeInt;
     }
-
 }

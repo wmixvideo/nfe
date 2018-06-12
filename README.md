@@ -3,13 +3,13 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://travis-ci.org/wmixvideo/nfe.svg?branch=master)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-2.0.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|2.0.0|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-3.0.0-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|3.0.0|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 
-Antes de submeter um patch, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
+Antes de submeter um pull request, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
 
 ## Antes de usar
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
@@ -24,10 +24,10 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>2.0.4</version>
+  <version>3.0.0</version>
 </dependency>
 ```
-### Fazendo o clone do projeto(última versão em desenvolvimento)
+### Fazendo o clone do projeto (última versão em desenvolvimento)
 1. Faça o clone do projeto com o comando:
  ```console
     git clone https://github.com/wmixvideo/nfe
@@ -46,13 +46,10 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
+  <version>3.0.1-SNAPSHOT</version>
 </dependency>
 ```
- - Onde ```<version>3.0.0-SNAPSHOT</version>```
- é a versão atual do projeto definido no arquivo [pom.xml](https://github.com/wmixvideo/nfe/blob/master/pom.xml)
-
-
+ - Onde ```<version>3.0.1-SNAPSHOT</version>``` é a versão atual do projeto definido no arquivo [pom.xml](https://github.com/wmixvideo/nfe/blob/master/pom.xml)
 
 ## Como usar
 Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
@@ -180,7 +177,6 @@ Ou para uma nota já processada:
 final NFNotaProcessada notaProcessada = new NotaParser().notaProcessadaParaObjeto(xmlNota);
 ```
 
-
 ### Armazenando notas autorizadas
 Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
 ```java
@@ -227,14 +223,14 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 ## Requisitos
 
 JDK >= 1.8<br>
-Maven >= 1.x
+Maven >= 3.x
 
 ## Criação do Java KeyStore (JKS)
 Para usar os serviços da nota fiscal são necessários dois certificados:
 1) O certificado do cliente que será utilizado para assinar as notas e comunicar com o fisco (fornecido por uma entidade certificadora);
 2) A cadeia de certificados da SEFAZ que queremos acesso;
 
-Os certificados são um ponto critico já que estes tem validade de apenas um ano (certificado cliente).
+Os certificados são um ponto crítico já que estes tem validade de apenas um ano (certificado cliente).
 Além disso as SEFAZ vem trocando suas cadeias de certificado a cada atualização. Dessa forma se surgirem erros de SSL vale a pena verificar se existem novas atualizações de certificados.
 Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baixa os certificados das SEFAZ e gera o arquivo automaticamente:
 ```java
@@ -247,15 +243,6 @@ public static void main(String args[]){
     }
 }
 ```
-
-##Sugestão
-Para a cadeia de certificados da SEFAZ necessária para o acesso, utilize a cadeia da unidade certificadora que emitiu o seu certificado. Após fazer o download da cadeia de certificado você obterá um arquivo no formato .cer como o exemplo abaixo:
-* certificado.cer
-
-Com este arquivo é possível gerar a sua chave jks através do seguinte comando:
-<b>
-keytool -import -alias certificado -keystore certificado.jks -file /path_arquivo/certificado.cer
-</b>
 
 ## Licença
 Apache 2.0
