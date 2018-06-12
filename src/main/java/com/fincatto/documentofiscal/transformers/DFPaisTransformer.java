@@ -12,12 +12,12 @@ import org.simpleframework.xml.transform.Transform;
 public class DFPaisTransformer implements Transform<DFPais> {
 
     @Override
-    public DFPais read(final String codigo) throws Exception {
+    public DFPais read(final String codigo) {
         return DFPais.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final DFPais unidadeFederativa) throws Exception {
+    public String write(final DFPais unidadeFederativa) {
         return unidadeFederativa.getCodigo().toString();
     }
 }

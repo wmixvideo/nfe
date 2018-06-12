@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFNotaInfoSituacaoTributariaIPITransformer implements Transform<NFNotaInfoSituacaoTributariaIPI> {
 
     @Override
-    public NFNotaInfoSituacaoTributariaIPI read(final String codigo) throws Exception {
+    public NFNotaInfoSituacaoTributariaIPI read(final String codigo) {
         return NFNotaInfoSituacaoTributariaIPI.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFNotaInfoSituacaoTributariaIPI situacaoTributariaIPI) throws Exception {
+    public String write(final NFNotaInfoSituacaoTributariaIPI situacaoTributariaIPI) {
         return situacaoTributariaIPI.getCodigo();
     }
 }

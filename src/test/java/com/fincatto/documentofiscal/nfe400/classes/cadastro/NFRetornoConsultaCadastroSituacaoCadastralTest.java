@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -32,7 +31,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     }
 
     @Test
-    public void deveObterDataInicioAtividadeComoFoiSetado() throws ParseException {
+    public void deveObterDataInicioAtividadeComoFoiSetado() {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
         final LocalDate dataInicioAtividade = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataInicioAtividade(dataInicioAtividade);
@@ -40,7 +39,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     }
 
     @Test
-    public void deveObterDataOcorrenciaBaixaComoFoiSetado() throws ParseException {
+    public void deveObterDataOcorrenciaBaixaComoFoiSetado() {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
         final LocalDate dataOcorrenciaBaixa = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataOcorrenciaBaixa(dataOcorrenciaBaixa);
@@ -48,7 +47,7 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     }
 
     @Test
-    public void deveObterDataUltimaModificacaoComoFoiSetado() throws ParseException {
+    public void deveObterDataUltimaModificacaoComoFoiSetado() {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
         final LocalDate dataUltimaModificacaoSituacaoCadastral = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
         retorno.setDataUltimaModificacaoSituacaoCadastral(dataUltimaModificacaoSituacaoCadastral);

@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoRestricao;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFNotaInfoItemProdutoVeiculoRestricaoTransformer implements Transform<NFNotaInfoItemProdutoVeiculoRestricao> {
 
     @Override
-    public NFNotaInfoItemProdutoVeiculoRestricao read(final String codigo) throws Exception {
+    public NFNotaInfoItemProdutoVeiculoRestricao read(final String codigo) {
         return NFNotaInfoItemProdutoVeiculoRestricao.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFNotaInfoItemProdutoVeiculoRestricao tipo) throws Exception {
+    public String write(final NFNotaInfoItemProdutoVeiculoRestricao tipo) {
         return tipo.getCodigo();
     }
 }

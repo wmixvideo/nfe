@@ -13,7 +13,7 @@ public class StringNullConverter implements Converter<String> {
 	}
 
 	@Override
-	public void write(final OutputNode node, final String value) throws Exception {
+    public void write(final OutputNode node, final String value) {
 		node.setValue(value);
 	}
 }

@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFOperadoraCartao;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFOperadoraCartaoTransformer implements Transform<NFOperadoraCartao> {
 
     @Override
-    public NFOperadoraCartao read(final String codigo) throws Exception {
+    public NFOperadoraCartao read(final String codigo) {
         return NFOperadoraCartao.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFOperadoraCartao operadoraCartao) throws Exception {
+    public String write(final NFOperadoraCartao operadoraCartao) {
         return operadoraCartao.getCodigo();
     }
 }

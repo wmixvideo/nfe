@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte300.classes.enviolote;
 
 public class CTeEnvioLoteRetornoDados {
 
-	private CTeEnvioLoteRetorno retorno;
-	private CTeEnvioLote loteAssinado;
+    private final CTeEnvioLoteRetorno retorno;
+    private final CTeEnvioLote loteAssinado;
 	
 	public CTeEnvioLoteRetornoDados(CTeEnvioLoteRetorno retorno, CTeEnvioLote loteAssinado) {
 		this.retorno = retorno;

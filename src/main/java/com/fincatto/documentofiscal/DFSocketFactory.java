@@ -1,25 +1,23 @@
 package com.fincatto.documentofiscal;
 
+import org.apache.commons.httpclient.params.HttpConnectionParams;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+
+import javax.net.ssl.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.*;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
-
-import javax.net.ssl.*;
-
-import org.apache.commons.httpclient.params.HttpConnectionParams;
-import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
 public class DFSocketFactory implements ProtocolSocketFactory {
 
     private final DFConfig config;
     private final SSLContext sslContext;
 
-    public DFSocketFactory(final DFConfig config) throws CertificateException, UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public DFSocketFactory(final DFConfig config) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         this.config = config;
         this.sslContext = this.createSSLContext(config);
     }
@@ -43,7 +41,7 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         return this.sslContext.getSocketFactory().createSocket(host, port);
     }
 
-    private SSLContext createSSLContext(final DFConfig config) throws UnrecoverableKeyException, CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+    private SSLContext createSSLContext(final DFConfig config) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         final KeyManager[] keyManagers = this.createKeyManagers(config);
         final TrustManager[] trustManagers = this.createTrustManagers(config);
         final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolos()[0]);
@@ -51,14 +49,14 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         return sslContext;
     }
 
-    private KeyManager[] createKeyManagers(final DFConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+    private KeyManager[] createKeyManagers(final DFConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         final String alias = DFSocketFactory.getAlias(config.getCertificadoKeyStore());
         final X509Certificate certificate = (X509Certificate) config.getCertificadoKeyStore().getCertificate(alias);
         final PrivateKey privateKey = (PrivateKey) config.getCertificadoKeyStore().getKey(alias, config.getCertificadoSenha().toCharArray());
         return new KeyManager[] { new DFKeyManager(certificate, privateKey) };
     }
 
-    private TrustManager[] createTrustManagers(final DFConfig config) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+    private TrustManager[] createTrustManagers(final DFConfig config) throws KeyStoreException, NoSuchAlgorithmException {
         final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(config.getCadeiaCertificadosKeyStore());
         return trustManagerFactory.getTrustManagers();

@@ -314,21 +314,21 @@ public enum DFPais {
     }
 
     public static DFPais valueOfCodigo(Integer codigo){
-        return  Arrays.asList(DFPais.values()).stream()
+        return Arrays.stream(DFPais.values())
                 .filter(dfPais -> dfPais.getCodigo().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }
 
     public static DFPais valueOfCodigo(String codigo){
-        return  Arrays.asList(DFPais.values()).stream()
+        return Arrays.stream(DFPais.values())
                 .filter(dfPais -> dfPais.getCodigo().toString().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }
 
     public static List<DFPais> getListByDesc(String codigo){
-        return  Arrays.asList(DFPais.values()).stream()
+        return Arrays.stream(DFPais.values())
                 .filter(dfPais -> StringUtils.containsIgnoreCase(dfPais.getDescricao(),codigo))
                 .collect(Collectors.toList());
     }

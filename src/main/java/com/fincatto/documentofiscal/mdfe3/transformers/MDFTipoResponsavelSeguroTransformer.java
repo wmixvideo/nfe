@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFTipoResponsavelSeguroTransformer implements Transform<MDFTipoResponsavelSeguro> {
 
     @Override
-    public MDFTipoResponsavelSeguro read(String value) throws Exception {
+    public MDFTipoResponsavelSeguro read(String value) {
         return MDFTipoResponsavelSeguro.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFTipoResponsavelSeguro value) throws Exception {
+    public String write(MDFTipoResponsavelSeguro value) {
         return value.getCodigo();
     }
 }

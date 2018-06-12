@@ -3,8 +3,8 @@ package com.fincatto.documentofiscal.cte300.classes;
 public enum CTIndicadorTomador {
 
     CONTRIBUINTE_ICMS("1", "Contribuinte ICMS"),
-    CONTRIBUINTE_ISENTO("2", "Contribuinte Isento de Inscrição"),
-    NÃO_CONTRIBUINTE("9", "Não Contribuinte");
+    CONTRIBUINTE_ISENTO("2", "Contribuinte isento de inscri\u00e7\u00e3o"),
+    NAO_CONTRIBUINTE("9", "N\u00e3o contribuinte");
 
     private final String codigo;
     private final String descricao;
