@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.cte300.classes;
 
 public enum CTClasseTarifa {
 
-	Tarifa_Minima("M", "Tarifa Mínima"),
-	Tarifa_Geral("G", "Tarifa Geral"),
-	Tarifa_Específica("E", "Tarifa Especifica");
+    MINIMA("M", "Tarifa m\u00ednima"),
+    GERAL("G", "Tarifa geral"),
+    ESPECIFICA("E", "Tarifa especifica");
 
     private final String codigo;
     private final String descricao;

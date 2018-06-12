@@ -9,8 +9,8 @@ public enum NFNotaInfoItemModalidadeBCICMSST {
     MARGEM_VALOR_AGREGADO("4", "Margem Valor Agregado"),
     PAUTA("5", "Pauta");
 
-    private String codigo;
-    private String descricao;
+    private final String codigo;
+    private final String descricao;
 
     NFNotaInfoItemModalidadeBCICMSST(final String codigo, final String descricao) {
         this.codigo = codigo;

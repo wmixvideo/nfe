@@ -54,12 +54,12 @@ public class WSDistribuicaoCTe {
         final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
             try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
-                String outStr = "";
+                StringBuilder outStr = new StringBuilder();
                 String line;
                 while ((line = bf.readLine()) != null) {
-                    outStr += line;
+                    outStr.append(line);
                 }
-                return outStr;
+                return outStr.toString();
             }
         }
     }

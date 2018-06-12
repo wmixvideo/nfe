@@ -1,12 +1,4 @@
-
-/**
- * RecepcaoEventoCallbackHandler.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST)
- */
-
-    package com.fincatto.documentofiscal.cte300.webservices.recepcaoevento;
+package com.fincatto.documentofiscal.cte300.webservices.recepcaoevento;
 
     /**
      *  RecepcaoEventoCallbackHandler Callback class, Users can extend this class and implement
@@ -14,9 +6,7 @@
      */
     public abstract class RecepcaoEventoCallbackHandler{
 
-
-
-    protected Object clientData;
+        protected final Object clientData;
 
     /**
     * User can pass in any object that needs to be accessed once the NonBlocking

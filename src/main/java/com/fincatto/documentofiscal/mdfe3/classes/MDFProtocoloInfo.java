@@ -85,7 +85,7 @@ public class MDFProtocoloInfo extends DFBase {
         return this.chave;
     }
 
-    public LocalDateTime getDataRecebimento() throws Exception {
+    public LocalDateTime getDataRecebimento() {
         try {
             return LocalDateTime.parse(this.dataRecebimento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {

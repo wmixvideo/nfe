@@ -82,7 +82,7 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor =  BigDecimalParser.tamanho13Com2CasasDecimais(valor, "Valor do pedagio");;
+        this.valor = BigDecimalParser.tamanho13Com2CasasDecimais(valor, "Valor do pedagio");
     }
 
     public String getCpfPagadora() {

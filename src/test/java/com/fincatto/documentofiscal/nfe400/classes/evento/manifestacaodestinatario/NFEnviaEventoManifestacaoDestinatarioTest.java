@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFEnviaEventoManifestacaoDestinatarioTest {
 
@@ -70,7 +69,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLoteNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setEvento(new ArrayList<NFEventoManifestacaoDestinatario>());
+        eventoManifestacaoDestinatario.setEvento(new ArrayList<>());
         eventoManifestacaoDestinatario.setVersao(new BigDecimal("4.00"));
         eventoManifestacaoDestinatario.toString();
     }
@@ -78,7 +77,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setEvento(new ArrayList<NFEventoManifestacaoDestinatario>());
+        eventoManifestacaoDestinatario.setEvento(new ArrayList<>());
         eventoManifestacaoDestinatario.setIdLote("1");
         eventoManifestacaoDestinatario.toString();
     }

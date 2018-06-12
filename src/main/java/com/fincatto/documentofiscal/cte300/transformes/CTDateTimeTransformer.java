@@ -11,12 +11,12 @@ class CTDateTimeTransformer implements Transform<ZonedDateTime> {
 	private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     @Override
-    public ZonedDateTime read(final String data) throws Exception {
+    public ZonedDateTime read(final String data) {
     	return ZonedDateTime.parse(data, format.withZone(ZoneId.systemDefault()));
     }
 
     @Override
-    public String write(final ZonedDateTime data) throws Exception {
+    public String write(final ZonedDateTime data) {
         return format.format(data);
     }
 }

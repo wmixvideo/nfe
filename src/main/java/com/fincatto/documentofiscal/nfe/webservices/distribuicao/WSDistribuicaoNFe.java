@@ -2,12 +2,10 @@ package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaNSU;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -33,8 +31,20 @@ public class WSDistribuicaoNFe {
      * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
      */
     public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
+        return consultar(cnpj, uf, chaveAcesso, nsu, null);
+    }
+
+    /**
+     * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
+     */
+    public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
         try {
-            final OMElement ome = AXIOMUtil.stringToOM(this.gerarNFDistribuicaoInt(cnpj, uf, chaveAcesso, nsu).toString());
+            String xmlEnvio = this.gerarNFDistribuicaoInt(cnpj, uf, chaveAcesso, nsu, ultNsu).toString();
+
+            // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+            XMLValidador.validaConsultaDfe(xmlEnvio);
+
+            final OMElement ome = AXIOMUtil.stringToOM(xmlEnvio);
 
             final NFeDistribuicaoDFeSoapStub.NFeDadosMsg_type0 dadosMsgType0 = new NFeDistribuicaoDFeSoapStub.NFeDadosMsg_type0();
             dadosMsgType0.setExtraElement(ome);
@@ -60,17 +70,17 @@ public class WSDistribuicaoNFe {
         final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
             try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
-                String outStr = "";
+                StringBuilder outStr = new StringBuilder();
                 String line;
                 while ((line = bf.readLine()) != null) {
-                    outStr += line;
+                    outStr.append(line);
                 }
-                return outStr;
+                return outStr.toString();
             }
         }
     }
 
-    private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) {
+    private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) {
         final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
         distDFeInt.setVersao("1.01");
         distDFeInt.setAmbiente(this.config.getAmbiente());
@@ -79,6 +89,8 @@ public class WSDistribuicaoNFe {
 
         if (StringUtils.isNotBlank(chaveAcesso)) {
             distDFeInt.setConsultaChaveAcesso(new NFDistribuicaoConsultaChaveAcesso().setChaveAcesso(chaveAcesso));
+        } else if (StringUtils.isNotBlank(ultNsu)) {
+            distDFeInt.setDistribuicaoNSU(new NFDistribuicaoNSU().setUltimoNSU(ultNsu));
         } else {
             distDFeInt.setConsultaNSU(new NFDistribuicaoConsultaNSU().setNsu(nsu));
         }

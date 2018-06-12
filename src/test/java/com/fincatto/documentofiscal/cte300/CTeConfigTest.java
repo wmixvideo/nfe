@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.cte300;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
+import java.security.KeyStore;
 
 public class CTeConfigTest {
 
@@ -28,7 +26,7 @@ public class CTeConfigTest {
         }
 
         @Override
-        public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+        public KeyStore getCertificadoKeyStore() {
             // TODO Auto-generated method stub
             return null;
         }
@@ -40,7 +38,7 @@ public class CTeConfigTest {
         }
 
         @Override
-        public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+        public KeyStore getCadeiaCertificadosKeyStore() {
             // TODO Auto-generated method stub
             return null;
         }

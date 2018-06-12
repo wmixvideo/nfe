@@ -152,7 +152,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAce
 #### Consulta nota por chave de acesso ou NSU
 Faça a consulta da nota através do facade:
 ```java
-final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu);
+final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu, ultNsu);
 ```
 
 ### Convertendo objetos Java em XML
@@ -205,6 +205,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 * Possui validação de campos a nível de código;
 * Valida o XML de envio de lote através dos xsd's disponibilizados pela Sefaz;
 * Gera o XML dos objetos de maneira simples, invocando o metodo toString() dá conta do recado.
+* Suporta diferentes TimeZones, com a implementacao do devido metodo na classe de configuração (DFConfig e suas subclasses).
 
 ## Serviços disponíveis
 | Serviço                       | Status              |

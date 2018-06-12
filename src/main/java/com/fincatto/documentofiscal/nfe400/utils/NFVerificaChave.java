@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe400.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 /**
  *
  * @Author Eldevan Nery Junior on 01/06/17.
@@ -50,7 +52,7 @@ public class NFVerificaChave {
         if(StringUtils.length(this.chave)<44){
             return false;
         }
-        return getChaveAcessoDV()==calculaDV();
+        return Objects.equals(getChaveAcessoDV(), calculaDV());
     }
 
     /**

@@ -1,8 +1,8 @@
-/**
- * NfeConsultaCallbackHandler.java
- *
- * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.7.4  Built on : Oct 21, 2016 (10:47:34 BST)
+/*
+  NfeConsultaCallbackHandler.java
+
+  This file was auto-generated from WSDL
+  by the Apache Axis2 version: 1.7.4  Built on : Oct 21, 2016 (10:47:34 BST)
  */
 package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
 
@@ -12,7 +12,7 @@ package com.fincatto.documentofiscal.nfe310.webservices.nota.consulta;
  *  their own receiveResult and receiveError methods.
  */
 public abstract class NfeConsultaCallbackHandler {
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

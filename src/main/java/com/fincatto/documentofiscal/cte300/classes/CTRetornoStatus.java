@@ -427,8 +427,8 @@ public enum CTRetornoStatus {
     private static final List<CTRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303, CODIGO_304, CODIGO_305, CODIGO_306);
     private static final List<CTRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_104);
 
-    private int codigo;
-    private String motivo;
+    private final int codigo;
+    private final String motivo;
 
     CTRetornoStatus(final int codigo, final String motivo) {
         this.codigo = codigo;

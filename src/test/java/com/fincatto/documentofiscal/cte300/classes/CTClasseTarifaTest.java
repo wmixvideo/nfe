@@ -9,9 +9,9 @@ public class CTClasseTarifaTest {
     @Test
     public void deveRepresentarOCodigoCorretamente() {
     	Assert.assertNull(CTClasseTarifa.valueOfCodigo(null));
-    	Assert.assertEquals("M", CTClasseTarifa.Tarifa_Minima.getCodigo());
-		Assert.assertEquals("G", CTClasseTarifa.Tarifa_Geral.getCodigo());
-		Assert.assertEquals("E", CTClasseTarifa.Tarifa_Específica.getCodigo());
+        Assert.assertEquals("M", CTClasseTarifa.MINIMA.getCodigo());
+        Assert.assertEquals("G", CTClasseTarifa.GERAL.getCodigo());
+        Assert.assertEquals("E", CTClasseTarifa.ESPECIFICA.getCodigo());
     }
 
 }

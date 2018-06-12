@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoIPITributadoTest {
 
@@ -37,7 +36,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoTributado1.setQuantidade(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se quantidade foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoIPITributado impostoIPITributado2 = new NFNotaInfoItemImpostoIPITributado();
@@ -45,7 +44,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoIPITributado2.setQuantidade(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se valor unidade tributavel foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -56,7 +55,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoTributado1.setValorUnidadeTributavel(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se quantidade foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoIPITributado impostoIPITributado2 = new NFNotaInfoItemImpostoIPITributado();
@@ -64,7 +63,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoIPITributado2.setValorUnidadeTributavel(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se valor unidade tributavel foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -75,7 +74,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoTributado1.setPercentualAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se quantidade foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoIPITributado impostoIPITributado2 = new NFNotaInfoItemImpostoIPITributado();
@@ -83,7 +82,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoIPITributado2.setPercentualAliquota(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se valor unidade tributavel foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
@@ -94,7 +93,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoTributado1.setValorBaseCalculo(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se quantidade foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
 
         final NFNotaInfoItemImpostoIPITributado impostoIPITributado2 = new NFNotaInfoItemImpostoIPITributado();
@@ -102,7 +101,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
         try {
             impostoIPITributado2.setValorBaseCalculo(BigDecimal.ONE);
             Assert.fail("Nao deve permitir setar valor base calculo se valor unidade tributavel foi setado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 
