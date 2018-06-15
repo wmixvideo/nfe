@@ -9,12 +9,12 @@ public class NFRetornoStatusTest {
 
     @Test
     public void valueOfCodigoStringTest() {
-        Assert.assertEquals(NFRetornoStatus.AUTORIZADO_USO_NFE, NFRetornoStatus.valueOfCodigo("100"));
+        Assert.assertEquals(NFRetornoStatus.CODIGO_100, NFRetornoStatus.valueOfCodigo("100"));
     }
 
     @Test
     public void valueOfCodigoIntegerTest() {
-        Assert.assertEquals(NFRetornoStatus.AUTORIZADO_USO_NFE, NFRetornoStatus.valueOfCodigo(100));
+        Assert.assertEquals(NFRetornoStatus.CODIGO_100, NFRetornoStatus.valueOfCodigo(100));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -24,8 +24,8 @@ public class NFRetornoStatusTest {
 
     @Test
     public void isAutorizadoTest() {
-        Assert.assertTrue(NFRetornoStatus.AUTORIZADO_USO_NFE.isAutorizado());
-        Assert.assertFalse(NFRetornoStatus.CHAVE_DE_ACESSO_DIFERENTE_NO_DB_SEFAZ.isAutorizado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_100.isAutorizado());
+        Assert.assertFalse(NFRetornoStatus.CODIGO_613.isAutorizado());
     }
 
     @Test
@@ -34,18 +34,18 @@ public class NFRetornoStatusTest {
         Assert.assertTrue(NFRetornoStatus.CODIGO_301.isDenegado());
         Assert.assertTrue(NFRetornoStatus.CODIGO_302.isDenegado());
         Assert.assertTrue(NFRetornoStatus.CODIGO_303.isDenegado());
-        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isDenegado());
+        Assert.assertFalse(NFRetornoStatus.CODIGO_100.isDenegado());
     }
 
     @Test
     public void isRejeitadoTest() {
         Assert.assertTrue(NFRetornoStatus.CODIGO_230.isRejeitado());
-        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isRejeitado());
+        Assert.assertFalse(NFRetornoStatus.CODIGO_100.isRejeitado());
     }
 
     @Test
     public void isDuplicadoTest() {
         Assert.assertTrue(NFRetornoStatus.CODIGO_539.isDuplicado());
-        Assert.assertFalse(NFRetornoStatus.AUTORIZADO_USO_NFE.isDuplicado());
+        Assert.assertFalse(NFRetornoStatus.CODIGO_100.isDuplicado());
     }
 }

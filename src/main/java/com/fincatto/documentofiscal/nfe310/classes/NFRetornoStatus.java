@@ -5,11 +5,11 @@ import java.util.List;
 
 public enum NFRetornoStatus {
 
-    AUTORIZADO_USO_NFE(100, "Autorizado o uso da NF-e"),
+	CODIGO_100(100, "Autorizado o uso da NF-e"),
     CODIGO_101(101, "Cancelamento de NF-e homologado"),
     CODIGO_102(102, "Inutiliza\u00e7\u00e3o de n\u00famero homologado"),
-    LOTE_RECEBIDO_COM_SUCESSO(103, "Lote recebido com sucesso"),
-    LOTE_PROCESSADO(104, "Lote processado"),
+    CODIGO_103(103, "Lote recebido com sucesso"),
+    CODIGO_104(104, "Lote processado"),
     CODIGO_105(105, "Lote em processamento"),
     CODIGO_106(106, "Lote n\u00e3o localizado"),
     CODIGO_107(107, "Servi\u00e7o em Opera\u00e7\u00e3o"),
@@ -21,7 +21,7 @@ public enum NFRetornoStatus {
     CODIGO_113(113, "SCAN ser\u00e1 desabilitado para a UF \u00e0s hh:mm"),
     CODIGO_114(114, "SCAN desabilitado pela SEFAZ Origem"),
     CODIGO_128(128, "Lote de Evento Processado"),
-    EVENTO_REGISTRADO_VINCULADO_NFE(135, "Evento registrado e vinculado a NF-e"),
+    CODIGO_135(135, "Evento registrado e vinculado a NF-e"),
     CODIGO_136(136, "Evento registrado, mas n\u00e3o vinculado a NF-e"),
     CODIGO_137(137, "Nenhum documento localizado para o Destinat\u00e1rio"),
     CODIGO_138(138, "Documento localizado para o Destinat\u00e1rio"),
@@ -204,7 +204,7 @@ public enum NFRetornoStatus {
     CODIGO_452(452, "Rejei\u00e7\u00e3o: Tipo Autorizador do Recibo diverge do \u00d3rg\u00e3o Autorizador"),
     CODIGO_453(453, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser superior ao Ano atual"),
     CODIGO_454(454, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser inferior a 2006"),
-    CODIGO_461(461, "Rejei\u00e7\u00e3o: Informado percentual de g\u00e1s natural na mistura para produto diferente de GLP"),
+    CODIGO_461(461, "Rejeição: Informado campos de percentual de GLP e/ou GLGNn e/ou GLGNi para produto diferente de GLP [nItem: nnn]"),
     CODIGO_462(462, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code n\u00fao cadastrado na SEFAZ"),
     CODIGO_463(463, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code foi revogado pela empresa"),
     CODIGO_464(464, "Rejei\u00e7\u00e3o: C\u00f3digo de Hash no QR-Code difere do calculado"),
@@ -333,7 +333,7 @@ public enum NFRetornoStatus {
     CODIGO_610(610, "Rejei\u00e7\u00e3o: Total da NF difere do somat\u00f3rio dos Valores comp\u00f5e o valor Total da NF"),
     CODIGO_611(611, "Rejei\u00e7\u00e3o: cEAN inv\u00e1lido"),
     CODIGO_612(612, "Rejei\u00e7\u00e3o: cEANTrib inv\u00e1lido"),
-    CHAVE_DE_ACESSO_DIFERENTE_NO_DB_SEFAZ(613, "Rejei\u00e7\u00e3o: Chave de Acesso difere da existente em BD"),
+    CODIGO_613(613, "Rejei\u00e7\u00e3o: Chave de Acesso difere da existente em BD"),
     CODIGO_614(614, "Rejei\u00e7\u00e3o: Chave de Acesso inv\u00e1lida (C\u00f3digo UF inv\u00e1lido)"),
     CODIGO_615(615, "Rejei\u00e7\u00e3o: Chave de Acesso inv\u00e1lida (Ano < 05 ou Ano maior que Ano corrente)"),
     CODIGO_616(616, "Rejei\u00e7\u00e3o: Chave de Acesso inv\u00e1lida (M\u00eas < 1 ou M\u00eas > 12)"),
@@ -371,7 +371,7 @@ public enum NFRetornoStatus {
     CODIGO_678(678, "Rejei\u00e7\u00e3o: NF referenciada com UF diferente da UF da NF-e complementar"),
     CODIGO_679(679, "Rejei\u00e7\u00e3o: Modelo da NF-e referenciada diferente de 55"),
     CODIGO_680(680, "Rejei\u00e7\u00e3o: Duplicidade de NF-e referenciada (chave de acesso ref mais de uma vez)"),
-    CODIGO_681(681, "Rejei\u00e7\u00e3o: Duplicidade de NF Modelo 1 referenciada (CNPJ, Modelo S\u00e9rie e N\u00famero)"),
+    CODIGO_681(681, "Rejeição: Duplicidade de NF referenciada (CNPJ, Modelo, Série e Número) [nOcor: nnn]"),
     CODIGO_682(682, "Rejei\u00e7\u00e3o: Duplicidade de NF de produtor referenciada (IE, Modelo, S\u00e9rie e N\u00famero)"),
     CODIGO_683(683, "Rejei\u00e7\u00e3o: Modelo do CT-e referenciado diferente de 57"),
     CODIGO_684(684, "Rejei\u00e7\u00e3o: Duplicidade de Cupom Fiscal referenciado (Modelo, N\u00famero e Ordem e COO)"),
@@ -487,54 +487,83 @@ public enum NFRetornoStatus {
     CODIGO_806(806, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com ICMS-ST sem informa\u00E7\u00E3o do CEST"),
     CODIGO_807(807, "Rejei\u00E7\u00E3o: NFC-e com grupo de ICMS para a UF do destinat\u00E1rio"),
     CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comércio Exterior"),
+    CODIGO_854(854, "Rejeição: Unidade Tributável incompatível com produto informado [nItem:nnn]"),
+    CODIGO_855(855, "Rejeição:  Somatório percentuais de GLP derivado do petróleo, GLGNn e GLGNi diferente de 1 [nItem:nnn]"),
+    CODIGO_856(856, "Rejeição:  Campo valor de partida não preenchido para produto GLP [nItem: nnn]"),
+    CODIGO_857(857, "Rejeição: Informado Duplicata Mercantil como Forma de Pagamento"),
+    CODIGO_858(858, "Rejeição: Grupo de Tributação informado indevidamente [nItem: nnn]"),
+    CODIGO_859(859, "Rejeição: Total do FCP retido anteriormente por Substituição Tributária difere do somatório dos itens"),
+    CODIGO_860(860, "Rejeição: Valor do FCP informado difere de base de cálculo*alíquota [nItem:nnn]"),
+    CODIGO_861(861, "Rejeição: Total do FCP difere do somatório dos itens"),
+    CODIGO_862(862, "Rejeição: Total do FCP ST difere do somatório dos itens"),
+    CODIGO_863(863, "Rejeição: Total do IPI devolvido difere do somatório dos itens"),
+    CODIGO_864(864, "Rejeição: NF-e com indicativo de Operação presencial, fora do estabelecimento e não informada NF referenciada"),
+    CODIGO_865(865, "Rejeição: Total dos pagamentos menor que o total da nota"),
+    CODIGO_866(866, "Rejeição: Ausência de troco quando o valor dos pagamentos informados for maior que o total da nota"),
+    CODIGO_867(867, "Rejeição: Grupo duplicata informado e forma de pagamento não é Duplicata Mercantil."),
+    CODIGO_868(868, "Rejeição: Grupos Veiculo Transporte e Reboque não devem ser informados"),
+    CODIGO_869(869, "Rejeição: Valor do troco incorreto"),
+    CODIGO_870(870, "Rejeição: Data de validade incompatível com data de fabricação [nItem:nnn]"),
+    CODIGO_871(871, "Rejeição: O campo Forma de Pagamento deve ser preenchido com a opção “Sem Pagamento”"),
+    CODIGO_872(872, "Rejeição: Informado Duplicata Mercantil como Forma de Pagamento e não preenchido o Grupo Duplicata"),
+    CODIGO_873(873, "Rejeição: Rejeição: Operação com medicamentos não informado os campos de rastreabilidade [nItem:nnn]"),
+    CODIGO_874(874, "Rejeição: Percentual de FCP inválido [nItem:nnn]"),
+    CODIGO_875(875, "Rejeição: Percentual de FCP ST inválido [nItem:nnn]"),
+    CODIGO_876(876, "Rejeição: Operação interestadual para Consumidor Final e valor do FCP informado em campo diferente de vFCPUFDest id:NA13) [nItem:nnn]"),
+    CODIGO_877(877, "Rejeição: Data de fabricação maior que a data de processamento [nItem:nnn]"),
+    CODIGO_878(878, "Rejeição: Endereço do site da UF da Consulta por chave de acesso diverge do previsto"),
+    CODIGO_879(879, "Rejeição: Informado item “Produzido em Escala NÃO Relevante” e não informado CNPJ do Fabricante [nItem:nnn]"),
+    CODIGO_880(880, "Rejeição: Percentual de FCP igual a zero [nItem: nnn]"),
+    CODIGO_881(881, "Rejeição: Percentual de FCP ST igual a zero [nItem: nnn]"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
-    private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
-    private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(AUTORIZADO_USO_NFE, CODIGO_150);
+	private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302,CODIGO_303);
+	private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_150);
 
-    private final int codigo;
-    private final String motivo;
+	private final int codigo;
+	private final String motivo;
 
-    NFRetornoStatus(final int codigo, final String motivo) {
-        this.codigo = codigo;
-        this.motivo = motivo;
-    }
+	NFRetornoStatus(final int codigo, final String motivo) {
+		this.codigo = codigo;
+		this.motivo = motivo;
+	}
 
-    public static NFRetornoStatus valueOfCodigo(final String codigo) {
-        return NFRetornoStatus.valueOfCodigo(Integer.parseInt(codigo));
-    }
+	public static NFRetornoStatus valueOfCodigo(final String codigo) {
+		return NFRetornoStatus.valueOfCodigo(Integer.parseInt(codigo));
+	}
 
-    public static NFRetornoStatus valueOfCodigo(final int codigo) {
-        for (final NFRetornoStatus statusRetorno : NFRetornoStatus.values()) {
-            if (statusRetorno.getCodigo() == codigo) {
-                return statusRetorno;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Status retorno %s n\u00e3o mapeado", codigo));
-    }
+	public static NFRetornoStatus valueOfCodigo(final int codigo) {
+		for (final NFRetornoStatus statusRetorno : NFRetornoStatus.values()) {
+			if (statusRetorno.getCodigo() == codigo) {
+				return statusRetorno;
+			}
+		}
+		throw new IllegalArgumentException(String.format("Status retorno %s n\u00e3o mapeado", codigo));
+	}
 
-    public boolean isAutorizado() {
-        return NFRetornoStatus.AUTORIZADOS.contains(this);
-    }
+	public boolean isAutorizado() {
+		return NFRetornoStatus.AUTORIZADOS.contains(this);
+	}
 
-    public boolean isDenegado() {
-        return NFRetornoStatus.DENEGADOS.contains(this);
-    }
+	public boolean isDenegado() {
+		return NFRetornoStatus.DENEGADOS.contains(this);
+	}
 
-    public boolean isRejeitado() {
-        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
-    }
+	public boolean isRejeitado() {
+		return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this)
+				&& !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+	}
 
-    public boolean isDuplicado() {
-        return CODIGO_539.getCodigo() == this.codigo;
-    }
+	public boolean isDuplicado() {
+		return CODIGO_539.getCodigo() == this.codigo;
+	}
 
-    public int getCodigo() {
-        return this.codigo;
-    }
+	public int getCodigo() {
+		return this.codigo;
+	}
 
-    public String getMotivo() {
-        return this.motivo;
-    }
+	public String getMotivo() {
+		return this.motivo;
+	}
 }
