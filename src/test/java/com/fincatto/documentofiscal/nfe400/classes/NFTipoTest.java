@@ -19,7 +19,8 @@ public class NFTipoTest {
     }
 
     @Test
-    public void deveObterStringficadoCorretamente() {
+    public void deveRepresentarToStringCorretamente() {
+        Assert.assertEquals("0 - Entrada", NFTipo.ENTRADA.toString());
         Assert.assertEquals("1 - Sa\u00edda", NFTipo.SAIDA.toString());
     }
 }
