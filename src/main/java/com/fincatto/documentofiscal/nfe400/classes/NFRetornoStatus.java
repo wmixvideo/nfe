@@ -486,7 +486,7 @@ public enum NFRetornoStatus {
     CODIGO_805(805, "Rejei\u00E7\u00E3o: A SEFAZ do destinat\u00E1rio n\u00E3o permite Contribuinte Isento de Inscri\u00E7\u00E3o Estadual"),
     CODIGO_806(806, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com ICMS-ST sem informa\u00E7\u00E3o do CEST"),
     CODIGO_807(807, "Rejei\u00E7\u00E3o: NFC-e com grupo de ICMS para a UF do destinat\u00E1rio"),
-    CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comércio Exterior"),
+    CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comercio Exterior"),
     CODIGO_854(854, "Rejei\u00E7\u00E3o: Unidade Tribut\u00e1vel incompat\u00edvel com produto informado [nItem:nnn]"),
     CODIGO_855(855, "Rejei\u00E7\u00E3o:  Somat\u00f3rio percentuais de GLP derivado do petr\u00f3leo, GLGNn e GLGNi diferente de 1 [nItem:nnn]"),
     CODIGO_856(856, "Rejei\u00E7\u00E3o:  Campo valor de partida n\u00E3o preenchido para produto GLP [nItem: nnn]"),
