@@ -204,7 +204,7 @@ public enum NFRetornoStatus {
     CODIGO_452(452, "Rejei\u00e7\u00e3o: Tipo Autorizador do Recibo diverge do \u00d3rg\u00e3o Autorizador"),
     CODIGO_453(453, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser superior ao Ano atual"),
     CODIGO_454(454, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser inferior a 2006"),
-    CODIGO_461(461, "Rejeição: Informado campos de percentual de GLP e/ou GLGNn e/ou GLGNi para produto diferente de GLP [nItem: nnn]"),
+    CODIGO_461(461, "Rejei\\u00e7\\u00e3o: Informado campos de percentual de GLP e/ou GLGNn e/ou GLGNi para produto diferente de GLP [nItem: nnn]"),
     CODIGO_462(462, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code n\u00fao cadastrado na SEFAZ"),
     CODIGO_463(463, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code foi revogado pela empresa"),
     CODIGO_464(464, "Rejei\u00e7\u00e3o: C\u00f3digo de Hash no QR-Code difere do calculado"),
