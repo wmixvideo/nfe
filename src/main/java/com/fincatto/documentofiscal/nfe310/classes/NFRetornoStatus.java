@@ -371,7 +371,7 @@ public enum NFRetornoStatus {
     CODIGO_678(678, "Rejei\u00e7\u00e3o: NF referenciada com UF diferente da UF da NF-e complementar"),
     CODIGO_679(679, "Rejei\u00e7\u00e3o: Modelo da NF-e referenciada diferente de 55"),
     CODIGO_680(680, "Rejei\u00e7\u00e3o: Duplicidade de NF-e referenciada (chave de acesso ref mais de uma vez)"),
-    CODIGO_681(681, "Rejeição: Duplicidade de NF referenciada (CNPJ, Modelo, Série e Número) [nOcor: nnn]"),
+    CODIGO_681(681, "Rejei\u00e7\u00e3o: Duplicidade de NF referenciada (CNPJ, Modelo S\\u00e9rie e N\\u00famero) [nOcor: nnn]"),
     CODIGO_682(682, "Rejei\u00e7\u00e3o: Duplicidade de NF de produtor referenciada (IE, Modelo, S\u00e9rie e N\u00famero)"),
     CODIGO_683(683, "Rejei\u00e7\u00e3o: Modelo do CT-e referenciado diferente de 57"),
     CODIGO_684(684, "Rejei\u00e7\u00e3o: Duplicidade de Cupom Fiscal referenciado (Modelo, N\u00famero e Ordem e COO)"),
