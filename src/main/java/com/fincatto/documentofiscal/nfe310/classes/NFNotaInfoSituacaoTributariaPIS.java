@@ -61,4 +61,10 @@ public enum NFNotaInfoSituacaoTributariaPIS {
     public String toString() {
         return codigo + " - " + descricao;
     }
+
+	public String getDescricao() {
+		return descricao;
+	}
+    
+    
 }
