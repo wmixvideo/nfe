@@ -4,7 +4,9 @@ import com.fincatto.documentofiscal.DFBase;
 
 public class NFLoteEnvioRetornoDados extends DFBase {
 
-    private final NFLoteEnvioRetorno retorno;
+	private static final long serialVersionUID = 2276661581444740391L;
+	
+	private final NFLoteEnvioRetorno retorno;
     private final NFLoteEnvio loteAssinado;
 	
 	public NFLoteEnvioRetornoDados(NFLoteEnvioRetorno retorno, NFLoteEnvio loteAssinado) {
