@@ -41,4 +41,10 @@ public enum NFFormaPagamentoMoeda {
     public String toString() {
         return this.codigo + " - " + this.descricao;
     }
+
+	public String getDescricao() {
+		return descricao;
+	}
+    
+    
 }
