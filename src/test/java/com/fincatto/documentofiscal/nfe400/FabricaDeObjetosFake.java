@@ -17,7 +17,6 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCobranca;
 import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
