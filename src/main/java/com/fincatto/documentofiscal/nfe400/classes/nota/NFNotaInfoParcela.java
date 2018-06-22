@@ -1,49 +1,45 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
-
 import java.time.LocalDate;
+
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
-public class NFNotaInfoDuplicata extends DFBase {
+public class NFNotaInfoParcela extends DFBase {
     private static final long serialVersionUID = 4401957395684813604L;
 
     @Element(name = "nDup", required = false)
-    private String numeroDuplicata;
+    private String numeroParcela;
 
     @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
 
     @Element(name = "vDup", required = true)
-    private String valorDuplicata;
+    private String valorParcela;
 
-    public void setNumeroDuplicata(final String numeroDuplicata) {
-        StringValidador.tamanho60(numeroDuplicata, "Numero Duplicata");
-        this.numeroDuplicata = numeroDuplicata;
+    public void setNumeroParcela(final String numeroParcela) {
+        StringValidador.tamanho60(numeroParcela, "Numero da Parcela");
+        this.numeroParcela = numeroParcela;
     }
 
     public void setDataVencimento(final LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
-    public void setValorDuplicata(final BigDecimal valorDuplicata) {
-        this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
+    public void setValorParcela(final BigDecimal valorParcela) {
+        this.valorParcela = BigDecimalParser.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
     }
 
     public String getValorDuplicata() {
-        return this.valorDuplicata;
+        return this.valorParcela;
     }
 
-    public void setValorDuplicata(final String valorDuplicata) {
-        this.valorDuplicata = valorDuplicata;
-    }
-
-    public String getNumeroDuplicata() {
-        return this.numeroDuplicata;
+    public String getNumeroParcela() {
+        return this.numeroParcela;
     }
 
     public LocalDate getDataVencimento() {

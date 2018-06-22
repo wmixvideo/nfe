@@ -655,7 +655,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoCobranca getNFNotaInfoCobranca() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
         cobranca.setFatura(FabricaDeObjetosFake.getNFNotaInfoFatura());
-        cobranca.setDuplicatas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
+        cobranca.setParcelas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
         return cobranca;
     }
 
@@ -1198,11 +1198,11 @@ public class FabricaDeObjetosFake {
         return fatura;
     }
 
-    public static NFNotaInfoDuplicata getNFNotaInfoDuplicata() {
-        final NFNotaInfoDuplicata duplicata = new NFNotaInfoDuplicata();
+    public static NFNotaInfoParcela getNFNotaInfoDuplicata() {
+        final NFNotaInfoParcela duplicata = new NFNotaInfoParcela();
         duplicata.setDataVencimento(LocalDate.of(2014, 7, 10));
-        duplicata.setNumeroDuplicata("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
-        duplicata.setValorDuplicata(new BigDecimal("999999.99"));
+        duplicata.setNumeroParcela("TQ49cyOL5KtBAUTF0LShhThpUbtCK1fQH1PH4AMcKzMNLxyDbV957IRhWK8Z");
+        duplicata.setValorParcela(new BigDecimal("999999.99"));
         return duplicata;
     }
 
