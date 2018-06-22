@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 
+@Root(name = "dup")
 public class NFNotaInfoParcela extends DFBase {
     private static final long serialVersionUID = 4401957395684813604L;
 
