@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta;
 
 abstract class NfeStatusServico2CallbackHandler {
-	
-	protected Object clientData;
+
+    protected final Object clientData;
 	
 	public NfeStatusServico2CallbackHandler(final Object clientData) {
 		this.clientData = clientData;

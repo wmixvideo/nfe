@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
 public class NFGeraQRCodeTest {
@@ -51,7 +50,7 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+            public KeyStore getCertificadoKeyStore() {
                 return null;
             }
 
@@ -61,7 +60,7 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+            public KeyStore getCadeiaCertificadosKeyStore() {
                 return null;
             }
 

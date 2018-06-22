@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NFNotaInfoCobrancaTest {
 
@@ -32,7 +31,7 @@ public class NFNotaInfoCobrancaTest {
     @Test
     public void devePermitirFaturaNulo() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setDuplicatas(Arrays.asList(new NFNotaInfoDuplicata[] { FabricaDeObjetosFake.getNFNotaInfoDuplicata() }));
+        cobranca.setDuplicatas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
         cobranca.toString();
     }
 

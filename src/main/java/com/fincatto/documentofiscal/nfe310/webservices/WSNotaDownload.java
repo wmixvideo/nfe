@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf.NFDownloadNFe;
@@ -20,6 +10,15 @@ import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFS
 import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDownloadNFResult;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSNotaDownload {
 
@@ -63,7 +62,7 @@ class WSNotaDownload {
         return nfeDownloadNFResult.getExtraElement();
     }
 
-    private NFDownloadNFe gerarDadosDownloadNF(final String cnpj, final String chave) throws Exception {
+    private NFDownloadNFe gerarDadosDownloadNF(final String cnpj, final String chave) {
         final NFDownloadNFe nfDownloadNFe = new NFDownloadNFe();
         nfDownloadNFe.setVersao(WSNotaDownload.VERSAO_LEIAUTE.toPlainString());
         nfDownloadNFe.setAmbiente(this.config.getAmbiente());

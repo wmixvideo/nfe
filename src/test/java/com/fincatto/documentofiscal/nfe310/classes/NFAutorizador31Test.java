@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class NFAutorizador31Test {
 
@@ -490,8 +489,9 @@ public class NFAutorizador31Test {
 
     @Test
     public void deveObterTodasAsUFsDoSVRS() {
-        final List<DFUnidadeFederativa> ufsDaSVRS = Arrays.asList(DFUnidadeFederativa.AC, DFUnidadeFederativa.AL, DFUnidadeFederativa.AP, DFUnidadeFederativa.DF, DFUnidadeFederativa.ES, DFUnidadeFederativa.PA, DFUnidadeFederativa.PB, DFUnidadeFederativa.RJ, DFUnidadeFederativa.RN, DFUnidadeFederativa.RO, DFUnidadeFederativa.RR, DFUnidadeFederativa.SC, DFUnidadeFederativa.SE, DFUnidadeFederativa.TO);
-        Assert.assertTrue(ufsDaSVRS.equals(Arrays.asList(NFAutorizador31.SVRS.getUFs())));
+        final List<DFUnidadeFederativa> ufsEsperadas = Arrays.asList(DFUnidadeFederativa.AC, DFUnidadeFederativa.AL, DFUnidadeFederativa.AP, DFUnidadeFederativa.DF, DFUnidadeFederativa.ES, DFUnidadeFederativa.PA, DFUnidadeFederativa.PB, DFUnidadeFederativa.RJ, DFUnidadeFederativa.RN, DFUnidadeFederativa.RO, DFUnidadeFederativa.RR, DFUnidadeFederativa.SC, DFUnidadeFederativa.SE, DFUnidadeFederativa.TO);
+        List<DFUnidadeFederativa> ufsRecebidas = Arrays.asList(NFAutorizador31.SVRS.getUFs());
+        Assert.assertEquals(ufsEsperadas, ufsRecebidas);
     }
 
     @Test

@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS60Test {
 
@@ -51,12 +50,10 @@ public class NFNotaInfoItemImpostoICMS60Test {
         try {
 			Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorBCICMSSTRetido");
 			isRequired = campo.getDeclaredAnnotation(Element.class).required();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
+        } catch (NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
-        Assert.assertEquals(false, isRequired);
+        Assert.assertFalse(isRequired);
     }
 
     @Test
@@ -65,12 +62,10 @@ public class NFNotaInfoItemImpostoICMS60Test {
         try {
 			Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorICMSSTRetido");
 			isRequired = campo.getDeclaredAnnotation(Element.class).required();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
+        } catch (NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
-        Assert.assertEquals(false, isRequired);
+        Assert.assertFalse(isRequired);
     }
 
      @Test

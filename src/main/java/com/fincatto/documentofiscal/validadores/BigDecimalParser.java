@@ -48,10 +48,6 @@ public abstract class BigDecimalParser {
         return BigDecimalParser.parse(valor, "0.00", 7, 2, info);
     }
 
-    public static String tamanho1Com4CasasDecimais(final BigDecimal valor, final String info) {
-        return BigDecimalParser.parse(valor, "0.0000", 6, 4, info);
-    }
-
     public static String tamanho7ComAte4CasasDecimais(final BigDecimal valor, final String info) {
         return BigDecimalParser.parse(valor, "0.00##", 8, 4, info);
     }

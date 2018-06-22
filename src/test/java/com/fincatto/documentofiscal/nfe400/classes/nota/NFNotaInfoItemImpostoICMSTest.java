@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoICMSTest {
 
@@ -151,77 +150,77 @@ public class NFNotaInfoItemImpostoICMSTest {
         try {
             icms.setIcms10(new NFNotaInfoItemImpostoICMS10());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms20(new NFNotaInfoItemImpostoICMS20());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms30(new NFNotaInfoItemImpostoICMS30());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms40(new NFNotaInfoItemImpostoICMS40());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms51(new NFNotaInfoItemImpostoICMS51());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms60(new NFNotaInfoItemImpostoICMS60());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms70(new NFNotaInfoItemImpostoICMS70());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcms90(new NFNotaInfoItemImpostoICMS90());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmsPartilhado(new NFNotaInfoItemImpostoICMSPartilhado());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn101(new NFNotaInfoItemImpostoICMSSN101());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn102(new NFNotaInfoItemImpostoICMSSN102());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn201(new NFNotaInfoItemImpostoICMSSN201());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn202(new NFNotaInfoItemImpostoICMSSN202());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn500(new NFNotaInfoItemImpostoICMSSN500());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
         try {
             icms.setIcmssn900(new NFNotaInfoItemImpostoICMSSN900());
             Assert.fail("So pode permitir um icms cadastrado");
-        } catch (final IllegalStateException e) {
+        } catch (final IllegalStateException ignored) {
         }
     }
 

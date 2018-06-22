@@ -12,4 +12,12 @@ public class NFFinalidadeTest {
         Assert.assertEquals("3", NFFinalidade.AJUSTE.getCodigo());
         Assert.assertEquals("4", NFFinalidade.DEVOLUCAO_OU_RETORNO.getCodigo());
     }
+    
+    @Test
+    public void deveObterTipoApartirDoSeuCodigo() {
+        Assert.assertEquals(NFFinalidade.NORMAL, NFFinalidade.valueOfCodigo("1"));
+        Assert.assertEquals(NFFinalidade.COMPLEMENTAR, NFFinalidade.valueOfCodigo("2"));
+        Assert.assertEquals(NFFinalidade.AJUSTE, NFFinalidade.valueOfCodigo("3"));
+        Assert.assertEquals(NFFinalidade.DEVOLUCAO_OU_RETORNO, NFFinalidade.valueOfCodigo("4"));
+    }
 }

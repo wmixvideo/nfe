@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class NFRetornoConsultaCadastroDadosTest {
     }
 
     @Test
-    public void deveObterDataHoraProcessamentoComoFoiSetado() throws ParseException {
+    public void deveObterDataHoraProcessamentoComoFoiSetado() {
         final NFRetornoConsultaCadastroDados retornoConsultaCadastroDados = new NFRetornoConsultaCadastroDados();
         final LocalDateTime dataHoraProcessamento = LocalDateTime.from(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").parse("20/10/2010 10:10:10"));
         retornoConsultaCadastroDados.setDataHoraProcessamento(dataHoraProcessamento);

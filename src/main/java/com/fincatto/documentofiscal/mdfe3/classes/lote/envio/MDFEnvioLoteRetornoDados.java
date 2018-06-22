@@ -8,8 +8,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
  */
 public class MDFEnvioLoteRetornoDados {
 
-	private MDFEnvioLoteRetorno retorno;
-	private MDFEnvioLote loteAssinado;
+    private final MDFEnvioLoteRetorno retorno;
+    private final MDFEnvioLote loteAssinado;
 
 	public MDFEnvioLoteRetornoDados(MDFEnvioLoteRetorno retorno, MDFEnvioLote loteAssinado) {
 		this.retorno = retorno;
