@@ -22,7 +22,7 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     private String valorBCICMSSTRetido;
 
     @Element(name = "pST", required = false)
-    private String percentualAliquotaICMSST;
+    private String percentualAliquotaICMSSTConsumidorFinal;
 
     @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
@@ -64,8 +64,8 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
     }
 
-    public void setPercentualAliquotaICMSST(final BigDecimal percentualAliquotaICMSST) {
-        this.percentualAliquotaICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaICMSST, "Valor ICMS ST Retido ICMS60 Item");
+    public void setPercentualAliquotaICMSSTConsumidorFinal(final BigDecimal percentualAliquotaICMSST) {
+        this.percentualAliquotaICMSSTConsumidorFinal = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaICMSST, "Valor Aliquota suportada pelo Consumidor Final");
     }
 
     public void setValorBCFundoCombatePobrezaRetidoST(final BigDecimal valorBCFundoCombatePobrezaRetidoST) {
@@ -115,8 +115,8 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         return this.valorICMSSTRetido;
     }
 
-    public String getPercentualAliquotaICMSST() {
-        return this.percentualAliquotaICMSST;
+    public String getPercentualAliquotaICMSSTSuportadaConsumidorFinal() {
+        return this.percentualAliquotaICMSSTConsumidorFinal;
     }
 
     public String getValorBCFundoCombatePobrezaRetidoST() {
