@@ -1,10 +1,23 @@
 package com.fincatto.documentofiscal.nfe400;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCobranca;
 import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
@@ -28,17 +41,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import org.apache.commons.lang3.StringUtils;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class FabricaDeObjetosFake {
 
@@ -241,7 +243,7 @@ public class FabricaDeObjetosFake {
         formaPagamento.setIndicadorFormaPagamento(NFIndicadorFormaPagamento.A_PRAZO);
         formaPagamento.setCartao(FabricaDeObjetosFake.getNFNotaInfoCartao());
         formaPagamento.setValorPagamento(new BigDecimal("999999999999.99"));
-        formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);
+        formaPagamento.setMeioPagamento(NFMeioPagamento.CARTAO_CREDITO);
         return formaPagamento;
     }
 
