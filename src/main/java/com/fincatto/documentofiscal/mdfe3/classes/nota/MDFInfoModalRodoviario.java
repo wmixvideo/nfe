@@ -1,23 +1,23 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
+import java.util.List;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.util.List;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.ListValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
- *
  * <h1>Informações do modelo rodoviário do MDFe.</h1>
- *
  */
 @Root(name = "rodo")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfoModalRodoviario extends DFBase {
+    private static final long serialVersionUID = -1288630934217810661L;
 
     /**
      * <h1>Grupo de informações para Agência Reguladora(ANTT).</h1>
@@ -37,11 +37,10 @@ public class MDFInfoModalRodoviario extends DFBase {
     @ElementList(entry = "veicReboque", inline = true, required = false)
     private List<MDFInfoModalRodoviarioVeiculoReboque> veiculoReboques;
 
-
     /**
-     * <h1> Código de Agendamento no porto.</h1>
+     * <h1>Código de Agendamento no porto.</h1>
      */
-    @Element(name = "codAgPorto" , required = false)
+    @Element(name = "codAgPorto", required = false)
     private String codAgPorto;
 
     /**
@@ -51,42 +50,42 @@ public class MDFInfoModalRodoviario extends DFBase {
     private List<MDFInfoLacre1A20> lacres;
 
     public MDFInfoModalRodoviarioANTT getMdfInfoModalRodoviarioANTT() {
-        return mdfInfoModalRodoviarioANTT;
+        return this.mdfInfoModalRodoviarioANTT;
     }
 
-    public void setMdfInfoModalRodoviarioANTT(MDFInfoModalRodoviarioANTT mdfInfoModalRodoviarioANTT) {
+    public void setMdfInfoModalRodoviarioANTT(final MDFInfoModalRodoviarioANTT mdfInfoModalRodoviarioANTT) {
         this.mdfInfoModalRodoviarioANTT = mdfInfoModalRodoviarioANTT;
     }
 
     public MDFInfoModalRodoviarioVeiculoTracao getVeiculoTracao() {
-        return veiculoTracao;
+        return this.veiculoTracao;
     }
 
-    public void setVeiculoTracao(MDFInfoModalRodoviarioVeiculoTracao veiculoTracao) {
+    public void setVeiculoTracao(final MDFInfoModalRodoviarioVeiculoTracao veiculoTracao) {
         this.veiculoTracao = veiculoTracao;
     }
 
     public List<MDFInfoModalRodoviarioVeiculoReboque> getVeiculoReboques() {
-        return veiculoReboques;
+        return this.veiculoReboques;
     }
 
-    public void setVeiculoReboques(List<MDFInfoModalRodoviarioVeiculoReboque> veiculoReboques) {
+    public void setVeiculoReboques(final List<MDFInfoModalRodoviarioVeiculoReboque> veiculoReboques) {
         this.veiculoReboques = ListValidador.validaListaNaoObrigatoria(veiculoReboques, 3, "Lista de reboques");
     }
 
     public String getCodAgPorto() {
-        return codAgPorto;
+        return this.codAgPorto;
     }
 
-    public void setCodAgPorto(String codAgPorto) {
+    public void setCodAgPorto(final String codAgPorto) {
         this.codAgPorto = codAgPorto;
     }
 
     public List<MDFInfoLacre1A20> getLacres() {
-        return lacres;
+        return this.lacres;
     }
 
-    public void setLacres(List<MDFInfoLacre1A20> lacres) {
+    public void setLacres(final List<MDFInfoLacre1A20> lacres) {
         this.lacres = lacres;
     }
 }

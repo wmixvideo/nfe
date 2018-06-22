@@ -1,22 +1,21 @@
 package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+
 /**
- * Created by Eldevan Nery Junior on 14/11/17.
- *
- * Retorno do envio de Lote MDF-e .
- *
+ * Created by Eldevan Nery Junior on 14/11/17. Retorno do envio de Lote MDF-e .
  */
 @Root(name = "retEnviMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFEnvioLoteRetorno extends DFBase {
+    private static final long serialVersionUID = -1891312937948557486L;
 
     @Element(name = "tpAmb", required = false)
     private DFAmbiente ambiente;

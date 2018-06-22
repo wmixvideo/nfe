@@ -1,30 +1,27 @@
 package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
+import com.fincatto.documentofiscal.validadores.StringValidador;
+
 /**
- * Created by Eldevan Nery Junior on 08/11/17.
- *
- * Envio de Lote MDF-e para concessão de autorização.
- *
+ * Created by Eldevan Nery Junior on 08/11/17. Envio de Lote MDF-e para concessão de autorização.
  */
 @Root(name = "enviMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFEnvioLote extends DFBase {
+    private static final long serialVersionUID = 7911822246314551685L;
 
     @Attribute(name = "versao")
     private String versao = MDFe.VERSAO;
 
     /**
-     * Tipo Identificador de controle do envio do lote. Número seqüencial auto-incremental,
-     * de controle correspondente ao identificador único do lote enviado.
-     * A responsabilidade de gerar e controlar esse número é do próprio contribuinte.
+     * Tipo Identificador de controle do envio do lote. Número seqüencial auto-incremental, de controle correspondente ao identificador único do lote enviado. A responsabilidade de gerar e controlar esse número é do próprio contribuinte.
      */
     @Element(name = "idLote")
     private String idLote;
@@ -45,19 +42,19 @@ public class MDFEnvioLote extends DFBase {
     }
 
     public String getVersao() {
-        return versao;
+        return this.versao;
     }
 
-    public void setVersao(String versao) {
+    public void setVersao(final String versao) {
         StringValidador.equals(MDFe.VERSAO, versao);
         this.versao = versao;
     }
 
     public MDFe getMdfe() {
-        return mdfe;
+        return this.mdfe;
     }
 
-    public void setMdfe(MDFe mdfe) {
+    public void setMdfe(final MDFe mdfe) {
         this.mdfe = mdfe;
     }
 }
