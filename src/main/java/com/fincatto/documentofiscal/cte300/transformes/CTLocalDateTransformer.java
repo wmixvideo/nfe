@@ -10,7 +10,7 @@ class CTLocalDateTransformer implements Transform<LocalDate> {
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
-    public LocalDate read(final String data) throws Exception {
+    public LocalDate read(final String data) {
         try {
             return LocalDate.parse(data, CTLocalDateTransformer.DATETIME_FORMATTER);
         } catch (final IllegalArgumentException e) {
@@ -19,7 +19,7 @@ class CTLocalDateTransformer implements Transform<LocalDate> {
     }
 
     @Override
-    public String write(final LocalDate data) throws Exception {
+    public String write(final LocalDate data) {
         return CTLocalDateTransformer.DATETIME_FORMATTER.format(data);
     }
 }

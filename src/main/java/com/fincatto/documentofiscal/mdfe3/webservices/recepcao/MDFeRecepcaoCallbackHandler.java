@@ -1,9 +1,8 @@
-
-/**
- * MDFeRecepcaoCallbackHandler.java
- * <p>
- * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST)
+/*
+  MDFeRecepcaoCallbackHandler.java
+  <p>
+  This file was auto-generated from WSDL
+  by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST)
  */
 
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
@@ -14,8 +13,7 @@ package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
  */
 public abstract class MDFeRecepcaoCallbackHandler {
 
-
-    protected Object clientData;
+    protected final Object clientData;
 
     /**
      * User can pass in any object that needs to be accessed once the NonBlocking

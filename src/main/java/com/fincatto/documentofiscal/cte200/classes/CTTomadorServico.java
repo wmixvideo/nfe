@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte200.classes;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum CTTomadorServico {
@@ -12,7 +13,7 @@ public enum CTTomadorServico {
     OUTROS("4", "Outros");
 
     public static final List<CTTomadorServico> TOMADOR_3 = Arrays.asList(CTTomadorServico.REMETENTE, CTTomadorServico.EXPEDIDOR, CTTomadorServico.RECEBEDOR, CTTomadorServico.DESTINATARIO);
-    public static final List<CTTomadorServico> TOMADOR_4 = Arrays.asList(CTTomadorServico.OUTROS);
+    public static final List<CTTomadorServico> TOMADOR_4 = Collections.singletonList(CTTomadorServico.OUTROS);
 
     private final String codigo;
     private final String descricao;

@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFTipoUnidadeTransporteTransformer implements Transform<MDFTipoUnidadeTransporte> {
 
     @Override
-    public MDFTipoUnidadeTransporte read(String value) throws Exception {
+    public MDFTipoUnidadeTransporte read(String value) {
         return MDFTipoUnidadeTransporte.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFTipoUnidadeTransporte value) throws Exception {
+    public String write(MDFTipoUnidadeTransporte value) {
         return value.getCodigo();
     }
 }

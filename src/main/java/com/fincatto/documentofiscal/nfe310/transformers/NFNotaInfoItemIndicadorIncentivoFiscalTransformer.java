@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe310.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemIndicadorIncentivoFiscal;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFNotaInfoItemIndicadorIncentivoFiscalTransformer implements Transform<NFNotaInfoItemIndicadorIncentivoFiscal> {
 
     @Override
-    public NFNotaInfoItemIndicadorIncentivoFiscal read(final String codigo) throws Exception {
+    public NFNotaInfoItemIndicadorIncentivoFiscal read(final String codigo) {
         return NFNotaInfoItemIndicadorIncentivoFiscal.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFNotaInfoItemIndicadorIncentivoFiscal incentivoFiscal) throws Exception {
+    public String write(final NFNotaInfoItemIndicadorIncentivoFiscal incentivoFiscal) {
         return incentivoFiscal.getCodigo();
     }
 }

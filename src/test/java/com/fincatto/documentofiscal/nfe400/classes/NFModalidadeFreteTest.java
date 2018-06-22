@@ -14,4 +14,14 @@ public class NFModalidadeFreteTest {
         Assert.assertEquals("4", NFModalidadeFrete.PROPRIO_POR_CONTA_DO_DESTINATARIO.getCodigo());
         Assert.assertEquals("9", NFModalidadeFrete.SEM_OCORRENCIA_TRANSPORTE.getCodigo());
     }
+    
+    @Test
+    public void deveObterTipoApartirDoSeuCodigo() {
+        Assert.assertEquals(NFModalidadeFrete.CONTRATACAO_POR_CONTA_DO_EMITENTE, NFModalidadeFrete.valueOfCodigo("0"));
+        Assert.assertEquals(NFModalidadeFrete.CONTRATACAO_POR_CONTA_DO_DESTINATARIO_REMETENTE, NFModalidadeFrete.valueOfCodigo("1"));
+        Assert.assertEquals(NFModalidadeFrete.CONTRATACAO_POR_CONTA_DE_TERCEIROS, NFModalidadeFrete.valueOfCodigo("2"));
+        Assert.assertEquals(NFModalidadeFrete.PROPRIO_POR_CONTA_DO_REMETENTE, NFModalidadeFrete.valueOfCodigo("3"));
+        Assert.assertEquals(NFModalidadeFrete.PROPRIO_POR_CONTA_DO_DESTINATARIO, NFModalidadeFrete.valueOfCodigo("4"));
+        Assert.assertEquals(NFModalidadeFrete.SEM_OCORRENCIA_TRANSPORTE, NFModalidadeFrete.valueOfCodigo("9"));
+    }
 }

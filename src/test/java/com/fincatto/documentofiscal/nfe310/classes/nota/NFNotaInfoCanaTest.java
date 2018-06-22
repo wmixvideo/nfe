@@ -1,16 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.util.ArrayList;
-
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCana;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCanaDeducao;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCanaFornecimentoDiario;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class NFNotaInfoCanaTest {
 
@@ -34,7 +29,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirListaFornecimentoDiarioVazio() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         infoCana.setSafra("2014");
         infoCana.setReferencia("06/2013");
         infoCana.setValorFornecimento(new BigDecimal("900"));
@@ -47,9 +42,9 @@ public class NFNotaInfoCanaTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirSafraNulo() throws ParseException {
+    public void naoDevePermitirSafraNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -64,9 +59,9 @@ public class NFNotaInfoCanaTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirReferenciaNulo() throws ParseException {
+    public void naoDevePermitirReferenciaNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -83,7 +78,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirTotalDeducaoNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -99,7 +94,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLiquidoFornecimentoNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -115,7 +110,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirFornecimentoNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -131,7 +126,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQtdTotalAnteriorNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -147,7 +142,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQtdTotalGeralNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);
@@ -164,7 +159,7 @@ public class NFNotaInfoCanaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQtdTotalMesNulo() {
         final NFNotaInfoCana infoCana = new NFNotaInfoCana();
-        infoCana.setDeducoes(new ArrayList<NFNotaInfoCanaDeducao>());
+        infoCana.setDeducoes(new ArrayList<>());
         final ArrayList<NFNotaInfoCanaFornecimentoDiario> infosCanaFornecimentoDario = new ArrayList<>();
         infosCanaFornecimentoDario.add(FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario());
         infoCana.setFornecimentosDiario(infosCanaFornecimentoDario);

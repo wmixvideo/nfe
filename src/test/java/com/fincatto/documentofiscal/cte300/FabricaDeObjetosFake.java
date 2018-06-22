@@ -311,7 +311,7 @@ public class FabricaDeObjetosFake {
         identificacao.setSiglaUfFim("SC");
         identificacao.setRetira(CTRetirada.NAO);
         identificacao.setDetalheRetira("Nao retira");
-        identificacao.setIndIEToma(CTIndicadorTomador.NÃO_CONTRIBUINTE);
+        identificacao.setIndIEToma(CTIndicadorTomador.NAO_CONTRIBUINTE);
         identificacao.setTomadorServico3(FabricaDeObjetosFake.getTomadorServico3());
         identificacao.setDataContingencia(null);
         identificacao.setJustificativa(null);

@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFTipoProprietarioTransformer implements Transform<MDFTipoProprietario> {
 
     @Override
-    public MDFTipoProprietario read(String value) throws Exception {
+    public MDFTipoProprietario read(String value) {
         return MDFTipoProprietario.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFTipoProprietario value) throws Exception {
+    public String write(MDFTipoProprietario value) {
         return value.getCodigo();
     }
 }

@@ -133,14 +133,6 @@ public class BigDecimalParserTest {
         Assert.assertEquals("0.12", BigDecimalParser.tamanho4Com2CasasDecimais(new BigDecimal(".12"), ""));
     }
 
-    @Test
-    public void tamanho1Com4CasasDecimais() {
-        Assert.assertNull(BigDecimalParser.tamanho1Com4CasasDecimais(null, ""));
-        Assert.assertEquals("1.0000", BigDecimalParser.tamanho1Com4CasasDecimais(new BigDecimal("1.0000"), ""));
-        Assert.assertEquals("0.1178", BigDecimalParser.tamanho1Com4CasasDecimais(new BigDecimal(".1178"), ""));
-        Assert.assertEquals("0.1070", BigDecimalParser.tamanho1Com4CasasDecimais(new BigDecimal(".107"), ""));
-    }
-
     @Test(expected = NumberFormatException.class)
     public void naoDevePermitirExtrapolacaoDeInteiros() {
         BigDecimalParser.tamanho15Com2CasasDecimais(new BigDecimal("99999999999999.9"), "");

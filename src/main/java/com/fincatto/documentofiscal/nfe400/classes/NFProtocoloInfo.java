@@ -35,7 +35,7 @@ public class NFProtocoloInfo extends DFBase {
     @Element(name = "cStat", required = true)
     private String status;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo", required = false)
     private String motivo;
 
     public void setAmbiente(final DFAmbiente ambiente) {
@@ -82,7 +82,7 @@ public class NFProtocoloInfo extends DFBase {
         return this.chave;
     }
 
-    public LocalDateTime getDataRecebimento() throws Exception {
+    public LocalDateTime getDataRecebimento() {
         try {
             return LocalDateTime.parse(this.dataRecebimento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {

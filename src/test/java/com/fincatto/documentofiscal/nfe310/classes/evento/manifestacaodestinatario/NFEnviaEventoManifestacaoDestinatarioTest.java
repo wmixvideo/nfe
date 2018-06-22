@@ -1,9 +1,6 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -72,7 +69,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirLoteNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setEvento(new ArrayList<NFEventoManifestacaoDestinatario>());
+        eventoManifestacaoDestinatario.setEvento(new ArrayList<>());
         eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
         eventoManifestacaoDestinatario.toString();
     }
@@ -80,7 +77,7 @@ public class NFEnviaEventoManifestacaoDestinatarioTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirVersaoNulo() {
         final NFEnviaEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEnviaEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setEvento(new ArrayList<NFEventoManifestacaoDestinatario>());
+        eventoManifestacaoDestinatario.setEvento(new ArrayList<>());
         eventoManifestacaoDestinatario.setIdLote("1");
         eventoManifestacaoDestinatario.toString();
     }

@@ -9,12 +9,12 @@ import org.simpleframework.xml.transform.Transform;
 public class MDFTipoEmissaoTransformer implements Transform<MDFTipoEmissao> {
 
     @Override
-    public MDFTipoEmissao read(String value) throws Exception {
+    public MDFTipoEmissao read(String value) {
         return MDFTipoEmissao.valueOfCodigo(value);
     }
 
     @Override
-    public String write(MDFTipoEmissao value) throws Exception {
+    public String write(MDFTipoEmissao value) {
         return value.getCodigo();
     }
 }
