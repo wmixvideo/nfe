@@ -35,7 +35,7 @@ public class NFProtocoloInfo extends DFBase {
     @Element(name = "cStat", required = true)
     private String status;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo", required = false)
     private String motivo;
 
     public void setAmbiente(final DFAmbiente ambiente) {
