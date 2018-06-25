@@ -35,7 +35,7 @@ public class NFProtocoloInfo extends DFBase {
     @Element(name = "cStat", required = true)
     private String status;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo", required = false)
     private String motivo;
 
     public void setAmbiente(final DFAmbiente ambiente) {
@@ -104,6 +104,8 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
+    	if (this.motivo==null)//quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+    		return NFRetornoStatus.valueOfCodigo(this.status).getMotivo();
         return this.motivo;
     }
 
