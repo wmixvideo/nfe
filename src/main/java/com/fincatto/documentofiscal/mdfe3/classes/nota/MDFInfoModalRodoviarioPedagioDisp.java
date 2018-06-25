@@ -1,48 +1,51 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.simpleframework.xml.Element;
-
-import java.math.BigDecimal;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
- *
- * <p>Informações dos dispositivos do Vale Pedágio.</p>
- *
+ * <p>
+ * Informações dos dispositivos do Vale Pedágio.
+ * </p>
  */
 public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
+    private static final long serialVersionUID = 2437667548944630950L;
 
     /**
-     * <h1> CNPJ da empresa fornecedora do Vale-Pedágio.</h1>
+     * <h1>CNPJ da empresa fornecedora do Vale-Pedágio.</h1>
      */
     @Element(name = "CNPJForn")
     private String cnpjFornecedora;
 
     /**
-     * <h1> CNPJ do responsável pelo pagamento do Vale-Pedágio.</h1>
+     * <h1>CNPJ do responsável pelo pagamento do Vale-Pedágio.</h1>
      */
     @Element(name = "CNPJPg", required = false)
     private String cnpjPagadora;
 
     /**
-     * <h1> CPF do responsável pelo pagamento do Vale-Pedágio</h1>
+     * <h1>CPF do responsável pelo pagamento do Vale-Pedágio</h1>
      */
     @Element(name = "CPFPg")
     protected String cpfPagadora;
 
     /**
      * <h1>Número do comprovante de compra.</h1>
-     * <p>  Número de ordem do comprovante de compra do Vale-Pedágio
-     * fornecido para cada veículo ou combinação veicular, por viagem.</p>
+     * <p>
+     * Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem.
+     * </p>
      */
     @Element(name = "nCompra")
     private String numeroComprovante;
 
     /**
-     *<h1> Valor do Vale-Pedagio</h1>
+     * <h1>Valor do Vale-Pedagio</h1>
      */
     @Element(name = "vValePed")
     private String valor;
@@ -86,10 +89,10 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
     }
 
     public String getCpfPagadora() {
-        return cpfPagadora;
+        return this.cpfPagadora;
     }
 
-    public void setCpfPagadora(String cpfPagadora) {
+    public void setCpfPagadora(final String cpfPagadora) {
         if (this.cnpjPagadora != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado em PedagioDisp ");
         }
