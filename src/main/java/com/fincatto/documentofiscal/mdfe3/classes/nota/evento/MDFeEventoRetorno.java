@@ -1,14 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class MDFeEventoRetorno extends DFBase {
+    private static final long serialVersionUID = 8963520421150918484L;
 
     @Attribute(name = "versao")
     private String versao;
@@ -28,10 +30,10 @@ public class MDFeEventoRetorno extends DFBase {
     }
 
     public MDFeInfoEventoRetorno getInfoEventoRetorno() {
-        return infoEventoRetorno;
+        return this.infoEventoRetorno;
     }
 
-    public void setInfoEventoRetorno(MDFeInfoEventoRetorno infoEventoRetorno) {
+    public void setInfoEventoRetorno(final MDFeInfoEventoRetorno infoEventoRetorno) {
         this.infoEventoRetorno = infoEventoRetorno;
     }
 

@@ -1,11 +1,13 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoProprietario;
-import org.simpleframework.xml.Element;
 
 public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
+    private static final long serialVersionUID = 6851210038399361723L;
 
     @Element(name = "CPF", required = false)
     private String cpf;
@@ -27,6 +29,5 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
 
     @Element(name = "tpProp", required = false)
     private MDFTipoProprietario tipoProprietario;
-
 
 }

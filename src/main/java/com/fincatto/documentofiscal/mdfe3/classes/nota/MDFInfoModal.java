@@ -1,10 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
+
+import com.fincatto.documentofiscal.DFBase;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -12,6 +13,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "infModal")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfoModal extends DFBase {
+    private static final long serialVersionUID = -4961429390741556263L;
 
     @Attribute(name = "versaoModal")
     private String versao;
@@ -19,30 +21,29 @@ public class MDFInfoModal extends DFBase {
     @Element(name = "rodo", required = false)
     private MDFInfoModalRodoviario rodoviario;
 
-   //TODO terminar as modalidades abaixo
-//    @Element(name = "aereo", required = false)
-//    private MDFInfoModalModalAereo aereo;
+    // TODO terminar as modalidades abaixo
+    // @Element(name = "aereo", required = false)
+    // private MDFInfoModalModalAereo aereo;
 
-//    @Element(name = "aquav", required = false)
-//    private MDFInfoModalModalAquaviario aquaviario;
+    // @Element(name = "aquav", required = false)
+    // private MDFInfoModalModalAquaviario aquaviario;
 
-//    @Element(name = "ferrov", required = false)
-//    private MDFInfoModalModalFerroviario ferroviario;
-
+    // @Element(name = "ferrov", required = false)
+    // private MDFInfoModalModalFerroviario ferroviario;
 
     public String getVersao() {
-        return versao;
+        return this.versao;
     }
 
-    public void setVersao(String versao) {
+    public void setVersao(final String versao) {
         this.versao = versao;
     }
 
     public MDFInfoModalRodoviario getRodoviario() {
-        return rodoviario;
+        return this.rodoviario;
     }
 
-    public void setRodoviario(MDFInfoModalRodoviario rodoviario) {
+    public void setRodoviario(final MDFInfoModalRodoviario rodoviario) {
         this.rodoviario = rodoviario;
     }
 }

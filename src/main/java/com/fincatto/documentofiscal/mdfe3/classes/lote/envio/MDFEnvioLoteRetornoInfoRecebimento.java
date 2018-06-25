@@ -1,22 +1,22 @@
 package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.math.BigInteger;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigInteger;
+import com.fincatto.documentofiscal.DFBase;
 
 /**
  * Created by Eldevan Nery Junior on 14/11/17.
- *
  * @info Dados do Recibo do Lote.
- *
  */
 
 @Root(name = "infRec")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFEnvioLoteRetornoInfoRecebimento extends DFBase {
+    private static final long serialVersionUID = 3335333639059116239L;
 
     @Element(name = "nRec", required = false)
     private String numeroRecibo;

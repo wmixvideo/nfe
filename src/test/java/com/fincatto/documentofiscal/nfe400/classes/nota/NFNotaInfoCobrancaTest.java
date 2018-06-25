@@ -12,26 +12,26 @@ public class NFNotaInfoCobrancaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDuplicatasTamanhoInvalido() {
-        final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
+        final List<NFNotaInfoParcela> duplicatas = new ArrayList<>();
         for (int i = 0; i < 121; i++) {
             duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
-        new NFNotaInfoCobranca().setDuplicatas(duplicatas);
+        new NFNotaInfoCobranca().setParcelas(duplicatas);
     }
 
     @Test
     public void devePermitirDuplicatasTamanhoValido() {
-        final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
+        final List<NFNotaInfoParcela> duplicatas = new ArrayList<>();
         for (int i = 0; i < 120; i++) {
             duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
-        new NFNotaInfoCobranca().setDuplicatas(duplicatas);
+        new NFNotaInfoCobranca().setParcelas(duplicatas);
     }
 
     @Test
     public void devePermitirFaturaNulo() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setDuplicatas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
+        cobranca.setParcelas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
         cobranca.toString();
     }
 
