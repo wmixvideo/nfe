@@ -1,14 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 
-import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+
+import com.fincatto.documentofiscal.DFBase;
 
 /**
  * Created by Eldevan Nery Junior on 22/11/17.
  */
 @Root(name = "infMDFe")
-public class MDFeConsultaNaoEncerradosRetornoInfMDFe extends DFBase{
+public class MDFeConsultaNaoEncerradosRetornoInfMDFe extends DFBase {
+    private static final long serialVersionUID = 1971335524222923251L;
 
     /**
      * Chaves de acesso do MDF-e não encerrado
@@ -23,18 +25,18 @@ public class MDFeConsultaNaoEncerradosRetornoInfMDFe extends DFBase{
     private String numeroProtocolo;
 
     public String getChave() {
-        return chave;
+        return this.chave;
     }
 
-    public void setChave(String chave) {
+    public void setChave(final String chave) {
         this.chave = chave;
     }
 
     public String getNumeroProtocolo() {
-        return numeroProtocolo;
+        return this.numeroProtocolo;
     }
 
-    public void setNumeroProtocolo(String numeroProtocolo) {
+    public void setNumeroProtocolo(final String numeroProtocolo) {
         this.numeroProtocolo = numeroProtocolo;
     }
 }

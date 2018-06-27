@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-public enum NFFormaPagamentoMoeda {
+public enum NFMeioPagamento {
 
     DINHEIRO("01", "Dinheiro"),
     CHEQUE("02", "Cheque"),
@@ -19,7 +19,7 @@ public enum NFFormaPagamentoMoeda {
     private final String codigo;
     private final String descricao;
 
-    NFFormaPagamentoMoeda(final String codigo, final String descricao) {
+    NFMeioPagamento(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -28,8 +28,8 @@ public enum NFFormaPagamentoMoeda {
         return this.codigo;
     }
 
-    public static NFFormaPagamentoMoeda valueOfCodigo(final String codigo) {
-        for (final NFFormaPagamentoMoeda formaPagamentoMoeda : NFFormaPagamentoMoeda.values()) {
+    public static NFMeioPagamento valueOfCodigo(final String codigo) {
+        for (final NFMeioPagamento formaPagamentoMoeda : NFMeioPagamento.values()) {
             if (formaPagamentoMoeda.getCodigo().equals(codigo)) {
                 return formaPagamentoMoeda;
             }
