@@ -515,6 +515,18 @@ public enum NFRetornoStatus {
     CODIGO_879(879, "Rejei\u00E7\u00E3o: Informado item “Produzido em Escala N\u00E3O Relevante” e n\u00E3o informado CNPJ do Fabricante [nItem:nnn]"),
     CODIGO_880(880, "Rejei\u00E7\u00E3o: Percentual de FCP igual a zero [nItem: nnn]"),
     CODIGO_881(881, "Rejei\u00E7\u00E3o: Percentual de FCP ST igual a zero [nItem: nnn]"),
+    CODIGO_898(898, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que Data de Autoriza\u00E7\u00E3o [nOcor:999]"),
+    CODIGO_899(899, "Rejei\u00E7\u00E3o: Informado incorretamente o campo meio de pagamento"),
+    CODIGO_900(900, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que Data de Emiss\u00E3o [nOcor:999]"),
+    CODIGO_901(901, "Rejei\u00E7\u00E3o: Valor do Desconto da Fatura maior que o Valor Original da Fatura"),
+    CODIGO_902(902, "Rejei\u00E7\u00E3o: Valor Liquido da Fatura difere do Valor Original menos o Valor do Desconto"),
+    CODIGO_903(903, "Rejei\u00E7\u00E3o: Vers\u00E3o informada no QR-Code (100) n\u00E3o \u00E9 mais v\u00E1lida para a data de emiss\u00E3o"),
+    CODIGO_904(904, "Rejei\u00E7\u00E3o: Informado indevidamente campo valor de pagamento"),
+    CODIGO_905(905, "Rejei\u00E7\u00E3o: Campos do grupo Fatura n\u00E3o informados"),
+    CODIGO_906(906, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_907(907, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_908(908, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_909(909, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
