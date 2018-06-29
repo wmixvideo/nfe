@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum NFRetornoStatus {
 
-	CODIGO_100(100, "Autorizado o uso da NF-e"),
+    CODIGO_100(100, "Autorizado o uso da NF-e"),
     CODIGO_101(101, "Cancelamento de NF-e homologado"),
     CODIGO_102(102, "Inutiliza\u00e7\u00e3o de n\u00famero homologado"),
     CODIGO_103(103, "Lote recebido com sucesso"),
@@ -487,83 +487,96 @@ public enum NFRetornoStatus {
     CODIGO_806(806, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com ICMS-ST sem informa\u00E7\u00E3o do CEST"),
     CODIGO_807(807, "Rejei\u00E7\u00E3o: NFC-e com grupo de ICMS para a UF do destinat\u00E1rio"),
     CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comercio Exterior"),
-    CODIGO_854(854, "Rejei\u00E7\u00E3o: Unidade Tribut\u00e1vel incompat\u00edvel com produto informado [nItem:nnn]"),
-    CODIGO_855(855, "Rejei\u00E7\u00E3o:  Somat\u00f3rio percentuais de GLP derivado do petr\u00f3leo, GLGNn e GLGNi diferente de 1 [nItem:nnn]"),
-    CODIGO_856(856, "Rejei\u00E7\u00E3o:  Campo valor de partida n\u00E3o preenchido para produto GLP [nItem: nnn]"),
+    CODIGO_850(850, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que a Data de vencimento da parcela anterior [nOcor:999]"),
+    CODIGO_851(851, "Rejei\u00E7\u00E3o: Soma do valor das parcelas difere do Valor L\u00EDquido da Fatura"),
+    CODIGO_852(852, "Rejei\u00E7\u00E3o: N\u00FAmero da parcela inv\u00E1lido ou n\u00E3o informado [nOcor:999]"),
+    CODIGO_854(854, "Rejei\u00E7\u00E3o: Unidade Tribut\u00E1vel incompat\u00EDvel com produto informado [nItem:nnn]"),
+    CODIGO_855(855, "Rejei\u00E7\u00E3o: Somat\u00F3rio percentuais de GLP derivado do petr\u00F3leo, GLGNn e GLGNi diferente de 100 [nItem:nnn]"),
+    CODIGO_856(856, "Rejei\u00E7\u00E3o: Campo valor de partida n\u00E3o preenchido para produto GLP [nItem: nnn]"),
     CODIGO_857(857, "Rejei\u00E7\u00E3o: Informado Duplicata Mercantil como Forma de Pagamento"),
     CODIGO_858(858, "Rejei\u00E7\u00E3o: Grupo de Tributa\u00E7\u00E3o informado indevidamente [nItem: nnn]"),
-    CODIGO_859(859, "Rejei\u00E7\u00E3o: Total do FCP retido anteriormente por Substitui\u00E7\u00E3o Tribut\u00e1ria difere do somat\u00f3rio dos itens"),
-    CODIGO_860(860, "Rejei\u00E7\u00E3o: Valor do FCP informado difere de base de c\u00e1lculo*al\u00edquota [nItem:nnn]"),
-    CODIGO_861(861, "Rejei\u00E7\u00E3o: Total do FCP difere do somat\u00f3rio dos itens"),
-    CODIGO_862(862, "Rejei\u00E7\u00E3o: Total do FCP ST difere do somat\u00f3rio dos itens"),
-    CODIGO_863(863, "Rejei\u00E7\u00E3o: Total do IPI devolvido difere do somat\u00f3rio dos itens"),
+    CODIGO_859(859, "Rejei\u00E7\u00E3o: Total do FCP retido anteriormente por Substitui\u00E7\u00E3o Tribut\u00E1ria difere do somat\u00F3rio dos itens"),
+    CODIGO_860(860, "Rejei\u00E7\u00E3o: Valor do FCP informado difere de base de c\u00E1lculo*al\u00EDquota [nItem:nnn]"),
+    CODIGO_861(861, "Rejei\u00E7\u00E3o: Total do FCP difere do somat\u00F3rio dos itens"),
+    CODIGO_862(862, "Rejei\u00E7\u00E3o: Total do FCP ST difere do somat\u00F3rio dos itens"),
+    CODIGO_863(863, "Rejei\u00E7\u00E3o: Total do IPI devolvido difere do somat\u00F3rio dos itens"),
     CODIGO_864(864, "Rejei\u00E7\u00E3o: NF-e com indicativo de Opera\u00E7\u00E3o presencial, fora do estabelecimento e n\u00E3o informada NF referenciada"),
     CODIGO_865(865, "Rejei\u00E7\u00E3o: Total dos pagamentos menor que o total da nota"),
-    CODIGO_866(866, "Rejei\u00E7\u00E3o: Aus\u00eancia de troco quando o valor dos pagamentos informados for maior que o total da nota"),
-    CODIGO_867(867, "Rejei\u00E7\u00E3o: Grupo duplicata informado e forma de pagamento n\u00E3o e Duplicata Mercantil."),
+    CODIGO_866(866, "Rejei\u00E7\u00E3o: Aus\u00EAncia de troco quando o valor dos pagamentos informados for maior que o total da nota"),
     CODIGO_868(868, "Rejei\u00E7\u00E3o: Grupos Veiculo Transporte e Reboque n\u00E3o devem ser informados"),
     CODIGO_869(869, "Rejei\u00E7\u00E3o: Valor do troco incorreto"),
-    CODIGO_870(870, "Rejei\u00E7\u00E3o: Data de validade incompat\u00edvel com data de fabrica\u00E7\u00E3o [nItem:nnn]"),
-    CODIGO_871(871, "Rejei\u00E7\u00E3o: O campo Forma de Pagamento deve ser preenchido com a op\u00E7\u00E3o “Sem Pagamento”"),
-    CODIGO_872(872, "Rejei\u00E7\u00E3o: Informado Duplicata Mercantil como Forma de Pagamento e n\u00E3o preenchido o Grupo Duplicata"),
-    CODIGO_873(873, "Rejei\u00E7\u00E3o: Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com medicamentos n\u00E3o informado os campos de rastreabilidade [nItem:nnn]"),
-    CODIGO_874(874, "Rejei\u00E7\u00E3o: Percentual de FCP inv\u00e1lido [nItem:nnn]"),
-    CODIGO_875(875, "Rejei\u00E7\u00E3o: Percentual de FCP ST inv\u00e1lido [nItem:nnn]"),
-    CODIGO_876(876, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o interestadual para Consumidor Final e valor do FCP informado em campo diferente de vFCPUFDest id:NA13) [nItem:nnn]"),
+    CODIGO_870(870, "Rejei\u00E7\u00E3o: Data de validade incompat\u00EDvel com data de fabrica\u00E7\u00E3o [nItem:nnn]"),
+    CODIGO_871(871, "Rejei\u00E7\u00E3o: O campo Forma de Pagamento deve ser preenchido com a op\u00E7\u00E3o \u201CSem Pagamento\u201D"),
+    CODIGO_873(873, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com medicamentos n\u00E3o informado os campos de rastreabilidade [nItem:nnn]"),
+    CODIGO_874(874, "Rejei\u00E7\u00E3o: Percentual de FCP inv\u00E1lido [nItem:nnn]"),
+    CODIGO_875(875, "Rejei\u00E7\u00E3o: Percentual de FCP ST inv\u00E1lido [nItem:nnn]"),
+    CODIGO_876(876, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o interestadual para Consumidor Final e valor do FCP informado em campo diferente de vFCPUFDest(id:NA13) [nItem:nnn]"),
     CODIGO_877(877, "Rejei\u00E7\u00E3o: Data de fabrica\u00E7\u00E3o maior que a data de processamento [nItem:nnn]"),
     CODIGO_878(878, "Rejei\u00E7\u00E3o: Endere\u00E7o do site da UF da Consulta por chave de acesso diverge do previsto"),
-    CODIGO_879(879, "Rejei\u00E7\u00E3o: Informado item “Produzido em Escala N\u00E3O Relevante” e n\u00E3o informado CNPJ do Fabricante [nItem:nnn]"),
+    CODIGO_879(879, "Rejei\u00E7\u00E3o: Informado item \u201CProduzido em Escala N\u00C3O Relevante\u201D e n\u00E3o informado CNPJ do Fabricante [nItem:nnn]"),
     CODIGO_880(880, "Rejei\u00E7\u00E3o: Percentual de FCP igual a zero [nItem: nnn]"),
     CODIGO_881(881, "Rejei\u00E7\u00E3o: Percentual de FCP ST igual a zero [nItem: nnn]"),
+    CODIGO_898(898, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que Data de Autoriza\u00E7\u00E3o [nOcor:999]"),
+    CODIGO_899(899, "Rejei\u00E7\u00E3o: Informado incorretamente o campo meio de pagamento"),
+    CODIGO_900(900, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que Data de Emiss\u00E3o [nOcor:999]"),
+    CODIGO_901(901, "Rejei\u00E7\u00E3o: Valor do Desconto da Fatura maior que o Valor Original da Fatura"),
+    CODIGO_902(902, "Rejei\u00E7\u00E3o: Valor Liquido da Fatura difere do Valor Original menos o Valor do Desconto"),
+    CODIGO_903(903, "Rejei\u00E7\u00E3o: Vers\u00E3o informada no QR-Code (100) n\u00E3o \u00E9 mais v\u00E1lida para a data de emiss\u00E3o"),
+    CODIGO_904(904, "Rejei\u00E7\u00E3o: Informado indevidamente campo valor de pagamento"),
+    CODIGO_905(905, "Rejei\u00E7\u00E3o: Campos do grupo Fatura n\u00E3o informados"),
+    CODIGO_906(906, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_907(907, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_908(908, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
+    CODIGO_909(909, "Rejei\u00E7\u00E3o: N\u00E3o informado campo obrigat\u00F3rio quando CST = 60 ou CSOSN=500 e opera\u00E7\u00E3o com consumidor final"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
-	private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302,CODIGO_303);
-	private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_150);
+    private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
+    private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_150);
 
-	private final int codigo;
-	private final String motivo;
+    private final int codigo;
+    private final String motivo;
 
-	NFRetornoStatus(final int codigo, final String motivo) {
-		this.codigo = codigo;
-		this.motivo = motivo;
-	}
+    NFRetornoStatus(final int codigo, final String motivo) {
+        this.codigo = codigo;
+        this.motivo = motivo;
+    }
 
-	public static NFRetornoStatus valueOfCodigo(final String codigo) {
-		return NFRetornoStatus.valueOfCodigo(Integer.parseInt(codigo));
-	}
+    public static NFRetornoStatus valueOfCodigo(final String codigo) {
+        return NFRetornoStatus.valueOfCodigo(Integer.parseInt(codigo));
+    }
 
-	public static NFRetornoStatus valueOfCodigo(final int codigo) {
-		for (final NFRetornoStatus statusRetorno : NFRetornoStatus.values()) {
-			if (statusRetorno.getCodigo() == codigo) {
-				return statusRetorno;
-			}
-		}
-		throw new IllegalArgumentException(String.format("Status retorno %s n\u00e3o mapeado", codigo));
-	}
+    public static NFRetornoStatus valueOfCodigo(final int codigo) {
+        for (final NFRetornoStatus statusRetorno : NFRetornoStatus.values()) {
+            if (statusRetorno.getCodigo() == codigo) {
+                return statusRetorno;
+            }
+        }
+        throw new IllegalArgumentException(String.format("Status retorno %s n\u00e3o mapeado", codigo));
+    }
 
-	public boolean isAutorizado() {
-		return NFRetornoStatus.AUTORIZADOS.contains(this);
-	}
+    public boolean isAutorizado() {
+        return NFRetornoStatus.AUTORIZADOS.contains(this);
+    }
 
-	public boolean isDenegado() {
-		return NFRetornoStatus.DENEGADOS.contains(this);
-	}
+    public boolean isDenegado() {
+        return NFRetornoStatus.DENEGADOS.contains(this);
+    }
 
-	public boolean isRejeitado() {
-		return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this)
-				&& !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
-	}
+    public boolean isRejeitado() {
+        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this)
+                && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+    }
 
-	public boolean isDuplicado() {
-		return CODIGO_539.getCodigo() == this.codigo;
-	}
+    public boolean isDuplicado() {
+        return CODIGO_539.getCodigo() == this.codigo;
+    }
 
-	public int getCodigo() {
-		return this.codigo;
-	}
+    public int getCodigo() {
+        return this.codigo;
+    }
 
-	public String getMotivo() {
-		return this.motivo;
-	}
+    public String getMotivo() {
+        return this.motivo;
+    }
 }
