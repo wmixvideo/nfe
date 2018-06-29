@@ -1,12 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoCartao extends DFBase {
     private static final long serialVersionUID = 8908558834476720280L;
@@ -22,9 +18,6 @@ public class NFNotaInfoCartao extends DFBase {
 
     @Element(name = "cAut", required = false)
     private String numeroAutorizacaoOperacaoCartao;
-
-    @Element(name = "vTroco", required = false)
-    private String valorTroco;
 
     public void setCnpj(final String cnpj) {
         StringValidador.cnpj(cnpj);
@@ -60,11 +53,4 @@ public class NFNotaInfoCartao extends DFBase {
         this.tipoIntegracao = tipoIntegracao;
     }
 
-    public String getValorTroco() {
-        return this.valorTroco;
-    }
-
-    public void setValorTroco(final BigDecimal valorTroco) {
-        this.valorTroco = BigDecimalParser.tamanho15Com2CasasDecimais(valorTroco, "Valor troco cartao");
-    }
 }
