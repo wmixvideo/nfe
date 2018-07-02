@@ -93,7 +93,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete.class, new com.fincatto.documentofiscal.nfe400.transformers.NFModalidadeFreteTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFRegimeTributario.class, new com.fincatto.documentofiscal.nfe400.transformers.NFRegimeTributarioTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoVeiculoCor.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoVeiculoCorTransformer());
-        super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFFormaPagamentoMoeda.class, new com.fincatto.documentofiscal.nfe400.transformers.NFFormaPagamentoMoedaTransformer());
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFMeioPagamento.class, new com.fincatto.documentofiscal.nfe400.transformers.NFMeioPagamentoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento.class, new com.fincatto.documentofiscal.nfe400.transformers.NFIndicadorFormaPagamentoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoTipoVeiculo.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoTipoVeiculoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.cadastro.NFSituacaoContribuinte.class, new com.fincatto.documentofiscal.nfe400.transformers.NFSituacaoContribuinteTransformer());

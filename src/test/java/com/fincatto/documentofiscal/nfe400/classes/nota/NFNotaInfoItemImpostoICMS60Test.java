@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.Element;
 
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS60Test {
 
@@ -48,11 +49,11 @@ public class NFNotaInfoItemImpostoICMS60Test {
     public void devePermitirValorBCICMSSTRetidoRequiredFalse() {
         boolean isRequired = false;
         try {
-			Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorBCICMSSTRetido");
-			isRequired = campo.getDeclaredAnnotation(Element.class).required();
+            final Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorBCICMSSTRetido");
+            isRequired = campo.getDeclaredAnnotation(Element.class).required();
         } catch (NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
         Assert.assertFalse(isRequired);
     }
 
@@ -60,21 +61,21 @@ public class NFNotaInfoItemImpostoICMS60Test {
     public void devePermitirValorICMSSTRetidoRequiredFalse() {
         boolean isRequired = false;
         try {
-			Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorICMSSTRetido");
-			isRequired = campo.getDeclaredAnnotation(Element.class).required();
+            final Field campo = NFNotaInfoItemImpostoICMS60.class.getDeclaredField("valorICMSSTRetido");
+            isRequired = campo.getDeclaredAnnotation(Element.class).required();
         } catch (NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
         Assert.assertFalse(isRequired);
     }
 
-     @Test
+    @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMS60 icms60 = new NFNotaInfoItemImpostoICMS60();
         icms60.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms60.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
         icms60.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
-        icms60.setPercentualAliquotaICMSST(new BigDecimal("100.0000"));
+        icms60.setPercentualAliquotaICMSSTConsumidorFinal(new BigDecimal("100.0000"));
         icms60.setValorICMSSTRetido(new BigDecimal("999999999999.99"));
         icms60.setValorBCFundoCombatePobrezaRetidoST(new BigDecimal("999999999999.99"));
         icms60.setPercentualFundoCombatePobrezaRetidoST(new BigDecimal("100.0000"));

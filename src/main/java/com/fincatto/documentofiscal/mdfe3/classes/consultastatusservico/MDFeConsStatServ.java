@@ -1,21 +1,20 @@
 package com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+
 /**
- * Created by Eldevan Nery Junior on 10/11/17.
- *
- * Pedido de Consulta do Status do Serviço MDF-e
- *
+ * Created by Eldevan Nery Junior on 10/11/17. Pedido de Consulta do Status do Serviço MDF-e
  */
 @Root(name = "consStatServMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsStatServ extends DFBase {
+    private static final long serialVersionUID = 7378228337172209671L;
 
     @Element(name = "tpAmb", required = false)
     private DFAmbiente ambiente;

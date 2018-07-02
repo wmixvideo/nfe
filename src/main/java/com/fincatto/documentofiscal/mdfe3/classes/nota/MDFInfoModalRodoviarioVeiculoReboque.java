@@ -1,45 +1,51 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
-public class MDFInfoModalRodoviarioVeiculoReboque extends MDFInfoModalRodoviarioVeiculo {
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
+public class MDFInfoModalRodoviarioVeiculoReboque extends MDFInfoModalRodoviarioVeiculo {
+    private static final long serialVersionUID = -2787982058485353668L;
     @Element(name = "capKG")
     private String capacidadeKG;
 
-    public void setCodigoInterno(String codigoInterno) {
-        super.codigoInterno = StringValidador.validador(codigoInterno,
-                "Codigo interno Veiculo Reboque", 10, false, false);
+    @Override
+    public void setCodigoInterno(final String codigoInterno) {
+        super.codigoInterno = StringValidador.validador(codigoInterno, "Codigo interno Veiculo Reboque", 10, false, false);
     }
 
-    public void setPlaca(String placa) {
+    @Override
+    public void setPlaca(final String placa) {
         StringValidador.placaDeVeiculo(placa, "Placa do reboque");
         this.placa = placa;
     }
 
-    public void setRenavam(String renavam) {
-        this.renavam = StringValidador.validaIntervalo(renavam, 9, 11 ,"Renavam do reboque");
+    @Override
+    public void setRenavam(final String renavam) {
+        this.renavam = StringValidador.validaIntervalo(renavam, 9, 11, "Renavam do reboque");
     }
 
-    public void setTara(String tara) {
-        this.tara = StringValidador.capacidadeNDigitos(tara, "Tara em reboque",5);
+    @Override
+    public void setTara(final String tara) {
+        this.tara = StringValidador.capacidadeNDigitos(tara, "Tara em reboque", 5);
     }
 
     public String getCapacidadeKG() {
-        return capacidadeKG;
+        return this.capacidadeKG;
     }
 
-    public void setCapacidadeKG(String capacidadeKG) {
-        this.capacidadeKG = StringValidador.capacidadeNDigitos(capacidadeKG, "Capacidade em KG reboque",5);
+    public void setCapacidadeKG(final String capacidadeKG) {
+        this.capacidadeKG = StringValidador.capacidadeNDigitos(capacidadeKG, "Capacidade em KG reboque", 5);
     }
 
+    @Override
     public String getCapacidadeM3() {
-        return capacidadeM3;
+        return this.capacidadeM3;
     }
 
-    public void setCapacidadeM3(String capacidadeM3) {
-        this.capacidadeM3 = StringValidador.capacidadeNDigitos(capacidadeM3, "Capacidade em M3 reboque",2);
+    @Override
+    public void setCapacidadeM3(final String capacidadeM3) {
+        this.capacidadeM3 = StringValidador.capacidadeNDigitos(capacidadeM3, "Capacidade em M3 reboque", 2);
     }
 
 }

@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
+
 /**
- * Created by Eldevan Nery Junior on 06/11/17.
- *
- * Informações dos Municípios de Carregamento.
- *
+ * Created by Eldevan Nery Junior on 06/11/17. Informações dos Municípios de Carregamento.
  */
-public class MDFInfoIdentificacaoMunicipioCarregamento extends DFBase{
+public class MDFInfoIdentificacaoMunicipioCarregamento extends DFBase {
+    private static final long serialVersionUID = 7674411655418687165L;
 
     /**
      * Código do Município de Carregamento
@@ -25,18 +24,18 @@ public class MDFInfoIdentificacaoMunicipioCarregamento extends DFBase{
     private String nomeMunicipioCarregamento;
 
     public String getCodigoMunicipioCarregamento() {
-        return codigoMunicipioCarregamento;
+        return this.codigoMunicipioCarregamento;
     }
 
-    public void setCodigoMunicipioCarregamento(String codigoMunicipioCarregamento) {
+    public void setCodigoMunicipioCarregamento(final String codigoMunicipioCarregamento) {
         this.codigoMunicipioCarregamento = StringValidador.validador(codigoMunicipioCarregamento, "Codigo municipio carregamento", 7, true, true);
     }
 
     public String getNomeMunicipioCarregamento() {
-        return nomeMunicipioCarregamento;
+        return this.nomeMunicipioCarregamento;
     }
 
-    public void setNomeMunicipioCarregamento(String nomeMunicipioCarregamento) {
+    public void setNomeMunicipioCarregamento(final String nomeMunicipioCarregamento) {
         StringValidador.tamanho2ate60(nomeMunicipioCarregamento, "Nome municipio carregamento");
         this.nomeMunicipioCarregamento = nomeMunicipioCarregamento;
     }
