@@ -1,18 +1,20 @@
 package com.fincatto.documentofiscal.mdfe3.classes;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import java.text.SimpleDateFormat;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
 
 /**
  * @Author Eldevan Nery Junior on 26/05/17.
  */
 public class MDFProtocoloInfo extends DFBase {
+    private static final long serialVersionUID = 256148266644230771L;
 
     @Attribute(name = "Id", required = false)
     private String identificador;
@@ -85,11 +87,11 @@ public class MDFProtocoloInfo extends DFBase {
         return this.chave;
     }
 
-    public LocalDateTime getDataRecebimento() throws Exception {
+    public LocalDateTime getDataRecebimento() {
         try {
-            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
+            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {
-            return LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataRecebimento));
+            return LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataRecebimento)).atZone(ZoneId.systemDefault()).toLocalDateTime();
         }
     }
 

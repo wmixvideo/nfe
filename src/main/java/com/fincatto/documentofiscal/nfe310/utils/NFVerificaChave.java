@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe310.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 /**
  *
  * @Author Eldevan Nery Junior on 01/06/17.
@@ -50,13 +52,13 @@ public class NFVerificaChave {
         if(StringUtils.length(this.chave)<44){
             return false;
         }
-        return getChaveAcessoDV()==calculaDV();
+        return Objects.equals(getChaveAcessoDV(), calculaDV());
     }
 
     /**
-     * Método estático para verificar se uma chave de acesso é válida ou não.
-     * @param chave
-     * @return
+     * Metodo estatico para verificar se uma chave de acesso eh valida.
+     * @param chave Chave a ser verificada.
+     * @return Se chave valida ou nao.
      */
     public static boolean isChaveValida(String chave){
         NFVerificaChave nfVerificaChave = new NFVerificaChave(chave);

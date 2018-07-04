@@ -28,7 +28,7 @@ public final class XMLValidador {
     }
 
     private static boolean valida400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_009_V4_2017_002/%s", xsd));
+        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_009_V4_2016_002_v160b/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -69,5 +69,18 @@ public final class XMLValidador {
 
     public static boolean validaNotaCte(final String arquivoXML) throws Exception {
         return XMLValidador.validaCTe(arquivoXML, "cte_v3.00.xsd");
+    }
+
+
+    private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_NFeDistDFe_102/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+
+    public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
+        return XMLValidador.validaDfe(arquivoXML, "distDFeInt_v1.01.xsd");
     }
 }

@@ -6,8 +6,6 @@ import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.NodeMap;
 import org.simpleframework.xml.stream.Position;
 
-import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
-
 public class StringNullConverterTest {
 
     @Test
@@ -24,7 +22,7 @@ public class StringNullConverterTest {
         }
 
         @Override
-        public String getValue() throws Exception {
+        public String getValue() {
             return null;
         }
 
@@ -74,21 +72,21 @@ public class StringNullConverterTest {
         }
 
         @Override
-        public InputNode getNext() throws Exception {
+        public InputNode getNext() {
             return null;
         }
 
         @Override
-        public InputNode getNext(final String name) throws Exception {
+        public InputNode getNext(final String name) {
             return null;
         }
 
         @Override
-        public void skip() throws Exception {
+        public void skip() {
         }
 
         @Override
-        public boolean isEmpty() throws Exception {
+        public boolean isEmpty() {
             return false;
         }
     }

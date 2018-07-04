@@ -1,20 +1,22 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.joda.time.DateTime;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
-import java.math.BigDecimal;
 
 /**
  * Tipo Evento
  */
 public class MDFeInfoEvento extends DFBase {
+    private static final long serialVersionUID = -9002694768514200146L;
 
     @Attribute(name = "Id", required = false)
     private String id;
@@ -32,7 +34,7 @@ public class MDFeInfoEvento extends DFBase {
     private String chave;
 
     @Element(name = "dhEvento")
-    private DateTime dataHoraEvento;
+    private ZonedDateTime dataHoraEvento;
 
     @Element(name = "tpEvento")
     private String codigoEvento;
@@ -44,8 +46,7 @@ public class MDFeInfoEvento extends DFBase {
     private String versaoEvento;
 
     /**
-     * Detalhamento do evento específico
-     * (cancelamento, encerramento, registro de passagem).
+     * Detalhamento do evento específico (cancelamento, encerramento, registro de passagem).
      */
     @Element(name = "detEvento")
     private MDFeDetalhamentoEvento detEvento;
@@ -93,11 +94,11 @@ public class MDFeInfoEvento extends DFBase {
         this.chave = chave;
     }
 
-    public DateTime getDataHoraEvento() {
+    public ZonedDateTime getDataHoraEvento() {
         return this.dataHoraEvento;
     }
 
-    public void setDataHoraEvento(final DateTime dataHoraEvento) {
+    public void setDataHoraEvento(final ZonedDateTime dataHoraEvento) {
         this.dataHoraEvento = dataHoraEvento;
     }
 
@@ -127,19 +128,19 @@ public class MDFeInfoEvento extends DFBase {
         return this.orgao;
     }
 
-    public void setNumeroSequencialEvento(Integer numeroSequencialEvento) {
+    public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
-    public void setVersaoEvento(String versaoEvento) {
+    public void setVersaoEvento(final String versaoEvento) {
         this.versaoEvento = versaoEvento;
     }
 
     public MDFeDetalhamentoEvento getDetEvento() {
-        return detEvento;
+        return this.detEvento;
     }
 
-    public void setDetEvento(MDFeDetalhamentoEvento detEvento) {
+    public void setDetEvento(final MDFeDetalhamentoEvento detEvento) {
         this.detEvento = detEvento;
     }
 }

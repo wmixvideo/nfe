@@ -1,27 +1,25 @@
 package com.fincatto.documentofiscal.transformers;
 
-import java.text.SimpleDateFormat;
-
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.simpleframework.xml.transform.Transform;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class DFLocalDateTransformer implements Transform<LocalDate> {
-    private static final SimpleDateFormat SIMPLE_DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-ddXXX");
-    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter SIMPLE_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-ddXXX");
+    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
-    public LocalDate read(final String data) throws Exception {
+    public LocalDate read(final String data) {
         try {
             return LocalDate.parse(data, DFLocalDateTransformer.DATETIME_FORMATTER);
-        } catch (final IllegalArgumentException e) {
-            return LocalDate.fromDateFields(DFLocalDateTransformer.SIMPLE_DATE_FORMATTER.parse(data));
+        } catch (final Exception e) {
+            return  LocalDate.from(DFLocalDateTransformer.SIMPLE_DATE_FORMATTER.parse(data));
         }
     }
 
     @Override
-    public String write(final LocalDate data) throws Exception {
-        return DFLocalDateTransformer.DATETIME_FORMATTER.print(data);
+    public String write(final LocalDate data) {
+        return DFLocalDateTransformer.DATETIME_FORMATTER.format(data);
     }
 }

@@ -1,38 +1,37 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NFNotaInfoCobrancaTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirDuplicatasTamanhoInvalido() {
-        final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
+        final List<NFNotaInfoParcela> duplicatas = new ArrayList<>();
         for (int i = 0; i < 121; i++) {
             duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
-        new NFNotaInfoCobranca().setDuplicatas(duplicatas);
+        new NFNotaInfoCobranca().setParcelas(duplicatas);
     }
 
     @Test
     public void devePermitirDuplicatasTamanhoValido() {
-        final List<NFNotaInfoDuplicata> duplicatas = new ArrayList<>();
+        final List<NFNotaInfoParcela> duplicatas = new ArrayList<>();
         for (int i = 0; i < 120; i++) {
             duplicatas.add(FabricaDeObjetosFake.getNFNotaInfoDuplicata());
         }
-        new NFNotaInfoCobranca().setDuplicatas(duplicatas);
+        new NFNotaInfoCobranca().setParcelas(duplicatas);
     }
 
     @Test
     public void devePermitirFaturaNulo() {
         final NFNotaInfoCobranca cobranca = new NFNotaInfoCobranca();
-        cobranca.setDuplicatas(Arrays.asList(new NFNotaInfoDuplicata[] { FabricaDeObjetosFake.getNFNotaInfoDuplicata() }));
+        cobranca.setParcelas(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoDuplicata()));
         cobranca.toString();
     }
 

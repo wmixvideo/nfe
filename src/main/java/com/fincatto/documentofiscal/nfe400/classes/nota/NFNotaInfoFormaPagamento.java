@@ -1,19 +1,21 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import java.math.BigDecimal;
-import org.simpleframework.xml.Element;
 
 public class NFNotaInfoFormaPagamento extends DFBase {
     private static final long serialVersionUID = 8908558834476720280L;
 
     @Element(name = "indPag", required = false)
     private NFIndicadorFormaPagamento indicadorFormaPagamento;
-    
+
     @Element(name = "tPag")
-    private NFFormaPagamentoMoeda formaPagamentoMoeda;
+    private NFMeioPagamento meioPagamento;
 
     @Element(name = "vPag")
     private String valorPagamento;
@@ -33,8 +35,8 @@ public class NFNotaInfoFormaPagamento extends DFBase {
         this.indicadorFormaPagamento = indicadorFormaPagamento;
     }
 
-    public void setFormaPagamentoMoeda(final NFFormaPagamentoMoeda formaPagamentoMoeda) {
-        this.formaPagamentoMoeda = formaPagamentoMoeda;
+    public void setMeioPagamento(final NFMeioPagamento meioPagamento) {
+        this.meioPagamento = meioPagamento;
     }
 
     public void setValorPagamento(final BigDecimal valorPagamento) {
@@ -42,11 +44,11 @@ public class NFNotaInfoFormaPagamento extends DFBase {
     }
 
     public NFIndicadorFormaPagamento getIndicadorFormaPagamento() {
-        return indicadorFormaPagamento;
+        return this.indicadorFormaPagamento;
     }
 
-    public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {
-        return this.formaPagamentoMoeda;
+    public NFMeioPagamento getMeioPagamento() {
+        return this.meioPagamento;
     }
 
     public String getValorPagamento() {

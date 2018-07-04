@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class NFEnderecoTest {
 
@@ -96,8 +95,8 @@ public class NFEnderecoTest {
     @Test
     public void deveObterCodigoPaisComoFoiSetado() {
         final NFEndereco endereco = new NFEndereco();
-        endereco.setCodigoPais("999");
-        Assert.assertEquals("999", endereco.getCodigoPais());
+        endereco.setCodigoPais("1058");
+        Assert.assertEquals(Integer.valueOf(1058), endereco.getCodigoPais().getCodigo());
     }
 
     @Test

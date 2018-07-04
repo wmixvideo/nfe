@@ -5,12 +5,13 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.format.DateTimeFormatter;
 
 public class NFGeraQRCode {
 
@@ -44,8 +45,8 @@ public class NFGeraQRCode {
             throw new IllegalArgumentException("IdCSC nao informado nas configuracoes!");
         }
 
-        final DateTime dt = this.nota.getInfo().getIdentificacao().getDataHoraEmissao();
-        final String dtf = dt.toString("yyyy-MM-dd") + "T" + dt.toString("HH:mm:ssZZ");
+        final ZonedDateTime dt = this.nota.getInfo().getIdentificacao().getDataHoraEmissao();
+        final String dtf =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(dt);
 
         final String cpfj = this.nota.getInfo().getDestinatario() == null ? null : this.nota.getInfo().getDestinatario().getCpfj();
 

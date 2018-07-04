@@ -1,14 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import java.text.SimpleDateFormat;
-
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NFProtocoloInfo extends DFBase {
     private static final long serialVersionUID = -7256753142051587115L;
@@ -37,7 +35,7 @@ public class NFProtocoloInfo extends DFBase {
     @Element(name = "cStat", required = true)
     private String status;
 
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo", required = false)
     private String motivo;
 
     public void setAmbiente(final DFAmbiente ambiente) {
@@ -84,11 +82,12 @@ public class NFProtocoloInfo extends DFBase {
         return this.chave;
     }
 
-    public LocalDateTime getDataRecebimento() throws Exception {
+    public LocalDateTime getDataRecebimento() {
         try {
-            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
+            return LocalDateTime.parse(this.dataRecebimento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {
-            return LocalDateTime.fromDateFields(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataRecebimento));
+            return LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
+                    .parse(this.dataRecebimento));
         }
     }
 
@@ -105,6 +104,8 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
+    	if (this.motivo==null)//quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+    		return NFRetornoStatus.valueOfCodigo(this.status).getMotivo();
         return this.motivo;
     }
 

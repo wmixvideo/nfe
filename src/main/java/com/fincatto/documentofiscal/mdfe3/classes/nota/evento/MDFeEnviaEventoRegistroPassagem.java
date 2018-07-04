@@ -1,13 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import com.fincatto.documentofiscal.DFBase;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
+
 import org.simpleframework.xml.Element;
+
+import com.fincatto.documentofiscal.DFBase;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
  */
-public class MDFeEnviaEventoRegistroPassagem extends DFBase{
+public class MDFeEnviaEventoRegistroPassagem extends DFBase {
+    private static final long serialVersionUID = 2562978821969093169L;
 
     @Element(name = "descEvento")
     private String descricaoEvento;
@@ -40,82 +43,82 @@ public class MDFeEnviaEventoRegistroPassagem extends DFBase{
     private String placa;
 
     public String getDescricaoEvento() {
-        return descricaoEvento;
+        return this.descricaoEvento;
     }
 
-    public void setDescricaoEvento(String descricaoEvento) {
+    public void setDescricaoEvento(final String descricaoEvento) {
         this.descricaoEvento = descricaoEvento;
     }
 
     public String getUfTransito() {
-        return ufTransito;
+        return this.ufTransito;
     }
 
-    public void setUfTransito(String ufTransito) {
+    public void setUfTransito(final String ufTransito) {
         this.ufTransito = ufTransito;
     }
 
     public String getCodigoUnidadeFiscal() {
-        return codigoUnidadeFiscal;
+        return this.codigoUnidadeFiscal;
     }
 
-    public void setCodigoUnidadeFiscal(String codigoUnidadeFiscal) {
+    public void setCodigoUnidadeFiscal(final String codigoUnidadeFiscal) {
         this.codigoUnidadeFiscal = codigoUnidadeFiscal;
     }
 
     public String getDescricaoUnidadeFiscal() {
-        return descricaoUnidadeFiscal;
+        return this.descricaoUnidadeFiscal;
     }
 
-    public void setDescricaoUnidadeFiscal(String descricaoUnidadeFiscal) {
+    public void setDescricaoUnidadeFiscal(final String descricaoUnidadeFiscal) {
         this.descricaoUnidadeFiscal = descricaoUnidadeFiscal;
     }
 
     public LocalDateTime getDataHoraPassagem() {
-        return dataHoraPassagem;
+        return this.dataHoraPassagem;
     }
 
-    public void setDataHoraPassagem(LocalDateTime dataHoraPassagem) {
+    public void setDataHoraPassagem(final LocalDateTime dataHoraPassagem) {
         this.dataHoraPassagem = dataHoraPassagem;
     }
 
     public String getCpfFuncionario() {
-        return cpfFuncionario;
+        return this.cpfFuncionario;
     }
 
-    public void setCpfFuncionario(String cpfFuncionario) {
+    public void setCpfFuncionario(final String cpfFuncionario) {
         this.cpfFuncionario = cpfFuncionario;
     }
 
     public String getNomeFuncionario() {
-        return nomeFuncionario;
+        return this.nomeFuncionario;
     }
 
-    public void setNomeFuncionario(String nomeFuncionario) {
+    public void setNomeFuncionario(final String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
 
     public String getTpTransm() {
-        return tpTransm;
+        return this.tpTransm;
     }
 
-    public void setTpTransm(String tpTransm) {
+    public void setTpTransm(final String tpTransm) {
         this.tpTransm = tpTransm;
     }
 
     public String getTipoSentido() {
-        return tipoSentido;
+        return this.tipoSentido;
     }
 
-    public void setTipoSentido(String tipoSentido) {
+    public void setTipoSentido(final String tipoSentido) {
         this.tipoSentido = tipoSentido;
     }
 
     public String getPlaca() {
-        return placa;
+        return this.placa;
     }
 
-    public void setPlaca(String placa) {
+    public void setPlaca(final String placa) {
         this.placa = placa;
     }
 }

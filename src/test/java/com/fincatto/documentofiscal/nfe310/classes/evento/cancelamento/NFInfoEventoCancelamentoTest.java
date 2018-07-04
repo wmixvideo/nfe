@@ -1,16 +1,16 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-
-import org.joda.time.DateTime;
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
-import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NFInfoEventoCancelamentoTest {
 
@@ -49,7 +49,7 @@ public class NFInfoEventoCancelamentoTest {
     @Test
     public void deveObterDataHoraEventoComoFoiSetado() {
         final NFInfoEventoCancelamento infoEventoCancelamento = new NFInfoEventoCancelamento();
-        final DateTime dataHoraEvento = new DateTime(2010, 10, 10, 10, 10, 10);
+        final ZonedDateTime dataHoraEvento = ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-10 10:10:10")), ZoneId.systemDefault());
         infoEventoCancelamento.setDataHoraEvento(dataHoraEvento);
         Assert.assertEquals(dataHoraEvento, infoEventoCancelamento.getDataHoraEvento());
     }

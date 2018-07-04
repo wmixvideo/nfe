@@ -9,7 +9,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.convert.Convert;
 
 public class NFNotaInfoLocal extends DFBase {
-
     private static final long serialVersionUID = -6618642990785758823L;
 
     @Element(name = "CNPJ", required = false)
@@ -44,10 +43,11 @@ public class NFNotaInfoLocal extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao pode setar CNPJ por que o CPF foi setado");
         }
-
+        
         if (!StringUtils.isBlank(cnpj)) {
             StringValidador.cnpj(cnpj);
         }
+        
         this.cnpj = cnpj;
     }
 

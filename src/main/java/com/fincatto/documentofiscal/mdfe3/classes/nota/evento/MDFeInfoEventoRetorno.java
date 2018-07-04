@@ -1,13 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+
 public class MDFeInfoEventoRetorno extends DFBase {
+    private static final long serialVersionUID = -2115809978508728897L;
 
     @Attribute(name = "Id", required = false)
     private String id;
@@ -49,106 +52,106 @@ public class MDFeInfoEventoRetorno extends DFBase {
     private String numeroProtocolo;
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
     public DFAmbiente getAmbiente() {
-        return ambiente;
+        return this.ambiente;
     }
 
-    public void setAmbiente(DFAmbiente ambiente) {
+    public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
 
     public String getVersaoAplicativo() {
-        return versaoAplicativo;
+        return this.versaoAplicativo;
     }
 
-    public void setVersaoAplicativo(String versaoAplicativo) {
+    public void setVersaoAplicativo(final String versaoAplicativo) {
         this.versaoAplicativo = versaoAplicativo;
     }
 
     public DFUnidadeFederativa getOrgao() {
-        return orgao;
+        return this.orgao;
     }
 
-    public void setOrgao(DFUnidadeFederativa orgao) {
+    public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
     }
 
     public Integer getCodigoStatus() {
-        return codigoStatus;
+        return this.codigoStatus;
     }
 
-    public void setCodigoStatus(Integer codigoStatus) {
+    public void setCodigoStatus(final Integer codigoStatus) {
         this.codigoStatus = codigoStatus;
     }
 
     public String getMotivo() {
-        return motivo;
+        return this.motivo;
     }
 
-    public void setMotivo(String motivo) {
+    public void setMotivo(final String motivo) {
         this.motivo = motivo;
     }
 
     public String getChave() {
-        return chave;
+        return this.chave;
     }
 
-    public void setChave(String chave) {
+    public void setChave(final String chave) {
         this.chave = chave;
     }
 
     public String getTipoEvento() {
-        return tipoEvento;
+        return this.tipoEvento;
     }
 
-    public void setTipoEvento(String tipoEvento) {
+    public void setTipoEvento(final String tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 
     public String getDescricaoEvento() {
-        return descricaoEvento;
+        return this.descricaoEvento;
     }
 
-    public void setDescricaoEvento(String descricaoEvento) {
+    public void setDescricaoEvento(final String descricaoEvento) {
         this.descricaoEvento = descricaoEvento;
     }
 
     public Integer getNumeroSequencialEvento() {
-        return numeroSequencialEvento;
+        return this.numeroSequencialEvento;
     }
 
-    public void setNumeroSequencialEvento(Integer numeroSequencialEvento) {
+    public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
     public LocalDateTime getDataHoraRegistro() {
-        return dataHoraRegistro;
+        return this.dataHoraRegistro;
     }
 
-    public void setDataHoraRegistro(LocalDateTime dataHoraRegistro) {
+    public void setDataHoraRegistro(final LocalDateTime dataHoraRegistro) {
         this.dataHoraRegistro = dataHoraRegistro;
     }
 
     public String getNumeroProtocolo() {
-        return numeroProtocolo;
+        return this.numeroProtocolo;
     }
 
-    public void setNumeroProtocolo(String numeroProtocolo) {
+    public void setNumeroProtocolo(final String numeroProtocolo) {
         this.numeroProtocolo = numeroProtocolo;
     }
 
     public String getVersaoEvento() {
-        return versaoEvento;
+        return this.versaoEvento;
     }
 
-    public void setVersaoEvento(String versaoEvento) {
+    public void setVersaoEvento(final String versaoEvento) {
         this.versaoEvento = versaoEvento;
     }
 }

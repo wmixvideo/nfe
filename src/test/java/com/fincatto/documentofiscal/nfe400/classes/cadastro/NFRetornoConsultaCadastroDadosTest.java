@@ -1,14 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import org.joda.time.LocalDateTime;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class NFRetornoConsultaCadastroDadosTest {
 
@@ -27,9 +25,9 @@ public class NFRetornoConsultaCadastroDadosTest {
     }
 
     @Test
-    public void deveObterDataHoraProcessamentoComoFoiSetado() throws ParseException {
+    public void deveObterDataHoraProcessamentoComoFoiSetado() {
         final NFRetornoConsultaCadastroDados retornoConsultaCadastroDados = new NFRetornoConsultaCadastroDados();
-        final LocalDateTime dataHoraProcessamento = LocalDateTime.fromDateFields(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("20/10/2010 10:10:10"));
+        final LocalDateTime dataHoraProcessamento = LocalDateTime.from(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").parse("20/10/2010 10:10:10"));
         retornoConsultaCadastroDados.setDataHoraProcessamento(dataHoraProcessamento);
         Assert.assertEquals(dataHoraProcessamento, retornoConsultaCadastroDados.getDataHoraProcessamento());
     }

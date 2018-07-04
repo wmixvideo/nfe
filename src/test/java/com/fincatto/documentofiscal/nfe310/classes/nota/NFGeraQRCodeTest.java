@@ -1,16 +1,14 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.security.KeyStore;
+import java.security.NoSuchAlgorithmException;
 
 public class NFGeraQRCodeTest {
 
@@ -52,7 +50,7 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCertificadoKeyStore() throws KeyStoreException {
+            public KeyStore getCertificadoKeyStore() {
                 return null;
             }
 
@@ -62,7 +60,7 @@ public class NFGeraQRCodeTest {
             }
 
             @Override
-            public KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException {
+            public KeyStore getCadeiaCertificadosKeyStore() {
                 return null;
             }
 

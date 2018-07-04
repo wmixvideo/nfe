@@ -4,7 +4,7 @@
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.2-SNAPSHOT</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -28,10 +28,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <axis2.version>1.6.4</axis2.version>
-        <joda.version>2.9.9</joda.version>
         <slf4j.version>1.7.25</slf4j.version>
         <junit.version>4.12</junit.version>
         <commons-lang3.version>3.7</commons-lang3.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <developers>
@@ -50,6 +50,11 @@
             <name>Felippe Silva</name>
             <url>https://github.com/flppsilva</url>
         </developer>
+        <developer>
+            <id>cbockorny</id>
+            <name>Carine Bockorny</name>
+            <url>https://github.com/cbockorny</url>
+        </developer>
     </developers>
 
     <dependencies>
@@ -65,13 +70,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <!-- Joda Time -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>${joda.version}</version>
         </dependency>
 
         <!-- Axis 2 -->
@@ -119,19 +117,15 @@
     </dependencies>
 
     <distributionManagement>
-       <repository>
+        <repository>
             <id>releases</id>
             <name>releases</name>
-            <url>
-                http://nexus.softlandsistemas.com.br/repository/maven-releases/
-            </url>
+            <url>http://nexus.softlandsistemas.com.br/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>snapshots</name>
-            <url>
-                http://nexus.softlandsistemas.com.br/repository/maven-snapshots/
-            </url>
+            <url>http://nexus.softlandsistemas.com.br/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -174,45 +168,57 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.0.0</version>
+                <version>4.3.0</version>
                 <configuration>
                     <repoToken>QTRbpWiuiwIHGrc0arqKxXsAtiVoLMc5h</repoToken>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <maxmem>256m</maxmem>
-                    <aggregate>true</aggregate>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>com/fincatto/nfe310/webservices/*.class</exclude>
-                            <exclude>com/fincatto/nfe310/webservices/downloadnf/*.class</exclude>
-                            <exclude>com/fincatto/nfe310/webservices/gerado/*.class</exclude>
-                            <exclude>com/fincatto/nfe310/webservices/nota/consulta/*.class</exclude>
-                            <exclude>com/fincatto/nfe310/webservices/statusservico/consulta/*.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                    <check>
-                        <branchRate>70</branchRate>
-                        <lineRate>70</lineRate>
-                    </check>
-                </configuration>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>4.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>instrument</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.codehaus.mojo</groupId>-->
+            <!--<artifactId>cobertura-maven-plugin</artifactId>-->
+            <!--<version>2.7</version>-->
+            <!--<configuration>-->
+            <!--<formats>-->
+            <!--<format>html</format>-->
+            <!--<format>xml</format>-->
+            <!--</formats>-->
+            <!--<maxmem>256m</maxmem>-->
+            <!--<aggregate>true</aggregate>-->
+            <!--<instrumentation>-->
+            <!--<excludes>-->
+            <!--<exclude>com/fincatto/nfe310/webservices/*.class</exclude>-->
+            <!--<exclude>com/fincatto/nfe310/webservices/downloadnf/*.class</exclude>-->
+            <!--<exclude>com/fincatto/nfe310/webservices/gerado/*.class</exclude>-->
+            <!--<exclude>com/fincatto/nfe310/webservices/nota/consulta/*.class</exclude>-->
+            <!--<exclude>com/fincatto/nfe310/webservices/statusservico/consulta/*.class</exclude>-->
+            <!--</excludes>-->
+            <!--</instrumentation>-->
+            <!--<check>-->
+            <!--<branchRate>70</branchRate>-->
+            <!--<lineRate>70</lineRate>-->
+            <!--</check>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>8</source>
+                    <target>8</target>
                     <optimize>true</optimize>
                     <debug>false</debug>
                 </configuration>
@@ -220,7 +226,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.3</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
@@ -231,7 +237,7 @@
 <!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.6</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -269,9 +275,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>3.0.0</version>
                 <configuration>
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <!--<additionalparam>-Xdoclint:none</additionalparam>-->
                     <failOnError>false</failOnError>
                 </configuration>
                 <executions>

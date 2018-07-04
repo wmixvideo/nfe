@@ -4,16 +4,22 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     private static final long serialVersionUID = -2899516480924530882L;
 
-    @Element(name = "cProdANP", required = true)
+    @Element(name = "cProdANP")
     private String codigoProdutoANP;
 
-    @Element(name = "descANP", required = true)
+    /**
+     * Descrição do Produto conforme ANP.
+     *  Utilizar a descrição de produtos do Sistema de Informações de Movimentação de Produtos
+     * - SIMP (http://www.anp.gov.br/simp/).
+     */
+    @Element(name = "descANP")
     private String descricaoProdutoANP;
 
     @Element(name = "pGLP", required = false)
@@ -34,7 +40,7 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     @Element(name = "qTemp", required = false)
     private String quantidade;
 
-    @Element(name = "UFCons", required = true)
+    @Element(name = "UFCons")
     private String uf;
 
     @Element(name = "CIDE", required = false)
@@ -63,15 +69,15 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     }
 
     public void setPercentualGLPDerivadoPetroleo(final BigDecimal percentualGLPDerivadoPetroleo) {
-        this.percentualGLPDerivadoPetroleo = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGLPDerivadoPetroleo, "Percentual GLP derivado petr\u00f3leo");
+        this.percentualGLPDerivadoPetroleo = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGLPDerivadoPetroleo, "Percentual GLP derivado petr\u00f3leo");
     }
 
     public void setPercentualGasNaturalImportado(final BigDecimal percentualGasNaturalImportado) {
-        this.percentualGasNaturalImportado = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGasNaturalImportado, "Percentual gas natural importado");
+        this.percentualGasNaturalImportado = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGasNaturalImportado, "Percentual gas natural importado");
     }
 
     public void setPercentualGasNaturalNacional(final BigDecimal percentualGasNaturalNacional) {
-        this.percentualGasNaturalNacional = BigDecimalParser.tamanho1Com4CasasDecimais(percentualGasNaturalNacional, "Percentual gas natural nacional");
+        this.percentualGasNaturalNacional = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualGasNaturalNacional, "Percentual gas natural nacional");
     }
 
     public void setValorPartida(final BigDecimal valorPartida) {

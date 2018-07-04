@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -18,6 +19,7 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 @Root(name = "retConsReciMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsultaRetorno extends DFBase {
+    private static final long serialVersionUID = -7216488190676193958L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

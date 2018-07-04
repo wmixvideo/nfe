@@ -3,9 +3,11 @@ package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NFLoteEnvioRetornoTest {
 
@@ -13,7 +15,7 @@ public class NFLoteEnvioRetornoTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFLoteEnvioRetorno retorno = new NFLoteEnvioRetorno();
         retorno.setAmbiente(DFAmbiente.HOMOLOGACAO);
-        retorno.setDataRecebimento(new LocalDateTime(2014, 1, 1, 10, 10, 10));
+        retorno.setDataRecebimento(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")));
         retorno.setInfoRecebimento(FabricaDeObjetosFake.getNFLoteEnvioRetornoRecebimentoInfo());
         retorno.setMotivo("kdosfksodf");
         retorno.setStatus("iejsasfisf");

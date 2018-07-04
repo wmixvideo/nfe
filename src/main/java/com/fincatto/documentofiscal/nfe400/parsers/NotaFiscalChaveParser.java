@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.parsers;
 
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.LocalDate;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import org.apache.commons.lang3.StringUtils;
+
+import java.time.LocalDate;
 
 public class NotaFiscalChaveParser {
 
@@ -27,7 +27,7 @@ public class NotaFiscalChaveParser {
     }
 
     public LocalDate getDataEmissao() {
-        return new LocalDate(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1);
+        return LocalDate.of(this.getDataEmissaoAno(), this.getDataEmissaoMes(), 1);
     }
 
     private int getDataEmissaoMes() {

@@ -1,14 +1,17 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
+import java.time.LocalDateTime;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.joda.time.LocalDateTime;
-import org.simpleframework.xml.Element;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
  */
-public class MDFeEnviaEventoRegistroPassagemAutomaticaInfPass extends DFBase{
+public class MDFeEnviaEventoRegistroPassagemAutomaticaInfPass extends DFBase {
+    private static final long serialVersionUID = -3989416092815377178L;
 
     @Element(name = "cUFTransito")
     private DFUnidadeFederativa ufTransito;
@@ -41,82 +44,82 @@ public class MDFeEnviaEventoRegistroPassagemAutomaticaInfPass extends DFBase{
     private String nsu;
 
     public DFUnidadeFederativa getUfTransito() {
-        return ufTransito;
+        return this.ufTransito;
     }
 
-    public void setUfTransito(DFUnidadeFederativa ufTransito) {
+    public void setUfTransito(final DFUnidadeFederativa ufTransito) {
         this.ufTransito = ufTransito;
     }
 
     public String getIdEquipamento() {
-        return idEquipamento;
+        return this.idEquipamento;
     }
 
-    public void setIdEquipamento(String idEquipamento) {
+    public void setIdEquipamento(final String idEquipamento) {
         this.idEquipamento = idEquipamento;
     }
 
     public String getNomeEquipamento() {
-        return nomeEquipamento;
+        return this.nomeEquipamento;
     }
 
-    public void setNomeEquipamento(String nomeEquipamento) {
+    public void setNomeEquipamento(final String nomeEquipamento) {
         this.nomeEquipamento = nomeEquipamento;
     }
 
     public String getTipoEquipamento() {
-        return tipoEquipamento;
+        return this.tipoEquipamento;
     }
 
-    public void setTipoEquipamento(String tipoEquipamento) {
+    public void setTipoEquipamento(final String tipoEquipamento) {
         this.tipoEquipamento = tipoEquipamento;
     }
 
     public String getPlaca() {
-        return placa;
+        return this.placa;
     }
 
-    public void setPlaca(String placa) {
+    public void setPlaca(final String placa) {
         this.placa = placa;
     }
 
     public String getTipoSentido() {
-        return tipoSentido;
+        return this.tipoSentido;
     }
 
-    public void setTipoSentido(String tipoSentido) {
+    public void setTipoSentido(final String tipoSentido) {
         this.tipoSentido = tipoSentido;
     }
 
     public LocalDateTime getDataHoraPassagem() {
-        return dataHoraPassagem;
+        return this.dataHoraPassagem;
     }
 
-    public void setDataHoraPassagem(LocalDateTime dataHoraPassagem) {
+    public void setDataHoraPassagem(final LocalDateTime dataHoraPassagem) {
         this.dataHoraPassagem = dataHoraPassagem;
     }
 
     public String getLatitude() {
-        return latitude;
+        return this.latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(final String latitude) {
         this.latitude = latitude;
     }
 
     public String getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(final String longitude) {
         this.longitude = longitude;
     }
 
     public String getNsu() {
-        return nsu;
+        return this.nsu;
     }
 
-    public void setNsu(String nsu) {
+    public void setNsu(final String nsu) {
         this.nsu = nsu;
     }
 }

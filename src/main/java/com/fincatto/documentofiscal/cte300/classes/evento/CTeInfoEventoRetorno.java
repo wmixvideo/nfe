@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 

@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe.transformers;
 
-import org.simpleframework.xml.transform.Transform;
-
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import org.simpleframework.xml.transform.Transform;
 
 public class NFTipoEmissaoTransformer implements Transform<NFTipoEmissao> {
 
     @Override
-    public NFTipoEmissao read(final String codigo) throws Exception {
+    public NFTipoEmissao read(final String codigo) {
         return NFTipoEmissao.valueOfCodigo(codigo);
     }
 
     @Override
-    public String write(final NFTipoEmissao tipo) throws Exception {
+    public String write(final NFTipoEmissao tipo) {
         return tipo.getCodigo();
     }
 }

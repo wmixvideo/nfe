@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -102,6 +103,21 @@ public class NFNotaInfoEmitente extends DFBase {
         return this.cpf;
     }
 
+    /**
+     * @return CPF ou CNPJ do Emitente
+     */
+	public String getCpfj() {
+
+		String cpfj = StringUtils.EMPTY;
+		
+		if (StringUtils.isNotBlank(cpf)) {
+			cpfj = cpf;
+		} else if (StringUtils.isNotBlank(cnpj)) {
+			cpfj = cnpj;
+		}
+		return cpfj;
+	}
+	
     public String getRazaoSocial() {
         return this.razaoSocial;
     }
