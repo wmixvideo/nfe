@@ -36,7 +36,7 @@ public class NFNotaInfoParcela extends DFBase {
         this.valorParcela = BigDecimalParser.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
     }
 
-    public String getValorDuplicata() {
+    public String getValorParcela() {
         return this.valorParcela;
     }
 

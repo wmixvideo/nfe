@@ -67,11 +67,8 @@ public enum NFRetornoStatus {
     CODIGO_235(235, "Rejei\u00e7\u00e3o: Inscri\u00e7\u00e3o SUFRAMA inv\u00e1lida"),
     CODIGO_236(236, "Rejei\u00e7\u00e3o: Chave de Acesso com d\u00edgito verificador inv\u00e1lido"),
     CODIGO_237(237, "Rejei\u00e7\u00e3o: CPF do destinat\u00e1rio inv\u00e1lido"),
-    CODIGO_238(238, "Rejei\u00e7\u00e3o: Cabe\u00e7alho - Vers\u00e3o do arquivo XML superior a Vers\u00e3o vigente"),
-    CODIGO_239(239, "Rejei\u00e7\u00e3o: Cabe\u00e7alho - Vers\u00e3o do arquivo XML n\u00e3o suportada"),
     CODIGO_240(240, "Rejei\u00e7\u00e3o: Cancelamento/Inutiliza\u00e7\u00e3o - Irregularidade Fiscal do Emitente"),
     CODIGO_241(241, "Rejei\u00e7\u00e3o: Um n\u00famero da faixa j\u00e1 foi utilizado"),
-    CODIGO_242(242, "Rejei\u00e7\u00e3o: Cabe\u00e7alho - Falha no Schema XML"),
     CODIGO_243(243, "Rejei\u00e7\u00e3o: XML Mal Formado"),
     CODIGO_244(244, "Rejei\u00e7\u00e3o: CNPJ do Certificado Digital difere do CNPJ da Matriz e do CNPJ do Emit"),
     CODIGO_245(245, "Rejei\u00e7\u00e3o: CNPJ Emitente n\u00e3o cadastrado"),
@@ -193,9 +190,6 @@ public enum NFRetornoStatus {
     CODIGO_405(405, "Rejei\u00e7\u00e3o: C\u00f3digo do pa\u00eds do emitente: d\u00edgito inv\u00e1lido"),
     CODIGO_406(406, "Rejei\u00e7\u00e3o: C\u00f3digo do pa\u00eds do destinat\u00e1rio: d\u00edgito inv\u00e1lido"),
     CODIGO_407(407, "Rejei\u00e7\u00e3o: O CPF s\u00f3 pode ser informado no campo emitente para a NF-e avulsa"),
-    CODIGO_409(409, "Rejei\u00e7\u00e3o: Campo cUF inexistente no elemento nfeCabecMsg do SOAP Header"),
-    CODIGO_410(410, "Rejei\u00e7\u00e3o: UF informada no campo cUF n\u00e3o \u00e9 atendida pelo Web Service"),
-    CODIGO_411(411, "Rejei\u00e7\u00e3o: Campo versaoDados inexistente no elemento nfeCabecMsg do SOAP Header"),
     CODIGO_417(417, "Rejei\u00e7\u00e3o: Total do ICMS superior ao valor limite estabelecido"),
     CODIGO_418(418, "Rejei\u00e7\u00e3o: Total do ICMS-ST superior ao limite estabelecido"),
     CODIGO_420(420, "Rejei\u00e7\u00e3o: Cancelamento para NF-e j\u00e1 cancelada"),
@@ -204,7 +198,7 @@ public enum NFRetornoStatus {
     CODIGO_452(452, "Rejei\u00e7\u00e3o: Tipo Autorizador do Recibo diverge do \u00d3rg\u00e3o Autorizador"),
     CODIGO_453(453, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser superior ao Ano atual"),
     CODIGO_454(454, "Rejei\u00e7\u00e3o: Ano de inutiliza\u00e7\u00e3o n\u00e3o pode ser inferior a 2006"),
-    CODIGO_461(461, "Rejei\\u00e7\\u00e3o: Informado campos de percentual de GLP e/ou GLGNn e/ou GLGNi para produto diferente de GLP [nItem: nnn]"),
+    CODIGO_461(461, "Rejei\u00e7\u00e3o: Informado campos de percentual de GLP e/ou GLGNn e/ou GLGNi para produto diferente de GLP [nItem: nnn]"),
     CODIGO_462(462, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code n\u00fao cadastrado na SEFAZ"),
     CODIGO_463(463, "Rejei\u00e7\u00e3o: C\u00f3digo identificador do CSC no QR-Code foi revogado pela empresa"),
     CODIGO_464(464, "Rejei\u00e7\u00e3o: C\u00f3digo de Hash no QR-Code difere do calculado"),
@@ -270,7 +264,6 @@ public enum NFRetornoStatus {
     CODIGO_542(542, "Rejei\u00e7\u00e3o: CNPJ do Transportador inv\u00e1lido"),
     CODIGO_543(543, "Rejei\u00e7\u00e3o: CPF do Transportador inv\u00e1lido"),
     CODIGO_544(544, "Rejei\u00e7\u00e3o: IE do Transportador inv\u00e1lida"),
-    CODIGO_545(545, "Rejei\u00e7\u00e3o: Falha schema XML - vers\u00e3o inform.na Dados do SOAPHeader difere da msg"),
     CODIGO_546(546, "Rejei\u00e7\u00e3o: Erro na Chave de Acesso - Campo Id - falta a literal NFe"),
     CODIGO_547(547, "Rejei\u00e7\u00e3o: D\u00edgito Verificador da Chave de Acesso da NF-e Referenciada inv\u00e1lido"),
     CODIGO_548(548, "Rejei\u00e7\u00e3o: CNPJ da NF referenciada inv\u00e1lido."),
@@ -371,7 +364,7 @@ public enum NFRetornoStatus {
     CODIGO_678(678, "Rejei\u00e7\u00e3o: NF referenciada com UF diferente da UF da NF-e complementar"),
     CODIGO_679(679, "Rejei\u00e7\u00e3o: Modelo da NF-e referenciada diferente de 55"),
     CODIGO_680(680, "Rejei\u00e7\u00e3o: Duplicidade de NF-e referenciada (chave de acesso ref mais de uma vez)"),
-    CODIGO_681(681, "Rejei\u00e7\u00e3o: Duplicidade de NF referenciada (CNPJ, Modelo S\\u00e9rie e N\\u00famero) [nOcor: nnn]"),
+    CODIGO_681(681, "Rejei\u00e7\u00e3o: Duplicidade de NF referenciada (CNPJ, Modelo S\u00e9rie e N\u00famero) [nOcor: nnn]"),
     CODIGO_682(682, "Rejei\u00e7\u00e3o: Duplicidade de NF de produtor referenciada (IE, Modelo, S\u00e9rie e N\u00famero)"),
     CODIGO_683(683, "Rejei\u00e7\u00e3o: Modelo do CT-e referenciado diferente de 57"),
     CODIGO_684(684, "Rejei\u00e7\u00e3o: Duplicidade de Cupom Fiscal referenciado (Modelo, N\u00famero e Ordem e COO)"),
@@ -452,9 +445,6 @@ public enum NFRetornoStatus {
     CODIGO_763(763, "Rejei\u00e7\u00e3o: NFC-e com dados de aquisi\u00e7\u00e3od e cana"),
     CODIGO_765(765, "Rejei\u00e7\u00e3o: Lote s\u00f3 poder\u00e1 conter NF-e ou NFC-e"),
     CODIGO_766(766, "Rejei\u00e7\u00e3o: NFC-e com CST 50-suspen\u00e7\u00e3o"),
-    CODIGO_767(767, "Rejei\u00e7\u00e3o: NFC-e com somat\u00f3rio dos pagamentos diferente do total da Nota Fiscal"),
-    CODIGO_768(768, "Rejei\u00e7\u00e3o: NF-e n\u00e3o deve possuir o grupo de formas de pagamento"),
-    CODIGO_769(769, "Rejei\u00e7\u00e3o: NFC-e deve possuir o grupo de formas de pagamento"),
     CODIGO_771(771, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual e UF de destino com EX"),
     CODIGO_772(772, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual e UF de destino igual \u00e0 UF do emitente"),
     CODIGO_773(773, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interna e UF de destino difere da UF do emitente"),
@@ -564,8 +554,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this)
-                && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
     }
 
     public boolean isDuplicado() {
