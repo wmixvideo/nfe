@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 
 public class NFAutorizador400Test {
 
@@ -23,12 +24,12 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://homnfe.sefaz.am.gov.br/services2/services/NfeInutilizacao4", autorizador.getNfeInutilizacao(DFAmbiente.HOMOLOGACAO));
 
         Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/cadconsultacadastro2", autorizador.getConsultaCadastro(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeAutorizacao", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeConsulta2", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeRetAutorizacao", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeStatusServico2", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/RecepcaoEvento", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao2", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeAutorizacao4", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeConsulta4", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeRetAutorizacao4", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeStatusServico4", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/RecepcaoEvento4", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.am.gov.br/services2/services/NfeInutilizacao4", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx", autorizador.getNFeDistribuicaoDFe(DFAmbiente.HOMOLOGACAO));
 
         Assert.assertEquals("https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://www.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx", autorizador.getRecepcaoEventoAN(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx", autorizador.getRecepcaoEventoAN(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx", autorizador.getNFeDistribuicaoDFe(DFAmbiente.PRODUCAO));
     }
 
@@ -74,13 +75,13 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeRecepcaoEvento4?wsdl", autorizador.getRecepcaoEvento(DFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl", autorizador.getNfeInutilizacao(DFAmbiente.HOMOLOGACAO));
 
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/CadConsultaCadastro2?wsdl", autorizador.getConsultaCadastro(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/NfeAutorizacao?wsdl", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/NfeConsulta2?wsdl", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/NfeRetAutorizacao?wsdl", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/NfeStatusServico2?wsdl", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/RecepcaoEvento?wsdl", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe2/services/NfeInutilizacao2?wsdl", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/CadConsultaCadastro4?wsdl", autorizador.getConsultaCadastro(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeAutorizacao4?wsdl", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeConsultaProtocolo4?wsdl", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeRetAutorizacao4?wsdl", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeStatusServico4?wsdl", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeRecepcaoEvento4?wsdl", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
     }
 
     @Test
@@ -151,7 +152,7 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeRetAutorizacao4", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeStatusServico4", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/RecepcaoEvento", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeRecepcaoEvento4", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeInutilizacao4", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
     }
 
