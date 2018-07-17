@@ -33,7 +33,8 @@ public class NFLoteConsultaRetorno extends DFBase {
     @Element(name = "cStat", required = true)
     private String status;
 
-    @Element(name = "dhRecbto", required = true)
+	// https://github.com/wmixvideo/nfe/issues/463
+    @Element(name = "dhRecbto", required = false)
     private LocalDateTime dataHoraRecebimento;
 
     @Element(name = "xMotivo", required = true)
