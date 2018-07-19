@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.rmi.RemoteException;
+import java.util.Arrays;
 
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -11,12 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub;
+import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsg;
+import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
+import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFInfoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg;
+import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.svrs.CadConsultaCadastro4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.svrs.CadConsultaCadastro4Stub.ConsultaCadastro;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 
 class WSConsultaCadastro {
@@ -42,19 +46,40 @@ class WSConsultaCadastro {
         return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
     }
 
-    private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
+    private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws Exception {
 
-		final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);
-		if (autorizador == null) {
-		    throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
-		}
-		final String url = autorizador.getConsultaCadastro(this.config.getAmbiente());
-		WSConsultaCadastro.LOG.debug(String.format("Endpoint: %s", url));
-        
-		final NfeDadosMsg nfeDadosMsg0 = new NfeDadosMsg();
-		nfeDadosMsg0.setExtraElement(omElementConsulta);
-		
-		return new CadConsultaCadastro4Stub(url).consultaCadastro(nfeDadosMsg0).getExtraElement();
+        final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);
+        if (autorizador == null) {
+            throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
+        }
+        final String url = autorizador.getConsultaCadastro(this.config.getAmbiente());
+        WSConsultaCadastro.LOG.debug(String.format("Endpoint: %s", url));
+
+        if (Arrays.asList(DFUnidadeFederativa.AC, DFUnidadeFederativa.PB, DFUnidadeFederativa.RN, DFUnidadeFederativa.RS, DFUnidadeFederativa.SC, DFUnidadeFederativa.MT).contains(uf)) {
+            final CadConsultaCadastro4Stub.NfeDadosMsg_type0 nfeDadosMsg_type0 = new CadConsultaCadastro4Stub.NfeDadosMsg_type0();
+            nfeDadosMsg_type0.setExtraElement(omElementConsulta);
+
+            final ConsultaCadastro consultaCadastro = new ConsultaCadastro();
+            consultaCadastro.setNfeDadosMsg(nfeDadosMsg_type0);
+            return new CadConsultaCadastro4Stub(url).consultaCadastro(consultaCadastro).getConsultaCadastroResult().getExtraElement();
+        } else if (DFUnidadeFederativa.PE.equals(uf)) {
+
+            final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
+            cabec.setCUF(uf.getCodigoIbge());
+            cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
+
+            final NfeCabecMsgE cabecE = new NfeCabecMsgE();
+            cabecE.setNfeCabecMsg(cabec);
+
+            final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
+            nfeDadosMsg.setExtraElement(omElementConsulta);
+            return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
+
+        } else {
+            final com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg nfeDadosMsg_type0 = new com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg();
+            nfeDadosMsg_type0.setExtraElement(omElementConsulta);
+            return new com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub(url).consultaCadastro(nfeDadosMsg_type0).getExtraElement();
+        }
     }
 
     private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {

@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
-
-import java.util.Arrays;
 
 /**
  * <h1>URLs dos serviços</h1><br>
@@ -1638,4 +1639,11 @@ public enum NFAutorizador400 {
                 throw new IllegalArgumentException("N\u00e3o ha implementac\u00e3o para o tipo de emiss\u00e3o: " + tpEmissao.getDescricao());
         }
     }
+
+    public static List<DFUnidadeFederativa> getUfsPossuemServicoConsultaCadastro() {
+        return Arrays.asList(DFUnidadeFederativa.AC, DFUnidadeFederativa.PB, DFUnidadeFederativa.RN, DFUnidadeFederativa.SC, //SVRS
+                DFUnidadeFederativa.AM, DFUnidadeFederativa.BA, DFUnidadeFederativa.CE, DFUnidadeFederativa.GO, DFUnidadeFederativa.MG, DFUnidadeFederativa.MS, DFUnidadeFederativa.MT, DFUnidadeFederativa.PE,
+                DFUnidadeFederativa.PR, DFUnidadeFederativa.RS, DFUnidadeFederativa.SP);
+    }
+
 }

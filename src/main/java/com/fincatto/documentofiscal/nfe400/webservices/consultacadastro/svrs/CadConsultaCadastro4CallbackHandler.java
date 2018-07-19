@@ -1,7 +1,7 @@
 /**
  * CadConsultaCadastro4CallbackHandler.java This file was auto-generated from WSDL by the Apache Axis2 version: 1.7.4 Built on : Oct 21, 2016 (10:47:34 BST)
  */
-package com.fincatto.documentofiscal.nfe400.webservices.consultacadastro;
+package com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.svrs;
 
 /**
  * CadConsultaCadastro4CallbackHandler Callback class, Users can extend this class and implement their own receiveResult and receiveError methods.
