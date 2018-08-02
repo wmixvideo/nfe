@@ -79,7 +79,7 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     }
 
 	public void setPercentualReducaoBCEfetiva(final BigDecimal percentualReducaoBCEfetiva) {
-		this.percentualReducaoBCEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCEfetiva, "Percentual Redução BC Efetiva ICMS60 Item");
+		this.percentualReducaoBCEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCEfetiva, "Percentual Reducao BC Efetiva ICMS60 Item");
 	}
 
 	public void setPercentualICMSEfetiva(final BigDecimal percentualICMSEfetiva) {
