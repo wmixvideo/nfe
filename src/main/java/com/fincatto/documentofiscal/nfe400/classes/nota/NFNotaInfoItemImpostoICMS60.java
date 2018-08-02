@@ -23,9 +23,15 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "pST", required = false)
     private String percentualAliquotaICMSST;
 
+    @Element(name = "pRedBCEfet", required = false)
+    private String percentualReducaoBCEfetiva;
+
+    @Element(name = "pICMSEfet", required = false)
+    private String percentualICMSEfetiva;
+
     @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
-
+    
     @Element(name = "vBCFCPSTRet", required = false)
     private String valorBCFundoCombatePobrezaRetidoST;
 
@@ -35,11 +41,17 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "vFCPSTRet", required = false)
     private String valorFundoCombatePobrezaRetidoST;
 
+    @Element(name = "vBCEfet", required = false)
+    private String valorBCEfetiva;
+
+    @Element(name = "vICMSEfet", required = false)
+    private String valorICMSEfetiva;
+
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
 
-    public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
+	public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
     }
 
@@ -56,19 +68,35 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     }
 
     public void setValorBCFundoCombatePobrezaRetidoST(final BigDecimal valorBCFundoCombatePobrezaRetidoST) {
-        this.valorBCFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaRetidoST, "Valor base calculo fundo combate pobreza retido ST");
+        this.valorBCFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho13Com2CasasDecimais(valorBCFundoCombatePobrezaRetidoST, "Valor base calculo fundo combate pobreza retido ST ICMS60 Item");
     }
 
     public void setPercentualFundoCombatePobrezaRetidoST(final BigDecimal percentualFundoCombatePobrezaRetidoST) {
         if (percentualFundoCombatePobrezaRetidoST.signum() < 0) {
             throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
         }
-        this.percentualFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaRetidoST, "Percentual fundo combate pobreza retido ST");
+        this.percentualFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaRetidoST, "Percentual fundo combate pobreza retido ST ICMS60 Item");
     }
 
+	public void setPercentualReducaoBCEfetiva(final BigDecimal percentualReducaoBCEfetiva) {
+		this.percentualReducaoBCEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCEfetiva, "Percentual Redução BC Efetiva ICMS60 Item");
+	}
+
+	public void setPercentualICMSEfetiva(final BigDecimal percentualICMSEfetiva) {
+		this.percentualICMSEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualICMSEfetiva, "Percentual ICMS Efetiva ICMS60 Item");
+	}
+
     public void setValorFundoCombatePobrezaRetidoST(final BigDecimal valorFundoCombatePobrezaRetidoST) {
-        this.valorFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaRetidoST, "Valor fundo combate pobreza retido ST");
+        this.valorFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho13Com2CasasDecimais(valorFundoCombatePobrezaRetidoST, "Valor fundo combate pobreza retido ST ICMS60 Item");
     }
+    
+	public void setValorICMSEfetiva(final BigDecimal valorICMSEfetiva) {
+		this.valorICMSEfetiva = BigDecimalParser.tamanho13Com2CasasDecimais(valorICMSEfetiva, "Valor BC Efetiva ICMS60 Item");
+	}
+	
+	public void setValorBCEfetiva(final BigDecimal valorBCEfetiva) {
+		this.valorBCEfetiva = BigDecimalParser.tamanho13Com2CasasDecimais(valorBCEfetiva, "Valor BC Efetiva ICMS60 Item");
+	}
 
     public NFOrigem getOrigem() {
         return this.origem;
@@ -101,4 +129,21 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     public String getValorFundoCombatePobrezaRetidoST() {
         return this.valorFundoCombatePobrezaRetidoST;
     }
+    
+    public String getPercentualReducaoBCEfetiva() {
+		return this.percentualReducaoBCEfetiva;
+	}
+
+	public String getPercentualICMSEfetiva() {
+		return this.percentualICMSEfetiva;
+	}
+
+	public String getValorBCEfetiva() {
+		return this.valorBCEfetiva;
+	}
+
+	public String getValorICMSEfetiva() {
+		return this.valorICMSEfetiva;
+	}
+    
 }
