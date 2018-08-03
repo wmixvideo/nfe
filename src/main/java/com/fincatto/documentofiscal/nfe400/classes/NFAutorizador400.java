@@ -403,37 +403,37 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeAutorizacao?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeAutorizacao?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeAutorizacao4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeAutorizacao4?wsdl";
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeRetAutorizacao?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeRetAutorizacao?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeRetAutorizacao4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeRetAutorizacao4?wsdl";
         }
 
         @Override
         public String getNfceConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/CadConsultaCadastro4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/CadConsultaCadastro4?wsdl";
         }
 
         @Override
         public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeConsulta2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeConsulta2?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeConsultaProtocolo4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeConsultaProtocolo4?wsdl";
         }
 
         @Override
         public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeStatusServico2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeStatusServico2?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeStatusServico4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeStatusServico4?wsdl";
         }
 
         @Override
         public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/RecepcaoEvento?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/RecepcaoEvento?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeRecepcaoEvento4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeRecepcaoEvento4?wsdl";
         }
 
         @Override
         public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/v2/NfeInutilizacao2?wsdl";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homolog.sefaz.go.gov.br/nfe/services/NFeInutilizacao4?wsdl" : "https://nfe.sefaz.go.gov.br/nfe/services/NFeInutilizacao4?wsdl";
         }
 
         @Override
