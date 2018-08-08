@@ -107,6 +107,18 @@ public class NFeConfigTeste extends NFeConfig {
     }
 }
 ```
+### Configurar pelo repositório de certificados do Windows:
+
+#### Carregando os alias disponíveis(certificados instalados) no Windows:
+```java
+KeyStore keyStoreCert = KeyStore.getInstance("Windows-MY", "SunMSCAPI"); 
+keyStoreCert.load(null, null);
+Enumeration<String> aliasEnum = keyStoreCert.aliases();
+
+```
+Após isso é necessário algum método para o usuário escolher entre um destes alias, 
+talvez por meio de um JOptionPane(<java7)
+ ou de um ChoiceDialog<String>(>=Java8), e então fazer o load com a respectivo alias escolhido e sua senha.
 
 ### Alguns exemplos
 Considere para os exemplos abaixo que **config** seja uma instância da implementação da interface **NFeConfig**.
