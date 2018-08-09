@@ -1,21 +1,20 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
+
 /**
- * Created by Eldevan Nery Junior on 07/12/17.
- *
- * Informações de Seguro da Carga.
- *
+ * Created by Eldevan Nery Junior on 07/12/17. Informações de Seguro da Carga.
  */
 @Root(name = "seg")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfoSeguro extends DFBase {
-    
+    private static final long serialVersionUID = 665561268515018765L;
+
     @Element(name = "infResp")
     private MDFInfoSeguroResponsavel responsavelSeguro;
 
@@ -57,9 +56,7 @@ public class MDFInfoSeguro extends DFBase {
     }
 
     /**
-     * Número da Averbação
-     * Informar as averbações do seguro.
-     *
+     * Número da Averbação Informar as averbações do seguro.
      */
     public void setAverbacao(final String averbacao) {
         StringValidador.tamanho40(averbacao, "Número da Averbação ");

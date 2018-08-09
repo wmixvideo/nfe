@@ -1,21 +1,22 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroDados extends DFBase {
     private static final long serialVersionUID = -7130690235919558202L;
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-    @Element(name = "verAplic", required = true)
+    @Element(name = "verAplic", required = false)
     private String versaoAplicacao;
 
     @Element(name = "cStat", required = true)
@@ -39,7 +40,7 @@ public class NFRetornoConsultaCadastroDados extends DFBase {
     @Element(name = "dhCons", required = false)
     private String dataHoraProcessamento;
 
-    @Element(name = "cUF", required = true)
+    @Element(name = "cUF", required = false)
     private DFUnidadeFederativa ufAutorizadora;
 
     @ElementList(inline = true, entry = "infCad", required = false)
@@ -105,9 +106,7 @@ public class NFRetornoConsultaCadastroDados extends DFBase {
         try {
             return LocalDateTime.parse(this.dataHoraProcessamento, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
         } catch (final Exception e) {
-            return LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
-                    .parse(this.dataHoraProcessamento))
-                    .atZone(ZoneId.systemDefault()).toLocalDateTime();
+            return LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").parse(this.dataHoraProcessamento)).atZone(ZoneId.systemDefault()).toLocalDateTime();
         }
     }
 

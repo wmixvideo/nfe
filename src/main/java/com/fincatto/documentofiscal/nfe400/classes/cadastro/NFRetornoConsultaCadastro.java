@@ -4,6 +4,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "retConsCad")
@@ -12,6 +13,9 @@ public class NFRetornoConsultaCadastro extends DFBase {
 
     @Attribute(name = "versao")
     private String versao;
+
+    @Element(name = "tpAmb", required = false)
+    private DFAmbiente ambiente;
 
     @Element(name = "infCons")
     private NFRetornoConsultaCadastroDados dados;
@@ -30,5 +34,13 @@ public class NFRetornoConsultaCadastro extends DFBase {
 
     public void setVersao(final String versao) {
         this.versao = versao;
+    }
+
+    public DFAmbiente getAmbiente() {
+        return this.ambiente;
+    }
+
+    public void setAmbiente(final DFAmbiente ambiente) {
+        this.ambiente = ambiente;
     }
 }

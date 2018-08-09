@@ -1,10 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
 import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
 
 public class NFNotaInfoFormaPagamentoTest {
 
@@ -17,15 +19,15 @@ public class NFNotaInfoFormaPagamentoTest {
     public void devePermitirCartaoNulo() {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
         formaPagamento.setIndicadorFormaPagamento(NFIndicadorFormaPagamento.A_VISTA);
-        formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);
+        formaPagamento.setMeioPagamento(NFMeioPagamento.CARTAO_CREDITO);
         formaPagamento.setValorPagamento(new BigDecimal("999999999999.99"));
         formaPagamento.toString();
     }
-    
+
     @Test
     public void devePermitirIndicadordePagamentoNulo() {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
-        formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);
+        formaPagamento.setMeioPagamento(NFMeioPagamento.CARTAO_CREDITO);
         formaPagamento.setValorPagamento(new BigDecimal("999999999999.99"));
         formaPagamento.setCartao(FabricaDeObjetosFake.getNFNotaInfoCartao());
         formaPagamento.toString();
@@ -35,7 +37,7 @@ public class NFNotaInfoFormaPagamentoTest {
     public void naoDevePermitirValorPagamentoNulo() {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
         formaPagamento.setIndicadorFormaPagamento(NFIndicadorFormaPagamento.A_PRAZO);
-        formaPagamento.setFormaPagamentoMoeda(NFFormaPagamentoMoeda.CARTAO_CREDITO);
+        formaPagamento.setMeioPagamento(NFMeioPagamento.CARTAO_CREDITO);
         formaPagamento.setCartao(FabricaDeObjetosFake.getNFNotaInfoCartao());
         formaPagamento.toString();
     }

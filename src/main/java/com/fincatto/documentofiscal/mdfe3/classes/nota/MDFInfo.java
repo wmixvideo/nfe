@@ -1,25 +1,20 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import java.util.List;
+
+import org.simpleframework.xml.*;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
-import java.util.List;
 
 /**
- * Created by Eldevan Nery Junior on 03/11/17.
- *
- * Informações do MDF-e.
- *
+ * Created by Eldevan Nery Junior on 03/11/17. Informações do MDF-e.
  */
 @Root(name = "infMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfo extends DFBase {
+    private static final long serialVersionUID = 5215463851140624452L;
 
     public static final String IDENT = "MDFe";
 
@@ -122,55 +117,55 @@ public class MDFInfo extends DFBase {
         this.versao = versao;
     }
 
-    public void setIdentificacao(MDFInfoIdentificacao identificacao) {
+    public void setIdentificacao(final MDFInfoIdentificacao identificacao) {
         this.identificacao = identificacao;
     }
 
     public MDFInfoModal getMdfInfoModal() {
-        return mdfInfoModal;
+        return this.mdfInfoModal;
     }
 
-    public void setMdfInfoModal(MDFInfoModal mdfInfoModal) {
+    public void setMdfInfoModal(final MDFInfoModal mdfInfoModal) {
         this.mdfInfoModal = mdfInfoModal;
     }
 
     public MDFInfoInformacoesDocumentos getInformacoesDocumentos() {
-        return informacoesDocumentos;
+        return this.informacoesDocumentos;
     }
 
-    public void setInformacoesDocumentos(MDFInfoInformacoesDocumentos informacoesDocumentos) {
+    public void setInformacoesDocumentos(final MDFInfoInformacoesDocumentos informacoesDocumentos) {
         this.informacoesDocumentos = informacoesDocumentos;
     }
 
     public MDFInfoTotal getInfoTotal() {
-        return infoTotal;
+        return this.infoTotal;
     }
 
-    public void setInfoTotal(MDFInfoTotal infoTotal) {
+    public void setInfoTotal(final MDFInfoTotal infoTotal) {
         this.infoTotal = infoTotal;
     }
 
     public List<MDFInfoLacre1A60> getLacres() {
-        return lacres;
+        return this.lacres;
     }
 
-    public void setLacres(List<MDFInfoLacre1A60> lacres) {
+    public void setLacres(final List<MDFInfoLacre1A60> lacres) {
         this.lacres = lacres;
     }
 
     public MDFInfoInformacoesAdicionais getInformacoesAdicionais() {
-        return informacoesAdicionais;
+        return this.informacoesAdicionais;
     }
 
-    public void setInformacoesAdicionais(MDFInfoInformacoesAdicionais informacoesAdicionais) {
+    public void setInformacoesAdicionais(final MDFInfoInformacoesAdicionais informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
     }
 
     public MDFInfoSeguro getSeguro() {
-        return seguro;
+        return this.seguro;
     }
 
-    public void setSeguro(MDFInfoSeguro seguro) {
+    public void setSeguro(final MDFInfoSeguro seguro) {
         this.seguro = seguro;
     }
 }
