@@ -81,8 +81,6 @@ public class NFNotaInfoItemImpostoICMS60Test {
         icms60.setPercentualFundoCombatePobrezaRetidoST(new BigDecimal("100.0000"));
         icms60.setValorFundoCombatePobrezaRetidoST(new BigDecimal("9999999999.99"));
         icms60.setPercentualICMSEfetiva(new BigDecimal("99.9999"));
-        icms60.setPercentualReducaoBCEfetiva(new BigDecimal("99.9999"));
-        icms60.setValorICMSEfetiva(new BigDecimal("9999999999.99"));
         icms60.setValorBCEfetiva(new BigDecimal("9999999999.99"));
         
         final String xmlEsperado = "<NFNotaInfoItemImpostoICMS60><orig>2</orig><CST>30</CST><vBCSTRet>999999999999.99</vBCSTRet><pST>100.00</pST><pRedBCEfet>99.9999</pRedBCEfet><pICMSEfet>99.9999</pICMSEfet><vICMSSTRet>999999999999.99</vICMSSTRet><vBCFCPSTRet>9999999999.99</vBCFCPSTRet><pFCPSTRet>100.00</pFCPSTRet><vFCPSTRet>9999999999.99</vFCPSTRet><vBCEfet>9999999999.99</vBCEfet><vICMSEfet>9999999999.99</vICMSEfet></NFNotaInfoItemImpostoICMS60>";

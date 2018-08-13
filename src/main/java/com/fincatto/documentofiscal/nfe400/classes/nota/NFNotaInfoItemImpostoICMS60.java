@@ -24,9 +24,6 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "pST", required = false)
     private String percentualAliquotaICMSSTConsumidorFinal;
 
-    @Element(name = "pRedBCEfet", required = false)
-    private String percentualReducaoBCEfetiva;
-
     @Element(name = "pICMSEfet", required = false)
     private String percentualICMSEfetiva;
 
@@ -85,10 +82,6 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.percentualFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaRetidoST, "Percentual fundo combate pobreza retido ST ICMS60 Item");
     }
 
-	public void setPercentualReducaoBCEfetiva(final BigDecimal percentualReducaoBCEfetiva) {
-		this.percentualReducaoBCEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCEfetiva, "Percentual Reducao BC Efetiva ICMS60 Item");
-	}
-
 	public void setPercentualICMSEfetiva(final BigDecimal percentualICMSEfetiva) {
 		this.percentualICMSEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualICMSEfetiva, "Percentual ICMS Efetiva ICMS60 Item");
 	}
@@ -97,18 +90,6 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.valorFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho13Com2CasasDecimais(valorFundoCombatePobrezaRetidoST, "Valor fundo combate pobreza retido ST ICMS60 Item");
     }
     
-	public void setValorICMSEfetiva(final BigDecimal valorICMSEfetiva) {
-		this.valorICMSEfetiva = BigDecimalParser.tamanho13Com2CasasDecimais(valorICMSEfetiva, "Valor BC Efetiva ICMS60 Item");
-	}
-	
-	public void setValorBCEfetiva(final BigDecimal valorBCEfetiva) {
-		this.valorBCEfetiva = BigDecimalParser.tamanho13Com2CasasDecimais(valorBCEfetiva, "Valor BC Efetiva ICMS60 Item");
-	}
-
-    public void setPercentualReducaoBCEfetiva(final BigDecimal percentualReducaoBCEfetiva) {
-        this.percentualReducaoBCEfetiva = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCEfetiva, "Percentual reducao BC efetiva");
-    }
-
     public void setValorBCEfetiva(final BigDecimal valorBCEfetiva) {
         this.valorBCEfetiva = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCEfetiva, "Valor BC efetiva");
     }
