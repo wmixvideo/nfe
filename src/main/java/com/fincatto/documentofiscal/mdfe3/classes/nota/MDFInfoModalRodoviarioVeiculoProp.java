@@ -31,7 +31,6 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     @Element(name = "tpProp", required = false)
     private MDFTipoProprietario tipoProprietario;
 
-    //TODO Colocar validações nos getters abaixo
     public String getCpf() {
         return cpf;
     }
