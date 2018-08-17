@@ -26,7 +26,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     private String inscricaoEstadual;
 
     @Element(name = "UF")
-    private DFUnidadeFederativa unidadeFederativa;
+    private String unidadeFederativa;
 
     @Element(name = "tpProp", required = false)
     private MDFTipoProprietario tipoProprietario;
@@ -80,12 +80,16 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public DFUnidadeFederativa getUnidadeFederativa() {
+    public String getUnidadeFederativa() {
         return unidadeFederativa;
     }
 
-    public void setUnidadeFederativa(DFUnidadeFederativa unidadeFederativa) {
+    public void setUnidadeFederativa(String unidadeFederativa) {
         this.unidadeFederativa = unidadeFederativa;
+    }
+
+    public void setUnidadeFederativa(DFUnidadeFederativa unidadeFederativa) {
+        this.unidadeFederativa = unidadeFederativa.getCodigo();
     }
 
     public MDFTipoProprietario getTipoProprietario() {
