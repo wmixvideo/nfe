@@ -296,7 +296,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setCodigoBeneficioFiscalUF(final String codigoBeneficioFiscalUF) {
-        this.codigoBeneficioFiscalUF = codigoBeneficioFiscalUF;
+        this.codigoBeneficioFiscalUF = StringValidador.validador(codigoBeneficioFiscalUF, "Codigo Beneficio Fiscal da UF", 10, false, false);
     }
 
     public String getCodigo() {
