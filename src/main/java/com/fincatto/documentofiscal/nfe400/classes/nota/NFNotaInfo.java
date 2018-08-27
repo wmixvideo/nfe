@@ -1,14 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Root(name = "infNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -56,7 +59,7 @@ public class NFNotaInfo extends DFBase {
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
 
-    @ElementList(entry = "pag", inline = true, required = true)
+    @ElementList(entry = "pag", inline = true)
     private List<NFNotaInfoPagamento> pagamentos;
 
     @Element(name = "infAdic", required = false)
