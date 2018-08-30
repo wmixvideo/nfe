@@ -12,7 +12,7 @@ import java.util.List;
 public class NFNotaInfoPagamento extends DFBase {
     private static final long serialVersionUID = -2613537583415054150L;
 
-    @ElementList(entry = "detPag", inline = true)
+    @ElementList(entry = "detPag", inline = true, required = false)
     private List<NFNotaInfoFormaPagamento> detalhamentoFormasPagamento;
 
     @Element(name = "vTroco", required = false)
