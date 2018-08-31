@@ -18,10 +18,18 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.Provider;
 import java.security.cert.X509Certificate;
@@ -61,8 +69,15 @@ public class AssinaturaDigital {
     public String assinarDocumento(final String conteudoXml) throws Exception {
         return this.assinarDocumento(conteudoXml, AssinaturaDigital.ELEMENTOS_ASSINAVEIS);
     }
-
+    
     public String assinarDocumento(final String conteudoXml, final String... elementosAssinaveis) throws Exception {
+    	try (StringReader reader = new StringReader(conteudoXml); StringWriter writer = new StringWriter()) {
+			this.assinarDocumento(reader, writer, elementosAssinaveis);
+    		return writer.toString();
+    	}
+    }
+
+    public void assinarDocumento(Reader xmlReader, Writer xmlAssinado, final String... elementosAssinaveis) throws Exception {
         final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
         final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
@@ -75,30 +90,23 @@ public class AssinaturaDigital {
         final KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(x509Data));
         final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
-        try (StringReader stringReader = new StringReader(conteudoXml)) {
-            final Document document = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(stringReader));
-            for (final String elementoAssinavel : elementosAssinaveis) {
-                final NodeList elements = document.getElementsByTagName(elementoAssinavel);
-                for (int i = 0; i < elements.getLength(); i++) {
-                    final Element element = (Element) elements.item(i);
-                    final String id = element.getAttribute("Id");
-                    element.setIdAttribute("Id", true);
-                    final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
-                    final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
-                    final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
-                    signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
-                }
+        final Document document = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(xmlReader));
+        for (final String elementoAssinavel : elementosAssinaveis) {
+            final NodeList elements = document.getElementsByTagName(elementoAssinavel);
+            for (int i = 0; i < elements.getLength(); i++) {
+                final Element element = (Element) elements.item(i);
+                final String id = element.getAttribute("Id");
+                element.setIdAttribute("Id", true);
+                final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
+                final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
+                final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+                signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
             }
-            return this.converteDocumentParaXml(document);
         }
+        
+        final Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
     }
-
-    private String converteDocumentParaXml(final Document document) throws TransformerFactoryConfigurationError, TransformerException, IOException {
-        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-            final Transformer transformer = TransformerFactory.newInstance().newTransformer();
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-            transformer.transform(new DOMSource(document), new StreamResult(outputStream));
-            return outputStream.toString("UTF-8");
-        }
-    }
+    
 }
