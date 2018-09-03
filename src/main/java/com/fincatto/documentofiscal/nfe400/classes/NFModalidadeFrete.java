@@ -33,4 +33,9 @@ public enum NFModalidadeFrete {
     public String toString() {
         return this.codigo + " - " + this.descricao;
     }
+
+	public String getDescricao() {
+		return descricao;
+	}
+    
 }
