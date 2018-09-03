@@ -5,6 +5,8 @@ Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.n
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
 [![Maven Central](https://img.shields.io/badge/maven%20central-3.0.2-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|3.0.2|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
+[![Code Quality: Java](https://img.shields.io/lgtm/grade/java/g/wmixvideo/nfe.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wmixvideo/nfe/context:java)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/wmixvideo/nfe.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wmixvideo/nfe/alerts)
 
 ## Atenção
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
