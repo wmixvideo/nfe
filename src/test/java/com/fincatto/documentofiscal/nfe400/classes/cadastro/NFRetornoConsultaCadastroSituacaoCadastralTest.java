@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroSituacaoCadastralTest {
 
@@ -34,6 +35,14 @@ public class NFRetornoConsultaCadastroSituacaoCadastralTest {
     public void deveObterDataInicioAtividadeComoFoiSetado() {
         final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
         final LocalDate dataInicioAtividade = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy").parse("20/10/2010"));
+        retorno.setDataInicioAtividade(dataInicioAtividade);
+        Assert.assertEquals(dataInicioAtividade, retorno.getDataInicioAtividade());
+    }
+
+    @Test
+    public void deveObterDataInicioAtividadeComHoraComoFoiSetado() {
+        final NFRetornoConsultaCadastroSituacaoCadastral retorno = new NFRetornoConsultaCadastroSituacaoCadastral();
+        final LocalDate dataInicioAtividade = LocalDate.from(DateTimeFormatter.ofPattern("dd/MM/yyyy' 'HH:mm:ss").parse("20/10/2010 10:20:10"));
         retorno.setDataInicioAtividade(dataInicioAtividade);
         Assert.assertEquals(dataInicioAtividade, retorno.getDataInicioAtividade());
     }

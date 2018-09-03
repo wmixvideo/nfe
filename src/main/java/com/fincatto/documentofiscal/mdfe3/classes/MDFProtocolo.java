@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
  */
 @Root(name = "protMDFe")
 public class MDFProtocolo extends DFBase {
+    private static final long serialVersionUID = 7056704602846442462L;
 
     @Attribute(name = "versao", required = true)
     private String versao;

@@ -1,20 +1,17 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.simpleframework.xml.Element;
 
-/**
- * Created by Eldevan Nery Junior on 06/11/17.
- *
- * Informações do Percurso do MDF-e
- *
- */
-public class MDFInfoIdentificacaoUfPercurso extends DFBase{
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
+/**
+ * Created by Eldevan Nery Junior on 06/11/17. Informações do Percurso do MDF-e
+ */
+public class MDFInfoIdentificacaoUfPercurso extends DFBase {
+    private static final long serialVersionUID = 212116102866608942L;
     /**
-     * Sigla das Unidades da Federação do percurso do veículo.
-     * Não é necessário repetir as UF de Início e Fim.
+     * Sigla das Unidades da Federação do percurso do veículo. Não é necessário repetir as UF de Início e Fim.
      */
     @Element(name = "UFPer")
     private String ufPercurso;
@@ -22,19 +19,19 @@ public class MDFInfoIdentificacaoUfPercurso extends DFBase{
     public MDFInfoIdentificacaoUfPercurso() {
     }
 
-    public MDFInfoIdentificacaoUfPercurso(DFUnidadeFederativa ufPercurso) {
+    public MDFInfoIdentificacaoUfPercurso(final DFUnidadeFederativa ufPercurso) {
         this.ufPercurso = ufPercurso.getCodigo();
     }
 
     public String getUfPercurso() {
-        return ufPercurso;
+        return this.ufPercurso;
     }
 
-    public void setUfPercurso(String ufPercurso) {
+    public void setUfPercurso(final String ufPercurso) {
         this.ufPercurso = ufPercurso;
     }
 
-    public void setUfPercurso(DFUnidadeFederativa ufPercurso) {
+    public void setUfPercurso(final DFUnidadeFederativa ufPercurso) {
         this.ufPercurso = ufPercurso.getCodigo();
     }
 }

@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
 public enum NFModalidadeFrete {
-    CONTRATACAO_POR_CONTA_DO_EMITENTE("0", "Contrata\u00e7\u00e3o do frete por conta do remetente"),
-    CONTRATACAO_POR_CONTA_DO_DESTINATARIO_REMETENTE("1", "Contrata\u00e7\u00e3o do frete por conta do destinat\u00e1rio"),
+    CONTRATACAO_POR_CONTA_DO_REMETENTE("0", "Contrata\u00e7\u00e3o do frete por conta do remetente (CIF)"),
+    CONTRATACAO_POR_CONTA_DO_DESTINATARIO("1", "Contrata\u00e7\u00e3o do frete por conta do destinat\u00e1rio (FOB)"),
     CONTRATACAO_POR_CONTA_DE_TERCEIROS("2", "Contrata\u00e7\u00e3o do frete por conta de terceiros"),
     PROPRIO_POR_CONTA_DO_REMETENTE("3", "Transporte pr\u00f3prio por conta do remetente"),
     PROPRIO_POR_CONTA_DO_DESTINATARIO("4", "Transporte pr\u00f3prio por conta do destinat\u00e1rio"),

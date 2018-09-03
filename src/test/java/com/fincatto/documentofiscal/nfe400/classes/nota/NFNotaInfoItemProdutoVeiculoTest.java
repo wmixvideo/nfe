@@ -1,12 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoCombustivelTipo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoEspecieVeiculo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoRestricao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoTipoVeiculo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoVeiculoCor;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.*;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoVeiculoTest {
 
@@ -49,11 +55,7 @@ public class NFNotaInfoItemProdutoVeiculoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroMotorComTamanhoInvalido() {
-        try {
-            new NFNotaInfoItemProdutoVeiculo().setNumeroMotor("XBxVyiVV");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoItemProdutoVeiculo().setNumeroMotor("XBxVyiVVD1");
-        }
+            new NFNotaInfoItemProdutoVeiculo().setNumeroMotor("1234567891011121314151617181920");
     }
 
     @Test(expected = NumberFormatException.class)

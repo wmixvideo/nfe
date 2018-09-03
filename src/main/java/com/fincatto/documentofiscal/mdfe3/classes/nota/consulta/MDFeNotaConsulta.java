@@ -1,19 +1,21 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.consulta;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "consSitMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeNotaConsulta extends DFBase {
+    private static final long serialVersionUID = -6782722764188583523L;
 
     @Attribute(name = "versao")
     private String versao;
@@ -22,7 +24,7 @@ public class MDFeNotaConsulta extends DFBase {
     private DFAmbiente ambiente;
 
     @Element(name = "xServ")
-    private String servico ;
+    private String servico;
 
     @Element(name = "chMDFe")
     private String chave;
