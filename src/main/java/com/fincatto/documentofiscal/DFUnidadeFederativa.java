@@ -32,7 +32,7 @@ public enum DFUnidadeFederativa {
             , "http://www.dfe.ms.gov.br/nfce", "http://www.dfe.ms.gov.br/nfce"),
     MG("MG", "Minas Gerais", "31"),
     PA("PA", "Par\u00E1", "15", "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/nfceForm.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/nfceForm.seam"
-            , "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/consultanfce.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam"),
+            , "https://appnfc.sefa.pa.gov.br", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam"),
     PB("PB", "Paraiba", "25", "http://www.receita.pb.gov.br/nfcehom", "http://www.receita.pb.gov.br/nfce"
             , "http://www.receita.pb.gov.br/nfcehom", "www.receita.pb.gov.br/nfce"),
     PR("PR", "Paran\u00E1", "41", "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe", "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe"
