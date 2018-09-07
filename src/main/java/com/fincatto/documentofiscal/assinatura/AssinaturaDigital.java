@@ -15,21 +15,12 @@ import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.Provider;
 import java.security.cert.X509Certificate;
@@ -69,12 +60,14 @@ public class AssinaturaDigital {
     public String assinarDocumento(final String conteudoXml) throws Exception {
         return this.assinarDocumento(conteudoXml, AssinaturaDigital.ELEMENTOS_ASSINAVEIS);
     }
-    
+
     public String assinarDocumento(final String conteudoXml, final String... elementosAssinaveis) throws Exception {
-    	try (StringReader reader = new StringReader(conteudoXml); StringWriter writer = new StringWriter()) {
-			this.assinarDocumento(reader, writer, elementosAssinaveis);
-    		return writer.toString();
-    	}
+        try (StringReader reader = new StringReader(conteudoXml)) {
+            try (StringWriter writer = new StringWriter()) {
+                this.assinarDocumento(reader, writer, elementosAssinaveis);
+                return writer.toString();
+            }
+        }
     }
 
     public void assinarDocumento(Reader xmlReader, Writer xmlAssinado, final String... elementosAssinaveis) throws Exception {
@@ -103,10 +96,9 @@ public class AssinaturaDigital {
                 signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
             }
         }
-        
+
         final Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
     }
-    
 }
