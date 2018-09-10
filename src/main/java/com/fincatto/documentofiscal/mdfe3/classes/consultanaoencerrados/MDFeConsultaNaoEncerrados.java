@@ -1,25 +1,24 @@
 package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
- * Created by Eldevan Nery Junior on 22/11/17.
- *
- * Tipo Pedido de Consulta MDF-e Não Encerrados.
- *
+ * Created by Eldevan Nery Junior on 22/11/17. Tipo Pedido de Consulta MDF-e Não Encerrados.
  */
 @Root(name = "consMDFeNaoEnc")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsultaNaoEncerrados extends DFBase {
+    private static final long serialVersionUID = -6186360215204227213L;
 
     @Attribute(name = "versao")
     private String versao;
@@ -28,7 +27,7 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     private DFAmbiente ambiente;
 
     @Element(name = "xServ")
-    private String servico = "CONSULTAR NÃO ENCERRADOS" ;
+    private String servico = "CONSULTAR NÃO ENCERRADOS";
 
     /**
      * CNPJ do Emitente do MDF-e.
@@ -40,7 +39,7 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
         this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
-    public void setVersao(String versao) {
+    public void setVersao(final String versao) {
         this.versao = versao;
     }
 
@@ -66,10 +65,10 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     }
 
     public String getCnpj() {
-        return cnpj;
+        return this.cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setCnpj(final String cnpj) {
         this.cnpj = StringValidador.cnpj(cnpj, "CNPJ do emitente");
     }
 }
