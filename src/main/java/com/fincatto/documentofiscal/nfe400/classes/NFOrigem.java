@@ -38,7 +38,7 @@ public enum NFOrigem {
         return codigo + " - " + descricao;
     }
 
-	public String getDescricao() {
+    public String getDescricao() {
 		return descricao;
 	}
     
