@@ -23,13 +23,13 @@ public class MDFProcessado extends DFBase {
     private String schemaLocation;
 
     @Element(name = "MDFe")
-    private MDFe nota;
+    private MDFe mdfe;
 
     @Element(name = "protMDFe")
     private MDFProtocolo protocolo;
 
-    public MDFe getNota() {
-        return this.nota;
+    public MDFe getMdfe() {
+        return this.mdfe;
     }
 
     public String getVersao() {
@@ -40,8 +40,8 @@ public class MDFProcessado extends DFBase {
         return this.protocolo;
     }
 
-    public void setNota(final MDFe nota) {
-        this.nota = nota;
+    public void setMdfe(final MDFe mdfe) {
+        this.mdfe = mdfe;
     }
 
     public void setProtocolo(final MDFProtocolo protocolo) {
