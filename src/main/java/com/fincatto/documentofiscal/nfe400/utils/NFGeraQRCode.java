@@ -4,14 +4,13 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
-import org.apache.commons.lang3.StringUtils;
-import java.time.ZonedDateTime;
-
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import org.apache.commons.lang3.StringUtils;
 
 public class NFGeraQRCode {
 
@@ -23,20 +22,45 @@ public class NFGeraQRCode {
         this.config = config;
     }
 
+    public String getQRCodev2() throws NoSuchAlgorithmException {
+        String url = this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
+
+        if (StringUtils.isBlank(url)) {
+            throw new IllegalArgumentException(
+                    "URL para consulta do QRCode nao informada para uf " + this.nota.getInfo().getIdentificacao().getUf() + "!");
+        }
+        if (StringUtils.isBlank(this.config.getCodigoSegurancaContribuinte())) {
+            throw new IllegalArgumentException("CSC nao informado nas configuracoes!");
+        }
+        if ((this.config.getCodigoSegurancaContribuinteID() == null) || (this.config.getCodigoSegurancaContribuinteID() == 0)) {
+            throw new IllegalArgumentException("IdCSC nao informado nas configuracoes!");
+        }
+
+        final StringBuilder parametros = new StringBuilder();
+        parametros.append(this.nota.getInfo().getChaveAcesso()).append("|"); // Chave de Acesso da NFC-e
+        parametros.append("2").append("|"); // Versao do QRCode
+        parametros.append(this.config.getAmbiente().getCodigo()).append("|");
+        parametros.append(this.config.getCodigoSegurancaContribuinteID());
+
+        return url.concat("?p=").concat(parametros.toString().concat("|").concat(StringUtils.upperCase(
+                NFGeraQRCode.createHash(parametros.toString(), this.config.getCodigoSegurancaContribuinte()))));
+    }
+
     public String getQRCode() throws NoSuchAlgorithmException {
         String url = this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() : this.nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao();
 
         /* FIXME TODO Workaround para corrigir erro :
          *<cStat>395</cStat><xMotivo>Endereco do site da UF da Consulta via QR-Code diverge do previsto. Novo endereco:http://www.fazenda.pr.gov.br/nfce/qrcode</xMotivo>
          * corrigir em DFUnidadeFederativa quando a URL da versao 3.10 do PR for desabilitada.
-        */
-        if(this.nota.getInfo().getIdentificacao().getUf().equals(DFUnidadeFederativa.PR) &&this.nota.getInfo().getVersao().equals("4.00")){
-           url = "http://www.fazenda.pr.gov.br/nfce/qrcode";
+         */
+        if (this.nota.getInfo().getIdentificacao().getUf().equals(DFUnidadeFederativa.PR) && this.nota.getInfo().getVersao().equals(
+                "4.00")) {
+            url = "http://www.fazenda.pr.gov.br/nfce/qrcode";
         }
 
-
         if (StringUtils.isBlank(url)) {
-            throw new IllegalArgumentException("URL para consulta do QRCode nao informada para uf " + this.nota.getInfo().getIdentificacao().getUf() + "!");
+            throw new IllegalArgumentException(
+                    "URL para consulta do QRCode nao informada para uf " + this.nota.getInfo().getIdentificacao().getUf() + "!");
         }
         if (StringUtils.isBlank(this.config.getCodigoSegurancaContribuinte())) {
             throw new IllegalArgumentException("CSC nao informado nas configuracoes!");
@@ -46,7 +70,7 @@ public class NFGeraQRCode {
         }
 
         final ZonedDateTime dt = this.nota.getInfo().getIdentificacao().getDataHoraEmissao();
-        final String dtf =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(dt);
+        final String dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(dt);
 
         final String cpfj = this.nota.getInfo().getDestinatario() == null ? null : this.nota.getInfo().getDestinatario().getCpfj();
 
@@ -63,11 +87,13 @@ public class NFGeraQRCode {
         parametros.append("dhEmi=").append(NFGeraQRCode.toHex(dtf)).append("&");// Data e Hora de Emissão da NFC-e
         parametros.append("vNF=").append(this.nota.getInfo().getTotal().getIcmsTotal().getValorTotalNFe()).append("&"); // Valor Total da NFC-e
         parametros.append("vICMS=").append(this.nota.getInfo().getTotal().getIcmsTotal().getValorTotalICMS()).append("&");// NFC-e Valor Total ICMS na NFC-e
-        parametros.append("digVal=").append(NFGeraQRCode.toHex(this.nota.getAssinatura().getSignedInfo().getReference().getDigestValue())).append("&");// Digest Value da NFC-e
+        parametros.append("digVal=").append(NFGeraQRCode.toHex(
+                this.nota.getAssinatura().getSignedInfo().getReference().getDigestValue())).append("&");// Digest Value da NFC-e
         parametros.append("cIdToken=").append(String.format("%06d", this.config.getCodigoSegurancaContribuinteID()));// Identificador do CSC – Codigo de Seguranca do Contribuinte no Banco de Dados da SEFAZ
 
         // retorna a url do qrcode
-        return url + "?" + parametros.toString() + "&cHashQRCode=" + NFGeraQRCode.createHash(parametros.toString(), this.config.getCodigoSegurancaContribuinte());
+        return url + "?" + parametros.toString() + "&cHashQRCode=" + NFGeraQRCode.createHash(parametros.toString(),
+                this.config.getCodigoSegurancaContribuinte());
     }
 
     public static String createHash(final String campos, final String csc) throws NoSuchAlgorithmException {
@@ -86,7 +112,7 @@ public class NFGeraQRCode {
         return sb.toString();
     }
 
-    public String urlConsultaChaveAcesso(){
+    public String urlConsultaChaveAcesso() {
         return this.config.getAmbiente().equals(DFAmbiente.PRODUCAO) ? this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoProducao() : this.nota.getInfo().getIdentificacao().getUf().getConsultaChaveAcessoHomologacao();
     }
 }
