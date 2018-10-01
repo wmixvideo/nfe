@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import java.time.LocalDateTime;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.time.LocalDateTime;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
@@ -41,6 +40,9 @@ public class MDFeEnviaEventoRegistroPassagem extends DFBase {
 
     @Element(name = "placa")
     private String placa;
+
+    @Element(name = "xObs", required = false)
+    private String observacao;
 
     public String getDescricaoEvento() {
         return this.descricaoEvento;
@@ -120,5 +122,13 @@ public class MDFeEnviaEventoRegistroPassagem extends DFBase {
 
     public void setPlaca(final String placa) {
         this.placa = placa;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 }

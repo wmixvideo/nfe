@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
     }
 
     public void setPercentualICMSSTRetido(final BigDecimal percentualICMSSTRetido) {
-        this.percentualICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(percentualICMSSTRetido, "Percentual ICMS ST Retido ICMSSN500");
+        this.percentualICMSSTRetido = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualICMSSTRetido, "Percentual ICMS ST Retido ICMSSN500");
     }
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {

@@ -9,6 +9,12 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import org.xml.sax.SAXException;
 
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import org.xml.sax.SAXException;
+
 public final class XMLValidador {
 
     private static boolean valida(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
@@ -70,7 +76,6 @@ public final class XMLValidador {
     public static boolean validaNotaCte(final String arquivoXML) throws Exception {
         return XMLValidador.validaCTe(arquivoXML, "cte_v3.00.xsd");
     }
-
 
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_NFeDistDFe_102/%s", xsd));
