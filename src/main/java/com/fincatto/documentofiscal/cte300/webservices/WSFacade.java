@@ -25,6 +25,7 @@ public class WSFacade {
 	private final WSRecepcaoLote wsRecepcaoLote;
 	private final WSNotaConsulta wsNotaConsulta;
     private final WSCancelamento wsCancelamento;
+    private final WSInutilizacao wsInutilizacao;
 
 	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
 
@@ -105,5 +106,32 @@ public class WSFacade {
      */
     public CTeRetornoCancelamento cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Inutiliza o CTE com o evento assinado ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     * @param eventoAssinadoXml evento assinado em XML
+     * @param modelo modelo do CTE
+     * @return dados da inutilizacao do CTE retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTERetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
+        return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
+    }
+
+    /**
+     * Inutiliza o CTE
+     * @param anoInutilizacaoNumeracao ano de inutilizacao
+     * @param cnpjEmitente CNPJ emitente da nota
+     * @param serie serie da nota
+     * @param numeroInicial numero inicial da nota
+     * @param numeroFinal numero final da nota
+     * @param justificativa justificativa da inutilizacao
+     * @param modelo modelo da nota (NF-e ou NFC-e)
+     * @return dados da inutilizacao da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTERetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+        return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 }
