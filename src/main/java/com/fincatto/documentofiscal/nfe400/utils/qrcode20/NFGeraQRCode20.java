@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.utils.qtcode;
+package com.fincatto.documentofiscal.nfe400.utils.qrcode20;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
@@ -31,7 +31,7 @@ public abstract class NFGeraQRCode20 {
     /**
      * Método responsável pela geração do qrcode.
      *
-     * @return URL para consulta da nota via qtcode.
+     * @return URL para consulta da nota via qrcode20.
      * @throws NoSuchAlgorithmException
      */
     public abstract String getQRCode() throws NoSuchAlgorithmException;
