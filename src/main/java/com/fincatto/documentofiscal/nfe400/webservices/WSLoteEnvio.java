@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
@@ -11,7 +12,9 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.documentofiscal.nfe400.parsers.DFParser;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
-import com.fincatto.documentofiscal.nfe400.utils.NFGeraQRCode;
+import com.fincatto.documentofiscal.nfe400.utils.qtcode.NFGeraQRCode20;
+import com.fincatto.documentofiscal.nfe400.utils.qtcode.NFGeraQRCodeContingenciaOffline20;
+import com.fincatto.documentofiscal.nfe400.utils.qtcode.NFGeraQRCodeEmissaoNormal20;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.persister.DFPersister;
@@ -75,7 +78,8 @@ class WSLoteEnvio {
                     qtdNF++;
                     break;
                 case NFCE:
-                    final NFGeraQRCode geraQRCode = new NFGeraQRCode(nota, this.config);
+                    NFGeraQRCode20 geraQRCode = getNfGeraQRCode20(nota);
+
                     nota.setInfoSuplementar(new NFNotaInfoSuplementar());
                     nota.getInfoSuplementar().setUrlConsultaChaveAcesso(geraQRCode.urlConsultaChaveAcesso());
                     nota.getInfoSuplementar().setQrCode(geraQRCode.getQRCode());
@@ -90,6 +94,20 @@ class WSLoteEnvio {
             throw new IllegalArgumentException("Lote contendo notas de modelos diferentes!");
         }
         return loteAssinado;
+    }
+
+    private NFGeraQRCode20 getNfGeraQRCode20(NFNota nota) {
+
+        NFGeraQRCode20 geraQRCode;
+
+        if (NFTipoEmissao.EMISSAO_NORMAL.equals(nota.getInfo().getIdentificacao().getTipoEmissao())) {
+            geraQRCode = new NFGeraQRCodeEmissaoNormal20(nota, this.config);
+        } else if (NFTipoEmissao.CONTIGENCIA_OFFLINE.equals(nota.getInfo().getIdentificacao().getTipoEmissao())){
+            geraQRCode = new NFGeraQRCodeContingenciaOffline20(nota, this.config);
+        }else {
+            throw new IllegalArgumentException("QRCode 2.0 Tipo Emissao não implementado: " + nota.getInfo().getIdentificacao().getTipoEmissao().getDescricao() );
+        }
+        return geraQRCode;
     }
 
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
