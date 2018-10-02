@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.utils.qtcode.NFGeraQRCodeEmissaoNormal20;
+import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeEmissaoNormal20;
 
 public class NFGeraQRCode20Test {
 

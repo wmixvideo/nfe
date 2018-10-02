@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.utils.qtcode;
+package com.fincatto.documentofiscal.nfe400.utils.qrcode20;
 
 import java.security.NoSuchAlgorithmException;
 
