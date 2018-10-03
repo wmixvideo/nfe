@@ -521,6 +521,41 @@ public class FabricaDeObjetosFake {
         return nota;
     }
 
+    public static NFNota getNotaQRCodeEmissaoNormal20() {
+        // CAMPOS CONTIDOS NO EXEMPLO DO MANUAL DA RECEITA PARA GERAÇÃO DO QRCODE
+        final NFNota nota = new NFNota();
+        nota.setInfo(new NFNotaInfo());
+        nota.getInfo().setIdentificador("28170800156225000131650110000151341562040824");
+
+        nota.getInfo().setIdentificacao(new NFNotaInfoIdentificacao());
+        nota.getInfo().getIdentificacao().setUf(DFUnidadeFederativa.GO);
+
+        return nota;
+    }
+
+    public static NFNota getNotaQRCodeContingenciaOffline20() {
+        // CAMPOS CONTIDOS NO EXEMPLO DO MANUAL DA RECEITA PARA GERAÇÃO DO QRCODE
+        final NFNota nota = new NFNota();
+        nota.setInfo(new NFNotaInfo());
+        nota.getInfo().setIdentificador("28170800156225000131650110000151349562040824");
+
+        nota.getInfo().setIdentificacao(new NFNotaInfoIdentificacao());
+        nota.getInfo().getIdentificacao().setDataHoraEmissao(ZonedDateTime.parse("2014-03-02T10:55:33-03:00"));
+        nota.getInfo().getIdentificacao().setUf(DFUnidadeFederativa.GO);
+
+        nota.getInfo().setTotal(new NFNotaInfoTotal());
+        nota.getInfo().getTotal().setIcmsTotal(new NFNotaInfoICMSTotal());
+        nota.getInfo().getTotal().getIcmsTotal().getValorTotalNFe();
+        nota.getInfo().getTotal().getIcmsTotal().setValorTotalNFe(new BigDecimal("60.90"));
+
+        nota.setAssinatura(new NFSignature());
+        nota.getAssinatura().setSignedInfo(new NFSignedInfo());
+        nota.getAssinatura().getSignedInfo().setReference(new NFReference());
+        nota.getAssinatura().getSignedInfo().getReference().setDigestValue("yzGYhUx1/XYYzksWB+fPR3Qc50c=");
+
+        return nota;
+    }
+
     public static NFNotaInfoTransporte getNFNotaInfoTransporte() {
         final NFNotaInfoTransporte transporte = new NFNotaInfoTransporte();
         transporte.setIcmsTransporte(FabricaDeObjetosFake.getNFNotaInfoRetencaoICMSTransporte());

@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import org.simpleframework.xml.core.Persister;
 
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFProcessado;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
@@ -128,16 +129,15 @@ public class DFParser {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
     }
-    
+
     //CTe
-	public CTeEnvioLote cteRecepcaoParaObjeto(final String xml) {
+    public CTeEnvioLote cteRecepcaoParaObjeto(final String xml) {
         try {
             return this.persister.read(CTeEnvioLote.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
-	}
-
+    }
 
     public CTeProcessado cteProcessadoParaObjeto(final String xml) {
         try {
@@ -153,6 +153,22 @@ public class DFParser {
             return this.persister.read(MDFEnvioLote.class, xml);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml do Lote MDFe: %s", e.getMessage()));
+        }
+    }
+
+    public MDFProcessado mdfeProcessadoParaObjeto(final String xml) {
+        try {
+            return this.persister.read(MDFProcessado.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
+        }
+    }
+
+    public MDFProcessado mdfeProcessadoParaObjeto(final File xml) {
+        try {
+            return this.persister.read(MDFProcessado.class, xml);
+        } catch (final Exception e) {
+            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
     }
 
