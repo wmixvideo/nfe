@@ -72,7 +72,7 @@ class WSCancelamento {
 
         final CTeEnviaEventoCancelamento cancelamento = new CTeEnviaEventoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
-        cancelamento.setJustificativa(motivo);
+        cancelamento.setJustificativa(motivo.trim());
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
         CTeDetalhamentoEventoCancelamento cTeDetalhamentoEventoCancelamento = new CTeDetalhamentoEventoCancelamento();
         cTeDetalhamentoEventoCancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);

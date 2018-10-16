@@ -10,25 +10,31 @@ import java.util.regex.Pattern;
 public abstract class StringValidador {
 
     public static void mmaaaa(final String mmaaaa) {
-        try {
-            DateTimeFormatter.ofPattern("mm/yyyy").parse(mmaaaa);
-        } catch (final Exception e) {
-            throw new IllegalStateException(String.format("Formato invalido (mm/aaaa) (%s)", mmaaaa));
+        if (mmaaaa != null) {
+            try {
+                DateTimeFormatter.ofPattern("mm/yyyy").parse(mmaaaa);
+            } catch (final Exception e) {
+                throw new IllegalStateException(String.format("Formato invalido (mm/aaaa) (%s)", mmaaaa));
+            }
         }
     }
 
     public static void aamm(final String aamm) {
-        try {
-            DateTimeFormatter.ofPattern("yymm").parse(aamm);
-        } catch (final Exception e) {
-            throw new IllegalStateException(String.format("Formato invalido (aamm) (%s)", aamm));
+        if (aamm != null) {
+            try {
+                DateTimeFormatter.ofPattern("yymm").parse(aamm);
+            } catch (final Exception e) {
+                throw new IllegalStateException(String.format("Formato invalido (aamm) (%s)", aamm));
+            }
         }
     }
 
     public static void codigoDeBarras(final String codigoDeBarras) {
-        final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14}|SEM GTIN)$").matcher(codigoDeBarras);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("Codigo de barras com formato invalido (%s)", codigoDeBarras));
+        if (codigoDeBarras != null) {
+            final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14}|SEM GTIN)$").matcher(codigoDeBarras);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Codigo de barras com formato invalido (%s)", codigoDeBarras));
+            }
         }
     }
 
@@ -573,18 +579,20 @@ public abstract class StringValidador {
 
     /**
      * Método para validação de Strings.
+     *
      * @param paraValidar String a ser validada
      * @param info Informação de retorno caso haja erro.
      * @param tamanho tamanho para validação da {@code String} , pode ser {@code null} :
      * @param exatamente
      *
-     *            <pre>
+     * <pre>
      * se false {@code null} a {@code String}
      *                   não precisa ter o tamanho exato do parametro anterior.
-     *            </pre>
+     * </pre>
      *
      * @param numerico se true {@code null} a {@code String} precisa ser numérica[0-9].
-     * @return retorna a própria {@code String} {@param paraValidar}.
+     * @return retorna a própria {@code String} {
+     * @param paraValidar}.
      */
     public static String validador(final String paraValidar, final String info, Integer tamanho, Boolean exatamente, Boolean numerico) {
         tamanho = ObjectUtils.defaultIfNull(tamanho, 1);
@@ -636,25 +644,25 @@ public abstract class StringValidador {
     }
 
     private static void apenasNumerico(final String string, final String info) {
-        if (!StringUtils.isNumeric(string)) {
+        if (string != null && !StringUtils.isNumeric(string)) {
             throw new IllegalStateException(String.format("A string %s precisa ser numerica (%s)", info, string));
         }
     }
 
     private static void validaTamanhoMaximo(final String string, final int tamanho, final String info) {
-        if (string.length() < 1 || string.length() > tamanho) {
+        if (string != null && (string.length() < 1 || string.length() > tamanho)) {
             throw new IllegalStateException(String.format("%s \"%s\" deve possuir entre 1-%s caracteres", info, string, tamanho));
         }
     }
 
     private static void validaTamanhoExato(final String string, final int tamanho, final String info) {
-        if (string.length() != tamanho) {
+        if (string != null && string.length() != tamanho) {
             throw new IllegalStateException(String.format("%s \"%s\" deve possuir %s caracteres", info, string, tamanho));
         }
     }
 
     private static void intervalo(final String string, final int inicio, final int fim, final String info) {
-        if (string.length() < inicio || string.length() > fim) {
+        if (string != null && (string.length() < inicio || string.length() > fim)) {
             throw new IllegalStateException(String.format("%s \"%s\" deve possuir entre %s-%s caracteres", info, string, inicio, fim));
         }
     }
@@ -664,49 +672,56 @@ public abstract class StringValidador {
     }
 
     public static String validaIntervalo(final String string, final int inicio, final int fim, final String info, Boolean isNumeric) {
-        isNumeric = ObjectUtils.defaultIfNull(isNumeric, false);
-        if (isNumeric) {
-            StringValidador.apenasNumerico(string, info);
+        if (string != null) {
+            isNumeric = ObjectUtils.defaultIfNull(isNumeric, false);
+            if (isNumeric) {
+                StringValidador.apenasNumerico(string, info);
+            }
+            StringValidador.intervalo(string, inicio, fim, info);
         }
-        StringValidador.intervalo(string, inicio, fim, info);
         return string;
     }
 
     /**
-     * Valida um número com N {@param digitos}.
+     * Valida um número com N {
      *
      * <pre>
-     *
      *  StringValidador.capacidadeNDigitos("10000", "info" , 5)   = "10000"
      *  StringValidador.capacidadeNDigitos("5", "info" , 2)   = "5"
      * </pre>
      *
      * @throws IllegalStateException se<br>
-     *             {@code capacidade = "10000" } & {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos  }
+     * {@code capacidade = "10000" } & {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos }
      * @param capacidade
      * @param info
      * @param digitos
      * @return
      */
     public static String capacidadeNDigitos(final String capacidade, final String info, final int digitos) {
-        final Matcher matcher = Pattern.compile("^(0|[1-9]{1}[0-9]{0," + digitos + "})$").matcher(capacidade);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("%s fora do padrao (%s)", info, capacidade));
+        if (capacidade != null) {
+            final Matcher matcher = Pattern.compile("^(0|[1-9]{1}[0-9]{0," + digitos + "})$").matcher(capacidade);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("%s fora do padrao (%s)", info, capacidade));
+            }
         }
         return capacidade;
     }
 
     public static void nve(final String nve) {
-        final Matcher matcher = Pattern.compile("^[A-Z]{2}[0-9]{4}$").matcher(nve);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("NVE fora do padrao (%s)", nve));
+        if (nve != null) {
+            final Matcher matcher = Pattern.compile("^[A-Z]{2}[0-9]{4}$").matcher(nve);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("NVE fora do padrao (%s)", nve));
+            }
         }
     }
 
     public static void itemListaServico(final String itemListaServicos) {
-        final Matcher matcher = Pattern.compile("^\\d{2}\\.\\d{2}$").matcher(itemListaServicos);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("Item Lista de servico fora do padrao (%s)", itemListaServicos));
+        if (itemListaServicos != null) {
+            final Matcher matcher = Pattern.compile("^\\d{2}\\.\\d{2}$").matcher(itemListaServicos);
+            if (!matcher.find()) {
+                throw new IllegalStateException(String.format("Item Lista de servico fora do padrao (%s)", itemListaServicos));
+            }
         }
     }
 
@@ -739,7 +754,7 @@ public abstract class StringValidador {
 
     public static void equals(final String test, final String tested) {
         if (!StringUtils.equals(test, tested)) {
-            throw new IllegalStateException(String.format("Valor('%s') não corresponde com o padrao('%s')", (Object[]) new String[] { tested, test }));
+            throw new IllegalStateException(String.format("Valor('%s') não corresponde com o padrao('%s')", (Object[]) new String[]{tested, test}));
         }
     }
 
