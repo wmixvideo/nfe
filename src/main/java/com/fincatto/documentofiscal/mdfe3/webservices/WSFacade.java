@@ -115,7 +115,7 @@ public class WSFacade {
     }
 
     /**
-     * Faz o cancelamento do MDFe
+     * Faz o encerramento do MDFe
      *
      * @param chaveAcesso chave de acesso da nota
      * @param numeroProtocolo numero do protocolo da nota
@@ -128,6 +128,18 @@ public class WSFacade {
     public MDFeRetorno encerramento(final String chaveAcesso, final String numeroProtocolo,
             final String codigoMunicipio, final LocalDate dataEncerramento, final DFUnidadeFederativa unidadeFederativa) throws Exception {
         return this.wsEncerramento.encerraMdfe(chaveAcesso, numeroProtocolo, codigoMunicipio, dataEncerramento, unidadeFederativa);
+    }
+
+    /**
+     * Faz o encerramento do MDFe assinado
+     *
+     * @param chaveAcesso
+     * @param eventoAssinadoXml
+     * @return
+     * @throws Exception
+     */
+    public MDFeRetorno encerramentoAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wsEncerramento.encerramentoMdfeAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
     /**
@@ -163,6 +175,18 @@ public class WSFacade {
      */
     public MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
         return this.wsIncluirCondutor.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor);
+    }
+
+    /**
+     * Faz a inclusão de condutor do veículo de MDF-e Rodoviário evento assinado
+     *
+     * @param chaveAcesso
+     * @param eventoAssinadoXml
+     * @return
+     * @throws Exception
+     */
+    public MDFeRetorno incluirCondutorAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wsIncluirCondutor.incluirCondutorAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
 }
