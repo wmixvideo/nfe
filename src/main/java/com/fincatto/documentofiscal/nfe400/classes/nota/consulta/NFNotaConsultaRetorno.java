@@ -37,7 +37,7 @@ public class NFNotaConsultaRetorno extends DFBase {
     @Element(name = "dhRecbto", required = false)
     private LocalDateTime dataHoraRecibo;
 
-    @Element(name = "chNFe", required = true)
+    @Element(name = "chNFe", required = false)
     private String chave;
 
     @Element(name = "protNFe", required = false)
