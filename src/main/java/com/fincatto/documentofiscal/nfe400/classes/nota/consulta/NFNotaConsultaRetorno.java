@@ -16,7 +16,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFRetorno
 public class NFNotaConsultaRetorno extends DFBase {
     private static final long serialVersionUID = -5747228973124291025L;
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao", required = false)
     private String versao;
 
     @Element(name = "tpAmb", required = true)
