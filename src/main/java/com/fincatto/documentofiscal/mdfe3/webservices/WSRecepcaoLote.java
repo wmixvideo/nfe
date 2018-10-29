@@ -7,7 +7,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
-import com.fincatto.documentofiscal.parsers.DFParser;
+import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFeParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
@@ -34,7 +34,7 @@ class WSRecepcaoLote {
 	public MDFEnvioLoteRetornoDados envioRecepcao(MDFEnvioLote mdfeRecepcaoLote) throws Exception {
 		//assina o lote
 		final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(mdfeRecepcaoLote.toString(), "infMDFe");
-		final MDFEnvioLote loteAssinado = new DFParser().mdfeRecepcaoParaObjeto(documentoAssinado);
+		final MDFEnvioLote loteAssinado = new MDFeParser().mdfeRecepcaoParaObjeto(documentoAssinado);
 
 		//comunica o lote
 		final MDFEnvioLoteRetorno retorno = comunicaLote(documentoAssinado);

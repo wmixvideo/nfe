@@ -6,13 +6,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 
 public class NFEventoManifestacaoTest {
 
     @Test
     public void deveObterAssinaturaComoFoiSetado() {
         final NFEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEventoManifestacaoDestinatario();
-        final String assinatura = "assinatura";
+        final NFSignature assinatura = new NFSignature();
+        final String signatureValue = "signature";
+        assinatura.setSignatureValue(signatureValue);
         eventoManifestacaoDestinatario.setAssinatura(assinatura);
         Assert.assertEquals(assinatura, eventoManifestacaoDestinatario.getAssinatura());
     }
@@ -43,7 +46,10 @@ public class NFEventoManifestacaoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirInfoEventoNulo() {
         final NFEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEventoManifestacaoDestinatario();
-        eventoManifestacaoDestinatario.setAssinatura("assinatura");
+        final NFSignature assinatura = new NFSignature();
+        final String signatureValue = "signature";
+        assinatura.setSignatureValue(signatureValue);
+        eventoManifestacaoDestinatario.setAssinatura(assinatura);
         eventoManifestacaoDestinatario.setVersao(new BigDecimal("3.10"));
         eventoManifestacaoDestinatario.toString();
     }
@@ -52,7 +58,10 @@ public class NFEventoManifestacaoTest {
     public void naoDevePermitirVersaoNulo() {
         final NFEventoManifestacaoDestinatario eventoManifestacaoDestinatario = new NFEventoManifestacaoDestinatario();
         eventoManifestacaoDestinatario.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoManifestacaoDestinatario());
-        eventoManifestacaoDestinatario.setAssinatura("assinatura");
+        final NFSignature assinatura = new NFSignature();
+        final String signatureValue = "signature";
+        assinatura.setSignatureValue(signatureValue);
+        eventoManifestacaoDestinatario.setAssinatura(assinatura);
         eventoManifestacaoDestinatario.toString();
     }
 
