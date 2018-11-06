@@ -159,7 +159,7 @@ public abstract class StringValidador {
 
     public static void placaDeVeiculo(final String placaVeiculo) {
         if (placaVeiculo != null) {
-            final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3})$").matcher(placaVeiculo);
+            final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z]{3}[0-9][A-Z][0-9]{2})$").matcher(placaVeiculo);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("Placa de veiculo nao esta no padrao (%s)", placaVeiculo));
             }
@@ -168,7 +168,7 @@ public abstract class StringValidador {
 
     public static void placaDeVeiculo(final String placaVeiculo, final String info) {
         if (placaVeiculo != null) {
-            final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3})$").matcher(placaVeiculo);
+            final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z]{3}[0-9][A-Z][0-9]{2})$").matcher(placaVeiculo);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("%s nao esta no padrao (%s)", info, placaVeiculo));
             }
