@@ -35,14 +35,6 @@ public class NFNotaInfoItemImpostoICMSUFDestinoTest {
     }
 
     @Test
-    public void deveObterPercentualRelativoFundoCombatePobrezaDestinoComoFoiSetado() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        final String percentualRelativoFundoCombatePobrezaDestino = "999.9999";
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal(percentualRelativoFundoCombatePobrezaDestino));
-        Assert.assertEquals(percentualRelativoFundoCombatePobrezaDestino, icmsUFDestino.getPercentualRelativoFundoCombatePobrezaDestino());
-    }
-
-    @Test
     public void deveObterValorBaseCalculoDestinoComoFoiSetado() {
         final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
         final String valorBaseCalculoDestino = "9999999999999.99";
@@ -66,6 +58,49 @@ public class NFNotaInfoItemImpostoICMSUFDestinoTest {
         Assert.assertEquals(valorICMSInterestadualRemetente, icmsUFDestino.getValorICMSInterestadualRemetente());
     }
 
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirPercentualAliquotaInternaDestinoNulo() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
+        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
+        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirPercentualInterestadualNulo() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
+        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
+        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirPercentualProvisorioPartilhaNulo() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
+        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
+        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
+        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
+        icmsUFDestino.toString();
+    }
+
+
+    @Test
+    public void deveObterPercentualRelativoFundoCombatePobrezaDestinoComoFoiSetado() {
+        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
+        final String percentualRelativoFundoCombatePobrezaDestino = "999.9999";
+        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal(percentualRelativoFundoCombatePobrezaDestino));
+        Assert.assertEquals(percentualRelativoFundoCombatePobrezaDestino, icmsUFDestino.getPercentualRelativoFundoCombatePobrezaDestino());
+    }
+
     @Test
     public void deveObterValorRelativoFundoCombatePobrezaDestinoComoFoiSetado() {
         final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
@@ -75,80 +110,13 @@ public class NFNotaInfoItemImpostoICMSUFDestinoTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualAliquotaInternaDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualInterestadualNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualProvisorioPartilhaNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirPercentualRelativoFundoCombatePobrezaDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBaseCalculoDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorICMSInterestadualDestinoNulo() {
         final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
         icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
         icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
         icmsUFDestino.toString();
     }
 
@@ -158,25 +126,12 @@ public class NFNotaInfoItemImpostoICMSUFDestinoTest {
         icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
         icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
         icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
         icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorRelativoFundoCombatePobrezaDestino(new BigDecimal("9999999999999.99"));
         icmsUFDestino.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorRelativoFundoCombatePobrezaDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSUFDestino icmsUFDestino = new NFNotaInfoItemImpostoICMSUFDestino();
-        icmsUFDestino.setPercentualAliquotaInternaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualInterestadual(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualProvisorioPartilha(new BigDecimal("999.9999"));
-        icmsUFDestino.setPercentualRelativoFundoCombatePobrezaDestino(new BigDecimal("999.9999"));
-        icmsUFDestino.setValorBaseCalculoDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualDestino(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.setValorICMSInterestadualRemetente(new BigDecimal("9999999999999.99"));
-        icmsUFDestino.toString();
-    }
+    
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
