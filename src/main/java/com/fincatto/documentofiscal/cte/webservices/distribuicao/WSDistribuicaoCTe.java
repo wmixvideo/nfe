@@ -45,7 +45,7 @@ public class WSDistribuicaoCTe {
             throw new Exception(e.getMessage());
         }
     }
-
+ 
     public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
