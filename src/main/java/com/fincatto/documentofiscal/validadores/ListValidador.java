@@ -2,10 +2,7 @@ package com.fincatto.documentofiscal.validadores;
 
 import java.util.List;
 
-public class ListValidador {
-
-    private ListValidador() {
-    }
+public abstract class ListValidador {
 
     public static <E> void tamanho2(final List<E> lista, final String info) {
         ListValidador.validaTamanho(lista, 2, info);
@@ -84,5 +81,4 @@ public class ListValidador {
             throw new IllegalStateException(String.format("Lista %s de tamanho %s extrapolou o tamanho maximo de [%s]", info, lista.size(), tamanho));
         }
     }
-
 }

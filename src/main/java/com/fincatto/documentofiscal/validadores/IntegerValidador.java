@@ -1,11 +1,6 @@
 package com.fincatto.documentofiscal.validadores;
 
-import java.text.MessageFormat;
-
-public class IntegerValidador {
-
-    private IntegerValidador() {
-    }
+public abstract class IntegerValidador {
 
     public static void tamanho4(final Integer valor, final String info) {
         IntegerValidador.limite(valor, 9999, info);
@@ -63,7 +58,7 @@ public class IntegerValidador {
 
     private static void intervalo(final Integer valor, final int minimo, final int maximo, final String info) {
         if (valor != null && (valor < minimo || valor > maximo)) {
-            throw new NumberFormatException(MessageFormat.format("Valor %s tem tamanho fora do intervalo de [{0}-{1}]", info, minimo, maximo));
+            throw new NumberFormatException(String.format("Valor %s tem tamanho fora do intervalo de [%s-%s]", info, minimo, maximo));
         }
     }
 }
