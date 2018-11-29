@@ -579,20 +579,16 @@ public abstract class StringValidador {
 
     /**
      * Método para validação de Strings.
-     *
      * @param paraValidar String a ser validada
      * @param info Informação de retorno caso haja erro.
      * @param tamanho tamanho para validação da {@code String} , pode ser {@code null} :
-     * @param exatamente
-     *
-     * <pre>
+     * @param exatamente <pre>
      * se false {@code null} a {@code String}
      *                   não precisa ter o tamanho exato do parametro anterior.
      * </pre>
-     *
      * @param numerico se true {@code null} a {@code String} precisa ser numérica[0-9].
-     * @return retorna a própria {@code String} {
      * @param paraValidar}.
+     * @return retorna a própria {@code String} {
      */
     public static String validador(final String paraValidar, final String info, Integer tamanho, Boolean exatamente, Boolean numerico) {
         tamanho = ObjectUtils.defaultIfNull(tamanho, 1);
@@ -689,13 +685,12 @@ public abstract class StringValidador {
      *  StringValidador.capacidadeNDigitos("10000", "info" , 5)   = "10000"
      *  StringValidador.capacidadeNDigitos("5", "info" , 2)   = "5"
      * </pre>
-     *
-     * @throws IllegalStateException se<br>
-     * {@code capacidade = "10000" } & {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos }
      * @param capacidade
      * @param info
      * @param digitos
      * @return
+     * @throws IllegalStateException se<br>
+     * {@code capacidade = "10000" } & {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos }
      */
     public static String capacidadeNDigitos(final String capacidade, final String info, final int digitos) {
         if (capacidade != null) {
@@ -754,8 +749,7 @@ public abstract class StringValidador {
 
     public static void equals(final String test, final String tested) {
         if (!StringUtils.equals(test, tested)) {
-            throw new IllegalStateException(String.format("Valor('%s') não corresponde com o padrao('%s')", (Object[]) new String[]{tested, test}));
+            throw new IllegalStateException(String.format("Valor('%s') nao corresponde com o padrao('%s')", tested, test));
         }
     }
-
 }
