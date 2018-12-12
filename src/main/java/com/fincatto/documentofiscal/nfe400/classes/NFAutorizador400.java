@@ -56,12 +56,12 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao4" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao4";
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao4" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao4";
         }
 
         @Override
