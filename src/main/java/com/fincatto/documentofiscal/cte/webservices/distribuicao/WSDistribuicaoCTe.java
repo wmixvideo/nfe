@@ -11,12 +11,13 @@ import org.apache.commons.httpclient.protocol.Protocol;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
+import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoCTe {
@@ -45,15 +46,15 @@ public class WSDistribuicaoCTe {
             throw new Exception(e.getMessage());
         }
     }
- 
+
     public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
         }
-        //final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
-        final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
+        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
+        //final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
-            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, "UTF-8"))) {
+            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8))) {
                 StringBuilder outStr = new StringBuilder();
                 String line;
                 while ((line = bf.readLine()) != null) {

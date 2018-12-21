@@ -1,21 +1,18 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import org.simpleframework.xml.ElementList;
 
 /**
  * Created by Eldevan Nery Junior on 07/12/17. Informações de Seguro da Carga.
  */
 @Root(name = "seg")
-@XmlAccessorType(XmlAccessType.FIELD)
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfoSeguro extends DFBase {
 
