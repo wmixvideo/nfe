@@ -138,6 +138,8 @@ public class NFAutorizador400Test {
     @Test
     public void deveBuscarCorretamenteURLWebServiceMG() {
         final NFAutorizador400 autorizador = NFAutorizador400.MG;
+        
+        // NF-e
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/cadconsultacadastro2", autorizador.getConsultaCadastro(DFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeAutorizacao4", autorizador.getNfeAutorizacao(DFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://hnfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4", autorizador.getNfeConsultaProtocolo(DFAmbiente.HOMOLOGACAO));
@@ -153,6 +155,22 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeStatusServico4", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeRecepcaoEvento4", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfe.fazenda.mg.gov.br/nfe2/services/NFeInutilizacao4", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
+        
+        // NFC-e
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeAutorizacao4", autorizador.getNfceAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeConsultaProtocolo4", autorizador.getNfceConsultaProtocolo(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeInutilizacao4", autorizador.getNfceInutilizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeRecepcaoEvento4", autorizador.getNfceRecepcaoEvento(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeRetAutorizacao4", autorizador.getNfceRetAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfce.fazenda.mg.gov.br/nfce/services/NFeStatusServico4", autorizador.getNfceStatusServico(DFAmbiente.PRODUCAO));
+        
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeAutorizacao4", autorizador.getNfceAutorizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeConsultaProtocolo4", autorizador.getNfceConsultaProtocolo(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeInutilizacao4", autorizador.getNfceInutilizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeRecepcaoEvento4", autorizador.getNfceRecepcaoEvento(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeRetAutorizacao4", autorizador.getNfceRetAutorizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://hnfce.fazenda.mg.gov.br/nfce/services/NFeStatusServico4", autorizador.getNfceStatusServico(DFAmbiente.HOMOLOGACAO));
+        
     }
 
     @Test
