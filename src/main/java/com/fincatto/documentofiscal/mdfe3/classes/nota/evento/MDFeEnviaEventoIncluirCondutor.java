@@ -1,17 +1,12 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import java.time.LocalDate;
-
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioVeiculoCondutor;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import java.util.List;
-import org.simpleframework.xml.ElementList;
 
 /**
  * Created by Edivaldo Merlo Stens on 13/10/18.

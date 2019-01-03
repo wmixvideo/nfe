@@ -1,5 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoResponsavelSeguro;
@@ -11,14 +17,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguro;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroInfo;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroResponsavel;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
-import java.util.List;
 
 public class FabricaDeObjetosFakeMDFe {
 

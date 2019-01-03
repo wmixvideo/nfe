@@ -1,10 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3;
 
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Assert;
+
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 
 /**
  *
