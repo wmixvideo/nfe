@@ -56,12 +56,12 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeAutorizacao4" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeAutorizacao4";
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homnfce.sefaz.am.gov.br/nfce-services-nac/services/NfeRetAutorizacao4" : "https://nfce.sefaz.am.gov.br/nfce-services/services/NfeRetAutorizacao4";
         }
 
         @Override
@@ -177,7 +177,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getRecepcaoEventoAN(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/RecepcaoEvento/RecepcaoEvento.asmx" : "https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hom.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx" : "https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx";
         }
 
         @Override
@@ -575,12 +575,12 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return null;
+        	return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeAutorizacao4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeAutorizacao4";
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return null;
+        	return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeRetAutorizacao4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeRetAutorizacao4";
         }
 
         @Override
@@ -590,22 +590,22 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return null;
+        	return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeConsultaProtocolo4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeConsultaProtocolo4";
         }
 
         @Override
         public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return null;
+        	return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeStatusServico4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeStatusServico4";
         }
 
         @Override
         public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeRecepcaoEvento4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeRecepcaoEvento4";
         }
 
         @Override
         public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return null;
+        	return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hnfce.fazenda.mg.gov.br/nfce/services/NFeInutilizacao4" : "https://nfce.fazenda.mg.gov.br/nfce/services/NFeInutilizacao4";
         }
 
         @Override
@@ -1203,7 +1203,7 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevent4.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx";
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfce-homologacao.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx" : "https://nfce.sefazrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx";
         }
 
         @Override

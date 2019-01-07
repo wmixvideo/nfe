@@ -21,7 +21,7 @@ public enum DFUnidadeFederativa {
     DF("DF", "Distrito Federal", "53", "http://dec.fazenda.df.gov.br/ConsultarNFCe.aspx", "http://dec.fazenda.df.gov.br/ConsultarNFCe.aspx"
             , "http://dec.fazenda.df.gov.br/NFCE/", "http://dec.fazenda.df.gov.br/NFCE/"),
     GO("GO", "Goi\u00E1s", "52", "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe", "http://nfe.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe"
-            , "http://www.nfce.go.gov.br", "http://www.nfce.go.gov.br"),
+            , "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe", "http://nfe.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe"),
     ES("ES", "Esp\u00EDrito Santo", "32", "http://homologacao.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx", "http://app.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx"
             , "http://homologacao.sefaz.es.gov.br/ConsultaNFCe", "http://app.sefaz.es.gov.br/ConsultaNFCe"),
     MA("MA", "Maranh\u00E3o", "21", "http://www.hom.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.sefaz.ma.gov.br/portal/consultaNFe.do?method=preFilterCupom&"
@@ -30,15 +30,15 @@ public enum DFUnidadeFederativa {
             , "http://homologacao.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
     MS("MS", "Mato Grosso do Sul", "50", "http://www.dfe.ms.gov.br/nfce/qrcode", "http://www.dfe.ms.gov.br/nfce/qrcode"
             , "http://www.dfe.ms.gov.br/nfce", "http://www.dfe.ms.gov.br/nfce"),
-    MG("MG", "Minas Gerais", "31"),
+    MG("MG", "Minas Gerais", "31", "https://hnfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "https://nfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "http://hnfce.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml", "http://nfce.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml"),
     PA("PA", "Par\u00E1", "15", "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/nfceForm.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/nfceForm.seam"
             , "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam"),
     PB("PB", "Paraiba", "25", "http://www.receita.pb.gov.br/nfcehom", "http://www.receita.pb.gov.br/nfce"
             , "http://www.receita.pb.gov.br/nfcehom", "www.receita.pb.gov.br/nfce"),
-    PR("PR", "Paran\u00E1", "41", "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe", "http://www.dfeportal.fazenda.pr.gov.br/dfe-portal/rest/servico/consultaNFCe"
+    PR("PR", "Paran\u00E1", "41", "http://www.fazenda.pr.gov.br/nfce/qrcode", "http://www.fazenda.pr.gov.br/nfce/qrcode"
             , "http://www.fazenda.pr.gov.br", "http://www.fazenda.pr.gov.br"),
     PE("PE", "Pernambuco", "26", "http://nfcehomolog.sefaz.pe.gov.br/nfce-web/consultarNFCe", "http://nfce.sefaz.pe.gov.br/nfce-web/consultarNFCe"
-            , "", ""),
+            , "http://nfcehomolog.sefaz.pe.gov.br/nfce/consulta", "http://nfce.sefaz.pe.gov.br/nfce/consulta"),
     PI("PI", "Piau\u00ED", "22", "http://webas.sefaz.pi.gov.br/nfceweb-homologacao/consultarNFCe.jsf", "http://webas.sefaz.pi.gov.br/nfceweb/consultarNFCe.jsf"
             , "http://webas.sefaz.pi.gov.br/nfceweb-homologacao/consultarNFCe.jsf", "http://webas.sefaz.pi.gov.br/nfceweb/consultarNFCe.jsf"),
     RJ("RJ", "Rio de Janeiro", "33", "http://www4.fazenda.rj.gov.br/consultaNFCe/QRCode", "http://www4.fazenda.rj.gov.br/consultaNFCe/QRCode"
@@ -57,7 +57,7 @@ public enum DFUnidadeFederativa {
     SE("SE", "Sergipe", "28", "http://www.hom.nfe.se.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.se.gov.br/portal/consultarNFCe.jsp"
             , "http://www.hom.nfe.se.gov.br/portal/portalNoticias.jsp", "http://www.nfce.se.gov.br/portal/portalNoticias.jsp"),
     TO("TO", "Tocantins", "17", null, null
-            , "http://apps.sefaz.to.gov.br/portal-nfce-homologacao/consultarNFCe.jsf", "http://apps.sefaz.to.gov.br/portal-nfce/consultarNFCe.jsf"),
+            , "http://homologacao.sefaz.to.gov.br/nfce/consulta.jsf", "http://www.sefaz.to.gov.br/nfce/consulta.jsf"),
     NACIONAL("NC", "Nacional", "90"),
     RFB("RFB", "RFB", "91"),
     EX("EX", "Exterior", "99");
