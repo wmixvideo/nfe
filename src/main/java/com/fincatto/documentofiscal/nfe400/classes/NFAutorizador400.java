@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <h1>URLs dos serviços</h1><br>
@@ -1482,6 +1482,108 @@ public enum NFAutorizador400 {
         @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[] {};
+        }
+    },
+    DPEC{
+//        Envio de DPEC:
+//        https://hom.nfe.fazenda.gov.br/SCERecepcaoRFB/SCERecepcaoRFB.asmx
+//        Consultas de DPEC:
+//        https://hom.nfe.fazenda.gov.br/SCEConsultaRFB/SCEConsultaRFB.asmx
+//
+//        Os endereços de produção para a DPEC são:
+//        Envio de DPEC:
+//        https://www.nfe.fazenda.gov.br/SCERecepcaoRFB/SCERecepcaoRFB.asmx
+//        Consultas de DPEC:
+//        https://www.nfe.fazenda.gov.br/SCEConsultaRFB/SCEConsultaRFB.asmx
+
+        @Override
+        public String getNfeAutorizacao(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ?
+                    "https://hom.nfe.fazenda.gov.br/SCERecepcaoRFB/SCERecepcaoRFB.asmx" :
+                    "https://www.nfe.fazenda.gov.br/SCERecepcaoRFB/SCERecepcaoRFB.asmx";
+
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ?
+                    "https://hom.nfe.fazenda.gov.br/SCEConsultaRFB/SCEConsultaRFB.asmx" :
+                    "https://www.nfe.fazenda.gov.br/SCEConsultaRFB/SCEConsultaRFB.asmx";
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeStatusServico(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getRecepcaoEvento(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getConsultaCadastro(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfeInutilizacao(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceAutorizacao(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceRetAutorizacao(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceConsultaCadastro(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceConsultaProtocolo(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceStatusServico(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceRecepcaoEvento(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNfceInutilizacao(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(DFAmbiente ambiente) {
+            return null;
+        }
+
+        @Override
+        public DFUnidadeFederativa[] getUFs() {
+            return new DFUnidadeFederativa[0];
         }
     },
     SVAN {
