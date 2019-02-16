@@ -21,34 +21,27 @@ public class MDFeConfigTest {
 
         @Override
         public DFUnidadeFederativa getCUF() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         @Override
         public KeyStore getCertificadoKeyStore() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         @Override
         public String getCertificadoSenha() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         @Override
         public KeyStore getCadeiaCertificadosKeyStore() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         @Override
         public String getCadeiaCertificadosSenha() {
-            // TODO Auto-generated method stub
             return null;
         }
-
     }
-
 }
