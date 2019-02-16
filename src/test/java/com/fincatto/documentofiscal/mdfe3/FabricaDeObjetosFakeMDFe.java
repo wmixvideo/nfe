@@ -1,28 +1,26 @@
 package com.fincatto.documentofiscal.mdfe3;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoResponsavelSeguro;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno;
-import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoInfoRecebimento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguro;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroInfo;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroResponsavel;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FabricaDeObjetosFakeMDFe {
 
     public static MDFe getMDFe1() {
-        final MDFe a1 = new MDFe();
-        return a1;
+        return new MDFe();
     }
 
     public static MDFInfoSeguro getMDFInfoSeguro() {
@@ -50,10 +48,10 @@ public class FabricaDeObjetosFakeMDFe {
 
     public static List<String> getMDFInfoSeguroAverbacao() {
         final List<String> infSeguroAverbacaoList = new ArrayList<>();
-        String infSeguroAverbacao0 = new String("1245789865322154879865325487986532154876");
+        String infSeguroAverbacao0 = "1245789865322154879865325487986532154876";
         infSeguroAverbacaoList.add(infSeguroAverbacao0);
         //
-        String infSeguroAverbacao1 = new String("1245789865322154879865325487986532154877");
+        String infSeguroAverbacao1 = "1245789865322154879865325487986532154877";
         infSeguroAverbacaoList.add(infSeguroAverbacao1);
         return infSeguroAverbacaoList;
     }
@@ -85,10 +83,4 @@ public class FabricaDeObjetosFakeMDFe {
         loteEnvio.setMdfe(getMDFe1());
         return loteEnvio;
     }
-
-    public static MDFEnvioLoteRetornoDados getMDFEnvioLoteRetornoDados() {
-
-        return new MDFEnvioLoteRetornoDados(getMDFEnvioLoteRetorno(), getMDFEnvioLote());
-    }
-
 }
