@@ -20,7 +20,7 @@ import java.security.cert.X509Certificate;
 public abstract class GeraCadeiaCertificados {
 
     private static final int PORT = 443;
-    private static final String PROTOCOL = "TLS";
+    private static final String PROTOCOL = "TLSv1.2";
     private static final Logger LOGGER = LoggerFactory.getLogger(GeraCadeiaCertificados.class);
 
     public static byte[] geraCadeiaCertificados(final DFAmbiente ambiente, final String senha) throws Exception {

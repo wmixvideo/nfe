@@ -39,4 +39,6 @@ public enum NFIndicadorPresencaComprador {
     public String toString() {
         return this.codigo + " - " + this.descricao;
     }
+    
+    
 }
