@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -752,4 +753,11 @@ public abstract class StringValidador {
             throw new IllegalStateException(String.format("Valor('%s') nao corresponde com o padrao('%s')", tested, test));
         }
     }
+
+    public static void isBase64(final String string, final String info) {
+        if (!Base64.isArrayByteBase64(string.getBytes())) {
+            throw new IllegalStateException(String.format("A string %s com o valor = '%s' precisa ser codificada em Base64. ", info, string));
+        }
+    }
+
 }
