@@ -1,17 +1,5 @@
 package com.fincatto.documentofiscal.nfe400;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFPais;
@@ -40,6 +28,17 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class FabricaDeObjetosFake {
 
@@ -1253,5 +1252,16 @@ public class FabricaDeObjetosFake {
         volume.setPesoLiquido(new BigDecimal("1"));
         volume.setQuantidadeVolumesTransportados(new BigInteger("99999999999"));
         return volume;
+    }
+
+    public static NFNotaInfoResponsavelTecnico getNFNotaInfoResponsavelTecnico() {
+        NFNotaInfoResponsavelTecnico responsavelTecnico = new NFNotaInfoResponsavelTecnico();
+        responsavelTecnico.setCnpj("99999999999999");
+        responsavelTecnico.setContatoNome("Nome do Contato");
+        responsavelTecnico.setEmail("email@empresaficticia.com.br");
+        responsavelTecnico.setTelefone("41999999999");
+        responsavelTecnico.setIdCSRT("01");
+        responsavelTecnico.setHashCSRT("aWv6LeEM4X6u4+qBI2OYZ8grigw=");
+        return responsavelTecnico;
     }
 }
