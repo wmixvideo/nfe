@@ -24,13 +24,13 @@ public enum DFUnidadeFederativa {
             , "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe", "http://nfe.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe"),
     ES("ES", "Esp\u00EDrito Santo", "32", "http://homologacao.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx", "http://app.sefaz.es.gov.br/ConsultaNFCe/qrcode.aspx"
             , "http://homologacao.sefaz.es.gov.br/ConsultaNFCe", "http://app.sefaz.es.gov.br/ConsultaNFCe"),
-    MA("MA", "Maranh\u00E3o", "21", "http://www.hom.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.sefaz.ma.gov.br/portal/consultaNFe.do?method=preFilterCupom&"
-            , "http://www.hom.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.sefaz.ma.gov.br/portal/consultaNFe.do?method=preFilterCupom&"),
+    MA("MA", "Maranh\u00E3o", "21", "http://www.hom.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp"
+            , "http://www.hom.nfce.sefaz.ma.gov.br/portal/consultarNFCe.jsp", "http://www.sefaz.ma.gov.br/nfce/consulta/"),
     MT("MT", "Mato Grosso", "51", "http://homologacao.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"
             , "http://homologacao.sefaz.mt.gov.br/nfce/consultanfce", "http://www.sefaz.mt.gov.br/nfce/consultanfce"),
     MS("MS", "Mato Grosso do Sul", "50", "http://www.dfe.ms.gov.br/nfce/qrcode", "http://www.dfe.ms.gov.br/nfce/qrcode"
             , "http://www.dfe.ms.gov.br/nfce", "http://www.dfe.ms.gov.br/nfce"),
-    MG("MG", "Minas Gerais", "31", "https://hnfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "https://nfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "http://hnfce.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml", "http://nfce.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml"),
+    MG("MG", "Minas Gerais", "31", "https://nfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "https://nfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", "http://hnfce.fazenda.mg.gov.br/portalnfce", "http://nfce.fazenda.mg.gov.br/portalnfce"),
     PA("PA", "Par\u00E1", "15", "https://appnfc.sefa.pa.gov.br/portal-homologacao/view/consultas/nfce/nfceForm.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/nfceForm.seam"
             , "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam", "https://appnfc.sefa.pa.gov.br/portal/view/consultas/nfce/consultanfce.seam"),
     PB("PB", "Paraiba", "25", "http://www.receita.pb.gov.br/nfcehom", "http://www.receita.pb.gov.br/nfce"

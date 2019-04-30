@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
-import org.apache.axis2.client.Stub;
-
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
@@ -35,6 +36,8 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
         this._serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext, this._service);
         this._serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(targetEndpoint));
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
+        this._serviceClient.getOptions().setProperty(HTTPConstants.CHUNKED, false);
+
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
     }
