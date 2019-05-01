@@ -85,8 +85,8 @@ public class WSDistribuicaoNFe {
         final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
         distDFeInt.setVersao("1.01");
         distDFeInt.setAmbiente(this.config.getAmbiente());
-        distDFeInt.setCnpj(cnpj);
         distDFeInt.setUnidadeFederativaAutor(uf);
+        distDFeInt.setCnpj(cnpj);
 
         if (StringUtils.isNotBlank(chaveAcesso)) {
             distDFeInt.setConsultaChaveAcesso(new NFDistribuicaoConsultaChaveAcesso().setChaveAcesso(chaveAcesso));

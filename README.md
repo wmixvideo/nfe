@@ -249,17 +249,10 @@ Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baix
 ```java
 public static void main(String args[]){
     try {
-        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), GeraCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
-        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), GeraCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMOLOGACAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMOLOGACAO, "senha"));
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
 ```
-
-## Licença
-Apache 2.0
-
-## Dúvidas?
-O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
-Portanto, em caso de dúvidas, use o nosso canal do [Disqus](https://disqus.com/home/channel/nfe/).
