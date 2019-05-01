@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.convert.Convert;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.converters.StringNullConverter;
+import java.util.List;
 
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoRetorno extends DFBase {
@@ -22,7 +21,7 @@ public class NFEnviaEventoRetorno extends DFBase {
 
     // O Converter StringNullConverter esta sendo utilizado para resolver um problema da autorizadora SVAN, que esta retornandoo atributo idLote vazio.
     @Element(name = "idLote", required = true)
-    @Convert(StringNullConverter.class)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String idLote;
 
     @Element(name = "tpAmb", required = true)

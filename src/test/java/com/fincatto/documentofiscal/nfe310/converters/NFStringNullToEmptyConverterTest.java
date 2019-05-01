@@ -1,18 +1,16 @@
-package com.fincatto.documentofiscal.nfe400.converters;
+package com.fincatto.documentofiscal.nfe310.converters;
 
-import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.NodeMap;
 import org.simpleframework.xml.stream.Position;
 
-public class StringNullConverterTest {
+public class NFStringNullToEmptyConverterTest {
 
     @Test
     public void deveRetornarStringVaziaCasoSejaValorNulo() throws Exception {
-        final StringNullConverter stringConverter = new StringNullConverter();
-        Assert.assertEquals("", stringConverter.read(new InputNodeMock()));
+        Assert.assertEquals("", new NFStringNullToEmptyConverter().read(new InputNodeMock()));
     }
 
     class InputNodeMock implements InputNode {
