@@ -39,7 +39,7 @@ public class NFEnviaEventoRetorno extends DFBase {
     @Element(name = "xMotivo", required = true)
     private String motivo;
 
-    @ElementList(entry = "retEvento", inline = true, required = true)
+    @ElementList(entry = "retEvento", inline = true, required = false)
     private List<NFEventoRetorno> eventoRetorno;
 
     public String getVersao() {
