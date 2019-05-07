@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
-import com.fincatto.documentofiscal.nfe400.converters.StringNullConverter;
+import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
@@ -21,7 +21,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     private String codigo;
 
     @Element(name = "cEAN", required = false)
-    @Convert(StringNullConverter.class)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarras;
 
     @Element(name = "xProd", required = true)
@@ -64,7 +64,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
-    @Convert(StringNullConverter.class)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarrasTributavel;
 
     @Element(name = "uTrib", required = true)

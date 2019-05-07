@@ -3,7 +3,7 @@ Nota Fiscal Eletrônica
 Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Build Status](https://travis-ci.org/wmixvideo/nfe.svg?branch=master)](http://travis-ci.org/#!/wmixvideo/nfe)
 [![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
-[![Maven Central](https://img.shields.io/badge/maven%20central-3.0.2-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|3.0.2|)
+[![Maven Central](https://img.shields.io/badge/maven%20central-3.0.5-blue.svg)](http://search.maven.org/#artifactdetails|com.github.wmixvideo|nfe|3.0.5|)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
 ## Atenção
@@ -24,7 +24,7 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>3.0.2</version>
+  <version>3.0.5</version>
 </dependency>
 ```
 ### Fazendo o clone do projeto (última versão em desenvolvimento)
@@ -46,10 +46,10 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>3.0.3-SNAPSHOT</version>
+  <version>3.0.5</version>
 </dependency>
 ```
- - Onde ```<version>3.0.2-SNAPSHOT</version>``` é a versão atual do projeto definido no arquivo [pom.xml](https://github.com/wmixvideo/nfe/blob/master/pom.xml)
+ - Onde ```<version>3.0.5</version>``` é a versão atual do projeto definido no arquivo [pom.xml](https://github.com/wmixvideo/nfe/blob/master/pom.xml)
 
 ## Como usar
 Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
@@ -114,8 +114,8 @@ public class NFeConfigTeste extends NFeConfig {
 KeyStore keyStoreCert = KeyStore.getInstance("Windows-MY", "SunMSCAPI"); 
 keyStoreCert.load(null, null);
 Enumeration<String> aliasEnum = keyStoreCert.aliases();
-
 ```
+
 Após isso é necessário algum método para o usuário escolher entre um destes alias, 
 talvez por meio de um JOptionPane(<java7)
  ou de um ChoiceDialog<String>(>=Java8), e então fazer o load com a respectivo alias escolhido e sua senha.
@@ -249,17 +249,10 @@ Para gerar a cadeia de certificados, disponibilizamos um pequeno helper que baix
 ```java
 public static void main(String args[]){
     try {
-        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
-        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.HOMOLOGACAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMOLOGACAO, "senha"));
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
 ```
-
-## Licença
-Apache 2.0
-
-## Dúvidas?
-O projeto da NFe brasileira é relativamente complexo e propenso a dúvidas. <br/>
-Portanto, em caso de dúvidas, use o nosso canal do [Disqus](https://disqus.com/home/channel/nfe/).

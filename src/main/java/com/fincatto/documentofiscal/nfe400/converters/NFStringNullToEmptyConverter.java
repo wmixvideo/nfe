@@ -5,7 +5,7 @@ import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;
 
-public class StringNullConverter implements Converter<String> {
+public class NFStringNullToEmptyConverter implements Converter<String> {
 
 	@Override
 	public String read(final InputNode node) throws Exception {

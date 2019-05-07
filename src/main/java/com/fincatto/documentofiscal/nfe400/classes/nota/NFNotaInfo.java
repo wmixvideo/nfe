@@ -1,17 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.math.BigDecimal;
-import java.util.List;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 
 @Root(name = "infNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -73,6 +74,9 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name = "cana", required = false)
     private NFNotaInfoCana cana;
+
+    @Element(name="infRespTec", required = false)
+    private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
 
     /**
      * Pega a chave de acesso a partir do identificador.
@@ -170,6 +174,11 @@ public class NFNotaInfo extends DFBase {
         this.pagamentos = pagamentos;
     }
 
+    public NFNotaInfo setInformacaoResposavelTecnico(NFNotaInfoResponsavelTecnico informacaoResposavelTecnico) {
+        this.informacaoResposavelTecnico = informacaoResposavelTecnico;
+        return this;
+    }
+
     public String getVersao() {
         return this.versao;
     }
@@ -228,5 +237,9 @@ public class NFNotaInfo extends DFBase {
 
     public NFNotaInfoCana getCana() {
         return this.cana;
+    }
+
+    public NFNotaInfoResponsavelTecnico getInformacaoResposavelTecnico() {
+        return this.informacaoResposavelTecnico;
     }
 }

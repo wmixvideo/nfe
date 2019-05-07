@@ -41,8 +41,8 @@ public class MDFInfo extends DFBase {
     @Element(name = "infDoc")
     private MDFInfoInformacoesDocumentos informacoesDocumentos;
 
-    @Element(name = "seg", required = false)
-    private MDFInfoSeguro seguro;
+    @ElementList(name = "seg", inline = true, required = false)
+    private List<MDFInfoSeguro> seguro;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -161,11 +161,11 @@ public class MDFInfo extends DFBase {
         this.informacoesAdicionais = informacoesAdicionais;
     }
 
-    public MDFInfoSeguro getSeguro() {
+    public List<MDFInfoSeguro> getSeguro() {
         return this.seguro;
     }
 
-    public void setSeguro(final MDFInfoSeguro seguro) {
+    public void setSeguro(final List<MDFInfoSeguro> seguro) {
         this.seguro = seguro;
     }
 }

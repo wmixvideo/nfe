@@ -7,7 +7,7 @@ import org.simpleframework.xml.ElementList;
 import java.util.List;
 
 /**
- *  Created by Eldevan Nery Junior on 06/11/17.
+ * Created by Eldevan Nery Junior on 06/11/17.
  */
 public class MDFInfoInformacoesDFeTipoUnidadeCarga {
 
@@ -29,4 +29,37 @@ public class MDFInfoInformacoesDFeTipoUnidadeCarga {
      */
     @Element(name = "qtdRat")
     private String qtdRateada;
+
+    public MDFTipoUnidadeCarga getTipoUnidadeCarga() {
+        return tipoUnidadeCarga;
+    }
+
+    public void setTipoUnidadeCarga(MDFTipoUnidadeCarga tipoUnidadeCarga) {
+        this.tipoUnidadeCarga = tipoUnidadeCarga;
+    }
+
+    public String getIdUnidCarga() {
+        return idUnidCarga;
+    }
+
+    public void setIdUnidCarga(String idUnidCarga) {
+        this.idUnidCarga = idUnidCarga;
+    }
+
+    public List<MDFInfoLacre1A20> getLacUnidCarga() {
+        return lacUnidCarga;
+    }
+
+    public void setLacUnidCarga(List<MDFInfoLacre1A20> lacUnidCarga) {
+        this.lacUnidCarga = lacUnidCarga;
+    }
+
+    public String getQtdRateada() {
+        return qtdRateada;
+    }
+
+    public void setQtdRateada(String qtdRateada) {
+        this.qtdRateada = qtdRateada;
+    }
+
 }
