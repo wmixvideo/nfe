@@ -1,23 +1,29 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.*;
-import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
-import com.fincatto.documentofiscal.persister.DFPersister;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.parsers.NotaFiscalChaveParser;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
+import com.fincatto.documentofiscal.persister.DFPersister;
 
 public class WSManifestacaoDestinatario {
 
@@ -41,6 +47,28 @@ public class WSManifestacaoDestinatario {
         return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
+    NFProtocoloEventoManifestacaoDestinatario manifestaDestinatarioNotaProtocolo(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+    	String manifestacaoDestinatarioNotaXML = this.gerarDadosManifestacaoDestinatario(chaveAcesso, tipoEvento, motivo, cnpj).toString();
+    	
+    	final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(manifestacaoDestinatarioNotaXML);
+    	final OMElement omElementResult = this.efetuaManifestacaoDestinatario(xmlAssinado, chaveAcesso);
+    	
+    	NFEnviaEventoManifestacaoDestinatario evento = new DFPersister().read(NFEnviaEventoManifestacaoDestinatario.class, xmlAssinado);
+    	NFEnviaEventoRetorno retorno = new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+    	
+    	// Excessao se o codigo status do retorno diferente de 128 - Lote de Evento Processado 
+		if (retorno.getCodigoStatusReposta() != 128) {
+			throw new RuntimeException("Status: " + retorno.getCodigoStatusReposta() + " - Motivo: " + retorno.getMotivo());
+		}
+
+    	NFProtocoloEventoManifestacaoDestinatario nfProtocoloEventoManifestacaoDestinatario = new NFProtocoloEventoManifestacaoDestinatario();
+    	nfProtocoloEventoManifestacaoDestinatario.setVersao(evento.getVersao());
+    	nfProtocoloEventoManifestacaoDestinatario.setEvento(evento.getEvento().get(0));
+    	nfProtocoloEventoManifestacaoDestinatario.setEventoRetorno(retorno.getEventoRetorno().get(0));
+    	
+    	return nfProtocoloEventoManifestacaoDestinatario;
+    }
+    
     private OMElement efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);

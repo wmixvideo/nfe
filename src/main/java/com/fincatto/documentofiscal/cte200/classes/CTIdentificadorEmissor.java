@@ -13,7 +13,7 @@ public enum CTIdentificadorEmissor {
     CTIdentificadorEmissor(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
-    }
+    } 
 
     public String getCodigo() {
         return this.codigo;

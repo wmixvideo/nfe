@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -18,7 +8,9 @@ import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRe
 import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
@@ -27,6 +19,14 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import org.apache.commons.httpclient.protocol.Protocol;
+
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 public class WSFacade {
 
@@ -239,6 +239,10 @@ public class WSFacade {
     public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj);
     }
+    
+    public NFProtocoloEventoManifestacaoDestinatario manifestaDestinatarioNotaProtocolo(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+        return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaProtocolo(chave, tipoEvento, motivo, cnpj);
+    }
 
     /**
      * Faz a manifestação do destinatário da nota com evento ja assinado ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
@@ -253,7 +257,7 @@ public class WSFacade {
 
     /**
      * Faz consulta de distribuicao das notas fiscais. Pode ser feita pela chave de acesso ou utilizando o NSU (numero sequencial unico) da receita.
-     * @param cnpj CNPJ da pessoa juridica a consultar
+     * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
      * @param uf Unidade federativa da pessoa juridica a consultar
      * @param nsu Número Sequencial Único. Geralmente esta consulta será utilizada quando identificado pelo interessado um NSU faltante.
      *            O Web Service retornará o documento ou informará que o NSU não existe no Ambiente Nacional. Assim, esta
@@ -264,8 +268,8 @@ public class WSFacade {
      * @return dados da consulta retornado pelo webservice limitando um total de 50 registros
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
-        return this.wSDistribuicaoNFe.consultar(cnpj, uf, chaveAcesso, nsu, ultNsu);
+    public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
+        return this.wSDistribuicaoNFe.consultar(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu);
     }
 
 }
