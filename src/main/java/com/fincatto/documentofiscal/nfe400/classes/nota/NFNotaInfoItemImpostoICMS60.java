@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     private static final long serialVersionUID = 1325261415800285939L;
@@ -24,6 +22,9 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     @Element(name = "pST", required = false)
     private String percentualAliquotaICMSSTConsumidorFinal;
 
+    @Element(name = "vICMSSubstituto", required = false)
+    private String valorICMSSubstituto;
+    
     @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
 
@@ -58,6 +59,10 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
 
     public void setValorBCICMSSTRetido(final BigDecimal valorBCICMSSTRetido) {
         this.valorBCICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetido, "Valor BC ICMS ST Retido ICMS60 Item");
+    }
+
+    public void setValorICMSSubstituto(final BigDecimal  valorICMSSubstituto) {
+        this.valorICMSSubstituto = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSubstituto, "Valor ICMS ST Retido ICMS60 Item");
     }
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
@@ -109,6 +114,10 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
 
     public String getValorBCICMSSTRetido() {
         return this.valorBCICMSSTRetido;
+    }
+
+    public String getValorICMSSubstituto() {
+        return valorICMSSubstituto;
     }
 
     public String getValorICMSSTRetido() {

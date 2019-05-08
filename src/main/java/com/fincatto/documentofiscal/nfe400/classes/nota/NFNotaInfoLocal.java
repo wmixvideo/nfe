@@ -1,15 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.convert.Convert;
 
 public class NFNotaInfoLocal extends DFBase {
     private static final long serialVersionUID = -6618642990785758823L;
 
     @Element(name = "CNPJ", required = false)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String cnpj;
 
     @Element(name = "CPF", required = false)
@@ -40,7 +43,11 @@ public class NFNotaInfoLocal extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao pode setar CNPJ por que o CPF foi setado");
         }
-        StringValidador.cnpj(cnpj);
+        
+        if (!StringUtils.isBlank(cnpj)) {
+            StringValidador.cnpj(cnpj);
+        }
+        
         this.cnpj = cnpj;
     }
 
