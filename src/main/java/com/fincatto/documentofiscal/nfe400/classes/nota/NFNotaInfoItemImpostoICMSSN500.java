@@ -23,6 +23,9 @@ public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
 
     @Element(name = "pST", required = false)
     private String percentualICMSSTRetido;
+    
+    @Element(name = "vICMSSubstituto", required = false)
+    private String valorICMSSubstituto;
 
     @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
@@ -63,6 +66,10 @@ public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
     public void setPercentualICMSSTRetido(final BigDecimal percentualICMSSTRetido) {
         this.percentualICMSSTRetido = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualICMSSTRetido, "Percentual ICMS ST Retido ICMSSN500");
     }
+    
+    public void setValorICMSSubstituto(final BigDecimal valorICMSSubstituto) {
+		this.valorICMSSubstituto = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSubstituto, "Valor ICMS Substituto ICMS60 Item");;
+	}
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
         this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMSSN500");
@@ -114,6 +121,10 @@ public class NFNotaInfoItemImpostoICMSSN500 extends DFBase {
     public String getPercentualICMSSTRetido() {
         return this.percentualICMSSTRetido;
     }
+    
+    public String getValorICMSSubstituto() {
+		return this.valorICMSSubstituto;
+	}
 
     public String getValorICMSSTRetido() {
         return this.valorICMSSTRetido;
