@@ -31,16 +31,16 @@ public class WSDistribuicaoNFe {
     /**
      * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
      */
-    public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
-        return consultar(cnpj, uf, chaveAcesso, nsu, null);
+    public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu) throws Exception {
+        return consultar(cpfOuCnpj, uf, chaveAcesso, nsu, null);
     }
 
     /**
      * Metodo para consultar os dados das notas fiscais por chave de acesso ou NSU e retorna o objeto de retorno de distribuicao<br>
      */
-    public NFDistribuicaoIntRetorno consultar(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
+    public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
         try {
-            String xmlEnvio = this.gerarNFDistribuicaoInt(cnpj, uf, chaveAcesso, nsu, ultNsu).toString();
+            String xmlEnvio = this.gerarNFDistribuicaoInt(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu).toString();
 
             // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
             XMLValidador.validaConsultaDfe(xmlEnvio);
@@ -81,12 +81,17 @@ public class WSDistribuicaoNFe {
         }
     }
 
-    private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) {
+    private NFDistribuicaoInt gerarNFDistribuicaoInt(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) {
         final NFDistribuicaoInt distDFeInt = new NFDistribuicaoInt();
         distDFeInt.setVersao("1.01");
         distDFeInt.setAmbiente(this.config.getAmbiente());
-        distDFeInt.setCnpj(cnpj);
         distDFeInt.setUnidadeFederativaAutor(uf);
+
+        if (cpfOuCnpj.length() == 11) {
+            distDFeInt.setCpf(cpfOuCnpj);
+        } else {
+            distDFeInt.setCnpj(cpfOuCnpj);
+        }
 
         if (StringUtils.isNotBlank(chaveAcesso)) {
             distDFeInt.setConsultaChaveAcesso(new NFDistribuicaoConsultaChaveAcesso().setChaveAcesso(chaveAcesso));
