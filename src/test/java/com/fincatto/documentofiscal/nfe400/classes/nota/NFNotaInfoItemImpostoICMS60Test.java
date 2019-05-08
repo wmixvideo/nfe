@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS60Test {
 
@@ -76,12 +75,13 @@ public class NFNotaInfoItemImpostoICMS60Test {
         icms60.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
         icms60.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
         icms60.setPercentualAliquotaICMSSTConsumidorFinal(new BigDecimal("100.0000"));
+        icms60.setValorICMSSubstituto(new BigDecimal("999999999999.99"));
         icms60.setValorICMSSTRetido(new BigDecimal("999999999999.99"));
         icms60.setValorBCFundoCombatePobrezaRetidoST(new BigDecimal("999999999999.99"));
         icms60.setPercentualFundoCombatePobrezaRetidoST(new BigDecimal("100.0000"));
         icms60.setValorFundoCombatePobrezaRetidoST(new BigDecimal("999999999999.99"));
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS60><orig>2</orig><CST>30</CST><vBCSTRet>999999999999.99</vBCSTRet><pST>100.00</pST><vICMSSTRet>999999999999.99</vICMSSTRet><vBCFCPSTRet>999999999999.99</vBCFCPSTRet><pFCPSTRet>100.00</pFCPSTRet><vFCPSTRet>999999999999.99</vFCPSTRet></NFNotaInfoItemImpostoICMS60>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS60><orig>2</orig><CST>30</CST><vBCSTRet>999999999999.99</vBCSTRet><pST>100.00</pST><vICMSSubstituto>999999999999.99</vICMSSubstituto><vICMSSTRet>999999999999.99</vICMSSTRet><vBCFCPSTRet>999999999999.99</vBCFCPSTRet><pFCPSTRet>100.00</pFCPSTRet><vFCPSTRet>999999999999.99</vFCPSTRet></NFNotaInfoItemImpostoICMS60>";
         Assert.assertEquals(xmlEsperado, icms60.toString());
     }
 }

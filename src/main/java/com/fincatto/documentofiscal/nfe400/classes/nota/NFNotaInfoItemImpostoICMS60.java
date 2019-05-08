@@ -4,8 +4,9 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     private static final long serialVersionUID = 1325261415800285939L;
@@ -24,7 +25,7 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
 
     @Element(name = "vICMSSubstituto", required = false)
     private String valorICMSSubstituto;
-    
+    		
     @Element(name = "vICMSSTRet", required = false)
     private String valorICMSSTRetido;
 
@@ -61,10 +62,6 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.valorBCICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetido, "Valor BC ICMS ST Retido ICMS60 Item");
     }
 
-    public void setValorICMSSubstituto(final BigDecimal  valorICMSSubstituto) {
-        this.valorICMSSubstituto = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSubstituto, "Valor ICMS ST Retido ICMS60 Item");
-    }
-
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
         this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
     }
@@ -73,6 +70,10 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         this.percentualAliquotaICMSSTConsumidorFinal = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaICMSST, "Valor Aliquota suportada pelo Consumidor Final");
     }
 
+    public void setValorICMSSubstituto(final BigDecimal valorICMSSubstituto) {
+		this.valorICMSSubstituto = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSubstituto, "Valor ICMS Substituto ICMS60 Item");;
+	}
+    
     public void setValorBCFundoCombatePobrezaRetidoST(final BigDecimal valorBCFundoCombatePobrezaRetidoST) {
         this.valorBCFundoCombatePobrezaRetidoST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaRetidoST, "Valor base calculo fundo combate pobreza retido ST");
     }
@@ -116,10 +117,6 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
         return this.valorBCICMSSTRetido;
     }
 
-    public String getValorICMSSubstituto() {
-        return valorICMSSubstituto;
-    }
-
     public String getValorICMSSTRetido() {
         return this.valorICMSSTRetido;
     }
@@ -127,6 +124,10 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     public String getPercentualAliquotaICMSSTSuportadaConsumidorFinal() {
         return this.percentualAliquotaICMSSTConsumidorFinal;
     }
+    
+    public String getValorICMSSubstituto() {
+		return this.valorICMSSubstituto;
+	}
 
     public String getValorBCFundoCombatePobrezaRetidoST() {
         return this.valorBCFundoCombatePobrezaRetidoST;
