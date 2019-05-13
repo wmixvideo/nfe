@@ -640,6 +640,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoLocal getNFNotaInfoLocal() {
         final NFNotaInfoLocal local = new NFNotaInfoLocal();
+        local.setNome("mRtbdiwDaVQzVhCVSZtnmXjPJVeOdejeYdnaYPVyHTZnBdkQXGYLBKGLCX");
         local.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         local.setCnpj("12345678901234");
         local.setCodigoMunicipio("9999999");
@@ -648,6 +649,11 @@ public class FabricaDeObjetosFake {
         local.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
         local.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
         local.setUf(DFUnidadeFederativa.RS);
+        local.setCodigoPais(DFPais.BRASIL);
+        local.setDescricaoPais(DFPais.BRASIL.getDescricao());
+        local.setEmail("email@empresaficticia.com.br");
+        local.setTelefone("12345678901324");
+        local.setInscricaoEstadual("12345678901234");
         return local;
     }
 
