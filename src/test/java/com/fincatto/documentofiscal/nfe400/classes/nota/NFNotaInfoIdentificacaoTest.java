@@ -101,6 +101,45 @@ public class NFNotaInfoIdentificacaoTest {
     }
 
     @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirCodigoRandomicoComValorInvalido() {
+        String[] codigosInvalidos = new String[]{"00000000","11111111","22222222","33333333","44444444"
+                ,"55555555","66666666","77777777","88888888","99999999","12345678","23456789","34567890"
+                ,"45678901","56789012","67890123","78901234","89012345","90123456","01234567"};
+        int countExceptions = 0;
+        for (String codigo:codigosInvalidos) {
+            try {
+                new NFNotaInfoIdentificacao().setCodigoRandomico(codigo);
+            } catch (final IllegalStateException e) {
+                countExceptions += 1;
+            }
+        }
+        Assert.assertEquals(countExceptions, codigosInvalidos.length);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirCodigoRandomicoENumeroNotaIguais() {
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao =  new NFNotaInfoIdentificacao();
+            try {
+                nfNotaInfoIdentificacao.setNumeroNota("000001564");
+                nfNotaInfoIdentificacao.setCodigoRandomico("00001564");
+            } catch (final IllegalStateException e) {
+                nfNotaInfoIdentificacao.setCodigoRandomico("00000001");
+                nfNotaInfoIdentificacao.setNumeroNota("000000001");
+            }
+    }
+
+    @Test
+    public void devePermitirCodigoRandomicoENumeroNotaDiferentes() {
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao =  new NFNotaInfoIdentificacao();
+        nfNotaInfoIdentificacao.setNumeroNota("000001563");
+        nfNotaInfoIdentificacao.setCodigoRandomico("00001565");
+
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao2 =  new NFNotaInfoIdentificacao();
+        nfNotaInfoIdentificacao2.setNumeroNota("000001565");
+        nfNotaInfoIdentificacao2.setCodigoRandomico("00001563");
+    }
+
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIndicadorPresencaCompradorNulo() {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
