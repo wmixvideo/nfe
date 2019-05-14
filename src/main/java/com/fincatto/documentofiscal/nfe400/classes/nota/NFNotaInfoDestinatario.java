@@ -83,6 +83,9 @@ public class NFNotaInfoDestinatario extends DFBase {
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
+        if (StringUtils.isNotBlank(this.idEstrangeiro)) {
+            throw new IllegalStateException("Não deve setar Inscrição Estadual se ID Estrangeiro esteja setado");
+        }
         StringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
@@ -99,6 +102,9 @@ public class NFNotaInfoDestinatario extends DFBase {
 
     public void setIdEstrangeiro(final String idEstrangeiro) {
         if (!idEstrangeiro.isEmpty()) {
+            if (StringUtils.isNotBlank(this.inscricaoEstadual)) {
+                throw new IllegalStateException("Não deve setar ID Estrangeiro se Inscrição Estadual esteja setado");
+            }
             StringValidador.tamanho5a20(idEstrangeiro, "ID Estrangeiro Destinatario");
         }
         this.idEstrangeiro = idEstrangeiro;
