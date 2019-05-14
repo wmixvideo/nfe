@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImposto extends DFBase {
     private static final long serialVersionUID = 8579628067567740408L;
@@ -130,5 +130,11 @@ public class NFNotaInfoItemImposto extends DFBase {
 
     public void setIcmsUfDestino(final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
+    }
+
+    @Override
+    public String toString() {
+        StringValidador.validaPreenchimentoDeMargemValorAgregado(this.getIcms());
+        return super.toString();
     }
 }

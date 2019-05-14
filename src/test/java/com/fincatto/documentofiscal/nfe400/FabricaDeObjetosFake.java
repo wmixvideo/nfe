@@ -991,6 +991,24 @@ public class FabricaDeObjetosFake {
         return icms00;
     }
 
+    public static NFNotaInfoItemImpostoICMS10 getNFNotaInfoItemImpostoICMS10() {
+        final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
+        icms10.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
+        icms10.setOrigem(NFOrigem.NACIONAL);
+        icms10.setPercentualAliquota(new BigDecimal("99.99"));
+        icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
+        icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.MARGEM_VALOR_AGREGADO);
+        icms10.setPercentualMargemValorAdicionadoICMSST(BigDecimal.ZERO);
+        icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        icms10.setValorBCICMSST(new BigDecimal("999999999999.99"));
+        icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+        icms10.setValorICMSST(new BigDecimal("99.99"));
+        icms10.setValorTributo(new BigDecimal("999999999999.99"));
+        icms10.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+        icms10.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        return icms10;
+    }
+
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
         ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);

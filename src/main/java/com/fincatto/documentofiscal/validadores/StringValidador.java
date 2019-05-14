@@ -1,10 +1,15 @@
 package com.fincatto.documentofiscal.validadores;
 
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -764,6 +769,61 @@ public abstract class StringValidador {
         String[] codigosInvalidos = new String[]{"00000000","11111111","22222222","33333333","44444444","55555555","66666666","77777777","88888888","99999999","12345678","23456789","34567890","45678901","56789012","67890123","78901234","89012345","90123456","01234567"};
         if (StringUtils.containsAny(string, codigosInvalidos)) {
             throw new IllegalStateException(String.format("%s \"%s\" inválido", info, string));
+        }
+    }
+
+    /**
+     * Método para regra de validação N18-10 e N18-20, da nota técnica : 2019.001 Versão 1.00 – Abril de 2019
+     * Utilizasse Java reflection para acessar os métodos necessários.
+     * @param impostoICMS
+     */
+    public static void validaPreenchimentoDeMargemValorAgregado(NFNotaInfoItemImpostoICMS impostoICMS) {
+        if(impostoICMS!=null){
+            //seleciona todos os métodos da classe de ICMS
+            Method[] methods = impostoICMS.getClass().getMethods();
+            Arrays.asList(methods).stream().forEach(method -> {
+                final Class<?> returnType = method.getReturnType();
+                Method[] typeMethods = returnType.getMethods();
+                //verifica se a classe de ICMS tem o item NFNotaInfoItemModalidadeBCICMSST.
+                final boolean present = Arrays.asList(typeMethods).stream().filter(method1 -> method1.getReturnType()
+                        .equals(NFNotaInfoItemModalidadeBCICMSST.class)).findAny().isPresent();
+                if(present){
+                    try {
+                        //invoca o método para verificar qual classe de ICMS está preenchida(objectValue!=null)
+                        Object objectValue = method.invoke(impostoICMS, new Object[] {});
+                        if(objectValue!=null){
+                            // retorna o método necessário para extrair o valor de ModalidadeMVA.
+                            Method modalidadeMethod =
+                                    Arrays.asList(typeMethods).stream().filter(method1 -> method1.getReturnType()
+                                            .equals(NFNotaInfoItemModalidadeBCICMSST.class)).findAny().get();
+                            NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST =
+                                    (NFNotaInfoItemModalidadeBCICMSST) modalidadeMethod.invoke(objectValue, new Object[] {});
+                            // retorna o método necessário para extrair o valor da percentualMargemValorAdicionadoICMSST(pMVAST).
+                            Method percentualMethod =
+                                    Arrays.asList(typeMethods).stream().filter(method1 -> method1.getName()
+                                            .contains("getPercentualMargemValorAdicionadoICMSST")).findAny().orElse(null);
+                            String percentualValue = null;
+                            if(percentualMethod!=null){
+                                percentualValue = (String)  percentualMethod.invoke(objectValue, new Object[] {});
+                            }
+                            //verificações conforme a regra de validação
+                            if(modalidadeBCICMSST!=null
+                                    && modalidadeBCICMSST.equals(NFNotaInfoItemModalidadeBCICMSST.MARGEM_VALOR_AGREGADO) && StringUtils.isBlank(percentualValue)){
+                                throw new IllegalStateException("Informada modalidade de determinação da BC da ST como MVA(modBCST=4)" +
+                                        " e não informado o campo pMVAST!");
+                            }else if(StringUtils.isNotBlank(percentualValue) && (modalidadeBCICMSST!=null
+                                    && !modalidadeBCICMSST.equals(NFNotaInfoItemModalidadeBCICMSST.MARGEM_VALOR_AGREGADO) || modalidadeBCICMSST==null)){
+                                throw new IllegalStateException(String.format("Informada modalidade de determinação da BC da ST diferente de MVA(informado[%s]) e informado o campo pMVAST", (modalidadeBCICMSST!=null?modalidadeBCICMSST.toString():"modBCST<>4")));
+                            }
+                        }
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
         }
     }
 

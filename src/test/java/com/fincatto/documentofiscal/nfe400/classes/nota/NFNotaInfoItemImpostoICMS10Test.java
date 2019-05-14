@@ -24,7 +24,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
 
     @Test(expected = NumberFormatException.class)
     public void naoDevePermitirPercentualMargemValorICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS10().setPercentualMargemValorICMSST(new BigDecimal("1000"));
+        new NFNotaInfoItemImpostoICMS10().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
     }
 
     @Test(expected = NumberFormatException.class)
@@ -64,7 +64,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -81,7 +81,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -104,7 +104,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -127,7 +127,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -150,7 +150,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -197,7 +197,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         icms10.setValorBCICMSST(new BigDecimal("999999999999.99"));
@@ -220,7 +220,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         icms10.setValorBCICMSST(new BigDecimal("999999999999.99"));
@@ -243,7 +243,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBCICMSST(new BigDecimal("999999999999.99"));
@@ -266,7 +266,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -289,7 +289,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -312,7 +312,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -335,7 +335,7 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
         icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms10.setPercentualMargemValorICMSST(new BigDecimal("99.99"));
+        icms10.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms10.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
         icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
