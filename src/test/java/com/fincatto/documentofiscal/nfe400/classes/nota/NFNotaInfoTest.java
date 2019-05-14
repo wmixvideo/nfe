@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -595,6 +596,14 @@ public class NFNotaInfoTest {
         info.setVersao(new BigDecimal("3.10"));
         info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         info.toString();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirNaoContribuinteENaoConsumidorFinal() {
+        final NFNotaInfo notaInfo = FabricaDeObjetosFake.getNFNotaInfo();
+        notaInfo.getIdentificacao().setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.NAO);
+        notaInfo.getIdentificacao().setTipo(NFTipo.SAIDA);
+        notaInfo.toString();
     }
 
     @Test

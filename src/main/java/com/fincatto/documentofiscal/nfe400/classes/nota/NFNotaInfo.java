@@ -1,18 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
+import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Root(name = "infNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -241,5 +241,18 @@ public class NFNotaInfo extends DFBase {
 
     public NFNotaInfoResponsavelTecnico getInformacaoResposavelTecnico() {
         return this.informacaoResposavelTecnico;
+    }
+
+    @Override
+    public String toString() {
+        if(this.getDestinatario()!=null && this.getIdentificacao()!=null
+                &&  this.getDestinatario().getIndicadorIEDestinatario().equals(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE)
+                && this.getIdentificacao().getOperacaoConsumidorFinal().equals(NFOperacaoConsumidorFinal.NAO)
+                && this.getIdentificacao().getTipo().equals(NFTipo.SAIDA)
+                && !this.getIdentificacao().getIdentificadorLocalDestinoOperacao()
+                .equals(NFIdentificadorLocalDestinoOperacao.OPERACAO_COM_EXTERIOR)){
+            throw new IllegalStateException("Operação com não contribuinte deve indicar operação com consumidor final");
+        }
+        return super.toString();
     }
 }
