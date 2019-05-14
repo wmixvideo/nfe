@@ -342,7 +342,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), ZoneId.systemDefault()));
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), ZoneId.systemDefault()));
         identificacao.setDigitoVerificador(8);
@@ -372,7 +372,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.HOMOLOGACAO);
         identificacao.setCodigoMunicipio("4314902");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.now());
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.now());
         identificacao.setDigitoVerificador(8);
@@ -606,7 +606,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), ZoneId.systemDefault()));
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), ZoneId.systemDefault()));
         identificacao.setDigitoVerificador(8);
