@@ -116,20 +116,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>releases</name>
-            <url>http://nexus.softlandsistemas.com.br/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>snapshots</name>
-            <url>http://nexus.softlandsistemas.com.br/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <build>
         <resources>
             <resource>
