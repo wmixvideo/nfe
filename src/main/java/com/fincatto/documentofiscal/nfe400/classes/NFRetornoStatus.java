@@ -558,8 +558,6 @@ public enum NFRetornoStatus {
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
-
-
     private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
     private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_150);
 
