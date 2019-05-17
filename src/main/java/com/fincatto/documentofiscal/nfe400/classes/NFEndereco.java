@@ -75,9 +75,9 @@ public class NFEndereco extends DFBase {
 
     public void setUf(final DFUnidadeFederativa uf) {
         if(this.codigoPais!=null && this.codigoPais.equals(DFPais.BRASIL) && uf.equals(DFUnidadeFederativa.EX)){
-             throw new IllegalStateException(String.format("Operação com Exterior(%s) e país de destino igual a Brasil", uf.getCodigo()));
+         throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e pa\u00EDs de destino igual a Brasil", uf.getCodigo()));
         }else if(this.codigoPais!=null && !this.codigoPais.equals(DFPais.BRASIL) && !uf.equals(DFUnidadeFederativa.EX)){
-            throw new IllegalStateException(String.format("Operação com Exterior(%s) e UF de destino interna(%s)",
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)",
                     this.codigoPais.getDescricao(), uf.getCodigo()));
         }
         this.uf = uf.getCodigo();
@@ -102,9 +102,9 @@ public class NFEndereco extends DFBase {
 
     private void verificaDestinoOperacao(DFPais codigoPais) {
         if(this.uf!=null &&  uf.equals(DFUnidadeFederativa.EX) && codigoPais.equals(DFPais.BRASIL)){
-            throw new IllegalStateException("Operação com Exterior e país de destino igual a Brasil");
+            throw new IllegalStateException("Opera\u00E7\u00E3o com Exterior e pa\u00EDs de destino igual a Brasil");
         }else if(this.uf!=null &&  !uf.equals(DFUnidadeFederativa.EX) && !codigoPais.equals(DFPais.BRASIL)){
-            throw new IllegalStateException(String.format("Operação com Exterior(%s) e UF de destino interna(%s)",
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)",
                     codigoPais.getDescricao(), this.uf));
         }
     }

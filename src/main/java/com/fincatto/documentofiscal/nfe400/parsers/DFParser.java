@@ -11,7 +11,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItem;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.persister.DFPersister;
-import org.apache.commons.lang3.ObjectUtils;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
@@ -80,25 +79,9 @@ public class DFParser {
         }
     }
 
-    public NFNotaProcessada notaProcessadaParaObjeto(final String xml, Boolean strict) {
-        try {
-            return this.persister.read(NFNotaProcessada.class, xml, ObjectUtils.defaultIfNull(strict, true));
-        } catch (final Exception e) {
-            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
-        }
-    }
-
     public NFNotaProcessada notaProcessadaParaObjeto(final File xml) {
         try {
             return this.persister.read(NFNotaProcessada.class, xml, this.strict);
-        } catch (final Exception e) {
-            throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
-        }
-    }
-
-    public NFNotaProcessada notaProcessadaParaObjeto(final File xml, Boolean strict) {
-        try {
-            return this.persister.read(NFNotaProcessada.class, xml, ObjectUtils.defaultIfNull(strict, true));
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
