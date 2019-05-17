@@ -251,7 +251,7 @@ public class NFNotaInfo extends DFBase {
                 && this.getIdentificacao().getTipo().equals(NFTipo.SAIDA)
                 && !this.getIdentificacao().getIdentificadorLocalDestinoOperacao()
                 .equals(NFIdentificadorLocalDestinoOperacao.OPERACAO_COM_EXTERIOR)){
-            throw new IllegalStateException("Operação com não contribuinte deve indicar operação com consumidor final");
+            throw new IllegalStateException("Opera\u00E7\u00E3o com n\u00E3o contribuinte deve indicar opera\u00E7\u00E3o com consumidor final");
         }
         return super.toString();
     }

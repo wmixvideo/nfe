@@ -99,7 +99,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
         StringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
         StringValidador.validaCodigoRandomico(codigoRandomico, "Codigo Randomico");
         if(StringUtils.isNotBlank(numeroNota) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
-            throw new IllegalStateException(String.format("Número da nota(%s) e código(%s) não podem ser iguais", numeroNota.substring(1), codigoRandomico));
+            throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
         }
         this.codigoRandomico = codigoRandomico;
     }
@@ -122,7 +122,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
         StringValidador.tamanho9(numeroNota, "Numero da Nota");
         if(StringUtils.isNotBlank(codigoRandomico)
                 && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
-            throw new IllegalStateException(String.format("Número da nota(%s) e código(%s) não podem ser iguais", numeroNota.substring(1), codigoRandomico));
+            throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
         }
         this.numeroNota = numeroNota;
     }
