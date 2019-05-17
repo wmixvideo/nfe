@@ -14,7 +14,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 public class NFProtocoloEvento extends DFBase {
     private static final long serialVersionUID = -1075773716893722198L;
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao", required = false)
     private String versao;
 
     @Element(name = "evento", required = true)
