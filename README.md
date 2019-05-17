@@ -194,7 +194,6 @@ Ou desabilitando o modo estrito (habilitado por padrão):
 final NFNotaProcessada notaProcessada = new DFParser().setStrict(false).notaProcessadaParaObjeto(xmlNota);
 ```
 
-
 ### Armazenando notas autorizadas
 Você precisará armazenar as notas autorizadas por questões legais e também para a geração do DANFE, uma forma de fazer é armazenar o xml das notas ao enviar o lote:
 ```java
@@ -209,7 +208,7 @@ final String xmlNotaRecuperada;
 // Assine a nota
 final String xmlNotaRecuperadaAssinada = new AssinaturaDigital(config).assinarDocumento(xmlNotaRecuperada);
 // Converta para objeto java
-final NFNota notaRecuperadaAssinada = new NotaParser().notaParaObjeto(xmlNotaRecuperadaAssinada);
+final NFNota notaRecuperadaAssinada = new DFParser().notaParaObjeto(xmlNotaRecuperadaAssinada);
 // Crie o objeto NFNotaProcessada
 final NFNotaProcessada notaProcessada = new NFNotaProcessada();
 notaProcessada.setVersao(new BigDecimal(NFeConfig.VERSAO_NFE));
