@@ -16,18 +16,33 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItem;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.persister.DFPersister;
 
+/**
+ * Classe responsavel por parsear os XMLs para objetos.
+ */
 public class DFParser {
 
     private final Persister persister;
+    private boolean strict;
 
     public DFParser() {
         this.persister = new DFPersister();
+        this.strict = true;
+    }
+
+    /**
+     * Indica se o sistema deve falhar caso nao consiga parsear algum campo da string para o modelo.
+     * @param strict Indica o modo estrito.
+     * @return Retorna a mesma instancia do parser.
+     */
+    public DFParser setStrict(boolean strict) {
+        this.strict = strict;
+        return this;
     }
 
     // NFe/NFCe
     public NFNota notaParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFNota.class, xml);
+            return this.persister.read(NFNota.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -35,7 +50,7 @@ public class DFParser {
 
     public NFNota notaParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFNota.class, xml);
+            return this.persister.read(NFNota.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -43,7 +58,7 @@ public class DFParser {
 
     public NFLoteEnvio loteParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFLoteEnvio.class, xml);
+            return this.persister.read(NFLoteEnvio.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -51,7 +66,7 @@ public class DFParser {
 
     public NFLoteEnvio loteParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFLoteEnvio.class, xml);
+            return this.persister.read(NFLoteEnvio.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -59,7 +74,7 @@ public class DFParser {
 
     public NFNotaProcessada notaProcessadaParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFNotaProcessada.class, xml);
+            return this.persister.read(NFNotaProcessada.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -67,7 +82,7 @@ public class DFParser {
 
     public NFNotaProcessada notaProcessadaParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFNotaProcessada.class, xml);
+            return this.persister.read(NFNotaProcessada.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -75,7 +90,7 @@ public class DFParser {
 
     public NFEnviaEventoCartaCorrecao enviaEventoCartaCorrecaoParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFEnviaEventoCartaCorrecao.class, xml);
+            return this.persister.read(NFEnviaEventoCartaCorrecao.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -83,7 +98,7 @@ public class DFParser {
 
     public NFEnviaEventoCartaCorrecao enviaEventoCartaCorrecaoParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFEnviaEventoCartaCorrecao.class, xml);
+            return this.persister.read(NFEnviaEventoCartaCorrecao.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -91,7 +106,7 @@ public class DFParser {
 
     public NFEnviaEventoCancelamento enviaEventoCancelamentoParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFEnviaEventoCancelamento.class, xml);
+            return this.persister.read(NFEnviaEventoCancelamento.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -107,7 +122,7 @@ public class DFParser {
 
     public NFEnviaEventoInutilizacao enviaEventoInutilizacaoParaObjeto(final File xml) {
         try {
-            return this.persister.read(NFEnviaEventoInutilizacao.class, xml);
+            return this.persister.read(NFEnviaEventoInutilizacao.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -115,7 +130,7 @@ public class DFParser {
 
     public NFEnviaEventoInutilizacao enviaEventoInutilizacaoParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFEnviaEventoInutilizacao.class, xml);
+            return this.persister.read(NFEnviaEventoInutilizacao.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -123,7 +138,7 @@ public class DFParser {
 
     public NFNotaInfoItem notaInfoItemParaObjeto(final String xml) {
         try {
-            return this.persister.read(NFNotaInfoItem.class, xml);
+            return this.persister.read(NFNotaInfoItem.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -132,7 +147,7 @@ public class DFParser {
     // CTe
     public CTeEnvioLote cteRecepcaoParaObjeto(final String xml) {
         try {
-            return this.persister.read(CTeEnvioLote.class, xml);
+            return this.persister.read(CTeEnvioLote.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -140,7 +155,7 @@ public class DFParser {
 
     public CTeProcessado cteProcessadoParaObjeto(final String xml) {
         try {
-            return this.persister.read(CTeProcessado.class, xml);
+            return this.persister.read(CTeProcessado.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml: %s", e.getMessage()));
         }
@@ -149,10 +164,9 @@ public class DFParser {
     // MDFe
     public MDFEnvioLote mdfeRecepcaoParaObjeto(final String xml) {
         try {
-            return this.persister.read(MDFEnvioLote.class, xml);
+            return this.persister.read(MDFEnvioLote.class, xml, this.strict);
         } catch (final Exception e) {
             throw new IllegalArgumentException(String.format("Nao foi possivel parsear o xml do Lote MDFe: %s", e.getMessage()));
         }
     }
-
 }
