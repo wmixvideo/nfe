@@ -36,8 +36,8 @@ class WSConsultaRecibo {
 
 		final OMElement omElementResult = this.efetuaConsultaRecibo(omElementConsulta);
 		WSConsultaRecibo.LOGGER.info(omElementResult.toString());
-
-		return new Persister(new DFRegistryMatcher(), new Format(0)).read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
+        
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
 	}
 
 	private MDFeConsultaRecibo gerarDadosConsulta(final String numeroRecibo) {

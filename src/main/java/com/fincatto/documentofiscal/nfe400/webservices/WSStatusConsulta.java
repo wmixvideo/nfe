@@ -33,8 +33,8 @@ class WSStatusConsulta {
 
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
         WSStatusConsulta.LOGGER.debug(omElementResult.toString());
-
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
+    
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
     }
 
     private NFStatusServicoConsulta gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {

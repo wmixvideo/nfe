@@ -5,11 +5,12 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFProcessado;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEvento;
 import com.fincatto.documentofiscal.persister.DFPersister;
-import java.io.File;
 import org.simpleframework.xml.core.Persister;
 
+import java.io.File;
+import java.util.TimeZone;
+
 /**
- *
  * @author Edivaldo Merlo Stens on 06/10/2018
  */
 public class MDFeParser {
@@ -17,14 +18,11 @@ public class MDFeParser {
     private final Persister persister;
 
     public MDFeParser() {
-        this.persister = new DFPersister();
+        this.persister = new DFPersister(TimeZone.getDefault());
     }
 
     /**
      * Transforma arquivo XML (tag: MDFe) para objeto (MDFe)
-     *
-     * @param xml
-     * @return
      */
     public MDFe mdfeParaObjeto(final File xml) {
         try {
@@ -36,9 +34,6 @@ public class MDFeParser {
 
     /**
      * Transforma string XML (tag: MDFe) para objeto (MDFe)
-     *
-     * @param xml
-     * @return
      */
     public MDFe mdfeParaObjeto(final String xml) {
         try {
@@ -50,9 +45,6 @@ public class MDFeParser {
 
     /**
      * Transforma string XML (tag: enviMDFe) para objeto (MDFEnvioLote)
-     *
-     * @param xml
-     * @return
      */
     public MDFEnvioLote mdfeRecepcaoParaObjeto(final String xml) {
         try {
@@ -64,9 +56,6 @@ public class MDFeParser {
 
     /**
      * Transforma string XML (tag: mdfeProc) para objeto (MDFProcessado)
-     *
-     * @param xml
-     * @return
      */
     public MDFProcessado mdfeProcessadoParaObjeto(final String xml) {
         try {
@@ -78,9 +67,6 @@ public class MDFeParser {
 
     /**
      * Transforma arquivo XML (tag: mdfeProc) para objeto (MDFProcessado)
-     *
-     * @param xml
-     * @return
      */
     public MDFProcessado mdfeProcessadoParaObjeto(final File xml) {
         try {
@@ -92,9 +78,6 @@ public class MDFeParser {
 
     /**
      * Transforma string XML (tag: eventoMDFe) para objeto (MDFeEvento)
-     *
-     * @param xml
-     * @return
      */
     public MDFeEvento mdfeEventoParaObjeto(final String xml) {
         try {
@@ -106,9 +89,6 @@ public class MDFeParser {
 
     /**
      * Transforma arquivo XML (tag: eventoMDFe) para objeto (MDFeEvento)
-     *
-     * @param xml
-     * @return
      */
     public MDFeEvento mdfeEventoParaObjeto(final File xml) {
         try {

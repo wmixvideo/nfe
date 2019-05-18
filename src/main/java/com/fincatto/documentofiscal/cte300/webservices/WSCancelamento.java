@@ -29,14 +29,14 @@ class WSCancelamento {
 
     CTeRetornoCancelamento cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister().read(CTeRetornoCancelamento.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(CTeRetornoCancelamento.class, omElementResult.toString());
     }
 
     CTeRetornoCancelamento cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return new DFPersister().read(CTeRetornoCancelamento.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(CTeRetornoCancelamento.class, omElementResult.toString());
     }
 
     private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {

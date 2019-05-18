@@ -56,8 +56,8 @@ public class WSDistribuicaoNFe {
             final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()));
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse result = stub.nfeDistDFeInteresse(distDFeInteresse);
             final String resultadoConsulta = result.getNFeDistDFeInteresseResult().getExtraElement().toString();
-
-            return new Persister(new DFRegistryMatcher()).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
+    
+            return new Persister(new DFRegistryMatcher(this.config.getTimeZone())).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }

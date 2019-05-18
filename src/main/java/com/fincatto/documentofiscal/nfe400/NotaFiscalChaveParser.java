@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.parsers;
+package com.fincatto.documentofiscal.nfe400;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;

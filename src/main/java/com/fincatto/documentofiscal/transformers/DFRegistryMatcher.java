@@ -23,10 +23,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class DFRegistryMatcher extends RegistryMatcher {
-
-    public DFRegistryMatcher() {
+    
+    public DFRegistryMatcher(final TimeZone timeZone) {
         super.bind(DFModelo.class, new DFModeloTransformer());
         super.bind(DFAmbiente.class, new DFAmbienteTransformer());
         super.bind(LocalDate.class, new DFLocalDateTransformer());

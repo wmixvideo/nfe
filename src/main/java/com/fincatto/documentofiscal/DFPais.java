@@ -9,12 +9,11 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Eldevan Nery Junior on 04/05/18.
- * Define os países e suas descrições conforme tabela da receita:
+ * Define os paises e suas descricoes conforme tabela da receita:
  * http://www.nfe.fazenda.gov.br/ em Documentos > Diversos >
  *
- * Tabela de País - Relacionada a NT 2018.003. v1.00 (atualizada em 04/05/2018):
+ * Tabela de Pais - Relacionada a NT 2018.003. v1.00 (atualizada em 04/05/2018):
  * http://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=hdos6Z3A8Xc=
- *
  */
 public enum DFPais {
 

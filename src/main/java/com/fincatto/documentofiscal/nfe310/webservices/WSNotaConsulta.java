@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.math.BigDecimal;
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -22,6 +12,15 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeConsulta2Stub.N
 import com.fincatto.documentofiscal.nfe310.webservices.nota.consulta.NfeConsultaStub;
 import com.fincatto.documentofiscal.nfe310.webservices.nota.consulta.NfeConsultaStub.NfeConsultaNFResult;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.rmi.RemoteException;
 
 class WSNotaConsulta {
     private static final String NOME_SERVICO = "CONSULTAR";
@@ -39,7 +38,7 @@ class WSNotaConsulta {
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {

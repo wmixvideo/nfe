@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
+import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoCTe {
@@ -66,6 +67,6 @@ public class WSDistribuicaoCTe {
     }
 
     public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(classe, xml);
+        return new Persister(new DFRegistryMatcher(TimeZone.getDefault()), new Format(0)).read(classe, xml);
     }
 }

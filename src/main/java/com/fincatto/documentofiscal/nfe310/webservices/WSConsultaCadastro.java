@@ -1,14 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.rmi.RemoteException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
@@ -20,6 +11,14 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastr
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.rmi.RemoteException;
 
 class WSConsultaCadastro {
     private static final Logger LOG = LoggerFactory.getLogger(WSConsultaCadastro.class);
@@ -41,7 +40,7 @@ class WSConsultaCadastro {
 
         final String retornoConsulta = resultado.toString();
         WSConsultaCadastro.LOG.debug(retornoConsulta);
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
     }
 
     private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {

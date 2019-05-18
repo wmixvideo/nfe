@@ -16,7 +16,6 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.parsers.DFParser;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
@@ -32,31 +31,28 @@ import java.io.StringReader;
 import java.util.Iterator;
 
 class WSLoteEnvio {
-
+    
     private static final String NFE_ELEMENTO = "NFe";
     private static final Logger LOGGER = LoggerFactory.getLogger(WSLoteEnvio.class);
     private final NFeConfig config;
-
+    
     WSLoteEnvio(final NFeConfig config) {
         this.config = config;
     }
-
+    
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         return this.comunicaLote(loteAssinadoXml, modelo);
     }
-
+    
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         final NFLoteEnvio loteAssinado = this.getLoteAssinado(lote);
         // comunica o lote
         final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), loteAssinado.getNotas().get(0).getInfo().getIdentificacao().getModelo());
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
-
+    
     /**
      * Retorna o Lote assinado.
-     * @param lote
-     * @return
-     * @throws Exception
      */
     NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
@@ -68,8 +64,9 @@ class WSLoteEnvio {
         }
         // assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
-        final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
-
+        //final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
+        final NFLoteEnvio loteAssinado = new DFPersister(this.config.getTimeZone()).read(NFLoteEnvio.class, documentoAssinado);
+        
         // verifica se nao tem NFCe junto com NFe no lote e gera qrcode (apos assinar mesmo, eh assim)
         int qtdNF = 0, qtdNFC = 0;
         for (final NFNota nota : loteAssinado.getNotas()) {
@@ -93,34 +90,34 @@ class WSLoteEnvio {
         }
         return loteAssinado;
     }
-
+    
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote(loteAssinadoXml);
-
+        
         // envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-
+        
         final NfeDadosMsg dados = new NfeDadosMsg();
         dados.setExtraElement(omElement);
-
+        
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
         WSLoteEnvio.LOGGER.debug(omElement.toString());
-
+        
         // define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-
+        
         final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
-
+        
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
-        final NFLoteEnvioRetorno loteEnvioRetorno = new DFPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final NFLoteEnvioRetorno loteEnvioRetorno = new DFPersister(this.config.getTimeZone()).read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
-
+    
     private NfeCabecMsgE getCabecalhoSOAP() {
         final NfeCabecMsg cabecalho = new NfeCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
@@ -129,7 +126,7 @@ class WSLoteEnvio {
         cabecalhoSOAP.setNfeCabecMsg(cabecalho);
         return cabecalhoSOAP;
     }
-
+    
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);

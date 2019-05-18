@@ -1,13 +1,5 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
@@ -17,6 +9,13 @@ import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
@@ -35,14 +34,14 @@ class WSIncluirCondutor {
 
     MDFeRetorno incluirCondutorAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaIncluirCondutor(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister().read(MDFeRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(MDFeRetorno.class, omElementResult.toString());
     }
 
     MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
         final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, nomeCondutor, cpfCondutor).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
         final OMElement omElementResult = this.efetuaIncluirCondutor(xmlAssinado, chaveAcesso);
-        return new DFPersister().read(MDFeRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(MDFeRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaIncluirCondutor(final String xmlAssinado, final String chaveAcesso) throws Exception {
@@ -102,7 +101,6 @@ class WSIncluirCondutor {
         final MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
         mdfeEventoEncerramento.setInfoEvento(infoEvento);
         mdfeEventoEncerramento.setVersao(WSIncluirCondutor.VERSAO_LEIAUTE);
-
         return mdfeEventoEncerramento;
     }
 }

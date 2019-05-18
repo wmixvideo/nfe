@@ -8,6 +8,8 @@ import java.util.TimeZone;
  * @author Caio Configuracao basica do sistema de documentos fiscais.
  */
 public abstract class DFConfig {
+    
+    public static final TimeZone TIMEZONE_SP = TimeZone.getTimeZone("America/Sao_Paulo");
 
     /**
      * Indica o ambiente de trabalho, se em producao ou homologacao.

@@ -16,8 +16,7 @@ public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
         try {
             return LocalDateTime.parse(data, DFLocalDateTimeTransformer.DATETIME_FORMATTER);
         } catch (final Exception e) {
-            return  LocalDateTime.from(DFLocalDateTimeTransformer.SIMPLE_DATETIME_FORMATTER.parse(data))
-                    .atZone(ZoneId.systemDefault()).toLocalDateTime();
+            return LocalDateTime.from(DFLocalDateTimeTransformer.SIMPLE_DATETIME_FORMATTER.parse(data)).atZone(ZoneId.systemDefault()).toLocalDateTime();
         }
     }
 

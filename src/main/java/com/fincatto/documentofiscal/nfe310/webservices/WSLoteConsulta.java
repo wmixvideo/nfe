@@ -33,8 +33,8 @@ class WSLoteConsulta {
 
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, modelo);
         WSLoteConsulta.LOGGER.debug(omElementResult.toString());
-
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
+    
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {

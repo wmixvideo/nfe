@@ -30,8 +30,8 @@ class WSNotaConsulta {
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
-        final CTeNotaConsultaRetorno retorno = new DFPersister().read(CTeNotaConsultaRetorno.class,
-                omElementRetorno.toString());
+    
+        final CTeNotaConsultaRetorno retorno = new DFPersister(this.config.getTimeZone()).read(CTeNotaConsultaRetorno.class, omElementRetorno.toString());
         WSNotaConsulta.LOGGER.info(retorno.toString());
         return retorno;
     }

@@ -46,12 +46,12 @@ class WSCartaCorrecao {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {

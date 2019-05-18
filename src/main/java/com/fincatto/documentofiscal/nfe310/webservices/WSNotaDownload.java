@@ -37,8 +37,8 @@ class WSNotaDownload {
 
         final OMElement omElementRetorno = this.efetuaDownloadNF(omElementConsulta);
         WSNotaDownload.LOGGER.debug(omElementRetorno.toString());
-
-        return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFDownloadNFeRetorno.class, omElementRetorno.toString());
+    
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFDownloadNFeRetorno.class, omElementRetorno.toString());
     }
 
     private OMElement efetuaDownloadNF(final OMElement omElementConsulta) throws RemoteException {

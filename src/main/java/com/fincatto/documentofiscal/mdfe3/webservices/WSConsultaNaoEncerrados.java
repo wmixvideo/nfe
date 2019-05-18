@@ -37,8 +37,8 @@ class WSConsultaNaoEncerrados {
 
 		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta);
 		WSConsultaNaoEncerrados.LOGGER.info(omElementResult.toString());
-
-		return new Persister(new DFRegistryMatcher(), new Format(0)).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
+        
+        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
 	}
 
 	private MDFeConsultaNaoEncerrados gerarDadosConsulta(final String cnpj) {
