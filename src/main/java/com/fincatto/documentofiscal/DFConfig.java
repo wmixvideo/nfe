@@ -11,6 +11,7 @@ public abstract class DFConfig {
 
     /**
      * Indica o ambiente de trabalho, se em producao ou homologacao.
+     *
      * @return Ambiente de trabalho.
      */
     public DFAmbiente getAmbiente() {
@@ -19,6 +20,7 @@ public abstract class DFConfig {
 
     /**
      * Indica o modelo do documento fiscal
+     *
      * @return Modelo documento fiscal.
      */
     public DFModelo getModelo() {
@@ -27,6 +29,7 @@ public abstract class DFConfig {
 
     /**
      * Unidade da federacao do emissor das notas.
+     *
      * @return Unidade da federacao do emissor.
      */
     public abstract DFUnidadeFederativa getCUF();
@@ -35,6 +38,7 @@ public abstract class DFConfig {
      * KeyStore contendo o certificado pessoal do emissor. <br>
      * Esse certificado e fornecido por uma autoridade certificadora. <br>
      * Em caso de duvidas, consulte seu contador.
+     *
      * @return KeyStore do certificado pessoal.
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
      */
@@ -42,6 +46,7 @@ public abstract class DFConfig {
 
     /**
      * Retorna o nome do alias do certificado dentro do {@link KeyStore} retornado por {@link #getCertificadoKeyStore()}. Caso seja retornado {@code null}, sera utilizado o primeiro alias do {@link KeyStore}.
+     *
      * @return o nome do alias do certificado ou {@code null}
      */
     public String getCertificadoAlias() {
@@ -50,6 +55,7 @@ public abstract class DFConfig {
 
     /**
      * Senha do certificado pessoal do emissor, contido dentro do KeyStore do certificado.
+     *
      * @return Senha do certificado.
      * @see #getCertificadoKeyStore()
      */
@@ -59,6 +65,7 @@ public abstract class DFConfig {
      * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
      * Para gerar a cadeia, use o utilitario fornecido com a biblioteca:<br>
      * FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
+     *
      * @return KeyStore da cadeia de certificados.
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
      */
@@ -66,17 +73,19 @@ public abstract class DFConfig {
 
     /**
      * Senha da cadeia de certificados, contida dentro do KeyStore da cadeia.
+     *
      * @return Senha da cadeia de certificados.
      * @see #getCadeiaCertificadosKeyStore()
      */
     public abstract String getCadeiaCertificadosSenha();
 
     /**
-     * Protocolo de SSL, usado pela SEFAZ para receber as notas. Habilita mais de um parâmetro pra ssl.
+     * Protocolo de SSL, usado pela SEFAZ para receber as notas. Habilita mais de um parametro pra ssl.
+     *
      * @return Protocolo SSL da SEFAZ de origem.
      */
     public String[] getSSLProtocolos() {
-        return new String[] { "TLSv1.2" };
+        return new String[]{"TLSv1.2"};
     }
 
     /**
@@ -90,11 +99,13 @@ public abstract class DFConfig {
     }
 
     /**
-     * Código de Segurança do Responsável Técnico - CSRT(NT 2018.005)
-     * @see <a href="http://www.nfe.fazenda.gov.br/portal/informe.aspx?ehCTG=false&Informe=hDS5co/qWOc="> Informativo(acessado em 10/04/19 às 11:30)</a>
-     * <a href="http://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=j/im9zMlcIE=">  Baixar PDF(acessado em 10/04/19 às 11:30) </a>
+     * Codigo de Seguranca do Responsavel Tecnico - CSRT(NT 2018.005)
+     * @see <a href="http://www.nfe.fazenda.gov.br/portal/informe.aspx?ehCTG=false&Informe=hDS5co/qWOc="> Informativo(acessado em 10/04/19 as 11:30)</a>
+     * <a href="http://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=j/im9zMlcIE=">  Baixar PDF(acessado em 10/04/19 as 11:30) </a>
      *
-     * @return
+     * @return Codigo de seguranca do responsavel tecnico.
      */
-    public String getCSRT(){ return "";};
+    public String getCSRT() {
+        return "";
+    }
 }
