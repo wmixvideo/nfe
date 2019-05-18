@@ -48,14 +48,12 @@ class WSCartaCorrecao {
     }
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String xmlAssinado) throws Exception {
-        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, new DFParser()
-                .enviaEventoCartaCorrecaoParaObjeto(xmlAssinado).getEvento().get(0).getInfoEvento().getChave());
+        final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, new DFParser().enviaEventoCartaCorrecaoParaObjeto(xmlAssinado).getEvento().get(0).getInfoEvento().getChave());
         return new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String xmlAssinado) throws Exception {
-        NFEnviaEventoCartaCorrecao evento = new DFParser()
-                .enviaEventoCartaCorrecaoParaObjeto(xmlAssinado);
+        NFEnviaEventoCartaCorrecao evento = new DFParser().enviaEventoCartaCorrecaoParaObjeto(xmlAssinado);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, evento.getEvento().get(0).getInfoEvento().getChave());
         NFEnviaEventoRetorno retorno = new Persister(new DFRegistryMatcher(), new Format(0)).read(NFEnviaEventoRetorno.class, omElementResult.toString());
         NFProtocoloEventoCartaCorrecao nfProtocoloEventoCartaCorrecao = new NFProtocoloEventoCartaCorrecao();
@@ -91,11 +89,6 @@ class WSCartaCorrecao {
 
     /**
      * Retorna XML assinado para uso externo.
-     * @param chaveAcesso
-     * @param textoCorrecao
-     * @param numeroSequencialEvento
-     * @return
-     * @throws Exception
      */
     public String getXmlAssinado(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
@@ -116,7 +109,7 @@ class WSCartaCorrecao {
         infoEvento.setDadosEvento(cartaCorrecao);
         infoEvento.setChave(chaveAcesso);
         if (Integer.parseInt(chaveParser.getSerie()) >= 920 && Integer.parseInt(chaveParser.getSerie()) <= 969) {//destinado a emissão de pessoa física com IE
-        	infoEvento.setCpf(chaveParser.getCnpjEmitente().substring(3));
+            infoEvento.setCpf(chaveParser.getCnpjEmitente().substring(3));
         } else {
             infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         }

@@ -369,11 +369,12 @@ public class FabricaDeObjetosFake {
     public static LocalDateTime getLocalDateTime() {
         final Calendar calendar = Calendar.getInstance();
         calendar.set(2018, Calendar.JANUARY, 22, 10, 10, 10);
+
         return LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
     }
 
     public static LocalDate getLocalDate() {
-        return LocalDate.of(2018, 1 , 22);
+        return LocalDate.of(2018, 1, 22);
     }
 
     public static LocalTime getLocalTime() {
