@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import com.fincatto.documentofiscal.DFPais;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFEndereco extends DFBase {
     private static final long serialVersionUID = 417768837786948754L;
@@ -74,6 +73,11 @@ public class NFEndereco extends DFBase {
     }
 
     public void setUf(final DFUnidadeFederativa uf) {
+        if (this.codigoPais != null && this.codigoPais.equals(DFPais.BRASIL) && uf.equals(DFUnidadeFederativa.EX)) {
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e pa\u00EDs de destino igual a Brasil", uf.getCodigo()));
+        } else if (this.codigoPais != null && !this.codigoPais.equals(DFPais.BRASIL) && !uf.equals(DFUnidadeFederativa.EX)) {
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)", this.codigoPais.getDescricao(), uf.getCodigo()));
+        }
         this.uf = uf.getCodigo();
     }
 
@@ -84,11 +88,22 @@ public class NFEndereco extends DFBase {
 
     public void setCodigoPais(final String codigoPais) {
         StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
-        this.codigoPais = DFPais.valueOfCodigo(codigoPais);
+        final DFPais dfPais = DFPais.valueOfCodigo(codigoPais);
+        verificaDestinoOperacao(dfPais);
+        this.codigoPais = dfPais;
     }
 
     public void setCodigoPais(final DFPais codigoPais) {
+        verificaDestinoOperacao(codigoPais);
         this.codigoPais = codigoPais;
+    }
+    
+    private void verificaDestinoOperacao(DFPais codigoPais) {
+        if (this.uf != null && uf.equals(DFUnidadeFederativa.EX) && codigoPais.equals(DFPais.BRASIL)) {
+            throw new IllegalStateException("Opera\u00E7\u00E3o com Exterior e pa\u00EDs de destino igual a Brasil");
+        } else if (this.uf != null && !uf.equals(DFUnidadeFederativa.EX) && !codigoPais.equals(DFPais.BRASIL)) {
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)", codigoPais.getDescricao(), this.uf));
+        }
     }
 
     public void setDescricaoPais(final String descricaoPais) {

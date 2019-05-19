@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFNotaInfoDestinatarioTest {
 
@@ -185,6 +184,35 @@ public class NFNotaInfoDestinatarioTest {
         destinatario.setIdEstrangeiro("");
         destinatario.toString();
     }
+    
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirIdEstrangeiroSeInscricaoEstadualSetado() {
+        final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
+        destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
+        destinatario.setCnpj("12345678901234");
+        destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        destinatario.setInscricaoEstadual("0011223344");
+        destinatario.setIdEstrangeiro("00112233");
+        destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
+        destinatario.setInscricaoSuframa("999999999");
+        destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
+        destinatario.toString();
+    }
+    
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirInscricaoEstadualSeIdEstrangeiroSetado() {
+        final NFNotaInfoDestinatario destinatario = new NFNotaInfoDestinatario();
+        destinatario.setEmail("ivU3ctXKzImStrYzRpDTXRyCfSzxlEe5GTbeyVZ1OlIvgKGLJJMJlaKtYj8K");
+        destinatario.setCnpj("12345678901234");
+        destinatario.setEndereco(FabricaDeObjetosFake.getNFEndereco());
+        destinatario.setIdEstrangeiro("00112233");
+        destinatario.setInscricaoEstadual("0011223344");
+        destinatario.setIndicadorIEDestinatario(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
+        destinatario.setInscricaoSuframa("999999999");
+        destinatario.setRazaoSocial("F7HL85M9v7jW5lX4Z9V7sF3kshuj967gj4uACEmpmVQgM9yYeQAgaY5EcSfR");
+        destinatario.toString();
+    }
+
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {

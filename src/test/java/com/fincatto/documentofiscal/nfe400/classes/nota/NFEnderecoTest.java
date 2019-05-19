@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
@@ -290,6 +291,57 @@ public class NFEnderecoTest {
         endereco.setTelefone("12345678901324");
         endereco.toString();
     }
+    
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirPaisBrasilUfEX() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
+        endereco.setCep("88095550");
+        endereco.setCodigoMunicipio("9999999");
+        endereco.setCodigoPais(DFPais.BRASIL);
+        endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
+        endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
+        endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
+        endereco.setTelefone("12345678901324");
+        endereco.setUf(DFUnidadeFederativa.EX);
+        endereco.toString();
+    }
+    
+    @Test
+    public void devePermitirPaisUfEX() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
+        endereco.setCep("88095550");
+        endereco.setCodigoMunicipio("9999999");
+        endereco.setCodigoPais(DFPais.AFRICA_DO_SUL);
+        endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
+        endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
+        endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
+        endereco.setTelefone("12345678901324");
+        endereco.setUf(DFUnidadeFederativa.EX);
+        endereco.toString();
+    }
+    
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirPaisUfEX() {
+        final NFEndereco endereco = new NFEndereco();
+        endereco.setBairro("67LQFlXOBK0JqAE1rFi2CEyUGW5Z8QmmHhzmZ9GABVLKa9AbV0uFR0onl7nU");
+        endereco.setCep("88095550");
+        endereco.setCodigoMunicipio("9999999");
+        endereco.setCodigoPais(DFPais.AFRICA_DO_SUL);
+        endereco.setComplemento("Fr3gSvoAeKbGpQD3r98KFeB50P3Gq14XBVsv5fpiaBvJ3HTOpREiwYGs20Xw");
+        endereco.setDescricaoMunicipio("s1Cr2hWP6bptQ80A9vWBuTaODR1U82LtKQi1DEm3LsAXu9AbkSeCtfXJVTKG");
+        endereco.setLogradouro("NKwaAJ5ZJ49aQYmqBvxMhBzkGUqvtXnqusGEtjDzKCXPGwrEZCS8LGKHyBbV");
+        endereco.setNumero("11mzXHR8rZTgfE35EqfGhiShiIwQfLCAziFDXVgs3EjLSPkZkCvfGNLMEf5y");
+        endereco.setTelefone("12345678901324");
+        endereco.setUf(DFUnidadeFederativa.PR);
+        endereco.toString();
+    }
+
+
+
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {

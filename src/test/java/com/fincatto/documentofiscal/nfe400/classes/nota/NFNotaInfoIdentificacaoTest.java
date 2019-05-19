@@ -99,6 +99,43 @@ public class NFNotaInfoIdentificacaoTest {
             new NFNotaInfoIdentificacao().setCodigoMunicipio("qGYcW8I1");
         }
     }
+    
+    @Test
+    public void naoDevePermitirCodigoRandomicoComValorInvalido() {
+        String[] codigosInvalidos = new String[]{"00000000", "11111111", "22222222", "33333333", "44444444", "55555555", "66666666", "77777777", "88888888", "99999999", "12345678", "23456789", "34567890", "45678901", "56789012", "67890123", "78901234", "89012345", "90123456", "01234567"};
+        int countExceptions = 0;
+        for (String codigo : codigosInvalidos) {
+            try {
+                new NFNotaInfoIdentificacao().setCodigoRandomico(codigo);
+            } catch (final IllegalStateException e) {
+                countExceptions += 1;
+            }
+        }
+        Assert.assertEquals(countExceptions, codigosInvalidos.length);
+    }
+    
+    @Test(expected = IllegalStateException.class)
+    public void naoDevePermitirCodigoRandomicoENumeroNotaIguais() {
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao = new NFNotaInfoIdentificacao();
+        try {
+            nfNotaInfoIdentificacao.setNumeroNota("000001564");
+            nfNotaInfoIdentificacao.setCodigoRandomico("00001564");
+        } catch (final IllegalStateException e) {
+            nfNotaInfoIdentificacao.setCodigoRandomico("00000001");
+            nfNotaInfoIdentificacao.setNumeroNota("000000001");
+        }
+    }
+    
+    @Test
+    public void devePermitirCodigoRandomicoENumeroNotaDiferentes() {
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao = new NFNotaInfoIdentificacao();
+        nfNotaInfoIdentificacao.setNumeroNota("000001563");
+        nfNotaInfoIdentificacao.setCodigoRandomico("00001565");
+        
+        NFNotaInfoIdentificacao nfNotaInfoIdentificacao2 = new NFNotaInfoIdentificacao();
+        nfNotaInfoIdentificacao2.setNumeroNota("000001565");
+        nfNotaInfoIdentificacao2.setCodigoRandomico("00001563");
+    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirIndicadorPresencaCompradorNulo() {
@@ -746,7 +783,7 @@ public class NFNotaInfoIdentificacaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoIdentificacao><cUF>43</cUF><cNF>99999999</cNF><natOp>qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ</natOp><mod>55</mod><serie>999</serie><nNF>999999999</nNF><dhEmi>2010-10-27T10:10:10-02:00</dhEmi><dhSaiEnt>2013-09-24T10:10:10-03:00</dhSaiEnt><tpNF>0</tpNF><idDest>1</idDest><cMunFG>1612675</cMunFG><tpImp>2</tpImp><tpEmis>1</tpEmis><cDV>8</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>1</indFinal><indPres>0</indPres><procEmi>0</procEmi><verProc>532ng7VURPgovC5BYaZy</verProc><dhCont>2014-10-10T10:10:10-03:00</dhCont><xJust>b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV</xJust><NFref><refCTe>19506188293993666630760813709064781438945816</refCTe></NFref></NFNotaInfoIdentificacao>";
+        final String xmlEsperado = "<NFNotaInfoIdentificacao><cUF>43</cUF><cNF>99999998</cNF><natOp>qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ</natOp><mod>55</mod><serie>999</serie><nNF>999999999</nNF><dhEmi>2010-10-27T10:10:10-02:00</dhEmi><dhSaiEnt>2013-09-24T10:10:10-03:00</dhSaiEnt><tpNF>0</tpNF><idDest>1</idDest><cMunFG>1612675</cMunFG><tpImp>2</tpImp><tpEmis>1</tpEmis><cDV>8</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>1</indFinal><indPres>0</indPres><procEmi>0</procEmi><verProc>532ng7VURPgovC5BYaZy</verProc><dhCont>2014-10-10T10:10:10-03:00</dhCont><xJust>b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV</xJust><NFref><refCTe>19506188293993666630760813709064781438945816</refCTe></NFref></NFNotaInfoIdentificacao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoIdentificacao().toString());
     }
 }
