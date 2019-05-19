@@ -7,11 +7,9 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta.NfeStatusServico4Stub;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +32,7 @@ class WSStatusConsulta {
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
         WSStatusConsulta.LOGGER.debug(omElementResult.toString());
     
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
     }
 
     private NFStatusServicoConsulta gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {

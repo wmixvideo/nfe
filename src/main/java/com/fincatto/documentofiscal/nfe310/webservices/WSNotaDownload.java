@@ -9,11 +9,9 @@ import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFS
 import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDownloadNFResult;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +36,7 @@ class WSNotaDownload {
         final OMElement omElementRetorno = this.efetuaDownloadNF(omElementConsulta);
         WSNotaDownload.LOGGER.debug(omElementRetorno.toString());
     
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFDownloadNFeRetorno.class, omElementRetorno.toString());
+        return new DFPersister(this.config.getTimeZone()).read(NFDownloadNFeRetorno.class, omElementRetorno.toString());
     }
 
     private OMElement efetuaDownloadNF(final OMElement omElementConsulta) throws RemoteException {

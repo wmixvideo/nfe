@@ -7,11 +7,9 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +32,7 @@ class WSLoteConsulta {
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, modelo);
         WSLoteConsulta.LOGGER.debug(omElementResult.toString());
     
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFLoteConsultaRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(NFLoteConsultaRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {

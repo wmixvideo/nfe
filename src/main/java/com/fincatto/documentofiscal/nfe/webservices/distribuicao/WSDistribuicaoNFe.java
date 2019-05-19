@@ -4,12 +4,11 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.core.Persister;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
@@ -55,9 +54,8 @@ public class WSDistribuicaoNFe {
 
             final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()));
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse result = stub.nfeDistDFeInteresse(distDFeInteresse);
-            final String resultadoConsulta = result.getNFeDistDFeInteresseResult().getExtraElement().toString();
     
-            return new Persister(new DFRegistryMatcher(this.config.getTimeZone())).read(NFDistribuicaoIntRetorno.class, resultadoConsulta);
+            return new DFPersister(this.config.getTimeZone()).read(NFDistribuicaoIntRetorno.class, result.getNFeDistDFeInteresseResult().getExtraElement().toString());
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }

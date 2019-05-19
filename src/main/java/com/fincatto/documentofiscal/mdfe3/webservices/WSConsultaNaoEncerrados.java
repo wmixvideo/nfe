@@ -5,11 +5,9 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerrados;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
 import com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,12 +31,12 @@ class WSConsultaNaoEncerrados {
 
 	MDFeConsultaNaoEncerradosRetorno consultaNaoEncerrados(final String cnpj) throws Exception {
 		final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(cnpj).toString());
-		WSConsultaNaoEncerrados.LOGGER.info(omElementConsulta.toString());
+        WSConsultaNaoEncerrados.LOGGER.debug(omElementConsulta.toString());
 
 		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta);
-		WSConsultaNaoEncerrados.LOGGER.info(omElementResult.toString());
+        WSConsultaNaoEncerrados.LOGGER.debug(omElementResult.toString());
         
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
+        return new DFPersister(this.config.getTimeZone()).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
 	}
 
 	private MDFeConsultaNaoEncerrados gerarDadosConsulta(final String cnpj) {
@@ -66,7 +64,7 @@ class WSConsultaNaoEncerrados {
 		if (endpoint == null) {
 			throw new IllegalArgumentException("Nao foi possivel encontrar URL para CONSULTAR NÃO ENCERRADOS, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
 		}
-		WSConsultaNaoEncerrados.LOGGER.info(endpoint);
+        WSConsultaNaoEncerrados.LOGGER.debug(endpoint);
 		final MDFeConsNaoEncStub.MdfeConsNaoEncResult result = new MDFeConsNaoEncStub(endpoint).mdfeConsNaoEnc(dados, cabecEnv);
 		return result.getExtraElement();
 	}

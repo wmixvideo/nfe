@@ -6,17 +6,15 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
 
-public class WSRecepcaoLoteRetorno {
+class WSRecepcaoLoteRetorno {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLoteRetorno.class);
     private final CTeConfig config;
@@ -27,12 +25,12 @@ public class WSRecepcaoLoteRetorno {
     
     CTeConsultaRecLoteRet consultaLote(final String numeroRecibo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        WSRecepcaoLoteRetorno.LOGGER.info(omElementConsulta.toString());
+        WSRecepcaoLoteRetorno.LOGGER.debug(omElementConsulta.toString());
         
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta);
-        WSRecepcaoLoteRetorno.LOGGER.info(omElementResult.toString());
-        
-        return new Persister(new DFRegistryMatcher(config.getTimeZone()), new Format(0)).read(CTeConsultaRecLoteRet.class, omElementResult.toString());
+        WSRecepcaoLoteRetorno.LOGGER.debug(omElementResult.toString());
+    
+        return new DFPersister(this.config.getTimeZone()).read(CTeConsultaRecLoteRet.class, omElementResult.toString());
     }
     
     private OMElement efetuaConsulta(final OMElement omElement) throws RemoteException {
@@ -51,7 +49,7 @@ public class WSRecepcaoLoteRetorno {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetRecepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        WSRecepcaoLoteRetorno.LOGGER.info(endpoint);
+        WSRecepcaoLoteRetorno.LOGGER.debug(endpoint);
         
         final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint).cteRetRecepcao(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();

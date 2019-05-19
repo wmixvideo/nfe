@@ -6,11 +6,9 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,12 +26,12 @@ class WSStatusConsulta {
     
     CTeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(uf).toString());
-        WSStatusConsulta.LOGGER.info(omElementConsulta.toString());
+        WSStatusConsulta.LOGGER.debug(omElementConsulta.toString());
         
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
-        WSStatusConsulta.LOGGER.info(omElementResult.toString());
-        
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(CTeConsStatServRet.class, omElementResult.toString());
+        WSStatusConsulta.LOGGER.debug(omElementResult.toString());
+    
+        return new DFPersister(this.config.getTimeZone()).read(CTeConsStatServRet.class, omElementResult.toString());
     }
     
     private CTeConsStatServ gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {
@@ -60,7 +58,7 @@ class WSStatusConsulta {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        WSStatusConsulta.LOGGER.info(endpoint);
+        WSStatusConsulta.LOGGER.debug(endpoint);
         final CteStatusServicoStub.CteStatusServicoCTResult result = new CteStatusServicoStub(endpoint).cteStatusServicoCT(dados, cabecEnv);
         return result.getExtraElement();
     }

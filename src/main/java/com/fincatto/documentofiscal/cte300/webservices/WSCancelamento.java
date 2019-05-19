@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 class WSCancelamento {
+    
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_CANCELAMENTO = "110111";

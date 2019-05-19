@@ -4,12 +4,9 @@ import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
@@ -18,15 +15,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
-import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoCTe {
 
     /**
      * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
-     * É importante salvar esta String para não perder nenhuma informacao<br>
-     * A receita não disponibiliza o conhecimento várias vezes para consultar, retorna rejeicao: Consumo indevido
+     * E importante salvar esta String para nao perder nenhuma informacao<br>
+     * A receita nao disponibiliza o conhecimento varias vezes para consultar, retorna rejeicao: Consumo indevido
      */
     public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -65,8 +61,9 @@ public class WSDistribuicaoCTe {
             }
         }
     }
-
-    public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
-        return new Persister(new DFRegistryMatcher(TimeZone.getDefault()), new Format(0)).read(classe, xml);
-    }
+    
+    //    Nao reviver este metodo. Usar o oficial:  new DFPersister(this.config.getTimeZone()).read(classe, xml)
+    //    public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
+    //        return new Persister(new DFRegistryMatcher(TimeZone.getDefault()), new Format(0)).read(classe, xml);
+    //    }
 }

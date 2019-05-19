@@ -6,11 +6,9 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServ;
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
 import com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +34,8 @@ class WSStatusConsulta {
 
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
         WSStatusConsulta.LOGGER.info(omElementResult.toString());
-
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(MDFeConsStatServRet.class, omElementResult.toString());
+    
+        return new DFPersister(this.config.getTimeZone()).read(MDFeConsStatServRet.class, omElementResult.toString());
     }
 
     private MDFeConsStatServ gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {

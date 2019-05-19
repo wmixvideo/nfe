@@ -11,11 +11,9 @@ import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFInfoConsultaCadast
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,14 +36,12 @@ class WSConsultaCadastro {
 
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(xmlConsulta);
         final OMElement resultado = this.efetuaConsulta(uf, omElementConsulta);
-
-        final String retornoConsulta = resultado.toString();
-        WSConsultaCadastro.LOG.debug(retornoConsulta);
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFRetornoConsultaCadastro.class, retornoConsulta);
+        WSConsultaCadastro.LOG.debug(resultado.toString());
+    
+        return new DFPersister(this.config.getTimeZone()).read(NFRetornoConsultaCadastro.class, resultado.toString());
     }
 
     private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws Exception {
-
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);
         if (autorizador == null) {
             throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
@@ -70,7 +66,6 @@ class WSConsultaCadastro {
             nfeDadosMsg_type0.setExtraElement(omElementConsulta);
             return new CadConsultaCadastro4Stub(url).consultaCadastro(nfeDadosMsg_type0).getExtraElement();
         }
-
     }
 
     private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {

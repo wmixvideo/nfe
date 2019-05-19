@@ -11,11 +11,9 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeConsulta2Stub;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeConsulta2Stub.NfeConsultaNF2Result;
 import com.fincatto.documentofiscal.nfe310.webservices.nota.consulta.NfeConsultaStub;
 import com.fincatto.documentofiscal.nfe310.webservices.nota.consulta.NfeConsultaStub.NfeConsultaNFResult;
-import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
+import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +36,8 @@ class WSNotaConsulta {
 
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
-        return new Persister(new DFRegistryMatcher(this.config.getTimeZone()), new Format(0)).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
+    
+        return new DFPersister(this.config.getTimeZone()).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
@@ -50,7 +49,6 @@ class WSNotaConsulta {
         } else {
             return this.efetuaConsultaSVRS(omElementConsulta, chaveDeAcesso);
         }
-
     }
 
     private OMElement efetuaConsultaSVRS(final OMElement omElementConsulta, final String chaveDeAcesso) throws RemoteException {
