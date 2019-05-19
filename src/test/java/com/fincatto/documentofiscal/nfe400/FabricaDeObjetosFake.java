@@ -368,7 +368,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.HOMOLOGACAO);
         identificacao.setCodigoMunicipio("4314902");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.now());
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.now());
         identificacao.setDigitoVerificador(8);
@@ -636,6 +636,7 @@ public class FabricaDeObjetosFake {
     
     public static NFNotaInfoLocal getNFNotaInfoLocal() {
         final NFNotaInfoLocal local = new NFNotaInfoLocal();
+        local.setNome("mRtbdiwDaVQzVhCVSZtnmXjPJVeOdejeYdnaYPVyHTZnBdkQXGYLBKGLCX");
         local.setBairro("JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil");
         local.setCnpj("12345678901234");
         local.setCodigoMunicipio("9999999");
@@ -644,6 +645,11 @@ public class FabricaDeObjetosFake {
         local.setNomeMunicipio("OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI");
         local.setNumero("YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa");
         local.setUf(DFUnidadeFederativa.RS);
+        local.setCodigoPais(DFPais.BRASIL);
+        local.setDescricaoPais(DFPais.BRASIL.getDescricao());
+        local.setEmail("email@empresaficticia.com.br");
+        local.setTelefone("12345678901324");
+        local.setInscricaoEstadual("12345678901234");
         return local;
     }
     
@@ -981,6 +987,24 @@ public class FabricaDeObjetosFake {
         return icms00;
     }
     
+    public static NFNotaInfoItemImpostoICMS10 getNFNotaInfoItemImpostoICMS10() {
+        final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
+        icms10.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
+        icms10.setOrigem(NFOrigem.NACIONAL);
+        icms10.setPercentualAliquota(new BigDecimal("99.99"));
+        icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
+        icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.MARGEM_VALOR_AGREGADO);
+        icms10.setPercentualMargemValorAdicionadoICMSST(BigDecimal.ZERO);
+        icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+        icms10.setValorBCICMSST(new BigDecimal("999999999999.99"));
+        icms10.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+        icms10.setValorICMSST(new BigDecimal("99.99"));
+        icms10.setValorTributo(new BigDecimal("999999999999.99"));
+        icms10.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+        icms10.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+        return icms10;
+    }
+
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
         ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);

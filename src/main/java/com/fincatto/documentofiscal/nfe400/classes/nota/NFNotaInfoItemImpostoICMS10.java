@@ -44,7 +44,7 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
-    private String percentualMargemValorICMSST;
+    private String percentualMargemValorAdicionadoICMSST;
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
@@ -94,9 +94,9 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
-
-    public void setPercentualMargemValorICMSST(final BigDecimal percentualMargemValorICMSST) {
-        this.percentualMargemValorICMSST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualMargemValorICMSST, "Percentual MVA ICMS ST ICMS10 Item");
+    
+    public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual MVA ICMS ST ICMS10 Item");
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
@@ -172,9 +172,9 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
         return this.modalidadeBCICMSST;
     }
-
-    public String getPercentualMargemValorICMSST() {
-        return this.percentualMargemValorICMSST;
+    
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
     }
 
     public String getPercentualReducaoBCICMSST() {

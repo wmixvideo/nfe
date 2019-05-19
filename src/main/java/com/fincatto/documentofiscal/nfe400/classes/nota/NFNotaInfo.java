@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
@@ -236,5 +237,13 @@ public class NFNotaInfo extends DFBase {
 
     public NFNotaInfoResponsavelTecnico getInformacaoResposavelTecnico() {
         return this.informacaoResposavelTecnico;
+    }
+    
+    @Override
+    public String toString() {
+        if (this.getDestinatario() != null && this.getIdentificacao() != null && this.getDestinatario().getIndicadorIEDestinatario().equals(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE) && this.getIdentificacao().getOperacaoConsumidorFinal().equals(NFOperacaoConsumidorFinal.NAO) && this.getIdentificacao().getTipo().equals(NFTipo.SAIDA) && !this.getIdentificacao().getIdentificadorLocalDestinoOperacao().equals(NFIdentificadorLocalDestinoOperacao.OPERACAO_COM_EXTERIOR)) {
+            throw new IllegalStateException("Opera\u00E7\u00E3o com n\u00E3o contribuinte deve indicar opera\u00E7\u00E3o com consumidor final");
+        }
+        return super.toString();
     }
 }

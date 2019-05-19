@@ -130,4 +130,10 @@ public class NFNotaInfoItemImposto extends DFBase {
     public void setIcmsUfDestino(final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
     }
+    
+    @Override
+    public String toString() {
+        //StringValidador.validaPreenchimentoDeMargemValorAgregado(this.getIcms());
+        return super.toString();
+    }
 }
