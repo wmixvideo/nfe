@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import java.math.BigDecimal;
-
-import java.time.ZonedDateTime;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 public class EventoCTe extends DFBase {
     private static final long serialVersionUID = 8560202237533495525L;
@@ -54,7 +53,7 @@ public class EventoCTe extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
+        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
     }
 
     public String getId() {

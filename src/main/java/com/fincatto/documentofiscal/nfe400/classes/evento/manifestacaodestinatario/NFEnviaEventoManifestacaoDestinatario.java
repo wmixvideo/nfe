@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Root(name = "envEvento")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -25,7 +24,7 @@ public class NFEnviaEventoManifestacaoDestinatario extends DFBase {
     private List<NFEventoManifestacaoDestinatario> evento;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public String getVersao() {

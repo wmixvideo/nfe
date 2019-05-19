@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoRetencaoICMSTransporte extends DFBase {
     private static final long serialVersionUID = -5222569391852128441L;
@@ -31,19 +30,19 @@ public class NFNotaInfoRetencaoICMSTransporte extends DFBase {
     private String codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
 
     public void setValorServico(final BigDecimal valorServico) {
-        this.valorServico = BigDecimalParser.tamanho15Com2CasasDecimais(valorServico, "Valor Servico Retencao ICMS Transporte");
+        this.valorServico = BigDecimalValidador.tamanho15Com2CasasDecimais(valorServico, "Valor Servico Retencao ICMS Transporte");
     }
 
     public void setBcRetencaoICMS(final BigDecimal bcRetencaoICMS) {
-        this.bcRetencaoICMS = BigDecimalParser.tamanho15Com2CasasDecimais(bcRetencaoICMS, "BC Retencao ICMS Transporte");
+        this.bcRetencaoICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(bcRetencaoICMS, "BC Retencao ICMS Transporte");
     }
 
     public void setAliquotaRetencao(final BigDecimal aliquotaRetencao) {
-        this.aliquotaRetencao = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaRetencao, "Aliquota Retencao ICMS Transporte");
+        this.aliquotaRetencao = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquotaRetencao, "Aliquota Retencao ICMS Transporte");
     }
 
     public void setValorICMSRetido(final BigDecimal valorICMSRetido) {
-        this.valorICMSRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSRetido, "Valor ICMS Retido Transporte");
+        this.valorICMSRetido = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSRetido, "Valor ICMS Retido Transporte");
     }
 
     public void setCfop(final Integer cfop) {

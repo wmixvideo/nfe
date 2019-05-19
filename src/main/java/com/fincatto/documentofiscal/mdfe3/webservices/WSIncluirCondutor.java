@@ -8,7 +8,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioVei
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.*;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -45,7 +45,7 @@ class WSIncluirCondutor implements DFLog {
         final MDFChaveParser mdfChaveParser = new MDFChaveParser(chaveAcesso);
         final MDFeRecepcaoEventoStub.MdfeCabecMsg cabec = new MDFeRecepcaoEventoStub.MdfeCabecMsg();
         cabec.setCUF(mdfChaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        cabec.setVersaoDados(BigDecimalParser.tamanho5Com2CasasDecimais(WSIncluirCondutor.VERSAO_LEIAUTE, "Versao do Evento"));
+        cabec.setVersaoDados(BigDecimalValidador.tamanho5Com2CasasDecimais(WSIncluirCondutor.VERSAO_LEIAUTE, "Versao do Evento"));
         
         final MDFeRecepcaoEventoStub.MdfeCabecMsgE cabecE = new MDFeRecepcaoEventoStub.MdfeCabecMsgE();
         cabecE.setMdfeCabecMsg(cabec);

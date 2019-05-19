@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author Caio
@@ -138,7 +137,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF exten
      * Valor do documento fiscal.
      */
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor do documento fiscal");
+        this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor do documento fiscal");
     }
 
     public LocalDate getDataEmissao() {

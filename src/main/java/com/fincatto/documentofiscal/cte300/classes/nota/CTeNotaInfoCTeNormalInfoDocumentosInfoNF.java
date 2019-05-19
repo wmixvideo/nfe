@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTModeloNF;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTModeloNF;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Caio
@@ -181,7 +180,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor da Base de Cálculo do ICMS
      */
     public void setValorBcICMS(final BigDecimal valorBcICMS) {
-        this.valorBcICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorBcICMS, "Valor da Base de Cálculo do ICMS");
+        this.valorBcICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBcICMS, "Valor da Base de Cálculo do ICMS");
     }
 
     public String getValorICMS() {
@@ -192,7 +191,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor Total do ICMS
      */
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS, "Valor Total do ICMS");
+        this.valorICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor Total do ICMS");
     }
 
     public String getValorBcICMSST() {
@@ -203,7 +202,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor da Base de Cálculo do ICMS ST
      */
     public void setValorBcICMSST(final BigDecimal valorBcICMSST) {
-        this.valorBcICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBcICMSST, "Valor da Base de Cálculo do ICMS ST");
+        this.valorBcICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBcICMSST, "Valor da Base de Cálculo do ICMS ST");
     }
 
     public String getValorICMSST() {
@@ -214,7 +213,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor Total do ICMS ST
      */
     public void setValorICMSST(final BigDecimal valorICMSST) {
-        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor Total do ICMS ST");
+        this.valorICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSST, "Valor Total do ICMS ST");
     }
 
     public String getValorTotalProdutos() {
@@ -225,7 +224,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor Total dos Produtos
      */
     public void setValorTotalProdutos(final BigDecimal valorTotalProdutos) {
-        this.valorTotalProdutos = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalProdutos, "Valor Total dos Produtos");
+        this.valorTotalProdutos = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalProdutos, "Valor Total dos Produtos");
     }
 
     public String getValorTotalNF() {
@@ -236,7 +235,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Valor Total da NF
      */
     public void setValorTotalNF(final BigDecimal valorTotalNF) {
-        this.valorTotalNF = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalNF, "Valor Total da NF");
+        this.valorTotalNF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalNF, "Valor Total da NF");
     }
 
     public String getCFOP() {
@@ -260,7 +259,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
      * Peso total em Kg
      */
     public void setValorPesoTotal(final BigDecimal valorPesoTotal) {
-        this.valorPesoTotal = BigDecimalParser.tamanho15Com3CasasDecimais(valorPesoTotal, "Peso total em Kg");
+        this.valorPesoTotal = BigDecimalValidador.tamanho15Com3CasasDecimais(valorPesoTotal, "Peso total em Kg");
     }
 
     public String getPinSUFRAMA() {

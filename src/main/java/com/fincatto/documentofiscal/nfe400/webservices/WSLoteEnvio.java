@@ -17,7 +17,7 @@ import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeContingenc
 import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeEmissaoNormal20;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeResultMsg;
-import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
+import com.fincatto.documentofiscal.validadores.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;

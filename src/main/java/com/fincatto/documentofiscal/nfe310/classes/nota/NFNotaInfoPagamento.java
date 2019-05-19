@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class NFNotaInfoPagamento extends DFBase {
     private static final long serialVersionUID = -2613537583415054150L;
@@ -28,7 +27,7 @@ public class NFNotaInfoPagamento extends DFBase {
     }
 
     public void setValorPagamento(final BigDecimal valorPagamento) {
-        this.valorPagamento = BigDecimalParser.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
+        this.valorPagamento = BigDecimalValidador.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
     }
 
     public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {

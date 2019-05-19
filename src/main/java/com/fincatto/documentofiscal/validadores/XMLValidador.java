@@ -1,15 +1,14 @@
-package com.fincatto.documentofiscal.validadores.xsd;
+package com.fincatto.documentofiscal.validadores;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.net.URISyntaxException;
-import java.net.URL;
+import org.xml.sax.SAXException;
 
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public final class XMLValidador {
 

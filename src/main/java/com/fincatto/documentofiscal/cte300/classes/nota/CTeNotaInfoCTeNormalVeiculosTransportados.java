@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -105,7 +104,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Valor Unitário do Veículo
      */
     public void setValorUnitario(final BigDecimal valorUnitario) {
-        this.valorUnitario = BigDecimalParser.tamanho15Com2CasasDecimais(valorUnitario, "Valor Unitário do Veículo");
+        this.valorUnitario = BigDecimalValidador.tamanho15Com2CasasDecimais(valorUnitario, "Valor Unitário do Veículo");
     }
 
     public String getValorFrete() {
@@ -116,6 +115,6 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Frete Unitário
      */
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Frete Unitário");
+        this.valorFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Frete Unitário");
     }
 }

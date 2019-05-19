@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedida;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -79,6 +79,6 @@ public class CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga extends DFB
      * Quantidade
      */
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.validaTamanho(quantidade, "Quantidade Carga CT-e", 11, 4, true);
+        this.quantidade = BigDecimalValidador.validaTamanho(quantidade, "Quantidade Carga CT-e", 11, 4, true);
     }
 }

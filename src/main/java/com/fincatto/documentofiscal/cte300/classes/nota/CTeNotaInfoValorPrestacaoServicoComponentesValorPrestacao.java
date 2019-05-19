@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -52,6 +51,6 @@ public class CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao extends D
      * Valor do componente
      */
     public void setValorComponente(final BigDecimal valorComponente) {
-        this.valorComponente = BigDecimalParser.tamanho15Com2CasasDecimais(valorComponente, "Valor do componente");
+        this.valorComponente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorComponente, "Valor do componente");
     }
 }

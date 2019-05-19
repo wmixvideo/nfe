@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     private static final long serialVersionUID = 3127772234811692432L;
@@ -28,7 +27,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
 
     public void setPrecoMaximoConsumidor(final BigDecimal precoMaximoConsumidor) {
-        this.precoMaximoConsumidor = BigDecimalParser.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Preco Maximo Consumidor Medicamento");
+        this.precoMaximoConsumidor = BigDecimalValidador.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Preco Maximo Consumidor Medicamento");
     }
 
     public String getCodigoProdutoAnvisa() {

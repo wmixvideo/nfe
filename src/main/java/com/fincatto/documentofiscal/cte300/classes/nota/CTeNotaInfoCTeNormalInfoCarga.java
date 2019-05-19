@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Caio
@@ -54,7 +53,7 @@ public class CTeNotaInfoCTeNormalInfoCarga extends DFBase {
      * Dever ser informado para todos os modais, com exceção para o Dutoviário.
      */
     public void setValorTotalCarga(final BigDecimal valorTotalCarga) {
-        this.valorTotalCarga = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalCarga, "Valor total da carga");
+        this.valorTotalCarga = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalCarga, "Valor total da carga");
     }
 
     public String getDescricaoProdutoPredominante() {
@@ -108,6 +107,6 @@ public class CTeNotaInfoCTeNormalInfoCarga extends DFBase {
      * Normalmente igual ao valor declarado da mercadoria, diferente por exemplo, quando a mercadoria transportada é isenta de tributos nacionais para exportação, onde é preciso averbar um valor maior, pois no caso de indenização, o valor a ser pago será maior
      */
     public void setValorAverbacao(final BigDecimal valorAverbacao) {
-        this.valorAverbacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorAverbacao, "Valor da Carga para efeito de averbação");
+        this.valorAverbacao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorAverbacao, "Valor da Carga para efeito de averbação");
     }
 }

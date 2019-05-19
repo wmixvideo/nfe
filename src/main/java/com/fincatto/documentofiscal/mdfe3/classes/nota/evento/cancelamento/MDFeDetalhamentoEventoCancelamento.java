@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class MDFeDetalhamentoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 3638398807163771387L;
@@ -18,7 +17,7 @@ public class MDFeDetalhamentoEventoCancelamento extends DFBase {
     private MDFeEnviaEventoCancelamento eventoCancelamento;
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getVersaoEvento() {

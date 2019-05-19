@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.dpec;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -102,7 +102,7 @@ public class ResumoContigenciaNFe extends DFBase {
     }
 
     public void setValorTotalNFe(final BigDecimal valorTotalNFe) {
-        this.valorTotalNFe = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalNFe, "Valor Total NFe");
+        this.valorTotalNFe = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalNFe, "Valor Total NFe");
     }
 
     public String getValorICMS() {
@@ -113,7 +113,7 @@ public class ResumoContigenciaNFe extends DFBase {
      * Valor do ICMS
      */
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
+        this.valorICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
     }
 
     public String getValorTotalICMSST() {
@@ -121,7 +121,7 @@ public class ResumoContigenciaNFe extends DFBase {
     }
 
     public void setValorTotalICMSST(final BigDecimal valorTotalICMSST) {
-        this.valorTotalICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalICMSST, "Valor Total ICMS ST");
+        this.valorTotalICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalICMSST, "Valor Total ICMS ST");
     }
 
 }

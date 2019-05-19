@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Caio
@@ -81,7 +80,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo extends DFBase
      * Valor do Frete do Tráfego Mútuo
      */
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Valor do Frete do Tráfego Mútuo");
+        this.valorFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Valor do Frete do Tráfego Mútuo");
     }
 
     public String getChaveCTeFerroviaOrigem() {

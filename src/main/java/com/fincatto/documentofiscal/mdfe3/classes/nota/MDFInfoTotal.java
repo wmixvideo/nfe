@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFUnidadeMedidaPesoBrutoCarga;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Eldevan Nery Junior on 06/11/17. Totalizadores da carga transportada e seus documentos fiscais.
@@ -76,7 +75,7 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setValorTotalCarga(final BigDecimal valorTotalCarga) {
-        this.valorTotalCarga = BigDecimalParser.tamanho13Com2CasasDecimais(valorTotalCarga, "Valor total da carga ");
+        this.valorTotalCarga = BigDecimalValidador.tamanho13Com2CasasDecimais(valorTotalCarga, "Valor total da carga ");
     }
 
     public MDFUnidadeMedidaPesoBrutoCarga getUnidadeMedidaPesoBrutoCarga() {
@@ -92,6 +91,6 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setPesoCarga(final BigDecimal pesoCarga) {
-        this.pesoCarga = BigDecimalParser.validaTamanho(pesoCarga, "Peso Bruto da Carga", 11, 4, true);
+        this.pesoCarga = BigDecimalValidador.validaTamanho(pesoCarga, "Peso Bruto da Carga", 11, 4, true);
     }
 }

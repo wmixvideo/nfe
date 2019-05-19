@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-
-import org.simpleframework.xml.Element;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 
 public class NFNotaInfoItemImpostoPISAliquota extends DFBase {
     private static final long serialVersionUID = 4109084296960847091L;
@@ -42,15 +41,15 @@ public class NFNotaInfoItemImpostoPISAliquota extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC PIS Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC PIS Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota PIS Item");
+        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota PIS Item");
     }
 
     public void setValorTributo(final BigDecimal valor) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor PIS Item");
+        this.valorTributo = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor PIS Item");
     }
 
     public NFNotaInfoSituacaoTributariaPIS getSituacaoTributaria() {

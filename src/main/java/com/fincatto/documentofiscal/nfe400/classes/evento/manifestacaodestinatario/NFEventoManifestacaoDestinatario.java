@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class NFEventoManifestacaoDestinatario extends DFBase {
     private static final long serialVersionUID = 4608659349977367804L;
@@ -22,7 +21,7 @@ public class NFEventoManifestacaoDestinatario extends DFBase {
     private NFSignature assinatura;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public NFInfoEventoManifestacaoDestinatario getInfoEvento() {

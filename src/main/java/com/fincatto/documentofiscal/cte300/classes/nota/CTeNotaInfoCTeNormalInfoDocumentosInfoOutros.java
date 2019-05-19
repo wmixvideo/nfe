@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumento;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumento;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Caio
@@ -120,7 +119,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoOutros extends DFBase {
      * Valor do documento
      */
     public void setValorDocumentoFiscal(final BigDecimal valorDocumentoFiscal) {
-        this.valorDocumentoFiscal = BigDecimalParser.tamanho15Com2CasasDecimais(valorDocumentoFiscal, "Valor do documento");
+        this.valorDocumentoFiscal = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDocumentoFiscal, "Valor do documento");
     }
 
     public LocalDate getDataPrevisaoEntrega() {
