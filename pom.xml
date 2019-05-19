@@ -203,6 +203,13 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <includesTestSourceRoots>false</includesTestSourceRoots>
+                            <excludes>
+                                <exclude>**/*Stub.java</exclude>
+                                <exclude>**/*CallbackHandler.java</exclude>
+                            </excludes>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
