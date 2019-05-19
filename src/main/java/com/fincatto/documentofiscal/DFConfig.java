@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal;
 
+import com.fincatto.documentofiscal.persister.DFPersister;
+import org.simpleframework.xml.core.Persister;
+
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.util.TimeZone;
@@ -10,7 +13,8 @@ import java.util.TimeZone;
 public abstract class DFConfig {
     
     public static final TimeZone TIMEZONE_SP = TimeZone.getTimeZone("America/Sao_Paulo");
-
+    private Persister persister;
+    
     /**
      * Indica o ambiente de trabalho, se em producao ou homologacao.
      *
@@ -19,7 +23,7 @@ public abstract class DFConfig {
     public DFAmbiente getAmbiente() {
         return DFAmbiente.HOMOLOGACAO;
     }
-
+    
     /**
      * Indica o modelo do documento fiscal
      *
@@ -28,14 +32,14 @@ public abstract class DFConfig {
     public DFModelo getModelo() {
         return DFModelo.NFE;
     }
-
+    
     /**
      * Unidade da federacao do emissor das notas.
      *
      * @return Unidade da federacao do emissor.
      */
     public abstract DFUnidadeFederativa getCUF();
-
+    
     /**
      * KeyStore contendo o certificado pessoal do emissor. <br>
      * Esse certificado e fornecido por uma autoridade certificadora. <br>
@@ -45,7 +49,7 @@ public abstract class DFConfig {
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
      */
     public abstract KeyStore getCertificadoKeyStore() throws KeyStoreException;
-
+    
     /**
      * Retorna o nome do alias do certificado dentro do {@link KeyStore} retornado por {@link #getCertificadoKeyStore()}. Caso seja retornado {@code null}, sera utilizado o primeiro alias do {@link KeyStore}.
      *
@@ -54,7 +58,7 @@ public abstract class DFConfig {
     public String getCertificadoAlias() {
         return null;
     }
-
+    
     /**
      * Senha do certificado pessoal do emissor, contido dentro do KeyStore do certificado.
      *
@@ -62,7 +66,7 @@ public abstract class DFConfig {
      * @see #getCertificadoKeyStore()
      */
     public abstract String getCertificadoSenha();
-
+    
     /**
      * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
      * Para gerar a cadeia, use o utilitario fornecido com a biblioteca:<br>
@@ -72,7 +76,7 @@ public abstract class DFConfig {
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
      */
     public abstract KeyStore getCadeiaCertificadosKeyStore() throws KeyStoreException;
-
+    
     /**
      * Senha da cadeia de certificados, contida dentro do KeyStore da cadeia.
      *
@@ -80,16 +84,17 @@ public abstract class DFConfig {
      * @see #getCadeiaCertificadosKeyStore()
      */
     public abstract String getCadeiaCertificadosSenha();
-
+    
     /**
-     * Protocolo de SSL, usado pela SEFAZ para receber as notas. Habilita mais de um parametro pra ssl.
+     * Protocolo de SSL, usado pela SEFAZ para receber as notas.
+     * Habilita mais de um parametro pra ssl.
      *
      * @return Protocolo SSL da SEFAZ de origem.
      */
     public String[] getSSLProtocolos() {
         return new String[]{"TLSv1.2"};
     }
-
+    
     /**
      * Retorna o timezone a ser usado no sistema.
      * Por padrao, vai usar o timezone default da maquina.
@@ -99,13 +104,26 @@ public abstract class DFConfig {
     public TimeZone getTimeZone() {
         return TimeZone.getDefault();
     }
-
+    
+    /**
+     * Retorna o persister a ser usado para serializacao dos objetos.
+     * Por padrao vai usar o {@link DFPersister} com o {@link TimeZone} definido em {@link #getTimeZone()}.
+     *
+     * @return Persister a ser utilizado.
+     */
+    public Persister getPersister() {
+        if (this.persister == null) {
+            this.persister = new DFPersister(this.getTimeZone());
+        }
+        return this.persister;
+    }
+    
     /**
      * Codigo de Seguranca do Responsavel Tecnico - CSRT(NT 2018.005)
-     * @see <a href="http://www.nfe.fazenda.gov.br/portal/informe.aspx?ehCTG=false&Informe=hDS5co/qWOc="> Informativo(acessado em 10/04/19 as 11:30)</a>
-     * <a href="http://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=j/im9zMlcIE=">  Baixar PDF(acessado em 10/04/19 as 11:30) </a>
      *
      * @return Codigo de seguranca do responsavel tecnico.
+     * @see <a href="http://www.nfe.fazenda.gov.br/portal/informe.aspx?ehCTG=false&Informe=hDS5co/qWOc=">Informativo(acessado em 10/04/19 as 11:30)</a>
+     * @see <a href="http://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=j/im9zMlcIE=">Baixar PDF(acessado em 10/04/19 as 11:30)</a>
      */
     public String getCSRT() {
         return "";

@@ -7,7 +7,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.*;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -34,14 +33,14 @@ class WSEncerramento {
 
     MDFeRetorno encerramentoMdfeAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaEncerramento(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(MDFeRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(MDFeRetorno.class, omElementResult.toString());
     }
 
     MDFeRetorno encerraMdfe(final String chaveAcesso, final String numeroProtocolo, final String codigoMunicipio, final LocalDate dataEncerramento, final DFUnidadeFederativa unidadeFederativa) throws Exception {
         final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, numeroProtocolo, codigoMunicipio, dataEncerramento, unidadeFederativa).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
         final OMElement omElementResult = this.efetuaEncerramento(xmlAssinado, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(MDFeRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(MDFeRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaEncerramento(final String xmlAssinado, final String chaveAcesso) throws Exception {

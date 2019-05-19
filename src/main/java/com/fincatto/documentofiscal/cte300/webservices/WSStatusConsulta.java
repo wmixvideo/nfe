@@ -6,7 +6,6 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ class WSStatusConsulta {
         final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta, uf);
         WSStatusConsulta.LOGGER.debug(omElementResult.toString());
     
-        return new DFPersister(this.config.getTimeZone()).read(CTeConsStatServRet.class, omElementResult.toString());
+        return this.config.getPersister().read(CTeConsStatServRet.class, omElementResult.toString());
     }
     
     private CTeConsStatServ gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {

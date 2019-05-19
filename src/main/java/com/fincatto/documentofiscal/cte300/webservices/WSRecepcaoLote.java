@@ -11,7 +11,6 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
@@ -38,7 +37,7 @@ class WSRecepcaoLote {
         //assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString(), "infCte");
         //final CTeEnvioLote loteAssinado = new DFParser().cteRecepcaoParaObjeto(documentoAssinado);
-        final CTeEnvioLote loteAssinado = new DFPersister(this.config.getTimeZone()).read(CTeEnvioLote.class, documentoAssinado);
+        final CTeEnvioLote loteAssinado = this.config.getPersister().read(CTeEnvioLote.class, documentoAssinado);
         
         //comunica o lote
         final CTeEnvioLoteRetorno retorno = comunicaLote(documentoAssinado);
@@ -65,7 +64,7 @@ class WSRecepcaoLote {
         }
         WSRecepcaoLote.LOGGER.info(endpoint);
         final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint).cteRecepcaoLote(dados, cabecalhoSOAP);
-        final CTeEnvioLoteRetorno retorno = new DFPersister(this.config.getTimeZone()).read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final CTeEnvioLoteRetorno retorno = this.config.getPersister().read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSRecepcaoLote.LOGGER.info(retorno.toString());
         return retorno;
     }

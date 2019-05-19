@@ -6,7 +6,6 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -30,7 +29,7 @@ class WSRecepcaoLoteRetorno {
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta);
         WSRecepcaoLoteRetorno.LOGGER.debug(omElementResult.toString());
     
-        return new DFPersister(this.config.getTimeZone()).read(CTeConsultaRecLoteRet.class, omElementResult.toString());
+        return this.config.getPersister().read(CTeConsultaRecLoteRet.class, omElementResult.toString());
     }
     
     private OMElement efetuaConsulta(final OMElement omElement) throws RemoteException {

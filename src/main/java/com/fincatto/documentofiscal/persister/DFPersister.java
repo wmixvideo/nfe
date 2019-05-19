@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.TimeZone;
 
+/**
+ * Classe responsavel por fazer a serializacao e desserializacao dos objetos.
+ * Por padrao ela se encontra cacheada na classe {@link com.fincatto.documentofiscal.DFConfig} e deve ser usada de la.
+ */
 public class DFPersister extends Persister {
     
     private boolean strict;

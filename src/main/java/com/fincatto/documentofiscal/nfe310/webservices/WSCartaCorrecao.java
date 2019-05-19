@@ -15,7 +15,6 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -43,12 +42,12 @@ class WSCartaCorrecao {
         final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
         final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {

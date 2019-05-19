@@ -6,7 +6,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsulta
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.consulta.MDFeConsultaStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ class WSNotaConsulta {
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
     
-        final MDFeNotaConsultaRetorno retorno = new DFPersister(this.config.getTimeZone()).read(MDFeNotaConsultaRetorno.class, omElementRetorno.toString());
+        final MDFeNotaConsultaRetorno retorno = this.config.getPersister().read(MDFeNotaConsultaRetorno.class, omElementRetorno.toString());
         WSNotaConsulta.LOGGER.debug(retorno.toString());
         return retorno;
     }

@@ -8,7 +8,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFeParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
@@ -64,7 +63,7 @@ class WSRecepcaoLote {
         }
         WSRecepcaoLote.LOGGER.info(endpoint);
         final MDFeRecepcaoStub.MdfeRecepcaoLoteResult autorizacaoLoteResult = new MDFeRecepcaoStub(endpoint).mdfeRecepcaoLote(dados, cabecalhoSOAP);
-        final MDFEnvioLoteRetorno retorno = new DFPersister(this.config.getTimeZone()).read(MDFEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+        final MDFEnvioLoteRetorno retorno = this.config.getPersister().read(MDFEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         WSRecepcaoLote.LOGGER.info(retorno.toString());
         return retorno;
     }

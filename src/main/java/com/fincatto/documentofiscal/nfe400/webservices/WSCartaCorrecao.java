@@ -13,7 +13,6 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFEnviaE
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -40,20 +39,20 @@ class WSCartaCorrecao {
     NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
         final String xmlAssinado = getXmlAssinado(chaveAcesso, textoCorrecao, numeroSequencialEvento);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
     
     NFEnviaEventoRetorno corrigeNotaAssinada(final String xmlAssinado) throws Exception {
-        final NFEnviaEventoCartaCorrecao enviaEventoCartaCorrecao = new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoCartaCorrecao.class, xmlAssinado);
+        final NFEnviaEventoCartaCorrecao enviaEventoCartaCorrecao = this.config.getPersister().read(NFEnviaEventoCartaCorrecao.class, xmlAssinado);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, enviaEventoCartaCorrecao.getEvento().get(0).getInfoEvento().getChave());
-        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
     
     NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String xmlAssinado) throws Exception {
-        final NFEnviaEventoCartaCorrecao evento = new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoCartaCorrecao.class, xmlAssinado);
+        final NFEnviaEventoCartaCorrecao evento = this.config.getPersister().read(NFEnviaEventoCartaCorrecao.class, xmlAssinado);
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, evento.getEvento().get(0).getInfoEvento().getChave());
     
-        final NFEnviaEventoRetorno retorno = new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     
         final NFProtocoloEventoCartaCorrecao nfProtocoloEventoCartaCorrecao = new NFProtocoloEventoCartaCorrecao();
         nfProtocoloEventoCartaCorrecao.setEvento(evento.getEvento().get(0));
@@ -63,7 +62,7 @@ class WSCartaCorrecao {
     
     NFEnviaEventoRetorno corrigeNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCorrecao(eventoAssinadoXml, chaveAcesso);
-        return new DFPersister(this.config.getTimeZone()).read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
     
     private OMElement efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws XMLStreamException, RemoteException {

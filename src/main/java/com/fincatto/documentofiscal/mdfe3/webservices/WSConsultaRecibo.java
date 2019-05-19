@@ -5,7 +5,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaRecibo;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
 import com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -33,8 +32,8 @@ class WSConsultaRecibo {
         
         final OMElement omElementResult = this.efetuaConsultaRecibo(omElementConsulta);
         WSConsultaRecibo.LOGGER.info(omElementResult.toString());
-        
-        return new DFPersister(this.config.getTimeZone()).read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
+    
+        return this.config.getPersister().read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
     }
     
     private MDFeConsultaRecibo gerarDadosConsulta(final String numeroRecibo) {

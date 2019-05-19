@@ -11,7 +11,6 @@ import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFInfoConsultaCadast
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.consultacadastro.CadConsultaCadastro4Stub.NfeDadosMsg;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -38,7 +37,7 @@ class WSConsultaCadastro {
         final OMElement resultado = this.efetuaConsulta(uf, omElementConsulta);
         WSConsultaCadastro.LOG.debug(resultado.toString());
     
-        return new DFPersister(this.config.getTimeZone()).read(NFRetornoConsultaCadastro.class, resultado.toString());
+        return this.config.getPersister().read(NFRetornoConsultaCadastro.class, resultado.toString());
     }
 
     private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws Exception {

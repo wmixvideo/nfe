@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
-import com.fincatto.documentofiscal.DFSocketFactory;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
@@ -62,7 +62,7 @@ public class WSDistribuicaoCTe {
         }
     }
     
-    //    Nao reviver este metodo. Usar o oficial:  new DFPersister(this.config.getTimeZone()).read(classe, xml)
+    //    Nao reviver este metodo. Usar o oficial:  this.config.getPersister().read(classe, xml)
     //    public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
     //        return new Persister(new DFRegistryMatcher(TimeZone.getDefault()), new Format(0)).read(classe, xml);
     //    }

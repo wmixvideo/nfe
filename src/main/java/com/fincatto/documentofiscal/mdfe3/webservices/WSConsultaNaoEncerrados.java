@@ -5,7 +5,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerrados;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
 import com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ class WSConsultaNaoEncerrados {
 		final OMElement omElementResult = this.efetuaConsultaStatus(omElementConsulta);
         WSConsultaNaoEncerrados.LOGGER.debug(omElementResult.toString());
         
-        return new DFPersister(this.config.getTimeZone()).read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(MDFeConsultaNaoEncerradosRetorno.class, omElementResult.toString());
 	}
 
 	private MDFeConsultaNaoEncerrados gerarDadosConsulta(final String cnpj) {

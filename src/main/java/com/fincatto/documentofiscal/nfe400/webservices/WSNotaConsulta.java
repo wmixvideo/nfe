@@ -8,7 +8,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub.NfeConsultaNFResult;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ class WSNotaConsulta {
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
     
-        return new DFPersister(this.config.getTimeZone()).read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
+        return this.config.getPersister().read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
 
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {

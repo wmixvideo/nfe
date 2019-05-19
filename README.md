@@ -182,16 +182,13 @@ String xmlGerado = lote.toString();
 ### Convertendo nota XML em Java
 Existe uma classe que pode receber um File/String e converter para um objeto NFNota, faça da seguinte forma:
 ```java
-final NFNota nota = new DFParser().notaParaObjeto(xmlNota);
-```
-Ou para uma nota já processada:
-```java
-final NFNotaProcessada notaProcessada = new DFParser().notaProcessadaParaObjeto(xmlNota);
+final NFNota nota = new DFPersister(TimeZone.getDefault()).read(NFNota.class, xmlNota);
+final NFNotaProcessada notaProcessada = new DFPersister(TimeZone.getDefault()).read(NFNotaProcessada.class, xmlNotaProcessada);
 ```
 
 Ou desabilitando o modo estrito (habilitado por padrão):
 ```java
-final NFNotaProcessada notaProcessada = new DFParser().setStrict(false).notaProcessadaParaObjeto(xmlNota);
+final NFNota nota = new DFPersister(TimeZone.getDefault()).setStrict(false).read(NFNota.class, xmlNota);
 ```
 
 ### Armazenando notas autorizadas

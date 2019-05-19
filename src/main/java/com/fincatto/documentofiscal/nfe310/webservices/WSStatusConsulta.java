@@ -8,7 +8,6 @@ import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta.NfeStatusServico2Stub;
 import com.fincatto.documentofiscal.nfe310.webservices.statusservico.consulta.NfeStatusServicoStub;
-import com.fincatto.documentofiscal.persister.DFPersister;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.slf4j.Logger;
@@ -34,7 +33,7 @@ class WSStatusConsulta {
         final OMElement omElementResult = consultaNotaBahiaWorkaround ? this.efetuaConsultaStatusBahia(omElementConsulta) : this.efetuaConsultaStatus(omElementConsulta, uf, modelo);
         WSStatusConsulta.LOGGER.debug(omElementResult.toString());
     
-        return new DFPersister(this.config.getTimeZone()).read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFStatusServicoConsultaRetorno.class, omElementResult.toString());
     }
 
     private NFStatusServicoConsulta gerarDadosConsulta(final DFUnidadeFederativa unidadeFederativa) {
