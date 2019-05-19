@@ -30,7 +30,7 @@ class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
             NfeConsulta2Stub.counter = 0;
         }
         NfeConsulta2Stub.counter = NfeConsulta2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeConsulta2Stub.counter;
+        return System.currentTimeMillis() + "_" + NfeConsulta2Stub.counter;
     }
 
     private void populateAxisService() {

@@ -32,7 +32,7 @@ public class MDFeStatusServicoStub extends org.apache.axis2.client.Stub {
             MDFeStatusServicoStub.counter = 0;
         }
         MDFeStatusServicoStub.counter = MDFeStatusServicoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeStatusServicoStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeStatusServicoStub.counter;
     }
 
     private void populateAxisService() {

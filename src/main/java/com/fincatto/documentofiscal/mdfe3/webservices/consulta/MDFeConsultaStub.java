@@ -3,15 +3,15 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.consulta;
 
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
 import javax.xml.namespace.QName;
 
 /*
  * MDFeConsultaStub java implementation
  */
-
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
 
 public class MDFeConsultaStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -32,7 +32,7 @@ public class MDFeConsultaStub extends org.apache.axis2.client.Stub {
             MDFeConsultaStub.counter = 0;
         }
         MDFeConsultaStub.counter = MDFeConsultaStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeConsultaStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeConsultaStub.counter;
     }
 
     private void populateAxisService() {

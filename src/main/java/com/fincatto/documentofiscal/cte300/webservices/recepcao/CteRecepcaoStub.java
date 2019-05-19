@@ -25,7 +25,7 @@ public class CteRecepcaoStub extends org.apache.axis2.client.Stub {
             CteRecepcaoStub.counter = 0;
         }
         CteRecepcaoStub.counter = CteRecepcaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteRecepcaoStub.counter;
+        return System.currentTimeMillis() + "_" + CteRecepcaoStub.counter;
     }
 
     private void populateAxisService() {

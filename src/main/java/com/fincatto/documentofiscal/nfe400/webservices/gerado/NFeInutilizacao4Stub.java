@@ -52,7 +52,7 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
             NFeInutilizacao4Stub.counter = 0;
         }
         NFeInutilizacao4Stub.counter = NFeInutilizacao4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeInutilizacao4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeInutilizacao4Stub.counter;
     }
 
     private void populateAxisService() {

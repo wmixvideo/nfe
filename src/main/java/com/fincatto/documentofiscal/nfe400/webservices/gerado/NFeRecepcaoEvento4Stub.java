@@ -69,7 +69,7 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
             NFeRecepcaoEvento4Stub.counter = 0;
         }
         NFeRecepcaoEvento4Stub.counter = NFeRecepcaoEvento4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeRecepcaoEvento4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeRecepcaoEvento4Stub.counter;
     }
 
     private void populateAxisService() {

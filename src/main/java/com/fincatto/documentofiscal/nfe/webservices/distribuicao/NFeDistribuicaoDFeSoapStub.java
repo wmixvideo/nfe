@@ -21,7 +21,7 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             NFeDistribuicaoDFeSoapStub.counter = 0;
         }
         NFeDistribuicaoDFeSoapStub.counter = NFeDistribuicaoDFeSoapStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeDistribuicaoDFeSoapStub.counter;
+        return System.currentTimeMillis() + "_" + NFeDistribuicaoDFeSoapStub.counter;
     }
 
     private void populateAxisService() {

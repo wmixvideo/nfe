@@ -31,7 +31,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
             CadConsultaCadastro2Stub.counter = 0;
         }
         CadConsultaCadastro2Stub.counter = CadConsultaCadastro2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CadConsultaCadastro2Stub.counter;
+        return System.currentTimeMillis() + "_" + CadConsultaCadastro2Stub.counter;
     }
 
     private void populateAxisService() {

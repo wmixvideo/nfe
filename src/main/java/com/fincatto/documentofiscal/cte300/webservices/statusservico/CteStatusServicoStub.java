@@ -25,7 +25,7 @@ public class CteStatusServicoStub extends org.apache.axis2.client.Stub {
             CteStatusServicoStub.counter = 0;
         }
         CteStatusServicoStub.counter = CteStatusServicoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteStatusServicoStub.counter;
+        return System.currentTimeMillis() + "_" + CteStatusServicoStub.counter;
     }
 
     private void populateAxisService() {

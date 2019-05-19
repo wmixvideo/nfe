@@ -25,7 +25,7 @@ public class CteConsultaStub extends org.apache.axis2.client.Stub {
             CteConsultaStub.counter = 0;
         }
         CteConsultaStub.counter = CteConsultaStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteConsultaStub.counter;
+        return System.currentTimeMillis() + "_" + CteConsultaStub.counter;
     }
 
     private void populateAxisService() {

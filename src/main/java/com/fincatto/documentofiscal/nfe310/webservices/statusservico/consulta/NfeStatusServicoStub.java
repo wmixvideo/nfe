@@ -63,7 +63,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             counter = 0;
         }
         counter = counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + counter;
+        return System.currentTimeMillis() + "_" + counter;
     }
 
     private void populateAxisService() {

@@ -34,7 +34,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             RecepcaoEventoStub.counter = 0;
         }
         RecepcaoEventoStub.counter = RecepcaoEventoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + RecepcaoEventoStub.counter;
+        return System.currentTimeMillis() + "_" + RecepcaoEventoStub.counter;
     }
 
     private void populateAxisService() {

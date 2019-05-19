@@ -25,7 +25,7 @@ public class CteInutilizacaoStub extends org.apache.axis2.client.Stub {
             CteInutilizacaoStub.counter = 0;
         }
         CteInutilizacaoStub.counter = CteInutilizacaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteInutilizacaoStub.counter;
+        return System.currentTimeMillis() + "_" + CteInutilizacaoStub.counter;
     }
 
     private void populateAxisService() {

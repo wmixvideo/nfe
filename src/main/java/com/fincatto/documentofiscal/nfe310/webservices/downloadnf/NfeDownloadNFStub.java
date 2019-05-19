@@ -29,7 +29,7 @@ public class NfeDownloadNFStub extends org.apache.axis2.client.Stub {
             NfeDownloadNFStub.counter = 0;
         }
         NfeDownloadNFStub.counter = NfeDownloadNFStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeDownloadNFStub.counter;
+        return System.currentTimeMillis() + "_" + NfeDownloadNFStub.counter;
     }
 
     private void populateAxisService() {

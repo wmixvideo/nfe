@@ -55,7 +55,7 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
             NFeRetAutorizacao4Stub.counter = 0;
         }
         NFeRetAutorizacao4Stub.counter = NFeRetAutorizacao4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeRetAutorizacao4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeRetAutorizacao4Stub.counter;
     }
 
     private void populateAxisService() {

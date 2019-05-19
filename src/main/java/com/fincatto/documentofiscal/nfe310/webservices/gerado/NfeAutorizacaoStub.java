@@ -32,7 +32,7 @@ public class NfeAutorizacaoStub extends org.apache.axis2.client.Stub {
             NfeAutorizacaoStub.counter = 0;
         }
         NfeAutorizacaoStub.counter = NfeAutorizacaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeAutorizacaoStub.counter;
+        return System.currentTimeMillis() + "_" + NfeAutorizacaoStub.counter;
     }
 
     private void populateAxisService() {

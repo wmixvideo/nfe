@@ -24,7 +24,7 @@ public class CTeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             CTeDistribuicaoDFeSoapStub.counter = 0;
         }
         CTeDistribuicaoDFeSoapStub.counter = CTeDistribuicaoDFeSoapStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CTeDistribuicaoDFeSoapStub.counter;
+        return System.currentTimeMillis() + "_" + CTeDistribuicaoDFeSoapStub.counter;
     }
 
     private void populateAxisService() {
