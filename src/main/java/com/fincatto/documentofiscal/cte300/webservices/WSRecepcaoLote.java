@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
@@ -14,8 +15,6 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -23,10 +22,9 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
 import java.util.Iterator;
 
-class WSRecepcaoLote {
+class WSRecepcaoLote implements DFLog {
     
     private static final String CTE_ELEMENTO = "CTe";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLote.class);
     private final CTeConfig config;
     
     WSRecepcaoLote(final CTeConfig config) {
@@ -36,7 +34,6 @@ class WSRecepcaoLote {
     public CTeEnvioLoteRetornoDados envioRecepcao(CTeEnvioLote cteRecepcaoLote) throws Exception {
         //assina o lote
         final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString(), "infCte");
-        //final CTeEnvioLote loteAssinado = new DFParser().cteRecepcaoParaObjeto(documentoAssinado);
         final CTeEnvioLote loteAssinado = this.config.getPersister().read(CTeEnvioLote.class, documentoAssinado);
         
         //comunica o lote
@@ -55,17 +52,16 @@ class WSRecepcaoLote {
         dados.setExtraElement(omElement);
         
         final CteCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        WSRecepcaoLote.LOGGER.info(omElement.toString());
+        this.getLogger().debug(omElement.toString());
         
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
         final String endpoint = autorizador.getCteRecepcao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        WSRecepcaoLote.LOGGER.info(endpoint);
         final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint).cteRecepcaoLote(dados, cabecalhoSOAP);
         final CTeEnvioLoteRetorno retorno = this.config.getPersister().read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSRecepcaoLote.LOGGER.info(retorno.toString());
+        this.getLogger().debug(retorno.toString());
         return retorno;
     }
     

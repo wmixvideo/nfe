@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
@@ -10,8 +11,6 @@ import com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub;
 import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -19,10 +18,9 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
 import java.util.Iterator;
 
-class WSRecepcaoLote {
+class WSRecepcaoLote implements DFLog {
     
     private static final String MDFE_ELEMENTO = "MDFe";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLote.class);
     private final MDFeConfig config;
     
     WSRecepcaoLote(final MDFeConfig config) {
@@ -53,17 +51,16 @@ class WSRecepcaoLote {
         dados.setExtraElement(omElement);
     
         final MDFeRecepcaoStub.MdfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        WSRecepcaoLote.LOGGER.info(omElement.toString());
+        this.getLogger().debug(omElement.toString());
         
         final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(this.config.getCUF());
         final String endpoint = autorizador.getMDFeRecepcao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao do MDFe, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        WSRecepcaoLote.LOGGER.info(endpoint);
         final MDFeRecepcaoStub.MdfeRecepcaoLoteResult autorizacaoLoteResult = new MDFeRecepcaoStub(endpoint).mdfeRecepcaoLote(dados, cabecalhoSOAP);
         final MDFEnvioLoteRetorno retorno = this.config.getPersister().read(MDFEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSRecepcaoLote.LOGGER.info(retorno.toString());
+        this.getLogger().debug(retorno.toString());
         return retorno;
     }
     

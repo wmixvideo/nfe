@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -15,16 +16,13 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2St
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 
-class WSInutilizacao {
+class WSInutilizacao implements DFLog {
     
     private static final String VERSAO_SERVICO = "3.10";
     private static final String NOME_SERVICO = "INUTILIZAR";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSInutilizacao.class);
     private final NFeConfig config;
     
     WSInutilizacao(final NFeConfig config) {
@@ -53,14 +51,14 @@ class WSInutilizacao {
         
         final NfeInutilizacao2Stub.NfeDadosMsg dados = new NfeDadosMsg();
         final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
-        WSInutilizacao.LOGGER.debug(omElement.toString());
+        this.getLogger().debug(omElement.toString());
         dados.setExtraElement(omElement);
         
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
         final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService).nfeInutilizacaoNF2(dados, cabecalhoE);
         final OMElement dadosRetorno = nf2Result.getExtraElement();
-        WSInutilizacao.LOGGER.debug(dadosRetorno.toString());
+        this.getLogger().debug(dadosRetorno.toString());
         return dadosRetorno;
     }
     

@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
@@ -20,8 +21,6 @@ import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -29,10 +28,9 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
 import java.util.Iterator;
 
-class WSLoteEnvio {
+class WSLoteEnvio implements DFLog {
     
     private static final String NFE_ELEMENTO = "NFe";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSLoteEnvio.class);
     private final NFeConfig config;
     
     WSLoteEnvio(final NFeConfig config) {
@@ -45,17 +43,12 @@ class WSLoteEnvio {
     
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote) throws Exception {
         final NFLoteEnvio loteAssinado = this.getLoteAssinado(lote);
-        // comunica o lote
         final NFLoteEnvioRetorno loteEnvioRetorno = this.comunicaLote(loteAssinado.toString(), loteAssinado.getNotas().get(0).getInfo().getIdentificacao().getModelo());
         return new NFLoteEnvioRetornoDados(loteEnvioRetorno, loteAssinado);
     }
     
     /**
      * Retorna o Lote assinado.
-     *
-     * @param lote
-     * @return
-     * @throws Exception
      */
     NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
         // adiciona a chave e o dv antes de assinar
@@ -125,7 +118,7 @@ class WSLoteEnvio {
         
         final NfeResultMsg autorizacaoLoteResult = new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
         final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSLoteEnvio.LOGGER.debug(loteEnvioRetorno.toString());
+        this.getLogger().debug(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
     

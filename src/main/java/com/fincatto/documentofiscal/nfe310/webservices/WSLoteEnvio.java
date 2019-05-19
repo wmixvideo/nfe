@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -20,8 +21,6 @@ import com.fincatto.documentofiscal.validadores.xsd.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -29,10 +28,9 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
 import java.util.Iterator;
 
-class WSLoteEnvio {
+class WSLoteEnvio implements DFLog {
     
     private static final String NFE_ELEMENTO = "NFe";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSLoteEnvio.class);
     private final NFeConfig config;
     
     WSLoteEnvio(final NFeConfig config) {
@@ -101,7 +99,7 @@ class WSLoteEnvio {
         dados.setExtraElement(omElement);
         
         final NfeCabecMsgE cabecalhoSOAP = this.getCabecalhoSOAP();
-        WSLoteEnvio.LOGGER.debug(omElement.toString());
+        this.getLogger().debug(omElement.toString());
         
         // define o tipo de emissao
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
@@ -113,7 +111,7 @@ class WSLoteEnvio {
         
         final NfeAutorizacaoLoteResult autorizacaoLoteResult = new NfeAutorizacaoStub(endpoint).nfeAutorizacaoLote(dados, cabecalhoSOAP);
         final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
-        WSLoteEnvio.LOGGER.info(loteEnvioRetorno.toString());
+        this.getLogger().debug(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
     

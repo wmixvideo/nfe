@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
@@ -9,18 +10,15 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEv
 import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-class WSCancelamento {
+class WSCancelamento implements DFLog {
     
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSCancelamento.class);
     private final CTeConfig config;
     
     WSCancelamento(final CTeConfig config) {
@@ -50,10 +48,8 @@ class WSCancelamento {
         
         final RecepcaoEventoStub.CteDadosMsg dados = new RecepcaoEventoStub.CteDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSCancelamento.LOGGER.debug(omElementXML.toString());
+        this.getLogger().debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
-        
-        WSCancelamento.LOGGER.info(cabec.toString());
         
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = autorizador.getRecepcaoEvento(this.config.getAmbiente());
@@ -63,7 +59,7 @@ class WSCancelamento {
         
         RecepcaoEventoStub.CteRecepcaoEventoResult cteRecepcaoEventoResult = new RecepcaoEventoStub(urlWebService).cteRecepcaoEvento(dados, cabecE);
         final OMElement omElementResult = cteRecepcaoEventoResult.getExtraElement();
-        WSCancelamento.LOGGER.debug(omElementResult.toString());
+        this.getLogger().debug(omElementResult.toString());
         return omElementResult;
     }
     
