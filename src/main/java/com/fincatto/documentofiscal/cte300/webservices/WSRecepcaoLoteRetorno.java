@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLote;
@@ -8,14 +9,11 @@ import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepca
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
 
-class WSRecepcaoLoteRetorno {
+class WSRecepcaoLoteRetorno implements DFLog {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSRecepcaoLoteRetorno.class);
     private final CTeConfig config;
     
     WSRecepcaoLoteRetorno(final CTeConfig config) {
@@ -24,11 +22,11 @@ class WSRecepcaoLoteRetorno {
     
     CTeConsultaRecLoteRet consultaLote(final String numeroRecibo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        WSRecepcaoLoteRetorno.LOGGER.debug(omElementConsulta.toString());
+        this.getLogger().debug(omElementConsulta.toString());
         
         final OMElement omElementResult = this.efetuaConsulta(omElementConsulta);
-        WSRecepcaoLoteRetorno.LOGGER.debug(omElementResult.toString());
-    
+        this.getLogger().debug(omElementResult.toString());
+        
         return this.config.getPersister().read(CTeConsultaRecLoteRet.class, omElementResult.toString());
     }
     
@@ -48,8 +46,6 @@ class WSRecepcaoLoteRetorno {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetRecepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        WSRecepcaoLoteRetorno.LOGGER.debug(endpoint);
-        
         final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint).cteRetRecepcao(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }

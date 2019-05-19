@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -11,17 +12,14 @@ import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
-public class WSManifestacaoDestinatario {
+public class WSManifestacaoDestinatario implements DFLog {
     
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSManifestacaoDestinatario.class);
     private final NFeConfig config;
     
     public WSManifestacaoDestinatario(final NFeConfig config) {
@@ -64,7 +62,7 @@ public class WSManifestacaoDestinatario {
     private OMElement efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        WSManifestacaoDestinatario.LOGGER.debug(omElementXML.toString());
+        this.getLogger().debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
     
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
@@ -76,7 +74,7 @@ public class WSManifestacaoDestinatario {
     
         final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        WSManifestacaoDestinatario.LOGGER.debug(omElementResult.toString());
+        this.getLogger().debug(omElementResult.toString());
         return omElementResult;
     }
     

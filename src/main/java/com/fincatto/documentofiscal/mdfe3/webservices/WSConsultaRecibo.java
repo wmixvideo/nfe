@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaRecibo;
@@ -7,19 +8,15 @@ import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaRec
 import com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.rmi.RemoteException;
 
 /**
  * Created by Eldevan Nery Junior on 30/11/17.
- * <p>
  * Classe para envio do pedido de Consulta do recibo MDF-e.
  */
-class WSConsultaRecibo {
+class WSConsultaRecibo implements DFLog {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(WSConsultaRecibo.class);
     private final MDFeConfig config;
     
     WSConsultaRecibo(final MDFeConfig config) {
@@ -28,11 +25,11 @@ class WSConsultaRecibo {
     
     MDFeConsultaReciboRetorno consultaRecibo(final String numeroRecibo) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        WSConsultaRecibo.LOGGER.info(omElementConsulta.toString());
+        this.getLogger().debug(omElementConsulta.toString());
         
         final OMElement omElementResult = this.efetuaConsultaRecibo(omElementConsulta);
-        WSConsultaRecibo.LOGGER.info(omElementResult.toString());
-    
+        this.getLogger().debug(omElementResult.toString());
+        
         return this.config.getPersister().read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
     }
     
@@ -60,8 +57,6 @@ class WSConsultaRecibo {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta Recibo, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        WSConsultaRecibo.LOGGER.info(endpoint);
-        final MDFeRetRecepcaoStub.MdfeRetRecepcaoResult result = new MDFeRetRecepcaoStub(endpoint).mdfeRetRecepcao(dados, cabecEnv);
-        return result.getExtraElement();
+        return new MDFeRetRecepcaoStub(endpoint).mdfeRetRecepcao(dados, cabecEnv).getExtraElement();
     }
 }

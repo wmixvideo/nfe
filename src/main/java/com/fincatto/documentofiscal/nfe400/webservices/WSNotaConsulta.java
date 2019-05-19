@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
@@ -10,37 +11,34 @@ import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtoco
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub.NfeConsultaNFResult;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 
-class WSNotaConsulta {
+class WSNotaConsulta implements DFLog {
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String VERSAO_SERVICO = "4.00";
-    private final static Logger LOGGER = LoggerFactory.getLogger(WSNotaConsulta.class);
     private final NFeConfig config;
-
+    
     WSNotaConsulta(final NFeConfig config) {
         this.config = config;
     }
-
+    
     NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        WSNotaConsulta.LOGGER.debug(omElementConsulta.toString());
-
+        this.getLogger().debug(omElementConsulta.toString());
+        
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
-        WSNotaConsulta.LOGGER.debug(omElementRetorno.toString());
-    
+        this.getLogger().debug(omElementRetorno.toString());
+        
         return this.config.getPersister().read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
     }
-
+    
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
-
+        
         final NFeConsultaProtocolo4Stub.NfeDadosMsg dados = new NFeConsultaProtocolo4Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-
+        
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
@@ -49,7 +47,7 @@ class WSNotaConsulta {
         final NfeConsultaNFResult consultaNFResult = new NFeConsultaProtocolo4Stub(endpoint).nfeConsultaNF(dados);
         return consultaNFResult.getExtraElement();
     }
-
+    
     private NFNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
         notaConsulta.setAmbiente(this.config.getAmbiente());
