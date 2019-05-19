@@ -368,9 +368,11 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.HOMOLOGACAO);
         identificacao.setCodigoMunicipio("4314902");
-        identificacao.setCodigoRandomico("99999998");
+        identificacao.setCodigoRandomico("99999999");
         identificacao.setDataHoraEmissao(ZonedDateTime.now());
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.now());
+        identificacao.setDataHoraEmissao(ZonedDateTime.of(2010, 10, 27, 10, 10, 10, 0, DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(2013, 9, 24, 10, 10, 10, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setModelo(DFModelo.NFE);
@@ -1004,7 +1006,7 @@ public class FabricaDeObjetosFake {
         icms10.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
         return icms10;
     }
-
+    
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
         ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);
