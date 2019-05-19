@@ -4,17 +4,14 @@ import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICM
 import org.simpleframework.xml.transform.Transform;
 
 public class CTCodigoSituacaoTributariaICMSTransformer implements Transform<CTCodigoSituacaoTributariaICMS> {
-
-	@Override
+    
+    @Override
     public CTCodigoSituacaoTributariaICMS read(String arg0) {
-		// TODO Auto-generated method stub
-		return CTCodigoSituacaoTributariaICMS.valueOfCodigo(arg0);
-	}
-
-	@Override
+        return CTCodigoSituacaoTributariaICMS.valueOfCodigo(arg0);
+    }
+    
+    @Override
     public String write(CTCodigoSituacaoTributariaICMS arg0) {
-		// TODO Auto-generated method stub
-		return arg0.getCodigo();
-	}
-
+        return arg0.getCodigo();
+    }
 }

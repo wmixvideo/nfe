@@ -113,7 +113,7 @@ public abstract class DFConfig {
      */
     public Persister getPersister() {
         if (this.persister == null) {
-            this.persister = new DFPersister(this.getTimeZone());
+            this.persister = new DFPersister();
         }
         return this.persister;
     }

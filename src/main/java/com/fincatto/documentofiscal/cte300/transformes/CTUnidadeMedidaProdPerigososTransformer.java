@@ -7,14 +7,11 @@ public class CTUnidadeMedidaProdPerigososTransformer implements Transform<CTUnid
 
 	@Override
     public CTUnidadeMedidaProdPerigosos read(String arg0) {
-		// TODO Auto-generated method stub
 		return CTUnidadeMedidaProdPerigosos.valueOfCodigo(arg0);
 	}
 
 	@Override
     public String write(CTUnidadeMedidaProdPerigosos arg0) {
-		// TODO Auto-generated method stub
 		return arg0.getCodigo();
 	}
-
 }

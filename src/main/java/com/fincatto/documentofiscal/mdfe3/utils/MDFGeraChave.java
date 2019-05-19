@@ -4,9 +4,9 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoIdentificacao;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.UUID;
 
 public class MDFGeraChave {
 
@@ -17,7 +17,7 @@ public class MDFGeraChave {
     }
 
     public String geraCodigoRandomico() {
-        final Random random = new Random(this.mdfe.getInfo().getIdentificacao().getDataEmissao().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        final Random random = new Random(UUID.randomUUID().timestamp());
         return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8, "0");
     }
 

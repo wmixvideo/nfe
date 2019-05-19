@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.cartacorrecao;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
@@ -9,11 +10,10 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFProtoc
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZonedDateTime;
 
 public class NFProtocoloEventoCartaCorrecaoTest {
-
+    
     @Test
     public void deveObterVersaoComoFoiSetado() {
         final NFProtocoloEventoCartaCorrecao procEvento = new NFProtocoloEventoCartaCorrecao();
@@ -50,8 +50,7 @@ public class NFProtocoloEventoCartaCorrecaoTest {
         infoEventoRetorno.setChave("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoRetorno.setCodigoStatus(1);
         infoEventoRetorno.setCpnj("99999999999999");
-        infoEventoRetorno.setDataHoraRegistro(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                .parse("2016-11-30 02:30:00")));
+        infoEventoRetorno.setDataHoraRegistro(ZonedDateTime.of(2016, 11, 30, 2, 30, 0, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         infoEventoRetorno.setDescricaoEvento("sdskjdkjdsdcklkjdsakndcsakjdckdljsdckjasldnclakjdsalkdcskdjacdsadcsacd");
         infoEventoRetorno.setId("123456789123456789123456789123456789123456789");
         infoEventoRetorno.setMotivo("asdsdsjdslkdjsaldjsldk");
@@ -59,7 +58,7 @@ public class NFProtocoloEventoCartaCorrecaoTest {
         infoEventoRetorno.setOrgao(DFUnidadeFederativa.GO);
         infoEventoRetorno.setTipoEvento("110111");
         infoEventoRetorno.setVersaoAplicativo("SVRS201601161016");
-
+    
         eventoRetorno.setInfoEventoRetorno(infoEventoRetorno);
         
         procEvento.setEventoRetorno(eventoRetorno);

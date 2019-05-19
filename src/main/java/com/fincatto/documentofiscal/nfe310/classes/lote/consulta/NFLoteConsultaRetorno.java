@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.consulta;
 
-import java.util.List;
-
-import java.time.LocalDateTime;
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
+import org.simpleframework.xml.*;
+
+import java.time.ZonedDateTime;
+import java.util.List;
 
 @Root(name = "retConsReciNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -31,7 +30,7 @@ public class NFLoteConsultaRetorno extends DFBase {
     private String status;
 
     @Element(name = "dhRecbto", required = true)
-    private LocalDateTime dataHoraRecebimento;
+    private ZonedDateTime dataHoraRecebimento;
 
     @Element(name = "xMotivo", required = true)
     private String motivo;
@@ -127,12 +126,12 @@ public class NFLoteConsultaRetorno extends DFBase {
     public void setMensagem(final String mensagem) {
         this.mensagem = mensagem;
     }
-
-    public LocalDateTime getDataHoraRecebimento() {
+    
+    public ZonedDateTime getDataHoraRecebimento() {
         return this.dataHoraRecebimento;
     }
-
-    public void setDataHoraRecebimento(final LocalDateTime dataHoraRecebimento) {
+    
+    public void setDataHoraRecebimento(final ZonedDateTime dataHoraRecebimento) {
         this.dataHoraRecebimento = dataHoraRecebimento;
     }
 }

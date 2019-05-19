@@ -23,21 +23,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
-import java.util.TimeZone;
 
 public class DFRegistryMatcher extends RegistryMatcher {
     
-    public DFRegistryMatcher(final TimeZone timeZone) {
+    public DFRegistryMatcher() {
         super.bind(DFModelo.class, new DFModeloTransformer());
         super.bind(DFAmbiente.class, new DFAmbienteTransformer());
         super.bind(LocalDate.class, new DFLocalDateTransformer());
         super.bind(LocalTime.class, new DFLocalTimeTransformer());
         super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
+        super.bind(ZonedDateTime.class, new DFZonedDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
         super.bind(DFPais.class, new DFPaisTransformer());
-
+        
         // NFE 3.10
         super.bind(NFTipo.class, new NFTipoTransformer());
         super.bind(NFOrigem.class, new NFOrigemTransformer());
@@ -82,7 +82,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
         super.bind(NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
         super.bind(NFNotaInfoItemModalidadeBCICMS.class, new NFNotaInfoItemModalidadeBCICMSTransformer());
-
+        
         // NFE 4.00
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipo.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOrigemTransformer());
@@ -128,7 +128,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemModalidadeBCICMSTransformer());
-
+        
         // CTe
         super.bind(CTModal.class, new CTModalTransformer());
         super.bind(CTTipoCte.class, new CTTipoCteTransformer());
@@ -147,7 +147,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(CTIdentificadorEmissor.class, new CTIdentificadorEmissorTransformer());
         super.bind(CTTipoUnidadeTransporte.class, new CTTipoUnidadeTransporteTransformer());
         super.bind(CTTipoDocumentoTransporteAnterior.class, new CTTipoDocumentoTransporteAnteriorTransformer());
-
+        
         // CTe 300
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoEmissaoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTFinalidade.class, new com.fincatto.documentofiscal.cte300.transformes.CTFinalidadeTransformes());
@@ -174,7 +174,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoTrafegoTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia.class, new com.fincatto.documentofiscal.cte300.transformes.CTTipoFerroviaTransformer());
         super.bind(com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte300.transformes.CTIndicadoNegociavelTransformer());
-
+        
         // MDF-e
         super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());
         super.bind(MDFProcessoEmissao.class, new MDFProcessoEmissaoTransformer());
@@ -188,6 +188,5 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
         super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
         super.bind(MDFTipoResponsavelSeguro.class, new MDFTipoResponsavelSeguroTransformer());
-
     }
 }

@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.persister;
 
-import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
@@ -21,7 +20,7 @@ public class DFPersisterTest {
     
     @Before
     public void prepara() {
-        this.persister = new DFPersister(DFConfig.TIMEZONE_SP);
+        this.persister = new DFPersister();
     }
     
     @Test(expected = Exception.class)

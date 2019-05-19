@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.persister.DFPersister;
 import org.junit.Assert;
 import org.junit.Test;
+import org.simpleframework.xml.core.Persister;
 
 import java.util.Collections;
 
@@ -40,9 +40,9 @@ public class CTDistribuicaoIntRetornoTest {
         retorno.setVersao("1.00");
         retorno.setVersaoAplicativo("1.0.0_1709261815");
         retorno.setLote(new CTDistribuicaoDFeLote().setDocZip(Collections.singletonList(new CTDistribuicaoDocumentoZip().setNsu("000000000000001").setSchema("procCTe_v2.00.xsd").setValue("xXxXxXxX"))));
-        
-        final DFPersister persister = new DFPersister(DFConfig.TIMEZONE_SP);
+    
+        final Persister persister = new DFPersister();
         final CTDistribuicaoIntRetorno retornoLido = persister.read(CTDistribuicaoIntRetorno.class, xmlRecebido);
-        Assert.assertEquals(retornoLido.toString(), retorno.toString(persister));
+        Assert.assertEquals(retornoLido.toString(), retorno.toString());
     }
 }

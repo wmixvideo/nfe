@@ -9,7 +9,6 @@ import org.simpleframework.xml.stream.InputNode;
 import java.io.File;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.TimeZone;
 
 /**
  * Classe responsavel por fazer a serializacao e desserializacao dos objetos.
@@ -17,16 +16,15 @@ import java.util.TimeZone;
  */
 public class DFPersister extends Persister {
     
-    private boolean strict;
+    private final boolean strict;
     
-    public DFPersister(TimeZone timeZone) {
-        super(new AnnotationStrategy(), new DFRegistryMatcher(timeZone), new Format(0));
-        this.strict = true;
+    public DFPersister() {
+        this(true);
     }
     
-    public DFPersister setStrict(boolean strict) {
-        this.strict = strict;
-        return this;
+    public DFPersister(final boolean strict) {
+        super(new AnnotationStrategy(), new DFRegistryMatcher(), new Format(0));
+        this.strict = true;
     }
     
     @Override
