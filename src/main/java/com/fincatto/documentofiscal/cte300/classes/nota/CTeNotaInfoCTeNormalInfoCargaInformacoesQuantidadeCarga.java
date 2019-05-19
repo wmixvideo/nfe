@@ -24,14 +24,14 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga extends DFBase {
     private static final long serialVersionUID = 4270955186707660004L;
-
-    @Element(name = "cUnid", required = true)
+    
+    @Element(name = "cUnid")
     private CTUnidadeMedida unidadeMedida;
-
-    @Element(name = "tpMed", required = true)
+    
+    @Element(name = "tpMed")
     private String tipoMedia;
-
-    @Element(name = "qCarga", required = true)
+    
+    @Element(name = "qCarga")
     private String quantidade;
 
     public CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga() {

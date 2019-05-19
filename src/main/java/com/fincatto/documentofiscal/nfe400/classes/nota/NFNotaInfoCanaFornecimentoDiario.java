@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoCanaFornecimentoDiario extends DFBase {
     private static final long serialVersionUID = 4997480383513451707L;
-
-    @Attribute(name = "dia", required = true)
+    
+    @Attribute(name = "dia")
     private int dia;
-
-    @Element(name = "qtde", required = true)
+    
+    @Element(name = "qtde")
     private String quantidade;
 
     public void setDia(final int dia) {

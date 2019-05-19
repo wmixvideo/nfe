@@ -19,11 +19,11 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoValorPrestacaoServico extends DFBase {
     private static final long serialVersionUID = -5913703822180633261L;
-
-    @Element(name = "vTPrest", required = true)
+    
+    @Element(name = "vTPrest")
     private String valorTotalPrestacaoServico;
-
-    @Element(name = "vRec", required = true)
+    
+    @Element(name = "vRec")
     private String valorReceber;
 
     @ElementList(name = "Comp", inline = true, required = false)

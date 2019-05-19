@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoIPITributado extends DFBase {
     private static final long serialVersionUID = 8601910032276263880L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaIPI situacaoTributaria;
 
     @Element(name = "vBC", required = false)
@@ -24,8 +24,8 @@ public class NFNotaInfoItemImpostoIPITributado extends DFBase {
 
     @Element(name = "vUnid", required = false)
     private String valorUnidadeTributavel;
-
-    @Element(name = "vIPI", required = true)
+    
+    @Element(name = "vIPI")
     private String valorTributo;
 
     public NFNotaInfoItemImpostoIPITributado() {

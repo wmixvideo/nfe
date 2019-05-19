@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemImpostoPISNaoTributado extends DFBase {
 
     private static final long serialVersionUID = -961225710108754016L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
 
     public NFNotaInfoItemImpostoPISNaoTributado() {

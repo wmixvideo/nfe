@@ -46,7 +46,7 @@ public class AssinaturaDigital {
             throw new IllegalStateException("Nao foi encontrada a assinatura do XML.");
         }
         final String providerName = System.getProperty("jsr105Provider", "org.jcp.xml.dsig.internal.dom.XMLDSigRI");
-        final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM", (Provider) Class.forName(providerName).newInstance());
+        final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM", (Provider) Class.forName(providerName).getDeclaredConstructor().newInstance());
         final DOMValidateContext validateContext = new DOMValidateContext(new X509KeySelector(), nodeList.item(0));
         for (final String tag : AssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
             final NodeList elements = document.getElementsByTagName(tag);

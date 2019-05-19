@@ -17,10 +17,10 @@ public class NFRetornoConsultaCadastroDados extends DFBase {
     @Element(name = "verAplic", required = false)
     private String versaoAplicacao;
     
-    @Element(name = "cStat", required = true)
+    @Element(name = "cStat")
     private String statusResposta;
     
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo")
     private String motivo;
     
     @Element(name = "UF", required = false)

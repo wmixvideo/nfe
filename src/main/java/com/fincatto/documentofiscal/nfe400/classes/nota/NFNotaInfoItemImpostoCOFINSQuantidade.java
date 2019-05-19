@@ -9,17 +9,17 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
     private static final long serialVersionUID = -7179547773505825448L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
-
-    @Element(name = "qBCProd", required = true)
+    
+    @Element(name = "qBCProd")
     private String quantidadeVendida;
-
-    @Element(name = "vAliqProd", required = true)
+    
+    @Element(name = "vAliqProd")
     private String valorAliquota;
-
-    @Element(name = "vCOFINS", required = true)
+    
+    @Element(name = "vCOFINS")
     private String valorTributo;
 
     public NFNotaInfoItemImpostoCOFINSQuantidade() {

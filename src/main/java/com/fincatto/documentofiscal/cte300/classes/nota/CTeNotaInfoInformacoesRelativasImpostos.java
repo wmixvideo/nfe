@@ -18,8 +18,8 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
     private static final long serialVersionUID = -1424546812171486009L;
-
-    @Element(name = "ICMS", required = true)
+    
+    @Element(name = "ICMS")
     private CTeNotaInfoInformacoesRelativasImpostosICMS icms;
 
     @Element(name = "vTotTrib", required = false)

@@ -16,8 +16,8 @@ public class NFNotaInfoDuplicata extends DFBase {
 
     @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
-
-    @Element(name = "vDup", required = true)
+    
+    @Element(name = "vDup")
     private String valorDuplicata;
 
     public void setNumeroDuplicata(final String numeroDuplicata) {

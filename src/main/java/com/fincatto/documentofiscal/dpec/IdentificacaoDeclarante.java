@@ -35,13 +35,13 @@ public class IdentificacaoDeclarante extends DFBase {
     /**
      * Número do CNPJ do emitente
      */
-    @Element(name = "CNPJ", required = true)
+    @Element(name = "CNPJ")
     protected String cnpj;
 
     /**
      * Inscrição Estadual do emitente
      */
-    @Element(name = "IE", required = true)
+    @Element(name = "IE")
     protected String ie;
 
     public String getUf() {

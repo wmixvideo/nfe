@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 @Root(name = "evento")
 public class NFEventoCancelamento extends DFBase {
     private static final long serialVersionUID = -8466800561585040324L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infEvento", required = true)
+    
+    @Element(name = "infEvento")
     private NFInfoEventoCancelamento infoEvento;
 
     @Element(name = "Signature", required = false)

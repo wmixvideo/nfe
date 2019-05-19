@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.time.LocalDate;
 
 /**
  * @author Caio
@@ -20,14 +20,14 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas extend
 
     @Element(name = "serie", required = false)
     private String serie;
-
-    @Element(name = "nOcc", required = true)
+    
+    @Element(name = "nOcc")
     private String numeroOrdemColeta;
-
-    @Element(name = "dEmi", required = true)
+    
+    @Element(name = "dEmi")
     private LocalDate dataEmissao;
-
-    @Element(name = "emiOcc", required = true)
+    
+    @Element(name = "emiOcc")
     private CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ordemColetaAssociadasEmi;
 
     public CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas() {

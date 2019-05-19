@@ -25,7 +25,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             RecepcaoEventoStub.counter = 0;
         }
         RecepcaoEventoStub.counter = RecepcaoEventoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + RecepcaoEventoStub.counter;
+        return System.currentTimeMillis() + "_" + RecepcaoEventoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1656,9 +1656,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteRecepcaoEventoResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteRecepcaoEventoResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

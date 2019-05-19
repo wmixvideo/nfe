@@ -18,11 +18,11 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao extends DFBase {
     private static final long serialVersionUID = -8330894109802841158L;
-
-    @Element(name = "xNome", required = true)
+    
+    @Element(name = "xNome")
     private String nomeComponente;
-
-    @Element(name = "vComp", required = true)
+    
+    @Element(name = "vComp")
     private String valorComponente;
 
     public CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao() {

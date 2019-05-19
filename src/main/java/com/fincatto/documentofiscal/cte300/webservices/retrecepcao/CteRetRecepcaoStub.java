@@ -25,7 +25,7 @@ public class CteRetRecepcaoStub extends org.apache.axis2.client.Stub {
             CteRetRecepcaoStub.counter = 0;
         }
         CteRetRecepcaoStub.counter = CteRetRecepcaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteRetRecepcaoStub.counter;
+        return System.currentTimeMillis() + "_" + CteRetRecepcaoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1657,9 +1657,6 @@ public class CteRetRecepcaoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

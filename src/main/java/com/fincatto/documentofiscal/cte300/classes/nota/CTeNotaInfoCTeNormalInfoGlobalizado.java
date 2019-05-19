@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -16,8 +15,8 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoGlobalizado extends DFBase {
     private static final long serialVersionUID = -2117514135660749569L;
-
-    @Element(name = "xObs", required = true)
+    
+    @Element(name = "xObs")
     private String Observacao;
 
     public CTeNotaInfoCTeNormalInfoGlobalizado() {

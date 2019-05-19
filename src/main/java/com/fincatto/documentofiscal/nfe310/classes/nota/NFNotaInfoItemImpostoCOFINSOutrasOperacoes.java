@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends DFBase {
     private static final long serialVersionUID = -7291550051334950307L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
     @Element(name = "vBC", required = false)

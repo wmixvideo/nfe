@@ -18,17 +18,17 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
     private static final long serialVersionUID = 2536989879361188288L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
-
-    @Element(name = "vBCSTRet", required = true)
+    
+    @Element(name = "vBCSTRet")
     private String baseCalculoICMSSTRetido;
-
-    @Element(name = "vICMSSTRet", required = true)
+    
+    @Element(name = "vICMSSTRet")
     private String valorICMSSTRetido;
-
-    @Element(name = "pICMSSTRet", required = true)
+    
+    @Element(name = "pICMSSTRet")
     private String aliquotaICMSSTRetido;
 
     @Element(name = "vCred", required = false)

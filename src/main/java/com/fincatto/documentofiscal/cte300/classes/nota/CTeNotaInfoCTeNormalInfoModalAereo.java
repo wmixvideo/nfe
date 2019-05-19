@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Caio
@@ -26,14 +25,14 @@ public class CTeNotaInfoCTeNormalInfoModalAereo extends DFBase {
 
     @Element(name = "nOCA", required = false)
     private String numOperConhecimentoaereo;
-
-    @Element(name = "dPrevAereo", required = true)
+    
+    @Element(name = "dPrevAereo")
     private LocalDate dataEntrega;
-
-    @Element(name = "natCarga", required = true)
+    
+    @Element(name = "natCarga")
     private CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga naturezaCarga;
-
-    @Element(name = "tarifa", required = true)
+    
+    @Element(name = "tarifa")
     private CTeNotaInfoCTeNormalInfoModalAereoTarifa tarifa;
 
     @ElementList(name = "peri", inline = true, required = false)

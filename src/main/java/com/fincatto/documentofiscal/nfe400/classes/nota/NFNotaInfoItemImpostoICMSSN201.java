@@ -11,14 +11,14 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSSN201 extends DFBase {
     private static final long serialVersionUID = -1669576908629669970L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CSOSN", required = true)
+    
+    @Element(name = "CSOSN")
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
-
-    @Element(name = "modBCST", required = true)
+    
+    @Element(name = "modBCST")
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
@@ -26,14 +26,14 @@ public class NFNotaInfoItemImpostoICMSSN201 extends DFBase {
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
-
-    @Element(name = "vBCST", required = true)
+    
+    @Element(name = "vBCST")
     private String valorBCICMSST;
-
-    @Element(name = "pICMSST", required = true)
+    
+    @Element(name = "pICMSST")
     private String percentualAliquotaImpostoICMSST;
-
-    @Element(name = "vICMSST", required = true)
+    
+    @Element(name = "vICMSST")
     private String valorICMSST;
 
     @Element(name = "vBCFCPST", required = false)
@@ -44,11 +44,11 @@ public class NFNotaInfoItemImpostoICMSSN201 extends DFBase {
 
     @Element(name = "vFCPST", required = false)
     private String valorFundoCombatePobrezaST;
-
-    @Element(name = "pCredSN", required = true)
+    
+    @Element(name = "pCredSN")
     private String percentualAliquotaAplicavelCalculoCreditoSN;
-
-    @Element(name = "vCredICMSSN", required = true)
+    
+    @Element(name = "vCredICMSSN")
     private String valorCreditoICMSSN;
 
     public void setOrigem(final NFOrigem origem) {

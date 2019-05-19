@@ -8,17 +8,17 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoImportacao extends DFBase {
     private static final long serialVersionUID = 4211590418053438276L;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBaseCalculo;
-
-    @Element(name = "vDespAdu", required = true)
+    
+    @Element(name = "vDespAdu")
     private String valorDespesaAduaneira;
-
-    @Element(name = "vII", required = true)
+    
+    @Element(name = "vII")
     private String valorImpostoImportacao;
-
-    @Element(name = "vIOF", required = true)
+    
+    @Element(name = "vIOF")
     private String valorIOF;
 
     public NFNotaInfoItemImpostoImportacao() {

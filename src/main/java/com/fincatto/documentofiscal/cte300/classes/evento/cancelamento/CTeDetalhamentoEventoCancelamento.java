@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class CTeDetalhamentoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 8502078404626629549L;
-
-    @Attribute(name = "versaoEvento", required = true)
+    
+    @Attribute(name = "versaoEvento")
     private String versaoEvento;
-
-    @Element(name = "evCancCTe", required = true)
+    
+    @Element(name = "evCancCTe")
     private CTeEnviaEventoCancelamento eventoCancelamento;
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {

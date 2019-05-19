@@ -10,23 +10,23 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSST extends DFBase {
     private static final long serialVersionUID = -2354449482492846488L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-
-    @Element(name = "vBCSTRet", required = true)
+    
+    @Element(name = "vBCSTRet")
     private String valorBCICMSSTRetidoUFRemetente;
-
-    @Element(name = "vICMSSTRet", required = true)
+    
+    @Element(name = "vICMSSTRet")
     private String valorICMSSTRetidoUFRemetente;
-
-    @Element(name = "vBCSTDest", required = true)
+    
+    @Element(name = "vBCSTDest")
     private String valorBCICMSSTUFDestino;
-
-    @Element(name = "vICMSSTDest", required = true)
+    
+    @Element(name = "vICMSSTDest")
     private String valorICMSSTUFDestino;
 
     public void setOrigem(final NFOrigem origem) {

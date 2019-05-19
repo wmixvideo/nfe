@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
 
 /**
  * Created by Eldevan Nery Junior on 22/11/17.
@@ -15,7 +14,7 @@ public class MDFeConsultaNaoEncerradosRetornoInfMDFe extends DFBase {
     /**
      * Chaves de acesso do MDF-e não encerrado
      */
-    @Element(name = "chMDFe", required = true)
+    @Element(name = "chMDFe")
     private String chave;
 
     /**

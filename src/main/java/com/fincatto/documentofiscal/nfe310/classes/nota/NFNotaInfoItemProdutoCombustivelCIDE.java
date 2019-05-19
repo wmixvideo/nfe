@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoCombustivelCIDE extends DFBase {
     private static final long serialVersionUID = -2869376510830652913L;
-
-    @Element(name = "qBCProd", required = true)
+    
+    @Element(name = "qBCProd")
     private String quantidadeBCCIDE;
-
-    @Element(name = "vAliqProd", required = true)
+    
+    @Element(name = "vAliqProd")
     private String valorAliquota;
-
-    @Element(name = "vCIDE", required = true)
+    
+    @Element(name = "vCIDE")
     private String valor;
 
     public NFNotaInfoItemProdutoCombustivelCIDE() {

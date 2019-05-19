@@ -13,14 +13,14 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoManifestacaoDestinatario extends DFBase {
     private static final long serialVersionUID = 8496530539655487485L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "idLote", required = true)
+    
+    @Element(name = "idLote")
     private String idLote;
-
-    @ElementList(entry = "evento", inline = true, required = true)
+    
+    @ElementList(entry = "evento", inline = true)
     private List<NFEventoManifestacaoDestinatario> evento;
 
     public void setVersao(final BigDecimal versao) {

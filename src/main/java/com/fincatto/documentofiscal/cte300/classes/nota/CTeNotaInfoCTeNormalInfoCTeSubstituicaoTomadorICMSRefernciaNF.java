@@ -25,23 +25,23 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF exten
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private String modelo;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
 
     @Element(name = "subserie", required = false)
     private String subserie;
-
-    @Element(name = "nro", required = true)
+    
+    @Element(name = "nro")
     private String numeroDocumento;
-
-    @Element(name = "valor", required = true)
+    
+    @Element(name = "valor")
     private String valor;
-
-    @Element(name = "dEmi", required = true)
+    
+    @Element(name = "dEmi")
     private LocalDate dataEmissao;
 
     public CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF() {

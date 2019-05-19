@@ -15,11 +15,11 @@ import java.time.LocalTime;
 @Root(name = "comHora")
 public class CTeNotaInfoDadosComplementaresEntregaComHoraDefinida extends DFBase {
     private static final long serialVersionUID = 563326795168120772L;
-
-    @Element(name = "tpHor", required = true)
+    
+    @Element(name = "tpHor")
     private CTTipoPrazoHoraEntrega tipoPrazoHoraEntrega;
-
-    @Element(name = "hProg", required = true)
+    
+    @Element(name = "hProg")
     private LocalTime horaProgramada;
 
     public CTeNotaInfoDadosComplementaresEntregaComHoraDefinida() {

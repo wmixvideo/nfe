@@ -16,18 +16,18 @@ import java.util.List;
 
 public class NFNotaInfoItemProduto extends DFBase {
     private static final long serialVersionUID = -2271625077897052364L;
-
-    @Element(name = "cProd", required = true)
+    
+    @Element(name = "cProd")
     private String codigo;
 
     @Element(name = "cEAN", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarras;
-
-    @Element(name = "xProd", required = true)
+    
+    @Element(name = "xProd")
     private String descricao;
-
-    @Element(name = "NCM", required = true)
+    
+    @Element(name = "NCM")
     private String ncm;
 
     @ElementList(entry = "NVE", inline = true, required = false)
@@ -47,33 +47,33 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "EXTIPI", required = false)
     private String extipi;
-
-    @Element(name = "CFOP", required = true)
+    
+    @Element(name = "CFOP")
     private String cfop;
-
-    @Element(name = "uCom", required = true)
+    
+    @Element(name = "uCom")
     private String unidadeComercial;
-
-    @Element(name = "qCom", required = true)
+    
+    @Element(name = "qCom")
     private String quantidadeComercial;
-
-    @Element(name = "vUnCom", required = true)
+    
+    @Element(name = "vUnCom")
     private String valorUnitario;
-
-    @Element(name = "vProd", required = true)
+    
+    @Element(name = "vProd")
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarrasTributavel;
-
-    @Element(name = "uTrib", required = true)
+    
+    @Element(name = "uTrib")
     private String unidadeTributavel;
-
-    @Element(name = "qTrib", required = true)
+    
+    @Element(name = "qTrib")
     private String quantidadeTributavel;
-
-    @Element(name = "vUnTrib", required = true)
+    
+    @Element(name = "vUnTrib")
     private String valorUnitarioTributavel;
 
     @Element(name = "vFrete", required = false)
@@ -87,8 +87,8 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "vOutro", required = false)
     private String valorOutrasDespesasAcessorias;
-
-    @Element(name = "indTot", required = true)
+    
+    @Element(name = "indTot")
     private NFProdutoCompoeValorNota compoeValorNota;
 
     @ElementList(entry = "DI", inline = true, required = false)

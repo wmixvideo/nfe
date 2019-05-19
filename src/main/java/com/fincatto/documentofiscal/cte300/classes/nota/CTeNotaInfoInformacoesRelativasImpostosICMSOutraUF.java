@@ -18,20 +18,20 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
     private static final long serialVersionUID = 1380053710331255889L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
 
     @Element(name = "pRedBCOutraUF", required = false)
     private String aliquotaReducaoBaseCalculoICMSOutraUF;
-
-    @Element(name = "vBCOutraUF", required = true)
+    
+    @Element(name = "vBCOutraUF")
     private String baseCalculoICMSOutraUF;
-
-    @Element(name = "pICMSOutraUF", required = true)
+    
+    @Element(name = "pICMSOutraUF")
     private String aliquotaICMSOutraUF;
-
-    @Element(name = "vICMSOutraUF", required = true)
+    
+    @Element(name = "vICMSOutraUF")
     private String valorICMSOutraUF;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF() {

@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes;
 
-import java.time.LocalDateTime;
-
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocoloInfo;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetornoRecebimentoInfo;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+import java.time.LocalDateTime;
 
 /**
  * @Author Eldevan Nery Junior on 26/05/17.
@@ -20,29 +19,29 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeConsultaRetorno extends DFBase {
     private static final long serialVersionUID = -7216488190676193958L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
-
-    @Element(name = "nRec", required = true)
+    
+    @Element(name = "nRec")
     private String reciboConsultado;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "dhRecbto", required = true)
+    
+    @Element(name = "dhRecbto")
     private LocalDateTime dataRecebimento;
 
     @Element(name = "infRec", required = false)

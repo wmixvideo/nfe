@@ -10,23 +10,23 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoRetencaoICMSTransporte extends DFBase {
     private static final long serialVersionUID = -5222569391852128441L;
-
-    @Element(name = "vServ", required = true)
+    
+    @Element(name = "vServ")
     private String valorServico;
-
-    @Element(name = "vBCRet", required = true)
+    
+    @Element(name = "vBCRet")
     private String bcRetencaoICMS;
-
-    @Element(name = "pICMSRet", required = true)
+    
+    @Element(name = "pICMSRet")
     private String aliquotaRetencao;
-
-    @Element(name = "vICMSRet", required = true)
+    
+    @Element(name = "vICMSRet")
     private String valorICMSRetido;
-
-    @Element(name = "CFOP", required = true)
+    
+    @Element(name = "CFOP")
     private Integer cfop;
-
-    @Element(name = "cMunFG", required = true)
+    
+    @Element(name = "cMunFG")
     private String codigoMunicipioOcorrenciaFatoGeradorICMSTransporte;
 
     public void setValorServico(final BigDecimal valorServico) {

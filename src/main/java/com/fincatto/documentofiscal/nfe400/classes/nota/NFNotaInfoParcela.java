@@ -18,8 +18,8 @@ public class NFNotaInfoParcela extends DFBase {
 
     @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
-
-    @Element(name = "vDup", required = true)
+    
+    @Element(name = "vDup")
     private String valorParcela;
 
     public void setNumeroParcela(final String numeroParcela) {

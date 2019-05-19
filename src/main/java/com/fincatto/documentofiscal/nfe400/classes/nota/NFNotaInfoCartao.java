@@ -6,8 +6,8 @@ import org.simpleframework.xml.Element;
 
 public class NFNotaInfoCartao extends DFBase {
     private static final long serialVersionUID = 8908558834476720280L;
-
-    @Element(name = "tpIntegra", required = true)
+    
+    @Element(name = "tpIntegra")
     private NFTipoIntegracaoPagamento tipoIntegracao;
 
     @Element(name = "CNPJ", required = false)

@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoCanaDeducao extends DFBase {
     private static final long serialVersionUID = 5519359886554978924L;
-
-    @Element(name = "xDed", required = true)
+    
+    @Element(name = "xDed")
     private String descricaoDeducao;
-
-    @Element(name = "vDed", required = true)
+    
+    @Element(name = "vDed")
     private String valorDeducao;
 
     public void setDescricaoDeducao(final String descricaoDeducao) {

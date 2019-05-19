@@ -28,38 +28,38 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
 
     @Element(name = "nPed", required = false)
     private String numeroPedidoNF;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private CTModeloNF modeloNF;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
-
-    @Element(name = "nDoc", required = true)
+    
+    @Element(name = "nDoc")
     private String numeroDocumento;
-
-    @Element(name = "dEmi", required = true)
+    
+    @Element(name = "dEmi")
     private LocalDate dataEmissao;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBcICMS;
-
-    @Element(name = "vICMS", required = true)
+    
+    @Element(name = "vICMS")
     private String valorICMS;
-
-    @Element(name = "vBCST", required = true)
+    
+    @Element(name = "vBCST")
     private String valorBcICMSST;
-
-    @Element(name = "vST", required = true)
+    
+    @Element(name = "vST")
     private String valorICMSST;
-
-    @Element(name = "vProd", required = true)
+    
+    @Element(name = "vProd")
     private String valorTotalProdutos;
-
-    @Element(name = "vNF", required = true)
+    
+    @Element(name = "vNF")
     private String valorTotalNF;
-
-    @Element(name = "nCFOP", required = true)
+    
+    @Element(name = "nCFOP")
     private String CFOP;
 
     @Element(name = "nPeso", required = false)

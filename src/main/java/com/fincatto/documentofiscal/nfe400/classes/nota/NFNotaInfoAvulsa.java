@@ -11,23 +11,23 @@ import java.time.LocalDate;
 
 public class NFNotaInfoAvulsa extends DFBase {
     private static final long serialVersionUID = 724335920156427201L;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "xOrgao", required = true)
+    
+    @Element(name = "xOrgao")
     private String orgaoEmitente;
-
-    @Element(name = "matr", required = true)
+    
+    @Element(name = "matr")
     private String matriculaAgente;
-
-    @Element(name = "xAgente", required = true)
+    
+    @Element(name = "xAgente")
     private String nomeAgente;
 
     @Element(name = "fone", required = false)
     private String fone;
-
-    @Element(name = "UF", required = true)
+    
+    @Element(name = "UF")
     private String uf;
 
     @Element(name = "nDAR", required = false)
@@ -38,8 +38,8 @@ public class NFNotaInfoAvulsa extends DFBase {
 
     @Element(name = "vDAR", required = false)
     private String valorTotalConstanteDocumentoArrecadacaoReceita;
-
-    @Element(name = "repEmi", required = true)
+    
+    @Element(name = "repEmi")
     private String reparticaoFiscalEmitente;
 
     @Element(name = "dPag", required = false)

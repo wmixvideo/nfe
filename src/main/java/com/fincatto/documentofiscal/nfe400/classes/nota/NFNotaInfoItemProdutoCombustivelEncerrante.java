@@ -16,7 +16,7 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     /**
      * Numero de identificação do Bico utilizado no abastecimento.
      */
-    @Element(name = "nBico", required = true)
+    @Element(name = "nBico")
     private String numeroBico;
 
     /**
@@ -28,19 +28,19 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     /**
      * Numero de identificação do tanque ao qual o bico está interligado.
      */
-    @Element(name = "nTanque", required = true)
+    @Element(name = "nTanque")
     private String numeroTanque;
 
     /**
      * Valor do Encerrante no ínicio do abastecimento
      */
-    @Element(name = "vEncIni", required = true)
+    @Element(name = "vEncIni")
     private String valorEncerramentoInicial;
 
     /**
      * Valor do Encerrante no final do abastecimento
      */
-    @Element(name = "vEncFin", required = true)
+    @Element(name = "vEncFin")
     private String valorEncerramentoFinal;
 
     public NFNotaInfoItemProdutoCombustivelEncerrante() {

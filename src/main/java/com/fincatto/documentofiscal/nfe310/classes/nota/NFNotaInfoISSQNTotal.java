@@ -24,8 +24,8 @@ public class NFNotaInfoISSQNTotal extends DFBase {
 
     @Element(name = "vCOFINS", required = false)
     private String valorCOFINSsobreServicos;
-
-    @Element(name = "dCompet", required = true)
+    
+    @Element(name = "dCompet")
     private LocalDate dataPrestacaoServico;
 
     @Element(name = "vDeducao", required = false)

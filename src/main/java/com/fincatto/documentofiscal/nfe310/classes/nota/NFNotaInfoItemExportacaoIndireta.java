@@ -11,14 +11,14 @@ import java.math.BigInteger;
 
 public class NFNotaInfoItemExportacaoIndireta extends DFBase {
     private static final long serialVersionUID = 2911935204123851926L;
-
-    @Element(name = "nRE", required = true)
+    
+    @Element(name = "nRE")
     private BigInteger numeroRegistroExportacao;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chaveAcessoNFe;
-
-    @Element(name = "qExport", required = true)
+    
+    @Element(name = "qExport")
     private String quantidadeItemEfetivamenteExportado;
 
     public void setChaveAcessoNFe(final String chaveAcessoNFe) {

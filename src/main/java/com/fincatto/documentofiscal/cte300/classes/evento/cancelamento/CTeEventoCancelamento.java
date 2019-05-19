@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 @Root(name = "eventoCTe")
 public class CTeEventoCancelamento extends DFBase {
     private static final long serialVersionUID = -8363617761063438288L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infEvento", required = true)
+    
+    @Element(name = "infEvento")
     private CTeInfoEventoCancelamento infoEvento;
 
     @Element(name = "Signature", required = false)

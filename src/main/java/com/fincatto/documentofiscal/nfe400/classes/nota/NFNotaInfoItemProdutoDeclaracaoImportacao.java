@@ -13,29 +13,29 @@ import java.util.List;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     private static final long serialVersionUID = 4173954108879768633L;
-
-    @Element(name = "nDI", required = true)
+    
+    @Element(name = "nDI")
     private String numeroRegistro;
-
-    @Element(name = "dDI", required = true)
+    
+    @Element(name = "dDI")
     private LocalDate dataRegistro;
-
-    @Element(name = "xLocDesemb", required = true)
+    
+    @Element(name = "xLocDesemb")
     private String localDesembaraco;
-
-    @Element(name = "UFDesemb", required = true)
+    
+    @Element(name = "UFDesemb")
     private String ufDesembaraco;
-
-    @Element(name = "dDesemb", required = true)
+    
+    @Element(name = "dDesemb")
     private LocalDate dataDesembaraco;
-
-    @Element(name = "tpViaTransp", required = true)
+    
+    @Element(name = "tpViaTransp")
     private NFViaTransporteInternacional transporteInternacional;
 
     @Element(name = "vAFRMM", required = false)
     private String valorAFRMM;
-
-    @Element(name = "tpIntermedio", required = true)
+    
+    @Element(name = "tpIntermedio")
     private NFFormaImportacaoIntermediacao formaImportacaoIntermediacao;
 
     @Element(name = "CNPJ", required = false)
@@ -43,11 +43,11 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
 
     @Element(name = "UFTerceiro", required = false)
     private String ufTerceiro;
-
-    @Element(name = "cExportador", required = true)
+    
+    @Element(name = "cExportador")
     private String codigoExportador;
-
-    @ElementList(entry = "adi", inline = true, required = true)
+    
+    @ElementList(entry = "adi", inline = true)
     private List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> adicoes;
 
     public void setNumeroRegistro(final String numeroRegistro) {

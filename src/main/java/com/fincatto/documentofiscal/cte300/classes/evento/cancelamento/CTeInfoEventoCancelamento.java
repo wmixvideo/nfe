@@ -20,8 +20,8 @@ public class CTeInfoEventoCancelamento extends DFBase {
 
     @Element(name = "cOrgao", required = false)
     private DFUnidadeFederativa orgao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
     @Element(name = "CNPJ", required = false)
@@ -29,17 +29,17 @@ public class CTeInfoEventoCancelamento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "chCTe", required = true)
+    
+    @Element(name = "chCTe")
     private String chave;
-
-    @Element(name = "dhEvento", required = true)
+    
+    @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-
-    @Element(name = "tpEvento", required = true)
+    
+    @Element(name = "tpEvento")
     private String codigoEvento;
-
-    @Element(name = "nSeqEvento", required = true)
+    
+    @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
 
     @Element(name = "verEvento", required = false)

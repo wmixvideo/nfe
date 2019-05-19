@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 @Root(name = "retInutNFe")
 public class NFRetornoEventoInutilizacao extends DFBase {
     private static final long serialVersionUID = 4619432132223667789L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infInut", required = true)
+    
+    @Element(name = "infInut")
     private NFRetornoEventoInutilizacaoDados dados;
 
     public NFRetornoEventoInutilizacaoDados getDados() {

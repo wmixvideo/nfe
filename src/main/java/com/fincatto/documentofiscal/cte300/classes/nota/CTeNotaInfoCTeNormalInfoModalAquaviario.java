@@ -22,14 +22,14 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
     private static final long serialVersionUID = 7558858837552378617L;
-
-    @Element(name = "vPrest", required = true)
+    
+    @Element(name = "vPrest")
     private String valorPrestacao;
-
-    @Element(name = "vAFRMM", required = true)
+    
+    @Element(name = "vAFRMM")
     private String valorAdicionalFrete;
-
-    @Element(name = "xNavio", required = true)
+    
+    @Element(name = "xNavio")
     private String identificacaoNavio;
 
     @ElementList(name = "balsa", inline = true, required = false)
@@ -37,11 +37,11 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
 
     @Element(name = "nViag", required = false)
     private String numeroViagem;
-
-    @Element(name = "direc", required = true)
+    
+    @Element(name = "direc")
     private CTTipoDirecao direcao;
-
-    @Element(name = "irin", required = true)
+    
+    @Element(name = "irin")
     private String irin;
 
     @ElementList(name = "detCont", inline = true, required = false)

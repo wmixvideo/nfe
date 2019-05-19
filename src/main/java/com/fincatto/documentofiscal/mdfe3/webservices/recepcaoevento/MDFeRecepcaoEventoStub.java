@@ -3,15 +3,15 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento;
 
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
 import javax.xml.namespace.QName;
 
 /*
  * MDFeRecepcaoEventoStub java implementation
  */
-
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
 
 public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -32,7 +32,7 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
             MDFeRecepcaoEventoStub.counter = 0;
         }
         MDFeRecepcaoEventoStub.counter = MDFeRecepcaoEventoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeRecepcaoEventoStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeRecepcaoEventoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1679,9 +1679,6 @@ public class MDFeRecepcaoEventoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeRecepcaoEventoResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeRecepcaoEventoResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

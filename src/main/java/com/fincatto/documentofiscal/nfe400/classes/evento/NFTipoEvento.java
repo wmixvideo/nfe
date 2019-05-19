@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 @Root(strict = false)
 public class NFTipoEvento extends DFBase {
     private static final long serialVersionUID = 172979194017130488L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "descEvento", required = true)
+    
+    @Element(name = "descEvento")
     private String descricaoEvento;
 
     // Carta correcao

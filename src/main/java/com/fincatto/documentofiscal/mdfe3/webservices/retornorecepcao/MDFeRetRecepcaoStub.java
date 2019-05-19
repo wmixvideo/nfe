@@ -3,15 +3,15 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao;
 
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
 import javax.xml.namespace.QName;
 
 /*
  * MDFeRetRecepcaoStub java implementation
  */
-
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
 
 public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -32,7 +32,7 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
             MDFeRetRecepcaoStub.counter = 0;
         }
         MDFeRetRecepcaoStub.counter = MDFeRetRecepcaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeRetRecepcaoStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeRetRecepcaoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1676,9 +1676,6 @@ public class MDFeRetRecepcaoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeRetRecepcaoResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeRetRecepcaoResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

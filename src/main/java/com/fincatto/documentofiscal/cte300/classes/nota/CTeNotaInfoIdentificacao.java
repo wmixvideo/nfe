@@ -24,94 +24,94 @@ import java.time.ZonedDateTime;
 public class CTeNotaInfoIdentificacao extends DFBase {
     private static final long serialVersionUID = 95577143198511960L;
     
-    @Element(name = "cUF", required = true)
+    @Element(name = "cUF")
     private DFUnidadeFederativa codigoUF;
     
-    @Element(name = "cCT", required = true)
+    @Element(name = "cCT")
     private String codigoNumerico;
     
-    @Element(name = "CFOP", required = true)
+    @Element(name = "CFOP")
     private String cfop;
     
-    @Element(name = "natOp", required = true)
+    @Element(name = "natOp")
     private String naturezaOperacao;
     
-    @Element(name = "mod", required = true)
+    @Element(name = "mod")
     private DFModelo modelo;
     
-    @Element(name = "serie", required = true)
+    @Element(name = "serie")
     private Integer serie;
     
-    @Element(name = "nCT", required = true)
+    @Element(name = "nCT")
     private Integer numero;
     
-    @Element(name = "dhEmi", required = true)
+    @Element(name = "dhEmi")
     private ZonedDateTime dataEmissao;
     
-    @Element(name = "tpImp", required = true)
+    @Element(name = "tpImp")
     private CTTipoImpressao tipoImpressao;
     
-    @Element(name = "tpEmis", required = true)
+    @Element(name = "tpEmis")
     private CTTipoEmissao tipoEmissao;
     
-    @Element(name = "cDV", required = true)
+    @Element(name = "cDV")
     private Integer digitoVerificador;
     
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
     
-    @Element(name = "tpCTe", required = true)
+    @Element(name = "tpCTe")
     private CTFinalidade finalidade;
     
-    @Element(name = "procEmi", required = true)
+    @Element(name = "procEmi")
     private CTProcessoEmissao processoEmissao;
     
-    @Element(name = "verProc", required = true)
+    @Element(name = "verProc")
     private String versaoProcessoEmissao;
     
     @Element(name = "indGlobalizado", required = false)
     private Integer indicadorGlobalizado;
     
-    @Element(name = "cMunEnv", required = true)
+    @Element(name = "cMunEnv")
     private String codigoMunicipioEnvio;
     
-    @Element(name = "xMunEnv", required = true)
+    @Element(name = "xMunEnv")
     private String descricaoMunicipioEnvio;
     
-    @Element(name = "UFEnv", required = true)
+    @Element(name = "UFEnv")
     private String siglaUFEnvio;
     
-    @Element(name = "modal", required = true)
+    @Element(name = "modal")
     private CTModal modalidadeFrete;
     
-    @Element(name = "tpServ", required = true)
+    @Element(name = "tpServ")
     private CTTipoServico tipoServico;
     
-    @Element(name = "cMunIni", required = true)
+    @Element(name = "cMunIni")
     private String codigoMunicipioInicio;
     
-    @Element(name = "xMunIni", required = true)
+    @Element(name = "xMunIni")
     private String descricaoMunicipioInicio;
     
-    @Element(name = "UFIni", required = true)
+    @Element(name = "UFIni")
     private String siglaUfInicio;
     
-    @Element(name = "cMunFim", required = true)
+    @Element(name = "cMunFim")
     private String codigoMunicipioFim;
     
-    @Element(name = "xMunFim", required = true)
+    @Element(name = "xMunFim")
     private String descricaoMunicipioFim;
     
-    @Element(name = "UFFim", required = true)
+    @Element(name = "UFFim")
     private String siglaUfFim;
     
-    @Element(name = "retira", required = true)
+    @Element(name = "retira")
     private CTRetirada retira;
     
     @Element(name = "xDetRetira", required = false)
     private String detalheRetira;
     
-    @Element(name = "indIEToma", required = true)
+    @Element(name = "indIEToma")
     private CTIndicadorTomador indIEToma;
     
     @Element(name = "toma3", required = false)

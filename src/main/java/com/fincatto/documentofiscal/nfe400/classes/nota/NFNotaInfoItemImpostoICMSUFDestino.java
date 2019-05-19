@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     private static final long serialVersionUID = -3012887551710007397L;
-
-    @Element(name = "vBCUFDest", required = true)
+    
+    @Element(name = "vBCUFDest")
     private String valorBaseCalculoDestino;
 
     @Element(name = "vBCFCPUFDest", required = false)
@@ -17,23 +17,23 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
 
     @Element(name = "pFCPUFDest", required = false)
     private String percentualRelativoFundoCombatePobrezaDestino;
-
-    @Element(name = "pICMSUFDest", required = true)
+    
+    @Element(name = "pICMSUFDest")
     private String percentualAliquotaInternaDestino;
-
-    @Element(name = "pICMSInter", required = true)
+    
+    @Element(name = "pICMSInter")
     private String percentualInterestadual;
-
-    @Element(name = "pICMSInterPart", required = true)
+    
+    @Element(name = "pICMSInterPart")
     private String percentualProvisorioPartilha;
 
     @Element(name = "vFCPUFDest", required = false)
     private String valorRelativoFundoCombatePobrezaDestino;
-
-    @Element(name = "vICMSUFDest", required = true)
+    
+    @Element(name = "vICMSUFDest")
     private String valorICMSInterestadualDestino;
-
-    @Element(name = "vICMSUFRemet", required = true)
+    
+    @Element(name = "vICMSUFRemet")
     private String valorICMSInterestadualRemetente;
 
     public String getValorBaseCalculoDestino() {

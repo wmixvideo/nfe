@@ -14,30 +14,30 @@ import java.util.regex.Pattern;
 
 public class NFNotaInfoCana extends DFBase {
     private static final long serialVersionUID = 5219843108064204554L;
-
-    @Element(name = "safra", required = true)
+    
+    @Element(name = "safra")
     private String safra;
-
-    @Element(name = "ref", required = true)
+    
+    @Element(name = "ref")
     private String referencia;
-
-    @ElementList(entry = "forDia", inline = true, required = true)
+    
+    @ElementList(entry = "forDia", inline = true)
     private List<NFNotaInfoCanaFornecimentoDiario> fornecimentosDiario;
 
     @ElementList(entry = "deduc", inline = true, required = false)
     private List<NFNotaInfoCanaDeducao> deducoes;
-
-    @Element(name = "qTotMes", required = true)
+    
+    @Element(name = "qTotMes")
     private String quantidadeTotalMes;
-    @Element(name = "qTotAnt", required = true)
+    @Element(name = "qTotAnt")
     private String quantidadeTotalAnterior;
-    @Element(name = "qTotGer", required = true)
+    @Element(name = "qTotGer")
     private String quantidadeTotalGeral;
-    @Element(name = "vFor", required = true)
+    @Element(name = "vFor")
     private String valorFornecimento;
-    @Element(name = "vTotDed", required = true)
+    @Element(name = "vTotDed")
     private String valorTotalDeducao;
-    @Element(name = "vLiqFor", required = true)
+    @Element(name = "vLiqFor")
     private String valorLiquidoFornecimento;
 
     public void setSafra(final String safra) {

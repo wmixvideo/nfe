@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigosoInfo extends DFBase {
     private static final long serialVersionUID = 1399533868716793539L;
-
-    @Element(name = "qTotProd", required = true)
+    
+    @Element(name = "qTotProd")
     private String quantidadeTotal;
-
-    @Element(name = "uniAP", required = true)
+    
+    @Element(name = "uniAP")
     private CTUnidadeMedidaProdPerigosos unidade;
 
     public CTeNotaInfoCTeNormalInfoModalAereoTransportePerigosoInfo() {

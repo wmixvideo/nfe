@@ -20,8 +20,8 @@ public class NFNotaInfoItemImpostoCOFINSST extends DFBase {
 
     @Element(name = "vAliqProd", required = false)
     private String valorAliquotaCOFINS;
-
-    @Element(name = "vCOFINS", required = true)
+    
+    @Element(name = "vCOFINS")
     private String valorCOFINS;
 
     public NFNotaInfoItemImpostoCOFINSST() {

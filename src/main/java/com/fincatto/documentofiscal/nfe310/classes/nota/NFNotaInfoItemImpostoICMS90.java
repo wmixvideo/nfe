@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS90 extends DFBase {
     private static final long serialVersionUID = 5614463736855881160L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
     @Element(name = "modBC", required = false)

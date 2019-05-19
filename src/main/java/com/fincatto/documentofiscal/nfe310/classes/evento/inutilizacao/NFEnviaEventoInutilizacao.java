@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoInutilizacao extends DFBase {
     private static final long serialVersionUID = -2140741787724000417L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infInut", required = true)
+    
+    @Element(name = "infInut")
     private NFEventoInutilizacaoDados dados;
 
     @Element(name = "Signature", required = false)

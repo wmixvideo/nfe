@@ -30,7 +30,7 @@ class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
             NfeConsulta2Stub.counter = 0;
         }
         NfeConsulta2Stub.counter = NfeConsulta2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeConsulta2Stub.counter;
+        return System.currentTimeMillis() + "_" + NfeConsulta2Stub.counter;
     }
 
     private void populateAxisService() {
@@ -1393,9 +1393,6 @@ class NfeConsulta2Stub extends org.apache.axis2.client.Stub {
             }
             if (NfeConsulta2Stub.NfeConsultaNF2Result.class.equals(type)) {
                 return NfeConsulta2Stub.NfeConsultaNF2Result.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (NfeConsulta2Stub.NfeCabecMsgE.class.equals(type)) {
-                return NfeConsulta2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (NfeConsulta2Stub.NfeCabecMsgE.class.equals(type)) {
                 return NfeConsulta2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

@@ -14,19 +14,19 @@ public class NFInfoEventoRetorno extends DFBase {
     @Attribute(name = "Id", required = false)
     private String id;
     
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
     
-    @Element(name = "verAplic", required = true)
+    @Element(name = "verAplic")
     private String versaoAplicativo;
     
-    @Element(name = "cOrgao", required = true)
+    @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
     
-    @Element(name = "cStat", required = true)
+    @Element(name = "cStat")
     private Integer codigoStatus;
     
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo")
     private String motivo;
     
     @Element(name = "chNFe", required = false)
@@ -50,7 +50,7 @@ public class NFInfoEventoRetorno extends DFBase {
     @Element(name = "emailDest", required = false)
     private String email;
     
-    @Element(name = "dhRegEvento", required = true)
+    @Element(name = "dhRegEvento")
     private ZonedDateTime dataHoraRegistro;
     
     @Element(name = "nProt", required = false)

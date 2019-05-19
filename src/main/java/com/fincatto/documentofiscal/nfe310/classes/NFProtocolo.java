@@ -1,19 +1,18 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-
 @Root(name = "protNFe")
 public class NFProtocolo extends DFBase {
     private static final long serialVersionUID = -784305871769382618L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infProt", required = true)
+    
+    @Element(name = "infProt")
     private NFProtocoloInfo protocoloInfo;
 
     public void setVersao(final String versao) {

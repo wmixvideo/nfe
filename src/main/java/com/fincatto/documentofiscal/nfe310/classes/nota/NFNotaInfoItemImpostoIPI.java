@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigInteger;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigInteger;
 
 public class NFNotaInfoItemImpostoIPI extends DFBase {
     private static final long serialVersionUID = 3354365738012803301L;
@@ -22,8 +21,8 @@ public class NFNotaInfoItemImpostoIPI extends DFBase {
 
     @Element(name = "qSelo", required = false)
     private BigInteger quantidadeSelo;
-
-    @Element(name = "cEnq", required = true)
+    
+    @Element(name = "cEnq")
     private String codigoEnquadramento;
 
     @Element(name = "IPITrib", required = false)

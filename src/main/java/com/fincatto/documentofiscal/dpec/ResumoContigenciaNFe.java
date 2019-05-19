@@ -40,22 +40,22 @@ public class ResumoContigenciaNFe extends DFBase {
     /**
      * Sigla da UF de destinto da mercadoria
      */
-    @Element(name = "UF", required = true)
+    @Element(name = "UF")
     private DFUnidadeFederativa uf;
     /**
      * Valor Total da NF-e
      */
-    @Element(name = "vNF", required = true)
+    @Element(name = "vNF")
     private String valorTotalNFe;
     /**
      * Valor Total do ICMS da operação própria
      */
-    @Element(name = "vICMS", required = true)
+    @Element(name = "vICMS")
     private String valorICMS;
     /**
      * Valor Total do ICMS retido por Subsituição Tributária
      */
-    @Element(name = "vST", required = true)
+    @Element(name = "vST")
     private String valorTotalICMSST;
 
     public String getChaveDeAcesso() {

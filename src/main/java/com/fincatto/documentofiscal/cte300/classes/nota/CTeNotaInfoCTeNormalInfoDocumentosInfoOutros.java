@@ -22,8 +22,8 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoDocumentosInfoOutros extends DFBase {
     private static final long serialVersionUID = -2282041203753433659L;
-
-    @Element(name = "tpDoc", required = true)
+    
+    @Element(name = "tpDoc")
     private CTTipoDocumento tipoDocumento;
 
     @Element(name = "descOutros", required = false)

@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 
 public class NFEvento extends DFBase {
     private static final long serialVersionUID = 8494204773888020693L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infEvento", required = true)
+    
+    @Element(name = "infEvento")
     private NFInfoEvento infoEvento;
 
     @Element(name = "Signature", required = false)

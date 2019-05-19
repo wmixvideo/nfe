@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
 
 /**
  * @author Caio
@@ -16,8 +15,8 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalFerroviario extends DFBase {
     private static final long serialVersionUID = -2131736178907343884L;
-
-    @Element(name = "tpTraf", required = true)
+    
+    @Element(name = "tpTraf")
     private CTTipoTrafego tipoTrafego;
 
     @Element(name = "trafMut", required = false)

@@ -15,17 +15,17 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaConsulta extends DFBase {
     private static final long serialVersionUID = 402162498360517770L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "xServ", required = true)
+    
+    @Element(name = "xServ")
     private String servico;
-
-    @Element(name = "chCTe", required = true)
+    
+    @Element(name = "chCTe")
     private String chave;
 
     public void setVersao(final BigDecimal versao) {

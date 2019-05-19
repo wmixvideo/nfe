@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.util.List;
 
 /**
  * @author Caio
@@ -20,8 +19,8 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteiner extends DFBase {
     private static final long serialVersionUID = -6316603016118768000L;
-
-    @Element(name = "nCont", required = true)
+    
+    @Element(name = "nCont")
     private String identificacao;
 
     @ElementList(name = "lacre", inline = true, required = false)

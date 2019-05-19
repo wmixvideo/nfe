@@ -12,26 +12,26 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS20 extends DFBase {
     private static final long serialVersionUID = -7632059708755735047L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-
-    @Element(name = "modBC", required = true)
+    
+    @Element(name = "modBC")
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
-
-    @Element(name = "pRedBC", required = true)
+    
+    @Element(name = "pRedBC")
     private String percentualReducaoBC;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBCICMS;
-
-    @Element(name = "pICMS", required = true)
+    
+    @Element(name = "pICMS")
     private String percentualAliquota;
-
-    @Element(name = "vICMS", required = true)
+    
+    @Element(name = "vICMS")
     private String valorTributo;
 
     @Element(name = "vBCFCP", required = false)

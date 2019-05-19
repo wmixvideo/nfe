@@ -34,7 +34,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             RecepcaoEventoStub.counter = 0;
         }
         RecepcaoEventoStub.counter = RecepcaoEventoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + RecepcaoEventoStub.counter;
+        return System.currentTimeMillis() + "_" + RecepcaoEventoStub.counter;
     }
 
     private void populateAxisService() {
@@ -913,9 +913,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             }
             if (RecepcaoEventoStub.NfeRecepcaoEventoResult.class.equals(type)) {
                 return RecepcaoEventoStub.NfeRecepcaoEventoResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (RecepcaoEventoStub.NfeCabecMsgE.class.equals(type)) {
-                return RecepcaoEventoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (RecepcaoEventoStub.NfeCabecMsgE.class.equals(type)) {
                 return RecepcaoEventoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

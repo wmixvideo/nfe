@@ -1,18 +1,17 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
-
 public class NFNotaInfoObservacao extends DFBase {
     private static final long serialVersionUID = 7420062278238333996L;
-
-    @Attribute(name = "xCampo", required = true)
+    
+    @Attribute(name = "xCampo")
     private String identificacaoCampo;
-
-    @Element(name = "xTexto", required = true)
+    
+    @Element(name = "xTexto")
     private String conteudoCampo;
 
     public void setIdentificacaoCampo(final String identificacaoCampo) {

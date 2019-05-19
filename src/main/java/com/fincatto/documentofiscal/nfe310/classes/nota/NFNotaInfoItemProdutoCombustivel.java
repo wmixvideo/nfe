@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     private static final long serialVersionUID = -2899516480924530882L;
-
-    @Element(name = "cProdANP", required = true)
+    
+    @Element(name = "cProdANP")
     private String codigoProdutoANP;
 
     @Element(name = "pMixGN", required = false)
@@ -22,8 +22,8 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
 
     @Element(name = "qTemp", required = false)
     private String quantidade;
-
-    @Element(name = "UFCons", required = true)
+    
+    @Element(name = "UFCons")
     private String uf;
 
     @Element(name = "CIDE", required = false)

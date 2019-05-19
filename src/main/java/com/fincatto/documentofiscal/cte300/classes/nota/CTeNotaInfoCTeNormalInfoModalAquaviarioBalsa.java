@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -16,8 +15,8 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAquaviarioBalsa extends DFBase {
     private static final long serialVersionUID = -1451896642980692340L;
-
-    @Element(name = "xBalsa", required = true)
+    
+    @Element(name = "xBalsa")
     private String descricao;
 
     public CTeNotaInfoCTeNormalInfoModalAquaviarioBalsa() {

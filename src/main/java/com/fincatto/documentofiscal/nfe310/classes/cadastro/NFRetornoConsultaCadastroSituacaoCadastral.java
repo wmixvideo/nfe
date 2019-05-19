@@ -1,15 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import java.time.LocalDate;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import org.simpleframework.xml.Element;
+
+import java.time.LocalDate;
 
 public class NFRetornoConsultaCadastroSituacaoCadastral extends DFBase {
     private static final long serialVersionUID = 7375181464271665520L;
-
-    @Element(name = "IE", required = true)
+    
+    @Element(name = "IE")
     private String inscricaoEstadual;
 
     @Element(name = "CNPJ", required = false)
@@ -17,11 +17,11 @@ public class NFRetornoConsultaCadastroSituacaoCadastral extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "UF", required = true)
+    
+    @Element(name = "UF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "cSit", required = true)
+    
+    @Element(name = "cSit")
     private NFSituacaoContribuinte situacaoContribuinte;
 
     @Element(name = "indCredNFe", required = false)
@@ -29,8 +29,8 @@ public class NFRetornoConsultaCadastroSituacaoCadastral extends DFBase {
 
     @Element(name = "indCredCTe", required = false)
     private NFIndicadorContribuinteCTe indicaodrContribuinteCTe;
-
-    @Element(name = "xNome", required = true)
+    
+    @Element(name = "xNome")
     private String razaoSocial;
 
     @Element(name = "xFant", required = false)

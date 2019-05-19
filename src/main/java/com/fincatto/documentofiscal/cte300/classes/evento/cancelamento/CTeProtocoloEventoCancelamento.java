@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeProtocoloEventoCancelamento extends DFBase {
     private static final long serialVersionUID = -5921322695285609605L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "eventoCTe", required = true)
+    
+    @Element(name = "eventoCTe")
     private CTeEventoCancelamento evento;
 
     @Element(name = "retEventoCTe", required = false)

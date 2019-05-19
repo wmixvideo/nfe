@@ -19,14 +19,14 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAereoTarifa extends DFBase {
     private static final long serialVersionUID = 4117608894098820892L;
-
-    @Element(name = "CL", required = true)
+    
+    @Element(name = "CL")
     private CTClasseTarifa classe;
 
     @Element(name = "cTar", required = false)
     private String codigo;
-
-    @Element(name = "vTar", required = true)
+    
+    @Element(name = "vTar")
     private String valor;
 
     public CTeNotaInfoCTeNormalInfoModalAereoTarifa() {

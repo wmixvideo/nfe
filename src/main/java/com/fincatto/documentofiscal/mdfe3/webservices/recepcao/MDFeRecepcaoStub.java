@@ -3,15 +3,15 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
 
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
 import javax.xml.namespace.QName;
 
 /*
  * MDFeRecepcaoStub java implementation
  */
-
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
 
 public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -32,7 +32,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             MDFeRecepcaoStub.counter = 0;
         }
         MDFeRecepcaoStub.counter = MDFeRecepcaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeRecepcaoStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeRecepcaoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1679,9 +1679,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

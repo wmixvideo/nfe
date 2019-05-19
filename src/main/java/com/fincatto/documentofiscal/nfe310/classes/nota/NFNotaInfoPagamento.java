@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoPagamento extends DFBase {
     private static final long serialVersionUID = -2613537583415054150L;
-
-    @Element(name = "tPag", required = true)
+    
+    @Element(name = "tPag")
     private NFFormaPagamentoMoeda formaPagamentoMoeda;
-
-    @Element(name = "vPag", required = true)
+    
+    @Element(name = "vPag")
     private String valorPagamento;
 
     @Element(name = "card", required = false)

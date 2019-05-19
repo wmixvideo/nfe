@@ -20,14 +20,14 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo extends DFBase {
     private static final long serialVersionUID = -1418176957547086575L;
-
-    @Element(name = "respFat", required = true)
+    
+    @Element(name = "respFat")
     private CTTipoFerrovia responsavel;
-
-    @Element(name = "ferrEmi", required = true)
+    
+    @Element(name = "ferrEmi")
     private CTTipoFerrovia emitente;
-
-    @Element(name = "vFrete", required = true)
+    
+    @Element(name = "vFrete")
     private String valorFrete;
 
     @Element(name = "chCTeFerroOrigem", required = false)

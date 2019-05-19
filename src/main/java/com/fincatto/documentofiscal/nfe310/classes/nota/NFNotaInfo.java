@@ -15,17 +15,17 @@ public class NFNotaInfo extends DFBase {
     private static final long serialVersionUID = 4569152242139670228L;
 
     public static final String IDENT = "NFe";
-
-    @Attribute(name = "Id", required = true)
+    
+    @Attribute(name = "Id")
     private String identificador;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "ide", required = true)
+    
+    @Element(name = "ide")
     private NFNotaInfoIdentificacao identificacao;
-
-    @Element(name = "emit", required = true)
+    
+    @Element(name = "emit")
     private NFNotaInfoEmitente emitente;
 
     @Element(name = "avulsa", required = false)
@@ -42,14 +42,14 @@ public class NFNotaInfo extends DFBase {
 
     @ElementList(entry = "autXML", inline = true, required = false)
     private List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe;
-
-    @ElementList(entry = "det", inline = true, required = true)
+    
+    @ElementList(entry = "det", inline = true)
     private List<NFNotaInfoItem> itens;
-
-    @Element(name = "total", required = true)
+    
+    @Element(name = "total")
     private NFNotaInfoTotal total;
-
-    @Element(name = "transp", required = true)
+    
+    @Element(name = "transp")
     private NFNotaInfoTransporte transporte;
 
     @Element(name = "cobr", required = false)

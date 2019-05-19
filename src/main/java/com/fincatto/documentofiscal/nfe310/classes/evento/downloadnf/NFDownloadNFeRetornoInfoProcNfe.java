@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
 
 @Root(name = "procNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -14,8 +13,8 @@ public class NFDownloadNFeRetornoInfoProcNfe extends DFBase {
 
     @Attribute(name = "schema", required = false)
     private String schema;
-
-    @Element(name = "nfeProc", required = true) // ver coma var ser tratado esse elemento
+    
+    @Element(name = "nfeProc") // ver coma var ser tratado esse elemento
     private Any any;
 
     @Element(name = "procNFeGrupoZip", required = false)

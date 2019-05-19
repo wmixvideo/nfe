@@ -20,8 +20,8 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
 
     @Element(name = "vAliqProd", required = false)
     private String valorAliquota;
-
-    @Element(name = "vPIS", required = true)
+    
+    @Element(name = "vPIS")
     private String valorTributo;
 
     public NFNotaInfoItemImpostoPISST() {

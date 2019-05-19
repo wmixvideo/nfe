@@ -12,23 +12,23 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     private static final long serialVersionUID = 3531314516853056385L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-
-    @Element(name = "modBC", required = true)
+    
+    @Element(name = "modBC")
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBaseCalculo;
-
-    @Element(name = "pICMS", required = true)
+    
+    @Element(name = "pICMS")
     private String percentualAliquota;
-
-    @Element(name = "vICMS", required = true)
+    
+    @Element(name = "vICMS")
     private String valorTributo;
 
     @Element(name = "vBCFCP", required = false)
@@ -39,8 +39,8 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
 
     @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
-
-    @Element(name = "modBCST", required = true)
+    
+    @Element(name = "modBCST")
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
@@ -48,14 +48,14 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
-
-    @Element(name = "vBCST", required = true)
+    
+    @Element(name = "vBCST")
     private String valorBCICMSST;
-
-    @Element(name = "pICMSST", required = true)
+    
+    @Element(name = "pICMSST")
     private String percentualAliquotaImpostoICMSST;
-
-    @Element(name = "vICMSST", required = true)
+    
+    @Element(name = "vICMSST")
     private String valorICMSST;
 
     @Element(name = "vBCFCPST", required = false)

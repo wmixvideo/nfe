@@ -21,11 +21,11 @@ public class CTeNotaInfoCTeNormalInfoModalDutoviario extends DFBase {
 
     @Element(name = "vTar", required = false)
     private String valorTarifa;
-
-    @Element(name = "dIni", required = true)
+    
+    @Element(name = "dIni")
     private LocalDate dataInicioServico;
-
-    @Element(name = "dFim", required = true)
+    
+    @Element(name = "dFim")
     private LocalDate dataFimServico;
 
     public CTeNotaInfoCTeNormalInfoModalDutoviario() {

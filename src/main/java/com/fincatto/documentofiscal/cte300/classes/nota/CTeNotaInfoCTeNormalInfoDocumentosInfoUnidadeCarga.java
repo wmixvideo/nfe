@@ -21,11 +21,11 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga extends DFBase {
     private static final long serialVersionUID = -3462616457147475669L;
-
-    @Element(name = "tpUnidCarga", required = true)
+    
+    @Element(name = "tpUnidCarga")
     private CTTipoUnidadeCarga unidadeCarga;
-
-    @Element(name = "idUnidCarga", required = true)
+    
+    @Element(name = "idUnidCarga")
     private String identificacaoCarga;
 
     @Element(name = "lacUnidCarga", required = false)

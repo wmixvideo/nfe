@@ -18,29 +18,29 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase {
     private static final long serialVersionUID = 2502416156810045187L;
-
-    @Element(name = "vBCUFFim", required = true)
+    
+    @Element(name = "vBCUFFim")
     private String bcICMS;
-
-    @Element(name = "pFCPUFFim", required = true)
+    
+    @Element(name = "pFCPUFFim")
     private String aliquotaFCP;
-
-    @Element(name = "pICMSUFFim", required = true)
+    
+    @Element(name = "pICMSUFFim")
     private String aliquotaInterna;
-
-    @Element(name = "pICMSInter", required = true)
+    
+    @Element(name = "pICMSInter")
     private String aliquotaInterestadual;
-
-    @Element(name = "pICMSInterPart", required = true)
+    
+    @Element(name = "pICMSInterPart")
     private String aliquotaPartilha;
-
-    @Element(name = "vFCPUFFim", required = true)
+    
+    @Element(name = "vFCPUFFim")
     private String valorFCP;
-
-    @Element(name = "vICMSUFFim", required = true)
+    
+    @Element(name = "vICMSUFFim")
     private String valorUfDestino;
-
-    @Element(name = "vICMSUFIni", required = true)
+    
+    @Element(name = "vICMSUFIni")
     private String valorUf;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMSPartilha() {

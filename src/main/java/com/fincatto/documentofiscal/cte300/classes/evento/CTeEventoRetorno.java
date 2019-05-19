@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 
 public class CTeEventoRetorno extends DFBase {
     private static final long serialVersionUID = -8952520263707135185L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infEvento", required = true)
+    
+    @Element(name = "infEvento")
     private CTeInfoEventoRetorno infoEventoRetorno;
 
     @Element(name = "Signature", required = false)

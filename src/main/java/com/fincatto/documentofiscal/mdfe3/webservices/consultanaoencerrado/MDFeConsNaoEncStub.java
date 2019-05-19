@@ -3,15 +3,15 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado;
 
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
+import org.apache.axis2.databinding.utils.Constants;
+
 import javax.xml.namespace.QName;
 
 /*
  * MDFeConsNaoEncStub java implementation
  */
-
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
 
 public class MDFeConsNaoEncStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -32,7 +32,7 @@ public class MDFeConsNaoEncStub extends org.apache.axis2.client.Stub {
             MDFeConsNaoEncStub.counter = 0;
         }
         MDFeConsNaoEncStub.counter = MDFeConsNaoEncStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeConsNaoEncStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeConsNaoEncStub.counter;
     }
 
     private void populateAxisService() {
@@ -1677,9 +1677,6 @@ public class MDFeConsNaoEncStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeConsNaoEncResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeConsNaoEncResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.consultanaoencerrado.MDFeConsNaoEncStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

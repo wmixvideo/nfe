@@ -10,20 +10,20 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoISSQN extends DFBase {
     private static final long serialVersionUID = 5303195667632685433L;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBaseCalculo;
-
-    @Element(name = "vAliq", required = true)
+    
+    @Element(name = "vAliq")
     private String valorAliquota;
-
-    @Element(name = "vISSQN", required = true)
+    
+    @Element(name = "vISSQN")
     private String valor;
-
-    @Element(name = "cMunFG", required = true)
+    
+    @Element(name = "cMunFG")
     private Integer codigoMunicipio;
-
-    @Element(name = "cListServ", required = true)
+    
+    @Element(name = "cListServ")
     private String itemListaServicos;
 
     @Element(name = "vDeducao", required = false)
@@ -40,8 +40,8 @@ public class NFNotaInfoItemImpostoISSQN extends DFBase {
 
     @Element(name = "vISSRet", required = false)
     private String valorRetencaoISS;
-
-    @Element(name = "indISS", required = true)
+    
+    @Element(name = "indISS")
     private NFNotaInfoItemIndicadorExigibilidadeISS indicadorExigibilidadeISS;
 
     @Element(name = "cServico", required = false)
@@ -55,8 +55,8 @@ public class NFNotaInfoItemImpostoISSQN extends DFBase {
 
     @Element(name = "nProcesso", required = false)
     private String numeroProcesso;
-
-    @Element(name = "indIncentivo", required = true)
+    
+    @Element(name = "indIncentivo")
     private NFNotaInfoItemIndicadorIncentivoFiscal indicadorIncentivoFiscal;
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {

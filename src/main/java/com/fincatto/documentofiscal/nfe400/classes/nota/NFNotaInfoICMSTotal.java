@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoICMSTotal extends DFBase {
     private static final long serialVersionUID = 1644701343314788528L;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String baseCalculoICMS;
-
-    @Element(name = "vICMS", required = true)
+    
+    @Element(name = "vICMS")
     private String valorTotalICMS;
-
-    @Element(name = "vICMSDeson", required = true)
+    
+    @Element(name = "vICMSDeson")
     private String valorICMSDesonerado;
 
     @Element(name = "vFCPUFDest", required = false)
@@ -26,53 +26,53 @@ public class NFNotaInfoICMSTotal extends DFBase {
 
     @Element(name = "vICMSUFRemet", required = false)
     private String valorICMSPartilhaRementente;
-
-    @Element(name = "vFCP", required = true)
+    
+    @Element(name = "vFCP")
     private String valorTotalFundoCombatePobreza;
-
-    @Element(name = "vBCST", required = true)
+    
+    @Element(name = "vBCST")
     private String baseCalculoICMSST;
-
-    @Element(name = "vST", required = true)
+    
+    @Element(name = "vST")
     private String valorTotalICMSST;
-
-    @Element(name = "vFCPST", required = true)
+    
+    @Element(name = "vFCPST")
     private String valorTotalFundoCombatePobrezaST;
-
-    @Element(name = "vFCPSTRet", required = true)
+    
+    @Element(name = "vFCPSTRet")
     private String valorTotalFundoCombatePobrezaSTRetido;
-
-    @Element(name = "vProd", required = true)
+    
+    @Element(name = "vProd")
     private String valorTotalDosProdutosServicos;
-
-    @Element(name = "vFrete", required = true)
+    
+    @Element(name = "vFrete")
     private String valorTotalFrete;
-
-    @Element(name = "vSeg", required = true)
+    
+    @Element(name = "vSeg")
     private String valorTotalSeguro;
-
-    @Element(name = "vDesc", required = true)
+    
+    @Element(name = "vDesc")
     private String valorTotalDesconto;
-
-    @Element(name = "vII", required = true)
+    
+    @Element(name = "vII")
     private String valorTotalII;
-
-    @Element(name = "vIPI", required = true)
+    
+    @Element(name = "vIPI")
     private String valorTotalIPI;
-
-    @Element(name = "vIPIDevol", required = true)
+    
+    @Element(name = "vIPIDevol")
     private String valorTotalIPIDevolvido;
-
-    @Element(name = "vPIS", required = true)
+    
+    @Element(name = "vPIS")
     private String valorPIS;
-
-    @Element(name = "vCOFINS", required = true)
+    
+    @Element(name = "vCOFINS")
     private String valorCOFINS;
-
-    @Element(name = "vOutro", required = true)
+    
+    @Element(name = "vOutro")
     private String outrasDespesasAcessorias;
-
-    @Element(name = "vNF", required = true)
+    
+    @Element(name = "vNF")
     private String valorTotalNFe;
 
     @Element(name = "vTotTrib", required = false)

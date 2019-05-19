@@ -20,17 +20,17 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoCarga extends DFBase {
     private static final long serialVersionUID = -2031819416191957758L;
-
-    @Element(name = "vCarga", required = true)
+    
+    @Element(name = "vCarga")
     private String valorTotalCarga;
-
-    @Element(name = "proPred", required = true)
+    
+    @Element(name = "proPred")
     private String descricaoProdutoPredominante;
 
     @Element(name = "xOutCat", required = false)
     private String descricaoOutrasCaracteristicas;
-
-    @ElementList(name = "infQ", inline = true, required = true)
+    
+    @ElementList(name = "infQ", inline = true)
     private List<CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga> informacoesQuantidadeCarga;
 
     @Element(name = "vCargaAverb", required = false)

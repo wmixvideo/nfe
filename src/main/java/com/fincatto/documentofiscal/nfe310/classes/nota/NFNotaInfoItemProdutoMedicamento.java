@@ -10,20 +10,20 @@ import java.time.LocalDate;
 
 public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     private static final long serialVersionUID = 3127772234811692432L;
-
-    @Element(name = "nLote", required = true)
+    
+    @Element(name = "nLote")
     private String lote;
-
-    @Element(name = "qLote", required = true)
+    
+    @Element(name = "qLote")
     private String quantidade;
-
-    @Element(name = "dFab", required = true)
+    
+    @Element(name = "dFab")
     private LocalDate dataFabricacao;
-
-    @Element(name = "dVal", required = true)
+    
+    @Element(name = "dVal")
     private LocalDate dataValidade;
-
-    @Element(name = "vPMC", required = true)
+    
+    @Element(name = "vPMC")
     private String precoMaximoConsumidor;
 
     public NFNotaInfoItemProdutoMedicamento() {

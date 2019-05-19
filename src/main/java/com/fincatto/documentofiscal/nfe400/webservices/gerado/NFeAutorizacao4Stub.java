@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
-
 import org.apache.axis2.client.Stub;
 import org.apache.axis2.transport.http.HTTPConstants;
+
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamReader;
 
 public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
@@ -55,7 +55,7 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
             NFeAutorizacao4Stub.counter = 0;
         }
         NFeAutorizacao4Stub.counter = NFeAutorizacao4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeAutorizacao4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeAutorizacao4Stub.counter;
     }
 
     private void populateAxisService() {

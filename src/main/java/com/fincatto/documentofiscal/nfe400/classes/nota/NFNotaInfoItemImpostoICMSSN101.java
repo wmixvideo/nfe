@@ -10,17 +10,17 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSSN101 extends DFBase {
     private static final long serialVersionUID = -3123413337026509697L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CSOSN", required = true)
+    
+    @Element(name = "CSOSN")
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
-
-    @Element(name = "pCredSN", required = true)
+    
+    @Element(name = "pCredSN")
     private String percentualAliquotaAplicavelCalculoCreditoSN;
-
-    @Element(name = "vCredICMSSN", required = true)
+    
+    @Element(name = "vCredICMSSN")
     private String valorCreditoICMSSN;
 
     public void setOrigem(final NFOrigem origem) {

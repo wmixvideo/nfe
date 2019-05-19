@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.util.List;
 
 /**
  * @author Caio
@@ -20,8 +19,8 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalRodoviario extends DFBase {
     private static final long serialVersionUID = 4068566294432201656L;
-
-    @Element(name = "RNTRC", required = true)
+    
+    @Element(name = "RNTRC")
     private String rntrc;
 
     @ElementList(name = "occ", inline = true, required = false)

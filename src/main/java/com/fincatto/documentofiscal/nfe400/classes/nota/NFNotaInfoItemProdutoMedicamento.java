@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     private static final long serialVersionUID = 3127772234811692432L;
-
-    @Element(name = "cProdANVISA", required = true)
+    
+    @Element(name = "cProdANVISA")
     private String codigoProdutoAnvisa;
-
-    @Element(name = "vPMC", required = true)
+    
+    @Element(name = "vPMC")
     private String precoMaximoConsumidor;
 
     public NFNotaInfoItemProdutoMedicamento() {

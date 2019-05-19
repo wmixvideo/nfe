@@ -1,24 +1,23 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemProdutoArmamentoTipo;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemProdutoArmamento extends DFBase {
     private static final long serialVersionUID = -4438932795183476289L;
-
-    @Element(name = "tpArma", required = true)
+    
+    @Element(name = "tpArma")
     private NFNotaInfoItemProdutoArmamentoTipo tipo;
-
-    @Element(name = "nSerie", required = true)
+    
+    @Element(name = "nSerie")
     private String numeroSerieArma;
-
-    @Element(name = "nCano", required = true)
+    
+    @Element(name = "nCano")
     private String numeroSerieCano;
-
-    @Element(name = "descr", required = true)
+    
+    @Element(name = "descr")
     private String descricao;
 
     public void setTipo(final NFNotaInfoItemProdutoArmamentoTipo tipo) {

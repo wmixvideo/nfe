@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
+import java.time.LocalDate;
 
 /**
  * @author Caio
@@ -15,14 +15,14 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
 @Root(name = "noPeriodo")
 public class CTeNotaInfoDadosComplementaresEntregaPeriodo extends DFBase {
     private static final long serialVersionUID = 6194788171489727124L;
-
-    @Element(name = "tpPer", required = true)
+    
+    @Element(name = "tpPer")
     private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
-
-    @Element(name = "dIni", required = true)
+    
+    @Element(name = "dIni")
     private LocalDate dataInicio;
-
-    @Element(name = "dFim", required = true)
+    
+    @Element(name = "dFim")
     private LocalDate dataFim;
 
     public CTeNotaInfoDadosComplementaresEntregaPeriodo() {

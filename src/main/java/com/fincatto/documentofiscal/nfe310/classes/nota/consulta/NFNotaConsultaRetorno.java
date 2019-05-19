@@ -1,43 +1,42 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.consulta;
 
-import java.util.List;
-
-import java.time.LocalDateTime;
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
+import org.simpleframework.xml.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Root(name = "retConsSitNFe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaConsultaRetorno extends DFBase {
     private static final long serialVersionUID = -5747228973124291025L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "dhRecbto", required = true)
+    
+    @Element(name = "dhRecbto")
     private LocalDateTime dataHoraRecibo;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
 
     @Element(name = "protNFe", required = false)

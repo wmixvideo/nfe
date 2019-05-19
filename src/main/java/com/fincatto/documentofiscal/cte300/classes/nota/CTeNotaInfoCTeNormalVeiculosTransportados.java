@@ -18,23 +18,23 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
     private static final long serialVersionUID = 1369667859453686493L;
-
-    @Element(name = "chassi", required = true)
+    
+    @Element(name = "chassi")
     private String chassi;
-
-    @Element(name = "cCor", required = true)
+    
+    @Element(name = "cCor")
     private String codigoCor;
-
-    @Element(name = "xCor", required = true)
+    
+    @Element(name = "xCor")
     private String descricaoCor;
-
-    @Element(name = "cMod", required = true)
+    
+    @Element(name = "cMod")
     private String codigoMarcaModelo;
-
-    @Element(name = "vUnit", required = true)
+    
+    @Element(name = "vUnit")
     private String valorUnitario;
-
-    @Element(name = "vFrete", required = true)
+    
+    @Element(name = "vFrete")
     private String valorFrete;
 
     public CTeNotaInfoCTeNormalVeiculosTransportados() {

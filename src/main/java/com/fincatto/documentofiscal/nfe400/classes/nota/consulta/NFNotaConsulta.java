@@ -15,17 +15,17 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFNotaConsulta extends DFBase {
     private static final long serialVersionUID = 6261821910786634620L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "xServ", required = true)
+    
+    @Element(name = "xServ")
     private String servico;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
 
     public void setVersao(final BigDecimal versao) {

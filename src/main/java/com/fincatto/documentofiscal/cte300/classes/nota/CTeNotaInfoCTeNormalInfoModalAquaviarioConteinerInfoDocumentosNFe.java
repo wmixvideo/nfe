@@ -18,8 +18,8 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNFe extends DFBase {
     private static final long serialVersionUID = -2556091825989274041L;
-
-    @Element(name = "chave", required = true)
+    
+    @Element(name = "chave")
     private String chave;
 
     @Element(name = "unidRat", required = false)

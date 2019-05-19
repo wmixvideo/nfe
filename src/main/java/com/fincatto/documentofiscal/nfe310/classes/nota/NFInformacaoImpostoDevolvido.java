@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 
 public class NFInformacaoImpostoDevolvido extends DFBase {
     private static final long serialVersionUID = 4422209113713178240L;
-
-    @Element(name = "vIPIDevol", required = true)
+    
+    @Element(name = "vIPIDevol")
     private String valorIPIDevolvido;
 
     public String getValorIPIDevolvido() {

@@ -14,25 +14,25 @@ import java.util.List;
 public class NFLoteConsultaRetorno extends DFBase {
     private static final long serialVersionUID = -4164491132370082153L;
     
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao")
     private String versao;
     
-    @Element(name = "tpAmb", required = true)
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
     
-    @Element(name = "verAplic", required = true)
+    @Element(name = "verAplic")
     private String versaoAplicacao;
     
     @Element(name = "nRec", required = false)
     private String numeroRecibo;
     
-    @Element(name = "cStat", required = true)
+    @Element(name = "cStat")
     private String status;
     
-    @Element(name = "dhRecbto", required = true)
+    @Element(name = "dhRecbto")
     private ZonedDateTime dataHoraRecebimento;
     
-    @Element(name = "xMotivo", required = true)
+    @Element(name = "xMotivo")
     private String motivo;
     
     @Element(name = "cUF", required = false)

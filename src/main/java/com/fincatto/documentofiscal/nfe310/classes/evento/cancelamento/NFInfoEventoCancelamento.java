@@ -14,14 +14,14 @@ import java.time.ZonedDateTime;
 
 public class NFInfoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 1491402822907097339L;
-
-    @Attribute(name = "Id", required = true)
+    
+    @Attribute(name = "Id")
     private String id;
-
-    @Element(name = "cOrgao", required = true)
+    
+    @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
     @Element(name = "CNPJ", required = false)
@@ -29,23 +29,23 @@ public class NFInfoEventoCancelamento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
-
-    @Element(name = "dhEvento", required = true)
+    
+    @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-
-    @Element(name = "tpEvento", required = true)
+    
+    @Element(name = "tpEvento")
     private String codigoEvento;
-
-    @Element(name = "nSeqEvento", required = true)
+    
+    @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
-
-    @Element(name = "verEvento", required = true)
+    
+    @Element(name = "verEvento")
     private String versaoEvento;
-
-    @Element(name = "detEvento", required = true)
+    
+    @Element(name = "detEvento")
     private NFInfoCancelamento cancelamento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {

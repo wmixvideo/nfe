@@ -9,17 +9,17 @@ import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoPISQuantidade extends DFBase {
     private static final long serialVersionUID = 8768801743177271906L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
-
-    @Element(name = "qBCProd", required = true)
+    
+    @Element(name = "qBCProd")
     private String quantidadeVendida;
-
-    @Element(name = "vAliqProd", required = true)
+    
+    @Element(name = "vAliqProd")
     private String valorAliquota;
-
-    @Element(name = "vPIS", required = true)
+    
+    @Element(name = "vPIS")
     private String valorTributo;
 
     public NFNotaInfoItemImpostoPISQuantidade() {
