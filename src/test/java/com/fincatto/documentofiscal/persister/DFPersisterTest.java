@@ -37,17 +37,28 @@ public class DFPersisterTest {
     }
     
     @Test
+    public void deveInstanciarObjetosDFPersisterUsandoConstrutoresCorretamente()  {
+    	
+    	 // Persister instanciado com construtor default new DFPersister() - usa strict=true
+    	DFPersister dfPersisterDefault = (DFPersister) this.persister;
+    	DFPersister dfPersisterModoEstrito = new DFPersister(true);
+    	DFPersister dfPersisterModeEstritoDesativado = new DFPersister(false);
+    	
+    	Assert.assertTrue(dfPersisterDefault.isStrict());
+    	Assert.assertTrue(dfPersisterModoEstrito.isStrict());
+    	Assert.assertFalse(dfPersisterModeEstritoDesativado.isStrict());
+    }
+    
+    @Test
     public void deveParsearXMLDaNota400ModoEstritoComTagAdicionasDeFuturasNormasTecnicas() throws Exception {
     	
-        String xmlNota = com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake.getNFNota().toString();
-        
-        xmlNota = mesclaSimulaPropriedadeNovaAdicionadaNormaTecnicaNova(xmlNota);
-        
-        this.persister = new DFPersister(false);
-        
-        final NFNota object = this.persister.read(NFNota.class, xmlNota);
-        
-        Assert.assertNotNull(object);
+    	String xmlNota = com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake.getNFNota().toString();
+    	
+    	xmlNota = mesclaSimulaPropriedadeNovaAdicionadaNormaTecnicaNova(xmlNota);
+    	
+    	final NFNota object = new DFPersister(false).read(NFNota.class, xmlNota);
+    	
+    	Assert.assertNotNull(object);
     }
     
     @Test(expected = ElementException.class)
@@ -57,8 +68,7 @@ public class DFPersisterTest {
         
         xmlNota = mesclaSimulaPropriedadeNovaAdicionadaNormaTecnicaNova(xmlNota);
         
-        this.persister = new DFPersister(true);
-        
+        // Persister instanciado com construtor default - strict=true
         this.persister.read(NFNota.class, xmlNota);
         
     }
