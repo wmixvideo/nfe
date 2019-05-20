@@ -46,6 +46,15 @@ public class NFNotaInfoItemImposto extends DFBase {
         if (this.issqn != null) {
             throw new IllegalStateException("ICMS, IPI e II sao mutuamente exclusivo com ISSQN");
         }
+        try {
+            StringValidador.validaPreenchimentoDeMargemValorAgregado(icms);
+        }catch (IllegalAccessException e) {
+            DFLog.getLogger(NFNotaInfoItemImposto.class)
+                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
+        } catch (InvocationTargetException e) {
+            DFLog.getLogger(NFNotaInfoItemImposto.class)
+                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
+        }
         this.icms = icms;
     }
 
@@ -133,18 +142,5 @@ public class NFNotaInfoItemImposto extends DFBase {
     public void setIcmsUfDestino(final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
     }
-    
-    @Override
-    public String toString() {
-        try {
-            StringValidador.validaPreenchimentoDeMargemValorAgregado(this.getIcms());
-        }catch (IllegalAccessException e) {
-            DFLog.getLogger(NFNotaInfoItemImposto.class)
-                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
-        } catch (InvocationTargetException e) {
-            DFLog.getLogger(NFNotaInfoItemImposto.class)
-                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
-        }
-        return super.toString();
-    }
+
 }
