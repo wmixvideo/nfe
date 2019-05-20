@@ -37,7 +37,7 @@ public class DFPersisterTest {
     }
     
     @Test
-    public void deveInstanciarObjetosDFPersisterUsandoConstrutoresCorretamente()  {
+    public void deveInstanciarObjetosDFPersisterCorretamenteUsandoConstrutores()  {
     	
     	 // Persister instanciado com construtor default new DFPersister() - usa strict=true
     	DFPersister dfPersisterDefault = (DFPersister) this.persister;
