@@ -120,8 +120,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     public void setNumeroNota(final String numeroNota) {
         StringValidador.tamanho9(numeroNota, "Numero da Nota");
-        if(StringUtils.isNotBlank(codigoRandomico)
-                && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
+        if(StringUtils.isNotBlank(codigoRandomico) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
             throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
         }
         this.numeroNota = numeroNota;
