@@ -24,7 +24,7 @@ public class DFPersister extends Persister {
     
     public DFPersister(final boolean strict) {
         super(new AnnotationStrategy(), new DFRegistryMatcher(), new Format(0));
-        this.strict = true;
+        this.strict = strict;
     }
     
     @Override
@@ -76,4 +76,9 @@ public class DFPersister extends Persister {
     public <T> T read(T value, InputNode source) throws Exception {
         return super.read(value, source, this.strict);
     }
+
+	public boolean isStrict() {
+		return strict;
+	}
+    
 }
