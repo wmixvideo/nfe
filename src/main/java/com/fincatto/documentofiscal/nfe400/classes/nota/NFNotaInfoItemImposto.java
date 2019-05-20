@@ -1,9 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 public class NFNotaInfoItemImposto extends DFBase {
@@ -133,7 +136,15 @@ public class NFNotaInfoItemImposto extends DFBase {
     
     @Override
     public String toString() {
-        //StringValidador.validaPreenchimentoDeMargemValorAgregado(this.getIcms());
+        try {
+            StringValidador.validaPreenchimentoDeMargemValorAgregado(this.getIcms());
+        }catch (IllegalAccessException e) {
+            DFLog.getLogger(NFNotaInfoItemImposto.class)
+                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
+        } catch (InvocationTargetException e) {
+            DFLog.getLogger(NFNotaInfoItemImposto.class)
+                    .error("Erro ao validar preenchimento de Margem de Valor agregado", e);
+        }
         return super.toString();
     }
 }
