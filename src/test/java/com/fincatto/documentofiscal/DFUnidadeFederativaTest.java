@@ -93,8 +93,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("PI", DFUnidadeFederativa.PI.getCodigo());
         Assert.assertEquals("22", DFUnidadeFederativa.PI.getCodigoIbge());
-        Assert.assertEquals("http://webas.sefaz.pi.gov.br/nfceweb-homologacao/consultarNFCe.jsf", DFUnidadeFederativa.PI.getQrCodeHomologacao());
-        Assert.assertEquals("http://webas.sefaz.pi.gov.br/nfceweb/consultarNFCe.jsf", DFUnidadeFederativa.PI.getQrCodeProducao());
+        Assert.assertEquals("http://www.sefaz.pi.gov.br/nfce/qrcode", DFUnidadeFederativa.PI.getQrCodeHomologacao());
+        Assert.assertEquals("http://www.sefaz.pi.gov.br/nfce/qrcode", DFUnidadeFederativa.PI.getQrCodeProducao());
 
         Assert.assertEquals("PR", DFUnidadeFederativa.PR.getCodigo());
         Assert.assertEquals("41", DFUnidadeFederativa.PR.getCodigoIbge());
