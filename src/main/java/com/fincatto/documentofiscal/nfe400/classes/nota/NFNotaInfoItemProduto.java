@@ -205,7 +205,7 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.valorOutrasDespesasAcessorias = BigDecimalValidador.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
     }
 
-    public void setCampoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
+    public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
         this.compoeValorNota = compoeValorNota;
     }
 
