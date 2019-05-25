@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
@@ -13,6 +12,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCan
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -38,7 +38,7 @@ class WSCancelamento implements DFLog {
     
     NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
-        final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
+        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }

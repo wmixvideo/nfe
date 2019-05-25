@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioVeiculoCondutor;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.*;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcaoevento.MDFeRecepcaoEventoStub;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
@@ -36,7 +36,7 @@ class WSIncluirCondutor implements DFLog {
     
     MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
         final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, nomeCondutor, cpfCondutor).toString();
-        final String xmlAssinado = new AssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
+        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
         final OMElement omElementResult = this.efetuaIncluirCondutor(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(MDFeRetorno.class, omElementResult.toString());
     }

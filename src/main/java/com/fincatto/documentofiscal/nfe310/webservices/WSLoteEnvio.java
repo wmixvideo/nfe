@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.nfe310.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
@@ -17,6 +16,7 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.validadores.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
@@ -60,7 +60,7 @@ class WSLoteEnvio implements DFLog {
             nota.getInfo().setIdentificador(geraChave.getChaveAcesso());
         }
         // assina o lote
-        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(lote.toString());
+        final String documentoAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(lote.toString());
         //final NFLoteEnvio loteAssinado = new DFParser().loteParaObjeto(documentoAssinado);
         final NFLoteEnvio loteAssinado = this.config.getPersister().read(NFLoteEnvio.class, documentoAssinado);
         

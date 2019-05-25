@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -12,6 +11,7 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.validadores.XMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
@@ -33,7 +33,7 @@ class WSRecepcaoLote implements DFLog {
     
     public CTeEnvioLoteRetornoDados envioRecepcao(CTeEnvioLote cteRecepcaoLote) throws Exception {
         //assina o lote
-        final String documentoAssinado = new AssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString(), "infCte");
+        final String documentoAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cteRecepcaoLote.toString(), "infCte");
         final CTeEnvioLote loteAssinado = this.config.getPersister().read(CTeEnvioLote.class, documentoAssinado);
         
         //comunica o lote
