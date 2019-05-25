@@ -27,29 +27,11 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
   <version>3.0.5</version>
 </dependency>
 ```
-### Fazendo o clone do projeto (última versão em desenvolvimento)
-1. Faça o clone do projeto com o comando:
+### Diretamente pelo código fonte (última versão em desenvolvimento)
  ```console
     git clone https://github.com/wmixvideo/nfe
+    mvn clean install
   ```
-2. Faça uma instalação local do projeto:
-- Rodando os testes:
-  ```console
-       mvn clean install -Dgpg.skip=true
-  ```
-- Sem rodar os testes:
-  ```console
-       mvn clean install -DskipTests=true -Dgpg.skip=true
-  ```
-3. Inclua no POM de seu projeto a dependência gerada pelo comando acima:
-```xml
-<dependency>
-  <groupId>com.github.wmixvideo</groupId>
-  <artifactId>nfe</artifactId>
-  <version>3.0.5</version>
-</dependency>
-```
- - Onde ```<version>3.0.5</version>``` é a versão atual do projeto definido no arquivo [pom.xml](https://github.com/wmixvideo/nfe/blob/master/pom.xml)
 
 ## Como usar
 Basicamente você precisará de uma implementação de **NFeConfig** (exemplificado abaixo), com informações de tipo de emissão, certificados
