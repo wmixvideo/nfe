@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFModalidadeTransporte;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFProcessoEmissao;
@@ -20,6 +21,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,7 +68,8 @@ public class FabricaDeObjetosFakeMDFe {
 
     public static MDFEnvioLoteRetornoInfoRecebimento getMDFEnvioLoteRetornoInfoRecebimento() {
         final MDFEnvioLoteRetornoInfoRecebimento recebimentoInfo = new MDFEnvioLoteRetornoInfoRecebimento();
-        recebimentoInfo.setDataRecibo(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2018-10-06 19:18:35")));
+        recebimentoInfo.setDataRecibo(ZonedDateTime.of(2018, 10, 06, 19, 18, 35, 0, DFConfig.TIMEZONE_SP.toZoneId()));
+        //recebimentoInfo.setDataRecibo(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2018-10-06 19:18:35")));
         recebimentoInfo.setNumeroRecibo("845e40545");
         recebimentoInfo.setTempoMedio(BigInteger.valueOf(12345689));
         return recebimentoInfo;
@@ -103,7 +106,8 @@ public class FabricaDeObjetosFakeMDFe {
         infoIdentificacao.setCodigoNumerico("12345689");
         infoIdentificacao.setDigitoVerificador(1);
         infoIdentificacao.setModalidadeFrete(MDFModalidadeTransporte.RODOVIARIO);
-        infoIdentificacao.setDataEmissao(LocalDateTime.of(2019, 05, 28, 11, 07, 55));
+        infoIdentificacao.setDataEmissao(ZonedDateTime.of(2019, 05, 28, 11, 07, 55, 0, DFConfig.TIMEZONE_SP.toZoneId()));
+        //infoIdentificacao.setDataEmissao(LocalDateTime.of(2019, 05, 28, 11, 07, 55));
         infoIdentificacao.setTipoEmissao(MDFTipoEmissao.NORMAL);
         infoIdentificacao.setProcessoEmissao(MDFProcessoEmissao.EMISSOR_CONTRIBUINTE);
         infoIdentificacao.setVersaoProcessoEmissao("3.0");
@@ -111,7 +115,7 @@ public class FabricaDeObjetosFakeMDFe {
         infoIdentificacao.setUnidadeFederativaFim(DFUnidadeFederativa.ES);
         infoIdentificacao.setMunicipioCarregamentos(Collections.singletonList(FabricaDeObjetosFakeMDFe.getMunicipioCarregamentos()));
         infoIdentificacao.setIdentificacaoUfPercursos(null);
-        infoIdentificacao.setDataHoraDoInicioViagem(LocalDateTime.of(2019, 05, 28, 11, 07, 55));
+        infoIdentificacao.setDataHoraDoInicioViagem(ZonedDateTime.of(2019, 05, 28, 11, 07, 55, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         infoIdentificacao.setIndicadorCanalVerde(null);
         return infoIdentificacao;
     }

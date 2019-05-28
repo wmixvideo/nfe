@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import org.simpleframework.xml.Element;
 
@@ -32,7 +32,7 @@ public class MDFeEnviaEventoRegistroPassagemAutomaticaInfPass extends DFBase {
     private String tipoSentido;
 
     @Element(name = "dhPass")
-    private LocalDateTime dataHoraPassagem;
+    private ZonedDateTime dataHoraPassagem;
 
     @Element(name = "latitude")
     private String latitude;
@@ -91,11 +91,11 @@ public class MDFeEnviaEventoRegistroPassagemAutomaticaInfPass extends DFBase {
         this.tipoSentido = tipoSentido;
     }
 
-    public LocalDateTime getDataHoraPassagem() {
+    public ZonedDateTime getDataHoraPassagem() {
         return this.dataHoraPassagem;
     }
 
-    public void setDataHoraPassagem(final LocalDateTime dataHoraPassagem) {
+    public void setDataHoraPassagem(final ZonedDateTime dataHoraPassagem) {
         this.dataHoraPassagem = dataHoraPassagem;
     }
 
