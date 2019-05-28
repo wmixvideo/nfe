@@ -5,7 +5,7 @@
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
     <version>3.0.6-SNAPSHOT</version>
-    <name>nfe</name>
+    <name>wmixvideo-nfe-3.0.5</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
 

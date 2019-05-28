@@ -2,10 +2,17 @@ package com.fincatto.documentofiscal.mdfe3;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFModalidadeTransporte;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFProcessoEmissao;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmitente;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoResponsavelSeguro;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoTranportador;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoInfoRecebimento;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoIdentificacao;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoIdentificacaoMunicipioCarregamento;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguro;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroInfo;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoSeguroResponsavel;
@@ -15,6 +22,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FabricaDeObjetosFakeMDFe {
@@ -82,5 +90,37 @@ public class FabricaDeObjetosFakeMDFe {
         loteEnvio.setVersao("3.00");
         loteEnvio.setMdfe(getMDFe1());
         return loteEnvio;
+    }
+
+    public static MDFInfoIdentificacao getMDFInfoIdentificacao() {
+        final MDFInfoIdentificacao infoIdentificacao = new MDFInfoIdentificacao();
+        infoIdentificacao.setCodigoUF(DFUnidadeFederativa.ES);
+        infoIdentificacao.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        infoIdentificacao.setTipoEmitente(MDFTipoEmitente.TRANSPORTADOR_CARGA_PROPRIA);
+        infoIdentificacao.setTipoTranportador(MDFTipoTranportador.TAC);
+        infoIdentificacao.setSerie(1);
+        infoIdentificacao.setNumero(123654);
+        infoIdentificacao.setCodigoNumerico("12345689");
+        infoIdentificacao.setDigitoVerificador(1);
+        infoIdentificacao.setModalidadeFrete(MDFModalidadeTransporte.RODOVIARIO);
+        infoIdentificacao.setDataEmissao(LocalDateTime.of(2019, 05, 28, 11, 07, 55));
+        infoIdentificacao.setTipoEmissao(MDFTipoEmissao.NORMAL);
+        infoIdentificacao.setProcessoEmissao(MDFProcessoEmissao.EMISSOR_CONTRIBUINTE);
+        infoIdentificacao.setVersaoProcessoEmissao("3.0");
+        infoIdentificacao.setUnidadeFederativaInicio(DFUnidadeFederativa.RJ);
+        infoIdentificacao.setUnidadeFederativaFim(DFUnidadeFederativa.ES);
+        infoIdentificacao.setMunicipioCarregamentos(Collections.singletonList(FabricaDeObjetosFakeMDFe.getMunicipioCarregamentos()));
+        infoIdentificacao.setIdentificacaoUfPercursos(null);
+        infoIdentificacao.setDataHoraDoInicioViagem(LocalDateTime.of(2019, 05, 28, 11, 07, 55));
+        infoIdentificacao.setIndicadorCanalVerde(null);
+        return infoIdentificacao;
+    }
+
+    public static MDFInfoIdentificacaoMunicipioCarregamento getMunicipioCarregamentos() {
+        MDFInfoIdentificacaoMunicipioCarregamento s = new MDFInfoIdentificacaoMunicipioCarregamento();
+        s.setCodigoMunicipioCarregamento("3304557");
+        s.setNomeMunicipioCarregamento("Rio de Janeiro");
+
+        return s;
     }
 }
