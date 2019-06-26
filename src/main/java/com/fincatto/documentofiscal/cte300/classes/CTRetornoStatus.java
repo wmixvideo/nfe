@@ -421,6 +421,11 @@ public enum CTRetornoStatus {
     CODIGO_782(782, "Rejei\u00e7\u00e3o: Chave de acesso de CT-e complementado inválida (número CT = 0)"),
     CODIGO_783(783, "Rejei\u00e7\u00e3o: Chave de acesso de CT-e complementado inválida (Tipo de emissão inválido)"),
     CODIGO_784(784, "Rejei\u00e7\u00e3o: Chave de acesso de CT-e complementado inválida (UF inválida) "),
+    CODIGO_836(836, "Rejei\u00E7\u00E3o: CNPJ do desenvolvedor do sistema inv\u00E1lido (zerado ou d\u00EDgito inv\u00E1lido)"),
+    CODIGO_837(837, "Rejei\u00E7\u00E3o: Data e hora da viagem deve ser informada para tipo de fretamento eventual"),
+    CODIGO_838(838, "Rejei\u00E7\u00E3o: Data e hora da viagem deve ser superior a data de emiss\u00E3o do CT-e"),
+    CODIGO_839(839, "Rejei\u00E7\u00E3o: N\u00FAmero do Registro Estadual \u00E9 obrigat\u00F3rio para transporte de pessoas rodovi\u00E1rio nas opera\u00E7\u00F5es internas."),
+    CODIGO_840(840, "Rejei\u00E7\u00E3o: Termo de Autoriza\u00E7\u00E3o de Fretamento \u00E9 obrigat\u00F3rio para transporte de pessoas rodovi\u00E1rio interestadual"),
     CODIGO_998(998, "Rejei\u00e7\u00e3o: CT-e Multimodal e Serviço Vinculado a Multimodal não estão liberados no ambiente de produção. *** Regra provisória"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro não catalogado (informar a mensagem de erro capturado no tratamento da exceção)");
 
