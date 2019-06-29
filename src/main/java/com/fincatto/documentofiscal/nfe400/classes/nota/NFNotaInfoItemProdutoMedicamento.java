@@ -16,7 +16,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     @Element(name = "vPMC")
     private String precoMaximoConsumidor;
     
-    @Element(name = "xMotivoIsencao")
+    @Element(name = "xMotivoIsencao", required = false)
     private String motivoIsencao;
     
     public NFNotaInfoItemProdutoMedicamento() {
