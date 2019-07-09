@@ -16,10 +16,13 @@ import java.time.ZonedDateTime;
 public class NFNotaResumo extends DFBase {
     private static final long serialVersionUID = 6979476565566044622L;
 
-    @Attribute(name = "chNFe")
+    @Attribute(name = "versao")
+    private String versao;
+
+    @Element(name = "chNFe")
     private String chave;
 
-    @Attribute(name = "CNPJ")
+    @Element(name = "CNPJ")
     private String CNPJ;
 
     @Element(name = "xNome")
@@ -49,8 +52,13 @@ public class NFNotaResumo extends DFBase {
     @Element(name = "cSitNFe")
     private NFSituacao situacao;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public String getVersao() {
+        return versao;
+    }
+
+    public NFNotaResumo setVersao(String versao) {
+        this.versao = versao;
+        return this;
     }
 
     public String getChave() {
