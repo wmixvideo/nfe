@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-import java.util.UUID;
 
 public class MDFGeraChave {
 
@@ -17,7 +16,7 @@ public class MDFGeraChave {
     }
 
     public String geraCodigoRandomico() {
-        final Random random = new Random(UUID.randomUUID().timestamp());
+        final Random random = new Random(this.mdfe.getInfo().getIdentificacao().getDataEmissao().toInstant().toEpochMilli());
         return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8, "0");
     }
 
