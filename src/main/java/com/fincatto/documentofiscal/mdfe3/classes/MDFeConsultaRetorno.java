@@ -10,7 +10,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * @Author Eldevan Nery Junior on 26/05/17.
@@ -42,7 +42,7 @@ public class MDFeConsultaRetorno extends DFBase {
     private DFUnidadeFederativa uf;
     
     @Element(name = "dhRecbto")
-    private LocalDateTime dataRecebimento;
+    private ZonedDateTime dataRecebimento;
 
     @Element(name = "infRec", required = false)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
@@ -77,7 +77,7 @@ public class MDFeConsultaRetorno extends DFBase {
         this.uf = uf;
     }
 
-    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
+    public void setDataRecebimento(final ZonedDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -113,7 +113,7 @@ public class MDFeConsultaRetorno extends DFBase {
         return this.uf;
     }
 
-    public LocalDateTime getDataRecebimento() {
+    public ZonedDateTime getDataRecebimento() {
         return this.dataRecebimento;
     }
 
