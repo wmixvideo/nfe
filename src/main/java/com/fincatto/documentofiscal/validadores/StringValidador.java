@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -771,8 +772,8 @@ public abstract class StringValidador {
      * Validacao conforme nota tecnica 2019.001 Versao 1.00 – Abril de 2019
      */
     public static void validaCodigoRandomico(final String string, final String info) {
-        String[] codigosInvalidos = new String[]{"00000000", "11111111", "22222222", "33333333", "44444444", "55555555", "66666666", "77777777", "88888888", "99999999", "12345678", "23456789", "34567890", "45678901", "56789012", "67890123", "78901234", "89012345", "90123456", "01234567"};
-        if (StringUtils.containsAny(string, codigosInvalidos)) {
+        List<String> codigosInvalidos = Arrays.asList("00000000", "11111111", "22222222", "33333333", "44444444", "55555555", "66666666", "77777777", "88888888", "99999999", "12345678", "23456789", "34567890", "45678901", "56789012", "67890123", "78901234", "89012345", "90123456", "01234567");
+        if (codigosInvalidos.contains(string)) {
             throw new IllegalStateException(String.format("%s \"%s\" inválido", info, string));
         }
     }
