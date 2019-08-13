@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte300;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.*;
@@ -8,10 +9,8 @@ import com.fincatto.documentofiscal.cte300.classes.nota.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Calendar;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 
 public class FabricaDeObjetosFake {
@@ -289,7 +288,7 @@ public class FabricaDeObjetosFake {
         identificacao.setModelo(DFModelo.CTE);
         identificacao.setSerie(1);
         identificacao.setNumero(123);
-        identificacao.setDataEmissao(FabricaDeObjetosFake.getLocalDateTime());
+        identificacao.setDataEmissao(ZonedDateTime.of(2018, 1, 22, 10, 10, 10, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setTipoImpressao(CTTipoImpressao.RETRATO);
         identificacao.setTipoEmissao(CTTipoEmissao.EMISSAO_NORMAL);
         identificacao.setDigitoVerificador(4);
@@ -365,15 +364,9 @@ public class FabricaDeObjetosFake {
         endereco.setTelefone("4832000000");
         return endereco;
     }
-
-    public static LocalDateTime getLocalDateTime() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, Calendar.JANUARY, 22, 10, 10, 10);
-        return LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-    }
-
+    
     public static LocalDate getLocalDate() {
-        return LocalDate.of(2018, 1 , 22);
+        return LocalDate.of(2018, 1, 22);
     }
 
     public static LocalTime getLocalTime() {

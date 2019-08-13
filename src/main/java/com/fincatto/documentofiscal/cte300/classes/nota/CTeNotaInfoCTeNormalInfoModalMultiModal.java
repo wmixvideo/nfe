@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Namespace;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 /**
  * @author Caio
@@ -17,11 +16,11 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalMultiModal extends DFBase {
     private static final long serialVersionUID = 2648942154476837763L;
-
-    @Element(name = "COTM", required = true)
+    
+    @Element(name = "COTM")
     private String numeroCertificado;
-
-    @Element(name = "indNegociavel", required = true)
+    
+    @Element(name = "indNegociavel")
     private CTIndicadoNegociavel indicadorNegociavel;
 
     @Element(name = "seg", required = false)

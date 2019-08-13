@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
 
 /**
  * @author Caio
@@ -40,8 +39,8 @@ public class CTeNotaInfoCTeNormalInfoModal extends DFBase {
 
     @Element(name = "multimodal", required = false)
     private CTeNotaInfoCTeNormalInfoModalMultiModal multiModal;
-
-    @Attribute(name = "versaoModal", required = true)
+    
+    @Attribute(name = "versaoModal")
     private String versao;
 
     public CTeNotaInfoCTeNormalInfoModal() {

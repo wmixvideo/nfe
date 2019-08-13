@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -19,17 +18,17 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
     private static final long serialVersionUID = 2536989879361188288L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
-
-    @Element(name = "vBCSTRet", required = true)
+    
+    @Element(name = "vBCSTRet")
     private String baseCalculoICMSSTRetido;
-
-    @Element(name = "vICMSSTRet", required = true)
+    
+    @Element(name = "vICMSSTRet")
     private String valorICMSSTRetido;
-
-    @Element(name = "pICMSSTRet", required = true)
+    
+    @Element(name = "pICMSSTRet")
     private String aliquotaICMSSTRetido;
 
     @Element(name = "vCred", required = false)
@@ -64,7 +63,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
      * Valor do frete sobre o qual será calculado o ICMS a ser substituído na Prestação.
      */
     public void setBaseCalculoICMSSTRetido(final BigDecimal baseCalculoICMSSTRetido) {
-        this.baseCalculoICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMSSTRetido, "Valor da BC do ICMS ST retido");
+        this.baseCalculoICMSSTRetido = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSSTRetido, "Valor da BC do ICMS ST retido");
     }
 
     public String getValorICMSSTRetido() {
@@ -76,7 +75,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
      * Resultado da multiplicação do “vBCSTRet” x “pICMSSTRet” – que será valor do ICMS a ser retido pelo Substituto. Podendo o valor do ICMS a ser retido efetivamente, sofrer ajustes conforme a opção tributaria do transportador substituído.
      */
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
-        this.valorICMSSTRetido = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor do ICMS ST retido");
+        this.valorICMSSTRetido = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor do ICMS ST retido");
     }
 
     public String getAliquotaICMSSTRetido() {
@@ -88,7 +87,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
      * Percentual de Alíquota incidente na prestação de serviço de transporte.
      */
     public void setAliquotaICMSSTRetido(final BigDecimal aliquotaICMSSTRetido) {
-        this.aliquotaICMSSTRetido = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaICMSSTRetido, "Alíquota do ICMS");
+        this.aliquotaICMSSTRetido = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMSSTRetido, "Alíquota do ICMS");
     }
 
     public String getValorCredito() {
@@ -100,6 +99,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS60 extends DFBase {
      * Preencher somente quando o transportador substituído, for optante pelo crédito outorgado previsto no Convênio 106/96 e corresponde ao percentual de 20% do valor do ICMS ST retido.
      */
     public void setValorCredito(final BigDecimal valorCredito) {
-        this.valorCredito = BigDecimalParser.tamanho15Com2CasasDecimais(valorCredito, "Valor do Crédito outorgado/Presumido");
+        this.valorCredito = BigDecimalValidador.tamanho15Com2CasasDecimais(valorCredito, "Valor do Crédito outorgado/Presumido");
     }
 }

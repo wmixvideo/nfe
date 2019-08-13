@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -15,11 +14,11 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Root(name = "ObsFisco")
 public class CTeNotaInfoDadosComplementaresObservacaoFisco extends DFBase {
     private static final long serialVersionUID = -7567824501077075601L;
-
-    @Attribute(name = "xCampo", required = true)
+    
+    @Attribute(name = "xCampo")
     private String campo;
-
-    @Element(name = "xTexto", required = true)
+    
+    @Element(name = "xTexto")
     private String texto;
 
     public CTeNotaInfoDadosComplementaresObservacaoFisco() {

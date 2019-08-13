@@ -55,7 +55,7 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
             NFeConsultaProtocolo4Stub.counter = 0;
         }
         NFeConsultaProtocolo4Stub.counter = NFeConsultaProtocolo4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeConsultaProtocolo4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeConsultaProtocolo4Stub.counter;
     }
 
     private void populateAxisService() {

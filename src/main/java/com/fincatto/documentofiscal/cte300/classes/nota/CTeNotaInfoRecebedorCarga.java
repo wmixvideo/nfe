@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -25,14 +24,14 @@ public class CTeNotaInfoRecebedorCarga extends DFBase {
 
     @Element(name = "IE", required = false)
     private String inscricaoEstadual;
-
-    @Element(name = "xNome", required = true)
+    
+    @Element(name = "xNome")
     private String razaoSocial;
 
     @Element(name = "fone", required = false)
     private String telefone;
-
-    @Element(name = "enderReceb", required = true)
+    
+    @Element(name = "enderReceb")
     private CTeNotaEndereco endereco;
 
     @Element(name = "email", required = false)

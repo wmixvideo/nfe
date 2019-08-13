@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFEndereco;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoDestinatario extends DFBase {
     private static final long serialVersionUID = 5245421887189198219L;
@@ -24,8 +23,8 @@ public class NFNotaInfoDestinatario extends DFBase {
 
     @Element(name = "enderDest", required = false)
     private NFEndereco endereco;
-
-    @Element(name = "indIEDest", required = true)
+    
+    @Element(name = "indIEDest")
     private NFIndicadorIEDestinatario indicadorIEDestinatario;
 
     @Element(name = "IE", required = false)

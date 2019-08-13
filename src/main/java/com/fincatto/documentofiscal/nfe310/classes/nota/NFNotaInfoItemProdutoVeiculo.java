@@ -1,88 +1,87 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.*;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     private static final long serialVersionUID = -8723829235875523827L;
-
-    @Element(name = "tpOp", required = true)
+    
+    @Element(name = "tpOp")
     private NFNotaInfoItemProdutoVeiculoTipoOperacao tipoOperacao;
-
-    @Element(name = "chassi", required = true)
+    
+    @Element(name = "chassi")
     private String chassi;
-
-    @Element(name = "cCor", required = true)
+    
+    @Element(name = "cCor")
     private String codigoCor;
-
-    @Element(name = "xCor", required = true)
+    
+    @Element(name = "xCor")
     private String descricaoCor;
-
-    @Element(name = "pot", required = true)
+    
+    @Element(name = "pot")
     private String potencia;
-
-    @Element(name = "cilin", required = true)
+    
+    @Element(name = "cilin")
     private String cilindrada;
-
-    @Element(name = "pesoL", required = true)
+    
+    @Element(name = "pesoL")
     private String pesoLiquido;
-
-    @Element(name = "pesoB", required = true)
+    
+    @Element(name = "pesoB")
     private String pesoBruto;
-
-    @Element(name = "nSerie", required = true)
+    
+    @Element(name = "nSerie")
     private String numeroSerie;
-
-    @Element(name = "tpComb", required = true)
+    
+    @Element(name = "tpComb")
     private NFNotaInfoCombustivelTipo tipoCombustivel;
-
-    @Element(name = "nMotor", required = true)
+    
+    @Element(name = "nMotor")
     private String numeroMotor;
-
-    @Element(name = "CMT", required = true)
+    
+    @Element(name = "CMT")
     private String capacidadeMaximaTracao;
-
-    @Element(name = "dist", required = true)
+    
+    @Element(name = "dist")
     private String distanciaEntreEixos;
-
-    @Element(name = "anoMod", required = true)
+    
+    @Element(name = "anoMod")
     private Integer anoModeloFabricacao;
-
-    @Element(name = "anoFab", required = true)
+    
+    @Element(name = "anoFab")
     private Integer anoFabricacao;
-
-    @Element(name = "tpPint", required = true)
+    
+    @Element(name = "tpPint")
     private String tipoPintura;
-
-    @Element(name = "tpVeic", required = true)
+    
+    @Element(name = "tpVeic")
     private NFNotaInfoTipoVeiculo tipoVeiculo;
-
-    @Element(name = "espVeic", required = true)
+    
+    @Element(name = "espVeic")
     private NFNotaInfoEspecieVeiculo especieVeiculo;
-
-    @Element(name = "VIN", required = true)
+    
+    @Element(name = "VIN")
     private NFNotaInfoItemProdutoVeiculoCondicaoChassi condicaoChassi;
-
-    @Element(name = "condVeic", required = true)
+    
+    @Element(name = "condVeic")
     private NFNotaInfoItemProdutoVeiculoCondicao condicao;
-
-    @Element(name = "cMod", required = true)
+    
+    @Element(name = "cMod")
     private String codigoMarcaModelo;
-
-    @Element(name = "cCorDENATRAN", required = true)
+    
+    @Element(name = "cCorDENATRAN")
     private NFNotaInfoVeiculoCor corDENATRAN;
-
-    @Element(name = "lota", required = true)
+    
+    @Element(name = "lota")
     private Integer lotacao;
-
-    @Element(name = "tpRest", required = true)
+    
+    @Element(name = "tpRest")
     private NFNotaInfoItemProdutoVeiculoRestricao restricao;
 
     public void setTipoOperacao(final NFNotaInfoItemProdutoVeiculoTipoOperacao tipoOperacao) {
@@ -115,11 +114,11 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setPesoLiquido(final BigDecimal pesoLiquido) {
-        this.pesoLiquido = BigDecimalParser.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
+        this.pesoLiquido = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
     }
 
     public void setPesoBruto(final BigDecimal pesoBruto) {
-        this.pesoBruto = BigDecimalParser.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
+        this.pesoBruto = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
     }
 
     public void setNumeroSerie(final String numeroSerie) {
@@ -137,7 +136,7 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setCapacidadeMaximaTracao(final BigDecimal capacidadeMaximaTracao) {
-        this.capacidadeMaximaTracao = BigDecimalParser.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
+        this.capacidadeMaximaTracao = BigDecimalValidador.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
     }
 
     public void setDistanciaEntreEixos(final String distanciaEntreEixos) {

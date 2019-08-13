@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -33,6 +33,6 @@ public class NFNotaInfoPagamento extends DFBase {
     }
 
     public void setValorTroco(final BigDecimal valorTroco) {
-        this.valorTroco = BigDecimalParser.tamanho15Com2CasasDecimais(valorTroco, "Valor troco");
+        this.valorTroco = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTroco, "Valor troco");
     }
 }

@@ -1,27 +1,26 @@
 package com.fincatto.documentofiscal.cte200.classes.cte;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 public class CTProtocoloInfo extends DFBase {
     private static final long serialVersionUID = -5981619863877878118L;
 
     @Attribute(name = "Id", required = false)
     private String identificador;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "chCTe", required = true)
+    
+    @Element(name = "chCTe")
     private String chave;
-
-    @Element(name = "dhRecbto", required = true)
+    
+    @Element(name = "dhRecbto")
     private String dataRecebimento;
 
     @Element(name = "nProt", required = false)
@@ -29,11 +28,11 @@ public class CTProtocoloInfo extends DFBase {
 
     @Element(name = "digVal", required = false)
     private String validador;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
 
     public String getIdentificador() {

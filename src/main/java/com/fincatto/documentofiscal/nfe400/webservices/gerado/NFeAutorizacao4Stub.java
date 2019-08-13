@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
 import org.apache.axis2.client.Stub;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamReader;
@@ -35,6 +36,8 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
         this._serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext, this._service);
         this._serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(targetEndpoint));
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
+        this._serviceClient.getOptions().setProperty(HTTPConstants.CHUNKED, false);
+
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
     }
@@ -52,7 +55,7 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
             NFeAutorizacao4Stub.counter = 0;
         }
         NFeAutorizacao4Stub.counter = NFeAutorizacao4Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NFeAutorizacao4Stub.counter;
+        return System.currentTimeMillis() + "_" + NFeAutorizacao4Stub.counter;
     }
 
     private void populateAxisService() {
@@ -88,6 +91,7 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
             final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
             _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/nfe/wsdl/NFeAutorizacao4/nfeAutorizacaoLote");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+            _operationClient.getOptions().setProperty(HTTPConstants.CHUNKED, false);//INSERIDO PARA RESOLVER FALHA COM NFCe em MG
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
             _messageContext = new org.apache.axis2.context.MessageContext();

@@ -7,14 +7,11 @@ public class CTIndicadoNegociavelTransformer implements Transform<CTIndicadoNego
 
 	@Override
     public CTIndicadoNegociavel read(String arg0) {
-		// TODO Auto-generated method stub
 		return CTIndicadoNegociavel.valueOfCodigo(arg0);
 	}
 
 	@Override
     public String write(CTIndicadoNegociavel arg0) {
-		// TODO Auto-generated method stub
 		return arg0.getCodigo();
 	}
-
 }

@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 07/12/17. Informações da seguradora.
@@ -15,11 +14,11 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfoSeguroInfo extends DFBase {
     private static final long serialVersionUID = 4018991399177455416L;
-
-    @Element(name = "xSeg", required = true)
+    
+    @Element(name = "xSeg")
     private String seguradora;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
 
     public MDFInfoSeguroInfo() {

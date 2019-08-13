@@ -1,25 +1,24 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 @Root(name = "inutNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoInutilizacao extends DFBase {
     private static final long serialVersionUID = -2140741787724000417L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "infInut", required = true)
+    
+    @Element(name = "infInut")
     private NFEventoInutilizacaoDados dados;
 
     @Element(name = "Signature", required = false)
@@ -30,7 +29,7 @@ public class NFEnviaEventoInutilizacao extends DFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public NFEventoInutilizacaoDados getDados() {

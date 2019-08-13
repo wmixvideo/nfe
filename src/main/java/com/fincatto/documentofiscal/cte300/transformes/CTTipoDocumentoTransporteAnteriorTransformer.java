@@ -4,17 +4,14 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnte
 import org.simpleframework.xml.transform.Transform;
 
 public class CTTipoDocumentoTransporteAnteriorTransformer implements Transform<CTTipoDocumentoTransporteAnterior> {
-
-	@Override
+    
+    @Override
     public CTTipoDocumentoTransporteAnterior read(String arg0) {
-		// TODO Auto-generated method stub
-		return CTTipoDocumentoTransporteAnterior.valueOfCodigo(arg0);
-	}
-
-	@Override
+        return CTTipoDocumentoTransporteAnterior.valueOfCodigo(arg0);
+    }
+    
+    @Override
     public String write(CTTipoDocumentoTransporteAnterior arg0) {
-		// TODO Auto-generated method stub
-		return arg0.getCodigo();
-	}
-
+        return arg0.getCodigo();
+    }
 }

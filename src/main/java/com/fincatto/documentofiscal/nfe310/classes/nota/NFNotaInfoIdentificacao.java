@@ -5,11 +5,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
-import com.fincatto.documentofiscal.nfe310.classes.NFFormaPagamentoPrazo;
-import com.fincatto.documentofiscal.nfe310.classes.NFProcessoEmissor;
-import com.fincatto.documentofiscal.nfe310.classes.NFTipo;
-import com.fincatto.documentofiscal.nfe310.classes.NFTipoImpressao;
+import com.fincatto.documentofiscal.nfe310.classes.*;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
@@ -21,68 +17,68 @@ import java.util.List;
 
 public class NFNotaInfoIdentificacao extends DFBase {
     private static final long serialVersionUID = -2568396066960865875L;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "cNF", required = true)
+    
+    @Element(name = "cNF")
     private String codigoRandomico;
-
-    @Element(name = "natOp", required = true)
+    
+    @Element(name = "natOp")
     private String naturezaOperacao;
-
-    @Element(name = "indPag", required = true)
+    
+    @Element(name = "indPag")
     private NFFormaPagamentoPrazo formaPagamento;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private DFModelo modelo;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
-
-    @Element(name = "nNF", required = true)
+    
+    @Element(name = "nNF")
     private String numeroNota;
-
-    @Element(name = "dhEmi", required = true)
+    
+    @Element(name = "dhEmi")
     private ZonedDateTime dataHoraEmissao;
 
     @Element(name = "dhSaiEnt", required = false)
     private ZonedDateTime dataHoraSaidaOuEntrada;
-
-    @Element(name = "tpNF", required = true)
+    
+    @Element(name = "tpNF")
     private NFTipo tipo;
-
-    @Element(name = "idDest", required = true)
+    
+    @Element(name = "idDest")
     private NFIdentificadorLocalDestinoOperacao identificadorLocalDestinoOperacao;
-
-    @Element(name = "cMunFG", required = true)
+    
+    @Element(name = "cMunFG")
     private String codigoMunicipio;
-
-    @Element(name = "tpImp", required = true)
+    
+    @Element(name = "tpImp")
     private NFTipoImpressao tipoImpressao;
-
-    @Element(name = "tpEmis", required = true)
+    
+    @Element(name = "tpEmis")
     private NFTipoEmissao tipoEmissao;
-
-    @Element(name = "cDV", required = true)
+    
+    @Element(name = "cDV")
     private Integer digitoVerificador;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "finNFe", required = true)
+    
+    @Element(name = "finNFe")
     private NFFinalidade finalidade;
-
-    @Element(name = "indFinal", required = true)
+    
+    @Element(name = "indFinal")
     private NFOperacaoConsumidorFinal operacaoConsumidorFinal;
-
-    @Element(name = "indPres", required = true)
+    
+    @Element(name = "indPres")
     private NFIndicadorPresencaComprador indicadorPresencaComprador;
-
-    @Element(name = "procEmi", required = true)
+    
+    @Element(name = "procEmi")
     private NFProcessoEmissor programaEmissor;
-
-    @Element(name = "verProc", required = true)
+    
+    @Element(name = "verProc")
     private String versaoEmissor;
 
     @Element(name = "dhCont", required = false)

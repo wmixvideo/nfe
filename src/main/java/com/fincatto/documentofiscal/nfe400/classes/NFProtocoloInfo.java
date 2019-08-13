@@ -13,17 +13,17 @@ public class NFProtocoloInfo extends DFBase {
 
     @Attribute(name = "Id", required = false)
     private String identificador;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
-
-    @Element(name = "dhRecbto", required = true)
+    
+    @Element(name = "dhRecbto")
     private String dataRecebimento;
 
     @Element(name = "nProt", required = false)
@@ -31,8 +31,8 @@ public class NFProtocoloInfo extends DFBase {
 
     @Element(name = "digVal", required = false)
     private String validador;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
 
     @Element(name = "xMotivo", required = false)

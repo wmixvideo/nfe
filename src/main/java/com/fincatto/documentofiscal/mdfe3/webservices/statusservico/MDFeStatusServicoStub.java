@@ -32,7 +32,7 @@ public class MDFeStatusServicoStub extends org.apache.axis2.client.Stub {
             MDFeStatusServicoStub.counter = 0;
         }
         MDFeStatusServicoStub.counter = MDFeStatusServicoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + MDFeStatusServicoStub.counter;
+        return System.currentTimeMillis() + "_" + MDFeStatusServicoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1697,9 +1697,6 @@ public class MDFeStatusServicoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeStatusServicoMDFResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeStatusServicoMDFResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.mdfe3.webservices.statusservico.MDFeStatusServicoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFEndereco;
 import com.fincatto.documentofiscal.nfe310.classes.NFRegimeTributario;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFNotaInfoEmitente extends DFBase {
     private static final long serialVersionUID = -2236869565066526162L;
@@ -15,17 +14,17 @@ public class NFNotaInfoEmitente extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "xNome", required = true)
+    
+    @Element(name = "xNome")
     private String razaoSocial;
 
     @Element(name = "xFant", required = false)
     private String nomeFantasia;
-
-    @Element(name = "enderEmit", required = true)
+    
+    @Element(name = "enderEmit")
     private NFEndereco endereco;
-
-    @Element(name = "IE", required = true)
+    
+    @Element(name = "IE")
     private String inscricaoEstadual;
 
     @Element(name = "IEST", required = false)
@@ -36,8 +35,8 @@ public class NFNotaInfoEmitente extends DFBase {
 
     @Element(name = "CNAE", required = false)
     private String classificacaoNacionalAtividadesEconomicas;
-
-    @Element(name = "CRT", required = true)
+    
+    @Element(name = "CRT")
     private NFRegimeTributario regimeTributario;
 
     public void setCnpj(final String cnpj) {

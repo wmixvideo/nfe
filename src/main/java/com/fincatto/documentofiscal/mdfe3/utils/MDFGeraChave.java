@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoIdentificacao;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 import org.apache.commons.lang3.StringUtils;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -17,7 +16,7 @@ public class MDFGeraChave {
     }
 
     public String geraCodigoRandomico() {
-        final Random random = new Random(this.mdfe.getInfo().getIdentificacao().getDataEmissao().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        final Random random = new Random(this.mdfe.getInfo().getIdentificacao().getDataEmissao().toInstant().toEpochMilli());
         return StringUtils.leftPad(String.valueOf(random.nextInt(100000000)), 8, "0");
     }
 
@@ -46,16 +45,9 @@ public class MDFGeraChave {
     }
 
     private String geraChaveAcessoSemDV() {
-    	if (StringUtils.isBlank(this.mdfe.getInfo().getIdentificacao().getCodigoNumerico())) {
-            throw new IllegalStateException("Codigo Numerico deve estar presente para gerar a chave de acesso");
+        if (StringUtils.isBlank(this.mdfe.getInfo().getIdentificacao().getCodigoNumerico())) {
+            throw new IllegalStateException("Codigo numerico deve estar presente para gerar a chave de acesso");
         }
-        return StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getCodigoUF().getCodigoIbge(), 2, "0") +
-                StringUtils.leftPad(DateTimeFormatter.ofPattern("yyMM").format(this.mdfe.getInfo().getIdentificacao().getDataEmissao()), 4, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getEmitente().getCnpj(), 14, "0") +
-                StringUtils.leftPad(MDFInfoIdentificacao.MOD.getCodigo(), 2, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getSerie()+"", 3, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getNumero()+"", 9, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") +
-                StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getCodigoNumerico(), 8, "0");
+        return StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getCodigoUF().getCodigoIbge(), 2, "0") + StringUtils.leftPad(DateTimeFormatter.ofPattern("yyMM").format(this.mdfe.getInfo().getIdentificacao().getDataEmissao()), 4, "0") + StringUtils.leftPad(this.mdfe.getInfo().getEmitente().getCnpj(), 14, "0") + StringUtils.leftPad(MDFInfoIdentificacao.MOD.getCodigo(), 2, "0") + StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getSerie() + "", 3, "0") + StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getNumero() + "", 9, "0") + StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getTipoEmissao().getCodigo(), 1, "0") + StringUtils.leftPad(this.mdfe.getInfo().getIdentificacao().getCodigoNumerico(), 8, "0");
     }
 }

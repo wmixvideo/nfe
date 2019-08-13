@@ -1,35 +1,34 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe310.classes.NFProdutoCompoeValorNota;
+import com.fincatto.documentofiscal.nfe310.converters.NFStringNullToEmptyConverter;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.IntegerValidador;
+import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.convert.Convert;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.NFProdutoCompoeValorNota;
-import com.fincatto.documentofiscal.nfe310.converters.StringNullConverter;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProduto extends DFBase {
     private static final long serialVersionUID = -2271625077897052364L;
-
-    @Element(name = "cProd", required = true)
+    
+    @Element(name = "cProd")
     private String codigo;
 
     @Element(name = "cEAN", required = false)
-    @Convert(StringNullConverter.class)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarras;
-
-    @Element(name = "xProd", required = true)
+    
+    @Element(name = "xProd")
     private String descricao;
-
-    @Element(name = "NCM", required = true)
+    
+    @Element(name = "NCM")
     private String ncm;
 
     @ElementList(entry = "NVE", inline = true, required = false)
@@ -40,33 +39,33 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "EXTIPI", required = false)
     private String extipi;
-
-    @Element(name = "CFOP", required = true)
+    
+    @Element(name = "CFOP")
     private String cfop;
-
-    @Element(name = "uCom", required = true)
+    
+    @Element(name = "uCom")
     private String unidadeComercial;
-
-    @Element(name = "qCom", required = true)
+    
+    @Element(name = "qCom")
     private String quantidadeComercial;
-
-    @Element(name = "vUnCom", required = true)
+    
+    @Element(name = "vUnCom")
     private String valorUnitario;
-
-    @Element(name = "vProd", required = true)
+    
+    @Element(name = "vProd")
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
-    @Convert(StringNullConverter.class)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarrasTributavel;
-
-    @Element(name = "uTrib", required = true)
+    
+    @Element(name = "uTrib")
     private String unidadeTributavel;
-
-    @Element(name = "qTrib", required = true)
+    
+    @Element(name = "qTrib")
     private String quantidadeTributavel;
-
-    @Element(name = "vUnTrib", required = true)
+    
+    @Element(name = "vUnTrib")
     private String valorUnitarioTributavel;
 
     @Element(name = "vFrete", required = false)
@@ -80,8 +79,8 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "vOutro", required = false)
     private String valorOutrasDespesasAcessorias;
-
-    @Element(name = "indTot", required = true)
+    
+    @Element(name = "indTot")
     private NFProdutoCompoeValorNota compoeValorNota;
 
     @ElementList(entry = "DI", inline = true, required = false)
@@ -150,15 +149,15 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setQuantidadeComercial(final BigDecimal quantidadeComercial) {
-        this.quantidadeComercial = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
+        this.quantidadeComercial = BigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
     }
 
     public void setValorUnitario(final BigDecimal valorUnitario) {
-        this.valorUnitario = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitario, "Valor Unitario Produto");
+        this.valorUnitario = BigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitario, "Valor Unitario Produto");
     }
 
     public void setValorTotalBruto(final BigDecimal valorTotalBruto) {
-        this.valorTotalBruto = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
+        this.valorTotalBruto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
     }
 
     public void setCodigoDeBarrasTributavel(final String codigoDeBarrasTributavel) {
@@ -172,30 +171,30 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setQuantidadeTributavel(final BigDecimal quantidadeTributavel) {
-        this.quantidadeTributavel = BigDecimalParser.tamanho15comAte4CasasDecimais(quantidadeTributavel, "Qtde Tributavel Produto");
+        this.quantidadeTributavel = BigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeTributavel, "Qtde Tributavel Produto");
     }
 
     public void setValorUnitarioTributavel(final BigDecimal valorUnitarioTributavel) {
-        this.valorUnitarioTributavel = BigDecimalParser.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel, "Valor Unitario Tributavel Produto");
+        this.valorUnitarioTributavel = BigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel, "Valor Unitario Tributavel Produto");
     }
 
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalParser.tamanho15Com2CasasDecimais(valorFrete, "Valor Frete Produto");
+        this.valorFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Valor Frete Produto");
     }
 
     public void setValorSeguro(final BigDecimal valorSeguro) {
-        this.valorSeguro = BigDecimalParser.tamanho15Com2CasasDecimais(valorSeguro, "Valor Seguro Produto");
+        this.valorSeguro = BigDecimalValidador.tamanho15Com2CasasDecimais(valorSeguro, "Valor Seguro Produto");
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Produto");
+        this.valorDesconto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Produto");
     }
 
     public void setValorOutrasDespesasAcessorias(final BigDecimal valorOutrasDespesasAcessorias) {
-        this.valorOutrasDespesasAcessorias = BigDecimalParser.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
+        this.valorOutrasDespesasAcessorias = BigDecimalValidador.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
     }
 
-    public void setCampoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
+    public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
         this.compoeValorNota = compoeValorNota;
     }
 

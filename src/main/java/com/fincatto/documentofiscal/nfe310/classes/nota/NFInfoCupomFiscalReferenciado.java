@@ -1,20 +1,19 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoCupomFiscalReferenciado extends DFBase {
     private static final long serialVersionUID = -8337973110998173462L;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private String modeloDocumentoFiscal;
-
-    @Element(name = "nECF", required = true)
+    
+    @Element(name = "nECF")
     private String numeroOrdemSequencialECF;
-
-    @Element(name = "nCOO", required = true)
+    
+    @Element(name = "nCOO")
     private String numeroContadorOrdemOperacao;
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {

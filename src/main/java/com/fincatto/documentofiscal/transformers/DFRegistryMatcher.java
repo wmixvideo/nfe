@@ -33,6 +33,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(LocalTime.class, new DFLocalTimeTransformer());
         super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
+        super.bind(ZonedDateTime.class, new DFZonedDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
         super.bind(DFPais.class, new DFPaisTransformer());
@@ -85,6 +86,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         // NFE 4.00
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipo.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOrigemTransformer());
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFSituacao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFSituacaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFFinalidade.class, new com.fincatto.documentofiscal.nfe400.transformers.NFFinalidadeTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFTipoImpressaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFOrigemProcesso.class, new com.fincatto.documentofiscal.nfe400.transformers.NFOrigemProcessoTransformer());
@@ -187,6 +189,5 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
         super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
         super.bind(MDFTipoResponsavelSeguro.class, new MDFTipoResponsavelSeguroTransformer());
-
     }
 }

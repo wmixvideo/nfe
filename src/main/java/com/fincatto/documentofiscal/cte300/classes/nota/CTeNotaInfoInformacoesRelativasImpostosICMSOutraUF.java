@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -19,20 +18,20 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
     private static final long serialVersionUID = 1380053710331255889L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
 
     @Element(name = "pRedBCOutraUF", required = false)
     private String aliquotaReducaoBaseCalculoICMSOutraUF;
-
-    @Element(name = "vBCOutraUF", required = true)
+    
+    @Element(name = "vBCOutraUF")
     private String baseCalculoICMSOutraUF;
-
-    @Element(name = "pICMSOutraUF", required = true)
+    
+    @Element(name = "pICMSOutraUF")
     private String aliquotaICMSOutraUF;
-
-    @Element(name = "vICMSOutraUF", required = true)
+    
+    @Element(name = "vICMSOutraUF")
     private String valorICMSOutraUF;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF() {
@@ -63,7 +62,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Percentual de redução da BC
      */
     public void setAliquotaReducaoBaseCalculoICMSOutraUF(final BigDecimal aliquotaReducaoBaseCalculoICMSOutraUF) {
-        this.aliquotaReducaoBaseCalculoICMSOutraUF = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMSOutraUF, "Percentual de redução da BC");
+        this.aliquotaReducaoBaseCalculoICMSOutraUF = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMSOutraUF, "Percentual de redução da BC");
     }
 
     public String getBaseCalculoICMSOutraUF() {
@@ -74,7 +73,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Valor da BC do ICMS
      */
     public void setBaseCalculoICMSOutraUF(final BigDecimal baseCalculoICMSOutraUF) {
-        this.baseCalculoICMSOutraUF = BigDecimalParser.tamanho15Com2CasasDecimais(baseCalculoICMSOutraUF, "Valor da BC do ICMS");
+        this.baseCalculoICMSOutraUF = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSOutraUF, "Valor da BC do ICMS");
     }
 
     public String getAliquotaICMSOutraUF() {
@@ -85,7 +84,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Alíquota do ICMS
      */
     public void setAliquotaICMSOutraUF(final BigDecimal aliquotaICMSOutraUF) {
-        this.aliquotaICMSOutraUF = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaICMSOutraUF, "Alíquota do ICMS");
+        this.aliquotaICMSOutraUF = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMSOutraUF, "Alíquota do ICMS");
     }
 
     public String getValorICMSOutraUF() {
@@ -96,6 +95,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Valor do ICMS devido outra UF
      */
     public void setValorICMSOutraUF(final BigDecimal valorICMSOutraUF) {
-        this.valorICMSOutraUF = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSOutraUF, "Valor do ICMS devido outra UF");
+        this.valorICMSOutraUF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOutraUF, "Valor do ICMS devido outra UF");
     }
 }

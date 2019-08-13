@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -59,7 +58,7 @@ public class CTeNotaInfoCTeNormalCobrancaFatura extends DFBase {
      * Valor original da fatura
      */
     public void setValorOriginal(final BigDecimal valorOriginal) {
-        this.valorOriginal = BigDecimalParser.tamanho15Com2CasasDecimais(valorOriginal, "Valor original da fatura");
+        this.valorOriginal = BigDecimalValidador.tamanho15Com2CasasDecimais(valorOriginal, "Valor original da fatura");
     }
 
     public String getValorDesconto() {
@@ -70,7 +69,7 @@ public class CTeNotaInfoCTeNormalCobrancaFatura extends DFBase {
      * Valor do desconto da fatura
      */
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalParser.tamanho15Com2CasasDecimais(valorDesconto, "Valor do desconto da fatura");
+        this.valorDesconto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor do desconto da fatura");
     }
 
     public String getValorLiquido() {
@@ -81,6 +80,6 @@ public class CTeNotaInfoCTeNormalCobrancaFatura extends DFBase {
      * Valor líquido da fatura
      */
     public void setValorLiquido(final BigDecimal valorLiquido) {
-        this.valorLiquido = BigDecimalParser.tamanho15Com2CasasDecimais(valorLiquido, "Valor líquido da fatura");
+        this.valorLiquido = BigDecimalValidador.tamanho15Com2CasasDecimais(valorLiquido, "Valor líquido da fatura");
     }
 }

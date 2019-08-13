@@ -25,7 +25,7 @@ public class CteStatusServicoStub extends org.apache.axis2.client.Stub {
             CteStatusServicoStub.counter = 0;
         }
         CteStatusServicoStub.counter = CteStatusServicoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CteStatusServicoStub.counter;
+        return System.currentTimeMillis() + "_" + CteStatusServicoStub.counter;
     }
 
     private void populateAxisService() {
@@ -1657,9 +1657,6 @@ public class CteStatusServicoStub extends org.apache.axis2.client.Stub {
             }
             if (com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteStatusServicoCTResult.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteStatusServicoCTResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteCabecMsgE.class.equals(type)) {
                 return com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub.CteCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

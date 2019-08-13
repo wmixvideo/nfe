@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 /**
  * @author Caio
@@ -19,29 +18,29 @@ import com.fincatto.documentofiscal.validadores.BigDecimalParser;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase {
     private static final long serialVersionUID = 2502416156810045187L;
-
-    @Element(name = "vBCUFFim", required = true)
+    
+    @Element(name = "vBCUFFim")
     private String bcICMS;
-
-    @Element(name = "pFCPUFFim", required = true)
+    
+    @Element(name = "pFCPUFFim")
     private String aliquotaFCP;
-
-    @Element(name = "pICMSUFFim", required = true)
+    
+    @Element(name = "pICMSUFFim")
     private String aliquotaInterna;
-
-    @Element(name = "pICMSInter", required = true)
+    
+    @Element(name = "pICMSInter")
     private String aliquotaInterestadual;
-
-    @Element(name = "pICMSInterPart", required = true)
+    
+    @Element(name = "pICMSInterPart")
     private String aliquotaPartilha;
-
-    @Element(name = "vFCPUFFim", required = true)
+    
+    @Element(name = "vFCPUFFim")
     private String valorFCP;
-
-    @Element(name = "vICMSUFFim", required = true)
+    
+    @Element(name = "vICMSUFFim")
     private String valorUfDestino;
-
-    @Element(name = "vICMSUFIni", required = true)
+    
+    @Element(name = "vICMSUFIni")
     private String valorUf;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMSPartilha() {
@@ -63,7 +62,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Valor da BC do ICMS na UF de término da prestação do serviço de transporte
      */
     public void setBcICMS(final BigDecimal bcICMS) {
-        this.bcICMS = BigDecimalParser.tamanho15Com2CasasDecimais(bcICMS, "Valor da BC do ICMS na UF de término da prestação do serviço de transporte");
+        this.bcICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(bcICMS, "Valor da BC do ICMS na UF de término da prestação do serviço de transporte");
     }
 
     public String getAliquotaFCP() {
@@ -75,7 +74,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Alíquota adotada nas operações internas na UF do destinatário
      */
     public void setAliquotaFCP(final BigDecimal aliquotaFCP) {
-        this.aliquotaFCP = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaFCP, "Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP)");
+        this.aliquotaFCP = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaFCP, "Percentual do ICMS relativo ao Fundo de Combate à pobreza (FCP)");
     }
 
     public String getAliquotaInterna() {
@@ -87,7 +86,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Alíquota adotada nas operações internas na UF do destinatário
      */
     public void setAliquotaInterna(final BigDecimal aliquotaInterna) {
-        this.aliquotaInterna = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaInterna, "Alíquota interna da UF de término da prestação do serviço de transporte");
+        this.aliquotaInterna = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaInterna, "Alíquota interna da UF de término da prestação do serviço de transporte");
     }
 
     public String getAliquotaInterestadual() {
@@ -98,7 +97,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Alíquota interestadual das UF envolvidas
      */
     public void setAliquotaInterestadual(final BigDecimal aliquotaInterestadual) {
-        this.aliquotaInterestadual = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaInterestadual, "Alíquota interestadual das UF envolvidas");
+        this.aliquotaInterestadual = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaInterestadual, "Alíquota interestadual das UF envolvidas");
     }
 
     public String getAliquotaPartilha() {
@@ -114,7 +113,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * - 100% a partir de 2019.
      */
     public void setAliquotaPartilha(final BigDecimal aliquotaPartilha) {
-        this.aliquotaPartilha = BigDecimalParser.tamanho5Com2CasasDecimais(aliquotaPartilha, "Percentual provisório de partilha entre os estados");
+        this.aliquotaPartilha = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaPartilha, "Percentual provisório de partilha entre os estados");
     }
 
     public String getValorFCP() {
@@ -125,7 +124,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP) da UF de término da prestação
      */
     public void setValorFCP(final BigDecimal valorFCP) {
-        this.valorFCP = BigDecimalParser.tamanho15Com2CasasDecimais(valorFCP, "Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP)");
+        this.valorFCP = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFCP, "Valor do ICMS relativo ao Fundo de Combate á Pobreza (FCP)");
     }
 
     public String getValorUfDestino() {
@@ -136,7 +135,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte
      */
     public void setValorUfDestino(final BigDecimal valorUfDestino) {
-        this.valorUfDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorUfDestino, "Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte");
+        this.valorUfDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorUfDestino, "Valor do ICMS de partilha para a UF de término da prestação do serviço de transporte");
     }
 
     public String getValorUf() {
@@ -147,6 +146,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
      * Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte
      */
     public void setValorUf(final BigDecimal valorUf) {
-        this.valorUf = BigDecimalParser.tamanho15Com2CasasDecimais(valorUf, "Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte");
+        this.valorUf = BigDecimalValidador.tamanho15Com2CasasDecimais(valorUf, "Valor do ICMS de partilha para a UF de início da prestação do serviço de transporte");
     }
 }

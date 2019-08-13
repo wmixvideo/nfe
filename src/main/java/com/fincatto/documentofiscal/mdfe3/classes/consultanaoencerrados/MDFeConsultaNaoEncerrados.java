@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 /**
  * Created by Eldevan Nery Junior on 22/11/17. Tipo Pedido de Consulta MDF-e Não Encerrados.
@@ -36,7 +35,7 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     private String cnpj;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
+        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
     public void setVersao(final String versao) {

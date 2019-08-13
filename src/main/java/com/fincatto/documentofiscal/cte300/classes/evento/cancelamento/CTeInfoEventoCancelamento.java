@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
-import java.math.BigDecimal;
-
-import java.time.ZonedDateTime;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 public class CTeInfoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = -9071000192790378973L;
@@ -21,8 +20,8 @@ public class CTeInfoEventoCancelamento extends DFBase {
 
     @Element(name = "cOrgao", required = false)
     private DFUnidadeFederativa orgao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
     @Element(name = "CNPJ", required = false)
@@ -30,17 +29,17 @@ public class CTeInfoEventoCancelamento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "chCTe", required = true)
+    
+    @Element(name = "chCTe")
     private String chave;
-
-    @Element(name = "dhEvento", required = true)
+    
+    @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-
-    @Element(name = "tpEvento", required = true)
+    
+    @Element(name = "tpEvento")
     private String codigoEvento;
-
-    @Element(name = "nSeqEvento", required = true)
+    
+    @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
 
     @Element(name = "verEvento", required = false)
@@ -54,7 +53,7 @@ public class CTeInfoEventoCancelamento extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getId() {

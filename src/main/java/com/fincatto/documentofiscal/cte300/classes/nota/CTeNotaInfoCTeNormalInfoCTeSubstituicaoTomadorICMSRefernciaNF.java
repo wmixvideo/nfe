@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author Caio
@@ -26,23 +25,23 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF exten
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private String modelo;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
 
     @Element(name = "subserie", required = false)
     private String subserie;
-
-    @Element(name = "nro", required = true)
+    
+    @Element(name = "nro")
     private String numeroDocumento;
-
-    @Element(name = "valor", required = true)
+    
+    @Element(name = "valor")
     private String valor;
-
-    @Element(name = "dEmi", required = true)
+    
+    @Element(name = "dEmi")
     private LocalDate dataEmissao;
 
     public CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF() {
@@ -138,7 +137,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMSRefernciaNF exten
      * Valor do documento fiscal.
      */
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho15Com2CasasDecimais(valor, "Valor do documento fiscal");
+        this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor do documento fiscal");
     }
 
     public LocalDate getDataEmissao() {

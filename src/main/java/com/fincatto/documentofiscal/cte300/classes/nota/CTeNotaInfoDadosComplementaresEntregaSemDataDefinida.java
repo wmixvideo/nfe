@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * @author Caio
@@ -15,8 +14,8 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
 @Root(name = "semData")
 public class CTeNotaInfoDadosComplementaresEntregaSemDataDefinida extends DFBase {
     private static final long serialVersionUID = -6311993509859814067L;
-
-    @Element(name = "tpPer", required = true)
+    
+    @Element(name = "tpPer")
     private CTTipoPrazoDataEntrega tipoPrazoDataEntrega;
 
     public CTeNotaInfoDadosComplementaresEntregaSemDataDefinida() {

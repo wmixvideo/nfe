@@ -1,27 +1,26 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSSN101 extends DFBase {
     private static final long serialVersionUID = -3123413337026509697L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CSOSN", required = true)
+    
+    @Element(name = "CSOSN")
     private NFNotaSituacaoOperacionalSimplesNacional situacaoOperacaoSN;
-
-    @Element(name = "pCredSN", required = true)
+    
+    @Element(name = "pCredSN")
     private String percentualAliquotaAplicavelCalculoCreditoSN;
-
-    @Element(name = "vCredICMSSN", required = true)
+    
+    @Element(name = "vCredICMSSN")
     private String valorCreditoICMSSN;
 
     public void setOrigem(final NFOrigem origem) {
@@ -33,11 +32,11 @@ public class NFNotaInfoItemImpostoICMSSN101 extends DFBase {
     }
 
     public void setPercentualAliquotaAplicavelCalculoCreditoSN(final BigDecimal percentualAliquotaAplicavelCalculoCreditoSN) {
-        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN, "Percentual Aliquota Aplicavel Calculo Credito SN ICMSSN101");
+        this.percentualAliquotaAplicavelCalculoCreditoSN = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualAliquotaAplicavelCalculoCreditoSN, "Percentual Aliquota Aplicavel Calculo Credito SN ICMSSN101");
     }
 
     public void setValorCreditoICMSSN(final BigDecimal valorCreditoICMSSN) {
-        this.valorCreditoICMSSN = BigDecimalParser.tamanho15Com2CasasDecimais(valorCreditoICMSSN, "Valor Credito ICMSSN101");
+        this.valorCreditoICMSSN = BigDecimalValidador.tamanho15Com2CasasDecimais(valorCreditoICMSSN, "Valor Credito ICMSSN101");
     }
 
     public NFOrigem getOrigem() {

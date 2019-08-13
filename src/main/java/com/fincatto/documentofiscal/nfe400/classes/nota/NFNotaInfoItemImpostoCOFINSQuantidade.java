@@ -1,26 +1,25 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
     private static final long serialVersionUID = -7179547773505825448L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
-
-    @Element(name = "qBCProd", required = true)
+    
+    @Element(name = "qBCProd")
     private String quantidadeVendida;
-
-    @Element(name = "vAliqProd", required = true)
+    
+    @Element(name = "vAliqProd")
     private String valorAliquota;
-
-    @Element(name = "vCOFINS", required = true)
+    
+    @Element(name = "vCOFINS")
     private String valorTributo;
 
     public NFNotaInfoItemImpostoCOFINSQuantidade() {
@@ -38,15 +37,15 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida COFINS Item Qtde");
+        this.quantidadeVendida = BigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida COFINS Item Qtde");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS Item Qtde");
+        this.valorAliquota = BigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS Item Qtde");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS Item Qtde");
+        this.valorTributo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS Item Qtde");
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {

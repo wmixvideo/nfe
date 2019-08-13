@@ -10,10 +10,10 @@ import com.fincatto.documentofiscal.DFBase;
 public class NFProtocolo extends DFBase {
     private static final long serialVersionUID = -784305871769382618L;
 
-    @Attribute(name = "versao", required = true)
+    @Attribute(name = "versao", required = false)
     private String versao;
 
-    @Element(name = "infProt", required = true)
+    @Element(name = "infProt")
     private NFProtocoloInfo protocoloInfo;
 
     public void setVersao(final String versao) {

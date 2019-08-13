@@ -1,23 +1,22 @@
 package com.fincatto.documentofiscal.cte300.classes.evento;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 @Root(strict = false)
 public class CTeTipoEvento extends DFBase {
     private static final long serialVersionUID = -6842953941510024781L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "descEvento", required = true)
+    
+    @Element(name = "descEvento")
     private String descricaoEvento;
 
     // Carta correcao
@@ -28,7 +27,7 @@ public class CTeTipoEvento extends DFBase {
     private String condicaoUso;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalParser.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {

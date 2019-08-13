@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
 
 /**
  * @author Caio
@@ -16,11 +15,11 @@ import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICM
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSSN extends DFBase {
     private static final long serialVersionUID = 1210311076425869818L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
-
-    @Element(name = "indSN", required = true)
+    
+    @Element(name = "indSN")
     private String indicadorSN;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMSSN() {

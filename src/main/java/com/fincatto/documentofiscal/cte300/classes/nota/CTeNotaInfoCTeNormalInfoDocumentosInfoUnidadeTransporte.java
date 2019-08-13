@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.math.BigDecimal;
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeTransporte;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeTransporte;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Caio
@@ -22,11 +21,11 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte extends DFBase {
     private static final long serialVersionUID = -5873044131536025528L;
-
-    @Element(name = "tpUnidTransp", required = true)
+    
+    @Element(name = "tpUnidTransp")
     private CTTipoUnidadeTransporte tpUnidTransp;
-
-    @Element(name = "idUnidTransp", required = true)
+    
+    @Element(name = "idUnidTransp")
     private String identificacaoTransporte;
 
     @Element(name = "lacUnidTransp", required = false)
@@ -108,6 +107,6 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte extends DFB
      * Quantidade rateada (Peso,Volume)
      */
     public void setQuantidadeRateada(final BigDecimal quantidadeRateada) {
-        this.quantidadeRateada = BigDecimalParser.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
+        this.quantidadeRateada = BigDecimalValidador.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
     }
 }

@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends DFBase {
     private static final long serialVersionUID = -7291550051334950307L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
 
     @Element(name = "vBC", required = false)
@@ -34,23 +33,23 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoes extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo COFINS OA Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo COFINS OA Item");
     }
 
     public void setPercentualCOFINS(final BigDecimal percentualCOFINS) {
-        this.percentualCOFINS = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualCOFINS, "Percentual COFINS OA Item");
+        this.percentualCOFINS = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualCOFINS, "Percentual COFINS OA Item");
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
-        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida COFINS OA Item");
+        this.quantidadeVendida = BigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade Vendida COFINS OA Item");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS OA Item");
+        this.valorAliquota = BigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS OA Item");
     }
 
     public void setValorCOFINS(final BigDecimal valorTributo) {
-        this.valorCOFINS = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS OA Item");
+        this.valorCOFINS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS OA Item");
     }
 
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {

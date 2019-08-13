@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Root(name = "dup")
 public class NFNotaInfoParcela extends DFBase {
@@ -19,8 +18,8 @@ public class NFNotaInfoParcela extends DFBase {
 
     @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
-
-    @Element(name = "vDup", required = true)
+    
+    @Element(name = "vDup")
     private String valorParcela;
 
     public void setNumeroParcela(final String numeroParcela) {
@@ -33,7 +32,7 @@ public class NFNotaInfoParcela extends DFBase {
     }
 
     public void setValorParcela(final BigDecimal valorParcela) {
-        this.valorParcela = BigDecimalParser.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
+        this.valorParcela = BigDecimalValidador.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
     }
 
     public String getValorParcela() {

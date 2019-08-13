@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.cartacorrecao;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
@@ -9,7 +10,6 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -39,8 +39,8 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -55,7 +55,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -70,7 +70,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -85,7 +85,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -116,7 +116,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
@@ -131,7 +131,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
         infoEvento.setTipoEvento("110110");
@@ -146,7 +146,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setTipoEvento("110110");
@@ -161,7 +161,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -176,7 +176,7 @@ public class NFInfoEventoCartaCorrecaoTest {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);

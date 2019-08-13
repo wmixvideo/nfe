@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -16,14 +15,14 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalMultiModalSeguro extends DFBase {
     private static final long serialVersionUID = -866058288053801394L;
-
-    @Element(name = "infSeg", required = true)
+    
+    @Element(name = "infSeg")
     private CTeNotaInfoCTeNormalInfoModalMultiModalSeguroInfo info;
-
-    @Element(name = "nApol", required = true)
+    
+    @Element(name = "nApol")
     private String apolice;
-
-    @Element(name = "nAver", required = true)
+    
+    @Element(name = "nAver")
     private String averbacao;
 
     public CTeNotaInfoCTeNormalInfoModalMultiModalSeguro() {

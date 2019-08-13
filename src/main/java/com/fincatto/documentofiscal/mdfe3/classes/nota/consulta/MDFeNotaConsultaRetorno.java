@@ -1,36 +1,35 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.consulta;
 
-import java.util.List;
-
-import org.simpleframework.xml.*;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFProtocolo;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeProtocoloEvento;
+import org.simpleframework.xml.*;
+
+import java.util.List;
 
 @Root(name = "retConsSitMDFe", strict = false)
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeNotaConsultaRetorno extends DFBase {
     private static final long serialVersionUID = -3063292755609244217L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
 
     @Element(name = "protMDFe", required = false)

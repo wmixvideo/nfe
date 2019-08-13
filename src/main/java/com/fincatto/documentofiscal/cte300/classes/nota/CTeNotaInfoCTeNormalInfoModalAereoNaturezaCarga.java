@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTInformacoesManuseio;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTInformacoesManuseio;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.util.List;
 
 /**
  * @author Caio
@@ -23,8 +22,8 @@ public class CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga extends DFBase {
 
     @Element(name = "xDime", required = false)
     private String dimensao;
-
-    @ElementList(name = "cInfManu", inline = false, required = false)
+    
+    @ElementList(name = "cInfManu", required = false)
     private List<CTInformacoesManuseio> informacoesManuseio;
 
     public CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga() {

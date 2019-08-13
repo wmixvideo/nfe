@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.time.LocalDate;
 
 /**
  * @author Caio
@@ -18,20 +18,20 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacaoPapel extends DFBase {
     private static final long serialVersionUID = 85388615678199370L;
-
-    @Element(name = "tpDoc", required = true)
+    
+    @Element(name = "tpDoc")
     private CTTipoDocumentoTransporteAnterior tipoDocumentoAnterior;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
 
     @Element(name = "subser", required = false)
     private String subSerie;
-
-    @Element(name = "nDoc", required = true)
+    
+    @Element(name = "nDoc")
     private String numeroDocumento;
-
-    @Element(name = "dEmi", required = true)
+    
+    @Element(name = "dEmi")
     private LocalDate dataEmissao;
 
     public CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacaoPapel() {

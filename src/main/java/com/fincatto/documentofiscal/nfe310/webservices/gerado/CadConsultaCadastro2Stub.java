@@ -31,7 +31,7 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
             CadConsultaCadastro2Stub.counter = 0;
         }
         CadConsultaCadastro2Stub.counter = CadConsultaCadastro2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + CadConsultaCadastro2Stub.counter;
+        return System.currentTimeMillis() + "_" + CadConsultaCadastro2Stub.counter;
     }
 
     private void populateAxisService() {
@@ -880,21 +880,13 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
     }
 
     private org.apache.axiom.om.OMElement toOM(final CadConsultaCadastro2Stub.NfeCabecMsgE param, final boolean optimizeContent) {
-        //        try {
         return param.getOMElement(CadConsultaCadastro2Stub.NfeCabecMsgE.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        //        } catch (final org.apache.axis2.databinding.ADBException e) {
-        //            throw org.apache.axis2.AxisFault.makeFault(e);
-        //        }
     }
 
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final CadConsultaCadastro2Stub.NfeDadosMsg param, final boolean optimizeContent, final javax.xml.namespace.QName methodQName) {
-        //        try {
         final org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
         emptyEnvelope.getBody().addChild(param.getOMElement(CadConsultaCadastro2Stub.NfeDadosMsg.MY_QNAME, factory));
         return emptyEnvelope;
-        //        } catch (final org.apache.axis2.databinding.ADBException e) {
-        //            throw org.apache.axis2.AxisFault.makeFault(e);
-        //        }
     }
 
     private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class<?> type, final java.util.Map<String, String> extraNamespaces) throws org.apache.axis2.AxisFault {
@@ -904,9 +896,6 @@ public class CadConsultaCadastro2Stub extends org.apache.axis2.client.Stub {
             }
             if (CadConsultaCadastro2Stub.ConsultaCadastro2Result.class.equals(type)) {
                 return CadConsultaCadastro2Stub.ConsultaCadastro2Result.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (CadConsultaCadastro2Stub.NfeCabecMsgE.class.equals(type)) {
-                return CadConsultaCadastro2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (CadConsultaCadastro2Stub.NfeCabecMsgE.class.equals(type)) {
                 return CadConsultaCadastro2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

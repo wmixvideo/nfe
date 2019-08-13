@@ -5,30 +5,30 @@ import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIC
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     private static final long serialVersionUID = 3531314516853056385L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-
-    @Element(name = "modBC", required = true)
+    
+    @Element(name = "modBC")
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBaseCalculo;
-
-    @Element(name = "pICMS", required = true)
+    
+    @Element(name = "pICMS")
     private String percentualAliquota;
-
-    @Element(name = "vICMS", required = true)
+    
+    @Element(name = "vICMS")
     private String valorTributo;
 
     @Element(name = "vBCFCP", required = false)
@@ -39,23 +39,23 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
 
     @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
-
-    @Element(name = "modBCST", required = true)
+    
+    @Element(name = "modBCST")
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
-    private String percentualMargemValorICMSST;
+    private String percentualMargemValorAdicionadoICMSST;
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
-
-    @Element(name = "vBCST", required = true)
+    
+    @Element(name = "vBCST")
     private String valorBCICMSST;
-
-    @Element(name = "pICMSST", required = true)
+    
+    @Element(name = "pICMSST")
     private String percentualAliquotaImpostoICMSST;
-
-    @Element(name = "vICMSST", required = true)
+    
+    @Element(name = "vICMSST")
     private String valorICMSST;
 
     @Element(name = "vBCFCPST", required = false)
@@ -80,69 +80,69 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo ICMS10 Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo ICMS10 Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota ICMS10 Item");
+        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota ICMS10 Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo ICMS10 Item");
+        this.valorTributo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo ICMS10 Item");
     }
 
     public void setModalidadeBCICMSST(final NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST) {
         this.modalidadeBCICMSST = modalidadeBCICMSST;
     }
-
-    public void setPercentualMargemValorICMSST(final BigDecimal percentualMargemValorICMSST) {
-        this.percentualMargemValorICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualMargemValorICMSST, "Percentual MVA ICMS ST ICMS10 Item");
+    
+    public void setPercentualMargemValorAdicionadoICMSST(final BigDecimal percentualMargemValorAdicionadoICMSST) {
+        this.percentualMargemValorAdicionadoICMSST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualMargemValorAdicionadoICMSST, "Percentual MVA ICMS ST ICMS10 Item");
     }
 
     public void setPercentualReducaoBCICMSST(final BigDecimal percentualReducaoBCICMSST) {
-        this.percentualReducaoBCICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST, "Percentual Reducao BC ICMS ST ICMS10 Item");
+        this.percentualReducaoBCICMSST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualReducaoBCICMSST, "Percentual Reducao BC ICMS ST ICMS10 Item");
     }
 
     public void setValorBCICMSST(final BigDecimal valorBCICMSST) {
-        this.valorBCICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSST, "Valor BC ICMS ST ICMS10 Item");
+        this.valorBCICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSST, "Valor BC ICMS ST ICMS10 Item");
     }
 
     public void setPercentualAliquotaImpostoICMSST(final BigDecimal aliquotaImpostoICMSST) {
-        this.percentualAliquotaImpostoICMSST = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST, "Aliquota Imposto ICMS ST ICMS10 Item");
+        this.percentualAliquotaImpostoICMSST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquotaImpostoICMSST, "Aliquota Imposto ICMS ST ICMS10 Item");
     }
 
     public void setValorICMSST(final BigDecimal valorICMSST) {
-        this.valorICMSST = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMS10 Item");
+        this.valorICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSST, "Valor ICMS ST ICMS10 Item");
     }
 
     public void setValorBaseCalculoFundoCombatePobreza(final BigDecimal valorBaseCalculoFundoCombatePobreza) {
-        this.valorBaseCalculoFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculoFundoCombatePobreza, "Base calculo fundo combate pobreza");
+        this.valorBaseCalculoFundoCombatePobreza = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculoFundoCombatePobreza, "Base calculo fundo combate pobreza");
     }
 
     public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
         if (percentualFundoCombatePobreza.signum() <= 0) {
             throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
         }
-        this.percentualFundoCombatePobreza = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
+        this.percentualFundoCombatePobreza = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
     }
 
     public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
-        this.valorFundoCombatePobreza = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");
+        this.valorFundoCombatePobreza = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");
     }
 
     public void setValorBCFundoCombatePobrezaST(final BigDecimal valorBCFundoCombatePobrezaST) {
-        this.valorBCFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaST, "Base calculo fundo combate pobreza ST");
+        this.valorBCFundoCombatePobrezaST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCFundoCombatePobrezaST, "Base calculo fundo combate pobreza ST");
     }
 
     public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
         if (percentualFundoCombatePobrezaST.signum() < 0) {
             throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
         }
-        this.percentualFundoCombatePobrezaST = BigDecimalParser.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
+        this.percentualFundoCombatePobrezaST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
     }
 
     public void setValorFundoCombatePobrezaST(final BigDecimal valorFundoCombatePobrezaST) {
-        this.valorFundoCombatePobrezaST = BigDecimalParser.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
+        this.valorFundoCombatePobrezaST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
     }
 
     public NFOrigem getOrigem() {
@@ -172,9 +172,9 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     public NFNotaInfoItemModalidadeBCICMSST getModalidadeBCICMSST() {
         return this.modalidadeBCICMSST;
     }
-
-    public String getPercentualMargemValorICMSST() {
-        return this.percentualMargemValorICMSST;
+    
+    public String getPercentualMargemValorAdicionadoICMSST() {
+        return this.percentualMargemValorAdicionadoICMSST;
     }
 
     public String getPercentualReducaoBCICMSST() {

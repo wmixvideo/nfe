@@ -19,7 +19,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             NfeStatusServico2Stub.counter = 0;
         }
         NfeStatusServico2Stub.counter = NfeStatusServico2Stub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeStatusServico2Stub.counter;
+        return System.currentTimeMillis() + "_" + NfeStatusServico2Stub.counter;
     }
 
     private void populateAxisService() {
@@ -1381,9 +1381,6 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             }
             if (NfeStatusServico2Stub.NfeStatusServicoNF2Result.class.equals(type)) {
                 return NfeStatusServico2Stub.NfeStatusServicoNF2Result.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (NfeStatusServico2Stub.NfeCabecMsgE.class.equals(type)) {
-                return NfeStatusServico2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (NfeStatusServico2Stub.NfeCabecMsgE.class.equals(type)) {
                 return NfeStatusServico2Stub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe310;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
@@ -31,7 +32,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public class FabricaDeObjetosFake {
         infoEventoCancelamento.setChave("81568004734874930428983724940883089298523837");
         infoEventoCancelamento.setCnpj("12345678901234");
         infoEventoCancelamento.setCodigoEvento("123456");
-        infoEventoCancelamento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEventoCancelamento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEventoCancelamento.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoCancelamento.setNumeroSequencialEvento(2);
         infoEventoCancelamento.setOrgao(DFUnidadeFederativa.SC);
@@ -152,7 +152,7 @@ public class FabricaDeObjetosFake {
         final String numeroInicialTamanhoMaximo = StringUtils.leftPad(numeroInicial, 9, "0");
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
-        dados.setIdentificador("ID" + uf.getCodigoIbge() + String.valueOf(anoInutilizacaoNumeracao) + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
+        dados.setIdentificador("ID" + uf.getCodigoIbge() + anoInutilizacaoNumeracao + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
         return dados;
     }
 
@@ -170,7 +170,7 @@ public class FabricaDeObjetosFake {
         infoEventoManifestacaoDestinatario.setChave("81568004734874930428983724940883089298523837");
         infoEventoManifestacaoDestinatario.setCnpj("12345678901234");
         infoEventoManifestacaoDestinatario.setCodigoEvento("123456");
-        infoEventoManifestacaoDestinatario.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEventoManifestacaoDestinatario.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEventoManifestacaoDestinatario.setId("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoManifestacaoDestinatario.setNumeroSequencialEvento(2);
         infoEventoManifestacaoDestinatario.setOrgao(DFUnidadeFederativa.SC);
@@ -208,7 +208,7 @@ public class FabricaDeObjetosFake {
         infoEvento.setDadosEvento(FabricaDeObjetosFake.getNFInfoCartaCorrecao());
         infoEvento.setChave("81568004734874930428983724940883089298523837");
         infoEvento.setCnpj("02224343323426");
-        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), ZoneId.systemDefault()));
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-01-01 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         infoEvento.setId("ID1101108156800473487493042898372494088308929852383799");
         infoEvento.setNumeroSequencialEvento(99);
         infoEvento.setOrgao(DFUnidadeFederativa.SC);
@@ -310,8 +310,8 @@ public class FabricaDeObjetosFake {
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), ZoneId.systemDefault()));
-        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), ZoneId.systemDefault()));
+        identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -326,7 +326,7 @@ public class FabricaDeObjetosFake {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(DFUnidadeFederativa.RS);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-10-10 10:10:10")), ZoneId.systemDefault()));
+        identificacao.setDataHoraContigencia(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-10-10 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -374,7 +374,7 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produtoMedicamento.setCodigoDeBarras("36811963532505");
         produtoMedicamento.setCodigoDeBarrasTributavel("36811963532505");
-        produtoMedicamento.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
+        produtoMedicamento.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
         produtoMedicamento.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produtoMedicamento.setExtipi("999");
@@ -429,7 +429,7 @@ public class FabricaDeObjetosFake {
         final NFProtocoloInfo info = new NFProtocoloInfo();
         info.setAmbiente(DFAmbiente.HOMOLOGACAO);
         info.setChave("EAIOjea");
-        info.setDataRecebimento("2014-06-10T09:00:00-03:00");
+        info.setDataRecebimento(ZonedDateTime.of(2014, 6, 10, 9, 0, 0, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         info.setMotivo("jsoaosk");
         info.setNumeroProtocolo("490309504");
         info.setStatus("OK");
@@ -541,8 +541,8 @@ public class FabricaDeObjetosFake {
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
         identificacao.setCodigoRandomico("99999999");
-        identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), ZoneId.systemDefault()));
-        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), ZoneId.systemDefault()));
+        identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDigitoVerificador(8);
         identificacao.setFinalidade(NFFinalidade.NORMAL);
         identificacao.setFormaPagamento(NFFormaPagamentoPrazo.A_PRAZO);
@@ -557,7 +557,7 @@ public class FabricaDeObjetosFake {
         identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
         identificacao.setUf(DFUnidadeFederativa.RS);
         identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
-        identificacao.setDataHoraContigencia(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-10-10 10:10:10")), ZoneId.systemDefault()));
+        identificacao.setDataHoraContigencia(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-10-10 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
@@ -710,7 +710,7 @@ public class FabricaDeObjetosFake {
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
         produto.setCodigoDeBarras("36811963532505");
         produto.setCodigoDeBarrasTributavel("36811963532505");
-        produto.setCampoeValorNota(NFProdutoCompoeValorNota.SIM);
+        produto.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
         produto.setExtipi("999");

@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class NFNotaInfoDuplicata extends DFBase {
     private static final long serialVersionUID = 4401957395684813604L;
@@ -17,8 +16,8 @@ public class NFNotaInfoDuplicata extends DFBase {
 
     @Element(name = "dVenc", required = false)
     private LocalDate dataVencimento;
-
-    @Element(name = "vDup", required = true)
+    
+    @Element(name = "vDup")
     private String valorDuplicata;
 
     public void setNumeroDuplicata(final String numeroDuplicata) {
@@ -31,7 +30,7 @@ public class NFNotaInfoDuplicata extends DFBase {
     }
 
     public void setValorDuplicata(final BigDecimal valorDuplicata) {
-        this.valorDuplicata = BigDecimalParser.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
+        this.valorDuplicata = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
     }
 
     public String getValorDuplicata() {

@@ -1,46 +1,45 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.convert.Convert;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.converters.StringNullConverter;
+import java.util.List;
 
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoRetorno extends DFBase {
     private static final long serialVersionUID = 8581761565026410859L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
 
     // O Converter StringNullConverter esta sendo utilizado para resolver um problema da autorizadora SVAN, que esta retornandoo atributo idLote vazio.
-    @Element(name = "idLote", required = true)
-    @Convert(StringNullConverter.class)
+    @Element(name = "idLote")
+    @Convert(NFStringNullToEmptyConverter.class)
     private String idLote;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicativo;
-
-    @Element(name = "cOrgao", required = true)
+    
+    @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private Integer codigoStatusReposta;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
 
-    @ElementList(entry = "retEvento", inline = true, required = true)
+    @ElementList(entry = "retEvento", inline = true, required = false)
     private List<NFEventoRetorno> eventoRetorno;
 
     public String getVersao() {

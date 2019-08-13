@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
@@ -8,7 +9,6 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -49,7 +49,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
     @Test
     public void deveObterDataHoraEventoComoFoiSetado() {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
-        final ZonedDateTime dataHoraEvento = ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-10 10:10:10")), ZoneId.systemDefault());
+        final ZonedDateTime dataHoraEvento = ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-10 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId());
         infoEventoManifestacaoDestinatario.setDataHoraEvento(dataHoraEvento);
         Assert.assertEquals(dataHoraEvento, infoEventoManifestacaoDestinatario.getDataHoraEvento());
     }

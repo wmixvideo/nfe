@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -85,7 +84,7 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalParser.tamanho13Com2CasasDecimais(valor, "Valor do pedagio");
+        this.valor = BigDecimalValidador.tamanho13Com2CasasDecimais(valor, "Valor do pedagio");
     }
 
     public String getCpfPagadora() {

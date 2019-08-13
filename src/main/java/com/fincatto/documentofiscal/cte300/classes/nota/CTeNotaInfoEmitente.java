@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -16,23 +15,23 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoEmitente extends DFBase {
     private static final long serialVersionUID = -316869143177543788L;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "IE", required = true)
+    
+    @Element(name = "IE")
     private String inscricaoEstadual;
 
     @Element(name = "IEST", required = false)
     private String inscricaoEstadualST;
-
-    @Element(name = "xNome", required = true)
+    
+    @Element(name = "xNome")
     private String razaoSocial;
 
     @Element(name = "xFant", required = false)
     private String nomeFantasia;
-
-    @Element(name = "enderEmit", required = true)
+    
+    @Element(name = "enderEmit")
     private CTeNotaEnderecoEmitente endereco;
 
     public CTeNotaInfoEmitente() {

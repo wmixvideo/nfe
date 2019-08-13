@@ -31,7 +31,7 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             NfeRetAutorizacaoStub.counter = 0;
         }
         NfeRetAutorizacaoStub.counter = NfeRetAutorizacaoStub.counter + 1;
-        return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + NfeRetAutorizacaoStub.counter;
+        return System.currentTimeMillis() + "_" + NfeRetAutorizacaoStub.counter;
     }
 
     private void populateAxisService() {
@@ -911,9 +911,6 @@ public class NfeRetAutorizacaoStub extends org.apache.axis2.client.Stub {
             }
             if (NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult.class.equals(type)) {
                 return NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-            }
-            if (NfeRetAutorizacaoStub.NfeCabecMsgE.class.equals(type)) {
-                return NfeRetAutorizacaoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
             if (NfeRetAutorizacaoStub.NfeCabecMsgE.class.equals(type)) {
                 return NfeRetAutorizacaoStub.NfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());

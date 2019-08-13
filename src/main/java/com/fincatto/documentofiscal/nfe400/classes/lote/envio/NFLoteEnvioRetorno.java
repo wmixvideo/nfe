@@ -1,41 +1,41 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 
-import java.time.LocalDateTime;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
+import java.time.ZonedDateTime;
 
 @Root(name = "retEnviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFLoteEnvioRetorno extends DFBase {
     private static final long serialVersionUID = 7457383606779886158L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "verAplic", required = true)
+    
+    @Element(name = "verAplic")
     private String versaoAplicacao;
-
-    @Element(name = "cStat", required = true)
+    
+    @Element(name = "cStat")
     private String status;
-
-    @Element(name = "xMotivo", required = true)
+    
+    @Element(name = "xMotivo")
     private String motivo;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "dhRecbto", required = true)
-    private LocalDateTime dataRecebimento;
+    
+    @Element(name = "dhRecbto")
+    private ZonedDateTime dataRecebimento;
 
     @Element(name = "infRec", required = false)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
@@ -69,8 +69,8 @@ public class NFLoteEnvioRetorno extends DFBase {
     public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
     }
-
-    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
+    
+    public void setDataRecebimento(final ZonedDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -105,8 +105,8 @@ public class NFLoteEnvioRetorno extends DFBase {
     public DFUnidadeFederativa getUf() {
         return this.uf;
     }
-
-    public LocalDateTime getDataRecebimento() {
+    
+    public ZonedDateTime getDataRecebimento() {
         return this.dataRecebimento;
     }
 

@@ -1,15 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoCombustivelTipo;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoEspecieVeiculo;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicao;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoRestricao;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoTipoVeiculo;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoVeiculoCor;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.nfe400.classes.*;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
@@ -121,11 +114,11 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setPesoLiquido(final BigDecimal pesoLiquido) {
-        this.pesoLiquido = BigDecimalParser.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
+        this.pesoLiquido = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
     }
 
     public void setPesoBruto(final BigDecimal pesoBruto) {
-        this.pesoBruto = BigDecimalParser.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
+        this.pesoBruto = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
     }
 
     public void setNumeroSerie(final String numeroSerie) {
@@ -143,7 +136,7 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setCapacidadeMaximaTracao(final BigDecimal capacidadeMaximaTracao) {
-        this.capacidadeMaximaTracao = BigDecimalParser.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
+        this.capacidadeMaximaTracao = BigDecimalValidador.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
     }
 
     public void setDistanciaEntreEixos(final String distanciaEntreEixos) {

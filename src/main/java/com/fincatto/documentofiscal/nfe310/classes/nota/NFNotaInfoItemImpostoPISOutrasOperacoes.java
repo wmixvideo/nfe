@@ -1,17 +1,16 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaPIS;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoPISOutrasOperacoes extends DFBase {
     private static final long serialVersionUID = 5707508769646733720L;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoSituacaoTributariaPIS situacaoTributaria;
 
     @Element(name = "vBC", required = false)
@@ -25,8 +24,8 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoes extends DFBase {
 
     @Element(name = "vAliqProd", required = false)
     private String valorAliquota;
-
-    @Element(name = "vPIS", required = true)
+    
+    @Element(name = "vPIS")
     private String valorTributo;
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaPIS situacaoTributaria) {
@@ -37,32 +36,32 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoes extends DFBase {
         if (this.valorAliquota != null || this.quantidadeVendida != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota caso valor aliquota ou quantidade vendida esteja setado");
         }
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC PIS OA Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC PIS OA Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
         if (this.valorAliquota != null || this.quantidadeVendida != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota caso valor aliquota ou quantidade vendida esteja setado");
         }
-        this.percentualAliquota = BigDecimalParser.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota PIS OA Item");
+        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota PIS OA Item");
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
         if (this.percentualAliquota != null || this.valorBaseCalculo != null) {
             throw new IllegalStateException("Nao pode setar valor aliquota caso percentual aliquota ou valor base calculo esteja setado");
         }
-        this.quantidadeVendida = BigDecimalParser.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Qtde Vendida PIS OA Item");
+        this.quantidadeVendida = BigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Qtde Vendida PIS OA Item");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
         if (this.percentualAliquota != null || this.valorBaseCalculo != null) {
             throw new IllegalStateException("Nao pode setar valor aliquota caso percentual aliquota ou valor base calculo esteja setado");
         }
-        this.valorAliquota = BigDecimalParser.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota PIS OA Item");
+        this.valorAliquota = BigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota PIS OA Item");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalParser.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo PIS OA Item");
+        this.valorTributo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo PIS OA Item");
     }
 
     public String getValorBaseCalculo() {

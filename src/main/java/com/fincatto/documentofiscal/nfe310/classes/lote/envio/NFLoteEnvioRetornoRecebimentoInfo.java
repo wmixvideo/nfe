@@ -1,16 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 
 public class NFLoteEnvioRetornoRecebimentoInfo extends DFBase {
     private static final long serialVersionUID = -7792241080891283618L;
-
-    @Element(name = "nRec", required = true)
+    
+    @Element(name = "nRec")
     private String recibo;
-
-    @Element(name = "tMed", required = true)
+    
+    @Element(name = "tMed")
     private String tempoMedio;
 
     public NFLoteEnvioRetornoRecebimentoInfo() {

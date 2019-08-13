@@ -1,28 +1,27 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
 
 public class NFInfoModelo1Por1AReferenciada extends DFBase {
     private static final long serialVersionUID = 4441065943167631316L;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "AAMM", required = true)
+    
+    @Element(name = "AAMM")
     private String anoMesEmissaoNFe;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private String modeloDocumentoFiscal;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private Integer serie;
 
     @Element(name = "nNF", required = false)

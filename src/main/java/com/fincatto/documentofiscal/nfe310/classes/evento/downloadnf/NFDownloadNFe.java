@@ -1,32 +1,31 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf;
 
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
-
 @Root(name = "downloadNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFDownloadNFe extends DFBase {
     private static final long serialVersionUID = 5595066759407095694L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "xServ", required = true)
+    
+    @Element(name = "xServ")
     private String servico;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
 
     public NFDownloadNFe() {

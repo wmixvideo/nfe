@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Attribute;
@@ -14,14 +14,14 @@ import java.time.ZonedDateTime;
 
 public class NFInfoEvento extends DFBase {
     private static final long serialVersionUID = 8878652860997939767L;
-
-    @Attribute(name = "Id", required = true)
+    
+    @Attribute(name = "Id")
     private String id;
-
-    @Element(name = "cOrgao", required = true)
+    
+    @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
     @Element(name = "CNPJ", required = false)
@@ -29,23 +29,23 @@ public class NFInfoEvento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
-    @Element(name = "chNFe", required = true)
+    
+    @Element(name = "chNFe")
     private String chave;
-
-    @Element(name = "dhEvento", required = true)
+    
+    @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-
-    @Element(name = "tpEvento", required = true)
+    
+    @Element(name = "tpEvento")
     private String codigoEvento;
-
-    @Element(name = "nSeqEvento", required = true)
+    
+    @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
-
-    @Element(name = "verEvento", required = true)
+    
+    @Element(name = "verEvento")
     private String versaoEvento;
-
-    @Element(name = "detEvento", required = true)
+    
+    @Element(name = "detEvento")
     private NFTipoEvento dadosEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
@@ -53,7 +53,7 @@ public class NFInfoEvento extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalParser.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
+        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
     }
 
     public String getId() {

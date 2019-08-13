@@ -1,19 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.util.List;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
+import java.util.List;
 
 public class NFNotaInfoTransporte extends DFBase {
     private static final long serialVersionUID = 1172316192774549031L;
-
-    @Element(name = "modFrete", required = true)
+    
+    @Element(name = "modFrete")
     private NFModalidadeFrete modalidadeFrete;
 
     @Element(name = "transporta", required = false)

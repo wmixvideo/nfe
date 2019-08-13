@@ -1,33 +1,32 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSST extends DFBase {
     private static final long serialVersionUID = -2354449482492846488L;
-
-    @Element(name = "orig", required = true)
+    
+    @Element(name = "orig")
     private NFOrigem origem;
-
-    @Element(name = "CST", required = true)
+    
+    @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-
-    @Element(name = "vBCSTRet", required = true)
+    
+    @Element(name = "vBCSTRet")
     private String valorBCICMSSTRetidoUFRemetente;
-
-    @Element(name = "vICMSSTRet", required = true)
+    
+    @Element(name = "vICMSSTRet")
     private String valorICMSSTRetidoUFRemetente;
-
-    @Element(name = "vBCSTDest", required = true)
+    
+    @Element(name = "vBCSTDest")
     private String valorBCICMSSTUFDestino;
-
-    @Element(name = "vICMSSTDest", required = true)
+    
+    @Element(name = "vICMSSTDest")
     private String valorICMSSTUFDestino;
 
     public void setOrigem(final NFOrigem origem) {
@@ -39,19 +38,19 @@ public class NFNotaInfoItemImpostoICMSST extends DFBase {
     }
 
     public void setValorBCICMSSTRetidoUFRemetente(final BigDecimal valorBCICMSSTRetidoUFRemetente) {
-        this.valorBCICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente, "Valor BC ICMS ST Retido UF Remetente");
+        this.valorBCICMSSTRetidoUFRemetente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente, "Valor BC ICMS ST Retido UF Remetente");
     }
 
     public void setValorICMSSTRetidoUFRemetente(final BigDecimal valorICMSSTRetidoUFRemetente) {
-        this.valorICMSSTRetidoUFRemetente = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente, "Valor ICMS ST Retido UF Remetente");
+        this.valorICMSSTRetidoUFRemetente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente, "Valor ICMS ST Retido UF Remetente");
     }
 
     public void setValorBCICMSSTUFDestino(final BigDecimal valorBCICMSSTUFDestino) {
-        this.valorBCICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino, "Valor BC ICMS ST UF Destino");
+        this.valorBCICMSSTUFDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino, "Valor BC ICMS ST UF Destino");
     }
 
     public void setValorICMSSTUFDestino(final BigDecimal valorICMSSTUFDestino) {
-        this.valorICMSSTUFDestino = BigDecimalParser.tamanho15Com2CasasDecimais(valorICMSSTUFDestino, "Valor ICMS ST UF Destino");
+        this.valorICMSSTUFDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTUFDestino, "Valor ICMS ST UF Destino");
     }
 
     public NFOrigem getOrigem() {

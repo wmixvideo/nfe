@@ -1,13 +1,12 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import java.util.List;
-
+import com.fincatto.documentofiscal.DFBase;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
+import java.util.List;
 
 /**
  * @author Caio
@@ -18,8 +17,8 @@ import com.fincatto.documentofiscal.DFBase;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormal extends DFBase {
     private static final long serialVersionUID = 2249807934468854296L;
-
-    @Element(name = "infCarga", required = true)
+    
+    @Element(name = "infCarga")
     private CTeNotaInfoCTeNormalInfoCarga infoCarga;
 
     @Element(name = "infDoc", required = false)
@@ -27,8 +26,8 @@ public class CTeNotaInfoCTeNormal extends DFBase {
 
     @Element(name = "docAnt", required = false)
     private CTeNotaInfoCTeNormalDocumentosAnteriores documentosAnteriores;
-
-    @Element(name = "infModal", required = true)
+    
+    @Element(name = "infModal")
     private CTeNotaInfoCTeNormalInfoModal infoModal;
 
     @ElementList(name = "veicNovos", inline = true, required = false)

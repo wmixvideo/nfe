@@ -1,25 +1,24 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
-
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFProtocoloEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 8058424887014735846L;
-
-    @Attribute(name = "versao", required = true)
+    
+    @Attribute(name = "versao")
     private String versao;
-
-    @Element(name = "evento", required = true)
+    
+    @Element(name = "evento")
     private NFEventoCancelamento evento;
-
-    @Element(name = "retEvento", required = true)
+    
+    @Element(name = "retEvento")
     private NFEventoRetorno eventoRetorno;
 
     public NFEventoCancelamento getEvento() {

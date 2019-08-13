@@ -1,27 +1,26 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
     private static final long serialVersionUID = 4756407184060968887L;
-
-    @Element(name = "nLote", required = true)
+    
+    @Element(name = "nLote")
     private String numeroLote;
-
-    @Element(name = "qLote", required = true)
+    
+    @Element(name = "qLote")
     private String quantidadeLote;
-
-    @Element(name = "dFab", required = true)
+    
+    @Element(name = "dFab")
     private LocalDate dataFabricacao;
-
-    @Element(name = "dVal", required = true)
+    
+    @Element(name = "dVal")
     private LocalDate dataValidade;
 
     @Element(name = "cAgreg", required = false)
@@ -33,7 +32,7 @@ public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
     }
 
     public void setQuantidadeLote(final BigDecimal quantidadeLote) {
-        this.quantidadeLote = BigDecimalParser.tamanho11Com3CasasDecimais(quantidadeLote, "Quantidade lote rastreio produto");
+        this.quantidadeLote = BigDecimalValidador.tamanho11Com3CasasDecimais(quantidadeLote, "Quantidade lote rastreio produto");
     }
 
     public void setDataFabricacao(final LocalDate dataFabricacao) {

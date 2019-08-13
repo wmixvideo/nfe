@@ -7,7 +7,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Created by Eldevan Nery Junior on 14/11/17.
@@ -23,7 +23,7 @@ public class MDFEnvioLoteRetornoInfoRecebimento extends DFBase {
     private String numeroRecibo;
 
     @Element(name = "dhRecbto", required = false)
-    private LocalDateTime dataRecibo;
+    private ZonedDateTime dataRecibo;
 
     @Element(name = "tMed", required = false)
     private BigInteger tempoMedio;
@@ -39,14 +39,14 @@ public class MDFEnvioLoteRetornoInfoRecebimento extends DFBase {
         this.numeroRecibo = numeroRecibo;
     }
 
-    public LocalDateTime getDataRecibo() {
+    public ZonedDateTime getDataRecibo() {
         return this.dataRecibo;
     }
 
     /**
      * Data e hora do recebimento, no formato AAAA-MM-DDTHH:MM:SS TZD
      */
-    public void setDataRecibo(final LocalDateTime dataRecibo) {
+    public void setDataRecibo(final ZonedDateTime dataRecibo) {
         this.dataRecibo = dataRecibo;
     }
 

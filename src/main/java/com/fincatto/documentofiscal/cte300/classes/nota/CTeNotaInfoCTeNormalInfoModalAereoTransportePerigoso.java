@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 /**
  * @author Caio
@@ -17,14 +16,14 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigoso extends DFBase {
     private static final long serialVersionUID = 5312668737106687231L;
-
-    @Element(name = "nONU", required = true)
+    
+    @Element(name = "nONU")
     private String onu;
-
-    @Element(name = "qTotEmb", required = true)
+    
+    @Element(name = "qTotEmb")
     private String quantidadeTotal;
-
-    @Element(name = "infTotAP", required = true)
+    
+    @Element(name = "infTotAP")
     private CTeNotaInfoCTeNormalInfoModalAereoTransportePerigosoInfo info;
 
     public CTeNotaInfoCTeNormalInfoModalAereoTransportePerigoso() {

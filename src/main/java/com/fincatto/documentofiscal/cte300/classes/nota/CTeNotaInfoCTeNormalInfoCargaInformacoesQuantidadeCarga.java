@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTUnidadeMedida;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -24,14 +24,14 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga extends DFBase {
     private static final long serialVersionUID = 4270955186707660004L;
-
-    @Element(name = "cUnid", required = true)
+    
+    @Element(name = "cUnid")
     private CTUnidadeMedida unidadeMedida;
-
-    @Element(name = "tpMed", required = true)
+    
+    @Element(name = "tpMed")
     private String tipoMedia;
-
-    @Element(name = "qCarga", required = true)
+    
+    @Element(name = "qCarga")
     private String quantidade;
 
     public CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga() {
@@ -79,6 +79,6 @@ public class CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga extends DFB
      * Quantidade
      */
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalParser.validaTamanho(quantidade, "Quantidade Carga CT-e", 11, 4, true);
+        this.quantidade = BigDecimalValidador.validaTamanho(quantidade, "Quantidade Carga CT-e", 11, 4, true);
     }
 }

@@ -1,50 +1,49 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 @Root(name = "infInut")
 public class NFEventoInutilizacaoDados extends DFBase {
     private static final long serialVersionUID = -5481681546706524562L;
-
-    @Attribute(name = "Id", required = true)
+    
+    @Attribute(name = "Id")
     private String identificador;
-
-    @Element(name = "tpAmb", required = true)
+    
+    @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-
-    @Element(name = "xServ", required = true)
+    
+    @Element(name = "xServ")
     private String nomeServico;
-
-    @Element(name = "cUF", required = true)
+    
+    @Element(name = "cUF")
     private DFUnidadeFederativa uf;
-
-    @Element(name = "ano", required = true)
+    
+    @Element(name = "ano")
     private Integer ano;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "mod", required = true)
+    
+    @Element(name = "mod")
     private String modeloDocumentoFiscal;
-
-    @Element(name = "serie", required = true)
+    
+    @Element(name = "serie")
     private String serie;
-
-    @Element(name = "nNFIni", required = true)
+    
+    @Element(name = "nNFIni")
     private String numeroNFInicial;
-
-    @Element(name = "nNFFin", required = true)
+    
+    @Element(name = "nNFFin")
     private String numeroNFFinal;
-
-    @Element(name = "xJust", required = true)
+    
+    @Element(name = "xJust")
     private String justificativa;
 
     public String getIdentificador() {

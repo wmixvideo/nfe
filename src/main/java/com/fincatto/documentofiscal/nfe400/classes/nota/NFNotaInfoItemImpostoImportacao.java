@@ -1,25 +1,24 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import org.simpleframework.xml.Element;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoImportacao extends DFBase {
     private static final long serialVersionUID = 4211590418053438276L;
-
-    @Element(name = "vBC", required = true)
+    
+    @Element(name = "vBC")
     private String valorBaseCalculo;
-
-    @Element(name = "vDespAdu", required = true)
+    
+    @Element(name = "vDespAdu")
     private String valorDespesaAduaneira;
-
-    @Element(name = "vII", required = true)
+    
+    @Element(name = "vII")
     private String valorImpostoImportacao;
-
-    @Element(name = "vIOF", required = true)
+    
+    @Element(name = "vIOF")
     private String valorIOF;
 
     public NFNotaInfoItemImpostoImportacao() {
@@ -30,19 +29,19 @@ public class NFNotaInfoItemImpostoImportacao extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalParser.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC Importacao Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC Importacao Item");
     }
 
     public void setValorDespesaAduaneira(final BigDecimal valorDespesaAduaneira) {
-        this.valorDespesaAduaneira = BigDecimalParser.tamanho15Com2CasasDecimais(valorDespesaAduaneira, "Valor Despesa Aduaneira Importacao Item");
+        this.valorDespesaAduaneira = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDespesaAduaneira, "Valor Despesa Aduaneira Importacao Item");
     }
 
     public void setValorImpostoImportacao(final BigDecimal valorImpostoImportacao) {
-        this.valorImpostoImportacao = BigDecimalParser.tamanho15Com2CasasDecimais(valorImpostoImportacao, "Valor Imposto Importacao Item");
+        this.valorImpostoImportacao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorImpostoImportacao, "Valor Imposto Importacao Item");
     }
 
     public void setValorIOF(final BigDecimal valorIOF) {
-        this.valorIOF = BigDecimalParser.tamanho15Com2CasasDecimais(valorIOF, "Valor IOF Importacao Item");
+        this.valorIOF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorIOF, "Valor IOF Importacao Item");
     }
 
     public String getValorBaseCalculo() {

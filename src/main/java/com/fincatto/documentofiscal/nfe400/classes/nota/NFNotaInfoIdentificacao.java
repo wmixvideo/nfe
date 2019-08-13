@@ -12,10 +12,11 @@ import com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao;
 import com.fincatto.documentofiscal.validadores.IntegerValidador;
 import com.fincatto.documentofiscal.validadores.ListValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
-import java.time.ZonedDateTime;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class NFNotaInfoIdentificacao extends DFBase {
@@ -96,6 +97,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     public void setCodigoRandomico(final String codigoRandomico) {
         StringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
+        StringValidador.validaCodigoRandomico(codigoRandomico, "Codigo Randomico");
+        if(StringUtils.isNotBlank(numeroNota) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
+            throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
+        }
         this.codigoRandomico = codigoRandomico;
     }
 
@@ -115,6 +120,9 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     public void setNumeroNota(final String numeroNota) {
         StringValidador.tamanho9(numeroNota, "Numero da Nota");
+        if(StringUtils.isNotBlank(codigoRandomico) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
+            throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
+        }
         this.numeroNota = numeroNota;
     }
 

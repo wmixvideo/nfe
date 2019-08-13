@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class NFRetornoConsultaCadastroDadosTest {
@@ -27,7 +26,7 @@ public class NFRetornoConsultaCadastroDadosTest {
     @Test
     public void deveObterDataHoraProcessamentoComoFoiSetado() {
         final NFRetornoConsultaCadastroDados retornoConsultaCadastroDados = new NFRetornoConsultaCadastroDados();
-        final LocalDateTime dataHoraProcessamento = LocalDateTime.from(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").parse("20/10/2010 10:10:10"));
+        final LocalDateTime dataHoraProcessamento = LocalDateTime.of(2010, 10, 20, 10, 10, 10);
         retornoConsultaCadastroDados.setDataHoraProcessamento(dataHoraProcessamento);
         Assert.assertEquals(dataHoraProcessamento, retornoConsultaCadastroDados.getDataHoraProcessamento());
     }

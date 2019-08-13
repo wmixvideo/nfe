@@ -1,34 +1,33 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import java.time.LocalDate;
-import org.simpleframework.xml.Element;
-
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalParser;
+import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
+import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class NFNotaInfoAvulsa extends DFBase {
     private static final long serialVersionUID = 724335920156427201L;
-
-    @Element(name = "CNPJ", required = true)
+    
+    @Element(name = "CNPJ")
     private String cnpj;
-
-    @Element(name = "xOrgao", required = true)
+    
+    @Element(name = "xOrgao")
     private String orgaoEmitente;
-
-    @Element(name = "matr", required = true)
+    
+    @Element(name = "matr")
     private String matriculaAgente;
-
-    @Element(name = "xAgente", required = true)
+    
+    @Element(name = "xAgente")
     private String nomeAgente;
 
     @Element(name = "fone", required = false)
     private String fone;
-
-    @Element(name = "UF", required = true)
+    
+    @Element(name = "UF")
     private String uf;
 
     @Element(name = "nDAR", required = false)
@@ -39,8 +38,8 @@ public class NFNotaInfoAvulsa extends DFBase {
 
     @Element(name = "vDAR", required = false)
     private String valorTotalConstanteDocumentoArrecadacaoReceita;
-
-    @Element(name = "repEmi", required = true)
+    
+    @Element(name = "repEmi")
     private String reparticaoFiscalEmitente;
 
     @Element(name = "dPag", required = false)
@@ -85,7 +84,7 @@ public class NFNotaInfoAvulsa extends DFBase {
     }
 
     public void setValorTotalConstanteDocumentoArrecadacaoReceita(final BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita) {
-        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalParser.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita, "Valor Total Constante Documento Arrecadacao Receita");
+        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita, "Valor Total Constante Documento Arrecadacao Receita");
     }
 
     public void setReparticaoFiscalEmitente(final String reparticaoFiscalEmitente) {
