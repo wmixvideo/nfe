@@ -3,7 +3,7 @@ before_script:
   - export TZ=America/Sao_Paulo
 
 jdk:
-  - oraclejdk8
+  - oraclejdk11
 
 notifications:
     email:
