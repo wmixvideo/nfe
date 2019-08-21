@@ -44,6 +44,9 @@ public class NFProtocoloInfo extends DFBase {
     @Element(name = "xMsg", required = false)
     private String mensagem;
 
+    @Element(name = "Signature", required = false)
+    private String assinatura;
+
     public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
     }
@@ -137,5 +140,13 @@ public class NFProtocoloInfo extends DFBase {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public String getAssinatura() {
+        return assinatura;
+    }
+
+    public void setAssinatura(String assinatura) {
+        this.assinatura = assinatura;
     }
 }
