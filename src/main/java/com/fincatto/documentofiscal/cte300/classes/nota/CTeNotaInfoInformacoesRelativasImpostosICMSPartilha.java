@@ -31,9 +31,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSPartilha extends DFBase 
     @Element(name = "pICMSInter")
     private String aliquotaInterestadual;
     
-    @Element(name = "pICMSInterPart")
+    @Element(name = "pICMSInterPart", required = false)
     private String aliquotaPartilha;
-    
+
     @Element(name = "vFCPUFFim")
     private String valorFCP;
     

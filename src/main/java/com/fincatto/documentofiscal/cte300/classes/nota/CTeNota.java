@@ -19,6 +19,9 @@ public class CTeNota extends DFBase {
     @Element(name = "infCte")
     private CTeNotaInfo info;
 
+    @Element(name="infCTeSupl", required = false)
+    private CTeNotaInfoSuplementares infoSuplementares;
+
     @Element(name = "Signature", required = false)
     private CTeSignature signature;
 
@@ -33,6 +36,15 @@ public class CTeNota extends DFBase {
 
     public void setCteNotaInfo(final CTeNotaInfo info) {
         this.info = info;
+    }
+
+    public CTeNotaInfoSuplementares getInfoSuplementares() {
+        return infoSuplementares;
+    }
+
+    public CTeNota setInfoSuplementares(CTeNotaInfoSuplementares infoSuplementares) {
+        this.infoSuplementares = infoSuplementares;
+        return this;
     }
 
     public CTeSignature getSignature() {
