@@ -98,11 +98,11 @@ public class NFEndereco extends DFBase {
         this.codigoPais = codigoPais;
     }
     
-    private void verificaDestinoOperacao(DFPais codigoPais) {
-        if (this.uf != null && uf.equals(DFUnidadeFederativa.EX) && codigoPais.equals(DFPais.BRASIL)) {
+    private void verificaDestinoOperacao(DFPais pais) {
+        if (this.uf != null && this.uf.equals(DFUnidadeFederativa.EX.getCodigo()) && pais.equals(DFPais.BRASIL)) {
             throw new IllegalStateException("Opera\u00E7\u00E3o com Exterior e pa\u00EDs de destino igual a Brasil");
-        } else if (this.uf != null && !uf.equals(DFUnidadeFederativa.EX) && !codigoPais.equals(DFPais.BRASIL)) {
-            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)", codigoPais.getDescricao(), this.uf));
+        } else if (this.uf != null && !this.uf.equals(DFUnidadeFederativa.EX.getCodigo()) && !pais.equals(DFPais.BRASIL)) {
+            throw new IllegalStateException(String.format("Opera\u00E7\u00E3o com Exterior(%s) e UF de destino interna(%s)", pais.getDescricao(), this.uf));
         }
     }
 
