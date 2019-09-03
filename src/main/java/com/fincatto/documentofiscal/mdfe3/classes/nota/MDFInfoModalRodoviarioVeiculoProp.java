@@ -16,7 +16,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     @Element(name = "CNPJ", required = false)
     private String cnpj;
 
-    @Element(name = "RNTRC", required = false)
+    @Element(name = "RNTRC")
     private String registroNacionalTransportes;
 
     @Element(name = "xNome")
