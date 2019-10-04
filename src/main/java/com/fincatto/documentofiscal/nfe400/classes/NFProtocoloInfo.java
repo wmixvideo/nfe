@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -111,14 +112,9 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
-    	if (StringUtils.isBlank(this.motivo))//quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
-            //usando try-catch block para evitar o erro 'Status retorno status não mapeado',
-    	    // caso a receita envie um codigo nao mapeado!
-    	    try {
-                return NFRetornoStatus.valueOfCodigo(this.status).getMotivo();
-            } catch (Exception e) {
-
-            }
+    	if (StringUtils.isBlank(this.motivo))
+    	    //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
         return this.motivo;
     }
 
