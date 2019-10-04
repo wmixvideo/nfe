@@ -579,7 +579,7 @@ public enum NFRetornoStatus {
                 return statusRetorno;
             }
         }
-        throw new IllegalArgumentException(String.format("Status retorno %s n\u00e3o mapeado", codigo));
+        return null;
     }
 
     public boolean isAutorizado() {
