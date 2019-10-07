@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Edivaldo.
+ * Copyright 2019 Edivaldo Merlo Stens.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@ import org.simpleframework.xml.Root;
 
 /**
  *
- * @author Edivaldo
+ * Edivaldo Merlo Stens on 07/10/19.
  */
 @Root(name = "infMDFeSupl")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfMDFeSupl extends DFBase {
 
     @Element(name = "qrCodMDFe", required = true)
-    protected String qrCodMDFe;
+    private String qrCodMDFe;
 
     /**
      * Obtém o valor da propriedade qrCodMDFe.
