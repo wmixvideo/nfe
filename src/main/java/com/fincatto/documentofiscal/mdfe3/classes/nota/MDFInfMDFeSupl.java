@@ -16,6 +16,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -27,6 +28,7 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfMDFeSupl extends DFBase {
 
+    @Element(name = "qrCodMDFe", required = true)
     protected String qrCodMDFe;
 
     /**
