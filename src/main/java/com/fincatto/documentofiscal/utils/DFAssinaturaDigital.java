@@ -23,9 +23,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
+import java.security.Signature;
+import java.security.UnrecoverableEntryException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 
@@ -72,9 +77,7 @@ public class DFAssinaturaDigital {
     }
     
     public void assinarDocumento(Reader xmlReader, Writer xmlAssinado, final String... elementosAssinaveis) throws Exception {
-        final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
-        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
-        final KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
+        final KeyStore.PrivateKeyEntry keyEntry = getPrivateKeyEntry();
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
         final List<Transform> transforms = new ArrayList<>(2);
         transforms.add(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null));
@@ -102,7 +105,23 @@ public class DFAssinaturaDigital {
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
     }
-    
+
+    private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
+        final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
+        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+        return (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
+    }
+
+    public String assinarString(String _string) throws Exception {
+        byte[] buffer = _string.getBytes();
+        Signature signatureProvider = Signature.getInstance("SHA1withRSA");
+        signatureProvider.initSign(getPrivateKeyEntry().getPrivateKey());
+        signatureProvider.update(buffer, 0, buffer.length);
+        byte[] signature = signatureProvider.sign();
+        System.out.println(getPrivateKeyEntry().getPrivateKey().getFormat());
+        return Base64.getEncoder().encodeToString(signature);
+    }
+
     static class DFKeySelector extends KeySelector {
         @Override
         public KeySelectorResult select(final KeyInfo keyInfo, final KeySelector.Purpose purpose, final AlgorithmMethod method, final XMLCryptoContext context) throws KeySelectorException {
