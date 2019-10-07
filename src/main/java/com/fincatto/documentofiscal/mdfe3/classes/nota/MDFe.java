@@ -8,17 +8,22 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 
 /**
- * Created by Eldevan Nery Junior on 03/11/17. Tipo Manifesto de Documentos Fiscais Eletrônicos.
+ * Created by Eldevan Nery Junior on 03/11/17. Tipo Manifesto de Documentos
+ * Fiscais Eletrônicos.
  */
 @Root(name = "MDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFe extends DFBase {
+
     private static final long serialVersionUID = -4082665506491508726L;
 
     public static final String VERSAO = "3.00";
 
     @Element(name = "infMDFe")
     private MDFInfo info;
+
+    @Element(name = "infMDFeSupl", required = true)
+    private MDFInfMDFeSupl infMDFeSupl;
 
     @Element(name = "Signature", required = false)
     private NFSignature assinatura;
@@ -29,6 +34,14 @@ public class MDFe extends DFBase {
 
     public void setInfo(final MDFInfo info) {
         this.info = info;
+    }
+
+    public MDFInfMDFeSupl getInfMDFeSupl() {
+        return infMDFeSupl;
+    }
+
+    public void setInfMDFeSupl(final MDFInfMDFeSupl infMDFeSupl) {
+        this.infMDFeSupl = infMDFeSupl;
     }
 
     public NFSignature getAssinatura() {
