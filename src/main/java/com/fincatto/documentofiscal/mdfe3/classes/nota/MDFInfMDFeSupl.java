@@ -48,6 +48,6 @@ public class MDFInfMDFeSupl extends DFBase {
      *
      */
     public void setQrCodMDFe(String value) {
-        this.qrCodMDFe = (value != null ? "<![CDATA[" + value + "]]>" : null);
+        this.qrCodMDFe = (value != null ? "<![CDATA[\n" + value + "\n]]>" : null);
     }
 }
