@@ -13,6 +13,7 @@ public class DFLocalDateTransformerTest {
         Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01").toString());
         Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006").toString());
         Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006 12:00:01").toString());
+        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01T00:00:00-03:00").toString());
     }
 
     @Test

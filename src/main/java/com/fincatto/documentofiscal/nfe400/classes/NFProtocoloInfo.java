@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -37,6 +39,12 @@ public class NFProtocoloInfo extends DFBase {
 
     @Element(name = "xMotivo", required = false)
     private String motivo;
+
+    @Element(name = "cMsg", required = false)
+    private String codigoMessage;
+
+    @Element(name = "xMsg", required = false)
+    private String mensagem;
 
     public void setAmbiente(final DFAmbiente ambiente) {
         this.ambiente = ambiente;
@@ -104,8 +112,9 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
-    	if (this.motivo==null)//quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
-    		return NFRetornoStatus.valueOfCodigo(this.status).getMotivo();
+    	if (StringUtils.isBlank(this.motivo))
+    	    //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
         return this.motivo;
     }
 
@@ -115,5 +124,21 @@ public class NFProtocoloInfo extends DFBase {
 
     public void setIdentificador(final String identificador) {
         this.identificador = identificador;
+    }
+
+    public String getCodigoMessage() {
+        return codigoMessage;
+    }
+
+    public void setCodigoMessage(String codigoMessage) {
+        this.codigoMessage = codigoMessage;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 }

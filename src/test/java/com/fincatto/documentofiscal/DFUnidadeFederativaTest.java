@@ -15,8 +15,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("AL", DFUnidadeFederativa.AL.getCodigo());
         Assert.assertEquals("27", DFUnidadeFederativa.AL.getCodigoIbge());
-        Assert.assertNull(DFUnidadeFederativa.AL.getQrCodeHomologacao());
-        Assert.assertNull(DFUnidadeFederativa.AL.getQrCodeProducao());
+        Assert.assertEquals("http://nfce.sefaz.al.gov.br/QRCode/consultarNFCe.jsp", DFUnidadeFederativa.AL.getQrCodeHomologacao());
+        Assert.assertEquals("http://nfce.sefaz.al.gov.br/QRCode/consultarNFCe.jsp", DFUnidadeFederativa.AL.getQrCodeProducao());
 
 
         Assert.assertEquals("AM", DFUnidadeFederativa.AM.getCodigo());
@@ -103,8 +103,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("RJ", DFUnidadeFederativa.RJ.getCodigo());
         Assert.assertEquals("33", DFUnidadeFederativa.RJ.getCodigoIbge());
-        Assert.assertEquals("http://www.fazenda.rj.gov.br/nfce/consulta", DFUnidadeFederativa.RJ.getQrCodeHomologacao());
-        Assert.assertEquals("http://www.fazenda.rj.gov.br/nfce/consulta", DFUnidadeFederativa.RJ.getQrCodeProducao());
+        Assert.assertEquals("http://www4.fazenda.rj.gov.br/consultaNFCe/QRCode", DFUnidadeFederativa.RJ.getQrCodeHomologacao());
+        Assert.assertEquals("http://www4.fazenda.rj.gov.br/consultaNFCe/QRCode", DFUnidadeFederativa.RJ.getQrCodeProducao());
 
         Assert.assertEquals("RN", DFUnidadeFederativa.RN.getCodigo());
         Assert.assertEquals("24", DFUnidadeFederativa.RN.getCodigoIbge());
@@ -143,8 +143,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("TO", DFUnidadeFederativa.TO.getCodigo());
         Assert.assertEquals("17", DFUnidadeFederativa.TO.getCodigoIbge());
-        Assert.assertNull(DFUnidadeFederativa.TO.getQrCodeHomologacao());
-        Assert.assertNull(DFUnidadeFederativa.TO.getQrCodeProducao());
+        Assert.assertEquals("http://homologacao.sefaz.to.gov.br/nfce/qrcode", DFUnidadeFederativa.TO.getQrCodeHomologacao());
+        Assert.assertEquals("http://www.sefaz.to.gov.br/nfce/qrcode", DFUnidadeFederativa.TO.getQrCodeProducao());
 
         Assert.assertEquals("NC", DFUnidadeFederativa.NACIONAL.getCodigo());
         Assert.assertEquals("90", DFUnidadeFederativa.NACIONAL.getCodigoIbge());
