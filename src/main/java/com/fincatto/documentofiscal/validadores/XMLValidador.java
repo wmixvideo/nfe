@@ -39,6 +39,10 @@ public final class XMLValidador {
     public static boolean validaLote400(final String arquivoXML) throws Exception {
         return XMLValidador.valida400(arquivoXML, "enviNFe_v4.00.xsd");
     }
+    
+    public static boolean validaNota400(final String arquivoXML) throws Exception {
+        return XMLValidador.valida400(arquivoXML, "nfe_v4.00.xsd");
+    }
 
     private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300a15072019/%s", xsd));
