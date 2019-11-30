@@ -32,7 +32,7 @@ public class NFLoteEnvioRetorno extends DFBase {
     @Element(name = "xMotivo")
     private String motivo;
     
-    @Element(name = "cUF")
+    @Element(name = "cUF", required = false)
     private DFUnidadeFederativa uf;
     
     @Element(name = "dhRecbto")
