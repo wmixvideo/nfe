@@ -36,8 +36,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("CE", DFUnidadeFederativa.CE.getCodigo());
         Assert.assertEquals("23", DFUnidadeFederativa.CE.getCodigoIbge());
-        Assert.assertNull(DFUnidadeFederativa.CE.getQrCodeHomologacao());
-        Assert.assertNull(DFUnidadeFederativa.CE.getQrCodeProducao());
+        Assert.assertEquals("http://nfceh.sefaz.ce.gov.br/pages/ShowNFCe.html", DFUnidadeFederativa.CE.getQrCodeHomologacao());
+        Assert.assertEquals("http://nfce.sefaz.ce.gov.br/pages/ShowNFCe.html", DFUnidadeFederativa.CE.getQrCodeProducao());
 
         Assert.assertEquals("DF", DFUnidadeFederativa.DF.getCodigo());
         Assert.assertEquals("53", DFUnidadeFederativa.DF.getCodigoIbge());
