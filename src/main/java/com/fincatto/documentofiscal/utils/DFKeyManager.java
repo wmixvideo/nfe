@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFLog;
 
 import javax.net.ssl.X509KeyManager;
 import java.net.Socket;
@@ -16,7 +17,7 @@ import java.util.Enumeration;
  * Created by Eldevan Nery Junior on 18/10/19.
  *
  */
-public class DFKeyManager implements X509KeyManager {
+public class DFKeyManager implements X509KeyManager, DFLog {
 
     private KeyStore ks;
     private String alias;
@@ -51,7 +52,8 @@ public class DFKeyManager implements X509KeyManager {
             System.arraycopy(certificates, 0, x509Certificates, 0, certificates.length);
             return x509Certificates;
         } catch (KeyStoreException e) {
-            System.out.println("Não foi possível carregar o keystore para o alias:" + alias);
+            this.getLogger().debug("Não foi possível carregar o keystore para o alias:" + alias);
+            this.getLogger().error("Não foi possível carregar o keystore para o alias:" + alias, e);
         }
 
         return null;
@@ -62,7 +64,7 @@ public class DFKeyManager implements X509KeyManager {
             return (PrivateKey) ks.getKey(alias, password == null
                     ? null : password.toCharArray());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            this.getLogger().error("Não foi possível carregar o keystore para o alias:" + alias, e);
         }
         return null;
     }
