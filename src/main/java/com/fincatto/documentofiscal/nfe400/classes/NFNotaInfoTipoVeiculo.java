@@ -16,8 +16,16 @@ public enum NFNotaInfoTipoVeiculo {
     MOTONETA("03", "Motoneta"),
     ONIBUS("08", "\u00d4nibus"),
     REBOQUE("10", "Reboque"),
+    SEMIRREBOQUE("11", "Semirreboque"),
     TRICICLO("05", "Triciclo"),
-    TRATOR("17", "Trator");
+    TRATOR("17", "Trator"),
+    TRATOR_RODAS("18","Trator rodas"),
+    TRATOR_ESTEIRAS("19","Trator esteiras"),
+    TRATOR_MISTO("20","Trator misto"),
+    QUADRICICLO("21","Quadriciclo"),
+    UTILITARIO("25","Utilit\u00e1rio"),
+    MOTOR_CASA("26","Motor Casa");
+
 
     private final String codigo;
     private final String descricao;
