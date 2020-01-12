@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class NFNotaInfoTipoVeiculoTest {
-
+    
     @Test
     public void deveRepresentarOCodigoCorretamente() {
         Assert.assertEquals("06", NFNotaInfoTipoVeiculo.AUTOMOVEL.getCodigo());
@@ -21,5 +21,12 @@ public class NFNotaInfoTipoVeiculoTest {
         Assert.assertEquals("10", NFNotaInfoTipoVeiculo.REBOQUE.getCodigo());
         Assert.assertEquals("05", NFNotaInfoTipoVeiculo.TRICICLO.getCodigo());
         Assert.assertEquals("17", NFNotaInfoTipoVeiculo.TRATOR.getCodigo());
+        Assert.assertEquals("11", NFNotaInfoTipoVeiculo.SEMIRREBOQUE.getCodigo());
+        Assert.assertEquals("18", NFNotaInfoTipoVeiculo.TRATOR_RODAS.getCodigo());
+        Assert.assertEquals("19", NFNotaInfoTipoVeiculo.TRATOR_ESTEIRAS.getCodigo());
+        Assert.assertEquals("20", NFNotaInfoTipoVeiculo.TRATOR_MISTO.getCodigo());
+        Assert.assertEquals("21", NFNotaInfoTipoVeiculo.QUADRICICLO.getCodigo());
+        Assert.assertEquals("25", NFNotaInfoTipoVeiculo.UTILITARIO.getCodigo());
+        Assert.assertEquals("26", NFNotaInfoTipoVeiculo.MOTOR_CASA.getCodigo());
     }
 }
