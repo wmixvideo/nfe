@@ -34,7 +34,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalulo) {
-        this.valorBaseCalulo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
@@ -50,7 +50,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     }
 
     public String getValorBaseCalculo() {
-        return this.valorBaseCalulo;
+        return this.valorBaseCalculo;
     }
 
     public String getPercentualAliquota() {
