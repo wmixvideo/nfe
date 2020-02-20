@@ -1007,7 +1007,7 @@ public class FabricaDeObjetosFake {
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
         cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
     }
 

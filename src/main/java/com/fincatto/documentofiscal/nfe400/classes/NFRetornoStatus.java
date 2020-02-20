@@ -453,6 +453,7 @@ public enum NFRetornoStatus {
     CODIGO_763(763, "Rejei\u00e7\u00e3o: NFC-e com dados de aquisi\u00e7\u00e3od e cana"),
     CODIGO_765(765, "Rejei\u00e7\u00e3o: Lote s\u00f3 poder\u00e1 conter NF-e ou NFC-e"),
     CODIGO_766(766, "Rejei\u00e7\u00e3o: NFC-e com CST 50-suspen\u00e7\u00e3o"),
+    CODIGO_770(770, "Rejei\u00e7\u00e3o: CFOP Inexistente"),
     CODIGO_771(771, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual e UF de destino com EX"),
     CODIGO_772(772, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interestadual e UF de destino igual \u00e0 UF do emitente"),
     CODIGO_773(773, "Rejei\u00e7\u00e3o: Opera\u00e7\u00e3o interna e UF de destino difere da UF do emitente"),
