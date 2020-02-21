@@ -99,29 +99,33 @@ class WSLoteEnvio implements DFLog {
     }
     
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaLote400(loteAssinadoXml);
-        
-        // envia o lote para a sefaz
-        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-        
-        final com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg dados = new com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
-        
-        // define o tipo de emissao
-        final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-        
-        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
-        if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
-        }
-        
-        final NfeResultMsg autorizacaoLoteResult = new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
+        final NfeResultMsg autorizacaoLoteResult = getNfeResultMsg(loteAssinadoXml, modelo);
         final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         this.getLogger().debug(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
-    
+
+    public NfeResultMsg getNfeResultMsg(String loteAssinadoXml, DFModelo modelo) throws Exception {
+        // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
+        XMLValidador.validaLote400(loteAssinadoXml);
+
+        // envia o lote para a sefaz
+        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
+
+        final NFeAutorizacao4Stub.NfeDadosMsg dados = new NFeAutorizacao4Stub.NfeDadosMsg();
+        dados.setExtraElement(omElement);
+
+        // define o tipo de emissao
+        final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getNfeAutorizacao(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
+        }
+
+        return new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
+    }
+
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);

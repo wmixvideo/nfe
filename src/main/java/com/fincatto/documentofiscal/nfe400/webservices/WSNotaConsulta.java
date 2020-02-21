@@ -24,15 +24,18 @@ class WSNotaConsulta implements DFLog {
     }
     
     NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.config.getPersister().read(NFNotaConsultaRetorno.class, consultaNotaAsString(chaveDeAcesso).toString());
+    }
+
+    public String consultaNotaAsString(String chaveDeAcesso) throws Exception {
         final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
         this.getLogger().debug(omElementConsulta.toString());
-        
+
         final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
         this.getLogger().debug(omElementRetorno.toString());
-        
-        return this.config.getPersister().read(NFNotaConsultaRetorno.class, omElementRetorno.toString());
+        return omElementRetorno.toString();
     }
-    
+
     private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
         

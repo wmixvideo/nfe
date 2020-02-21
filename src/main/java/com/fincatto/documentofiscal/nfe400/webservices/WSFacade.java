@@ -18,6 +18,7 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 
@@ -86,6 +87,19 @@ public class WSFacade {
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
+
+    /**
+     * Faz o envio assinado para a Sefaz de NF-e e NFC-e ATENCAO: Esse metodo deve ser utilizado para assinaturas A3.
+     * Retorna resultado bruto da receita, para processamento posterior.
+     *
+     * @param loteAssinadoXml lote assinado no formato XML
+     * @param modelo modelo da nota (NF-e ou NFC-e)
+     * @return dados do lote retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public NFeAutorizacao4Stub.NfeResultMsg getNfeResultMsg(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        return this.wsLoteEnvio.getNfeResultMsg(loteAssinadoXml, modelo);
+    }
     
     /**
      * Faz a consulta do lote na Sefaz (NF-e e NFC-e).
@@ -120,6 +134,17 @@ public class WSFacade {
      */
     public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
+    }
+
+    /**
+     * Faz a consulta da nota.(Retorno como string)
+     *
+     * @param chaveDeAcesso chave de acesso da nota
+     * @return dados da consulta da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public String consultaNotaReturnString(final String chaveDeAcesso) throws Exception {
+        return this.wsNotaConsulta.consultaNotaAsString(chaveDeAcesso);
     }
     
     /**
