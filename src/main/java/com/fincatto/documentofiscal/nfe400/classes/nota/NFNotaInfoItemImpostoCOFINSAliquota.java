@@ -18,7 +18,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
     
     @Element(name = "vBC")
-    private String valorBaseCalulo;
+    private String valorBaseCalculo;
     
     @Element(name = "pCOFINS")
     private String percentualAliquota;
@@ -33,8 +33,8 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
         this.situacaoTributaria = situacaoTributaria;
     }
 
-    public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
-        this.valorBaseCalulo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
+    public void setValorBaseCalculo(final BigDecimal valorBaseCalulo) {
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
@@ -49,8 +49,8 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
         return this.situacaoTributaria;
     }
 
-    public String getValorBaseCalulo() {
-        return this.valorBaseCalulo;
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
     }
 
     public String getPercentualAliquota() {
