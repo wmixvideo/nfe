@@ -14,6 +14,7 @@ import com.fincatto.documentofiscal.validadores.StringValidador;
 @Root(name = "infMDFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfo extends DFBase {
+
     private static final long serialVersionUID = 5215463851140624452L;
 
     public static final String IDENT = "MDFe";
@@ -56,6 +57,9 @@ public class MDFInfo extends DFBase {
     @Element(name = "infAdic", required = false)
     private MDFInfoInformacoesAdicionais informacoesAdicionais;
 
+    @Element(name = "infRespTec", required = false)
+    private MDFRespTec infRespTec;
+
     public String getIdentificador() {
         return this.identificador;
     }
@@ -71,6 +75,7 @@ public class MDFInfo extends DFBase {
 
     /**
      * Retorna a chave de acesso a partir do identificador.
+     *
      * @return Chave de acesso.
      */
     public String getChaveAcesso() {
@@ -159,6 +164,14 @@ public class MDFInfo extends DFBase {
 
     public void setInformacoesAdicionais(final MDFInfoInformacoesAdicionais informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
+    }
+
+    public MDFRespTec getInfRespTec() {
+        return infRespTec;
+    }
+
+    public void setInfRespTec(final MDFRespTec infRespTec) {
+        this.infRespTec = infRespTec;
     }
 
     public List<MDFInfoSeguro> getSeguro() {
