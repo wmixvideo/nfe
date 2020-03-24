@@ -33,6 +33,9 @@ public class MDFeDetalhamentoEvento extends DFBase {
     @Element(name = "evIncCondutorMDFe", required = false)
     private MDFeEnviaEventoIncluirCondutor enviaEventoIncluirCondutor;
 
+    @Element(name = "evIncDFeMDFe", required = false)
+    private MDFeEnviaEventoIncluirDFe enviaEventoIncluirDFe;
+
     public String getVersaoEvento() {
         return this.versaoEvento;
     }
@@ -79,6 +82,14 @@ public class MDFeDetalhamentoEvento extends DFBase {
 
     public void setEnviaEventoIncluirCondutor(MDFeEnviaEventoIncluirCondutor enviaEventoIncluirCondutor) {
         this.enviaEventoIncluirCondutor = enviaEventoIncluirCondutor;
+    }
+
+    public MDFeEnviaEventoIncluirDFe getEnviaEventoIncluirDFe() {
+        return enviaEventoIncluirDFe;
+    }
+
+    public void setEnviaEventoIncluirDFe(MDFeEnviaEventoIncluirDFe enviaEventoIncluirDFe) {
+        this.enviaEventoIncluirDFe = enviaEventoIncluirDFe;
     }
 
 }
