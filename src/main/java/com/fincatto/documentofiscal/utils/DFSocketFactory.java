@@ -34,7 +34,13 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         ((SSLSocket) socket).setEnabledProtocols(this.config.getSSLProtocolos());
         socket.bind(new InetSocketAddress(localAddress, localPort));
         
-        socket.connect(new InetSocketAddress(host, port), params.getConnectionTimeout());
+        int connectTimeout = 60000;
+        
+        if(params != null && params.getConnectionTimeout() > 0) {
+        	connectTimeout = params.getConnectionTimeout();
+        }
+        
+        socket.connect(new InetSocketAddress(host, port), connectTimeout);
         return socket;
     }
 
