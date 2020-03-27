@@ -90,6 +90,10 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeInutilizacao4", "nfeInutilizacaoNF")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeInutilizacao4", "nfeDadosMsg"));
+            
+            //Alteracao para correcao da inutilizacao da faixa de valores para o estado do Ceara
+            env.declareNamespace("http://www.portalfiscal.inf.br/nfe/wsdl/NFeInutilizacao4", "ns1");
+                
             // adding SOAP soap_headers
             this._serviceClient.addHeadersToEnvelope(env);
             // set the message context with that soap envelope
