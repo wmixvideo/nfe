@@ -40,7 +40,7 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
     @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
     
-    @Element(name = "modBCST")
+    @Element(name = "modBCST", required = false)
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
     @Element(name = "pMVAST", required = false)
