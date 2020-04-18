@@ -98,7 +98,7 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFeAutorizacao4Stub.NfeResultMsg getNfeResultMsg(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        return this.wsLoteEnvio.getNfeResultMsg(loteAssinadoXml, modelo);
+        return this.wsLoteEnvio.comunicaLoteRaw(loteAssinadoXml, modelo);
     }
     
     /**
@@ -143,7 +143,7 @@ public class WSFacade {
      * @return dados da consulta da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public String consultaNotaReturnString(final String chaveDeAcesso) throws Exception {
+    public String consultaNotaAsString(final String chaveDeAcesso) throws Exception {
         return this.wsNotaConsulta.consultaNotaAsString(chaveDeAcesso);
     }
     

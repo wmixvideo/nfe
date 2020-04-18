@@ -99,13 +99,13 @@ class WSLoteEnvio implements DFLog {
     }
     
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        final NfeResultMsg autorizacaoLoteResult = getNfeResultMsg(loteAssinadoXml, modelo);
+        final NfeResultMsg autorizacaoLoteResult = comunicaLoteRaw(loteAssinadoXml, modelo);
         final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         this.getLogger().debug(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
 
-    public NfeResultMsg getNfeResultMsg(String loteAssinadoXml, DFModelo modelo) throws Exception {
+    public NfeResultMsg comunicaLoteRaw(String loteAssinadoXml, DFModelo modelo) throws Exception {
         // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         XMLValidador.validaLote400(loteAssinadoXml);
 
