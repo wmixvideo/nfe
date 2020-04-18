@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.persister;
+package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.transformers.DFRegistryMatcher;
 import org.simpleframework.xml.convert.AnnotationStrategy;
