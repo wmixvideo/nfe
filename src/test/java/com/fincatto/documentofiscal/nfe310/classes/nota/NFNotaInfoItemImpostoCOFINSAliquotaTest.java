@@ -1,13 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoCOFINSAliquota;
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
 
@@ -18,7 +16,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
 
     @Test(expected = NumberFormatException.class)
     public void naoDevePermitirValorBaseCaluloTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalulo(new BigDecimal("10000000000000"));
+        new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalculo(new BigDecimal("10000000000000"));
     }
 
     @Test(expected = NumberFormatException.class)
@@ -40,7 +38,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
         cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();
     }
 
@@ -49,7 +47,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();
     }
 
@@ -58,7 +56,7 @@ public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CREDITO_PRESUMIDO_OUTRAS_OPERACOES);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         cofinsAliquota.toString();
     }
 

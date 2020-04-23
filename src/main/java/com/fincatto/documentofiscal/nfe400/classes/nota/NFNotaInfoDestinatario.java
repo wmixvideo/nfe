@@ -100,7 +100,7 @@ public class NFNotaInfoDestinatario extends DFBase {
     }
 
     public void setIdEstrangeiro(final String idEstrangeiro) {
-        if (!idEstrangeiro.isEmpty()) {
+        if (StringUtils.isNotBlank(idEstrangeiro)) {
             if (StringUtils.isNotBlank(this.inscricaoEstadual)) {
                 throw new IllegalStateException("N\u00E3o deve informar ID Estrangeiro se Inscri\u00E7\u00E3o Estadual esteja informado");
             }

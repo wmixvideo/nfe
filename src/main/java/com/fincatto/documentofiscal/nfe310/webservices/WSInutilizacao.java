@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.nfe310.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.assinatura.AssinaturaDigital;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
@@ -13,6 +12,7 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2St
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +36,7 @@ class WSInutilizacao implements DFLog {
     
     NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo).toString();
-        final String inutilizacaoXMLAssinado = new AssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
+        final String inutilizacaoXMLAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
         final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
         return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
     }

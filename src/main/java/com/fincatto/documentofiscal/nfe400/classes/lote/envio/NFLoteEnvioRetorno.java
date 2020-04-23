@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
+import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -31,7 +32,7 @@ public class NFLoteEnvioRetorno extends DFBase {
     @Element(name = "xMotivo")
     private String motivo;
     
-    @Element(name = "cUF")
+    @Element(name = "cUF", required = false)
     private DFUnidadeFederativa uf;
     
     @Element(name = "dhRecbto")
@@ -45,6 +46,9 @@ public class NFLoteEnvioRetorno extends DFBase {
 
     @Element(name = "infProt", required = false)
     private NFProtocoloInfo protocoloInfo;
+
+    @Element(name = "Signature", required = false)
+    private NFSignature assinatura;
 
     public void setVersao(final String versao) {
         this.versao = versao;
@@ -126,4 +130,11 @@ public class NFLoteEnvioRetorno extends DFBase {
         this.protocoloRecebimentoSincrono = protocoloRecebimentoSincrono;
     }
 
+    public NFSignature getAssinatura() {
+        return assinatura;
+    }
+
+    public void setAssinatura(NFSignature assinatura) {
+        this.assinatura = assinatura;
+    }
 }

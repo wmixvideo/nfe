@@ -18,45 +18,45 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     private NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria;
     
     @Element(name = "vBC")
-    private String valorBaseCalulo;
+    private String valorBaseCalculo;
     
     @Element(name = "pCOFINS")
     private String percentualAliquota;
     
     @Element(name = "vCOFINS")
     private String valor;
-
+    
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
         if (!NFNotaInfoItemImpostoCOFINSAliquota.SITUACOES_VALIDAS.contains(situacaoTributaria)) {
             throw new IllegalStateException("Situacao tributaria invalido no item COFINS Aliquota.");
         }
         this.situacaoTributaria = situacaoTributaria;
     }
-
-    public void setValorBaseCalulo(final BigDecimal valorBaseCalulo) {
-        this.valorBaseCalulo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalulo, "Valor Base de Calculo COFINS Item");
+    
+    public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
+        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base de Calculo COFINS Item");
     }
-
+    
     public void setPercentualAliquota(final BigDecimal aliquota) {
         this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS Item");
     }
-
+    
     public void setValor(final BigDecimal valor) {
         this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor COFINS Item");
     }
-
+    
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {
         return this.situacaoTributaria;
     }
-
-    public String getValorBaseCalulo() {
-        return this.valorBaseCalulo;
+    
+    public String getValorBaseCalculo() {
+        return this.valorBaseCalculo;
     }
-
+    
     public String getPercentualAliquota() {
         return this.percentualAliquota;
     }
-
+    
     public String getValor() {
         return this.valor;
     }

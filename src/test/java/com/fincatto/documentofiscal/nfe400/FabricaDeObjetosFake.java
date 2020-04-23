@@ -338,7 +338,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDigitoVerificador(8);
@@ -368,7 +368,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.HOMOLOGACAO);
         identificacao.setCodigoMunicipio("4314902");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.now());
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.now());
         identificacao.setDataHoraEmissao(ZonedDateTime.of(2010, 10, 27, 10, 10, 10, 0, DFConfig.TIMEZONE_SP.toZoneId()));
@@ -604,7 +604,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
         identificacao.setAmbiente(DFAmbiente.PRODUCAO);
         identificacao.setCodigoMunicipio("1612675");
-        identificacao.setCodigoRandomico("99999999");
+        identificacao.setCodigoRandomico("99999998");
         identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
         identificacao.setDigitoVerificador(8);
@@ -1102,7 +1102,7 @@ public class FabricaDeObjetosFake {
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
         cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
     }
     

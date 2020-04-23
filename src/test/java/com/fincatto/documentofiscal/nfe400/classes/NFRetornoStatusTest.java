@@ -15,9 +15,9 @@ public class NFRetornoStatusTest {
         Assert.assertEquals(NFRetornoStatus.CODIGO_100, NFRetornoStatus.valueOfCodigo(100));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void valueOfCodigoNaoMapeadoTest() {
-        NFRetornoStatus.valueOfCodigo(666);
+        Assert.assertNull(NFRetornoStatus.valueOfCodigo(666));
     }
 
     @Test

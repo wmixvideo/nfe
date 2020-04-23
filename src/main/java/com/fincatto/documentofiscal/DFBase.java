@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal;
 
-import com.fincatto.documentofiscal.persister.DFPersister;
+import com.fincatto.documentofiscal.utils.DFPersister;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.Serializable;

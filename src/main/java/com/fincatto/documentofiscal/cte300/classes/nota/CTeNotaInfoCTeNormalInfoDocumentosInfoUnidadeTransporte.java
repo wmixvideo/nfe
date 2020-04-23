@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeTransporte;
 import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.StringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -28,10 +29,10 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte extends DFB
     @Element(name = "idUnidTransp")
     private String identificacaoTransporte;
 
-    @Element(name = "lacUnidTransp", required = false)
+    @ElementList(name = "lacUnidTransp", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosLacre> lacre;
 
-    @Element(name = "infUnidCarga", required = false)
+    @ElementList(name = "infUnidCarga", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga> infoUnidadeCarga;
 
     @Element(name = "qtdRat", required = false)
