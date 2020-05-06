@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.persister.DFPersister;
+import com.fincatto.documentofiscal.utils.DFPersister;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.core.Persister;

@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.persister;
+package com.fincatto.documentofiscal.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

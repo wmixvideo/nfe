@@ -200,27 +200,34 @@
                 <configuration>
                     <repoToken>QTRbpWiuiwIHGrc0arqKxXsAtiVoLMc5h</repoToken>
                 </configuration>
+                <dependencies>
+                    <!--
+                    Explicit dep on jaxb-api to avoid problems with JDK9 and later, until a new version of coveralls-maven-plugin is released.
+                    See also https://github.com/trautonen/coveralls-maven-plugin/issues/112
+                    -->
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.3.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <format>xml</format>
-                    <quiet>true</quiet>
-                    <maxmem>64m</maxmem>
-                    <aggregate>true</aggregate>
-                    <check>
-                        <branchRate>80</branchRate>
-                        <lineRate>80</lineRate>
-                    </check>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>**/*Stub.class</exclude>
-                            <exclude>**/*CallbackHandler.class</exclude>
-                            <exclude>**/*Test.class</exclude>
-                        </excludes>
-                    </instrumentation>
+                    <excludes>
+                        <exclude>**/webservices/**/*</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
