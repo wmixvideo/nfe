@@ -17,7 +17,7 @@ public class NFInfoEventoRetorno extends DFBase {
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
     
-    @Element(name = "verAplic")
+    @Element(name = "verAplic", required = false)
     private String versaoAplicativo;
     
     @Element(name = "cOrgao")

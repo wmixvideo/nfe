@@ -27,7 +27,7 @@ jobs:
       - name: Git configuration
         run: |
           git config user.email "ci@wmixvideo.com.br"
-          git config user.name "Vmixvideo IT"
+          git config user.name "Wmix CI"
 
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1.4.0
