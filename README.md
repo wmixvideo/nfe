@@ -25,9 +25,11 @@ Caso não possua conhecimento técnico para criar notas fiscais, um profissional
 <dependency>
   <groupId>com.github.wmixvideo</groupId>
   <artifactId>nfe</artifactId>
-  <version>3.0.5</version>
+  <version>${latest.release}</version>
 </dependency>
 ```
+Para acessar a lista de versões disponíveis, acesse a página de release [aqui](/releases) no github. 
+
 ### Diretamente pelo código fonte (última versão em desenvolvimento)
  ```console
     git clone https://github.com/wmixvideo/nfe
