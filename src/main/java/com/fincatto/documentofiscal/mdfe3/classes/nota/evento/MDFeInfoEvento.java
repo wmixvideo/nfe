@@ -10,10 +10,12 @@ import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import org.simpleframework.xml.Root;
 
 /**
  * Tipo Evento
  */
+@Root(name = "infEvento")
 public class MDFeInfoEvento extends DFBase {
     private static final long serialVersionUID = -9002694768514200146L;
 

@@ -13,7 +13,6 @@ public enum MDFTipoEmitente {
      fazendo transporte de carga própria<p/>
      */
     TRANSPORTADOR_CARGA_PROPRIA("2", "Transportador de Carga Pr\u00F3pria"),
-
     /**
      * <p>O tpEmis = 3 será utilizado pelo transportador que emitirá CT-e Globalizado a posteriori para
          englobar repetidas prestações, nas UF cuja legislação assim o permite ou que goze de regime

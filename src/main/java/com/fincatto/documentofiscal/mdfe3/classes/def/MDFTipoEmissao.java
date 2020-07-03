@@ -9,7 +9,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.def;
 public enum MDFTipoEmissao {
 
     NORMAL("1", "Normal"),
-    CONTINGENCIA("2", "Contingência");
+    CONTINGENCIA("2", "Contingência"),
+    NFF("3", "Regime Especial da NFF");
 
     private final String codigo;
     private final String descricao;

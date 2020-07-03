@@ -23,6 +23,6 @@ public  class MDFInfoInformacoesDocumentos {
     }
 
     public void setInformacoesMunicipioDescargas(List<MDFInfoInformacoesMunicipioDescarga> informacoesMunicipioDescargas) {
-        this.informacoesMunicipioDescargas = ListValidador.validaListaObrigatoria(informacoesMunicipioDescargas, 100, "Lista de Municípios de descarregamento");
+        this.informacoesMunicipioDescargas = ListValidador.validaListaObrigatoria(informacoesMunicipioDescargas, 1000, "Lista de Municípios de descarregamento");
     }
 }
