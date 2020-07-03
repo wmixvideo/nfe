@@ -32,10 +32,7 @@ public class NFTipoEvento extends DFBase {
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        /*StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
-            StringValidador comentado para atender a descrição do evento EPEC
-            que é "EPEC" e possui apenas 4 caracteres
-         */
+        StringValidador.tamanho4a60(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 
