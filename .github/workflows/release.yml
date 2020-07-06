@@ -1,0 +1,39 @@
+name: Release
+
+# Run workflow on commits to the `master` branch
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Install Java and Maven
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Adding ssh key
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.ssh_private_key }}
+
+      - name: Git configuration
+        run: |
+          git config user.email "ci@wmixvideo.com.br"
+          git config user.name "Wmix CI"
+
+      - name: Release Maven package
+        uses: samuelmeuli/action-maven-publish@v1.4.0
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase }}
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}
+          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests"
