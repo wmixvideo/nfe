@@ -30,7 +30,7 @@
         <axis2.version>1.6.4</axis2.version>
         <slf4j.version>1.7.30</slf4j.version>
         <junit.version>4.13</junit.version>
-        <commons-lang3.version>3.10</commons-lang3.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
     </properties>
 
