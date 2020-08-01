@@ -56,8 +56,8 @@ public class NFNotaInfo extends DFBase {
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
 
-    @ElementList(entry = "pag", inline = true)
-    private List<NFNotaInfoPagamento> pagamentos;
+    @Element(name = "pag")
+    private NFNotaInfoPagamento pagamento;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
@@ -165,9 +165,8 @@ public class NFNotaInfo extends DFBase {
         this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
     }
 
-    public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
-        ListValidador.tamanho100(pagamentos, "Pagamentos");
-        this.pagamentos = pagamentos;
+    public void setPagamento(final NFNotaInfoPagamento pagamento) {
+        this.pagamento = pagamento;
     }
 
     public NFNotaInfo setInformacaoResposavelTecnico(NFNotaInfoResponsavelTecnico informacaoResposavelTecnico) {
@@ -215,8 +214,8 @@ public class NFNotaInfo extends DFBase {
         return this.cobranca;
     }
 
-    public List<NFNotaInfoPagamento> getPagamentos() {
-        return this.pagamentos;
+    public NFNotaInfoPagamento getPagamento() {
+        return this.pagamento;
     }
 
     public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
