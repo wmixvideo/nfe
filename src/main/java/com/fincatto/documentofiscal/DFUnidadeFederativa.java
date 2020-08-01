@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal;
 
+import org.apache.commons.lang3.StringUtils;
 /**
  * URls qrCode: http://nfce.encat.org/desenvolvedor/qrcode/
  * URLs consulta chave acesso: http://nfce.encat.org/consumidor/consulte-sua-nota/
@@ -100,9 +101,9 @@ public enum DFUnidadeFederativa {
      */
     public static DFUnidadeFederativa valueOfCodigo(final String codigo) {
         for (final DFUnidadeFederativa uf : DFUnidadeFederativa.values()) {
-            if (uf.getCodigo().equalsIgnoreCase(codigo)) {
+            if (uf.getCodigo().equalsIgnoreCase(StringUtils.trim(codigo))) {
                 return uf;
-            } else if (uf.getCodigoIbge().equalsIgnoreCase(codigo)) {
+            } else if (uf.getCodigoIbge().equalsIgnoreCase(StringUtils.trim(codigo))) {
                 return uf;
             }
         }
