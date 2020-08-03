@@ -39,7 +39,7 @@ public final class XMLValidador {
     public static boolean validaLote400(final String arquivoXML) throws Exception {
         return XMLValidador.valida400(arquivoXML, "enviNFe_v4.00.xsd");
     }
-    
+
     public static boolean validaNota400(final String arquivoXML) throws Exception {
         return XMLValidador.valida400(arquivoXML, "nfe_v4.00.xsd");
     }
@@ -86,5 +86,21 @@ public final class XMLValidador {
 
     public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
         return XMLValidador.validaDfe(arquivoXML, "distDFeInt_v1.01.xsd");
+    }
+
+    private static boolean validaEpec(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = XMLValidador.class.getClassLoader().getResource(String.format("schemas/Evento_EPEC_PL_v1.01/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+
+    public static boolean validaEpec(final String arquivoXML) throws Exception {
+        return XMLValidador.validaEpec(arquivoXML, "envEPEC_v1.00.xsd");
+    }
+
+    public static boolean validaEventoEpec(final String arquivoXML) throws Exception {
+        return XMLValidador.validaEpec(arquivoXML, "EPEC_v1.00.xsd");
     }
 }
