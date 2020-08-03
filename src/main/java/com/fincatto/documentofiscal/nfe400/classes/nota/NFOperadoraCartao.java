@@ -13,8 +13,8 @@ public enum NFOperadoraCartao {
     CABAL("09", "Cabal"),
     OUTROS("99", "Outros");
 
-    private final String codigo;
-    private final String descricao;
+    private String codigo;
+    private String descricao;
 
     NFOperadoraCartao(final String codigo, final String descricao) {
         this.codigo = codigo;
@@ -38,4 +38,17 @@ public enum NFOperadoraCartao {
     public String toString() {
         return this.codigo + " - " + this.descricao;
     }
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+    
 }
