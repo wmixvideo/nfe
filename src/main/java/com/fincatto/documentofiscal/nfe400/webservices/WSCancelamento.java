@@ -100,21 +100,23 @@ class WSCancelamento implements DFLog {
         return enviaEvento;
     }
     
-    NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String chaveSubstituta) throws Exception {
-        final String cancelamentoNotaXML = this.gerarDadosCancelamentoPorSubstituicao(chaveAcesso, numeroProtocolo, motivo, chaveSubstituta).toString();
+    NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+        final String cancelamentoNotaXML = this.gerarDadosCancelamentoPorSubstituicao(chaveAcesso, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
     
-    private NFEnviaEventoCancelamento gerarDadosCancelamentoPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String chaveSubstituta) {
+    private NFEnviaEventoCancelamento gerarDadosCancelamentoPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
         
+        if(DFModelo.NFE.equals(chaveParser.getModelo())) throw new IllegalArgumentException("Evento nao permitido para modelo 55 - NFe!");
+        	
         final NFInfoCancelamento cancelamento = new NFInfoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO_CANCELAMENTO_POR_SUBSTITUICAO);
         cancelamento.setUfAutorizador(chaveParser.getNFUnidadeFederativa());
         cancelamento.setTipoAutorizador("1");//como orientado no manual
-        cancelamento.setVersaoAplicativo(null);
+        cancelamento.setVersaoAplicativo(versaoAplicativoAutorizador);
         cancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         cancelamento.setJustificativa(motivo);
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);

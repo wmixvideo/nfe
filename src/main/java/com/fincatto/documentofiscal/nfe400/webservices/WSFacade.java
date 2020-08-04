@@ -256,8 +256,8 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String chaveSubstituta) throws Exception {
-        return this.wsCancelamento.cancelaNotaPorSubstituicao(chave, numeroProtocolo, motivo, chaveSubstituta);
+    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+        return this.wsCancelamento.cancelaNotaPorSubstituicao(chave, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta);
     }
 
     /**
