@@ -25,7 +25,7 @@ class WSCancelamento implements DFLog {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final String DESCRICAO_EVENTO_CANCELAMENTO_POR_SUBSTITUICAO = "Cancelamento por substituição";
+    private static final String DESCRICAO_EVENTO_CANCELAMENTO_POR_SUBSTITUICAO = "Cancelamento por substituicao";
     private static final String EVENTO_CANCELAMENTO_POR_SUBSTITUICAO = "110112";
     private final NFeConfig config;
     
