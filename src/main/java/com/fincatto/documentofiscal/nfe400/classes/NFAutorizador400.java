@@ -1569,6 +1569,8 @@ public enum NFAutorizador400 {
                 return NFAutorizador400.SVRS;
             case CONTINGENCIA_SVCAN:
                 return NFAutorizador400.SCAN;
+            case CONTINGENCIA_EPEC:
+                return NFAutorizador400.AN;
             default:
                 throw new IllegalArgumentException("N\u00e3o ha implementac\u00e3o para o tipo de emiss\u00e3o: " + tpEmissao.getDescricao());
         }
