@@ -1,37 +1,13 @@
 package com.fincatto.documentofiscal.utils;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
-import java.security.Signature;
-import java.security.UnrecoverableEntryException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
+import com.fincatto.documentofiscal.DFConfig;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
-import javax.xml.crypto.AlgorithmMethod;
-import javax.xml.crypto.KeySelector;
-import javax.xml.crypto.KeySelectorException;
-import javax.xml.crypto.KeySelectorResult;
-import javax.xml.crypto.XMLCryptoContext;
-import javax.xml.crypto.XMLStructure;
-import javax.xml.crypto.dsig.CanonicalizationMethod;
-import javax.xml.crypto.dsig.DigestMethod;
-import javax.xml.crypto.dsig.Reference;
-import javax.xml.crypto.dsig.SignatureMethod;
-import javax.xml.crypto.dsig.SignedInfo;
-import javax.xml.crypto.dsig.Transform;
-import javax.xml.crypto.dsig.XMLSignature;
-import javax.xml.crypto.dsig.XMLSignatureFactory;
+import javax.xml.crypto.*;
+import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
 import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
@@ -45,13 +21,18 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
-import com.fincatto.documentofiscal.DFConfig;
+import java.io.*;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.Provider;
+import java.security.Signature;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 
 public class DFAssinaturaDigital {
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
@@ -126,18 +107,10 @@ public class DFAssinaturaDigital {
     }
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
-		final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
-
-		KeyStore ks = config.getCertificadoKeyStore();
-		for (Enumeration<String> e = ks.aliases(); e.hasMoreElements();) {
-			String alias = e.nextElement();
-			if (ks.isKeyEntry(alias)) {
-				return (KeyStore.PrivateKeyEntry) ks.getEntry(alias, passwordProtection);
-			}
-		}
-
-		throw new RuntimeException("Não foi possível encontrar a chave privada do certificado");
-	}
+        final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
+        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+        return (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
+    }
 
     public String assinarString(String _string) throws Exception {
         byte[] buffer = _string.getBytes();
