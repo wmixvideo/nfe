@@ -32,6 +32,7 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
 public class DFAssinaturaDigital {
@@ -107,10 +108,18 @@ public class DFAssinaturaDigital {
     }
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
-        final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias() : config.getCertificadoKeyStore().aliases().nextElement();
-        final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
-        return (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(certificateAlias, passwordProtection);
-    }
+		final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+
+		KeyStore ks = config.getCertificadoKeyStore();
+		for (Enumeration<String> e = ks.aliases(); e.hasMoreElements();) {
+			String alias = e.nextElement();
+			if (ks.isKeyEntry(alias)) {
+				return (KeyStore.PrivateKeyEntry) ks.getEntry(alias, passwordProtection);
+			}
+		}
+
+		throw new RuntimeException("Não foi possível encontrar a chave privada do certificado");
+	}
 
     public String assinarString(String _string) throws Exception {
         byte[] buffer = _string.getBytes();
