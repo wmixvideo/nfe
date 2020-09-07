@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -48,7 +48,7 @@ public class MDFInfoEmitente extends DFBase {
         if (this.cpf != null && cnpj != null) {
             throw new IllegalStateException("Nao pode setar CNPJ caso CPF esteja setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -60,7 +60,7 @@ public class MDFInfoEmitente extends DFBase {
         if (this.cnpj != null && cpf != null) {
             throw new IllegalStateException("Nao pode setar CPF caso CNPJ esteja setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -84,7 +84,7 @@ public class MDFInfoEmitente extends DFBase {
      * Inscrição Estadual do Emitente
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        this.inscricaoEstadual = StringValidador.inscricaoEstadualSemIsencao(inscricaoEstadual, MDFInfoEmitente.INFO);
+        this.inscricaoEstadual = DFStringValidador.inscricaoEstadualSemIsencao(inscricaoEstadual, MDFInfoEmitente.INFO);
     }
 
     public String getRazaoSocial() {
@@ -95,7 +95,7 @@ public class MDFInfoEmitente extends DFBase {
      * Razão social ou Nome do emitente
      */
     public void setRazaoSocial(final String xNome) {
-        StringValidador.tamanho2ate60(xNome, "Razão social ou Nome em " + MDFInfoEmitente.INFO);
+        DFStringValidador.tamanho2ate60(xNome, "Razão social ou Nome em " + MDFInfoEmitente.INFO);
         this.razaoSocial = xNome;
     }
 
@@ -107,7 +107,7 @@ public class MDFInfoEmitente extends DFBase {
      * Nome fantasia
      */
     public void setNomeFantasia(final String xFant) {
-        StringValidador.tamanho2ate60(xFant, "Nome fantasia em " + MDFInfoEmitente.INFO);
+        DFStringValidador.tamanho2ate60(xFant, "Nome fantasia em " + MDFInfoEmitente.INFO);
         this.nomeFantasia = xFant;
     }
 

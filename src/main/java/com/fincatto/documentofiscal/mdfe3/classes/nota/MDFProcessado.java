@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFProtocolo;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -48,7 +48,7 @@ public class MDFProcessado extends DFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao MDFe Processado");
+        this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao MDFe Processado");
     }
 
     public String getSchemaLocation() {

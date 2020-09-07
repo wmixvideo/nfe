@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -62,7 +62,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS20 extends DFBase {
      * Percentual de redução da BC
      */
     public void setAliquotaReducaoBaseCalculoICMS(final BigDecimal aliquotaReducaoBaseCalculoICMS) {
-        this.aliquotaReducaoBaseCalculoICMS = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMS, "Percentual de redução da BC");
+        this.aliquotaReducaoBaseCalculoICMS = DFBigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMS, "Percentual de redução da BC");
     }
 
     public String getBaseCalculoICMS() {
@@ -73,7 +73,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS20 extends DFBase {
      * Valor da BC do ICMS
      */
     public void setBaseCalculoICMS(final BigDecimal baseCalculoICMS) {
-        this.baseCalculoICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMS, "Valor da BC do ICMS");
+        this.baseCalculoICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMS, "Valor da BC do ICMS");
     }
 
     public String getAliquotaICMS() {
@@ -84,7 +84,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS20 extends DFBase {
      * Alíquota do ICMS
      */
     public void setAliquotaICMS(final BigDecimal aliquotaICMS) {
-        this.aliquotaICMS = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMS, "Alíquota do ICMS");
+        this.aliquotaICMS = DFBigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMS, "Alíquota do ICMS");
     }
 
     public String getValorICMS() {
@@ -95,6 +95,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS20 extends DFBase {
      * Valor do ICMS
      */
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
+        this.valorICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor do ICMS");
     }
 }

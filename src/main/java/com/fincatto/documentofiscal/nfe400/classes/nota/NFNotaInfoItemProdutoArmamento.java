@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoArmamentoTipo;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemProdutoArmamento extends DFBase {
@@ -25,17 +25,17 @@ public class NFNotaInfoItemProdutoArmamento extends DFBase {
     }
 
     public void setNumeroSerieArma(final String numeroSerieArma) {
-        StringValidador.tamanho15(numeroSerieArma, "Numero Serie Arma Armamento");
+        DFStringValidador.tamanho15(numeroSerieArma, "Numero Serie Arma Armamento");
         this.numeroSerieArma = numeroSerieArma;
     }
 
     public void setNumeroSerieCano(final String numeroSerieCano) {
-        StringValidador.tamanho15(numeroSerieCano, "Numero Serie Cano Armamento");
+        DFStringValidador.tamanho15(numeroSerieCano, "Numero Serie Cano Armamento");
         this.numeroSerieCano = numeroSerieCano;
     }
 
     public void setDescricao(final String descricao) {
-        StringValidador.tamanho256(descricao, "Descricao Armamento");
+        DFStringValidador.tamanho256(descricao, "Descricao Armamento");
         this.descricao = descricao;
     }
 

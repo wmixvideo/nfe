@@ -12,7 +12,7 @@ import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteDadosMsg;
 import com.fincatto.documentofiscal.cte300.webservices.recepcao.CteRecepcaoStub.CteRecepcaoLoteResult;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
@@ -43,7 +43,7 @@ class WSRecepcaoLote implements DFLog {
     
     private CTeEnvioLoteRetorno comunicaLote(final String loteAssinadoXml) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaLoteCTe(loteAssinadoXml);
+        DFXMLValidador.validaLoteCTe(loteAssinadoXml);
         
         //envia o lote para a sefaz
         final OMElement omElement = this.cteToOMElement(loteAssinadoXml);

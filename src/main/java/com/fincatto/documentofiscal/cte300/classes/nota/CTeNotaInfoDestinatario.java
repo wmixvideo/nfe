@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -61,7 +61,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros. Informar os zeros não significativos.
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -74,7 +74,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Informar os zeros não significativos.
      */
     public void setCpf(final String cpf) {
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -87,7 +87,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Informar a IE do destinatário ou ISENTO se destinatário é contribuinte do ICMS isento de inscrição no cadastro de contribuintes do ICMS. Caso o destinatário não seja contribuinte do ICMS não informar o conteúdo.
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -99,7 +99,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Razão Social ou Nome do destinatário
      */
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho2ate60(razaoSocial, "Razão Social ou Nome do destinatário");
+        DFStringValidador.tamanho2ate60(razaoSocial, "Razão Social ou Nome do destinatário");
         this.razaoSocial = razaoSocial;
     }
 
@@ -111,7 +111,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Telefone
      */
     public void setTelefone(final String telefone) {
-        StringValidador.telefone(telefone);
+        DFStringValidador.telefone(telefone);
         this.telefone = telefone;
     }
 
@@ -124,7 +124,7 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * (Obrigatório nas operações com as áreas com benefícios de incentivos fiscais sob controle da SUFRAMA)
      */
     public void setInscricaoSuframa(final String inscricaoSuframa) {
-        StringValidador.tamanho8a9N(inscricaoSuframa, "Inscrição na SUFRAMA");
+        DFStringValidador.tamanho8a9N(inscricaoSuframa, "Inscrição na SUFRAMA");
         this.inscricaoSuframa = inscricaoSuframa;
     }
 
@@ -147,8 +147,8 @@ public class CTeNotaInfoDestinatario extends DFBase {
      * Endereço de email
      */
     public void setEmail(final String email) {
-        StringValidador.tamanho60(email, "Endereço de email");
-        StringValidador.email(email);
+        DFStringValidador.tamanho60(email, "Endereço de email");
+        DFStringValidador.email(email);
         this.email = email;
     }
 }

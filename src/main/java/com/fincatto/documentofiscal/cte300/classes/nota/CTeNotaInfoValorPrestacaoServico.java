@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -44,7 +44,7 @@ public class CTeNotaInfoValorPrestacaoServico extends DFBase {
      * Pode conter zeros quando o CT-e for de complemento de ICMS
      */
     public void setValorTotalPrestacaoServico(final BigDecimal valorTotalPrestacaoServico) {
-        this.valorTotalPrestacaoServico = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalPrestacaoServico, "Valor Total da Prestação do Serviço");
+        this.valorTotalPrestacaoServico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalPrestacaoServico, "Valor Total da Prestação do Serviço");
     }
 
     public String getValorReceber() {
@@ -55,7 +55,7 @@ public class CTeNotaInfoValorPrestacaoServico extends DFBase {
      * Valor a Receber
      */
     public void setValorReceber(final BigDecimal valorReceber) {
-        this.valorReceber = BigDecimalValidador.tamanho15Com2CasasDecimais(valorReceber, "Valor a Receber");
+        this.valorReceber = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorReceber, "Valor a Receber");
     }
 
     public List<CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao> getComponentesValorPrestacao() {

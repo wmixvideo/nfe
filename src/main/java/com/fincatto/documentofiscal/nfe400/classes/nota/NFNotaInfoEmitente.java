@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
 import com.fincatto.documentofiscal.nfe400.classes.NFRegimeTributario;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 
@@ -44,7 +44,7 @@ public class NFNotaInfoEmitente extends DFBase {
         if (this.cpf != null && cnpj != null) {
             throw new IllegalStateException("Nao pode setar CNPJ caso CPF esteja setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -52,17 +52,17 @@ public class NFNotaInfoEmitente extends DFBase {
         if (this.cnpj != null && cpf != null) {
             throw new IllegalStateException("Nao pode setar CPF caso CNPJ esteja setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial, "Razao Social Emitente");
+        DFStringValidador.tamanho60(razaoSocial, "Razao Social Emitente");
         this.razaoSocial = razaoSocial;
     }
 
     public void setNomeFantasia(final String nomeFantasia) {
-        StringValidador.tamanho60(nomeFantasia, "Nome Fantasia Emitente");
+        DFStringValidador.tamanho60(nomeFantasia, "Nome Fantasia Emitente");
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -71,22 +71,22 @@ public class NFNotaInfoEmitente extends DFBase {
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public void setInscricaoEstadualSubstituicaoTributaria(final String inscricaoEstadualSubstituicaoTributaria) {
-        StringValidador.inscricaoEstadualSemIsencao(inscricaoEstadualSubstituicaoTributaria);
+        DFStringValidador.inscricaoEstadualSemIsencao(inscricaoEstadualSubstituicaoTributaria);
         this.inscricaoEstadualSubstituicaoTributaria = inscricaoEstadualSubstituicaoTributaria;
     }
 
     public void setInscricaoMunicipal(final String inscricaoMunicipal) {
-        StringValidador.tamanho15(inscricaoMunicipal, "IM Emitente");
+        DFStringValidador.tamanho15(inscricaoMunicipal, "IM Emitente");
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
 
     public void setClassificacaoNacionalAtividadesEconomicas(final String classificacaoNacionalAtividadesEconomicas) {
-        StringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas, "CNAE Emitente");
+        DFStringValidador.exatamente7N(classificacaoNacionalAtividadesEconomicas, "CNAE Emitente");
         this.classificacaoNacionalAtividadesEconomicas = classificacaoNacionalAtividadesEconomicas;
     }
 

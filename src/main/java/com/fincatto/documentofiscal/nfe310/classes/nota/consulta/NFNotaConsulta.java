@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe310.classes.nota.consulta;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -29,7 +29,7 @@ public class NFNotaConsulta extends DFBase {
     private String chave;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
+        this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
     public void setAmbiente(final DFAmbiente ambiente) {
@@ -41,7 +41,7 @@ public class NFNotaConsulta extends DFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "Chave de Acesso Nota Consulta");
+        DFStringValidador.exatamente44N(chave, "Chave de Acesso Nota Consulta");
         this.chave = chave;
     }
 

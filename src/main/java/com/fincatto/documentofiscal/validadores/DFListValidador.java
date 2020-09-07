@@ -2,56 +2,56 @@ package com.fincatto.documentofiscal.validadores;
 
 import java.util.List;
 
-public abstract class ListValidador {
+public abstract class DFListValidador {
 
     public static <E> void tamanho2(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 2, info);
+        DFListValidador.validaTamanho(lista, 2, info);
     }
 
     public static <E> void tamanho3(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 3, info);
+        DFListValidador.validaTamanho(lista, 3, info);
     }
 
     public static <E> void tamanho10(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 10, info);
+        DFListValidador.validaTamanho(lista, 10, info);
     }
 
     public static <E> void tamanho31Obrigatorio(final List<E> lista, final String info) {
-        ListValidador.validaEstadoDaLista(lista, info);
-        ListValidador.validaTamanho(lista, 31, info);
+        DFListValidador.validaEstadoDaLista(lista, info);
+        DFListValidador.validaTamanho(lista, 31, info);
     }
 
     public static <E> void tamanho120(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 120, info);
+        DFListValidador.validaTamanho(lista, 120, info);
     }
 
     public static <E> void tamanho990(final List<E> lista, final String info) {
-        ListValidador.validaEstadoDaLista(lista, info);
-        ListValidador.validaTamanho(lista, 990, info);
+        DFListValidador.validaEstadoDaLista(lista, info);
+        DFListValidador.validaTamanho(lista, 990, info);
     }
 
     public static <E> void tamanho500(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 500, info);
+        DFListValidador.validaTamanho(lista, 500, info);
     }
 
     public static <E> void tamanho5000(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 5000, info);
+        DFListValidador.validaTamanho(lista, 5000, info);
     }
 
     public static <E> void tamanho5(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 5000, info);
+        DFListValidador.validaTamanho(lista, 5000, info);
     }
 
     public static <E> void tamanho100(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 100, info);
+        DFListValidador.validaTamanho(lista, 100, info);
     }
 
     public static <E> void tamanho50(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 50, info);
+        DFListValidador.validaTamanho(lista, 50, info);
     }
 
     public static <E> void tamanho20(final List<E> lista, final String info) {
-        ListValidador.validaTamanho(lista, 20, info);
+        DFListValidador.validaTamanho(lista, 20, info);
     }
 
     public static <E> List<E> validaListaObrigatoria(final List<E> lista, final String info) {

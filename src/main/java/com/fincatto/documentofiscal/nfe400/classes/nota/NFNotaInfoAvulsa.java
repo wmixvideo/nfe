@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -46,27 +46,27 @@ public class NFNotaInfoAvulsa extends DFBase {
     private LocalDate dataPagamentoDocumentoArrecadacao;
 
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
     public void setOrgaoEmitente(final String orgaoEmitente) {
-        StringValidador.tamanho60(orgaoEmitente, "Orgao Emitente");
+        DFStringValidador.tamanho60(orgaoEmitente, "Orgao Emitente");
         this.orgaoEmitente = orgaoEmitente;
     }
 
     public void setMatriculaAgente(final String matriculaAgente) {
-        StringValidador.tamanho60(matriculaAgente, "Matricula Agente");
+        DFStringValidador.tamanho60(matriculaAgente, "Matricula Agente");
         this.matriculaAgente = matriculaAgente;
     }
 
     public void setNomeAgente(final String nomeAgente) {
-        StringValidador.tamanho60(nomeAgente, "Nome Agente");
+        DFStringValidador.tamanho60(nomeAgente, "Nome Agente");
         this.nomeAgente = nomeAgente;
     }
 
     public void setFone(final String fone) {
-        StringValidador.telefone(fone);
+        DFStringValidador.telefone(fone);
         this.fone = fone;
     }
 
@@ -75,7 +75,7 @@ public class NFNotaInfoAvulsa extends DFBase {
     }
 
     public void setNumeroDocumentoArrecadacaoReceita(final String numeroDocumentoArrecadacaoReceita) {
-        StringValidador.tamanho60(numeroDocumentoArrecadacaoReceita, "Numero Documento Arrecadacao Receita");
+        DFStringValidador.tamanho60(numeroDocumentoArrecadacaoReceita, "Numero Documento Arrecadacao Receita");
         this.numeroDocumentoArrecadacaoReceita = numeroDocumentoArrecadacaoReceita;
     }
 
@@ -84,11 +84,11 @@ public class NFNotaInfoAvulsa extends DFBase {
     }
 
     public void setValorTotalConstanteDocumentoArrecadacaoReceita(final BigDecimal valorTotalConstanteDocumentoArrecadacaoReceita) {
-        this.valorTotalConstanteDocumentoArrecadacaoReceita = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita, "Valor Total Constante Documento Arrecadacao Receita");
+        this.valorTotalConstanteDocumentoArrecadacaoReceita = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalConstanteDocumentoArrecadacaoReceita, "Valor Total Constante Documento Arrecadacao Receita");
     }
 
     public void setReparticaoFiscalEmitente(final String reparticaoFiscalEmitente) {
-        StringValidador.tamanho60(reparticaoFiscalEmitente, "Reparticao Fiscal Emitente");
+        DFStringValidador.tamanho60(reparticaoFiscalEmitente, "Reparticao Fiscal Emitente");
         this.reparticaoFiscalEmitente = reparticaoFiscalEmitente;
     }
 

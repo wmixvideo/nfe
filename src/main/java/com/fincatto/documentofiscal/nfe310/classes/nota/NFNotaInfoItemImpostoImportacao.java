@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -29,19 +29,19 @@ public class NFNotaInfoItemImpostoImportacao extends DFBase {
     }
 
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC Importacao Item");
+        this.valorBaseCalculo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC Importacao Item");
     }
 
     public void setValorDespesaAduaneira(final BigDecimal valorDespesaAduaneira) {
-        this.valorDespesaAduaneira = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDespesaAduaneira, "Valor Despesa Aduaneira Importacao Item");
+        this.valorDespesaAduaneira = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorDespesaAduaneira, "Valor Despesa Aduaneira Importacao Item");
     }
 
     public void setValorImpostoImportacao(final BigDecimal valorImpostoImportacao) {
-        this.valorImpostoImportacao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorImpostoImportacao, "Valor Imposto Importacao Item");
+        this.valorImpostoImportacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorImpostoImportacao, "Valor Imposto Importacao Item");
     }
 
     public void setValorIOF(final BigDecimal valorIOF) {
-        this.valorIOF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorIOF, "Valor IOF Importacao Item");
+        this.valorIOF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorIOF, "Valor IOF Importacao Item");
     }
 
     public String getValorBaseCalculo() {

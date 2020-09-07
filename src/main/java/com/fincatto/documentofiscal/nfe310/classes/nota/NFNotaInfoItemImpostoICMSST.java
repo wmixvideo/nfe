@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -38,19 +38,19 @@ public class NFNotaInfoItemImpostoICMSST extends DFBase {
     }
 
     public void setValorBCICMSSTRetidoUFRemetente(final BigDecimal valorBCICMSSTRetidoUFRemetente) {
-        this.valorBCICMSSTRetidoUFRemetente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente, "Valor BC ICMS ST Retido UF Remetente");
+        this.valorBCICMSSTRetidoUFRemetente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTRetidoUFRemetente, "Valor BC ICMS ST Retido UF Remetente");
     }
 
     public void setValorICMSSTRetidoUFRemetente(final BigDecimal valorICMSSTRetidoUFRemetente) {
-        this.valorICMSSTRetidoUFRemetente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente, "Valor ICMS ST Retido UF Remetente");
+        this.valorICMSSTRetidoUFRemetente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetidoUFRemetente, "Valor ICMS ST Retido UF Remetente");
     }
 
     public void setValorBCICMSSTUFDestino(final BigDecimal valorBCICMSSTUFDestino) {
-        this.valorBCICMSSTUFDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino, "Valor BC ICMS ST UF Destino");
+        this.valorBCICMSSTUFDestino = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTUFDestino, "Valor BC ICMS ST UF Destino");
     }
 
     public void setValorICMSSTUFDestino(final BigDecimal valorICMSSTUFDestino) {
-        this.valorICMSSTUFDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTUFDestino, "Valor ICMS ST UF Destino");
+        this.valorICMSSTUFDestino = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTUFDestino, "Valor ICMS ST UF Destino");
     }
 
     public NFOrigem getOrigem() {

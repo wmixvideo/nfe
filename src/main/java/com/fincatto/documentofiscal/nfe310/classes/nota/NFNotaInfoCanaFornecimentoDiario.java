@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -24,7 +24,7 @@ public class NFNotaInfoCanaFornecimentoDiario extends DFBase {
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalValidador.tamanho21ComAte10CasasDecimais(quantidade, "Quantidade");
+        this.quantidade = DFBigDecimalValidador.tamanho21ComAte10CasasDecimais(quantidade, "Quantidade");
     }
 
     public int getDia() {

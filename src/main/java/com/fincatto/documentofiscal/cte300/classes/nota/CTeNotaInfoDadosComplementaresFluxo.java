@@ -7,7 +7,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * @author Caio
@@ -49,7 +49,7 @@ public class CTeNotaInfoDadosComplementaresFluxo extends DFBase {
      * - O código de três letras IATA do aeroporto de partida deverá ser incluído como primeira anotação. Quando não for possível, utilizar a sigla OACI.
      */
     public void setOrigem(final String origem) {
-        StringValidador.tamanho60(origem, "Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem");
+        DFStringValidador.tamanho60(origem, "Sigla ou código interno da Filial/Porto/Estação/ Aeroporto de Origem");
         this.origem = origem;
     }
 
@@ -77,7 +77,7 @@ public class CTeNotaInfoDadosComplementaresFluxo extends DFBase {
      * - Deverá ser incluído o código de três letras IATA do aeroporto de destino. Quando não for possível, utilizar a sigla OACI.
      */
     public void setDestino(final String destino) {
-        StringValidador.tamanho60(destino, "Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino");
+        DFStringValidador.tamanho60(destino, "Sigla ou código interno da Filial/Porto/Estação/Aeroporto de Destino");
         this.destino = destino;
     }
 
@@ -89,7 +89,7 @@ public class CTeNotaInfoDadosComplementaresFluxo extends DFBase {
      * Código da Rota de Entrega
      */
     public void setRota(final String rota) {
-        StringValidador.tamanho10(rota, "Código da Rota de Entrega");
+        DFStringValidador.tamanho10(rota, "Código da Rota de Entrega");
         this.rota = rota;
     }
 }

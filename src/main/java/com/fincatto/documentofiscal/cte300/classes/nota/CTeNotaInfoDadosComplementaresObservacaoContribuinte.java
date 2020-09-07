@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -34,7 +34,7 @@ public class CTeNotaInfoDadosComplementaresObservacaoContribuinte extends DFBase
      * Identificação do campo
      */
     public void setCampo(final String campo) {
-        StringValidador.tamanho20(campo, "Identificação do campo");
+        DFStringValidador.tamanho20(campo, "Identificação do campo");
         this.campo = campo;
     }
 
@@ -46,7 +46,7 @@ public class CTeNotaInfoDadosComplementaresObservacaoContribuinte extends DFBase
      * Identificação do texto
      */
     public void setTexto(final String texto) {
-        StringValidador.tamanho160(texto, "Identificação do texto");
+        DFStringValidador.tamanho160(texto, "Identificação do texto");
         this.texto = texto;
     }
 }

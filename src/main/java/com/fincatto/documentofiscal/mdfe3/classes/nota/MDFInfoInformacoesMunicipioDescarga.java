@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -50,7 +50,7 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     }
 
     public void setMunicipioDescarga(String municipioDescarga) {
-        this.municipioDescarga = StringValidador.validaIntervalo(municipioDescarga, 7,7,"codigo municipio descarga", true);
+        this.municipioDescarga = DFStringValidador.validaIntervalo(municipioDescarga, 7,7,"codigo municipio descarga", true);
     }
 
     public String getxMunDescarga() {
@@ -58,7 +58,7 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     }
 
     public void setxMunDescarga(String xMunDescarga) {
-        this.xMunDescarga = StringValidador.validaIntervalo(xMunDescarga, 2,60, "Nome do Município de Descarregamento");
+        this.xMunDescarga = DFStringValidador.validaIntervalo(xMunDescarga, 2,60, "Nome do Município de Descarregamento");
     }
 
     public List<MDFInfoInformacoesCTe> getInfCTe() {
@@ -66,7 +66,7 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     }
 
     public void setInfCTe(List<MDFInfoInformacoesCTe> infCTe) {
-        this.infCTe = ListValidador.validaListaNaoObrigatoria(infCTe, 10000, "Conhecimentos de Tranporte em MDF-e");
+        this.infCTe = DFListValidador.validaListaNaoObrigatoria(infCTe, 10000, "Conhecimentos de Tranporte em MDF-e");
     }
 
     public List<MDFInfoInformacoesNFe> getInfNFe() {
@@ -74,7 +74,7 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     }
 
     public void setInfNFe(List<MDFInfoInformacoesNFe> infNFe) {
-        this.infNFe = ListValidador.validaListaNaoObrigatoria(infNFe, 10000, "Notas fiscais em MDF-e");
+        this.infNFe = DFListValidador.validaListaNaoObrigatoria(infNFe, 10000, "Notas fiscais em MDF-e");
     }
 
     public List<MDFInfoInformacoesMDFe> getInfMDFeTransp() {
@@ -82,6 +82,6 @@ public  class MDFInfoInformacoesMunicipioDescarga {
     }
 
     public void setInfMDFeTransp(List<MDFInfoInformacoesMDFe> infMDFeTransp) {
-        this.infMDFeTransp = ListValidador.validaListaNaoObrigatoria(infMDFeTransp, 10000, "Manifesto Eletrônico de Documentos Fiscais em MDF-e");
+        this.infMDFeTransp = DFListValidador.validaListaNaoObrigatoria(infMDFeTransp, 10000, "Manifesto Eletrônico de Documentos Fiscais em MDF-e");
     }
 }

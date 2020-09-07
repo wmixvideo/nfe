@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -39,7 +39,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado em proprietario do Veículo ");
         }
-        this.cpf = StringValidador.cpf(cpf, "proprietario do Veículo");
+        this.cpf = DFStringValidador.cpf(cpf, "proprietario do Veículo");
         this.cpf = cpf;
     }
 
@@ -51,7 +51,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado em proprietario do Veículo");
         }
-        this.cnpj = StringValidador.cnpj(cnpj, "proprietario do Veículo");
+        this.cnpj = DFStringValidador.cnpj(cnpj, "proprietario do Veículo");
     }
 
     public String getRegistroNacionalTransportes() {
@@ -59,7 +59,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     }
 
     public void setRegistroNacionalTransportes(String registroNacionalTransportes) {
-        StringValidador.validador(registroNacionalTransportes, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true, true);
+        DFStringValidador.validador(registroNacionalTransportes, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true, true);
         this.registroNacionalTransportes = registroNacionalTransportes;
     }
 
@@ -76,7 +76,7 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     }
 
     public void setInscricaoEstadual(String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 

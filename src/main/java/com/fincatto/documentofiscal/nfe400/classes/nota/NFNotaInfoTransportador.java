@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFNotaInfoTransportador extends DFBase {
     private static final long serialVersionUID = -6810459713123616929L;
@@ -38,7 +38,7 @@ public class NFNotaInfoTransportador extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao pode ter CPF e CNPJ ao mesmo tempo");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -46,22 +46,22 @@ public class NFNotaInfoTransportador extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao pode ter CPF e CNPJ ao mesmo tempo");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial, "Razao Social Transportador");
+        DFStringValidador.tamanho60(razaoSocial, "Razao Social Transportador");
         this.razaoSocial = razaoSocial;
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
-        StringValidador.tamanho60(nomeMunicipio, "Nome Municipio Transportador");
+        DFStringValidador.tamanho60(nomeMunicipio, "Nome Municipio Transportador");
         this.nomeMunicipio = nomeMunicipio;
     }
 

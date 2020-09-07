@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
 
 import java.util.List;
@@ -30,12 +30,12 @@ public class NFLoteEnvio extends DFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote, "ID do Lote");
+        DFStringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
     public void setNotas(final List<NFNota> notas) {
-        ListValidador.tamanho50(notas, "Notas");
+        DFListValidador.tamanho50(notas, "Notas");
         this.notas = notas;
     }
 
