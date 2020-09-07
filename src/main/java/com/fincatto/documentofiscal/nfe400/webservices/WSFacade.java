@@ -244,6 +244,21 @@ public class WSFacade {
     public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
+    
+    /**
+     * Faz o cancelamento da nota por substituicao, evento permitido para NFCe.
+     *
+     * @param chave chave de acesso da nota
+     * @param numeroProtocolo numero do protocolo da nota
+     * @param motivo motivo do cancelamento
+     * @param chave chave de acesso da nota substituta
+     * @return dados do cancelamento da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     */
+    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+        return this.wsCancelamento.cancelaNotaPorSubstituicao(chave, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta);
+    }
 
     /**
      * Inutiliza a nota com o evento assinado ATENCAO: Esse metodo deve ser
