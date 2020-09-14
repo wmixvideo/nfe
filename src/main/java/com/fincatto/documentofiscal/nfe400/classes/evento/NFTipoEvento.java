@@ -11,11 +11,12 @@ import java.math.BigDecimal;
 
 @Root(strict = false)
 public class NFTipoEvento extends DFBase {
+
     private static final long serialVersionUID = 172979194017130488L;
-    
+
     @Attribute(name = "versao")
     private String versao;
-    
+
     @Element(name = "descEvento")
     private String descricaoEvento;
 
@@ -31,7 +32,7 @@ public class NFTipoEvento extends DFBase {
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        StringValidador.tamanho5a60(descricaoEvento, "Descricao do Evento");
+        StringValidador.tamanho4a60(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 
