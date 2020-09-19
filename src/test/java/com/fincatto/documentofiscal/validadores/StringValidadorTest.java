@@ -128,6 +128,7 @@ public class StringValidadorTest {
         StringValidador.tamanho5a20("asfeidoflgkvidjfhe", "");
         StringValidador.tamanho5a14("fdusofiehnfs", "");
         StringValidador.tamanho5a60("alskdiwoeirjfurjguthfjdskdoelfirkdjshwue", "");
+        StringValidador.tamanho4a60("alskdiwoeirjfurjguthfjdskdoelfirkdjshwue", "");
         StringValidador.tamanho8a9("alskdiwoe", "");
         StringValidador.tamanho8a9N("123456789", "");
         StringValidador.tamanho15a256("a1s5d6q7r8e9a5f4q8s5a1s5d6q7r8e9a5f4q8s5a1s5d6q7r8e9a5f4q8s5a1s5d6q7r8e9a5f4q8s5", "");
