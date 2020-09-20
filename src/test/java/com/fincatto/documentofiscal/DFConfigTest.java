@@ -15,6 +15,7 @@ public class DFConfigTest {
         Assert.assertEquals(DFModelo.NFE, config.getModelo());
         Assert.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
         Assert.assertNotNull(config.getTimeZone());
+        Assert.assertEquals(60000, config.getTimeoutRequisicaoEmMillis());
     }
     
     @Test
@@ -37,6 +38,17 @@ public class DFConfigTest {
             }
         };
         Assert.assertEquals(TimeZone.getTimeZone("America/New_York"), config.getTimeZone());
+    }
+
+    @Test
+    public void testaTimeoutRequisicaoEmMillis() {
+        final DFConfig config = new DFConfigTeste() {
+            @Override
+            public int getTimeoutRequisicaoEmMillis() {
+                return 30_000;
+            }
+        };
+        Assert.assertEquals(30_000, config.getTimeoutRequisicaoEmMillis());
     }
     
     private static class DFConfigTeste extends DFConfig {
