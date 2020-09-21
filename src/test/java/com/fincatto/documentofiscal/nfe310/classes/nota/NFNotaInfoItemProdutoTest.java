@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.NFProdutoCompoeValorNota;
-import com.fincatto.documentofiscal.persister.DFPersister;
+import com.fincatto.documentofiscal.utils.DFPersister;
 import org.junit.Assert;
 import org.junit.Test;
 

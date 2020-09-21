@@ -478,7 +478,7 @@ public class FabricaDeObjetosFake {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoPagamento()));
+        info.setPagamento(FabricaDeObjetosFake.getNFNotaInfoPagamento());
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
@@ -1102,7 +1102,7 @@ public class FabricaDeObjetosFake {
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
         cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalulo(new BigDecimal("999999999999.99"));
+        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
     }
     

@@ -321,37 +321,37 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeAutorizacao?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeAutorizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeAutorizacao4?WSDL";
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeRetAutorizacao?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeRetAutorizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRetAutorizacao4?WSDL";
         }
 
         @Override
         public String getNfceConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/CadConsultaCadastro4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/CadConsultaCadastro4?WSDL";
         }
 
         @Override
         public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeConsulta2?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeConsultaProtocolo4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeConsultaProtocolo4?WSDL";
         }
 
         @Override
         public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeStatusServico2?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeStatusServico4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeStatusServico4?WSDL";
         }
 
         @Override
         public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/RecepcaoEvento?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeRecepcaoEvento4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRecepcaoEvento4?WSDL";
         }
 
         @Override
         public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce/services/NfeInutilizacao2?WSDL" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeInutilizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeInutilizacao4?WSDL";
         }
 
         @Override
@@ -366,7 +366,7 @@ public enum NFAutorizador400 {
 
         @Override
         public DFUnidadeFederativa[] getUFs() {
-            return new DFUnidadeFederativa[]{DFUnidadeFederativa.CE};
+            return new DFUnidadeFederativa[] { DFUnidadeFederativa.CE };
         }
     },
     GO {
@@ -799,92 +799,6 @@ public enum NFAutorizador400 {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.MT};
         }
     },
-    PA {
-        @Override
-        public String getNfeAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfeAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfeRetAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfeRetAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
-            return SVRS.getNfeConsultaProtocolo(ambiente);
-        }
-
-        @Override
-        public String getNfeStatusServico(final DFAmbiente ambiente) {
-            return SVRS.getNfeStatusServico(ambiente);
-        }
-
-        @Override
-        public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return SVRS.getRecepcaoEvento(ambiente);
-        }
-
-        @Override
-        public String getConsultaCadastro(final DFAmbiente ambiente) {
-            return SVRS.getConsultaCadastro(ambiente);
-        }
-
-        @Override
-        public String getNfeInutilizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfeInutilizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceRetAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
-        }
-
-        @Override
-        public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return SVRS.getNfceConsultaProtocolo(ambiente);
-        }
-
-        @Override
-        public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return SVRS.getNfceStatusServico(ambiente);
-        }
-
-        @Override
-        public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return SVRS.getNfceRecepcaoEvento(ambiente);
-        }
-
-        @Override
-        public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceInutilizacao(ambiente);
-        }
-
-        @Override
-        public String getRecepcaoEventoAN(final DFAmbiente ambiente) {
-            return AN.getRecepcaoEventoAN(ambiente);
-        }
-
-        @Override
-        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
-        }
-
-        @Override
-        public DFUnidadeFederativa[] getUFs() {
-            return new DFUnidadeFederativa[]{DFUnidadeFederativa.PA};
-        }
-    },
     PE {
         @Override
         public String getNfeAutorizacao(final DFAmbiente ambiente) {
@@ -970,92 +884,6 @@ public enum NFAutorizador400 {
         @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.PE};
-        }
-    },
-    PI {
-        @Override
-        public String getNfeAutorizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfeRetAutorizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeRetAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
-            return SVAN.getNfeConsultaProtocolo(ambiente);
-        }
-
-        @Override
-        public String getNfeStatusServico(final DFAmbiente ambiente) {
-            return SVAN.getNfeStatusServico(ambiente);
-        }
-
-        @Override
-        public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return SVAN.getRecepcaoEvento(ambiente);
-        }
-
-        @Override
-        public String getConsultaCadastro(final DFAmbiente ambiente) {
-            return SVAN.getConsultaCadastro(ambiente);
-        }
-
-        @Override
-        public String getNfeInutilizacao(final DFAmbiente ambiente) {
-            return SVAN.getNfeInutilizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceRetAutorizacao(ambiente);
-        }
-
-        @Override
-        public String getNfceConsultaCadastro(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
-        }
-
-        @Override
-        public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return SVRS.getNfceConsultaProtocolo(ambiente);
-        }
-
-        @Override
-        public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return SVRS.getNfceStatusServico(ambiente);
-        }
-
-        @Override
-        public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return SVRS.getNfceRecepcaoEvento(ambiente);
-        }
-
-        @Override
-        public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return SVRS.getNfceInutilizacao(ambiente);
-        }
-
-        @Override
-        public String getRecepcaoEventoAN(final DFAmbiente ambiente) {
-            return AN.getRecepcaoEventoAN(ambiente);
-        }
-
-        @Override
-        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
-            throw new UnsupportedOperationException("Nao suportado ainda");
-        }
-
-        @Override
-        public DFUnidadeFederativa[] getUFs() {
-            return new DFUnidadeFederativa[]{DFUnidadeFederativa.PI};
         }
     },
     PR {
@@ -1399,7 +1227,7 @@ public enum NFAutorizador400 {
 
         @Override
         public DFUnidadeFederativa[] getUFs() {
-            return new DFUnidadeFederativa[]{DFUnidadeFederativa.AC, DFUnidadeFederativa.AL, DFUnidadeFederativa.AP, DFUnidadeFederativa.DF, DFUnidadeFederativa.ES, DFUnidadeFederativa.PA, DFUnidadeFederativa.PB, DFUnidadeFederativa.RJ, DFUnidadeFederativa.RN, DFUnidadeFederativa.RO, DFUnidadeFederativa.RR, DFUnidadeFederativa.SC, DFUnidadeFederativa.SE, DFUnidadeFederativa.TO};
+            return new DFUnidadeFederativa[]{DFUnidadeFederativa.AC, DFUnidadeFederativa.AL, DFUnidadeFederativa.AP, DFUnidadeFederativa.DF, DFUnidadeFederativa.ES, DFUnidadeFederativa.PA, DFUnidadeFederativa.PB, DFUnidadeFederativa.PI, DFUnidadeFederativa.RJ, DFUnidadeFederativa.RN, DFUnidadeFederativa.RO, DFUnidadeFederativa.RR, DFUnidadeFederativa.SC, DFUnidadeFederativa.SE, DFUnidadeFederativa.TO};
         }
     },
     SCAN {
@@ -1741,6 +1569,8 @@ public enum NFAutorizador400 {
                 return NFAutorizador400.SVRS;
             case CONTINGENCIA_SVCAN:
                 return NFAutorizador400.SCAN;
+            case CONTINGENCIA_EPEC:
+                return NFAutorizador400.AN;
             default:
                 throw new IllegalArgumentException("N\u00e3o ha implementac\u00e3o para o tipo de emiss\u00e3o: " + tpEmissao.getDescricao());
         }

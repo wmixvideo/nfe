@@ -8,21 +8,15 @@ jdk:
 notifications:
     email:
         recipients:
-            - jefperito@gmail.com
             - diego+travisnfe@devmonsters.com
         on_success: change
         on_failure: always
-    slack: wmixvideo:vJxjFfWkhyQG1iAilejFF72u
-
-sudo: false
-
 env:
   global:
     secure: "plMmaTS45J3SWAsHT28YJCXXVptJvxu3zKWNC77fzd7BWCPjitY6xD16dJKcahL84iZu1mlcquVvvgNAa+KvblbDW+pCPClT8lF/2AAzWaAwnDH6qNwnwwloKQriBAzgewwm/ldyRQvjp0rL7+UwHsddYw6XnVo/gec7Q72qKdM="
-    secure: "kzJM3H77WO6dfcTKX9E0rR6U86YyK9YYTRFwnotvelST+7nGF0zzbe+Qb3BKDSQI32RjKHoMddbwFphZ3oMeBMpcJlr4yax60FS039HQZ07nvtxyPW+mHudJHAPx+uNNEKO/BTgEOYSTp+I636lGqHG1cRREwskbtWxcDRPQBCs="
 
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+  - mvn clean test jacoco:report coveralls:report
 
 install: 
   - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>" > ~/settings.xml

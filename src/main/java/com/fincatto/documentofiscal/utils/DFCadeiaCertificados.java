@@ -26,6 +26,7 @@ public abstract class DFCadeiaCertificados implements DFLog {
         keyStore.load(null, senha.toCharArray());
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
     
+        	/*//nao eh mais usado
             for (final NFAutorizador31 aut : NFAutorizador31.values()) {
                 // Para NFe...
                 final String urlNF = aut.getNfeStatusServico(ambiente);
@@ -41,6 +42,7 @@ public abstract class DFCadeiaCertificados implements DFLog {
                     DFCadeiaCertificados.get(keyStore, host);
                 }
             }
+            */
     
             for (final NFAutorizador400 aut : NFAutorizador400.values()) {
                 // Para NFe...
@@ -56,6 +58,18 @@ public abstract class DFCadeiaCertificados implements DFLog {
                     final String host = new URI(urlNFC).getHost();
                     DFCadeiaCertificados.get(keyStore, host);
                 }
+            }
+            
+            //URLs especificas do AN (www.fazenda.gov.br e www1.fazenda.gov.br)
+            final String urlNF1 = NFAutorizador400.AN.getRecepcaoEventoAN(ambiente);
+            if (StringUtils.isNotBlank(urlNF1)) {
+                final String host = new URI(urlNF1).getHost();
+                DFCadeiaCertificados.get(keyStore, host);
+            }
+            final String urlNF2 = NFAutorizador400.AN.getNFeDistribuicaoDFe(ambiente);
+            if (StringUtils.isNotBlank(urlNF2)) {
+                final String host = new URI(urlNF2).getHost();
+                DFCadeiaCertificados.get(keyStore, host);
             }
     
             // MDFE

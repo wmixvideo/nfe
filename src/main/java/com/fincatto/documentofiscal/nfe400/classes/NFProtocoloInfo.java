@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -110,8 +112,9 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
-    	if (this.motivo==null)//quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
-    		return NFRetornoStatus.valueOfCodigo(this.status).getMotivo();
+    	if (StringUtils.isBlank(this.motivo))
+    	    //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
         return this.motivo;
     }
 
