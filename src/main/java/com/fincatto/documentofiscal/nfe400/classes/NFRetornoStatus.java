@@ -595,11 +595,17 @@ public enum NFRetornoStatus {
     }
 
     public boolean isRejeitado() {
-        return (this.codigo > 200) && !NFRetornoStatus.AUTORIZADOS.contains(this) && !NFRetornoStatus.DENEGADOS.contains(this) && !this.isDuplicado();
+        final boolean naoAutorizado = !NFRetornoStatus.AUTORIZADOS.contains(this);
+        final boolean naoDenegado = !NFRetornoStatus.DENEGADOS.contains(this);
+        return (this.codigo > 200) && naoAutorizado && naoDenegado && !this.isDuplicado() && !this.isJaInutilizado();
     }
 
     public boolean isDuplicado() {
         return CODIGO_539.getCodigo() == this.codigo;
+    }
+
+    public boolean isJaInutilizado() {
+        return CODIGO_206.getCodigo() == this.codigo;
     }
 
     public int getCodigo() {
