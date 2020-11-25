@@ -37,4 +37,3 @@ jobs:
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
           maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests"
-
