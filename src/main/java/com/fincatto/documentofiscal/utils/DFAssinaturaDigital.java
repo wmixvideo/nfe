@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import javax.naming.InvalidNameException;
 import javax.naming.ldap.LdapName;
 import javax.xml.crypto.*;
 import javax.xml.crypto.dsig.*;
@@ -81,16 +82,17 @@ public class DFAssinaturaDigital {
     
     public void assinarDocumento(Reader xmlReader, Writer xmlAssinado, final String... elementosAssinaveis) throws Exception {
         final KeyStore.PrivateKeyEntry keyEntry = getPrivateKeyEntry();
-        System.out.println("CERTIFICADO ASSINANDO:" + ((X509Certificate)keyEntry.getCertificate()).getIssuerDN());
-
-        String dn = ((X509Certificate)keyEntry.getCertificate()).getSubjectX500Principal().getName();
-        LdapName ldapDN = null;
-        ldapDN = new LdapName(dn);
-        String cnpj = ldapDN.getRdns().stream()
-                .filter(rdn -> StringUtils.equalsIgnoreCase(rdn.getType(), "CN")).map(val -> val.getValue() + "").findFirst()
-                .orElse(null);
-        System.out.println("CERTIFICADO ASSINANDO(CNPJ):" + cnpj );
-
+        //Adiciona System.out p/ verificação do certificado que assina o documento
+        try {
+            String dn = ((X509Certificate)keyEntry.getCertificate()).getSubjectX500Principal().getName();
+            LdapName ldapDN = null;
+            ldapDN = new LdapName(dn);
+            String commonName = ldapDN.getRdns().stream()
+                    .filter(rdn -> StringUtils.equalsIgnoreCase(rdn.getType(), "CN")).map(val -> val.getValue() + "").findFirst()
+                    .orElse("");
+            System.out.println("CERTIFICADO ASSINANDO(CNPJ):" + commonName );
+        } catch (InvalidNameException e) {
+        }
 
 
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
