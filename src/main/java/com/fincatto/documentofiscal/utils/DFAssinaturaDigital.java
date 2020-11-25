@@ -1,11 +1,13 @@
 package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.DFConfig;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import javax.naming.ldap.LdapName;
 import javax.xml.crypto.*;
 import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
@@ -79,6 +81,18 @@ public class DFAssinaturaDigital {
     
     public void assinarDocumento(Reader xmlReader, Writer xmlAssinado, final String... elementosAssinaveis) throws Exception {
         final KeyStore.PrivateKeyEntry keyEntry = getPrivateKeyEntry();
+        System.out.println("CERTIFICADO ASSINANDO:" + ((X509Certificate)keyEntry.getCertificate()).getIssuerDN());
+
+        String dn = ((X509Certificate)keyEntry.getCertificate()).getSubjectX500Principal().getName();
+        LdapName ldapDN = null;
+        ldapDN = new LdapName(dn);
+        String cnpj = ldapDN.getRdns().stream()
+                .filter(rdn -> StringUtils.equalsIgnoreCase(rdn.getType(), "CN")).map(val -> val.getValue() + "").findFirst()
+                .orElse(null);
+        System.out.println("CERTIFICADO ASSINANDO(CNPJ):" + cnpj );
+
+
+
         final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
         final List<Transform> transforms = new ArrayList<>(2);
         transforms.add(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null));
@@ -101,7 +115,7 @@ public class DFAssinaturaDigital {
                 signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
             }
         }
-        
+
         final Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
