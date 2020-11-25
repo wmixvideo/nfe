@@ -125,6 +125,7 @@ public class DFAssinaturaDigital {
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
+        //verifica se há um Alias configurado
         if(StringUtils.isNotEmpty(config.getCertificadoAlias())){
             final String certificateAlias = config.getCertificadoAlias() != null ? config.getCertificadoAlias()
                     : config.getCertificadoKeyStore().aliases().nextElement();
