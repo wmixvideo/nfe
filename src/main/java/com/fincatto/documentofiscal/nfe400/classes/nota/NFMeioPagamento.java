@@ -11,7 +11,7 @@ public enum NFMeioPagamento {
     VALE_REFEICAO("11", "Vale refei\u00e7\u00e3o"),
     VALE_PRESENTE("12", "Vale presente"),
     VALE_COMBUSTIVEL("13", "Vale combust\u00edvel"),
-    DUPLICATA_MERCANTIL("14", "Duplicata mercantil"), //nao deve mais ser utilizado, mas mantido para leitura de notas antigas
+    DUPLICATA_MERCANTIL("14", "Duplicata Mercantil"),
     BOLETO_BANCARIO("15", "Boleto Bancario"),
     SEM_PAGAMENTO("90", "Sem pagamento"),
     OUTRO("99", "Outro");
