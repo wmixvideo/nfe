@@ -3,15 +3,15 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.averbacaoexportacao;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
 
 public class NFInfoEventoAverbacaoExportacao extends DFBase {
 
@@ -52,7 +52,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setId(final String id) {
-		StringValidador.exatamente54(id, "Info Evento Averbacao Exportacao ID");
+		DFStringValidador.exatamente54(id, "Info Evento Averbacao Exportacao ID");
 		this.id = id;
 	}
 
@@ -77,7 +77,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setCnpj(final String cnpj) {
-		StringValidador.cnpj(cnpj);
+		DFStringValidador.cnpj(cnpj);
 		this.cnpj = cnpj;
 	}
 
@@ -86,7 +86,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setChave(final String chave) {
-		StringValidador.exatamente44N(chave, "Info Evento Averbacao Exportacao Chave");
+		DFStringValidador.exatamente44N(chave, "Info Evento Averbacao Exportacao Chave");
 		this.chave = chave;
 	}
 
@@ -103,7 +103,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setCodigoEvento(final String codigoEvento) {
-		StringValidador.exatamente6N(codigoEvento, "Info Evento Averbacao Exportacao Codigo");
+		DFStringValidador.exatamente6N(codigoEvento, "Info Evento Averbacao Exportacao Codigo");
 		this.codigoEvento = codigoEvento;
 	}
 
@@ -112,7 +112,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setNumeroSequencialEvento(final int numeroSequencialEvento) {
-		IntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
+		DFIntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
 		this.numeroSequencialEvento = numeroSequencialEvento;
 	}
 
@@ -121,7 +121,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setVersaoEvento(final BigDecimal versaoEvento) {
-		this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+		this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
 	}
 
 	public NFInfoAverbacaoExportacao getAverbacaoExportacao() {

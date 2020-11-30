@@ -2,12 +2,12 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.averbacaoexportacao;
 
 import java.util.List;
 
+import com.fincatto.documentofiscal.validadores.DFListValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
 
 public class NFInfoAverbacaoExportacao extends DFBase {
 
@@ -61,7 +61,7 @@ public class NFInfoAverbacaoExportacao extends DFBase {
 	}
 
 	public List<NFInfoItemAverbacaoExportacao> getItensAverbados() {
-		ListValidador.tamanho990(itensAverbados, "Itens Averbados");
+		DFListValidador.tamanho990(itensAverbados, "Itens Averbados");
 		return itensAverbados;
 	}
 

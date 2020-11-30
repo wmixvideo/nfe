@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 
 public class NFEventoAverbacaoExportacao extends DFBase {
 
@@ -23,7 +23,7 @@ public class NFEventoAverbacaoExportacao extends DFBase {
 	private NFSignature assinatura;
 
 	public void setVersao(final BigDecimal versao) {
-		this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+		this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
 	}
 
 	public NFInfoEventoAverbacaoExportacao getInfoEvento() {
