@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.epec;
 
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 
@@ -46,7 +46,7 @@ public class NFDestinatarioEpec {
 		if (this.cpf != null) {
             throw new IllegalStateException("CPF ja foi setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
 	}
 
@@ -58,7 +58,7 @@ public class NFDestinatarioEpec {
 		if (this.cnpj != null) {
             throw new IllegalStateException("CNPJ ja foi setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
 	}
 

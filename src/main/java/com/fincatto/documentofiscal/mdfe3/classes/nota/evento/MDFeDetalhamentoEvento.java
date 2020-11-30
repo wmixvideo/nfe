@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeEnviaEventoCancelamento;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -41,7 +41,7 @@ public class MDFeDetalhamentoEvento extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "versao do Evento");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "versao do Evento");
     }
 
     public MDFeEnviaEventoCancelamento getMdFeEnviaEventoCancelamento() {

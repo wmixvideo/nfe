@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -65,7 +65,7 @@ public class NFDownloadNFe extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -74,7 +74,7 @@ public class NFDownloadNFe extends DFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "chave de acesso");
+        DFStringValidador.exatamente44N(chave, "chave de acesso");
         this.chave = chave;
     }
 }

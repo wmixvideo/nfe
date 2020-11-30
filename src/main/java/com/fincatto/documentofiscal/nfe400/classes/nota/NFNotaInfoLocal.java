@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFPais;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.convert.Convert;
@@ -78,7 +78,7 @@ public class NFNotaInfoLocal extends DFBase {
         }
     
         if (!StringUtils.isBlank(cnpj)) {
-            StringValidador.cnpj(cnpj);
+            DFStringValidador.cnpj(cnpj);
         }
 
         this.cnpj = cnpj;
@@ -88,52 +88,52 @@ public class NFNotaInfoLocal extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao pode setar CPF por que o CNPJ foi setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro, "Logradouro Local");
+        DFStringValidador.tamanho60(logradouro, "Logradouro Local");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Numero Local");
+        DFStringValidador.tamanho60(numero, "Numero Local");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento, "Complemento Local");
+        DFStringValidador.tamanho60(complemento, "Complemento Local");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro, "Bairro Local");
+        DFStringValidador.tamanho2ate60(bairro, "Bairro Local");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio, "Codigo Municipio Local");
+        DFStringValidador.exatamente7(codigoMunicipio, "Codigo Municipio Local");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
-        StringValidador.tamanho60(nomeMunicipio, "Nome Municipio Local");
+        DFStringValidador.tamanho60(nomeMunicipio, "Nome Municipio Local");
         this.nomeMunicipio = nomeMunicipio;
     }
     
     public void setNome(final String nome) {
-        StringValidador.tamanho2ate60(nome, "Nome do Expedidor/Recebedor");
+        DFStringValidador.tamanho2ate60(nome, "Nome do Expedidor/Recebedor");
         this.nome = nome;
     }
     
     public void setCep(final String cep) {
-        StringValidador.exatamente8(cep, "CEP");
+        DFStringValidador.exatamente8(cep, "CEP");
         this.cep = cep;
     }
     
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
+        DFStringValidador.tamanho2a4(codigoPais, "Codigo do pais");
         this.codigoPais = DFPais.valueOfCodigo(codigoPais);
     }
     
@@ -142,12 +142,12 @@ public class NFNotaInfoLocal extends DFBase {
     }
     
     public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho60(descricaoPais, "Descricao do pais");
+        DFStringValidador.tamanho60(descricaoPais, "Descricao do pais");
         this.descricaoPais = descricaoPais;
     }
     
     public void setTelefone(final String telefone) {
-        StringValidador.telefone(telefone);
+        DFStringValidador.telefone(telefone);
         this.telefone = telefone;
     }
     
@@ -155,13 +155,13 @@ public class NFNotaInfoLocal extends DFBase {
      * Endereço de email
      */
     public void setEmail(final String email) {
-        StringValidador.tamanho60(email, "Endereço de email");
-        StringValidador.email(email);
+        DFStringValidador.tamanho60(email, "Endereço de email");
+        DFStringValidador.email(email);
         this.email = email;
     }
     
     public void setInscricaoEstadual(String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 

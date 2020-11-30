@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -41,7 +41,7 @@ public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigoso extends DFBase
      * Ver a legislação de transporte de produtos perigosos aplicadas ao modal
      */
     public void setOnu(final String onu) {
-        StringValidador.exatamente4(onu, "Número ONU/UN");
+        DFStringValidador.exatamente4(onu, "Número ONU/UN");
         this.onu = onu;
     }
 
@@ -54,7 +54,7 @@ public class CTeNotaInfoCTeNormalInfoModalAereoTransportePerigoso extends DFBase
      * Preencher com o número de volumes (unidades) de artigos perigosos, ou seja, cada embalagem devidamente marcada e etiquetada (por ex.: número de caixas, de tambores, de bombonas, dentre outros). Não deve ser preenchido com o número de ULD, pallets ou containers.
      */
     public void setQuantidadeTotal(final String quantidadeTotal) {
-        StringValidador.tamanho20(quantidadeTotal, "Quantidade total de volumes contendo artigos perigosos");
+        DFStringValidador.tamanho20(quantidadeTotal, "Quantidade total de volumes contendo artigos perigosos");
         this.quantidadeTotal = quantidadeTotal;
     }
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 03/11/17. Informações do MDF-e.
@@ -69,7 +69,7 @@ public class MDFInfo extends DFBase {
      * Informar a chave de acesso do MDF-e e precedida do literal "MDFe"
      */
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44N(identificador, "Identificador");
         this.identificador = MDFInfo.IDENT + identificador;
     }
 
@@ -106,7 +106,7 @@ public class MDFInfo extends DFBase {
      * Informar CNPJ ou CPF. Preencher os zeros não significativos.
      */
     public void setAutorizacaoDownload(final List<MDFInfoAutorizacaoDownload> autorizacaoDownload) {
-        ListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
+        DFListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
         this.autorizacaoDownload = autorizacaoDownload;
     }
 
@@ -118,7 +118,7 @@ public class MDFInfo extends DFBase {
      * Versão do leiaute
      */
     public void setVersao(final String versao) {
-        StringValidador.equals(MDFe.VERSAO, versao);
+        DFStringValidador.equals(MDFe.VERSAO, versao);
         this.versao = versao;
     }
 

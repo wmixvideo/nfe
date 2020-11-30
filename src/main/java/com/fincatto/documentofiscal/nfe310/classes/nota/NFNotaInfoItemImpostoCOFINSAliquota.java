@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -34,15 +34,15 @@ public class NFNotaInfoItemImpostoCOFINSAliquota extends DFBase {
     }
     
     public void setValorBaseCalculo(final BigDecimal valorBaseCalculo) {
-        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base de Calculo COFINS Item");
+        this.valorBaseCalculo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base de Calculo COFINS Item");
     }
     
     public void setPercentualAliquota(final BigDecimal aliquota) {
-        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS Item");
+        this.percentualAliquota = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS Item");
     }
     
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor COFINS Item");
+        this.valor = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor COFINS Item");
     }
     
     public NFNotaInfoSituacaoTributariaCOFINS getSituacaoTributaria() {

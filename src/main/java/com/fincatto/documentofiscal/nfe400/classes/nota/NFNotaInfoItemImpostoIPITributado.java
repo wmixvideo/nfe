@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -48,32 +48,32 @@ public class NFNotaInfoItemImpostoIPITributado extends DFBase {
         if (this.quantidade != null || this.valorUnidadeTributavel != null) {
             throw new IllegalStateException("Nao pode setar valor base calculo se quantidade ou valor unidade tributavel esta setado");
         }
-        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC IPI Tributado");
+        this.valorBaseCalculo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor BC IPI Tributado");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
         if (this.quantidade != null || this.valorUnidadeTributavel != null) {
             throw new IllegalStateException("Nao pode setar percentual aliquota se quantidade ou valor unidade tributavel esta setado");
         }
-        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota IPI Tributado");
+        this.percentualAliquota = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota IPI Tributado");
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Nao pode setar quantidade se valorBaseCalculo ou PercentualAliquota esta setado");
         }
-        this.quantidade = BigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidade, "Quantidade IPI Tributado");
+        this.quantidade = DFBigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidade, "Quantidade IPI Tributado");
     }
 
     public void setValorUnidadeTributavel(final BigDecimal valorUnitario) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Nao pode setar valor unidade tributavel se valorBaseCalculo ou PercentualAliquota esta setado");
         }
-        this.valorUnidadeTributavel = BigDecimalValidador.tamanho15comAte4CasasDecimais(valorUnitario, "Valor Unitario IPI Tributado");
+        this.valorUnidadeTributavel = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(valorUnitario, "Valor Unitario IPI Tributado");
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo IPI Tributado");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo IPI Tributado");
     }
 
     public NFNotaInfoSituacaoTributariaIPI getSituacaoTributaria() {

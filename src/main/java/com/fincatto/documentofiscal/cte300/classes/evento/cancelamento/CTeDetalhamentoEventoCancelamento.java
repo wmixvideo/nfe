@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -17,7 +17,7 @@ public class CTeDetalhamentoEventoCancelamento extends DFBase {
     private CTeEnviaEventoCancelamento eventoCancelamento;
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getVersaoEvento() {

@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -32,11 +32,11 @@ public class NFNotaInfoItemImpostoICMS60 extends DFBase {
     }
 
     public void setValorBCICMSSTRetido(final BigDecimal valorBCICMSSTRetido) {
-        this.valorBCICMSSTRetido = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTRetido, "Valor BC ICMS ST Retido ICMS60 Item");
+        this.valorBCICMSSTRetido = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMSSTRetido, "Valor BC ICMS ST Retido ICMS60 Item");
     }
 
     public void setValorICMSSTRetido(final BigDecimal valorICMSSTRetido) {
-        this.valorICMSSTRetido = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
+        this.valorICMSSTRetido = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTRetido, "Valor ICMS ST Retido ICMS60 Item");
     }
 
     public NFOrigem getOrigem() {

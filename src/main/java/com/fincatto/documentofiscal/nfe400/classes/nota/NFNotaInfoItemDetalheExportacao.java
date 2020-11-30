@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFBigIntegerValidador;
 
 public class NFNotaInfoItemDetalheExportacao extends DFBase {
     private static final long serialVersionUID = 8265188954413940773L;
@@ -17,7 +17,7 @@ public class NFNotaInfoItemDetalheExportacao extends DFBase {
     private NFNotaInfoItemExportacaoIndireta exportacaoIndireta;
 
     public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
-        BigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio");
+        DFBigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio");
         this.atoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 

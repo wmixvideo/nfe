@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -40,7 +40,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviario extends DFBase {
      * Registro obrigatório do emitente do CT-e junto à ANTT para exercer a atividade de transportador rodoviário de cargas por conta de terceiros e mediante remuneração.
      */
     public void setRntrc(final String rntrc) {
-        StringValidador.exatamente8(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga");
+        DFStringValidador.exatamente8(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga");
         this.rntrc = rntrc;
     }
 
@@ -52,7 +52,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviario extends DFBase {
      * Ordens de Coleta associados
      */
     public void setOrdemColetaAssociadas(final List<CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas> ordemColetaAssociadas) {
-        ListValidador.tamanho10(ordemColetaAssociadas, "Ordens de Coleta associados");
+        DFListValidador.tamanho10(ordemColetaAssociadas, "Ordens de Coleta associados");
         this.ordemColetaAssociadas = ordemColetaAssociadas;
     }
 }

@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFInfoModelo1Por1AReferenciada extends DFBase {
@@ -32,27 +32,27 @@ public class NFInfoModelo1Por1AReferenciada extends DFBase {
     }
 
     public void setAnoMesEmissaoNFe(final String anoMesEmissaoNFe) {
-        StringValidador.aamm(anoMesEmissaoNFe);
+        DFStringValidador.aamm(anoMesEmissaoNFe);
         this.anoMesEmissaoNFe = anoMesEmissaoNFe;
     }
 
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
+        DFStringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setSerie(final Integer serie) {
-        IntegerValidador.tamanho3(serie, "Serie");
+        DFIntegerValidador.tamanho3(serie, "Serie");
         this.serie = serie;
     }
 
     public void setNumeroDocumentoFiscal(final String numeroDocumentoFiscal) {
-        StringValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
+        DFStringValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -25,15 +25,15 @@ public class NFNotaInfoItemProdutoCombustivelCIDE extends DFBase {
     }
 
     public void setQuantidadeBCCIDE(final BigDecimal quantidade) {
-        this.quantidadeBCCIDE = BigDecimalValidador.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel CIDE");
+        this.quantidadeBCCIDE = DFBigDecimalValidador.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel CIDE");
     }
 
     public void setValorAliquota(final BigDecimal valorAliquota) {
-        this.valorAliquota = BigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota Combustivel CIDE");
+        this.valorAliquota = DFBigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota Combustivel CIDE");
     }
 
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor Combustivel CIDE");
+        this.valor = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor Combustivel CIDE");
     }
 
     public String getQuantidadeBCCIDE() {

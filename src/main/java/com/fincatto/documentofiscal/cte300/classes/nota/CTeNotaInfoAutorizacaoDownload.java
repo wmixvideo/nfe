@@ -5,7 +5,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * @author Caio
@@ -38,7 +38,7 @@ public class CTeNotaInfoAutorizacaoDownload extends DFBase {
      * Informar zeros não significativos
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -51,7 +51,7 @@ public class CTeNotaInfoAutorizacaoDownload extends DFBase {
      * Informar zeros não significativos
      */
     public void setCpf(final String cpf) {
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 }

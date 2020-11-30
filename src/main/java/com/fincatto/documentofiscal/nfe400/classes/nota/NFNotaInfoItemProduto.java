@@ -3,10 +3,10 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
 import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.convert.Convert;
@@ -125,84 +125,84 @@ public class NFNotaInfoItemProduto extends DFBase {
     private String numeroRECOPI;
 
     public void setCodigo(final String codigo) {
-        StringValidador.tamanho60(codigo, "Codigo Produto");
+        DFStringValidador.tamanho60(codigo, "Codigo Produto");
         this.codigo = codigo;
     }
 
     public void setCodigoDeBarras(final String codigoDeBarras) {
-        StringValidador.codigoDeBarras(codigoDeBarras);
+        DFStringValidador.codigoDeBarras(codigoDeBarras);
         this.codigoDeBarras = codigoDeBarras;
     }
 
     public void setDescricao(final String descricao) {
-        StringValidador.tamanho120(descricao, "Descricao Produto");
+        DFStringValidador.tamanho120(descricao, "Descricao Produto");
         this.descricao = descricao;
     }
 
     public void setNcm(final String ncm) {
-        StringValidador.ncm(ncm);
+        DFStringValidador.ncm(ncm);
         this.ncm = ncm;
     }
 
     public void setExtipi(final String extipi) {
-        StringValidador.tamanho2ou3N(extipi, "EX TIPI Produto");
+        DFStringValidador.tamanho2ou3N(extipi, "EX TIPI Produto");
         this.extipi = extipi;
     }
 
     public void setCfop(final String cfop) {
-        StringValidador.exatamente4N(cfop, "CFOP Produto");
+        DFStringValidador.exatamente4N(cfop, "CFOP Produto");
         this.cfop = cfop;
     }
 
     public void setUnidadeComercial(final String unidadeComercial) {
-        StringValidador.tamanho6(unidadeComercial, "Unidade Comercial Produto");
+        DFStringValidador.tamanho6(unidadeComercial, "Unidade Comercial Produto");
         this.unidadeComercial = unidadeComercial;
     }
 
     public void setQuantidadeComercial(final BigDecimal quantidadeComercial) {
-        this.quantidadeComercial = BigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
+        this.quantidadeComercial = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeComercial, "Qtde Comercial Produto");
     }
 
     public void setValorUnitario(final BigDecimal valorUnitario) {
-        this.valorUnitario = BigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitario, "Valor Unitario Produto");
+        this.valorUnitario = DFBigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitario, "Valor Unitario Produto");
     }
 
     public void setValorTotalBruto(final BigDecimal valorTotalBruto) {
-        this.valorTotalBruto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
+        this.valorTotalBruto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
     }
 
     public void setCodigoDeBarrasTributavel(final String codigoDeBarrasTributavel) {
-        StringValidador.codigoDeBarras(codigoDeBarrasTributavel);
+        DFStringValidador.codigoDeBarras(codigoDeBarrasTributavel);
         this.codigoDeBarrasTributavel = codigoDeBarrasTributavel;
     }
 
     public void setUnidadeTributavel(final String unidadeTributavel) {
-        StringValidador.tamanho6(unidadeTributavel, "Unidade Tributavel Produto");
+        DFStringValidador.tamanho6(unidadeTributavel, "Unidade Tributavel Produto");
         this.unidadeTributavel = unidadeTributavel;
     }
 
     public void setQuantidadeTributavel(final BigDecimal quantidadeTributavel) {
-        this.quantidadeTributavel = BigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeTributavel, "Qtde Tributavel Produto");
+        this.quantidadeTributavel = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(quantidadeTributavel, "Qtde Tributavel Produto");
     }
 
     public void setValorUnitarioTributavel(final BigDecimal valorUnitarioTributavel) {
-        this.valorUnitarioTributavel = BigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel, "Valor Unitario Tributavel Produto");
+        this.valorUnitarioTributavel = DFBigDecimalValidador.tamanho21ComAte10CasasDecimais(valorUnitarioTributavel, "Valor Unitario Tributavel Produto");
     }
 
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Valor Frete Produto");
+        this.valorFrete = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Valor Frete Produto");
     }
 
     public void setValorSeguro(final BigDecimal valorSeguro) {
-        this.valorSeguro = BigDecimalValidador.tamanho15Com2CasasDecimais(valorSeguro, "Valor Seguro Produto");
+        this.valorSeguro = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorSeguro, "Valor Seguro Produto");
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Produto");
+        this.valorDesconto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Produto");
     }
 
     public void setValorOutrasDespesasAcessorias(final BigDecimal valorOutrasDespesasAcessorias) {
-        this.valorOutrasDespesasAcessorias = BigDecimalValidador.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
+        this.valorOutrasDespesasAcessorias = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorOutrasDespesasAcessorias, "Valor Outras Despesas Acessorias Produto");
     }
 
     public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
@@ -214,17 +214,17 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setNumeroPedidoCliente(final String numeroPedidoCliente) {
-        StringValidador.tamanho15(numeroPedidoCliente, "Numero Pedido Cliente Produto");
+        DFStringValidador.tamanho15(numeroPedidoCliente, "Numero Pedido Cliente Produto");
         this.numeroPedidoCliente = numeroPedidoCliente;
     }
 
     public void setNumeroPedidoItemCliente(final Integer numeroPedidoItemCliente) {
-        IntegerValidador.tamanho6(numeroPedidoItemCliente, "Numero Pedido Item Cliente Produto");
+        DFIntegerValidador.tamanho6(numeroPedidoItemCliente, "Numero Pedido Item Cliente Produto");
         this.numeroPedidoItemCliente = numeroPedidoItemCliente;
     }
 
     public void setNumeroControleFCI(final String numeroControleFCI) {
-        StringValidador.fci(numeroControleFCI);
+        DFStringValidador.fci(numeroControleFCI);
         this.numeroControleFCI = numeroControleFCI;
     }
 
@@ -246,7 +246,7 @@ public class NFNotaInfoItemProduto extends DFBase {
         if (this.medicamento != null || this.veiculo != null || this.combustivel != null || this.numeroRECOPI != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
-        ListValidador.tamanho500(armamentos, "Armamentos Produto");
+        DFListValidador.tamanho500(armamentos, "Armamentos Produto");
         this.armamentos = armamentos;
     }
 
@@ -259,18 +259,18 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public void setNomeclaturaValorAduaneiroEstatistica(final List<String> nomeclaturaValorAduaneiroEstatistica) {
         for (final String nomeclatra : nomeclaturaValorAduaneiroEstatistica) {
-            StringValidador.nve(nomeclatra);
+            DFStringValidador.nve(nomeclatra);
         }
         this.nomeclaturaValorAduaneiroEstatistica = nomeclaturaValorAduaneiroEstatistica;
     }
 
     public void setCodigoEspecificadorSituacaoTributaria(final String codigoEspecificadorSituacaoTributaria) {
-        StringValidador.exatamente7N(codigoEspecificadorSituacaoTributaria, "CEST Produto");
+        DFStringValidador.exatamente7N(codigoEspecificadorSituacaoTributaria, "CEST Produto");
         this.codigoEspecificadorSituacaoTributaria = codigoEspecificadorSituacaoTributaria;
     }
 
     public void setDetalhesExportacao(final List<NFNotaInfoItemDetalheExportacao> detalhesExportacao) {
-        ListValidador.tamanho500(detalhesExportacao, "Detalhes Exportacao Produto");
+        DFListValidador.tamanho500(detalhesExportacao, "Detalhes Exportacao Produto");
         this.detalhesExportacao = detalhesExportacao;
     }
 
@@ -278,12 +278,12 @@ public class NFNotaInfoItemProduto extends DFBase {
         if (this.medicamento != null || this.armamentos != null || this.veiculo != null || this.combustivel != null) {
             throw new IllegalStateException("veiculos, medicamentos, armamentos, RECOPI e combustivel sao mutuamente exclusivos");
         }
-        StringValidador.exatamente20N(numeroRECOPI, "Numero RECOPI Produto");
+        DFStringValidador.exatamente20N(numeroRECOPI, "Numero RECOPI Produto");
         this.numeroRECOPI = numeroRECOPI;
     }
 
     public void setRastros(final List<NFNotaInfoItemProdutoRastreabilidade> rastros) {
-        ListValidador.tamanho500(rastros, "Rastreios do produto");
+        DFListValidador.tamanho500(rastros, "Rastreios do produto");
         this.rastros = rastros;
     }
 
@@ -296,7 +296,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setCodigoBeneficioFiscalUF(final String codigoBeneficioFiscalUF) {
-        this.codigoBeneficioFiscalUF = StringValidador.validador(codigoBeneficioFiscalUF, "Codigo Beneficio Fiscal da UF", 10, false, false);
+        this.codigoBeneficioFiscalUF = DFStringValidador.validador(codigoBeneficioFiscalUF, "Codigo Beneficio Fiscal da UF", 10, false, false);
     }
 
     public String getCodigo() {

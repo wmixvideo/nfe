@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
     
     public NFNotaInfoItemProdutoMedicamento setCodigoProdutoAnvisa(final String codigoProdutoAnvisa) {
-        StringValidador.exatamente13(codigoProdutoAnvisa, "C\u00f3digo produto anvisa");
+        DFStringValidador.exatamente13(codigoProdutoAnvisa, "C\u00f3digo produto anvisa");
         this.codigoProdutoAnvisa = codigoProdutoAnvisa;
         return this;
     }
@@ -39,7 +39,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
     
     public NFNotaInfoItemProdutoMedicamento setPrecoMaximoConsumidor(final BigDecimal precoMaximoConsumidor) {
-        this.precoMaximoConsumidor = BigDecimalValidador.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Pre\u00e7o m\u00e1ximo consumidor");
+        this.precoMaximoConsumidor = DFBigDecimalValidador.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Pre\u00e7o m\u00e1ximo consumidor");
         return this;
     }
     
@@ -48,7 +48,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
     
     public NFNotaInfoItemProdutoMedicamento setMotivoIsencao(String motivoIsencao) {
-        StringValidador.validaTamanhoMaximo(motivoIsencao, 255, "Motivo da isen\u00e7\u00e3o da ANVISA");
+        DFStringValidador.validaTamanhoMaximo(motivoIsencao, 255, "Motivo da isen\u00e7\u00e3o da ANVISA");
         this.motivoIsencao = motivoIsencao;
         return this;
     }

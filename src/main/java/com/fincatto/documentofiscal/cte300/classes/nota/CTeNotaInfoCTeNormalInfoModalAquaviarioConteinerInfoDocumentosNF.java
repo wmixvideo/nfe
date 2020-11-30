@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -42,7 +42,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNF ex
      * Série
      */
     public void setSerie(final String serie) {
-        StringValidador.tamanho3(serie, "Série");
+        DFStringValidador.tamanho3(serie, "Série");
         this.serie = serie;
     }
 
@@ -54,7 +54,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNF ex
      * Número
      */
     public void setNumero(final String numero) {
-        StringValidador.tamanho20(numero, "Número");
+        DFStringValidador.tamanho20(numero, "Número");
         this.numero = numero;
     }
 
@@ -66,6 +66,6 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNF ex
      * Unidade de medida rateada (Peso,Volume)
      */
     public void setUnidadeRateada(final BigDecimal unidadeRateada) {
-        this.unidadeRateada = BigDecimalValidador.tamanho5Com2CasasDecimais(unidadeRateada, "Unidade de medida rateada (Peso,Volume)");
+        this.unidadeRateada = DFBigDecimalValidador.tamanho5Com2CasasDecimais(unidadeRateada, "Unidade de medida rateada (Peso,Volume)");
     }
 }

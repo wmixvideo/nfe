@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTInformacoesManuseio;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -40,7 +40,7 @@ public class CTeNotaInfoCTeNormalInfoModalAereoNaturezaCarga extends DFBase {
      * Formato:1234X1234X1234 (cm). Esse campo deve sempre que possível ser preenchido. Entretanto, quando for impossível o preenchimento das dimensões, fica obrigatório o preenchimento da cubagem em metro cúbico do leiaute do CT-e da estrutura genérica (infQ).
      */
     public void setDimensao(final String dimensao) {
-        StringValidador.tamanho5a14(dimensao, "Dimensão");
+        DFStringValidador.tamanho5a14(dimensao, "Dimensão");
         this.dimensao = dimensao;
     }
 

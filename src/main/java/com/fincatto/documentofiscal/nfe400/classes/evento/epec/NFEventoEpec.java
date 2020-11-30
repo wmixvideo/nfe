@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.epec;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import java.math.BigDecimal;
 
 import org.simpleframework.xml.Attribute;
@@ -28,7 +28,7 @@ public class NFEventoEpec extends DFBase {
 	private NFNota nota;
 
 	public void setVersao(final BigDecimal versao) {
-		this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+		this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
 	}
 
 	public NFInfoEventoEpec getInfoEvento() {

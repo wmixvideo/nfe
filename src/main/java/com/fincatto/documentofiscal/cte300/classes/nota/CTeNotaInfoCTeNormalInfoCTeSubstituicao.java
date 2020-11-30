@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -43,7 +43,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Chave de acesso do CT-e a ser substituído (original)
      */
     public void setChaveCTe(final String chaveCTe) {
-        StringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
+        DFStringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
         this.chaveCTe = chaveCTe;
     }
 
@@ -55,7 +55,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Chave de acesso do CT-e de Anulação
      */
     public void setChaveCTeAnulacao(final String chaveCTeAnulacao) {
-        StringValidador.exatamente44N(chaveCTeAnulacao, "Chave de acesso do CT-e de Anulação");
+        DFStringValidador.exatamente44N(chaveCTeAnulacao, "Chave de acesso do CT-e de Anulação");
         this.chaveCTeAnulacao = chaveCTeAnulacao;
     }
 
@@ -79,7 +79,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Tag com efeito e utilização aguardando legislação, não utilizar antes de NT específica tratar desse procedimento
      */
     public void setIndicadorAlteracaoTomador(final String indicadorAlteracaoTomador) {
-        StringValidador.exatamente1(indicadorAlteracaoTomador, "Indicador de CT-e Alteração de Tomador");
+        DFStringValidador.exatamente1(indicadorAlteracaoTomador, "Indicador de CT-e Alteração de Tomador");
         this.indicadorAlteracaoTomador = indicadorAlteracaoTomador;
     }
 }
