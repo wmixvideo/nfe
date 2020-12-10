@@ -22,8 +22,11 @@ public class NFNotaResumo extends DFBase {
     @Element(name = "chNFe")
     private String chave;
 
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     private String CNPJ;
+
+    @Element(name = "CPF", required = false)
+    private String CPF;
 
     @Element(name = "xNome")
     private String nome;
@@ -76,6 +79,15 @@ public class NFNotaResumo extends DFBase {
 
     public NFNotaResumo setCNPJ(String CNPJ) {
         this.CNPJ = CNPJ;
+        return this;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public NFNotaResumo setCPF(String CPF) {
+        this.CPF = CPF;
         return this;
     }
 
