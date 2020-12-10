@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -43,7 +43,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteiner extends DFBase {
      * Identificação do Container
      */
     public void setIdentificacao(final String identificacao) {
-        StringValidador.tamanho20(identificacao, "Identificação do Containe");
+        DFStringValidador.tamanho20(identificacao, "Identificação do Containe");
         this.identificacao = identificacao;
     }
 
@@ -55,7 +55,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteiner extends DFBase {
      * Grupo de informações dos lacres dos cointainers da qtde da carga
      */
     public void setLacre(final List<CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerLacre> lacre) {
-        ListValidador.tamanho3(lacre, "Grupo de informações dos lacres dos cointainers da qtde da carga");
+        DFListValidador.tamanho3(lacre, "Grupo de informações dos lacres dos cointainers da qtde da carga");
         this.lacre = lacre;
     }
 

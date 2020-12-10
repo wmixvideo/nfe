@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.nfe400;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.utils.DFUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
@@ -36,10 +37,6 @@ public class NotaFiscalChaveParser {
 
     private int getDataEmissaoAno() {
         return 2000 + Integer.parseInt(this.chave.substring(2, 4));
-    }
-
-    public String getCnpjEmitente() {
-        return this.chave.substring(6, 20);
     }
 
     public DFModelo getModelo() {
@@ -80,5 +77,41 @@ public class NotaFiscalChaveParser {
 
     public String getFormatado() {
         return this.chave.replaceFirst("(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
+    }
+
+    /**
+     * Indica se o emitente da chave eh pessoa fisica.
+     * @return Se chave foi emitida por pessoa fisica.
+     */
+    public boolean isEmitentePessoaFisica() {
+        return DFUtils.isCpfValido(this.chave.substring(9, 20));
+    }
+
+    /**
+     * Indica se o emitente da chave eh pessoa juridica.
+     * @return Se chave foi emitida por pessoa juridica.
+     */
+    public boolean isEmitentePessoaJuridica() {
+        return DFUtils.isCnpjValido(this.chave.substring(6, 20));
+    }
+
+    /**
+     * Returna o CNPJ do emitente da chave.<br>
+     * Se nao for um CNPJ valido, retorna nulo.
+     *
+     * @return CNPJ do emitente ou nulo.
+     */
+    public String getCnpjEmitente() {
+        return isEmitentePessoaJuridica() ? this.chave.substring(6, 20) : null;
+    }
+
+    /**
+     * Returna o CPF do emitente da chave.<br>
+     * Se nao for um CPF valido, retorna nulo.
+     *
+     * @return CPF do emitente ou nulo.
+     */
+    public String getCpfEmitente() {
+        return isEmitentePessoaFisica() ? this.chave.substring(9, 20) : null;
     }
 }

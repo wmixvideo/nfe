@@ -17,7 +17,7 @@ import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeCabecMsgE;
 import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeAutorizacaoStub.NfeDadosMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
@@ -90,7 +90,7 @@ class WSLoteEnvio implements DFLog {
     
     private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaLote(loteAssinadoXml);
+        DFXMLValidador.validaLote(loteAssinadoXml);
         
         // envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);

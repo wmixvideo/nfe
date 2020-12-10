@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -18,7 +18,7 @@ public class NFNotaInfoSuplementar extends DFBase {
     private String urlConsultaChaveAcesso;
 
     public void setQrCode(final String qrCode) {
-        StringValidador.tamanho100a600(qrCode, "QR Code");
+        DFStringValidador.tamanho100a600(qrCode, "QR Code");
         this.qrCode = qrCode;
     }
 
@@ -36,7 +36,7 @@ public class NFNotaInfoSuplementar extends DFBase {
      * @param urlConsultaChaveAcesso
      */
     public void setUrlConsultaChaveAcesso(final String urlConsultaChaveAcesso) {
-        StringValidador.validaIntervalo(urlConsultaChaveAcesso, 21,85, "Url Consulta Chave Acesso ");
+        DFStringValidador.validaIntervalo(urlConsultaChaveAcesso, 21,85, "Url Consulta Chave Acesso ");
         this.urlConsultaChaveAcesso = urlConsultaChaveAcesso;
     }
 }

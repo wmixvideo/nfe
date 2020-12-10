@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeCarga;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -66,7 +66,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga extends DFBase {
      * Informar a identificação da unidade de carga, por exemplo: número do container.
      */
     public void setIdentificacaoCarga(final String identificacaoCarga) {
-        StringValidador.tamanho20(identificacaoCarga, "Identificação da Unidade de Carga");
+        DFStringValidador.tamanho20(identificacaoCarga, "Identificação da Unidade de Carga");
         this.identificacaoCarga = identificacaoCarga;
     }
 
@@ -89,6 +89,6 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga extends DFBase {
      * Quantidade rateada (Peso,Volume)
      */
     public void setQuantidadeRateada(final BigDecimal quantidadeRateada) {
-        this.quantidadeRateada = BigDecimalValidador.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
+        this.quantidadeRateada = DFBigDecimalValidador.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
     }
 }

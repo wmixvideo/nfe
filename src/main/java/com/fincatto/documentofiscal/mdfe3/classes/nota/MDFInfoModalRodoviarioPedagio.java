@@ -6,7 +6,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -29,6 +29,6 @@ public class MDFInfoModalRodoviarioPedagio extends DFBase {
     }
 
     public void setDispositivos(final List<MDFInfoModalRodoviarioPedagioDisp> dispositivos) {
-        this.dispositivos = ListValidador.validaListaObrigatoria(dispositivos, "Dispositivos do Vale Pedagio");
+        this.dispositivos = DFListValidador.validaListaObrigatoria(dispositivos, "Dispositivos do Vale Pedagio");
     }
 }

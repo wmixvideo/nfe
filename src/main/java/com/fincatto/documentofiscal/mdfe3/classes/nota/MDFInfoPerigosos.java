@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 
@@ -65,9 +65,9 @@ public  class MDFInfoPerigosos {
 
     public void setNumeroONU(String numeroONU) {
         if(StringUtils.isNumeric(numeroONU)){
-            StringValidador.validaIntervalo(numeroONU, 4,4, "numero ONU em produtos perigosos", true);
+            DFStringValidador.validaIntervalo(numeroONU, 4,4, "numero ONU em produtos perigosos", true);
         }else{
-            StringValidador.equals("ND", numeroONU);
+            DFStringValidador.equals("ND", numeroONU);
         }
         this.numeroONU = numeroONU;
     }
@@ -77,7 +77,7 @@ public  class MDFInfoPerigosos {
     }
 
     public void setNomeEmbarque(String nomeEmbarque) {
-        this.nomeEmbarque = StringValidador.validaIntervalo(nomeEmbarque, 1,150,"Nome Embarque produtos perigosos");
+        this.nomeEmbarque = DFStringValidador.validaIntervalo(nomeEmbarque, 1,150,"Nome Embarque produtos perigosos");
     }
 
     public String getClasseRisco() {
@@ -85,7 +85,7 @@ public  class MDFInfoPerigosos {
     }
 
     public void setClasseRisco(String classeRisco) {
-        this.classeRisco = StringValidador.validaIntervalo(classeRisco, 1,40,"Classificação de risco em produtos perigosos");
+        this.classeRisco = DFStringValidador.validaIntervalo(classeRisco, 1,40,"Classificação de risco em produtos perigosos");
     }
 
     public String getGrupoEmbalagem() {
@@ -93,7 +93,7 @@ public  class MDFInfoPerigosos {
     }
 
     public void setGrupoEmbalagem(String grupoEmbalagem) {
-        this.grupoEmbalagem = StringValidador.validaIntervalo(grupoEmbalagem, 1,40,"Grupo embalagem em produtos perigosos");
+        this.grupoEmbalagem = DFStringValidador.validaIntervalo(grupoEmbalagem, 1,40,"Grupo embalagem em produtos perigosos");
     }
 
     public String getqTotProd() {
@@ -101,7 +101,7 @@ public  class MDFInfoPerigosos {
     }
 
     public void setqTotProd(String qTotProd) {
-        this.qTotProd = StringValidador.validaIntervalo(qTotProd, 1,20,"Qtde Total em produtos perigosos");
+        this.qTotProd = DFStringValidador.validaIntervalo(qTotProd, 1,20,"Qtde Total em produtos perigosos");
     }
 
     public String getQtdeTipoVolume() {
@@ -109,6 +109,6 @@ public  class MDFInfoPerigosos {
     }
 
     public void setQtdeTipoVolume(String qtdeTipoVolume) {
-        this.qtdeTipoVolume =  StringValidador.validaIntervalo(qtdeTipoVolume, 1,60,"Qtde Tipo Volume em produtos perigosos");
+        this.qtdeTipoVolume =  DFStringValidador.validaIntervalo(qtdeTipoVolume, 1,60,"Qtde Tipo Volume em produtos perigosos");
     }
 }

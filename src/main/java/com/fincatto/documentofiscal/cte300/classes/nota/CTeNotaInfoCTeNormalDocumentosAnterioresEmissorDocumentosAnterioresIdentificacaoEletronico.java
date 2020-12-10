@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Chave de acesso do CT-e
      */
     public void setChaveCTe(final String chaveCTe) {
-        StringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e");
+        DFStringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e");
         this.chaveCTe = chaveCTe;
     }
 }

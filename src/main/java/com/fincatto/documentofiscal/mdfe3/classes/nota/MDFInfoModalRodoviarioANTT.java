@@ -7,7 +7,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -43,7 +43,7 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
     }
 
     public void setRntrc(final String rntrc) {
-        StringValidador.validador(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true, true);
+        DFStringValidador.validador(rntrc, "Registro Nacional de Transportadores Rodoviários de Carga(RNTRC) ", 8, true, true);
         this.rntrc = rntrc;
     }
 

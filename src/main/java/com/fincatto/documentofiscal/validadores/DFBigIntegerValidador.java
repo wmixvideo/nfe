@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.validadores;
 
 import java.math.BigInteger;
 
-public abstract class BigIntegerValidador {
+public abstract class DFBigIntegerValidador {
 
     public static void tamanho12(final BigInteger valor, final String info) {
         if (valor != null && valor.compareTo(new BigInteger("999999999999")) > 0) {

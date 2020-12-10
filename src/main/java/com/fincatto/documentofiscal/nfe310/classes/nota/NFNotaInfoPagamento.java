@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -27,7 +27,7 @@ public class NFNotaInfoPagamento extends DFBase {
     }
 
     public void setValorPagamento(final BigDecimal valorPagamento) {
-        this.valorPagamento = BigDecimalValidador.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
+        this.valorPagamento = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorPagamento, "Valor Pagamento");
     }
 
     public NFFormaPagamentoMoeda getFormaPagamentoMoeda() {

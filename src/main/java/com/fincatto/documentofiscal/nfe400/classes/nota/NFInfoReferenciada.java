@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFInfoReferenciada extends DFBase {
     private static final long serialVersionUID = -2843595557163782224L;
@@ -27,7 +27,7 @@ public class NFInfoReferenciada extends DFBase {
         if (this.modelo1por1Referenciada != null || this.infoNFProdutorRuralReferenciada != null || this.chaveAcessoCTReferenciada != null || this.cupomFiscalReferenciado != null) {
             throw new IllegalStateException("Nao pode setar chave de acesso caso modelo 1 por 1 referenciada esteja setado");
         }
-        StringValidador.exatamente44N(chaveAcesso, "Chave de Acesso");
+        DFStringValidador.exatamente44N(chaveAcesso, "Chave de Acesso");
         this.chaveAcesso = chaveAcesso;
     }
 
@@ -42,7 +42,7 @@ public class NFInfoReferenciada extends DFBase {
         if (this.modelo1por1Referenciada != null || this.chaveAcesso != null || this.infoNFProdutorRuralReferenciada != null || this.cupomFiscalReferenciado != null) {
             throw new IllegalStateException("Nao pode setar chave de acesso de conhecimento de transporte referenciada caso a chave de acesso esteja setada");
         }
-        StringValidador.exatamente44N(chaveAcessoCTReferenciada, "Chave Acesso CT Referenciada");
+        DFStringValidador.exatamente44N(chaveAcessoCTReferenciada, "Chave Acesso CT Referenciada");
         this.chaveAcessoCTReferenciada = chaveAcessoCTReferenciada;
     }
 

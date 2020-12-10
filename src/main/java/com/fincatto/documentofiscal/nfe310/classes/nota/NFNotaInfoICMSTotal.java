@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -67,67 +67,67 @@ public class NFNotaInfoICMSTotal extends DFBase {
     private String valorTotalTributos;
 
     public void setBaseCalculoICMS(final BigDecimal baseCalculoICMS) {
-        this.baseCalculoICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMS, "Base de Calculo ICMS Total");
+        this.baseCalculoICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMS, "Base de Calculo ICMS Total");
     }
 
     public void setValorTotalICMS(final BigDecimal valorTotalICMS) {
-        this.valorTotalICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalICMS, "Valalor Total ICMS");
+        this.valorTotalICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalICMS, "Valalor Total ICMS");
     }
 
     public void setBaseCalculoICMSST(final BigDecimal baseCalculoICMSST) {
-        this.baseCalculoICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSST, "Base de Calculo ICMS ST Total");
+        this.baseCalculoICMSST = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSST, "Base de Calculo ICMS ST Total");
     }
 
     public void setValorTotalICMSST(final BigDecimal valorTotalICMSST) {
-        this.valorTotalICMSST = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalICMSST, "Valor Total ICMS ST");
+        this.valorTotalICMSST = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalICMSST, "Valor Total ICMS ST");
     }
 
     public void setValorTotalDosProdutosServicos(final BigDecimal valorTotalDosProdutosServicos) {
-        this.valorTotalDosProdutosServicos = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalDosProdutosServicos, "Valor Total Produtos e Servicos");
+        this.valorTotalDosProdutosServicos = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalDosProdutosServicos, "Valor Total Produtos e Servicos");
     }
 
     public void setValorTotalFrete(final BigDecimal valorTotalFrete) {
-        this.valorTotalFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalFrete, "Valor Total Frete");
+        this.valorTotalFrete = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalFrete, "Valor Total Frete");
     }
 
     public void setValorTotalSeguro(final BigDecimal valorTotalSeguro) {
-        this.valorTotalSeguro = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalSeguro, "Valor Total Seguro");
+        this.valorTotalSeguro = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalSeguro, "Valor Total Seguro");
     }
 
     public void setValorTotalDesconto(final BigDecimal valorTotalDesconto) {
-        this.valorTotalDesconto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalDesconto, "Valor Total Desconto");
+        this.valorTotalDesconto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalDesconto, "Valor Total Desconto");
     }
 
     public void setValorTotalII(final BigDecimal valorTotalII) {
-        this.valorTotalII = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalII, "Valor Total II");
+        this.valorTotalII = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalII, "Valor Total II");
     }
 
     public void setValorTotalIPI(final BigDecimal valorTotalIPI) {
-        this.valorTotalIPI = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIPI, "Valor Total IPI");
+        this.valorTotalIPI = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIPI, "Valor Total IPI");
     }
 
     public void setValorPIS(final BigDecimal valorPIS) {
-        this.valorPIS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorPIS, "Valor Total PIS");
+        this.valorPIS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorPIS, "Valor Total PIS");
     }
 
     public void setValorCOFINS(final BigDecimal valorCOFINS) {
-        this.valorCOFINS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorCOFINS, "Valor Total COFINS");
+        this.valorCOFINS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorCOFINS, "Valor Total COFINS");
     }
 
     public void setOutrasDespesasAcessorias(final BigDecimal outrasDespesasAcessorias) {
-        this.outrasDespesasAcessorias = BigDecimalValidador.tamanho15Com2CasasDecimais(outrasDespesasAcessorias, "Outras Despesas Acessorias");
+        this.outrasDespesasAcessorias = DFBigDecimalValidador.tamanho15Com2CasasDecimais(outrasDespesasAcessorias, "Outras Despesas Acessorias");
     }
 
     public void setValorTotalNFe(final BigDecimal valorTotalNFe) {
-        this.valorTotalNFe = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalNFe, "Valor Total NFe");
+        this.valorTotalNFe = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalNFe, "Valor Total NFe");
     }
 
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
-        this.valorTotalTributos = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total Tributos");
+        this.valorTotalTributos = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total Tributos");
     }
 
     public void setValorICMSDesonerado(final BigDecimal valorICMSDesonerado) {
-        this.valorICMSDesonerado = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesonerado, "Valor ICMS Desonerado");
+        this.valorICMSDesonerado = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesonerado, "Valor ICMS Desonerado");
     }
 
     public String getBaseCalculoICMS() {
@@ -199,7 +199,7 @@ public class NFNotaInfoICMSTotal extends DFBase {
     }
 
     public void setValorICMSFundoCombatePobreza(final BigDecimal valorICMSFundoCombatePobreza) {
-        this.valorICMSFundoCombatePobreza = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSFundoCombatePobreza, "Valor ICMS Fundo Combate a Pobreza");
+        this.valorICMSFundoCombatePobreza = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSFundoCombatePobreza, "Valor ICMS Fundo Combate a Pobreza");
     }
 
     public String getValorICMSPartilhaDestinatario() {
@@ -207,7 +207,7 @@ public class NFNotaInfoICMSTotal extends DFBase {
     }
 
     public void setValorICMSPartilhaDestinatario(final BigDecimal valorICMSPartilhaDestinatario) {
-        this.valorICMSPartilhaDestinatario = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSPartilhaDestinatario, "Valor ICMS Partilha Destinatario");
+        this.valorICMSPartilhaDestinatario = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSPartilhaDestinatario, "Valor ICMS Partilha Destinatario");
     }
 
     public String getValorICMSPartilhaRementente() {
@@ -215,6 +215,6 @@ public class NFNotaInfoICMSTotal extends DFBase {
     }
 
     public void setValorICMSPartilhaRementente(final BigDecimal valorICMSPartilhaRementente) {
-        this.valorICMSPartilhaRementente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSPartilhaRementente, "Valor ICMS Partilha Remetente");
+        this.valorICMSPartilhaRementente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSPartilhaRementente, "Valor ICMS Partilha Remetente");
     }
 }

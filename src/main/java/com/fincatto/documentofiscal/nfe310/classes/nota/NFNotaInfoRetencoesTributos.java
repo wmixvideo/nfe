@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -31,31 +31,31 @@ public class NFNotaInfoRetencoesTributos extends DFBase {
     private String valorRetencaoPrevidenciaSocial;
 
     public void setValorRetidoPIS(final BigDecimal valorRetidoPIS) {
-        this.valorRetidoPIS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoPIS, "Valor Retido PIS");
+        this.valorRetidoPIS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoPIS, "Valor Retido PIS");
     }
 
     public void setValorRetidoCOFINS(final BigDecimal valorRetidoCOFINS) {
-        this.valorRetidoCOFINS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoCOFINS, "Valor Retido COFINS");
+        this.valorRetidoCOFINS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoCOFINS, "Valor Retido COFINS");
     }
 
     public void setValorRetidoCSLL(final BigDecimal valorRetidoCSLL) {
-        this.valorRetidoCSLL = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoCSLL, "Valor Retido CSLL");
+        this.valorRetidoCSLL = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoCSLL, "Valor Retido CSLL");
     }
 
     public void setBaseCalculoIRRF(final BigDecimal baseCalculoIRRF) {
-        this.baseCalculoIRRF = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoIRRF, "BC IRRF Retencao Tributos");
+        this.baseCalculoIRRF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoIRRF, "BC IRRF Retencao Tributos");
     }
 
     public void setValorRetidoIRRF(final BigDecimal valorRetidoIRRF) {
-        this.valorRetidoIRRF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoIRRF, "Valor Retido IRRF");
+        this.valorRetidoIRRF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRetidoIRRF, "Valor Retido IRRF");
     }
 
     public void setBaseCalculoRetencaoPrevidenciaSocial(final BigDecimal baseCalculoRetencaoPrevidenciaSocial) {
-        this.baseCalculoRetencaoPrevidenciaSocial = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoRetencaoPrevidenciaSocial, "BC Retencao Previdencia Social");
+        this.baseCalculoRetencaoPrevidenciaSocial = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoRetencaoPrevidenciaSocial, "BC Retencao Previdencia Social");
     }
 
     public void setValorRetencaoPrevidenciaSocial(final BigDecimal valorRetencaoPrevidenciaSocial) {
-        this.valorRetencaoPrevidenciaSocial = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRetencaoPrevidenciaSocial, "Valor Retencao Previdencia Social");
+        this.valorRetencaoPrevidenciaSocial = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRetencaoPrevidenciaSocial, "Valor Retencao Previdencia Social");
     }
 
     public String getValorRetidoPIS() {

@@ -45,11 +45,6 @@ public class NotaFiscalChaveParserTest {
     }
 
     @Test
-    public void deveObterCNPJEmitenteDaChave() {
-        Assert.assertEquals("03918609000132", new NotaFiscalChaveParser("42151103918609000132640884579133596141399591").getCnpjEmitente());
-    }
-
-    @Test
     public void deveObterSerieDaChave() {
         Assert.assertEquals("088", new NotaFiscalChaveParser("42151103918609000132640884579133596141399591").getSerie());
     }
@@ -87,5 +82,23 @@ public class NotaFiscalChaveParserTest {
     @Test
     public void deveFormatarChave() {
         Assert.assertEquals("4215 1103 9186 0900 0132 6408 8457 9133 5961 4139 9591", new NotaFiscalChaveParser("42151103918609000132640884579133596141399591").getFormatado());
+    }
+
+    @Test
+    public void deveObterCnpjEmitenteDaChave() {
+        NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser("42151103918609000132640884579133596141399591");
+        Assert.assertTrue(notaFiscalChaveParser.isEmitentePessoaJuridica());
+        Assert.assertEquals("03918609000132", notaFiscalChaveParser.getCnpjEmitente());
+        Assert.assertFalse(notaFiscalChaveParser.isEmitentePessoaFisica());
+        Assert.assertNull(notaFiscalChaveParser.getCpfEmitente());
+    }
+
+    @Test
+    public void deveObterCpfEmitenteDaChave() {
+        NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser("42151100038883975022640884579133596141399591");
+        Assert.assertTrue(notaFiscalChaveParser.isEmitentePessoaFisica());
+        Assert.assertEquals("38883975022", notaFiscalChaveParser.getCpfEmitente());
+        Assert.assertFalse(notaFiscalChaveParser.isEmitentePessoaJuridica());
+        Assert.assertNull(notaFiscalChaveParser.getCnpjEmitente());
     }
 }

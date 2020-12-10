@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioBalsa extends DFBase {
      * Identificador da Balsa
      */
     public void setDescricao(final String descricao) {
-        StringValidador.tamanho60(descricao, "Identificador da Balsa");
+        DFStringValidador.tamanho60(descricao, "Identificador da Balsa");
         this.descricao = descricao;
     }
 }

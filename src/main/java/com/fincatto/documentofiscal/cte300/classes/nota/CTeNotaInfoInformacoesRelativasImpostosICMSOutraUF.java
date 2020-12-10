@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTCodigoSituacaoTributariaICMS;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -62,7 +62,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Percentual de redução da BC
      */
     public void setAliquotaReducaoBaseCalculoICMSOutraUF(final BigDecimal aliquotaReducaoBaseCalculoICMSOutraUF) {
-        this.aliquotaReducaoBaseCalculoICMSOutraUF = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMSOutraUF, "Percentual de redução da BC");
+        this.aliquotaReducaoBaseCalculoICMSOutraUF = DFBigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaReducaoBaseCalculoICMSOutraUF, "Percentual de redução da BC");
     }
 
     public String getBaseCalculoICMSOutraUF() {
@@ -73,7 +73,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Valor da BC do ICMS
      */
     public void setBaseCalculoICMSOutraUF(final BigDecimal baseCalculoICMSOutraUF) {
-        this.baseCalculoICMSOutraUF = BigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSOutraUF, "Valor da BC do ICMS");
+        this.baseCalculoICMSOutraUF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(baseCalculoICMSOutraUF, "Valor da BC do ICMS");
     }
 
     public String getAliquotaICMSOutraUF() {
@@ -84,7 +84,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Alíquota do ICMS
      */
     public void setAliquotaICMSOutraUF(final BigDecimal aliquotaICMSOutraUF) {
-        this.aliquotaICMSOutraUF = BigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMSOutraUF, "Alíquota do ICMS");
+        this.aliquotaICMSOutraUF = DFBigDecimalValidador.tamanho5Com2CasasDecimais(aliquotaICMSOutraUF, "Alíquota do ICMS");
     }
 
     public String getValorICMSOutraUF() {
@@ -95,6 +95,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
      * Valor do ICMS devido outra UF
      */
     public void setValorICMSOutraUF(final BigDecimal valorICMSOutraUF) {
-        this.valorICMSOutraUF = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOutraUF, "Valor do ICMS devido outra UF");
+        this.valorICMSOutraUF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOutraUF, "Valor do ICMS devido outra UF");
     }
 }

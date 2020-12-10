@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -98,7 +98,7 @@ public class CTeNotaInfo extends DFBase {
      * Informar a chave de acesso do CT-e e precedida do literal "CTe"
      */
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44N(identificador, "Identificador");
         this.identificador = CTeNotaInfo.IDENT + identificador;
     }
 
@@ -253,7 +253,7 @@ public class CTeNotaInfo extends DFBase {
      * Informar CNPJ ou CPF. Preencher os zeros não significativos.
      */
     public void setAutorizacaoDownload(final List<CTeNotaInfoAutorizacaoDownload> autorizacaoDownload) {
-        ListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
+        DFListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
         this.autorizacaoDownload = autorizacaoDownload;
     }
 

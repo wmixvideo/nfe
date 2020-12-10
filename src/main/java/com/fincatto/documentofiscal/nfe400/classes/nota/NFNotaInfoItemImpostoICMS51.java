@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -64,46 +64,46 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
     }
 
     public void setPercentualReducaoBC(final BigDecimal percentualReducaoBC) {
-        this.percentualReducaoBC = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualReducaoBC, "Percentual Reducao BC ICMS51 Item");
+        this.percentualReducaoBC = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualReducaoBC, "Percentual Reducao BC ICMS51 Item");
     }
 
     public void setValorBCICMS(final BigDecimal valorBCICMS) {
-        this.valorBCICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMS, "Valor BC ICMS ICMS51 Item");
+        this.valorBCICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBCICMS, "Valor BC ICMS ICMS51 Item");
     }
 
     public void setPercentualICMS(final BigDecimal percentualICMS) {
-        this.percentualICMS = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualICMS, "Percentual ICMS ICMS51 Item");
+        this.percentualICMS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualICMS, "Percentual ICMS ICMS51 Item");
     }
 
     public void setValorICMS(final BigDecimal valorICMS) {
-        this.valorICMS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor ICMS ICMS51 Item");
+        this.valorICMS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMS, "Valor ICMS ICMS51 Item");
     }
 
     public void setPercentualDiferimento(final BigDecimal percentualDiferimento) {
-        this.percentualDiferimento = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualDiferimento, "Percentual Diferimento ICMS51 Item");
+        this.percentualDiferimento = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualDiferimento, "Percentual Diferimento ICMS51 Item");
     }
 
     public void setValorICMSDiferimento(final BigDecimal valorICMSDiferimento) {
-        this.valorICMSDiferimento = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDiferimento, "Valor ICMS Diferimento ICMS51 Item");
+        this.valorICMSDiferimento = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDiferimento, "Valor ICMS Diferimento ICMS51 Item");
     }
 
     public void setValorICMSOperacao(final BigDecimal valorICMSOperacao) {
-        this.valorICMSOperacao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOperacao, "Valor ICMS Operacao ICMS51 Item");
+        this.valorICMSOperacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOperacao, "Valor ICMS Operacao ICMS51 Item");
     }
 
     public void setValorBCFundoCombatePobreza(final BigDecimal valorBCFundoCombatePobreza) {
-        this.valorBCFundoCombatePobreza = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBCFundoCombatePobreza, "Valor base calculo fundo combate pobreza");
+        this.valorBCFundoCombatePobreza = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBCFundoCombatePobreza, "Valor base calculo fundo combate pobreza");
     }
 
     public void setPercentualFundoCombatePobreza(final BigDecimal percentualFundoCombatePobreza) {
         if (percentualFundoCombatePobreza.signum() < 0) {
             throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
         }
-        this.percentualFundoCombatePobreza = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
+        this.percentualFundoCombatePobreza = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobreza, "Percentual fundo combate pobreza");
     }
 
     public void setValorFundoCombatePobreza(final BigDecimal valorFundoCombatePobreza) {
-        this.valorFundoCombatePobreza = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");
+        this.valorFundoCombatePobreza = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobreza, "Valor fundo combate pobreza");
     }
 
     public NFOrigem getOrigem() {

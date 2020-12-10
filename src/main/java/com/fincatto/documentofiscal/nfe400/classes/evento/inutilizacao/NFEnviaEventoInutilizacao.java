@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -29,7 +29,7 @@ public class NFEnviaEventoInutilizacao extends DFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public NFEventoInutilizacaoDados getDados() {

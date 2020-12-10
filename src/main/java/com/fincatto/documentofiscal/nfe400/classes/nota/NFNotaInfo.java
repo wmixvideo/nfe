@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
 
 import java.math.BigDecimal;
@@ -83,7 +83,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44N(identificador, "Identificador");
         this.identificador = NFNotaInfo.IDENT + identificador;
     }
 
@@ -92,7 +92,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
+        this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
     public NFNotaInfoIdentificacao getIdentificacao() {
@@ -120,7 +120,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setItens(final List<NFNotaInfoItem> itens) {
-        ListValidador.tamanho990(itens, "Itens da Nota");
+        DFListValidador.tamanho990(itens, "Itens da Nota");
         this.itens = itens;
     }
 
@@ -161,7 +161,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
-        ListValidador.tamanho10(pessoasAutorizadasDownloadNFe, "Pessoas Autorizadas Download NFe");
+        DFListValidador.tamanho10(pessoasAutorizadasDownloadNFe, "Pessoas Autorizadas Download NFe");
         this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
     }
 

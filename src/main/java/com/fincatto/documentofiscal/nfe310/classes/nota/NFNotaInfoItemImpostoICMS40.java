@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -33,7 +33,7 @@ public class NFNotaInfoItemImpostoICMS40 extends DFBase {
     }
 
     public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
-        this.valorICMSDesoneracao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS40 Item");
+        this.valorICMSDesoneracao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor ICMS Desoneracao ICMS40 Item");
     }
 
     public void setMotivoDesoneracaoICMS(final NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMS) {

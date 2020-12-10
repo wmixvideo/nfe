@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
 
 public class NFNotaInfoCobranca extends DFBase {
     private static final long serialVersionUID = -2471735975201108151L;
@@ -22,7 +22,7 @@ public class NFNotaInfoCobranca extends DFBase {
     }
 
     public void setParcelas(final List<NFNotaInfoParcela> parcelas) {
-        ListValidador.tamanho120(parcelas, "Parcelas");
+        DFListValidador.tamanho120(parcelas, "Parcelas");
         this.parcelas = parcelas;
     }
 

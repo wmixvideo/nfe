@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -38,7 +38,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNFe e
      * Chave de acesso da NF-e
      */
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "Chave de acesso da NF-e");
+        DFStringValidador.exatamente44N(chave, "Chave de acesso da NF-e");
         this.chave = chave;
     }
 
@@ -50,6 +50,6 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNFe e
      * Unidade de medida rateada (Peso,Volume)
      */
     public void setUnidadeRateada(final BigDecimal unidadeRateada) {
-        this.unidadeRateada = BigDecimalValidador.tamanho5Com2CasasDecimais(unidadeRateada, "Unidade de medida rateada (Peso,Volume)");
+        this.unidadeRateada = DFBigDecimalValidador.tamanho5Com2CasasDecimais(unidadeRateada, "Unidade de medida rateada (Peso,Volume)");
     }
 }

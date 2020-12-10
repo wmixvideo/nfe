@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -56,7 +56,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Em caso de empresa não estabelecida no Brasil, será informado o CNPJ com zeros.Informar os zeros não significativos.
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -69,7 +69,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Informar os zeros não significativos.
      */
     public void setCpf(final String cpf) {
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -81,7 +81,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Inscrição Estadual
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -94,7 +94,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Informar EX para operações com o exterior.
      */
     public void setSiglaUF(final String siglaUF) {
-        StringValidador.exatamente2(siglaUF, "Sigla da UF");
+        DFStringValidador.exatamente2(siglaUF, "Sigla da UF");
         this.siglaUF = siglaUF;
     }
 
@@ -106,7 +106,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Razão Social ou Nome do expedidor
      */
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial, "Razão Social ou Nome do expedidor");
+        DFStringValidador.tamanho60(razaoSocial, "Razão Social ou Nome do expedidor");
         this.razaoSocial = razaoSocial;
     }
 
@@ -118,7 +118,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Informações de identificação dos documentos de Transporte Anterior
      */
     public void setIdentificacaoDocumentosAnteriores(final List<CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnterioresIdentificacao> identificacaoDocumentosAnteriores) {
-        ListValidador.tamanho2(identificacaoDocumentosAnteriores, "Informações de identificação dos documentos de Transporte Anterior");
+        DFListValidador.tamanho2(identificacaoDocumentosAnteriores, "Informações de identificação dos documentos de Transporte Anterior");
         this.identificacaoDocumentosAnteriores = identificacaoDocumentosAnteriores;
     }
 }
