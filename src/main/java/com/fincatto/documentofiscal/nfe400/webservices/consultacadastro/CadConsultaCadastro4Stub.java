@@ -11,6 +11,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.lang.reflect.InvocationTargetException;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
+
 public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -23,18 +26,19 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("rawtypes")
     private final java.util.HashMap faultMessageMap = new java.util.HashMap();
     private final javax.xml.namespace.QName[] opNameArray = null;
+    private final DFConfig config;
 
     /**
      * Constructor that takes in a configContext
      */
-    public CadConsultaCadastro4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public CadConsultaCadastro4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public CadConsultaCadastro4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public CadConsultaCadastro4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -46,13 +50,14 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
+        this.config = config;
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public CadConsultaCadastro4Stub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public CadConsultaCadastro4Stub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     private static synchronized java.lang.String getUniqueSuffix() {
@@ -105,7 +110,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
 
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
@@ -178,7 +183,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
         // create SOAP envelope with that payload
         org.apache.axiom.soap.SOAPEnvelope env = null;
-        final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+        final org.apache.axis2.context.MessageContext _messageContext = MessageContextFactory.INSTANCE.create(config);
 
         // Style is Doc.
         env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "consultaCadastro")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "nfeDadosMsg"));
