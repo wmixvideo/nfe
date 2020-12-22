@@ -49,7 +49,7 @@ class WSNotaConsulta implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final MDFeConsultaStub.MdfeConsultaMDFResult mdfeConsultaMDFResult = new MDFeConsultaStub(endpoint).mdfeConsultaMDF(dados, cabecE);
+        final MDFeConsultaStub.MdfeConsultaMDFResult mdfeConsultaMDFResult = new MDFeConsultaStub(endpoint, config).mdfeConsultaMDF(dados, cabecE);
         return mdfeConsultaMDFResult.getExtraElement();
     }
     

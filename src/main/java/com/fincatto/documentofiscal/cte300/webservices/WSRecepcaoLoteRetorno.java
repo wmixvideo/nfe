@@ -46,7 +46,7 @@ class WSRecepcaoLoteRetorno implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetRecepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint).cteRetRecepcao(dados, cabecE);
+        final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint, config).cteRetRecepcao(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }
     

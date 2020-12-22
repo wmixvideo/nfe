@@ -57,7 +57,7 @@ class WSCancelamento implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + ctChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
         
-        RecepcaoEventoStub.CteRecepcaoEventoResult cteRecepcaoEventoResult = new RecepcaoEventoStub(urlWebService).cteRecepcaoEvento(dados, cabecE);
+        RecepcaoEventoStub.CteRecepcaoEventoResult cteRecepcaoEventoResult = new RecepcaoEventoStub(urlWebService, config).cteRecepcaoEvento(dados, cabecE);
         final OMElement omElementResult = cteRecepcaoEventoResult.getExtraElement();
         this.getLogger().debug(omElementResult.toString());
         return omElementResult;

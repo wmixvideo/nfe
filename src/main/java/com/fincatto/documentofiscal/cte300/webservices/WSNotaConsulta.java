@@ -53,7 +53,7 @@ class WSNotaConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         this.getLogger().debug(endpoint);
-        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint).cteConsultaCT(dados, cabecE);
+        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint, config).cteConsultaCT(dados, cabecE);
         return cteConsultaCTResult.getExtraElement();
     }
 

@@ -52,7 +52,7 @@ class WSConsultaCadastro implements DFLog {
         if (autorizador == null) {
             throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
         }
-        return new CadConsultaCadastro2Stub(autorizador.getConsultaCadastro(this.config.getAmbiente())).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
+        return new CadConsultaCadastro2Stub(autorizador.getConsultaCadastro(this.config.getAmbiente()), config).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
     }
     
     private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {

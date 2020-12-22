@@ -151,7 +151,7 @@ public class WSEpec implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        return new NFeRecepcaoEvento4Stub(endpoint).nfeRecepcaoEvento(dados);
+        return new NFeRecepcaoEvento4Stub(endpoint, config).nfeRecepcaoEvento(dados);
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {

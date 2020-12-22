@@ -59,7 +59,7 @@ class WSStatusConsulta implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + modelo.name() + ", autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        return new NfeStatusServico2Stub(endpoint).nfeStatusServicoNF2(dados, cabecEnv).getExtraElement();
+        return new NfeStatusServico2Stub(endpoint, config).nfeStatusServicoNF2(dados, cabecEnv).getExtraElement();
     }
     
     // este metodo teve que ser implementado pois a Bahia trata de forma diferente
@@ -79,6 +79,6 @@ class WSStatusConsulta implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico " + DFModelo.NFE.name() + ", autorizador " + autorizador.name() + ", UF " + DFUnidadeFederativa.BA.name());
         }
-        return new NfeStatusServicoStub(endpoint).nfeStatusServicoNF(dados, cabecEnv).getExtraElement();
+        return new NfeStatusServicoStub(endpoint,  config).nfeStatusServicoNF(dados, cabecEnv).getExtraElement();
     }
 }
