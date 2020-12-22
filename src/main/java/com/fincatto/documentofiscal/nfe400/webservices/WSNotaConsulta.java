@@ -41,13 +41,13 @@ class WSNotaConsulta implements DFLog {
         
         final NFeConsultaProtocolo4Stub.NfeDadosMsg dados = new NFeConsultaProtocolo4Stub.NfeDadosMsg();
         dados.setExtraElement(omElementConsulta);
-        
+
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
-        final NfeConsultaNFResult consultaNFResult = new NFeConsultaProtocolo4Stub(endpoint).nfeConsultaNF(dados);
+        final NfeConsultaNFResult consultaNFResult = new NFeConsultaProtocolo4Stub(endpoint, config).nfeConsultaNF(dados);
         return consultaNFResult.getExtraElement();
     }
     

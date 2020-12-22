@@ -146,7 +146,7 @@ class WSLoteEnvio implements DFLog {
                     + ", autorizador " + autorizador.name());
         }
 
-        return new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
+        return new NFeAutorizacao4Stub(endpoint, config).nfeAutorizacaoLote(dados);
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {

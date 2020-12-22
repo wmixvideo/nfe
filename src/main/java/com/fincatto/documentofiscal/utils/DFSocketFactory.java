@@ -21,6 +21,7 @@ import java.security.UnrecoverableKeyException;
 public class DFSocketFactory implements ProtocolSocketFactory {
 
     public static final int TIMEOUT_PADRAO_EM_MILLIS = 60_000;
+    public static final int SO_TIMEOUT_PADRAO_EM_MILLIS = 30_000;
 
     private final DFConfig config;
     private final SSLContext sslContext;
@@ -36,14 +37,8 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         ((SSLSocket) socket).setEnabledProtocols(this.config.getSSLProtocolos());
         socket.bind(new InetSocketAddress(localAddress, localPort));
         
-        int connectTimeout = TIMEOUT_PADRAO_EM_MILLIS;
-        
-        if (params != null && params.getConnectionTimeout() > 0 && params.getConnectionTimeout() != connectTimeout) {
-        	connectTimeout = params.getConnectionTimeout();
-        } else if (config.getTimeoutRequisicaoEmMillis() > 0 && config.getTimeoutRequisicaoEmMillis() != connectTimeout) {
-            connectTimeout = config.getTimeoutRequisicaoEmMillis();
-        }
-        
+        final int connectTimeout = params.getConnectionTimeout();
+
         socket.connect(new InetSocketAddress(host, port), connectTimeout);
         return socket;
     }
