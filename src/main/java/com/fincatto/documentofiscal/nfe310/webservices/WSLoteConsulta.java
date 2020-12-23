@@ -49,7 +49,7 @@ class WSLoteConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
         
-        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService).nfeRetAutorizacaoLote(dados, cabecE);
+        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService, config).nfeRetAutorizacaoLote(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }
     

@@ -41,7 +41,7 @@ class WSLoteConsulta implements DFLog {
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
-        final NfeResultMsg autorizacaoLoteResult = new NFeRetAutorizacao4Stub(urlWebService).nfeRetAutorizacaoLote(dados);
+        final NfeResultMsg autorizacaoLoteResult = new NFeRetAutorizacao4Stub(urlWebService, config).nfeRetAutorizacaoLote(dados);
         return autorizacaoLoteResult.getExtraElement();
     }
     
