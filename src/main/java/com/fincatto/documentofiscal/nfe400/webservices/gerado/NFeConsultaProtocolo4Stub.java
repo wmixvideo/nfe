@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
-import org.apache.axis2.client.Stub;
-
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -183,7 +183,7 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
 
     @SuppressWarnings("serial")
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4", "nfeDadosMsg");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4", "nfeDadosMsg", "");
 
         /**
          * field for ExtraElement
