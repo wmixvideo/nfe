@@ -78,7 +78,7 @@ public class NFInfoEventoCancelamento extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
+        if (this.cpf != null && cnpj != null) {
             throw new IllegalStateException("CPF ja foi setado");
         }
         DFStringValidador.cnpj(cnpj);
@@ -90,7 +90,7 @@ public class NFInfoEventoCancelamento extends DFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
+        if (this.cnpj != null && cpf != null) {
             throw new IllegalStateException("CNPJ ja foi setado");
         }
         DFStringValidador.cpf(cpf);
