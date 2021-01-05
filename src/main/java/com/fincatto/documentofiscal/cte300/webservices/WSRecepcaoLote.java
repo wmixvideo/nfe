@@ -59,7 +59,7 @@ class WSRecepcaoLote implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint).cteRecepcaoLote(dados, cabecalhoSOAP);
+        final CteRecepcaoLoteResult autorizacaoLoteResult = new CteRecepcaoStub(endpoint, config).cteRecepcaoLote(dados, cabecalhoSOAP);
         final CTeEnvioLoteRetorno retorno = this.config.getPersister().read(CTeEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         this.getLogger().debug(retorno.toString());
         return retorno;

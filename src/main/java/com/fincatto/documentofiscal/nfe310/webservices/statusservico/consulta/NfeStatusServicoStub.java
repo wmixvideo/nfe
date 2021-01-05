@@ -4,6 +4,9 @@ import org.apache.axiom.om.OMAttribute;
 
 import javax.xml.namespace.QName;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
+
 @SuppressWarnings({"rawtypes", "unchecked", "serial", "unused", "deprecation"})
 public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
@@ -15,17 +18,19 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
     private java.util.HashMap faultMessageMap = new java.util.HashMap();
     private javax.xml.namespace.QName[] opNameArray = null;
 
+    private DFConfig config;
+
     /**
      * Constructor that takes in a configContext
      */
-    public NfeStatusServicoStub(org.apache.axis2.context.ConfigurationContext configurationContext, java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public NfeStatusServicoStub(org.apache.axis2.context.ConfigurationContext configurationContext, java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
     /**
      * Constructor that takes in a configContext  and useseperate listner
      */
-    public NfeStatusServicoStub(org.apache.axis2.context.ConfigurationContext configurationContext, java.lang.String targetEndpoint, boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public NfeStatusServicoStub(org.apache.axis2.context.ConfigurationContext configurationContext, java.lang.String targetEndpoint, boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         //To populate AxisService
         populateAxisService();
         populateFaults();
@@ -34,27 +39,14 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
         _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
         //Set the soap version
         _serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
-    }
-
-    /**
-     * Default Constructor
-     */
-    public NfeStatusServicoStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-        this(configurationContext, "https://nfe.sefaz.ba.gov.br/webservices/NfeStatusServico/NfeStatusServico.asmx");
-    }
-
-    /**
-     * Default Constructor
-     */
-    public NfeStatusServicoStub() throws org.apache.axis2.AxisFault {
-        this("https://nfe.sefaz.ba.gov.br/webservices/NfeStatusServico/NfeStatusServico.asmx");
+        this.config = config;
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public NfeStatusServicoStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public NfeStatusServicoStub(java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     private static synchronized java.lang.String getUniqueSuffix() {
@@ -98,7 +90,7 @@ public class NfeStatusServicoStub extends org.apache.axis2.client.Stub {
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg, optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico", "nfeStatusServicoNF")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico", "nfeDadosMsg"));
