@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -25,12 +25,12 @@ public class NFNotaInfoItem extends DFBase {
     private String informacoesAdicionais;
 
     public void setNumeroItem(final Integer numeroItem) {
-        IntegerValidador.tamanho3maximo990(numeroItem, "Numero do Item");
+        DFIntegerValidador.tamanho3maximo990(numeroItem, "Numero do Item");
         this.numeroItem = numeroItem;
     }
 
     public void setInformacoesAdicionais(final String informacoesAdicionais) {
-        StringValidador.tamanho500(informacoesAdicionais, "Informacoes Adicionais do Item");
+        DFStringValidador.tamanho500(informacoesAdicionais, "Informacoes Adicionais do Item");
         this.informacoesAdicionais = informacoesAdicionais;
     }
 

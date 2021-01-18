@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -45,7 +45,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas extend
      * Série da OCC
      */
     public void setSerie(final String serie) {
-        StringValidador.tamanho3(serie, "Série da OCC");
+        DFStringValidador.tamanho3(serie, "Série da OCC");
         this.serie = serie;
     }
 
@@ -57,7 +57,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas extend
      * Número da Ordem de coleta
      */
     public void setNumeroOrdemColeta(final String numeroOrdemColeta) {
-        StringValidador.tamanho6N(numeroOrdemColeta, "Número da Ordem de coleta");
+        DFStringValidador.tamanho6N(numeroOrdemColeta, "Número da Ordem de coleta");
         this.numeroOrdemColeta = numeroOrdemColeta;
     }
 

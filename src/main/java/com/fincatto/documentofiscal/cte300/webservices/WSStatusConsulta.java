@@ -55,6 +55,6 @@ class WSStatusConsulta implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        return new CteStatusServicoStub(endpoint).cteStatusServicoCT(dados, cabecEnv).getExtraElement();
+        return new CteStatusServicoStub(endpoint, config).cteStatusServicoCT(dados, cabecEnv).getExtraElement();
     }
 }

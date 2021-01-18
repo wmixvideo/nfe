@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -61,7 +61,7 @@ public class MDFInfoSeguro extends DFBase {
      * Obrigatório pela lei 11.442/07 (RCTRC)
      */
     public void setApolice(final String apolice) {
-        StringValidador.tamanho20(apolice, "Número da Apólice");
+        DFStringValidador.tamanho20(apolice, "Número da Apólice");
         this.apolice = apolice;
     }
 

@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFPais;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 /**
@@ -64,7 +64,7 @@ public class CTeNotaEndereco extends DFBase {
      * Logradouro
      */
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho2ate60(logradouro, "Logradouro");
+        DFStringValidador.tamanho2ate60(logradouro, "Logradouro");
         this.logradouro = logradouro;
     }
 
@@ -76,7 +76,7 @@ public class CTeNotaEndereco extends DFBase {
      * Número
      */
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Número");
+        DFStringValidador.tamanho60(numero, "Número");
         this.numero = numero;
     }
 
@@ -88,7 +88,7 @@ public class CTeNotaEndereco extends DFBase {
      * Complemento
      */
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento, "Complemento");
+        DFStringValidador.tamanho60(complemento, "Complemento");
         this.complemento = complemento;
     }
 
@@ -100,7 +100,7 @@ public class CTeNotaEndereco extends DFBase {
      * Bairro
      */
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro, "Bairro");
+        DFStringValidador.tamanho2ate60(bairro, "Bairro");
         this.bairro = bairro;
     }
 
@@ -113,7 +113,7 @@ public class CTeNotaEndereco extends DFBase {
      * Informar 9999999 para operações com o exterior.
      */
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7N(codigoMunicipio, "Código do município");
+        DFStringValidador.exatamente7N(codigoMunicipio, "Código do município");
         this.codigoMunicipio = codigoMunicipio;
     }
 
@@ -126,7 +126,7 @@ public class CTeNotaEndereco extends DFBase {
      * Informar EXTERIOR para operações com o exterior.
      */
     public void setDescricaoMunicipio(final String descricaoMunicipio) {
-        StringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município");
+        DFStringValidador.tamanho2ate60(descricaoMunicipio, "Nome do município");
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
@@ -139,7 +139,7 @@ public class CTeNotaEndereco extends DFBase {
      * Informar os zeros não significativos
      */
     public void setCep(final String cep) {
-        StringValidador.exatamente8N(cep, "CEP");
+        DFStringValidador.exatamente8N(cep, "CEP");
         this.cep = cep;
     }
 
@@ -152,7 +152,7 @@ public class CTeNotaEndereco extends DFBase {
      * Informar EX para operações com o exterior.
      */
     public void setSiglaUF(final String siglaUf) {
-        StringValidador.exatamente2(siglaUf, "Sigla da UF");
+        DFStringValidador.exatamente2(siglaUf, "Sigla da UF");
         this.siglaUF = siglaUf;
     }
 
@@ -165,7 +165,7 @@ public class CTeNotaEndereco extends DFBase {
      * Utilizar a tabela do BACEN
      */
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho4N(codigoPais, "Código do país");
+        DFStringValidador.tamanho4N(codigoPais, "Código do país");
         this.codigoPais = DFPais.valueOfCodigo(codigoPais);
     }
 
@@ -177,7 +177,7 @@ public class CTeNotaEndereco extends DFBase {
      * Nome do país
      */
     public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho2ate60(descricaoPais, "Nome do país");
+        DFStringValidador.tamanho2ate60(descricaoPais, "Nome do país");
         this.descricaoPais = descricaoPais;
     }
 }

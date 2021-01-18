@@ -106,6 +106,15 @@ public abstract class DFConfig {
     public int getTimeoutRequisicaoEmMillis() {
         return DFSocketFactory.TIMEOUT_PADRAO_EM_MILLIS;
     }
+
+    /**
+     * Timeout do socket
+     * Deve ser zero ou maior, se não, será utilizado {@link DFSocketFactory#SO_TIMEOUT_PADRAO_EM_MILLIS}
+     * @return timeout da requisição em millisegundos
+     */
+    public int getSoTimeoutEmMillis() {
+        return DFSocketFactory.SO_TIMEOUT_PADRAO_EM_MILLIS;
+    }
     
     /**
      * Retorna o timezone a ser usado no sistema.

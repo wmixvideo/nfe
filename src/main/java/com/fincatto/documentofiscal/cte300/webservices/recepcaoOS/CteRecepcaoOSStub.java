@@ -5,6 +5,9 @@ import org.apache.axis2.client.Stub;
 
 import javax.xml.namespace.QName;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
+
 /*
  * CteRecepcaoOSStub java implementation
  */
@@ -50,14 +53,14 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
      * Constructor that takes in a configContext
      */
 
-    public CteRecepcaoOSStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public CteRecepcaoOSStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public CteRecepcaoOSStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public CteRecepcaoOSStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -66,27 +69,14 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
-    }
-
-    /**
-     * Default Constructor
-     */
-    public CteRecepcaoOSStub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-        this(configurationContext, "https://cte.fazenda.mg.gov.br/cte/services/CteRecepcaoOS");
-    }
-
-    /**
-     * Default Constructor
-     */
-    public CteRecepcaoOSStub() throws org.apache.axis2.AxisFault {
-        this("https://cte.fazenda.mg.gov.br/cte/services/CteRecepcaoOS");
+        this.config = config;
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public CteRecepcaoOSStub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public CteRecepcaoOSStub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     /**
@@ -104,7 +94,7 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), cteDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CteRecepcaoOS", "cteRecepcaoOS")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CteRecepcaoOS", "cteRecepcaoOS"));
@@ -173,7 +163,7 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
         this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
         // create SOAP envelope with that payload
         org.apache.axiom.soap.SOAPEnvelope env;
-        final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+        final org.apache.axis2.context.MessageContext _messageContext = MessageContextFactory.INSTANCE.create(config);
         // Style is Doc.
         env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), cteDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CteRecepcaoOS", "cteRecepcaoOS")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CteRecepcaoOS", "cteRecepcaoOS"));
         // add the soap_headers only if they are not null
@@ -272,6 +262,7 @@ public class CteRecepcaoOSStub extends org.apache.axis2.client.Stub {
     }
 
     private final javax.xml.namespace.QName[] opNameArray = null;
+    private final DFConfig config;
 
     private boolean optimizeContent(final javax.xml.namespace.QName opName) {
         if (this.opNameArray == null) {

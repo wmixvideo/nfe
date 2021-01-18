@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
 
 import java.math.BigDecimal;
@@ -25,7 +25,7 @@ public class NFEnviaEventoCartaCorrecao extends DFBase {
     private List<NFEvento> evento;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+        this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
     public String getVersao() {
@@ -37,7 +37,7 @@ public class NFEnviaEventoCartaCorrecao extends DFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote, "ID do Lote");
+        DFStringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
@@ -46,7 +46,7 @@ public class NFEnviaEventoCartaCorrecao extends DFBase {
     }
 
     public void setEvento(final List<NFEvento> evento) {
-        ListValidador.tamanho20(evento, "Eventos");
+        DFListValidador.tamanho20(evento, "Eventos");
         this.evento = evento;
     }
 }

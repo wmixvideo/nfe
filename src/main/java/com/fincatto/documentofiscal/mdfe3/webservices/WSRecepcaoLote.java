@@ -8,7 +8,7 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetorno
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
@@ -42,7 +42,7 @@ class WSRecepcaoLote implements DFLog {
         //veja em https://docs.oracle.com/javase/7/docs/api/javax/xml/XMLConstants.html#FEATURE_SECURE_PROCESSING
         System.setProperty("jdk.xml.maxOccurLimit", "10000");
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaLoteMDFe(loteAssinadoXml);
+        DFXMLValidador.validaLoteMDFe(loteAssinadoXml);
         
         //envia o lote para a sefaz
         final OMElement omElement = this.mdfeToOMElement(loteAssinadoXml);
@@ -58,7 +58,7 @@ class WSRecepcaoLote implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao do MDFe, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final MDFeRecepcaoStub.MdfeRecepcaoLoteResult autorizacaoLoteResult = new MDFeRecepcaoStub(endpoint).mdfeRecepcaoLote(dados, cabecalhoSOAP);
+        final MDFeRecepcaoStub.MdfeRecepcaoLoteResult autorizacaoLoteResult = new MDFeRecepcaoStub(endpoint, config).mdfeRecepcaoLote(dados, cabecalhoSOAP);
         final MDFEnvioLoteRetorno retorno = this.config.getPersister().read(MDFEnvioLoteRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
         this.getLogger().debug(retorno.toString());
         return retorno;

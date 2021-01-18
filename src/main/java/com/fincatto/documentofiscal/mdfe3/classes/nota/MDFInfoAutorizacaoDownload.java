@@ -5,7 +5,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 03/11/17.
@@ -41,7 +41,7 @@ public class MDFInfoAutorizacaoDownload extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado em " + MDFInfoAutorizacaoDownload.INFO);
         }
-        this.cnpj = StringValidador.cnpj(cnpj, MDFInfoAutorizacaoDownload.INFO);
+        this.cnpj = DFStringValidador.cnpj(cnpj, MDFInfoAutorizacaoDownload.INFO);
     }
 
     public String getCpf() {
@@ -56,6 +56,6 @@ public class MDFInfoAutorizacaoDownload extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado em " + MDFInfoAutorizacaoDownload.INFO);
         }
-        this.cpf = StringValidador.cpf(cpf, MDFInfoAutorizacaoDownload.INFO);
+        this.cpf = DFStringValidador.cpf(cpf, MDFInfoAutorizacaoDownload.INFO);
     }
 }

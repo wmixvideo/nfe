@@ -46,7 +46,7 @@ class WSInutilizacao implements DFLog {
         
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
-        final NfeResultMsg nf4Result = new NFeInutilizacao4Stub(urlWebService).nfeInutilizacaoNF(dados);
+        final NfeResultMsg nf4Result = new NFeInutilizacao4Stub(urlWebService, config).nfeInutilizacaoNF(dados);
         final OMElement dadosRetorno = nf4Result.getExtraElement();
         this.getLogger().debug(dadosRetorno.toString());
         return dadosRetorno;

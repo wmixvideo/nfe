@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFUnidadeMedidaPesoBrutoCarga;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -51,7 +51,7 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setQtdeCTe(final String qtdeCTe) {
-        this.qtdeCTe = StringValidador.validador(qtdeCTe, "Total CT-e no MDF-e", 6, false, true);
+        this.qtdeCTe = DFStringValidador.validador(qtdeCTe, "Total CT-e no MDF-e", 6, false, true);
     }
 
     public String getQtdeNFe() {
@@ -59,7 +59,7 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setQtdeNFe(final String qtdeNFe) {
-        this.qtdeNFe = StringValidador.validador(qtdeNFe, "Total NF-e no MDF-e", 6, false, true);
+        this.qtdeNFe = DFStringValidador.validador(qtdeNFe, "Total NF-e no MDF-e", 6, false, true);
     }
 
     public String getQtdeMDFe() {
@@ -67,7 +67,7 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setQtdeMDFe(final String qtdeMDFe) {
-        this.qtdeMDFe = StringValidador.validador(qtdeMDFe, "Total MDF-e no MDF-e relacionados no Manifesto Aquaviário", 6, false, true);
+        this.qtdeMDFe = DFStringValidador.validador(qtdeMDFe, "Total MDF-e no MDF-e relacionados no Manifesto Aquaviário", 6, false, true);
     }
 
     public String getValorTotalCarga() {
@@ -75,7 +75,7 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setValorTotalCarga(final BigDecimal valorTotalCarga) {
-        this.valorTotalCarga = BigDecimalValidador.tamanho13Com2CasasDecimais(valorTotalCarga, "Valor total da carga ");
+        this.valorTotalCarga = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorTotalCarga, "Valor total da carga ");
     }
 
     public MDFUnidadeMedidaPesoBrutoCarga getUnidadeMedidaPesoBrutoCarga() {
@@ -91,6 +91,6 @@ public class MDFInfoTotal extends DFBase {
     }
 
     public void setPesoCarga(final BigDecimal pesoCarga) {
-        this.pesoCarga = BigDecimalValidador.validaTamanho(pesoCarga, "Peso Bruto da Carga", 11, 4, true);
+        this.pesoCarga = DFBigDecimalValidador.validaTamanho(pesoCarga, "Peso Bruto da Carga", 11, 4, true);
     }
 }

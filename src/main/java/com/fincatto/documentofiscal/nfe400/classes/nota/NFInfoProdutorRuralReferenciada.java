@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFInfoProdutorRuralReferenciada extends DFBase {
@@ -38,7 +38,7 @@ public class NFInfoProdutorRuralReferenciada extends DFBase {
     }
 
     public void setAnoMesEmissao(final String anoMesEmissao) {
-        StringValidador.aamm(anoMesEmissao);
+        DFStringValidador.aamm(anoMesEmissao);
         this.anoMesEmissao = anoMesEmissao;
     }
 
@@ -46,7 +46,7 @@ public class NFInfoProdutorRuralReferenciada extends DFBase {
         if (this.cpfEmitente != null) {
             throw new IllegalStateException("Nao pode setar CNPJ pois CPF ja esta setado");
         }
-        StringValidador.cnpj(cnpjEmitente);
+        DFStringValidador.cnpj(cnpjEmitente);
         this.cnpjEmitente = cnpjEmitente;
     }
 
@@ -54,22 +54,22 @@ public class NFInfoProdutorRuralReferenciada extends DFBase {
         if (this.cnpjEmitente != null) {
             throw new IllegalStateException("Nao pode setar CPF pois CNPJ ja esta setado");
         }
-        StringValidador.cpf(cpfEmitente);
+        DFStringValidador.cpf(cpfEmitente);
         this.cpfEmitente = cpfEmitente;
     }
 
     public void setIeEmitente(final String ieEmitente) {
-        StringValidador.inscricaoEstadual(ieEmitente);
+        DFStringValidador.inscricaoEstadual(ieEmitente);
         this.ieEmitente = ieEmitente;
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
+        DFStringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setSerieDocumentoFiscal(final Integer serieDocumentoFiscal) {
-        IntegerValidador.tamanho3(serieDocumentoFiscal, "Serie Documento Fiscal");
+        DFIntegerValidador.tamanho3(serieDocumentoFiscal, "Serie Documento Fiscal");
         this.serieDocumentoFiscal = serieDocumentoFiscal;
     }
 
@@ -78,7 +78,7 @@ public class NFInfoProdutorRuralReferenciada extends DFBase {
      * @param numeroDocumentoFiscal
      */
     public void setNumeroDocumentoFiscal(final Integer numeroDocumentoFiscal) {
-        IntegerValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
+        DFIntegerValidador.tamanho9(numeroDocumentoFiscal, "Numero Documento Fiscal");
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
     }
 

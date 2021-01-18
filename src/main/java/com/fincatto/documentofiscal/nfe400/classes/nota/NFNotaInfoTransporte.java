@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -53,22 +53,22 @@ public class NFNotaInfoTransporte extends DFBase {
     }
 
     public void setReboques(final List<NFNotaInfoReboque> reboques) {
-        ListValidador.tamanho5(reboques, "Reboques");
+        DFListValidador.tamanho5(reboques, "Reboques");
         this.reboques = reboques;
     }
 
     public void setVolumes(final List<NFNotaInfoVolume> volumes) {
-        ListValidador.tamanho5000(volumes, "Volumes");
+        DFListValidador.tamanho5000(volumes, "Volumes");
         this.volumes = volumes;
     }
 
     public void setVagao(final String vagao) {
-        StringValidador.tamanho20(vagao, "Vagao");
+        DFStringValidador.tamanho20(vagao, "Vagao");
         this.vagao = vagao;
     }
 
     public void setBalsa(final String balsa) {
-        StringValidador.tamanho20(balsa, "Balsa");
+        DFStringValidador.tamanho20(balsa, "Balsa");
         this.balsa = balsa;
     }
 

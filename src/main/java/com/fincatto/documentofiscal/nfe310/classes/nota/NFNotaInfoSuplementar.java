@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -15,7 +15,7 @@ public class NFNotaInfoSuplementar extends DFBase {
     private String qrCode;
 
     public void setQrCode(final String qrCode) {
-        StringValidador.tamanho100a600(qrCode, "QR Code");
+        DFStringValidador.tamanho100a600(qrCode, "QR Code");
         this.qrCode = qrCode;
     }
 
