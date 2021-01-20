@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -57,7 +57,7 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
      * Valor Total dos Tributos
      */
     public void setValorTotalTributos(final BigDecimal valorTotalTributos) {
-        this.valorTotalTributos = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total dos Tributos");
+        this.valorTotalTributos = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalTributos, "Valor Total dos Tributos");
     }
 
     public String getInformacoesAdicionaisFisco() {
@@ -69,7 +69,7 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
      * Norma referenciada, informações complementares, etc
      */
     public void setInformacoesAdicionaisFisco(final String informacoesAdicionaisFisco) {
-        StringValidador.tamanho2000(informacoesAdicionaisFisco, "Informações adicionais de interesse do Fisco");
+        DFStringValidador.tamanho2000(informacoesAdicionaisFisco, "Informações adicionais de interesse do Fisco");
         this.informacoesAdicionaisFisco = informacoesAdicionaisFisco;
     }
 

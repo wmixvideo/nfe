@@ -5,8 +5,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.*;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -183,7 +183,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Numero aleatorio gerado pelo emitente para cada CT-e, com o objetivo de evitar acessos indevidos ao documento.
      */
     public void setCodigoNumerico(final String codigoNumerico) {
-        StringValidador.exatamente8N(codigoNumerico, "Codigo Numerico");
+        DFStringValidador.exatamente8N(codigoNumerico, "Codigo Numerico");
         this.codigoNumerico = codigoNumerico;
     }
     
@@ -195,7 +195,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Codigo Fiscal de Operacoes e Prestacoes
      */
     public void setCfop(final String cfop) {
-        StringValidador.exatamente4N(cfop, "CFOP");
+        DFStringValidador.exatamente4N(cfop, "CFOP");
         this.cfop = cfop;
     }
     
@@ -207,7 +207,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Natureza da Operacao
      */
     public void setNaturezaOperacao(final String naturezaOperacao) {
-        StringValidador.tamanho2ate60(naturezaOperacao, "Natureza da Operacao");
+        DFStringValidador.tamanho2ate60(naturezaOperacao, "Natureza da Operacao");
         this.naturezaOperacao = naturezaOperacao;
     }
     
@@ -232,7 +232,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Preencher com "0" no caso de serie unica
      */
     public void setSerie(final Integer serie) {
-        IntegerValidador.tamanho3(serie, "Serie");
+        DFIntegerValidador.tamanho3(serie, "Serie");
         this.serie = serie;
     }
     
@@ -244,7 +244,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Numero do CT-e
      */
     public void setNumero(final Integer numero) {
-        IntegerValidador.tamanho9(numero, "Numero");
+        DFIntegerValidador.tamanho9(numero, "Numero");
         this.numero = numero;
     }
     
@@ -297,7 +297,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar o digito de controle da chave de acesso do CT-e, que deve ser calculado com a aplicacao do algoritmo modulo 11 (base 2,9) da chave de acesso.
      */
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador, "DV");
+        DFIntegerValidador.exatamente1(digitoVerificador, "DV");
         this.digitoVerificador = digitoVerificador;
     }
     
@@ -354,7 +354,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Iinformar a versao do aplicativo emissor de CT-e.
      */
     public void setVersaoProcessoEmissao(final String versaoProcessoEmissao) {
-        StringValidador.tamanho20(versaoProcessoEmissao, "Versao Aplicativo Emissor");
+        DFStringValidador.tamanho20(versaoProcessoEmissao, "Versao Aplicativo Emissor");
         this.versaoProcessoEmissao = versaoProcessoEmissao;
     }
     
@@ -367,7 +367,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar valor 1 quando for Globalizado e nao informar a tag quando nao tratar de CT-e Globalizado
      */
     public void setIndicadorGlobalizado(final Integer indicadorGlobalizado) {
-        IntegerValidador.exatamente1(indicadorGlobalizado, "Indicador de CT-e Globalizado");
+        DFIntegerValidador.exatamente1(indicadorGlobalizado, "Indicador de CT-e Globalizado");
         this.indicadorGlobalizado = indicadorGlobalizado;
     }
     
@@ -380,7 +380,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Utilizar a tabela do IBGE. Informar 9999999 para as operacoes com o exterior.
      */
     public void setCodigoMunicipioEnvio(final String codigoMunicipioEnvio) {
-        StringValidador.exatamente7N(codigoMunicipioEnvio, "Codigo do Municipio de envio do CT-e");
+        DFStringValidador.exatamente7N(codigoMunicipioEnvio, "Codigo do Municipio de envio do CT-e");
         this.codigoMunicipioEnvio = codigoMunicipioEnvio;
     }
     
@@ -393,7 +393,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar PAIS/Municipio para as operacoes com o exterior.
      */
     public void setDescricaoMunicipioEnvio(final String descricaoMunicipioEnvio) {
-        StringValidador.tamanho2ate60(descricaoMunicipioEnvio, "Nome do Municipio de envio do CT-e");
+        DFStringValidador.tamanho2ate60(descricaoMunicipioEnvio, "Nome do Municipio de envio do CT-e");
         this.descricaoMunicipioEnvio = descricaoMunicipioEnvio;
     }
     
@@ -406,7 +406,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar 'EX' para operacoes com o exterior.
      */
     public void setSiglaUFEnvio(final String siglaUFEnvio) {
-        StringValidador.exatamente2(siglaUFEnvio, "Sigla da UF de envio do CT-e");
+        DFStringValidador.exatamente2(siglaUFEnvio, "Sigla da UF de envio do CT-e");
         this.siglaUFEnvio = siglaUFEnvio;
     }
     
@@ -454,7 +454,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Utilizar a tabela do IBGE. Informar 9999999 para operacoes com o exterior.
      */
     public void setCodigoMunicipioInicio(final String codigoMunicipioInicio) {
-        StringValidador.exatamente7N(codigoMunicipioInicio, "Codigo do Municipio de inicio da prestacao");
+        DFStringValidador.exatamente7N(codigoMunicipioInicio, "Codigo do Municipio de inicio da prestacao");
         this.codigoMunicipioInicio = codigoMunicipioInicio;
     }
     
@@ -467,7 +467,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar 'EXTERIOR' para operacoes com o exterior.
      */
     public void setDescricaoMunicipioInicio(final String descricaoMunicipioInicio) {
-        StringValidador.tamanho2ate60(descricaoMunicipioInicio, "Nome do Municipio do inicio da prestacao");
+        DFStringValidador.tamanho2ate60(descricaoMunicipioInicio, "Nome do Municipio do inicio da prestacao");
         this.descricaoMunicipioInicio = descricaoMunicipioInicio;
     }
     
@@ -480,7 +480,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar 'EX' para operacoes com o exterior.
      */
     public void setSiglaUfInicio(final String siglaUfInicio) {
-        StringValidador.exatamente2(siglaUfInicio, "UF do inicio da prestacao");
+        DFStringValidador.exatamente2(siglaUfInicio, "UF do inicio da prestacao");
         this.siglaUfInicio = siglaUfInicio;
     }
     
@@ -493,7 +493,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Utilizar a tabela do IBGE. Informar 9999999 para operacoes com o exterior.
      */
     public void setCodigoMunicipioFim(final String codigoMunicipioFim) {
-        StringValidador.exatamente7N(codigoMunicipioFim, "Codigo do Municipio de termino da prestacao");
+        DFStringValidador.exatamente7N(codigoMunicipioFim, "Codigo do Municipio de termino da prestacao");
         this.codigoMunicipioFim = codigoMunicipioFim;
     }
     
@@ -506,7 +506,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar 'EXTERIOR' para operacoes com o exterior.
      */
     public void setDescricaoMunicipioFim(final String descricaoMunicipioFim) {
-        StringValidador.tamanho2ate60(descricaoMunicipioFim, "Nome do Municipio do termino da prestacao");
+        DFStringValidador.tamanho2ate60(descricaoMunicipioFim, "Nome do Municipio do termino da prestacao");
         this.descricaoMunicipioFim = descricaoMunicipioFim;
     }
     
@@ -519,7 +519,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Informar 'EX' para operacoes com o exterior.
      */
     public void setSiglaUfFim(final String siglaUfFim) {
-        StringValidador.exatamente2(siglaUfFim, "UF do termino da prestacao");
+        DFStringValidador.exatamente2(siglaUfFim, "UF do termino da prestacao");
         this.siglaUfFim = siglaUfFim;
     }
     
@@ -545,7 +545,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Detalhes da retirada
      */
     public void setDetalheRetira(final String detalheRetira) {
-        StringValidador.tamanho160(detalheRetira, "Detalhes da retirada");
+        DFStringValidador.tamanho160(detalheRetira, "Detalhes da retirada");
         this.detalheRetira = detalheRetira;
     }
     
@@ -606,7 +606,7 @@ public class CTeNotaInfoIdentificacao extends DFBase {
      * Justificativa da entrada em contingencia
      */
     public void setJustificativa(final String justificativa) {
-        StringValidador.tamanho15a256(justificativa, "Justificativa da entrada em contingencia");
+        DFStringValidador.tamanho15a256(justificativa, "Justificativa da entrada em contingencia");
         this.justificativa = justificativa;
     }
 }

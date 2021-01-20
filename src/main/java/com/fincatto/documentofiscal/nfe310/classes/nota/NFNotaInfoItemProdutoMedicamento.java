@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -35,12 +35,12 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
 
     public void setLote(final String lote) {
-        StringValidador.tamanho20(lote, "Lote Medicamento");
+        DFStringValidador.tamanho20(lote, "Lote Medicamento");
         this.lote = lote;
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalValidador.tamanho11Com3CasasDecimais(quantidade, "Quantidade Medicamento");
+        this.quantidade = DFBigDecimalValidador.tamanho11Com3CasasDecimais(quantidade, "Quantidade Medicamento");
     }
 
     public void setDataFabricacao(final LocalDate dataFabricacao) {
@@ -52,7 +52,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
 
     public void setPrecoMaximoConsumidor(final BigDecimal precoMaximoConsumidor) {
-        this.precoMaximoConsumidor = BigDecimalValidador.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Preco Maximo Consumidor Medicamento");
+        this.precoMaximoConsumidor = DFBigDecimalValidador.tamanho15Com2CasasDecimais(precoMaximoConsumidor, "Preco Maximo Consumidor Medicamento");
     }
 
     public String getLote() {

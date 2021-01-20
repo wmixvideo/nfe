@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -19,7 +19,7 @@ public class MDFInfoSuplementar extends DFBase {
     
 
     public void setQrCodMDFe(final String qrCode) {
-        StringValidador.validaIntervalo(qrCode, 50, 1000,"MDF-e QR Code");
+        DFStringValidador.validaIntervalo(qrCode, 50, 1000,"MDF-e QR Code");
         this.qrCodMDFe = qrCode;
     }
 

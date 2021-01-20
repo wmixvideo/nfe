@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -23,7 +23,7 @@ public class NFNotaInfoParcela extends DFBase {
     private String valorParcela;
 
     public void setNumeroParcela(final String numeroParcela) {
-        StringValidador.tamanho60(numeroParcela, "Numero da Parcela");
+        DFStringValidador.tamanho60(numeroParcela, "Numero da Parcela");
         this.numeroParcela = numeroParcela;
     }
 
@@ -32,7 +32,7 @@ public class NFNotaInfoParcela extends DFBase {
     }
 
     public void setValorParcela(final BigDecimal valorParcela) {
-        this.valorParcela = BigDecimalValidador.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
+        this.valorParcela = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorParcela, "Valor Parcela");
     }
 
     public String getValorParcela() {

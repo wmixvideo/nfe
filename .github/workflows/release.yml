@@ -9,7 +9,7 @@ on:
 jobs:
   release:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
           java-version: 1.8
 
       - name: Adding ssh key
-        uses: webfactory/ssh-agent@v0.2.0
+        uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: ${{ secrets.ssh_private_key }}
 

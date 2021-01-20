@@ -23,11 +23,10 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import java.io.StringReader;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Iterator;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -136,7 +135,7 @@ public class WSEpec implements DFLog {
 
     public NFeRecepcaoEvento4Stub.NfeResultMsg comunicaLoteRaw(String loteAssinadoXml, DFModelo modelo) throws Exception {
         // valida o epec assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        XMLValidador.validaEpec(loteAssinadoXml);
+        DFXMLValidador.validaEpec(loteAssinadoXml);
 
         // envia o lote para a sefaz
         final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
@@ -152,7 +151,7 @@ public class WSEpec implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        return new NFeRecepcaoEvento4Stub(endpoint).nfeRecepcaoEvento(dados);
+        return new NFeRecepcaoEvento4Stub(endpoint, config).nfeRecepcaoEvento(dados);
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {

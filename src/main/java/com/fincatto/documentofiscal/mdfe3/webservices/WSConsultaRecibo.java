@@ -57,6 +57,6 @@ class WSConsultaRecibo implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta Recibo, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        return new MDFeRetRecepcaoStub(endpoint).mdfeRetRecepcao(dados, cabecEnv).getExtraElement();
+        return new MDFeRetRecepcaoStub(endpoint, config).mdfeRetRecepcao(dados, cabecEnv).getExtraElement();
     }
 }

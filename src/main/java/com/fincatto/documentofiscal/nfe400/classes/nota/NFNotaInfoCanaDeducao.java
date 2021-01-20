@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -17,12 +17,12 @@ public class NFNotaInfoCanaDeducao extends DFBase {
     private String valorDeducao;
 
     public void setDescricaoDeducao(final String descricaoDeducao) {
-        StringValidador.tamanho60(descricaoDeducao, "Descricao Deducao");
+        DFStringValidador.tamanho60(descricaoDeducao, "Descricao Deducao");
         this.descricaoDeducao = descricaoDeducao;
     }
 
     public void setValorDeducao(final BigDecimal valorDeducao) {
-        this.valorDeducao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDeducao, "Valor Deducao");
+        this.valorDeducao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorDeducao, "Valor Deducao");
     }
 
     public String getDescricaoDeducao() {

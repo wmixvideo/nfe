@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoLocal extends DFBase {
@@ -39,7 +39,7 @@ public class NFNotaInfoLocal extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao pode setar CNPJ por que o CPF foi setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -47,37 +47,37 @@ public class NFNotaInfoLocal extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao pode setar CPF por que o CNPJ foi setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro, "Logradouro Local");
+        DFStringValidador.tamanho60(logradouro, "Logradouro Local");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Numero Local");
+        DFStringValidador.tamanho60(numero, "Numero Local");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento, "Complemento Local");
+        DFStringValidador.tamanho60(complemento, "Complemento Local");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro, "Bairro Local");
+        DFStringValidador.tamanho2ate60(bairro, "Bairro Local");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio, "Codigo Municipio Local");
+        DFStringValidador.exatamente7(codigoMunicipio, "Codigo Municipio Local");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setNomeMunicipio(final String nomeMunicipio) {
-        StringValidador.tamanho60(nomeMunicipio, "Nome Municipio Local");
+        DFStringValidador.tamanho60(nomeMunicipio, "Nome Municipio Local");
         this.nomeMunicipio = nomeMunicipio;
     }
 

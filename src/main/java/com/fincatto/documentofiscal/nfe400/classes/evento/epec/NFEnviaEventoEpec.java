@@ -10,9 +10,9 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 @Root(name = "envEvento")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -28,7 +28,7 @@ public class NFEnviaEventoEpec extends DFBase {
 	private List<NFEventoEpec> evento;
 
 	public void setVersao(final BigDecimal versao) {
-		this.versao = BigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+		this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
 	}
 
 	public String getVersao() {
@@ -44,7 +44,7 @@ public class NFEnviaEventoEpec extends DFBase {
 	}
 
 	public void setIdLote(final String idLote) {
-		StringValidador.tamanho15N(idLote, "ID do Lote");
+		DFStringValidador.tamanho15N(idLote, "ID do Lote");
 		this.idLote = idLote;
 	}
 
@@ -53,7 +53,7 @@ public class NFEnviaEventoEpec extends DFBase {
 	}
 
 	public void setEvento(final List<NFEventoEpec> evento) {
-		ListValidador.tamanho20(evento, "Evento de Conting\u00eancia EPEC");
+		DFListValidador.tamanho20(evento, "Evento de Conting\u00eancia EPEC");
 		this.evento = evento;
 	}
 }

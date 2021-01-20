@@ -5,7 +5,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * @author Caio
@@ -40,7 +40,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMS extends DFBase {
      * Chave de acesso da NF-e emitida pelo Tomador
      */
     public void setReferenciaNFe(final String referenciaNFe) {
-        StringValidador.exatamente44N(referenciaNFe, "Chave de acesso da NF-e emitida pelo Tomador");
+        DFStringValidador.exatamente44N(referenciaNFe, "Chave de acesso da NF-e emitida pelo Tomador");
         this.referenciaNFe = referenciaNFe;
     }
 
@@ -63,7 +63,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMS extends DFBase {
      * Chave de acesso do CT-e emitido pelo Tomador
      */
     public void setReferenciaCte(final String referenciaCte) {
-        StringValidador.exatamente44N(referenciaCte, "Chave de acesso do CT-e emitido pelo Tomador");
+        DFStringValidador.exatamente44N(referenciaCte, "Chave de acesso do CT-e emitido pelo Tomador");
         this.referenciaCte = referenciaCte;
     }
 }

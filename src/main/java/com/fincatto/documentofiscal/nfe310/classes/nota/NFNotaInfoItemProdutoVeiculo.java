@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.*;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -89,40 +89,40 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setChassi(final String chassi) {
-        StringValidador.exatamente17(chassi, "Chassi Veiculo");
+        DFStringValidador.exatamente17(chassi, "Chassi Veiculo");
         this.chassi = chassi;
     }
 
     public void setCodigoCor(final String codigoCor) {
-        StringValidador.exatamente4(codigoCor, "Codigo Cor Veiculo");
+        DFStringValidador.exatamente4(codigoCor, "Codigo Cor Veiculo");
         this.codigoCor = codigoCor;
     }
 
     public void setDescricaoCor(final String descricaoCor) {
-        StringValidador.tamanho40(descricaoCor, "Descricao Cor Veiculo");
+        DFStringValidador.tamanho40(descricaoCor, "Descricao Cor Veiculo");
         this.descricaoCor = descricaoCor;
     }
 
     public void setPotencia(final String potencia) {
-        StringValidador.exatamente4(potencia, "Potencia Veiculo");
+        DFStringValidador.exatamente4(potencia, "Potencia Veiculo");
         this.potencia = potencia;
     }
 
     public void setCilindrada(final String cilindrada) {
-        StringValidador.exatamente4(cilindrada, "Cilindrada Veiculo");
+        DFStringValidador.exatamente4(cilindrada, "Cilindrada Veiculo");
         this.cilindrada = cilindrada;
     }
 
     public void setPesoLiquido(final BigDecimal pesoLiquido) {
-        this.pesoLiquido = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
+        this.pesoLiquido = DFBigDecimalValidador.tamanho9Com4CasasDecimais(pesoLiquido, "Peso Liquido Veiculo");
     }
 
     public void setPesoBruto(final BigDecimal pesoBruto) {
-        this.pesoBruto = BigDecimalValidador.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
+        this.pesoBruto = DFBigDecimalValidador.tamanho9Com4CasasDecimais(pesoBruto, "Peso Bruto Veiculo");
     }
 
     public void setNumeroSerie(final String numeroSerie) {
-        StringValidador.exatamente9(numeroSerie, "Numero Serie Veiculo");
+        DFStringValidador.exatamente9(numeroSerie, "Numero Serie Veiculo");
         this.numeroSerie = numeroSerie;
     }
 
@@ -131,31 +131,31 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setNumeroMotor(final String numeroMotor) {
-        StringValidador.exatamente21(numeroMotor, "Numero Motor Veiculo");
+        DFStringValidador.exatamente21(numeroMotor, "Numero Motor Veiculo");
         this.numeroMotor = numeroMotor;
     }
 
     public void setCapacidadeMaximaTracao(final BigDecimal capacidadeMaximaTracao) {
-        this.capacidadeMaximaTracao = BigDecimalValidador.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
+        this.capacidadeMaximaTracao = DFBigDecimalValidador.tamanho9Com4CasasDecimais(capacidadeMaximaTracao, "Capacidade Maxima Tracao Veiculo");
     }
 
     public void setDistanciaEntreEixos(final String distanciaEntreEixos) {
-        StringValidador.exatamente4(distanciaEntreEixos, "Distancia Entre Eixos Veiculo");
+        DFStringValidador.exatamente4(distanciaEntreEixos, "Distancia Entre Eixos Veiculo");
         this.distanciaEntreEixos = distanciaEntreEixos;
     }
 
     public void setAnoModeloFabricacao(final int anoModeloFabricacao) {
-        IntegerValidador.exatamente4(anoModeloFabricacao, "Ano Modelo Fabricacao Veiculo");
+        DFIntegerValidador.exatamente4(anoModeloFabricacao, "Ano Modelo Fabricacao Veiculo");
         this.anoModeloFabricacao = anoModeloFabricacao;
     }
 
     public void setAnoFabricacao(final int anoFabricacao) {
-        IntegerValidador.exatamente4(anoFabricacao, "Ano Fabricacao Veiculo");
+        DFIntegerValidador.exatamente4(anoFabricacao, "Ano Fabricacao Veiculo");
         this.anoFabricacao = anoFabricacao;
     }
 
     public void setTipoPintura(final String tipoPintura) {
-        StringValidador.exatamente1(tipoPintura, "Tipo Pintura Veiculo");
+        DFStringValidador.exatamente1(tipoPintura, "Tipo Pintura Veiculo");
         this.tipoPintura = tipoPintura;
     }
 
@@ -176,7 +176,7 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setCodigoMarcaModelo(final String codigoMarcaModelo) {
-        StringValidador.exatamente6N(codigoMarcaModelo, "Codigo Marca Modelo Veiculo");
+        DFStringValidador.exatamente6N(codigoMarcaModelo, "Codigo Marca Modelo Veiculo");
         this.codigoMarcaModelo = codigoMarcaModelo;
     }
 
@@ -185,7 +185,7 @@ public class NFNotaInfoItemProdutoVeiculo extends DFBase {
     }
 
     public void setLotacao(final int lotacao) {
-        IntegerValidador.tamanho3(lotacao, "Lotacao Veiculo");
+        DFIntegerValidador.tamanho3(lotacao, "Lotacao Veiculo");
         this.lotacao = lotacao;
     }
 

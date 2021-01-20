@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -67,26 +67,26 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     }
 
     public void setNumeroBomba(final String numeroBomba) {
-        StringValidador.tamanho3N(numeroBomba, "Numero de identificação da bomba ");
+        DFStringValidador.tamanho3N(numeroBomba, "Numero de identificação da bomba ");
         this.numeroBomba = numeroBomba;
     }
 
     public void setNumeroBico(final String numeroBico) {
-        StringValidador.tamanho3N(numeroBico, "Numero de identificação do Bico ");
+        DFStringValidador.tamanho3N(numeroBico, "Numero de identificação do Bico ");
         this.numeroBico = numeroBico;
     }
 
     public void setNumeroTanque(final String numeroTanque) {
-        StringValidador.tamanho3N(numeroTanque, "Numero de identificação do Tanque ");
+        DFStringValidador.tamanho3N(numeroTanque, "Numero de identificação do Tanque ");
         this.numeroTanque = numeroTanque;
     }
 
     public void setValorEncerramentoInicial(final BigDecimal valorEncerramentoInicial) {
-        this.valorEncerramentoInicial = BigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoInicial, "Valor do Encerrante no inicio do abastecimento");
+        this.valorEncerramentoInicial = DFBigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoInicial, "Valor do Encerrante no inicio do abastecimento");
     }
 
     public void setValorEncerramentoFinal(final BigDecimal valorEncerramentoFinal) {
-        this.valorEncerramentoFinal = BigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoFinal, "Valor do Encerrante no final do abastecimento");
+        this.valorEncerramentoFinal = DFBigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoFinal, "Valor do Encerrante no final do abastecimento");
     }
 
 }

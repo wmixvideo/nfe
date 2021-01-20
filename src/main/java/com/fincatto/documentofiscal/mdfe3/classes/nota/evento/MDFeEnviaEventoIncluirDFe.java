@@ -5,7 +5,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.util.List;
 import org.simpleframework.xml.ElementList;
 
@@ -41,7 +41,7 @@ public class MDFeEnviaEventoIncluirDFe extends DFBase {
 
     public void setDescricaoEvento(final String descricaoEvento) {
         final String defaultValue = "Inclusao DF-e";
-        StringValidador.equals(defaultValue, descricaoEvento);
+        DFStringValidador.equals(defaultValue, descricaoEvento);
         this.descricaoEvento = descricaoEvento;
     }
 
@@ -62,7 +62,7 @@ public class MDFeEnviaEventoIncluirDFe extends DFBase {
     }
 
     public void setCodigoMunicipioCarregamento(final String codigoMunicipioCarregamento) {
-        this.codigoMunicipioCarregamento = StringValidador.validador(codigoMunicipioCarregamento, "Codigo municipio carregamento", 7, true, true);
+        this.codigoMunicipioCarregamento = DFStringValidador.validador(codigoMunicipioCarregamento, "Codigo municipio carregamento", 7, true, true);
     }
 
     public String getNomeMunicipioCarregamento() {
@@ -70,7 +70,7 @@ public class MDFeEnviaEventoIncluirDFe extends DFBase {
     }
 
     public void setNomeMunicipioCarregamento(final String nomeMunicipioCarregamento) {
-        StringValidador.tamanho2ate60(nomeMunicipioCarregamento, "Nome municipio carregamento");
+        DFStringValidador.tamanho2ate60(nomeMunicipioCarregamento, "Nome municipio carregamento");
         this.nomeMunicipioCarregamento = nomeMunicipioCarregamento;
     }
 

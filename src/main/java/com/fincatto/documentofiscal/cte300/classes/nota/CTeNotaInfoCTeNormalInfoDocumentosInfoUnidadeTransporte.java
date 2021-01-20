@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoUnidadeTransporte;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -73,7 +73,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte extends DFB
      * Informar a identificação conforme o tipo de unidade de transporte. Por exemplo: para rodoviário tração ou reboque deverá preencher com a placa do veículo.
      */
     public void setIdentificacaoTransporte(final String identificacaoTransporte) {
-        StringValidador.tamanho20(identificacaoTransporte, "Identificação da Unidade de Transporte");
+        DFStringValidador.tamanho20(identificacaoTransporte, "Identificação da Unidade de Transporte");
         this.identificacaoTransporte = identificacaoTransporte;
     }
 
@@ -108,6 +108,6 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte extends DFB
      * Quantidade rateada (Peso,Volume)
      */
     public void setQuantidadeRateada(final BigDecimal quantidadeRateada) {
-        this.quantidadeRateada = BigDecimalValidador.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
+        this.quantidadeRateada = DFBigDecimalValidador.tamanho5Com2CasasDecimais(quantidadeRateada, "Quantidade rateada (Peso,Volume)");
     }
 }

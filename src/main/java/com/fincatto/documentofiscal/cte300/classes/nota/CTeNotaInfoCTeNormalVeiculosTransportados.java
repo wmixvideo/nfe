@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -54,7 +54,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Chassi do veículo
      */
     public void setChassi(final String chassi) {
-        StringValidador.exatamente17(chassi, "Chassi do veículo");
+        DFStringValidador.exatamente17(chassi, "Chassi do veículo");
         this.chassi = chassi;
     }
 
@@ -67,7 +67,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Código de cada montadora
      */
     public void setCodigoCor(final String codigoCor) {
-        StringValidador.tamanho4(codigoCor, "Cor do veículo");
+        DFStringValidador.tamanho4(codigoCor, "Cor do veículo");
         this.codigoCor = codigoCor;
     }
 
@@ -79,7 +79,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Descrição da cor
      */
     public void setDescricaoCor(final String descricaoCor) {
-        StringValidador.tamanho40(descricaoCor, "Descrição da cor");
+        DFStringValidador.tamanho40(descricaoCor, "Descrição da cor");
         this.descricaoCor = descricaoCor;
     }
 
@@ -92,7 +92,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Utilizar tabela RENAVAM
      */
     public void setCodigoMarcaModelo(final String codigoMarcaModelo) {
-        StringValidador.tamanho6(codigoMarcaModelo, "Código Marca Modelo");
+        DFStringValidador.tamanho6(codigoMarcaModelo, "Código Marca Modelo");
         this.codigoMarcaModelo = codigoMarcaModelo;
     }
 
@@ -104,7 +104,7 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Valor Unitário do Veículo
      */
     public void setValorUnitario(final BigDecimal valorUnitario) {
-        this.valorUnitario = BigDecimalValidador.tamanho15Com2CasasDecimais(valorUnitario, "Valor Unitário do Veículo");
+        this.valorUnitario = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorUnitario, "Valor Unitário do Veículo");
     }
 
     public String getValorFrete() {
@@ -115,6 +115,6 @@ public class CTeNotaInfoCTeNormalVeiculosTransportados extends DFBase {
      * Frete Unitário
      */
     public void setValorFrete(final BigDecimal valorFrete) {
-        this.valorFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Frete Unitário");
+        this.valorFrete = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFrete, "Frete Unitário");
     }
 }

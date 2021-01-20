@@ -3,10 +3,15 @@
  */
 package com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta;
 
+import org.apache.axis2.client.Options;
 import org.apache.axis2.client.Stub;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamReader;
+
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
 
 /*
  * NfeStatusServico4Stub java implementation
@@ -23,18 +28,19 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("rawtypes")
     private final java.util.HashMap faultMessageMap = new java.util.HashMap();
     private final javax.xml.namespace.QName[] opNameArray = null;
+    private final DFConfig config;
 
     /**
      * Constructor that takes in a configContext
      */
-    public NfeStatusServico4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public NfeStatusServico4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public NfeStatusServico4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public NfeStatusServico4Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -43,13 +49,14 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
+        this.config = config;
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public NfeStatusServico4Stub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public NfeStatusServico4Stub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     private static synchronized java.lang.String getUniqueSuffix() {
@@ -92,7 +99,7 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4", "nfeStatusServicoNF")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4", "nfeDadosMsg"));
@@ -401,7 +408,7 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
 
     @SuppressWarnings("serial")
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4", "nfeDadosMsg");
 
         /**
          * field for ExtraElement

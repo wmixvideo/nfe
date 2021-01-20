@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -36,32 +36,32 @@ public class NFNotaInfoItemImpostoCOFINSST extends DFBase {
         if (this.quantidadeVendida != null || this.valorAliquotaCOFINS != null) {
             throw new IllegalStateException("Ja foi setado quantidade vendida ou valor aliquota COFINS");
         }
-        this.valorBaseCalculo = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo COFINS ST Item");
+        this.valorBaseCalculo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculo, "Valor Base Calculo COFINS ST Item");
     }
 
     public void setPercentualAliquota(final BigDecimal aliquota) {
         if (this.quantidadeVendida != null || this.valorAliquotaCOFINS != null) {
             throw new IllegalStateException("Ja foi setado quantidade vendida ou valor aliquota COFINS");
         }
-        this.percentualAliquota = BigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS ST Item");
+        this.percentualAliquota = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(aliquota, "Aliquota COFINS ST Item");
     }
 
     public void setQuantidadeVendida(final BigDecimal quantidadeVendida) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Ja foi setado valor da base de calculo ou percentual aliquota COFINS");
         }
-        this.quantidadeVendida = BigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade COFINS ST Item");
+        this.quantidadeVendida = DFBigDecimalValidador.tamanho16ComAte4CasasDecimais(quantidadeVendida, "Quantidade COFINS ST Item");
     }
 
     public void setValorAliquotaCOFINS(final BigDecimal valorAliquota) {
         if (this.valorBaseCalculo != null || this.percentualAliquota != null) {
             throw new IllegalStateException("Ja foi setado valor da base de calculo ou percentual aliquota COFINS");
         }
-        this.valorAliquotaCOFINS = BigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS ST Item");
+        this.valorAliquotaCOFINS = DFBigDecimalValidador.tamanho15Com4CasasDecimais(valorAliquota, "Valor Aliquota COFINS ST Item");
     }
 
     public void setValorCOFINS(final BigDecimal valorTributo) {
-        this.valorCOFINS = BigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS ST Item");
+        this.valorCOFINS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS ST Item");
     }
 
     public String getValorBaseCalculo() {

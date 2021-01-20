@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFEndereco extends DFBase {
     private static final long serialVersionUID = 417768837786948754L;
@@ -43,32 +43,32 @@ public class NFEndereco extends DFBase {
     private String telefone;
 
     public void setLogradouro(final String logradouro) {
-        StringValidador.tamanho60(logradouro, "Logradouro");
+        DFStringValidador.tamanho60(logradouro, "Logradouro");
         this.logradouro = logradouro;
     }
 
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Numero do Endereco");
+        DFStringValidador.tamanho60(numero, "Numero do Endereco");
         this.numero = numero;
     }
 
     public void setComplemento(final String complemento) {
-        StringValidador.tamanho60(complemento, "Complemento");
+        DFStringValidador.tamanho60(complemento, "Complemento");
         this.complemento = complemento;
     }
 
     public void setBairro(final String bairro) {
-        StringValidador.tamanho2ate60(bairro, "Bairro");
+        DFStringValidador.tamanho2ate60(bairro, "Bairro");
         this.bairro = bairro;
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7(codigoMunicipio, "Codigo do Municipio");
+        DFStringValidador.exatamente7(codigoMunicipio, "Codigo do Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setDescricaoMunicipio(final String descricaoMunicipio) {
-        StringValidador.tamanho60(descricaoMunicipio, "Descricao do Municipio");
+        DFStringValidador.tamanho60(descricaoMunicipio, "Descricao do Municipio");
         this.descricaoMunicipio = descricaoMunicipio;
     }
 
@@ -77,22 +77,22 @@ public class NFEndereco extends DFBase {
     }
 
     public void setCep(final String cep) {
-        StringValidador.exatamente8(cep, "CEP");
+        DFStringValidador.exatamente8(cep, "CEP");
         this.cep = cep;
     }
 
     public void setCodigoPais(final String codigoPais) {
-        StringValidador.tamanho2a4(codigoPais, "Codigo do pais");
+        DFStringValidador.tamanho2a4(codigoPais, "Codigo do pais");
         this.codigoPais = codigoPais;
     }
 
     public void setDescricaoPais(final String descricaoPais) {
-        StringValidador.tamanho60(descricaoPais, "Descricao do pais");
+        DFStringValidador.tamanho60(descricaoPais, "Descricao do pais");
         this.descricaoPais = descricaoPais;
     }
 
     public void setTelefone(final String telefone) {
-        StringValidador.telefone(telefone);
+        DFStringValidador.telefone(telefone);
         this.telefone = telefone;
     }
 

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -34,7 +34,7 @@ public class MDFInfoSeguroInfo extends DFBase {
      * Nome da Seguradora
      */
     public void setSeguradora(final String seguradora) {
-        StringValidador.tamanho30(seguradora, "Nome da Seguradora");
+        DFStringValidador.tamanho30(seguradora, "Nome da Seguradora");
         this.seguradora = seguradora;
     }
 
@@ -46,7 +46,7 @@ public class MDFInfoSeguroInfo extends DFBase {
      * Número do CNPJ da seguradora. Obrigatório apenas se responsável pelo seguro for (2) responsável pela contratação do transporte - pessoa jurídica.
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 }

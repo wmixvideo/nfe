@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -36,7 +36,7 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public NFNotaInfoResponsavelTecnico setCnpj(String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
         return this;
     }
@@ -46,7 +46,7 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public NFNotaInfoResponsavelTecnico setContatoNome(String contatoNome) {
-        StringValidador.tamanho2ate60(contatoNome, "Responsavel tecnico");
+        DFStringValidador.tamanho2ate60(contatoNome, "Responsavel tecnico");
         this.contatoNome = contatoNome;
         return this;
     }
@@ -56,8 +56,8 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public NFNotaInfoResponsavelTecnico setEmail(String email) {
-        StringValidador.email(email, "Responsavel tecnico ");
-        StringValidador.validaIntervalo(email, 6, 60, "Responsavel tecnico");
+        DFStringValidador.email(email, "Responsavel tecnico ");
+        DFStringValidador.validaIntervalo(email, 6, 60, "Responsavel tecnico");
         this.email = email;
         return this;
     }
@@ -67,7 +67,7 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public NFNotaInfoResponsavelTecnico setTelefone(String telefone) {
-        StringValidador.telefone(telefone, "Responsavel tecnico");
+        DFStringValidador.telefone(telefone, "Responsavel tecnico");
         this.telefone = telefone;
         return this;
     }
@@ -77,7 +77,7 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public void setIdCSRT(String idCSRT) {
-        StringValidador.exatamente2N(idCSRT, "Responsavel tecnico");
+        DFStringValidador.exatamente2N(idCSRT, "Responsavel tecnico");
         this.idCSRT = idCSRT;
     }
     
@@ -86,7 +86,7 @@ public class NFNotaInfoResponsavelTecnico extends DFBase {
     }
     
     public void setHashCSRT(String hashCSRT) {
-        StringValidador.isBase64(hashCSRT, "HASH CSRT em Responsavel tecnico");
+        DFStringValidador.isBase64(hashCSRT, "HASH CSRT em Responsavel tecnico");
         this.hashCSRT = hashCSRT;
     }
 }

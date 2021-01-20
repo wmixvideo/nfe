@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoDirecao;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -66,7 +66,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * Valor da Prestação Base de Cálculo do AFRMM
      */
     public void setValorPrestacao(final BigDecimal valorPrestacao) {
-        this.valorPrestacao = BigDecimalValidador.tamanho15Com2CasasDecimais(valorPrestacao, "Valor da Prestação Base de Cálculo do AFRMM");
+        this.valorPrestacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorPrestacao, "Valor da Prestação Base de Cálculo do AFRMM");
     }
 
     public String getValorAdicionalFrete() {
@@ -77,7 +77,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * AFRMM (Adicional de Frete para Renovação da Marinha Mercante)
      */
     public void setValorAdicionalFrete(final BigDecimal valorAdicionalFrete) {
-        this.valorAdicionalFrete = BigDecimalValidador.tamanho15Com2CasasDecimais(valorAdicionalFrete, "AFRMM (Adicional de Frete para Renovação da Marinha Mercante)");
+        this.valorAdicionalFrete = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorAdicionalFrete, "AFRMM (Adicional de Frete para Renovação da Marinha Mercante)");
     }
 
     public String getIdentificacaoNavio() {
@@ -88,7 +88,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * Identificação do Navio
      */
     public void setIdentificacaoNavio(final String identificacaoNavio) {
-        StringValidador.tamanho60(identificacaoNavio, "Identificação do Navio");
+        DFStringValidador.tamanho60(identificacaoNavio, "Identificação do Navio");
         this.identificacaoNavio = identificacaoNavio;
     }
 
@@ -100,7 +100,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * Grupo de informações das balsas
      */
     public void setBalsa(final List<CTeNotaInfoCTeNormalInfoModalAquaviarioBalsa> balsa) {
-        ListValidador.tamanho3(balsa, "");
+        DFListValidador.tamanho3(balsa, "");
         this.balsa = balsa;
     }
 
@@ -112,7 +112,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * Número da Viagem
      */
     public void setNumeroViagem(final String numeroViagem) {
-        StringValidador.tamanho10(numeroViagem, "Número da Viagem");
+        DFStringValidador.tamanho10(numeroViagem, "Número da Viagem");
         this.numeroViagem = numeroViagem;
     }
 
@@ -136,7 +136,7 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
      * Irin do navio sempre deverá ser informado
      */
     public void setIrin(final String irin) {
-        StringValidador.tamanho10(irin, "Irin do navio");
+        DFStringValidador.tamanho10(irin, "Irin do navio");
         this.irin = irin;
     }
 

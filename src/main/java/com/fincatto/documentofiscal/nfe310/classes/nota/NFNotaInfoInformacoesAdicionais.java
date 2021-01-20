@@ -6,8 +6,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFNotaInfoInformacoesAdicionais extends DFBase {
     private static final long serialVersionUID = 8661712792020458812L;
@@ -28,27 +28,27 @@ public class NFNotaInfoInformacoesAdicionais extends DFBase {
     private List<NFNotaInfoProcessoReferenciado> processosRefenciado;
 
     public void setInformacoesAdicionaisInteresseFisco(final String informacoesAdicionaisInteresseFisco) {
-        StringValidador.tamanho2000(informacoesAdicionaisInteresseFisco, "Informacoes Adicionais Interesse Fisco");
+        DFStringValidador.tamanho2000(informacoesAdicionaisInteresseFisco, "Informacoes Adicionais Interesse Fisco");
         this.informacoesAdicionaisInteresseFisco = informacoesAdicionaisInteresseFisco;
     }
 
     public void setInformacoesComplementaresInteresseContribuinte(final String informacoesComplementaresInteresseContribuinte) {
-        StringValidador.tamanho5000(informacoesComplementaresInteresseContribuinte, "Informacoes Adicionais Interesse Contribuinte");
+        DFStringValidador.tamanho5000(informacoesComplementaresInteresseContribuinte, "Informacoes Adicionais Interesse Contribuinte");
         this.informacoesComplementaresInteresseContribuinte = informacoesComplementaresInteresseContribuinte;
     }
 
     public void setObservacoesContribuinte(final List<NFNotaInfoObservacao> observacoesContribuinte) {
-        ListValidador.tamanho10(observacoesContribuinte, "Observacoes Contribuinte");
+        DFListValidador.tamanho10(observacoesContribuinte, "Observacoes Contribuinte");
         this.observacoesContribuinte = observacoesContribuinte;
     }
 
     public void setObservacoesFisco(final List<NFNotaInfoObservacao> observacoesFisco) {
-        ListValidador.tamanho10(observacoesFisco, "Observacoes Fisco");
+        DFListValidador.tamanho10(observacoesFisco, "Observacoes Fisco");
         this.observacoesFisco = observacoesFisco;
     }
 
     public void setProcessosRefenciado(final List<NFNotaInfoProcessoReferenciado> processosRefenciado) {
-        ListValidador.tamanho100(processosRefenciado, "Processos Referenciados");
+        DFListValidador.tamanho100(processosRefenciado, "Processos Referenciados");
         this.processosRefenciado = processosRefenciado;
     }
 

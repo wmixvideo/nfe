@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFInfoCancelamento extends NFTipoEvento {
@@ -51,12 +51,12 @@ public class NFInfoCancelamento extends NFTipoEvento {
 	}
 
 	public void setJustificativa(final String justificativa) {
-        StringValidador.tamanho15a256(justificativa, "Justificativa");
+        DFStringValidador.tamanho15a256(justificativa, "Justificativa");
         this.justificativa = justificativa;
     }
 
     public void setProtocoloAutorizacao(final String protocoloAutorizacao) {
-        StringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
+        DFStringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
         this.protocoloAutorizacao = protocoloAutorizacao;
     }
 

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoLacre extends DFBase {
@@ -11,7 +11,7 @@ public class NFNotaInfoLacre extends DFBase {
     private String numeroLacres;
 
     public void setNumeroLacre(final String numeroLacres) {
-        StringValidador.tamanho60(numeroLacres, "Numero Lacre");
+        DFStringValidador.tamanho60(numeroLacres, "Numero Lacre");
         this.numeroLacres = numeroLacres;
     }
 

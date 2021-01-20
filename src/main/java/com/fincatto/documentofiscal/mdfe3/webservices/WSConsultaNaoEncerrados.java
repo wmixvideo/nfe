@@ -60,7 +60,7 @@ class WSConsultaNaoEncerrados implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para CONSULTAR NAO ENCERRADOS, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         this.getLogger().debug(endpoint);
-        final MDFeConsNaoEncStub.MdfeConsNaoEncResult result = new MDFeConsNaoEncStub(endpoint).mdfeConsNaoEnc(dados, cabecEnv);
+        final MDFeConsNaoEncStub.MdfeConsNaoEncResult result = new MDFeConsNaoEncStub(endpoint, config).mdfeConsNaoEnc(dados, cabecEnv);
         return result.getExtraElement();
     }
 }

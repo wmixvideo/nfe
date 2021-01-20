@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
@@ -50,7 +50,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNFe extends DFBase {
      * Chave de acesso da NF-e
      */
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "Chave de acesso da NF-e");
+        DFStringValidador.exatamente44N(chave, "Chave de acesso da NF-e");
         this.chave = chave;
     }
 
@@ -63,7 +63,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNFe extends DFBase {
      * PIN atribuído pela SUFRAMA para a operação.
      */
     public void setPinSUFRAMA(final String pinSUFRAMA) {
-        StringValidador.tamanho2a9N(pinSUFRAMA, "PIN SUFRAMA");
+        DFStringValidador.tamanho2a9N(pinSUFRAMA, "PIN SUFRAMA");
         this.pinSUFRAMA = pinSUFRAMA;
     }
 

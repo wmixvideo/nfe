@@ -78,7 +78,7 @@ class WSCartaCorrecao implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizacao.name());
         }
         
-        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService).nfeRecepcaoEvento(dados);
+        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
         this.getLogger().debug(omElementResult.toString());
         return omElementResult;
@@ -105,11 +105,8 @@ class WSCartaCorrecao implements DFLog {
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setDadosEvento(cartaCorrecao);
         infoEvento.setChave(chaveAcesso);
-        if (Integer.parseInt(chaveParser.getSerie()) >= 920 && Integer.parseInt(chaveParser.getSerie()) <= 969) {//destinado a emissão de pessoa física com IE
-            infoEvento.setCpf(chaveParser.getCnpjEmitente().substring(3));
-        } else {
-            infoEvento.setCnpj(chaveParser.getCnpjEmitente());
-        }
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
+        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(String.format("ID%s%s%02d", WSCartaCorrecao.EVENTO_CODIGO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);

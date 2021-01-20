@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -68,7 +68,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Série do Documento Fiscal
      */
     public void setSerie(final String serie) {
-        StringValidador.tamanho3N(serie, "Série do Documento Fiscal");
+        DFStringValidador.tamanho3N(serie, "Série do Documento Fiscal");
         this.serie = serie;
     }
 
@@ -80,7 +80,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Série do Documento Fiscal
      */
     public void setSubSerie(final String subSerie) {
-        StringValidador.tamanho2N(subSerie, "Série do Documento Fiscal");
+        DFStringValidador.tamanho2N(subSerie, "Série do Documento Fiscal");
         this.subSerie = subSerie;
     }
 
@@ -92,7 +92,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Número do Documento Fiscal
      */
     public void setNumeroDocumento(final String numeroDocumento) {
-        StringValidador.tamanho30(numeroDocumento, "Número do Documento Fiscal");
+        DFStringValidador.tamanho30(numeroDocumento, "Número do Documento Fiscal");
         this.numeroDocumento = numeroDocumento;
     }
 

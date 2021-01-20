@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalInfoGlobalizado extends DFBase {
      * Preencher com informações adicionais, legislação do regime especial, etc
      */
     public void setObservacao(final String observacao) {
-        StringValidador.tamanho15a256(observacao, "Preencher com informações adicionais, legislação do regime especial, etc");
+        DFStringValidador.tamanho15a256(observacao, "Preencher com informações adicionais, legislação do regime especial, etc");
         this.Observacao = observacao;
     }
 }

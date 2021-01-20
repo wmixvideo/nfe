@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setValorBaseCalculoDestino(final BigDecimal valorBaseCalculoDestino) {
-        this.valorBaseCalculoDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculoDestino, "Valor BC Destino");
+        this.valorBaseCalculoDestino = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculoDestino, "Valor BC Destino");
     }
 
     public String getPercentualRelativoFundoCombatePobrezaDestino() {
@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setPercentualRelativoFundoCombatePobrezaDestino(final BigDecimal percentualRelativoFundoCombatePobrezaDestino) {
-        this.percentualRelativoFundoCombatePobrezaDestino = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualRelativoFundoCombatePobrezaDestino, "Percentual Relativo Fundo Combate Pobreza Destino");
+        this.percentualRelativoFundoCombatePobrezaDestino = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualRelativoFundoCombatePobrezaDestino, "Percentual Relativo Fundo Combate Pobreza Destino");
     }
 
     public String getPercentualAliquotaInternaDestino() {
@@ -54,7 +54,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setPercentualAliquotaInternaDestino(final BigDecimal percentualAliquotaInternaDestino) {
-        this.percentualAliquotaInternaDestino = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualAliquotaInternaDestino, "Percentual Aliquota Interna Destino");
+        this.percentualAliquotaInternaDestino = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualAliquotaInternaDestino, "Percentual Aliquota Interna Destino");
     }
 
     public String getPercentualInterestadual() {
@@ -62,7 +62,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setPercentualInterestadual(final BigDecimal percentualInterestadual) {
-        this.percentualInterestadual = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualInterestadual, "Percentual Interestadual ICMS UF Destino");
+        this.percentualInterestadual = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualInterestadual, "Percentual Interestadual ICMS UF Destino");
     }
 
     public String getPercentualProvisorioPartilha() {
@@ -70,7 +70,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setPercentualProvisorioPartilha(final BigDecimal percentualProvisorioPartilha) {
-        this.percentualProvisorioPartilha = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualProvisorioPartilha, "Percentual Provisorio Partilha ICMS UF Destino");
+        this.percentualProvisorioPartilha = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualProvisorioPartilha, "Percentual Provisorio Partilha ICMS UF Destino");
     }
 
     public String getValorRelativoFundoCombatePobrezaDestino() {
@@ -78,7 +78,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setValorRelativoFundoCombatePobrezaDestino(final BigDecimal valorRelativoFundoCombatePobrezaDestino) {
-        this.valorRelativoFundoCombatePobrezaDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorRelativoFundoCombatePobrezaDestino, "Valor Relativo Fundo Combate Pobreza Destino");
+        this.valorRelativoFundoCombatePobrezaDestino = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorRelativoFundoCombatePobrezaDestino, "Valor Relativo Fundo Combate Pobreza Destino");
     }
 
     public String getValorICMSInterestadualDestino() {
@@ -86,7 +86,7 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setValorICMSInterestadualDestino(final BigDecimal valorICMSInterestadualDestino) {
-        this.valorICMSInterestadualDestino = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSInterestadualDestino, "Valor ICMS Interestadual ICMS UF Destino");
+        this.valorICMSInterestadualDestino = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSInterestadualDestino, "Valor ICMS Interestadual ICMS UF Destino");
     }
 
     public String getValorICMSInterestadualRemetente() {
@@ -94,6 +94,6 @@ public class NFNotaInfoItemImpostoICMSUFDestino extends DFBase {
     }
 
     public void setValorICMSInterestadualRemetente(final BigDecimal valorICMSInterestadualRemetente) {
-        this.valorICMSInterestadualRemetente = BigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSInterestadualRemetente, "Valor ICMS Interestadual Remetente ICMS UF Destino");
+        this.valorICMSInterestadualRemetente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSInterestadualRemetente, "Valor ICMS Interestadual Remetente ICMS UF Destino");
     }
 }

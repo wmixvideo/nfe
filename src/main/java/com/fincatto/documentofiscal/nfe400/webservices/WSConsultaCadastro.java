@@ -57,11 +57,11 @@ class WSConsultaCadastro implements DFLog {
     
             final com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg nfeDadosMsg = new com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg();
             nfeDadosMsg.setExtraElement(omElementConsulta);
-            return new CadConsultaCadastro2Stub(url).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
+            return new CadConsultaCadastro2Stub(url, config).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
         } else {
             final NfeDadosMsg nfeDadosMsg_type0 = new NfeDadosMsg();
             nfeDadosMsg_type0.setExtraElement(omElementConsulta);
-            return new CadConsultaCadastro4Stub(url).consultaCadastro(nfeDadosMsg_type0).getExtraElement();
+            return new CadConsultaCadastro4Stub(url, config).consultaCadastro(nfeDadosMsg_type0).getExtraElement();
         }
     }
     

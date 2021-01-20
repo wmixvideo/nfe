@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFInfoCupomFiscalReferenciado extends DFBase {
@@ -17,17 +17,17 @@ public class NFInfoCupomFiscalReferenciado extends DFBase {
     private String numeroContadorOrdemOperacao;
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        StringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
+        DFStringValidador.exatamente2(modeloDocumentoFiscal, "Modelo Documento Fiscal");
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
     public void setNumeroOrdemSequencialECF(final String numeroOrdemSequencialECF) {
-        StringValidador.exatamente3(numeroOrdemSequencialECF, "Numero Ordem Sequencial ECF");
+        DFStringValidador.exatamente3(numeroOrdemSequencialECF, "Numero Ordem Sequencial ECF");
         this.numeroOrdemSequencialECF = numeroOrdemSequencialECF;
     }
 
     public void setNumeroContadorOrdemOperacao(final String numeroContadorOrdemOperacao) {
-        StringValidador.exatamente6(numeroContadorOrdemOperacao, "Numero Contador Ordem Operacao");
+        DFStringValidador.exatamente6(numeroContadorOrdemOperacao, "Numero Contador Ordem Operacao");
         this.numeroContadorOrdemOperacao = numeroContadorOrdemOperacao;
     }
 

@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 /**
@@ -24,7 +24,7 @@ public class MDFInfoLacre1A60 {
     }
 
     public void setNumeroDoLacre(String numeroDoLacre) {
-        StringValidador.validaIntervalo(numeroDoLacre, 1, 60, "numero do lacre modal");
+        DFStringValidador.validaIntervalo(numeroDoLacre, 1, 60, "numero do lacre modal");
         this.numeroDoLacre = numeroDoLacre;
     }
 }
