@@ -325,7 +325,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
     @SuppressWarnings("serial")
     public static class NfeResultMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "nfeResultMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "nfeResultMsg", "");
 
         /**
          * field for ExtraElement
@@ -393,7 +393,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -561,7 +561,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
     @SuppressWarnings("serial")
     public static class NfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "nfeDadosMsg", "ns1");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4", "nfeDadosMsg", "");
 
         /**
          * field for ExtraElement
@@ -629,7 +629,7 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
             if (namespace.equals("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
