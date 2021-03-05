@@ -76,6 +76,9 @@ public class NFNotaInfoIdentificacao extends DFBase {
     @Element(name = "indPres")
     private NFIndicadorPresencaComprador indicadorPresencaComprador;
 
+    @Element(name = "indIntermed", required = false)
+    private NFIndicadorIntermediador indIntermed;
+    
     @Element(name = "procEmi")
     private NFProcessoEmissor programaEmissor;
 
@@ -90,6 +93,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     @ElementList(entry = "NFref", inline = true, required = false)
     private List<NFInfoReferenciada> referenciadas;
+    
 
     public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
@@ -199,6 +203,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
         this.indicadorPresencaComprador = indicadorPresencaComprador;
     }
 
+	public void setIndIntermed(final NFIndicadorIntermediador indIntermed) {
+		this.indIntermed = indIntermed;
+	}
+	
     public DFUnidadeFederativa getUf() {
         return this.uf;
     }
@@ -270,6 +278,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
     public NFIndicadorPresencaComprador getIndicadorPresencaComprador() {
         return this.indicadorPresencaComprador;
     }
+    
+    public NFIndicadorIntermediador getIndIntermed() {
+		return indIntermed;
+	}
 
     public NFProcessoEmissor getProgramaEmissor() {
         return this.programaEmissor;
@@ -290,4 +302,5 @@ public class NFNotaInfoIdentificacao extends DFBase {
     public List<NFInfoReferenciada> getReferenciadas() {
         return this.referenciadas;
     }
+	
 }
