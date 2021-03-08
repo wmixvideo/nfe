@@ -1286,4 +1286,11 @@ public class FabricaDeObjetosFake {
         responsavelTecnico.setHashCSRT("aWv6LeEM4X6u4+qBI2OYZ8grigw=");
         return responsavelTecnico;
     }
+    
+    public static NFInformacaoIntermediador getNFInformacaoIntermediador() {
+    	final NFInformacaoIntermediador intermediador = new NFInformacaoIntermediador();
+    	intermediador.setCnpj("12345678901234");
+    	intermediador.setIdCadIntTran("123456789012345678901234567890123456789012345678901234567890");
+    	return intermediador;
+    }
 }
