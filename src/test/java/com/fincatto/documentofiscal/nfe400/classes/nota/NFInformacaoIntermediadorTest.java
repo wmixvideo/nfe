@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
-public class NFNFInformacaoIntermediadorTest {
+public class NFInformacaoIntermediadorTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorCnpjNulo() {
