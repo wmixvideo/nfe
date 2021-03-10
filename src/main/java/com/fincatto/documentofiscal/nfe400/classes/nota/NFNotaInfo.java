@@ -58,6 +58,9 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name = "pag")
     private NFNotaInfoPagamento pagamento;
+    
+    @Element(name="infIntermed", required = false)
+    private NFInformacaoIntermediador infIntermed;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
@@ -73,7 +76,8 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name="infRespTec", required = false)
     private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
-
+    
+    
     /**
      * Pega a chave de acesso a partir do identificador.
      * @return Chave de acesso.
@@ -168,6 +172,10 @@ public class NFNotaInfo extends DFBase {
     public void setPagamento(final NFNotaInfoPagamento pagamento) {
         this.pagamento = pagamento;
     }
+    
+    public void setInfIntermed(final NFInformacaoIntermediador infIntermed) {
+		this.infIntermed = infIntermed;
+	}
 
     public NFNotaInfo setInformacaoResposavelTecnico(NFNotaInfoResponsavelTecnico informacaoResposavelTecnico) {
         this.informacaoResposavelTecnico = informacaoResposavelTecnico;
@@ -217,6 +225,10 @@ public class NFNotaInfo extends DFBase {
     public NFNotaInfoPagamento getPagamento() {
         return this.pagamento;
     }
+    
+    public NFInformacaoIntermediador getInfIntermed() {
+		return infIntermed;
+	}
 
     public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
         return this.informacoesAdicionais;
@@ -245,4 +257,5 @@ public class NFNotaInfo extends DFBase {
         }
         return super.toString();
     }
+	
 }

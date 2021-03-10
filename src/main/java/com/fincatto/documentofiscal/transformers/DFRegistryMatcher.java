@@ -129,7 +129,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemProdutoVeiculoTipoOperacaoTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemProdutoVeiculoCondicaoChassiTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoItemModalidadeBCICMSTransformer());
-
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorIntermediador.class, new com.fincatto.documentofiscal.nfe400.transformers.NFIndicadorIntermediadorTransformer());
+        
         // CTe
         super.bind(CTModal.class, new CTModalTransformer());
         super.bind(CTTipoCte.class, new CTTipoCteTransformer());
