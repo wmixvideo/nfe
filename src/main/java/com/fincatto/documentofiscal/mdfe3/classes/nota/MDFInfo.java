@@ -44,6 +44,9 @@ public class MDFInfo extends DFBase {
 
     @ElementList(name = "seg", inline = true, required = false)
     private List<MDFInfoSeguro> seguro;
+    
+    @ElementList(name = "prodPred", inline = true, required = false)
+    private List<MDFInfoProdutoPredominante> prodPred;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -59,6 +62,12 @@ public class MDFInfo extends DFBase {
 
     @Element(name = "infRespTec", required = false)
     private MDFRespTec infRespTec;
+    
+    /**
+     * Grupo de informações do pedido de emissão da NFF
+     */
+    @Element(name = "infSolicNFF", required = false)
+    private MDFInfSolicNFF infSolicNFF;
 
     public String getIdentificador() {
         return this.identificador;
@@ -180,5 +189,21 @@ public class MDFInfo extends DFBase {
 
     public void setSeguro(final List<MDFInfoSeguro> seguro) {
         this.seguro = seguro;
+    }
+
+    public List<MDFInfoProdutoPredominante> getProdPred() {
+        return prodPred;
+    }
+
+    public void setProdPred(List<MDFInfoProdutoPredominante> prodPred) {
+        this.prodPred = prodPred;
+    }
+
+    public MDFInfSolicNFF getInfSolicNFF() {
+        return infSolicNFF;
+    }
+
+    public void setInfSolicNFF(MDFInfSolicNFF infSolicNFF) {
+        this.infSolicNFF = infSolicNFF;
     }
 }
