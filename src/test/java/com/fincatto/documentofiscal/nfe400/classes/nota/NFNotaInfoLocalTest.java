@@ -177,7 +177,7 @@ public class NFNotaInfoLocalTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoLocal><CNPJ>12345678901234</CNPJ><xLgr>t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG</xLgr><nro>YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa</nro><xCpl>ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe</xCpl><xBairro>JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil</xBairro><cMun>9999999</cMun><xMun>OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI</xMun><UF>RS</UF><xNome>mRtbdiwDaVQzVhCVSZtnmXjPJVeOdejeYdnaYPVyHTZnBdkQXGYLBKGLCX</xNome><cPais>1058</cPais><xPais>BRASIL</xPais><fone>12345678901324</fone><email>email@empresaficticia.com.br</email><IE>12345678901234</IE></NFNotaInfoLocal>";
+        final String xmlEsperado = "<NFNotaInfoLocal><CNPJ>12345678901234</CNPJ><xNome>mRtbdiwDaVQzVhCVSZtnmXjPJVeOdejeYdnaYPVyHTZnBdkQXGYLBKGLCX</xNome><xLgr>t59le7pl2eVn390y026Ebgh3HXtvEBzsMp4BzZJEwIazezToxeeKJCvm1GoG</xLgr><nro>YHTewrLNvzYaBmSbwxkDYcEZTCMORFVPAc6t6C5p0Bfu1globey70KWnaHHa</nro><xCpl>ifyKIg3j3eZtlNVAj3XJYZiJCrul6VLL85E7x6Kx6DVeChwlRLEkCQn7k5pe</xCpl><xBairro>JE17uXBNBnYTSTSQgqXcGLOR6f22SnahtFHr5MoHQZtZhTowVe3SVwl57kil</xBairro><cMun>9999999</cMun><xMun>OpXKhaHINo7OwLkVGvRq43HNwyBAgXTKcarl6Jsq8NzOBs70eZM4zL6fELOI</xMun><UF>RS</UF><cPais>1058</cPais><xPais>BRASIL</xPais><fone>12345678901324</fone><email>email@empresaficticia.com.br</email><IE>12345678901234</IE></NFNotaInfoLocal>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoLocal().toString());
     }
 }
