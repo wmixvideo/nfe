@@ -126,7 +126,7 @@ class WSCancelamento implements DFLog {
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
         if (Integer.parseInt(chaveParser.getSerie()) >= 920 && Integer.parseInt(chaveParser.getSerie()) <= 969) {//destinado a emissão de pessoa física com IE
-            infoEvento.setCpf(chaveParser.getCnpjEmitente().substring(3));
+            infoEvento.setCpf(chaveParser.getCpfEmitente());
         } else {
             infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         }
