@@ -17,7 +17,7 @@ import java.rmi.RemoteException;
  */
 class WSConsultaNaoEncerrados implements DFLog {
     
-    private static final String NOME_SERVICO = "CONSULTAR NAO ENCERRADOS";
+    private static final String NOME_SERVICO = "CONSULTAR NÃO ENCERRADOS";
     private final MDFeConfig config;
     
     WSConsultaNaoEncerrados(final MDFeConfig config) {

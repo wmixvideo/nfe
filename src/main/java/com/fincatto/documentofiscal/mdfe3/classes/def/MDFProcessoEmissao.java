@@ -8,8 +8,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.def;
  */
 public enum MDFProcessoEmissao {
 
-    EMISSOR_CONTRIBUINTE("0", "Emissão de MDF-e com aplicativo do contribuinte."),
-    EMISSOR_FISCO("3", "Emissão MDF-e pelo contribuinte com aplicativo fornecido pelo Fisco.");
+    EMISSOR_CONTRIBUINTE("0", "Emiss\u00e3o de MDF-e com aplicativo do contribuinte."),
+    EMISSOR_FISCO("3", "Emiss\u00e3o MDF-e pelo contribuinte com aplicativo fornecido pelo Fisco.");
 
     private final String codigo;
     private final String descricao;

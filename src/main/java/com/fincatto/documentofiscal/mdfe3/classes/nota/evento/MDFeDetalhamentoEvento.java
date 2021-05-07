@@ -35,6 +35,9 @@ public class MDFeDetalhamentoEvento extends DFBase {
 
     @Element(name = "evIncDFeMDFe", required = false)
     private MDFeEnviaEventoIncluirDFe enviaEventoIncluirDFe;
+    
+    @Element(name = "evPagtoOperMDFe", required = false)
+    private MDFeEnviaEventoPagamento enviaEventoPagamento;
 
     public String getVersaoEvento() {
         return this.versaoEvento;
@@ -92,4 +95,11 @@ public class MDFeDetalhamentoEvento extends DFBase {
         this.enviaEventoIncluirDFe = enviaEventoIncluirDFe;
     }
 
+    public MDFeEnviaEventoPagamento getEnviaEventoPagamento() {
+        return enviaEventoPagamento;
+    }
+
+    public void setEnviaEventoPagamento(MDFeEnviaEventoPagamento enviaEventoPagamento) {
+        this.enviaEventoPagamento = enviaEventoPagamento;
+    }
 }
