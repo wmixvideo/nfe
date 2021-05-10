@@ -58,10 +58,6 @@ public class NFNotaInfoFormaPagamento extends DFBase {
         return this.valorPagamento;
     }
 
-	public void setValorPagamento(String valorPagamento) {
-		this.valorPagamento = valorPagamento;
-	}
-
 	public String getDescricaoMeioPagamento() {
 		return descricaoMeioPagamento;
 	}
