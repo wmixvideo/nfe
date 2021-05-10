@@ -8,6 +8,7 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFNotaInfoFormaPagamento extends DFBase {
+	
     private static final long serialVersionUID = 8908558834476720280L;
 
     @Element(name = "indPag", required = false)
@@ -22,6 +23,9 @@ public class NFNotaInfoFormaPagamento extends DFBase {
     @Element(name = "card", required = false)
     private NFNotaInfoCartao cartao;
 
+    @Element(name = "xPag")
+    private String descricaoMeioPagamento;
+    
     public void setCartao(final NFNotaInfoCartao cartao) {
         this.cartao = cartao;
     }
@@ -54,4 +58,16 @@ public class NFNotaInfoFormaPagamento extends DFBase {
         return this.valorPagamento;
     }
 
+	public void setValorPagamento(String valorPagamento) {
+		this.valorPagamento = valorPagamento;
+	}
+
+	public String getDescricaoMeioPagamento() {
+		return descricaoMeioPagamento;
+	}
+
+	public void setDescricaoMeioPagamento(String descricaoMeioPagamento) {
+		this.descricaoMeioPagamento = descricaoMeioPagamento;
+	}
+    
 }
