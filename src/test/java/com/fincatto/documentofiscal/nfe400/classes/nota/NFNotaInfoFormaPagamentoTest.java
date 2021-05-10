@@ -71,6 +71,20 @@ public class NFNotaInfoFormaPagamentoTest {
     	Assert.assertNotNull("Rejeicao 441: Descricao do pagamento obrigatoria para meio de pagamento 99 - Outros", formaPagamento.getDescricaoMeioPagamento());
     }
 
+	/**
+	 * YA02a-20 55/65 Quando o codigo do meio de pagamento for diferente 99 - Outros
+	 * (tag: tPag<>99), proibido o preenchimento da descricao do meio de pagamento
+	 * (tag: xPag)
+	 */
+    @Test
+    public void naoDeveInformarDescricaoMeioPagamentoQuandoDiferente99Outros() {
+    	
+    	final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+    	formaPagamento.setMeioPagamento(NFMeioPagamento.DINHEIRO);
+    	Assert.assertNotEquals("99", formaPagamento.getMeioPagamento().getCodigo());
+    	Assert.assertNull("Rejeição 442: Descricao do pagamento nao permitida", formaPagamento.getDescricaoMeioPagamento());
+    }
+
     @Test(expected = IllegalStateException.class)
     public void tamanhoMinimo2CampoDescricaoMeioPagamento() {
     	
