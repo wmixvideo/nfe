@@ -56,4 +56,33 @@ public class NFNotaInfoFormaPagamentoTest {
         final String xmlEsperado = "<NFNotaInfoFormaPagamento><indPag>1</indPag><tPag>03</tPag><vPag>999999999999.99</vPag><card><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut></card></NFNotaInfoFormaPagamento>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoFormaPagamento().toString());
     }
+    
+	/**
+	 * YA02a-10 55/65 Quando o codigo do meio de pagamento (tag: tPag) for
+	 * preenchido com o codigo 99 - Outros, obrigatorio o preenchimento da descricao
+	 * do meio de pagamento (tag: xPag)
+	 */
+    @Test
+    public void deveInformarDescricaoMeioPagamentoQuando99Outros() {
+
+    	final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+    	formaPagamento.setMeioPagamento(NFMeioPagamento.OUTRO);
+    	formaPagamento.setDescricaoMeioPagamento("Nota promissoria");
+    	Assert.assertNotNull("Rejeicao 441: Descricao do pagamento obrigatoria para meio de pagamento 99 - Outros", formaPagamento.getDescricaoMeioPagamento());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void tamanhoMinimo2CampoDescricaoMeioPagamento() {
+    	
+    	final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+    	formaPagamento.setDescricaoMeioPagamento("a");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void tamanhoMaximo60CampoDescricaoMeioPagamento() {
+    	
+    	final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
+    	formaPagamento.setDescricaoMeioPagamento("Descricao com mais de 60 carecteres descricao com mais de 60 carecteres");
+    }
+    
 }
