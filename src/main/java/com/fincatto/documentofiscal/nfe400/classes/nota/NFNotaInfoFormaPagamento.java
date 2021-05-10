@@ -23,7 +23,7 @@ public class NFNotaInfoFormaPagamento extends DFBase {
     @Element(name = "card", required = false)
     private NFNotaInfoCartao cartao;
 
-    @Element(name = "xPag")
+    @Element(name = "xPag", required = false)
     private String descricaoMeioPagamento;
     
     public void setCartao(final NFNotaInfoCartao cartao) {
