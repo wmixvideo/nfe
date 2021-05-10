@@ -63,6 +63,7 @@ public class NFNotaInfoFormaPagamento extends DFBase {
 	}
 
 	public void setDescricaoMeioPagamento(String descricaoMeioPagamento) {
+		DFStringValidador.tamanho2ate60(descricaoMeioPagamento, "Descricao Meio Pagamento");
 		this.descricaoMeioPagamento = descricaoMeioPagamento;
 	}
     
