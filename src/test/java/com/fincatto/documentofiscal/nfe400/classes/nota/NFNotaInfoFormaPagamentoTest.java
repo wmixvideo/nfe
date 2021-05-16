@@ -66,6 +66,7 @@ public class NFNotaInfoFormaPagamentoTest {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
         formaPagamento.setMeioPagamento(NFMeioPagamento.OUTRO);
         formaPagamento.setDescricaoMeioPagamento("Nota promissoria");
+        Assert.assertEquals("99", formaPagamento.getMeioPagamento().getCodigo());
         Assert.assertNotNull("Rejeicao 441: Descricao do pagamento obrigatoria para meio de pagamento 99 - Outros", formaPagamento.getDescricaoMeioPagamento());
     }
 
