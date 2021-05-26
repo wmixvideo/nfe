@@ -17,6 +17,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
+import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
@@ -38,6 +39,7 @@ public class WSFacade {
         this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCancelamento = new WSCancelamento(config);
+        this.wsInutilizacao = new WSInutilizacao(config);
     }
     
     /**
@@ -117,7 +119,7 @@ public class WSFacade {
      * @return dados da inutilizacao do CTE retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTERetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
+    public CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
     }
 
@@ -133,7 +135,23 @@ public class WSFacade {
      * @return dados da inutilizacao da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTERetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+    public CTeRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
+    }
+    
+    /**
+     * Gera o XML assinado da inutilizacao sem enviar para a SEFAZ.
+     * @param anoInutilizacaoNumeracao ano de inutilizacao
+     * @param cnpjEmitente CNPJ emitente da nota
+     * @param serie serie da nota
+     * @param numeroInicial numero inicial da nota
+     * @param numeroFinal numero final da nota
+     * @param justificativa justificativa da inutilizacao
+     * @param modelo modelo da nota (NF-e ou NFC-e)
+     * @return O XML da requisicao de inutilizacao ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+    	return this.wsInutilizacao.getXmlAssinado(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 }
