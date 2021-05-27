@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsulta
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.consulta.CteConsultaStub;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 

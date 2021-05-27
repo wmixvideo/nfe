@@ -11,7 +11,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.nota.assinatura.CTeSignature;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 
-@Root(name = "inutNFe")
+@Root(name = "inutCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTEnviaEventoInutilizacao extends DFBase {
     private static final long serialVersionUID = -2140741787724000417L;

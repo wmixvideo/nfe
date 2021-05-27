@@ -12,11 +12,11 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEnviaEventoInutilizacao;
-//import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEventoInutilizacaoDados;
-//import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTERetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.webservices.inutilizacao.CteInutilizacaoStub;
+import com.fincatto.documentofiscal.cte300.webservices.inutilizacao.CteInutilizacaoStub.CteCabecMsg;
+import com.fincatto.documentofiscal.cte300.webservices.inutilizacao.CteInutilizacaoStub.CteCabecMsgE;
 import com.fincatto.documentofiscal.cte300.webservices.inutilizacao.CteInutilizacaoStub.CteInutilizacaoCTResult;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFPersister;
@@ -50,14 +50,18 @@ class WSInutilizacao {
 
     private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws Exception {
         final CteInutilizacaoStub.CteDadosMsg dados = new CteInutilizacaoStub.CteDadosMsg();
-//        final CteCabecMsgE cabec = new CteInutilizacaoStub.CteCabecMsgE();
+        final CteCabecMsgE cabec = new CteInutilizacaoStub.CteCabecMsgE();
+        CteCabecMsg param = new CteCabecMsg();
+        param.setCUF(this.config.getCUF().getCodigoIbge());
+        param.setVersaoDados(VERSAO_SERVICO);
+		cabec.setCteCabecMsg(param);
         final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
         WSInutilizacao.LOGGER.debug(omElement.toString());
         dados.setExtraElement(omElement);
 
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = autorizador.getCteInutilizacao(this.config.getAmbiente());
-        final CteInutilizacaoCTResult nf4Result = new CteInutilizacaoStub(urlWebService, config).cteInutilizacaoCT(dados, null);
+        final CteInutilizacaoCTResult nf4Result = new CteInutilizacaoStub(urlWebService, config).cteInutilizacaoCT(dados, cabec);
         final OMElement dadosRetorno = nf4Result.getExtraElement();
         WSInutilizacao.LOGGER.debug(dadosRetorno.toString());
         return dadosRetorno;
@@ -79,7 +83,7 @@ class WSInutilizacao {
         final String numeroInicialTamanhoMaximo = StringUtils.leftPad(numeroInicial, 9, "0");
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
-        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + String.valueOf(anoInutilizacaoNumeracao) + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
+        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
         inutilizacao.setVersao(new BigDecimal(WSInutilizacao.VERSAO_SERVICO));
         inutilizacao.setDados(dados);
         return inutilizacao;

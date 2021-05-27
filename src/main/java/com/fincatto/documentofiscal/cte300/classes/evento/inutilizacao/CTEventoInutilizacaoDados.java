@@ -52,7 +52,7 @@ public class CTEventoInutilizacaoDados extends DFBase {
     }
 
     public void setIdentificador(final String identificador) {
-    	DFStringValidador.identificador(identificador);
+    	DFStringValidador.identificadorCTe(identificador);
         this.identificador = identificador;
     }
 
@@ -106,7 +106,6 @@ public class CTEventoInutilizacaoDados extends DFBase {
     }
 
     public void setModeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-    	DFStringValidador.modeloDocumentoFiscal(modeloDocumentoFiscal);
         this.modeloDocumentoFiscal = modeloDocumentoFiscal;
     }
 
