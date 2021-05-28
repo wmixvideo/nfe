@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel;
 
 public class CTIndicadoNegociavelTransformer implements Transform<CTIndicadoNegociavel> {
 

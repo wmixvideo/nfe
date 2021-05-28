@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTFinalidade;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTFinalidade;
 
 public class CTFinalidadeTransformes implements Transform<CTFinalidade> {
     

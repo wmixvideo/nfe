@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
 
 public class CTTipoDocumentoTransporteAnteriorTransformer implements Transform<CTTipoDocumentoTransporteAnterior> {
     

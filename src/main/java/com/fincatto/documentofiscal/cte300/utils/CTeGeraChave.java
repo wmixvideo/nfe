@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.utils;
 
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
 import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Random;

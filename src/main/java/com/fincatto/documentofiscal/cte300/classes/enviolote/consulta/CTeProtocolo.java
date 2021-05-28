@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.enviolote.consulta;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.nota.assinatura.CTeSignature;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
