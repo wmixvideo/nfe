@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
 
 public class CTTipoTrafegoTransformer implements Transform<CTTipoTrafego> {
     
