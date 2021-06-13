@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
+import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresEntregaSemDataDefinida;
 
 public class CTeNotaInfoDadosComplementaresEntregaSemDataDefinidaTest {
 

@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
