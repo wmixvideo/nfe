@@ -88,9 +88,12 @@ public enum MDFRetornoStatus {
     CODIGO_409(409, "Rejei\u00E7\u00E3o: Campo cUF inexistente no elemento mdfeCabecMsg do SOAP Header"),
     CODIGO_410(410, "Rejei\u00E7\u00E3o: UF informada no campo cUF n\u00E3o \u00E9 atendida pelo WebService"),
     CODIGO_411(411, "Rejei\u00E7\u00E3o: Campo versaoDados inexistente no elemento mdfeCabecMsg do SOAP Header"),
+    @Deprecated
     CODIGO_454(454, "Rejei\u00E7\u00E3o: Tipo de Transportador para Carga Pr\u00F3pria e Propriet\u00E1rio do ve\u00EDculo diferente do emitente deve ser TAC"),
     CODIGO_456(456, "Rejei\u00E7\u00E3o: C\u00F3digo de Munic\u00EDpio diverge da UF de Carregamento do MDF-e"),
+    @Deprecated
     CODIGO_457(457, "Rejei\u00E7\u00E3o: Tipo de Transportador deve ser diferente de TAC"),
+    @Deprecated
     CODIGO_458(458, "Rejei\u00E7\u00E3o: Tipo de Transportador n\u00E3o deve ser informado para Emitente de Carga Pr\u00F3pria propriet\u00E1rio do ve\u00EDculo"),
     CODIGO_459(459, "Rejei\u00E7\u00E3o: Documento autorizado ao XML duplicado no MDF-e"),
     CODIGO_460(460, "Rejei\u00E7\u00E3o: Consulta a uma Chave de Acesso muito antiga"),
@@ -198,6 +201,18 @@ public enum MDFRetornoStatus {
     CODIGO_719(719, "Rejei\u00E7\u00E3o: CNPJ / CPF do propriet\u00E1rio do ve\u00EDculo reboque inv\u00E1lido"),
     CODIGO_720(720, "Rejei\u00E7\u00E3o: Obrigat\u00F3ria as informa\u00E7\u00F5es do respons\u00E1vel t\u00E9cnico"),
     CODIGO_721(721, "Rejei\u00E7\u00E3o: Obrigat\u00F3ria a informa\u00E7\u00E3o do identificador do CSRT e do Hash do CSRT"),
+    CODIGO_735(735, "Rejei\u00E7\u00E3o: N\u00FAmero da parcela inv\u00E1lido [nParcela:999]"),
+    CODIGO_736(736, "Rejei\u00E7\u00E3o: Data de vencimento da parcela menor que a data de emiss\u00E3o [nParcela:999]"),
+    CODIGO_737(737, "Rejei\u00E7\u00E3o: Data de vencimento da parcela menor que a data da parcela anterior [nParcela: 999]"),
+    CODIGO_738(738, "Rejei\u00E7\u00E3o: Somat\u00F3rio do valor das parcelas diferente do valor do contrato"),
+    CODIGO_739(739, "Rejei\u00E7\u00E3o: Valor do adiantamento n\u00E3o pode ser informado para pagamento \u00E0 vista"),
+    CODIGO_740(740, "Rejei\u00E7\u00E3o: O propriet\u00E1rio do ve\u00EDculo quando informado deve ser diferente do emitente do MDF-e"),
+    CODIGO_741(741, "Rejei\u00E7\u00E3o: O contratante deve ser igual ao emitente do MDF-e quando indicado propriet\u00E1rio do ve\u00EDculo"),
+    CODIGO_742(742, "Rejei\u00E7\u00E3o: Contratante informado duplicado [Contratante: 99999999999]"),
+    CODIGO_743(743, "Rejei\u00E7\u00E3o: O tipo de transportador deve ser TAC quando informado CPF do propriet\u00E1rio do ve\u00EDculo de tra\u00E7\u00E3o"),
+    CODIGO_744(744, "Rejei\u00E7\u00E3o: O tipo de transportador deve ser ETC ou CTE quando informado CNPJ do propriet\u00E1rio do ve\u00EDculo de tra\u00E7\u00E3o"),
+    CODIGO_745(745, "Rejei\u00E7\u00E3o: O tipo de transportador n\u00E3o ser informado quando n\u00E3o estiver informado propriet\u00E1rio do ve\u00EDculo de tra\u00E7\u00E3o"),
+    CODIGO_746(746, "Rejei\u00E7\u00E3o: A soma dos componentes do pagamento deve ser igual ao valor do contrato"),
     CODIGO_997(997, "Rejei\u00E7\u00E3o: XML do MDF-e referenciado indispon\u00EDvel no momento da valida\u00E7\u00E3o (Existem situa\u00E7\u00F5es em que o ambiente de autoriza\u00E7\u00E3o trabalha com um banco de dados separado para o arquivo XML)"),
     CODIGO_999(999, "Rejei\u00E7\u00E3o: Erro n\u00E3o catalogado");
 
