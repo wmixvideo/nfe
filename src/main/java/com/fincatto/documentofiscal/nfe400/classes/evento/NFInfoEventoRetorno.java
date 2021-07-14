@@ -45,7 +45,7 @@ public class NFInfoEventoRetorno extends DFBase {
     private String codigoOrgaoAutorizador;
     
     @Element(name = "CNPJDest", required = false)
-    private String cpnj;
+    private String cnpj;
     
     @Element(name = "CPFDest", required = false)
     private String cpf;
@@ -107,8 +107,8 @@ public class NFInfoEventoRetorno extends DFBase {
 		this.codigoOrgaoAutorizador = codigoOrgaoAutorizador;
 	}
 
-	public String getCpnj() {
-        return this.cpnj;
+	public String getCnpj() {
+        return this.cnpj;
     }
     
     public String getCpf() {
@@ -167,8 +167,8 @@ public class NFInfoEventoRetorno extends DFBase {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
     
-    public void setCpnj(final String cpnj) {
-        this.cpnj = cpnj;
+    public void setCnpj(final String cnpj) {
+        this.cnpj = cnpj;
     }
     
     public void setCpf(final String cpf) {
