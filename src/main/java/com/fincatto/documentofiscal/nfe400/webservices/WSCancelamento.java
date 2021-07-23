@@ -64,7 +64,7 @@ class WSCancelamento implements DFLog {
         return omElementResult;
     }
     
-    private NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
         
         final NFInfoCancelamento cancelamento = new NFInfoCancelamento();

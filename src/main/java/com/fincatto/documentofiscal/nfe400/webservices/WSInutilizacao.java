@@ -52,7 +52,7 @@ class WSInutilizacao implements DFLog {
         return dadosRetorno;
     }
     
-    private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
+    public NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
         dados.setAmbiente(this.config.getAmbiente());

@@ -7,8 +7,10 @@ import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRe
 import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe;
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
@@ -245,6 +247,10 @@ public class WSFacade {
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
     
+    public NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    	return this.wsCancelamento.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo);
+    }
+    
     /**
      * Faz o cancelamento da nota por substituicao, evento permitido para NFCe.
      *
@@ -290,6 +296,10 @@ public class WSFacade {
      */
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
+    }
+    
+    public NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
+    	return this.wsInutilizacao.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 
     /**
