@@ -19,6 +19,12 @@ public class NFNotaInfoLocal extends DFBase {
     @Element(name = "CPF", required = false)
     private String cpf;
     
+    /**
+     * Razão Social ou Nome do Expedidor/Recebedor.
+     */
+    @Element(name = "xNome", required = false)
+    private String nome;
+    
     @Element(name = "xLgr")
     private String logradouro;
     
@@ -39,12 +45,6 @@ public class NFNotaInfoLocal extends DFBase {
     
     @Element(name = "UF")
     private String uf;
-    
-    /**
-     * Razão Social ou Nome do Expedidor/Recebedor.
-     */
-    @Element(name = "xNome", required = false)
-    private String nome;
     
     @Element(name = "CEP", required = false)
     private String cep;
@@ -176,6 +176,10 @@ public class NFNotaInfoLocal extends DFBase {
     public String getCpf() {
         return this.cpf;
     }
+    
+    public String getNome() {
+        return this.nome;
+    }
 
     public String getLogradouro() {
         return this.logradouro;
@@ -203,10 +207,6 @@ public class NFNotaInfoLocal extends DFBase {
 
     public String getUf() {
         return this.uf;
-    }
-    
-    public String getNome() {
-        return this.nome;
     }
     
     public String getCep() {
