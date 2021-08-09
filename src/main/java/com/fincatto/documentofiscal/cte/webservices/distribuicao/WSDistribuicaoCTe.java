@@ -1,14 +1,15 @@
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
+import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.httpclient.protocol.Protocol;
-
-import javax.xml.stream.XMLStreamException;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -16,8 +17,19 @@ import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
+import javax.xml.stream.XMLStreamException;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.lang3.StringUtils;
 
 public class WSDistribuicaoCTe {
+
+    private final CTeConfig config;
+
+    public WSDistribuicaoCTe(final CTeConfig config) {
+        this.config = config;
+    }
 
     /**
      * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
@@ -44,6 +56,50 @@ public class WSDistribuicaoCTe {
         }
     }
 
+
+    public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        try {
+            String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
+
+            DFXMLValidador.validaDistribuicaoCTe(xmlEnvio);
+
+            final OMElement ome = AXIOMUtil.stringToOM(xmlEnvio);
+
+            final CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0 dadosMsgType0 = new CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0();
+            dadosMsgType0.setExtraElement(ome);
+
+            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse distDFeInteresse = new CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse();
+            distDFeInteresse.setCteDadosMsg(dadosMsgType0);
+
+            final CTeDistribuicaoDFeSoapStub stub = new CTeDistribuicaoDFeSoapStub(CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente()), config);
+            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresseResponse result = stub.cteDistDFeInteresse(distDFeInteresse);
+
+            return this.config.getPersister().read(NFDistribuicaoIntRetorno.class, result.getCteDistDFeInteresseResult().getExtraElement().toString());
+        } catch (RemoteException | XMLStreamException e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    private CTDistribuicaoInt gerarCTeDistribuicaoInt(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) {
+        final CTDistribuicaoInt distDFeInt = new CTDistribuicaoInt();
+        distDFeInt.setVersao("1.00");
+        distDFeInt.setAmbiente(this.config.getAmbiente());
+        distDFeInt.setUnidadeFederativaAutor(uf);
+
+        if (cpfOuCnpj.length() == 11) {
+            distDFeInt.setCpf(cpfOuCnpj);
+        } else {
+            distDFeInt.setCnpj(cpfOuCnpj);
+        }
+
+        if (StringUtils.isNotBlank(ultNsu)) {
+            distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU(ultNsu));
+        } else {
+            distDFeInt.setConsulta(new CTDistribuicaoConsultaNSU().setNsu(nsu));
+        }
+        return distDFeInt;
+    }
+
     public static String decodeGZipToXml(final String conteudoEncode) throws Exception {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
@@ -61,9 +117,4 @@ public class WSDistribuicaoCTe {
             }
         }
     }
-    
-    //    Nao reviver este metodo. Usar o oficial:  this.config.getPersister().read(classe, xml)
-    //    public static <T> T xmlToObject(final String xml, final Class<T> classe) throws Exception {
-    //        return new Persister(new DFRegistryMatcher(TimeZone.getDefault()), new Format(0)).read(classe, xml);
-    //    }
 }
