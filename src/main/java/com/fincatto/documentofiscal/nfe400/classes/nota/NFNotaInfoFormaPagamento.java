@@ -18,14 +18,14 @@ public class NFNotaInfoFormaPagamento extends DFBase {
     @Element(name = "tPag")
     private NFMeioPagamento meioPagamento;
 
+    @Element(name = "xPag", required = false)
+    private String descricaoMeioPagamento;
+
     @Element(name = "vPag")
     private String valorPagamento;
 
     @Element(name = "card", required = false)
     private NFNotaInfoCartao cartao;
-
-    @Element(name = "xPag", required = false)
-    private String descricaoMeioPagamento;
 
     public NFNotaInfoFormaPagamento setCartao(final NFNotaInfoCartao cartao) {
         this.cartao = cartao;
