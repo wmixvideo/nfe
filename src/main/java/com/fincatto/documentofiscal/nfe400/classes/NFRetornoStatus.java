@@ -332,6 +332,7 @@ public enum NFRetornoStatus {
     CODIGO_597(597, "Rejei\u00e7\u00e3o: CFOP de Importa\u00e7\u00e3o e n\u00e3o informado dados de IPI"),
     CODIGO_598(598, "Rejei\u00e7\u00e3o: NF-e emitida em ambiente de homologa\u00e7\u00e3o com raz\u00e3o social <> de NF-e (Emitida homologa\u00e7\u00e3o - S/vlr fiscal)"),
     CODIGO_599(599, "Rejei\u00e7\u00e3o: CFOP de Importa\u00e7\u00e3o e n\u00e3o informado dados de II"),
+    CODIGO_600(600, "Rejei\u00e7\u00e3o: CSOSN incompat\u00edvel na opera\u00e7\u00e3o com N\u00e3o Contribuinte."),
     CODIGO_601(601, "Rejei\u00e7\u00e3o: Total do II difere do somat\u00f3rio dos itens"),
     CODIGO_602(602, "Rejei\u00e7\u00e3o: Total do PIS difere do somat\u00f3rio dos itens sujeitos ao ICMS"),
     CODIGO_603(603, "Rejei\u00e7\u00e3o: Total do COFINS difere do somat\u00f3rio dos itens sujeitos ao ICMS"),
