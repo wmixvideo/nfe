@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.simpleframework.xml.Attribute;
@@ -8,7 +7,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 /*
