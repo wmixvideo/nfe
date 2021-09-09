@@ -21,7 +21,7 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import org.apache.commons.lang3.StringUtils;
 
 public class WSDistribuicaoCTe {
 
@@ -32,11 +32,9 @@ public class WSDistribuicaoCTe {
     }
 
     /**
-     * Metodo para consultar os conhecimentos de transporte e retorna uma
-     * String<br>
+     * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
      * E importante salvar esta String para nao perder nenhuma informacao<br>
-     * A receita nao disponibiliza o conhecimento varias vezes para consultar,
-     * retorna rejeicao: Consumo indevido
+     * A receita nao disponibiliza o conhecimento varias vezes para consultar, retorna rejeicao: Consumo indevido
      */
     @Deprecated
     public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
@@ -59,7 +57,6 @@ public class WSDistribuicaoCTe {
         }
     }
 
-    
     public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         try {
             String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
@@ -94,7 +91,7 @@ public class WSDistribuicaoCTe {
             distDFeInt.setCnpj(cpfOuCnpj);
         }
 
-        if (isNotBlank(ultNsu)) {
+        if (StringUtils.isNotBlank(ultNsu)) {
             distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU(ultNsu));
         } else {
             distDFeInt.setConsulta(new CTDistribuicaoConsultaNSU().setNsu(nsu));

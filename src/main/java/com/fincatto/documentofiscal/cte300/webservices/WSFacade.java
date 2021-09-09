@@ -48,8 +48,7 @@ public class WSFacade {
      *
      * @param uf uf UF que deseja consultar o status do sefaz responsavel
      * @return dados da consulta de status retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf);
@@ -60,10 +59,8 @@ public class WSFacade {
      *
      * @param cteRecepcao a ser eviado para a SEFAZ
      * @return dados do retorno do envio do lote e o xml assinado
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
-     *
-     */
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
     public CTeEnvioLoteRetornoDados envioRecepcaoLote(CTeEnvioLote cteRecepcao) throws Exception {
         return this.wsRecepcaoLote.envioRecepcao(cteRecepcao);
     }
@@ -73,10 +70,8 @@ public class WSFacade {
      *
      * @param numRecibo do recebimento do lote
      * @return dados da consulta do processamento do lote
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
-     *
-     */
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
     public CTeConsultaRecLoteRet consultaEnvioRecepcaoLote(String numRecibo) throws Exception {
         return this.wsRecepcaoLoteRetorno.consultaLote(numRecibo);
     }
@@ -86,8 +81,7 @@ public class WSFacade {
      *
      * @param chaveDeAcesso chave de acesso do cte
      * @return dados da consulta da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
@@ -96,40 +90,35 @@ public class WSFacade {
     /**
      * Faz o cancelamento do CTe
      *
-     * @param chave chave de acesso da nota
+     * @param chave     chave de acesso da nota
      * @param numeroProtocolo numero do protocolo da nota
-     * @param motivo motivo do cancelamento
+     * @param motivo          motivo do cancelamento
      * @return dados do cancelamento da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoCancelamento cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 
     /**
-     * Faz o cancelamento da nota com evento ja assinado ATENCAO: Esse metodo
-     * deve ser utilizado para assinaturas A3
+     * Faz o cancelamento da nota com evento ja assinado
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      *
-     * @param chave chave de acesso da nota
+     * @param chave       chave de acesso da nota
      * @param eventoAssinadoXml evento ja assinado em formato XML
      * @return dados do cancelamento da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoCancelamento cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
 
     /**
-     * Inutiliza o CTE com o evento assinado ATENCAO: Esse metodo deve ser
-     * utilizado para assinaturas A3
-     *
+     * Inutiliza o CTE com o evento assinado ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      * @param eventoAssinadoXml evento assinado em XML
      * @param modelo modelo do CTE
      * @return dados da inutilizacao do CTE retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
@@ -137,7 +126,6 @@ public class WSFacade {
 
     /**
      * Inutiliza o CTE
-     *
      * @param anoInutilizacaoNumeracao ano de inutilizacao
      * @param cnpjEmitente CNPJ emitente da nota
      * @param serie serie da nota
@@ -146,8 +134,7 @@ public class WSFacade {
      * @param justificativa justificativa da inutilizacao
      * @param modelo modelo da nota (NF-e ou NFC-e)
      * @return dados da inutilizacao da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
@@ -155,7 +142,6 @@ public class WSFacade {
 
     /**
      * Gera o XML assinado da inutilizacao sem enviar para a SEFAZ.
-     *
      * @param anoInutilizacaoNumeracao ano de inutilizacao
      * @param cnpjEmitente CNPJ emitente da nota
      * @param serie serie da nota
