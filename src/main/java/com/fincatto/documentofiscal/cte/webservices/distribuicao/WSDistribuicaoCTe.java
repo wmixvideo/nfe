@@ -21,7 +21,7 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.httpclient.protocol.Protocol;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 public class WSDistribuicaoCTe {
 
@@ -32,10 +32,13 @@ public class WSDistribuicaoCTe {
     }
 
     /**
-     * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
+     * Metodo para consultar os conhecimentos de transporte e retorna uma
+     * String<br>
      * E importante salvar esta String para nao perder nenhuma informacao<br>
-     * A receita nao disponibiliza o conhecimento varias vezes para consultar, retorna rejeicao: Consumo indevido
+     * A receita nao disponibiliza o conhecimento varias vezes para consultar,
+     * retorna rejeicao: Consumo indevido
      */
+    @Deprecated
     public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         try {
@@ -56,7 +59,7 @@ public class WSDistribuicaoCTe {
         }
     }
 
-
+    
     public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         try {
             String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
@@ -73,7 +76,6 @@ public class WSDistribuicaoCTe {
 
             final CTeDistribuicaoDFeSoapStub stub = new CTeDistribuicaoDFeSoapStub(CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente()), config);
             final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresseResponse result = stub.cteDistDFeInteresse(distDFeInteresse);
-
             return this.config.getPersister().read(NFDistribuicaoIntRetorno.class, result.getCteDistDFeInteresseResult().getExtraElement().toString());
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
@@ -92,7 +94,7 @@ public class WSDistribuicaoCTe {
             distDFeInt.setCnpj(cpfOuCnpj);
         }
 
-        if (StringUtils.isNotBlank(ultNsu)) {
+        if (isNotBlank(ultNsu)) {
             distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU(ultNsu));
         } else {
             distDFeInt.setConsulta(new CTDistribuicaoConsultaNSU().setNsu(nsu));
