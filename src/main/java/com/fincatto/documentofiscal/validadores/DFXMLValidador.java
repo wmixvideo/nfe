@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.validadores;
 
-import org.xml.sax.SAXException;
-
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import org.xml.sax.SAXException;
 
 public final class DFXMLValidador {
 
@@ -108,6 +107,16 @@ public final class DFXMLValidador {
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
         return true;
+    }
+    private static boolean validaDistribuicaoCTe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTeDistDFe_100/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+    public static boolean validaDistribuicaoCTe(final String arquivoXML) throws IOException, SAXException, URISyntaxException {
+        return DFXMLValidador.validaDistribuicaoCTe(arquivoXML, "distDFeInt_v1.00.xsd");
     }
 
     public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
