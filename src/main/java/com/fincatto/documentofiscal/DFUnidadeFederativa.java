@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
  **/
 public enum DFUnidadeFederativa {
     
-    AC("AC", "Acre", "12", "http://hml.sefaznet.ac.gov.br/nfce/qrcode", "http://hml.sefaznet.ac.gov.br/nfce/qrcode", "http://hml.sefaznet.ac.gov.br/nfce/consulta", "www.sefaznet.ac.gov.br/nfce/consulta"),
+    AC("AC", "Acre", "12", "http://hml.sefaznet.ac.gov.br/nfce/qrcode", "http://www.sefaznet.ac.gov.br/nfce/qrcode", "http://hml.sefaznet.ac.gov.br/nfce/consulta", "www.sefaznet.ac.gov.br/nfce/consulta"),
     AL("AL", "Alagoas", "27", "http://nfce.sefaz.al.gov.br/QRCode/consultarNFCe.jsp", "http://nfce.sefaz.al.gov.br/QRCode/consultarNFCe.jsp", "http://nfce.sefaz.al.gov.br/consultaNFCe.htm", "http://nfce.sefaz.al.gov.br/consultaNFCe.htm"),
     AP("AP", "Amap\u00E1", "16", "https://www.sefaz.ap.gov.br/nfcehml/nfce.php", "https://www.sefaz.ap.gov.br/nfce/nfce.php", "https://www.sefaz.ap.gov.br/sate1/seg/SEGf_AcessarFuncao.jsp?cdFuncao=FIS_1261", "https://www.sefaz.ap.gov.br/sate/seg/SEGf_AcessarFuncao.jsp?cdFuncao=FIS_1261"),
     AM("AM", "Amazonas", "13", "http://homnfce.sefaz.am.gov.br/nfceweb/consultarNFCe.jsp", "http://sistemas.sefaz.am.gov.br/nfceweb/consultarNFCe.jsp", "homnfce.sefaz.am.gov.br/nfceweb/formConsulta.do", "sistemas.sefaz.am.gov.br/nfceweb/formConsulta.do"),
@@ -31,7 +31,7 @@ public enum DFUnidadeFederativa {
     RO("RO", "Rond\u00F4nia", "11", "http://www.nfce.sefin.ro.gov.br/consultanfce/consulta.jsp", "http://www.nfce.sefin.ro.gov.br/consultanfce/consulta.jsp", "http://www.nfce.sefin.ro.gov.br", "http://www.nfce.sefin.ro.gov.br"),
     RR("RR", "Roraima", "14", "http://200.174.88.103:8080/nfce/servlet/qrcode", "https://www.sefaz.rr.gov.br/nfce/servlet/qrcode", "http://200.174.88.103:8080/nfce/servlet/wp_consulta_nfce", "https://www.sefaz.rr.gov.br/nfce/servlet/wp_consulta_nfce"),
     SP("SP", "S\u00E3o Paulo", "35", "https://www.homologacao.nfce.fazenda.sp.gov.br/NFCeConsultaPublica/Paginas/ConsultaQRCode.aspx", "https://www.nfce.fazenda.sp.gov.br/NFCeConsultaPublica/Paginas/ConsultaQRCode.aspx", "https://www.homologacao.nfce.fazenda.sp.gov.br/NFCeConsultaPublica", "https://www.nfce.fazenda.sp.gov.br/NFCeConsultaPublica"),
-    SC("SC", "Santa Catarina", "42"),
+    SC("SC", "Santa Catarina", "42","https://hom.sat.sef.sc.gov.br/nfce/consulta","https://sat.sef.sc.gov.br/nfce/consulta","https://hom.sat.sef.sc.gov.br/nfce/consulta","https://sat.sef.sc.gov.br/nfce/consulta"),
     SE("SE", "Sergipe", "28", "http://www.hom.nfe.se.gov.br/portal/consultarNFCe.jsp", "http://www.nfce.se.gov.br/portal/consultarNFCe.jsp", "http://www.hom.nfe.se.gov.br/portal/portalNoticias.jsp", "http://www.nfce.se.gov.br/portal/portalNoticias.jsp"),
     TO("TO", "Tocantins", "17", "http://homologacao.sefaz.to.gov.br/nfce/qrcode", "http://www.sefaz.to.gov.br/nfce/qrcode", "http://homologacao.sefaz.to.gov.br/nfce/consulta.jsf", "http://www.sefaz.to.gov.br/nfce/consulta.jsf"),
     NACIONAL("NC", "Nacional", "90"),

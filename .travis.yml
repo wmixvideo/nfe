@@ -16,7 +16,7 @@ env:
     secure: "plMmaTS45J3SWAsHT28YJCXXVptJvxu3zKWNC77fzd7BWCPjitY6xD16dJKcahL84iZu1mlcquVvvgNAa+KvblbDW+pCPClT8lF/2AAzWaAwnDH6qNwnwwloKQriBAzgewwm/ldyRQvjp0rL7+UwHsddYw6XnVo/gec7Q72qKdM="
 
 after_success:
-  - mvn clean test jacoco:report coveralls:report
+  - mvn test jacoco:report coveralls:report
 
 install: 
   - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>" > ~/settings.xml

@@ -3,7 +3,7 @@
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.37-SNAPSHOT</version>
+    <version>3.0.68-SNAPSHOT</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -28,9 +28,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <axis2.version>1.6.4</axis2.version>
-        <slf4j.version>1.7.30</slf4j.version>
-        <junit.version>4.13.1</junit.version>
-        <commons-lang3.version>3.11</commons-lang3.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <junit.version>4.13.2</junit.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
     </properties>
 
@@ -214,7 +214,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
+                <version>0.8.7</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -251,7 +251,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -296,7 +296,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.2.0</version>
+                        <version>3.3.1</version>
                         <configuration>
                             <additionalparam>-Xdoclint:none</additionalparam>
                             <failOnError>false</failOnError>

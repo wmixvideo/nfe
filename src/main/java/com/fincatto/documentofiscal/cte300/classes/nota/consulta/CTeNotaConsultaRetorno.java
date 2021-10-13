@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeProtocolo;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeProtocoloEventoCancelamento;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
+
 import org.simpleframework.xml.*;
 
 import java.util.List;

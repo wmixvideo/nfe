@@ -22,14 +22,20 @@ public class MDFInfoModalRodoviarioInfContratante {
      */
     @Element(name = "CNPJ", required = false)
     private String cnpj;
+    
+     /**
+     * <p>Identificação de contratante em caso de contratante estrangeiro.</p>
+     */
+    @Element(name = "idEstrangeiro", required = false)
+    private String idEstrangeiro;
 
     public String getCpf() {
         return cpf;
     }
-
+    
     public void setCpf(String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado");
+        if (this.cnpj != null || this.idEstrangeiro != null) {
+            throw new IllegalStateException("Nao deve setar CPF se CNPJ/IdEstrangeiro esteja setado");
         }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
@@ -40,11 +46,22 @@ public class MDFInfoModalRodoviarioInfContratante {
     }
 
     public void setCnpj(String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado");
+        if (this.cpf != null || this.idEstrangeiro != null) {
+            throw new IllegalStateException("Nao deve setar CNPJ se CPF/IdEstrangeiro esteja setado");
         }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
+    }
+
+    public String getIdEstrangeiro() {
+        return idEstrangeiro;
+    }
+
+    public void setIdEstrangeiro(String idEstrangeiro) {
+        if (this.cpf != null || this.cnpj != null) {
+            throw new IllegalStateException("Nao deve setar IdEstrangeiro se CPF/CNPJ esteja setado");
+        }
+        this.idEstrangeiro = idEstrangeiro;
     }
 
 }
