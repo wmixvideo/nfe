@@ -15,16 +15,19 @@ public class NFProtocoloInfo extends DFBase {
 
     @Attribute(name = "Id", required = false)
     private String identificador;
-    
+
+    @Attribute(name = "id", required = false)
+    private String id;
+
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
-    
+
     @Element(name = "verAplic")
     private String versaoAplicacao;
-    
+
     @Element(name = "chNFe")
     private String chave;
-    
+
     @Element(name = "dhRecbto")
     private String dataRecebimento;
 
@@ -33,7 +36,7 @@ public class NFProtocoloInfo extends DFBase {
 
     @Element(name = "digVal", required = false)
     private String validador;
-    
+
     @Element(name = "cStat")
     private String status;
 
@@ -112,9 +115,9 @@ public class NFProtocoloInfo extends DFBase {
     }
 
     public String getMotivo() {
-    	if (StringUtils.isBlank(this.motivo))
-    	    //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
-            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
+        if (StringUtils.isBlank(this.motivo))
+            //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
+            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999).getMotivo();
         return this.motivo;
     }
 
@@ -141,4 +144,13 @@ public class NFProtocoloInfo extends DFBase {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
+
