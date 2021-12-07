@@ -328,7 +328,7 @@ public class WSFacade {
     /**
      * Faz a manifestação do destinatário da nota com evento ja assinado
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3.
-     *
+     *envEvento
      * @param chave chave de acesso da nota
      * @param eventoAssinadoXml evento ja assinado em formato XML
      * @return dados da manifestacao do destinatario da nota retornado pelo
