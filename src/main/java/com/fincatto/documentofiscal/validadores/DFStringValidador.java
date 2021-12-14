@@ -765,6 +765,13 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void identificadorCTe(final String identificador) {
+        final Matcher matcher = Pattern.compile("^ID\\d{39}$").matcher(identificador);
+        if (!matcher.find()) {
+            throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
+        }
+    }
+
     public static void equals(final String test, final String tested) {
         if (!StringUtils.equals(test, tested)) {
             throw new IllegalStateException(String.format("Valor('%s') nao corresponde com o padrao('%s')", tested, test));

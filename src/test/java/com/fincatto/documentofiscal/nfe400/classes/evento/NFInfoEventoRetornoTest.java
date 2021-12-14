@@ -46,8 +46,8 @@ public class NFInfoEventoRetornoTest {
     public void deveObterCNPJComoFoiSetado() {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String cnpj = "55745965229517";
-        eventoRetorno.setCpnj(cnpj);
-        Assert.assertEquals(cnpj, eventoRetorno.getCpnj());
+        eventoRetorno.setCnpj(cnpj);
+        Assert.assertEquals(cnpj, eventoRetorno.getCnpj());
     }
     
     @Test

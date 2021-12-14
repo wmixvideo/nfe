@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 

@@ -17,7 +17,7 @@ public enum MDFTipoResponsavelSeguro {
      * Para os demais modais esta informação é opcional.
      */
     EMITENTE_MDFE("1", "Emitente do MDF-e"),
-    CONTRATANTE_MDFE("2", "Responsável pela contratação");
+    CONTRATANTE_MDFE("2", "Respons\u00e1vel pela contrata\u00e7\u00e3o");
 
     private final String codigo;
     private final String descricao;
