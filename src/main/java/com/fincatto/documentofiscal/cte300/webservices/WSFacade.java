@@ -1,16 +1,8 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -19,18 +11,26 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import org.apache.commons.httpclient.protocol.Protocol;
 
 public class WSFacade {
 
-
-	private final WSStatusConsulta wsStatusConsulta;
-	private final WSRecepcaoLote wsRecepcaoLote;
-	private final WSNotaConsulta wsNotaConsulta;
+    private final WSStatusConsulta wsStatusConsulta;
+    private final WSRecepcaoLote wsRecepcaoLote;
+    private final WSNotaConsulta wsNotaConsulta;
     private final WSCancelamento wsCancelamento;
     private final WSInutilizacao wsInutilizacao;
+    private final WSDistribuicaoCTe wSDistribuicaoCTe;
 
-	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
+    private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -40,8 +40,9 @@ public class WSFacade {
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCancelamento = new WSCancelamento(config);
         this.wsInutilizacao = new WSInutilizacao(config);
+        this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
     }
-    
+
     /**
      * Faz a consulta de status responsavel pela UF
      *
@@ -52,27 +53,27 @@ public class WSFacade {
     public CTeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf);
     }
-    
+
     /**
      * Faz o envio do lote para a SEFAZ
-     * 
+     *
      * @param cteRecepcao a ser eviado para a SEFAZ
      * @return dados do retorno do envio do lote e o xml assinado
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeEnvioLoteRetornoDados envioRecepcaoLote(CTeEnvioLote cteRecepcao) throws Exception {
-    	return this.wsRecepcaoLote.envioRecepcao(cteRecepcao);
+        return this.wsRecepcaoLote.envioRecepcao(cteRecepcao);
     }
-    
+
     /**
      * Faz a consulta do processamento do lote na SEFAZ
-     * 
+     *
      * @param numRecibo do recebimento do lote
      * @return dados da consulta do processamento do lote
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeConsultaRecLoteRet consultaEnvioRecepcaoLote(String numRecibo) throws Exception {
-    	return this.wsRecepcaoLoteRetorno.consultaLote(numRecibo);
+        return this.wsRecepcaoLoteRetorno.consultaLote(numRecibo);
     }
 
     /**
@@ -138,7 +139,7 @@ public class WSFacade {
     public CTeRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
-    
+
     /**
      * Gera o XML assinado da inutilizacao sem enviar para a SEFAZ.
      * @param anoInutilizacaoNumeracao ano de inutilizacao
@@ -152,6 +153,29 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
-    	return this.wsInutilizacao.getXmlAssinado(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
+        return this.wsInutilizacao.getXmlAssinado(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
+    }
+
+    /**
+     * Faz consulta de distribuicao dos CTe.
+     * Pode ser feita utilizando o CTe (numero sequencial unico) da receita.
+     * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
+     * @param uf Unidade federativa da pessoa juridica a consultar
+     * @param nsu Número Sequencial Único. Geralmente esta consulta será
+     * utilizada quando identificado pelo interessado um NSU faltante. O Web
+     * Service retornará o documento ou informará que o NSU não existe no
+     * Ambiente Nacional. Assim, esta consulta fechará a lacuna do NSU
+     * identificado como faltante.
+     * @param ultNsu Último NSU recebido pelo ator. Caso seja informado com
+     * zero, ou com um NSU muito antigo, a consulta retornará unicamente as
+     * informações resumidas e documentos fiscais eletrônicos que tenham sido
+     * recepcionados pelo Ambiente Nacional nos últimos 3 meses.
+     * @return dados da consulta retornado pelo webservice limitando um total de
+     * 50 registros
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     */
+    public NFDistribuicaoIntRetorno consultarDistribuicaoCTe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        return this.wSDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
     }
 }
