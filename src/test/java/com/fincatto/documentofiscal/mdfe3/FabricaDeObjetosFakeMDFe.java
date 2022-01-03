@@ -91,7 +91,7 @@ public class FabricaDeObjetosFakeMDFe {
 
     public static MDFProcessado getMDFProcessado() {
         MDFProcessado a = new MDFProcessado();
-        a.setVersao(new BigDecimal(3.00));
+        a.setVersao(BigDecimal.valueOf(3.0));
         a.setSchemaLocation("");
         a.setMdfe(getMDFe1());
         a.setProtocolo(getMDFProtocolo());
