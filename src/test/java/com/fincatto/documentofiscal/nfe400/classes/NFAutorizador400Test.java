@@ -66,21 +66,21 @@ public class NFAutorizador400Test {
     @Test
     public void deveBuscarCorretamenteURLWebServiceCE() {
         final NFAutorizador400 autorizador = NFAutorizador400.CE;
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/CadConsultaCadastro4?wsdl", autorizador.getConsultaCadastro(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeAutorizacao4?wsdl", autorizador.getNfeAutorizacao(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeConsultaProtocolo4?wsdl", autorizador.getNfeConsultaProtocolo(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeRetAutorizacao4?wsdl", autorizador.getNfeRetAutorizacao(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeStatusServico4?wsdl", autorizador.getNfeStatusServico(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeRecepcaoEvento4?wsdl", autorizador.getRecepcaoEvento(DFAmbiente.HOMOLOGACAO));
-        Assert.assertEquals("https://nfeh.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl", autorizador.getNfeInutilizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://cad-homologacao.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx", autorizador.getConsultaCadastro(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao4.asmx", autorizador.getNfeAutorizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta4.asmx", autorizador.getNfeConsultaProtocolo(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx", autorizador.getNfeRetAutorizacao(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico4.asmx", autorizador.getNfeStatusServico(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx", autorizador.getRecepcaoEvento(DFAmbiente.HOMOLOGACAO));
+        Assert.assertEquals("https://nfe-homologacao.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx", autorizador.getNfeInutilizacao(DFAmbiente.HOMOLOGACAO));
 
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/CadConsultaCadastro4?wsdl", autorizador.getConsultaCadastro(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeAutorizacao4?wsdl", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeConsultaProtocolo4?wsdl", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeRetAutorizacao4?wsdl", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeStatusServico4?wsdl", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeRecepcaoEvento4?wsdl", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
-        Assert.assertEquals("https://nfe.sefaz.ce.gov.br/nfe4/services/NFeInutilizacao4?wsdl", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://cad.svrs.rs.gov.br/ws/cadconsultacadastro/cadconsultacadastro4.asmx", autorizador.getConsultaCadastro(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/NfeAutorizacao/NFeAutorizacao4.asmx", autorizador.getNfeAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/NfeConsulta/NfeConsulta4.asmx", autorizador.getNfeConsultaProtocolo(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/NfeRetAutorizacao/NFeRetAutorizacao4.asmx", autorizador.getNfeRetAutorizacao(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico4.asmx", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
+        Assert.assertEquals("https://nfe.svrs.rs.gov.br/ws/nfeinutilizacao/nfeinutilizacao4.asmx", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
 
         Assert.assertEquals("https://nfceh.sefaz.ce.gov.br/nfce4/services/CadConsultaCadastro4?WSDL", autorizador.getNfceConsultaCadastro(DFAmbiente.HOMOLOGACAO));
         Assert.assertEquals("https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeAutorizacao4?WSDL", autorizador.getNfceAutorizacao(DFAmbiente.HOMOLOGACAO));
@@ -97,7 +97,6 @@ public class NFAutorizador400Test {
         Assert.assertEquals("https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRecepcaoEvento4?WSDL", autorizador.getNfceRecepcaoEvento(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRetAutorizacao4?WSDL", autorizador.getNfceRetAutorizacao(DFAmbiente.PRODUCAO));
         Assert.assertEquals("https://nfce.sefaz.ce.gov.br/nfce4/services/NFeStatusServico4?WSDL", autorizador.getNfceStatusServico(DFAmbiente.PRODUCAO));
-
     }
 
     @Test
