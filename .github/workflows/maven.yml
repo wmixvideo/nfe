@@ -14,5 +14,8 @@ jobs:
       with:
         java-version: 11
 
-    - name: Build with Maven
-      run: mvn package --file pom.xml
+    - name: Maven package
+      run: mvn clean package --file pom.xml
+
+    - name: Coverage tests
+      run: mvn clean test jacoco:report coveralls:report --file pom.xml
