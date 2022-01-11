@@ -14,5 +14,8 @@ jobs:
       with:
         java-version: 11
 
-    - name: Build with Maven
+    - name: Maven package
       run: mvn package --file pom.xml
+
+    - name: Coverage tests
+      run: mvn cobertura:cobertura coveralls:report
