@@ -262,7 +262,6 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setValorEfetivoFundoCombatePobreza(new BigDecimal("999999999999.99"));
 
 		final String xmlEsperado = "<NFNotaInfoItemImpostoICMS51><orig>0</orig><CST>40</CST><modBC>3</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMSOp>999999999999.99</vICMSOp><pDif>99.9999</pDif><vICMSDif>999999999999.99</vICMSDif><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><pFCPDif>99.99</pFCPDif><vFCPDif>999999999999.99</vFCPDif><vFCPEfet>999999999999.99</vFCPEfet></NFNotaInfoItemImpostoICMS51>";
-		System.out.println(icms51.toString());
 		Assert.assertEquals(xmlEsperado, icms51.toString());
 	}
 }
