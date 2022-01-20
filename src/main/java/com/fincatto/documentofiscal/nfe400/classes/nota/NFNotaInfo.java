@@ -76,8 +76,10 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name="infRespTec", required = false)
     private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
-    
-    
+
+    @Element(name="infSolicNFF", required = false)
+    private NFInfoSolicNFF informacaoSolicitacaoNFF;
+
     /**
      * Pega a chave de acesso a partir do identificador.
      * @return Chave de acesso.

@@ -18,7 +18,7 @@ public class NFViaTransporteInternacionalTest {
         Assert.assertEquals("9", NFViaTransporteInternacional.MEIOS_PROPRIOS.getCodigo());
         Assert.assertEquals("10", NFViaTransporteInternacional.ENTRADA_SAIDA.getCodigo());
         Assert.assertEquals("11", NFViaTransporteInternacional.COURIER.getCodigo());
-        Assert.assertEquals("12", NFViaTransporteInternacional.HANDCARRY.getCodigo());
+        Assert.assertEquals("12", NFViaTransporteInternacional.EM_MAOS.getCodigo());
     }
 
     @Test
@@ -34,6 +34,6 @@ public class NFViaTransporteInternacionalTest {
         Assert.assertEquals(NFViaTransporteInternacional.MEIOS_PROPRIOS, NFViaTransporteInternacional.valueOfCodigo("9"));
         Assert.assertEquals(NFViaTransporteInternacional.ENTRADA_SAIDA, NFViaTransporteInternacional.valueOfCodigo("10"));
         Assert.assertEquals(NFViaTransporteInternacional.COURIER, NFViaTransporteInternacional.valueOfCodigo("11"));
-        Assert.assertEquals(NFViaTransporteInternacional.HANDCARRY, NFViaTransporteInternacional.valueOfCodigo("12"));
+        Assert.assertEquals(NFViaTransporteInternacional.EM_MAOS, NFViaTransporteInternacional.valueOfCodigo("12"));
     }
 }

@@ -26,6 +26,12 @@ public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
     @Element(name = "cAgreg", required = false)
     private String codigoAgregacao;
 
+    @Element(name = "infProdNFF", required = false)
+    private NFNotaInfoItemProdutoDetalhamento informacoesProduto;
+
+    @Element(name = "infProdEmb", required = false)
+    private NFNotaInfoItemProdutoDetalhamentoEmbalagem informacoesProdutoEmbalagem;
+
     public void setNumeroLote(final String numeroLote) {
         DFStringValidador.tamanho20(numeroLote, "N\u00famero do lote do rastreio do produto");
         this.numeroLote = numeroLote;
@@ -48,6 +54,14 @@ public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
         this.codigoAgregacao = codigoAgregacao;
     }
 
+    public void setInformacoesProduto(NFNotaInfoItemProdutoDetalhamento informacoesProduto) {
+        this.informacoesProduto = informacoesProduto;
+    }
+
+    public void setInformacoesProdutoEmbalagem(NFNotaInfoItemProdutoDetalhamentoEmbalagem informacoesProdutoEmbalagem) {
+        this.informacoesProdutoEmbalagem = informacoesProdutoEmbalagem;
+    }
+
     public String getNumeroLote() {
         return this.numeroLote;
     }
@@ -66,5 +80,13 @@ public class NFNotaInfoItemProdutoRastreabilidade extends DFBase {
 
     public String getCodigoAgregacao() {
         return this.codigoAgregacao;
+    }
+
+    public NFNotaInfoItemProdutoDetalhamento getInformacoesProduto() {
+        return informacoesProduto;
+    }
+
+    public NFNotaInfoItemProdutoDetalhamentoEmbalagem getInformacoesProdutoEmbalagem() {
+        return informacoesProdutoEmbalagem;
     }
 }
