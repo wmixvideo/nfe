@@ -321,6 +321,10 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.codigoDeBarrasGtin == null ? "SEM GTIN" : this.codigoDeBarrasGtin;
     }
 
+    public String getCodigoDeBarrasDiferenteGtin() {
+        return codigoDeBarrasDiferenteGtin;
+    }
+
     public String getDescricao() {
         return this.descricao;
     }
