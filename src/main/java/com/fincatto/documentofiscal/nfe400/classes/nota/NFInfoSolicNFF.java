@@ -15,9 +15,11 @@
  */
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
-public class NFInfoSolicNFF {
+public class NFInfoSolicNFF extends DFBase {
 
     @Element(name="xSolic", required = true)
     protected String xSolic;
@@ -27,6 +29,7 @@ public class NFInfoSolicNFF {
     }
 
     public void setXSolic(String xSolic) {
+        DFStringValidador.tamanho2ate60(xSolic, "xSolic");
         this.xSolic = xSolic;
     }
     

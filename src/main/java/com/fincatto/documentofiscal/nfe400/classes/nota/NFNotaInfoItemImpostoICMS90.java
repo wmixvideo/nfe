@@ -169,8 +169,8 @@ public class NFNotaInfoItemImpostoICMS90 extends DFBase {
         this.valorFundoCombatePobrezaST = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
     }
 
-    public void setValorICMSSTDesonerado(String valorICMSSTDesonerado) {
-        this.valorICMSSTDesonerado = valorICMSSTDesonerado;
+    public void setValorICMSSTDesonerado(BigDecimal valorICMSSTDesonerado) {
+        this.valorICMSSTDesonerado = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTDesonerado, "Valor do ICMS-ST desonerado");
     }
 
     public void setMotivoDesoneracaoICMSST(NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST) {

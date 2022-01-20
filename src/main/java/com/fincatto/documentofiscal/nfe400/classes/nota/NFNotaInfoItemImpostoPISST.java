@@ -25,7 +25,7 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
     private String valorTributo;
 
     @Element(name = "indSomaPISST", required = false)
-    private String indicadorSomaPISST;
+    private NFIndicadorSomaPISST indicadorSomaPISST;
 
     public NFNotaInfoItemImpostoPISST() {
         this.valorBaseCalculo = null;
@@ -67,7 +67,7 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
         this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo PIS ST Item");
     }
 
-    public void setIndicadorSomaPISST(String indicadorSomaPISST) {
+    public void setIndicadorSomaPISST(NFIndicadorSomaPISST indicadorSomaPISST) {
         this.indicadorSomaPISST = indicadorSomaPISST;
     }
 
@@ -91,7 +91,7 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
         return this.valorTributo;
     }
 
-    public String getIndicadorSomaPISST() {
+    public NFIndicadorSomaPISST getIndicadorSomaPISST() {
         return indicadorSomaPISST;
     }
 }

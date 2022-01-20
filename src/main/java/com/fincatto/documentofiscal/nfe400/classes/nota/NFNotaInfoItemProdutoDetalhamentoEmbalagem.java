@@ -1,7 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
     private static final long serialVersionUID = 4756407184060968887L;
@@ -20,6 +24,7 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
     }
 
     public void setEmbalagemProduto(String embalagemProduto) {
+        DFStringValidador.tamanho1ate8(embalagemProduto, "Embalagem do produto");
         this.embalagemProduto = embalagemProduto;
     }
 
@@ -27,7 +32,8 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
         return volumeProdutoEmbalagem;
     }
 
-    public void setVolumeProdutoEmbalagem(String volumeProdutoEmbalagem) {
+    public void setVolumeProdutoEmbalagem(final BigDecimal quantidade) {
+        this.volumeProdutoEmbalagem = DFBigDecimalValidador.tamanho11Com3CasasDecimais(quantidade, "Quantidade Medicamento");
         this.volumeProdutoEmbalagem = volumeProdutoEmbalagem;
     }
 
@@ -36,6 +42,7 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
     }
 
     public void setUnidadeMedidaEmbalagem(String unidadeMedidaEmbalagem) {
+        DFStringValidador.tamanho1ate8(unidadeMedidaEmbalagem, "Unidade de Medida da Embalagem");
         this.unidadeMedidaEmbalagem = unidadeMedidaEmbalagem;
     }
 }

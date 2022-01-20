@@ -1348,4 +1348,10 @@ public class FabricaDeObjetosFake {
     	intermediador.setIdCadIntTran("123456789012345678901234567890123456789012345678901234567890");
     	return intermediador;
     }
+
+    public static NFInfoSolicNFF getNFInfoSolicNFF(){
+        NFInfoSolicNFF nfInfoSolicNFF = new NFInfoSolicNFF();
+        nfInfoSolicNFF.setXSolic("Teste");
+        return nfInfoSolicNFF;
+    }
 }
