@@ -22,7 +22,10 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "cEAN", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
-    private String codigoDeBarras;
+    private String codigoDeBarrasGtin;
+
+    @Element(name = "cBarra", required = false)
+    private String codigoDeBarrasDiferenteGtin;
     
     @Element(name = "xProd")
     private String descricao;
@@ -65,7 +68,10 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "cEANTrib", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
-    private String codigoDeBarrasTributavel;
+    private String codigoDeBarrasGtinTributavel;
+
+    @Element(name = "cBarraTrib", required = false)
+    private String codigoDeBarrasDiferenteGtinTributavel;
     
     @Element(name = "uTrib")
     private String unidadeTributavel;
@@ -129,9 +135,13 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.codigo = codigo;
     }
 
-    public void setCodigoDeBarras(final String codigoDeBarras) {
-        DFStringValidador.codigoDeBarras(codigoDeBarras);
-        this.codigoDeBarras = codigoDeBarras;
+    public void setCodigoDeBarrasGtin(final String codigoDeBarrasGtin) {
+        DFStringValidador.codigoDeBarras(codigoDeBarrasGtin);
+        this.codigoDeBarrasGtin = codigoDeBarrasGtin;
+    }
+
+    public void setCodigoDeBarrasDiferenteGtin(String codigoDeBarrasDiferenteGtin) {
+        this.codigoDeBarrasDiferenteGtin = codigoDeBarrasDiferenteGtin;
     }
 
     public void setDescricao(final String descricao) {
@@ -171,9 +181,13 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.valorTotalBruto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
     }
 
-    public void setCodigoDeBarrasTributavel(final String codigoDeBarrasTributavel) {
-        DFStringValidador.codigoDeBarras(codigoDeBarrasTributavel);
-        this.codigoDeBarrasTributavel = codigoDeBarrasTributavel;
+    public void setCodigoDeBarrasGtinTributavel(final String codigoDeBarrasGtinTributavel) {
+        DFStringValidador.codigoDeBarras(codigoDeBarrasGtinTributavel);
+        this.codigoDeBarrasGtinTributavel = codigoDeBarrasGtinTributavel;
+    }
+
+    public void setCodigoDeBarrasDiferenteGtinTributavel(String codigoDeBarrasDiferenteGtinTributavel) {
+        this.codigoDeBarrasDiferenteGtinTributavel = codigoDeBarrasDiferenteGtinTributavel;
     }
 
     public void setUnidadeTributavel(final String unidadeTributavel) {
@@ -303,8 +317,12 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.codigo;
     }
 
-    public String getCodigoDeBarras() {
-        return this.codigoDeBarras == null ? "SEM GTIN" : this.codigoDeBarras;
+    public String getCodigoDeBarrasGtin() {
+        return this.codigoDeBarrasGtin == null ? "SEM GTIN" : this.codigoDeBarrasGtin;
+    }
+
+    public String getCodigoDeBarrasDiferenteGtin() {
+        return codigoDeBarrasDiferenteGtin;
     }
 
     public String getDescricao() {
@@ -347,8 +365,12 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.valorTotalBruto;
     }
 
-    public String getCodigoDeBarrasTributavel() {
-        return this.codigoDeBarrasTributavel == null ? "SEM GTIN" : this.codigoDeBarrasTributavel;
+    public String getCodigoDeBarrasGtinTributavel() {
+        return this.codigoDeBarrasGtinTributavel == null ? "SEM GTIN" : this.codigoDeBarrasGtinTributavel;
+    }
+
+    public String getCodigoDeBarrasDiferenteGtinTributavel() {
+        return codigoDeBarrasDiferenteGtinTributavel;
     }
 
     public String getUnidadeTributavel() {

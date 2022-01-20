@@ -76,8 +76,10 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name="infRespTec", required = false)
     private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
-    
-    
+
+    @Element(name="infSolicNFF", required = false)
+    private NFInfoSolicNFF informacaoSolicitacaoNFF;
+
     /**
      * Pega a chave de acesso a partir do identificador.
      * @return Chave de acesso.
@@ -182,6 +184,10 @@ public class NFNotaInfo extends DFBase {
         return this;
     }
 
+    public void setInformacaoSolicitacaoNFF(NFInfoSolicNFF informacaoSolicitacaoNFF) {
+        this.informacaoSolicitacaoNFF = informacaoSolicitacaoNFF;
+    }
+
     public String getVersao() {
         return this.versao;
     }
@@ -249,7 +255,11 @@ public class NFNotaInfo extends DFBase {
     public NFNotaInfoResponsavelTecnico getInformacaoResposavelTecnico() {
         return this.informacaoResposavelTecnico;
     }
-    
+
+    public NFInfoSolicNFF getInformacaoSolicitacaoNFF() {
+        return informacaoSolicitacaoNFF;
+    }
+
     @Override
     public String toString() {
         if (this.getDestinatario() != null && this.getIdentificacao() != null && this.getDestinatario().getIndicadorIEDestinatario().equals(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE) && this.getIdentificacao().getOperacaoConsumidorFinal().equals(NFOperacaoConsumidorFinal.NAO) && this.getIdentificacao().getTipo().equals(NFTipo.SAIDA) && !this.getIdentificacao().getIdentificadorLocalDestinoOperacao().equals(NFIdentificadorLocalDestinoOperacao.OPERACAO_COM_EXTERIOR)) {

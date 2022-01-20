@@ -73,6 +73,12 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
     @Element(name = "motDesICMS", required = false)
     private NFNotaMotivoDesoneracaoICMS desoneracao;
 
+    @Element(name = "vICMSSTDeson", required = false)
+    private String valorICMSSTDesonerado;
+
+    @Element(name = "motDesICMSST", required = false)
+    private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST;
+
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
     }
@@ -163,6 +169,14 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
         this.valorFundoCombatePobrezaST = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
     }
 
+    public void setValorICMSSTDesonerado(BigDecimal valorICMSSTDesonerado) {
+        this.valorICMSSTDesonerado = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTDesonerado, "Valor do ICMS-ST desonerado");
+    }
+
+    public void setMotivoDesoneracaoICMSST(NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST) {
+        this.motivoDesoneracaoICMSST = motivoDesoneracaoICMSST;
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -245,5 +259,13 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     public String getValorFundoCombatePobrezaST() {
         return this.valorFundoCombatePobrezaST;
+    }
+
+    public String getValorICMSSTDesonerado() {
+        return valorICMSSTDesonerado;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoICMSST() {
+        return motivoDesoneracaoICMSST;
     }
 }
