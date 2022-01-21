@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 

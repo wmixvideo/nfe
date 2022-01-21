@@ -13,8 +13,6 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.NFProtocolo;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFRetornoCancelamento;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFProtocoloEvento;
 
 public class NFNotaConsultaRetornoTest {
 

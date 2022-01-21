@@ -348,7 +348,7 @@ public class FabricaDeObjetosFake {
         return cartaCorrecao;
     }
     
-    public static List<NFNotaInfoPagamento> getNFNotaInfoPagamento() {
+    public static List<NFNotaInfoPagamento> getNFNotaInfoPagamentos() {
     	final List<NFNotaInfoPagamento> pagamentos = new ArrayList<NFNotaInfoPagamento>(1);
         final NFNotaInfoPagamento pagamento = new NFNotaInfoPagamento();
         pagamento.setDetalhamentoFormasPagamento(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoFormaPagamento()));
@@ -602,7 +602,7 @@ public class FabricaDeObjetosFake {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(FabricaDeObjetosFake.getNFNotaInfoPagamento());
+        info.setPagamentos(FabricaDeObjetosFake.getNFNotaInfoPagamentos());
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacao());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
@@ -625,7 +625,7 @@ public class FabricaDeObjetosFake {
         info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
         info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
         info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
-        info.setPagamentos(FabricaDeObjetosFake.getNFNotaInfoPagamento());
+        info.setPagamentos(FabricaDeObjetosFake.getNFNotaInfoPagamentos());
         info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacaoIntermediador());
         info.setIdentificador("89172658591754401086218048846976493475937081");
         info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());

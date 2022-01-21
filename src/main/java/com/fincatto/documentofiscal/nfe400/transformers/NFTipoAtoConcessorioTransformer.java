@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFSituacaoContribuinte;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFTipoAtoConcessorio;
 import org.simpleframework.xml.transform.Transform;
 

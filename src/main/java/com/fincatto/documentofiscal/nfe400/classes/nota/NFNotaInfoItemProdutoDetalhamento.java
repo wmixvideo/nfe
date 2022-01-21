@@ -1,12 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class NFNotaInfoItemProdutoDetalhamento extends DFBase {
     private static final long serialVersionUID = 4756407184060968887L;

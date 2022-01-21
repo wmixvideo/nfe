@@ -15,6 +15,8 @@ import org.simpleframework.xml.Transient;
 @Root(name = "evento")
 public class NFEventoEpec extends DFBase {
 
+	private static final long serialVersionUID = -7569007183343815719L;
+
 	@Attribute(name = "versao", required = true)
 	private String versao;
 

@@ -15,7 +15,9 @@ import org.simpleframework.xml.Element;
 
 public class NFInfoEventoEpec extends DFBase {
 
-    @Attribute(name = "Id", required = true)
+	private static final long serialVersionUID = 3642275629493312360L;
+
+	@Attribute(name = "Id", required = true)
     private String identificador;
 
     @Element(name = "cOrgao", required = true)

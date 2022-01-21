@@ -10,7 +10,9 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoResponsavelTecnico extends DFBase {
 
-    @Element(name = "CNPJ")
+	private static final long serialVersionUID = 8637775100217411488L;
+
+	@Element(name = "CNPJ")
     private String cnpj;
 
     @Element(name = "xContato")

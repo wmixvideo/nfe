@@ -1,20 +1,25 @@
 package com.fincatto.documentofiscal.utils;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
-import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.net.ssl.*;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 
 public abstract class DFCadeiaCertificados implements DFLog {
     

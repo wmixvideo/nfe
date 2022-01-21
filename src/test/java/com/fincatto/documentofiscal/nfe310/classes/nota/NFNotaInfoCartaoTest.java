@@ -1,9 +1,6 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCartao;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFOperadoraCartao;
-
 import org.junit.Assert;
 import org.junit.Test;
 

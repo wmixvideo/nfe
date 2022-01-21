@@ -14,7 +14,9 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFeEnviaEventoIncluirDFeInfDoc extends DFBase {
 
-    /**
+	private static final long serialVersionUID = 5222807726899596925L;
+
+	/**
      * Município de Descarregamento.
      */
     @Element(name = "cMunDescarga")

@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinata
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
-
 public class NFTipoEventoManifestacaoDestinatarioTest {
 
     @Test

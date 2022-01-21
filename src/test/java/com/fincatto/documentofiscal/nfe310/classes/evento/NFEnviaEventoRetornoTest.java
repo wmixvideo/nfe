@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-
 import java.util.ArrayList;
 
 public class NFEnviaEventoRetornoTest {

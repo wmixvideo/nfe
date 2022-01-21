@@ -6,7 +6,6 @@ import org.junit.Test;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class NFNotaInfoItemTest {

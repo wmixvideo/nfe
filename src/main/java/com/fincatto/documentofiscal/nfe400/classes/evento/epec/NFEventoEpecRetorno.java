@@ -8,7 +8,9 @@ import org.simpleframework.xml.Element;
 
 public class NFEventoEpecRetorno extends DFBase {
 
-    @Attribute(name = "versao", required = true)
+	private static final long serialVersionUID = 4778843536990070976L;
+
+	@Attribute(name = "versao", required = true)
     private String versao;
 
     @Element(name = "infEvento", required = true)

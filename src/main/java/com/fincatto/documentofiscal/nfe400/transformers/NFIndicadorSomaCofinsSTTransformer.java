@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorPresencaComprador;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorSomaCofinsST;
 import org.simpleframework.xml.transform.Transform;
 

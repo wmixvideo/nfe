@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFNotaConsulta;
 
 public class NFNotaConsultaTest {
 

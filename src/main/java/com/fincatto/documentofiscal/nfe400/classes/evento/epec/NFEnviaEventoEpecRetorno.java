@@ -15,7 +15,9 @@ import java.util.List;
 @Root(name = "retEnvEvento")
 public class NFEnviaEventoEpecRetorno extends DFBase {
 
-    @Attribute(name = "versao", required = true)
+	private static final long serialVersionUID = 3918948598444696945L;
+
+	@Attribute(name = "versao", required = true)
     private String versao;
 
     //O Converter StringNullConverter esta sendo utilizado para resolver um problema da autorizadora SVAN, que esta retornandoo atributo idLote vazio.

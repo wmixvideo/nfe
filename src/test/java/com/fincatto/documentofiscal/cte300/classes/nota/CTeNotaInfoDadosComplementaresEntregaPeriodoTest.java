@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.cte300.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresEntregaPeriodo;
 
 public class CTeNotaInfoDadosComplementaresEntregaPeriodoTest {
 

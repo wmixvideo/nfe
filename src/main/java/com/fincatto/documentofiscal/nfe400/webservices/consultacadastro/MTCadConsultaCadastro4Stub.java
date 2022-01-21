@@ -418,7 +418,10 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class NfeResultMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4",
+
+		private static final long serialVersionUID = -4452505921760041791L;
+
+		public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4",
                 "nfeResultMsg", "ns1");
 
         /**
@@ -836,7 +839,9 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
     public static class ConsultaCadastroResult_type0 implements org.apache.axis2.databinding.ADBBean {
 
-        /**
+		private static final long serialVersionUID = 1585988250712420728L;
+
+		/**
          * field for ExtraElement
          */
         protected org.apache.axiom.om.OMElement localExtraElement;
@@ -1242,7 +1247,9 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
            Namespace Prefix = ns1
          */
 
-        /**
+		private static final long serialVersionUID = 2473351989314687058L;
+
+		/**
          * field for ExtraElement
          */
         protected org.apache.axiom.om.OMElement localExtraElement;
@@ -1642,7 +1649,10 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class ConsultaCadastro implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4","consultaCadastro", "ns1");
+
+		private static final long serialVersionUID = 1946894891967557923L;
+
+		public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro4","consultaCadastro", "ns1");
 
         protected NfeDadosMsg_type0 localNfeDadosMsg;
         protected boolean localNfeDadosMsgTracker = false;

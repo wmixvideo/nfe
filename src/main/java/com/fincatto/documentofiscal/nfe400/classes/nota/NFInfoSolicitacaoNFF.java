@@ -23,7 +23,9 @@ import org.simpleframework.xml.Root;
 @Root(name = "infSolicNFF")
 public class NFInfoSolicitacaoNFF extends DFBase {
 
-    @Element(name="xSolic", required = true)
+	private static final long serialVersionUID = -4378416972057452615L;
+
+	@Element(name="xSolic", required = true)
     protected String solicitacao;
 
     public String getSolicitacao() {

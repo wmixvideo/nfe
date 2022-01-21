@@ -9,7 +9,6 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoIC
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoICMS30;
 
 public class NFNotaInfoItemImpostoICMS30Test {
 

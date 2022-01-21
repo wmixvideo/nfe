@@ -12,7 +12,9 @@ import org.simpleframework.xml.ElementList;
 
 public class NFInfoEventoEpecRetorno extends DFBase {
 
-    @Attribute(name = "Id", required = false)
+	private static final long serialVersionUID = 8458137471522898761L;
+
+	@Attribute(name = "Id", required = false)
     private String id;
 
     @Element(name = "tpAmb", required = true)

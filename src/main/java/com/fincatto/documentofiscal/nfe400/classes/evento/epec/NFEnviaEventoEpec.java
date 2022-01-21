@@ -18,6 +18,8 @@ import com.fincatto.documentofiscal.validadores.DFStringValidador;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoEpec extends DFBase {
 
+	private static final long serialVersionUID = -3970834528202727838L;
+
 	@Attribute(name = "versao", required = true)
 	private String versao;
 

@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 
 public class CTAutorizador31Test {
 

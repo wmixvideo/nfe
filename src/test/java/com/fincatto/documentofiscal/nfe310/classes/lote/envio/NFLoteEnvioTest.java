@@ -1,8 +1,6 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
-import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 
 import org.junit.Assert;
