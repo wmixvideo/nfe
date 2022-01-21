@@ -56,8 +56,8 @@ public class NFNotaInfo extends DFBase {
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
 
-    @Element(name = "pag")
-    private NFNotaInfoPagamento pagamento;
+    @ElementList(entry = "pag", inline = true, required = false)
+    private List<NFNotaInfoPagamento> pagamentos;
     
     @Element(name="infIntermed", required = false)
     private NFInformacaoIntermediador infIntermed;
@@ -171,8 +171,8 @@ public class NFNotaInfo extends DFBase {
         this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
     }
 
-    public void setPagamento(final NFNotaInfoPagamento pagamento) {
-        this.pagamento = pagamento;
+    public void setPagamentos(final List <NFNotaInfoPagamento> pagamentos) {
+        this.pagamentos = pagamentos;
     }
     
     public void setInfIntermed(final NFInformacaoIntermediador infIntermed) {
@@ -228,8 +228,8 @@ public class NFNotaInfo extends DFBase {
         return this.cobranca;
     }
 
-    public NFNotaInfoPagamento getPagamento() {
-        return this.pagamento;
+    public List <NFNotaInfoPagamento> getPagamentos() {
+        return this.pagamentos;
     }
     
     public NFInformacaoIntermediador getInfIntermed() {
