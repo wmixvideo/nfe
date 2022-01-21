@@ -1349,9 +1349,9 @@ public class FabricaDeObjetosFake {
     	return intermediador;
     }
 
-    public static NFInfoSolicNFF getNFInfoSolicNFF(){
-        NFInfoSolicNFF nfInfoSolicNFF = new NFInfoSolicNFF();
-        nfInfoSolicNFF.setXSolic("Teste");
+    public static NFInfoSolicitacaoNFF getNFInfoSolicNFF(){
+        NFInfoSolicitacaoNFF nfInfoSolicNFF = new NFInfoSolicitacaoNFF();
+        nfInfoSolicNFF.setSolicitacao("Teste");
         return nfInfoSolicNFF;
     }
 }

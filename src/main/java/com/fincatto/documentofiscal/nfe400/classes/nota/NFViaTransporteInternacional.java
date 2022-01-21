@@ -13,7 +13,7 @@ public enum NFViaTransporteInternacional {
     MEIOS_PROPRIOS("9", "Meios pr\u00f3prios"),
     ENTRADA_SAIDA("10", "Entrada/Sa\u00edda"),
     COURIER("11", "Courier"),
-    EM_MAOS("12", "Em maos"),
+    EM_MAOS("12", "Em m\u00E3os"),
     POR_REBOQUE("13", "Por reboque");
 
     private final String codigo;
