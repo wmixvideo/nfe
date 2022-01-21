@@ -28,7 +28,7 @@ public class NFNotaInfoInformacoesAdicionais extends DFBase {
     private List<NFNotaInfoProcessoReferenciado> processosRefenciado;
 
     @Element(name = "tpAto", required = false)
-    private NFTipoAtoConcessorio tipoAtoconcessorio;
+    private NFTipoAtoConcessorio tipoAtoConcessorio;
 
     public void setInformacoesAdicionaisInteresseFisco(final String informacoesAdicionaisInteresseFisco) {
         DFStringValidador.tamanho2000(informacoesAdicionaisInteresseFisco, "Informacoes Adicionais Interesse Fisco");
@@ -55,8 +55,8 @@ public class NFNotaInfoInformacoesAdicionais extends DFBase {
         this.processosRefenciado = processosRefenciado;
     }
 
-    public void setTipoAtoconcessorio(NFTipoAtoConcessorio tipoAtoconcessorio) {
-        this.tipoAtoconcessorio = tipoAtoconcessorio;
+    public void setTipoAtoConcessorio(NFTipoAtoConcessorio tipoAtoConcessorio) {
+        this.tipoAtoConcessorio = tipoAtoConcessorio;
     }
 
     public String getInformacoesAdicionaisInteresseFisco() {
@@ -79,7 +79,7 @@ public class NFNotaInfoInformacoesAdicionais extends DFBase {
         return this.processosRefenciado;
     }
 
-    public NFTipoAtoConcessorio getTipoAtoconcessorio() {
-        return tipoAtoconcessorio;
+    public NFTipoAtoConcessorio getTipoAtoConcessorio() {
+        return tipoAtoConcessorio;
     }
 }

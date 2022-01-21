@@ -78,7 +78,7 @@ public class NFNotaInfo extends DFBase {
     private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
 
     @Element(name="infSolicNFF", required = false)
-    private NFInfoSolicNFF informacaoSolicitacaoNFF;
+    private NFInfoSolicitacaoNFF informacaoSolicitacaoNFF;
 
     /**
      * Pega a chave de acesso a partir do identificador.
@@ -184,7 +184,7 @@ public class NFNotaInfo extends DFBase {
         return this;
     }
 
-    public void setInformacaoSolicitacaoNFF(NFInfoSolicNFF informacaoSolicitacaoNFF) {
+    public void setInformacaoSolicitacaoNFF(NFInfoSolicitacaoNFF informacaoSolicitacaoNFF) {
         this.informacaoSolicitacaoNFF = informacaoSolicitacaoNFF;
     }
 
@@ -256,7 +256,7 @@ public class NFNotaInfo extends DFBase {
         return this.informacaoResposavelTecnico;
     }
 
-    public NFInfoSolicNFF getInformacaoSolicitacaoNFF() {
+    public NFInfoSolicitacaoNFF getInformacaoSolicitacaoNFF() {
         return informacaoSolicitacaoNFF;
     }
 

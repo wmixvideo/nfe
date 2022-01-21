@@ -18,19 +18,21 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-public class NFInfoSolicNFF extends DFBase {
+@Root(name = "infSolicNFF")
+public class NFInfoSolicitacaoNFF extends DFBase {
 
     @Element(name="xSolic", required = true)
-    protected String xSolic;
+    protected String solicitacao;
 
-    public String getXSolic() {
-        return xSolic;
+    public String getSolicitacao() {
+        return solicitacao;
     }
 
-    public void setXSolic(String xSolic) {
-        DFStringValidador.tamanho2ate60(xSolic, "xSolic");
-        this.xSolic = xSolic;
+    public void setSolicitacao(String solicitacao) {
+        DFStringValidador.tamanho2ate60(solicitacao, "xSolic");
+        this.solicitacao = solicitacao;
     }
     
 }

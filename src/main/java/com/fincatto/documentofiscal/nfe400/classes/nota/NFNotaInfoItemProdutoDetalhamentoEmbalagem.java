@@ -32,9 +32,9 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
         return volumeProdutoEmbalagem;
     }
 
-    public void setVolumeProdutoEmbalagem(final BigDecimal quantidade) {
-        this.volumeProdutoEmbalagem = DFBigDecimalValidador.tamanho11Com3CasasDecimais(quantidade, "Quantidade Medicamento");
-        this.volumeProdutoEmbalagem = volumeProdutoEmbalagem;
+    public void setVolumeProdutoEmbalagem(final BigDecimal volumeProdutoEmbalagem) {
+        this.volumeProdutoEmbalagem = DFBigDecimalValidador.tamanho11Com3CasasDecimais(volumeProdutoEmbalagem, "Volume produto embalagem");
+        this.volumeProdutoEmbalagem = this.volumeProdutoEmbalagem;
     }
 
     public String getUnidadeMedidaEmbalagem() {
