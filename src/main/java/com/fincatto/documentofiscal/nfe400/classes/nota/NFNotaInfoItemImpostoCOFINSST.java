@@ -24,6 +24,9 @@ public class NFNotaInfoItemImpostoCOFINSST extends DFBase {
     @Element(name = "vCOFINS")
     private String valorCOFINS;
 
+    @Element(name = "indSomaCOFINSST", required = false)
+    private NFIndicadorSomaCofinsST indicadorSomaCOFINSST;
+
     public NFNotaInfoItemImpostoCOFINSST() {
         this.valorBaseCalculo = null;
         this.percentualAliquota = null;
@@ -64,6 +67,10 @@ public class NFNotaInfoItemImpostoCOFINSST extends DFBase {
         this.valorCOFINS = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo COFINS ST Item");
     }
 
+    public void setIndicadorSomaCOFINSST(NFIndicadorSomaCofinsST indicadorSomaCOFINSST) {
+        this.indicadorSomaCOFINSST = indicadorSomaCOFINSST;
+    }
+
     public String getValorBaseCalculo() {
         return this.valorBaseCalculo;
     }
@@ -82,5 +89,9 @@ public class NFNotaInfoItemImpostoCOFINSST extends DFBase {
 
     public String getValorCOFINS() {
         return this.valorCOFINS;
+    }
+
+    public NFIndicadorSomaCofinsST getIndicadorSomaCOFINSST() {
+        return indicadorSomaCOFINSST;
     }
 }

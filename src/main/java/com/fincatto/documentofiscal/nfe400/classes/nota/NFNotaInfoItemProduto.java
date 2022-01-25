@@ -16,17 +16,20 @@ import java.util.List;
 
 public class NFNotaInfoItemProduto extends DFBase {
     private static final long serialVersionUID = -2271625077897052364L;
-    
+
     @Element(name = "cProd")
     private String codigo;
 
     @Element(name = "cEAN", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
-    private String codigoDeBarras;
-    
+    private String codigoDeBarrasGtin;
+
+    @Element(name = "cBarra", required = false)
+    private String codigoDeBarrasDiferenteGtin;
+
     @Element(name = "xProd")
     private String descricao;
-    
+
     @Element(name = "NCM")
     private String ncm;
 
@@ -47,32 +50,35 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "EXTIPI", required = false)
     private String extipi;
-    
+
     @Element(name = "CFOP")
     private String cfop;
-    
+
     @Element(name = "uCom")
     private String unidadeComercial;
-    
+
     @Element(name = "qCom")
     private String quantidadeComercial;
-    
+
     @Element(name = "vUnCom")
     private String valorUnitario;
-    
+
     @Element(name = "vProd")
     private String valorTotalBruto;
 
     @Element(name = "cEANTrib", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
-    private String codigoDeBarrasTributavel;
-    
+    private String codigoDeBarrasGtinTributavel;
+
+    @Element(name = "cBarraTrib", required = false)
+    private String codigoDeBarrasDiferenteGtinTributavel;
+
     @Element(name = "uTrib")
     private String unidadeTributavel;
-    
+
     @Element(name = "qTrib")
     private String quantidadeTributavel;
-    
+
     @Element(name = "vUnTrib")
     private String valorUnitarioTributavel;
 
@@ -87,7 +93,7 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "vOutro", required = false)
     private String valorOutrasDespesasAcessorias;
-    
+
     @Element(name = "indTot")
     private NFProdutoCompoeValorNota compoeValorNota;
 
@@ -129,9 +135,21 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.codigo = codigo;
     }
 
+    /**
+     * @deprecated  substituido por {@link #setCodigoDeBarrasGtin()}
+     */
+    @Deprecated
     public void setCodigoDeBarras(final String codigoDeBarras) {
-        DFStringValidador.codigoDeBarras(codigoDeBarras);
-        this.codigoDeBarras = codigoDeBarras;
+        this.setCodigoDeBarrasGtin(codigoDeBarras);
+    }
+
+    public void setCodigoDeBarrasGtin(final String codigoDeBarrasGtin) {
+        DFStringValidador.codigoDeBarras(codigoDeBarrasGtin);
+        this.codigoDeBarrasGtin = codigoDeBarrasGtin;
+    }
+
+    public void setCodigoDeBarrasDiferenteGtin(String codigoDeBarrasDiferenteGtin) {
+        this.codigoDeBarrasDiferenteGtin = codigoDeBarrasDiferenteGtin;
     }
 
     public void setDescricao(final String descricao) {
@@ -171,9 +189,21 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.valorTotalBruto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
     }
 
-    public void setCodigoDeBarrasTributavel(final String codigoDeBarrasTributavel) {
-        DFStringValidador.codigoDeBarras(codigoDeBarrasTributavel);
-        this.codigoDeBarrasTributavel = codigoDeBarrasTributavel;
+    /**
+     * @deprecated  substituido por {@link #setCodigoDeBarrasGtinTributavel()}
+     */
+    @Deprecated
+    public void setCodigoDeBarrasTributavel(final String codigoDeBarras) {
+        this.setCodigoDeBarrasGtinTributavel(codigoDeBarras);
+    }
+
+    public void setCodigoDeBarrasGtinTributavel(final String codigoDeBarrasGtinTributavel) {
+        DFStringValidador.codigoDeBarras(codigoDeBarrasGtinTributavel);
+        this.codigoDeBarrasGtinTributavel = codigoDeBarrasGtinTributavel;
+    }
+
+    public void setCodigoDeBarrasDiferenteGtinTributavel(String codigoDeBarrasDiferenteGtinTributavel) {
+        this.codigoDeBarrasDiferenteGtinTributavel = codigoDeBarrasDiferenteGtinTributavel;
     }
 
     public void setUnidadeTributavel(final String unidadeTributavel) {
@@ -303,8 +333,20 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.codigo;
     }
 
+    public String getCodigoDeBarrasGtin() {
+        return this.codigoDeBarrasGtin == null ? "SEM GTIN" : this.codigoDeBarrasGtin;
+    }
+
+    /**
+     * @deprecated  substituido por {@link #getCodigoDeBarrasGtin()}
+     */
+    @Deprecated
     public String getCodigoDeBarras() {
-        return this.codigoDeBarras == null ? "SEM GTIN" : this.codigoDeBarras;
+        return this.getCodigoDeBarrasGtin();
+    }
+
+    public String getCodigoDeBarrasDiferenteGtin() {
+        return codigoDeBarrasDiferenteGtin;
     }
 
     public String getDescricao() {
@@ -347,8 +389,20 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.valorTotalBruto;
     }
 
+    /**
+     * @deprecated  substituido por {@link #getCodigoDeBarrasGtinTributavel()}
+     */
+    @Deprecated
     public String getCodigoDeBarrasTributavel() {
-        return this.codigoDeBarrasTributavel == null ? "SEM GTIN" : this.codigoDeBarrasTributavel;
+        return this.getCodigoDeBarrasGtinTributavel();
+    }
+
+    public String getCodigoDeBarrasGtinTributavel() {
+        return this.codigoDeBarrasGtinTributavel == null ? "SEM GTIN" : this.codigoDeBarrasGtinTributavel;
+    }
+
+    public String getCodigoDeBarrasDiferenteGtinTributavel() {
+        return codigoDeBarrasDiferenteGtinTributavel;
     }
 
     public String getUnidadeTributavel() {

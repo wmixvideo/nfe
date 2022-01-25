@@ -1,10 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
@@ -66,6 +63,12 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
 
     @Element(name = "vFCPST", required = false)
     private String valorFundoCombatePobrezaST;
+
+    @Element(name = "vICMSSTDeson", required = false)
+    private String valorICMSSTDesonerado;
+
+    @Element(name = "motDesICMSST", required = false)
+    private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -145,6 +148,14 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
         this.valorFundoCombatePobrezaST = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFundoCombatePobrezaST, "Valor fundo combate pobreza ST");
     }
 
+    public void setValorICMSSTDesonerado(BigDecimal valorICMSSTDesonerado) {
+        this.valorICMSSTDesonerado = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSSTDesonerado, "Valor do ICMS-ST desonerado");
+    }
+
+    public void setMotivoDesoneracaoICMSST(NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST) {
+        this.motivoDesoneracaoICMSST = motivoDesoneracaoICMSST;
+    }
+
     public NFOrigem getOrigem() {
         return this.origem;
     }
@@ -215,5 +226,13 @@ public class NFNotaInfoItemImpostoICMS10 extends DFBase {
 
     public String getValorFundoCombatePobrezaST() {
         return this.valorFundoCombatePobrezaST;
+    }
+
+    public String getValorICMSSTDesonerado() {
+        return valorICMSSTDesonerado;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoICMSST() {
+        return motivoDesoneracaoICMSST;
     }
 }

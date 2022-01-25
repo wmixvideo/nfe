@@ -121,6 +121,19 @@ public class NFNotaInfoItemImpostoPISSTTest {
     }
 
     @Test
+    public void deveGerarXMLDeAcordoComOPadraoEstabelecidoIndicadorSoma() {
+        final NFNotaInfoItemImpostoPISST compoeValor = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST();
+        compoeValor.setIndicadorSomaPISST(NFIndicadorSomaPISST.COMPOE_VALOR_TOTAL);
+        final String xmlEsperado = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS><indSomaPISST>1</indSomaPISST></NFNotaInfoItemImpostoPISST>";
+        Assert.assertEquals(xmlEsperado, compoeValor.toString());
+
+        final NFNotaInfoItemImpostoPISST naoCompoeValor = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST();
+        naoCompoeValor.setIndicadorSomaPISST(NFIndicadorSomaPISST.NAO_COMPOE_VALOR_TOTAL);
+        final String xmlEsperadoII = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS><indSomaPISST>0</indSomaPISST></NFNotaInfoItemImpostoPISST>";
+        Assert.assertEquals(xmlEsperadoII, naoCompoeValor.toString());
+    }
+
+    @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoQuantidadeVendaAliquota() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></NFNotaInfoItemImpostoPISST>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST().toString());
