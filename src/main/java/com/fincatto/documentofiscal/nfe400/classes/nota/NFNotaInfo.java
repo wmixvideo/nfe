@@ -1,14 +1,19 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
-import org.simpleframework.xml.*;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Root(name = "infNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -56,8 +61,8 @@ public class NFNotaInfo extends DFBase {
     @Element(name = "cobr", required = false)
     private NFNotaInfoCobranca cobranca;
 
-    @Element(name = "pag")
-    private NFNotaInfoPagamento pagamento;
+    @ElementList(entry = "pag", inline = true, required = false)
+    private List <NFNotaInfoPagamento> pagamentos;
     
     @Element(name="infIntermed", required = false)
     private NFInformacaoIntermediador infIntermed;
@@ -171,8 +176,8 @@ public class NFNotaInfo extends DFBase {
         this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
     }
 
-    public void setPagamento(final NFNotaInfoPagamento pagamento) {
-        this.pagamento = pagamento;
+    public void setPagamentos(final List<NFNotaInfoPagamento> pagamentos) {
+        this.pagamentos = pagamentos;
     }
     
     public void setInfIntermed(final NFInformacaoIntermediador infIntermed) {
@@ -212,7 +217,7 @@ public class NFNotaInfo extends DFBase {
         return this.pessoasAutorizadasDownloadNFe;
     }
 
-    public List<NFNotaInfoItem> getItens() {
+    public List <NFNotaInfoItem> getItens() {
         return this.itens;
     }
 
@@ -228,8 +233,8 @@ public class NFNotaInfo extends DFBase {
         return this.cobranca;
     }
 
-    public NFNotaInfoPagamento getPagamento() {
-        return this.pagamento;
+    public List <NFNotaInfoPagamento> getPagamentos() {
+        return this.pagamentos;
     }
     
     public NFInformacaoIntermediador getInfIntermed() {
