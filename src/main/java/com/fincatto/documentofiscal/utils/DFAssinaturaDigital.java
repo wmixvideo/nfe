@@ -39,7 +39,7 @@ public class DFAssinaturaDigital implements DFLog {
         this.config = config;
     }
 
-    public boolean isValida(final InputStream xmlStream) throws Exception {
+    public static boolean isValida(final InputStream xmlStream) throws Exception {
         final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
 
