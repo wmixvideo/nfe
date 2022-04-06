@@ -102,6 +102,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho1ate8(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 1, 8, info);
+        }
+    }
+
     public static void tamanho2ate60(final String string, final String info) {
         if (string != null) {
             DFStringValidador.intervalo(string, 2, 60, info);
@@ -117,6 +123,12 @@ public abstract class DFStringValidador {
     public static void tamanho2ate255(final String string, final String info) {
         if (string != null) {
             DFStringValidador.intervalo(string, 2, 255, info);
+        }
+    }
+
+    public static void tamanho2ate2000(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 2, 2000, info);
         }
     }
 
