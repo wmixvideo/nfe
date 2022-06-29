@@ -246,7 +246,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>0.8.8</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -272,7 +272,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.12</version>
+                        <version>1.6.13</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -328,7 +328,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.3.2</version>
+                        <version>3.4.0</version>
                         <configuration>
                             <additionalparam>-Xdoclint:none</additionalparam>
                             <failOnError>false</failOnError>
@@ -346,7 +346,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
+                        <version>3.0.0-M7</version>
                     </plugin>
                 </plugins>
             </build>
