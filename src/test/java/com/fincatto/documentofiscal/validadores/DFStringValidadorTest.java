@@ -415,6 +415,9 @@ public class DFStringValidadorTest {
         DFStringValidador.exatamente7("1234567", "");
         DFStringValidador.exatamente8("12345678", "");
         DFStringValidador.exatamente9("123456789", "");
+        DFStringValidador.codigoProdutoAnvisa("ISENTO", "");
+        DFStringValidador.codigoProdutoAnvisa("12345678901", "");
+        DFStringValidador.codigoProdutoAnvisa("1234567890123", "");
         DFStringValidador.exatamente13("1234567890123", "");
         DFStringValidador.exatamente17("12345678901234567", "");
         DFStringValidador.exatamente21("123456789012345678901", "");

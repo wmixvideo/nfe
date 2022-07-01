@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -317,6 +318,22 @@ public abstract class DFStringValidador {
     public static void exatamente13(final String string, final String info) {
         if (string != null) {
             DFStringValidador.validaTamanhoExato(string, 13, info);
+        }
+    }
+
+    public static void codigoProdutoAnvisa(final String string, final String info) {
+        if (string != null) {
+            if (string.toUpperCase().matches("[A-Z]*")) {
+                if (!Objects.equals(string.toUpperCase(), "ISENTO")) {
+                    throw new IllegalStateException(String.format("C\u00f3digo produto anvisa (%s) diferente de ISENTO", string));
+                }
+            } else {
+                if (string.length() <= 11) {
+                    DFStringValidador.validaTamanhoExato(string, 11, info);
+                } else {
+                    DFStringValidador.validaTamanhoExato(string, 13, info);
+                }
+            }
         }
     }
 
