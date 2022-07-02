@@ -29,7 +29,7 @@ public class NFNotaInfoItemProdutoMedicamento extends DFBase {
     }
     
     public NFNotaInfoItemProdutoMedicamento setCodigoProdutoAnvisa(final String codigoProdutoAnvisa) {
-        DFStringValidador.exatamente13(codigoProdutoAnvisa, "C\u00f3digo produto anvisa");
+        DFStringValidador.codigoProdutoAnvisa(codigoProdutoAnvisa, "C\u00f3digo produto anvisa");
         this.codigoProdutoAnvisa = codigoProdutoAnvisa;
         return this;
     }
