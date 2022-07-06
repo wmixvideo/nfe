@@ -273,11 +273,11 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>2.5.3</version>
                         <configuration>
+                            <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
                             <tagNameFormat>v@{project.version}</tagNameFormat>
                             <remoteTagging>false</remoteTagging>
-                            <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -293,24 +293,23 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.3.2</version>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                            <failOnError>false</failOnError>
-                            <doclint>none</doclint>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-javadoc-plugin</artifactId>-->
+<!--                        <version>3.4.0</version>-->
+<!--                        <configuration>-->
+<!--                            <failOnError>false</failOnError>-->
+<!--                            <doclint>none</doclint>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>attach-javadocs</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>jar</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
