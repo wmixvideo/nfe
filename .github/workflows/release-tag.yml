@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHUB_PAT }}
 
       - name: Install Java and Maven
         uses: actions/setup-java@v3
