@@ -6,6 +6,10 @@ on:
       - main
     tags:
       - v*
+  workflow_run:
+    workflows: ["Release Master"]
+    types:
+      - completed
 
 jobs:
   release:
@@ -13,8 +17,11 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHUB_PAT }}
+        with:
+          fetch-depth: 0
+      
+      - name: 'Get Previous tag'
+        id: previoustag
 
       - name: Install Java and Maven
         uses: actions/setup-java@v3
@@ -33,10 +40,10 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GHUB_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.previoustag.outputs.tag }}
+          release_name: Release ${{ steps.previoustag.outputs.tag }}
           draft: false
           prerelease: false
 
@@ -44,7 +51,7 @@ jobs:
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GHUB_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: nfe.zip
