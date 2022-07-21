@@ -6,6 +6,10 @@ on:
       - main
     tags:
       - v**
+  workflow_run:
+    workflows: ["Release Master"]
+    types:
+      - completed
 
 jobs:
   release:
