@@ -1,11 +1,6 @@
 name: "Release Tag"
 
 on:
-  push:
-    branches:    
-      - main
-    tags:
-      - v*
   workflow_run:
     workflows: ["Release Master"]
     types:
