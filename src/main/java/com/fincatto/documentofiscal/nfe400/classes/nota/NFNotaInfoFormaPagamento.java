@@ -15,7 +15,7 @@ public class NFNotaInfoFormaPagamento extends DFBase {
     @Element(name = "indPag", required = false)
     private NFIndicadorFormaPagamento indicadorFormaPagamento;
 
-    @Element(name = "tPag", required = false)
+    @Element(name = "tPag")
     private NFMeioPagamento meioPagamento;
 
     @Element(name = "xPag", required = false)

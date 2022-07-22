@@ -5,11 +5,9 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "evento")
 public class NFEventoManifestacaoDestinatario extends DFBase {
     private static final long serialVersionUID = 4608659349977367804L;
     
