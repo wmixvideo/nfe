@@ -236,7 +236,7 @@
             <distributionManagement>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/wmixlabs/poi-fluent</url>
+                    <url>https://maven.pkg.github.com/wmixvideo/nfe</url>
                 </repository>
             </distributionManagement>
         </profile>
