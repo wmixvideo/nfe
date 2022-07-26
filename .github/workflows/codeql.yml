@@ -24,18 +24,18 @@ jobs:
         language: [ 'java' ]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
 
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+      # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+      # If this step fails, then you should remove it and run the build manually (see below)
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
