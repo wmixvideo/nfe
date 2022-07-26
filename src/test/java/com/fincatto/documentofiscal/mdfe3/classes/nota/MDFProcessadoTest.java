@@ -35,13 +35,7 @@ public class MDFProcessadoTest {
     }
 
     @Test
-    public void deveValidarMDFeProcessado() {
-        try {
-            boolean a = DFXMLValidador.validaMDFeProcessado(xmlActual.replace("schemaLocation=\"\" ", ""));
-            Assert.assertEquals(true, a);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            Assert.fail("Validacao do MDFe processado falhou");
-        }
+    public void deveValidarMDFeProcessado() throws Exception {
+        Assert.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlActual.replace("schemaLocation=\"\" ", "")));
     }
 }
