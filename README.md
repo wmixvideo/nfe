@@ -2,8 +2,7 @@ Nota Fiscal Eletrônica
 ===
 Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
 [![Java CI](https://github.com/wmixvideo/nfe/workflows/Java%20CI/badge.svg)](https://github.com/wmixvideo/nfe/workflows/Java%20CI/badge.svg)
-[![Build Status](https://travis-ci.org/wmixvideo/nfe.svg?branch=master)](http://travis-ci.org/#!/wmixvideo/nfe)
-[![Coverage Status](https://coveralls.io/repos/wmixvideo/nfe/badge.svg?branch=master&service=github)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/wmixvideo/nfe/badge.svg?branch=master)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wmixvideo/nfe)](https://search.maven.org/artifact/com.github.wmixvideo/nfe)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 

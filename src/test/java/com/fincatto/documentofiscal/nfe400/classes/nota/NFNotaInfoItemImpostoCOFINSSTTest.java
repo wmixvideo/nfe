@@ -39,4 +39,16 @@ public class NFNotaInfoItemImpostoCOFINSSTTest {
         final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS></NFNotaInfoItemImpostoCOFINSST>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST().toString());
     }
+
+    @Test
+    public void deveGerarXMLIndicacaoSomaConfins() {
+        final NFNotaInfoItemImpostoCOFINSST impostoCOFINSST = FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST();
+        impostoCOFINSST.setIndicadorSomaCOFINSST(NFIndicadorSomaCofinsST.COMPOE_VALOR_TOTAL);
+        final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS><indSomaCOFINSST>1</indSomaCOFINSST></NFNotaInfoItemImpostoCOFINSST>";
+        Assert.assertEquals(xmlEsperado, impostoCOFINSST.toString());
+
+        impostoCOFINSST.setIndicadorSomaCOFINSST(NFIndicadorSomaCofinsST.NAO_COMPOE_VALOR_TOTAL);
+        final String xmlEsperadoII = "<NFNotaInfoItemImpostoCOFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS><indSomaCOFINSST>0</indSomaCOFINSST></NFNotaInfoItemImpostoCOFINSST>";
+        Assert.assertEquals(xmlEsperadoII, impostoCOFINSST.toString());
+    }
 }

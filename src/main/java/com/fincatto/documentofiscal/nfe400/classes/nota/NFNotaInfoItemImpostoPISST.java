@@ -24,6 +24,9 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
     @Element(name = "vPIS")
     private String valorTributo;
 
+    @Element(name = "indSomaPISST", required = false)
+    private NFIndicadorSomaPISST indicadorSomaPISST;
+
     public NFNotaInfoItemImpostoPISST() {
         this.valorBaseCalculo = null;
         this.percentualAliquota = null;
@@ -64,6 +67,10 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
         this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor Tributo PIS ST Item");
     }
 
+    public void setIndicadorSomaPISST(NFIndicadorSomaPISST indicadorSomaPISST) {
+        this.indicadorSomaPISST = indicadorSomaPISST;
+    }
+
     public String getValorBaseCalculo() {
         return this.valorBaseCalculo;
     }
@@ -82,5 +89,9 @@ public class NFNotaInfoItemImpostoPISST extends DFBase {
 
     public String getValorTributo() {
         return this.valorTributo;
+    }
+
+    public NFIndicadorSomaPISST getIndicadorSomaPISST() {
+        return indicadorSomaPISST;
     }
 }

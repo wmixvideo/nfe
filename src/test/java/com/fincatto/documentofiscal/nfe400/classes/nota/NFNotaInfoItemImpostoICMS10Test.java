@@ -1,9 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.*;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -348,8 +345,10 @@ public class NFNotaInfoItemImpostoICMS10Test {
         icms10.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
         icms10.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
         icms10.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+        icms10.setValorICMSSTDesonerado(new BigDecimal("999999999999.99"));
+        icms10.setMotivoDesoneracaoICMSST(NFNotaMotivoDesoneracaoICMS.PRODUTOR_AGROPECUARIO);
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS10><orig>0</orig><CST>30</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><modBCST>5</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><vBCFCPST>999999999999.99</vBCFCPST><pFCPST>99.99</pFCPST><vFCPST>999999999999.99</vFCPST></NFNotaInfoItemImpostoICMS10>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS10><orig>0</orig><CST>30</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><modBCST>5</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><vBCFCPST>999999999999.99</vBCFCPST><pFCPST>99.99</pFCPST><vFCPST>999999999999.99</vFCPST><vICMSSTDeson>999999999999.99</vICMSSTDeson><motDesICMSST>3</motDesICMSST></NFNotaInfoItemImpostoICMS10>";
         Assert.assertEquals(xmlEsperado, icms10.toString());
     }
 }

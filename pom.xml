@@ -3,7 +3,7 @@
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
-    <version>3.0.68-SNAPSHOT</version>
+    <version>3.1.28-SNAPSHOT</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -28,7 +28,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <axis2.version>1.6.4</axis2.version>
-        <slf4j.version>1.7.32</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <junit.version>4.13.2</junit.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
@@ -126,21 +126,6 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/releases</url>
-        </repository>
-        <!--        <repository>-->
-        <!--            <id>github</id>-->
-        <!--            <url>https://maven.pkg.github.com/wmixvideo/nfe</url>-->
-        <!--        </repository>-->
-    </distributionManagement>
-
     <build>
         <resources>
             <resource>
@@ -182,7 +167,7 @@
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -214,7 +199,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>0.8.8</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -234,13 +219,35 @@
 
     <profiles>
         <profile>
+            <id>central</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/releases</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>github</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/wmixvideo/nfe</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
             <id>deploy</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
+                        <version>1.6.13</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -273,11 +280,11 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>2.5.3</version>
                         <configuration>
+                            <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
                             <tagNameFormat>v@{project.version}</tagNameFormat>
                             <remoteTagging>false</remoteTagging>
-                            <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -296,9 +303,8 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.3.1</version>
+                        <version>3.4.0</version>
                         <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
                             <failOnError>false</failOnError>
                             <doclint>none</doclint>
                         </configuration>
@@ -314,7 +320,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
+                        <version>3.0.0-M7</version>
                     </plugin>
                 </plugins>
             </build>

@@ -209,6 +209,7 @@ public enum NFRetornoStatus {
     CODIGO_438(438, "Rejei\u00e7\u00e3o: Obrigat\u00f3ria as informa\u00e7\u00f5es do intermediador da transa\u00e7\u00e3o para opera\u00e7\u00e3o por site de terceiros"),
     CODIGO_439(439, "Rejei\u00e7\u00e3o: Informa\u00e7\u00f5es do intermediador da transa\u00e7\u00e3o para opera\u00e7\u00e3o por site de terceiros preenchido indevidamente"),
     CODIGO_440(440, "Rejei\u00e7\u00e3o: CNPJ do intermediador da transa\u00e7\u00e3o inv\u00e1lido"),
+    CODIGO_441(441, "Rejei\u00e7\u00e3o: Descri\u00E7\u00E3o do pagamento obrigatoria para meio de pagamento 99-outros"),
     CODIGO_450(450, "Rejei\u00e7\u00e3o: Modelo da NF-e diferente de 55"),
     CODIGO_451(451, "Rejei\u00e7\u00e3o: Processo de emiss\u00e3o informado inv\u00e1lido"),
     CODIGO_452(452, "Rejei\u00e7\u00e3o: Tipo Autorizador do Recibo diverge do \u00d3rg\u00e3o Autorizador"),
