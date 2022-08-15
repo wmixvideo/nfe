@@ -61,8 +61,8 @@ public class DFUnidadeFederativaTest {
 
         Assert.assertEquals("MG", DFUnidadeFederativa.MG.getCodigo());
         Assert.assertEquals("31", DFUnidadeFederativa.MG.getCodigoIbge());
-        Assert.assertEquals("http://hnfce.fazenda.mg.gov.br/portalnfce", DFUnidadeFederativa.MG.getConsultaChaveAcessoHomologacao());
-        Assert.assertEquals("http://nfce.fazenda.mg.gov.br/portalnfce", DFUnidadeFederativa.MG.getConsultaChaveAcessoProducao());
+        Assert.assertEquals("https://hportalsped.fazenda.mg.gov.br/portalnfce", DFUnidadeFederativa.MG.getConsultaChaveAcessoHomologacao());
+        Assert.assertEquals("https://portalsped.fazenda.mg.gov.br/portalnfce", DFUnidadeFederativa.MG.getConsultaChaveAcessoProducao());
         Assert.assertEquals("https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", DFUnidadeFederativa.MG.getQrCodeHomologacao());
         Assert.assertEquals("https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml", DFUnidadeFederativa.MG.getQrCodeProducao());
 
