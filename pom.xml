@@ -3,7 +3,7 @@
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
-    <version>3.1.34-SNAPSHOT</version>
+    <version>3.1.34</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -20,7 +20,7 @@
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
         <developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v3.1.34</tag>
     </scm>
 
     <properties>
