@@ -48,8 +48,8 @@ public class NFeConfigTeste extends NFeConfig {
     private KeyStore keyStoreCadeia = null;
 
     @Override
-    public NFUnidadeFederativa getCUF() {
-        return NFUnidadeFederativa.SC;
+    public DFUnidadeFederativa getCUF() {
+        return DFUnidadeFederativa.SC;
     }
 
     @Override
