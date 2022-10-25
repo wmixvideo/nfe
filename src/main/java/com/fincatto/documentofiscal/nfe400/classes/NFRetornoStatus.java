@@ -498,6 +498,7 @@ public enum NFRetornoStatus {
     CODIGO_806(806, "Rejei\u00E7\u00E3o: Opera\u00E7\u00E3o com ICMS-ST sem informa\u00E7\u00E3o do CEST"),
     CODIGO_807(807, "Rejei\u00E7\u00E3o: NFC-e com grupo de ICMS para a UF do destinat\u00E1rio"),
     CODIGO_817(817, "Rejei\u00e7\u00e3o: Unidade Tribut\u00e1vel incompat\u00edvel com o NCM informado na opera\u00e7\u00e3o com Comercio Exterior"),
+    CODIGO_845(845, "Rejei\u00E7\u00E3o: O Grupo Transportador nao pode ser preenchido para Modalidade do frete informada"),
     CODIGO_850(850, "Rejei\u00E7\u00E3o: Data de vencimento da parcela n\u00E3o informada ou menor que a Data de vencimento da parcela anterior [nOcor:999]"),
     CODIGO_851(851, "Rejei\u00E7\u00E3o: Soma do valor das parcelas difere do Valor L\u00EDquido da Fatura"),
     CODIGO_852(852, "Rejei\u00E7\u00E3o: N\u00FAmero da parcela inv\u00E1lido ou n\u00E3o informado [nOcor:999]"),
