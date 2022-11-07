@@ -6,7 +6,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
  * Retorno do envio de Lote MDF-e.
  *
  */
-public class MDFEnvioLoteRetornoDados {
+public class MDFEnvioLoteRetornoDados extends DFBase {
 
     private final MDFEnvioLoteRetorno retorno;
     private final MDFEnvioLote loteAssinado;
