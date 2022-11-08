@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.lote.envio;
 
+import com.fincatto.documentofiscal.DFBase;
+
 /**
  * Created by Eldevan Nery Junior on 14/11/17.
  *
