@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import java.util.List;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFCategoriaCombinacaoVeicular;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -24,11 +26,25 @@ public class MDFInfoModalRodoviarioPedagio extends DFBase {
     @ElementList(entry = "disp", inline = true)
     private List<MDFInfoModalRodoviarioPedagioDisp> dispositivos;
 
+    /**
+     * Categoria de combinação veicular.
+     */
+    @Element(name = "categCombVeic", required = false)
+    private MDFCategoriaCombinacaoVeicular categoriaCombinacaoVeicular;
+
     public List<MDFInfoModalRodoviarioPedagioDisp> getDispositivos() {
         return this.dispositivos;
     }
 
     public void setDispositivos(final List<MDFInfoModalRodoviarioPedagioDisp> dispositivos) {
         this.dispositivos = DFListValidador.validaListaObrigatoria(dispositivos, "Dispositivos do Vale Pedagio");
+    }
+
+    public MDFCategoriaCombinacaoVeicular getCategoriaCombinacaoVeicular() {
+        return categoriaCombinacaoVeicular;
+    }
+
+    public void setCategoriaCombinacaoVeicular(MDFCategoriaCombinacaoVeicular categoriaCombinacaoVeicular) {
+        this.categoriaCombinacaoVeicular = categoriaCombinacaoVeicular;
     }
 }
