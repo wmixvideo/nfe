@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
@@ -48,6 +49,13 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
      */
     @Element(name = "vValePed")
     private String valor;
+
+    /**
+     * <h1>Tipo vale pedágio</h1>
+     */
+    @Element(name = "tpValePed", required = false)
+    private MDFTipoValePedagio tipoValePedagio;
+
 
     public String getCnpjFornecedora() {
         return this.cnpjFornecedora;
@@ -97,5 +105,13 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
         }
         DFStringValidador.cpf(cpfPagadora);
         this.cpfPagadora = cpfPagadora;
+    }
+
+    public MDFTipoValePedagio getTipoValePedagio() {
+        return tipoValePedagio;
+    }
+
+    public void setTipoValePedagio(MDFTipoValePedagio tipoValePedagio) {
+        this.tipoValePedagio = tipoValePedagio;
     }
 }
