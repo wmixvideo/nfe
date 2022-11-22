@@ -82,9 +82,7 @@ public class NFNotaInfoItemImpostoICMSSN202 extends DFBase {
     }
 
     public void setPercentualFundoCombatePobrezaST(final BigDecimal percentualFundoCombatePobrezaST) {
-        if (percentualFundoCombatePobrezaST.signum() <= 0) {
-            throw new IllegalStateException("Percentual fundo de combate a pobreza precisa ser maior que zero!");
-        }
+        
         this.percentualFundoCombatePobrezaST = BigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFundoCombatePobrezaST, "Percentual fundo combate pobreza ST");
     }
 
