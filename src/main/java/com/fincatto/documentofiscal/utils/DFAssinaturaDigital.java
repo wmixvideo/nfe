@@ -28,13 +28,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.security.*;
 import java.security.cert.X509Certificate;
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
-=======
 import java.util.*;
 
 public class DFAssinaturaDigital implements DFLog {
@@ -131,7 +124,6 @@ public class DFAssinaturaDigital implements DFLog {
     }
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
-
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
         if (StringUtils.isNotBlank(config.getCertificadoAlias())) {
             this.getLogger().debug("Usando alias informado: '{}'", config.getCertificadoAlias());
