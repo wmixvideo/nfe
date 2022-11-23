@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.*;
 
 public class DFAssinaturaDigital implements DFLog {
->>>>>>> 6ca9434eceed9b2cec927a0d291821a4f477ee40
 
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
     private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte"};
@@ -132,20 +131,7 @@ public class DFAssinaturaDigital implements DFLog {
     }
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
-<<<<<<< HEAD
-		final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
 
-		KeyStore ks = config.getCertificadoKeyStore();
-		for (Enumeration<String> e = ks.aliases(); e.hasMoreElements();) {
-			String alias = e.nextElement();
-			if (ks.isKeyEntry(alias)) {
-				return (KeyStore.PrivateKeyEntry) ks.getEntry(alias, passwordProtection);
-			}
-		}
-
-		throw new RuntimeException("Não foi possível encontrar a chave privada do certificado");
-	}
-=======
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
         if (StringUtils.isNotBlank(config.getCertificadoAlias())) {
             this.getLogger().debug("Usando alias informado: '{}'", config.getCertificadoAlias());
@@ -162,7 +148,6 @@ public class DFAssinaturaDigital implements DFLog {
             throw new KeyStoreException("N\u00E3o foi poss\u00EDvel encontrar a chave privada do certificado!");
         }
     }
->>>>>>> 6ca9434eceed9b2cec927a0d291821a4f477ee40
 
     public String assinarString(final String string) throws Exception {
         final byte[] buffer = string.getBytes();
