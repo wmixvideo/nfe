@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -23,20 +23,20 @@ public class NFNotaInfoFatura extends DFBase {
     private String valorLiquidoFatura;
 
     public void setNumeroFatura(final String numeroFatura) {
-        StringValidador.tamanho60(numeroFatura, "Numero Fatura");
+        DFStringValidador.tamanho60(numeroFatura, "Numero Fatura");
         this.numeroFatura = numeroFatura;
     }
 
     public void setValorOriginalFatura(final BigDecimal valorOriginalFatura) {
-        this.valorOriginalFatura = BigDecimalValidador.tamanho15Com2CasasDecimais(valorOriginalFatura, "Valor Original Fatura");
+        this.valorOriginalFatura = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorOriginalFatura, "Valor Original Fatura");
     }
 
     public void setValorDesconto(final BigDecimal valorDesconto) {
-        this.valorDesconto = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Fatura");
+        this.valorDesconto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorDesconto, "Valor Desconto Fatura");
     }
 
     public void setValorLiquidoFatura(final BigDecimal valorLiquidoFatura) {
-        this.valorLiquidoFatura = BigDecimalValidador.tamanho15Com2CasasDecimais(valorLiquidoFatura, "Valor Liquido Fatura");
+        this.valorLiquidoFatura = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorLiquidoFatura, "Valor Liquido Fatura");
     }
 
     public String getValorOriginalFatura() {

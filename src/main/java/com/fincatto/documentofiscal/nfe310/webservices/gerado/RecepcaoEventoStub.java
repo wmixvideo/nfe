@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
+
 /*
  * RecepcaoEventoStub java implementation
  */
@@ -54,11 +57,11 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
     private void populateFaults() {
     }
 
-    public RecepcaoEventoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public RecepcaoEventoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
-    public RecepcaoEventoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public RecepcaoEventoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -67,18 +70,11 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
         // Set the soap version
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
+        this.config = config;
     }
 
-    public RecepcaoEventoStub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-        this(configurationContext, "https://nfe.sefazvirtual.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx");
-    }
-
-    public RecepcaoEventoStub() throws org.apache.axis2.AxisFault {
-        this("https://nfe.sefazvirtual.rs.gov.br/ws/recepcaoevento/recepcaoevento.asmx");
-    }
-
-    public RecepcaoEventoStub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public RecepcaoEventoStub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     public RecepcaoEventoStub.NfeRecepcaoEventoResult nfeRecepcaoEvento(final RecepcaoEventoStub.NfeDadosMsg nfeDadosMsg, final RecepcaoEventoStub.NfeCabecMsgE nfeCabecMsg) throws java.rmi.RemoteException {
@@ -89,7 +85,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeRecepcaoEvento")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "nfeRecepcaoEvento"));
@@ -156,6 +152,7 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
     }
 
     private final javax.xml.namespace.QName[] opNameArray = null;
+    private final DFConfig config;
 
     private boolean optimizeContent(final javax.xml.namespace.QName opName) {
         if (this.opNameArray == null) {

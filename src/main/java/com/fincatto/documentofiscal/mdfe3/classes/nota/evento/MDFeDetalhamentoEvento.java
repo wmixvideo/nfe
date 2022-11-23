@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.cancelamento.MDFeEnviaEventoCancelamento;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -35,13 +35,16 @@ public class MDFeDetalhamentoEvento extends DFBase {
 
     @Element(name = "evIncDFeMDFe", required = false)
     private MDFeEnviaEventoIncluirDFe enviaEventoIncluirDFe;
+    
+    @Element(name = "evPagtoOperMDFe", required = false)
+    private MDFeEnviaEventoPagamento enviaEventoPagamento;
 
     public String getVersaoEvento() {
         return this.versaoEvento;
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "versao do Evento");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "versao do Evento");
     }
 
     public MDFeEnviaEventoCancelamento getMdFeEnviaEventoCancelamento() {
@@ -92,4 +95,11 @@ public class MDFeDetalhamentoEvento extends DFBase {
         this.enviaEventoIncluirDFe = enviaEventoIncluirDFe;
     }
 
+    public MDFeEnviaEventoPagamento getEnviaEventoPagamento() {
+        return enviaEventoPagamento;
+    }
+
+    public void setEnviaEventoPagamento(MDFeEnviaEventoPagamento enviaEventoPagamento) {
+        this.enviaEventoPagamento = enviaEventoPagamento;
+    }
 }

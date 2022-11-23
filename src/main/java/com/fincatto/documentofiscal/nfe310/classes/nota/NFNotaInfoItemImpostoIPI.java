@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigIntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigInteger;
@@ -42,27 +42,27 @@ public class NFNotaInfoItemImpostoIPI extends DFBase {
     }
 
     public void setClasseEnquadramento(final String classeEnquadramento) {
-        StringValidador.exatamente5(classeEnquadramento, "Classe Enquadramento IPI Item");
+        DFStringValidador.exatamente5(classeEnquadramento, "Classe Enquadramento IPI Item");
         this.classeEnquadramento = classeEnquadramento;
     }
 
     public void setCnpjProdutor(final String cnpjProdutor) {
-        StringValidador.cnpj(cnpjProdutor);
+        DFStringValidador.cnpj(cnpjProdutor);
         this.cnpjProdutor = cnpjProdutor;
     }
 
     public void setCodigoSelo(final String codigoSelo) {
-        StringValidador.tamanho60(codigoSelo, "Codigo Selo IPI Item");
+        DFStringValidador.tamanho60(codigoSelo, "Codigo Selo IPI Item");
         this.codigoSelo = codigoSelo;
     }
 
     public void setQuantidadeSelo(final BigInteger quantidadeSelo) {
-        BigIntegerValidador.tamanho12(quantidadeSelo, "Quantidade Selo IPI Item");
+        DFBigIntegerValidador.tamanho12(quantidadeSelo, "Quantidade Selo IPI Item");
         this.quantidadeSelo = quantidadeSelo;
     }
 
     public void setCodigoEnquadramento(final String codigoEnquadramento) {
-        StringValidador.exatamente3(codigoEnquadramento, "Codigo Enquadramento IPI Item");
+        DFStringValidador.exatamente3(codigoEnquadramento, "Codigo Enquadramento IPI Item");
         this.codigoEnquadramento = codigoEnquadramento;
     }
 

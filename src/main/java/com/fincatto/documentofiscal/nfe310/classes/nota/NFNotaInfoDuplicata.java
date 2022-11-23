@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ public class NFNotaInfoDuplicata extends DFBase {
     private String valorDuplicata;
 
     public void setNumeroDuplicata(final String numeroDuplicata) {
-        StringValidador.tamanho60(numeroDuplicata, "Numero Duplicata");
+        DFStringValidador.tamanho60(numeroDuplicata, "Numero Duplicata");
         this.numeroDuplicata = numeroDuplicata;
     }
 
@@ -30,7 +30,7 @@ public class NFNotaInfoDuplicata extends DFBase {
     }
 
     public void setValorDuplicata(final BigDecimal valorDuplicata) {
-        this.valorDuplicata = BigDecimalValidador.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
+        this.valorDuplicata = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorDuplicata, "Valor Duplicata");
     }
 
     public String getValorDuplicata() {

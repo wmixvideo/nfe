@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsulta
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.consulta.CteConsultaStub;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -53,7 +54,7 @@ class WSNotaConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         this.getLogger().debug(endpoint);
-        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint).cteConsultaCT(dados, cabecE);
+        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint, config).cteConsultaCT(dados, cabecE);
         return cteConsultaCTResult.getExtraElement();
     }
 

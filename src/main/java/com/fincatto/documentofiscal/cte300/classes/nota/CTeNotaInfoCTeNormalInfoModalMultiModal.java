@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.CTIndicadoNegociavel;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -40,7 +40,7 @@ public class CTeNotaInfoCTeNormalInfoModalMultiModal extends DFBase {
      * Número do Certificado do Operador de Transporte Multimodal
      */
     public void setNumeroCertificado(final String numeroCertificado) {
-        StringValidador.tamanho20(numeroCertificado, "Número do Certificado do Operador de Transporte Multimodal");
+        DFStringValidador.tamanho20(numeroCertificado, "Número do Certificado do Operador de Transporte Multimodal");
         this.numeroCertificado = numeroCertificado;
     }
 

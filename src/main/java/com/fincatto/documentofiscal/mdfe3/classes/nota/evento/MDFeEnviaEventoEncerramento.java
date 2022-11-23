@@ -8,7 +8,7 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 17/11/17.
@@ -43,7 +43,7 @@ public class MDFeEnviaEventoEncerramento extends DFBase {
     private String codigoMunicipio;
 
     public void setProtocoloAutorizacao(final String protocoloAutorizacao) {
-        StringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
+        DFStringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
         this.protocoloAutorizacao = protocoloAutorizacao;
     }
 
@@ -53,7 +53,7 @@ public class MDFeEnviaEventoEncerramento extends DFBase {
 
     public void setDescricaoEvento(final String descricaoEvento) {
         final String defaultValue = "Encerramento";
-        StringValidador.equals(defaultValue, descricaoEvento);
+        DFStringValidador.equals(defaultValue, descricaoEvento);
         this.descricaoEvento = descricaoEvento;
     }
 

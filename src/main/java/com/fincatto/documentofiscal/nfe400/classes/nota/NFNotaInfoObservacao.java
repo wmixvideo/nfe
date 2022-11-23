@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
@@ -15,12 +15,12 @@ public class NFNotaInfoObservacao extends DFBase {
     private String conteudoCampo;
 
     public void setIdentificacaoCampo(final String identificacaoCampo) {
-        StringValidador.tamanho20(identificacaoCampo, "Identificacao Campo Obs");
+        DFStringValidador.tamanho20(identificacaoCampo, "Identificacao Campo Obs");
         this.identificacaoCampo = identificacaoCampo;
     }
 
     public void setConteudoCampo(final String conteudoCampo) {
-        StringValidador.tamanho60(conteudoCampo, "Conteudo Campo Obs");
+        DFStringValidador.tamanho60(conteudoCampo, "Conteudo Campo Obs");
         this.conteudoCampo = conteudoCampo;
     }
 

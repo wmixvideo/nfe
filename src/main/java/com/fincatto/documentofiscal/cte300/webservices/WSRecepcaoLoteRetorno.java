@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub;
 import com.fincatto.documentofiscal.cte300.webservices.retrecepcao.CteRetRecepcaoStub.CteRetRecepcaoResult;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -46,7 +47,7 @@ class WSRecepcaoLoteRetorno implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetRecepcao, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint).cteRetRecepcao(dados, cabecE);
+        final CteRetRecepcaoResult autorizacaoLoteResult = new CteRetRecepcaoStub(endpoint, config).cteRetRecepcao(dados, cabecE);
         return autorizacaoLoteResult.getExtraElement();
     }
     

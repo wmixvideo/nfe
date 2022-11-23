@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTClasseTarifa;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTClasseTarifa;
 
 public class CTClasseTarifaTransformer implements Transform<CTClasseTarifa> {
 

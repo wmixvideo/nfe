@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -43,7 +43,7 @@ public class CTeNotaInfoCTeNormalCobrancaDuplicata extends DFBase {
      * Número da duplicata
      */
     public void setNumero(final String numero) {
-        StringValidador.tamanho60(numero, "Número da duplicata");
+        DFStringValidador.tamanho60(numero, "Número da duplicata");
         this.numero = numero;
     }
 
@@ -66,6 +66,6 @@ public class CTeNotaInfoCTeNormalCobrancaDuplicata extends DFBase {
      * Valor da duplicata
      */
     public void setValor(final BigDecimal valor) {
-        this.valor = BigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor da duplicata");
+        this.valor = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valor, "Valor da duplicata");
     }
 }

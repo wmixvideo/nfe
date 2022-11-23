@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe310.classes.NFEndereco;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 
@@ -47,7 +47,7 @@ public class NFNotaInfoDestinatario extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -55,7 +55,7 @@ public class NFNotaInfoDestinatario extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -73,7 +73,7 @@ public class NFNotaInfoDestinatario extends DFBase {
     }
 
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho60(razaoSocial, "Razao Social Destinatario");
+        DFStringValidador.tamanho60(razaoSocial, "Razao Social Destinatario");
         this.razaoSocial = razaoSocial;
     }
 
@@ -82,23 +82,23 @@ public class NFNotaInfoDestinatario extends DFBase {
     }
 
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public void setInscricaoSuframa(final String inscricaoSuframa) {
-        StringValidador.tamanho8a9N(inscricaoSuframa, "Inscricao Suframa Destinatario");
+        DFStringValidador.tamanho8a9N(inscricaoSuframa, "Inscricao Suframa Destinatario");
         this.inscricaoSuframa = inscricaoSuframa;
     }
 
     public void setEmail(final String email) {
-        StringValidador.tamanho60(email, "Email Destinatario");
+        DFStringValidador.tamanho60(email, "Email Destinatario");
         this.email = email;
     }
 
     public void setIdEstrangeiro(final String idEstrangeiro) {
         if (!idEstrangeiro.isEmpty()) {
-            StringValidador.tamanho5a20(idEstrangeiro, "ID Estrangeiro Destinatario");
+            DFStringValidador.tamanho5a20(idEstrangeiro, "ID Estrangeiro Destinatario");
         }
         this.idEstrangeiro = idEstrangeiro;
     }
@@ -108,7 +108,7 @@ public class NFNotaInfoDestinatario extends DFBase {
     }
 
     public void setInscricaoMunicipal(final String inscricaoMunicipal) {
-        StringValidador.tamanho15(inscricaoMunicipal, "IM Destinatario");
+        DFStringValidador.tamanho15(inscricaoMunicipal, "IM Destinatario");
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
 

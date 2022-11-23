@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -41,7 +41,7 @@ public class MDFInfoModalRodoviarioInfCIOT extends DFBase {
     }
 
     public void setCiot(final String ciot) {
-        this.ciot = StringValidador.validador(ciot, "CIOT", 12, true, true);
+        this.ciot = DFStringValidador.validador(ciot, "CIOT", 12, true, true);
     }
 
     public String getCpf() {
@@ -52,7 +52,7 @@ public class MDFInfoModalRodoviarioInfCIOT extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado em infCIOT");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -64,7 +64,7 @@ public class MDFInfoModalRodoviarioInfCIOT extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado em infCIOT");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 }

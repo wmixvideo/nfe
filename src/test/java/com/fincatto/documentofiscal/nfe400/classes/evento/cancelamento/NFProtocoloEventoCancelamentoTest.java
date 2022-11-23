@@ -48,7 +48,7 @@ public class NFProtocoloEventoCancelamentoTest {
         infoEventoRetorno.setAmbiente(DFAmbiente.PRODUCAO);
         infoEventoRetorno.setChave("hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6");
         infoEventoRetorno.setCodigoStatus(1);
-        infoEventoRetorno.setCpnj("99999999999999");
+        infoEventoRetorno.setCnpj("99999999999999");
         infoEventoRetorno.setDataHoraRegistro(ZonedDateTime.of(2016, 11, 30, 2, 30, 0, 0, DFConfig.TIMEZONE_SP.toZoneId()));
         infoEventoRetorno.setDescricaoEvento("sdskjdkjdsdcklkjdsakndcsakjdckdljsdckjasldnclakjdsalkdcskdjacdsadcsacd");
         infoEventoRetorno.setId("123456789123456789123456789123456789123456789");

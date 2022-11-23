@@ -14,12 +14,12 @@ public enum MDFTipoUnidadeTransporte {
      6 - Vagão;
      7 - Outros
      */
-    RODOVIARIO_TRACAO("1", "Rodoviário Tração"),
-    RODOVIARIO_REBOQUE("2", "Rodoviário Reboque"),
+    RODOVIARIO_TRACAO("1", "Rodovi\u00e1rio Tra\u00e7\u00e3o"),
+    RODOVIARIO_REBOQUE("2", "Rodovi\u00e1rio Reboque"),
     NAVIO("3", "Navio"),
     BALSA("4", "Balsa"),
     AERONAVE("5", "Aeronave"),
-    VAGAO("6", "Vagão"),
+    VAGAO("6", "Vag\u00e3o"),
     OUTROS("7", "Outros");
 
     private final String codigo;

@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoVeiculo extends DFBase {
@@ -18,7 +18,7 @@ public class NFNotaInfoVeiculo extends DFBase {
     private String registroNacionalTransportadorCarga;
 
     public void setPlacaVeiculo(final String placaVeiculo) {
-        StringValidador.placaDeVeiculo(placaVeiculo);
+        DFStringValidador.placaDeVeiculo(placaVeiculo);
         this.placaVeiculo = placaVeiculo;
     }
 
@@ -39,7 +39,7 @@ public class NFNotaInfoVeiculo extends DFBase {
     }
 
     public void setRegistroNacionalTransportadorCarga(final String registroNacionalTransportadorCarga) {
-        StringValidador.tamanho20(registroNacionalTransportadorCarga, "Registro Nacional Transportador Carga");
+        DFStringValidador.tamanho20(registroNacionalTransportadorCarga, "Registro Nacional Transportador Carga");
         this.registroNacionalTransportadorCarga = registroNacionalTransportadorCarga;
     }
 }

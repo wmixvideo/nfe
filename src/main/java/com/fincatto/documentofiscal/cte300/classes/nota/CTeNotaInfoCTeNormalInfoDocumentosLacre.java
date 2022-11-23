@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosLacre extends DFBase {
      * Número do lacre
      */
     public void setNumeroLacre(final String numeroLacre) {
-        StringValidador.tamanho20(numeroLacre, "Número do lacre");
+        DFStringValidador.tamanho20(numeroLacre, "Número do lacre");
         this.numeroLacre = numeroLacre;
     }
 }

@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoRegimeTributario;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -34,6 +35,9 @@ public class CTeNotaInfoEmitente extends DFBase {
     @Element(name = "enderEmit")
     private CTeNotaEnderecoEmitente endereco;
 
+    @Element(name = "CRT", required = false)
+    private CTTipoRegimeTributario tipoRegimeTributario;
+
     public CTeNotaInfoEmitente() {
         this.cnpj = null;
         this.inscricaoEstadual = null;
@@ -41,6 +45,7 @@ public class CTeNotaInfoEmitente extends DFBase {
         this.razaoSocial = null;
         this.nomeFantasia = null;
         this.endereco = null;
+        this.tipoRegimeTributario = null;
     }
 
     public String getCnpj() {
@@ -52,7 +57,7 @@ public class CTeNotaInfoEmitente extends DFBase {
      * Informar zeros não significativos
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -64,7 +69,7 @@ public class CTeNotaInfoEmitente extends DFBase {
      * Inscrição Estadual do Emitente
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadualSemIsencao(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadualSemIsencao(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -76,7 +81,7 @@ public class CTeNotaInfoEmitente extends DFBase {
      * Inscrição Estadual do Substituto Tributário
      */
     public void setInscricaoEstadualST(final String inscricaoEstadualST) {
-        StringValidador.tamanho14N(inscricaoEstadualST, "Inscrição Estadual do Substituto Tributário");
+        DFStringValidador.tamanho14N(inscricaoEstadualST, "Inscrição Estadual do Substituto Tributário");
         this.inscricaoEstadualST = inscricaoEstadualST;
     }
 
@@ -88,7 +93,7 @@ public class CTeNotaInfoEmitente extends DFBase {
      * Razão social ou Nome do emitente
      */
     public void setRazaoSocial(final String xNome) {
-        StringValidador.tamanho2ate60(xNome, "Razão social ou Nome do emitente");
+        DFStringValidador.tamanho2ate60(xNome, "Razão social ou Nome do emitente");
         this.razaoSocial = xNome;
     }
 
@@ -100,7 +105,7 @@ public class CTeNotaInfoEmitente extends DFBase {
      * Nome fantasia
      */
     public void setNomeFantasia(final String xFant) {
-        StringValidador.tamanho2ate60(xFant, "Nome fantasia");
+        DFStringValidador.tamanho2ate60(xFant, "Nome fantasia");
         this.nomeFantasia = xFant;
     }
 
@@ -113,5 +118,14 @@ public class CTeNotaInfoEmitente extends DFBase {
      */
     public void setEnderEmit(final CTeNotaEnderecoEmitente enderEmit) {
         this.endereco = enderEmit;
+    }
+
+    public CTTipoRegimeTributario getTipoRegimeTributario() {
+        return tipoRegimeTributario;
+    }
+
+    public CTeNotaInfoEmitente setTipoRegimeTributario(CTTipoRegimeTributario tipoRegimeTributario) {
+        this.tipoRegimeTributario = tipoRegimeTributario;
+        return this;
     }
 }

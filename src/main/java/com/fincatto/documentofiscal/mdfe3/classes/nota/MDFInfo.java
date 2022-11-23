@@ -5,8 +5,8 @@ import java.util.List;
 import org.simpleframework.xml.*;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 03/11/17. Informações do MDF-e.
@@ -44,6 +44,9 @@ public class MDFInfo extends DFBase {
 
     @ElementList(name = "seg", inline = true, required = false)
     private List<MDFInfoSeguro> seguro;
+    
+    @ElementList(name = "prodPred", inline = true, required = false)
+    private List<MDFInfoProdutoPredominante> prodPred;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -59,6 +62,12 @@ public class MDFInfo extends DFBase {
 
     @Element(name = "infRespTec", required = false)
     private MDFRespTec infRespTec;
+    
+    /**
+     * Grupo de informações do pedido de emissão da NFF
+     */
+    @Element(name = "infSolicNFF", required = false)
+    private MDFInfSolicNFF infSolicNFF;
 
     public String getIdentificador() {
         return this.identificador;
@@ -69,7 +78,7 @@ public class MDFInfo extends DFBase {
      * Informar a chave de acesso do MDF-e e precedida do literal "MDFe"
      */
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44N(identificador, "Identificador");
         this.identificador = MDFInfo.IDENT + identificador;
     }
 
@@ -106,7 +115,7 @@ public class MDFInfo extends DFBase {
      * Informar CNPJ ou CPF. Preencher os zeros não significativos.
      */
     public void setAutorizacaoDownload(final List<MDFInfoAutorizacaoDownload> autorizacaoDownload) {
-        ListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
+        DFListValidador.tamanho10(autorizacaoDownload, "Autorizados para download do XML do DF-e");
         this.autorizacaoDownload = autorizacaoDownload;
     }
 
@@ -118,7 +127,7 @@ public class MDFInfo extends DFBase {
      * Versão do leiaute
      */
     public void setVersao(final String versao) {
-        StringValidador.equals(MDFe.VERSAO, versao);
+        DFStringValidador.equals(MDFe.VERSAO, versao);
         this.versao = versao;
     }
 
@@ -180,5 +189,21 @@ public class MDFInfo extends DFBase {
 
     public void setSeguro(final List<MDFInfoSeguro> seguro) {
         this.seguro = seguro;
+    }
+
+    public List<MDFInfoProdutoPredominante> getProdPred() {
+        return prodPred;
+    }
+
+    public void setProdPred(List<MDFInfoProdutoPredominante> prodPred) {
+        this.prodPred = prodPred;
+    }
+
+    public MDFInfSolicNFF getInfSolicNFF() {
+        return infSolicNFF;
+    }
+
+    public void setInfSolicNFF(MDFInfSolicNFF infSolicNFF) {
+        this.infSolicNFF = infSolicNFF;
     }
 }

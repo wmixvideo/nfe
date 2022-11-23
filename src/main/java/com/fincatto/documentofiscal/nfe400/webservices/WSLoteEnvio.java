@@ -17,7 +17,7 @@ import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeEmissaoNor
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
@@ -126,7 +126,7 @@ class WSLoteEnvio implements DFLog {
         if (validarXML) {
             // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de
             // comunicar com a sefaz
-            XMLValidador.validaLote400(loteAssinadoXml);
+            DFXMLValidador.validaLote400(loteAssinadoXml);
         }
 
         // envia o lote para a sefaz
@@ -146,7 +146,7 @@ class WSLoteEnvio implements DFLog {
                     + ", autorizador " + autorizador.name());
         }
 
-        return new NFeAutorizacao4Stub(endpoint).nfeAutorizacaoLote(dados);
+        return new NFeAutorizacao4Stub(endpoint, config).nfeAutorizacaoLote(dados);
     }
 
     private OMElement nfeToOMElement(final String documento) throws XMLStreamException {

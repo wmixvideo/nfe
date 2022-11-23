@@ -1,4 +1,4 @@
-name: Release
+name: "Release Master"
 
 # Run workflow on commits to the `master` branch
 on:
@@ -9,18 +9,19 @@ on:
 jobs:
   release:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3
 
       - name: Install Java and Maven
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          java-version: 1.8
+          java-version: '11'
+          distribution: 'adopt'
 
       - name: Adding ssh key
-        uses: webfactory/ssh-agent@v0.2.0
+        uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: ${{ secrets.ssh_private_key }}
 
@@ -36,4 +37,15 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
-          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests"
+          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P central
+
+      - name: Set up Java for publishing to GitHub Packages
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Publish to GitHub Packages
+        run: mvn --batch-mode deploy -P github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

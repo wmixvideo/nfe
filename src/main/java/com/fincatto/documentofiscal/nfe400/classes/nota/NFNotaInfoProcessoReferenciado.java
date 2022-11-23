@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigemProcesso;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoProcessoReferenciado extends DFBase {
@@ -15,7 +15,7 @@ public class NFNotaInfoProcessoReferenciado extends DFBase {
     private NFOrigemProcesso indicadorOrigemProcesso;
 
     public void setIdentificadorProcessoOuAtoConcessorio(final String identificadorProcessoOuAtoConcessorio) {
-        StringValidador.tamanho60(identificadorProcessoOuAtoConcessorio, "Identificador Processo Ou Ato Concessorio Processo Referenciado");
+        DFStringValidador.tamanho60(identificadorProcessoOuAtoConcessorio, "Identificador Processo Ou Ato Concessorio Processo Referenciado");
         this.identificadorProcessoOuAtoConcessorio = identificadorProcessoOuAtoConcessorio;
     }
 

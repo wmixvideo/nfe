@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -48,7 +48,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
      * Informar o CNPJ da Ferrovia Envolvida. Caso a Ferrovia envolvida não seja inscrita no CNPJ o campo deverá preenchido com zeros. Informar os zeros não significativos.
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -61,7 +61,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
      * Uso da transportadora
      */
     public void setCodigoInterno(final String codigoInterno) {
-        StringValidador.tamanho10(codigoInterno, "Código interno da Ferrovia envolvida");
+        DFStringValidador.tamanho10(codigoInterno, "Código interno da Ferrovia envolvida");
         this.codigoInterno = codigoInterno;
     }
 
@@ -73,7 +73,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
      * Inscrição Estadual
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -85,7 +85,7 @@ public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuoFerroviasEnvolv
      * Razão Social ou Nome
      */
     public void setRazaoSocial(final String razaoSocial) {
-        StringValidador.tamanho2ate60(razaoSocial, "Razão Social ou Nome");
+        DFStringValidador.tamanho2ate60(razaoSocial, "Razão Social ou Nome");
         this.razaoSocial = razaoSocial;
     }
 

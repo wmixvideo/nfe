@@ -53,7 +53,7 @@ class WSNotaDownload implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para DownloadNF, autorizador " + autorizador.name());
         }
         
-        final NfeDownloadNFResult nfeDownloadNFResult = new NfeDownloadNFStub(endpoint).nfeDownloadNF(dados, cabecE);
+        final NfeDownloadNFResult nfeDownloadNFResult = new NfeDownloadNFStub(endpoint, config).nfeDownloadNF(dados, cabecE);
         return nfeDownloadNFResult.getExtraElement();
     }
     

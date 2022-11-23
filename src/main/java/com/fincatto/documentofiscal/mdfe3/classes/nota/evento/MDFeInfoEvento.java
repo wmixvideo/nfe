@@ -2,18 +2,20 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import org.simpleframework.xml.Root;
 
 /**
  * Tipo Evento
  */
+@Root(name = "infEvento")
 public class MDFeInfoEvento extends DFBase {
     private static final long serialVersionUID = -9002694768514200146L;
 
@@ -55,7 +57,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getId() {
@@ -63,7 +65,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setId(final String id) {
-        StringValidador.exatamente54(id, "Info Evento  ID");
+        DFStringValidador.exatamente54(id, "Info Evento  ID");
         this.id = id;
     }
 
@@ -80,7 +82,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -89,7 +91,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
+        DFStringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
         this.chave = chave;
     }
 
@@ -106,7 +108,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setCodigoEvento(final String codigoEvento) {
-        StringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
         this.codigoEvento = codigoEvento;
     }
 
@@ -115,7 +117,7 @@ public class MDFeInfoEvento extends DFBase {
     }
 
     public void setNumeroSequencialEvento(final int numeroSequencialEvento) {
-        IntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
+        DFIntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 

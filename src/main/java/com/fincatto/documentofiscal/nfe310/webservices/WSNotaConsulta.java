@@ -67,7 +67,7 @@ class WSNotaConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
         
-        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(endpoint).nfeConsultaNF2(dados, cabecE);
+        final NfeConsultaNF2Result consultaNF2Result = new NfeConsulta2Stub(endpoint, config).nfeConsultaNF2(dados, cabecE);
         return consultaNF2Result.getExtraElement();
     }
     
@@ -89,7 +89,7 @@ class WSNotaConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
         
-        final NfeConsultaNFResult consultaNFResult = new NfeConsultaStub(endpoint).nfeConsultaNF(dados, cabecE);
+        final NfeConsultaNFResult consultaNFResult = new NfeConsultaStub(endpoint, config).nfeConsultaNF(dados, cabecE);
         return consultaNFResult.getExtraElement();
     }
     

@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
@@ -51,7 +51,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     private List<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao> adicoes;
 
     public void setNumeroRegistro(final String numeroRegistro) {
-        StringValidador.tamanho12(numeroRegistro, "Numero Registro Declaracao Importacao");
+        DFStringValidador.tamanho12(numeroRegistro, "Numero Registro Declaracao Importacao");
         this.numeroRegistro = numeroRegistro;
     }
 
@@ -60,7 +60,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     }
 
     public void setLocalDesembaraco(final String localDesembaraco) {
-        StringValidador.tamanho60(localDesembaraco, "Desembaraco Declaracao Importacao");
+        DFStringValidador.tamanho60(localDesembaraco, "Desembaraco Declaracao Importacao");
         this.localDesembaraco = localDesembaraco;
     }
 
@@ -73,7 +73,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     }
 
     public void setCodigoExportador(final String codigoExportador) {
-        StringValidador.tamanho60(codigoExportador, "Codigo Exportador Declaracao Importacao");
+        DFStringValidador.tamanho60(codigoExportador, "Codigo Exportador Declaracao Importacao");
         this.codigoExportador = codigoExportador;
     }
 
@@ -86,7 +86,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     }
 
     public void setValorAFRMM(final BigDecimal valorAFRMM) {
-        this.valorAFRMM = BigDecimalValidador.tamanho15Com2CasasDecimais(valorAFRMM, "Valor AFRMM Declaracao Importacao");
+        this.valorAFRMM = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorAFRMM, "Valor AFRMM Declaracao Importacao");
     }
 
     public void setFormaImportacaoIntermediacao(final NFFormaImportacaoIntermediacao formaImportacaoIntermediacao) {
@@ -94,7 +94,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacao extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -48,7 +48,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ext
      * Informar os zeros não significativos.
      */
     public void setCnpj(final String cnpj) {
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -61,7 +61,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ext
      * Uso intermo das transportadoras.
      */
     public void setCodigoInterno(final String codigoInterno) {
-        StringValidador.tamanho10(codigoInterno, "Código interno de uso da transportadora");
+        DFStringValidador.tamanho10(codigoInterno, "Código interno de uso da transportadora");
         this.codigoInterno = codigoInterno;
     }
 
@@ -73,7 +73,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ext
      * Inscrição Estadual
      */
     public void setInscricaoEstadual(final String inscricaoEstadual) {
-        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        DFStringValidador.inscricaoEstadual(inscricaoEstadual);
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
@@ -86,7 +86,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ext
      * Informar EX para operações com o exterior.
      */
     public void setSiglaUF(final String siglaUF) {
-        StringValidador.exatamente2(siglaUF, "Sigla da UF");
+        DFStringValidador.exatamente2(siglaUF, "Sigla da UF");
         this.siglaUF = siglaUF;
     }
 
@@ -98,7 +98,7 @@ public class CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi ext
      * Telefone
      */
     public void setTelefone(final String telefone) {
-        StringValidador.telefone(telefone);
+        DFStringValidador.telefone(telefone);
         this.telefone = telefone;
     }
 }

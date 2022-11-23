@@ -8,7 +8,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.ListValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -70,7 +70,7 @@ public class MDFInfoModalRodoviario extends DFBase {
     }
 
     public void setVeiculoReboques(final List<MDFInfoModalRodoviarioVeiculoReboque> veiculoReboques) {
-        this.veiculoReboques = ListValidador.validaListaNaoObrigatoria(veiculoReboques, 3, "Lista de reboques");
+        this.veiculoReboques = DFListValidador.validaListaNaoObrigatoria(veiculoReboques, 3, "Lista de reboques");
     }
 
     public String getCodAgPorto() {

@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte300.classes.enviolote;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class CTeEnvioLote extends DFBase {
     }
 
     public void setIdLote(final String idLote) {
-        StringValidador.tamanho15N(idLote, "ID do Lote");
+        DFStringValidador.tamanho15N(idLote, "ID do Lote");
         this.idLote = idLote;
     }
 
@@ -55,7 +55,7 @@ public class CTeEnvioLote extends DFBase {
     }
 
     public void setNota(final List<CTeNota> nota) {
-        ListValidador.tamanho50(nota, "Notas");
+        DFListValidador.tamanho50(nota, "Notas");
         this.nota = nota;
     }
 }

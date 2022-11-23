@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 30/11/17. Pedido de Consulta do Recibo do MDF-e.
@@ -42,7 +42,7 @@ public class MDFeConsultaRecibo extends DFBase {
     }
 
     public void setNumeroRecibo(final String numeroRecibo) {
-        this.numeroRecibo = StringValidador.validaIntervalo(numeroRecibo, 0, 15, "Numero Recibo Lote MDFe", true);
+        this.numeroRecibo = DFStringValidador.validaIntervalo(numeroRecibo, 0, 15, "Numero Recibo Lote MDFe", true);
     }
 
     public String getVersao() {

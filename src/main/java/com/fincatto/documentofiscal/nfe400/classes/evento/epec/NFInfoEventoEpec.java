@@ -3,12 +3,11 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.epec;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import org.apache.axis2.databinding.types.xsd.DateTime;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -54,7 +53,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = BigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getIdentificador() {
@@ -62,7 +61,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente54(identificador, "Info Evento Conting\u00eancia EPEC ID");
+        DFStringValidador.exatamente54(identificador, "Info Evento Conting\u00eancia EPEC ID");
         this.identificador = identificador;
     }
 
@@ -82,7 +81,7 @@ public class NFInfoEventoEpec extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("CPF ja foi setado");
         }
-        StringValidador.cnpj(cnpj);
+        DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
 
@@ -94,7 +93,7 @@ public class NFInfoEventoEpec extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("CNPJ ja foi setado");
         }
-        StringValidador.cpf(cpf);
+        DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
 
@@ -103,7 +102,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setChave(final String chave) {
-        StringValidador.exatamente44N(chave, "Info Evento Conting\u00eancia EPEC Chave");
+        DFStringValidador.exatamente44N(chave, "Info Evento Conting\u00eancia EPEC Chave");
         this.chave = chave;
     }
 
@@ -120,7 +119,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setCodigoEvento(final String codigoEvento) {
-        StringValidador.exatamente6N(codigoEvento, "Info Evento Conting\u00eancia EPEC Codigo");
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Conting\u00eancia EPEC Codigo");
         this.codigoEvento = codigoEvento;
     }
 
@@ -129,7 +128,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
-        IntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
+        DFIntegerValidador.tamanho1a2(numeroSequencialEvento, "Numero Sequencial Evento");
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 

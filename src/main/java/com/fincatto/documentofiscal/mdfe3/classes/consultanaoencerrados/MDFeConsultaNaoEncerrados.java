@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -35,7 +35,7 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     private String cnpj;
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
+        this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao Nota Consulta");
     }
 
     public void setVersao(final String versao) {
@@ -47,7 +47,7 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     }
 
     public void setServico(final String servico) {
-        StringValidador.equals("CONSULTAR NÃO ENCERRADOS", servico);
+        DFStringValidador.equals("CONSULTAR NÃO ENCERRADOS", servico);
         this.servico = servico;
     }
 
@@ -68,6 +68,6 @@ public class MDFeConsultaNaoEncerrados extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        this.cnpj = StringValidador.cnpj(cnpj, "CNPJ do emitente");
+        this.cnpj = DFStringValidador.cnpj(cnpj, "CNPJ do emitente");
     }
 }

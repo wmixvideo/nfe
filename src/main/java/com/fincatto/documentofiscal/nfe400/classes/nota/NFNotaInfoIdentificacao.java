@@ -9,9 +9,9 @@ import com.fincatto.documentofiscal.nfe400.classes.NFFinalidade;
 import com.fincatto.documentofiscal.nfe400.classes.NFProcessoEmissor;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -76,6 +76,9 @@ public class NFNotaInfoIdentificacao extends DFBase {
     @Element(name = "indPres")
     private NFIndicadorPresencaComprador indicadorPresencaComprador;
 
+    @Element(name = "indIntermed", required = false)
+    private NFIndicadorIntermediador indIntermed;
+    
     @Element(name = "procEmi")
     private NFProcessoEmissor programaEmissor;
 
@@ -90,14 +93,15 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     @ElementList(entry = "NFref", inline = true, required = false)
     private List<NFInfoReferenciada> referenciadas;
+    
 
     public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
     }
 
     public void setCodigoRandomico(final String codigoRandomico) {
-        StringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
-        StringValidador.validaCodigoRandomico(codigoRandomico, "Codigo Randomico");
+        DFStringValidador.exatamente8(codigoRandomico, "Codigo Randomico");
+        DFStringValidador.validaCodigoRandomico(codigoRandomico, "Codigo Randomico");
         if(StringUtils.isNotBlank(numeroNota) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
             throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
         }
@@ -105,7 +109,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setNaturezaOperacao(final String naturezaOperacao) {
-        StringValidador.tamanho60(naturezaOperacao, "Natureza da Operacao");
+        DFStringValidador.tamanho60(naturezaOperacao, "Natureza da Operacao");
         this.naturezaOperacao = naturezaOperacao;
     }
 
@@ -114,12 +118,12 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setSerie(final String serie) {
-        StringValidador.validador(serie, "Serie", 3, false, true);
+        DFStringValidador.validador(serie, "Serie", 3, false, true);
         this.serie = serie;
     }
 
     public void setNumeroNota(final String numeroNota) {
-        StringValidador.tamanho9(numeroNota, "Numero da Nota");
+        DFStringValidador.tamanho9(numeroNota, "Numero da Nota");
         if(StringUtils.isNotBlank(codigoRandomico) && StringUtils.equals(numeroNota.substring(1), codigoRandomico)){
             throw new IllegalStateException(String.format("N\u00FAmero da nota(%s) e c\u00F3digo(%s) n\u00E3o podem ser iguais", numeroNota.substring(1), codigoRandomico));
         }
@@ -139,12 +143,12 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setCodigoMunicipio(final String codigoMunicipio) {
-        StringValidador.exatamente7N(codigoMunicipio, "Codigo Municipio");
+        DFStringValidador.exatamente7N(codigoMunicipio, "Codigo Municipio");
         this.codigoMunicipio = codigoMunicipio;
     }
 
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
-        ListValidador.tamanho500(referenciadas, "Referenciadas");
+        DFListValidador.tamanho500(referenciadas, "Referenciadas");
         this.referenciadas = referenciadas;
     }
 
@@ -157,7 +161,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador, "DV");
+        DFIntegerValidador.exatamente1(digitoVerificador, "DV");
         this.digitoVerificador = digitoVerificador;
     }
 
@@ -174,7 +178,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setVersaoEmissor(final String versaoEmissor) {
-        StringValidador.tamanho20(versaoEmissor, "Versao Emissor");
+        DFStringValidador.tamanho20(versaoEmissor, "Versao Emissor");
         this.versaoEmissor = versaoEmissor;
     }
 
@@ -183,7 +187,7 @@ public class NFNotaInfoIdentificacao extends DFBase {
     }
 
     public void setJustificativaEntradaContingencia(final String justificativaEntradaContingencia) {
-        StringValidador.tamanho15a256(justificativaEntradaContingencia, "Justificativa Entrada Contingencia");
+        DFStringValidador.tamanho15a256(justificativaEntradaContingencia, "Justificativa Entrada Contingencia");
         this.justificativaEntradaContingencia = justificativaEntradaContingencia;
     }
 
@@ -199,6 +203,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
         this.indicadorPresencaComprador = indicadorPresencaComprador;
     }
 
+	public void setIndIntermed(final NFIndicadorIntermediador indIntermed) {
+		this.indIntermed = indIntermed;
+	}
+	
     public DFUnidadeFederativa getUf() {
         return this.uf;
     }
@@ -270,6 +278,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
     public NFIndicadorPresencaComprador getIndicadorPresencaComprador() {
         return this.indicadorPresencaComprador;
     }
+    
+    public NFIndicadorIntermediador getIndIntermed() {
+		return indIntermed;
+	}
 
     public NFProcessoEmissor getProgramaEmissor() {
         return this.programaEmissor;
@@ -290,4 +302,5 @@ public class NFNotaInfoIdentificacao extends DFBase {
     public List<NFInfoReferenciada> getReferenciadas() {
         return this.referenciadas;
     }
+	
 }

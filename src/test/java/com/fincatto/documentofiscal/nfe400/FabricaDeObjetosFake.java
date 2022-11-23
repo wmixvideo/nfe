@@ -401,8 +401,8 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemProduto produtoMedicamento = new NFNotaInfoItemProduto();
         produtoMedicamento.setCfop("1302");
         produtoMedicamento.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
-        produtoMedicamento.setCodigoDeBarras("36811963532505");
-        produtoMedicamento.setCodigoDeBarrasTributavel("36811963532505");
+        produtoMedicamento.setCodigoDeBarrasGtin("36811963532505");
+        produtoMedicamento.setCodigoDeBarrasGtinTributavel("36811963532505");
         produtoMedicamento.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
         produtoMedicamento.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produtoMedicamento.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
@@ -489,6 +489,31 @@ public class FabricaDeObjetosFake {
         info.setVersao(new BigDecimal("4.00"));
         info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
         return info;
+    }
+    
+    public static NFNotaInfo getNFNotaInfoIntermediador() {
+        final NFNotaInfo info = new NFNotaInfo();
+        info.setAvulsa(FabricaDeObjetosFake.getNFNotaInfoAvulsa());
+        info.setCana(FabricaDeObjetosFake.getNFNotaInfoCana());
+        info.setCobranca(FabricaDeObjetosFake.getNFNotaInfoCobranca());
+        info.setCompra(FabricaDeObjetosFake.getNFNotaInfoCompra());
+        info.setDestinatario(FabricaDeObjetosFake.getNFNotaInfoDestinatario());
+        info.setEmitente(FabricaDeObjetosFake.getNFNotaInfoEmitente());
+        info.setEntrega(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setExportacao(FabricaDeObjetosFake.getNFNotaInfoExportacao());
+        info.setPagamento(FabricaDeObjetosFake.getNFNotaInfoPagamento());
+        info.setIdentificacao(FabricaDeObjetosFake.getNFNotaInfoIdentificacaoIntermediador());
+        info.setIdentificador("89172658591754401086218048846976493475937081");
+        info.setInformacoesAdicionais(FabricaDeObjetosFake.getNFNotaInfoInformacoesAdicionais());
+        info.setItens(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItem()));
+        info.setRetirada(FabricaDeObjetosFake.getNFNotaInfoLocal());
+        info.setTotal(FabricaDeObjetosFake.getNFNotaInfoTotal());
+        info.setTransporte(FabricaDeObjetosFake.getNFNotaInfoTransporte());
+        info.setVersao(new BigDecimal("4.00"));
+        info.setPessoasAutorizadasDownloadNFe(Collections.singletonList(FabricaDeObjetosFake.getPessoaAutorizadaDownloadNFe()));
+        info.setInfIntermed(FabricaDeObjetosFake.getNFInformacaoIntermediador());
+        return info;
+    
     }
     
     public static NFNota getNotaQRCode() {
@@ -625,6 +650,36 @@ public class FabricaDeObjetosFake {
         identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
         identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
         identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
+        identificacao.setIndIntermed(NFIndicadorIntermediador.OPERACAO_SEM_INTERMEDIADOR);
+        return identificacao;
+    }
+    
+    public static NFNotaInfoIdentificacao getNFNotaInfoIdentificacaoIntermediador() {
+        final NFNotaInfoIdentificacao identificacao = new NFNotaInfoIdentificacao();
+        identificacao.setAmbiente(DFAmbiente.PRODUCAO);
+        identificacao.setCodigoMunicipio("1612675");
+        identificacao.setCodigoRandomico("99999998");
+        identificacao.setDataHoraEmissao(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-27 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setDataHoraSaidaOuEntrada(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2013-09-24 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setDigitoVerificador(8);
+        identificacao.setFinalidade(NFFinalidade.NORMAL);
+        identificacao.setModelo(DFModelo.NFE);
+        identificacao.setNaturezaOperacao("qGYcW8I1iak14NF7vnfc8XpPYkrHWB5J7Vm3eOAe57azf1fVP7vEOY7TrRVQ");
+        identificacao.setNumeroNota("999999999");
+        identificacao.setProgramaEmissor(NFProcessoEmissor.CONTRIBUINTE);
+        identificacao.setReferenciadas(Collections.singletonList(FabricaDeObjetosFake.getNFInfoReferenciada()));
+        identificacao.setSerie("999");
+        identificacao.setTipo(NFTipo.ENTRADA);
+        identificacao.setTipoEmissao(NFTipoEmissao.EMISSAO_NORMAL);
+        identificacao.setTipoImpressao(NFTipoImpressao.DANFE_NORMAL_PAISAGEM);
+        identificacao.setUf(DFUnidadeFederativa.RS);
+        identificacao.setVersaoEmissor("532ng7VURPgovC5BYaZy");
+        identificacao.setDataHoraContigencia(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2014-10-10 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId()));
+        identificacao.setJustificativaEntradaContingencia("b1Aj7VBU5I0LDthlrWTk73otsFXSVbiNYyAgGZjLYT0pftpjhGzQEAtnolQoAEB3omnxNq8am4iMqwwviuaXRHjiYWY7YaPITlDN7cDN9obnhEqhDhkgKphRBY5frTfD6unwTB4w7j6hpY2zNNzWwbNJzPGgDmQ8WhBDnpq1fQOilrcDspY7SGkNDfjxpGTQyNSNsmF4B2uHHLhGhhxG2qVq2bFUvHFqSL8atQAuYpyn3wplW21v88N96PnF0MEV");
+        identificacao.setIdentificadorLocalDestinoOperacao(NFIdentificadorLocalDestinoOperacao.OPERACAO_INTERNA);
+        identificacao.setOperacaoConsumidorFinal(NFOperacaoConsumidorFinal.SIM);
+        identificacao.setIndicadorPresencaComprador(NFIndicadorPresencaComprador.NAO_APLICA);
+        identificacao.setIndIntermed(NFIndicadorIntermediador.OPERACAO_COM_INTERMEDIADOR);
         return identificacao;
     }
     
@@ -777,8 +832,8 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemProduto produto = new NFNotaInfoItemProduto();
         produto.setCfop("1302");
         produto.setCodigo("ohVRInAS7jw8LNDP4WWjssSjBHK8nJRERnAeRMcsUokF3YItT93fBto3zZcq");
-        produto.setCodigoDeBarras("36811963532505");
-        produto.setCodigoDeBarrasTributavel("36811963532505");
+        produto.setCodigoDeBarrasGtin("36811963532505");
+        produto.setCodigoDeBarrasGtinTributavel("36811963532505");
         produto.setCompoeValorNota(NFProdutoCompoeValorNota.SIM);
         produto.setDeclaracoesImportacao(Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacao()));
         produto.setDescricao("OBS0ztekCoG0DSSVcQwPKRV2fV842Pye7mED13P4zoDczcXi4AMNvQ7BKBLnHtLc2Z9fuIY1pcKmXSK1IJQSLEs5QWvVGyC74DyJuIM0X7L0cqWPZQii5JtP");
@@ -1285,5 +1340,18 @@ public class FabricaDeObjetosFake {
         responsavelTecnico.setIdCSRT("01");
         responsavelTecnico.setHashCSRT("aWv6LeEM4X6u4+qBI2OYZ8grigw=");
         return responsavelTecnico;
+    }
+    
+    public static NFInformacaoIntermediador getNFInformacaoIntermediador() {
+    	final NFInformacaoIntermediador intermediador = new NFInformacaoIntermediador();
+    	intermediador.setCnpj("12345678901234");
+    	intermediador.setIdCadIntTran("123456789012345678901234567890123456789012345678901234567890");
+    	return intermediador;
+    }
+
+    public static NFInfoSolicitacaoNFF getNFInfoSolicNFF(){
+        NFInfoSolicitacaoNFF nfInfoSolicNFF = new NFInfoSolicitacaoNFF();
+        nfInfoSolicNFF.setSolicitacao("Teste");
+        return nfInfoSolicNFF;
     }
 }

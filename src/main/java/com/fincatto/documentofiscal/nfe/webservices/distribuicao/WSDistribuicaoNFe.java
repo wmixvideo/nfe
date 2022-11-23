@@ -4,7 +4,9 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.validadores.XMLValidador;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
+import com.fincatto.documentofiscal.utils.DFSocketFactory;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
+import org.apache.commons.httpclient.protocol.Protocol;
 
 public class WSDistribuicaoNFe {
 
@@ -38,10 +41,11 @@ public class WSDistribuicaoNFe {
      */
     public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
         try {
+            Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
             String xmlEnvio = this.gerarNFDistribuicaoInt(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu).toString();
 
             // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-            XMLValidador.validaConsultaDfe(xmlEnvio);
+            DFXMLValidador.validaConsultaDfe(xmlEnvio);
 
             final OMElement ome = AXIOMUtil.stringToOM(xmlEnvio);
 
@@ -51,7 +55,7 @@ public class WSDistribuicaoNFe {
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse distDFeInteresse = new NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse();
             distDFeInteresse.setNFeDadosMsg(dadosMsgType0);
 
-            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()));
+            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador400.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()), config);
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse result = stub.nfeDistDFeInteresse(distDFeInteresse);
     
             return this.config.getPersister().read(NFDistribuicaoIntRetorno.class, result.getNFeDistDFeInteresseResult().getExtraElement().toString());

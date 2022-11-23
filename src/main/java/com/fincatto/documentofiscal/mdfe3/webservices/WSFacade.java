@@ -7,6 +7,8 @@ import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeCons
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfPag;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfViagens;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
@@ -33,6 +35,7 @@ public class WSFacade {
     private final WSConsultaNaoEncerrados wsConsultaNaoEncerrados;
     private final WSIncluirCondutor wsIncluirCondutor;
     private final WSIncluirDFe wsIncluirDFe;
+    private final WSPagamentoTransporte wsPagamentoTransporte;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
@@ -47,6 +50,7 @@ public class WSFacade {
         this.wsConsultaNaoEncerrados = new WSConsultaNaoEncerrados(config);
         this.wsIncluirCondutor = new WSIncluirCondutor(config);
         this.wsIncluirDFe = new WSIncluirDFe(config);
+        this.wsPagamentoTransporte = new WSPagamentoTransporte(config);
     }
 
     /**
@@ -226,5 +230,31 @@ public class WSFacade {
      */
     public MDFeRetorno incluirDFeAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsIncluirDFe.incluirDFeAssinado(chaveAcesso, eventoAssinadoXml);
+    }
+
+    /**
+     * Faz o evento de Pagamento da Operação de Transporte.
+     *
+     * @param chaveAcesso
+     * @param nProt
+     * @param infPag
+     * @param infViagens
+     * @return
+     * @throws Exception
+     */
+    public MDFeRetorno pagamentoTransporte(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens) throws Exception {
+        return this.wsPagamentoTransporte.pagamento(chaveAcesso, nProt, infPag, infViagens);
+    }
+
+    /**
+     * Faz o evento de Pagamento da Operação de Transporte assinado.
+     *
+     * @param chaveAcesso
+     * @param eventoAssinadoXml
+     * @return
+     * @throws Exception
+     */
+    public MDFeRetorno pagamentoTransporteAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        return this.wsPagamentoTransporte.pagamentoAssinado(chaveAcesso, eventoAssinadoXml);
     }
 }

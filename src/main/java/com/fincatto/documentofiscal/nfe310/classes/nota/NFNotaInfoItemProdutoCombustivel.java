@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -42,17 +42,17 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     }
 
     public void setCodigoProdutoANP(final String codigoProdutoANP) {
-        StringValidador.exatamente9(codigoProdutoANP, "Codigo Produto ANP Combustivel");
+        DFStringValidador.exatamente9(codigoProdutoANP, "Codigo Produto ANP Combustivel");
         this.codigoProdutoANP = codigoProdutoANP;
     }
 
     public void setCodigoAutorizacaoCODIF(final String codigoAutorizacaoCODIF) {
-        StringValidador.tamanho21(codigoAutorizacaoCODIF, "Codigo Autorizacao CODIF Combustivel");
+        DFStringValidador.tamanho21(codigoAutorizacaoCODIF, "Codigo Autorizacao CODIF Combustivel");
         this.codigoAutorizacaoCOFIF = codigoAutorizacaoCODIF;
     }
 
     public void setQuantidade(final BigDecimal quantidade) {
-        this.quantidade = BigDecimalValidador.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel");
+        this.quantidade = DFBigDecimalValidador.tamanho16Com4CasasDecimais(quantidade, "Quantidade Combustivel");
     }
 
     public void setUf(final DFUnidadeFederativa uf) {
@@ -64,7 +64,7 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     }
 
     public void setPercentualGasNatural(final BigDecimal percentualGasNatural) {
-        this.percentualGasNatural = BigDecimalValidador.tamanho5Com2CasasDecimais(percentualGasNatural, "Percentual Gas Natural Combustivel");
+        this.percentualGasNatural = DFBigDecimalValidador.tamanho5Com2CasasDecimais(percentualGasNatural, "Percentual Gas Natural Combustivel");
     }
 
     public void setEncerrante(final NFNotaInfoItemProdutoCombustivelEncerrante encerrante) {

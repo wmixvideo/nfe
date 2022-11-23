@@ -14,9 +14,9 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.*;
-import com.fincatto.documentofiscal.validadores.IntegerValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.time.ZonedDateTime;
 
 /**
@@ -139,7 +139,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * evitar acessos indevidos ao documento.
      */
     public void setCodigoNumerico(final String codigoNumerico) {
-        StringValidador.exatamente8N(codigoNumerico, "Código Numérico");
+        DFStringValidador.exatamente8N(codigoNumerico, "Código Numérico");
         this.codigoNumerico = codigoNumerico;
     }
 
@@ -152,7 +152,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * se inexistente).
      */
     public void setSerie(final Integer serie) {
-        IntegerValidador.tamanho3(serie, "Série");
+        DFIntegerValidador.tamanho3(serie, "Série");
         this.serie = serie;
     }
 
@@ -164,7 +164,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * Número do MDF-e
      */
     public void setNumero(final Integer numero) {
-        IntegerValidador.tamanho9(numero, "Número");
+        DFIntegerValidador.tamanho9(numero, "Número");
         this.numero = numero;
     }
 
@@ -202,7 +202,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * acesso.
      */
     public void setDigitoVerificador(final Integer digitoVerificador) {
-        IntegerValidador.exatamente1(digitoVerificador, "Digito verificador MDF-e");
+        DFIntegerValidador.exatamente1(digitoVerificador, "Digito verificador MDF-e");
         this.digitoVerificador = digitoVerificador;
     }
 
@@ -240,7 +240,7 @@ public class MDFInfoIdentificacao extends DFBase {
      * Iinformar a versão do aplicativo emissor de MDF-e.
      */
     public void setVersaoProcessoEmissao(final String versaoProcessoEmissao) {
-        StringValidador.tamanho20(versaoProcessoEmissao, "Versão Aplicativo Emissor");
+        DFStringValidador.tamanho20(versaoProcessoEmissao, "Versão Aplicativo Emissor");
         this.versaoProcessoEmissao = versaoProcessoEmissao;
     }
 
@@ -289,7 +289,7 @@ public class MDFInfoIdentificacao extends DFBase {
     }
 
     public void setMunicipioCarregamentos(final List<MDFInfoIdentificacaoMunicipioCarregamento> municipioCarregamentos) {
-        this.municipioCarregamentos = ListValidador.validaListaObrigatoria(municipioCarregamentos, 50, "Municípios carregamento MDF-e");
+        this.municipioCarregamentos = DFListValidador.validaListaObrigatoria(municipioCarregamentos, 50, "Municípios carregamento MDF-e");
     }
 
     public List<MDFInfoIdentificacaoUfPercurso> getIdentificacaoUfPercursos() {
@@ -297,7 +297,7 @@ public class MDFInfoIdentificacao extends DFBase {
     }
 
     public void setIdentificacaoUfPercursos(final List<MDFInfoIdentificacaoUfPercurso> identificacaoUfPercursos) {
-        this.identificacaoUfPercursos = ListValidador.validaListaNaoObrigatoria(identificacaoUfPercursos, 25, "UF percurso MDF-e");
+        this.identificacaoUfPercursos = DFListValidador.validaListaNaoObrigatoria(identificacaoUfPercursos, 25, "UF percurso MDF-e");
     }
 
     public ZonedDateTime getDataHoraDoInicioViagem() {

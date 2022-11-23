@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.webservices.statusservico.CteStatusServicoStub;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -55,6 +56,6 @@ class WSStatusConsulta implements DFLog {
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para StatusServico, autorizador " + autorizador.name() + ", UF " + unidadeFederativa.name());
         }
-        return new CteStatusServicoStub(endpoint).cteStatusServicoCT(dados, cabecEnv).getExtraElement();
+        return new CteStatusServicoStub(endpoint, config).cteStatusServicoCT(dados, cabecEnv).getExtraElement();
     }
 }

@@ -5,6 +5,9 @@ import org.apache.axis2.client.Stub;
 
 import javax.xml.namespace.QName;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.utils.MessageContextFactory;
+
 @SuppressWarnings({"rawtypes", "unchecked", "serial", "unused", "deprecation"})
 public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -36,29 +39,22 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
     private void populateFaults() {
     }
 
-    public NfeStatusServico2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(configurationContext, targetEndpoint, false);
+    public NfeStatusServico2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(configurationContext, targetEndpoint, false, config);
     }
 
-    public NfeStatusServico2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener) throws org.apache.axis2.AxisFault {
+    public NfeStatusServico2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         this.populateAxisService();
         this.populateFaults();
         this._serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext, this._service);
         this._serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(targetEndpoint));
         this._serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
         this._serviceClient.getOptions().setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
+        this.config = config;
     }
 
-    public NfeStatusServico2Stub(final org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-        this(configurationContext, "https://nfe.sefaz.rs.gov.br/ws/nfeStatusServico/nfeStatusServico2.asmx");
-    }
-
-    public NfeStatusServico2Stub() throws org.apache.axis2.AxisFault {
-        this("https://nfe.sefaz.rs.gov.br/ws/nfeStatusServico/nfeStatusServico2.asmx");
-    }
-
-    public NfeStatusServico2Stub(final java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null, targetEndpoint);
+    public NfeStatusServico2Stub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+        this(null, targetEndpoint, config);
     }
 
     public NfeStatusServico2Stub.NfeStatusServicoNF2Result nfeStatusServicoNF2(final NfeStatusServico2Stub.NfeDadosMsg nfeDadosMsg0, final NfeStatusServico2Stub.NfeCabecMsgE nfeCabecMsg1) throws java.rmi.RemoteException {
@@ -69,7 +65,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
-            _messageContext = new org.apache.axis2.context.MessageContext();
+            _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
             env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2"));
@@ -132,7 +128,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
         this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
         // create SOAP envelope with that payload
         org.apache.axiom.soap.SOAPEnvelope env;
-        final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+        final org.apache.axis2.context.MessageContext _messageContext = MessageContextFactory.INSTANCE.create(config);
         // Style is Doc.
         env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), nfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NfeStatusServico2", "nfeStatusServicoNF2"));
         // add the soap_headers only if they are not null
@@ -228,6 +224,7 @@ public class NfeStatusServico2Stub extends org.apache.axis2.client.Stub {
     }
 
     private final javax.xml.namespace.QName[] opNameArray = null;
+    private final DFConfig config;
 
     private boolean optimizeContent(final javax.xml.namespace.QName opName) {
         if (this.opNameArray == null) {

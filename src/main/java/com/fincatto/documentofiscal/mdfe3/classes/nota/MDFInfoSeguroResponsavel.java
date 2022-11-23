@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoResponsavelSeguro;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 07/12/17.
@@ -41,7 +41,7 @@ public class MDFInfoSeguroResponsavel extends DFBase {
         if (this.cpf != null) {
             throw new IllegalStateException("Nao deve setar CNPJ se CPF esteja setado em " + MDFInfoSeguroResponsavel.INFO);
         }
-        this.cnpj = StringValidador.cnpj(cnpj, MDFInfoSeguroResponsavel.INFO);
+        this.cnpj = DFStringValidador.cnpj(cnpj, MDFInfoSeguroResponsavel.INFO);
     }
 
     public String getCpf() {
@@ -56,7 +56,7 @@ public class MDFInfoSeguroResponsavel extends DFBase {
         if (this.cnpj != null) {
             throw new IllegalStateException("Nao deve setar CPF se CNPJ esteja setado em " + MDFInfoSeguroResponsavel.INFO);
         }
-        this.cpf = StringValidador.cpf(cpf, MDFInfoSeguroResponsavel.INFO);
+        this.cpf = DFStringValidador.cpf(cpf, MDFInfoSeguroResponsavel.INFO);
     }
 
     public MDFTipoResponsavelSeguro getResponsavelSeguro() {

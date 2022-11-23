@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
-import com.fincatto.documentofiscal.validadores.BigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.ListValidador;
-import com.fincatto.documentofiscal.validadores.StringValidador;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
 
 import java.math.BigDecimal;
@@ -58,6 +58,9 @@ public class NFNotaInfo extends DFBase {
 
     @Element(name = "pag")
     private NFNotaInfoPagamento pagamento;
+    
+    @Element(name="infIntermed", required = false)
+    private NFInformacaoIntermediador infIntermed;
 
     @Element(name = "infAdic", required = false)
     private NFNotaInfoInformacoesAdicionais informacoesAdicionais;
@@ -74,6 +77,9 @@ public class NFNotaInfo extends DFBase {
     @Element(name="infRespTec", required = false)
     private NFNotaInfoResponsavelTecnico informacaoResposavelTecnico;
 
+    @Element(name="infSolicNFF", required = false)
+    private NFInfoSolicitacaoNFF informacaoSolicitacaoNFF;
+
     /**
      * Pega a chave de acesso a partir do identificador.
      * @return Chave de acesso.
@@ -83,7 +89,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setIdentificador(final String identificador) {
-        StringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44N(identificador, "Identificador");
         this.identificador = NFNotaInfo.IDENT + identificador;
     }
 
@@ -92,7 +98,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setVersao(final BigDecimal versao) {
-        this.versao = BigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
+        this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
     public NFNotaInfoIdentificacao getIdentificacao() {
@@ -120,7 +126,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setItens(final List<NFNotaInfoItem> itens) {
-        ListValidador.tamanho990(itens, "Itens da Nota");
+        DFListValidador.tamanho990(itens, "Itens da Nota");
         this.itens = itens;
     }
 
@@ -161,17 +167,25 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setPessoasAutorizadasDownloadNFe(final List<NFPessoaAutorizadaDownloadNFe> pessoasAutorizadasDownloadNFe) {
-        ListValidador.tamanho10(pessoasAutorizadasDownloadNFe, "Pessoas Autorizadas Download NFe");
+        DFListValidador.tamanho10(pessoasAutorizadasDownloadNFe, "Pessoas Autorizadas Download NFe");
         this.pessoasAutorizadasDownloadNFe = pessoasAutorizadasDownloadNFe;
     }
 
     public void setPagamento(final NFNotaInfoPagamento pagamento) {
         this.pagamento = pagamento;
     }
+    
+    public void setInfIntermed(final NFInformacaoIntermediador infIntermed) {
+		this.infIntermed = infIntermed;
+	}
 
     public NFNotaInfo setInformacaoResposavelTecnico(NFNotaInfoResponsavelTecnico informacaoResposavelTecnico) {
         this.informacaoResposavelTecnico = informacaoResposavelTecnico;
         return this;
+    }
+
+    public void setInformacaoSolicitacaoNFF(NFInfoSolicitacaoNFF informacaoSolicitacaoNFF) {
+        this.informacaoSolicitacaoNFF = informacaoSolicitacaoNFF;
     }
 
     public String getVersao() {
@@ -217,6 +231,10 @@ public class NFNotaInfo extends DFBase {
     public NFNotaInfoPagamento getPagamento() {
         return this.pagamento;
     }
+    
+    public NFInformacaoIntermediador getInfIntermed() {
+		return infIntermed;
+	}
 
     public NFNotaInfoInformacoesAdicionais getInformacoesAdicionais() {
         return this.informacoesAdicionais;
@@ -237,7 +255,11 @@ public class NFNotaInfo extends DFBase {
     public NFNotaInfoResponsavelTecnico getInformacaoResposavelTecnico() {
         return this.informacaoResposavelTecnico;
     }
-    
+
+    public NFInfoSolicitacaoNFF getInformacaoSolicitacaoNFF() {
+        return informacaoSolicitacaoNFF;
+    }
+
     @Override
     public String toString() {
         if (this.getDestinatario() != null && this.getIdentificacao() != null && this.getDestinatario().getIndicadorIEDestinatario().equals(NFIndicadorIEDestinatario.NAO_CONTRIBUINTE) && this.getIdentificacao().getOperacaoConsumidorFinal().equals(NFOperacaoConsumidorFinal.NAO) && this.getIdentificacao().getTipo().equals(NFTipo.SAIDA) && !this.getIdentificacao().getIdentificadorLocalDestinoOperacao().equals(NFIdentificadorLocalDestinoOperacao.OPERACAO_COM_EXTERIOR)) {
@@ -245,4 +267,5 @@ public class NFNotaInfo extends DFBase {
         }
         return super.toString();
     }
+	
 }

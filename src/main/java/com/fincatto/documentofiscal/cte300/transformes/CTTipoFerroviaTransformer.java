@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.cte300.transformes;
 
-import com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia;
 import org.simpleframework.xml.transform.Transform;
+
+import com.fincatto.documentofiscal.cte300.classes.CTTipoFerrovia;
 
 public class CTTipoFerroviaTransformer implements Transform<CTTipoFerrovia> {
 
