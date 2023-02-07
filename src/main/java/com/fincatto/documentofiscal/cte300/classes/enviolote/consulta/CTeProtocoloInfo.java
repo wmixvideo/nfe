@@ -39,7 +39,7 @@ public class CTeProtocoloInfo extends DFBase {
     @Element(name = "cStat")
     private String status;
     
-    @Element(name = "xMotivo")
+    @Element(name = "xMotivo", required = false)
     private String motivo;
 
     @Attribute(name = "Id", required = false)
