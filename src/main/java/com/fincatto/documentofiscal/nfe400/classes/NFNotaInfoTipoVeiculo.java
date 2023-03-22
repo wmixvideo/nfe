@@ -12,7 +12,7 @@ public enum NFNotaInfoTipoVeiculo {
     ESP_ONIBUS("22", "Especial \u00d4nibus"),
     MICROONIBUS("07", "Micro\u00f4nibus"),
     MISTO_CAM("23", "Misto"),
-    MOTOCICLO("04", "Motociclo"),
+    MOTOCICLO("4", "Motociclo"),
     MOTONETA("03", "Motoneta"),
     ONIBUS("08", "\u00d4nibus"),
     REBOQUE("10", "Reboque"),
