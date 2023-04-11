@@ -148,7 +148,17 @@ public class NFNotaInfoItemImpostoICMSTest {
         icms.setIcms00(new NFNotaInfoItemImpostoICMS00());
 
         try {
+            icms.setIcms02(new NFNotaInfoItemImpostoICMS02());
+            Assert.fail("So pode permitir um icms cadastrado");
+        } catch (final IllegalStateException ignored) {
+        }
+        try {
             icms.setIcms10(new NFNotaInfoItemImpostoICMS10());
+            Assert.fail("So pode permitir um icms cadastrado");
+        } catch (final IllegalStateException ignored) {
+        }
+        try {
+            icms.setIcms15(new NFNotaInfoItemImpostoICMS15());
             Assert.fail("So pode permitir um icms cadastrado");
         } catch (final IllegalStateException ignored) {
         }
@@ -173,7 +183,17 @@ public class NFNotaInfoItemImpostoICMSTest {
         } catch (final IllegalStateException ignored) {
         }
         try {
+            icms.setIcms53(new NFNotaInfoItemImpostoICMS53());
+            Assert.fail("So pode permitir um icms cadastrado");
+        } catch (final IllegalStateException ignored) {
+        }
+        try {
             icms.setIcms60(new NFNotaInfoItemImpostoICMS60());
+            Assert.fail("So pode permitir um icms cadastrado");
+        } catch (final IllegalStateException ignored) {
+        }
+        try {
+            icms.setIcms61(new NFNotaInfoItemImpostoICMS61());
             Assert.fail("So pode permitir um icms cadastrado");
         } catch (final IllegalStateException ignored) {
         }

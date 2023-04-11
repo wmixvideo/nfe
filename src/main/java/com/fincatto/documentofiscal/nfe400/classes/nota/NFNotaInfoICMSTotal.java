@@ -41,7 +41,25 @@ public class NFNotaInfoICMSTotal extends DFBase {
     
     @Element(name = "vFCPSTRet")
     private String valorTotalFundoCombatePobrezaSTRetido;
-    
+
+    @Element(name = "qBCMono", required = false)
+    private String quantidadeTributavaIcmsMonofasico;
+
+    @Element(name = "vICMSMono", required = false)
+    private String valorTotalIcmsMonofasico;
+
+    @Element(name = "qBCMonoReten", required = false)
+    private String valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao;
+
+    @Element(name = "vICMSMonoReten", required = false)
+    private String valorTotalIcmsSujeitoRetencao;
+
+    @Element(name = "qBCMonoRet", required = false)
+    private String valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente;
+
+    @Element(name = "vICMSMonoRet", required = false)
+    private String valorTotalIcmsMonofasicoRetidoAnteriormente;
+
     @Element(name = "vProd")
     private String valorTotalDosProdutosServicos;
     
@@ -260,5 +278,53 @@ public class NFNotaInfoICMSTotal extends DFBase {
 
     public String getValorTotalIPIDevolvido() {
         return this.valorTotalIPIDevolvido;
+    }
+
+    public String getQuantidadeTributavaIcmsMonofasico() {
+        return quantidadeTributavaIcmsMonofasico;
+    }
+
+    public void setQuantidadeTributavaIcmsMonofasico(BigDecimal quantidadeTributavaIcmsMonofasico) {
+        this.quantidadeTributavaIcmsMonofasico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(quantidadeTributavaIcmsMonofasico, "Valor total da quantidade tributada do ICMS monofásico próprio");
+    }
+
+    public String getValorTotalIcmsMonofasico() {
+        return valorTotalIcmsMonofasico;
+    }
+
+    public void setValorTotalIcmsMonofasico(BigDecimal valorTotalIcmsMonofasico) {
+        this.valorTotalIcmsMonofasico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIcmsMonofasico, "Valor total do ICMS monofásico próprio");
+    }
+
+    public String getValorTotalQuantidadeTributadaMonofasicoSujeitoRetencao() {
+        return valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao;
+    }
+
+    public void setValorTotalQuantidadeTributadaMonofasicoSujeitoRetencao(BigDecimal valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao) {
+        this.valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao, "Valor total da quantidade tributada do ICMS monofásico sujeito a retenção");
+    }
+
+    public String getValorTotalIcmsSujeitoRetencao() {
+        return valorTotalIcmsSujeitoRetencao;
+    }
+
+    public void setValorTotalIcmsSujeitoRetencao(BigDecimal valorTotalIcmsSujeitoRetencao) {
+        this.valorTotalIcmsSujeitoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIcmsSujeitoRetencao, "Valor total do ICMS monofásico sujeito a retenção");
+    }
+
+    public String getValorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente() {
+        return valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente;
+    }
+
+    public void setValorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente(BigDecimal valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente) {
+        this.valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente, "Valor total da quantidade tributada do ICMS monofásico retido anteriormente");
+    }
+
+    public String getValorTotalIcmsMonofasicoRetidoAnteriormente() {
+        return valorTotalIcmsMonofasicoRetidoAnteriormente;
+    }
+
+    public void setValorTotalIcmsMonofasicoRetidoAnteriormente(BigDecimal valorTotalIcmsMonofasicoRetidoAnteriormente) {
+        this.valorTotalIcmsMonofasicoRetidoAnteriormente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIcmsMonofasicoRetidoAnteriormente, "Valor total do ICMS monofásico retido anteriormente");
     }
 }
