@@ -12,8 +12,14 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
     @Element(name = "ICMS00", required = false)
     private NFNotaInfoItemImpostoICMS00 icms00;
 
+    @Element(name = "ICMS02", required = false)
+    private NFNotaInfoItemImpostoICMS02 icms02;
+
     @Element(name = "ICMS10", required = false)
     private NFNotaInfoItemImpostoICMS10 icms10;
+
+    @Element(name = "ICMS15", required = false)
+    private NFNotaInfoItemImpostoICMS15 icms15;
 
     @Element(name = "ICMS20", required = false)
     private NFNotaInfoItemImpostoICMS20 icms20;
@@ -27,8 +33,14 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
     @Element(name = "ICMS51", required = false)
     private NFNotaInfoItemImpostoICMS51 icms51;
 
+    @Element(name = "ICMS53", required = false)
+    private NFNotaInfoItemImpostoICMS53 icms53;
+
     @Element(name = "ICMS60", required = false)
     private NFNotaInfoItemImpostoICMS60 icms60;
+
+    @Element(name = "ICMS61", required = false)
+    private NFNotaInfoItemImpostoICMS61 icms61;
 
     @Element(name = "ICMS70", required = false)
     private NFNotaInfoItemImpostoICMS70 icms70;
@@ -65,9 +77,19 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
         this.icms00 = icms00;
     }
 
+    public void setIcms02(final NFNotaInfoItemImpostoICMS02 icms02) {
+        this.validaApenasUmSelecionado();
+        this.icms02 = icms02;
+    }
+
     public void setIcms10(final NFNotaInfoItemImpostoICMS10 icms10) {
         this.validaApenasUmSelecionado();
         this.icms10 = icms10;
+    }
+
+    public void setIcms15(final NFNotaInfoItemImpostoICMS15 icms15) {
+        this.validaApenasUmSelecionado();
+        this.icms15 = icms15;
     }
 
     public void setIcms20(final NFNotaInfoItemImpostoICMS20 icms20) {
@@ -90,9 +112,19 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
         this.icms51 = icms51;
     }
 
+    public void setIcms53(final NFNotaInfoItemImpostoICMS53 icms53) {
+        this.validaApenasUmSelecionado();
+        this.icms53 = icms53;
+    }
+
     public void setIcms60(final NFNotaInfoItemImpostoICMS60 icms60) {
         this.validaApenasUmSelecionado();
         this.icms60 = icms60;
+    }
+
+    public void setIcms61(final NFNotaInfoItemImpostoICMS61 icms61) {
+        this.validaApenasUmSelecionado();
+        this.icms61 = icms61;
     }
 
     public void setIcms70(final NFNotaInfoItemImpostoICMS70 icms70) {
@@ -160,8 +192,16 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
         return this.icms00;
     }
 
+    public NFNotaInfoItemImpostoICMS02 getIcms02() {
+        return icms02;
+    }
+
     public NFNotaInfoItemImpostoICMS10 getIcms10() {
         return this.icms10;
+    }
+
+    public NFNotaInfoItemImpostoICMS15 getIcms15() {
+        return icms15;
     }
 
     public NFNotaInfoItemImpostoICMS20 getIcms20() {
@@ -180,8 +220,16 @@ public class NFNotaInfoItemImpostoICMS extends DFBase {
         return this.icms51;
     }
 
+    public NFNotaInfoItemImpostoICMS53 getIcms53() {
+        return icms53;
+    }
+
     public NFNotaInfoItemImpostoICMS60 getIcms60() {
         return this.icms60;
+    }
+
+    public NFNotaInfoItemImpostoICMS61 getIcms61() {
+        return icms61;
     }
 
     public NFNotaInfoItemImpostoICMS70 getIcms70() {

@@ -49,6 +49,9 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     @Element(name = "encerrante", required = false)
     private NFNotaInfoItemProdutoCombustivelEncerrante encerrante;
 
+    @Element(name = "origComb", required = false)
+    private NFNotaInfoItemProdutoCombustivelOrigem origemCombustivel;
+
     public NFNotaInfoItemProdutoCombustivel() {
         this.codigoProdutoANP = null;
         this.codigoAutorizacaoCOFIF = null;
@@ -105,6 +108,10 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
         this.encerrante = encerrante;
     }
 
+    public void setOrigemCombustivel(NFNotaInfoItemProdutoCombustivelOrigem origemCombustivel) {
+        this.origemCombustivel = origemCombustivel;
+    }
+
     public String getCodigoProdutoANP() {
         return this.codigoProdutoANP;
     }
@@ -147,5 +154,9 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
 
     public NFNotaInfoItemProdutoCombustivelEncerrante getEncerrante() {
         return this.encerrante;
+    }
+
+    public NFNotaInfoItemProdutoCombustivelOrigem getOrigemCombustivel() {
+        return origemCombustivel;
     }
 }
