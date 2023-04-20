@@ -56,16 +56,6 @@ public class NFNotaInfoItemImpostoICMS61Test {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBaseCalculoNulo() {
-        final NFNotaInfoItemImpostoICMS61 icms61 = new NFNotaInfoItemImpostoICMS61();
-        icms61.setOrigem(NFOrigem.NACIONAL);
-        icms61.setPercentualAliquota(new BigDecimal("99.99"));
-        icms61.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COBRADA_ANTERIORMENTE);
-        icms61.setValorTributo(new BigDecimal("999999999999.99"));
-        icms61.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoNulo() {
         final NFNotaInfoItemImpostoICMS61 icms61 = new NFNotaInfoItemImpostoICMS61();
         icms61.setOrigem(NFOrigem.NACIONAL);

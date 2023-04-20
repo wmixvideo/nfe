@@ -17,15 +17,23 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
-    @Element(name = "qBCMonoDif")
+    @Element(name = "qBCMono", required = false)
     private String quantidadeBaseCalculo;
 
-    @Element(name = "adRemICMSDif")
+    @Element(name = "adRemICMS", required = false)
     private String percentualAliquota;
 
-    @Element(name = "vICMSMonoDif")
-    private String valorTributo;
+    @Element(name = "vIcmsMonoOp", required = false)
+    private String valorOperacao;
 
+    @Element(name = "pDif", required = false)
+    private String percentualDiferimento;
+
+    @Element(name = "vICMSMonoDif", required = false)
+    private String valorTributoDiferido;
+
+    @Element(name = "vICMSMono", required = false)
+    private String valorTributo;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -46,8 +54,20 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
         this.percentualAliquota = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualAliquota, "Alíquota ad rem do imposto diferido");
     }
 
+    public void setValorOperacao(BigDecimal valorOperacao) {
+        this.valorOperacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorOperacao, "Valor do ICMS da operação");
+    }
+
+    public void setPercentualDiferimento(BigDecimal percentualDiferimento) {
+        this.percentualDiferimento = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualDiferimento, "Percentual do diferiment");
+    }
+
+    public void setValorTributoDiferido (BigDecimal valorTributoDiferido) {
+        this.valorTributoDiferido = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoDiferido, "Valor do ICMS diferido");
+    }
+
     public void setValorTributo(BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS diferido");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS próprio devido");
     }
 
     public NFOrigem getOrigem() {
@@ -64,6 +84,18 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
 
     public String getPercentualAliquota() {
         return percentualAliquota;
+    }
+
+    public String getValorOperacao() {
+        return valorOperacao;
+    }
+
+    public String getPercentualDiferimento() {
+        return percentualDiferimento;
+    }
+
+    public String getValorTributoDiferido() {
+        return valorTributoDiferido;
     }
 
     public String getValorTributo() {

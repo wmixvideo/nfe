@@ -43,19 +43,19 @@ public class NFNotaInfoICMSTotal extends DFBase {
     private String valorTotalFundoCombatePobrezaSTRetido;
 
     @Element(name = "qBCMono", required = false)
-    private String quantidadeTributavaIcmsMonofasico;
+    private String quantidadeTributadaIcmsMonofasico;
 
     @Element(name = "vICMSMono", required = false)
     private String valorTotalIcmsMonofasico;
 
     @Element(name = "qBCMonoReten", required = false)
-    private String valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao;
+    private String quantidadeTributadaMonofasicoSujeitoRetencao;
 
     @Element(name = "vICMSMonoReten", required = false)
     private String valorTotalIcmsSujeitoRetencao;
 
     @Element(name = "qBCMonoRet", required = false)
-    private String valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente;
+    private String quantidadeTributadaMonofasicoRetiroAnteriormente;
 
     @Element(name = "vICMSMonoRet", required = false)
     private String valorTotalIcmsMonofasicoRetidoAnteriormente;
@@ -280,12 +280,12 @@ public class NFNotaInfoICMSTotal extends DFBase {
         return this.valorTotalIPIDevolvido;
     }
 
-    public String getQuantidadeTributavaIcmsMonofasico() {
-        return quantidadeTributavaIcmsMonofasico;
+    public String getQuantidadeTributadaIcmsMonofasico() {
+        return quantidadeTributadaIcmsMonofasico;
     }
 
-    public void setQuantidadeTributavaIcmsMonofasico(BigDecimal quantidadeTributavaIcmsMonofasico) {
-        this.quantidadeTributavaIcmsMonofasico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(quantidadeTributavaIcmsMonofasico, "Valor total da quantidade tributada do ICMS monofásico próprio");
+    public void setQuantidadeTributadaIcmsMonofasico(BigDecimal quantidadeTributadaIcmsMonofasico) {
+        this.quantidadeTributadaIcmsMonofasico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(quantidadeTributadaIcmsMonofasico, "Valor total da quantidade tributada do ICMS monofásico próprio");
     }
 
     public String getValorTotalIcmsMonofasico() {
@@ -296,12 +296,12 @@ public class NFNotaInfoICMSTotal extends DFBase {
         this.valorTotalIcmsMonofasico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIcmsMonofasico, "Valor total do ICMS monofásico próprio");
     }
 
-    public String getValorTotalQuantidadeTributadaMonofasicoSujeitoRetencao() {
-        return valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao;
+    public String getQuantidadeTributadaMonofasicoSujeitoRetencao() {
+        return quantidadeTributadaMonofasicoSujeitoRetencao;
     }
 
-    public void setValorTotalQuantidadeTributadaMonofasicoSujeitoRetencao(BigDecimal valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao) {
-        this.valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalQuantidadeTributadaMonofasicoSujeitoRetencao, "Valor total da quantidade tributada do ICMS monofásico sujeito a retenção");
+    public void setQuantidadeTributadaMonofasicoSujeitoRetencao(BigDecimal quantidadeTributadaMonofasicoSujeitoRetencao) {
+        this.quantidadeTributadaMonofasicoSujeitoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(quantidadeTributadaMonofasicoSujeitoRetencao, "Valor total da quantidade tributada do ICMS monofásico sujeito a retenção");
     }
 
     public String getValorTotalIcmsSujeitoRetencao() {
@@ -312,12 +312,12 @@ public class NFNotaInfoICMSTotal extends DFBase {
         this.valorTotalIcmsSujeitoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalIcmsSujeitoRetencao, "Valor total do ICMS monofásico sujeito a retenção");
     }
 
-    public String getValorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente() {
-        return valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente;
+    public String getQuantidadeTributadaMonofasicoRetiroAnteriormente() {
+        return quantidadeTributadaMonofasicoRetiroAnteriormente;
     }
 
-    public void setValorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente(BigDecimal valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente) {
-        this.valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalQuantidadeTributadaMonofasicoRetiroAnteriormente, "Valor total da quantidade tributada do ICMS monofásico retido anteriormente");
+    public void setQuantidadeTributadaMonofasicoRetiroAnteriormente(BigDecimal quantidadeTributadaMonofasicoRetiroAnteriormente) {
+        this.quantidadeTributadaMonofasicoRetiroAnteriormente = DFBigDecimalValidador.tamanho15Com2CasasDecimais(quantidadeTributadaMonofasicoRetiroAnteriormente, "Valor total da quantidade tributada do ICMS monofásico retido anteriormente");
     }
 
     public String getValorTotalIcmsMonofasicoRetidoAnteriormente() {

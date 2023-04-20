@@ -57,16 +57,6 @@ public class NFNotaInfoItemImpostoICMS02Test {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirValorBaseCalculoNulo() {
-        final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
-        icms02.setOrigem(NFOrigem.NACIONAL);
-        icms02.setPercentualAliquota(new BigDecimal("99.99"));
-        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
-        icms02.setValorTributo(new BigDecimal("999999999999.99"));
-        icms02.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirValorTributoNulo() {
         final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
         icms02.setOrigem(NFOrigem.NACIONAL);
