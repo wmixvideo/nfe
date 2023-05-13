@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoReducaoADREM;
 import org.simpleframework.xml.transform.Transform;
 
