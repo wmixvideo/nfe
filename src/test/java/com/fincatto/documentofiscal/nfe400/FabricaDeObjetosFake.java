@@ -1336,6 +1336,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoProcessoReferenciado processoReferenciado = new NFNotaInfoProcessoReferenciado();
         processoReferenciado.setIdentificadorProcessoOuAtoConcessorio("SziSRSIRZvYWlxcbmmJfRZsLgVHaHTurUL9ea1kwFe7fssrxTVSK6uaFwGO5");
         processoReferenciado.setIndicadorOrigemProcesso(NFOrigemProcesso.JUSTICA_FEDERAL);
+        processoReferenciado.setTipoAtoConcessorio(NFTipoAtoConcessorio.REGIME_ESPECIAL);
         return processoReferenciado;
     }
     
