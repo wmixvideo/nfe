@@ -64,7 +64,7 @@ class WSCancelamento implements DFLog {
         return omElementResult;
     }
     
-    private CTeProtocoloEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    private CTeEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
         final CTChaveParser chaveParser = new CTChaveParser(chaveAcesso);
         
         final CTeEnviaEventoCancelamento cancelamento = new CTeEnviaEventoCancelamento();
@@ -90,10 +90,6 @@ class WSCancelamento implements DFLog {
         cTeEventoCancelamento.setInfoEvento(infoEvento);
         cTeEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         
-        CTeProtocoloEventoCancelamento cTeProtocoloEventoCancelamento = new CTeProtocoloEventoCancelamento();
-        cTeProtocoloEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
-        cTeProtocoloEventoCancelamento.setEvento(cTeEventoCancelamento);
-        
-        return cTeProtocoloEventoCancelamento;
+        return cTeEventoCancelamento;
     }
 }
