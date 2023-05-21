@@ -9,7 +9,7 @@ import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeCons
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
-import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeRetornoCancelamento;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -96,7 +96,7 @@ public class WSFacade {
      * @return dados do cancelamento da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeRetornoCancelamento cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+    public CTeEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 
@@ -109,7 +109,7 @@ public class WSFacade {
      * @return dados do cancelamento da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeRetornoCancelamento cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+    public CTeEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
 
