@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
-import com.fincatto.documentofiscal.cte200.classes.cte.CTe;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -32,6 +31,7 @@ public class WSFacade {
     private final WSDistribuicaoCTe wSDistribuicaoCTe;
     private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     private final WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
+    private final WSRegistroMultimodal wsRegistroMultimodal;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -43,6 +43,7 @@ public class WSFacade {
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
         this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config);
+        this.wsRegistroMultimodal = new WSRegistroMultimodal(config);
     }
 
     /**
@@ -217,6 +218,44 @@ public class WSFacade {
      */
     public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
         return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj);
+    }
+
+    /**
+     * Vincula um serviço ao CT-e multimodal.
+     *
+     * @param chave                 chave de acesso do CT-e multimodal
+     * @param informacoesAdicionais informações sobre o tipo de documento utilizado e ressalvas, se for o caso
+     * @param numeroDocumento       número do documento que será vinculado
+     * @return dados do registro multimodal retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno registroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
+        return this.wsRegistroMultimodal.registroMultimodal(chave, informacoesAdicionais, numeroDocumento);
+    }
+
+    /**
+     * Vincula um serviço ao CT-e multimodal.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e multimodal
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do registro multimodal retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno registroMultimodalAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsRegistroMultimodal.registroMultimodalAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do registro multimodal sem enviar para a SEFAZ.
+     * @param chave                 chave de acesso do CT-e multimodal
+     * @param informacoesAdicionais informações sobre o tipo de documento utilizado e ressalvas, se for o caso
+     * @param numeroDocumento       número do documento que será vinculado
+     * @return O XML da requisicao de registro multimodal ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoRegistroMultimodalAssinado(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
+        return this.wsRegistroMultimodal.getXmlAssinado(chave, informacoesAdicionais, numeroDocumento);
     }
 
 }
