@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
+import com.fincatto.documentofiscal.cte200.classes.cte.CTe;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
@@ -29,8 +30,8 @@ public class WSFacade {
     private final WSCancelamento wsCancelamento;
     private final WSInutilizacao wsInutilizacao;
     private final WSDistribuicaoCTe wSDistribuicaoCTe;
-
     private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
+    private final WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -41,6 +42,7 @@ public class WSFacade {
         this.wsCancelamento = new WSCancelamento(config);
         this.wsInutilizacao = new WSInutilizacao(config);
         this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
+        this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config);
     }
 
     /**
@@ -178,4 +180,41 @@ public class WSFacade {
     public CTDistribuicaoIntRetorno consultarDistribuicaoCTe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         return this.wSDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
     }
+
+    /**
+     * Faz o registro de prestação de serviço em desacordo.
+     *
+     * @param chave           chave de acesso do CT-e
+     * @param observacao      observação do desacordo
+     * @return dados do desacordo do CT-e retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao);
+    }
+
+    /**
+     * Faz o registro de prestação de serviço em desacordo.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do desacordo do CT-e retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno prestacaoEmDesacordoAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordoAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado da prestação de serviço em desacordo sem enviar para a SEFAZ.
+     * @param chave           chave de acesso do CT-e
+     * @param observacao      observação do desacordo
+     * @return O XML da requisicao de prestação de serviço em desacordo ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao) throws Exception {
+        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao);
+    }
+
 }
