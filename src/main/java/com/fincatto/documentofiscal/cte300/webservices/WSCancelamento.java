@@ -3,7 +3,10 @@ package com.fincatto.documentofiscal.cte300.webservices;
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeDetalhamentoEvento;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeInfoEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.*;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
@@ -64,18 +67,18 @@ class WSCancelamento implements DFLog {
         return omElementResult;
     }
     
-    private CTeEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
+    private CTeEvento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
         final CTChaveParser chaveParser = new CTChaveParser(chaveAcesso);
         
         final CTeEnviaEventoCancelamento cancelamento = new CTeEnviaEventoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
         cancelamento.setJustificativa(motivo.trim());
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
-        CTeDetalhamentoEventoCancelamento cTeDetalhamentoEventoCancelamento = new CTeDetalhamentoEventoCancelamento();
+        CTeDetalhamentoEvento cTeDetalhamentoEventoCancelamento = new CTeDetalhamentoEvento();
         cTeDetalhamentoEventoCancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
-        cTeDetalhamentoEventoCancelamento.setEventoCancelamento(cancelamento);
+        cTeDetalhamentoEventoCancelamento.setEvento(cancelamento);
         
-        final CTeInfoEventoCancelamento infoEvento = new CTeInfoEventoCancelamento();
+        final CTeInfoEvento infoEvento = new CTeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
@@ -85,8 +88,8 @@ class WSCancelamento implements DFLog {
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
         infoEvento.setCancelamento(cTeDetalhamentoEventoCancelamento);
-        
-        CTeEventoCancelamento cTeEventoCancelamento = new CTeEventoCancelamento();
+
+        CTeEvento cTeEventoCancelamento = new CTeEvento();
         cTeEventoCancelamento.setInfoEvento(infoEvento);
         cTeEventoCancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         
