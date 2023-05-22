@@ -186,11 +186,12 @@ public class WSFacade {
      *
      * @param chave           chave de acesso do CT-e
      * @param observacao      observação do desacordo
+     * @param cpfOuCnpj       CPF ou CNPJ do autor do evento
      * @return dados do desacordo do CT-e retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao) throws Exception {
-        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao);
+    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj);
     }
 
     /**
@@ -210,11 +211,12 @@ public class WSFacade {
      * Gera o XML assinado da prestação de serviço em desacordo sem enviar para a SEFAZ.
      * @param chave           chave de acesso do CT-e
      * @param observacao      observação do desacordo
+     * @param cpfOuCnpj       CPF ou CNPJ do autor do evento
      * @return O XML da requisicao de prestação de serviço em desacordo ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao) throws Exception {
-        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao);
+    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
+        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj);
     }
 
 }
