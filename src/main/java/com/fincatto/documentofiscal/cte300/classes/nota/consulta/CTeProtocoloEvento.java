@@ -1,6 +1,7 @@
-package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
+package com.fincatto.documentofiscal.cte300.classes.nota.consulta;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
@@ -12,14 +13,14 @@ import java.math.BigDecimal;
 
 @Root(name = "procEventoCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
-public class CTeProtocoloEventoCancelamento extends DFBase {
+public class CTeProtocoloEvento extends DFBase {
     private static final long serialVersionUID = -5921322695285609605L;
     
     @Attribute(name = "versao")
     private String versao;
     
     @Element(name = "eventoCTe")
-    private CTeEventoCancelamento evento;
+    private CTeEvento evento;
 
     @Element(name = "retEventoCTe", required = false)
     private CTeEventoRetorno eventoRetorno;
@@ -32,11 +33,11 @@ public class CTeProtocoloEventoCancelamento extends DFBase {
         this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
     }
 
-    public CTeEventoCancelamento getEvento() {
+    public CTeEvento getEvento() {
         return this.evento;
     }
 
-    public void setEvento(final CTeEventoCancelamento evento) {
+    public void setEvento(final CTeEvento evento) {
         this.evento = evento;
     }
 

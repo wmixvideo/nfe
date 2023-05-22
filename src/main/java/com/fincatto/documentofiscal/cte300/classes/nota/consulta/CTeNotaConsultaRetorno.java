@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeProtocolo;
-import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeProtocoloEventoCancelamento;
 
 import org.simpleframework.xml.*;
 
@@ -37,7 +36,7 @@ public class CTeNotaConsultaRetorno extends DFBase {
     protected CTeProtocolo protocolo;
 
     @ElementList(entry = "procEventoCTe", inline = true, required = false)
-    private List<CTeProtocoloEventoCancelamento> protocoloEvento;
+    private List<CTeProtocoloEvento> protocoloEvento;
 
     public CTeNotaConsultaRetorno() {
         this.versao = null;
