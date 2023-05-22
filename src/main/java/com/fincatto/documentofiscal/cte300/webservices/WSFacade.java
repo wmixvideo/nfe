@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
+import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -19,6 +20,9 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.time.ZonedDateTime;
+import java.util.List;
+
 import org.apache.commons.httpclient.protocol.Protocol;
 
 public class WSFacade {
@@ -32,6 +36,7 @@ public class WSFacade {
     private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     private final WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
     private final WSRegistroMultimodal wsRegistroMultimodal;
+    private final WSCartaCorrecao wsCartaCorrecao;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -44,6 +49,7 @@ public class WSFacade {
         this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
         this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config);
         this.wsRegistroMultimodal = new WSRegistroMultimodal(config);
+        this.wsCartaCorrecao = new WSCartaCorrecao(config);
     }
 
     /**
@@ -183,6 +189,60 @@ public class WSFacade {
     }
 
     /**
+     * Faz a correcao do CT-e.
+     *
+     * @param chave              chave de acesso do CT-e
+     * @param grupoAlterado      grupo de informações que pertence o campo que será alterado
+     * @param campoAlterado      campo que será alterado
+     * @param valorAlterado      novo valor que deve ser utilizado para o campo
+     * @param numeroItemAlterado o índice do item alterado caso a alteração ocorra em uma lista
+     * @param sequencialEvento   sequencial do evento
+     * @return dados da carta de correção retornada pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno corrigeNota(final String chave, String grupoAlterado, String campoAlterado, String valorAlterado, Integer numeroItemAlterado, int sequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNota(chave, grupoAlterado, campoAlterado, valorAlterado, numeroItemAlterado, sequencialEvento);
+    }
+
+    /**
+     * Faz a correcao do CT-e.
+     *
+     * @param chave            chave de acesso do CT-e
+     * @param correcoes        lista de correções a serem efetuadas no CT-e
+     * @param sequencialEvento sequencial do evento
+     * @return dados da carta de correção retornada pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno corrigeNota(final String chave, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.corrigeNota(chave, correcoes, sequencialEvento);
+    }
+
+    /**
+     * Faz a correcao do CT-e.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return ddados da carta de correção retornada pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado da carta de correção sem enviar para a SEFAZ.
+     * @param chave            chave de acesso do CT-e
+     * @param correcoes        lista de correções a serem efetuadas no CT-e
+     * @param sequencialEvento sequencial do evento
+     * @return O XML da requisicao de carta de correção ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoCartaCorreca(final String chave, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {
+        return this.wsCartaCorrecao.getXmlAssinado(chave, correcoes, sequencialEvento);
+    }
+
+    /**
      * Faz o registro de prestação de serviço em desacordo.
      *
      * @param chave           chave de acesso do CT-e
@@ -254,7 +314,7 @@ public class WSFacade {
      * @return O XML da requisicao de registro multimodal ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoRegistroMultimodalAssinado(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
+    public String getXmlAssinadoRegistroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         return this.wsRegistroMultimodal.getXmlAssinado(chave, informacoesAdicionais, numeroDocumento);
     }
 
