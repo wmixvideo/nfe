@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeEnviaE
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementUnion;
 
 import java.math.BigDecimal;
 
@@ -14,8 +15,10 @@ public class CTeDetalhamentoEvento extends DFBase {
     @Attribute(name = "versaoEvento")
     private String versaoEvento;
 
-    @Element(name = "evCancCTe")
-    private CTeEnviaEventoCancelamento eventoCancelamento;
+    @ElementUnion({
+            @Element(name = "evCancCTe", type = CTeEnviaEventoCancelamento.class)
+    })
+    private CTeTipoEvento evento;
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
         this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
@@ -25,11 +28,11 @@ public class CTeDetalhamentoEvento extends DFBase {
         return this.versaoEvento;
     }
 
-    public CTeEnviaEventoCancelamento getEventoCancelamento() {
-        return this.eventoCancelamento;
+    public CTeTipoEvento getEvento() {
+        return this.evento;
     }
 
-    public void setEventoCancelamento(final CTeEnviaEventoCancelamento eventoCancelamento) {
-        this.eventoCancelamento = eventoCancelamento;
+    public void setEvento(final CTeTipoEvento evento) {
+        this.evento = evento;
     }
 }
