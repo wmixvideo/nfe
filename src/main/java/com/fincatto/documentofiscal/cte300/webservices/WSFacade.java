@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
+import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeInformacaoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -37,6 +38,7 @@ public class WSFacade {
     private final WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
     private final WSRegistroMultimodal wsRegistroMultimodal;
     private final WSCartaCorrecao wsCartaCorrecao;
+    private final WSComprovanteEntrega wsComprovanteEntrega;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -50,6 +52,7 @@ public class WSFacade {
         this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config);
         this.wsRegistroMultimodal = new WSRegistroMultimodal(config);
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
+        this.wsComprovanteEntrega = new WSComprovanteEntrega(config);
     }
 
     /**
@@ -240,6 +243,66 @@ public class WSFacade {
      */
     public String getXmlAssinadoCartaCorreca(final String chave, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {
         return this.wsCartaCorrecao.getXmlAssinado(chave, correcoes, sequencialEvento);
+    }
+
+    /**
+     * Registra a efetivação da entrega da carga pelo transportador.
+     *
+     * @param chave                 chave de acesso do CT-e
+     * @param protocoloAutorizacao  protocolo de autorizacao
+     * @param dataHoraEntrega       data e hora da entrega da carga
+     * @param documentoRecebedor    documento do recebedor
+     * @param nomeRecebedor         nome do recebedor
+     * @param latitude              latitude da entrega
+     * @param longitude             longitude da entrega
+     * @param hashEntrega           hash da entrega
+     * @param dataHoraHashEntrega   data e hora do hash da entrega
+     * @param entregas              lista de entregas
+     * @return dados do comprovante de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno comprovanteEntrega(final String chave, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
+                                               final String documentoRecebedor, final String nomeRecebedor, final String latitude,
+                                               final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
+                                               final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
+        return this.wsComprovanteEntrega.comprovanteEntrega(chave, protocoloAutorizacao, dataHoraEntrega,
+                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento);
+    }
+
+    /**
+     * Registra a efetivação da entrega da carga pelo transportador.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do comprovante de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno comprovanteEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsComprovanteEntrega.comprovanteEntregaAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do comprovante de entrega sem enviar para a SEFAZ.
+     * @param chave                 chave de acesso do CT-e
+     * @param protocoloAutorizacao  protocolo de autorizacao
+     * @param dataHoraEntrega       data e hora da entrega da carga
+     * @param documentoRecebedor    documento do recebedor
+     * @param nomeRecebedor         nome do recebedor
+     * @param latitude              latitude da entrega
+     * @param longitude             longitude da entrega
+     * @param hashEntrega           hash da entrega
+     * @param dataHoraHashEntrega   data e hora do hash da entrega
+     * @param entregas              lista de entregas
+     * @return O XML da requisicao de comprovante de entrega ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadocomprovanteEntrega(final String chave, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
+                                                   final String documentoRecebedor, final String nomeRecebedor, final String latitude,
+                                                   final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
+                                                   final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
+        return this.wsComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, dataHoraEntrega,
+                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento);
     }
 
     /**
