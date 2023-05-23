@@ -41,7 +41,7 @@ public class CTeInfoEvento extends DFBase {
     private Integer numeroSequencialEvento;
 
     @Element(name = "detEvento")
-    private CTeDetalhamentoEvento cancelamento;
+    private CTeDetalhamentoEvento detalheEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -131,11 +131,11 @@ public class CTeInfoEvento extends DFBase {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
-    public CTeDetalhamentoEvento getCancelamento() {
-        return this.cancelamento;
+    public CTeDetalhamentoEvento getDetalheEvento() {
+        return this.detalheEvento;
     }
 
-    public void setCancelamento(final CTeDetalhamentoEvento cancelamento) {
-        this.cancelamento = cancelamento;
+    public void setDetalheEvento(final CTeDetalhamentoEvento detalheEvento) {
+        this.detalheEvento = detalheEvento;
     }
 }

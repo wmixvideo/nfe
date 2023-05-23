@@ -73,7 +73,7 @@ abstract class WSRecepcaoEvento implements DFLog {
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(codigoEvento);
-        infoEvento.setCancelamento(cteDetalhamentoEventoCancelamento);
+        infoEvento.setDetalheEvento(cteDetalhamentoEventoCancelamento);
 
         CTeEvento cteEvento = new CTeEvento();
         cteEvento.setInfoEvento(infoEvento);
