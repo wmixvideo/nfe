@@ -39,6 +39,7 @@ public class WSFacade {
     private final WSRegistroMultimodal wsRegistroMultimodal;
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSComprovanteEntrega wsComprovanteEntrega;
+    private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -53,6 +54,7 @@ public class WSFacade {
         this.wsRegistroMultimodal = new WSRegistroMultimodal(config);
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsComprovanteEntrega = new WSComprovanteEntrega(config);
+        this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
     }
 
     /**
@@ -189,6 +191,46 @@ public class WSFacade {
      */
     public CTDistribuicaoIntRetorno consultarDistribuicaoCTe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         return this.wSDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
+    }
+
+    /**
+     * Registra a efetivação da entrega da carga pelo transportador.
+     *
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloAutorizacao        protocolo de autorizacao
+     * @param protocoloComprovanteEntrega protocolo do comprovante de entrega
+     * @param sequencialEvento            sequencial do evento
+     * @return dados do cancelamento do comprovante de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaComprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoComprovanteEntrega.cancelaComprovanteEntrega(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
+    }
+
+    /**
+     * Registra a efetivação da entrega da carga pelo transportador.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do cancelamento do comprovante de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaComprovanteEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsCancelamentoComprovanteEntrega.cancelaComprovanteEntregaAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do cancelamento do comprovante de entrega sem enviar para a SEFAZ.
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloAutorizacao        protocolo de autorizacao
+     * @param protocoloComprovanteEntrega protocolo do comprovante de entrega
+     * @param sequencialEvento            sequencial do evento
+     * @return O XML da requisicao de cancelamento do comprovante de entrega ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadocomprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
     }
 
     /**
