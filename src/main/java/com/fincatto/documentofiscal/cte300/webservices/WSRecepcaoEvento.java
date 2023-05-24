@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.cte300.webservices;
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte300.classes.evento.*;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
@@ -22,6 +23,14 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
+        return efetuaEvento(xmlAssinado, chaveAcesso, versao, false);
+    }
+
+    protected OMElement efetuaEventoSVC(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
+        return efetuaEvento(xmlAssinado, chaveAcesso, versao, true);
+    }
+
+    protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         final RecepcaoEventoStub.CteCabecMsg cabec = new RecepcaoEventoStub.CteCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
@@ -35,7 +44,12 @@ abstract class WSRecepcaoEvento implements DFLog {
         this.getLogger().debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
 
-        final CTAutorizador31 autorizador = CTAutorizador31.valueOfChaveAcesso(chaveAcesso);
+        final CTAutorizador31 autorizador;
+        if (contingencia) {
+            autorizador = CTAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+        } else {
+            autorizador = CTAutorizador31.valueOfChaveAcesso(chaveAcesso);
+        }
         final String urlWebService = autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + ctChaveParser.getModelo().name() + ", autorizador " + autorizador.name());

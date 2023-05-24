@@ -12,6 +12,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsult
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeInformacaoComprovanteEntrega;
+import com.fincatto.documentofiscal.cte300.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -40,6 +41,7 @@ public class WSFacade {
     private final WSCartaCorrecao wsCartaCorrecao;
     private final WSComprovanteEntrega wsComprovanteEntrega;
     private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
+    private final WSEpec wsEpec;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -55,6 +57,7 @@ public class WSFacade {
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsComprovanteEntrega = new WSComprovanteEntrega(config);
         this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
+        this.wsEpec = new WSEpec(config);
     }
 
     /**
@@ -345,6 +348,41 @@ public class WSFacade {
                                                    final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
         return this.wsComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, dataHoraEntrega,
                 documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento);
+    }
+
+    /**
+     * Faz o registro do EPEC.
+     *
+     * @param chave           chave de acesso do CT-e
+     * @param eventoEpec      dados do evento prévio de emissão em contingência
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno enviaEpec(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
+        return this.wsEpec.enviaEpec(chave, eventoEpec);
+    }
+
+    /**
+     * Faz o registro do EPEC.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do EPEC retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno enviaEpecAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsEpec.enviaEpecAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do EPEC sem enviar para a SEFAZ.
+     * @param chave           chave de acesso do CT-e
+     * @param eventoEpec      dados do evento prévio de emissão em contingência
+     * @return O XML da requisicao de EPEC ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoEpec(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
+        return this.wsEpec.getXmlAssinado(chave, eventoEpec);
     }
 
     /**
