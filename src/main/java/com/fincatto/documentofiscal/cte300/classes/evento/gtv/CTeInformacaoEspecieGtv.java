@@ -29,6 +29,6 @@ public class CTeInformacaoEspecieGtv extends DFBase {
     }
 
     public void setValorEspecie(BigDecimal valorEspecie) {
-        this.valorEspecie = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorEspecie, "Valor Especie");;
+        this.valorEspecie = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorEspecie, "Valor Especie");
     }
 }
