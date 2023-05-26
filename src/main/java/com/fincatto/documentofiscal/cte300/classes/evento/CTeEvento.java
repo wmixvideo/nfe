@@ -1,26 +1,28 @@
-package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
+package com.fincatto.documentofiscal.cte300.classes.evento;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
+import com.fincatto.documentofiscal.cte300.classes.nota.assinatura.CTeSignature;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
 @Root(name = "eventoCTe")
-public class CTeEventoCancelamento extends DFBase {
-    private static final long serialVersionUID = -8363617761063438288L;
-    
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+public class CTeEvento extends DFBase {
+    private static final long serialVersionUID = 1427772563112875017L;
+
     @Attribute(name = "versao")
     private String versao;
     
     @Element(name = "infEvento")
-    private CTeInfoEventoCancelamento infoEvento;
+    private CTeInfoEvento infoEvento;
 
     @Element(name = "Signature", required = false)
-    private NFSignature assinatura;
+    private CTeSignature assinatura;
 
     public String getVersao() {
         return this.versao;
@@ -30,19 +32,19 @@ public class CTeEventoCancelamento extends DFBase {
         this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
     }
 
-    public CTeInfoEventoCancelamento getInfoEvento() {
+    public CTeInfoEvento getInfoEvento() {
         return this.infoEvento;
     }
 
-    public void setInfoEvento(final CTeInfoEventoCancelamento infoEvento) {
+    public void setInfoEvento(final CTeInfoEvento infoEvento) {
         this.infoEvento = infoEvento;
     }
 
-    public NFSignature getAssinatura() {
+    public CTeSignature getAssinatura() {
         return this.assinatura;
     }
 
-    public void setAssinatura(final NFSignature assinatura) {
+    public void setAssinatura(final CTeSignature assinatura) {
         this.assinatura = assinatura;
     }
 }
