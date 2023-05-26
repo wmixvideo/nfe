@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeEnvia
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoCancelamentoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
+import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.cte300.classes.evento.multimodal.CTeEnviaEventoRegistroMultimodal;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
@@ -26,6 +27,7 @@ public class CTeDetalhamentoEvento extends DFBase {
             @Element(name = "evCCeCTe", type = CTeEnviaEventoCartaCorrecao.class),
             @Element(name = "evCECTe", type = CTeEnviaEventoComprovanteEntrega.class),
             @Element(name = "evPrestDesacordo", type = CTeEnviaEventoPrestacaoEmDesacordo.class),
+            @Element(name = "evGTV", type = CTeEnviaEventoGtv.class),
             @Element(name = "evRegMultimodal", type = CTeEnviaEventoRegistroMultimodal.class),
     })
     private CTeTipoEvento evento;

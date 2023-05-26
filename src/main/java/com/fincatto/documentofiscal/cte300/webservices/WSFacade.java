@@ -13,6 +13,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeInformacaoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.epec.CTeEnviaEventoEpec;
+import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -42,6 +43,7 @@ public class WSFacade {
     private final WSComprovanteEntrega wsComprovanteEntrega;
     private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
     private final WSEpec wsEpec;
+    private final WSGtv wsGtv;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -58,6 +60,7 @@ public class WSFacade {
         this.wsComprovanteEntrega = new WSComprovanteEntrega(config);
         this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
         this.wsEpec = new WSEpec(config);
+        this.wsGtv = new WSGtv(config);
     }
 
     /**
@@ -383,6 +386,43 @@ public class WSFacade {
      */
     public String getXmlAssinadoEpec(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
         return this.wsEpec.getXmlAssinado(chave, eventoEpec);
+    }
+
+    /**
+     * Faz o registro da guia de transporte de valores.
+     *
+     * @param chave            chave de acesso do CT-e
+     * @param eventoGtv        dados da guia de transporte de valores
+     * @param sequencialEvento sequencial do evento
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno enviaGtv(final String chave, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
+        return this.wsGtv.enviaGtv(chave, eventoGtv, sequencialEvento);
+    }
+
+    /**
+     * Faz o registro da guia de transporte de valores.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados da guia de transporte de valores retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno enviaGtvAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsGtv.enviaGtvAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado da guia de transporte de valores sem enviar para a SEFAZ.
+     * @param chave            chave de acesso do CT-e
+     * @param eventoGtv        dados do evento prévio de emissão em contingência
+     * @param sequencialEvento sequencial do evento
+     * @return O XML da requisicao da guia de transporte de valores ja assinada
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoGtv(final String chave, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
+        return this.wsGtv.getXmlAssinado(chave, eventoGtv, sequencialEvento);
     }
 
     /**
