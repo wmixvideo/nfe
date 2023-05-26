@@ -47,4 +47,53 @@ public class CTeDetalhamentoEvento extends DFBase {
     public void setEvento(final CTeTipoEvento evento) {
         this.evento = evento;
     }
+
+    public CTeEnviaEventoCancelamentoComprovanteEntrega getCancelamentoComprovanteEntrega() {
+        if (this.evento instanceof CTeEnviaEventoCancelamentoComprovanteEntrega) {
+            return (CTeEnviaEventoCancelamentoComprovanteEntrega) this.evento;
+        }
+        throw new IllegalStateException("Evento não é cancelamento de comprovante de entrega");
+    }
+
+    public CTeEnviaEventoCancelamento getCancelamento() {
+        if (this.evento instanceof CTeEnviaEventoCancelamento) {
+            return (CTeEnviaEventoCancelamento) this.evento;
+        }
+        throw new IllegalStateException("Evento não é cancelamento");
+    }
+
+    public CTeEnviaEventoCartaCorrecao getCartaCorrecao() {
+        if (this.evento instanceof CTeEnviaEventoCartaCorrecao) {
+            return (CTeEnviaEventoCartaCorrecao) this.evento;
+        }
+        throw new IllegalStateException("Evento não é carta de correção");
+    }
+
+    public CTeEnviaEventoComprovanteEntrega getComprovanteEntrega() {
+        if (this.evento instanceof CTeEnviaEventoComprovanteEntrega) {
+            return (CTeEnviaEventoComprovanteEntrega) this.evento;
+        }
+        throw new IllegalStateException("Evento não é comprovante de entrega");
+    }
+
+    public CTeEnviaEventoPrestacaoEmDesacordo getPrestacaoEmDesacordo() {
+        if (this.evento instanceof CTeEnviaEventoPrestacaoEmDesacordo) {
+            return (CTeEnviaEventoPrestacaoEmDesacordo) this.evento;
+        }
+        throw new IllegalStateException("Evento não é prestação de serviço em desacordo");
+    }
+
+    public CTeEnviaEventoGtv getGtv() {
+        if (this.evento instanceof CTeEnviaEventoGtv) {
+            return (CTeEnviaEventoGtv) this.evento;
+        }
+        throw new IllegalStateException("Evento não é GTV");
+    }
+
+    public CTeEnviaEventoRegistroMultimodal getRegistroMultimodal() {
+        if (this.evento instanceof CTeEnviaEventoRegistroMultimodal) {
+            return (CTeEnviaEventoRegistroMultimodal) this.evento;
+        }
+        throw new IllegalStateException("Evento não é registro multimodal");
+    }
 }
