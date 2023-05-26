@@ -135,6 +135,18 @@ public class WSFacade {
     }
 
     /**
+     * Gera o XML assinado do cancelamento sem enviar para a SEFAZ.
+     * @param chave           chave de acesso do CT-e
+     * @param numeroProtocolo numero do protocolo da nota
+     * @param motivo          motivo do cancelamento
+     * @return O XML da requisicao de registro multimodal ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoCancelamento(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        return this.wsCancelamento.getXmlAssinado(chave, numeroProtocolo, motivo);
+    }
+
+    /**
      * Inutiliza o CTE com o evento assinado ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      * @param eventoAssinadoXml evento assinado em XML
      * @param modelo modelo do CTE

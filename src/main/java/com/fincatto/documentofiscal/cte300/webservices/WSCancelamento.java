@@ -26,12 +26,15 @@ class WSCancelamento extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
-        final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
-        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
+        final String xmlAssinado = this.getXmlAssinado(chaveAcesso, numeroProtocolo, motivo);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
+    String getXmlAssinado(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+        final String xml = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
+        return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
+    }
     private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSCancelamento.VERSAO_LEIAUTE);
     }
