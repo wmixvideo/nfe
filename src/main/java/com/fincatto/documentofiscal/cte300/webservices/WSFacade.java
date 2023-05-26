@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
+import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeInformacaoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte300.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
@@ -297,24 +298,12 @@ public class WSFacade {
      * Registra a efetivação da entrega da carga pelo transportador.
      *
      * @param chave                 chave de acesso do CT-e
-     * @param protocoloAutorizacao  protocolo de autorizacao
-     * @param dataHoraEntrega       data e hora da entrega da carga
-     * @param documentoRecebedor    documento do recebedor
-     * @param nomeRecebedor         nome do recebedor
-     * @param latitude              latitude da entrega
-     * @param longitude             longitude da entrega
-     * @param hashEntrega           hash da entrega
-     * @param dataHoraHashEntrega   data e hora do hash da entrega
-     * @param entregas              lista de entregas
+     * @param comprovanteEntrega    dados do comprovante de entrega
      * @return dados do comprovante de entrega retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno comprovanteEntrega(final String chave, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
-                                               final String documentoRecebedor, final String nomeRecebedor, final String latitude,
-                                               final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
-                                               final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
-        return this.wsComprovanteEntrega.comprovanteEntrega(chave, protocoloAutorizacao, dataHoraEntrega,
-                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento);
+    public CTeEventoRetorno comprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        return this.wsComprovanteEntrega.comprovanteEntrega(chave, comprovanteEntrega, sequencialEvento);
     }
 
     /**
@@ -333,24 +322,12 @@ public class WSFacade {
     /**
      * Gera o XML assinado do comprovante de entrega sem enviar para a SEFAZ.
      * @param chave                 chave de acesso do CT-e
-     * @param protocoloAutorizacao  protocolo de autorizacao
-     * @param dataHoraEntrega       data e hora da entrega da carga
-     * @param documentoRecebedor    documento do recebedor
-     * @param nomeRecebedor         nome do recebedor
-     * @param latitude              latitude da entrega
-     * @param longitude             longitude da entrega
-     * @param hashEntrega           hash da entrega
-     * @param dataHoraHashEntrega   data e hora do hash da entrega
-     * @param entregas              lista de entregas
+     * @param comprovanteEntrega    dados do comprovante de entrega
      * @return O XML da requisicao de comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadocomprovanteEntrega(final String chave, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
-                                                   final String documentoRecebedor, final String nomeRecebedor, final String latitude,
-                                                   final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
-                                                   final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
-        return this.wsComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, dataHoraEntrega,
-                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento);
+    public String getXmlAssinadocomprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        return this.wsComprovanteEntrega.getXmlAssinado(chave, comprovanteEntrega, sequencialEvento);
     }
 
     /**

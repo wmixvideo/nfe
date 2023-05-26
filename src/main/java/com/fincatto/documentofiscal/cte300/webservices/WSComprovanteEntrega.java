@@ -27,45 +27,23 @@ class WSComprovanteEntrega extends WSRecepcaoEvento {
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
-    CTeEventoRetorno comprovanteEntrega(final String chaveAcesso, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
-                                        final String documentoRecebedor, final String nomeRecebedor, final String latitude,
-                                        final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
-                                        final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
-        final String cartaCorrecaoXML = this.gerarDadosComprovanteEntrega(chaveAcesso, protocoloAutorizacao, dataHoraEntrega,
-                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento).toString();
-        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
+    CTeEventoRetorno comprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        final String xmlAssinado = this.getXmlAssinado(chaveAcesso, comprovanteEntrega, sequencialEvento);
         final OMElement omElementResult = this.efetuaComprovanteEntrega(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
-    String getXmlAssinado(final String chave, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
-                          final String documentoRecebedor, final String nomeRecebedor, final String latitude,
-                          final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
-                          final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) throws Exception {
-        final String cartaCorrecaoXML = this.gerarDadosComprovanteEntrega(chave, protocoloAutorizacao, dataHoraEntrega,
-                documentoRecebedor, nomeRecebedor, latitude, longitude, hashEntrega, dataHoraHashEntrega, entregas, sequencialEvento).toString();
-        return new DFAssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
+    String getXmlAssinado(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        final String xml = this.gerarDadosComprovanteEntrega(chave, comprovanteEntrega, sequencialEvento).toString();
+        return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
     }
 
     private OMElement efetuaComprovanteEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final String protocoloAutorizacao, final ZonedDateTime dataHoraEntrega,
-                                                   final String documentoRecebedor, final String nomeRecebedor, final String latitude,
-                                                   final String longitude, final String hashEntrega, final ZonedDateTime dataHoraHashEntrega,
-                                                   final List<CTeInformacaoComprovanteEntrega> entregas, final int sequencialEvento) {
-        final CTeEnviaEventoComprovanteEntrega comprovanteEntrega = new CTeEnviaEventoComprovanteEntrega();
+    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) {
         comprovanteEntrega.setDescricaoEvento(WSComprovanteEntrega.DESCRICAO_EVENTO);
-        comprovanteEntrega.setProtocoloAutorizacao(protocoloAutorizacao);
-        comprovanteEntrega.setDataHoraEntrega(dataHoraEntrega);
-        comprovanteEntrega.setDocumentoRecebedor(documentoRecebedor);
-        comprovanteEntrega.setNomeRecebedor(nomeRecebedor);
-        comprovanteEntrega.setLatitude(latitude);
-        comprovanteEntrega.setLongitude(longitude);
-        comprovanteEntrega.setHashEntrega(hashEntrega);
-        comprovanteEntrega.setDataHoraHashEntrega(dataHoraHashEntrega);
-        comprovanteEntrega.setEntregas(entregas);
 
         return super.gerarEvento(chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE, comprovanteEntrega, WSComprovanteEntrega.EVENTO_COMPROVANTE_DE_ENTREGA, null, sequencialEvento);
     }
