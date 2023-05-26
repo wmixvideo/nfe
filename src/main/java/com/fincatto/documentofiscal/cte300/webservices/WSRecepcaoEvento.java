@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte300.classes.evento.*;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;

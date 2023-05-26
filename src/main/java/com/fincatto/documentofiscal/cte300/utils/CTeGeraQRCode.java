@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.cte300.utils;
 
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;

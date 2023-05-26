@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno;
@@ -68,7 +68,7 @@ class WSRecepcaoLote implements DFLog {
     private CteCabecMsgE getCabecalhoSOAP() {
         final CteCabecMsg cabecalho = new CteCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(CTeConfig.VERSAO);
+        cabecalho.setVersaoDados("3.00");
         final CteCabecMsgE cabecalhoSOAP = new CteCabecMsgE();
         cabecalhoSOAP.setCteCabecMsg(cabecalho);
         return cabecalhoSOAP;
