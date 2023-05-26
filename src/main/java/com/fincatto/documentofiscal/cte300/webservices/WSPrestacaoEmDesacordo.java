@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,11 +40,13 @@ class WSPrestacaoEmDesacordo extends WSRecepcaoEvento {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSPrestacaoEmDesacordo.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosPrestacaoEmDesacordo(final String chaveAcesso, final String motivo, final String cpfOuCnpj) {
+    private CTeEvento gerarDadosPrestacaoEmDesacordo(final String chaveAcesso, final String motivo, final String cpfOuCnpj) throws Exception {
         final CTeEnviaEventoPrestacaoEmDesacordo desacordo = new CTeEnviaEventoPrestacaoEmDesacordo();
         desacordo.setDescricaoEvento(WSPrestacaoEmDesacordo.DESCRICAO_EVENTO);
         desacordo.setIndicadorPrestacaoEmDesacordo(1);
         desacordo.setObservacao(motivo.trim());
+
+        DFXMLValidador.validaEventoPrestacaoEmDesacordoCTe300(desacordo.toString());
 
         return super.gerarEvento(chaveAcesso, WSPrestacaoEmDesacordo.VERSAO_LEIAUTE, desacordo, WSPrestacaoEmDesacordo.EVENTO_SERVICO_EM_DESACORDO, cpfOuCnpj, 1);
     }

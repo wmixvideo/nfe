@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoCancelamentoComprovanteEntrega;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,11 +40,13 @@ class WSCancelamentoComprovanteEntrega extends WSRecepcaoEvento {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSCancelamentoComprovanteEntrega.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosCancelamentoComprovanteEntrega(final String chaveAcesso, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) {
+    private CTeEvento gerarDadosCancelamentoComprovanteEntrega(final String chaveAcesso, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
         final CTeEnviaEventoCancelamentoComprovanteEntrega cancComprovanteEntrega = new CTeEnviaEventoCancelamentoComprovanteEntrega();
         cancComprovanteEntrega.setDescricaoEvento(WSCancelamentoComprovanteEntrega.DESCRICAO_EVENTO);
         cancComprovanteEntrega.setProtocoloAutorizacao(protocoloAutorizacao);
         cancComprovanteEntrega.setProtocoloComprovanteEntrega(protocoloComprovanteEntrega);
+
+        DFXMLValidador.validaEventoCancelamentoComprovanteEntregaCTe300(cancComprovanteEntrega.toString());
 
         return super.gerarEvento(chaveAcesso, WSCancelamentoComprovanteEntrega.VERSAO_LEIAUTE, cancComprovanteEntrega, WSCancelamentoComprovanteEntrega.EVENTO_COMPROVANTE_DE_ENTREGA, null, sequencialEvento);
     }

@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,8 +40,10 @@ class WSEpec extends WSRecepcaoEvento {
         return super.efetuaEventoSVC(xmlAssinado, chaveAcesso, WSEpec.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosEpec(final String chaveAcesso, final CTeEnviaEventoEpec eventoEpec) {
+    private CTeEvento gerarDadosEpec(final String chaveAcesso, final CTeEnviaEventoEpec eventoEpec) throws Exception {
         eventoEpec.setDescricaoEvento(WSEpec.DESCRICAO_EVENTO);
+
+        DFXMLValidador.validaEventoEpecCTe300(eventoEpec.toString());
 
         return super.gerarEvento(chaveAcesso, WSEpec.VERSAO_LEIAUTE, eventoEpec, WSEpec.EVENTO_EPEC, null, 1);
     }

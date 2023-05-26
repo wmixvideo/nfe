@@ -4,7 +4,11 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
+@Root(name = "evCancCTe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoCancelamento extends CTeTipoEvento {
     private static final long serialVersionUID = -6990304145768185274L;
 

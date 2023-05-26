@@ -2,9 +2,13 @@ package com.fincatto.documentofiscal.cte300.classes.evento.cartacorrecao;
 
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 import java.util.List;
 
+@Root(name = "evCCeCTe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoCartaCorrecao extends CTeTipoEvento {
     private static final long serialVersionUID = -6818585208080376005L;
 

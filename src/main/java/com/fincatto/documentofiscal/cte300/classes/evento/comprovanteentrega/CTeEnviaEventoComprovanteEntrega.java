@@ -4,10 +4,14 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
+@Root(name = "evCECTe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoComprovanteEntrega extends CTeTipoEvento {
     private static final long serialVersionUID = -5488904753372508623L;
 

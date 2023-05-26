@@ -6,10 +6,14 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+@Root(name = "evEPECCTe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoEpec extends CTeTipoEvento {
     private static final long serialVersionUID = -3353875431330243137L;
 

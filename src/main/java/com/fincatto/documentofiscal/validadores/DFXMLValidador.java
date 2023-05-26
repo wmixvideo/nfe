@@ -93,12 +93,48 @@ public final class DFXMLValidador {
         return true;
     }
 
-    public static boolean validaLoteCTe(final String arquivoXML) throws Exception {
+    public static boolean validaLoteCTe300(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe(arquivoXML, "enviCTe_v3.00.xsd");
     }
 
     public static boolean validaNotaCte(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe(arquivoXML, "cte_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "eventoCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCancCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoComprovanteEntregaCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCancCECTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCartaCorrecaoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCCeCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoComprovanteEntregaCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCECTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoEpecCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evEPECCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoGtvCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evGTV_v3.00.xsd");
+    }
+
+    public static boolean validaEventoPrestacaoEmDesacordoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evPrestDesacordo_v3.00.xsd");
+    }
+
+    public static boolean validaEventoRegistroMultimodalCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evRegMultimodal_v3.00.xsd");
     }
 
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
