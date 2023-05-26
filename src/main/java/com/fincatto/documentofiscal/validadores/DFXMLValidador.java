@@ -86,7 +86,7 @@ public final class DFXMLValidador {
     }
 
     private static boolean validaCTe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_300a/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_300a_NT2022.001/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
