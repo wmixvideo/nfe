@@ -13,7 +13,7 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
 
     @Element(name = "orig")
     private NFOrigem origem;
-    
+
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
@@ -101,4 +101,5 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     public String getValorTributo() {
         return valorTributo;
     }
+
 }

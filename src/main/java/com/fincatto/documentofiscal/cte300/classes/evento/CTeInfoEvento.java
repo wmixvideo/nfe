@@ -3,22 +3,20 @@ package com.fincatto.documentofiscal.cte300.classes.evento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-public class EventoCTe extends DFBase {
-    private static final long serialVersionUID = 8560202237533495525L;
-    
-    @Attribute(name = "Id")
+public class CTeInfoEvento extends DFBase {
+    private static final long serialVersionUID = 4495040029270775685L;
+
+    @Attribute(name = "Id", required = false)
     private String id;
-    
-    @Element(name = "cOrgao")
+
+    @Element(name = "cOrgao", required = false)
     private DFUnidadeFederativa orgao;
     
     @Element(name = "tpAmb")
@@ -41,19 +39,12 @@ public class EventoCTe extends DFBase {
     
     @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
-    
-    @Element(name = "verEvento")
-    private String versaoEvento;
-    
+
     @Element(name = "detEvento")
-    private CTeTipoEvento dadosEvento;
+    private CTeDetalhamentoEvento detalheEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
-    }
-
-    public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
     }
 
     public String getId() {
@@ -118,9 +109,9 @@ public class EventoCTe extends DFBase {
         return this.codigoEvento;
     }
 
-    public void setTipoEvento(final String tipoEvento) {
-        DFStringValidador.exatamente6N(tipoEvento, "Tipo Evento");
-        this.codigoEvento = tipoEvento;
+    public void setCodigoEvento(final String codigoEvento) {
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Codigo");
+        this.codigoEvento = codigoEvento;
     }
 
     public int getNumeroSequencialEvento() {
@@ -132,23 +123,19 @@ public class EventoCTe extends DFBase {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
-    public String getVersaoEvento() {
-        return this.versaoEvento;
-    }
-
-    public CTeTipoEvento getDadosEvento() {
-        return this.dadosEvento;
-    }
-
-    public void setDadosEvento(final CTeTipoEvento cartaCorrecao) {
-        this.dadosEvento = cartaCorrecao;
-    }
-
     public DFUnidadeFederativa getOrgao() {
         return this.orgao;
     }
 
-    public void setCodigoEvento(final String codigoEvento) {
-        this.codigoEvento = codigoEvento;
+    public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
+        this.numeroSequencialEvento = numeroSequencialEvento;
+    }
+
+    public CTeDetalhamentoEvento getDetalheEvento() {
+        return this.detalheEvento;
+    }
+
+    public void setDetalheEvento(final CTeDetalhamentoEvento detalheEvento) {
+        this.detalheEvento = detalheEvento;
     }
 }
