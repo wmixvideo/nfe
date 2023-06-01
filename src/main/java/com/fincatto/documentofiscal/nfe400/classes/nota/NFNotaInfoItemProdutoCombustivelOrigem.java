@@ -24,7 +24,7 @@ public class NFNotaInfoItemProdutoCombustivelOrigem extends DFBase {
     }
 
     public void setUf(final DFUnidadeFederativa uf) {
-        this.uf = uf.getCodigo();
+        this.uf = uf.getCodigoIbge();
     }
 
     public void setPercentualOriginario(BigDecimal percentualOriginario) {

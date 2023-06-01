@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     }
 
     public void setValorOperacao(BigDecimal valorOperacao) {
-        this.valorOperacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorOperacao, "Valor do ICMS da operação");
+        this.valorOperacao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorOperacao, "ICMS da operação");
     }
 
     public void setPercentualDiferimento(BigDecimal percentualDiferimento) {
@@ -63,11 +63,11 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     }
 
     public void setValorTributoDiferido (BigDecimal valorTributoDiferido) {
-        this.valorTributoDiferido = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoDiferido, "Valor do ICMS diferido");
+        this.valorTributoDiferido = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoDiferido, "ICMS diferido");
     }
 
     public void setValorTributo(BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS próprio devido");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS próprio devido");
     }
 
     public NFOrigem getOrigem() {
