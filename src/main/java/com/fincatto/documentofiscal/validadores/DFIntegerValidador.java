@@ -46,6 +46,10 @@ public abstract class DFIntegerValidador {
         DFIntegerValidador.intervalo(valor, 1, 99, info);
     }
 
+    public static void tamanho1a3(final int valor, final String info) {
+        DFIntegerValidador.intervalo(valor, 1, 999, info);
+    }
+
     public static void exatamente2(final Integer valor, final String info) {
         DFIntegerValidador.intervalo(valor, 10, 99, info);
     }

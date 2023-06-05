@@ -1,0 +1,36 @@
+package com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao;
+
+import com.fincatto.documentofiscal.cte400.classes.evento.CTeTipoEvento;
+import org.simpleframework.xml.Element;
+
+import java.util.List;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
+
+@Root(name = "evCCeCTe")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+public class CTeEnviaEventoCartaCorrecao extends CTeTipoEvento {
+    private static final long serialVersionUID = -6818585208080376005L;
+
+    @Element(name = "infCorrecao")
+    private List<CTeInformacaoCartaCorrecao> correcoes;
+
+    @Element(name = "xCondUso")
+    private String condicaoUso;
+
+    public List<CTeInformacaoCartaCorrecao> getCorrecoes() {
+        return correcoes;
+    }
+
+    public void setCorrecoes(List<CTeInformacaoCartaCorrecao> correcoes) {
+        this.correcoes = correcoes;
+    }
+
+    public String getCondicaoUso() {
+        return condicaoUso;
+    }
+
+    public void setCondicaoUso(String condicaoUso) {
+        this.condicaoUso = condicaoUso;
+    }
+}

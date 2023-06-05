@@ -771,6 +771,10 @@ public abstract class DFStringValidador {
         DFStringValidador.validaTamanhoExato(string, 54, info);
     }
 
+    public static void exatamente55(final String string, final String info) {
+        DFStringValidador.validaTamanhoExato(string, 55, info);
+    }
+
     public static void exatamente15N(final String string, final String info) {
         DFStringValidador.validaTamanhoExato(string, 15, info);
         DFStringValidador.apenasNumerico(string, info);

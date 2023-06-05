@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
+import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte400.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
@@ -19,12 +20,15 @@ public class WSFacade {
 
     private final WSStatusConsulta wsStatusConsulta;
 
-    private final WSDistribuicaoCTe wSDistribuicaoCTe;
+    private final WSDistribuicaoCTe wsDistribuicaoCTe;
+
+    private WSConsulta wsConsulta;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
+        this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config);
+        this.wsConsulta = new WSConsulta(config);
     }
 
     /**
@@ -58,7 +62,18 @@ public class WSFacade {
      * o sefaz
      */
     public CTDistribuicaoIntRetorno consultarDistribuicaoCTe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
-        return this.wSDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
+        return this.wsDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
+    }
+
+    /**
+     * Faz a consulta do CTe
+     *
+     * @param chaveDeAcesso chave de acesso do cte
+     * @return dados da consulta da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        return this.wsConsulta.consultaNota(chaveDeAcesso);
     }
 
 }
