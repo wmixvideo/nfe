@@ -137,6 +137,54 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe(arquivoXML, "evRegMultimodal_v3.00.xsd");
     }
 
+    private static boolean validaCTe400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_400/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+
+    public static boolean validaNotaCte400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "cte_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "eventoCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoComprovanteEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancCECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCartaCorrecaoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCCeCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoComprovanteEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoEpecCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evEPECCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoGtvCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evGTV_v4.00.xsd");
+    }
+
+    public static boolean validaEventoPrestacaoEmDesacordoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evPrestDesacordo_v4.00.xsd");
+    }
+
+    public static boolean validaEventoRegistroMultimodalCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evRegMultimodal_v4.00.xsd");
+    }
+
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_NFeDistDFe_102/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
