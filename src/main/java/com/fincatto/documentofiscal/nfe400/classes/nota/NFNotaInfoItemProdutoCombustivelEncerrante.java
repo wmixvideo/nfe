@@ -43,12 +43,6 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     @Element(name = "vEncFin")
     private String valorEncerramentoFinal;
 
-    /**
-     * Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador
-     */
-    @Element(name = "pBio", required = false)
-    private String percentualMisturaBiodiesel;
-
     public NFNotaInfoItemProdutoCombustivelEncerrante() {
     }
 
@@ -72,10 +66,6 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
         return this.valorEncerramentoFinal;
     }
 
-    public String getPercentualMisturaBiodiesel() {
-        return this.percentualMisturaBiodiesel;
-    }
-
     public void setNumeroBomba(final String numeroBomba) {
         DFStringValidador.tamanho3N(numeroBomba, "Numero de identificação da bomba ");
         this.numeroBomba = numeroBomba;
@@ -97,9 +87,5 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
 
     public void setValorEncerramentoFinal(final BigDecimal valorEncerramentoFinal) {
         this.valorEncerramentoFinal = DFBigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoFinal, "Valor do Encerrante no final do abastecimento");
-    }
-
-    public void setPercentualMisturaBiodiesel(final BigDecimal percentualMisturaBiodiesel) {
-        this.percentualMisturaBiodiesel = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualMisturaBiodiesel, "Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador");
     }
 }

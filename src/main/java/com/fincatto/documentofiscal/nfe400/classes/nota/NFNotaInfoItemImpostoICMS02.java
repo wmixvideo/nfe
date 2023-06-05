@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoICMS02 extends DFBase {
     }
 
     public void setValorTributo(BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS próprio");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS próprio");
     }
 
     public NFOrigem getOrigem() {
