@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoICMS61 extends DFBase {
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS retido anteriormente");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS retido anteriormente");
     }
 
     public NFOrigem getOrigem() {

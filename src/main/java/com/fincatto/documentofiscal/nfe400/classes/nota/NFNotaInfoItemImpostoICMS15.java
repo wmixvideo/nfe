@@ -62,7 +62,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setValorTributo(BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS próprio");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS próprio");
     }
 
     public void setQuantidadeBaseCalculoTributadaSujeitaRetencao(BigDecimal quantidadeBaseCalculoTributadaSujeitaRetencao) {
@@ -74,7 +74,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setValorTributoRetencao(BigDecimal valorTributoRetencao) {
-        this.valorTributoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoRetencao, "Valor do ICMS com retenção");
+        this.valorTributoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoRetencao, "ICMS com retenção");
     }
 
     public void setPercentualReducaoAliquota(BigDecimal percentualReducaoAliquota) {
