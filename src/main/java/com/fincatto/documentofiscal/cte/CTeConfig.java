@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.cte;
 
 import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 
 /**
  * Configuracao basica CT-e.

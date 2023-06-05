@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.cte;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 
 import org.junit.Assert;
 import org.junit.Test;
