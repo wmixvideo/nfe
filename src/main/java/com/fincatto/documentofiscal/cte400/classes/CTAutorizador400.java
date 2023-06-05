@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte400.classes;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
-import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
+import com.fincatto.documentofiscal.cte.CTTipoEmissao;
+import com.fincatto.documentofiscal.cte400.parsers.CTChaveParser;
 
 import java.util.Arrays;
 

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.evento.gtv;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEspecieGtv;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoEspecieGtv;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 

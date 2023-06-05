@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.evento.epec;
 
-import com.fincatto.documentofiscal.cte300.classes.CTFinalidade;
-import com.fincatto.documentofiscal.cte300.classes.CTModal;
+import com.fincatto.documentofiscal.cte400.classes.CTFinalidade;
+import com.fincatto.documentofiscal.cte400.classes.CTModal;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;

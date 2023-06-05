@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.evento.epec;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.CTTomadorServico;
+import com.fincatto.documentofiscal.cte400.classes.CTTomadorServico;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 

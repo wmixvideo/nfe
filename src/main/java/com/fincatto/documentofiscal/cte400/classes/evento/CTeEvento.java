@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.evento;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte300.classes.nota.assinatura.CTeSignature;
+import com.fincatto.documentofiscal.cte400.classes.nota.assinatura.CTeSignature;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
