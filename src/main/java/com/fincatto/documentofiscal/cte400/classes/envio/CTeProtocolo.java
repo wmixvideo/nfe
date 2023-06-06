@@ -19,8 +19,9 @@ public class CTeProtocolo extends DFBase {
 
     @Element(name = "Signature", required = false)
     private CTeSignature signature;
-    
-    @Attribute(name = "versao")
+
+    // o XSD define que esse atributo é obrigatório, mas ele não está sendo retornado pela SEFAZ-SP
+    @Attribute(name = "versao", required = false)
     private String versao;
 
     public CTeProtocoloInfo getInfo() {
