@@ -8,6 +8,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.*;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
@@ -31,6 +32,8 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
+        DFXMLValidador.validaEventoCTe300(xmlAssinado);
+
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         final RecepcaoEventoStub.CteCabecMsg cabec = new RecepcaoEventoStub.CteCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
@@ -83,7 +86,7 @@ abstract class WSRecepcaoEvento implements DFLog {
         }
 
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%02d", codigoEvento, chaveAcesso, sequencialEvento));
+        infoEvento.setId(String.format("ID%s%s%02d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(codigoEvento);

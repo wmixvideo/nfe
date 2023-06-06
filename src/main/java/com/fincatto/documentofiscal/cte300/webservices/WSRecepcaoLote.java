@@ -43,7 +43,7 @@ class WSRecepcaoLote implements DFLog {
     
     private CTeEnvioLoteRetorno comunicaLote(final String loteAssinadoXml) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        DFXMLValidador.validaLoteCTe(loteAssinadoXml);
+        DFXMLValidador.validaLoteCTe300(loteAssinadoXml);
         
         //envia o lote para a sefaz
         final OMElement omElement = this.cteToOMElement(loteAssinadoXml);

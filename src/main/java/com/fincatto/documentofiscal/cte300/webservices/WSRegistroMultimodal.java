@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.multimodal.CTeEnviaEventoRegistroMultimodal;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,11 +40,13 @@ class WSRegistroMultimodal extends WSRecepcaoEvento {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSRegistroMultimodal.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosRegistroMultimodal(final String chaveAcesso, final String informacoesAdicionais, final String numeroDocumento) {
+    private CTeEvento gerarDadosRegistroMultimodal(final String chaveAcesso, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         final CTeEnviaEventoRegistroMultimodal registroMultimodal = new CTeEnviaEventoRegistroMultimodal();
         registroMultimodal.setDescricaoEvento(WSRegistroMultimodal.DESCRICAO_EVENTO);
         registroMultimodal.setInformacoesAdicionais(informacoesAdicionais.trim());
         registroMultimodal.setNumero(numeroDocumento.trim());
+
+        DFXMLValidador.validaEventoRegistroMultimodalCTe300(registroMultimodal.toString());
 
         return super.gerarEvento(chaveAcesso, WSRegistroMultimodal.VERSAO_LEIAUTE, registroMultimodal, WSRegistroMultimodal.EVENTO_REGISTRO_MULTIMODAL, null, 1);
     }

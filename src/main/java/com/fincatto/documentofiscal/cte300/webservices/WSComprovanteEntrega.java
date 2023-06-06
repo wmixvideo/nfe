@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,8 +40,10 @@ class WSComprovanteEntrega extends WSRecepcaoEvento {
         return super.efetuaEvento(xmlAssinado, chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) {
+    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
         comprovanteEntrega.setDescricaoEvento(WSComprovanteEntrega.DESCRICAO_EVENTO);
+
+        DFXMLValidador.validaEventoComprovanteEntregaCTe300(comprovanteEntrega.toString());
 
         return super.gerarEvento(chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE, comprovanteEntrega, WSComprovanteEntrega.EVENTO_COMPROVANTE_DE_ENTREGA, null, sequencialEvento);
     }

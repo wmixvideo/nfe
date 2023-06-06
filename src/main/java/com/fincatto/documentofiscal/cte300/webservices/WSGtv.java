@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
@@ -39,8 +40,10 @@ class WSGtv extends WSRecepcaoEvento {
         return super.efetuaEventoSVC(xmlAssinado, chaveAcesso, WSGtv.VERSAO_LEIAUTE);
     }
 
-    private CTeEvento gerarDadosGtv(final String chaveAcesso, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) {
+    private CTeEvento gerarDadosGtv(final String chaveAcesso, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
         eventoGtv.setDescricaoEvento(WSGtv.DESCRICAO_EVENTO);
+
+        DFXMLValidador.validaEventoGtvCTe300(eventoGtv.toString());
 
         return super.gerarEvento(chaveAcesso, WSGtv.VERSAO_LEIAUTE, eventoGtv, WSGtv.EVENTO_GTV, null, sequencialEvento);
     }
