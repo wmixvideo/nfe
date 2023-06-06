@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoFerrovia;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 
 @Root(name = "trafMut")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoCTeNormalInfoModalFerroviarioTrafegoMutuo extends DFBase {
     private static final long serialVersionUID = 6796214190401571827L;
 

@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTUnidadeMedida;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -20,7 +21,7 @@ import java.math.BigDecimal;
  */
 
 @Root(name = "infQ")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga extends DFBase {
     private static final long serialVersionUID = 656935464619568559L;
 

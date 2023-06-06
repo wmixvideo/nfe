@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.*;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 @Root(name = "infCte")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfo extends DFBase {
     public static final String IDENT = "CTe";
     private static final long serialVersionUID = 8699373848001059117L;

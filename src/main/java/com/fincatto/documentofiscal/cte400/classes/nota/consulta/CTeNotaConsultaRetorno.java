@@ -3,13 +3,14 @@ package com.fincatto.documentofiscal.cte400.classes.nota.consulta;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeProtocolo;
 import org.simpleframework.xml.*;
 
 import java.util.List;
 
 @Root(name = "retConsSitCTe", strict = false)
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaConsultaRetorno extends DFBase {
     private static final long serialVersionUID = 3229234247371007557L;
     

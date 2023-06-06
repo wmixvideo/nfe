@@ -4,11 +4,13 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
+import com.fincatto.documentofiscal.cte400.classes.envio.CTeEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte400.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -25,6 +27,7 @@ import java.util.List;
 public class WSFacade {
 
     private final WSStatusConsulta wsStatusConsulta;
+    private final WSRecepcaoCTe wsRecepcaoCTe;
     private final WSDistribuicaoCTe wsDistribuicaoCTe;
     private final WSConsulta wsConsulta;
     private final WSCancelamento wsCancelamento;
@@ -39,6 +42,7 @@ public class WSFacade {
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
+        this.wsRecepcaoCTe = new WSRecepcaoCTe(config);
         this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config);
         this.wsConsulta = new WSConsulta(config);
         this.wsCancelamento = new WSCancelamento(config);
@@ -60,6 +64,17 @@ public class WSFacade {
      */
     public CTeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
         return this.wsStatusConsulta.consultaStatus(uf);
+    }
+
+    /**
+     * Faz o envio do CT-e para a SEFAZ
+     *
+     * @param cte a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do CT-e e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
+    public CTeEnvioRetornoDados enviaCTe(CTeNota cte) throws Exception {
+        return this.wsRecepcaoCTe.enviaCTe(cte);
     }
 
     /**

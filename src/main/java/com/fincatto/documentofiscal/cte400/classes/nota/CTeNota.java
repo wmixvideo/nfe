@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.nota.assinatura.CTeSignature;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -11,7 +12,7 @@ import org.simpleframework.xml.Root;
  */
 
 @Root(name = "CTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNota extends DFBase {
     private static final long serialVersionUID = 1088709291423475533L;
 

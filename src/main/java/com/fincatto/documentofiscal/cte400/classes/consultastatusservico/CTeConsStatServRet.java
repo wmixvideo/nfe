@@ -3,13 +3,14 @@ package com.fincatto.documentofiscal.cte400.classes.consultastatusservico;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 @Root(name = "retConsStatServCTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeConsStatServRet extends DFBase {
     private static final long serialVersionUID = 5305733795487206951L;
 

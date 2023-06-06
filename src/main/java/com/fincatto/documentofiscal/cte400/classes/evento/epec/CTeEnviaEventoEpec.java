@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte400.classes.evento.epec;
 
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTFinalidade;
 import com.fincatto.documentofiscal.cte400.classes.CTModal;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeTipoEvento;
@@ -13,7 +14,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 @Root(name = "evEPECCTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeEnviaEventoEpec extends CTeTipoEvento {
     private static final long serialVersionUID = -3353875431330243137L;
 

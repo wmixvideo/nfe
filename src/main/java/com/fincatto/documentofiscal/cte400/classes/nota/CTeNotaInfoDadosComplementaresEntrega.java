@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -10,7 +11,7 @@ import org.simpleframework.xml.Root;
  */
 
 @Root(name = "Entrega")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoDadosComplementaresEntrega extends DFBase {
     private static final long serialVersionUID = -1034363478074709741L;
 

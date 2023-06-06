@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte400.classes.nota.consulta;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
@@ -12,7 +13,7 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 
 @Root(name = "consSitCTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaConsulta extends DFBase {
     private static final long serialVersionUID = 402162498360517770L;
     

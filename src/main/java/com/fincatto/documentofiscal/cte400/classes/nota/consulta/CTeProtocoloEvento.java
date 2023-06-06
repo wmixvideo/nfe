@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota.consulta;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
@@ -12,7 +13,7 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 
 @Root(name = "procEventoCTe")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeProtocoloEvento extends DFBase {
     private static final long serialVersionUID = -5921322695285609605L;
     

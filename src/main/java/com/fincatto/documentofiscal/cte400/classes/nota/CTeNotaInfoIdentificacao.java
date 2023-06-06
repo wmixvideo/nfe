@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTTipoEmissao;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.*;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -20,7 +21,7 @@ import java.time.ZonedDateTime;
  */
 
 @Root(name = "ide")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoIdentificacao extends DFBase {
     private static final long serialVersionUID = 7938149076755500266L;
 

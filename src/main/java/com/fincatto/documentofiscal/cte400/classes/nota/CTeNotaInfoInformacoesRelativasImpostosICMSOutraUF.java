@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTCodigoSituacaoTributariaICMS;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
  */
 
 @Root(name = "ICMSOutraUF")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
     private static final long serialVersionUID = -383332665054901995L;
 

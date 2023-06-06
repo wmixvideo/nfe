@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoUnidadeCarga;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 
 @Root(name = "infUnidCarga")
-@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
+@Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga extends DFBase {
     private static final long serialVersionUID = 4127763600684144275L;
 
