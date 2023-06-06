@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
@@ -39,7 +40,7 @@ public class CTeEnviaEventoComprovanteEntrega extends CTeTipoEvento {
     @Element(name = "dhHashEntrega")
     private ZonedDateTime dataHoraHashEntrega;
 
-    @Element(name = "infEntrega")
+    @ElementList(inline = true, required = false)
     private List<CTeInformacaoComprovanteEntrega> entregas;
 
     public String getProtocoloAutorizacao() {
