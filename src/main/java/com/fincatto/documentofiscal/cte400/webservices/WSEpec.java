@@ -11,7 +11,6 @@ import org.apache.axiom.om.OMElement;
 import java.math.BigDecimal;
 
 class WSEpec extends WSRecepcaoEvento {
-
     private static final String DESCRICAO_EVENTO = "EPEC";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_EPEC = "110113";
@@ -21,23 +20,18 @@ class WSEpec extends WSRecepcaoEvento {
     }
     
     CTeEventoRetorno enviaEpecAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.comunicaEpec(eventoAssinadoXml, chaveAcesso);
+        final OMElement omElementResult = super.efetuaEventoSVC(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
     CTeEventoRetorno enviaEpec(final String chaveAcesso, final CTeEnviaEventoEpec eventoEpec) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, eventoEpec);
-        final OMElement omElementResult = this.comunicaEpec(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        return enviaEpecAssinado(chaveAcesso, xmlAssinado);
     }
 
     String getXmlAssinado(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
         final String xml = this.gerarDadosEpec(chave, eventoEpec).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
-    }
-
-    private OMElement comunicaEpec(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEventoSVC(xmlAssinado, chaveAcesso, VERSAO_LEIAUTE);
     }
 
     private CTeEvento gerarDadosEpec(final String chaveAcesso, final CTeEnviaEventoEpec eventoEpec) throws Exception {

@@ -11,7 +11,6 @@ import org.apache.axiom.om.OMElement;
 import java.math.BigDecimal;
 
 class WSComprovanteEntrega extends WSRecepcaoEvento {
-
     private static final String DESCRICAO_EVENTO = "Comprovante de Entrega do CT-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_COMPROVANTE_DE_ENTREGA = "110180";

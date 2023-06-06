@@ -11,7 +11,6 @@ import org.apache.axiom.om.OMElement;
 import java.math.BigDecimal;
 
 class WSGtv extends WSRecepcaoEvento {
-
     private static final String DESCRICAO_EVENTO = "Informacoes da GTV";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_GTV = "110170";
@@ -21,23 +20,18 @@ class WSGtv extends WSRecepcaoEvento {
     }
     
     CTeEventoRetorno enviaGtvAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.comunicaGtv(eventoAssinadoXml, chaveAcesso);
+        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSGtv.VERSAO_LEIAUTE);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
     CTeEventoRetorno enviaGtv(final String chaveAcesso, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, eventoGtv, sequencialEvento);
-        final OMElement omElementResult = this.comunicaGtv(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        return enviaGtvAssinada(chaveAcesso, xmlAssinado);
     }
 
     String getXmlAssinado(final String chave, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
         final String xml = this.gerarDadosGtv(chave, eventoGtv, sequencialEvento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
-    }
-
-    private OMElement comunicaGtv(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEventoSVC(xmlAssinado, chaveAcesso, WSGtv.VERSAO_LEIAUTE);
     }
 
     private CTeEvento gerarDadosGtv(final String chaveAcesso, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {

@@ -11,7 +11,6 @@ import org.apache.axiom.om.OMElement;
 import java.math.BigDecimal;
 
 class WSRegistroMultimodal extends WSRecepcaoEvento {
-
     private static final String DESCRICAO_EVENTO = "Registro Multimodal";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_REGISTRO_MULTIMODAL = "110160";
@@ -21,23 +20,18 @@ class WSRegistroMultimodal extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno registroMultimodalAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaRegistroMultimodal(eventoAssinadoXml, chaveAcesso);
+        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
     CTeEventoRetorno registroMultimodal(final String chaveAcesso, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, informacoesAdicionais, numeroDocumento);
-        final OMElement omElementResult = this.efetuaRegistroMultimodal(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        return registroMultimodalAssinado(chaveAcesso, xmlAssinado);
     }
 
     String getXmlAssinado(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         final String xml = this.gerarDadosRegistroMultimodal(chave, informacoesAdicionais, numeroDocumento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
-    }
-
-    private OMElement efetuaRegistroMultimodal(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEvento(xmlAssinado, chaveAcesso, VERSAO_LEIAUTE);
     }
 
     private CTeEvento gerarDadosRegistroMultimodal(final String chaveAcesso, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
