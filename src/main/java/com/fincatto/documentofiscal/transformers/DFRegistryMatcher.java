@@ -211,6 +211,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(com.fincatto.documentofiscal.cte400.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte400.transformers.CTIndicadoNegociavelTransformer());
         super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeTributario.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoRegimeTributarioTransformer());
         super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoEspecieGtv.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoEspecieGtvTransformer());
+        super.bind(com.fincatto.documentofiscal.cte400.classes.CTMotivoInsucesso.class, new com.fincatto.documentofiscal.cte400.transformers.CTMotivoInsucessoTransformer());
 
         // MDF-e
         super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());

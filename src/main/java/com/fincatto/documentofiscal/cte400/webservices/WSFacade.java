@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeInfor
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
+import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoInsucessoEntrega;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -39,6 +40,8 @@ public class WSFacade {
     private final WSEpec wsEpec;
     private final WSGtv wsGtv;
     private final WSCancelamentoPrestacaoEmDesacordo wsCancelamentoPrestacaoEmDesacordo;
+    private final WSInsucessoEntrega wsInsucessoEntrega;
+    private final WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -55,6 +58,8 @@ public class WSFacade {
         this.wsEpec = new WSEpec(config);
         this.wsGtv = new WSGtv(config);
         this.wsCancelamentoPrestacaoEmDesacordo = new WSCancelamentoPrestacaoEmDesacordo(config);
+        this.wsInsucessoEntrega = new WSInsucessoEntrega(config);
+        this.wsCancelamentoInsucessoEntrega = new WSCancelamentoInsucessoEntrega(config);
     }
 
     /**
@@ -465,6 +470,82 @@ public class WSFacade {
      */
     public String getXmlAssinadoCancelamentoPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
         return this.wsCancelamentoPrestacaoEmDesacordo.getXmlAssinado(chave, protocoloDesacordo, sequencialEvento);
+    }
+
+    /**
+     * Cancela um evento de insucesso de entrega enviado anteriormente.
+     *
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloAutorizacao        protocolo de autorizacao
+     * @param protocoloInsucessoEntrega   protocolo do insucesso de entrega
+     * @param sequencialEvento            sequencial do evento
+     * @return dados do cancelamento do insucesso de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaInsucessoEntrega(final String chave, final String protocoloAutorizacao, final String protocoloInsucessoEntrega, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoInsucessoEntrega.cancelaInsucessoEntrega(chave, protocoloAutorizacao, protocoloInsucessoEntrega, sequencialEvento);
+    }
+
+    /**
+     * Cancela um evento de insucesso de entrega enviado anteriormente.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do cancelamento do insucesso de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaInsucessoEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsCancelamentoInsucessoEntrega.cancelaInsucessoEntregaAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do cancelamento do insucesso de entrega sem enviar para a SEFAZ.
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloAutorizacao        protocolo de autorizacao
+     * @param protocoloInsucessoEntrega   protocolo do insucesso de entrega
+     * @param sequencialEvento            sequencial do evento
+     * @return O XML da requisicao de cancelamento do insucesso de entrega ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoCancelamentoInsucessoEntrega(final String chave, final String protocoloAutorizacao, final String protocoloInsucessoEntrega, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoInsucessoEntrega.getXmlAssinado(chave, protocoloAutorizacao, protocoloInsucessoEntrega, sequencialEvento);
+    }
+
+    /**
+     * Registra o insucesso na entrega da carga pelo transportador.
+     *
+     * @param chave                 chave de acesso do CT-e
+     * @param insucessoEntrega    dados do insucesso de entrega
+     * @return dados do insucesso de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno insucessoEntrega(final String chave, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
+        return this.wsInsucessoEntrega.insucessoEntrega(chave, insucessoEntrega, sequencialEvento);
+    }
+
+    /**
+     * Registra o insucesso na entrega da carga pelo transportador.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do insucesso de entrega retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno insucessoEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsInsucessoEntrega.insucessoEntregaAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do insucesso de entrega sem enviar para a SEFAZ.
+     * @param chave                 chave de acesso do CT-e
+     * @param insucessoEntrega    dados do insucesso de entrega
+     * @return O XML da requisicao de insucesso de entrega ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoInsucessoEntrega(final String chave, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
+        return this.wsInsucessoEntrega.getXmlAssinado(chave, insucessoEntrega, sequencialEvento);
     }
 
 }

@@ -9,6 +9,8 @@ import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEven
 import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
+import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoCancelamentoInsucessoEntrega;
+import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoInsucessoEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.multimodal.CTeEnviaEventoRegistroMultimodal;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
@@ -33,6 +35,8 @@ public class CTeDetalhamentoEvento extends DFBase {
             @Element(name = "evGTV", type = CTeEnviaEventoGtv.class),
             @Element(name = "evRegMultimodal", type = CTeEnviaEventoRegistroMultimodal.class),
             @Element(name = "evCancPrestDesacordo", type = CTeEnviaEventoCancelamentoPrestacaoEmDesacordo.class),
+            @Element(name = "evIECTe", type = CTeEnviaEventoInsucessoEntrega.class),
+            @Element(name = "evCancIECTe", type = CTeEnviaEventoCancelamentoInsucessoEntrega.class),
     })
     private CTeTipoEvento evento;
 
@@ -99,5 +103,26 @@ public class CTeDetalhamentoEvento extends DFBase {
             return (CTeEnviaEventoRegistroMultimodal) this.evento;
         }
         throw new IllegalStateException("Evento não é registro multimodal");
+    }
+
+    public CTeEnviaEventoCancelamentoPrestacaoEmDesacordo getCancelamentoPrestacaoEmDesacordo() {
+        if (this.evento instanceof CTeEnviaEventoCancelamentoPrestacaoEmDesacordo) {
+            return (CTeEnviaEventoCancelamentoPrestacaoEmDesacordo) this.evento;
+        }
+        throw new IllegalStateException("Evento não é cancelamento de prestação de serviço em desacordo");
+    }
+
+    public CTeEnviaEventoInsucessoEntrega getInsucessoEntrega() {
+        if (this.evento instanceof CTeEnviaEventoInsucessoEntrega) {
+            return (CTeEnviaEventoInsucessoEntrega) this.evento;
+        }
+        throw new IllegalStateException("Evento não é insucesso de entrega");
+    }
+
+    public CTeEnviaEventoCancelamentoInsucessoEntrega getCancelamentoInsucessoEntrega() {
+        if (this.evento instanceof CTeEnviaEventoCancelamentoInsucessoEntrega) {
+            return (CTeEnviaEventoCancelamentoInsucessoEntrega) this.evento;
+        }
+        throw new IllegalStateException("Evento não é cancelamento de insucesso de entrega");
     }
 }

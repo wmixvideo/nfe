@@ -190,6 +190,14 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe400(arquivoXML, "evCancPrestDesacordo_v4.00.xsd");
     }
 
+    public static boolean validaEventoCancelamentoInsucessoEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancIECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoInsucessoEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evIECTe_v4.00.xsd");
+    }
+
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_NFeDistDFe_102/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
