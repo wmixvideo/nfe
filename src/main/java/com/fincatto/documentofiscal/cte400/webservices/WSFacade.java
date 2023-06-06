@@ -152,7 +152,7 @@ public class WSFacade {
     }
 
     /**
-     * Registra a efetivação da entrega da carga pelo transportador.
+     * Cancela um evento de comprovante de entrega enviado anteriormente.
      *
      * @param chave                       chave de acesso do CT-e
      * @param protocoloAutorizacao        protocolo de autorizacao
@@ -166,7 +166,7 @@ public class WSFacade {
     }
 
     /**
-     * Registra a efetivação da entrega da carga pelo transportador.
+     * Cancela um evento de comprovante de entrega enviado anteriormente.
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      *
      * @param chave             chave de acesso do CT-e
@@ -187,7 +187,7 @@ public class WSFacade {
      * @return O XML da requisicao de cancelamento do comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadocomprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+    public String getXmlAssinadoCancelamentoComprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
         return this.wsCancelamentoComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
     }
 
@@ -277,7 +277,7 @@ public class WSFacade {
      * @return O XML da requisicao de comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadocomprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+    public String getXmlAssinadoComprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
         return this.wsComprovanteEntrega.getXmlAssinado(chave, comprovanteEntrega, sequencialEvento);
     }
 
