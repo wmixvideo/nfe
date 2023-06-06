@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte400.classes.evento.cancelamento.CTeEnviaE
 import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoCancelamentoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
+import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEventoCancelamentoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
@@ -31,6 +32,7 @@ public class CTeDetalhamentoEvento extends DFBase {
             @Element(name = "evPrestDesacordo", type = CTeEnviaEventoPrestacaoEmDesacordo.class),
             @Element(name = "evGTV", type = CTeEnviaEventoGtv.class),
             @Element(name = "evRegMultimodal", type = CTeEnviaEventoRegistroMultimodal.class),
+            @Element(name = "evCancPrestDesacordo", type = CTeEnviaEventoCancelamentoPrestacaoEmDesacordo.class),
     })
     private CTeTipoEvento evento;
 

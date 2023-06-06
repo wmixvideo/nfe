@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
+import com.fincatto.documentofiscal.cte400.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
@@ -12,7 +13,6 @@ import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpe
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
-import com.fincatto.documentofiscal.cte400.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 
@@ -38,6 +38,7 @@ public class WSFacade {
     private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
     private final WSEpec wsEpec;
     private final WSGtv wsGtv;
+    private final WSCancelamentoPrestacaoEmDesacordo wsCancelamentoPrestacaoEmDesacordo;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -53,6 +54,7 @@ public class WSFacade {
         this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
         this.wsEpec = new WSEpec(config);
         this.wsGtv = new WSGtv(config);
+        this.wsCancelamentoPrestacaoEmDesacordo = new WSCancelamentoPrestacaoEmDesacordo(config);
     }
 
     /**
@@ -425,6 +427,44 @@ public class WSFacade {
      */
     public String getXmlAssinadoRegistroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         return this.wsRegistroMultimodal.getXmlAssinado(chave, informacoesAdicionais, numeroDocumento);
+    }
+
+    /**
+     * Cancela um evento de prestação de serviço em desacordo enviado anteriormente.
+     *
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloDesacordo          protocolo do evento de prestação de serviço em desacordo
+     * @param sequencialEvento            sequencial do evento
+     * @return dados do cancelamento do evento de prestação de serviço em desacordo retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoPrestacaoEmDesacordo.cancelaPrestacaoEmDesacordo(chave, protocoloDesacordo, sequencialEvento);
+    }
+
+    /**
+     * Cancela um evento de prestação de serviço em desacordo enviado anteriormente.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do cancelamento do evento de prestação de serviço em desacordo retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno cancelaPrestacaoEmDesacordoAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        return this.wsCancelamentoPrestacaoEmDesacordo.cancelaPrestacaoEmDesacordoAssinado(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do cancelamento do evento de prestação de serviço em desacordo sem enviar para a SEFAZ.
+     * @param chave                       chave de acesso do CT-e
+     * @param protocoloDesacordo          protocolo do evento de prestação de serviço em desacordo
+     * @param sequencialEvento            sequencial do evento
+     * @return O XML da requisicao de cancelamento do evento de prestação de serviço em desacordo ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoCancelamentoPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoPrestacaoEmDesacordo.getXmlAssinado(chave, protocoloDesacordo, sequencialEvento);
     }
 
 }

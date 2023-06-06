@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.xml.sax.SAXException;
+
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.net.URL;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import org.xml.sax.SAXException;
 
 public final class DFXMLValidador {
 
@@ -183,6 +184,10 @@ public final class DFXMLValidador {
 
     public static boolean validaEventoRegistroMultimodalCTe400(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe400(arquivoXML, "evRegMultimodal_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoPrestacaoEmDesacordoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancPrestDesacordo_v4.00.xsd");
     }
 
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
