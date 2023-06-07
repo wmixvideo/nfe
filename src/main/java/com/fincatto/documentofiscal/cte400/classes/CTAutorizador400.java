@@ -12,27 +12,27 @@ public enum CTAutorizador400 {
     MT {
         @Override
         public String getCteRecepcaoSinc(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CTeRecepcaoSincV4" : null;
         }
 
         @Override
         public String getCteRecepcaoOS(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews/services/CTeRecepcaoOSV4" : null;
         }
 
         @Override
         public String getCteRecepcaoGTVe(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CTeRecepcaoGTVeV4" : null;
         }
         
         @Override
         public String getCteConsultaProtocolo(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CTeConsultaV4" : null;
         }
         
         @Override
         public String getCteStatusServico(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CTeStatusServicoV4" : null;
         }
         
         @Override
@@ -42,7 +42,7 @@ public enum CTAutorizador400 {
         
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CTeRecepcaoEventoV4" : null;
         }
         
         @Override
@@ -59,12 +59,12 @@ public enum CTAutorizador400 {
 
         @Override
         public String getCteRecepcaoOS(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.ms.gov.br/ws/CTeRecepcaoOSV4" : null;
         }
 
         @Override
         public String getCteRecepcaoGTVe(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.ms.gov.br/ws/CTeRecepcaoGTVeV4" : null;
         }
     
         @Override
@@ -138,27 +138,27 @@ public enum CTAutorizador400 {
     PR {
         @Override
         public String getCteRecepcaoSinc(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeRecepcaoSincV4" : null;
         }
 
         @Override
         public String getCteRecepcaoOS(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeRecepcaoOSV4" : null;
         }
 
         @Override
         public String getCteRecepcaoGTVe(DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeRecepcaoGTVeV4" : null;
         }
     
         @Override
         public String getCteConsultaProtocolo(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeConsultaV4" : null;
         }
     
         @Override
         public String getCteStatusServico(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeStatusServicoV4" : null;
         }
     
         @Override
@@ -168,7 +168,7 @@ public enum CTAutorizador400 {
     
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte4/CTeRecepcaoEventoV4" : null;
         }
     
         @Override
@@ -180,37 +180,37 @@ public enum CTAutorizador400 {
     RS {
         @Override
         public String getCteRecepcaoSinc(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx";
         }
 
         @Override
         public String getCteRecepcaoOS(DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoOSV4/CTeRecepcaoOSV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoOSV4/CTeRecepcaoOSV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeRecepcaoOSV4/CTeRecepcaoOSV4.asmx";
         }
 
         @Override
         public String getCteRecepcaoGTVe(DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoGTVeV4/CTeRecepcaoGTVeV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoGTVeV4/CTeRecepcaoGTVeV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeRecepcaoGTVeV4/CTeRecepcaoGTVeV4.asmx";
         }
-    
+
         @Override
         public String getCteConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeConsultaV4/CTeConsultaV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeConsultaV4/CTeConsultaV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeConsultaV4/CTeConsultaV4.asmx";
         }
-    
+
         @Override
         public String getCteStatusServico(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeStatusServicoV4/CTeStatusServicoV4.asmx";
         }
-    
+
         @Override
         public String getCteQrCode(DFAmbiente ambiente) {
             return "https://dfe-portal.svrs.rs.gov.br/cte/qrCode";
         }
-    
+
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx" : null;
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx" : "https://cte.svrs.rs.gov.br/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx";
         }
     
         @Override
