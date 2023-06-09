@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
@@ -11,7 +11,6 @@ import org.apache.axiom.om.OMElement;
 import java.math.BigDecimal;
 
 class WSComprovanteEntrega extends WSRecepcaoEvento {
-
     private static final String DESCRICAO_EVENTO = "Comprovante de Entrega do CT-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_COMPROVANTE_DE_ENTREGA = "110180";
@@ -21,23 +20,18 @@ class WSComprovanteEntrega extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno comprovanteEntregaAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaComprovanteEntrega(eventoAssinadoXml, chaveAcesso);
+        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE);
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
     CTeEventoRetorno comprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, comprovanteEntrega, sequencialEvento);
-        final OMElement omElementResult = this.efetuaComprovanteEntrega(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        return comprovanteEntregaAssinado(chaveAcesso, xmlAssinado);
     }
 
     String getXmlAssinado(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
         final String xml = this.gerarDadosComprovanteEntrega(chave, comprovanteEntrega, sequencialEvento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
-    }
-
-    private OMElement efetuaComprovanteEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEvento(xmlAssinado, chaveAcesso, WSComprovanteEntrega.VERSAO_LEIAUTE);
     }
 
     private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {

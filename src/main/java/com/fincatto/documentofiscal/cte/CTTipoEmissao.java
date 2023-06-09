@@ -1,11 +1,10 @@
-package com.fincatto.documentofiscal.cte300.classes;
-/**
- * @author Caio Teodoro
- * */
-public enum CTTipoEmissao {
+package com.fincatto.documentofiscal.cte;
 
+public enum CTTipoEmissao {
     EMISSAO_NORMAL("1", "Normal"),
-    CONTINGENCIA_EPEC("4", "Contingência SVC"),
+    CONTINGENCIA_OFFLINE("2", "Contingência Offline"),
+    REGIME_ESPECIAL_NFF("3", "Regime Especial NFF"),
+    CONTINGENCIA_EPEC("4", "EPEC pela SVC"),
     CONTINGENCIA_FSDA("5", "Contingência FSDA"),
     CONTINGENCIA_SVCRS("7", "Contingência SVCRS"),
     CONTINGENCIA_SVCSP("8", "Contingência SVCSP");

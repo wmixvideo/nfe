@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
@@ -17,6 +17,8 @@ import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
+import org.apache.commons.httpclient.protocol.Protocol;
+
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -24,8 +26,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.List;
-
-import org.apache.commons.httpclient.protocol.Protocol;
 
 public class WSFacade {
 
@@ -211,7 +211,7 @@ public class WSFacade {
     }
 
     /**
-     * Registra a efetivação da entrega da carga pelo transportador.
+     * Cancela um evento de comprovante de entrega enviado anteriormente.
      *
      * @param chave                       chave de acesso do CT-e
      * @param protocoloAutorizacao        protocolo de autorizacao
@@ -225,7 +225,7 @@ public class WSFacade {
     }
 
     /**
-     * Registra a efetivação da entrega da carga pelo transportador.
+     * Cancela um evento de comprovante de entrega enviado anteriormente.
      * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
      *
      * @param chave             chave de acesso do CT-e
@@ -246,7 +246,7 @@ public class WSFacade {
      * @return O XML da requisicao de cancelamento do comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadocomprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+    public String getXmlAssinadoCancelamentoComprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
         return this.wsCancelamentoComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
     }
 
@@ -336,7 +336,7 @@ public class WSFacade {
      * @return O XML da requisicao de comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadocomprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+    public String getXmlAssinadoComprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
         return this.wsComprovanteEntrega.getXmlAssinado(chave, comprovanteEntrega, sequencialEvento);
     }
 

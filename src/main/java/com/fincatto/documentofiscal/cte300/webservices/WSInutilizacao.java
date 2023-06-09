@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEventoInutilizacaoDados;

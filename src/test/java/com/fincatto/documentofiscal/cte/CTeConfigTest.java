@@ -1,8 +1,6 @@
-package com.fincatto.documentofiscal.cte300;
+package com.fincatto.documentofiscal.cte;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +12,6 @@ public class CTeConfigTest {
     @Test
     public void testaParametrosPadrao() {
         final CTeConfigTeste config = new CTeConfigTeste();
-        Assert.assertEquals("3.00", CTeConfig.VERSAO);
         Assert.assertEquals("http://www.portalfiscal.inf.br/cte", CTeConfig.NAMESPACE);
         Assert.assertEquals(CTTipoEmissao.EMISSAO_NORMAL, config.getTipoEmissao());
     }

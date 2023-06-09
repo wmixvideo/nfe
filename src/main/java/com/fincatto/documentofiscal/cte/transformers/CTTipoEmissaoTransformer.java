@@ -1,8 +1,8 @@
-package com.fincatto.documentofiscal.cte300.transformes;
+package com.fincatto.documentofiscal.cte.transformers;
 
 import org.simpleframework.xml.transform.Transform;
 
-import com.fincatto.documentofiscal.cte300.classes.CTTipoEmissao;
+import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 
 public class CTTipoEmissaoTransformer implements Transform<CTTipoEmissao> {
 	

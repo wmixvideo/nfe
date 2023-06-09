@@ -6,7 +6,7 @@ import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
