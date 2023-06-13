@@ -24,23 +24,23 @@ class WSCancelamentoPrestacaoEmDesacordo extends WSRecepcaoEvento {
         return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
     }
 
-    CTeEventoRetorno cancelaPrestacaoEmDesacordo(final String chaveAcesso, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
-        final String xmlAssinado = this.getXmlAssinado(chaveAcesso, protocoloDesacordo, sequencialEvento);
+    CTeEventoRetorno cancelaPrestacaoEmDesacordo(final String chaveAcesso, final String protocoloDesacordo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        final String xmlAssinado = this.getXmlAssinado(chaveAcesso, protocoloDesacordo, cpfOuCnpj, sequencialEvento);
         return cancelaPrestacaoEmDesacordoAssinado(chaveAcesso, xmlAssinado);
     }
 
-    String getXmlAssinado(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
-        final String xml = this.gerarDados(chave, protocoloDesacordo, sequencialEvento).toString();
+    String getXmlAssinado(final String chave, final String protocoloDesacordo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        final String xml = this.gerarDados(chave, protocoloDesacordo, cpfOuCnpj, sequencialEvento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
     }
 
-    private CTeEvento gerarDados(final String chaveAcesso, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
+    private CTeEvento gerarDados(final String chaveAcesso, final String protocoloDesacordo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
         final CTeEnviaEventoCancelamentoPrestacaoEmDesacordo cancDesacordo = new CTeEnviaEventoCancelamentoPrestacaoEmDesacordo();
         cancDesacordo.setDescricaoEvento(DESCRICAO_EVENTO);
         cancDesacordo.setProtocoloDesacordo(protocoloDesacordo);
 
         DFXMLValidador.validaEventoCancelamentoPrestacaoEmDesacordoCTe400(cancDesacordo.toString());
 
-        return super.gerarEvento(chaveAcesso, VERSAO_LEIAUTE, cancDesacordo, EVENTO_CANCELAMENTO_DESACORDO, null, sequencialEvento);
+        return super.gerarEvento(chaveAcesso, VERSAO_LEIAUTE, cancDesacordo, EVENTO_CANCELAMENTO_DESACORDO, cpfOuCnpj, sequencialEvento);
     }
 }
