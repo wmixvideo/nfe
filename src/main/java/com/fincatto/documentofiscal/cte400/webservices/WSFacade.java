@@ -367,8 +367,8 @@ public class WSFacade {
      * @return dados do desacordo do CT-e retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj);
+    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -392,8 +392,8 @@ public class WSFacade {
      * @return O XML da requisicao de prestação de serviço em desacordo ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj);
+    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
