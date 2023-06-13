@@ -85,8 +85,8 @@ abstract class WSRecepcaoEvento implements DFLog {
         }
 
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s%02d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
+        infoEvento.setId(String.format("ID%s%s%02d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(codigoEvento);
         infoEvento.setDetalheEvento(cteDetalhamentoEventoCancelamento);
