@@ -4,12 +4,14 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeProtocolo;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 /**
  * Created by Eldevan Nery Junior on 09/10/17.
  */
 @Root(name = "cteProc")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeProcessado extends DFBase {
     private static final long serialVersionUID = -765312048472045116L;
 

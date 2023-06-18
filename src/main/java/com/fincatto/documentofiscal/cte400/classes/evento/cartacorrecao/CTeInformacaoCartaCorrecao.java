@@ -2,7 +2,9 @@ package com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao;
 
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root(name = "infCorrecao")
 public class CTeInformacaoCartaCorrecao {
     @Element(name = "grupoAlterado")
     private String grupoAlterado;
@@ -13,7 +15,7 @@ public class CTeInformacaoCartaCorrecao {
     @Element(name = "valorAlterado")
     private String valorAlterado;
 
-    @Element(name = "nroItemAlterado")
+    @Element(name = "nroItemAlterado", required = false)
     private Integer numeroItemAlterado;
 
     public String getGrupoAlterado() {
