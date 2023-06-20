@@ -255,6 +255,7 @@ public class WSFacade {
      *
      * @param chave                 chave de acesso do CT-e
      * @param comprovanteEntrega    dados do comprovante de entrega
+     * @param sequencialEvento      sequencial do evento
      * @return dados do comprovante de entrega retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
@@ -279,6 +280,7 @@ public class WSFacade {
      * Gera o XML assinado do comprovante de entrega sem enviar para a SEFAZ.
      * @param chave                 chave de acesso do CT-e
      * @param comprovanteEntrega    dados do comprovante de entrega
+     * @param sequencialEvento      sequencial do evento
      * @return O XML da requisicao de comprovante de entrega ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
@@ -361,14 +363,15 @@ public class WSFacade {
     /**
      * Faz o registro de prestação de serviço em desacordo.
      *
-     * @param chave           chave de acesso do CT-e
-     * @param observacao      observação do desacordo
-     * @param cpfOuCnpj       CPF ou CNPJ do autor do evento
+     * @param chave            chave de acesso do CT-e
+     * @param observacao       observação do desacordo
+     * @param cpfOuCnpj        CPF ou CNPJ do autor do evento
+     * @param sequencialEvento sequencial do evento
      * @return dados do desacordo do CT-e retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj);
+    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -386,14 +389,15 @@ public class WSFacade {
 
     /**
      * Gera o XML assinado da prestação de serviço em desacordo sem enviar para a SEFAZ.
-     * @param chave           chave de acesso do CT-e
-     * @param observacao      observação do desacordo
-     * @param cpfOuCnpj       CPF ou CNPJ do autor do evento
+     * @param chave            chave de acesso do CT-e
+     * @param observacao       observação do desacordo
+     * @param cpfOuCnpj        CPF ou CNPJ do autor do evento
+     * @param sequencialEvento sequencial do evento
      * @return O XML da requisicao de prestação de serviço em desacordo ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj);
+    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -439,12 +443,13 @@ public class WSFacade {
      *
      * @param chave                       chave de acesso do CT-e
      * @param protocoloDesacordo          protocolo do evento de prestação de serviço em desacordo
+     * @param cpfOuCnpj                   CPF ou CNPJ do autor do evento
      * @param sequencialEvento            sequencial do evento
      * @return dados do cancelamento do evento de prestação de serviço em desacordo retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno cancelaPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
-        return this.wsCancelamentoPrestacaoEmDesacordo.cancelaPrestacaoEmDesacordo(chave, protocoloDesacordo, sequencialEvento);
+    public CTeEventoRetorno cancelaPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoPrestacaoEmDesacordo.cancelaPrestacaoEmDesacordo(chave, protocoloDesacordo, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -464,12 +469,13 @@ public class WSFacade {
      * Gera o XML assinado do cancelamento do evento de prestação de serviço em desacordo sem enviar para a SEFAZ.
      * @param chave                       chave de acesso do CT-e
      * @param protocoloDesacordo          protocolo do evento de prestação de serviço em desacordo
+     * @param cpfOuCnpj                   CPF ou CNPJ do autor do evento
      * @param sequencialEvento            sequencial do evento
      * @return O XML da requisicao de cancelamento do evento de prestação de serviço em desacordo ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoCancelamentoPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final int sequencialEvento) throws Exception {
-        return this.wsCancelamentoPrestacaoEmDesacordo.getXmlAssinado(chave, protocoloDesacordo, sequencialEvento);
+    public String getXmlAssinadoCancelamentoPrestacaoEmDesacordo(final String chave, final String protocoloDesacordo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsCancelamentoPrestacaoEmDesacordo.getXmlAssinado(chave, protocoloDesacordo, cpfOuCnpj, sequencialEvento);
     }
 
     /**
