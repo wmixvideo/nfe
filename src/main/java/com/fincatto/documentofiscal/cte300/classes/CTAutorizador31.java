@@ -44,7 +44,12 @@ public enum CTAutorizador31 {
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews2/services/CteRecepcaoEvento?wsdl" : "https://cte.sefaz.mt.gov.br/ctews2/services/CteRecepcaoEvento?wsdl";
         }
-        
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.sefaz.mt.gov.br/ctews/services/CteRecepcaoOS" : "https://cte.sefaz.mt.gov.br/ctews/services/CteRecepcaoOS";
+        }
+
         @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.MT};
@@ -85,6 +90,11 @@ public enum CTAutorizador31 {
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.ms.gov.br/ws/CteRecepcaoEvento" : "https://producao.cte.ms.gov.br/ws/CteRecepcaoEvento";
+        }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.ms.gov.br/ws/CteRecepcaoOS" : "https://producao.cte.ms.gov.br/ws/CteRecepcaoOS";
         }
     
         @Override
@@ -128,6 +138,11 @@ public enum CTAutorizador31 {
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hcte.fazenda.mg.gov.br/cte/services/RecepcaoEvento" : "https://cte.fazenda.mg.gov.br/cte/services/RecepcaoEvento";
         }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hcte.fazenda.mg.gov.br/cte/services/CteRecepcaoOS" : "https://cte.fazenda.mg.gov.br/cte/services/CteRecepcaoOS";
+        }
     
         @Override
         public DFUnidadeFederativa[] getUFs() {
@@ -169,6 +184,11 @@ public enum CTAutorizador31 {
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte/CteRecepcaoEvento?wsdl" : "https://cte.fazenda.pr.gov.br/cte/CteRecepcaoEvento?wsdl";
+        }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.cte.fazenda.pr.gov.br/cte/CteRecepcaoOS" : "https://cte.fazenda.pr.gov.br/cte/CteRecepcaoOS";
         }
     
         @Override
@@ -212,6 +232,11 @@ public enum CTAutorizador31 {
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/cterecepcaoevento/cterecepcaoevento.asmx" : "https://cte.svrs.rs.gov.br/ws/cterecepcaoevento/cterecepcaoevento.asmx";
         }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/cterecepcaoos/cterecepcaoos.asmx" : "https://cte.svrs.rs.gov.br/ws/cterecepcaoos/cterecepcaoos.asmx";
+        }
     
         @Override
         public DFUnidadeFederativa[] getUFs() {
@@ -253,6 +278,11 @@ public enum CTAutorizador31 {
         @Override
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/cteweb/services/cteRecepcaoEvento.asmx" : "https://nfe.fazenda.sp.gov.br/cteweb/services/cteRecepcaoEvento.asmx";
+        }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/cteWEB/services/cteRecepcaoOS.asmx" : "https://nfe.fazenda.sp.gov.br/cteWEB/services/cteRecepcaoOS.asmx";
         }
         
         @Override
@@ -296,6 +326,11 @@ public enum CTAutorizador31 {
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/cterecepcaoevento/cterecepcaoevento.asmx" : "https://cte.svrs.rs.gov.br/ws/cterecepcaoevento/cterecepcaoevento.asmx";
         }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://cte-homologacao.svrs.rs.gov.br/ws/cterecepcaoos/cterecepcaoos.asmx" : "https://cte.svrs.rs.gov.br/ws/cterecepcaoos/cterecepcaoos.asmx";
+        }
         
         @Override
         public DFUnidadeFederativa[] getUFs() {
@@ -338,6 +373,11 @@ public enum CTAutorizador31 {
         public String getRecepcaoEvento(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
         }
+
+        @Override
+        public String getCteRecepcaoOS(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfe.fazenda.sp.gov.br/cteWEB/services/cteRecepcaoOS.asmx" : "https://nfe.fazenda.sp.gov.br/cteWEB/services/cteRecepcaoOS.asmx";
+        }
     
         @Override
         public DFUnidadeFederativa[] getUFs() {
@@ -358,6 +398,8 @@ public enum CTAutorizador31 {
     public abstract String getCteQrCode(final DFAmbiente ambiente);
     
     public abstract String getRecepcaoEvento(final DFAmbiente ambiente);
+
+    public abstract String getCteRecepcaoOS(final DFAmbiente ambiente);
     
     public abstract DFUnidadeFederativa[] getUFs();
     
