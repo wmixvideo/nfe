@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
+import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
@@ -9,14 +10,16 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 class WSCancelamentoComprovanteEntrega extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Cancelamento do Comprovante de Entrega do CT-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_COMPROVANTE_DE_ENTREGA = "110181";
+    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE);
 
     WSCancelamentoComprovanteEntrega(final CTeConfig config) {
-        super(config);
+        super(config, modelosPermitidos);
     }
 
     CTeEventoRetorno cancelaComprovanteEntregaAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
