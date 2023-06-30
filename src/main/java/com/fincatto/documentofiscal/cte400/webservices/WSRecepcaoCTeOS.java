@@ -45,7 +45,7 @@ class WSRecepcaoCTeOS implements DFLog {
         dados.setCteDadosMsg(conteudoCompactado);
 
         final CTAutorizador400 autorizador = CTAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-        final String endpoint = autorizador.getCteRecepcaoSinc(this.config.getAmbiente());
+        final String endpoint = autorizador.getCteRecepcaoOS(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao OS, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
