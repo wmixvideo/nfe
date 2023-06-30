@@ -142,7 +142,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAce
 #### Cancela nota
 Faça o cancelamento da nota através do facade:
 ```java
-final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
+final NFCancelamentoRetornoDados retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
 #### Consulta nota por chave de acesso ou NSU
