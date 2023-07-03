@@ -16,9 +16,11 @@ import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementUnion;
+import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
+@Root(strict = false)
 public class CTeDetalhamentoEvento extends DFBase {
     private static final long serialVersionUID = 7006866358832001912L;
 
@@ -26,17 +28,17 @@ public class CTeDetalhamentoEvento extends DFBase {
     private String versaoEvento;
 
     @ElementUnion({
-            @Element(name = "evCancCECTe", type = CTeEnviaEventoCancelamentoComprovanteEntrega.class),
-            @Element(name = "evCancCTe", type = CTeEnviaEventoCancelamento.class),
-            @Element(name = "evCCeCTe", type = CTeEnviaEventoCartaCorrecao.class),
-            @Element(name = "evEPECCTe", type = CTeEnviaEventoEpec.class),
-            @Element(name = "evCECTe", type = CTeEnviaEventoComprovanteEntrega.class),
-            @Element(name = "evPrestDesacordo", type = CTeEnviaEventoPrestacaoEmDesacordo.class),
-            @Element(name = "evGTV", type = CTeEnviaEventoGtv.class),
-            @Element(name = "evRegMultimodal", type = CTeEnviaEventoRegistroMultimodal.class),
-            @Element(name = "evCancPrestDesacordo", type = CTeEnviaEventoCancelamentoPrestacaoEmDesacordo.class),
-            @Element(name = "evIECTe", type = CTeEnviaEventoInsucessoEntrega.class),
-            @Element(name = "evCancIECTe", type = CTeEnviaEventoCancelamentoInsucessoEntrega.class),
+            @Element(name = "evCancCECTe", type = CTeEnviaEventoCancelamentoComprovanteEntrega.class, required = false),
+            @Element(name = "evCancCTe", type = CTeEnviaEventoCancelamento.class, required = false),
+            @Element(name = "evCCeCTe", type = CTeEnviaEventoCartaCorrecao.class, required = false),
+            @Element(name = "evEPECCTe", type = CTeEnviaEventoEpec.class, required = false),
+            @Element(name = "evCECTe", type = CTeEnviaEventoComprovanteEntrega.class, required = false),
+            @Element(name = "evPrestDesacordo", type = CTeEnviaEventoPrestacaoEmDesacordo.class, required = false),
+            @Element(name = "evGTV", type = CTeEnviaEventoGtv.class, required = false),
+            @Element(name = "evRegMultimodal", type = CTeEnviaEventoRegistroMultimodal.class, required = false),
+            @Element(name = "evCancPrestDesacordo", type = CTeEnviaEventoCancelamentoPrestacaoEmDesacordo.class, required = false),
+            @Element(name = "evIECTe", type = CTeEnviaEventoInsucessoEntrega.class, required = false),
+            @Element(name = "evCancIECTe", type = CTeEnviaEventoCancelamentoInsucessoEntrega.class, required = false),
     })
     private CTeTipoEvento evento;
 
