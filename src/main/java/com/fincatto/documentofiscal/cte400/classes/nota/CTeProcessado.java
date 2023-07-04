@@ -7,6 +7,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.time.ZonedDateTime;
+
 /**
  * Created by Eldevan Nery Junior on 09/10/17.
  */
@@ -20,6 +22,12 @@ public class CTeProcessado extends DFBase {
      */
     @Attribute(name = "ipTransmissor", required = false)
     private String ipTransmissor;
+
+    @Attribute(name = "nPortaCon", required = false)
+    private String portaConexao;
+
+    @Attribute(name = "dhConexao", required = false)
+    private ZonedDateTime dataHoraConexao;
 
     @Attribute(name = "versao")
     private String versao;
@@ -36,6 +44,22 @@ public class CTeProcessado extends DFBase {
 
     public void setIpTransmissor(final String ipTransmissor) {
         this.ipTransmissor = ipTransmissor;
+    }
+
+    public String getPortaConexao() {
+        return portaConexao;
+    }
+
+    public void setPortaConexao(String portaConexao) {
+        this.portaConexao = portaConexao;
+    }
+
+    public ZonedDateTime getDataHoraConexao() {
+        return dataHoraConexao;
+    }
+
+    public void setDataHoraConexao(ZonedDateTime dataHoraConexao) {
+        this.dataHoraConexao = dataHoraConexao;
     }
 
     public String getVersao() {
