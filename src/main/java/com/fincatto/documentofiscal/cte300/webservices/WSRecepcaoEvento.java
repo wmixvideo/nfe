@@ -1,9 +1,13 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.cte300.classes.evento.*;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeDetalhamentoEvento;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeInfoEvento;
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
@@ -13,13 +17,16 @@ import org.apache.axiom.om.util.AXIOMUtil;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 abstract class WSRecepcaoEvento implements DFLog {
 
     protected final CTeConfig config;
+    private final List<DFModelo> modelosPermitidos;
 
-    WSRecepcaoEvento(CTeConfig config) {
+    WSRecepcaoEvento(CTeConfig config, List<DFModelo> modelosPermitidos) {
         this.config = config;
+        this.modelosPermitidos = modelosPermitidos;
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
@@ -31,9 +38,13 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
+        final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
+        if (!modelosPermitidos.contains(ctChaveParser.getModelo())) {
+            throw new IllegalArgumentException("CT-e do modelo \"" + ctChaveParser.getModelo().toString() + "\" não é permitido nesse evento.");
+        }
+
         DFXMLValidador.validaEventoCTe300(xmlAssinado);
 
-        final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         final RecepcaoEventoStub.CteCabecMsg cabec = new RecepcaoEventoStub.CteCabecMsg();
         cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
         cabec.setVersaoDados(DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao do Evento"));
@@ -85,8 +96,8 @@ abstract class WSRecepcaoEvento implements DFLog {
         }
 
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s%02d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
+        infoEvento.setId(String.format("ID%s%s%02d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(codigoEvento);
         infoEvento.setDetalheEvento(cteDetalhamentoEventoCancelamento);

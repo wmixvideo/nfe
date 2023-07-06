@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
+import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeDetalhamentoEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
@@ -10,14 +11,16 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 class WSCancelamento extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
+    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE, DFModelo.CTeOS);
     
     WSCancelamento(final CTeConfig config) {
-        super(config);
+        super(config, modelosPermitidos);
     }
     
     CTeEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {

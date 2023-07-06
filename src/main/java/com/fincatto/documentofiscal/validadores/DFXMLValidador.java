@@ -98,6 +98,10 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe(arquivoXML, "enviCTe_v3.00.xsd");
     }
 
+    public static boolean validaCTeOS300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "cteOS_v3.00.xsd");
+    }
+
     public static boolean validaNotaCte(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe(arquivoXML, "cte_v3.00.xsd");
     }
@@ -148,6 +152,10 @@ public final class DFXMLValidador {
 
     public static boolean validaNotaCte400(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe400(arquivoXML, "cte_v4.00.xsd");
+    }
+
+    public static boolean validaNotaCTeOS400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "cteOS_v4.00.xsd");
     }
 
     public static boolean validaEventoCTe400(final String arquivoXML) throws Exception {

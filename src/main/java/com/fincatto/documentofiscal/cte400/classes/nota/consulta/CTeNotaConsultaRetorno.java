@@ -94,4 +94,11 @@ public class CTeNotaConsultaRetorno extends DFBase {
         this.protocolo = protocolo;
     }
 
+    public List<CTeProtocoloEvento> getProtocoloEvento() {
+        return protocoloEvento;
+    }
+
+    public void setProtocoloEvento(List<CTeProtocoloEvento> protocoloEvento) {
+        this.protocoloEvento = protocoloEvento;
+    }
 }

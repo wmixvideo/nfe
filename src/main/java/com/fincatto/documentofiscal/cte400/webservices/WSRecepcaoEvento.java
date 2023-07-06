@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte400.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeDetalhamentoEvento;
@@ -15,13 +16,16 @@ import org.apache.axiom.om.util.AXIOMUtil;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 abstract class WSRecepcaoEvento implements DFLog {
 
     protected final CTeConfig config;
+    private final List<DFModelo> modelosPermitidos;
 
-    WSRecepcaoEvento(CTeConfig config) {
+    WSRecepcaoEvento(CTeConfig config, List<DFModelo> modelosPermitidos) {
         this.config = config;
+        this.modelosPermitidos = modelosPermitidos;
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
@@ -33,9 +37,13 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
+        final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
+        if (!modelosPermitidos.contains(ctChaveParser.getModelo())) {
+            throw new IllegalArgumentException("CT-e do modelo \"" + ctChaveParser.getModelo().toString() + "\" não é permitido nesse evento.");
+        }
+
         DFXMLValidador.validaEventoCTe400(xmlAssinado);
 
-        final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         final CTeRecepcaoEventoV4Stub.CteDadosMsg dados = new CTeRecepcaoEventoV4Stub.CteDadosMsg();
 
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
@@ -81,8 +89,8 @@ abstract class WSRecepcaoEvento implements DFLog {
         }
 
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s%03d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
+        infoEvento.setId(String.format("ID%s%s%03d", codigoEvento, chaveAcesso, sequencialEvento));
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(codigoEvento);
         infoEvento.setDetalheEvento(cteDetalhamentoEventoCancelamento);

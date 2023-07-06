@@ -6,13 +6,14 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.util.List;
+import org.simpleframework.xml.ElementList;
 
 @Root(name = "evCCeCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoCartaCorrecao extends CTeTipoEvento {
     private static final long serialVersionUID = -6818585208080376005L;
 
-    @Element(name = "infCorrecao")
+    @ElementList(name = "infCorrecao", inline = true, required = true)
     private List<CTeInformacaoCartaCorrecao> correcoes;
 
     @Element(name = "xCondUso")

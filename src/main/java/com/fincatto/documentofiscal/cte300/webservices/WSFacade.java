@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
+import com.fincatto.documentofiscal.cte300.classes.envio.CTeOSEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
@@ -16,6 +17,7 @@ import com.fincatto.documentofiscal.cte300.classes.evento.epec.CTeEnviaEventoEpe
 import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.cte300.classes.os.CTeOS;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 
@@ -43,6 +45,7 @@ public class WSFacade {
     private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
     private final WSEpec wsEpec;
     private final WSGtv wsGtv;
+    private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -60,6 +63,7 @@ public class WSFacade {
         this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
         this.wsEpec = new WSEpec(config);
         this.wsGtv = new WSGtv(config);
+        this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config);
     }
 
     /**
@@ -421,8 +425,8 @@ public class WSFacade {
      * @return dados do desacordo do CT-e retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
-    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj);
+    public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -446,8 +450,8 @@ public class WSFacade {
      * @return O XML da requisicao de prestação de serviço em desacordo ja assinado
      * @throws Exception caso nao consiga gerar o xml
      */
-    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj) throws Exception {
-        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj);
+    public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
     /**
@@ -486,6 +490,17 @@ public class WSFacade {
      */
     public String getXmlAssinadoRegistroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
         return this.wsRegistroMultimodal.getXmlAssinado(chave, informacoesAdicionais, numeroDocumento);
+    }
+
+    /**
+     * Faz o envio do CT-e de Outros Serviços para a SEFAZ.
+     *
+     * @param cteOS a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do CT-e OS e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
+    public CTeOSEnvioRetornoDados envioRecepcaoLote(CTeOS cteOS) throws Exception {
+        return this.wsRecepcaoCTeOS.envioRecepcao(cteOS);
     }
 
 }
