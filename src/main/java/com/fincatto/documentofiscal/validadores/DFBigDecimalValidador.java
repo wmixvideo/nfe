@@ -80,6 +80,9 @@ public abstract class DFBigDecimalValidador {
         if (valor == null) {
             return null;
         }
+        if (valor.compareTo(BigDecimal.ZERO) < 0) {
+            throw new NumberFormatException(String.format("%s deve ser maior ou igual a Zero", info));
+        }
         if (valor.toPlainString().length() > tamanho || StringUtils.split(valor.toPlainString(), ".")[0].length() > (tamanho - (posicaoPontoFlutuante + 1)) || valor.scale() > posicaoPontoFlutuante) {
             throw new NumberFormatException(String.format("Valor %s extrapolou o tamanho de casas", info));
         }
