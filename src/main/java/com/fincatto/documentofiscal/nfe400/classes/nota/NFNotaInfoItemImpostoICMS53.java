@@ -23,7 +23,7 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     @Element(name = "adRemICMS", required = false)
     private String percentualAliquota;
 
-    @Element(name = "vIcmsMonoOp", required = false)
+    @Element(name = "vICMSMonoOp", required = false)
     private String valorOperacao;
 
     @Element(name = "pDif", required = false)
