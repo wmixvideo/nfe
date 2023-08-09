@@ -88,5 +88,4 @@ public class NFNotaInfoItemProdutoCombustivelEncerrante extends DFBase {
     public void setValorEncerramentoFinal(final BigDecimal valorEncerramentoFinal) {
         this.valorEncerramentoFinal = DFBigDecimalValidador.tamanho11Com3CasasDecimais(valorEncerramentoFinal, "Valor do Encerrante no final do abastecimento");
     }
-
 }

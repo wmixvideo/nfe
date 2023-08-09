@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.utils;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
@@ -83,6 +84,15 @@ public abstract class DFCadeiaCertificados implements DFLog {
     
             // CTe
             for (final CTAutorizador31 aut : CTAutorizador31.values()) {
+                final String urlCTe = aut.getCteStatusServico(ambiente);
+                if (StringUtils.isNotBlank(urlCTe)) {
+                    final String host = new URI(urlCTe).getHost();
+                    DFCadeiaCertificados.get(keyStore, host);
+                }
+            }
+
+            // CTe 4.00
+            for (final CTAutorizador400 aut : CTAutorizador400.values()) {
                 final String urlCTe = aut.getCteStatusServico(ambiente);
                 if (StringUtils.isNotBlank(urlCTe)) {
                     final String host = new URI(urlCTe).getHost();

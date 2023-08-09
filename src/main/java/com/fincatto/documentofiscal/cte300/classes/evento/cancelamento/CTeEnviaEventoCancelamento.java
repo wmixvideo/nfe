@@ -1,19 +1,16 @@
 package com.fincatto.documentofiscal.cte300.classes.evento.cancelamento;
 
+import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import org.simpleframework.xml.Element;
+
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.DFStringValidador;
-
 @Root(name = "evCancCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
-public class CTeEnviaEventoCancelamento extends DFBase {
+public class CTeEnviaEventoCancelamento extends CTeTipoEvento {
     private static final long serialVersionUID = -6990304145768185274L;
-
-    @Element(name = "descEvento")
-    private String descricaoEvento = "Cancelamento";
 
     @Element(name = "nProt")
     private String protocoloAutorizacao;
@@ -37,17 +34,6 @@ public class CTeEnviaEventoCancelamento extends DFBase {
 
     public String getProtocoloAutorizacao() {
         return this.protocoloAutorizacao;
-    }
-
-    public void setDescricaoEvento(final String descricaoEvento) {
-        final String defaultValue = "Cancelamento";
-        DFStringValidador.tamanho12(descricaoEvento, defaultValue);
-        DFStringValidador.equals(defaultValue, descricaoEvento);
-        this.descricaoEvento = descricaoEvento;
-    }
-
-    public String getDescricaoEvento() {
-        return this.descricaoEvento;
     }
 
 }

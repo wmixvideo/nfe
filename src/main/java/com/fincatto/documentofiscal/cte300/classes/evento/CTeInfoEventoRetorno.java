@@ -40,17 +40,8 @@ public class CTeInfoEventoRetorno extends DFBase {
 
     @Element(name = "nSeqEvento", required = false)
     private Integer numeroSequencialEvento;
-
-    @Element(name = "CNPJDest", required = false)
-    private String cpnj;
-
-    @Element(name = "CPFDest", required = false)
-    private String cpf;
-
-    @Element(name = "emailDest", required = false)
-    private String email;
     
-    @Element(name = "dhRegEvento")
+    @Element(name = "dhRegEvento", required = false)
     private LocalDateTime dataHoraRegistro;
 
     @Element(name = "nProt", required = false)
@@ -94,18 +85,6 @@ public class CTeInfoEventoRetorno extends DFBase {
 
     public Integer getNumeroSequencialEvento() {
         return this.numeroSequencialEvento;
-    }
-
-    public String getCpnj() {
-        return this.cpnj;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     public LocalDateTime getDataHoraRegistro() {
@@ -154,18 +133,6 @@ public class CTeInfoEventoRetorno extends DFBase {
 
     public void setNumeroSequencialEvento(final Integer numeroSequencialEvento) {
         this.numeroSequencialEvento = numeroSequencialEvento;
-    }
-
-    public void setCpnj(final String cpnj) {
-        this.cpnj = cpnj;
-    }
-
-    public void setCpf(final String cpf) {
-        this.cpf = cpf;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
     }
 
     public void setDataHoraRegistro(final LocalDateTime dataHoraRegistro) {

@@ -3,11 +3,11 @@ package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import java.io.BufferedReader;
@@ -57,7 +57,7 @@ public class WSDistribuicaoCTe {
         }
     }
 
-    public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+    public CTDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         try {
             String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
 
@@ -73,7 +73,7 @@ public class WSDistribuicaoCTe {
 
             final CTeDistribuicaoDFeSoapStub stub = new CTeDistribuicaoDFeSoapStub(CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente()), config);
             final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresseResponse result = stub.cteDistDFeInteresse(distDFeInteresse);
-            return this.config.getPersister().read(NFDistribuicaoIntRetorno.class, result.getCteDistDFeInteresseResult().getExtraElement().toString());
+            return this.config.getPersister().read(CTDistribuicaoIntRetorno.class, result.getCteDistDFeInteresseResult().getExtraElement().toString());
         } catch (RemoteException | XMLStreamException e) {
             throw new Exception(e.getMessage());
         }

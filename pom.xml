@@ -3,7 +3,7 @@
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
     <packaging>jar</packaging>
-    <version>3.1.28-SNAPSHOT</version>
+    <version>4.0.30-SNAPSHOT</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -26,9 +26,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <axis2.version>1.6.4</axis2.version>
-        <slf4j.version>1.7.36</slf4j.version>
+        <slf4j.version>2.0.7</slf4j.version>
         <junit.version>4.13.2</junit.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
@@ -58,6 +58,13 @@
     </developers>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
+        <dependency>
+            <groupId>org.apache.santuario</groupId>
+            <artifactId>xmlsec</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
         <!-- Simple Xml Framework -->
         <dependency>
             <groupId>org.simpleframework</groupId>
@@ -167,10 +174,10 @@
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <optimize>true</optimize>
                     <debug>false</debug>
                 </configuration>
@@ -199,7 +206,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.8</version>
+                <version>0.8.10</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -258,7 +265,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -278,7 +285,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
-                        <version>2.5.3</version>
+                        <version>3.0.1</version>
                         <configuration>
                             <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
@@ -290,7 +297,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.2.1</version>
+                        <version>3.3.0</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -303,7 +310,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.4.0</version>
+                        <version>3.5.0</version>
                         <configuration>
                             <failOnError>false</failOnError>
                             <doclint>none</doclint>
@@ -320,7 +327,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M7</version>
+                        <version>3.1.2</version>
                     </plugin>
                 </plugins>
             </build>

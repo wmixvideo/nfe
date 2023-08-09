@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.validadores;
 
+import org.xml.sax.SAXException;
+
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.net.URL;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import org.xml.sax.SAXException;
 
 public final class DFXMLValidador {
 
@@ -28,7 +29,7 @@ public final class DFXMLValidador {
     }
 
     public static boolean valida400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_009i_NT2021_004_v100a/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_009k_NT2023_001_v120/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -86,19 +87,123 @@ public final class DFXMLValidador {
     }
 
     private static boolean validaCTe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_300a/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_300a_NT2022.001/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
         return true;
     }
 
-    public static boolean validaLoteCTe(final String arquivoXML) throws Exception {
+    public static boolean validaLoteCTe300(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe(arquivoXML, "enviCTe_v3.00.xsd");
+    }
+
+    public static boolean validaCTeOS300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "cteOS_v3.00.xsd");
     }
 
     public static boolean validaNotaCte(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe(arquivoXML, "cte_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "eventoCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCancCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoComprovanteEntregaCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCancCECTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoCartaCorrecaoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCCeCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoComprovanteEntregaCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evCECTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoEpecCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evEPECCTe_v3.00.xsd");
+    }
+
+    public static boolean validaEventoGtvCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evGTV_v3.00.xsd");
+    }
+
+    public static boolean validaEventoPrestacaoEmDesacordoCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evPrestDesacordo_v3.00.xsd");
+    }
+
+    public static boolean validaEventoRegistroMultimodalCTe300(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe(arquivoXML, "evRegMultimodal_v3.00.xsd");
+    }
+
+    private static boolean validaCTe400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_400/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+
+    public static boolean validaNotaCte400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "cte_v4.00.xsd");
+    }
+
+    public static boolean validaNotaCTeOS400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "cteOS_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "eventoCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoComprovanteEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancCECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCartaCorrecaoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCCeCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoComprovanteEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoEpecCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evEPECCTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoGtvCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evGTV_v4.00.xsd");
+    }
+
+    public static boolean validaEventoPrestacaoEmDesacordoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evPrestDesacordo_v4.00.xsd");
+    }
+
+    public static boolean validaEventoRegistroMultimodalCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evRegMultimodal_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoPrestacaoEmDesacordoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancPrestDesacordo_v4.00.xsd");
+    }
+
+    public static boolean validaEventoCancelamentoInsucessoEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evCancIECTe_v4.00.xsd");
+    }
+
+    public static boolean validaEventoInsucessoEntregaCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evIECTe_v4.00.xsd");
     }
 
     private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {

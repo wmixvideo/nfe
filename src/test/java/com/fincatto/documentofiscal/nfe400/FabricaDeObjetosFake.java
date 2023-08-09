@@ -1043,6 +1043,16 @@ public class FabricaDeObjetosFake {
         icms00.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
         return icms00;
     }
+
+    public static NFNotaInfoItemImpostoICMS02 getNFNotaInfoItemImpostoICMS02() {
+        final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
+        icms02.setOrigem(NFOrigem.NACIONAL);
+        icms02.setPercentualAliquota(new BigDecimal("99.99"));
+        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
+        icms02.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
+        icms02.setValorTributo(new BigDecimal("999999999999.99"));
+        return icms02;
+    }
     
     public static NFNotaInfoItemImpostoICMS10 getNFNotaInfoItemImpostoICMS10() {
         final NFNotaInfoItemImpostoICMS10 icms10 = new NFNotaInfoItemImpostoICMS10();
@@ -1060,6 +1070,35 @@ public class FabricaDeObjetosFake {
         icms10.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
         icms10.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
         return icms10;
+    }
+
+    public static NFNotaInfoItemImpostoICMS15 getNFNotaInfoItemImpostoICMS15() {
+        final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
+        icms15.setOrigem(NFOrigem.NACIONAL);
+        icms15.setPercentualAliquota(new BigDecimal("99.99"));
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
+        icms15.setValorTributo(new BigDecimal("999999999999.99"));
+        icms15.setPercentualAliquotaRetencao(new BigDecimal("0"));
+        icms15.setValorTributoRetencao(new BigDecimal("0"));
+        return icms15;
+    }
+
+    public static NFNotaInfoItemImpostoICMS53 getNFNotaInfoItemImpostoICMS53() {
+        final NFNotaInfoItemImpostoICMS53 icms53 = new NFNotaInfoItemImpostoICMS53();
+        icms53.setOrigem(NFOrigem.NACIONAL);
+        icms53.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COM_RECOLHIMENTO_DIFERIDO);
+        return icms53;
+    }
+
+    public static NFNotaInfoItemImpostoICMS61 getNFNotaInfoItemImpostoICMS61() {
+        final NFNotaInfoItemImpostoICMS61 icms61 = new NFNotaInfoItemImpostoICMS61();
+        icms61.setOrigem(NFOrigem.NACIONAL);
+        icms61.setPercentualAliquota(new BigDecimal("99.99"));
+        icms61.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COBRADA_ANTERIORMENTE);
+        icms61.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
+        icms61.setValorTributo(new BigDecimal("999999999999.99"));
+        return icms61;
     }
     
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
@@ -1297,6 +1336,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoProcessoReferenciado processoReferenciado = new NFNotaInfoProcessoReferenciado();
         processoReferenciado.setIdentificadorProcessoOuAtoConcessorio("SziSRSIRZvYWlxcbmmJfRZsLgVHaHTurUL9ea1kwFe7fssrxTVSK6uaFwGO5");
         processoReferenciado.setIndicadorOrigemProcesso(NFOrigemProcesso.JUSTICA_FEDERAL);
+        processoReferenciado.setTipoAtoConcessorio(NFTipoAtoConcessorio.REGIME_ESPECIAL);
         return processoReferenciado;
     }
     

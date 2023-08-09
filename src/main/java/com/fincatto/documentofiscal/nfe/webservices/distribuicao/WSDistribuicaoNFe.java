@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
@@ -54,7 +55,7 @@ public class WSDistribuicaoNFe {
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse distDFeInteresse = new NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresse();
             distDFeInteresse.setNFeDadosMsg(dadosMsgType0);
 
-            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador31.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()), config);
+            final NFeDistribuicaoDFeSoapStub stub = new NFeDistribuicaoDFeSoapStub(NFAutorizador400.AN.getNFeDistribuicaoDFe(this.config.getAmbiente()), config);
             final NFeDistribuicaoDFeSoapStub.NFeDistDFeInteresseResponse result = stub.nfeDistDFeInteresse(distDFeInteresse);
     
             return this.config.getPersister().read(NFDistribuicaoIntRetorno.class, result.getNFeDistDFeInteresseResult().getExtraElement().toString());

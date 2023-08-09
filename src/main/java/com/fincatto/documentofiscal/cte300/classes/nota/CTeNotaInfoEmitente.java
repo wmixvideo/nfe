@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.cte300.classes.CTTipoRegimeTributario;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -34,6 +35,9 @@ public class CTeNotaInfoEmitente extends DFBase {
     @Element(name = "enderEmit")
     private CTeNotaEnderecoEmitente endereco;
 
+    @Element(name = "CRT", required = false)
+    private CTTipoRegimeTributario tipoRegimeTributario;
+
     public CTeNotaInfoEmitente() {
         this.cnpj = null;
         this.inscricaoEstadual = null;
@@ -41,6 +45,7 @@ public class CTeNotaInfoEmitente extends DFBase {
         this.razaoSocial = null;
         this.nomeFantasia = null;
         this.endereco = null;
+        this.tipoRegimeTributario = null;
     }
 
     public String getCnpj() {
@@ -113,5 +118,14 @@ public class CTeNotaInfoEmitente extends DFBase {
      */
     public void setEnderEmit(final CTeNotaEnderecoEmitente enderEmit) {
         this.endereco = enderEmit;
+    }
+
+    public CTTipoRegimeTributario getTipoRegimeTributario() {
+        return tipoRegimeTributario;
+    }
+
+    public CTeNotaInfoEmitente setTipoRegimeTributario(CTTipoRegimeTributario tipoRegimeTributario) {
+        this.tipoRegimeTributario = tipoRegimeTributario;
+        return this;
     }
 }

@@ -3,10 +3,13 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class NFNotaInfoItemProdutoCombustivel extends DFBase {
     private static final long serialVersionUID = -2899516480924530882L;
@@ -48,6 +51,12 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
 
     @Element(name = "encerrante", required = false)
     private NFNotaInfoItemProdutoCombustivelEncerrante encerrante;
+
+    @Element(name = "pBio", required = false)
+    private String percentualMisturaBiodiesel;
+
+    @ElementList(entry = "origComb", required = false, inline = true)
+    private List<NFNotaInfoItemProdutoCombustivelOrigem> origemCombustivel;
 
     public NFNotaInfoItemProdutoCombustivel() {
         this.codigoProdutoANP = null;
@@ -105,6 +114,14 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
         this.encerrante = encerrante;
     }
 
+    public void setOrigemCombustivel(List<NFNotaInfoItemProdutoCombustivelOrigem> origemCombustivel) {
+        this.origemCombustivel = DFListValidador.validaListaNaoObrigatoria(origemCombustivel, 30, "Origem do Combustível");
+    }
+
+    public void setPercentualMisturaBiodiesel(final BigDecimal percentualMisturaBiodiesel) {
+        this.percentualMisturaBiodiesel = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualMisturaBiodiesel, "Percentual do índice de mistura do Biodiesel (B100) no Óleo Diesel B instituído pelo órgão regulamentador");
+    }
+
     public String getCodigoProdutoANP() {
         return this.codigoProdutoANP;
     }
@@ -147,5 +164,13 @@ public class NFNotaInfoItemProdutoCombustivel extends DFBase {
 
     public NFNotaInfoItemProdutoCombustivelEncerrante getEncerrante() {
         return this.encerrante;
+    }
+
+    public String getPercentualMisturaBiodiesel() {
+        return this.percentualMisturaBiodiesel;
+    }
+
+    public List<NFNotaInfoItemProdutoCombustivelOrigem> getOrigemCombustivel() {
+        return this.origemCombustivel;
     }
 }

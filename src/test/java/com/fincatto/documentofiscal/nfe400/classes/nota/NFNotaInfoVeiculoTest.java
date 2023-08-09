@@ -39,14 +39,6 @@ public class NFNotaInfoVeiculoTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirUFNulo() {
-        final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
-        veiculo.setPlacaVeiculo("MKZ8159");
-        veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
-        veiculo.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPlacaNulo() {
         final NFNotaInfoVeiculo veiculo = new NFNotaInfoVeiculo();
         veiculo.setRegistroNacionalTransportadorCarga("8Io5YKSKW1qy3v7zGwLx");
