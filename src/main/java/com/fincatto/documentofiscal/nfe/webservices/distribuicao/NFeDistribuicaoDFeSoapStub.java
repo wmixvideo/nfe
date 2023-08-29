@@ -387,7 +387,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         /**
          * databinding method to get an XML representation of this object
          */
-        @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
             final java.util.ArrayList elementList = new java.util.ArrayList();
             final java.util.ArrayList attribList = new java.util.ArrayList();
@@ -696,7 +695,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         /**
          * databinding method to get an XML representation of this object
          */
-        @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
             final java.util.ArrayList elementList = new java.util.ArrayList();
             final java.util.ArrayList attribList = new java.util.ArrayList();
@@ -1026,7 +1024,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         /**
          * databinding method to get an XML representation of this object
          */
-        @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
             final java.util.ArrayList elementList = new java.util.ArrayList();
             final java.util.ArrayList attribList = new java.util.ArrayList();
@@ -1354,7 +1351,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         /**
          * databinding method to get an XML representation of this object
          */
-        @Override
         public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
             final java.util.ArrayList elementList = new java.util.ArrayList();
             final java.util.ArrayList attribList = new java.util.ArrayList();

@@ -388,7 +388,6 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }
@@ -601,7 +600,6 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }

@@ -395,7 +395,6 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }
@@ -600,7 +599,6 @@ public class NFeRecepcaoEvento4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) {
             return null;
         }

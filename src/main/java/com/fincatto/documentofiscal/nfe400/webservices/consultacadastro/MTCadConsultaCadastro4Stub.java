@@ -457,7 +457,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localConsultaCadastroResult = param;
         }
 
-        @Override
         public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
             return null;
         }
@@ -859,7 +858,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localExtraElement = param;
         }
 
-        @Override
         public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
             return null;
         }
@@ -1265,7 +1263,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localExtraElement = param;
         }
 
-        @Override
         public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
             return null;
         }
@@ -1660,7 +1657,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localNfeDadosMsg = param;
         }
 
-        @Override
         public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
             return null;
         }

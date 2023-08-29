@@ -553,7 +553,6 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
             return null;
         }
@@ -789,7 +788,6 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             }
         } // end of factory class
 
-        @Override
         public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
             return null;
         }
