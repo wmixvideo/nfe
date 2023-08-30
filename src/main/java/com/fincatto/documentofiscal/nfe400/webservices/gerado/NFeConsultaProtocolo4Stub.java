@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
 
 import org.apache.axis2.client.Stub;
 
@@ -379,10 +378,6 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 
     public static class ExtensionMapper {
@@ -589,9 +584,5 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 }

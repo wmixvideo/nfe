@@ -1,10 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
+import javax.xml.namespace.QName;
+
 import org.apache.axis2.client.Stub;
 import org.apache.axis2.transport.http.HTTPConstants;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -470,10 +469,6 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 
     @SuppressWarnings("serial")
@@ -674,10 +669,6 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 
     public static class ExtensionMapper {
@@ -862,9 +853,5 @@ public class NFeAutorizacao4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 }

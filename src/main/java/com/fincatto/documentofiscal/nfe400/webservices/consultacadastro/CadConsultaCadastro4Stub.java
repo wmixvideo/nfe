@@ -3,13 +3,12 @@
  */
 package com.fincatto.documentofiscal.nfe400.webservices.consultacadastro;
 
-import org.apache.axis2.AxisFault;
-import org.apache.axis2.client.Stub;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import java.lang.reflect.InvocationTargetException;
+
+import org.apache.axis2.AxisFault;
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -552,10 +551,6 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
-            return null;
-        }
     }
 
     @SuppressWarnings("serial")
@@ -787,9 +782,5 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        public XMLStreamReader getPullParser(final QName arg0) throws XMLStreamException {
-            return null;
-        }
     }
 }
