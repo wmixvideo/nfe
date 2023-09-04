@@ -10,13 +10,14 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 class WSGtv extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Informacoes da GTV";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_GTV = "110170";
-    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTeOS);
+    private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTeOS);
 
     WSGtv(final CTeConfig config) {
         super(config, modelosPermitidos);

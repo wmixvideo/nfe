@@ -10,13 +10,14 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 class WSComprovanteEntrega extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Comprovante de Entrega do CT-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_COMPROVANTE_DE_ENTREGA = "110180";
-    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE);
+    private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE);
 
     WSComprovanteEntrega(final CTeConfig config) {
         super(config, modelosPermitidos);
