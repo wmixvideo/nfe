@@ -11,13 +11,14 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 class WSCartaCorrecao extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Carta de Correcao";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_CARTA_DE_CORRECAO = "110110";
-    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE, DFModelo.CTeOS);
+    private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE, DFModelo.CTeOS);
 
     WSCartaCorrecao(final CTeConfig config) {
         super(config, modelosPermitidos);
@@ -35,7 +36,7 @@ class WSCartaCorrecao extends WSRecepcaoEvento {
         correcao.setValorAlterado(valorAlterado);
         correcao.setNumeroItemAlterado(numeroItemAlterado);
 
-        return corrigeNota(chaveAcesso, List.of(correcao), sequencialEvento);
+        return corrigeNota(chaveAcesso, Arrays.asList(correcao), sequencialEvento);
     }
 
     CTeEventoRetorno corrigeNota(final String chaveAcesso, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {

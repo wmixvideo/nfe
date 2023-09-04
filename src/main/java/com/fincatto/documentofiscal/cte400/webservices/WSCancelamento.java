@@ -10,13 +10,14 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 class WSCancelamento extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
-    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE, DFModelo.CTeOS);
+    private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE, DFModelo.CTeOS);
     
     WSCancelamento(final CTeConfig config) {
         super(config, modelosPermitidos);
