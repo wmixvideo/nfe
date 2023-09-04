@@ -1,7 +1,7 @@
-package com.fincatto.documentofiscal.cte300.utils;
+package com.fincatto.documentofiscal.cte400.utils;
 
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
-import com.fincatto.documentofiscal.cte300.classes.os.CTeOS;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
+import com.fincatto.documentofiscal.cte400.classes.os.CTeOS;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.ZonedDateTime;

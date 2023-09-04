@@ -3,11 +3,10 @@
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
 
+import javax.xml.namespace.QName;
+
 import org.apache.axiom.om.OMAttribute;
 import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
-
-import javax.xml.namespace.QName;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -628,37 +627,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * databinding method to get an XML representation of this object
-         */
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localCUFTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "cUF"));
-                if (this.localCUF != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localCUF));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
-                }
-            }
-            if (this.localVersaoDadosTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "versaoDados"));
-                if (this.localVersaoDados != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localVersaoDados));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
-                }
-            }
-            for (final OMAttribute localExtraAttribute : this.localExtraAttributes) {
-                attribList.add(Constants.OM_ATTRIBUTE_KEY);
-                attribList.add(localExtraAttribute);
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
-        /**
          * Factory class that keeps the parse method
          */
         public static class Factory {
@@ -968,23 +936,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * databinding method to get an XML representation of this object
-         */
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
-        /**
          * Factory class that keeps the parse method
          */
         public static class Factory {
@@ -1262,15 +1213,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            // We can safely assume an element has only one type associated with it
-            return this.localMdfeCabecMsg.getPullParser(MdfeCabecMsgE.MY_QNAME);
-        }
-
-        /**
          * Factory class that keeps the parse method
          */
         public static class Factory {
@@ -1530,23 +1472,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                 xmlWriter.setPrefix(prefix, namespace);
             }
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @SuppressWarnings({ "unchecked", "rawtypes" })
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
         }
 
         /**

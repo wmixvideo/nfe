@@ -565,7 +565,7 @@ public class WSFacade {
      * @return dados do retorno do envio do CT-e OS e o xml assinado
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
-    public CTeOSEnvioRetornoDados envioRecepcaoLote(CTeOS cteOS) throws Exception {
+    public CTeOSEnvioRetornoDados enviaCTe(CTeOS cteOS) throws Exception {
         return this.wsRecepcaoCTeOS.enviaCTe(cteOS);
     }
 

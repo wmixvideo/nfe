@@ -332,7 +332,7 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
 
     public static class CteStatusServicoCTResult implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeStatusServicoV4",
-                "cteStatusServicoCTResult", "ns1");
+                "cteStatusServicoCTResult", "");
 
         /**
          * field for ExtraElement
@@ -420,7 +420,7 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://www.portalfiscal.inf.br/cte/wsdl/CTeStatusServicoV4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -616,28 +616,6 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
             }
 
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         *
-         */
-        public javax.xml.stream.XMLStreamReader getPullParser(
-            javax.xml.namespace.QName qName)
-            throws org.apache.axis2.databinding.ADBException {
-            java.util.ArrayList elementList = new java.util.ArrayList();
-            java.util.ArrayList attribList = new java.util.ArrayList();
-
-            if (localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName,
-                elementList.toArray(), attribList.toArray());
         }
 
         /**
@@ -743,7 +721,7 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
 
     public static class CteDadosMsg implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeStatusServicoV4",
-                "cteDadosMsg", "ns1");
+                "cteDadosMsg", "");
 
         /**
          * field for ExtraElement
@@ -831,7 +809,7 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://www.portalfiscal.inf.br/cte/wsdl/CTeStatusServicoV4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -1027,28 +1005,6 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
             }
 
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         *
-         */
-        public javax.xml.stream.XMLStreamReader getPullParser(
-            javax.xml.namespace.QName qName)
-            throws org.apache.axis2.databinding.ADBException {
-            java.util.ArrayList elementList = new java.util.ArrayList();
-            java.util.ArrayList attribList = new java.util.ArrayList();
-
-            if (localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName,
-                elementList.toArray(), attribList.toArray());
         }
 
         /**

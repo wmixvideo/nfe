@@ -4515,8 +4515,6 @@ Onde v9.99 é a a designação genérica para a versão do arquivo. Por exemplo,
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
-,
-
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>

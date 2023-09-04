@@ -1,10 +1,10 @@
-package com.fincatto.documentofiscal.cte300.utils;
+package com.fincatto.documentofiscal.cte400.utils;
 
 import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte.CTeConfig;
-import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNota;
-import com.fincatto.documentofiscal.cte300.classes.os.CTeOS;
+import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
+import com.fincatto.documentofiscal.cte400.classes.os.CTeOS;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 
 public class CTeGeraQRCode {
@@ -16,7 +16,7 @@ public class CTeGeraQRCode {
     }
 
     private String getQRCode(String chaveAcesso) throws Exception {
-        String url = CTAutorizador31.valueOfChaveAcesso(chaveAcesso).getCteQrCode(this.config.getAmbiente());
+        String url = CTAutorizador400.valueOfChaveAcesso(chaveAcesso).getCteQrCode(this.config.getAmbiente());
         final StringBuilder parametros = new StringBuilder();
         parametros.append("chCTe=").append(chaveAcesso).append("&");
         parametros.append("tpAmb=").append(this.config.getAmbiente().getCodigo());
@@ -34,5 +34,5 @@ public class CTeGeraQRCode {
     public String getQRCode(CTeOS cteOS) throws Exception {
         return getQRCode(cteOS.getInfo().getChaveAcesso());
     }
-
+    
 }
