@@ -322,7 +322,7 @@ public class CTeRecepcaoOSV4Stub extends org.apache.axis2.client.Stub {
 
     public static class CteRecepcaoOSResult implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoOSV4",
-                "cteRecepcaoOSResult", "ns1");
+                "cteRecepcaoOSResult", "");
 
         /**
          * field for ExtraElement
@@ -410,7 +410,7 @@ public class CTeRecepcaoOSV4Stub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoOSV4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -711,7 +711,7 @@ public class CTeRecepcaoOSV4Stub extends org.apache.axis2.client.Stub {
 
     public static class CteDadosMsg implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoOSV4",
-                "cteDadosMsg", "ns1");
+                "cteDadosMsg", "");
 
         /**
          * field for CteDadosMsg
@@ -798,7 +798,7 @@ public class CTeRecepcaoOSV4Stub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoOSV4")) {
-                return "ns1";
+                return "";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();

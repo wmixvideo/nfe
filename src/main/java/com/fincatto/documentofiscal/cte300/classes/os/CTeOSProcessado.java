@@ -8,6 +8,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.time.ZonedDateTime;
+
 @Root(name = "cteOSProc")
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeOSProcessado extends DFBase {
@@ -18,6 +20,12 @@ public class CTeOSProcessado extends DFBase {
      */
     @Attribute(name = "ipTransmissor", required = false)
     private String ipTransmissor;
+
+    @Attribute(name = "nPortaCon", required = false)
+    private String portaConexao;
+
+    @Attribute(name = "dhConexao", required = false)
+    private ZonedDateTime dataHoraConexao;
 
     @Attribute(name = "versao")
     private String versao;
@@ -34,6 +42,22 @@ public class CTeOSProcessado extends DFBase {
 
     public void setIpTransmissor(final String ipTransmissor) {
         this.ipTransmissor = ipTransmissor;
+    }
+
+    public String getPortaConexao() {
+        return portaConexao;
+    }
+
+    public void setPortaConexao(String portaConexao) {
+        this.portaConexao = portaConexao;
+    }
+
+    public ZonedDateTime getDataHoraConexao() {
+        return dataHoraConexao;
+    }
+
+    public void setDataHoraConexao(ZonedDateTime dataHoraConexao) {
+        this.dataHoraConexao = dataHoraConexao;
     }
 
     public String getVersao() {
