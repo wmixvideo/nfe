@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
 
-import org.apache.axis2.client.Stub;
-
 import javax.xml.namespace.QName;
+
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -384,23 +384,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localNFeDadosMsgTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDadosMsg"));
-                if (this.localNFeDadosMsg == null) {
-                    throw new org.apache.axis2.databinding.ADBException("nfeDadosMsg cannot be null!!");
-                }
-                elementList.add(this.localNFeDadosMsg);
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
         public static class Factory {
 
             public static NFeDistDFeInteresse parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
@@ -691,22 +674,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 xmlWriter.setPrefix(prefix, namespace);
             }
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
         }
 
         /**
@@ -1024,23 +991,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localNFeDistDFeInteresseResultTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe", "nfeDistDFeInteresseResult"));
-                if (this.localNFeDistDFeInteresseResult == null) {
-                    throw new org.apache.axis2.databinding.ADBException("nfeDistDFeInteresseResult cannot be null!!");
-                }
-                elementList.add(this.localNFeDistDFeInteresseResult);
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
-        /**
          * Factory class that keeps the parse method
          */
         public static class Factory {
@@ -1349,22 +1299,6 @@ public class NFeDistribuicaoDFeSoapStub extends org.apache.axis2.client.Stub {
                 xmlWriter.setPrefix(prefix, namespace);
             }
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         */
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList elementList = new java.util.ArrayList();
-            final java.util.ArrayList attribList = new java.util.ArrayList();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
         }
 
         /**
