@@ -619,28 +619,6 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         * databinding method to get an XML representation of this object
-         *
-         */
-        public javax.xml.stream.XMLStreamReader getPullParser(
-            javax.xml.namespace.QName qName)
-            throws org.apache.axis2.databinding.ADBException {
-            java.util.ArrayList elementList = new java.util.ArrayList();
-            java.util.ArrayList attribList = new java.util.ArrayList();
-
-            if (localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName,
-                elementList.toArray(), attribList.toArray());
-        }
-
-        /**
          *  Factory class that keeps the parse method
          */
         public static class Factory {
@@ -1027,28 +1005,6 @@ public class CTeStatusServicoV4Stub extends org.apache.axis2.client.Stub {
             }
 
             return prefix;
-        }
-
-        /**
-         * databinding method to get an XML representation of this object
-         *
-         */
-        public javax.xml.stream.XMLStreamReader getPullParser(
-            javax.xml.namespace.QName qName)
-            throws org.apache.axis2.databinding.ADBException {
-            java.util.ArrayList elementList = new java.util.ArrayList();
-            java.util.ArrayList attribList = new java.util.ArrayList();
-
-            if (localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName,
-                elementList.toArray(), attribList.toArray());
         }
 
         /**

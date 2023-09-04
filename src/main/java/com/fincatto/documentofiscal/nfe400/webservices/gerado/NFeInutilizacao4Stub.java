@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 
-import org.apache.axis2.client.Stub;
-
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -387,11 +386,6 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        @Override
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 
     @SuppressWarnings("serial")
@@ -600,10 +594,5 @@ public class NFeInutilizacao4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        @Override
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 }
