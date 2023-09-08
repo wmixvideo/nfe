@@ -131,7 +131,7 @@ public enum CTAutorizador31 {
     
         @Override
         public String getCteQrCode(DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://hcte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml" : "https://cte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml";
+            return "https://cte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml";
         }
     
         @Override

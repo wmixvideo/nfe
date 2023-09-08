@@ -10,13 +10,14 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 class WSInsucessoEntrega extends WSRecepcaoEvento {
     private static final String DESCRICAO_EVENTO = "Insucesso na Entrega do CT-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("4.00");
     private static final String EVENTO_INSUCESSO_DE_ENTREGA = "110190";
-    private static final List<DFModelo> modelosPermitidos = List.of(DFModelo.CTE);
+    private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE);
 
     WSInsucessoEntrega(final CTeConfig config) {
         super(config, modelosPermitidos);
