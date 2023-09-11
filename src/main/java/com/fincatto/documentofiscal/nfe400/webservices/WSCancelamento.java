@@ -90,7 +90,7 @@ class WSCancelamento implements DFLog {
             infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         }
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, sequencialEvento));
+        infoEvento.setId(String.format("ID%s%s%02d", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, sequencialEvento));
         infoEvento.setNumeroSequencialEvento(sequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
