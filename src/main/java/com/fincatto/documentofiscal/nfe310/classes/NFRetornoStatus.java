@@ -527,7 +527,7 @@ public enum NFRetornoStatus {
     }
 
     public boolean isDuplicado() {
-        return CODIGO_539.getCodigo() == this.codigo;
+        return CODIGO_539.getCodigo() == this.codigo || CODIGO_204.getCodigo() == this.codigo;
     }
 
     public int getCodigo() {
