@@ -1,5 +1,5 @@
 /*
- * MDFeRecepcaoStub.java <p> This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
+ * MDFeRecepcaoSincStub.java <p> This file was auto-generated from WSDL by the Apache Axis2 version: 1.6.2 Built on : Apr 17, 2012 (05:33:49 IST)
  */
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
 
@@ -12,13 +12,10 @@ import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
 
 /*
- * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
- *
- * MDFeRecepcaoStub java implementation
+ * MDFeRecepcaoSincStub java implementation
  */
 
-@Deprecated
-public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
+public class MDFeRecepcaoSincStub1 extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     // hashmaps to keep the fault mapping
@@ -33,22 +30,22 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
 
     private static synchronized java.lang.String getUniqueSuffix() {
         // reset the counter if it is greater than 99999
-        if (MDFeRecepcaoStub.counter > 99999) {
-            MDFeRecepcaoStub.counter = 0;
+        if (MDFeRecepcaoSincStub1.counter > 99999) {
+            MDFeRecepcaoSincStub1.counter = 0;
         }
-        MDFeRecepcaoStub.counter = MDFeRecepcaoStub.counter + 1;
-        return System.currentTimeMillis() + "_" + MDFeRecepcaoStub.counter;
+        MDFeRecepcaoSincStub1.counter = MDFeRecepcaoSincStub1.counter + 1;
+        return System.currentTimeMillis() + "_" + MDFeRecepcaoSincStub1.counter;
     }
 
     private void populateAxisService() {
         // creating the Service with a unique name
-        this._service = new org.apache.axis2.description.AxisService("MDFeRecepcao" + MDFeRecepcaoStub.getUniqueSuffix());
+        this._service = new org.apache.axis2.description.AxisService("MDFeRecepcaoSinc" + MDFeRecepcaoSincStub1.getUniqueSuffix());
         this.addAnonymousOperations();
         // creating the operations
         org.apache.axis2.description.AxisOperation __operation;
         this._operations = new org.apache.axis2.description.AxisOperation[1];
         __operation = new org.apache.axis2.description.OutInAxisOperation();
-        __operation.setName(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote"));
+        __operation.setName(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult"));
         this._service.addOperation(__operation);
         this._operations[0] = __operation;
     }
@@ -61,14 +58,14 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
      * Constructor that takes in a configContext
      */
 
-    public MDFeRecepcaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+    public MDFeRecepcaoSincStub1(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false, config);
     }
 
     /**
      * Constructor that takes in a configContext and useseperate listner
      */
-    public MDFeRecepcaoStub(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
+    public MDFeRecepcaoSincStub1(final org.apache.axis2.context.ConfigurationContext configurationContext, final java.lang.String targetEndpoint, final boolean useSeparateListener, DFConfig config) throws org.apache.axis2.AxisFault {
         // To populate AxisService
         this.populateAxisService();
         this.populateFaults();
@@ -83,7 +80,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     /**
      * Constructor taking the target endpoint
      */
-    public MDFeRecepcaoStub(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
+    public MDFeRecepcaoSincStub1(final java.lang.String targetEndpoint, DFConfig config) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint, config);
     }
 
@@ -94,26 +91,26 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
      */
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult mdfeRecepcaoLote(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg mdfeDadosMsg0, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE mdfeCabecMsg1) throws java.rmi.RemoteException {
+    public com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult mdfeRecepcaoSinc(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg mdfeDadosMsg0) throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = null;
         try {
             final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
-            _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao/mdfeRecepcaoLote");
+            _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc/mdfeRecepcao");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
             _messageContext = MessageContextFactory.INSTANCE.create(config);
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env;
-            env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), mdfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote"));
+            env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), mdfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult"));
             env.build();
-            // add the children only if the parameter is not null
-            if (mdfeCabecMsg1 != null) {
-                final org.apache.axiom.om.OMElement omElementmdfeCabecMsg1 = this.toOM(mdfeCabecMsg1, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote")));
-                this.addHeader(omElementmdfeCabecMsg1, env);
-            }
-            // adding SOAP soap_headers
-            this._serviceClient.addHeadersToEnvelope(env);
+//            // add the children only if the parameter is not null
+//            if (mdfeCabecMsg1 != null) {
+//                final org.apache.axiom.om.OMElement omElementmdfeCabecMsg1 = this.toOM(mdfeCabecMsg1, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult")));
+//                this.addHeader(omElementmdfeCabecMsg1, env);
+//            }
+//            // adding SOAP soap_headers
+//            this._serviceClient.addHeadersToEnvelope(env);
             // set the message context with that soap envelope
             _messageContext.setEnvelope(env);
             // add the message contxt to the operation client
@@ -122,20 +119,20 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             _operationClient.execute(true);
             final org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
             final org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
-            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.class, this.getEnvelopeNamespaces(_returnEnv));
-            return (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult) object;
+            final java.lang.Object object = this.fromOM(_returnEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.class, this.getEnvelopeNamespaces(_returnEnv));
+            return (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult) object;
         } catch (final org.apache.axis2.AxisFault f) {
             final org.apache.axiom.om.OMElement faultElt = f.getDetail();
             if (faultElt != null) {
-                if (this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"))) {
+                if (this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"))) {
                     // make the fault by reflection
                     try {
-                        final java.lang.String exceptionClassName = (java.lang.String) this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"));
+                        final java.lang.String exceptionClassName = (java.lang.String) this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"));
                         final java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
                         final java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         final java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
                         // message class
-                        final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"));
+                        final java.lang.String messageClassName = (java.lang.String) this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"));
                         final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         final java.lang.Object messageObject = this.fromOM(faultElt, messageClass, null);
                         final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
@@ -163,19 +160,19 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
      * @param mdfeDadosMsg0
      * @param mdfeCabecMsg1
      */
-    public void startmdfeRecepcaoLote(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg mdfeDadosMsg0, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE mdfeCabecMsg1, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoCallbackHandler callback) throws java.rmi.RemoteException {
+    public void startmdfeRecepcaoSinc(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg mdfeDadosMsg0, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeCabecMsgE mdfeCabecMsg1, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincCallbackHandler callback) throws java.rmi.RemoteException {
         final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
-        _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao/mdfeRecepcaoLote");
+        _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc/mdfeRecepcao");
         _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
         this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
         // create SOAP envelope with that payload
         org.apache.axiom.soap.SOAPEnvelope env;
         final org.apache.axis2.context.MessageContext _messageContext = MessageContextFactory.INSTANCE.create(config);
         // Style is Doc.
-        env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), mdfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote"));
+        env = this.toEnvelope(Stub.getFactory(_operationClient.getOptions().getSoapVersionURI()), mdfeDadosMsg0, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult")), new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult"));
         // add the soap_headers only if they are not null
         if (mdfeCabecMsg1 != null) {
-            final org.apache.axiom.om.OMElement omElementmdfeCabecMsg1 = this.toOM(mdfeCabecMsg1, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLote")));
+            final org.apache.axiom.om.OMElement omElementmdfeCabecMsg1 = this.toOM(mdfeCabecMsg1, this.optimizeContent(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult")));
             this.addHeader(omElementmdfeCabecMsg1, env);
         }
         // adding SOAP soap_headers
@@ -189,10 +186,10 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             public void onMessage(final org.apache.axis2.context.MessageContext resultContext) {
                 try {
                     final org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext.getEnvelope();
-                    final java.lang.Object object = MDFeRecepcaoStub.this.fromOM(resultEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.class, MDFeRecepcaoStub.this.getEnvelopeNamespaces(resultEnv));
-                    callback.receiveResultmdfeRecepcaoLote((com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult) object);
+                    final java.lang.Object object = MDFeRecepcaoSincStub1.this.fromOM(resultEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.class, MDFeRecepcaoSincStub1.this.getEnvelopeNamespaces(resultEnv));
+                    ////callback.receiveResultmdfeRecepcaoSinc((com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult) object);
                 } catch (final org.apache.axis2.AxisFault e) {
-                    callback.receiveErrormdfeRecepcaoLote(e);
+                    callback.receiveErrormdfeRecepcaoSinc(e);
                 }
             }
 
@@ -203,32 +200,32 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                     final org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
                     final org.apache.axiom.om.OMElement faultElt = f.getDetail();
                     if (faultElt != null) {
-                        if (MDFeRecepcaoStub.this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"))) {
+                        if (MDFeRecepcaoSincStub1.this.faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"))) {
                             // make the fault by reflection
                             try {
-                                final java.lang.String exceptionClassName = (java.lang.String) MDFeRecepcaoStub.this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"));
+                                final java.lang.String exceptionClassName = (java.lang.String) MDFeRecepcaoSincStub1.this.faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"));
                                 final java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
                                 final java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                                 final java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
                                 // message class
-                                final java.lang.String messageClassName = (java.lang.String) MDFeRecepcaoStub.this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoLote"));
+                                final java.lang.String messageClassName = (java.lang.String) MDFeRecepcaoSincStub1.this.faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(), "mdfeRecepcaoResult"));
                                 final java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-                                final java.lang.Object messageObject = MDFeRecepcaoStub.this.fromOM(faultElt, messageClass, null);
+                                final java.lang.Object messageObject = MDFeRecepcaoSincStub1.this.fromOM(faultElt, messageClass, null);
                                 final java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage", messageClass);
                                 m.invoke(ex, messageObject);
-                                callback.receiveErrormdfeRecepcaoLote(new java.rmi.RemoteException(ex.getMessage(), ex));
+                                callback.receiveErrormdfeRecepcaoSinc(new java.rmi.RemoteException(ex.getMessage(), ex));
                             } catch (ClassCastException | org.apache.axis2.AxisFault | InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                                 // we cannot intantiate the class - throw the original Axis fault
-                                callback.receiveErrormdfeRecepcaoLote(f);
+                                callback.receiveErrormdfeRecepcaoSinc(f);
                             }
                         } else {
-                            callback.receiveErrormdfeRecepcaoLote(f);
+                            callback.receiveErrormdfeRecepcaoSinc(f);
                         }
                     } else {
-                        callback.receiveErrormdfeRecepcaoLote(f);
+                        callback.receiveErrormdfeRecepcaoSinc(f);
                     }
                 } else {
-                    callback.receiveErrormdfeRecepcaoLote(error);
+                    callback.receiveErrormdfeRecepcaoSinc(error);
                 }
             }
 
@@ -243,7 +240,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                 try {
                     _messageContext.getTransportOut().getSender().cleanup(_messageContext);
                 } catch (final org.apache.axis2.AxisFault axisFault) {
-                    callback.receiveErrormdfeRecepcaoLote(axisFault);
+                    callback.receiveErrormdfeRecepcaoSinc(axisFault);
                 }
             }
         });
@@ -285,11 +282,11 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    // https://mdfe.sefaz.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx
+    // https://mdfe.sefaz.rs.gov.br/ws/MDFerecepcao/MDFeRecepcaoSinc.asmx
     public static class ExtensionMapper {
 
         public static java.lang.Object getTypeObject(final java.lang.String namespaceURI, final java.lang.String typeName, final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-            if ("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao".equals(namespaceURI) && "mdfeCabecMsg".equals(typeName)) {
+            if ("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc".equals(namespaceURI) && "mdfeCabecMsg".equals(typeName)) {
                 return MdfeCabecMsg.Factory.parse(reader);
             }
             throw new org.apache.axis2.databinding.ADBException("Unsupported type " + namespaceURI + " " + typeName);
@@ -299,7 +296,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("serial")
     public static class MdfeCabecMsg implements org.apache.axis2.databinding.ADBBean {
         /*
-         * This type was generated from the piece of schema that had name = mdfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao Namespace Prefix = ns2
+         * This type was generated from the piece of schema that had name = mdfeCabecMsg Namespace URI = http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc Namespace Prefix = ns2
          */
 
         /**
@@ -440,7 +437,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             namespace = parentQName.getNamespaceURI();
             this.writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
             if (serializeType) {
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao");
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
                     this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":mdfeCabecMsg", xmlWriter);
                 } else {
@@ -453,7 +450,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                 }
             }
             if (this.localCUFTracker) {
-                namespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao";
+                namespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc";
                 this.writeStartElement(null, namespace, "cUF", xmlWriter);
                 if (this.localCUF == null) {
                     // write the nil attribute
@@ -464,7 +461,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                 xmlWriter.writeEndElement();
             }
             if (this.localVersaoDadosTracker) {
-                namespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao";
+                namespace = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc";
                 this.writeStartElement(null, namespace, "versaoDados", xmlWriter);
                 if (this.localVersaoDados == null) {
                     // write the nil attribute
@@ -478,7 +475,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc")) {
                 return "ns2";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -683,7 +680,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "cUF").equals(reader.getName())) {
+                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "cUF").equals(reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                         if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException("The element: " + "cUF" + "  cannot be null");
@@ -695,7 +692,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                     while (!reader.isStartElement() && !reader.isEndElement()) {
                         reader.next();
                     }
-                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "versaoDados").equals(reader.getName())) {
+                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "versaoDados").equals(reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
                         if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException("The element: " + "versaoDados" + "  cannot be null");
@@ -720,9 +717,9 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     }
 
     @SuppressWarnings("serial")
-    public static class MdfeRecepcaoLoteResult implements org.apache.axis2.databinding.ADBBean {
+    public static class MdfeRecepcaoSincResult implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeRecepcaoLoteResult", "ns2");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeRecepcaoResult", "ns2");
 
         /**
          * field for ExtraElement
@@ -753,8 +750,8 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
          */
         @Override
         public org.apache.axiom.om.OMElement getOMElement(final javax.xml.namespace.QName parentQName, final org.apache.axiom.om.OMFactory factory) {
-            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MdfeRecepcaoLoteResult.MY_QNAME);
-            return factory.createOMElement(dataSource, MdfeRecepcaoLoteResult.MY_QNAME);
+            final org.apache.axiom.om.OMDataSource dataSource = new org.apache.axis2.databinding.ADBDataSource(this, MdfeRecepcaoSincResult.MY_QNAME);
+            return factory.createOMElement(dataSource, MdfeRecepcaoSincResult.MY_QNAME);
         }
 
         @Override
@@ -770,11 +767,11 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             namespace = parentQName.getNamespaceURI();
             this.writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
             if (serializeType) {
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao");
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":mdfeRecepcaoLoteResult", xmlWriter);
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":mdfeRecepcaoResult", xmlWriter);
                 } else {
-                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "mdfeRecepcaoLoteResult", xmlWriter);
+                    this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", "mdfeRecepcaoResult", xmlWriter);
                 }
             }
             if (this.localExtraElement != null) {
@@ -786,7 +783,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc")) {
                 return "ns2";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -803,7 +800,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                 if (namespace.length() == 0) {
                     prefix = "";
                 } else if (prefix == null) {
-                    prefix = MdfeRecepcaoLoteResult.generatePrefix(namespace);
+                    prefix = MdfeRecepcaoSincResult.generatePrefix(namespace);
                 }
                 xmlWriter.writeStartElement(prefix, localPart, namespace);
                 xmlWriter.writeNamespace(prefix, namespace);
@@ -869,7 +866,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             if (namespaceURI != null) {
                 java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
                 if (prefix == null) {
-                    prefix = MdfeRecepcaoLoteResult.generatePrefix(namespaceURI);
+                    prefix = MdfeRecepcaoSincResult.generatePrefix(namespaceURI);
                     xmlWriter.writeNamespace(prefix, namespaceURI);
                     xmlWriter.setPrefix(prefix, namespaceURI);
                 }
@@ -900,7 +897,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                     if (namespaceURI != null) {
                         prefix = xmlWriter.getPrefix(namespaceURI);
                         if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = MdfeRecepcaoLoteResult.generatePrefix(namespaceURI);
+                            prefix = MdfeRecepcaoSincResult.generatePrefix(namespaceURI);
                             xmlWriter.writeNamespace(prefix, namespaceURI);
                             xmlWriter.setPrefix(prefix, namespaceURI);
                         }
@@ -923,7 +920,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         private java.lang.String registerPrefix(final javax.xml.stream.XMLStreamWriter xmlWriter, final java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
             if (prefix == null) {
-                prefix = MdfeRecepcaoLoteResult.generatePrefix(namespace);
+                prefix = MdfeRecepcaoSincResult.generatePrefix(namespace);
                 final javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
                 while (true) {
                     final java.lang.String uri = nsContext.getNamespaceURI(prefix);
@@ -947,8 +944,8 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
              * static method to create the object Precondition: If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable If this object is not an element, it is a complex type and the reader is at the event just after the outer start element Postcondition: If this object is an element, the reader is positioned at its end element If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             @SuppressWarnings({ "unused", "rawtypes" })
-            public static MdfeRecepcaoLoteResult parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                final MdfeRecepcaoLoteResult object = new MdfeRecepcaoLoteResult();
+            public static MdfeRecepcaoSincResult parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                final MdfeRecepcaoSincResult object = new MdfeRecepcaoSincResult();
                 final int event;
                 final java.lang.String nillableValue = null;
                 final java.lang.String prefix = "";
@@ -966,10 +963,10 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                             }
                             nsPrefix = nsPrefix == null ? "" : nsPrefix;
                             final java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
-                            if (!"mdfeRecepcaoLoteResult".equals(type)) {
+                            if (!"mdfeRecepcaoSincResult".equals(type)) {
                                 // find namespace for the prefix
                                 final java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (MdfeRecepcaoLoteResult) ExtensionMapper.getTypeObject(nsUri, type, reader);
+                                return (MdfeRecepcaoSincResult) ExtensionMapper.getTypeObject(nsUri, type, reader);
                             }
                         }
                     }
@@ -1011,7 +1008,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("serial")
     public static class MdfeCabecMsgE implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeCabecMsg", "ns2");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeCabecMsg", "ns2");
 
         /**
          * field for MdfeCabecMsg
@@ -1061,7 +1058,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc")) {
                 return "ns2";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -1239,7 +1236,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
                     final java.util.Vector handledAttributes = new java.util.Vector();
                     while (!reader.isEndElement()) {
                         if (reader.isStartElement()) {
-                            if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeCabecMsg").equals(reader.getName())) {
+                            if (reader.isStartElement() && new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeCabecMsg").equals(reader.getName())) {
                                 object.setMdfeCabecMsg(MdfeCabecMsg.Factory.parse(reader));
                             } // End of if for expected property start element
                             else {
@@ -1261,7 +1258,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("serial")
     public static class MdfeDadosMsg implements org.apache.axis2.databinding.ADBBean {
 
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao", "mdfeDadosMsg", "ns2");
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc", "mdfeDadosMsg", "ns2");
 
         /**
          * field for ExtraElement
@@ -1309,7 +1306,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             namespace = parentQName.getNamespaceURI();
             this.writeStartElement(prefix, namespace, parentQName.getLocalPart(), xmlWriter);
             if (serializeType) {
-                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao");
+                final java.lang.String namespacePrefix = this.registerPrefix(xmlWriter, "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
                     this.writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type", namespacePrefix + ":mdfeDadosMsg", xmlWriter);
                 } else {
@@ -1325,7 +1322,7 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
         }
 
         private static java.lang.String generatePrefix(final java.lang.String namespace) {
-            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcao")) {
+            if (namespace.equals("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoSinc")) {
                 return "ns2";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -1546,34 +1543,19 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             }
         }// end of factory class
     }
-    // private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
-    // try {
-    // return param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-    // } catch (org.apache.axis2.databinding.ADBException e) {
-    // throw org.apache.axis2.AxisFault.makeFault(e);
-    // }
-    // }
-    //
-    // private org.apache.axiom.om.OMElement toOM(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult param, boolean optimizeContent) throws org.apache.axis2.AxisFault {
-    // try {
-    // return param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-    // } catch (org.apache.axis2.databinding.ADBException e) {
-    // throw org.apache.axis2.AxisFault.makeFault(e);
-    // }
-    // }
 
-    private org.apache.axiom.om.OMElement toOM(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE param, final boolean optimizeContent) {
+    private org.apache.axiom.om.OMElement toOM(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeCabecMsgE param, final boolean optimizeContent) {
         // try {
-        return param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+        return param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeCabecMsgE.MY_QNAME, org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         // } catch (org.apache.axis2.databinding.ADBException e) {
         // throw org.apache.axis2.AxisFault.makeFault(e);
         // }
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg param, final boolean optimizeContent, final javax.xml.namespace.QName methodQName) {
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(final org.apache.axiom.soap.SOAPFactory factory, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg param, final boolean optimizeContent, final javax.xml.namespace.QName methodQName) {
         // try {
         final org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-        emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg.MY_QNAME, factory));
+        emptyEnvelope.getBody().addChild(param.getOMElement(com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg.MY_QNAME, factory));
         return emptyEnvelope;
         // } catch (org.apache.axis2.databinding.ADBException e) {
         // throw org.apache.axis2.AxisFault.makeFault(e);
@@ -1593,14 +1575,14 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("rawtypes")
     private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class type, final java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault {
         try {
-            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeDadosMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg.class.equals(type)) {
+                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeDadosMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeRecepcaoLoteResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.class.equals(type)) {
+                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
-            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.class.equals(type)) {
-                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoStub.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+            if (com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeCabecMsgE.class.equals(type)) {
+                return com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeCabecMsgE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
         } catch (final java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
