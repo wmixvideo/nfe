@@ -45,6 +45,7 @@ public class NFRetornoStatusTest {
     @Test
     public void isDuplicadoTest() {
         Assert.assertTrue(NFRetornoStatus.CODIGO_539.isDuplicado());
+        Assert.assertTrue(NFRetornoStatus.CODIGO_204.isDuplicado());
         Assert.assertFalse(NFRetornoStatus.CODIGO_100.isDuplicado());
     }
 
