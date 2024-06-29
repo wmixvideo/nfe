@@ -1,12 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class NFNotaInfoFormaPagamento extends DFBase {
 
@@ -23,6 +25,15 @@ public class NFNotaInfoFormaPagamento extends DFBase {
 
     @Element(name = "vPag")
     private String valorPagamento;
+
+    @Element(name = "dPag", required = false)
+    private LocalDate dataPagamento;
+
+    @Element(name = "CNPJPag", required = false)
+    private String cnpjTransacionalPagamento;
+
+    @Element(name = "UFPag", required = false)
+    private String ufTransacionalPagamento;
 
     @Element(name = "card", required = false)
     private NFNotaInfoCartao cartao;
@@ -51,6 +62,21 @@ public class NFNotaInfoFormaPagamento extends DFBase {
         return this;
     }
 
+    public NFNotaInfoFormaPagamento setDataPagamento(final LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
+        return this;
+    }
+
+    public NFNotaInfoFormaPagamento setCnpjTransacionalPagamento(final String cnpjTransacionalPagamento) {
+        this.cnpjTransacionalPagamento = cnpjTransacionalPagamento;
+        return this;
+    }
+
+    public NFNotaInfoFormaPagamento setUfTransacionalPagamento(final DFUnidadeFederativa ufTransacionalPagamento) {
+        this.ufTransacionalPagamento = ufTransacionalPagamento.getCodigo();
+        return this;
+    }
+
     public NFIndicadorFormaPagamento getIndicadorFormaPagamento() {
         return this.indicadorFormaPagamento;
     }
@@ -71,5 +97,17 @@ public class NFNotaInfoFormaPagamento extends DFBase {
         DFStringValidador.tamanho2ate60(descricaoMeioPagamento, "Descricao Meio Pagamento");
         this.descricaoMeioPagamento = descricaoMeioPagamento;
         return this;
+    }
+
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public String getCnpjTransacionalPagamento() {
+        return cnpjTransacionalPagamento;
+    }
+
+    public String getUfTransacionalPagamento() {
+        return ufTransacionalPagamento;
     }
 }
