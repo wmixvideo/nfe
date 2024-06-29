@@ -27,11 +27,8 @@ public class NFNotaInfoItem extends DFBase {
     @Element(name = "infAdProd", required = false)
     private String informacoesAdicionais;
 
-    @ElementList(entry = "obsCont", inline = true, required = false)
-    private List<NFNotaInfoObservacao> observacoesContribuinte;
-
-    @ElementList(entry = "obsFisco", inline = true, required = false)
-    private List<NFNotaInfoObservacao> observacoesFisco;
+    @Element(name = "obsItem", required = false)
+    private NFNotaInfoItemObservacao itemObservacao;
 
     public void setNumeroItem(final Integer numeroItem) {
         DFIntegerValidador.tamanho3maximo990(numeroItem, "Numero do Item");
@@ -49,14 +46,6 @@ public class NFNotaInfoItem extends DFBase {
 
     public void setImposto(final NFNotaInfoItemImposto imposto) {
         this.imposto = imposto;
-    }
-
-    public void setObservacoesContribuinte(List<NFNotaInfoObservacao> observacoesContribuinte) {
-        this.observacoesContribuinte = observacoesContribuinte;
-    }
-
-    public void setObservacoesFisco(List<NFNotaInfoObservacao> observacoesFisco) {
-        this.observacoesFisco = observacoesFisco;
     }
 
     public Integer getNumeroItem() {
@@ -79,15 +68,16 @@ public class NFNotaInfoItem extends DFBase {
         return this.impostoDevolvido;
     }
 
-    public List<NFNotaInfoObservacao> getObservacoesContribuinte() {
-        return observacoesContribuinte;
-    }
-
-    public List<NFNotaInfoObservacao> getObservacoesFisco() {
-        return observacoesFisco;
-    }
-
     public void setImpostoDevolvido(final NFImpostoDevolvido impostoDevolvido) {
         this.impostoDevolvido = impostoDevolvido;
+    }
+
+    public NFNotaInfoItemObservacao getItemObservacao() {
+        return itemObservacao;
+    }
+
+    public void setItemObservacao(
+        final NFNotaInfoItemObservacao itemObservacao) {
+        this.itemObservacao = itemObservacao;
     }
 }
