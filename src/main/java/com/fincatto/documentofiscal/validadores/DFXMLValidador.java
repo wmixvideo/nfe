@@ -58,8 +58,8 @@ public final class DFXMLValidador {
      * @throws URISyntaxException
      */
     private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        System.setProperty("jdk.xml.maxOccurLimit", "10000");
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300a_NT02020_NFF/%s", xsd));
+        System.setProperty("jdk.xml.maxOccurLimit", "20000");
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300b_NT022024/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
