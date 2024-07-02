@@ -24,6 +24,7 @@ public class NFMeioPagamentoTest {
         Assert.assertEquals(NFMeioPagamento.FIDELIDADE_CASHBACK, NFMeioPagamento.valueOfCodigo("19"));        
         Assert.assertEquals(NFMeioPagamento.PIX_ESTATICO, NFMeioPagamento.valueOfCodigo("20"));        
         Assert.assertEquals(NFMeioPagamento.CREDITO_EM_LOJA, NFMeioPagamento.valueOfCodigo("21"));        
+        Assert.assertEquals(NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO, NFMeioPagamento.valueOfCodigo("22"));        
         Assert.assertEquals(NFMeioPagamento.SEM_PAGAMENTO, NFMeioPagamento.valueOfCodigo("90"));
         Assert.assertEquals(NFMeioPagamento.OUTRO, NFMeioPagamento.valueOfCodigo("99"));
     }
@@ -47,6 +48,7 @@ public class NFMeioPagamentoTest {
         Assert.assertEquals("19", NFMeioPagamento.FIDELIDADE_CASHBACK.getCodigo());        
         Assert.assertEquals("20", NFMeioPagamento.PIX_ESTATICO.getCodigo());        
         Assert.assertEquals("21", NFMeioPagamento.CREDITO_EM_LOJA.getCodigo());        
+        Assert.assertEquals("22", NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO.getCodigo());        
         Assert.assertEquals("90", NFMeioPagamento.SEM_PAGAMENTO.getCodigo());
         Assert.assertEquals("99", NFMeioPagamento.OUTRO.getCodigo());
     }
@@ -70,6 +72,7 @@ public class NFMeioPagamentoTest {
         Assert.assertEquals("19 - Programa de fidelidade (Cashback)", NFMeioPagamento.FIDELIDADE_CASHBACK.toString());        
         Assert.assertEquals("20 - Pagamento Instantâneo (PIX) - Estático", NFMeioPagamento.PIX_ESTATICO.toString());        
         Assert.assertEquals("21 - Crédito em Loja", NFMeioPagamento.CREDITO_EM_LOJA.toString());        
+        Assert.assertEquals("22 - Pagamento Eletrônico não Informado", NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO.toString());        
         Assert.assertEquals("90 - Sem pagamento", NFMeioPagamento.SEM_PAGAMENTO.toString());
         Assert.assertEquals("99 - Outro", NFMeioPagamento.OUTRO.toString());
     }
