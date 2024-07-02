@@ -19,6 +19,7 @@ public enum NFMeioPagamento {
 	FIDELIDADE_CASHBACK("19", "Programa de fidelidade (Cashback)"),
 	PIX_ESTATICO("20", "Pagamento Instant\u00e2neo (PIX) - Est\u00e1tico"),
 	CREDITO_EM_LOJA("21", "Cr\u00e9dito em Loja"),
+	PAGAMENTO_ELETRONICO_NAO_INFORMADO("22", "Pagamento Eletr\u00f4nico n\u00e3o Informado"),
 	SEM_PAGAMENTO("90", "Sem pagamento"),
 	OUTRO("99", "Outro");
 
