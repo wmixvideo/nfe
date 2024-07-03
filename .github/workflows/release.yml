@@ -13,13 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
 
       - name: Install Java and Maven
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4.2.1
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
       - name: Adding ssh key
         uses: webfactory/ssh-agent@v0.4.1
@@ -40,11 +41,11 @@ jobs:
           nexus_password: ${{ secrets.nexus_password }}
           maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
 
-      - name: Set up Java for publishing to GitHub Packages
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
+#      - name: Set up Java for publishing to GitHub Packages
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: '11'
+#          distribution: 'adopt'
 
       - name: Publish to GitHub Packages
         run: mvn --batch-mode deploy -P github
