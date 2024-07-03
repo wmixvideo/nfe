@@ -22,10 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-#      - name: Adding ssh key
-#        uses: webfactory/ssh-agent@v0.4.1
-#        with:
-#          ssh-private-key: ${{ secrets.ssh_private_key }}
+      - name: Adding ssh key
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.ssh_private_key }}
 
       - name: Git configuration
         run: |
