@@ -38,7 +38,7 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
-          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P central
+          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
 
       - name: Set up Java for publishing to GitHub Packages
         uses: actions/setup-java@v3
