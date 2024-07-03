@@ -48,6 +48,9 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "cBenef", required = false)
     private String codigoBeneficioFiscalUF;
 
+    @Element(name = "gCred", required = false)
+    private NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido;
+
     @Element(name = "EXTIPI", required = false)
     private String extipi;
 
@@ -329,6 +332,11 @@ public class NFNotaInfoItemProduto extends DFBase {
         this.codigoBeneficioFiscalUF = DFStringValidador.validador(codigoBeneficioFiscalUF, "Codigo Beneficio Fiscal da UF", 10, false, false);
     }
 
+    public void setGrupoCreditoPresumido(
+        final NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido) {
+        this.grupoCreditoPresumido = grupoCreditoPresumido;
+    }
+
     public String getCodigo() {
         return this.codigo;
     }
@@ -491,5 +499,9 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public List<NFNotaInfoItemProdutoRastreabilidade> getRastros() {
         return this.rastros;
+    }
+
+    public NFNotaInfoItemProdutoGrupoCreditoPresumido getGrupoCreditoPresumido() {
+        return grupoCreditoPresumido;
     }
 }
