@@ -9,7 +9,9 @@ import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
 import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfPag;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfViagens;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.envio.MDFEnvioRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -28,6 +30,7 @@ public class WSFacade {
 
     private final WSStatusConsulta wsStatusConsulta;
     private final WSRecepcaoLote wsRecepcaoLote;
+    private final WSRecepcaoSinc wsRecepcaoSinc;
     private final WSNotaConsulta wsNotaConsulta;
     private final WSCancelamento wsCancelamento;
     private final WSEncerramento wsEncerramento;
@@ -42,6 +45,7 @@ public class WSFacade {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsRecepcaoLote = new WSRecepcaoLote(config);
+        this.wsRecepcaoSinc = new WSRecepcaoSinc(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCancelamento = new WSCancelamento(config);
@@ -54,6 +58,8 @@ public class WSFacade {
     }
 
     /**
+     * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+     * 
      * Faz o envio do lote para a SEFAZ
      *
      * @param mdfEnvioLote a ser eviado para a SEFAZ
@@ -62,8 +68,22 @@ public class WSFacade {
      * o sefaz
      *
      */
+    @Deprecated
     public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
         return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
+    }
+    
+    /**
+     * Faz o envio sincronizado para a SEFAZ
+     *
+     * @param mdfEnvio a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do MDFE e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     *
+     */
+    public MDFEnvioRetornoDados envioRecepcaoSinc(MDFe mdfEnvio) throws Exception {
+        return this.wsRecepcaoSinc.envioRecepcaoSinc(mdfEnvio);
     }
 
     /**

@@ -2,6 +2,7 @@ name: "Release Master"
 
 # Run workflow on commits to the `master` branch
 on:
+  workflow_dispatch:
   push:
     branches:
       - master

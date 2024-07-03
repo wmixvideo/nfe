@@ -12,9 +12,12 @@ import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
 
 /*
+ * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+ *
  * MDFeRecepcaoStub java implementation
  */
 
+@Deprecated
 public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
