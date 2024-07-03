@@ -22,10 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Adding ssh key
-        uses: webfactory/ssh-agent@v0.4.1
-        with:
-          ssh-private-key: ${{ secrets.ssh_private_key }}
+#      - name: Adding ssh key
+#        uses: webfactory/ssh-agent@v0.4.1
+#        with:
+#          ssh-private-key: ${{ secrets.ssh_private_key }}
 
       - name: Git configuration
         run: |
@@ -37,8 +37,10 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}
+#          nexus_username: ${{ secrets.nexus_username }}
+#          nexus_password: ${{ secrets.nexus_password }}
+          nexus_username: ${{ secrets.OSSRH_USERNAME }}
+          nexus_password: ${{ secrets.OSSRH_TOKEN }}
           maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
 
 #      - name: Set up Java for publishing to GitHub Packages
