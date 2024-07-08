@@ -5,20 +5,21 @@ import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIC
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipoDeducaoIcms;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
-
 public class NFNotaInfoItemImpostoICMS30 extends DFBase {
+
     private static final long serialVersionUID = 5195970258396234982L;
-    
+
     @Element(name = "orig")
     private NFOrigem origem;
-    
+
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-    
+
     @Element(name = "modBCST")
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
@@ -27,13 +28,13 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
-    
+
     @Element(name = "vBCST")
     private String valorBCICMSST;
-    
+
     @Element(name = "pICMSST")
     private String percentualAliquotaImpostoICMSST;
-    
+
     @Element(name = "vICMSST")
     private String valorImpostoICMSST;
 
@@ -51,6 +52,9 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
 
     @Element(name = "motDesICMS", required = false)
     private NFNotaMotivoDesoneracaoICMS desoneracao;
+
+    @Element(name = "indDeduzDeson", required = false)
+    private NFTipoDeducaoIcms indicaDeduzDesoneracao;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -157,5 +161,13 @@ public class NFNotaInfoItemImpostoICMS30 extends DFBase {
 
     public String getValorFundoCombatePobrezaST() {
         return this.valorFundoCombatePobrezaST;
+    }
+
+    public NFTipoDeducaoIcms getIndicaDeduzDesoneracao() {
+        return indicaDeduzDesoneracao;
+    }
+
+    public void setIndicaDeduzDesoneracao(NFTipoDeducaoIcms indicaDeduzDesoneracao) {
+        this.indicaDeduzDesoneracao = indicaDeduzDesoneracao;
     }
 }

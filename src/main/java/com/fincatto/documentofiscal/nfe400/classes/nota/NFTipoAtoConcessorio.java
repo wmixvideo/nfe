@@ -4,7 +4,9 @@ public enum NFTipoAtoConcessorio {
 
     TERMO_DE_ACORDO("08", "Termo de Acordo"),
     REGIME_ESPECIAL("10", "Regime Especial"),
-    AUTORIZACAO_ESPECIFICA("12", "Autoriza\u00E7\u00E3o espec\u00EDfica");
+    AUTORIZACAO_ESPECIFICA("12", "Autoriza\u00E7\u00E3o espec\u00EDfica"),
+    AJUSTE_SINIEF("14", "Ajuste SINIEF"),
+    CONVENIO_ICMA("15", "Conv\u00EAnio ICMS");
 
     private final String codigo;
     private final String descricao;
