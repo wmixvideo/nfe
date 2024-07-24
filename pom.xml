@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
-    <version>4.0.68-SNAPSHOT</version>
+    <version>4.0.68</version>
     <packaging>jar</packaging>
 
     <name>nfe</name>
@@ -44,7 +44,7 @@
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
         <developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
-        <tag>v4.0.65</tag>
+        <tag>v4.0.68</tag>
     </scm>
 
     <properties>
