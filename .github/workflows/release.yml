@@ -4,7 +4,8 @@ name: "Release Master"
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches:
+      - "master"
 
 jobs:
   release:
@@ -13,16 +14,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
-        with:
-          fetch-depth: 0
 
       - name: Install Java and Maven
         uses: actions/setup-java@v4.2.1
         with:
           java-version: '11'
-          distribution: 'temurin'
-          cache: maven
-          server-id: github
+          distribution: 'adopt'
 
       - name: Adding ssh key
         uses: webfactory/ssh-agent@v0.4.1
@@ -41,7 +38,7 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.OSSRH_USERNAME }}
           nexus_password: ${{ secrets.OSSRH_TOKEN }}
-          maven_goals_phases: clean -e -X -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
+          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
 
       - name: Publish to GitHub Packages
         run: mvn --batch-mode deploy -P github
