@@ -36,6 +36,7 @@ public enum DFUnidadeFederativa {
     TO("TO", "Tocantins", "17", "http://homologacao.sefaz.to.gov.br/nfce/qrcode", "http://www.sefaz.to.gov.br/nfce/qrcode", "http://homologacao.sefaz.to.gov.br/nfce/consulta.jsf", "http://www.sefaz.to.gov.br/nfce/consulta.jsf"),
     NACIONAL("NC", "Nacional", "90"),
     RFB("RFB", "RFB", "91"),
+    BRID("BRId", "BRId", "92"),
     EX("EX", "Exterior", "99");
     
     private final String codigo;
