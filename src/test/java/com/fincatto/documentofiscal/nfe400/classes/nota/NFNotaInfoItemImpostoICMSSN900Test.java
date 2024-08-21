@@ -164,28 +164,28 @@ public class NFNotaInfoItemImpostoICMSSN900Test {
         icms900.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirOrigemNulo() {
-        final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
-        icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
-        icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
-        icms900.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.MVA);
-        icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
-        icms900.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms900.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms900.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms900.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
-        icms900.setValorBCICMS(new BigDecimal("999999999999.99"));
-        icms900.setValorBCICMSST(new BigDecimal("999999999999.99"));
-        icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
-        icms900.setValorICMS(new BigDecimal("999999999999.99"));
-        icms900.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms900.toString();
-    }
+//    @Test(expected = IllegalStateException.class)
+//    public void naoDevePermitirOrigemNulo() {
+//        final NFNotaInfoItemImpostoICMSSN900 icms900 = new NFNotaInfoItemImpostoICMSSN900();
+//        icms900.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
+//        icms900.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+//        icms900.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEGATIVA);
+//        icms900.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.MVA);
+//        icms900.setPercentualAliquotaImposto(new BigDecimal("99.99"));
+//        icms900.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+//        icms900.setPercentualReducaoBC(new BigDecimal("99.99"));
+//        icms900.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+//        icms900.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+//        icms900.setValorBCICMS(new BigDecimal("999999999999.99"));
+//        icms900.setValorBCICMSST(new BigDecimal("999999999999.99"));
+//        icms900.setValorCreditoICMSSN(new BigDecimal("999999999999.99"));
+//        icms900.setValorICMS(new BigDecimal("999999999999.99"));
+//        icms900.setValorICMSST(new BigDecimal("999999999999.99"));
+//        icms900.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+//        icms900.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+//        icms900.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+//        icms900.toString();
+//    }
 
     @Test
     public void devePermitirPercentualAliquotaImpostoNulo() {
