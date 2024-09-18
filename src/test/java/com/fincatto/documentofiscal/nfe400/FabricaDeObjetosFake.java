@@ -25,8 +25,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -35,6 +33,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.apache.commons.lang3.StringUtils;
 
 public class FabricaDeObjetosFake {
 
@@ -247,6 +246,8 @@ public class FabricaDeObjetosFake {
         cartao.setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I90");
         cartao.setOperadoraCartao(NFOperadoraCartao.MASTERCARD);
         cartao.setTipoIntegracao(NFTipoIntegracaoPagamento.INTEGRADO);
+        cartao.setCnpjBenefPagamento("12345678901234");
+        cartao.setIdentificadorTerminalPagamento("01234567890123456789");
         return cartao;
     }
 
