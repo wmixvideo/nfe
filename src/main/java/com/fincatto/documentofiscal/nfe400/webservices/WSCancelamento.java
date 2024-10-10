@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,7 +53,7 @@ class WSCancelamento implements DFLog {
 
         NFEnviaEventoCancelamento eventoAssinado = new DFPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
 
-		final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? List.of() : retorno.getEventoRetorno();
+		final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Arrays.asList() : retorno.getEventoRetorno();
 
         NFProtocoloEventoCancelamento protocolo = new NFProtocoloEventoCancelamento();
         protocolo.setVersao("1.00");
