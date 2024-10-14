@@ -31,7 +31,7 @@ public class NFNotaInfoCartao extends DFBase {
     }
 
     public void setNumeroAutorizacaoOperacaoCartao(final String numeroAutorizacaoOperacaoCartao) {
-        DFStringValidador.tamanho20(numeroAutorizacaoOperacaoCartao, "Numero Autorizacao Operacao Cartao");
+        DFStringValidador.tamanho128(numeroAutorizacaoOperacaoCartao, "Numero Autorizacao Operacao Cartao");
         this.numeroAutorizacaoOperacaoCartao = numeroAutorizacaoOperacaoCartao;
     }
 
