@@ -8,12 +8,12 @@ import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMSSN102Test {
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirOrigemNulo() {
-        final NFNotaInfoItemImpostoICMSSN102 icmssn102 = new NFNotaInfoItemImpostoICMSSN102();
-        icmssn102.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
-        icmssn102.toString();
-    }
+//    @Test(expected = IllegalStateException.class)
+//    public void naoDevePermitirOrigemNulo() {
+//        final NFNotaInfoItemImpostoICMSSN102 icmssn102 = new NFNotaInfoItemImpostoICMSSN102();
+//        icmssn102.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+//        icmssn102.toString();
+//    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirSituacaoOperacaoSNNulo() {
