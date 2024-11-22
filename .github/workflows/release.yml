@@ -5,22 +5,21 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - "master"
 
 jobs:
   release:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4.1.7
 
       - name: Install Java and Maven
         uses: actions/setup-java@v4.2.1
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+          java-version: '11'
+          distribution: 'adopt'
 
       - name: Adding ssh key
         uses: webfactory/ssh-agent@v0.4.1
@@ -37,17 +36,9 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
-#          nexus_username: ${{ secrets.nexus_username }}
-#          nexus_password: ${{ secrets.nexus_password }}
           nexus_username: ${{ secrets.OSSRH_USERNAME }}
           nexus_password: ${{ secrets.OSSRH_TOKEN }}
           maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
-
-#      - name: Set up Java for publishing to GitHub Packages
-#        uses: actions/setup-java@v3
-#        with:
-#          java-version: '11'
-#          distribution: 'adopt'
 
       - name: Publish to GitHub Packages
         run: mvn --batch-mode deploy -P github

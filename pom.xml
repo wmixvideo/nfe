@@ -2,8 +2,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
+    <version>4.0.76-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <version>4.0.57-SNAPSHOT</version>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
     <url>https://github.com/wmixvideo/nfe</url>
@@ -15,24 +15,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <scm>
-        <url>git@github.com:wmixvideo/nfe.git</url>
-        <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
-        <developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
-        <axis2.version>1.7.9</axis2.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <junit.version>4.13.2</junit.version>
-        <commons-lang3.version>3.14.0</commons-lang3.version>
-        <simple-xml.version>2.7.1</simple-xml.version>
-    </properties>
 
     <developers>
         <developer>
@@ -56,6 +38,24 @@
             <url>https://github.com/cbockorny</url>
         </developer>
     </developers>
+
+    <scm>
+        <url>git@github.com:wmixvideo/nfe.git</url>
+        <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
+        <developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <java.version>11</java.version>
+        <slf4j.version>2.0.13</slf4j.version>
+        <junit.version>4.13.2</junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <axis2.version>1.7.9</axis2.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <simple-xml.version>2.7.1</simple-xml.version>
+    </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
@@ -192,10 +192,6 @@
                     <repoToken>QTRbpWiuiwIHGrc0arqKxXsAtiVoLMc5h</repoToken>
                 </configuration>
                 <dependencies>
-                    <!--
-                    Explicit dep on jaxb-api to avoid problems with JDK9 and later, until a new version of coveralls-maven-plugin is released.
-                    See also https://github.com/trautonen/coveralls-maven-plugin/issues/112
-                    -->
                     <dependency>
                         <groupId>javax.xml.bind</groupId>
                         <artifactId>jaxb-api</artifactId>
@@ -230,11 +226,11 @@
             <distributionManagement>
                 <snapshotRepository>
                     <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
                 <repository>
                     <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <url>https://oss.sonatype.org/content/repositories/releases</url>
                 </repository>
             </distributionManagement>
         </profile>
@@ -258,8 +254,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
-<!--                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-                            <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
+                            <nexusUrl>https://oss.sonatype.org</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
@@ -294,6 +289,14 @@
                             <tagNameFormat>v@{project.version}</tagNameFormat>
                             <remoteTagging>false</remoteTagging>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <goal>perform</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
