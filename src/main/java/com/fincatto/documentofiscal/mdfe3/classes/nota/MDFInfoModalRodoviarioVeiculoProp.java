@@ -22,13 +22,13 @@ public class MDFInfoModalRodoviarioVeiculoProp extends DFBase {
     @Element(name = "xNome")
     private String razaoSocial;
 
-    @Element(name = "IE")
+    @Element(name = "IE", required = false)
     private String inscricaoEstadual;
 
     @Element(name = "UF")
     private String unidadeFederativa;
 
-    @Element(name = "tpProp", required = false)
+    @Element(name = "tpProp")
     private MDFTipoProprietario tipoProprietario;
 
     public String getCpf() {

@@ -31,7 +31,7 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
     /**
      * <h1>CPF do responsável pelo pagamento do Vale-Pedágio</h1>
      */
-    @Element(name = "CPFPg")
+    @Element(name = "CPFPg", required = false)
     protected String cpfPagadora;
 
     /**
@@ -40,7 +40,7 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
      * Número de ordem do comprovante de compra do Vale-Pedágio fornecido para cada veículo ou combinação veicular, por viagem.
      * </p>
      */
-    @Element(name = "nCompra")
+    @Element(name = "nCompra", required = false)
     private String numeroComprovante;
 
     /**
@@ -49,6 +49,12 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
     @Element(name = "vValePed")
     private String valor;
 
+    /**
+     * <h1>Tipo do Vale-Pedagio</h1>
+     */
+    @Element(name = "tpValePed", required = false)
+    private String tipoValePedagio;
+    
     public String getCnpjFornecedora() {
         return this.cnpjFornecedora;
     }
@@ -98,4 +104,13 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
         DFStringValidador.cpf(cpfPagadora);
         this.cpfPagadora = cpfPagadora;
     }
+
+	public String getTipoValePedagio() {
+		return tipoValePedagio;
+	}
+
+	public void setTipoValePedagio(String tipoValePedagio) {
+		this.tipoValePedagio = tipoValePedagio;
+	}
+    
 }
