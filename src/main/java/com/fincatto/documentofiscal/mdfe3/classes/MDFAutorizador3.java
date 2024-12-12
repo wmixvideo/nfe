@@ -70,6 +70,13 @@ public enum MDFAutorizador3 {
         }
 
         @Override
+        public String getMDFeDistribuicao(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente)
+                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx"
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx";
+        }
+
+        @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.RS};
         }
@@ -88,6 +95,8 @@ public enum MDFAutorizador3 {
     public abstract String getMDFeConsulta(final DFAmbiente ambiente);
 
     public abstract String getMDFeConsNaoEnc(final DFAmbiente ambiente);
+    
+    public abstract String getMDFeDistribuicao(final DFAmbiente ambiente);
 
     public abstract DFUnidadeFederativa[] getUFs();
 

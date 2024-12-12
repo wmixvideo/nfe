@@ -1,6 +1,19 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.time.LocalDate;
+import java.util.List;
+
+import org.apache.commons.httpclient.protocol.Protocol;
+
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.mdfe.webservices.distribuicao.WSDistribuicaoMDFe;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
@@ -15,16 +28,6 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.envio.MDFEnvioRetornoDado
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
-
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.time.LocalDate;
-import java.util.List;
 
 public class WSFacade {
 
@@ -39,6 +42,7 @@ public class WSFacade {
     private final WSIncluirCondutor wsIncluirCondutor;
     private final WSIncluirDFe wsIncluirDFe;
     private final WSPagamentoTransporte wsPagamentoTransporte;
+    private final WSDistribuicaoMDFe wsDistribuicaoMDFe;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
@@ -55,6 +59,7 @@ public class WSFacade {
         this.wsIncluirCondutor = new WSIncluirCondutor(config);
         this.wsIncluirDFe = new WSIncluirDFe(config);
         this.wsPagamentoTransporte = new WSPagamentoTransporte(config);
+        this.wsDistribuicaoMDFe = new WSDistribuicaoMDFe(config);
     }
 
     /**
@@ -277,4 +282,19 @@ public class WSFacade {
     public MDFeRetorno pagamentoTransporteAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsPagamentoTransporte.pagamentoAssinado(chaveAcesso, eventoAssinadoXml);
     }
+    
+    /**
+     * Faz consulta de distribuicao dos MDFe.
+     *
+     * @param cpfOuCnpj
+     * @param uf
+     * @param nsu
+     * @param ultNsu
+     * @return
+     * @throws Exception
+     */
+    public MDFeDistribuicaoIntRetorno consultarDistribuicaoMDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        return this.wsDistribuicaoMDFe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
+    }
+    
 }
