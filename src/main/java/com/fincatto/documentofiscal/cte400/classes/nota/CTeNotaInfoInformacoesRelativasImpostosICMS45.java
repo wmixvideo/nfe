@@ -3,6 +3,10 @@ package com.fincatto.documentofiscal.cte400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTCodigoSituacaoTributariaICMS;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+
+import java.math.BigDecimal;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -19,6 +23,12 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS45 extends DFBase {
     @Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
 
+    @Element(name = "vICMSDeson", required = false)
+    private String valorICMSDesoneracao;
+
+    @Element(name = "cBenef", required = false)
+    private String codigoBeneficioFiscal;
+    
     public CTCodigoSituacaoTributariaICMS getCodigoSituacaoTributaria() {
         return this.codigoSituacaoTributaria;
     }
@@ -33,4 +43,27 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS45 extends DFBase {
     public void setCodigoSituacaoTributaria(final CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria) {
         this.codigoSituacaoTributaria = codigoSituacaoTributaria;
     }
+    
+	public String getValorICMSDesoneracao() {
+		return valorICMSDesoneracao;
+	}
+
+    /**
+     * Valor de ICMS de Desoneração
+     */
+	public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
+		this.valorICMSDesoneracao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor de ICMS de Desoneração");
+	}
+
+	public String getCodigoBeneficioFiscal() {
+		return codigoBeneficioFiscal;
+	}
+
+    /**
+     * Código do Benefício Fiscal
+     */
+	public void setCodigoBeneficioFiscal(String codigoBeneficioFiscal) {
+		this.codigoBeneficioFiscal = codigoBeneficioFiscal;
+	}
+    
 }
