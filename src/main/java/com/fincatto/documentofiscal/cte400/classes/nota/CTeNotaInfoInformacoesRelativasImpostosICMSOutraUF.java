@@ -34,6 +34,12 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
     @Element(name = "vICMSOutraUF")
     private String valorICMSOutraUF;
 
+    @Element(name = "vICMSDeson", required = false)
+    private String valorICMSDesoneracao;
+
+    @Element(name = "cBenef", required = false)
+    private String codigoBeneficioFiscal;
+    
     public CTCodigoSituacaoTributariaICMS getCodigoSituacaoTributaria() {
         return this.codigoSituacaoTributaria;
     }
@@ -89,4 +95,27 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMSOutraUF extends DFBase {
     public void setValorICMSOutraUF(final BigDecimal valorICMSOutraUF) {
         this.valorICMSOutraUF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSOutraUF, "Valor do ICMS devido outra UF");
     }
+    
+	public String getValorICMSDesoneracao() {
+		return valorICMSDesoneracao;
+	}
+
+    /**
+     * Valor de ICMS de Desoneração
+     */
+	public void setValorICMSDesoneracao(final BigDecimal valorICMSDesoneracao) {
+		this.valorICMSDesoneracao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorICMSDesoneracao, "Valor de ICMS de Desoneração");
+	}
+
+	public String getCodigoBeneficioFiscal() {
+		return codigoBeneficioFiscal;
+	}
+
+    /**
+     * Código do Benefício Fiscal
+     */
+	public void setCodigoBeneficioFiscal(String codigoBeneficioFiscal) {
+		this.codigoBeneficioFiscal = codigoBeneficioFiscal;
+	}
+    
 }
