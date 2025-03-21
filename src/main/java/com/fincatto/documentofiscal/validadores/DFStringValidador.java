@@ -327,6 +327,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void exatamente14(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.validaTamanhoExato(string, 14, info);
+        }
+    }
+
     public static void codigoProdutoAnvisa(final String string, final String info) {
         if (string != null) {
             if (string.toUpperCase().matches("[A-Z]*")) {
