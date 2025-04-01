@@ -4,8 +4,7 @@ public enum NFRegimeTributario {
 
     SIMPLES_NACIONAL("1", "Simples nacional"),
     SIMPLES_NACIONAL_EXCESSO_RECEITA("2", "Simples nacional com excesso de sublimite da receita bruta"),
-    NORMAL("3", "Regime normal"),
-    MEI("4", "MEI");
+    NORMAL("3", "Regime normal");
 
     private final String codigo;
     private final String descricao;
