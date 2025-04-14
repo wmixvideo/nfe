@@ -8,7 +8,7 @@ public class NFNotaInfoCartaoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroAutorizacaoOperacaoCartaoComTamanhoInvalido() {
-        new NFNotaInfoCartao().setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I901");
+        new NFNotaInfoCartao().setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019It");
     }
 
     @Test(expected = IllegalStateException.class)

@@ -590,9 +590,9 @@ public class FabricaDeObjetosFakeMDFe {
 
     public static MDFInfoProdutoPredominanteInfLotacaoLocalCarrega getMDFInfoProdutoPredominanteInfLotacaoLocalCarrega() {
         MDFInfoProdutoPredominanteInfLotacaoLocalCarrega a = new MDFInfoProdutoPredominanteInfLotacaoLocalCarrega();
-        a.setCEP("99999999");
-        a.setLatitude(null);
-        a.setLongitude(null);
+        a.setCEP(null);
+        a.setLatitude(Float.valueOf("-11.235689"));
+        a.setLongitude(Float.valueOf("-32.986574"));
         return a;
     }
 

@@ -1,10 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
-import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.convert.Convert;
+
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
+import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFNotaInfoDestinatario extends DFBase {
     private static final long serialVersionUID = 5245421887189198219L;
@@ -16,6 +19,7 @@ public class NFNotaInfoDestinatario extends DFBase {
     private String cpf;
 
     @Element(name = "idEstrangeiro", required = false)
+    @Convert(NFStringNullToEmptyConverter.class)
     private String idEstrangeiro;
 
     @Element(name = "xNome", required = false)
