@@ -25,8 +25,7 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
     }
 
     public void setEmbalagemProduto(String embalagemProduto) {
-        DFStringValidador.tamanho1ate8(embalagemProduto, "Embalagem do produto");
-        this.embalagemProduto = embalagemProduto;
+        this.embalagemProduto = DFStringValidador.tamanho1ate8(embalagemProduto, "Embalagem do produto");
     }
 
     public String getVolumeProdutoEmbalagem() {
@@ -42,7 +41,6 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
     }
 
     public void setUnidadeMedidaEmbalagem(String unidadeMedidaEmbalagem) {
-        DFStringValidador.tamanho1ate8(unidadeMedidaEmbalagem, "Unidade de Medida da Embalagem");
-        this.unidadeMedidaEmbalagem = unidadeMedidaEmbalagem;
+        this.unidadeMedidaEmbalagem = DFStringValidador.tamanho1ate8(unidadeMedidaEmbalagem, "Unidade de medida da embalagem");
     }
 }
