@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -36,7 +35,6 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
 
     public void setVolumeProdutoEmbalagem(final BigDecimal volumeProdutoEmbalagem) {
         this.volumeProdutoEmbalagem = DFBigDecimalValidador.tamanho11Com3CasasDecimais(volumeProdutoEmbalagem, "Volume produto embalagem");
-        this.volumeProdutoEmbalagem = NumberUtils.toScaledBigDecimal(volumeProdutoEmbalagem, 3, null).toString();
     }
 
     public String getUnidadeMedidaEmbalagem() {
