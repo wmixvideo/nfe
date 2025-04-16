@@ -43,5 +43,6 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagem extends DFBase {
 
     public void setUnidadeMedidaEmbalagem(String unidadeMedidaEmbalagem) {
         DFStringValidador.tamanho1ate8(unidadeMedidaEmbalagem, "Unidade de Medida da Embalagem");
+        this.unidadeMedidaEmbalagem = unidadeMedidaEmbalagem;
     }
 }
