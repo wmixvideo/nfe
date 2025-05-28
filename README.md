@@ -8,7 +8,9 @@ Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.n
 
 ## Atenção
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
+
 Antes de submeter um pull request, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
+
 Possuímos um grupo de WhatsApp para discussões sobre o desenvolvimento da lib: https://chat.whatsapp.com/LFmqpkoiIYc6Zy3d4TnZGU
 
 ## Antes de usar
