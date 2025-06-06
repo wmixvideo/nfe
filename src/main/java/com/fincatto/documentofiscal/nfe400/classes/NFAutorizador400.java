@@ -321,12 +321,12 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeAutorizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeAutorizacao4?WSDL";
+            return SVRS.getNfceAutorizacao(ambiente);
         }
 
         @Override
         public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeRetAutorizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRetAutorizacao4?WSDL";
+            return SVRS.getNfceRetAutorizacao(ambiente);
         }
 
         @Override
@@ -336,22 +336,22 @@ public enum NFAutorizador400 {
 
         @Override
         public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeConsultaProtocolo4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeConsultaProtocolo4?WSDL";
+            return SVRS.getNfceConsultaProtocolo(ambiente);
         }
 
         @Override
         public String getNfceStatusServico(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeStatusServico4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeStatusServico4?WSDL";
+            return SVRS.getNfceStatusServico(ambiente);
         }
 
         @Override
         public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeRecepcaoEvento4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeRecepcaoEvento4?WSDL";
+            return SVRS.getNfceRecepcaoEvento(ambiente);
         }
 
         @Override
         public String getNfceInutilizacao(final DFAmbiente ambiente) {
-            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfceh.sefaz.ce.gov.br/nfce4/services/NFeInutilizacao4?WSDL" : "https://nfce.sefaz.ce.gov.br/nfce4/services/NFeInutilizacao4?WSDL";
+            return SVRS.getNfceInutilizacao(ambiente);
         }
 
         @Override
