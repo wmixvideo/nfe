@@ -118,6 +118,12 @@ public class NFNotaInfoItemProduto extends DFBase {
     @ElementList(entry = "rastro", inline = true, required = false)
     private List<NFNotaInfoItemProdutoRastreabilidade> rastros;
 
+    @Element(name = "infProdNFF", required = false)
+    private NFNotaInfoItemProdutoInfoDetalhadaProdutoNFF informacaoDetalhadaProdutoNFF;
+
+    @Element(name = "infProdEmb", required = false)
+    private NFNotaInfoItemProdutoInfoDetalhadaEmbalagemProdutoNFF informacaoDetalhadaEmbalagemProdutoNFF;
+    
     @Element(name = "veicProd", required = false)
     private NFNotaInfoItemProdutoVeiculo veiculo;
 
