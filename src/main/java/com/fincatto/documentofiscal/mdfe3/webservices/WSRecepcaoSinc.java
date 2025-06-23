@@ -41,6 +41,14 @@ class WSRecepcaoSinc implements DFLog {
         final MDFEnvioRetorno retorno = comunicaSinc(documentoAssinado);
         return new MDFEnvioRetornoDados(retorno, mdfeAssinado);
     }
+
+    public MDFEnvioRetornoDados envioRecepcaoSincAssinado(final String mdfeEnvioXmlAssinado) throws Exception {
+        final MDFe mdfeAssinado = this.config.getPersister().read(MDFe.class, mdfeEnvioXmlAssinado);
+
+        //comunica o mdfe
+        final MDFEnvioRetorno retorno = comunicaSinc(mdfeEnvioXmlAssinado);
+        return new MDFEnvioRetornoDados(retorno, mdfeAssinado);
+    }
     
     private MDFEnvioRetorno comunicaSinc(final String mdfeAssinadoXml) throws Exception {
         //devido a limitacao padrao de 5000 da jdk

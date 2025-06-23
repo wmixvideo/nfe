@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
 public class NFNotaInfoItemImpostoICMS40 extends DFBase {
-    private static final long serialVersionUID = -366528394939416671L;
+    private static final long serialVersionUID = -366528394939416658L;
     
     @Element(name = "orig")
     private NFOrigem origem;

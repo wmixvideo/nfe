@@ -31,6 +31,10 @@ public abstract class DFBigDecimalValidador {
     public static String tamanho15Com4CasasDecimais(final BigDecimal valor, final String info) {
         return DFBigDecimalValidador.parse(valor, "0.0000", 16, 4, info);
     }
+    
+    public static String tamanho11Com4CasasDecimais(final BigDecimal valor, final String info) {
+        return DFBigDecimalValidador.parse(valor, "0.0000", 11, 4, info);
+    }
 
     public static String tamanho21ComAte10CasasDecimais(final BigDecimal valor, final String info) {
         return DFBigDecimalValidador.parse(valor, "0.##########", 22, 10, info);
