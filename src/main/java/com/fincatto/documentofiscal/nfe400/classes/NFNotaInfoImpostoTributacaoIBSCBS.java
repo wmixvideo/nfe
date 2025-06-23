@@ -49,7 +49,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
 
 	public static NFNotaInfoImpostoTributacaoIBSCBS valueOfCodigo(final String codigoIBSCBS) {
 		return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBS.values())
-					.filter(icms -> icms.getCodigo().equals(codigoIBSCBS))
+					.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
 						.findFirst().orElse(null);
 	}
 
