@@ -30,6 +30,12 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
 
     @Element(name = "ICMSUFFim", required = false)
     private CTeNotaInfoInformacoesRelativasImpostosICMSPartilha icmsPartilha;
+    
+    @Element(name = "IBSCBS", required = false)
+    private CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs;
+    
+    @Element(name = "vTotDFe", required = false)
+    private String vTotDFe;
 
     public CTeNotaInfoInformacoesRelativasImpostosICMS getIcms() {
         return this.icms;
@@ -77,4 +83,25 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
     public void setIcmsPartilha(final CTeNotaInfoInformacoesRelativasImpostosICMSPartilha icmsPartilha) {
         this.icmsPartilha = icmsPartilha;
     }
+
+    public CTeNotaInfoInformacoesRelativasImpostosIBSCBS getIbsCbs() {
+      return ibsCbs;
+    }
+
+    /**
+     * Grupo de informações da composição do valor do IBS e da CBS
+     * @param ibsCbs 
+     */
+    public void setIbsCbs(CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs) {
+      this.ibsCbs = ibsCbs;
+    }
+
+    public String getVTotDFe() {
+      return vTotDFe;
+    }
+
+    public void setVTotDFe(BigDecimal vTotDFe) {
+      this.vTotDFe = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTotDFe, "Valor total do documento fiscal");
+    }
+    
 }
