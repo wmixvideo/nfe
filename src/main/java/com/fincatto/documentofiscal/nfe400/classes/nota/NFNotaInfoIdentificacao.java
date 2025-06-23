@@ -5,6 +5,8 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe400.classes.NFCredito;
+import com.fincatto.documentofiscal.nfe400.classes.NFDebito;
 import com.fincatto.documentofiscal.nfe400.classes.NFFinalidade;
 import com.fincatto.documentofiscal.nfe400.classes.NFProcessoEmissor;
 import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
@@ -53,7 +55,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
     private NFIdentificadorLocalDestinoOperacao identificadorLocalDestinoOperacao;
 
     @Element(name = "cMunFG")
-    private String codigoMunicipio;
+    private String codigoMunicipio; // B12
+    
+    @Element(required = false)
+    private String cMunFGIBS; // B12a
 
     @Element(name = "tpImp")
     private NFTipoImpressao tipoImpressao;
@@ -68,16 +73,22 @@ public class NFNotaInfoIdentificacao extends DFBase {
     private DFAmbiente ambiente;
 
     @Element(name = "finNFe")
-    private NFFinalidade finalidade;
+    private NFFinalidade finalidade; // B25
+    
+    @Element(required = false)
+    private NFDebito tpNFDebito; // B25.1
+    
+    @Element(required = false)
+    private NFCredito tpNFCredito; // B25.2
 
     @Element(name = "indFinal")
-    private NFOperacaoConsumidorFinal operacaoConsumidorFinal;
+    private NFOperacaoConsumidorFinal operacaoConsumidorFinal; // B25a
 
     @Element(name = "indPres")
-    private NFIndicadorPresencaComprador indicadorPresencaComprador;
+    private NFIndicadorPresencaComprador indicadorPresencaComprador; // B25b
 
     @Element(name = "indIntermed", required = false)
-    private NFIndicadorIntermediador indIntermed;
+    private NFIndicadorIntermediador indIntermed; // B25c
     
     @Element(name = "procEmi")
     private NFProcessoEmissor programaEmissor;
@@ -94,6 +105,11 @@ public class NFNotaInfoIdentificacao extends DFBase {
     @ElementList(entry = "NFref", inline = true, required = false)
     private List<NFInfoReferenciada> referenciadas;
     
+    @Element(name = "gCompraGov", required = false)
+    private NFNotaInfoIdentificacaoCompraGov gCompraGov; // B31
+    
+    @Element(name = "gPagAntecipado", required = false)
+    private NFNotaInfoIdentificacaoPagAntecipado gPagAntecipado; // BB01
 
     public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
@@ -147,11 +163,23 @@ public class NFNotaInfoIdentificacao extends DFBase {
         this.codigoMunicipio = codigoMunicipio;
     }
 
+    public void setCMunFGIBS(String cMunFGIBS) {
+       this.cMunFGIBS = cMunFGIBS;
+    }
+
     public void setReferenciadas(final List<NFInfoReferenciada> referenciadas) {
         DFListValidador.tamanho500(referenciadas, "Referenciadas");
         this.referenciadas = referenciadas;
     }
 
+    public NFNotaInfoIdentificacaoCompraGov getGCompraGov() {
+        return gCompraGov;
+    }
+
+    public NFNotaInfoIdentificacaoPagAntecipado getGPagAntecipado() {
+       return gPagAntecipado;
+    }
+    
     public void setTipoImpressao(final NFTipoImpressao tipoImpressao) {
         this.tipoImpressao = tipoImpressao;
     }
@@ -171,6 +199,14 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     public void setFinalidade(final NFFinalidade finalidade) {
         this.finalidade = finalidade;
+    }
+
+    public NFDebito getTpNFDebito() {
+       return tpNFDebito;
+    }
+
+    public NFCredito getTpNFCredito() {
+        return tpNFCredito;
     }
 
     public void setProgramaEmissor(final NFProcessoEmissor programaEmissor) {
@@ -251,6 +287,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
         return this.codigoMunicipio;
     }
 
+    public String getCMunFGIBS() {
+        return cMunFGIBS;
+    }
+    
     public NFTipoImpressao getTipoImpressao() {
         return this.tipoImpressao;
     }
@@ -271,6 +311,14 @@ public class NFNotaInfoIdentificacao extends DFBase {
         return this.finalidade;
     }
 
+    public void setTpNFDebito(NFDebito tpNFDebito) {
+        this.tpNFDebito = tpNFDebito;
+    }
+    
+    public void setTpNFCredito(NFCredito tpNFCredito) {
+        this.tpNFCredito = tpNFCredito;
+    }
+    
     public NFOperacaoConsumidorFinal getOperacaoConsumidorFinal() {
         return this.operacaoConsumidorFinal;
     }
@@ -301,6 +349,14 @@ public class NFNotaInfoIdentificacao extends DFBase {
 
     public List<NFInfoReferenciada> getReferenciadas() {
         return this.referenciadas;
+    }
+    
+    public void setGCompraGov(NFNotaInfoIdentificacaoCompraGov gCompraGov) {
+       this.gCompraGov = gCompraGov;
+    }
+    
+    public void setGPagAntecipado(NFNotaInfoIdentificacaoPagAntecipado gPagAntecipado) {
+        this.gPagAntecipado = gPagAntecipado;
     }
 	
 }
