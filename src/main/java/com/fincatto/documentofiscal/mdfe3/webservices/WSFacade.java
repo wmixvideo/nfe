@@ -92,6 +92,19 @@ public class WSFacade {
     }
 
     /**
+     * Faz o envio sincronizado para a SEFAZ com o evento já assinado
+     *
+     * @param mdfEnvioAssinado a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do MDFE e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     *
+     */
+    public MDFEnvioRetornoDados envioRecepcaoSincAssinado(final String mdfEnvioAssinado) throws Exception {
+        return this.wsRecepcaoSinc.envioRecepcaoSincAssinado(mdfEnvioAssinado);
+    }
+
+    /**
      * Faz a consulta de status responsavel pela UF, no caso apenas o RS está
      * disponível
      *
