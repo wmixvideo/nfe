@@ -2,6 +2,11 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 import java.util.Arrays;
 
+/**
+ * Grupo UB. Informacoes dos tributos IBS / CBS e Imposto Seletivo
+ * @author Marcos Lombardi
+ * @since 4.0.85
+ */
 public enum NFNotaInfoImpostoTributacaoIBSCBS {
 
 	// Link download tabela https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=ix44jDLyQog=
