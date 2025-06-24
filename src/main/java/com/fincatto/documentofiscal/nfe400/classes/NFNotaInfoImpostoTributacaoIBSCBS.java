@@ -16,7 +16,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
 	EXPLORACAO_DE_VIA("000", "Tributa\u00e7\u00e3o integral", "000002", "Explora\u00e7\u00e3o de via"),
 	REGIME_AUTOMOTIVO_PROJETOS_INCENTIVADOS_ART_311("000", "Tributa\u00e7\u00e3o integral", "000003", "Regime automotivo - projetos incentivados (art. 311)"),
 	REGIME_AUTOMOTIVO_PROJETOS_INCENTIVADOS_ART_312("000", "Tributa\u00e7\u00e3o integral", "000004", "Regime automotivo - projetos incentivados (art. 312)"),
-	TRIBUTACAO_COM_ALIQUOTAS_UNIFORMES_OPERACOES_FGTS("010", "Tributa\u00e7\u00e3o integral", "010001", "Tributa\u00e7\u00e3o com al\u00edquotas uniformes - opera\u00e7\u00f5es do FGTS");
+	OPERACOES_FGTS_NAO_REALIZADAS_PELA_CAIXA_ECONOMICA_FEDERAL("010", "Tributa\u00e7\u00e3o com al\u00edquotas uniformes - opera\u00e7\u00f5es do FGTS", "010001", "Opera\u00e7\u00f5es do FGTS n\u00e3o realizadas pela Caixa Econ\u00f4mica Federal");
 
 	private NFNotaInfoImpostoTributacaoIBSCBS(String cCstIBSCBS, String xCstIBSCBS, String cClassTrib, String xClassTrib) {
 		this.cCstIBSCBS = cCstIBSCBS;
