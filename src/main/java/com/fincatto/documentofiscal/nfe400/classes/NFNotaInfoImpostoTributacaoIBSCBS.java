@@ -7,11 +7,11 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
 	// Link download tabela https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=ix44jDLyQog=
 	// CST_cClassTribPublicacao_20250618.xlsx
 	
-	SITUACOES_TRIBUTADAS_INTEGRALMENTE_PELO_IBS_E_CBS("000", "Tributa\u00e7\u00e3o integral", "000001", "Situações tributadas integralmente pelo IBS e CBS"),
-	EXPLORACAO_DE_VIA("000", "Tributa\u00e7\u00e3o integral", "000002", "Exploração de via"),
+	SITUACOES_TRIBUTADAS_INTEGRALMENTE_PELO_IBS_E_CBS("000", "Tributa\u00e7\u00e3o integral", "000001", "Situa\u00e7\u00f5es tributadas integralmente pelo IBS e CBS"),
+	EXPLORACAO_DE_VIA("000", "Tributa\u00e7\u00e3o integral", "000002", "Explora\u00e7\u00e3o de via"),
 	REGIME_AUTOMOTIVO_PROJETOS_INCENTIVADOS_ART_311("000", "Tributa\u00e7\u00e3o integral", "000003", "Regime automotivo - projetos incentivados (art. 311)"),
 	REGIME_AUTOMOTIVO_PROJETOS_INCENTIVADOS_ART_312("000", "Tributa\u00e7\u00e3o integral", "000004", "Regime automotivo - projetos incentivados (art. 312)"),
-	TRIBUTACAO_COM_ALIQUOTAS_UNIFORMES_OPERACOES_FGTS("010", "Tributa\u00e7\u00e3o integral", "010001", "Tributação com alíquotas uniformes - operações do FGTS");
+	TRIBUTACAO_COM_ALIQUOTAS_UNIFORMES_OPERACOES_FGTS("010", "Tributa\u00e7\u00e3o integral", "010001", "Tributa\u00e7\u00e3o com al\u00edquotas uniformes - opera\u00e7\u00f5es do FGTS");
 
 	private NFNotaInfoImpostoTributacaoIBSCBS(String cCstIBSCBS, String xCstIBSCBS, String cClassTrib, String xClassTrib) {
 		this.cCstIBSCBS = cCstIBSCBS;
