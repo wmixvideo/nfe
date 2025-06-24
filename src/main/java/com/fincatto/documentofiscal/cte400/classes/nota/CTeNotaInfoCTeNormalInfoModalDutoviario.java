@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte400.classes.CTeModalDutoClassDuto;
+import com.fincatto.documentofiscal.cte400.classes.CTeModalDutoTpContratacao;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -27,6 +29,21 @@ public class CTeNotaInfoCTeNormalInfoModalDutoviario extends DFBase {
     
     @Element(name = "dFim")
     private LocalDate dataFimServico;
+
+    @Element(name = "classDuto", required = false)
+    private CTeModalDutoClassDuto classDuto;
+  
+    @Element(name = "tpContratacao", required = false)
+    private CTeModalDutoTpContratacao tpContratacao;
+    
+    @Element(name = "codPontoEntrada", required = false)
+    private String codPontoEntrada;
+    
+    @Element(name = "codPontoSaida", required = false)
+    private String codPontoSaida;
+    
+    @Element(name = "nContrato", required = false)
+    private String nContrato;
 
     public String getValorTarifa() {
         return this.valorTarifa;
@@ -60,4 +77,45 @@ public class CTeNotaInfoCTeNormalInfoModalDutoviario extends DFBase {
     public void setDataFimServico(final LocalDate dataFimServico) {
         this.dataFimServico = dataFimServico;
     }
+
+    public CTeModalDutoClassDuto getClassDuto() {
+        return classDuto;
+    }
+
+    public void setClassDuto(CTeModalDutoClassDuto classDuto) {
+        this.classDuto = classDuto;
+    }
+
+    public CTeModalDutoTpContratacao getTpContratacao() {
+        return tpContratacao;
+    }
+
+    public void setTpContratacao(CTeModalDutoTpContratacao tpContratacao) {
+       this.tpContratacao = tpContratacao;
+    }
+
+    public String getCodPontoEntrada() {
+        return codPontoEntrada;
+    }
+
+    public void setCodPontoEntrada(String codPontoEntrada) {
+        this.codPontoEntrada = codPontoEntrada;
+    }
+
+    public String getCodPontoSaida() {
+        return codPontoSaida;
+    }
+
+    public void setCodPontoSaida(String codPontoSaida) {
+       this.codPontoSaida = codPontoSaida;
+    }
+
+    public String getNContrato() {
+        return nContrato;
+    }
+
+    public void setNContrato(String nContrato) {
+        this.nContrato = nContrato;
+    }
+    
 }

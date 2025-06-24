@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte400.classes.CTModalAquavTpNav;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoDirecao;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
@@ -43,6 +44,9 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
     
     @Element(name = "irin")
     private String irin;
+    
+    @Element(name = "tpNav", required = false)
+    private CTModalAquavTpNav tpNav;
 
     @ElementList(name = "detCont", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoModalAquaviarioConteiner> container;
@@ -119,6 +123,14 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviario extends DFBase {
 
     public String getIrin() {
         return this.irin;
+    }
+
+    public CTModalAquavTpNav getTpNav() {
+        return tpNav;
+    }
+
+    public void setTpNav(CTModalAquavTpNav tpNav) {
+       this.tpNav = tpNav;
     }
 
     /**
