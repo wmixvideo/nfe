@@ -13,9 +13,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
 	REGIME_AUTOMOTIVO_PROJETOS_INCENTIVADOS_ART_312("000", "Tributa\u00e7\u00e3o integral", "000004", "Regime automotivo - projetos incentivados (art. 312)"),
 	TRIBUTACAO_COM_ALIQUOTAS_UNIFORMES_OPERACOES_FGTS("010", "Tributa\u00e7\u00e3o integral", "010001", "Tributação com alíquotas uniformes - operações do FGTS");
 
-	private NFNotaInfoImpostoTributacaoIBSCBS(String cstIBSCBS, String xstIBSCBS, String cClassTrib, String xClassTrib) {
-		this.cstIBSCBS = cstIBSCBS;
-		this.xstIBSCBS = xstIBSCBS;
+	private NFNotaInfoImpostoTributacaoIBSCBS(String cCstIBSCBS, String xCstIBSCBS, String cClassTrib, String xClassTrib) {
+		this.cCstIBSCBS = cCstIBSCBS;
+		this.xCstIBSCBS = xCstIBSCBS;
 		this.cClassTrib = cClassTrib;
 		this.xClassTrib = xClassTrib;
 	}
@@ -27,28 +27,28 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
 	}
 	
 	// Coluna A
-	private final String cstIBSCBS;
+	private final String cCstIBSCBS;
 	// Coluna B
-	private final String xstIBSCBS;
+	private final String xCstIBSCBS;
 	// Coluna C
 	private final String cClassTrib;
 	// Coluna D
 	private final String xClassTrib;
 
+	public String getcCstIBSCBS() {
+		return cCstIBSCBS;
+	}
+
+	public String getxCstIBSCBS() {
+		return xCstIBSCBS;
+	}
+
 	public String getcClassTrib() {
 		return cClassTrib;
 	}
 
-	public String getCstIBSCBS() {
-		return this.cstIBSCBS;
-	}
-
 	public String getxClassTrib() {
 		return xClassTrib;
-	}
-
-	public String getXstIBSCBS() {
-		return xstIBSCBS;
 	}
 
 	@Override
