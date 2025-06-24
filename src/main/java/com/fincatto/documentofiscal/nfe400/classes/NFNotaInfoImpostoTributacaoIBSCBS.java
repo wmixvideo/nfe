@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum NFNotaInfoImpostoTributacaoIBSCBS {
 
 	// Link download tabela https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=ix44jDLyQog=
-	// cClassTrib_20250515_PUBLICACAO.xlsx
+	// CST_cClassTribPublicacao_20250618.xlsx
 	
 	SITUACOES_TRIBUTADAS_INTEGRALMENTE_PELO_IBS_E_CBS("000", "Tributa\u00e7\u00e3o integral", "000001", "Situações tributadas integralmente pelo IBS e CBS"),
 	EXPLORACAO_DE_VIA("000", "Tributa\u00e7\u00e3o integral", "000002", "Exploração de via"),
