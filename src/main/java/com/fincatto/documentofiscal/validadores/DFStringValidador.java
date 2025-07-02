@@ -535,6 +535,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho60a1000(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 60, 1000, info);
+        }
+    }
+
     public static void tamanho2a95(final String string, final String info) {
         if (string != null) {
             DFStringValidador.intervalo(string, 2, 95, info);
