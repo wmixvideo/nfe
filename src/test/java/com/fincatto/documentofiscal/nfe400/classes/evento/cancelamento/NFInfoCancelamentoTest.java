@@ -32,7 +32,7 @@ public class NFInfoCancelamentoTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirProtocoloAutorizacaoComTamanhoExtrapolado() {
         final NFInfoCancelamento infoCancelamento = new NFInfoCancelamento();
-        final String protocoloAutorizacao = "1234567890123456";
+        final String protocoloAutorizacao = "12345678901234567890123456";
         infoCancelamento.setProtocoloAutorizacao(protocoloAutorizacao);
     }
 
