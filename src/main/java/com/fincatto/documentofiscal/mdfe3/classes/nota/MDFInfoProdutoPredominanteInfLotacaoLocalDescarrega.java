@@ -30,8 +30,6 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalDescarrega extends DFBase 
 
     public void setCEP(String CEP) {
         this.CEP = CEP;
-        this.latitude = null;
-        this.longitude = null;
     }
 
     public Float getLatitude() {
@@ -40,7 +38,6 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalDescarrega extends DFBase 
 
     public void setLatitude(Float latitude) {
         this.latitude = latitude;
-        this.CEP = null;
     }
 
     public Float getLongitude() {
@@ -49,7 +46,6 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalDescarrega extends DFBase 
 
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
-        this.CEP = null;
     }
     
 }
