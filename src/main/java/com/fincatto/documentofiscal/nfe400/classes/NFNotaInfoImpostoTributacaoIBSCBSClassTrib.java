@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.TRIBUTACAO_INTEGRAL;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.TRIBUTACAO_ALIQUOTAS_UNIFORMES;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.ALIQUOTA_REDUZIDA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.EXCLUSAO_BASE_CALCULO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_000;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_010;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_830;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -15,73 +15,73 @@ import java.time.LocalDate;
  */
 public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 
-  SITUACOES_TRIBUTADAS_INTEGRALMENTE("000001", TRIBUTACAO_INTEGRAL, "Situações tributadas integralmente pelo IBS e CBS",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  EXPLORACAO_DE_VIA("000002", TRIBUTACAO_INTEGRAL, "Exploração de via",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  REGIME_AUTOMOTIVO_ART311("000003", TRIBUTACAO_INTEGRAL, "Regime automotivo - projetos incentivados (art. 311)",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_1, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  REGIME_AUTOMOTIVO_ART312("000004", TRIBUTACAO_INTEGRAL, "Regime automotivo - projetos incentivados (art. 312)",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_1, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  OPERACOES_FGTS_NAO_REALIZADAS_CEF("010001", TRIBUTACAO_ALIQUOTAS_UNIFORMES, "Operações do FGTS não realizadas pela Caixa Econômica Federal",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  OPERACOES_SERVICO_FINANCEIRO("010002", TRIBUTACAO_ALIQUOTAS_UNIFORMES, "Operações do serviço financeiro",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  PLANO_ASSISTENCIA_FUNERARIA("011001", TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS, "Planos de assistência funerária.",
-      C.P_RED_IBS_60, C.P_RED_CBS_60, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  PLANO_ASSISTENCIA_SAUDE("011002", TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS, "Planos de assistência à saúde",
-      C.P_RED_IBS_60, C.P_RED_CBS_60, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  INTERMEDIACAO_PLANO_ASSISTENCIA_SAUDE("011003", TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS, "Intermediação de planos de assistência à saúde",
-      C.P_RED_IBS_60, C.P_RED_CBS_60, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  CONCURSOS_PROGNOSTICOS("011004", TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS, "Concursos e prognósticos",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  PLANOS_ASSISTENCIA_SAUDE_ANIMAIS_DOMESTICOS("011005", TRIBUTACAO_ALIQUOTAS_UNIFORMES_REDUZIDAS, "Planos de assistência à saúde de animais domésticos",
-      C.P_RED_IBS_30, C.P_RED_CBS_30, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  AQUISICOES_ENTRE_EMPRESAS_AUTORIZADAS_OPERAR_ZONAS_PROCESSAMENTO_EXPORTACAO("200001", ALIQUOTA_REDUZIDA, "Aquisições realizadas entre empresas autorizadas a operar em zonas de processamento de exportação",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  FORNECIMENTO_IMPORTACAO_PRODUTOR_RURAL_NAO_CONTRIBUINTE_TAC("200002", ALIQUOTA_REDUZIDA, "Fornecimento ou importação para produtor rural não contribuinte ou TAC",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  VENDAS_PRODUTOS_ALIMENTACAO_HUMANA("200003", ALIQUOTA_REDUZIDA, "Vendas de produtos destinados à alimentação humana (Anexo I)",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  VENDA_DISPOSITIVOS_MEDICOS_ANEXO_XII("200004", ALIQUOTA_REDUZIDA, "Venda de dispositivos médicos com a especificação das respectivas classificações da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025.",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  VENDA_DISPOSITIVOS_MEDICOS_ANEXO_IV("200005", ALIQUOTA_REDUZIDA, "Venda de dispositivos médicos adquiridos por órgãos da administração pública (Anexo IV).",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  SITUACAO_EMERGENCIA_SAUDE_PUBLICA_ANEXO_XII("200006", ALIQUOTA_REDUZIDA, "Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XII).",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  FORNECIMENTO_DISPOSITIVOS_ACESSIBILIDADE_ANEXO_XIII("200007", ALIQUOTA_REDUZIDA, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII).",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  FORNECIMENTO_DISPOSITIVOS_ACESSIBILIDADE_ANEXO_V("200008", ALIQUOTA_REDUZIDA, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V).",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  FORNECIMENTO_MEDICAMENTOS_ANEXO_XIV("200009", ALIQUOTA_REDUZIDA, "Fornecimento de medicamentos (Anexo XIV).",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
-  FORNECIMENTO_MEDICAMENTOS_ADMINISTRACAO_PUBLICA("200010", ALIQUOTA_REDUZIDA, "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública.",
-      C.P_RED_IBS_100, C.P_RED_CBS_100, C.IND_RED_BC_N, C.IND_GTRIB_REG_0, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null),
+  CST_000001("000001", CST_000, "Situações tributadas integralmente pelo IBS e CBS",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_000002("000002", CST_000, "Exploração de via",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_000003("000003", CST_000, "Regime automotivo - projetos incentivados (art. 311)",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_1, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_000004("000004", CST_000, "Regime automotivo - projetos incentivados (art. 312)",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_1, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_010001("010001", CST_010, "Operações do FGTS não realizadas pela Caixa Econômica Federal",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_010002("010002", CST_010, "Operações do serviço financeiro",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_011001("011001", CST_011, "Planos de assistência funerária.",
+      IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_011002("011002", CST_011, "Planos de assistência à saúde",
+      IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_011003("011003", CST_011, "Intermediação de planos de assistência à saúde",
+      IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_011004("011004", CST_011, "Concursos e prognósticos",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_011005("011005", CST_011, "Planos de assistência à saúde de animais domésticos",
+      IND.P_RED_IBS_30, IND.P_RED_CBS_30, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200001("200001", CST_200, "Aquisições realizadas entre empresas autorizadas a operar em zonas de processamento de exportação",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200002("200002", CST_200, "Fornecimento ou importação para produtor rural não contribuinte ou TAC",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200003("200003", CST_200, "Vendas de produtos destinados à alimentação humana (Anexo I)",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200004("200004", CST_200, "Venda de dispositivos médicos com a especificação das respectivas classificações da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025.",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200005("200005", CST_200, "Venda de dispositivos médicos adquiridos por órgãos da administração pública (Anexo IV).",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200006("200006", CST_200, "Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XII).",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200007("200007", CST_200, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII).",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200008("200008", CST_200, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V).",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200009("200009", CST_200, "Fornecimento de medicamentos (Anexo XIV).",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+  CST_200010("200010", CST_200, "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública.",
+      IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
   // falta implementar o restante de acordo com a tabela CST_cClassTribPublicacao_20250618
-  DOCUMENTO_EXCLUSAO_BC_ENERGIA_DISTRIBUIDORA_UC("830001", EXCLUSAO_BASE_CALCULO, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
-      C.P_RED_IBS_N, C.P_RED_CBS_N, C.IND_RED_BC_N, C.IND_GTRIB_REG_N, C.IND_CRED_PRES_N, C.IND_MONO_N, C.IND_MONO_RETEN_N,
-      C.IND_MONO_RET_N, C.IND_MONO_DIF_N, null, null);
+  CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
+      IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_N, IND.CRED_PRES_N, IND.MONO_N, IND.MONO_RETEN_N,
+      IND.MONO_RET_N, IND.MONO_DIF_N, null, null);
 
   private final String codigo;
   private final NFNotaInfoImpostoTributacaoIBSCBS cst;
@@ -123,10 +123,10 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
     return this.descricao;
   }
 
-  public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoICMS) {
-    for (final NFNotaInfoImpostoTributacaoIBSCBSClassTrib icms : NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values()) {
-      if (icms.getCodigo().equals(codigoICMS)) {
-        return icms;
+  public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
+    for (final NFNotaInfoImpostoTributacaoIBSCBSClassTrib ibscbs : NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values()) {
+      if (ibscbs.getCodigo().equals(codigoIBSCBS)) {
+        return ibscbs;
       }
     }
     return null;
@@ -205,7 +205,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
     return (dIniVig == null || !inDate.isBefore(dIniVig)) && (dFimVig == null || !inDate.isAfter(dFimVig));
   }
 
-  private static class C {
+  private static class IND {
 
     private static final BigDecimal P_RED_IBS_N = null;
     private static final BigDecimal P_RED_IBS_30 = new BigDecimal("30");
@@ -217,32 +217,32 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
     private static final BigDecimal P_RED_CBS_60 = new BigDecimal("60");
     private static final BigDecimal P_RED_CBS_100 = new BigDecimal("100");
 
-    private static final Integer IND_RED_BC_N = null;
-    private static final Integer IND_RED_BC_0 = 0;
-    private static final Integer IND_RED_BC_1 = 1;
+    private static final Integer RED_BC_N = null;
+    private static final Integer RED_BC_0 = 0;
+    private static final Integer RED_BC_1 = 1;
 
-    private static final Integer IND_GTRIB_REG_N = null;
-    private static final Integer IND_GTRIB_REG_0 = 0;
-    private static final Integer IND_GTRIB_REG_1 = 1;
+    private static final Integer GTRIB_REG_N = null;
+    private static final Integer GTRIB_REG_0 = 0;
+    private static final Integer GTRIB_REG_1 = 1;
 
-    private static final Integer IND_CRED_PRES_N = null;
-    private static final Integer IND_CRED_PRES_0 = 0;
-    private static final Integer IND_CRED_PRES_1 = 1;
+    private static final Integer CRED_PRES_N = null;
+    private static final Integer CRED_PRES_0 = 0;
+    private static final Integer CRED_PRES_1 = 1;
 
-    private static final Integer IND_MONO_N = null;
-    private static final Integer IND_MONO_0 = 0;
-    private static final Integer IND_MONO_1 = 1;
+    private static final Integer MONO_N = null;
+    private static final Integer MONO_0 = 0;
+    private static final Integer MONO_1 = 1;
 
-    private static final Integer IND_MONO_RETEN_N = null;
-    private static final Integer IND_MONO_RETEN_0 = 0;
-    private static final Integer IND_MONO_RETEN_1 = 1;
+    private static final Integer MONO_RETEN_N = null;
+    private static final Integer MONO_RETEN_0 = 0;
+    private static final Integer MONO_RETEN_1 = 1;
 
-    private static final Integer IND_MONO_RET_N = null;
-    private static final Integer IND_MONO_RET_0 = 0;
-    private static final Integer IND_MONO_RET_1 = 1;
+    private static final Integer MONO_RET_N = null;
+    private static final Integer MONO_RET_0 = 0;
+    private static final Integer MONO_RET_1 = 1;
 
-    private static final Integer IND_MONO_DIF_N = null;
-    private static final Integer IND_MONO_DIF_0 = 0;
-    private static final Integer IND_MONO_DIF_1 = 1;
+    private static final Integer MONO_DIF_N = null;
+    private static final Integer MONO_DIF_0 = 0;
+    private static final Integer MONO_DIF_1 = 1;
   }
 }
