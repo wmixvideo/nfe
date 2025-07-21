@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
+import java.math.BigDecimal;
+
 /**
  * Enum que representa os tipos de dados do IBSCBS
  * 
@@ -8,24 +10,24 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 public enum NFNotaInfoImpostoTipoDadoIBSCBS {
 
-	NA("N/A"),
-	ZERO("0"),
-	UM("1"),
-	TRINTA("30"),
-	QUARENTA("40"),
-	CINQUENTA("50"),
-	SESSENTA("60"),
-	SETENTA("70"),
-	OITENTA("80"),
-	CEM("100");
+	NA(null),
+	ZERO(new BigDecimal("0")),
+	UM(new BigDecimal("1")),	
+	TRINTA(new BigDecimal("30")),
+	QUARENTA(new BigDecimal("40")),
+	CINQUENTA(new BigDecimal("50")),
+	SESSENTA(new BigDecimal("60")),
+	SETENTA(new BigDecimal("70")),
+	OITENTA(new BigDecimal("80")),
+	CEM(new BigDecimal("100"));
 
-	private final String tipoDado;
+	private final BigDecimal tipoDado;
 
-	private NFNotaInfoImpostoTipoDadoIBSCBS(final String tipoDado) {
+	private NFNotaInfoImpostoTipoDadoIBSCBS(final BigDecimal tipoDado) {
 		this.tipoDado = tipoDado;
 	}
 
-	public String getTipoDado() {
+	public BigDecimal getTipoDado() {
 		return this.tipoDado;
 	}
 }
