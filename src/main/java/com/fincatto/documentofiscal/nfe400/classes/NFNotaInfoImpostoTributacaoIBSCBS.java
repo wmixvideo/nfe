@@ -27,7 +27,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     		 UM, ZERO, UM, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
     
     CST_210("210", "Redu\u00e7\u00e3o de al\u00edquota com redutor de base de c\u00e1lculo",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
     
     CST_220("220", "Al\u00edquota fixa",
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
@@ -36,19 +36,19 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_222("222", "Redu\u00e7\u00e3o de base de c\u00e1lculo",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
     
     CST_400("400", "Isen\u00e7\u00e3o",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
     
     CST_410("410", "Imunidade e n\u00e3o incid\u00eancia",
     		ZERO, ZERO, ZERO, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
     
     CST_510("510", "Diferimento",
-    		 UM, ZERO, ZERO, UM, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, NAO, SIM, NAO),
+    		 UM, ZERO, ZERO, UM, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
     
     CST_550("550", "Suspens\u00e3o",
-    		 UM, ZERO, ZERO, ZERO, ZERO, SIM, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO),
+    		 UM, ZERO, ZERO, ZERO, ZERO, SIM, NAO, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
     
     CST_620("620", "Tributa\u00e7\u00e3o monof\u00e1sica",
     		ZERO, UM, ZERO, ZERO, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
@@ -60,10 +60,10 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     		 null, null, null, null, null, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_820("820", "Tributa\u00e7\u00e3o em declara\u00e7\u00e3o de regime espec\u00edfico",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
     
     CST_830("830", "Exclus\u00e3o de base de c\u00e1lculo",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO);
+    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, NAO);
 
     private final String codigo;
     private final String descricao;
