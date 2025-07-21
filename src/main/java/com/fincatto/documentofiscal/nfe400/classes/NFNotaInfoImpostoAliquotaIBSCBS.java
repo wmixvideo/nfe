@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes;
 import java.math.BigDecimal;
 
 /**
- * Enum que representa os tipos de dados do IBSCBS
+ * Enum que representa as aliquotas do IBSCBS
  * 
  * @author Marcos Lombardi de Andrade
  */
