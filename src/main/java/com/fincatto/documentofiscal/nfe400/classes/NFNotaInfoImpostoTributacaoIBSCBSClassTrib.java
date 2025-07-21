@@ -4,16 +4,16 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoA
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_SETORIAL;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_NACIONAL;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.SEM_ALIQUOTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.NA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.ZERO;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.UM;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.TRINTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.QUARENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.CINQUENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.SESSENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.SETENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.OITENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.CEM;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.NA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.ZERO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.UM;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.TRINTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.QUARENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.CINQUENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.SESSENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.SETENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.OITENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoAliquotaIBSCBS.CEM;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_000;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_010;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
@@ -257,26 +257,26 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	private final String descricao;
 	private final String leiComplementar;
 	private final NFNotaInfoImpostoTipoAliquotaIBSCBS tipoAliquota;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS pRedIBS;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS pRedCBS;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indRedutorBC;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indGTribRegular;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indCredPres;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indMono;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoReten;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoRet;
-	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoDif;
+	private final NFNotaInfoImpostoAliquotaIBSCBS pRedIBS;
+	private final NFNotaInfoImpostoAliquotaIBSCBS pRedCBS;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indRedutorBC;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indGTribRegular;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indCredPres;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indMono;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indMonoReten;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indMonoRet;
+	private final NFNotaInfoImpostoAliquotaIBSCBS indMonoDif;
 	private final LocalDate dIniVig;
 	private final LocalDate dFimVig;
 	private final LocalDate dataAtualizacao;
 
 	private NFNotaInfoImpostoTributacaoIBSCBSClassTrib(String codigo, NFNotaInfoImpostoTributacaoIBSCBS cst,
 			String descricao, String leiComplementar, NFNotaInfoImpostoTipoAliquotaIBSCBS tipoAliquota,
-			NFNotaInfoImpostoTipoDadoIBSCBS pRedIBS, NFNotaInfoImpostoTipoDadoIBSCBS pRedCBS,
-			NFNotaInfoImpostoTipoDadoIBSCBS indRedutorBC, NFNotaInfoImpostoTipoDadoIBSCBS indGTribRegular,
-			NFNotaInfoImpostoTipoDadoIBSCBS indCredPres, NFNotaInfoImpostoTipoDadoIBSCBS indMono,
-			NFNotaInfoImpostoTipoDadoIBSCBS indMonoReten, NFNotaInfoImpostoTipoDadoIBSCBS indMonoRet,
-			NFNotaInfoImpostoTipoDadoIBSCBS indMonoDif, LocalDate dIniVig, LocalDate dFimVig,
+			NFNotaInfoImpostoAliquotaIBSCBS pRedIBS, NFNotaInfoImpostoAliquotaIBSCBS pRedCBS,
+			NFNotaInfoImpostoAliquotaIBSCBS indRedutorBC, NFNotaInfoImpostoAliquotaIBSCBS indGTribRegular,
+			NFNotaInfoImpostoAliquotaIBSCBS indCredPres, NFNotaInfoImpostoAliquotaIBSCBS indMono,
+			NFNotaInfoImpostoAliquotaIBSCBS indMonoReten, NFNotaInfoImpostoAliquotaIBSCBS indMonoRet,
+			NFNotaInfoImpostoAliquotaIBSCBS indMonoDif, LocalDate dIniVig, LocalDate dFimVig,
 			LocalDate dataAtualizacao) {
 		this.codigo = codigo;
 		this.cst = cst;
@@ -321,31 +321,31 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 		return dIniVig;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndCredPres() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndCredPres() {
 		return indCredPres;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndGTribRegular() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndGTribRegular() {
 		return indGTribRegular;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMono() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndMono() {
 		return indMono;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoDif() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndMonoDif() {
 		return indMonoDif;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoRet() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndMonoRet() {
 		return indMonoRet;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoReten() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndMonoReten() {
 		return indMonoReten;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getIndRedutorBC() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getIndRedutorBC() {
 		return indRedutorBC;
 	}
 
@@ -353,11 +353,11 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 		return leiComplementar;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getpRedCBS() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getpRedCBS() {
 		return pRedCBS;
 	}
 
-	public NFNotaInfoImpostoTipoDadoIBSCBS getpRedIBS() {
+	public NFNotaInfoImpostoAliquotaIBSCBS getpRedIBS() {
 		return pRedIBS;
 	}
 

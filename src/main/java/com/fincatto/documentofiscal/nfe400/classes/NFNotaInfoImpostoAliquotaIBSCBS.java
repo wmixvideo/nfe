@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * @author Marcos Lombardi de Andrade
  */
 
-public enum NFNotaInfoImpostoTipoDadoIBSCBS {
+public enum NFNotaInfoImpostoAliquotaIBSCBS {
 
 	NA(null),
 	ZERO(new BigDecimal("0")),
@@ -23,7 +23,7 @@ public enum NFNotaInfoImpostoTipoDadoIBSCBS {
 
 	private final BigDecimal tipoDado;
 
-	private NFNotaInfoImpostoTipoDadoIBSCBS(final BigDecimal tipoDado) {
+	private NFNotaInfoImpostoAliquotaIBSCBS(final BigDecimal tipoDado) {
 		this.tipoDado = tipoDado;
 	}
 
