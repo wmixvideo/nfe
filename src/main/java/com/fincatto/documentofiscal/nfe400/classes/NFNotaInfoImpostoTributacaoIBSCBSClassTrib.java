@@ -243,7 +243,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
-				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, S, null, null, null, null, null, null, null, null, of(11, 6, 2025));
+				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, S, null, null, null, null, null, null, null, null, of(2025, 6, 11));
 	
 	private final String codigo;
 	private final NFNotaInfoImpostoTributacaoIBSCBS cst;
