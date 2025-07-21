@@ -27,7 +27,7 @@ public enum NFNotaInfoImpostoAliquotaIBSCBS {
 		this.aliquota = aliquota;
 	}
 
-	public BigDecimal getTipoDado() {
+	public BigDecimal getAliquota() {
 		return this.aliquota;
 	}
 }
