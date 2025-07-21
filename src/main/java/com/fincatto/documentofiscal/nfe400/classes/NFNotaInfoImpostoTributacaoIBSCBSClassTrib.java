@@ -242,16 +242,6 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
 				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, NA, null, null, null, null, null, null, null, null, toLocalDate(11, 6, 2025));
 
-	public static LocalDate toLocalDate(int dia, int mes, int ano) {
-		return LocalDate.of(ano, mes, dia);
-	}
-	
-	public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
-	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values())
-	    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
-	    				.findFirst().orElse(null);
-	}
-	
 	private final String codigo;
 	private final NFNotaInfoImpostoTributacaoIBSCBS cst;
 	private final String descricao;
@@ -388,6 +378,16 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	@Override
 	public String toString() {
 		return codigo + " - " + descricao;
+	}
+	
+	public static LocalDate toLocalDate(int dia, int mes, int ano) {
+		return LocalDate.of(ano, mes, dia);
+	}
+	
+	public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
+	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values())
+	    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
+	    				.findFirst().orElse(null);
 	}
 	
 }
