@@ -1,12 +1,26 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.PADRAO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_SETORIAL;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_NACIONAL;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.SEM_ALIQUOTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.NA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.ZERO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.UM;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.TRINTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.QUARENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.CINQUENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.SESSENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.SETENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.OITENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoDadoIBSCBS.CEM;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_000;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_010;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_210;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_830;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -22,288 +36,253 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 
 	// CST_000
 	CST_000001("000001", CST_000, "Situações tributadas integralmente pelo IBS e CBS",
-				IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-				IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				null, PADRAO, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_000002("000002", CST_000, "Exploração de via",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 11, VIII", PADRAO, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_000003("000003", CST_000, "Regime automotivo - projetos incentivados (art. 311)",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_1, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 311", PADRAO, NA, NA, NA, ZERO, UM, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_000004("000004", CST_000, "Regime automotivo - projetos incentivados (art. 312)",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_1, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 312", PADRAO, NA, NA, NA, ZERO, UM, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	// CST_010
 	CST_010001("010001", CST_010, "Operações do FGTS não realizadas pela Caixa Econômica Federal",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 212", UNIFORME_SETORIAL, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_010002("010002", CST_010, "Operações do serviço financeiro",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 233", UNIFORME_SETORIAL, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	// CST_011
 	CST_011001("011001", CST_011, "Planos de assistência funerária.",
-		      	IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 236", UNIFORME_NACIONAL, SESSENTA, SETENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_011002("011002", CST_011, "Planos de assistência à saúde",
-		      	IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 237", UNIFORME_NACIONAL, SETENTA, SETENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_011003("011003", CST_011, "Intermediação de planos de assistência à saúde",
-		      	IND.P_RED_IBS_60, IND.P_RED_CBS_60, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 240", UNIFORME_NACIONAL, SETENTA, SETENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_011004("011004", CST_011, "Concursos e prognósticos",
-		      	IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 246", UNIFORME_NACIONAL, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_011005("011005", CST_011, "Planos de assistência à saúde de animais domésticos",
-		      	IND.P_RED_IBS_30, IND.P_RED_CBS_30, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 243", UNIFORME_NACIONAL, TRINTA, TRINTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	// CST_200
 	CST_200001("200001", CST_200, "Aquisições realizadas entre empresas autorizadas a operar em zonas de processamento de exportação",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 103", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200002("200002", CST_200, "Fornecimento ou importação para produtor rural não contribuinte ou TAC",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 110", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200003("200003", CST_200, "Vendas de produtos destinados à alimentação humana (Anexo I)",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 125", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200004("200004", CST_200, "Venda de dispositivos médicos com a especificação das respectivas classificações da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025.",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 144, I", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200005("200005", CST_200, "Venda de dispositivos médicos adquiridos por órgãos da administração pública (Anexo IV).",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 144, II", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200006("200006", CST_200, "Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XII).",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		      	IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 144, § 3º", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200007("200007", CST_200, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII).",
-		      	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		        IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 145, I", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	  
 	CST_200008("200008", CST_200, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V).",
-	        	IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-		        IND.MONO_N, IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null),
+				"Art. 145, II", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
-	CST_200009("200009", CST_200, "Fornecimento de medicamentos (Anexo XIV).", IND.P_RED_IBS_100, 
-				IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-				IND.MONO_N, null, null, null, null, null),
+	CST_200009("200009", CST_200, "Fornecimento de medicamentos (Anexo XIV).", 
+				"Art. 146", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200010("200010", CST_200, "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública.",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-				IND.MONO_N, null, null, null, null,	null),
+				"Art. 146, § 1º", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200011("200011", CST_200, "Fornecimento das composições para nutrição enteral e parenteral quando adquiridas por órgãos da administração pública (Anexo VI)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, IND.CRED_PRES_N, 
-				IND.MONO_N, null, null, null, null,	null),
+				"Art. 146, § 2º", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200012("200012", CST_200, "Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XIV)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 146, § 4º", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200013("200013", CST_200, "Fornecimento de tampões higiênicos, absorventes higiênicos internos ou externos",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 147", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200014("200014", CST_200, "Fornecimento dos produtos hortícolas, frutas e ovos (Anexo XV)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 148", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200015("200015", CST_200, "Venda de automóveis de passageiros de fabricação nacional adquiridos por motoristas profissionais ou pessoas com deficiência",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 149", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200016("200016", CST_200, "Prestação de serviços de pesquisa e desenvolvimento por Instituição Científica, Tecnológica e de Inovação (ICT)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 156", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200017("200017", CST_200, "Operações relacionadas ao FGTS", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 212, § 3º, I", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
-	CST_200018("200018", CST_200, "Operações de resseguro e retrocessão", IND.P_RED_IBS_100, IND.P_RED_CBS_100,
-				IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+	CST_200018("200018", CST_200, "Operações de resseguro e retrocessão",
+				"Art. 223, § 4º", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
-	CST_200019("200019", CST_200, "Importador dos serviços financeiros contribuinte", IND.P_RED_IBS_100,
-				IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+	CST_200019("200019", CST_200, "Importador dos serviços financeiros contribuinte", 
+				"Art. 231, § 1º, II", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200020("200020", CST_200, "Operação praticada por sociedades cooperativas optantes por regime específico do IBS e CBS",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 271", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200021("200021", CST_200, "Serviços de transporte público coletivo de passageiros ferroviário e hidroviário",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 285, I", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200022("200022", CST_200, "Operação originada fora da ZFM que destine bem material industrializado a contribuinte estabelecido na ZFM",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 445", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200023("200023", CST_200, "Operação realizada por indústria incentivada que destine bem material intermediário para outra indústria incentivada na ZFM",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 448", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200024("200024", CST_200, "Operação originada fora das Áreas de Livre Comércio destinadas a contribuinte estabelecido nas Áreas de Livre Comércio",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 463", PADRAO, CEM, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200025("200025", CST_200, "Fornecimento dos serviços de educação relacionados ao Programa Universidade para Todos (Prouni)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 308", PADRAO, SESSENTA, CEM, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200026("200026", CST_200, "Locação de imóveis localizados nas zonas reabilitadas", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 158, parágrafo único", PADRAO, OITENTA, OITENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200027("200027", CST_200, "Operações de locação, cessão onerosa e arrendamento de bens imóveis",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 261, parágrafo único", PADRAO, SETENTA, SETENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200028("200028", CST_200, "Fornecimento dos serviços de educação (Anexo II)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 129", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200029("200029", CST_200, "Fornecimento dos serviços de saúde humana (Anexo III)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 130", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200030("200030", CST_200, "Venda dos dispositivos médicos  (Anexo IV)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 131", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200031("200031", CST_200, "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo V)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 132", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200032("200032", CST_200, "Fornecimento dos medicamentos registrados na Anvisa ou produzidos por farmácias de manipulação, ressalvados os medicamentos sujeitos à alíquota zero",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 133", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200033("200033", CST_200, "Fornecimento das composições para nutrição enteral e parenteral (Anexo VI)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 133, § 1º", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200034("200034", CST_200, "Fornecimento dos alimentos destinados ao consumo humano (Anexo VII)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 135", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200035("200035", CST_200, "Fornecimento dos produtos de higiene pessoal e limpeza (Anexo VIII)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 463", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200036("200036", CST_200, "Fornecimento de produtos agropecuários, aquícolas, pesqueiros, florestais e extrativistas vegetais in natura",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 137", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200037("200037", CST_200, "Fornecimento de serviços ambientais de conservação ou recuperação da vegetação nativa", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 137, § 3º", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200038("200038", CST_200, "Fornecimento dos insumos agropecuários e aquícolas (Anexo IX)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 138", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200039("200039", CST_200, "Fornecimento dos serviços e o licenciamento ou cessão dos direitos destinados às produções nacionais artísticas (Anexo X)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 139", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200040("200040", CST_200, "Fornecimento de serviços de comunicação institucional à administração pública",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 140", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200041("200041", CST_200, "Fornecimento de serviço de educação desportiva (art. 141. I)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 141, I", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200042("200042", CST_200, "Fornecimento de serviço de educação desportiva (art. 141. II)", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 141, II", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200043("200043", CST_200,"Fornecimento à administração pública dos serviços e dos bens relativos à soberania (Anexo XI)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null,
-				null, null, null, null, null, null),
+				"Art. 142, I", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200044("200044", CST_200, "Operações e prestações de serviços de segurança da informação e segurança cibernética desenvolvidos por sociedade que tenha sócio brasileiro (Anexo XI)",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 142, II", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200045("200045", CST_200, "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 158", PADRAO, SESSENTA, SESSENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200046("200046", CST_200, "Operações com bens imóveis", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 261", PADRAO, CINQUENTA, CINQUENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200047("200047", CST_200, "Bares e Restaurantes", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N,	IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 275", PADRAO, QUARENTA, QUARENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200048("200048", CST_200, "Hotelaria, Parques de Diversão e Parques Temáticos", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 281",PADRAO, QUARENTA, QUARENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200049("200049", CST_200, "Transporte coletivo de passageiros rodoviário, ferroviário e hidroviário",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 286",PADRAO, QUARENTA, QUARENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200450("200450", CST_200, "Serviços de transporte aéreo regional coletivo de passageiros ou de carga",
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 287",PADRAO, QUARENTA, QUARENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200051("200051", CST_200, "Agências de Turismo", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 289, II",PADRAO, QUARENTA, QUARENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 	
 	CST_200052("200052", CST_200, "Prestação de serviços de profissões intelectuais", 
-				IND.P_RED_IBS_100, IND.P_RED_CBS_100, IND.RED_BC_N, IND.GTRIB_REG_0, null, 
-				null, null, null, null, null, null),
+				"Art. 127, I a XVIII", PADRAO, NA, NA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
+	
+	CST_210001("210001", CST_210, "Redutor social aplicado uma única vez na alienação de bem imóvel residencial novo",
+				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
+	
+	CST_210002("210002", CST_210, "Redutor social aplicado uma única vez na alienação de lote residencial",
+				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, NA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
+	
+	CST_210003("210003", CST_210, "Redutor social em operações de locação, cessão onerosa e arrendamento de bens imóveis de uso residencial",
+				"Art. 260", PADRAO, NA, SETENTA, SETENTA, ZERO, null, null, null, null, null, null, null, toLocalDate(19, 5, 2025)),
 
 	// TODO falta implementar o restante de acordo com a tabela
 
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
-				IND.P_RED_IBS_N, IND.P_RED_CBS_N, IND.RED_BC_N, IND.GTRIB_REG_N, IND.CRED_PRES_N, 
-				IND.MONO_N,	IND.MONO_RETEN_N, IND.MONO_RET_N, IND.MONO_DIF_N, null, null);
+				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, NA, null, null, null, null, null, null, null, null, toLocalDate(11, 6, 2025));
 
+	public static LocalDate toLocalDate(int dia, int mes, int ano) {
+		return LocalDate.of(ano, mes, dia);
+	}
+	
+	public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
+	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values())
+	    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
+	    				.findFirst().orElse(null);
+	}
+	
 	private final String codigo;
 	private final NFNotaInfoImpostoTributacaoIBSCBS cst;
 	private final String descricao;
-	private final BigDecimal pRedIBS;
-	private final BigDecimal pRedCBS;
-	private final Integer indRedutorBC;
-	private final Integer indGTribRegular;
-	private final Integer indCredPres;
-	private final Integer indMono;
-	private final Integer indMonoReten;
-	private final Integer indMonoRet;
-	private final Integer indMonoDif;
+	private final String leiComplementar;
+	private final NFNotaInfoImpostoTipoAliquotaIBSCBS tipoAliquota;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS pRedIBS;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS pRedCBS;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indRedutorBC;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indGTribRegular;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indCredPres;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indMono;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoReten;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoRet;
+	private final NFNotaInfoImpostoTipoDadoIBSCBS indMonoDif;
 	private final LocalDate dIniVig;
 	private final LocalDate dFimVig;
+	private final LocalDate dataAtualizacao;
 
-  private NFNotaInfoImpostoTributacaoIBSCBSClassTrib(String codigo, NFNotaInfoImpostoTributacaoIBSCBS cst, String descricao, 
-		  BigDecimal pRedIBS, BigDecimal pRedCBS, Integer indRedutorBC, Integer indGTribRegular, Integer indCredPres, 
-		  Integer indMono, Integer indMonoReten, Integer indMonoRet, Integer indMonoDif, LocalDate dIniVig, LocalDate dFimVig) {
+	private NFNotaInfoImpostoTributacaoIBSCBSClassTrib(String codigo, NFNotaInfoImpostoTributacaoIBSCBS cst,
+			String descricao, String leiComplementar, NFNotaInfoImpostoTipoAliquotaIBSCBS tipoAliquota,
+			NFNotaInfoImpostoTipoDadoIBSCBS pRedIBS, NFNotaInfoImpostoTipoDadoIBSCBS pRedCBS,
+			NFNotaInfoImpostoTipoDadoIBSCBS indRedutorBC, NFNotaInfoImpostoTipoDadoIBSCBS indGTribRegular,
+			NFNotaInfoImpostoTipoDadoIBSCBS indCredPres, NFNotaInfoImpostoTipoDadoIBSCBS indMono,
+			NFNotaInfoImpostoTipoDadoIBSCBS indMonoReten, NFNotaInfoImpostoTipoDadoIBSCBS indMonoRet,
+			NFNotaInfoImpostoTipoDadoIBSCBS indMonoDif, LocalDate dIniVig, LocalDate dFimVig,
+			LocalDate dataAtualizacao) {
 		this.codigo = codigo;
 		this.cst = cst;
 		this.descricao = descricao;
+		this.leiComplementar = leiComplementar;
+		this.tipoAliquota = tipoAliquota;
 		this.pRedIBS = pRedIBS;
 		this.pRedCBS = pRedCBS;
 		this.indRedutorBC = indRedutorBC;
@@ -315,73 +294,75 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 		this.indMonoDif = indMonoDif;
 		this.dIniVig = dIniVig;
 		this.dFimVig = dFimVig;
+		this.dataAtualizacao = dataAtualizacao;
 	}
 
 	public String getCodigo() {
 		return this.codigo;
 	}
 
-	public String getDescricao() {
-		return this.descricao;
-	}
-
-	public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
-	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values())
-	    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
-	    				.findFirst().orElse(null);
-	}
-
-	@Override
-	public String toString() {
-		return codigo + " - " + descricao;
-	}
-
 	public NFNotaInfoImpostoTributacaoIBSCBS getCst() {
 		return cst;
 	}
 
-	public BigDecimal getpRedIBS() {
-		return pRedIBS;
+	public LocalDate getDataAtualizacao() {
+		return dataAtualizacao;
 	}
 
-	public BigDecimal getpRedCBS() {
-		return pRedCBS;
+	public String getDescricao() {
+		return this.descricao;
 	}
 
-	public Integer getIndRedutorBC() {
-		return indRedutorBC;
-	}
-
-	public Integer getIndGTribRegular() {
-		return indGTribRegular;
-	}
-
-	public Integer getIndCredPres() {
-		return indCredPres;
-	}
-
-	public Integer getIndMono() {
-		return indMono;
-	}
-
-	public Integer getIndMonoReten() {
-		return indMonoReten;
-	}
-
-	public Integer getIndMonoRet() {
-		return indMonoRet;
-	}
-
-	public Integer getIndMonoDif() {
-		return indMonoDif;
+	public LocalDate getdFimVig() {
+		return dFimVig;
 	}
 
 	public LocalDate getdIniVig() {
 		return dIniVig;
 	}
 
-	public LocalDate getdFimVig() {
-		return dFimVig;
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndCredPres() {
+		return indCredPres;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndGTribRegular() {
+		return indGTribRegular;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMono() {
+		return indMono;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoDif() {
+		return indMonoDif;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoRet() {
+		return indMonoRet;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndMonoReten() {
+		return indMonoReten;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getIndRedutorBC() {
+		return indRedutorBC;
+	}
+
+	public String getLeiComplementar() {
+		return leiComplementar;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getpRedCBS() {
+		return pRedCBS;
+	}
+
+	public NFNotaInfoImpostoTipoDadoIBSCBS getpRedIBS() {
+		return pRedIBS;
+	}
+
+	public NFNotaInfoImpostoTipoAliquotaIBSCBS getTipoAliquota() {
+		return tipoAliquota;
 	}
 
 	/**
@@ -404,44 +385,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 		return (dIniVig == null || !inDate.isBefore(dIniVig)) && (dFimVig == null || !inDate.isAfter(dFimVig));
 	}
 
-	private static class IND {
-
-		private static final BigDecimal P_RED_IBS_N = null;
-		private static final BigDecimal P_RED_IBS_30 = new BigDecimal("30");
-		private static final BigDecimal P_RED_IBS_60 = new BigDecimal("60");
-		private static final BigDecimal P_RED_IBS_100 = new BigDecimal("100");
-
-		private static final BigDecimal P_RED_CBS_N = null;
-		private static final BigDecimal P_RED_CBS_30 = new BigDecimal("30");
-		private static final BigDecimal P_RED_CBS_60 = new BigDecimal("60");
-		private static final BigDecimal P_RED_CBS_100 = new BigDecimal("100");
-
-		private static final Integer RED_BC_N = null;
-		private static final Integer RED_BC_0 = 0;
-		private static final Integer RED_BC_1 = 1;
-
-		private static final Integer GTRIB_REG_N = null;
-		private static final Integer GTRIB_REG_0 = 0;
-		private static final Integer GTRIB_REG_1 = 1;
-
-		private static final Integer CRED_PRES_N = null;
-		private static final Integer CRED_PRES_0 = 0;
-		private static final Integer CRED_PRES_1 = 1;
-
-		private static final Integer MONO_N = null;
-		private static final Integer MONO_0 = 0;
-		private static final Integer MONO_1 = 1;
-
-		private static final Integer MONO_RETEN_N = null;
-		private static final Integer MONO_RETEN_0 = 0;
-		private static final Integer MONO_RETEN_1 = 1;
-
-		private static final Integer MONO_RET_N = null;
-		private static final Integer MONO_RET_0 = 0;
-		private static final Integer MONO_RET_1 = 1;
-
-		private static final Integer MONO_DIF_N = null;
-		private static final Integer MONO_DIF_0 = 0;
-		private static final Integer MONO_DIF_1 = 1;
+	@Override
+	public String toString() {
+		return codigo + " - " + descricao;
 	}
+	
 }
