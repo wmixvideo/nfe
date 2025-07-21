@@ -21,13 +21,13 @@ public enum NFNotaInfoImpostoAliquotaIBSCBS {
 	OITENTA(new BigDecimal("80")),
 	CEM(new BigDecimal("100"));
 
-	private final BigDecimal tipoDado;
+	private final BigDecimal aliquota;
 
-	private NFNotaInfoImpostoAliquotaIBSCBS(final BigDecimal tipoDado) {
-		this.tipoDado = tipoDado;
+	private NFNotaInfoImpostoAliquotaIBSCBS(final BigDecimal aliquota) {
+		this.aliquota = aliquota;
 	}
 
 	public BigDecimal getTipoDado() {
-		return this.tipoDado;
+		return this.aliquota;
 	}
 }
