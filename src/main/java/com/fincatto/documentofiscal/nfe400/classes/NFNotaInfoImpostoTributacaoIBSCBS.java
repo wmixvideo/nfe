@@ -109,17 +109,6 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
         return this.descricao;
     }
 
-    public static NFNotaInfoImpostoTributacaoIBSCBS valueOfCodigo(final String codigoIBSCBS) {
-	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBS.values())
-    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
-    				.findFirst().orElse(null);
-    }
-
-    @Override
-    public String toString() {
-        return codigo + " - " + descricao;
-    }
-
     public Integer getIndGIBSCBS() {
         return indGIBSCBS;
     }
@@ -176,6 +165,23 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
         return indNFSe;
     }
 
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
+    }
+    
+    /**
+	 * Retorna o enum correspondente ao codigo IBSCBS informado.
+	 *
+	 * @param codigoIBSCBS o codigo IBSCBS
+	 * @return o enum correspondente ou null se nao encontrado
+	 */
+    public static NFNotaInfoImpostoTributacaoIBSCBS valueOfCodigo(final String codigoIBSCBS) {
+	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBS.values())
+    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
+    				.findFirst().orElse(null);
+    }
+    
     static class IND {
     	
         static final Integer UM = 1;

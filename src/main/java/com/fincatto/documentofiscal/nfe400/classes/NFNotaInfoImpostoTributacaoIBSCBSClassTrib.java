@@ -358,9 +358,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	}
 
 	/**
-	 * Verifica se o código está vigente com base na data atual.
+	 * Verifica se o codigo esta vigente com base na data atual.
 	 *
-	 * @return true se estiver vigente, false caso contrário.
+	 * @return true se estiver vigente, false caso contrario.
 	 */
 	public boolean isVigente() {
 		LocalDate hoje = LocalDate.now();
@@ -368,10 +368,10 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	}
 
 	/**
-	 * Verifica se o código está vigente com base na data passada por parametro.
+	 * Verifica se o codigo esta vigente com base na data passada por parametro.
 	 *
 	 * @param inDate
-	 * @return true se estiver vigente, false caso contrário.
+	 * @return true se estiver vigente, false caso contrario.
 	 */
 	public boolean isVigente(LocalDate inDate) {
 		return (dIniVig == null || !inDate.isBefore(dIniVig)) && (dFimVig == null || !inDate.isAfter(dFimVig));
@@ -386,6 +386,12 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 		return LocalDate.of(ano, mes, dia);
 	}
 	
+	/**
+	 * Retorna o enum correspondente ao codigo IBSCBS informado.
+	 *
+	 * @param codigoIBSCBS o codigo IBSCBS a ser pesquisado
+	 * @return o enum correspondente ou null se nao encontrado
+	 */
 	public static NFNotaInfoImpostoTributacaoIBSCBSClassTrib valueOfCodigo(final String codigoIBSCBS) {
 	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.values())
 	    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
