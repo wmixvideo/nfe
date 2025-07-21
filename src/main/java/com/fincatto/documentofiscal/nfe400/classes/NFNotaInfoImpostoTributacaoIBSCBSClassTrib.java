@@ -30,7 +30,7 @@ import java.math.BigDecimal;
 /**
  * Enum que define os Codigos de Classificacao Tributaria cClass do IBS e CBS
  * CST_cClassTribPublicacao_20250618.xlsx 
- * Planilnha cClass
+ * Aba cClass
  * 
  * @author Edivaldo Merlo Stens
  * @author Marcos Lombardi de Andrade

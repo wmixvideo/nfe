@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Enum que define os Codigos de Classificacao Tributaria do IBS e CBS
  * CST_cClassTribPublicacao_20250618.xlsx 
- * Planilnha CST
+ * Aba CST
  * 
  * @author Edivaldo Merlo Stens
  * @author Marcos Lombardi de Andrade
