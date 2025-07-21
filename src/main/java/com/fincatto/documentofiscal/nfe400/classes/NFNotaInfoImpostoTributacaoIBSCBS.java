@@ -2,6 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.IND.*;
 
+import java.util.Arrays;
+
 /**
  * Enum que define os Codigos de Classificacao Tributaria do IBS e CBS
  * CST_cClassTribPublicacao_20250618.xlsx 
@@ -22,7 +24,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_200("200", "Al\u00edquota reduzida",
-    		 UM, ZERO, ZERO, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
+    		 UM, ZERO, UM, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
     
     CST_210("210", "Redu\u00e7\u00e3o de al\u00edquota com redutor de base de c\u00e1lculo",
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
@@ -37,31 +39,31 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_400("400", "Isen\u00e7\u00e3o",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, NAO),
     
     CST_410("410", "Imunidade e n\u00e3o incid\u00eancia",
     		ZERO, ZERO, ZERO, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
     
     CST_510("510", "Diferimento",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 UM, ZERO, ZERO, UM, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, NAO, SIM, NAO),
     
     CST_550("550", "Suspens\u00e3o",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 UM, ZERO, ZERO, ZERO, ZERO, SIM, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO),
     
     CST_620("620", "Tributa\u00e7\u00e3o monof\u00e1sica",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, UM, ZERO, ZERO, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_800("800", "Transfer\u00eancia de cr\u00e9dito",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, UM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_810("810", "Ajustes",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 null, null, null, null, null, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_820("820", "Tributa\u00e7\u00e3o em declara\u00e7\u00e3o de regime espec\u00edfico",
     		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_830("830", "Exclus\u00e3o de base de c\u00e1lculo",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO);
+    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO);
 
     private final String codigo;
     private final String descricao;
@@ -108,12 +110,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     }
 
     public static NFNotaInfoImpostoTributacaoIBSCBS valueOfCodigo(final String codigoIBSCBS) {
-        for (final NFNotaInfoImpostoTributacaoIBSCBS ibscbs : NFNotaInfoImpostoTributacaoIBSCBS.values()) {
-            if (ibscbs.getCodigo().equals(codigoIBSCBS)) {
-                return ibscbs;
-            }
-        }
-        return null;
+	    return Arrays.stream(NFNotaInfoImpostoTributacaoIBSCBS.values())
+    			.filter(ibscbs -> ibscbs.getCodigo().equals(codigoIBSCBS))
+    				.findFirst().orElse(null);
     }
 
     @Override
