@@ -9,18 +9,18 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_210;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.NA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.ZERO;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.UM;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.TRINTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.QUARENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.CINQUENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.SESSENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.SETENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.OITENTA;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.CEM;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.S;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.Aliquota.NA_SN;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.TRINTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.QUARENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.CINQUENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.SESSENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.SETENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.OITENTA;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.CEM;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.S;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA_SN;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_830;
 
 import java.time.LocalDate;
@@ -28,9 +28,9 @@ import java.util.Arrays;
 import java.math.BigDecimal;
 
 /**
- * Enum que define os Codigos de Classificacao Tributaria do IBS e CBS
- *
- * CST_cClassTribPublicacao_20250618.xlsx
+ * Enum que define os Codigos de Classificacao Tributaria cClass do IBS e CBS
+ * CST_cClassTribPublicacao_20250618.xlsx 
+ * Planilnha cClass
  * 
  * @author Edivaldo Merlo Stens
  * @author Marcos Lombardi de Andrade
@@ -392,7 +392,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	    				.findFirst().orElse(null);
 	}
 	
-	static class Aliquota {
+	static class IND {
 
 		static final BigDecimal NA = null;
 		static final BigDecimal ZERO = new BigDecimal("0");
