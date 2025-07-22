@@ -253,209 +253,209 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 
 	// CST_220
 	CST_220001("220001", CST_220, "Incorporação imobiliária submetida ao regime especial de tributação",
-			"Art. 485, I", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 485, I", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_220002("220002", CST_220, "Incorporação imobiliária submetida ao regime especial de tributação",
-			"Art. 485, II", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 485, II", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_220003("220003", CST_220, "Alienação de imóvel decorrente de parcelamento do solo",
-			"Art. 486", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 486", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_221
 	CST_221001("221001", CST_221, "Locação, cessão onerosa ou arrendamento de bem imóvel com alíquota sobre a receita bruta",
-			"Art. 487, § 2º", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 487, § 2º", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_222
 	CST_222001("222001", CST_222, "Transporte internacional de passageiros, caso os trechos de ida e volta sejam vendidos em conjunto",
-			"Art. 12 § 8º", PADRAO, NA, NA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+				"Art. 12 § 8º", PADRAO, NA, NA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_400
 	CST_400001("400001", CST_400, "Fornecimento de serviços de transporte público coletivo de passageiros rodoviário e metroviário",
-			"Art. 157", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 157", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
 	// CST_410 
 	CST_410001("410001", CST_410, "Fornecimento de bonificações quando constem no documento fiscal e que não dependam de evento posterior",
-			"Art. 5º, § 1º, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 5º, § 1º, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410002("410002", CST_410, "Transferências entre estabelecimentos pertencentes ao mesmo contribuinte",
-			"Art. 6º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 6º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410003("410003", CST_410, "Doações sem contraprestação em benefício do doador",
-			"Art. 6º, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 6º, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410004("410004", CST_410, "Exportações de bens e serviços",
-			"Art. 8º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 8º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410005("410005", CST_410, "Fornecimentos realizados pela União, pelos Estados, pelo Distrito Federal e pelos Municípios",
-			"Art. 9º, I e § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, I e § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410006("410006", CST_410, "Fornecimentos realizados por entidades religiosas e templos de qualquer culto",
-			"Art. 9º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410007("410007", CST_410, "Fornecimentos realizados por partidos políticos",
-			"Art. 9º, III", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, III", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410008("410008", CST_410, "Fornecimentos de livros, jornais, periódicos e do papel destinado a sua impressão",
-			"Art. 9º, IV", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, IV", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410009("410009", CST_410, "Fornecimentos de fonogramas e videofonogramas musicais produzidos no Brasil",
-			"Art. 9º, V", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, V", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410010("410010", CST_410, "Fornecimentos de serviço de comunicação nas modalidades de radiodifusão sonora e de sons e imagens de recepção livre e gratuita",
-			"Art. 9º, VI", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, VI", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410011("410011", CST_410, "Fornecimentos de ouro, quando definido em lei como ativo financeiro ou instrumento cambial",
-			"Art. 9º, VII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 9º, VII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410012("410012", CST_410, "Fornecimento de condomínio edilício não optante pelo regime regular",
-			"Art. 26, § 2º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 26, § 2º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410013("410013", CST_410, "Exportações de combustíveis",
-			"Art. 98", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 98", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410014("410014", CST_410, "Fornecimento de produtor rural não contribuinte",
-			"Art. 164", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 164", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410015("410015", CST_410, "Fornecimento por transportador autônomo não contribuinte",
-			"Art. 169", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 169", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410016("410016", CST_410, "Fornecimento de produtor rural nÃ£o contribuinte",
-			"Art. 170", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 170", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410017("410017", CST_410, "Aquisição de bem móvel com crédito presumido sob condição de revenda realizada",
-			"Art. 171", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 171", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410018("410018", CST_410, "Operações relacionadas aos fundos garantidores e executores de políticas públicas",
-			"Art. 213", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 213", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410019("410019", CST_410, "Exclusão da gorjeta na base de cálculo no fornecimento de alimentação",
-			"Art. 274, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 274, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410020("410020", CST_410, "Exclusão do valor de intermediação na base de cálculo no fornecimento de alimentação",
-			"Art. 274, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 274, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_410021("410021", CST_410, "Contribuição de que trata o art. 149-A da Constituição Federal",
-			"Art. 12 § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+				"Art. 12 § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	CST_410999("410999", CST_410, "Operações não onerosas sem previsão de tributação, não especificadas anteriormente",
-			"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+				"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_510
 	CST_510001("510001", CST_510, "Operações, sujeitas a diferimento, com energia elétrica, relativas à geração, comercialização, distribuição e transmissão",
-			"Art. 28, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 28, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_510002("510002", CST_510, "Operações, sujeitas a diferimento, com insumos agropecuários e aquícolas destinados a produtor rural contribuinte (Anexo IX)",
-			"Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_550
 	CST_550001("550001", CST_550, "Exportações de bens materiais",
-			"Art. 82", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 82", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550002("550002", CST_550, "Regime de Trânsito",
-			"Art. 84", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 84", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550003("550003", CST_550, "Regimes de Depósito  (art. 85)",
-			"Art. 85", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 85", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550004("550004", CST_550, "Regimes de Depósito (art. 87)",
-			"Art. 87", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 87", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550005("550005", CST_550, "Regimes de Depósito (art. 87, Parágrafo único)",
-			"Art. 87, parágrafo único", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 87, parágrafo único", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550006("550006", CST_550, "Regimes de Permanência Temporária",
-			"Art. 88", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 88", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550007("550007", CST_550, "Regimes de Aperfeiçoamento",
-			"Art. 90", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 90", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550008("550008", CST_550, "Importação de bens para o Regime de Repetro-Temporário",
-			"Art. 93, I", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 93, I", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550009("550009", CST_550, "GNL-Temporário",
-			"Art. 93, II", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 93, II", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550010("550010", CST_550, "Repetro-Permanente",
-			"Art. 93, III", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 93, III", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550011("550011", CST_550, "Repetro-Industrialização",
-			"550005", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"550005", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550012("550012", CST_550, "Repetro-Nacional",
-			"Art. 93, V", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 93, V", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550013("550013", CST_550, "Repetro-Entreposto",
-			"Art. 93, VI", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 93, VI", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550014("550014", CST_550, "Zona de Processamento de Exportação",
-			"Arts. 99, 100 e 102", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Arts. 99, 100 e 102", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550015("550015", CST_550, "Regime Tributário para Incentivo à Modernização e à Ampliação da Estrutura Portuária",
-			"Art. 105", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 105", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550016("550016", CST_550, "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura",
-			"Art. 106", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 106", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550017("550017", CST_550, "Regime Tributário para Incentivo à Atividade Econômica Naval",
-			"Art. 107", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 107", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550018("550018", CST_550, "Desoneração da aquisição de bens de capital",
-			"Art. 109", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 109", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550019("550019", CST_550, "Importação de bem material por indústria incentivada para utilização na ZFM",
-			"Art. 443", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 443", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_550020("550020", CST_550, "Áreas de livre comércio",
-			"Art. 461", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 461", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
 	// CST_620
 	CST_620001("620001", CST_620, "Tributação monofásica sobre combustíveis",
-			"Art. 172, 179 I", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, ZERO, ZERO, null, null, of(2025, 5, 19)),
+				"Art. 172, 179 I", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, ZERO, ZERO, null, null, of(2025, 5, 19)),
 	
 	CST_620002("620002", CST_620, "Tributação monofásica com responsabilidade pela retenção sobre combustíveis",
-			"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, UM, ZERO, ZERO, null, null, of(2025, 5, 19)),
+				"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, UM, ZERO, ZERO, null, null, of(2025, 5, 19)),
 	
 	CST_620003("620003", CST_620, "Tributação monofásica com tributos retidos por responsabilidade sobre combustíveis",
-			"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, ZERO, UM, null, null, of(2025, 5, 19)),
+				"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, ZERO, UM, null, null, of(2025, 5, 19)),
 	
 	CST_620004("620004", CST_620, "Tributação monofásica sobre mistura de EAC com gasolina A em percentual superior ao obrigatório",
-			"Art. 179, II, a", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+				"Art. 179, II, a", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
 	
 	CST_620005("620005", CST_620, "Tributação monofásica sobre mistura de EAC com gasolina A em percentual inferior ao obrigatório",
-			"Art. 179, II, b", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+				"Art. 179, II, b", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
 	
 	CST_620006("620006", CST_620, "Tributação monofásica sobre combustíveis cobrada anteriormente",
-			"Art. 180", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+				"Art. 180", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
 	
 	// CST_800
 	CST_800001("800001", CST_800, "Fusão, cisão ou incorporação",
-			"Art. 55", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 55", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_800002("800002", CST_800, "Transferência de crédito do associado, inclusive as cooperativas singulares",
-			"Art. 272", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 272", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_810
 	CST_810001("810001", CST_810, "Crédito presumido sobre o valor apurado nos fornecimentos a partir da ZFM",
-			"Art. 450", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 450", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_820
 	CST_820001("820001", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência à saúde",
-			"Art. 235", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 235", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_820002("820002", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência funerária",
-			"Art. 236", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 236", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
 	CST_820003("820003", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência à saúde de animais domésticos",
-			"Art. 243", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 243", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_820004("820004", CST_820, "Documento com informações de prestação de serviços de consursos de prognósticos",
-			"Art. 248", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 248", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_820005("820005", CST_820, "Documento com informações de alienação de bens imóveis",
-			"Art. 254, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+				"Art. 254, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_820006("820006", CST_820, "Documento com informações de fornecimento de serviços de exploração de via",
-			"Art. 11, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+				"Art. 11, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
