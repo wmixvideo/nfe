@@ -14,6 +14,7 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_221;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_222;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_400;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_410;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -266,8 +267,75 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_400001("400001", CST_400, "Fornecimento de serviços de transporte público coletivo de passageiros rodoviário e metroviário",
 			"Art. 157", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
+	// CST_410 
+	CST_410001("410001", CST_410, "Fornecimento de bonificações quando constem no documento fiscal e que não dependam de evento posterior",
+			"Art. 5º, § 1º, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410002("410002", CST_410, "Transferências entre estabelecimentos pertencentes ao mesmo contribuinte",
+			"Art. 6º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410003("410003", CST_410, "Doações sem contraprestação em benefício do doador",
+			"Art. 6º, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410004("410004", CST_410, "Exportações de bens e serviços",
+			"Art. 8º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410005("410005", CST_410, "Fornecimentos realizados pela União, pelos Estados, pelo Distrito Federal e pelos Municípios",
+			"Art. 9º, I e § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410006("410006", CST_410, "Fornecimentos realizados por entidades religiosas e templos de qualquer culto",
+			"Art. 9º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410007("410007", CST_410, "Fornecimentos realizados por partidos políticos",
+			"Art. 9º, III", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410008("410008", CST_410, "Fornecimentos de livros, jornais, periódicos e do papel destinado a sua impressão",
+			"Art. 9º, IV", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410009("410009", CST_410, "Fornecimentos de fonogramas e videofonogramas musicais produzidos no Brasil",
+			"Art. 9º, V", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410010("410010", CST_410, "Fornecimentos de serviço de comunicação nas modalidades de radiodifusão sonora e de sons e imagens de recepção livre e gratuita",
+			"Art. 9º, VI", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410011("410011", CST_410, "Fornecimentos de ouro, quando definido em lei como ativo financeiro ou instrumento cambial",
+			"Art. 9º, VII", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410012("410012", CST_410, "Fornecimento de condomínio edilício não optante pelo regime regular",
+			"Art. 26, § 2º, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410013("410013", CST_410, "Exportações de combustíveis",
+			"Art. 98", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410014("410014", CST_410, "Fornecimento de produtor rural não contribuinte",
+			"Art. 164", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410015("410015", CST_410, "Fornecimento por transportador autônomo não contribuinte",
+			"Art. 169", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410016("410016", CST_410, "Fornecimento de produtor rural nÃ£o contribuinte",
+			"Art. 170", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410017("410017", CST_410, "Aquisição de bem móvel com crédito presumido sob condição de revenda realizada",
+			"Art. 171", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410018("410018", CST_410, "Operações relacionadas aos fundos garantidores e executores de políticas públicas",
+			"Art. 213", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410019("410019", CST_410, "Exclusão da gorjeta na base de cálculo no fornecimento de alimentação",
+			"Art. 274, I", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410020("410020", CST_410, "Exclusão do valor de intermediação na base de cálculo no fornecimento de alimentação",
+			"Art. 274, II", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_410021("410021", CST_410, "Contribuição de que trata o art. 149-A da Constituição Federal",
+			"Art. 12 § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+	
+	CST_410999("410999", CST_410, "Operações não onerosas sem previsão de tributação, não especificadas anteriormente",
+			"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+
 	//CST_XX("XX", CST_210, "XX",
-			//"Xx", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+			//"XX", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
