@@ -15,6 +15,8 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_222;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_400;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_410;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_510;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_550;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -333,9 +335,77 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	CST_410999("410999", CST_410, "Operações não onerosas sem previsão de tributação, não especificadas anteriormente",
 			"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+	
+	// CST_510
+	CST_510001("510001", CST_510, "Operações, sujeitas a diferimento, com energia elétrica, relativas à geração, comercialização, distribuição e transmissão",
+			"Art. 28, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_510002("510002", CST_510, "Operações, sujeitas a diferimento, com insumos agropecuários e aquícolas destinados a produtor rural contribuinte (Anexo IX)",
+			"Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	// CST_550
+	CST_550001("550001", CST_550, "Exportações de bens materiais",
+			"Art. 82", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550002("550002", CST_550, "Regime de Trânsito",
+			"Art. 84", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550003("550003", CST_550, "Regimes de Depósito  (art. 85)",
+			"Art. 85", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550004("550004", CST_550, "Regimes de Depósito (art. 87)",
+			"Art. 87", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550005("550005", CST_550, "Regimes de Depósito (art. 87, Parágrafo único)",
+			"Art. 87, parágrafo único", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550006("550006", CST_550, "Regimes de Permanência Temporária",
+			"Art. 88", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550007("550007", CST_550, "Regimes de Aperfeiçoamento",
+			"Art. 90", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550008("550008", CST_550, "Importação de bens para o Regime de Repetro-Temporário",
+			"Art. 93, I", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550009("550009", CST_550, "GNL-Temporário",
+			"Art. 93, II", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550010("550010", CST_550, "Repetro-Permanente",
+			"Art. 93, III", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550011("550011", CST_550, "Repetro-Industrialização",
+			"550005", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550012("550012", CST_550, "Repetro-Nacional",
+			"Art. 93, V", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550013("550013", CST_550, "Repetro-Entreposto",
+			"Art. 93, VI", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550014("550014", CST_550, "Zona de Processamento de Exportação",
+			"Arts. 99, 100 e 102", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550015("550015", CST_550, "Regime Tributário para Incentivo à Modernização e à Ampliação da Estrutura Portuária",
+			"Art. 105", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550016("550016", CST_550, "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura",
+			"Art. 106", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550017("550017", CST_550, "Regime Tributário para Incentivo à Atividade Econômica Naval",
+			"Art. 107", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550018("550018", CST_550, "Desoneração da aquisição de bens de capital",
+			"Art. 109", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550019("550019", CST_550, "Importação de bem material por indústria incentivada para utilização na ZFM",
+			"Art. 443", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_550020("550020", CST_550, "Áreas de livre comércio",
+			"Art. 461", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
 	//CST_XX("XX", CST_210, "XX",
-			//"XX", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+			//"XX", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
