@@ -8,6 +8,7 @@ package com.fincatto.documentofiscal.nfe400.classes;
 public enum NFNotaInfoImpostoTipoAliquotaIBSCBS {
 
 	PADRAO("Padrão"),
+	FIXA("Fixa"),
 	UNIFORME_SETORIAL("Uniforme setorial"),
 	UNIFORME_NACIONAL("Uniforme nacional (referência)"),
 	SEM_ALIQUOTA("Sem alíquota");
