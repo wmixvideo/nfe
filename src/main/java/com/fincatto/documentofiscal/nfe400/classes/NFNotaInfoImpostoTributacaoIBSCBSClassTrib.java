@@ -17,6 +17,10 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_410;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_510;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_550;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_620;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_800;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_810;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_820;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -404,12 +408,58 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_550020("550020", CST_550, "Áreas de livre comércio",
 			"Art. 461", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
-	//CST_XX("XX", CST_210, "XX",
-			//"XX", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	// CST_620
+	CST_620001("620001", CST_620, "Tributação monofásica sobre combustíveis",
+			"Art. 172, 179 I", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, ZERO, ZERO, null, null, of(2025, 5, 19)),
+	
+	CST_620002("620002", CST_620, "Tributação monofásica com responsabilidade pela retenção sobre combustíveis",
+			"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, UM, ZERO, ZERO, null, null, of(2025, 5, 19)),
+	
+	CST_620003("620003", CST_620, "Tributação monofásica com tributos retidos por responsabilidade sobre combustíveis",
+			"Art. 178", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, ZERO, UM, null, null, of(2025, 5, 19)),
+	
+	CST_620004("620004", CST_620, "Tributação monofásica sobre mistura de EAC com gasolina A em percentual superior ao obrigatório",
+			"Art. 179, II, a", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, UM, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+	
+	CST_620005("620005", CST_620, "Tributação monofásica sobre mistura de EAC com gasolina A em percentual inferior ao obrigatório",
+			"Art. 179, II, b", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+	
+	CST_620006("620006", CST_620, "Tributação monofásica sobre combustíveis cobrada anteriormente",
+			"Art. 180", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, ZERO, ZERO, UM, ZERO, null, null, of(2025, 5, 19)),
+	
+	// CST_800
+	CST_800001("800001", CST_800, "Fusão, cisão ou incorporação",
+			"Art. 55", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_800002("800002", CST_800, "Transferência de crédito do associado, inclusive as cooperativas singulares",
+			"Art. 272", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	// CST_810
+	CST_810001("810001", CST_810, "Crédito presumido sobre o valor apurado nos fornecimentos a partir da ZFM",
+			"Art. 450", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	// CST_820
+	CST_820001("820001", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência à saúde",
+			"Art. 235", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_820002("820002", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência funerária",
+			"Art. 236", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+	CST_820003("820003", CST_820, "Documento com informações de fornecimento de serviços de planos de assistência à saúde de animais domésticos",
+			"Art. 243", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_820004("820004", CST_820, "Documento com informações de prestação de serviços de consursos de prognósticos",
+			"Art. 248", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_820005("820005", CST_820, "Documento com informações de alienação de bens imóveis",
+			"Art. 254, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_820006("820006", CST_820, "Documento com informações de fornecimento de serviços de exploração de via",
+			"Art. 11, VIII", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
-				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, S, null, null, null, null, null, null, null, null, of(2025, 6, 11));
+				"Art 28, parágrafos 3° e 4°", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11));
 	
 	private final String codigo;
 	private final NFNotaInfoImpostoTributacaoIBSCBS cst;
