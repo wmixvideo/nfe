@@ -11,6 +11,9 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_210;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_220;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_221;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_222;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_400;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -251,6 +254,18 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_220003("220003", CST_220, "Alienação de imóvel decorrente de parcelamento do solo",
 			"Art. 486", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
+	// CST_221
+	CST_221001("221001", CST_221, "Locação, cessão onerosa ou arrendamento de bem imóvel com alíquota sobre a receita bruta",
+			"Art. 487, § 2º", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	// CST_222
+	CST_222001("222001", CST_222, "Transporte internacional de passageiros, caso os trechos de ida e volta sejam vendidos em conjunto",
+			"Art. 12 § 8º", PADRAO, NA, NA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
+	
+	// CST_400
+	CST_400001("400001", CST_400, "Fornecimento de serviços de transporte público coletivo de passageiros rodoviário e metroviário",
+			"Art. 157", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
 	//CST_XX("XX", CST_210, "XX",
 			//"Xx", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
