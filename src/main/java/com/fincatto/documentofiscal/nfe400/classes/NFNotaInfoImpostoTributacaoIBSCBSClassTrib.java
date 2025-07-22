@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.PADRAO;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.FIXA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_SETORIAL;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.UNIFORME_NACIONAL;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTipoAliquotaIBSCBS.SEM_ALIQUOTA;
@@ -9,6 +10,7 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_210;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_220;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -238,8 +240,19 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	CST_210003("210003", CST_210, "Redutor social em operações de locação, cessão onerosa e arrendamento de bens imóveis de uso residencial",
 				"Art. 260", PADRAO, NA, SETENTA, S, ZERO, null, null, null, null, null, null, null, of(2025, 5, 19)),
+
+	// CST_220
+	CST_220001("220001", CST_220, "Incorporação imobiliária submetida ao regime especial de tributação",
+			"Art. 485, I", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
-	// TODO falta implementar o restante de acordo com a tabela
+	CST_220002("220002", CST_220, "Incorporação imobiliária submetida ao regime especial de tributação",
+			"Art. 485, II", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	CST_220003("220003", CST_220, "Alienação de imóvel decorrente de parcelamento do solo",
+			"Art. 486", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+	
+	//CST_XX("XX", CST_210, "XX",
+			//"Xx", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_830
 	CST_830001("830001", CST_830, "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
