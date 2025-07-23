@@ -235,7 +235,7 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
     	Assert.assertEquals("Exportações de combustíveis", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410013.getDescricao());
     	Assert.assertEquals("Fornecimento de produtor rural não contribuinte", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410014.getDescricao());
     	Assert.assertEquals("Fornecimento por transportador autônomo não contribuinte", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410015.getDescricao());
-    	Assert.assertEquals("Fornecimento de produtor rural nÃ£o contribuinte", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410016.getDescricao());
+    	Assert.assertEquals("Fornecimento de produtor rural não contribuinte", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410016.getDescricao());
     	Assert.assertEquals("Aquisição de bem móvel com crédito presumido sob condição de revenda realizada", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410017.getDescricao());
     	Assert.assertEquals("Operações relacionadas aos fundos garantidores e executores de políticas públicas", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410018.getDescricao());
     	Assert.assertEquals("Exclusão da gorjeta na base de cálculo no fornecimento de alimentação", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410019.getDescricao());
@@ -262,7 +262,7 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
     	Assert.assertEquals("Regime Tributário para Incentivo à Atividade Econômica Naval", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550017.getDescricao());
     	Assert.assertEquals("Desoneração da aquisição de bens de capital", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550018.getDescricao());
     	Assert.assertEquals("Importação de bem material por indústria incentivada para utilização na ZFM", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550019.getDescricao());
-    	Assert.assertEquals("Áreas de livre comércio", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550020.getDescricao());
+    	Assert.assertEquals("Áreas de livre com\u00e9rcio", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550020.getDescricao());
     	Assert.assertEquals("Tributação monofásica sobre combustíveis", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_620001.getDescricao());
     	Assert.assertEquals("Tributação monofásica com responsabilidade pela retenção sobre combustíveis", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_620002.getDescricao());
     	Assert.assertEquals("Tributação monofásica com tributos retidos por responsabilidade sobre combustíveis", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_620003.getDescricao());
