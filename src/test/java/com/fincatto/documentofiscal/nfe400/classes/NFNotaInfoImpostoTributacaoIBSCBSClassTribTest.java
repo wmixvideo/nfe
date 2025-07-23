@@ -147,7 +147,6 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 	
     @Test
     public void deveRepresentarADescricaoCorretamente() {
-    	// FIXME - Fazer apos substituicao caracteres com acentos por unicode
     	Assert.assertEquals("Situações tributadas integralmente pelo IBS e CBS.", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000001.getDescricao());
     	Assert.assertEquals("Exploração de via", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000002.getDescricao());
     	Assert.assertEquals("Regime automotivo - projetos incentivados (art. 311)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000003.getDescricao());
