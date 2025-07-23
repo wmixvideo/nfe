@@ -50,7 +50,7 @@ import java.math.BigDecimal;
  */
 public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 
-	CST_000001("000001", CST_000, "Situa\u00e7\u00f5es tributadas integralmente pelo IBS e CBS.",
+	CST_000001("000001", CST_000, "Situa\u00e7\u00f5es tributadas integralmente pelo IBS e CBS",
 			null, PADRAO, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
   
 	CST_000002("000002", CST_000, "Explora\u00e7\u00e3o de via",
@@ -70,7 +70,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 				"Art. 233", UNIFORME_SETORIAL, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	// CST_011
-	CST_011001("011001", CST_011, "Planos de assist\u00eancia funer\u00e1ria.",
+	CST_011001("011001", CST_011, "Planos de assist\u00eancia funer\u00e1ria",
 				"Art. 236", UNIFORME_NACIONAL, SESSENTA, SETENTA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
 	CST_011002("011002", CST_011, "Planos de assist\u00eancia \u00e0 sa\u00fade",
@@ -95,25 +95,25 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_200003("200003", CST_200, "Vendas de produtos destinados \u00e0 alimenta\u00e7\u00e3o humana (Anexo I)",
 				"Art. 125", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
-	CST_200004("200004", CST_200, "Venda de dispositivos m\u00e9dicos com a especifica\u00e7\u00e3o das respectivas classifica\u00e7\u00f5es da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025.",
+	CST_200004("200004", CST_200, "Venda de dispositivos m\u00e9dicos com a especifica\u00e7\u00e3o das respectivas classifica\u00e7\u00f5es da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025",
 				"Art. 144, I", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
-	CST_200005("200005", CST_200, "Venda de dispositivos m\u00e9dicos adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica (Anexo IV).",
+	CST_200005("200005", CST_200, "Venda de dispositivos m\u00e9dicos adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica (Anexo IV)",
 				"Art. 144, II", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
-	CST_200006("200006", CST_200, "Situa\u00e7\u00e3o de emerg\u00eancia de sa\u00fade p\u00fablica reconhecida pelo Poder p\u00fablico (Anexo XII).",
+	CST_200006("200006", CST_200, "Situa\u00e7\u00e3o de emerg\u00eancia de sa\u00fade p\u00fablica reconhecida pelo Poder p\u00fablico (Anexo XII)",
 				"Art. 144, § 3º", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
-	CST_200007("200007", CST_200, "Fornecimento dos dispositivos de acessibilidade pr\u00f3prios para pessoas com defici\u00eancia (Anexo XIII).",
+	CST_200007("200007", CST_200, "Fornecimento dos dispositivos de acessibilidade pr\u00f3prios para pessoas com defici\u00eancia (Anexo XIII)",
 				"Art. 145, I", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	  
-	CST_200008("200008", CST_200, "Fornecimento dos dispositivos de acessibilidade pr\u00f3prios para pessoas com defici\u00eancia adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica (Anexo V).",
+	CST_200008("200008", CST_200, "Fornecimento dos dispositivos de acessibilidade pr\u00f3prios para pessoas com defici\u00eancia adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica (Anexo V)",
 				"Art. 145, II", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
-	CST_200009("200009", CST_200, "Fornecimento de medicamentos (Anexo XIV).", 
+	CST_200009("200009", CST_200, "Fornecimento de medicamentos (Anexo XIV)", 
 				"Art. 146", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
-	CST_200010("200010", CST_200, "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica.",
+	CST_200010("200010", CST_200, "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica",
 				"Art. 146, § 1º", PADRAO, CEM, CEM, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
 	CST_200011("200011", CST_200, "Fornecimento das composi\u00e7\u00f5es para nutri\u00e7\u00e3o enteral e parenteral quando adquiridas por \u00f3rg\u00e3os da administra\u00e7\u00e3o p\u00fablica (Anexo VI)",

@@ -147,13 +147,13 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 	
     @Test
     public void deveRepresentarADescricaoCorretamente() {
-    	Assert.assertEquals("Situações tributadas integralmente pelo IBS e CBS.", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000001.getDescricao());
+    	Assert.assertEquals("Situações tributadas integralmente pelo IBS e CBS", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000001.getDescricao());
     	Assert.assertEquals("Exploração de via", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000002.getDescricao());
     	Assert.assertEquals("Regime automotivo - projetos incentivados (art. 311)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000003.getDescricao());
     	Assert.assertEquals("Regime automotivo - projetos incentivados (art. 312)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_000004.getDescricao());
     	Assert.assertEquals("Operações do FGTS não realizadas pela Caixa Econômica Federal", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_010001.getDescricao());
     	Assert.assertEquals("Operações do serviço financeiro", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_010002.getDescricao());
-    	Assert.assertEquals("Planos de assistência funerária.", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_011001.getDescricao());
+    	Assert.assertEquals("Planos de assistência funerária", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_011001.getDescricao());
     	Assert.assertEquals("Planos de assistência à saúde", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_011002.getDescricao());
     	Assert.assertEquals("Intermediação de planos de assistência à saúde", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_011003.getDescricao());
     	Assert.assertEquals("Concursos e prognósticos", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_011004.getDescricao());
@@ -161,13 +161,13 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
     	Assert.assertEquals("Aquisições realizadas entre empresas autorizadas a operar em zonas de processamento de exportação", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200001.getDescricao());
     	Assert.assertEquals("Fornecimento ou importação para produtor rural não contribuinte ou TAC", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200002.getDescricao());
     	Assert.assertEquals("Vendas de produtos destinados à alimentação humana (Anexo I)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200003.getDescricao());
-    	Assert.assertEquals("Venda de dispositivos médicos com a especificação das respectivas classificações da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025.", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200004.getDescricao());
-    	Assert.assertEquals("Venda de dispositivos médicos adquiridos por órgãos da administração pública (Anexo IV).", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200005.getDescricao());
-    	Assert.assertEquals("Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XII).", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200006.getDescricao());
-    	Assert.assertEquals("Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII).", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200007.getDescricao());
-    	Assert.assertEquals("Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V).", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200008.getDescricao());
-    	Assert.assertEquals("Fornecimento de medicamentos (Anexo XIV)." , NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200009.getDescricao());
-    	Assert.assertEquals("Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública.", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200010.getDescricao());
+    	Assert.assertEquals("Venda de dispositivos médicos com a especificação das respectivas classificações da NCM/SH previstas no Anexo XII da Lei Complementar nº 214, de 2025, observado o art. 144 da Lei Complementar nº 214, de 2025", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200004.getDescricao());
+    	Assert.assertEquals("Venda de dispositivos médicos adquiridos por órgãos da administração pública (Anexo IV)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200005.getDescricao());
+    	Assert.assertEquals("Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XII)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200006.getDescricao());
+    	Assert.assertEquals("Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200007.getDescricao());
+    	Assert.assertEquals("Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200008.getDescricao());
+    	Assert.assertEquals("Fornecimento de medicamentos (Anexo XIV)" , NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200009.getDescricao());
+    	Assert.assertEquals("Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200010.getDescricao());
     	Assert.assertEquals("Fornecimento das composições para nutrição enteral e parenteral quando adquiridas por órgãos da administração pública (Anexo VI)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200011.getDescricao());
     	Assert.assertEquals("Situação de emergência de saúde pública reconhecida pelo Poder público (Anexo XIV)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200012.getDescricao());
     	Assert.assertEquals("Fornecimento de tampões higiênicos, absorventes higiênicos internos ou externos", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_200013.getDescricao());
