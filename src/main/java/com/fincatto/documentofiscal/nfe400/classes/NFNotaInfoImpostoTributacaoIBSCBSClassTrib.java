@@ -50,6 +50,7 @@ import java.math.BigDecimal;
  */
 public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 
+	// CST_000
 	CST_000001("000001", CST_000, "Situa\u00e7\u00f5es tributadas integralmente pelo IBS e CBS",
 			null, PADRAO, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
   
