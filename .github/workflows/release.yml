@@ -36,8 +36,8 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.OSSRH_USERNAME }}
-          nexus_password: ${{ secrets.OSSRH_TOKEN }}
+          nexus_username: ${{ secrets.OSS_SONATYPE_TOKEN_USER }}
+          nexus_password: ${{ secrets.OSS_SONATYPE_TOKEN_PASSWORD }}
           maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
 
       - name: Release GitHub package
