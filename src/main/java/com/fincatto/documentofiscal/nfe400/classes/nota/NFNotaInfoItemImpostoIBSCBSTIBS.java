@@ -1,10 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import java.math.BigDecimal;
-import org.simpleframework.xml.Element;
 
 // UB15
 public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
@@ -102,7 +104,9 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   // UB17
   public class GIBSUF extends DFBase {
 
-    @Element(required = true)
+    private static final long serialVersionUID = 6093564886756420261L;
+
+	@Element(required = true)
     private String pIBSUF; // UB18
 
     @Element(required = false)
@@ -179,6 +183,9 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     @Element(required = true)
     private String vIBSMun; // UB54
 
+    @Element(required = true)
+    private String vIBS; // UB54a
+
     public String getPIBSMun() {
       return pIBSMun;
     }
@@ -218,6 +225,14 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     public void setVIBSMun(BigDecimal vIBSMun) {
       this.vIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSMun, "Alíquota do IBS de competência do Município");
     }
+
+	public String getVIBS() {
+		return vIBS;
+	}
+
+	public void setVIBS(BigDecimal vIBS) {
+		this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
+	}
 
   }
 
@@ -434,71 +449,71 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     private static final long serialVersionUID = -366528394939456794L;
 
     @Element(required = true)
-    private String pIBSUF; // UB82b
+    private String pAliqIBSUF; // UB82b
 
     @Element(required = true)
-    private String vIBSUF; // UB82c
+    private String vTribIBSUF; // UB82c
 
     @Element(required = true)
-    private String pIBSMun; // UB82d
+    private String pAliqIBSMun; // UB82d
 
     @Element(required = true)
-    private String vIBSMun; // UB82e
+    private String vTribIBSMun; // UB82e
 
     @Element(required = true)
-    private String pCBS; // UB82f
+    private String pAliqCBS; // UB82f
 
     @Element(required = true)
-    private String vCBS; // UB82g
+    private String vTribCBS; // UB82g
 
-    public String getPIBSUF() {
-      return pIBSUF;
-    }
+	public String getPAliqIBSUF() {
+		return pAliqIBSUF;
+	}
 
-    public void setPIBSUF(BigDecimal pIBSUF) {
-      this.pIBSUF = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pIBSUF, "Alíquota do IBS de competência do Estado");
-    }
+	public void setPAliqIBSUF(BigDecimal pAliqIBSUF) {
+		this.pAliqIBSUF = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqIBSUF, "Alíquota do IBS de competência do Estado");
+	}
 
-    public String getVIBSUF() {
-      return vIBSUF;
-    }
+	public String getVTribIBSUF() {
+		return vTribIBSUF;
+	}
 
-    public void setVIBSUF(BigDecimal vIBSUF) {
-      this.vIBSUF = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSUF, "Valor do Tributo do IBS da UF calculado");
-    }
+	public void setVTribIBSUF(BigDecimal vTribIBSUF) {
+		this.vTribIBSUF = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribIBSUF, "Valor do Tributo do IBS da UF calculado");
+	}
 
-    public String getPIBSMun() {
-      return pIBSMun;
-    }
+	public String getPAliqIBSMun() {
+		return pAliqIBSMun;
+	}
 
-    public void setPIBSMun(BigDecimal pIBSMun) {
-      this.pIBSMun = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pIBSMun, "Alíquota do IBS de competência do Município");
-    }
+	public void setPAliqIBSMun(BigDecimal pAliqIBSMun) {
+		this.pAliqIBSMun = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqIBSMun, "Alíquota do IBS de competência do Município");
+	}
 
-    public String getVIBSMun() {
-      return vIBSMun;
-    }
+	public String getVTribIBSMun() {
+		return vTribIBSMun;
+	}
 
-    public void setVIBSMun(BigDecimal vIBSMun) {
-      this.vIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSMun, "Valor do Tributo do IBS do Município calculado");
-    }
+	public void setVTribIBSMun(BigDecimal vTribIBSMun) {
+		this.vTribIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribIBSMun, "Valor do Tributo do IBS do Município calculado");
+	}
 
-    public String getPCBS() {
-      return pCBS;
-    }
+	public String getPAliqCBS() {
+		return pAliqCBS;
+	}
 
-    public void setPCBS(BigDecimal pCBS) {
-      this.pCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pCBS, "Alíquota da CBS ");
-    }
+	public void setPAliqCBS(BigDecimal pAliqCBS) {
+		this.pAliqCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqCBS, "Alíquota da CBS ");
+	}
 
-    public String getVCBS() {
-      return vCBS;
-    }
+	public String getVTribCBS() {
+		return vTribCBS;
+	}
 
-    public void setVCBS(BigDecimal vCBS) {
-      this.vCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCBS, "Valor do Tributo da CBS calculado");
-    }
-
+	public void setVTribCBS(BigDecimal vTribCBS) {
+		this.vTribCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribCBS, "Valor do Tributo da CBS calculado");
+	}
+    
   }
 
 // UB21 // UB40
