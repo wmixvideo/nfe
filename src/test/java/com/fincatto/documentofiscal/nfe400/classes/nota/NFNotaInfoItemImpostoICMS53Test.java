@@ -29,7 +29,7 @@ public class NFNotaInfoItemImpostoICMS53Test {
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS53 icms53 = new NFNotaInfoItemImpostoICMS53();
         icms53.setPercentualAliquota(new BigDecimal("99.99"));
-        icms53.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COM_RECOLHIMENTO_DIFERIDO);
+        icms53.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_53);
         icms53.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms53.setValorOperacao(new BigDecimal("999999999999.99"));
         icms53.toString();

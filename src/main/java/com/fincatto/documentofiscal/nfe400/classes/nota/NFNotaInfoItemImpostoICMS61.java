@@ -31,7 +31,7 @@ public class NFNotaInfoItemImpostoICMS61 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COBRADA_ANTERIORMENTE)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_61)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS61 ");
         }
         this.situacaoTributaria = situacaoTributaria;

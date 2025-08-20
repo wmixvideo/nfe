@@ -43,7 +43,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
@@ -60,7 +60,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -77,7 +77,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -94,7 +94,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -111,7 +111,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -128,7 +128,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -163,7 +163,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
         icms20.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
@@ -180,7 +180,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
         icms20.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
@@ -197,7 +197,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setOrigem(NFOrigem.NACIONAL);
         icms20.setPercentualAliquota(new BigDecimal("99.99"));
         icms20.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+        icms20.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_20);
         icms20.setValorBCICMS(new BigDecimal("999999999999.99"));
         icms20.setValorTributo(new BigDecimal("999999999999.99"));
         icms20.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
@@ -206,7 +206,7 @@ public class NFNotaInfoItemImpostoICMS20Test {
         icms20.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
         icms20.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS20><orig>0</orig><CST>40</CST><modBC>1</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><vICMSDeson>999999999999.99</vICMSDeson><motDesICMS>9</motDesICMS></NFNotaInfoItemImpostoICMS20>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS20><orig>0</orig><CST>20</CST><modBC>1</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><vICMSDeson>999999999999.99</vICMSDeson><motDesICMS>9</motDesICMS></NFNotaInfoItemImpostoICMS20>";
         Assert.assertEquals(xmlEsperado, icms20.toString());
     }
 }
