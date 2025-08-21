@@ -28,7 +28,7 @@ public class NFNotaInfoItemImpostoICMSSN500Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemSNNulo() {
         final NFNotaInfoItemImpostoICMSSN500 icms500 = new NFNotaInfoItemImpostoICMSSN500();
-        icms500.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms500.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms500.setPercentualICMSSTRetido(new BigDecimal("99.99"));
         icms500.setPercentualICMSSTRetido(new BigDecimal("99.99"));
         icms500.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoICMSSN500Test {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMSSN500 icms500 = new NFNotaInfoItemImpostoICMSSN500();
         icms500.setOrigem(NFOrigem.NACIONAL);
-        icms500.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms500.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms500.setPercentualICMSSTRetido(new BigDecimal("99.99"));
         icms500.setValorICMSSubstituto(new BigDecimal("999999999999.99"));
         icms500.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
