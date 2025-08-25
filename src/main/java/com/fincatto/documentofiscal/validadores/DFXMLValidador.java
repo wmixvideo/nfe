@@ -28,7 +28,7 @@ public final class DFXMLValidador {
     }
 
     public static boolean valida400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_009o_NT2024_001_v100/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_010b_NT2025_002_v1.00/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -142,7 +142,7 @@ public final class DFXMLValidador {
     }
 
     private static boolean validaCTe400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_400/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_400_NT2025.001_RTC_1.05/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
@@ -223,6 +223,17 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaDistribuicaoCTe(arquivoXML, "distDFeInt_v1.00.xsd");
     }
 
+    private static boolean validaDistribuicaoMDFe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFeDistDFe_100/%s", xsd));
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
+        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+        return true;
+    }
+    public static boolean validaDistribuicaoMDFe(final String arquivoXML) throws IOException, SAXException, URISyntaxException {
+        return DFXMLValidador.validaDistribuicaoMDFe(arquivoXML, "distDFeInt_v1.00.xsd");
+    }
+    
     public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaDfe(arquivoXML, "distDFeInt_v1.01.xsd");
     }

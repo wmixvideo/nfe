@@ -41,6 +41,12 @@ public class NFNotaInfoItemImposto extends DFBase {
 
     @Element(name = "ICMSUFDest", required = false)
     private NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino;
+    
+    @Element(name = "IS", required = false)
+    private NFNotaInfoItemImpostoIS is; // UB01
+    
+    @Element(name = "IBSCBS", required = false)
+    private NFNotaInfoItemImpostoIBSCBS ibsCbs; // UB12
 
     public void setIcms(final NFNotaInfoItemImpostoICMS icms) {
         if (this.issqn != null) {
@@ -141,6 +147,22 @@ public class NFNotaInfoItemImposto extends DFBase {
 
     public void setIcmsUfDestino(final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino) {
         this.icmsUfDestino = icmsUfDestino;
+    }
+
+    public NFNotaInfoItemImpostoIS getIs() {
+        return is;
+    }
+
+    public void setIs(NFNotaInfoItemImpostoIS is) {
+        this.is = is;
+    }
+
+    public NFNotaInfoItemImpostoIBSCBS getIbsCbs() {
+        return ibsCbs;
+    }
+
+    public void setIbsCbs(NFNotaInfoItemImpostoIBSCBS ibsCbs) {
+        this.ibsCbs = ibsCbs;
     }
 
 }

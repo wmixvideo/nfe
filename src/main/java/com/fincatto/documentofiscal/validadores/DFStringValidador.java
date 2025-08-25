@@ -327,6 +327,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void exatamente14(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.validaTamanhoExato(string, 14, info);
+        }
+    }
+
     public static void codigoProdutoAnvisa(final String string, final String info) {
         if (string != null) {
             if (string.toUpperCase().matches("[A-Z]*")) {
@@ -526,6 +532,12 @@ public abstract class DFStringValidador {
     public static void tamanho100a600(final String string, final String info) {
         if (string != null) {
             DFStringValidador.intervalo(string, 100, 600, info);
+        }
+    }
+
+    public static void tamanho60a1000(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 60, 1000, info);
         }
     }
 

@@ -8,21 +8,23 @@ on:
     branches: [ master ]
 
 
-
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Maven package
-      run: mvn clean package --file pom.xml
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
 
-    - name: Coverage tests
-      run: mvn clean test jacoco:report coveralls:report --file pom.xml
+      - name: Maven package
+        run: mvn clean package --file pom.xml
+
+      - name: Coverage tests
+        run: mvn clean test jacoco:report coveralls:report --file pom.xml
