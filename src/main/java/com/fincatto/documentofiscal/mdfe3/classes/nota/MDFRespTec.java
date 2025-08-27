@@ -25,15 +25,20 @@ public class MDFRespTec {
 
     @Element(name = "CNPJ", required = true)
     private String cnpj;
-    @Element(required = true)
+    
+    @Element(name = "xContato", required = true)
     private String xContato;
-    @Element(required = true)
+    
+    @Element(name = "email", required = true)
     private String email;
-    @Element(required = true)
+    
+    @Element(name = "fone", required = true)
     private String fone;
-    @Element
+    
+    @Element(name = "idCSRT", required = false)
     private String idCSRT;
-    @Element
+    
+    @Element(name = "hashCSRT", required = false)
     private byte[] hashCSRT;
 
     /**

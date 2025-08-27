@@ -5,32 +5,33 @@ import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIC
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipoDeducaoIcms;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
-
 public class NFNotaInfoItemImpostoICMS20 extends DFBase {
+
     private static final long serialVersionUID = -7632059708755735047L;
-    
+
     @Element(name = "orig")
     private NFOrigem origem;
-    
+
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-    
+
     @Element(name = "modBC")
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
-    
+
     @Element(name = "pRedBC")
     private String percentualReducaoBC;
-    
+
     @Element(name = "vBC")
     private String valorBCICMS;
-    
+
     @Element(name = "pICMS")
     private String percentualAliquota;
-    
+
     @Element(name = "vICMS")
     private String valorTributo;
 
@@ -48,6 +49,9 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
 
     @Element(name = "motDesICMS", required = false)
     private NFNotaMotivoDesoneracaoICMS desoneracao;
+
+    @Element(name = "indDeduzDeson", required = false)
+    private NFTipoDeducaoIcms indicaDeduzDesoneracao;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -146,5 +150,13 @@ public class NFNotaInfoItemImpostoICMS20 extends DFBase {
 
     public String getValorFundoCombatePobreza() {
         return this.valorFundoCombatePobreza;
+    }
+
+    public NFTipoDeducaoIcms getIndicaDeduzDesoneracao() {
+        return indicaDeduzDesoneracao;
+    }
+
+    public void setIndicaDeduzDesoneracao(NFTipoDeducaoIcms indicaDeduzDesoneracao) {
+        this.indicaDeduzDesoneracao = indicaDeduzDesoneracao;
     }
 }

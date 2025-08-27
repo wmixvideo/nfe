@@ -1,7 +1,7 @@
 Nota Fiscal Eletrônica
 ===
 Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.nfe.fazenda.gov.br/portal/principal.aspx).<br/>
-[![Java CI](https://github.com/wmixvideo/nfe/workflows/Java%20CI/badge.svg)](https://github.com/wmixvideo/nfe/workflows/Java%20CI/badge.svg)
+[![Java CI](https://github.com/wmixvideo/nfe/workflows/Continuous%20Integration/badge.svg)](https://github.com/wmixvideo/nfe/workflows/Java%20CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/wmixvideo/nfe/badge.svg?branch=master)](https://coveralls.io/github/wmixvideo/nfe?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wmixvideo/nfe)](https://search.maven.org/artifact/com.github.wmixvideo/nfe)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
@@ -10,6 +10,8 @@ Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.n
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 
 Antes de submeter um pull request, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
+
+Possuímos um grupo de WhatsApp para discussões sobre o desenvolvimento da lib: https://chat.whatsapp.com/LFmqpkoiIYc6Zy3d4TnZGU
 
 ## Antes de usar
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
@@ -142,7 +144,7 @@ final NFEnviaEventoRetorno retorno = new WSFacade(config).corrigeNota(chaveDeAce
 #### Cancela nota
 Faça o cancelamento da nota através do facade:
 ```java
-final NFEnviaEventoRetorno retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
+final NFCancelamentoRetornoDados retorno = new WSFacade(config).cancelaNota(chaveDeAcessoDaNota, protocoloDaNota, motivoCancelaamento);
 ```
 
 #### Consulta nota por chave de acesso ou NSU

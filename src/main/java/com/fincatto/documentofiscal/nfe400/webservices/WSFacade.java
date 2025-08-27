@@ -13,10 +13,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetorno
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetornoDados;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
@@ -227,7 +224,7 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFEnviaEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+    public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 

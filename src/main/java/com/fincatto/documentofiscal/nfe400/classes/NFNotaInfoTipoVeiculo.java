@@ -1,7 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import org.apache.commons.lang3.StringUtils;
-
 public enum NFNotaInfoTipoVeiculo {
 
     CICLOMOTO("2", "Ciclomotor"),
@@ -26,8 +24,6 @@ public enum NFNotaInfoTipoVeiculo {
     UTILITARIO("25","Utilit\u00e1rio"),
     MOTOR_CASA("26","Motor Casa");
 
-
-
     private final String codigo;
     private final String descricao;
 
@@ -41,8 +37,13 @@ public enum NFNotaInfoTipoVeiculo {
     }
 
     public static NFNotaInfoTipoVeiculo valueOfCodigo(final String codigo) {
+        if (codigo == null || codigo.isEmpty()) {
+            return null;
+        }
+
+        final int codigoAsInt = Integer.parseInt(codigo);
         for (final NFNotaInfoTipoVeiculo tipoVeiculo : NFNotaInfoTipoVeiculo.values()) {
-            if (tipoVeiculo.getCodigo().equals(codigo)) {
+            if (Integer.parseInt(tipoVeiculo.getCodigo()) == codigoAsInt) {
                 return tipoVeiculo;
             }
         }

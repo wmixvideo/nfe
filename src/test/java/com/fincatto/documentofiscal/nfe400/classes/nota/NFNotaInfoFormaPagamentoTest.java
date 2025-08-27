@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.math.BigDecimal;
 
 public class NFNotaInfoFormaPagamentoTest {
 
@@ -52,7 +53,7 @@ public class NFNotaInfoFormaPagamentoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoFormaPagamento><indPag>1</indPag><tPag>03</tPag><vPag>999999999999.99</vPag><card><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut></card></NFNotaInfoFormaPagamento>";
+        final String xmlEsperado = "<NFNotaInfoFormaPagamento><indPag>1</indPag><tPag>03</tPag><vPag>999999999999.99</vPag><card><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut><CNPJReceb>12345678901234</CNPJReceb><idTermPag>01234567890123456789</idTermPag></card></NFNotaInfoFormaPagamento>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoFormaPagamento().toString());
     }
 
@@ -94,4 +95,15 @@ public class NFNotaInfoFormaPagamentoTest {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
         formaPagamento.setDescricaoMeioPagamento("Descricao com mais de 60 carecteres descricao com mais de 60 carecteres");
     }
+
+    @Test
+    public void deveGerarXMLComOsDadosTransacionaisDoPagamento() {
+        final String xmlEsperado = "<NFNotaInfoFormaPagamento><indPag>1</indPag><tPag>03</tPag><vPag>999999999999.99</vPag><dPag>2024-06-27</dPag><CNPJPag>72834992000163</CNPJPag><UFPag>SC</UFPag><card><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut><CNPJReceb>12345678901234</CNPJReceb><idTermPag>01234567890123456789</idTermPag></card></NFNotaInfoFormaPagamento>";
+        final NFNotaInfoFormaPagamento formaPagamento = FabricaDeObjetosFake.getNFNotaInfoFormaPagamento();
+        formaPagamento.setDataPagamento(LocalDate.of(2024, 6, 27));
+        formaPagamento.setCnpjTransacionalPagamento("72834992000163");
+        formaPagamento.setUfTransacionalPagamento(DFUnidadeFederativa.SC);
+        Assert.assertEquals(xmlEsperado, formaPagamento.toString());
+    }
+
 }

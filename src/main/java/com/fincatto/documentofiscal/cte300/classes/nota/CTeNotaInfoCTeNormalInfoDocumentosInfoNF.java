@@ -11,6 +11,7 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import org.simpleframework.xml.ElementList;
 
 /**
  * @author Caio
@@ -71,10 +72,10 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNF extends DFBase {
     @Element(name = "dPrev", required = false)
     private LocalDate dataPrevistaEntrega;
 
-    @Element(name = "infUnidCarga", required = false)
+    @ElementList(name = "infUnidCarga", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga> infoUnidadeCarga;
 
-    @Element(name = "infUnidTransp", required = false)
+    @ElementList(name = "infUnidTransp", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeTransporte> infoUnidadeTransporte;
 
     public CTeNotaInfoCTeNormalInfoDocumentosInfoNF() {

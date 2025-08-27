@@ -41,7 +41,7 @@ public class NFNotaInfoItemImpostoICMS00 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_00)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS00 ");
         }
         this.situacaoTributaria = situacaoTributaria;

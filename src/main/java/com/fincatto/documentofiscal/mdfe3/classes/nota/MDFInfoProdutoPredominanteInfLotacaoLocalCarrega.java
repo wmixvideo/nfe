@@ -47,6 +47,5 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalCarrega extends DFBase {
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
-    
-    
+
 }

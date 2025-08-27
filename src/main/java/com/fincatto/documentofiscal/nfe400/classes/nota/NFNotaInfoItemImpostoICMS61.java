@@ -31,7 +31,7 @@ public class NFNotaInfoItemImpostoICMS61 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COBRADA_ANTERIORMENTE)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_61)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS61 ");
         }
         this.situacaoTributaria = situacaoTributaria;
@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoICMS61 extends DFBase {
     }
 
     public void setValorTributo(final BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS retido anteriormente");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS retido anteriormente");
     }
 
     public NFOrigem getOrigem() {

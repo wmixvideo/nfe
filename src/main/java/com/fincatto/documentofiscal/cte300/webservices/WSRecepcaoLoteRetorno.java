@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.consulta.CTeConsultaRecLoteRet;
@@ -34,7 +34,7 @@ class WSRecepcaoLoteRetorno implements DFLog {
     private OMElement efetuaConsulta(final OMElement omElement) throws RemoteException {
         final CteRetRecepcaoStub.CteCabecMsg cabec = new CteRetRecepcaoStub.CteCabecMsg();
         cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(CTeConfig.VERSAO);
+        cabec.setVersaoDados("3.00");
         
         final CteRetRecepcaoStub.CteCabecMsgE cabecE = new CteRetRecepcaoStub.CteCabecMsgE();
         cabecE.setCteCabecMsg(cabec);
@@ -55,7 +55,7 @@ class WSRecepcaoLoteRetorno implements DFLog {
         final CTeConsultaRecLote consulta = new CTeConsultaRecLote();
         consulta.setNumeroRecebimento(numeroRecibo);
         consulta.setAmbiente(this.config.getAmbiente());
-        consulta.setVersao(CTeConfig.VERSAO);
+        consulta.setVersao("3.00");
         return consulta;
     }
 }

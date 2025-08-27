@@ -1,9 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices.consultacadastro;
 
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-
 public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
     protected org.apache.axis2.description.AxisOperation[] _operations;
@@ -457,11 +453,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localConsultaCadastroResult = param;
         }
 
-        @Override
-        public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
-            return null;
-        }
-
         /**
          * @param parentQName
          * @param factory
@@ -857,11 +848,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
          */
         public void setExtraElement(org.apache.axiom.om.OMElement param) {
             this.localExtraElement = param;
-        }
-
-        @Override
-        public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
-            return null;
         }
 
         /**
@@ -1265,11 +1251,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
             this.localExtraElement = param;
         }
 
-        @Override
-        public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
-            return null;
-        }
-
         /**
          * @param parentQName
          * @param factory
@@ -1658,11 +1639,6 @@ public class MTCadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
         public void setNfeDadosMsg(NfeDadosMsg_type0 param) {
             localNfeDadosMsgTracker = param != null;
             this.localNfeDadosMsg = param;
-        }
-
-        @Override
-        public XMLStreamReader getPullParser(QName adbBeanQName) throws XMLStreamException {
-            return null;
         }
 
         /**

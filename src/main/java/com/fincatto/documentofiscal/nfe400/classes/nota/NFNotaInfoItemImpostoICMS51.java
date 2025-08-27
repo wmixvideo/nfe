@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
 
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -25,6 +26,8 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
 	@Element(name = "pRedBC", required = false)
 	private String percentualReducaoBC;
 
+	@Element(name = "cBenefRBC", required = false)
+	private String codigoBeneficioFiscalRBC;
 	@Element(name = "vBC", required = false)
 	private String valorBCICMS;
 
@@ -60,6 +63,10 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
 
 	@Element(name = "vFCPEfet", required = false)
 	private String valorEfetivoFundoCombatePobreza;
+
+
+
+
 
 	public String getPercentualDiferimentoFundoCombatePobreza() {
 		return percentualDiferimentoFundoCombatePobreza;
@@ -155,6 +162,10 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
 																						 "Valor fundo combate pobreza");
 	}
 
+	public void setCodigoBeneficioFiscalRBC(final String codigoBeneficioFiscalRBC) {
+		this.codigoBeneficioFiscalRBC = DFStringValidador.validador(codigoBeneficioFiscalRBC, "Codigo Beneficio Fiscal RBC", 10, false, false);
+	}
+
 	public NFOrigem getOrigem() {
 		return this.origem;
 	}
@@ -206,4 +217,6 @@ public class NFNotaInfoItemImpostoICMS51 extends DFBase {
 	public String getValorFundoCombatePobreza() {
 		return this.valorFundoCombatePobreza;
 	}
+
+	public String getCodigoBeneficioFiscalRBC() { return this.codigoBeneficioFiscalRBC;	}
 }

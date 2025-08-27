@@ -19,10 +19,10 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
     @Element(name = "chCte")
     private String chaveCTe;
     
-    @Element(name = "refCteAnu")
+    @Element(name = "refCteAnu", required = false)
     private String chaveCTeAnulacao;
     
-    @Element(name = "tomaICMS")
+    @Element(name = "tomaICMS", required = false)
     private CTeNotaInfoCTeNormalInfoCTeSubstituicaoTomadorICMS tomadorICMS;
 
     @Element(name = "indAlteraToma", required = false)

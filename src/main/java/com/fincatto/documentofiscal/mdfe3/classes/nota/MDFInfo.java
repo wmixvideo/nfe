@@ -206,4 +206,5 @@ public class MDFInfo extends DFBase {
     public void setInfSolicNFF(MDFInfSolicNFF infSolicNFF) {
         this.infSolicNFF = infSolicNFF;
     }
+
 }

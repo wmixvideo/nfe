@@ -25,13 +25,13 @@ public class MDFInfoProdutoPredominante extends DFBase {
     @Element(name="xProd", required = true)
     private String xProd;
     
-    @Element(name = "cEAN")
+    @Element(name = "cEAN", required = false)
     private String cEAN;
     
-    @Element(name = "NCM")
+    @Element(name = "NCM", required = false)
     private String NCM;
     
-    @Element(name = "infLotacao")
+    @Element(name = "infLotacao", required = false)
     private MDFInfoProdutoPredominanteInfLotacao infLotacao;
 
     public MDFTipoCargaProdutoPredominante getTpCarga() {

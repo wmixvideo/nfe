@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLote;
 import com.fincatto.documentofiscal.cte300.classes.enviolote.CTeEnvioLoteRetorno;
@@ -43,7 +43,7 @@ class WSRecepcaoLote implements DFLog {
     
     private CTeEnvioLoteRetorno comunicaLote(final String loteAssinadoXml) throws Exception {
         //valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
-        DFXMLValidador.validaLoteCTe(loteAssinadoXml);
+        DFXMLValidador.validaLoteCTe300(loteAssinadoXml);
         
         //envia o lote para a sefaz
         final OMElement omElement = this.cteToOMElement(loteAssinadoXml);
@@ -68,7 +68,7 @@ class WSRecepcaoLote implements DFLog {
     private CteCabecMsgE getCabecalhoSOAP() {
         final CteCabecMsg cabecalho = new CteCabecMsg();
         cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(CTeConfig.VERSAO);
+        cabecalho.setVersaoDados("3.00");
         final CteCabecMsgE cabecalhoSOAP = new CteCabecMsgE();
         cabecalhoSOAP.setCteCabecMsg(cabecalho);
         return cabecalhoSOAP;

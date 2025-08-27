@@ -13,7 +13,7 @@ public class NFDistribuicaoDocumentoZip extends DFBase {
     @Text
     private String value;
 
-    @Attribute(name = "NSU")
+    @Attribute(name = "NSU", required = false)
     private String nsu;
 
     @Attribute(name = "schema")

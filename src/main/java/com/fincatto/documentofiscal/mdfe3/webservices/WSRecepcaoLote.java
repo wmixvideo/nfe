@@ -18,6 +18,11 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
 import java.util.Iterator;
 
+/**
+ * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+ * @author ediva
+ */
+@Deprecated
 class WSRecepcaoLote implements DFLog {
     
     private static final String MDFE_ELEMENTO = "MDFe";
@@ -27,6 +32,14 @@ class WSRecepcaoLote implements DFLog {
         this.config = config;
     }
     
+    /**
+     * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+     * 
+     * @param mdfeRecepcaoLote
+     * @return
+     * @throws Exception 
+     */
+    @Deprecated
     public MDFEnvioLoteRetornoDados envioRecepcao(MDFEnvioLote mdfeRecepcaoLote) throws Exception {
         //assina o lote
         final String documentoAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(mdfeRecepcaoLote.toString(), "infMDFe");

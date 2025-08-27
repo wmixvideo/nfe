@@ -1,24 +1,31 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFProtocoloEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
+import com.fincatto.documentofiscal.utils.DFPersister;
 
 class WSCancelamento implements DFLog {
     
@@ -32,17 +39,28 @@ class WSCancelamento implements DFLog {
     WSCancelamento(final NFeConfig config) {
         this.config = config;
     }
-    
+
     NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
-    
-    NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
+
+    NFCancelamentoRetornoDados cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
         final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+
+        NFEnviaEventoCancelamento eventoAssinado = new DFPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
+
+		final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Arrays.asList() : retorno.getEventoRetorno();
+
+        NFProtocoloEventoCancelamento protocolo = new NFProtocoloEventoCancelamento();
+        protocolo.setVersao("1.00");
+        protocolo.setEvento(eventoAssinado.getEvento().stream().findFirst().orElse(null));
+		protocolo.setEventoRetorno(eventoRetorno.stream().findFirst().orElse(null));
+
+        return new NFCancelamentoRetornoDados(retorno, protocolo);
     }
     
     private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {

@@ -26,6 +26,13 @@ public enum MDFAutorizador3 {
                     ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx"
                     : "https://mdfe.svrs.rs.gov.br/ws/MDFerecepcao/MDFeRecepcao.asmx";
         }
+        
+        @Override
+        public String getMDFeRecepcaoSinc(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente)
+                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx"
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeRecepcaoSinc/MDFeRecepcaoSinc.asmx";
+        }
 
         @Override
         public String getMDFeRetornoRecepcao(DFAmbiente ambiente) {
@@ -63,12 +70,21 @@ public enum MDFAutorizador3 {
         }
 
         @Override
+        public String getMDFeDistribuicao(DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente)
+                    ? "https://mdfe-homologacao.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx"
+                    : "https://mdfe.svrs.rs.gov.br/ws/MDFeDistribuicaoDFe/MDFeDistribuicaoDFe.asmx";
+        }
+
+        @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.RS};
         }
     };
 
     public abstract String getMDFeRecepcao(final DFAmbiente ambiente);
+    
+    public abstract String getMDFeRecepcaoSinc(final DFAmbiente ambiente);
 
     public abstract String getMDFeRetornoRecepcao(final DFAmbiente ambiente);
 
@@ -79,6 +95,8 @@ public enum MDFAutorizador3 {
     public abstract String getMDFeConsulta(final DFAmbiente ambiente);
 
     public abstract String getMDFeConsNaoEnc(final DFAmbiente ambiente);
+    
+    public abstract String getMDFeDistribuicao(final DFAmbiente ambiente);
 
     public abstract DFUnidadeFederativa[] getUFs();
 

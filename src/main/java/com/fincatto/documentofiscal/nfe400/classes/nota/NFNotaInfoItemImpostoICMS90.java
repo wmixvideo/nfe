@@ -3,16 +3,16 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
-
 public class NFNotaInfoItemImpostoICMS90 extends DFBase {
+
     private static final long serialVersionUID = 5614463736855881160L;
-    
+
     @Element(name = "orig")
     private NFOrigem origem;
-    
+
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
 
@@ -78,6 +78,9 @@ public class NFNotaInfoItemImpostoICMS90 extends DFBase {
 
     @Element(name = "motDesICMSST", required = false)
     private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST;
+
+    @Element(name = "indDeduzDeson", required = false)
+    private NFTipoDeducaoIcms indicaDeduzDesoneracao;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -267,5 +270,13 @@ public class NFNotaInfoItemImpostoICMS90 extends DFBase {
 
     public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoICMSST() {
         return motivoDesoneracaoICMSST;
+    }
+
+    public NFTipoDeducaoIcms getIndicaDeduzDesoneracao() {
+        return indicaDeduzDesoneracao;
+    }
+
+    public void setIndicaDeduzDesoneracao(NFTipoDeducaoIcms indicaDeduzDesoneracao) {
+        this.indicaDeduzDesoneracao = indicaDeduzDesoneracao;
     }
 }

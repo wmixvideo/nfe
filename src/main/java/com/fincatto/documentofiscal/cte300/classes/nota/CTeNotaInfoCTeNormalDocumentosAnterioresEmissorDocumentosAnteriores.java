@@ -26,10 +26,10 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
     @Element(name = "CPF", required = false)
     private String cpf;
     
-    @Element(name = "IE")
+    @Element(name = "IE", required = false)
     private String inscricaoEstadual;
     
-    @Element(name = "UF")
+    @Element(name = "UF", required = false)
     private String siglaUF;
     
     @Element(name = "xNome")

@@ -1,7 +1,8 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 /**
  * Created by Eldevan Nery Junior on 01/11/17.
@@ -11,6 +12,12 @@ import org.simpleframework.xml.Element;
  */
 public class MDFInfoModalRodoviarioInfContratante {
 
+    /**
+     * <p>Nome do contratente do serviço.</p>
+     */
+    @Element(name = "xNome", required = false)
+    private String nome;
+	
     /**
      * <p>Número do CPF do contratente do serviço.</p>
      */
@@ -29,6 +36,15 @@ public class MDFInfoModalRodoviarioInfContratante {
     @Element(name = "idEstrangeiro", required = false)
     private String idEstrangeiro;
 
+    public String getNome() {
+		return nome;
+	}
+    
+    public void setNome(String nome) {
+    	DFStringValidador.validaIntervalo(nome, 2, 60, "Nome");
+		this.nome = nome;
+	}
+    
     public String getCpf() {
         return cpf;
     }

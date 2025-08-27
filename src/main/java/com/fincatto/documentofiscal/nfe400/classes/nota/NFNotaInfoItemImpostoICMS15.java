@@ -47,7 +47,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_15)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS15 ");
         }
         this.situacaoTributaria = situacaoTributaria;
@@ -62,7 +62,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setValorTributo(BigDecimal valorTributo) {
-        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "Valor do ICMS próprio");
+        this.valorTributo = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributo, "ICMS próprio");
     }
 
     public void setQuantidadeBaseCalculoTributadaSujeitaRetencao(BigDecimal quantidadeBaseCalculoTributadaSujeitaRetencao) {
@@ -74,7 +74,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setValorTributoRetencao(BigDecimal valorTributoRetencao) {
-        this.valorTributoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoRetencao, "Valor do ICMS com retenção");
+        this.valorTributoRetencao = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTributoRetencao, "ICMS com retenção");
     }
 
     public void setPercentualReducaoAliquota(BigDecimal percentualReducaoAliquota) {

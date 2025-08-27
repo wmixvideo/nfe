@@ -20,7 +20,7 @@ import java.util.List;
  */
 class WSIncluirDFe implements DFLog {
 
-    private static final String DESCRICAO_EVENTO = "Inclusao de DF-e";
+    private static final String DESCRICAO_EVENTO = "Inclusao DF-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_ENCERRAMENTO = "110115";
     private final MDFeConfig config;

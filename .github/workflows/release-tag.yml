@@ -2,7 +2,7 @@ name: "Release Tag"
 
 on:
   workflow_run:
-    workflows: ["Release Master"]
+    workflows: [ "Release Master" ]
     types:
       - completed
 
@@ -10,29 +10,29 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: 'Get Previous tag'
         id: previoustag
         uses: WyriHaximus/github-action-get-previous-tag@v1
 
-      - name: Install Java and Maven
-        uses: actions/setup-java@v3
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: 11
+          distribution: temurin
+          java-version: 21
 
-      - name: Generate jar
+      - name: Maven package
         run: mvn clean package -DskipTests
 
       - name: Generate zip
         run: |
           zip nfe.zip target/*.jar
 
-      - name: Create Release
+      - name: Create release
         id: create_release
         uses: actions/create-release@v1
         env:

@@ -41,7 +41,7 @@ public class CTeInfoEventoRetorno extends DFBase {
     @Element(name = "nSeqEvento", required = false)
     private Integer numeroSequencialEvento;
     
-    @Element(name = "dhRegEvento")
+    @Element(name = "dhRegEvento", required = false)
     private LocalDateTime dataHoraRegistro;
 
     @Element(name = "nProt", required = false)

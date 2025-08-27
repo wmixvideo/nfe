@@ -59,7 +59,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -77,7 +77,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -95,7 +95,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -113,7 +113,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -131,7 +131,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -149,7 +149,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaAplicavelCalculoCreditoSN(new BigDecimal("99.99"));
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
@@ -186,7 +186,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorBCFundoCombatePobrezaST(new BigDecimal("99999999999.99"));
@@ -204,7 +204,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorBCFundoCombatePobrezaST(new BigDecimal("99999999999.99"));
@@ -222,7 +222,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorBCFundoCombatePobrezaST(new BigDecimal("99999999999.99"));
@@ -240,7 +240,7 @@ public class NFNotaInfoItemImpostoICMSSN201Test {
         icms201.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
         icms201.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.IMUNE);
+        icms201.setSituacaoOperacaoSN(NFNotaSituacaoOperacionalSimplesNacional.CSOSN_300);
         icms201.setValorBCICMSST(new BigDecimal("99999999999.99"));
         icms201.setValorCreditoICMSSN(new BigDecimal("99999999999.99"));
         icms201.setValorICMSST(new BigDecimal("99999999999.99"));

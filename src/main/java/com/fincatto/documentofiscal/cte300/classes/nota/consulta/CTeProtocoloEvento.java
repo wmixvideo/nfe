@@ -10,6 +10,7 @@ import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 @Root(name = "procEventoCTe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
@@ -18,6 +19,15 @@ public class CTeProtocoloEvento extends DFBase {
     
     @Attribute(name = "versao")
     private String versao;
+
+    @Attribute(name = "ipTransmissor", required = false)
+    private String ipTransmissor;
+
+    @Attribute(name = "nPortaCon", required = false)
+    private String portaConexao;
+
+    @Attribute(name = "dhConexao", required = false)
+    private ZonedDateTime dataHoraConexao;
     
     @Element(name = "eventoCTe")
     private CTeEvento evento;
@@ -31,6 +41,30 @@ public class CTeProtocoloEvento extends DFBase {
 
     public void setVersao(final BigDecimal versao) {
         this.versao = DFBigDecimalValidador.tamanho4Com2CasasDecimais(versao, "Versao");
+    }
+
+    public String getIpTransmissor() {
+        return ipTransmissor;
+    }
+
+    public void setIpTransmissor(String ipTransmissor) {
+        this.ipTransmissor = ipTransmissor;
+    }
+
+    public String getPortaConexao() {
+        return portaConexao;
+    }
+
+    public void setPortaConexao(String portaConexao) {
+        this.portaConexao = portaConexao;
+    }
+
+    public ZonedDateTime getDataHoraConexao() {
+        return dataHoraConexao;
+    }
+
+    public void setDataHoraConexao(ZonedDateTime dataHoraConexao) {
+        this.dataHoraConexao = dataHoraConexao;
     }
 
     public CTeEvento getEvento() {

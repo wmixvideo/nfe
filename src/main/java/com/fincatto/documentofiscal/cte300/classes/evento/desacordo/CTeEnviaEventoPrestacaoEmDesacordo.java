@@ -3,7 +3,11 @@ package com.fincatto.documentofiscal.cte300.classes.evento.desacordo;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Namespace;
+import org.simpleframework.xml.Root;
 
+@Root(name = "evPrestDesacordo")
+@Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeEnviaEventoPrestacaoEmDesacordo extends CTeTipoEvento {
     private static final long serialVersionUID = -7261255586164368554L;
 

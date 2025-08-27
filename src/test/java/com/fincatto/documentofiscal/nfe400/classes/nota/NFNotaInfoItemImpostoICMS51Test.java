@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -59,7 +59,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMSDiferimento(new BigDecimal("999999999999.99"));
@@ -80,7 +80,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -100,7 +100,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -121,7 +121,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -142,7 +142,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -163,7 +163,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -206,7 +206,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
 		icms51.setValorICMSDiferimento(new BigDecimal("999999999999.99"));
@@ -227,7 +227,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
 		icms51.setValorICMSDiferimento(new BigDecimal("999999999999.99"));
@@ -248,7 +248,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setOrigem(NFOrigem.NACIONAL);
 		icms51.setPercentualICMS(new BigDecimal("99.99"));
 		icms51.setPercentualReducaoBC(new BigDecimal("99.99"));
-		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA);
+		icms51.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_51);
 		icms51.setValorBCICMS(new BigDecimal("999999999999.99"));
 		icms51.setValorICMS(new BigDecimal("999999999999.99"));
 		icms51.setPercentualDiferimento(new BigDecimal("99.9999"));
@@ -261,7 +261,7 @@ public class NFNotaInfoItemImpostoICMS51Test {
 		icms51.setValorDiferimentoFundoCombatePobreza(new BigDecimal("999999999999.99"));
 		icms51.setValorEfetivoFundoCombatePobreza(new BigDecimal("999999999999.99"));
 
-		final String xmlEsperado = "<NFNotaInfoItemImpostoICMS51><orig>0</orig><CST>40</CST><modBC>3</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMSOp>999999999999.99</vICMSOp><pDif>99.9999</pDif><vICMSDif>999999999999.99</vICMSDif><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><pFCPDif>99.99</pFCPDif><vFCPDif>999999999999.99</vFCPDif><vFCPEfet>999999999999.99</vFCPEfet></NFNotaInfoItemImpostoICMS51>";
+		final String xmlEsperado = "<NFNotaInfoItemImpostoICMS51><orig>0</orig><CST>51</CST><modBC>3</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMSOp>999999999999.99</vICMSOp><pDif>99.9999</pDif><vICMSDif>999999999999.99</vICMSDif><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><pFCPDif>99.99</pFCPDif><vFCPDif>999999999999.99</vFCPDif><vFCPEfet>999999999999.99</vFCPEfet></NFNotaInfoItemImpostoICMS51>";
 		Assert.assertEquals(xmlEsperado, icms51.toString());
 	}
 }

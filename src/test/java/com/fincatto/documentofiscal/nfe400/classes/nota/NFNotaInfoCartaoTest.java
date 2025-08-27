@@ -1,15 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFNotaInfoCartaoTest {
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroAutorizacaoOperacaoCartaoComTamanhoInvalido() {
-        new NFNotaInfoCartao().setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I901");
+        new NFNotaInfoCartao().setNumeroAutorizacaoOperacaoCartao("9ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019ItpS1hBk3TyhjUB3I9019It");
     }
 
     @Test(expected = IllegalStateException.class)
@@ -47,7 +46,7 @@ public class NFNotaInfoCartaoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoCartao><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut></NFNotaInfoCartao>";
+        final String xmlEsperado = "<NFNotaInfoCartao><tpIntegra>1</tpIntegra><CNPJ>12345678901234</CNPJ><tBand>02</tBand><cAut>9ItpS1hBk3TyhjUB3I90</cAut><CNPJReceb>12345678901234</CNPJReceb><idTermPag>01234567890123456789</idTermPag></NFNotaInfoCartao>";
         Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCartao().toString());
     }
 }

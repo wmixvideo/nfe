@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsulta;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;

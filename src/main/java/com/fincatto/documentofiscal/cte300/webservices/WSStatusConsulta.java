@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte300.CTeConfig;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServ;
 import com.fincatto.documentofiscal.cte300.classes.consultastatusservico.CTeConsStatServRet;
@@ -35,7 +35,7 @@ class WSStatusConsulta implements DFLog {
     private static CTeConsStatServ gerarDadosConsulta(final CTeConfig config) {
         final CTeConsStatServ consStatServ = new CTeConsStatServ();
         consStatServ.setAmbiente(config.getAmbiente());
-        consStatServ.setVersao(CTeConfig.VERSAO);
+        consStatServ.setVersao("3.00");
         consStatServ.setServico(WSStatusConsulta.NOME_SERVICO);
         return consStatServ;
     }
@@ -43,7 +43,7 @@ class WSStatusConsulta implements DFLog {
     private OMElement efetuaConsultaStatus(final OMElement omElement, final DFUnidadeFederativa unidadeFederativa) throws RemoteException {
         final CteStatusServicoStub.CteCabecMsg cabec = new CteStatusServicoStub.CteCabecMsg();
         cabec.setCUF(unidadeFederativa.getCodigoIbge());
-        cabec.setVersaoDados(CTeConfig.VERSAO);
+        cabec.setVersaoDados("3.00");
         
         final CteStatusServicoStub.CteCabecMsgE cabecEnv = new CteStatusServicoStub.CteCabecMsgE();
         cabecEnv.setCteCabecMsg(cabec);

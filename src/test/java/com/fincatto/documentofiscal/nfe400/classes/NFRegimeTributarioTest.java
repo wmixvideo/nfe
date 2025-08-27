@@ -29,5 +29,8 @@ public class NFRegimeTributarioTest {
     @Test
     public void deveRetornarStringficadoCorretamente() {
         Assert.assertEquals("1 - Simples nacional", NFRegimeTributario.SIMPLES_NACIONAL.toString());
+        Assert.assertEquals("2 - Simples nacional com excesso de sublimite da receita bruta", NFRegimeTributario.SIMPLES_NACIONAL_EXCESSO_RECEITA.toString());
+        Assert.assertEquals("3 - Regime normal", NFRegimeTributario.NORMAL.toString());
+        Assert.assertEquals("4 - Simples Nacional - Microempreendedor Individual - MEI", NFRegimeTributario.MEI.toString());
     }
 }

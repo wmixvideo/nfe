@@ -48,6 +48,9 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "cBenef", required = false)
     private String codigoBeneficioFiscalUF;
 
+    @Element(name = "gCred", required = false)
+    private NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido;
+
     @Element(name = "EXTIPI", required = false)
     private String extipi;
 
@@ -97,6 +100,9 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "indTot")
     private NFProdutoCompoeValorNota compoeValorNota;
 
+    @Element(name = "indBemMovelUsado", required = false)
+    private String indicadorBemMovelUsado;
+
     @ElementList(entry = "DI", inline = true, required = false)
     private List<NFNotaInfoItemProdutoDeclaracaoImportacao> declaracoesImportacao;
 
@@ -115,6 +121,12 @@ public class NFNotaInfoItemProduto extends DFBase {
     @ElementList(entry = "rastro", inline = true, required = false)
     private List<NFNotaInfoItemProdutoRastreabilidade> rastros;
 
+    @Element(name = "infProdNFF", required = false)
+    private NFNotaInfoItemProdutoInfoDetalhadaProdutoNFF informacaoDetalhadaProdutoNFF;
+
+    @Element(name = "infProdEmb", required = false)
+    private NFNotaInfoItemProdutoInfoDetalhadaEmbalagemProdutoNFF informacaoDetalhadaEmbalagemProdutoNFF;
+    
     @Element(name = "veicProd", required = false)
     private NFNotaInfoItemProdutoVeiculo veiculo;
 
@@ -238,8 +250,12 @@ public class NFNotaInfoItemProduto extends DFBase {
     public void setCompoeValorNota(final NFProdutoCompoeValorNota compoeValorNota) {
         this.compoeValorNota = compoeValorNota;
     }
+    
+    public void setIndicadorBemMovelUsado(String indicadorBemMovelUsado) {
+		this.indicadorBemMovelUsado = indicadorBemMovelUsado;
+	}
 
-    public void setDeclaracoesImportacao(final List<NFNotaInfoItemProdutoDeclaracaoImportacao> declaracoesImportacao) {
+	public void setDeclaracoesImportacao(final List<NFNotaInfoItemProdutoDeclaracaoImportacao> declaracoesImportacao) {
         this.declaracoesImportacao = declaracoesImportacao;
     }
 
@@ -327,6 +343,11 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public void setCodigoBeneficioFiscalUF(final String codigoBeneficioFiscalUF) {
         this.codigoBeneficioFiscalUF = DFStringValidador.validador(codigoBeneficioFiscalUF, "Codigo Beneficio Fiscal da UF", 10, false, false);
+    }
+
+    public void setGrupoCreditoPresumido(
+        final NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido) {
+        this.grupoCreditoPresumido = grupoCreditoPresumido;
     }
 
     public String getCodigo() {
@@ -437,7 +458,11 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.compoeValorNota;
     }
 
-    public List<NFNotaInfoItemProdutoDeclaracaoImportacao> getDeclaracoesImportacao() {
+    public String getIndicadorBemMovelUsado() {
+		return indicadorBemMovelUsado;
+	}
+
+	public List<NFNotaInfoItemProdutoDeclaracaoImportacao> getDeclaracoesImportacao() {
         return this.declaracoesImportacao;
     }
 
@@ -491,5 +516,9 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public List<NFNotaInfoItemProdutoRastreabilidade> getRastros() {
         return this.rastros;
+    }
+
+    public NFNotaInfoItemProdutoGrupoCreditoPresumido getGrupoCreditoPresumido() {
+        return grupoCreditoPresumido;
     }
 }

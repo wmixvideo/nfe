@@ -1,15 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.webservices.gerado;
 
-import org.apache.axiom.om.OMAttribute;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.databinding.utils.Constants;
+import java.lang.reflect.Constructor;
+import java.util.Vector;
 
 import javax.xml.namespace.QName;
-import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+
+import org.apache.axiom.om.OMAttribute;
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -265,19 +262,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final List<Object> elementList = new ArrayList<>();
-            final List<Object> attribList = new ArrayList<>();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
         public static class Factory {
 
             public static NfeDadosMsg parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
@@ -444,19 +428,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
             return prefix;
         }
 
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final List<Object> elementList = new ArrayList<>();
-            final List<Object> attribList = new ArrayList<>();
-            if (this.localExtraElement != null) {
-                elementList.add(org.apache.axis2.databinding.utils.Constants.OM_ELEMENT_KEY);
-                elementList.add(this.localExtraElement);
-            } else {
-                throw new org.apache.axis2.databinding.ADBException("extraElement cannot be null!!");
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-        }
-
         public static class Factory {
 
             public static NfeRecepcaoEventoResult parse(final javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
@@ -548,12 +519,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 throw new org.apache.axis2.databinding.ADBException("nfeCabecMsg cannot be null!");
             }
             this.localNfeCabecMsg.serialize(NfeCabecMsgE.MY_QNAME, xmlWriter);
-        }
-
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            // We can safely assume an element has only one type associated with it
-            return this.localNfeCabecMsg.getPullParser(NfeCabecMsgE.MY_QNAME);
         }
 
         public static class Factory {
@@ -774,33 +739,6 @@ public class RecepcaoEventoStub extends org.apache.axis2.client.Stub {
                 xmlWriter.setPrefix(prefix, namespace);
             }
             return prefix;
-        }
-
-        @Override
-        public javax.xml.stream.XMLStreamReader getPullParser(final javax.xml.namespace.QName qName) throws org.apache.axis2.databinding.ADBException {
-            final java.util.ArrayList<Serializable> elementList = new java.util.ArrayList<>();
-            final java.util.ArrayList<Object> attribList = new java.util.ArrayList<>();
-            if (this.localCUFTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "cUF"));
-                if (this.localCUF != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localCUF));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("cUF cannot be null!!");
-                }
-            }
-            if (this.localVersaoDadosTracker) {
-                elementList.add(new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento", "versaoDados"));
-                if (this.localVersaoDados != null) {
-                    elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(this.localVersaoDados));
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException("versaoDados cannot be null!!");
-                }
-            }
-            for (OMAttribute localExtraAttribute : this.localExtraAttributes) {
-                attribList.add(Constants.OM_ATTRIBUTE_KEY);
-                attribList.add(localExtraAttribute);
-            }
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
         }
 
         public static class Factory {

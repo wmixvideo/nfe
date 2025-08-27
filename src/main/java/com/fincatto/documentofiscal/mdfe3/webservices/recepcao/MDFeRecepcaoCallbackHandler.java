@@ -8,9 +8,12 @@
 package com.fincatto.documentofiscal.mdfe3.webservices.recepcao;
 
 /**
+ *  Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+ * 
  *  MDFeRecepcaoCallbackHandler Callback class, Users can extend this class and implement
  *  their own receiveResult and receiveError methods.
  */
+@Deprecated
 public abstract class MDFeRecepcaoCallbackHandler {
 
     protected final Object clientData;

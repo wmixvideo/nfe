@@ -21,7 +21,7 @@ public class NFNotaInfoItemImpostoICMS40Test {
         final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
         icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
         icms40.setOrigem(NFOrigem.NACIONAL);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
         icms40.toString();
     }
@@ -30,7 +30,7 @@ public class NFNotaInfoItemImpostoICMS40Test {
     public void devePermitirMotivoDesoneracaoICMSNulo() {
         final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
         icms40.setOrigem(NFOrigem.NACIONAL);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
         icms40.toString();
     }
@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoICMS40Test {
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
         icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
         icms40.toString();
     }
@@ -58,7 +58,7 @@ public class NFNotaInfoItemImpostoICMS40Test {
         final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
         icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
         icms40.setOrigem(NFOrigem.NACIONAL);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
         icms40.toString();
     }
@@ -68,10 +68,10 @@ public class NFNotaInfoItemImpostoICMS40Test {
         final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
         icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
         icms40.setOrigem(NFOrigem.NACIONAL);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
 
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS40><orig>0</orig><CST>20</CST><vICMSDeson>99999999999.99</vICMSDeson><motDesICMS>1</motDesICMS></NFNotaInfoItemImpostoICMS40>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS40><orig>0</orig><CST>40</CST><vICMSDeson>99999999999.99</vICMSDeson><motDesICMS>1</motDesICMS></NFNotaInfoItemImpostoICMS40>";
         Assert.assertEquals(xmlEsperado, icms40.toString());
     }
 }

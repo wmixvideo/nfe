@@ -3,31 +3,31 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.*;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import java.math.BigDecimal;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
-
 public class NFNotaInfoItemImpostoICMS70 extends DFBase {
+
     private static final long serialVersionUID = -5946992423885910972L;
-    
+
     @Element(name = "orig")
     private NFOrigem origem;
-    
+
     @Element(name = "CST")
     private NFNotaInfoImpostoTributacaoICMS situacaoTributaria;
-    
+
     @Element(name = "modBC")
     private NFNotaInfoItemModalidadeBCICMS modalidadeBCICMS;
-    
+
     @Element(name = "pRedBC")
     private String percentualReducaoBC;
-    
+
     @Element(name = "vBC")
     private String valorBC;
-    
+
     @Element(name = "pICMS")
     private String percentualAliquota;
-    
+
     @Element(name = "vICMS")
     private String valorTributo;
 
@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     @Element(name = "vFCP", required = false)
     private String valorFundoCombatePobreza;
-    
+
     @Element(name = "modBCST")
     private NFNotaInfoItemModalidadeBCICMSST modalidadeBCICMSST;
 
@@ -48,13 +48,13 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     @Element(name = "pRedBCST", required = false)
     private String percentualReducaoBCICMSST;
-    
+
     @Element(name = "vBCST")
     private String valorBCST;
-    
+
     @Element(name = "pICMSST")
     private String percentualAliquotaImpostoICMSST;
-    
+
     @Element(name = "vICMSST")
     private String valorICMSST;
 
@@ -78,6 +78,9 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
 
     @Element(name = "motDesICMSST", required = false)
     private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoICMSST;
+
+    @Element(name = "indDeduzDeson", required = false)
+    private NFTipoDeducaoIcms indicaDeduzDesoneracao;
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
@@ -268,4 +271,13 @@ public class NFNotaInfoItemImpostoICMS70 extends DFBase {
     public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoICMSST() {
         return motivoDesoneracaoICMSST;
     }
+
+    public NFTipoDeducaoIcms getIndicaDeduzDesoneracao() {
+        return indicaDeduzDesoneracao;
+    }
+
+    public void setIndicaDeduzDesoneracao(NFTipoDeducaoIcms indicaDeduzDesoneracao) {
+        this.indicaDeduzDesoneracao = indicaDeduzDesoneracao;
+    }
+    
 }

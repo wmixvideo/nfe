@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte300.classes.*;
 import com.fincatto.documentofiscal.cte300.classes.nota.*;
 

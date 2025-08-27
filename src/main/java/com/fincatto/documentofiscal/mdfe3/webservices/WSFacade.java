@@ -1,20 +1,5 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
-import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
-import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
-import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
-import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
-import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfPag;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfViagens;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
-import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -24,10 +9,31 @@ import java.security.cert.CertificateException;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.apache.commons.httpclient.protocol.Protocol;
+
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.mdfe.webservices.distribuicao.WSDistribuicaoMDFe;
+import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
+import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
+import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
+import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfPag;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfViagens;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsultaRetorno;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.envio.MDFEnvioRetornoDados;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
+import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
+import com.fincatto.documentofiscal.utils.DFSocketFactory;
+
 public class WSFacade {
 
     private final WSStatusConsulta wsStatusConsulta;
     private final WSRecepcaoLote wsRecepcaoLote;
+    private final WSRecepcaoSinc wsRecepcaoSinc;
     private final WSNotaConsulta wsNotaConsulta;
     private final WSCancelamento wsCancelamento;
     private final WSEncerramento wsEncerramento;
@@ -36,12 +42,14 @@ public class WSFacade {
     private final WSIncluirCondutor wsIncluirCondutor;
     private final WSIncluirDFe wsIncluirDFe;
     private final WSPagamentoTransporte wsPagamentoTransporte;
+    private final WSDistribuicaoMDFe wsDistribuicaoMDFe;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsRecepcaoLote = new WSRecepcaoLote(config);
+        this.wsRecepcaoSinc = new WSRecepcaoSinc(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCancelamento = new WSCancelamento(config);
@@ -51,9 +59,12 @@ public class WSFacade {
         this.wsIncluirCondutor = new WSIncluirCondutor(config);
         this.wsIncluirDFe = new WSIncluirDFe(config);
         this.wsPagamentoTransporte = new WSPagamentoTransporte(config);
+        this.wsDistribuicaoMDFe = new WSDistribuicaoMDFe(config);
     }
 
     /**
+     * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
+     * 
      * Faz o envio do lote para a SEFAZ
      *
      * @param mdfEnvioLote a ser eviado para a SEFAZ
@@ -62,8 +73,35 @@ public class WSFacade {
      * o sefaz
      *
      */
+    @Deprecated
     public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
         return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
+    }
+    
+    /**
+     * Faz o envio sincronizado para a SEFAZ
+     *
+     * @param mdfEnvio a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do MDFE e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     *
+     */
+    public MDFEnvioRetornoDados envioRecepcaoSinc(MDFe mdfEnvio) throws Exception {
+        return this.wsRecepcaoSinc.envioRecepcaoSinc(mdfEnvio);
+    }
+
+    /**
+     * Faz o envio sincronizado para a SEFAZ com o evento já assinado
+     *
+     * @param mdfEnvioAssinado a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do MDFE e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     *
+     */
+    public MDFEnvioRetornoDados envioRecepcaoSincAssinado(final String mdfEnvioAssinado) throws Exception {
+        return this.wsRecepcaoSinc.envioRecepcaoSincAssinado(mdfEnvioAssinado);
     }
 
     /**
@@ -257,4 +295,19 @@ public class WSFacade {
     public MDFeRetorno pagamentoTransporteAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsPagamentoTransporte.pagamentoAssinado(chaveAcesso, eventoAssinadoXml);
     }
+    
+    /**
+     * Faz consulta de distribuicao dos MDFe.
+     *
+     * @param cpfOuCnpj
+     * @param uf
+     * @param nsu
+     * @param ultNsu
+     * @return
+     * @throws Exception
+     */
+    public MDFeDistribuicaoIntRetorno consultarDistribuicaoMDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        return this.wsDistribuicaoMDFe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
+    }
+    
 }

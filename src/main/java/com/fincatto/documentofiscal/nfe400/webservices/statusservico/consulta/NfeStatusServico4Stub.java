@@ -3,12 +3,9 @@
  */
 package com.fincatto.documentofiscal.nfe400.webservices.statusservico.consulta;
 
-import org.apache.axis2.client.Options;
-import org.apache.axis2.client.Stub;
-import org.apache.axis2.transport.http.HTTPConstants;
-
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axis2.client.Stub;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
@@ -399,11 +396,6 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        @Override
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 
     @SuppressWarnings("serial")
@@ -604,10 +596,5 @@ public class NfeStatusServico4Stub extends org.apache.axis2.client.Stub {
                 return object;
             }
         } // end of factory class
-
-        @Override
-        public XMLStreamReader getPullParser(final QName arg0) {
-            return null;
-        }
     }
 }
