@@ -11,7 +11,7 @@ public class NFNotaInfoReboque extends DFBase {
     @Element(name = "placa")
     private String placaVeiculo;
     
-    @Element(name = "UF")
+    @Element(name = "UF", required = false)
     private String uf;
 
     @Element(name = "RNTC", required = false)
