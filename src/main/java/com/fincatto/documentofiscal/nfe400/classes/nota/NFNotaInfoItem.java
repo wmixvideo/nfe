@@ -33,7 +33,7 @@ public class NFNotaInfoItem extends DFBase {
   @Element(name = "vItem", required = false)
   private String vItem; // VB01
 
-  @Element(name = "dFeReferenciado", required = false)
+  @Element(name = "DFeReferenciado", required = false)
   private NFNotaInfoDFeReferenciado dfeReferenciado; // VC01
 
   public void setNumeroItem(final Integer numeroItem) {
