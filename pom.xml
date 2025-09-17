@@ -37,6 +37,11 @@
             <name>Carine Bockorny</name>
             <url>https://github.com/cbockorny</url>
         </developer>
+        <developer>
+            <id>marcoslombardi</id>
+            <name>Marcos Lombardi</name>
+            <url>https://github.com/marcoslombardi</url>
+        </developer>
     </developers>
 
     <scm>
