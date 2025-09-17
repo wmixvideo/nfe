@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void devePermitirPercentualCOFINSNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorAliquota(new BigDecimal("99999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("99999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -50,7 +50,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
     public void devePermitirQuantidadeVendidaNulo() {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorAliquota(new BigDecimal("99999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("99999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -73,7 +73,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
         outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
         outrasOperacoes.toString();
@@ -84,7 +84,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
         outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorAliquota(new BigDecimal("99999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
         outrasOperacoes.toString();
@@ -95,7 +95,7 @@ public class NFNotaInfoItemImpostoCOFINSOutrasOperacoesTest {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
         outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorAliquota(new BigDecimal("99999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("9999999999999"));
         outrasOperacoes.toString();

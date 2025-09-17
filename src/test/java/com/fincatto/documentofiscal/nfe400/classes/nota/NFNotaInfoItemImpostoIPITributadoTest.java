@@ -108,7 +108,7 @@ public class NFNotaInfoItemImpostoIPITributadoTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoQuantidadeValorUnidadeTributavel() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
-        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);
+        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.CST_49);
         ipiTributado.setQuantidade(new BigDecimal("99999999999.9999"));
         ipiTributado.setValorUnidadeTributavel(new BigDecimal("9999999999.9999"));
         ipiTributado.setValorTributo(new BigDecimal("999999999999.99"));
