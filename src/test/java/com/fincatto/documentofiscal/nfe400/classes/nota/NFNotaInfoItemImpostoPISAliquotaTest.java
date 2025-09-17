@@ -29,7 +29,7 @@ public class NFNotaInfoItemImpostoPISAliquotaTest {
     public void naoDevePermitrValorTributoNulo() {
         final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
         pisAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_NAO_TRIBUTADAS_MERCADO_INTERNO_EXPORTACAO);
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_65);
         pisAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         pisAliquota.toString();
     }
@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoPISAliquotaTest {
     public void naoDevePermitrValorBaseCalculoNulo() {
         final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
         pisAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_NAO_TRIBUTADAS_MERCADO_INTERNO_EXPORTACAO);
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_65);
         pisAliquota.setValorTributo(new BigDecimal("999999999999.99"));
         pisAliquota.toString();
     }
@@ -55,7 +55,7 @@ public class NFNotaInfoItemImpostoPISAliquotaTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitrPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
-        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_RECEITAS_NAO_TRIBUTADAS_MERCADO_INTERNO_EXPORTACAO);
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_65);
         pisAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         pisAliquota.setValorTributo(new BigDecimal("999999999999.99"));
         pisAliquota.toString();

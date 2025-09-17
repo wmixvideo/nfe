@@ -122,7 +122,7 @@ public class NFNotaInfoItemImpostoPISOutrasOperacoesTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoBCAliquotaPercentual() {
         final NFNotaInfoItemImpostoPISOutrasOperacoes pisOutrasOperacoes = new NFNotaInfoItemImpostoPISOutrasOperacoes();
-        pisOutrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OUTRAS_OPERACOES_SAIDA);
+        pisOutrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_49);
         pisOutrasOperacoes.setPercentualAliquota(new BigDecimal("99.99"));
         pisOutrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         pisOutrasOperacoes.setValorTributo(new BigDecimal("999999999999.99"));
