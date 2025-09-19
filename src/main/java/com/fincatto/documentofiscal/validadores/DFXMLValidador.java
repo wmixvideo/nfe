@@ -28,7 +28,7 @@ public final class DFXMLValidador {
     }
 
     public static boolean valida400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_010b_NT2025_002_v1.00/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_010b_NT2025_002_v1.20/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));
