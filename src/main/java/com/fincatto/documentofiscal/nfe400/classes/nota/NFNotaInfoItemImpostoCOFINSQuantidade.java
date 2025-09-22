@@ -30,7 +30,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidade extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoSituacaoTributariaCOFINS situacaoTributaria) {
-        if (!NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO.equals(situacaoTributaria)) {
+        if (!NFNotaInfoSituacaoTributariaCOFINS.CST_03.equals(situacaoTributaria)) {
             throw new IllegalStateException("Situacao tributaria invalida no item COFINS quantidade.");
         }
         this.situacaoTributaria = situacaoTributaria;
