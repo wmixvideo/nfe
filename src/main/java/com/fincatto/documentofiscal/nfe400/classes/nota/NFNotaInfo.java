@@ -80,6 +80,9 @@ public class NFNotaInfo extends DFBase {
     @Element(name="infSolicNFF", required = false)
     private NFInfoSolicitacaoNFF informacaoSolicitacaoNFF;
 
+    @Element(name="agropecuario", required = false)
+    private NFNotaInfoAgropecuario agropecuario;
+
     /**
      * Pega a chave de acesso a partir do identificador.
      * @return Chave de acesso.
@@ -258,6 +261,14 @@ public class NFNotaInfo extends DFBase {
 
     public NFInfoSolicitacaoNFF getInformacaoSolicitacaoNFF() {
         return informacaoSolicitacaoNFF;
+    }
+
+    public NFNotaInfoAgropecuario getAgropecuario() {
+        return agropecuario;
+    }
+
+    public void setAgropecuario(NFNotaInfoAgropecuario agropecuario) {
+        this.agropecuario = agropecuario;
     }
 
     @Override
