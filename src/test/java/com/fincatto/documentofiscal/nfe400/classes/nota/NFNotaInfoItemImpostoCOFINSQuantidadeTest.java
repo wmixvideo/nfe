@@ -13,7 +13,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidadeTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirQuantidadeVendidoNulo() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
-        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_73);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999.0000"));
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999.00"));
         cofinsQuantidade.toString();
@@ -23,7 +23,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidadeTest {
     public void naoDevePermitirValorAliquotaNulo() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
         cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999"));
-        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_73);
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999.00"));
         cofinsQuantidade.toString();
     }
@@ -32,7 +32,7 @@ public class NFNotaInfoItemImpostoCOFINSQuantidadeTest {
     public void naoDevePermitirValorTributoNulo() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
         cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999"));
-        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_AQUISICAO_ALIQUOTA_ZERO);
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_73);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999.0000"));
         cofinsQuantidade.toString();
     }
