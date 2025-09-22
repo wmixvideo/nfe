@@ -16,34 +16,6 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <id>jefperito</id>
-            <name>Jeferson Viana Perito</name>
-            <url>https://github.com/jefperito</url>
-        </developer>
-        <developer>
-            <id>fincatto</id>
-            <name>Diego Fincatto</name>
-            <url>https://github.com/fincatto</url>
-        </developer>
-        <developer>
-            <id>flppsilva</id>
-            <name>Felippe Silva</name>
-            <url>https://github.com/flppsilva</url>
-        </developer>
-        <developer>
-            <id>cbockorny</id>
-            <name>Carine Bockorny</name>
-            <url>https://github.com/cbockorny</url>
-        </developer>
-        <developer>
-            <id>marcoslombardi</id>
-            <name>Marcos Lombardi</name>
-            <url>https://github.com/marcoslombardi</url>
-        </developer>
-    </developers>
-
     <scm>
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
