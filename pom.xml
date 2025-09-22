@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
@@ -151,7 +151,7 @@
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.14.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -291,7 +291,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.7.0</version>
+                        <version>3.12.0</version>
                         <configuration>
                             <failOnError>false</failOnError>
                             <doclint>none</doclint>
