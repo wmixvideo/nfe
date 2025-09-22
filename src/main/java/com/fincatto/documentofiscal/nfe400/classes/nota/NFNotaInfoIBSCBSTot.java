@@ -59,7 +59,7 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   }
 
   // W36
-  public class GIBS extends DFBase {
+  public static class GIBS extends DFBase {
 
     private static final long serialVersionUID = 6387739393518311458L;
 
@@ -119,7 +119,9 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
     }
 
     // W37
-    public class GIBSUF extends DFBase {
+    public static class GIBSUF extends DFBase {
+    	
+	  private static final long serialVersionUID = 2194095471152971393L;
 
       @Element(name = "vDif", required = true)
       private String vDif; // W38
@@ -157,7 +159,9 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
     }
 
     // W42
-    public class GIBSMun extends DFBase {
+    public static class GIBSMun extends DFBase {
+
+	  private static final long serialVersionUID = -2332368864513646731L;
 
       @Element(required = true)
       private String vDif; // W43
@@ -197,7 +201,9 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   }
 
   // W50
-  public class GCBS extends DFBase {
+  public static class GCBS extends DFBase {
+	  
+	private static final long serialVersionUID = 1136600045286532108L;
 
     @Element(required = true)
     private String vDif; // W53
@@ -257,7 +263,9 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   }
 
   // W57
-  public class GMono extends DFBase {
+  public static class GMono extends DFBase {
+
+	private static final long serialVersionUID = 4240863495360701288L;
 
     @Element(required = true)
     private String vIBSMono; // W58
