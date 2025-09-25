@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
-    <version>4.0.111-SNAPSHOT</version>
+    <version>5.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
@@ -16,35 +16,20 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <id>jefperito</id>
-            <name>Jeferson Viana Perito</name>
-            <url>https://github.com/jefperito</url>
-        </developer>
-        <developer>
-            <id>fincatto</id>
-            <name>Diego Fincatto</name>
-            <url>https://github.com/fincatto</url>
-        </developer>
-        <developer>
-            <id>flppsilva</id>
-            <name>Felippe Silva</name>
-            <url>https://github.com/flppsilva</url>
-        </developer>
-        <developer>
-            <id>cbockorny</id>
-            <name>Carine Bockorny</name>
-            <url>https://github.com/cbockorny</url>
-        </developer>
-    </developers>
-
     <scm>
         <url>git@github.com:wmixvideo/nfe.git</url>
         <connection>scm:git:git@github.com:wmixvideo/nfe.git</connection>
         <developerConnection>scm:git:git@github.com:wmixvideo/nfe.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
+
+    <developers>
+        <developer>
+            <id>fincatto</id>
+            <name>Diego Fincatto</name>
+            <url>https://github.com/fincatto</url>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>11</java.version>
@@ -174,7 +159,7 @@
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.14.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -314,7 +299,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.7.0</version>
+                        <version>3.12.0</version>
                         <configuration>
                             <failOnError>false</failOnError>
                             <doclint>none</doclint>
@@ -331,7 +316,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.5.4</version>
                     </plugin>
                 </plugins>
             </build>
