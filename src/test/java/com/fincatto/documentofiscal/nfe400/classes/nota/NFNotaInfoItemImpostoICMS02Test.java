@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS02Test {
 
@@ -30,7 +30,7 @@ public class NFNotaInfoItemImpostoICMS02Test {
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
         icms02.setPercentualAliquota(new BigDecimal("99.99"));
-        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
+        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_02);
         icms02.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms02.setValorTributo(new BigDecimal("999999999999.99"));
         icms02.toString();
@@ -40,7 +40,7 @@ public class NFNotaInfoItemImpostoICMS02Test {
     public void naoDevePermitirPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
         icms02.setOrigem(NFOrigem.NACIONAL);
-        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
+        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_02);
         icms02.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms02.setValorTributo(new BigDecimal("999999999999.99"));
         icms02.toString();
@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoICMS02Test {
         final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
         icms02.setOrigem(NFOrigem.NACIONAL);
         icms02.setPercentualAliquota(new BigDecimal("99.99"));
-        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
+        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_02);
         icms02.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms02.toString();
     }

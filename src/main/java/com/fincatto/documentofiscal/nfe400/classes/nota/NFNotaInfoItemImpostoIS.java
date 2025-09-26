@@ -61,7 +61,7 @@ public class NFNotaInfoItemImpostoIS extends DFBase {
     return vBCIS;
   }
 
-  public void getVBCIS(BigDecimal vBCIS) {
+  public void setVBCIS(BigDecimal vBCIS) {
     this.vBCIS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vBCIS, "Valor da Base de Cálculo do Imposto Seletivo");
   }
 
@@ -81,11 +81,11 @@ public class NFNotaInfoItemImpostoIS extends DFBase {
     this.pISEspec = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pISEspec, "Alíquota específica por unidade de medida apropriada");
   }
 
-  public String getuTrib() {
+  public String getUTrib() {
     return uTrib;
   }
 
-  public void setuTrib(String uTrib) {
+  public void setUTrib(String uTrib) {
     this.uTrib = uTrib;
   }
 
@@ -101,8 +101,7 @@ public class NFNotaInfoItemImpostoIS extends DFBase {
     return vIS;
   }
 
-  public void getVIS(BigDecimal vIS) {
+  public void setVIS(BigDecimal vIS) {
     this.vIS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIS, "Valor do Imposto Seletivo");
   }
-
 }

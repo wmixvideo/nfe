@@ -1,10 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.simpleframework.xml.Element;
+
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import java.math.BigDecimal;
-import org.simpleframework.xml.Element;
 
 // UB15
 public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
@@ -19,6 +21,9 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   @Element(required = true)
   private GIBSMun gIBSMun; // UB36
+  
+  @Element(required = true)
+  private String vIBS; // UB54a
 
   @Element(required = true)
   private GCBS gCBS; // UB55
@@ -40,7 +45,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   public void setVBC(BigDecimal vBC) {
-    this.vBC = DFBigDecimalValidador.tamanho15Com4CasasDecimais(vBC, "Base de cálculo do IBS e CBS");
+    this.vBC = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vBC, "Base de cálculo do IBS e CBS");
   }
 
   public GIBSUF getGIBSUF() {
@@ -99,10 +104,20 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     this.gTribCompraGov = gTribCompraGov;
   }
 
-  // UB17
-  public class GIBSUF extends DFBase {
+  public String getVIBS() {
+    return this.vIBS;
+  }
 
-    @Element(required = true)
+  public void setVIBS(BigDecimal vIBS) {
+    this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor IBS");
+  }
+
+  // UB17
+  public static class GIBSUF extends DFBase {
+
+    private static final long serialVersionUID = 6093564886756420261L;
+
+	@Element(required = true)
     private String pIBSUF; // UB18
 
     @Element(required = false)
@@ -160,7 +175,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB36
-  public class GIBSMun extends DFBase {
+  public static class GIBSMun extends DFBase {
 
     private static final long serialVersionUID = -366528394939456789L;
 
@@ -222,7 +237,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB55
-  public class GCBS extends DFBase {
+  public static class GCBS extends DFBase {
 
     private static final long serialVersionUID = -366528394939456790L;
 
@@ -283,7 +298,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB68
-  public class GTribRegular extends DFBase {
+  public static class GTribRegular extends DFBase {
 
     private static final long serialVersionUID = -366528394939456791L;
 
@@ -378,7 +393,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB73 // UB78
-  public class GCredPres extends DFBase {
+  public static class GCredPres extends DFBase {
 
     private static final long serialVersionUID = -366528394939456792L;
 
@@ -388,10 +403,11 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     @Element(required = true)
     private String pCredPres; // UB75 // UB80
 
-    @Element(required = true)
+    /** VCredPres e VCredPresCondSus sao mutuamente exclusivos **/
+    @Element(required = false)
     private String vCredPres; // UB76 // UB81
 
-    @Element(required = true)
+    @Element(required = false)
     private String vCredPresCondSus; // UB77 // UB82
 
     public String getcCredPres() {
@@ -429,80 +445,80 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB82a
-  public class GTribCompraGov extends DFBase {
+  public static class GTribCompraGov extends DFBase {
 
     private static final long serialVersionUID = -366528394939456794L;
 
     @Element(required = true)
-    private String pIBSUF; // UB82b
+    private String pAliqIBSUF; // UB82b
 
     @Element(required = true)
-    private String vIBSUF; // UB82c
+    private String vTribIBSUF; // UB82c
 
     @Element(required = true)
-    private String pIBSMun; // UB82d
+    private String pAliqIBSMun; // UB82d
 
     @Element(required = true)
-    private String vIBSMun; // UB82e
+    private String vTribIBSMun; // UB82e
 
     @Element(required = true)
-    private String pCBS; // UB82f
+    private String pAliqCBS; // UB82f
 
     @Element(required = true)
-    private String vCBS; // UB82g
+    private String vTribCBS; // UB82g
 
-    public String getPIBSUF() {
-      return pIBSUF;
-    }
+	public String getPAliqIBSUF() {
+		return pAliqIBSUF;
+	}
 
-    public void setPIBSUF(BigDecimal pIBSUF) {
-      this.pIBSUF = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pIBSUF, "Alíquota do IBS de competência do Estado");
-    }
+	public void setPAliqIBSUF(BigDecimal pAliqIBSUF) {
+		this.pAliqIBSUF = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqIBSUF, "Alíquota do IBS de competência do Estado");
+	}
 
-    public String getVIBSUF() {
-      return vIBSUF;
-    }
+	public String getVTribIBSUF() {
+		return vTribIBSUF;
+	}
 
-    public void setVIBSUF(BigDecimal vIBSUF) {
-      this.vIBSUF = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSUF, "Valor do Tributo do IBS da UF calculado");
-    }
+	public void setVTribIBSUF(BigDecimal vTribIBSUF) {
+		this.vTribIBSUF = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribIBSUF, "Valor do Tributo do IBS da UF calculado");
+	}
 
-    public String getPIBSMun() {
-      return pIBSMun;
-    }
+	public String getPAliqIBSMun() {
+		return pAliqIBSMun;
+	}
 
-    public void setPIBSMun(BigDecimal pIBSMun) {
-      this.pIBSMun = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pIBSMun, "Alíquota do IBS de competência do Município");
-    }
+	public void setPAliqIBSMun(BigDecimal pAliqIBSMun) {
+		this.pAliqIBSMun = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqIBSMun, "Alíquota do IBS de competência do Município");
+	}
 
-    public String getVIBSMun() {
-      return vIBSMun;
-    }
+	public String getVTribIBSMun() {
+		return vTribIBSMun;
+	}
 
-    public void setVIBSMun(BigDecimal vIBSMun) {
-      this.vIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSMun, "Valor do Tributo do IBS do Município calculado");
-    }
+	public void setVTribIBSMun(BigDecimal vTribIBSMun) {
+		this.vTribIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribIBSMun, "Valor do Tributo do IBS do Município calculado");
+	}
 
-    public String getPCBS() {
-      return pCBS;
-    }
+	public String getPAliqCBS() {
+		return pAliqCBS;
+	}
 
-    public void setPCBS(BigDecimal pCBS) {
-      this.pCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pCBS, "Alíquota da CBS ");
-    }
+	public void setPAliqCBS(BigDecimal pAliqCBS) {
+		this.pAliqCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqCBS, "Alíquota da CBS ");
+	}
 
-    public String getVCBS() {
-      return vCBS;
-    }
+	public String getVTribCBS() {
+		return vTribCBS;
+	}
 
-    public void setVCBS(BigDecimal vCBS) {
-      this.vCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCBS, "Valor do Tributo da CBS calculado");
-    }
-
+	public void setVTribCBS(BigDecimal vTribCBS) {
+		this.vTribCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTribCBS, "Valor do Tributo da CBS calculado");
+	}
+    
   }
 
-// UB21 // UB40
-  public class GDif extends DFBase {
+  //UB21 // UB40
+  public static class GDif extends DFBase {
 
     private static final long serialVersionUID = -366528394939455687L;
 
@@ -530,8 +546,8 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-// UB24 // UB43
-  public class GDevTrib extends DFBase {
+  // UB24 // UB43
+  public static class GDevTrib extends DFBase {
 
     private static final long serialVersionUID = -366525684939456789L;
 
@@ -548,8 +564,8 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-// UB26 // UB45
-  public class GRed extends DFBase {
+  // UB26 // UB45
+  public static class GRed extends DFBase {
 
     private static final long serialVersionUID = -366528394939258789L;
 

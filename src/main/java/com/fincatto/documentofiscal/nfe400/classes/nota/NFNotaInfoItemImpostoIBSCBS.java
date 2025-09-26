@@ -13,11 +13,11 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
 
     private static final long serialVersionUID = -366528394939416671L;
 
-    @Element(name = "CST", required = true)
-    private NFNotaInfoImpostoTributacaoIBSCBS cst; // UB13
+	@Element(name = "CST", required = true)
+	private NFNotaInfoImpostoTributacaoIBSCBS cst; // UB13
 
-    @Element(required = true)
-    private String cClassTrib; // UB14
+	@Element(required = true)
+	private String cClassTrib; // UB14
 
     // UB14a -x- Sequencia XML
     @Element(required = false)

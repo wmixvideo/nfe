@@ -47,7 +47,7 @@ public class NFNotaInfoItemImpostoICMS15 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_15)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS15 ");
         }
         this.situacaoTributaria = situacaoTributaria;
