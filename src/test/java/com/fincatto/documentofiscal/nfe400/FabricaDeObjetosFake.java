@@ -1403,4 +1403,47 @@ public class FabricaDeObjetosFake {
         mock.setValorCreditoPresumido(new BigDecimal("12.73"));
         return mock;
     }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif gMonoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
+        gMonoDif.setPDifIBS(new BigDecimal("9.8765"));
+        gMonoDif.setVIBSMonoDif(new BigDecimal("12345678901.23"));
+        gMonoDif.setPDifCBS(new BigDecimal("5.4321"));
+        gMonoDif.setVCBSMonoDif(new BigDecimal("98765432109.87"));
+
+        return gMonoDif;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao();
+        gMonoPadrao.setQBCMono(new BigDecimal("1234567.8901"));
+        gMonoPadrao.setAdRemIBS(new BigDecimal("9.8765"));
+        gMonoPadrao.setAdRemCBS(new BigDecimal("5.4321"));
+        gMonoPadrao.setVIBSMono(new BigDecimal("12345678901.23"));
+        gMonoPadrao.setVCBSMono(new BigDecimal("98765432109.87"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten();
+        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
+        gMonoReten.setAdRemIBSReten(new BigDecimal("9.8765"));
+        gMonoReten.setAdRemCBSReten(new BigDecimal("5.4321"));
+        gMonoReten.setVIBSMonoReten(new BigDecimal("12345678901.23"));
+        gMonoReten.setVCBSMonoReten(new BigDecimal("98765432109.87"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet();
+        gMonoRet.setqBCMonoRet(new BigDecimal("1234567.8901"));
+        gMonoRet.setAdRemIBSRet(new BigDecimal("9.8765"));
+        gMonoRet.setVIBSMonoRet(new BigDecimal("12345678901.23"));
+        gMonoRet.setAdRemCBSRet(new BigDecimal("5.4321"));
+        gMonoRet.setVCBSMonoRet(new BigDecimal("98765432109.87"));
+
+        return gMonoRet;
+    }
 }
