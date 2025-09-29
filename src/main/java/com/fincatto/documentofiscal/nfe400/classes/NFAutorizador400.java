@@ -799,7 +799,95 @@ public enum NFAutorizador400 {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.MT};
         }
     },
-    PE {
+
+    PA {
+        @Override
+        public String getNfeAutorizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfeAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeRetAutorizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfeRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfeConsultaProtocolo(final DFAmbiente ambiente) {
+            return SVRS.getNfeConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfeStatusServico(final DFAmbiente ambiente) {
+            return SVRS.getNfeStatusServico(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEvento(final DFAmbiente ambiente) {
+            return SVRS.getRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getConsultaCadastro(final DFAmbiente ambiente) {
+            return SVRS.getConsultaCadastro(ambiente);
+        }
+
+        @Override
+        public String getNfeInutilizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfeInutilizacao(ambiente);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+        public String getNfceAutorizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfceAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceRetAutorizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfceRetAutorizacao(ambiente);
+        }
+
+        @Override
+        public String getNfceConsultaCadastro(final DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? null : null;
+        }
+
+        @Override
+        public String getNfceConsultaProtocolo(final DFAmbiente ambiente) {
+            return SVRS.getNfceConsultaProtocolo(ambiente);
+        }
+
+        @Override
+        public String getNfceStatusServico(final DFAmbiente ambiente) {
+            return SVRS.getNfceStatusServico(ambiente);
+        }
+
+        @Override
+        public String getNfceRecepcaoEvento(final DFAmbiente ambiente) {
+            return SVRS.getNfceRecepcaoEvento(ambiente);
+        }
+
+        @Override
+        public String getNfceInutilizacao(final DFAmbiente ambiente) {
+            return SVRS.getNfceInutilizacao(ambiente);
+        }
+
+        @Override
+        public String getRecepcaoEventoAN(final DFAmbiente ambiente) {
+            return AN.getRecepcaoEventoAN(ambiente);
+        }
+
+        @Override
+        public String getNFeDistribuicaoDFe(final DFAmbiente ambiente) {
+            throw new UnsupportedOperationException("Nao suportado ainda");
+        }
+
+        @Override
+        public DFUnidadeFederativa[] getUFs() {
+            return new DFUnidadeFederativa[]{DFUnidadeFederativa.PA};
+        }
+    },    PE {
         @Override
         public String getNfeAutorizacao(final DFAmbiente ambiente) {
             return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://nfehomolog.sefaz.pe.gov.br/nfe-service/services/NFeAutorizacao4" : "https://nfe.sefaz.pe.gov.br/nfe-service/services/NFeAutorizacao4";

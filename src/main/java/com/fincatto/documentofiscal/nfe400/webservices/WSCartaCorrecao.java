@@ -35,9 +35,23 @@ class WSCartaCorrecao implements DFLog {
         this.config = config;
     }
     
-    NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        final String xmlAssinado = getXmlAssinado(chaveAcesso, textoCorrecao, numeroSequencialEvento);
+        NFEnviaEventoRetorno corrigeNota(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento, final boolean proxy, final String host, final String porta) throws Exception {
+        final String xmlAssinado = getXmlAssinado(chaveAcesso, textoCorrecao, numeroSequencialEvento, proxy, host, porta);
+        System.out.println("=====================================================================================");
+        System.out.println("*** PASSO 5 - WSFacade.java  > WSCartaCorrecao (FINCATTO) - 2. CORRECAO DA NOTA ***");
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Chave de Acesso:  " + chaveAcesso);
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Texto Correção: " + textoCorrecao);
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Numero Sequencial de Evento: " + numeroSequencialEvento);
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Proxy: " + proxy);
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Host: " + host);
+        System.out.println("*** 2.WsFacade.java   > xmlAssinado = getXmlAssinado = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Porta: " + porta);
+        System.out.println("=====================================================================================");
         final OMElement omElementResult = this.efetuaCorrecao(xmlAssinado, chaveAcesso);
+        System.out.println("=====================================================================================");
+        System.out.println("*** PASSO 5 - WSFacade.java  > WSCartaCorrecao (FINCATTO) - 2. CORRECAO DA NOTA ***");
+        System.out.println("*** 2.WsFacade.java   > omElementResult = this.efetuaCorrecao = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - XML Assinado:  " + xmlAssinado);
+        System.out.println("*** 2.WsFacade.java   > omElementResult = this.efetuaCorrecao = fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno corrigeNota - Chave de Acesso: " + chaveAcesso);
+        System.out.println("=====================================================================================");
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
     
@@ -87,12 +101,12 @@ class WSCartaCorrecao implements DFLog {
     /**
      * Retorna XML assinado para uso externo.
      */
-    public String getXmlAssinado(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento).toString();
+    public String getXmlAssinado(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento, final boolean proxy, final String host, final String porta) throws Exception {
+        final String cartaCorrecaoXML = this.gerarDadosCartaCorrecao(chaveAcesso, textoCorrecao, numeroSequencialEvento, proxy, host, porta).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(cartaCorrecaoXML);
     }
     
-    public NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento) {
+    public NFEnviaEventoCartaCorrecao gerarDadosCartaCorrecao(final String chaveAcesso, final String textoCorrecao, final int numeroSequencialEvento, final boolean proxy, final String host, final String porta) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
         
         final NFTipoEvento cartaCorrecao = new NFTipoEvento();

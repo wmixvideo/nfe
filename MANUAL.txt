@@ -1,0 +1,25 @@
+  Manual de Atualização da Biblioteca
+
+  Toda vez que você quiser atualizar sua biblioteca com a versão mais recente do repositório da Fincatto, siga estes 3 passos no terminal:
+
+  1. Buscar e Redefinir para a Versão Mais Recente
+
+  Este conjunto de comandos irá baixar as atualizações do repositório original (upstream) e forçar seu código local a se tornar uma cópia exata da versão mais recente.
+
+   1 git fetch upstream
+   2 git checkout main
+   3 git reset --hard upstream/main
+  (Observação: Se o branch principal não for `main`, pode ser `master`. Nesse caso, use `git checkout master` e `git reset --hard upstream/master`)
+
+  2. Aplicar Suas Modificações Locais
+
+  Execute o script que criamos para aplicar automaticamente suas customizações (pom.xml e NFAutorizador400.java).
+
+   1 ./aplicar_patches.sh
+
+  3. Compilar o Projeto
+
+  Compile o projeto com o Maven para gerar os arquivos .jar com suas modificações aplicadas.
+
+   1 mvn clean install
+

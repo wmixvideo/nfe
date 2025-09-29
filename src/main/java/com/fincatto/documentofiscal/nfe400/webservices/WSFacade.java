@@ -172,8 +172,18 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
+    public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento,
+            final boolean proxy, final String host, final String porta) throws Exception {
+        System.out.println("=====================================================================================");
+        System.out.println("*** PASSO 5 - WSFacade.java (FINCATTO) - 1. CORRECAO DA NOTA ***");
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Chave de Acesso:  " + chaveDeAcesso);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Protocolo: " + textoCorrecao);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Motivo: " + numeroSequencialEvento);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Proxy: " + proxy);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Host: " + host);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Porta: " + porta);
+        System.out.println("=====================================================================================");
+        return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento, proxy, host, porta);
     }
 
     /**
@@ -206,13 +216,14 @@ public class WSFacade {
         return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(eventoAssinadoXml);
     }
 
-    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento));
+    public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento, final boolean proxy, final String host, final String porta) throws Exception {
+        return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento, proxy, host, porta));
     }
 
-    public String getXmlAssinado(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
-        return this.wsCartaCorrecao.getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
+    public String getXmlAssinado(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento, final boolean proxy, final String host, final String porta) throws Exception {
+        return this.wsCartaCorrecao.getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento, proxy, host, porta);
     }
+
 
     /**
      * Faz o cancelamento da nota.
@@ -224,8 +235,18 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
-        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
+//    public NFEnviaEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+    public NFEnviaEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo, final boolean proxy, final String host, final String porta) throws Exception {
+        System.out.println("=====================================================================================");
+        System.out.println("*** PASSO 5 - WSFacade.java (FINCATTO) - 1. CANCELAMENTO DA NOTA ***");
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Chave de Acesso:  " + chave);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Protocolo: " + numeroProtocolo);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Motivo: " + motivo);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Proxy: " + proxy);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Host: " + host);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNota - Porta: " + porta);
+        System.out.println("=====================================================================================");
+        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo, proxy, host, porta);
     }
 
     /**
@@ -238,8 +259,16 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
-        return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
+//    public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+    public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml, final boolean proxy, final String host, final String porta) throws Exception {
+        System.out.println("=====================================================================================");
+        System.out.println("*** PASSO 5 - WSFacade.java (FINCATTO) - 2. CANCELAMENTO DA NOTA ***");
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNotaAssinada - Chave de Acesso:  " + chave);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNotaAssinada - Protocolo: " + eventoAssinadoXml);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNotaAssinada - Proxy: " + proxy);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNotaAssinada - Host: " + host);
+        System.out.println("*** 1.WsFacade.java - fincatto/documentofiscal/nfe400/webservices/WSFacade.java - NF-e - NFEnviaEventoRetorno cancelaNotaAssinada - Porta: " + porta);
+        return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml, proxy, host, porta);
     }
     
     /**
@@ -253,8 +282,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
-        return this.wsCancelamento.cancelaNotaPorSubstituicao(chave, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta);
+//    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+    public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final boolean proxy, final String host, final String porta, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+        return this.wsCancelamento.cancelaNotaPorSubstituicao(chaveAcesso, numeroProtocolo, motivo, proxy, host, porta, versaoAplicativoAutorizador, chaveSubstituta);
     }
 
     /**
