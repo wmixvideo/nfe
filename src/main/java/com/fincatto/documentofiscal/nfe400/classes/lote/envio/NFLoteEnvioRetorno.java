@@ -5,12 +5,14 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
-import java.time.ZonedDateTime;
+//import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Root(name = "retEnviNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
@@ -36,7 +38,7 @@ public class NFLoteEnvioRetorno extends DFBase {
     private DFUnidadeFederativa uf;
     
     @Element(name = "dhRecbto")
-    private ZonedDateTime dataRecebimento;
+    private LocalDateTime dataRecebimento;
 
     @Element(name = "infRec", required = false)
     private NFLoteEnvioRetornoRecebimentoInfo infoRecebimento;
@@ -74,7 +76,7 @@ public class NFLoteEnvioRetorno extends DFBase {
         this.uf = uf;
     }
     
-    public void setDataRecebimento(final ZonedDateTime dataRecebimento) {
+    public void setDataRecebimento(final LocalDateTime dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -110,7 +112,7 @@ public class NFLoteEnvioRetorno extends DFBase {
         return this.uf;
     }
     
-    public ZonedDateTime getDataRecebimento() {
+    public LocalDateTime getDataRecebimento() {
         return this.dataRecebimento;
     }
 

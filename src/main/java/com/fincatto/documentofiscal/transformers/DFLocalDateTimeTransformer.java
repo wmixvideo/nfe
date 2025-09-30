@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.transformers;
 
+import com.fincatto.documentofiscal.DFConfig;
 import org.simpleframework.xml.transform.Transform;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,6 @@ public class DFLocalDateTimeTransformer implements Transform<LocalDateTime> {
     
     @Override
     public String write(final LocalDateTime data) {
-        return DFLocalDateTimeTransformer.SIMPLE_DATETIME_FORMATTER.format(data);
+        return DFLocalDateTimeTransformer.DATETIME_FORMATTER.format(data.atZone(DFConfig.TIMEZONE_SP.toZoneId()));
     }
 }

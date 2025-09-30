@@ -3,10 +3,12 @@ package com.fincatto.documentofiscal.nfe400.classes.evento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.time.LocalDateTime;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import java.time.ZonedDateTime;
+//import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public class NFInfoEventoRetorno extends DFBase {
     private static final long serialVersionUID = 3251078839113682275L;
@@ -54,7 +56,7 @@ public class NFInfoEventoRetorno extends DFBase {
     private String email;
     
     @Element(name = "dhRegEvento")
-    private ZonedDateTime dataHoraRegistro;
+    private LocalDateTime dataHoraRegistro;
     
     @Element(name = "nProt", required = false)
     private String numeroProtocolo;
@@ -119,7 +121,7 @@ public class NFInfoEventoRetorno extends DFBase {
         return this.email;
     }
     
-    public ZonedDateTime getDataHoraRegistro() {
+    public LocalDateTime getDataHoraRegistro() {
         return this.dataHoraRegistro;
     }
     
@@ -179,7 +181,7 @@ public class NFInfoEventoRetorno extends DFBase {
         this.email = email;
     }
     
-    public void setDataHoraRegistro(final ZonedDateTime dataHoraRegistro) {
+    public void setDataHoraRegistro(final LocalDateTime dataHoraRegistro) {
         this.dataHoraRegistro = dataHoraRegistro;
     }
     
