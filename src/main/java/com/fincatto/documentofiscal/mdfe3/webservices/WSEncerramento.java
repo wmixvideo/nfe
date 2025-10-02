@@ -85,7 +85,18 @@ class WSEncerramento implements DFLog {
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+
+        try {
+            if (Integer.parseInt(chaveParser.getSerie()) >= 920 && Integer.parseInt(chaveParser.getSerie()) <= 969) {
+                // destinado a emissão de pessoa física com IE
+                infoEvento.setCpf(chaveParser.getCnpjEmitente().substring(3));
+            } else {
+                infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("CNPJ/CPF do Emitente invalido: " + chaveParser.getCnpjEmitente());
+        }
+
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(String.format("ID%s%s0%s", WSEncerramento.EVENTO_ENCERRAMENTO, chaveAcesso, "1"));
         infoEvento.setNumeroSequencialEvento(1);
