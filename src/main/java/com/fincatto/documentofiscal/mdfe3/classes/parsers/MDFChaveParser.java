@@ -5,8 +5,12 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
 import com.fincatto.documentofiscal.utils.DFUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDate;
 
+/**
+ * Classe responsavel por fazer o parse da chave do MDFe.
+ */
 public class MDFChaveParser {
 
     private final String chave;
@@ -88,6 +92,7 @@ public class MDFChaveParser {
 
     /**
      * Indica se o emitente da chave eh pessoa fisica.
+     *
      * @return Se chave foi emitida por pessoa fisica.
      */
     public boolean isEmitentePessoaFisica() {
@@ -96,10 +101,25 @@ public class MDFChaveParser {
 
     /**
      * Indica se o emitente da chave eh pessoa juridica.
+     *
      * @return Se chave foi emitida por pessoa juridica.
      */
     public boolean isEmitentePessoaJuridica() {
         return DFUtils.isCnpjValido(this.chave.substring(6, 20));
     }
 
+    /**
+     * Indica se a chave é de uma série destinada a pessoa física com inscrição estadual.<br>
+     * De acordo com a documentação: "Será reservada uma faixa do campo Série do MDF-e (920-969), como forma de identificação da Emitente pessoa física (CPF) com inscrição estadual;"<br>
+     * <a href="http://sped.rfb.gov.br/estatico/8A/16CC5375F0AC1A0B7666221FC2116325133C01/MOC_MDFe_VisaoGeral_v3.00a.pdf">...</a>
+     *
+     * @return se a serie é destinada a pessoa física com inscrição estadual.
+     */
+    public boolean isSerieReservadaPessoaFisicaComInscricaoEstadual() {
+        if (DFUtils.isNumerico(this.getSerie())) {
+            final int serie = Integer.parseInt(this.getSerie());
+            return serie >= 920 && serie <= 969;
+        }
+        return false;
+    }
 }
