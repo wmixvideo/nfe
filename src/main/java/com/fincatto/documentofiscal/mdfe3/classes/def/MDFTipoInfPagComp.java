@@ -8,6 +8,7 @@ public enum MDFTipoInfPagComp {
     VALE_PEDAGIO("01", "Vale Ped\u00e1gio"),
     IMPOSTO_TAXAS_CONTRIBUICOES("02", "Impostos, taxas e contribui\u00e7\u00f5es"),
     DESPESAS_MEIOS_PAGTO("03", "Despesas (banc\u00e1rias, meios de pagamento, outras)"),
+    FRETE("04", "Frete"),
     OUTROS("99", "Outros");
 
     private final String codigo;
