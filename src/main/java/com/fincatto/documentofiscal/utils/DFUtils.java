@@ -109,4 +109,13 @@ public abstract class DFUtils {
         // comparar o digito verificador do cpf com o primeiro resto + o segundo resto
         return nDigVerific.equals(nDigResult);
     }
+
+    /**
+     * Indica se a String informada é formada por somente caracteres numericos.
+     * @param str String a ser verificada
+     * @return Se a String é numerica.
+     */
+    public static boolean isNumerico(final String str) {
+        return str != null && str.matches("\\d+");
+    }
 }
