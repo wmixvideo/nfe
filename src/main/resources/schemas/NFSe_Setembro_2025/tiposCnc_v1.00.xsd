@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           targetNamespace="http://www.sped.fazenda.gov.br/nfse"
+           xmlns="http://www.sped.fazenda.gov.br/nfse"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:include schemaLocation="tiposComplexos_v1.00.xsd"/>
+  <xs:include schemaLocation="tiposSimples_v1.00.xsd"/>
+
+
+  <!--TIPO COMPLEXO PARA ENDEREÇO UPLOAD DE CONTRIBUINTES -->
+  <xs:complexType name="TCEnderContribuinteCNC">
+    <xs:sequence>
+      <xs:element name="CEP" type="TSCEP">
+        <xs:annotation>
+          <xs:documentation>Código de endereçamento postal do estabelecimento do contribuinte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nro" type="TSNumeroEndereco">
+        <xs:annotation>
+          <xs:documentation>Número do estabelecimento no logradouro informado</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xCpl" type="TSComplementoEndereco" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Informação complementar para identificação do endereço do contribuinte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!--TIPO COMPLEXO PARA UPLOAD DE CONTRIBUINTES DO CNC -->
+  <xs:complexType name="TCNC">
+    <xs:sequence>
+      <xs:element name="infCNC" type="TCInfCNC"/>
+    </xs:sequence>
+    <xs:attribute name="versao" type="TVerNFSe" use="required"/>
+  </xs:complexType>
+
+
+  <!--TIPO COMPLEXO PARA INFORMAÇÕES DO UPLOAD DE CONTRIBUINTES DO CNC -->
+  <xs:complexType name="TCInfCNC">
+    <xs:sequence>
+      <xs:element name="tpAmb" type="TSTipoAmbiente">
+        <xs:annotation>
+          <xs:documentation>Identificação do Ambiente: 1 - Produção; 2 - Homologação</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dhGeracaoArquivo" type="TSDateTimeUTC">
+        <xs:annotation>
+          <xs:documentation>Data e hora da geração do arquivo CNC. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="verAplic" type="TSVerAplic">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo que gerou Informações para cadastramento de novos contribuintes CNC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="contribuintesCnc">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="contribuinteCnc" type="TCInfoContribuinteCNC" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Grupo de informações cadastramento de novos contribuintes CNC</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>      
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--TIPO COMPLEXO PARA INFORMAÇÕES DE UMA PESSOA MANTIDA PELO  CADASTRO DO CNC (CNPJ,CPF)-->
+  <xs:complexType name="TCInfoContribuinteCNC">
+    <xs:annotation>
+      <xs:documentation>Informações para cadastramento de novos contribuintes CNC </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="CNPJ" type="TSCNPJ">
+          <xs:annotation>
+            <xs:documentation>Número do CNPJ</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CPF" type="TSCPF">
+          <xs:annotation>
+            <xs:documentation>Número do CPF</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="IM" type="TSInscMun" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Número da inscrição municipal</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dInscricaoMunicipal" type="TSData">
+        <xs:annotation>
+          <xs:documentation> Data da Inscrição Municipal: Dia, mês e ano (AAAAMMDD)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enderContribuinteCNC" type="TCEnderContribuinteCNC">
+        <xs:annotation>
+          <xs:documentation>Grupo de informações do endereço do contribuinte do CNC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="fone" type="TSTelefone" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Número do telefone do prestador:
+            Preencher com o Código DDD + número do telefone.
+            Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="email" type="TSEmail" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Endereço de e-mail para contato com o contribuinte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="regEspTribContribuinteCNC" type="TSRegEspTrib">
+        <xs:annotation>
+          <xs:documentation>
+            Tipos de Regimes Especiais de Tributação:
+            0 - Nenhum;
+            1 - Ato Cooperado (Cooperativa);
+            2 - Estimativa;
+            3 - Microempresa Municipal;
+            4 - Notário ou Registrador;
+            5 - Profissional Autônomo;
+            6 - Sociedade de Profissionais;
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="situacaoCadastroContribuinte" type="TSSituacaoCadastroContribuinte" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Identificação da situação do cadastro do contribuinte
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="motivoSituacaoCadastroContribuinte" type="TSMotivoSituacaoCadastroContribuinte" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Motivo pelo qual o contribuinte se enquadra na situação informada
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="situacaoEmissaoNFSE" type="TSSituacaoEmissaoNFSE">
+        <xs:annotation>
+          <xs:documentation>
+            Situação Emissão NFS-e:
+            0 - Não Habilitado;
+            1 - Habilitado;
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>
