@@ -1,6 +1,8 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.math.BigDecimal;
 import java.util.List;
@@ -69,6 +71,20 @@ public class MDFInfoModalRodoviarioInfPag {
      */
     @Element(name = "infBanc", required = true)
     private MDFInfoModalRodoviarioInfPagBanco infBanc;
+
+    /**
+     * Valor do Adiantamento (usar apenas
+     * em pagamento à Prazo
+     */
+    @Element(name = "vAdiant", required = false)
+    private BigDecimal vAdiant;
+
+    /**
+     * Indicador de declaração de concordância em antecipar o
+     * adiantamento
+     */
+    @Element(name = "indAntecipaAdiant", required = false)
+    private MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento;
 
     public String getXNome() {
         return xNome;
@@ -152,5 +168,21 @@ public class MDFInfoModalRodoviarioInfPag {
     public void setInfBanc(MDFInfoModalRodoviarioInfPagBanco infBanc) {
         this.infBanc = infBanc;
     }
-    
+
+    public MDFTipoIndicadorAntecipacaoPagamento getIndicadorAtencipacaoAdiantamento() {
+        return indicadorAtencipacaoAdiantamento;
+    }
+
+    public void setIndicadorAtencipacaoAdiantamento(MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento) {
+        this.indicadorAtencipacaoAdiantamento = indicadorAtencipacaoAdiantamento;
+    }
+
+    public BigDecimal getVAdiant() {
+        return vAdiant;
+    }
+
+    public void setVAdiant(BigDecimal vAdiant) {
+        DFBigDecimalValidador.tamanho13Com2CasasDecimais(vAdiant, "Valor do Adiantamento");
+        this.vAdiant = vAdiant;
+    }
 }

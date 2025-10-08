@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoPermissaoAntecipacao;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -36,6 +38,13 @@ public class MDFInfoModalRodoviarioInfPagPrazo extends DFBase {
     @Element(name = "vParcela", required = true)
     private BigDecimal vParcela;
 
+    /**
+     * Tipo de Permissão em relação a
+     * antecipação das parcelas
+     */
+    @Element(name = "tpAntecip", required = false)
+    private MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao;
+
     public String getNParcela() {
         return nParcela;
     }
@@ -57,7 +66,15 @@ public class MDFInfoModalRodoviarioInfPagPrazo extends DFBase {
     }
 
     public void setVParcela(BigDecimal vParcela) {
+        DFBigDecimalValidador.tamanho13Com2CasasDecimais(vParcela, "Valor da Parcela");
         this.vParcela = vParcela;
     }
 
+    public MDFTipoPermissaoAntecipacao getTipoPermissaoAntecipacao() {
+        return tipoPermissaoAntecipacao;
+    }
+
+    public void setTipoPermissaoAntecipacao(MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao) {
+        this.tipoPermissaoAntecipacao = tipoPermissaoAntecipacao;
+    }
 }
