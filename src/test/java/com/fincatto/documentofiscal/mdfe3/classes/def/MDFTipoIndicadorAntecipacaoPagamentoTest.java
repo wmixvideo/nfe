@@ -8,22 +8,14 @@ import static org.junit.Assert.assertNull;
 
 public class MDFTipoIndicadorAntecipacaoPagamentoTest {
 
-    @Test
-    public void testValueOfCodigoNao() {
-        MDFTipoIndicadorAntecipacaoPagamento tipo = MDFTipoIndicadorAntecipacaoPagamento.valueOfCodigo("0");
-        assertEquals(MDFTipoIndicadorAntecipacaoPagamento.NAO, tipo);
-        Assert.assertNotNull(tipo);
-        assertEquals("0", tipo.getCodigo());
-        assertEquals("0 - Não", tipo.toString());
-    }
 
     @Test
     public void testValueOfCodigoSim() {
         MDFTipoIndicadorAntecipacaoPagamento tipo = MDFTipoIndicadorAntecipacaoPagamento.valueOfCodigo("1");
-        assertEquals(MDFTipoIndicadorAntecipacaoPagamento.SIM, tipo);
+        assertEquals(MDFTipoIndicadorAntecipacaoPagamento.CONCORDANCIA_ANTECIPAR_ADIANTAMENTO, tipo);
         Assert.assertNotNull(tipo);
         assertEquals("1", tipo.getCodigo());
-        assertEquals("1 - Sim", tipo.toString());
+        assertEquals("1 - Concorda em antecipar o adiantamento", tipo.toString());
     }
 
     @Test

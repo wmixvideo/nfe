@@ -5,8 +5,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.def;
  */
 public enum MDFTipoIndicadorAntecipacaoPagamento {
 
-    NAO("0", "N\u00e3o"),
-    SIM("1", "Sim");
+    CONCORDANCIA_ANTECIPAR_ADIANTAMENTO("1", "Concorda em antecipar o adiantamento");
 
     private final String codigo;
     private final String descricao;

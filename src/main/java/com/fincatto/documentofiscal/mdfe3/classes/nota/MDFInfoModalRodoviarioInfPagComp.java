@@ -18,8 +18,8 @@ public class MDFInfoModalRodoviarioInfPagComp extends DFBase {
 
     /**
      * Tipo do Componente: 01 - Vale Pedágio; 02 - Impostos, taxas e
-     * contribuições; 03 - Despesas (bancárias, meios de pagamento, outras); 99
-     * – Outros.
+     * contribuições; 03 - Despesas (bancárias, meios de pagamento, outras);
+     * 04 - Frete; 99 – Outros.
      */
     @Element(name = "tpComp", required = true)
     private MDFTipoInfPagComp tpComp;

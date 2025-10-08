@@ -34,6 +34,13 @@ public class MDFInfoModalRodoviarioInfPagBanco extends DFBase {
     @Element(name = "CNPJIPEF", required = false)
     private String CNPJIPEF;
 
+    /**
+     * Chave PIX
+     * Pode ser email, CPF/ CNPJ (somente numeros), Telefone com a seguinte formatação (+5599999999999) ou a chave aleatória gerada pela instituição.
+     */
+    @Element(name = "PIX", required = false)
+    private String PIX;
+
     public String getCodBanco() {
         return codBanco;
     }
@@ -58,4 +65,12 @@ public class MDFInfoModalRodoviarioInfPagBanco extends DFBase {
         this.CNPJIPEF = CNPJIPEF != null ? StringUtils.leftPad(CNPJIPEF, 14, "0") : null;
     }
 
+    public String getPIX() {
+        return PIX;
+    }
+
+    public void setPIX(String PIX) {
+        DFStringValidador.tamanho2ate60(PIX, "Chave PIX");
+        this.PIX = PIX;
+    }
 }

@@ -141,11 +141,11 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setIndPag(MDFTipoInfPag.A_PRAZO);
         pag.setIndicadorAtencipacaoAdiantamento(
-                MDFTipoIndicadorAntecipacaoPagamento.SIM
+                MDFTipoIndicadorAntecipacaoPagamento.CONCORDANCIA_ANTECIPAR_ADIANTAMENTO
         );
 
         Assert.assertEquals(MDFTipoInfPag.A_PRAZO, pag.getIndPag());
-        Assert.assertEquals(MDFTipoIndicadorAntecipacaoPagamento.SIM,
+        Assert.assertEquals(MDFTipoIndicadorAntecipacaoPagamento.CONCORDANCIA_ANTECIPAR_ADIANTAMENTO,
                 pag.getIndicadorAtencipacaoAdiantamento());
     }
 

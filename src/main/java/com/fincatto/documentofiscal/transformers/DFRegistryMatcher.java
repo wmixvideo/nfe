@@ -246,5 +246,10 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoUnidadeTransporte.class, new MDFTipoUnidadeTransporteTransformer());
         super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
         super.bind(MDFTipoResponsavelSeguro.class, new MDFTipoResponsavelSeguroTransformer());
+        super.bind(MDFTipoIndAltoDesempenho.class, new MDFTipoIndAltoDesempenhoTransformer());
+        super.bind(MDFTipoPermissaoAntecipacao.class, new MDFTipoPermissaoAntecipacaoTransformer());
+        super.bind(MDFTipoIndicadorAntecipacaoPagamento.class, new MDFTipoIndicadorAntecipacaoPagamentoTransformer());
+        super.bind(MDFTipoValePedagio.class, new MDFTipoValePedagioTransformer());
+        super.bind(MDFTipoCategoriaCombinacaoVeicular.class, new MDFTipoCategoriaCombinacaoVeicularTransformer());
     }
 }
