@@ -29,7 +29,7 @@ public enum NFRetornoStatus {
     CODIGO_139(139, "Pedido de Download processado"),
     CODIGO_140(140, "Download disponibilizado"),
     CODIGO_142(142, "Ambiente de Conting\u00eancia EPEC bloqueado para o Emitente"),
-    CODIGO_150(150, "Autorizado o uso da NF-e"),
+    CODIGO_150(150, "Autorizado o uso da NF-e, autoriza\u00e7\u00e3o fora de prazo"),
     CODIGO_151(151, "Cancelamento de NF-e homologado fora de prazo"),
     CODIGO_155(155, "Cancelamento de NF-e homologado fora de prazo"),
     CODIGO_201(201, "Rejei\u00e7\u00e3o: O numero m\u00e1ximo de numera\u00e7\u00e3o de NF-e a inutilizar ultrapassou o limite"),

@@ -37,7 +37,7 @@ public class NFNotaInfoItemImpostoPISQuantidadeTest {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitrQuantidadeVendidaNulo() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
         pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
         pisQuantidade.toString();
@@ -47,7 +47,7 @@ public class NFNotaInfoItemImpostoPISQuantidadeTest {
     public void naoDevePermitrValorAliquotaNulo() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
         pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
         pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
         pisQuantidade.toString();
     }
@@ -56,7 +56,7 @@ public class NFNotaInfoItemImpostoPISQuantidadeTest {
     public void naoDevePermitrValorTributoNulo() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
         pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CREDITO_PRESUMIDO_OPERACAO_AQUISICAO_VINCULADA_EXCLUSIVAMENTE_A_RECEITA_NAO_TRIBUTADA_MERCADO_INTERNO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
         pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisQuantidade.toString();
     }

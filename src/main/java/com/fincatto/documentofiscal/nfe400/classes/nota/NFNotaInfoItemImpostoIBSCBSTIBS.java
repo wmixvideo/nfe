@@ -21,6 +21,9 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   @Element(required = true)
   private GIBSMun gIBSMun; // UB36
+  
+  @Element(required = true)
+  private String vIBS; // UB54a
 
   @Element(required = true)
   private GCBS gCBS; // UB55
@@ -42,7 +45,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   public void setVBC(BigDecimal vBC) {
-    this.vBC = DFBigDecimalValidador.tamanho15Com4CasasDecimais(vBC, "Base de cálculo do IBS e CBS");
+    this.vBC = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vBC, "Base de cálculo do IBS e CBS");
   }
 
   public GIBSUF getGIBSUF() {
@@ -101,8 +104,16 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     this.gTribCompraGov = gTribCompraGov;
   }
 
+  public String getVIBS() {
+    return this.vIBS;
+  }
+
+  public void setVIBS(BigDecimal vIBS) {
+    this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor IBS");
+  }
+
   // UB17
-  public class GIBSUF extends DFBase {
+  public static class GIBSUF extends DFBase {
 
     private static final long serialVersionUID = 6093564886756420261L;
 
@@ -164,7 +175,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB36
-  public class GIBSMun extends DFBase {
+  public static class GIBSMun extends DFBase {
 
     private static final long serialVersionUID = -366528394939456789L;
 
@@ -182,9 +193,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
     @Element(required = true)
     private String vIBSMun; // UB54
-
-    @Element(required = true)
-    private String vIBS; // UB54a
 
     public String getPIBSMun() {
       return pIBSMun;
@@ -226,18 +234,10 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
       this.vIBSMun = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSMun, "Alíquota do IBS de competência do Município");
     }
 
-	public String getVIBS() {
-		return vIBS;
-	}
-
-	public void setVIBS(BigDecimal vIBS) {
-		this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
-	}
-
   }
 
   // UB55
-  public class GCBS extends DFBase {
+  public static class GCBS extends DFBase {
 
     private static final long serialVersionUID = -366528394939456790L;
 
@@ -298,7 +298,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB68
-  public class GTribRegular extends DFBase {
+  public static class GTribRegular extends DFBase {
 
     private static final long serialVersionUID = -366528394939456791L;
 
@@ -393,7 +393,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB73 // UB78
-  public class GCredPres extends DFBase {
+  public static class GCredPres extends DFBase {
 
     private static final long serialVersionUID = -366528394939456792L;
 
@@ -403,10 +403,11 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     @Element(required = true)
     private String pCredPres; // UB75 // UB80
 
-    @Element(required = true)
+    /** VCredPres e VCredPresCondSus sao mutuamente exclusivos **/
+    @Element(required = false)
     private String vCredPres; // UB76 // UB81
 
-    @Element(required = true)
+    @Element(required = false)
     private String vCredPresCondSus; // UB77 // UB82
 
     public String getcCredPres() {
@@ -444,7 +445,7 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   }
 
   // UB82a
-  public class GTribCompraGov extends DFBase {
+  public static class GTribCompraGov extends DFBase {
 
     private static final long serialVersionUID = -366528394939456794L;
 
@@ -516,8 +517,8 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     
   }
 
-// UB21 // UB40
-  public class GDif extends DFBase {
+  //UB21 // UB40
+  public static class GDif extends DFBase {
 
     private static final long serialVersionUID = -366528394939455687L;
 
@@ -545,8 +546,8 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-// UB24 // UB43
-  public class GDevTrib extends DFBase {
+  // UB24 // UB43
+  public static class GDevTrib extends DFBase {
 
     private static final long serialVersionUID = -366525684939456789L;
 
@@ -563,8 +564,8 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-// UB26 // UB45
-  public class GRed extends DFBase {
+  // UB26 // UB45
+  public static class GRed extends DFBase {
 
     private static final long serialVersionUID = -366528394939258789L;
 

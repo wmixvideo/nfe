@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndAltoDesempenho;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.math.BigDecimal;
@@ -50,6 +51,14 @@ public class MDFInfoModalRodoviarioInfPag {
      */
     @Element(name = "vContrato", required = true)
     private BigDecimal vContrato;
+
+    /**
+     * Indicador de operação de transporte de alto desempenho.
+     * Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.
+     * Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag
+     */
+    @Element(name = "indAltoDesemp", required = false)
+    private MDFTipoIndAltoDesempenho indAltoDesemp;
     
     /**
      * Indicador da Forma de Pagamento: 0-Pagamento à Vista; 1-Pagamento à
@@ -152,5 +161,12 @@ public class MDFInfoModalRodoviarioInfPag {
     public void setInfBanc(MDFInfoModalRodoviarioInfPagBanco infBanc) {
         this.infBanc = infBanc;
     }
-    
+
+    public MDFTipoIndAltoDesempenho getIndAltoDesemp() {
+        return indAltoDesemp;
+    }
+
+    public void setIndAltoDesemp(MDFTipoIndAltoDesempenho indAltoDesemp) {
+        this.indAltoDesemp = indAltoDesemp;
+    }
 }

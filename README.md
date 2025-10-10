@@ -153,6 +153,19 @@ Faça a consulta da nota através do facade:
 final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu, ultNsu);
 ```
 
+#### Consulta CTe
+Faça a consulta do CTe através do CTDistribuicaoInt:
+```java
+final CTDistribuicaoInt distDFeInt = new CTDistribuicaoInt();
+distDFeInt.setVersao("1.00");
+ distDFeInt.setAmbiente(isTeste() ? DFAmbiente.HOMOLOGACAO : DFAmbiente.PRODUCAO);
+distDFeInt.setUnidadeFederativaAutor(DFUnidadeFederativa.valueOf("SC"));
+distDFeInt.setCnpj("60436332000145");
+distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU("000000000036552");
+
+final String retornoConsulta = WSDistribuicaoCTe.consultar(distDFeInt, new NFeConfig());
+```
+
 ### Convertendo objetos Java em XML
 Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
 

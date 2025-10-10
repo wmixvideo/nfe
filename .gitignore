@@ -6,3 +6,5 @@ target/
 *.iml
 .DS_Store
 bin/
+release.properties
+pom.xml.releaseBackup
