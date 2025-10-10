@@ -96,7 +96,7 @@ public class MDFChaveParser {
      * @return Se chave foi emitida por pessoa fisica.
      */
     public boolean isEmitentePessoaFisica() {
-        return DFUtils.isCpfValido(this.chave.substring(9, 20));
+        return DFUtils.isCpfValido(this.chave.substring(9, 20)) && this.isSerieReservadaPessoaFisicaComInscricaoEstadual();
     }
 
     /**
@@ -105,7 +105,7 @@ public class MDFChaveParser {
      * @return Se chave foi emitida por pessoa juridica.
      */
     public boolean isEmitentePessoaJuridica() {
-        return DFUtils.isCnpjValido(this.chave.substring(6, 20));
+        return DFUtils.isCnpjValido(this.chave.substring(6, 20)) && !this.isSerieReservadaPessoaFisicaComInscricaoEstadual();
     }
 
     /**
