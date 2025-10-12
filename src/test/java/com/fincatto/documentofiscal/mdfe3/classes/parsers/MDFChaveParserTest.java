@@ -116,8 +116,8 @@ public class MDFChaveParserTest {
     }
 
     @Test
-    public void deveIdentificarSerieReservadaParaPessoaFisicaComIE() {
-        assertTrue(parserPessoaFisica.isSerieReservadaPessoaFisicaComInscricaoEstadual());
-        assertFalse(parserPessoaJuridica.isSerieReservadaPessoaFisicaComInscricaoEstadual());
+    public void deveIdentificarSerieReservadaParaPessoaFisica() {
+        assertTrue(parserPessoaFisica.isSerieReservadaPessoaFisica());
+        assertFalse(parserPessoaJuridica.isSerieReservadaPessoaFisica());
     }
 }

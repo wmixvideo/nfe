@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class NotaFiscalChaveParserTest {
 
     @Test(expected = IllegalArgumentException.class)
@@ -95,10 +98,16 @@ public class NotaFiscalChaveParserTest {
 
     @Test
     public void deveObterCpfEmitenteDaChave() {
-        NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser("42151100038883975022640884579133596141399591");
+        NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser("42151100038883975022649694579133596141399591");
         Assert.assertTrue(notaFiscalChaveParser.isEmitentePessoaFisica());
         Assert.assertEquals("38883975022", notaFiscalChaveParser.getCpfEmitente());
         Assert.assertFalse(notaFiscalChaveParser.isEmitentePessoaJuridica());
         Assert.assertNull(notaFiscalChaveParser.getCnpjEmitente());
+    }
+
+    @Test
+    public void deveIdentificarSerieReservadaParaPessoaFisica() {
+        NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser("42151100038883975022649694579133596141399591");
+        assertTrue(notaFiscalChaveParser.isSerieReservadaPessoaFisica());
     }
 }
