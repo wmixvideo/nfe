@@ -18,7 +18,7 @@ public class CTeInfoEvento extends DFBase {
 
     @Element(name = "cOrgao", required = false)
     private DFUnidadeFederativa orgao;
-    
+
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
@@ -27,16 +27,16 @@ public class CTeInfoEvento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-    
+
     @Element(name = "chCTe")
     private String chave;
-    
+
     @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-    
+
     @Element(name = "tpEvento")
     private String codigoEvento;
-    
+
     @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
 
@@ -69,9 +69,6 @@ public class CTeInfoEvento extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("CPF ja foi setado");
-        }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -81,9 +78,6 @@ public class CTeInfoEvento extends DFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("CNPJ ja foi setado");
-        }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
