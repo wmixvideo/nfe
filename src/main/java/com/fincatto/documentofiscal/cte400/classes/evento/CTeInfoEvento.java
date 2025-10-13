@@ -83,9 +83,6 @@ public class CTeInfoEvento extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("CPF ja foi setado");
-        }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -95,9 +92,6 @@ public class CTeInfoEvento extends DFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("CNPJ ja foi setado");
-        }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
