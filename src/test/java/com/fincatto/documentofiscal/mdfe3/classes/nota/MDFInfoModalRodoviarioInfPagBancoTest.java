@@ -60,9 +60,9 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
     public void deveAceitarPixComTamanhoMinimo2() {
 
         String pixMin = "ab";
-        banco.setPix(pixMin);
+        banco.setPIX(pixMin);
 
-        Assert.assertEquals(pixMin, banco.getPix());
+        Assert.assertEquals(pixMin, banco.getPIX());
     }
 
     @Test
@@ -72,15 +72,15 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         for (int i = 0; i < 60; i++) sb.append('x');
         String pixMax = sb.toString();
 
-        banco.setPix(pixMax);
+        banco.setPIX(pixMax);
 
-        Assert.assertEquals(60, banco.getPix().length());
-        Assert.assertEquals(pixMax, banco.getPix());
+        Assert.assertEquals(60, banco.getPIX().length());
+        Assert.assertEquals(pixMax, banco.getPIX());
     }
 
     @Test(expected = IllegalStateException.class)
     public void deveRejeitarPixComTamanho1() {
-        banco.setPix("a"); // 1 char
+        banco.setPIX("a"); // 1 char
     }
 
     @Test(expected = IllegalStateException.class)
@@ -90,6 +90,6 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         sb.append("x".repeat(61));
         String pix61 = sb.toString();
 
-        banco.setPix(pix61);
+        banco.setPIX(pix61);
     }
 }
