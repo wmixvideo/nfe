@@ -25,6 +25,7 @@ Possuímos um grupo de WhatsApp para discussões sobre o desenvolvimento da lib:
 - [Serviços disponíveis](#serviços-disponíveis)
 - [Requisitos](#requisitos)
 - [Criação do Java KeyStore (JKS)](#criação-do-java-keystore-jks)
+- [Configuração para Testes da API NFSe](#configuração-para-testes-da-api-nfse)
 
 ---
 
@@ -273,4 +274,48 @@ public static void main(String args[]){
         e.printStackTrace();
     }
 }
+```
+
+## Configuração para Testes da API NFSe
+
+Utilizando os métodos do teste unitário **NFSeTest** é possível testar os endpoints da API NFSe.
+Esses endpoints porém exigem comunicação segura. Para isso, é necessário certificados válidos. 
+
+Exemplo de configuração utilizando variáveis de ambiente para carregar os certificados em teste:
+```java
+this.config = new NFSEConfigFake( System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA"), System.getenv("CADEIA_CERTIFICADOS_PATH"), System.getenv("CADEIA_CERTIFICADOS_SENHA"));
+```
+
+### Variáveis de ambiente necessárias
+- `CERTIFICADO_PATH`: caminho para o arquivo do certificado do cliente (exemplo: certificado.pfx).
+- `CERTIFICADO_SENHA`: senha do certificado do cliente.
+- `CADEIA_CERTIFICADOS_PATH`: caminho para a cadeia de certificados da SEFAZ (exemplo: cadeia.jks).
+- `CADEIA_CERTIFICADOS_SENHA`: senha da cadeia de certificados.
+
+### Instruções para configuração
+Defina essas variáveis de ambiente no seu sistema antes de executar os testes unitários para que a configuração seja carregada automaticamente e a comunicação com o ambiente da SEFAZ seja autenticada.
+
+Exemplo para Linux/macOS:
+```
+export CERTIFICADO_PATH=/caminho/para/certificado.pfx
+export CERTIFICADO_SENHA=suaSenhaCertificado
+export CADEIA_CERTIFICADOS_PATH=/caminho/para/cadeia.jks
+export CADEIA_CERTIFICADOS_SENHA=suaSenhaCadeia
+mvn test -Dtest=NFSeTest#nomeDoTeste
+```
+
+Exemplo para Windows PowerShell:
+```
+$env:CERTIFICADO_PATH="C:\caminho\para\certificado.pfx"
+$env:CERTIFICADO_SENHA="suaSenhaCertificado"
+$env:CADEIA_CERTIFICADOS_PATH="C:\caminho\para\cadeia.jks"
+$env:CADEIA_CERTIFICADOS_SENHA="suaSenhaCadeia"
+mvn test -Dtest=NFSeTest#nomeDoTeste
+```
+
+Com essa configuração, os testes unitários irão consumir os endpoints da NFSe de forma autenticada, facilitando o desenvolvimento e a validação da integração.
+
+Exemplo de resultado com **consultaConvenioMunicipioTest**:
+```shell
+NFSeParametrosMunicipaisConvenioResponse{dataHoraProcessamento='null', tipoAmbiente=null, parametrosConvenio=NFSeParametrosMunicipaisParametrosConvenio{aderenteAmbienteNacional=1, aderenteEmissorNacional=0, situacaoEmissaoPadraoContribuintesRFB=1, aderenteMAN=0, permiteAproveitametoDeCreditos=true}, mensagem='Parâmetros do convênio recuperados com sucesso.'}
 ```
