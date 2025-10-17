@@ -1,10 +1,13 @@
 package com.fincatto.documentofiscal.nfse;
 
+import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.File;
 import java.time.LocalDate;
 
 public class NFSeTest {
@@ -71,5 +74,15 @@ public class NFSeTest {
         final var codigoDoMunicipio = "4216602";
         final var consulta = new WSParametrosMunicipais(config).consultaRetencoesMunicipioCompetencia(codigoDoMunicipio, LocalDate.now().minusMonths(12));
         System.out.println(consulta);
+    }
+
+//    @Ignore
+    @Test
+    public void downloadDANFSePdfChaveAcessoTest() throws Exception {
+        System.out.println("Teste de download do DANFSe em PDF utilizando a chave de acesso da NFSe");
+        final var nfseChaveAcesso = "";
+        final var pathToSave = "";
+        final var danfsePDF = new WSDANFSe(config).downloadDANFSePdfChaveAcesso(nfseChaveAcesso);
+        FileUtils.writeByteArrayToFile(new File(String.format("%s/%s.pdf",pathToSave, nfseChaveAcesso)), danfsePDF);
     }
 }
