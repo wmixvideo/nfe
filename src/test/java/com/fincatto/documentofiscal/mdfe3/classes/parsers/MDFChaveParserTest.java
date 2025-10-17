@@ -120,4 +120,13 @@ public class MDFChaveParserTest {
         assertTrue(parserPessoaFisica.isSerieReservadaPessoaFisica());
         assertFalse(parserPessoaJuridica.isSerieReservadaPessoaFisica());
     }
+
+    @Test
+    public void emitentePessoaJuridicaMesmoQuandoCpfValida() {
+        final MDFChaveParser parser = new MDFChaveParser("43251047060783000162580010000000071130047529");
+        assertTrue(parser.isEmitentePessoaJuridica());
+        assertFalse(parser.isEmitentePessoaFisica());
+        assertEquals("47060783000162", parser.getCnpjEmitente());
+        assertNull( parser.getCpfEmitente());
+    }
 }
