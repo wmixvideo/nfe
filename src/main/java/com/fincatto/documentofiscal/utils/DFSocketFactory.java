@@ -4,11 +4,7 @@ import com.fincatto.documentofiscal.DFConfig;
 import org.apache.commons.httpclient.params.HttpConnectionParams;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -25,10 +21,10 @@ public class DFSocketFactory implements ProtocolSocketFactory {
 
     private final DFConfig config;
     private final SSLContext sslContext;
-    
+
     public DFSocketFactory(final DFConfig config) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         this.config = config;
-        this.sslContext = this.createSSLContext(config);
+        this.sslContext = createSSLContext(createCustomKeyManagers(this.config), createTrustManagers(this.config), this.config.getSSLProtocolos()[0]);
     }
 
     @Override
@@ -36,7 +32,7 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         final Socket socket = this.sslContext.getSocketFactory().createSocket();
         ((SSLSocket) socket).setEnabledProtocols(this.config.getSSLProtocolos());
         socket.bind(new InetSocketAddress(localAddress, localPort));
-        
+
         final int connectTimeout = params.getConnectionTimeout();
 
         socket.connect(new InetSocketAddress(host, port), connectTimeout);
@@ -53,22 +49,60 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         return this.sslContext.getSocketFactory().createSocket(host, port);
     }
 
-    private SSLContext createSSLContext(final DFConfig config) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, UnrecoverableKeyException {
-        final KeyManager[] keyManagers = this.createKeyManagers(config);
-        final TrustManager[] trustManagers = this.createTrustManagers(config);
-        final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolos()[0]);
-        sslContext.init(keyManagers, trustManagers, null);
+    /**
+     * Cria um SSLContext padrão para API's REST.
+     */
+    public static SSLContext getDefaultSSLContext(final DFConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+        return createSSLContext(createKeyManagers(config), createTrustManagers(config), config.getSSLProtocolos()[0]);
+    }
+
+    /**
+     * configura o SSLContext com os KeyManagers e TrustManagers informados.
+     * @param km
+     * @param tm
+     * @param protocol
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws KeyStoreException
+     * @throws KeyManagementException
+     */
+    private static SSLContext createSSLContext(KeyManager[] km, TrustManager[] tm, String protocol) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        final SSLContext sslContext = SSLContext.getInstance(protocol);
+        sslContext.init(km, tm, null);
         return sslContext;
     }
 
-    private KeyManager[] createKeyManagers(final DFConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException{
+    /**
+     * Cria os KeyManagers a partir do KeyStore do certificado digital com algorítmo padrão.
+     *
+     * @param config Configuração do DF.
+     * @return KeyManagers criados.
+     */
+    private static KeyManager[] createKeyManagers(final DFConfig config) throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        kmf.init(config.getCertificadoKeyStore(), config.getCertificadoSenha().toCharArray());
+        return kmf.getKeyManagers();
+    }
+
+    /**
+     * Cria os KeyManagers a partir do KeyStore do certificado digital com algorítmo customizado.
+     *
+     * @param config Configuração do DF.
+     * @return KeyManagers criados.
+     */
+    private static KeyManager[] createCustomKeyManagers(final DFConfig config) throws KeyStoreException {
         return new KeyManager[]{new com.fincatto.documentofiscal.utils.DFKeyManager(config)};
     }
 
-    private TrustManager[] createTrustManagers(final DFConfig config) throws KeyStoreException, NoSuchAlgorithmException {
+    /**
+     * Cria os TrustManagers a partir do KeyStore da cadeia de certificados com algorítmo padrão.
+     *
+     * @param config Configuração do DF.
+     * @return TrustManagers criados.
+     */
+    private static TrustManager[] createTrustManagers(final DFConfig config) throws KeyStoreException, NoSuchAlgorithmException {
         final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(config.getCadeiaCertificadosKeyStore());
         return trustManagerFactory.getTrustManagers();
     }
-
 }
