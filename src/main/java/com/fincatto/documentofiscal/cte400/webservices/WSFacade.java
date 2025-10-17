@@ -46,7 +46,7 @@ public class WSFacade {
     private final WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
     private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
-    public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
+    public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsRecepcaoCTe = new WSRecepcaoCTe(config);
