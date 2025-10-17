@@ -6,12 +6,27 @@ Comunicador de nota fiscal e nota fiscal do consumidor da [fazenda](http://www.n
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.wmixvideo/nfe)](https://search.maven.org/artifact/com.github.wmixvideo/nfe)
 [![Apache 2.0 License](https://img.shields.io/badge/license-apache%202.0-green.svg) ](https://github.com/wmixvideo/nfe/blob/master/LICENSE)
 
+---
 ## Atenção
 Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o mesmo.<br/>
 
 Antes de submeter um pull request, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
 
 Possuímos um grupo de WhatsApp para discussões sobre o desenvolvimento da lib: https://chat.whatsapp.com/LFmqpkoiIYc6Zy3d4TnZGU
+
+---
+# Índice
+
+- [Antes de usar](#antes-de-usar)
+- [Instalação](#instalação)
+- [Como usar](#como-usar)
+- [Exemplos de uso](#alguns-exemplos)
+- [Conversões e manipulação de XML](#conversões-e-manipulação-de-xml)
+- [Serviços disponíveis](#serviços-disponíveis)
+- [Requisitos](#requisitos)
+- [Criação do Java KeyStore (JKS)](#criação-do-java-keystore-jks)
+
+---
 
 ## Antes de usar
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
@@ -166,6 +181,8 @@ distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU("000000000036552
 final String retornoConsulta = WSDistribuicaoCTe.consultar(distDFeInt, new NFeConfig());
 ```
 
+## Conversões e manipulação de XML
+
 ### Convertendo objetos Java em XML
 Qualquer objeto que seja uma representação XML do documento NFe, pode ser obtido seu XML de forma fácil bastando chamar o método **toString**, por exemplo, para conseguir o XML do lote, invoque o toString
 
@@ -236,7 +253,7 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 
 ## Requisitos
 
-JDK >= 1.8<br>
+JDK >= 11<br>
 Maven >= 3.x
 
 ## Criação do Java KeyStore (JKS)
