@@ -59,7 +59,11 @@ public class MDFChaveParser {
      * @return CPF do emitente ou nulo.
      */
     public String getCpfEmitente() {
-        return isEmitentePessoaFisica() ? this.chave.substring(9, 20) : null;
+        if (isEmitentePessoaJuridica()) {
+            return null;
+        }else{
+            return isEmitentePessoaFisica() ? this.chave.substring(9, 20) : null;
+        }
     }
 
     public DFModelo getModelo() {
