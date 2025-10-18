@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+           targetNamespace="http://www.sped.fazenda.gov.br/nfse" 
+           xmlns="http://www.sped.fazenda.gov.br/nfse" 
+           attributeFormDefault="unqualified" 
+           elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+  <xs:include schemaLocation="tiposComplexos_v1.00.xsd"/>
+  <xs:element name="NFSe" type="TCNFSe">
+    <xs:annotation>
+      <xs:documentation>Schema XML da Nota Fiscal de Serviços Eletrônica - NFS-e</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>
