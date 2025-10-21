@@ -38,13 +38,6 @@ public class MDFInfoModalRodoviarioInfPagPrazo extends DFBase {
     @Element(name = "vParcela", required = true)
     private BigDecimal vParcela;
 
-    /**
-     * Tipo de Permissão em relação a
-     * antecipação das parcelas
-     */
-    @Element(name = "tpAntecip", required = false)
-    private MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao;
-
     public String getNParcela() {
         return nParcela;
     }
@@ -70,11 +63,4 @@ public class MDFInfoModalRodoviarioInfPagPrazo extends DFBase {
         this.vParcela = vParcela;
     }
 
-    public MDFTipoPermissaoAntecipacao getTipoPermissaoAntecipacao() {
-        return tipoPermissaoAntecipacao;
-    }
-
-    public void setTipoPermissaoAntecipacao(MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao) {
-        this.tipoPermissaoAntecipacao = tipoPermissaoAntecipacao;
-    }
 }
