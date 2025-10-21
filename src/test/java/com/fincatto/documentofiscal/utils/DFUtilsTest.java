@@ -23,4 +23,13 @@ public class DFUtilsTest {
         Assert.assertFalse(DFUtils.isCpfValido("12345678909"));
         Assert.assertTrue(DFUtils.isCpfValido("38883975022"));
     }
+
+    @Test
+    public void testIsNumerico() {
+        Assert.assertFalse(DFUtils.isNumerico(null));
+        Assert.assertFalse(DFUtils.isNumerico(""));
+        Assert.assertFalse(DFUtils.isNumerico(" 12 "));
+        Assert.assertTrue(DFUtils.isNumerico("0"));
+        Assert.assertTrue(DFUtils.isNumerico("1234567890"));
+    }
 }
