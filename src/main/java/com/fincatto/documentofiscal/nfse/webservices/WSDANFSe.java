@@ -10,8 +10,7 @@ import java.net.http.HttpResponse;
 
 public class WSDANFSe implements DFLog {
 
-    public static final String URL_BASE = "https://adn.nfse.gov.br/danfse";
-
+    public static final String URL_BASE_ADN = "https://adn.nfse.gov.br/";
     private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeHttpClient client;
 
@@ -27,10 +26,9 @@ public class WSDANFSe implements DFLog {
      * @return Array de bytes representando o arquivo PDF do DANFSe.
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
-    public byte[] downloadDANFSePdfChaveAcesso(final String nfseChaveAcesso) throws Exception {
-        final var url = new URI(String.format("%s/%s", URL_BASE, nfseChaveAcesso));
+    public byte[] downloadDANFSePdfByChaveAcesso(final String nfseChaveAcesso) throws Exception {
+        final var url = new URI(String.format("%s/danfse/%s", URL_BASE_ADN, nfseChaveAcesso));
         final var response = client.sendGetRequest(url, HttpResponse.BodyHandlers.ofByteArray());
         return response.body();
     }
-
 }

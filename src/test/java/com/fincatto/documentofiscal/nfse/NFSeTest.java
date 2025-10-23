@@ -1,14 +1,22 @@
 package com.fincatto.documentofiscal.nfse;
 
+import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalNFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
+import com.fincatto.documentofiscal.nfse.webservices.WSSefinNFSe;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
 
 public class NFSeTest {
 
@@ -82,7 +90,28 @@ public class NFSeTest {
         System.out.println("Teste de download do DANFSe em PDF utilizando a chave de acesso da NFSe");
         final var nfseChaveAcesso = "";
         final var pathToSave = "";
-        final var danfsePDF = new WSDANFSe(config).downloadDANFSePdfChaveAcesso(nfseChaveAcesso);
+        final var danfsePDF = new WSDANFSe(config).downloadDANFSePdfByChaveAcesso(nfseChaveAcesso);
         FileUtils.writeByteArrayToFile(new File(String.format("%s/%s.pdf",pathToSave, nfseChaveAcesso)), danfsePDF);
+    }
+
+    @Test
+    public void downloadXmlNFSeViaChaveAcessoTest() throws Exception {
+        System.out.println("Teste de download do xml da NFSe");
+        final var nfseChaveAcesso = "";
+        final var pathToSave = "";
+        final var responseXml = new WSSefinNFSe(config).getNFSeByChaveAcesso(nfseChaveAcesso);
+
+        final byte[] conteudo = Base64.getDecoder().decode(responseXml.getNfseXmlGZipB64());//java 8
+        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
+            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8))) {
+                StringBuilder outStr = new StringBuilder();
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    outStr.append(line);
+                }
+                final var xml = config.getPersister().read(NFSeSefinNacionalNFSe.class, outStr.toString());
+                FileUtils.writeStringToFile(new File(String.format("%s/%s.xml",pathToSave, nfseChaveAcesso)), xml.toXml());
+            }
+        }
     }
 }
