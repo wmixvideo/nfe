@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           targetNamespace="http://www.sped.fazenda.gov.br/nfse"
+           xmlns="http://www.sped.fazenda.gov.br/nfse"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.00.xsd"/>
+  <xs:include schemaLocation="tiposComplexos_v1.00.xsd"/>
+
+
+  <!--TIPO COMPLEXO PARA EVENTO -->
+  <xs:complexType name="TCEvento">
+    <xs:sequence>
+      <xs:element name="infEvento" type="TCInfEvento"/>
+      <xs:element ref="ds:Signature"/>
+    </xs:sequence>
+    <xs:attribute name="versao" type="TVerNFSe" use="required"/>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA INFORMAÇÕES DO EVENTO-->
+  <xs:complexType name="TCInfEvento">
+    <xs:sequence>
+      <xs:element name="verAplic" type="TSVerAplic" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo que gerou o pedido do evento.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ambGer" type="TSAmbGeradorEvt">
+        <xs:annotation>
+          <xs:documentation>Ambiente gerador do evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nSeqEvento" type="TSNum3Dig">
+        <xs:annotation>
+          <xs:documentation>Sequencial do evento para o mesmo tipo de evento. Para maioria dos eventos nSeqEvento=1. Nos casos em que possa existir mais de um evento do mesmo tipo o ambiente gerador deverá numerar de forma sequencial.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dhProc" type="TSDateTimeUTC">
+        <xs:annotation>
+          <xs:documentation>
+            Data/Hora do registro do evento.
+            Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD"
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nDFe" type="TSNumDFe">
+        <xs:annotation>
+          <xs:documentation>Ambiente gerador do evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pedRegEvento" type="TCPedRegEvt">
+        <xs:annotation>
+          <xs:documentation>Leiaute do pedido de registro do evento gerado pelo autor do evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="Id" type="TSIdEvento" use="required"/>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PEDIDO DE REGISTRO DE EVENTO -->
+  <xs:complexType name="TCPedRegEvt">
+    <xs:sequence>
+      <xs:element name="infPedReg" type="TCInfPedReg"/>
+      <xs:element ref="ds:Signature" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="versao" type="TVerNFSe" use="required"/>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA AS INFORMAÇÕES DO PEDIDO DE REGISTRO DE EVENTO -->
+  <xs:complexType name="TCInfPedReg">
+    <xs:sequence>
+      <xs:element name="tpAmb" type="TSTipoAmbiente">
+        <xs:annotation>
+          <xs:documentation>Identificação do Ambiente: 1 - Produção; 2 - Homologação</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="verAplic" type="TSVerAplic">
+        <xs:annotation>
+          <xs:documentation>Versão do aplicativo que gerou o pedido de registro de evento.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dhEvento" type="TSDateTimeUTC">
+        <xs:annotation>
+          <xs:documentation>
+            Data e hora do evento no formato AAAA-MM-DDThh:mm:ssTZD (UTC - Universal Coordinated Time, onde TZD pode ser -02:00 (Fernando de Noronha), -03:00 (Brasília) ou -04:00 (Manaus), no horário de verão serão -01:00, -02:00 e -03:00.
+            Ex.: 2010-08-19T13:00:15-03:00.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>Identificação do Autor do Pedido de Evento</xs:documentation>
+        </xs:annotation>
+        <xs:element name="CNPJAutor" type="TSCNPJ">
+          <xs:annotation>
+            <xs:documentation>CNPJ do autor do evento.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CPFAutor" type="TSCPF">
+          <xs:annotation>
+            <xs:documentation>CPF do autor do evento.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="chNFSe" type="TSChaveNFSe">
+        <xs:annotation>
+          <xs:documentation>Chave de Acesso da NFS-e vinculada ao Evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nPedRegEvento" type="TSNum3Dig">
+        <xs:annotation>
+          <xs:documentation>
+            Número do pedido do registro de evento para o mesmo tipo de evento.
+            Para os eventos que ocorrem somente uma vez, como é o caso do cancelamento, o nPedRegEvento deve ser igual a 1.
+            Os eventos que podem ocorrer mais de uma vez devem ter o nPedRegEvento único.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="e101101" type="TE101101">
+          <xs:annotation>
+            <xs:documentation>Evento de cancelamento</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e105102" type="TE105102">
+          <xs:annotation>
+            <xs:documentation>Evento de cancelamento por substituição</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e101103" type="TE101103">
+          <xs:annotation>
+            <xs:documentation>Solicitação de Análise Fiscal para Cancelamento de NFS-e</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e105104" type="TE105104">
+          <xs:annotation>
+            <xs:documentation>Cancelamento de NFS-e Deferido por Análise Fiscal</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e105105" type="TE105105">
+          <xs:annotation>
+            <xs:documentation>Cancelamento de NFS-e Indeferido por Análise Fiscal</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+        <xs:element name="e202201" type="TE202201">
+          <xs:annotation>
+            <xs:documentation>Confirmação do Prestador</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e203202" type="TE203202">
+          <xs:annotation>
+            <xs:documentation>Confirmação do Tomador</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e204203" type="TE204203">
+          <xs:annotation>
+            <xs:documentation>Confirmação do Intermediário</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e205204" type="TE205204">
+          <xs:annotation>
+            <xs:documentation>Confirmação Tácita</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e202205" type="TE202205">
+          <xs:annotation>
+            <xs:documentation>Rejeição do Prestador</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e203206" type="TE203206">
+          <xs:annotation>
+            <xs:documentation>Rejeição do Tomador</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e204207" type="TE204207">
+          <xs:annotation>
+            <xs:documentation>Rejeição do Intermediário</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e205208" type="TE205208">
+          <xs:annotation>
+            <xs:documentation>Anulação da Rejeição</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+        <xs:element name="e305101" type="TE305101">
+          <xs:annotation>
+            <xs:documentation>Cancelamento de NFS-e por Ofício</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e305102" type="TE305102">
+          <xs:annotation>
+            <xs:documentation>Bloqueio de NFS-e por Ofício</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="e305103" type="TE305103">
+          <xs:annotation>
+            <xs:documentation>Desbloqueio de NFS-e por Ofício</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="Id" type="TSIdPedRefEvt" use="required"/>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CANCELAMENTO-->
+  <xs:complexType name="TE101101">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Cancelamento de NFS-e"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cMotivo" type="TSCodJustCanc">
+        <xs:annotation>
+          <xs:documentation>Código de justificativa de cancelamento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CANCELAMENTO POR SUBSTITUIÇÃO-->
+  <xs:complexType name="TE105102">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e por Substituição".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Cancelamento de NFS-e por Substituicao"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cMotivo" type="TSCodJustSubst">
+        <xs:annotation>
+          <xs:documentation>Código de justificativa de cancelamento substituição</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="chSubstituta" type="TSChaveNFSe">
+        <xs:annotation>
+          <xs:documentation>Chave de Acesso da NFS-e substituta.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE SOLICITAÇÃO DE ANÁLISE FISCAL PARA CANCELAMENTO DE NFS-E-->
+  <xs:complexType name="TE101103">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Solicitação de Análise Fiscal para Cancelamento de NFS-e"
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Solicitacao de Analise Fiscal para Cancelamento de NFS-e"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="cMotivo" type="TSCodJustAnaliseFiscalCanc">
+        <xs:annotation>
+          <xs:documentation>Código do motivo da solicitação de análise fiscal para cancelamento de NFS-e:</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CANCELAMENTO DE NFS-E DEFERIDO POR ANÁLISE FISCAL-->
+  <xs:complexType name="TE105104">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Cancelamento de NFS-e Deferido por Análise Fiscal"
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Cancelamento de NFS-e Deferido por Análise Fiscal"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o deferimento da  solicitação de análise fiscal para cancelamento de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nProcAdm" type="TSNumProcAdmAnaliseFiscalCanc" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cMotivo" type="TSCodJustAnaliseFiscalCancDef">
+        <xs:annotation>
+          <xs:documentation>
+            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:
+            1 - Cancelamento de NFS-e Deferido.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição para explicitar o motivo indicado neste evento
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CANCELAMENTO DE NFS-E INDEFERIDO POR ANÁLISE FISCAL-->
+  <xs:complexType name="TE105105">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Cancelamento de NFS-e Indeferido por Análise Fiscal".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Cancelamento de NFS-e Indeferido por Análise Fiscal"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o indeferimento da solicitação de análise fiscal para cancelamento de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nProcAdm" type="TSNumProcAdmAnaliseFiscalCanc" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cMotivo" type="TSCodJustAnaliseFiscalCancIndef">
+        <xs:annotation>
+          <xs:documentation>
+            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:
+            1 - Cancelamento de NFS-e Indeferido;
+            2 - Cancelamento de NFS-e Indeferido Sem Análise de Mérito.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CONFIRMAÇÃO DO PRESTADOR-->
+  <xs:complexType name="TE202201">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Confirmação do Prestador".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Confirmação do Prestador"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CONFIRMAÇÃO DO TOMADOR-->
+  <xs:complexType name="TE203202">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Confirmação do Tomador".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Confirmação do Tomador"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CONFIRMAÇÃO DO INTERMEDIÁRIO-->
+  <xs:complexType name="TE204203">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Confirmação do Intermediário".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Confirmação do Intermediário"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CONFIRMAÇÃO TÁCITA-->
+  <xs:complexType name="TE205204">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Confirmação Tácita".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Confirmação Tácita"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE REJEIÇÃO DO PRESTADOR-->
+  <xs:complexType name="TE202205">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Rejeição do Prestador".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Rejeição do Prestador"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="infRej" type="TCInfoEventoRejeicao">
+        <xs:annotation>
+          <xs:documentation>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE REJEIÇÃO DO TOMADOR-->
+  <xs:complexType name="TE203206">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Rejeição do Tomador".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Rejeição do Tomador"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="infRej" type="TCInfoEventoRejeicao">
+        <xs:annotation>
+          <xs:documentation>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE REJEIÇÃO DO INTERMEDIÁRIO-->
+  <xs:complexType name="TE204207">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Rejeição do Intermediário".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Rejeição do Intermediário"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="infRej" type="TCInfoEventoRejeicao">
+        <xs:annotation>
+          <xs:documentation>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE ANULAÇÃO DE REJEIÇÃO-->
+  <xs:complexType name="TE205208">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Anulação da Rejeição".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Anulação da Rejeição"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="infAnRej" type="TCInfoEventoAnulacaoRejeicao">
+        <xs:annotation>
+          <xs:documentation>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE CANCELAMENTO POR OFÍCIO DA NFS-E--> 
+  <xs:complexType name="TE305101">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Cancelamento de NFS-e por Ofício".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Cancelamento de NFS-e por Ofício"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nProcAdm" type="TSNumProcAdmAnaliseFiscalCanc">
+        <xs:annotation>
+          <xs:documentation>
+            Número do processo administrativo municipal vinculado ao cancelamento de NFS-e por ofício.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xProcAdm" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição para explicitar o motivo indicado neste evento.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE BLOQUEIO POR OFÍCIO DA NFS-E--> 
+  <xs:complexType name="TE305102">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Bloqueio de NFS-e por Ofício".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Bloqueio de NFS-e por Ofício"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codEvento" type="TSCodigoEventoNFSe">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO PARA O EVENTO DE DESBLOQUEIO POR OFÍCIO DA NFS-E-->
+  <xs:complexType name="TE305103">
+    <xs:sequence>
+      <xs:element name="xDesc">
+        <xs:annotation>
+          <xs:documentation>
+            Descrição do evento: "Desbloqueio de NFS-e por Ofício".
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:whiteSpace value="preserve"/>
+            <xs:enumeration value="Desbloqueio de NFS-e por Ofício"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="idBloqOfic" type="TSIdNumEvento">
+        <xs:annotation>
+          <xs:documentation>
+            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO LISTA DE EVENTOS--> 
+  <xs:complexType name="TCListaEventos">
+    <xs:sequence>
+      <xs:element name="codEvento" type="TSCodigoEventoNFSe" maxOccurs="9">
+        <xs:annotation>
+          <xs:documentation>
+            Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO INFORMAÇÕES DO EVENTO DE REJEIÇÃO DA NFS-E-->
+  <xs:complexType name="TCInfoEventoRejeicao">
+    <xs:sequence>
+      <xs:element name="cMotivo" type="TSCodMotivoRejeicao">
+        <xs:annotation>
+          <xs:documentation>
+            Motivo da Rejeição da NFS-e:
+
+            1 - NFS-e em duplicidade;
+            2 - NFS-e já emitida pelo tomador;
+            3 - Não ocorrência do fato gerador;
+            4 - Erro quanto a responsabilidade tributária;
+            5 - Erro quanto ao valor do serviço, valor das deduções ou serviço prestado ou data do fato gerador;
+            9 - Outros;
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo indicado neste evento</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--TIPO COMPLEXO INFORMAÇÕES DO EVENTO DE ANULAÇÃO DE REJEIÇÃO DA NFS-E-->
+  <xs:complexType name="TCInfoEventoAnulacaoRejeicao">
+    <xs:sequence>
+      <xs:element name="CPFAgTrib" type="TSCPF">
+        <xs:annotation>
+          <xs:documentation>
+            CPF do agente da administração tributária municipal que efetuou o anulação da manifestação de rejeição da NFS-e.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="idEvManifRej" type="TSIdNumEvento">
+        <xs:annotation>
+          <xs:documentation>
+            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xMotivo" type="TSMotivo">
+        <xs:annotation>
+          <xs:documentation>Descrição para explicitar o motivo da anluação</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
