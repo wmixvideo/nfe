@@ -10,6 +10,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetorno
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -52,12 +53,18 @@ class WSInutilizacao implements DFLog {
         return dadosRetorno;
     }
     
-    private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
+    private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cpfOuCnpj, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
         dados.setAmbiente(this.config.getAmbiente());
         dados.setAno(anoInutilizacaoNumeracao);
-        dados.setCnpj(cnpjEmitente);
+
+        if (cpfOuCnpj.length() == 11) {
+            dados.setCpf(cpfOuCnpj);
+        }else{
+            dados.setCnpj(cpfOuCnpj);
+        }
+
         dados.setJustificativa(justificativa);
         dados.setModeloDocumentoFiscal(modelo.getCodigo());
         dados.setNomeServico(WSInutilizacao.NOME_SERVICO);
@@ -68,7 +75,8 @@ class WSInutilizacao implements DFLog {
         final String numeroInicialTamanhoMaximo = StringUtils.leftPad(numeroInicial, 9, "0");
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
-        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + anoInutilizacaoNumeracao + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
+        final String docCpfOuCnpj =  StringUtils.leftPad(cpfOuCnpj, 14, "0");
+        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + anoInutilizacaoNumeracao + docCpfOuCnpj + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
         inutilizacao.setVersao(new BigDecimal(WSInutilizacao.VERSAO_SERVICO));
         inutilizacao.setDados(dados);
         return inutilizacao;
