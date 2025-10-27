@@ -6,62 +6,101 @@ import org.simpleframework.xml.*;
 @Root(name = "Endereco")
 public class NFSeSefinNacionalEndereco {
 
-    protected NFSeSefinNacionalEnderNac endNac;
-    protected NFSeSefinNacionalEnderExt endExt;
-    @Element(required = true)
-    protected String xLgr;
-    @Element(required = true)
-    protected String nro;
-    protected String xCpl;
-    @Element(required = true)
-    protected String xBairro;
+    @Element(name = "endNac", required = false)
+    protected NFSeSefinNacionalEnderNac enderecoNacional;
+    @Element(name = "endExt", required = false)
+    protected NFSeSefinNacionalEnderExt enderecoExterior;
+    @Element(name = "xLgr")
+    protected String logradouro;
+    @Element(name = "nro")
+    protected String numero;
+    @Element(name = "xCpl", required = false)
+    protected String complemento;
+    @Element(name = "xBairro")
+    protected String bairro;
 
-    public NFSeSefinNacionalEnderNac getEndNac() {
-        return endNac;
+    /**
+     * @return Endereço Nacional do Prestador de Serviço
+     */
+    public NFSeSefinNacionalEnderNac getEnderecoNacional() {
+        return enderecoNacional;
     }
 
-    public void setEndNac(NFSeSefinNacionalEnderNac value) {
-        this.endNac = value;
+    /**
+     * @param enderecoNacional Endereço Nacional do Prestador de Serviço
+     */
+    public void setEnderecoNacional(NFSeSefinNacionalEnderNac enderecoNacional) {
+        this.enderecoNacional = enderecoNacional;
     }
 
-    public NFSeSefinNacionalEnderExt getEndExt() {
-        return endExt;
+    /**
+     * @return Endereço no Exterior do Prestador de Serviço
+     */
+    public NFSeSefinNacionalEnderExt getEnderecoExterior() {
+        return enderecoExterior;
     }
 
-    public void setEndExt(NFSeSefinNacionalEnderExt value) {
-        this.endExt = value;
+    /**
+     * @param enderecoExterior Endereço no Exterior do Prestador de Serviço
+     */
+    public void setEnderecoExterior(NFSeSefinNacionalEnderExt enderecoExterior) {
+        this.enderecoExterior = enderecoExterior;
     }
 
-    public String getXLgr() {
-        return xLgr;
+    /**
+     * @return Logradouro do endereço
+     */
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setXLgr(String value) {
-        this.xLgr = value;
+    /**
+     * @param logradouro Logradouro do endereço
+     */
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public String getNro() {
-        return nro;
+    /**
+     * @return Número do endereço
+     */
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNro(String value) {
-        this.nro = value;
+    /**
+     * @param numero Número do endereço
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getXCpl() {
-        return xCpl;
+    /**
+     * @return Complemento do endereço
+     */
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setXCpl(String value) {
-        this.xCpl = value;
+    /**
+     * @param complemento Complemento do endereço
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public String getXBairro() {
-        return xBairro;
+    /**
+     * @return Bairro do endereço
+     */
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setXBairro(String value) {
-        this.xBairro = value;
+    /**
+     * @param bairro Bairro do endereço
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
 }

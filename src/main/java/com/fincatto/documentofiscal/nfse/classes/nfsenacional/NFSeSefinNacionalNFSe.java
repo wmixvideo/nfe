@@ -4,34 +4,13 @@ import org.simpleframework.xml.*;
 import org.simpleframework.xml.core.Persister;
 import java.io.StringWriter;
 
-/**
- * <p>Java class for TCNFSe complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCNFSe"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="infNFSe" type="{http://www.sped.fazenda.gov.br/nfse}TCInfNFSe"/&gt;
- *         &lt;element ref="{http://www.w3.org/2000/09/xmldsig#}Signature"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="versao" use="required" type="{http://www.sped.fazenda.gov.br/nfse}TVerNFSe" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
-
+@Namespace(reference = "http://www.sped.fazenda.gov.br/nfse")
 @Root(name = "NFSe")
 public class NFSeSefinNacionalNFSe {
 
-    @Element(name = "infNFSe", required = true)
+    @Element(name = "infNFSe")
     protected NFSeSefinNacionalInfNFSe infNFSe;
-    @Attribute(name = "versao", required = false)
+    @Attribute(name = "versao", empty = "1.00")
     protected String versao;
     @Element(name = "Signature")
     protected SignatureType signature;
@@ -50,14 +29,15 @@ public class NFSeSefinNacionalNFSe {
 
     /**
      * Sets the value of the infNFSe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfNFSe }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalInfNFSe }
+     * @return
+     *
      */
-    public void setInfNFSe(NFSeSefinNacionalInfNFSe value) {
+    public NFSeSefinNacionalNFSe setInfNFSe(NFSeSefinNacionalInfNFSe value) {
         this.infNFSe = value;
+        return this;
     }
 
     /**

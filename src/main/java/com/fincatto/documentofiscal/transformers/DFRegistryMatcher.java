@@ -17,6 +17,8 @@ import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFSituacaoContribuin
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.transformers.*;
+import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
+import com.fincatto.documentofiscal.nfse.transformer.*;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
 import java.time.LocalDate;
@@ -247,5 +249,23 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFUnidadeMedidaPesoBrutoCarga.class, new MDFUnidadeMedidaPesoBrutoCargaTransformer());
         super.bind(MDFTipoResponsavelSeguro.class, new MDFTipoResponsavelSeguroTransformer());
         super.bind(MDFTipoIndAltoDesempenho.class, new MDFTipoIndAltoDesempenhoTransformer());
+
+        // NFSe
+        super.bind(NFSeSefinNacionalInfDPSTipoAmbiente.class, new NFSeSefinNacionalInfDPSTipoAmbienteTransformer());
+        super.bind(NFSeSefinNacionalInfDPSTipoEmitente.class, new NFSeSefinNacionalInfDPSTipoEmitenteTransformer());
+        super.bind(NFSeSefinNacionalSubstituicaoMotivo.class, new NFSeSefinNacionalSubstituicaoMotivoTransformer());
+        super.bind(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF.class, new NFSeSefinNacionalInfoPrestadorCodigoNaoNIFTransformer());
+        super.bind(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.class, new NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacionalTransformer());
+        super.bind(NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples.class, new NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimplesTransformer());
+        super.bind(NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.class, new NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacaoTransformer());
+        super.bind(NFSeSefinNacionalLocPrestOpcaoConsumoServico.class, new NFSeSefinNacionalLocPrestOpcaoConsumoServicoTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorModoPrestacao.class, new NFSeSefinNacionalComercioExteriorModoPrestacaoTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorVinculoEntrePartes.class, new NFSeSefinNacionalComercioExteriorVinculoEntrePartesTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorMecanismoApoioPrestador.class, new NFSeSefinNacionalComercioExteriorMecanismoApoioPrestadorTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorMecanismoApoioTomador.class, new NFSeSefinNacionalComercioExteriorMecanismoApoioTomadorTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBens.class, new NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBensTransformer());
+        super.bind(NFSeSefinNacionalComercioExteriorCompartilharComMDIC.class, new NFSeSefinNacionalComercioExteriorCompartilharComMDICTransformer());
+        super.bind(NFSeSefinNacionalLocacaoSublocacaoCategoriaServico.class, new NFSeSefinNacionalLocacaoSublocacaoCategoriaServicoTransformer());
+        super.bind(NFSeSefinNacionalLocacaoSublocacaoObjeto.class, new NFSeSefinNacionalLocacaoSublocacaoObjetoTransformer());
     }
 }

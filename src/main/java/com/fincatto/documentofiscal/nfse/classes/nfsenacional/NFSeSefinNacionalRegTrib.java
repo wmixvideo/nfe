@@ -28,82 +28,56 @@ import org.simpleframework.xml.*;
 @Root(name = "RegTrib")
 public class NFSeSefinNacionalRegTrib {
 
-    @Element(required = true)
-    protected String opSimpNac;
-    protected String regApTribSN;
-    @Element(required = true)
-    protected String regEspTrib;
+    @Element(name = "opSimpNac")
+    protected NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional opSimplesNacional;
+    @Element(name = "regApTribSN", required = false)
+    protected NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples regimeApuracaoAposLimiteSimplesNacional;
+    @Element(name = "regEspTrib")
+    protected NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao regimeEspecialTributacao;
 
     /**
-     * Gets the value of the opSimpNac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Opção no Simples Nacional
      */
-    public String getOpSimpNac() {
-        return opSimpNac;
+    public NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional getOpSimplesNacional() {
+        return opSimplesNacional;
     }
 
     /**
-     * Sets the value of the opSimpNac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param opSimplesNacional Opção no Simples Nacional
      */
-    public void setOpSimpNac(String value) {
-        this.opSimpNac = value;
+    public NFSeSefinNacionalRegTrib setOpSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional opSimplesNacional) {
+        this.opSimplesNacional = opSimplesNacional;
+        return this;
     }
 
     /**
-     * Gets the value of the regApTribSN property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Regime de apuração após limite do Simples Nacional
      */
-    public String getRegApTribSN() {
-        return regApTribSN;
+    public NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples getRegimeApuracaoAposLimiteSimplesNacional() {
+        return regimeApuracaoAposLimiteSimplesNacional;
     }
 
     /**
-     * Sets the value of the regApTribSN property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param regimeApuracaoAposLimiteSimplesNacional Regime de apuração após limite do Simples Nacional
      */
-    public void setRegApTribSN(String value) {
-        this.regApTribSN = value;
+    public NFSeSefinNacionalRegTrib setRegimeApuracaoAposLimiteSimplesNacional(NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples regimeApuracaoAposLimiteSimplesNacional) {
+        this.regimeApuracaoAposLimiteSimplesNacional = regimeApuracaoAposLimiteSimplesNacional;
+        return this;
     }
 
     /**
-     * Gets the value of the regEspTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Regime especial de tributação
      */
-    public String getRegEspTrib() {
-        return regEspTrib;
+    public NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao getRegimeEspecialTributacao() {
+        return regimeEspecialTributacao;
     }
 
     /**
-     * Sets the value of the regEspTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param regimeEspecialTributacao Regime especial de tributação
      */
-    public void setRegEspTrib(String value) {
-        this.regEspTrib = value;
+    public NFSeSefinNacionalRegTrib setRegimeEspecialTributacao(NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao regimeEspecialTributacao) {
+        this.regimeEspecialTributacao = regimeEspecialTributacao;
+        return this;
     }
 
 }

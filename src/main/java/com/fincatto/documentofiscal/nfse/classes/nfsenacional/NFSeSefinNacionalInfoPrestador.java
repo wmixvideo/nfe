@@ -5,36 +5,6 @@ import org.simpleframework.xml.*;
 
 /**
  * Informações do prestador da NFS-e. Difere das demais pessoas por causa das informações de regimes de tributação
- * 
- * <p>Java class for TCInfoPrestador complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoPrestador"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;choice&gt;
- *           &lt;element name="CNPJ" type="{http://www.sped.fazenda.gov.br/nfse}TSCNPJ"/&gt;
- *           &lt;element name="CPF" type="{http://www.sped.fazenda.gov.br/nfse}TSCPF"/&gt;
- *           &lt;element name="NIF" type="{http://www.sped.fazenda.gov.br/nfse}TSNIF"/&gt;
- *           &lt;element name="cNaoNIF" type="{http://www.sped.fazenda.gov.br/nfse}TSCodNaoNIF"/&gt;
- *         &lt;/choice&gt;
- *         &lt;element name="CAEPF" type="{http://www.sped.fazenda.gov.br/nfse}TSCAEPF" minOccurs="0"/&gt;
- *         &lt;element name="IM" type="{http://www.sped.fazenda.gov.br/nfse}TSInscMun" minOccurs="0"/&gt;
- *         &lt;element name="xNome" type="{http://www.sped.fazenda.gov.br/nfse}TSNomeRazaoSocial" minOccurs="0"/&gt;
- *         &lt;element name="end" type="{http://www.sped.fazenda.gov.br/nfse}TCEndereco" minOccurs="0"/&gt;
- *         &lt;element name="fone" type="{http://www.sped.fazenda.gov.br/nfse}TSTelefone" minOccurs="0"/&gt;
- *         &lt;element name="email" type="{http://www.sped.fazenda.gov.br/nfse}TSEmail" minOccurs="0"/&gt;
- *         &lt;element name="regTrib" type="{http://www.sped.fazenda.gov.br/nfse}TCRegTrib"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
  */
 
 @Root(name = "InfoPrestador")
@@ -46,280 +16,181 @@ public class NFSeSefinNacionalInfoPrestador {
     protected String cpf;
     @Element(name = "NIF", required = false)
     protected String nif;
-    protected String cNaoNIF;
+    @Element(name = "cNaoNIF", required = false)
+    protected NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF;
     @Element(name = "CAEPF", required = false)
-    protected String caepf;
+    protected String nroCadastroAtividadeEconomicaPessoaFisica;
     @Element(name = "IM", required = false)
-    protected String im;
-    protected String xNome;
-    protected NFSeSefinNacionalEndereco end;
-    protected String fone;
+    protected String inscricaoMunicipal;
+    @Element(name = "xNome", required = false)
+    protected String nome;
+    @Element(name = "end", required = false)
+    protected NFSeSefinNacionalEndereco endereco;
+    @Element(name = "fone", required = false)
+    protected String telefone;
+    @Element(name = "email", required = false)
     protected String email;
-    @Element(required = true)
-    protected NFSeSefinNacionalRegTrib regTrib;
+    @Element(name = "regTrib")
+    protected NFSeSefinNacionalRegTrib regimeTributario;
 
     /**
-     * Gets the value of the cnpj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CNPJ do prestador de serviço
      */
     public String getCNPJ() {
         return cnpj;
     }
 
     /**
-     * Sets the value of the cnpj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param cnpj do prestador de serviço
      */
-    public void setCNPJ(String value) {
-        this.cnpj = value;
+    public NFSeSefinNacionalInfoPrestador setCNPJ(String cnpj) {
+        this.cnpj = cnpj;
+        return this;
     }
 
     /**
-     * Gets the value of the cpf property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CPF do prestador de serviço
      */
     public String getCPF() {
         return cpf;
     }
 
     /**
-     * Sets the value of the cpf property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param cpf CPF do prestador de serviço
      */
-    public void setCPF(String value) {
-        this.cpf = value;
+    public void setCPF(String cpf) {
+        this.cpf = cpf;
     }
 
     /**
-     * Gets the value of the nif property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior
+     *
+     * @return NIF do prestador de serviço
      */
     public String getNIF() {
         return nif;
     }
 
     /**
-     * Sets the value of the nif property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior
+     *
+     * @param nif NIF do prestador de serviço
      */
-    public void setNIF(String value) {
-        this.nif = value;
+    public void setNIF(String nif) {
+        this.nif = nif;
     }
 
     /**
-     * Gets the value of the cNaoNIF property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Código de motivo para não informação do NIF
      */
-    public String getCNaoNIF() {
-        return cNaoNIF;
+    public NFSeSefinNacionalInfoPrestadorCodigoNaoNIF getCodigoNaoNIF() {
+        return codigoNaoNIF;
     }
 
     /**
-     * Sets the value of the cNaoNIF property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param codigoNaoNIF motivo para não informação do NIF
      */
-    public void setCNaoNIF(String value) {
-        this.cNaoNIF = value;
+    public void setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
+        this.codigoNaoNIF = codigoNaoNIF;
     }
 
     /**
-     * Gets the value of the caepf property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
     public String getCAEPF() {
-        return caepf;
+        return nroCadastroAtividadeEconomicaPessoaFisica;
     }
 
     /**
-     * Sets the value of the caepf property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param nroCadastroAtividadeEconomicaPessoaFisica CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
-    public void setCAEPF(String value) {
-        this.caepf = value;
+    public void setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
+        this.nroCadastroAtividadeEconomicaPessoaFisica = nroCadastroAtividadeEconomicaPessoaFisica;
     }
 
     /**
-     * Gets the value of the im property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Inscrição Municipal do prestador de serviço
      */
-    public String getIM() {
-        return im;
+    public String getInscricaoMunicipal() {
+        return inscricaoMunicipal;
     }
 
     /**
-     * Sets the value of the im property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param inscricaoMunicipal Inscrição Municipal do prestador de serviço
      */
-    public void setIM(String value) {
-        this.im = value;
+    public void setIM(String inscricaoMunicipal) {
+        this.inscricaoMunicipal = inscricaoMunicipal;
     }
 
     /**
-     * Gets the value of the xNome property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Nome do prestador de serviço
      */
-    public String getXNome() {
-        return xNome;
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * Sets the value of the xNome property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param nome Nome do prestador de serviço
      */
-    public void setXNome(String value) {
-        this.xNome = value;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalEndereco }
-     *     
+     * @return Endereço do prestador de serviço
      */
-    public NFSeSefinNacionalEndereco getEnd() {
-        return end;
+    public NFSeSefinNacionalEndereco getEndereco() {
+        return endereco;
     }
 
     /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalEndereco }
-     *     
+     * @param endereco Endereço do prestador de serviço
      */
-    public void setEnd(NFSeSefinNacionalEndereco value) {
-        this.end = value;
+    public void setEndereco(NFSeSefinNacionalEndereco endereco) {
+        this.endereco = endereco;
     }
 
     /**
-     * Gets the value of the fone property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Telefone do prestador de serviço
      */
-    public String getFone() {
-        return fone;
+    public String getTelefone() {
+        return telefone;
     }
 
     /**
-     * Sets the value of the fone property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param telefone Telefone do prestador de serviço
      */
-    public void setFone(String value) {
-        this.fone = value;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     /**
-     * Gets the value of the email property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return E-mail do prestador de serviço
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Sets the value of the email property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param email E-mail do prestador de serviço
      */
-    public void setEmail(String value) {
-        this.email = value;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
-     * Gets the value of the regTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalRegTrib }
-     *     
+     * @return Regime Tributário do prestador de serviço
      */
-    public NFSeSefinNacionalRegTrib getRegTrib() {
-        return regTrib;
+    public NFSeSefinNacionalRegTrib getRegimeTributario() {
+        return regimeTributario;
     }
 
     /**
-     * Sets the value of the regTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalRegTrib }
-     *     
+     * @param regimeTributario Regime Tributário do prestador de serviço
      */
-    public void setRegTrib(NFSeSefinNacionalRegTrib value) {
-        this.regTrib = value;
+    public NFSeSefinNacionalInfoPrestador setRegimeTributario(NFSeSefinNacionalRegTrib regimeTributario) {
+        this.regimeTributario = regimeTributario;
+        return this;
     }
 
 }

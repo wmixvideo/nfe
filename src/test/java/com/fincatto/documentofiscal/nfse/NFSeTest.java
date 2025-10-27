@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfse;
 
-import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalNFSe;
+import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
 import com.fincatto.documentofiscal.nfse.webservices.WSSefinNFSe;
@@ -30,6 +30,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.X509Certificate;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
 
@@ -135,8 +137,7 @@ public class NFSeTest {
         System.out.println(assinarXml("<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>", System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA")));
     }
 
-    public static String assinarXml(String xmlString, String certificatePath, String password)
-            throws Exception {
+    public static String assinarXml(String xmlString, String certificatePath, String password) throws Exception {
 
         // 1. Carregar o certificado
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
@@ -192,7 +193,6 @@ public class NFSeTest {
         // Criar KeyInfo com dados do certificado X.509
         KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
         List<Object> x509Content = new ArrayList<>();
-        x509Content.add(certificate.getSubjectX500Principal().getName());
         x509Content.add(certificate);
 
         X509Data x509Data = keyInfoFactory.newX509Data(x509Content);
@@ -219,6 +219,36 @@ public class NFSeTest {
         StringWriter writer = new StringWriter();
         transformer.transform(new DOMSource(doc), new StreamResult(writer));
         return writer.getBuffer().toString();
+    }
+
+    @Test
+    public void testeComunicaDPSNacional() throws Exception {
+        final var dps = new NFSeSefinNacionalDPS().setInfDPS(new NFSeSefinNacionalInfDPS()
+                .setTipoAmbiente(NFSeSefinNacionalInfDPSTipoAmbiente.HOMOLOGACAO)
+                .setDataHoraEmissao(ZonedDateTime.of(2025,10,23,10,33,19,0, ZoneId.of("-03:00")))
+                .setVersaoApp("NFSe Fake Teste 1.0")
+                .setSerie("901")
+                .setNumeroDPS("6")
+                .setDataInicioPrestacaoServico(LocalDate.of(2025,10,23))
+                .setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente.PRESTADOR)
+                .setCodigoMunicipioEmissao("4205407")
+                .setPrestador(new NFSeSefinNacionalInfoPrestador().setCNPJ("").setRegimeTributario(new NFSeSefinNacionalRegTrib().setOpSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.NAO_OPTANTE).setRegimeEspecialTributacao(NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.NENHUM)))
+                .setTomador(new NFSeSefinNacionalInfoPessoa().setCPF("").setNome(""))
+                .setServicoPrestado(new NFSeSefinNacionalServ().setLocalPrestacao(new NFSeSefinNacionalLocPrest().setCodigoMunicipio("4205407")).setCServ(new NFSeSefinNacionalCServ().setCodigoNacionalTributacaoISSQN("170601").setDescricaoServico("Teste").setCodigoNBS("114061100")))
+                .setValores(new NFSeSefinNacionalInfoValores().setVServPrest(new NFSeSefinNacionalVServPrest().setVServ("10.00")).setTrib(new NFSeSefinNacionalInfoTributacao().setTribMun(new NFSeSefinNacionalTribMunicipal().setTribISSQN("1").setTpRetISSQN("1")).setTribFed(new NFSeSefinNacionalTribFederal().setPiscofins(new NFSeSefinNacionalTribOutrosPisCofins().setCST("08"))).setTotTrib(new NFSeSefinNacionalTribTotal().setIndTotTrib("0"))))
+                .setId(""));
+
+        // Assinar, comprimir em gzip e gerar Base64 do conteúdo gz
+        final String signedXml = assinarXml(dps.toXml(), System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA"));
+        byte[] gzipped;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             java.util.zip.GZIPOutputStream gos = new java.util.zip.GZIPOutputStream(baos)) {
+            gos.write(signedXml.getBytes(StandardCharsets.UTF_8));
+            gos.finish();
+            gzipped = baos.toByteArray();
+        }
+        final String gzipBase64 = Base64.getEncoder().encodeToString(gzipped);
+        final var responseXml = new WSSefinNFSe(config).processaDPS(gzipBase64);
     }
 
 }

@@ -103,14 +103,15 @@ public class NFSeSefinNacionalTribTotal {
 
     /**
      * Sets the value of the indTotTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
+     * @return
+     *
      */
-    public void setIndTotTrib(String value) {
+    public NFSeSefinNacionalTribTotal setIndTotTrib(String value) {
         this.indTotTrib = value;
+        return this;
     }
 
     /**

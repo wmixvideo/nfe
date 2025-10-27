@@ -1,107 +1,77 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * <p>Java class for TCInfoObra complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoObra"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;choice&gt;
- *         &lt;element name="cObra" type="{http://www.sped.fazenda.gov.br/nfse}TSCodObra"/&gt;
- *         &lt;element name="inscImobFisc" type="{http://www.sped.fazenda.gov.br/nfse}TSInscImobFisc"/&gt;
- *         &lt;element name="end" type="{http://www.sped.fazenda.gov.br/nfse}TCEnderecoSimples"/&gt;
- *       &lt;/choice&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações do DPS relativas à serviço de obra
  */
 
-@Root(name = "InfoObra")
+@Root(name = "obra")
 public class NFSeSefinNacionalInfoObra {
 
-    protected String cObra;
-    protected String inscImobFisc;
-    protected NFSeSefinNacionalEnderecoSimples end;
+    @Element(name = "cObra", required = false)
+    String numeroIdentificacaoObra;
+    @Element(name = "inscImobFisc", required = false)
+    String inscricaoImobiliariaFiscal;
+    @Element(name = "end", required = false)
+    NFSeSefinNacionalEnderecoSimples endereco;
 
     /**
-     * Gets the value of the cObra property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Número de identificação da obra
+     * Cadastro Nacional de Obras (CNO) ou Cadastro Específico do INSS (CEI).
+     *
+     * @return Número de identificação da obra
      */
-    public String getCObra() {
-        return cObra;
+    public String getNumeroIdentificacaoObra() {
+        return numeroIdentificacaoObra;
     }
 
     /**
-     * Sets the value of the cObra property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define o número de identificação da obra
+     * Cadastro Nacional de Obras (CNO) ou Cadastro Específico do INSS (CEI).
+     *
+     * @param value Número de identificação da obra
      */
-    public void setCObra(String value) {
-        this.cObra = value;
+    public void setNumeroIdentificacaoObra(String value) {
+        this.numeroIdentificacaoObra = value;
     }
 
     /**
-     * Gets the value of the inscImobFisc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU)
+     *
+     * @return Inscrição imobiliária fiscal
      */
-    public String getInscImobFisc() {
-        return inscImobFisc;
+    public String getInscricaoImobiliariaFiscal() {
+        return inscricaoImobiliariaFiscal;
     }
 
     /**
-     * Sets the value of the inscImobFisc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define a inscrição imobiliária fiscal (código fornecido pela Prefeitura Municipal para a identificação da obra ou para fins de recolhimento do IPTU)
+     *
+     * @param value Inscrição imobiliária fiscal
      */
-    public void setInscImobFisc(String value) {
-        this.inscImobFisc = value;
+    public void setInscricaoImobiliariaFiscal(String value) {
+        this.inscricaoImobiliariaFiscal = value;
     }
 
     /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalEnderecoSimples }
-     *     
+     * Endereço da obra
+     *
+     * @return Endereço da obra
      */
-    public NFSeSefinNacionalEnderecoSimples getEnd() {
-        return end;
+    public NFSeSefinNacionalEnderecoSimples getEndereco() {
+        return endereco;
     }
 
     /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalEnderecoSimples }
-     *     
+     * Define o endereço da obra
+     *
+     * @param value Endereço da obra
      */
-    public void setEnd(NFSeSefinNacionalEnderecoSimples value) {
-        this.end = value;
+    public void setEndereco(NFSeSefinNacionalEnderecoSimples value) {
+        this.endereco = value;
     }
 
 }

@@ -49,14 +49,15 @@ public class NFSeSefinNacionalInfoTributacao {
 
     /**
      * Sets the value of the tribMun property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribMunicipal }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalTribMunicipal }
+     * @return
+     *
      */
-    public void setTribMun(NFSeSefinNacionalTribMunicipal value) {
+    public NFSeSefinNacionalInfoTributacao setTribMun(NFSeSefinNacionalTribMunicipal value) {
         this.tribMun = value;
+        return this;
     }
 
     /**
@@ -73,14 +74,15 @@ public class NFSeSefinNacionalInfoTributacao {
 
     /**
      * Sets the value of the tribNac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribFederal }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalTribFederal }
+     * @return
+     *
      */
-    public void setTribFed(NFSeSefinNacionalTribFederal value) {
+    public NFSeSefinNacionalInfoTributacao setTribFed(NFSeSefinNacionalTribFederal value) {
         this.tribFed = value;
+        return this;
     }
 
     /**
@@ -97,14 +99,15 @@ public class NFSeSefinNacionalInfoTributacao {
 
     /**
      * Sets the value of the totTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribTotal }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalTribTotal }
+     * @return
+     *
      */
-    public void setTotTrib(NFSeSefinNacionalTribTotal value) {
+    public NFSeSefinNacionalInfoTributacao setTotTrib(NFSeSefinNacionalTribTotal value) {
         this.totTrib = value;
+        return this;
     }
 
 }

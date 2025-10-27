@@ -57,14 +57,15 @@ public class NFSeSefinNacionalTribMunicipal {
 
     /**
      * Sets the value of the tribISSQN property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
+     * @return
+     *
      */
-    public void setTribISSQN(String value) {
+    public NFSeSefinNacionalTribMunicipal setTribISSQN(String value) {
         this.tribISSQN = value;
+        return this;
     }
 
     /**
@@ -201,14 +202,15 @@ public class NFSeSefinNacionalTribMunicipal {
 
     /**
      * Sets the value of the tpRetISSQN property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
+     * @return
+     *
      */
-    public void setTpRetISSQN(String value) {
+    public NFSeSefinNacionalTribMunicipal setTpRetISSQN(String value) {
         this.tpRetISSQN = value;
+        return this;
     }
 
 }

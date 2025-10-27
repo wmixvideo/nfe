@@ -53,14 +53,15 @@ public class NFSeSefinNacionalTribFederal {
 
     /**
      * Sets the value of the piscofins property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribOutrosPisCofins }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalTribOutrosPisCofins }
+     * @return
+     *
      */
-    public void setPiscofins(NFSeSefinNacionalTribOutrosPisCofins value) {
+    public NFSeSefinNacionalTribFederal setPiscofins(NFSeSefinNacionalTribOutrosPisCofins value) {
         this.piscofins = value;
+        return this;
     }
 
     /**

@@ -5,35 +5,6 @@ import org.simpleframework.xml.*;
 
 /**
  * Informações das pessoas envolvidas na NFS-e. Pode ser o tomador, o intermediário ou o fornecedor (dedução/redução)
- * 
- * <p>Java class for TCInfoPessoa complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoPessoa"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;choice&gt;
- *           &lt;element name="CNPJ" type="{http://www.sped.fazenda.gov.br/nfse}TSCNPJ"/&gt;
- *           &lt;element name="CPF" type="{http://www.sped.fazenda.gov.br/nfse}TSCPF"/&gt;
- *           &lt;element name="NIF" type="{http://www.sped.fazenda.gov.br/nfse}TSNIF"/&gt;
- *           &lt;element name="cNaoNIF" type="{http://www.sped.fazenda.gov.br/nfse}TSCodNaoNIF"/&gt;
- *         &lt;/choice&gt;
- *         &lt;element name="CAEPF" type="{http://www.sped.fazenda.gov.br/nfse}TSCAEPF" minOccurs="0"/&gt;
- *         &lt;element name="IM" type="{http://www.sped.fazenda.gov.br/nfse}TSInscMun" minOccurs="0"/&gt;
- *         &lt;element name="xNome" type="{http://www.sped.fazenda.gov.br/nfse}TSNomeRazaoSocial"/&gt;
- *         &lt;element name="end" type="{http://www.sped.fazenda.gov.br/nfse}TCEndereco" minOccurs="0"/&gt;
- *         &lt;element name="fone" type="{http://www.sped.fazenda.gov.br/nfse}TSTelefone" minOccurs="0"/&gt;
- *         &lt;element name="email" type="{http://www.sped.fazenda.gov.br/nfse}TSEmail" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
  */
 
 @Root(name = "InfoPessoa")
@@ -46,258 +17,164 @@ public class NFSeSefinNacionalInfoPessoa {
     @Element(name = "NIF", required = false)
     protected String nif;
     @Element(name = "cNaoNIF", required = false)
-    protected String cNaoNIF;
-    @Element(name = "caepf", required = false)
-    protected String caepf;
-    @Element(name = "im", required = false)
-    protected String im;
-    @Element(name = "xNome", required = false)
-    protected String xNome;
+    protected NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF;
+    @Element(name = "CAEPF", required = false)
+    protected String nroCadastroAtividadeEconomicaPessoaFisica;
+    @Element(name = "IM", required = false)
+    protected String inscricaoMunicipal;
+    @Element(name = "xNome")
+    protected String nome;
     @Element(name = "end", required = false)
-    protected NFSeSefinNacionalEndereco end;
+    protected NFSeSefinNacionalEndereco endereco;
     @Element(name = "fone", required = false)
-    protected String fone;
+    protected String telefone;
     @Element(name = "email", required = false)
     protected String email;
 
     /**
-     * Gets the value of the cnpj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CNPJ da pessoa
      */
     public String getCNPJ() {
         return cnpj;
     }
 
     /**
-     * Sets the value of the cnpj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param cnpj CNPJ da pessoa
      */
-    public void setCNPJ(String value) {
-        this.cnpj = value;
+    public void setCNPJ(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     /**
-     * Gets the value of the cpf property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CPF da pessoa
      */
     public String getCPF() {
         return cpf;
     }
 
     /**
-     * Sets the value of the cpf property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param cpf CPF da pessoa
      */
-    public void setCPF(String value) {
-        this.cpf = value;
+    public NFSeSefinNacionalInfoPessoa setCPF(String cpf) {
+        this.cpf = cpf;
+        return this;
     }
 
     /**
-     * Gets the value of the nif property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior
+     *
+     * @return NIF da pessoa
      */
     public String getNIF() {
         return nif;
     }
 
     /**
-     * Sets the value of the nif property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Número de Identificação Fiscal fornecido por órgão de administração tributária no exterior
+     *
+     * @param nif NIF do prestador de serviço
      */
-    public void setNIF(String value) {
-        this.nif = value;
+    public void setNIF(String nif) {
+        this.nif = nif;
     }
 
     /**
-     * Gets the value of the cNaoNIF property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Código de motivo para não informação do NIF
      */
-    public String getCNaoNIF() {
-        return cNaoNIF;
+    public NFSeSefinNacionalInfoPrestadorCodigoNaoNIF getCodigoNaoNIF() {
+        return codigoNaoNIF;
     }
 
     /**
-     * Sets the value of the cNaoNIF property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param codigoNaoNIF motivo para não informação do NIF
      */
-    public void setCNaoNIF(String value) {
-        this.cNaoNIF = value;
+    public void setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
+        this.codigoNaoNIF = codigoNaoNIF;
     }
 
     /**
-     * Gets the value of the caepf property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
     public String getCAEPF() {
-        return caepf;
+        return nroCadastroAtividadeEconomicaPessoaFisica;
     }
 
     /**
-     * Sets the value of the caepf property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param nroCadastroAtividadeEconomicaPessoaFisica CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
-    public void setCAEPF(String value) {
-        this.caepf = value;
+    public void setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
+        this.nroCadastroAtividadeEconomicaPessoaFisica = nroCadastroAtividadeEconomicaPessoaFisica;
     }
 
     /**
-     * Gets the value of the im property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Inscrição Municipal da pessoa
      */
-    public String getIM() {
-        return im;
+    public String getInscricaoMunicipal() {
+        return inscricaoMunicipal;
     }
 
     /**
-     * Sets the value of the im property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value Inscrição Municipal da pessoa
      */
-    public void setIM(String value) {
-        this.im = value;
+    public void setInscricaoMunicipal(String value) {
+        this.inscricaoMunicipal = value;
     }
 
     /**
-     * Gets the value of the xNome property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Nome da pessoa
      */
-    public String getXNome() {
-        return xNome;
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * Sets the value of the xNome property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param nome Nome da pessoa
      */
-    public void setXNome(String value) {
-        this.xNome = value;
+    public NFSeSefinNacionalInfoPessoa setNome(String nome) {
+        this.nome = nome;
+        return this;
     }
 
     /**
-     * Gets the value of the end property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalEndereco }
-     *     
+     * @return Endereço da pessoa
      */
-    public NFSeSefinNacionalEndereco getEnd() {
-        return end;
+    public NFSeSefinNacionalEndereco getEndereco() {
+        return endereco;
     }
 
     /**
-     * Sets the value of the end property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalEndereco }
-     *     
+     * @param endereco Endereço da pessoa
      */
-    public void setEnd(NFSeSefinNacionalEndereco value) {
-        this.end = value;
+    public void setEndereco(NFSeSefinNacionalEndereco endereco) {
+        this.endereco = endereco;
     }
 
     /**
-     * Gets the value of the fone property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Telefone da pessoa
      */
-    public String getFone() {
-        return fone;
+    public String getTelefone() {
+        return telefone;
     }
 
     /**
-     * Sets the value of the fone property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param telefone Telefone da pessoa
      */
-    public void setFone(String value) {
-        this.fone = value;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     /**
-     * Gets the value of the email property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Email da pessoa
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Sets the value of the email property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param email Email da pessoa
      */
-    public void setEmail(String value) {
-        this.email = value;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

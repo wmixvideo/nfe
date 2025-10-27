@@ -1,9 +1,11 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NFSeSefinNacionalGetResponse {
     @JsonProperty("tipoAmbiente")
     private Integer tipoAmbiente;

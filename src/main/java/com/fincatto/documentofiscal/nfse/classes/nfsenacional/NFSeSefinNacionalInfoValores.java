@@ -50,14 +50,15 @@ public class NFSeSefinNacionalInfoValores {
 
     /**
      * Sets the value of the vServPrest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalVServPrest }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalVServPrest }
+     * @return
+     *
      */
-    public void setVServPrest(NFSeSefinNacionalVServPrest value) {
+    public NFSeSefinNacionalInfoValores setVServPrest(NFSeSefinNacionalVServPrest value) {
         this.vServPrest = value;
+        return this;
     }
 
     /**
@@ -122,14 +123,15 @@ public class NFSeSefinNacionalInfoValores {
 
     /**
      * Sets the value of the trib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoTributacao }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalInfoTributacao }
+     * @return
+     *
      */
-    public void setTrib(NFSeSefinNacionalInfoTributacao value) {
+    public NFSeSefinNacionalInfoValores setTrib(NFSeSefinNacionalInfoTributacao value) {
         this.trib = value;
+        return this;
     }
 
 }

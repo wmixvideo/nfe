@@ -3,7 +3,6 @@ package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
-import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;

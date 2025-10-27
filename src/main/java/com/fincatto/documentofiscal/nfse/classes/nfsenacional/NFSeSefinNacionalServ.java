@@ -4,44 +4,29 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCServ complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCServ"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="locPrest" type="{http://www.sped.fazenda.gov.br/nfse}TCLocPrest"/&gt;
- *         &lt;element name="cServ" type="{http://www.sped.fazenda.gov.br/nfse}TCCServ"/&gt;
- *         &lt;element name="comExt" type="{http://www.sped.fazenda.gov.br/nfse}TCComExterior" minOccurs="0"/&gt;
- *         &lt;element name="lsadppu" type="{http://www.sped.fazenda.gov.br/nfse}TCLocacaoSublocacao" minOccurs="0"/&gt;
- *         &lt;element name="obra" type="{http://www.sped.fazenda.gov.br/nfse}TCInfoObra" minOccurs="0"/&gt;
- *         &lt;element name="atvEvento" type="{http://www.sped.fazenda.gov.br/nfse}TCAtvEvento" minOccurs="0"/&gt;
- *         &lt;element name="explRod" type="{http://www.sped.fazenda.gov.br/nfse}TCExploracaoRodoviaria" minOccurs="0"/&gt;
- *         &lt;element name="infoCompl" type="{http://www.sped.fazenda.gov.br/nfse}TCInfoCompl" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações do DPS relativas ao Serviço Prestado
  */
 
 @Root(name = "Serv")
 public class NFSeSefinNacionalServ {
 
-    @Element(required = true)
-    protected NFSeSefinNacionalLocPrest locPrest;
-    @Element(required = true)
+    @Element(name = "locPrest")
+    protected NFSeSefinNacionalLocPrest localPrestacao;
+    @Element(name = "cServ")
     protected NFSeSefinNacionalCServ cServ;
-    protected NFSeSefinNacionalComExterior comExt;
+    @Element(name = "comExt", required = false)
+    protected NFSeSefinNacionalComercioExterior comExt;
+    @Element(name = "lsadppu", required = false)
     protected NFSeSefinNacionalLocacaoSublocacao lsadppu;
+    @Element(name = "obra", required = false)
     protected NFSeSefinNacionalInfoObra obra;
+
+    //todo: terminar tipagem e anotações
+    @Element(name = "atvEvento", required = false)
     protected NFSeSefinNacionalAtvEvento atvEvento;
+    @Element(name = "explRod", required = false)
     protected NFSeSefinNacionalExploracaoRodoviaria explRod;
+    @Element(name = "infoCompl", required = false)
     protected NFSeSefinNacionalInfoCompl infoCompl;
 
     /**
@@ -52,20 +37,21 @@ public class NFSeSefinNacionalServ {
      *     {@link NFSeSefinNacionalLocPrest }
      *     
      */
-    public NFSeSefinNacionalLocPrest getLocPrest() {
-        return locPrest;
+    public NFSeSefinNacionalLocPrest getLocalPrestacao() {
+        return localPrestacao;
     }
 
     /**
      * Sets the value of the locPrest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalLocPrest }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalLocPrest }
+     * @return
+     *
      */
-    public void setLocPrest(NFSeSefinNacionalLocPrest value) {
-        this.locPrest = value;
+    public NFSeSefinNacionalServ setLocalPrestacao(NFSeSefinNacionalLocPrest value) {
+        this.localPrestacao = value;
+        return this;
     }
 
     /**
@@ -82,14 +68,15 @@ public class NFSeSefinNacionalServ {
 
     /**
      * Sets the value of the cServ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalCServ }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NFSeSefinNacionalCServ }
+     * @return
+     *
      */
-    public void setCServ(NFSeSefinNacionalCServ value) {
+    public NFSeSefinNacionalServ setCServ(NFSeSefinNacionalCServ value) {
         this.cServ = value;
+        return this;
     }
 
     /**
@@ -97,10 +84,10 @@ public class NFSeSefinNacionalServ {
      * 
      * @return
      *     possible object is
-     *     {@link NFSeSefinNacionalComExterior }
+     *     {@link NFSeSefinNacionalComercioExterior }
      *     
      */
-    public NFSeSefinNacionalComExterior getComExt() {
+    public NFSeSefinNacionalComercioExterior getComExt() {
         return comExt;
     }
 
@@ -109,10 +96,10 @@ public class NFSeSefinNacionalServ {
      * 
      * @param value
      *     allowed object is
-     *     {@link NFSeSefinNacionalComExterior }
+     *     {@link NFSeSefinNacionalComercioExterior }
      *     
      */
-    public void setComExt(NFSeSefinNacionalComExterior value) {
+    public void setComExt(NFSeSefinNacionalComercioExterior value) {
         this.comExt = value;
     }
 

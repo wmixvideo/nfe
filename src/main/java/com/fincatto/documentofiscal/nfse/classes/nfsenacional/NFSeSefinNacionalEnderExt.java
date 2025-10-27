@@ -3,48 +3,78 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+/**
+ * Grupo de informações específicas de endereço no exterior
+ */
+
 @Root(name = "EnderExt")
 public class NFSeSefinNacionalEnderExt {
 
-    @Element(required = true)
-    protected String cPais;
-    @Element(required = true)
-    protected String cEndPost;
-    @Element(required = true)
-    protected String xCidade;
-    @Element(required = true)
-    protected String xEstProvReg;
+    @Element(name = "cPais")
+    protected String pais;
+    @Element(name = "cEndPost")
+    protected String codigoPostal;
+    @Element(name = "xCidade")
+    protected String cidade;
+    @Element(name = "xEstProvReg")
+    protected String estadoProvinciaRegiao;
 
-    public String getCPais() {
-        return cPais;
+    /**
+     * @return Código do país (Tabela de Países ISO)
+     */
+    public String getPais() {
+        return pais;
     }
 
-    public void setCPais(String value) {
-        this.cPais = value;
+    /**
+     * Define o código do país (Tabela de Países ISO)
+     *
+     * @param pais Código do país
+     */
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
-    public String getCEndPost() {
-        return cEndPost;
+    /**
+     * @return Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
+     */
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
 
-    public void setCEndPost(String value) {
-        this.cEndPost = value;
+    /**
+     * @param codigoPostal código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
+     */
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
-    public String getXCidade() {
-        return xCidade;
+    /**
+     * @return Nome da cidade no exterior do prestador do serviço.
+     */
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setXCidade(String value) {
-        this.xCidade = value;
+    /**
+     * @param cidade Nome da cidade no exterior do prestador do serviço.
+     */
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    public String getXEstProvReg() {
-        return xEstProvReg;
+    /**
+     * @return Nome do estado, província ou região no exterior do prestador do serviço.
+     */
+    public String getEstadoProvinciaRegiao() {
+        return estadoProvinciaRegiao;
     }
 
-    public void setXEstProvReg(String value) {
-        this.xEstProvReg = value;
+    /**
+     * @param estadoProvinciaRegiao Nome do estado, província ou região no exterior do prestador do serviço.
+     */
+    public void setEstadoProvinciaRegiao(String estadoProvinciaRegiao) {
+        this.estadoProvinciaRegiao = estadoProvinciaRegiao;
     }
 
 }

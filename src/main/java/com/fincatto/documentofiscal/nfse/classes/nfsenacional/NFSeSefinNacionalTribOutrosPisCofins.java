@@ -56,14 +56,15 @@ public class NFSeSefinNacionalTribOutrosPisCofins {
 
     /**
      * Sets the value of the cst property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
+     * @return
+     *
      */
-    public void setCST(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setCST(String value) {
         this.cst = value;
+        return this;
     }
 
     /**

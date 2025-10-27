@@ -69,14 +69,15 @@ public class NFSeSefinNacionalVServPrest {
 
     /**
      * Sets the value of the vServ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
+     * @return
+     *
      */
-    public void setVServ(String value) {
+    public NFSeSefinNacionalVServPrest setVServ(String value) {
         this.vServ = value;
+        return this;
     }
 
 }

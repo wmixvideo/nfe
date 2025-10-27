@@ -3,398 +3,296 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+
 @Root(name = "infDPS")
 public class NFSeSefinNacionalInfDPS {
 
-    @Element(name = "tpAmb", required = false)
-    protected String tpAmb;
-    @Element(name = "dhEmi", required = false)
-    protected String dhEmi;
-    @Element(name = "verAplic", required = false)
-    protected String verAplic;
-    @Element(name = "serie", required = false)
+    @Element(name = "tpAmb")
+    protected NFSeSefinNacionalInfDPSTipoAmbiente tipoAmbiente;
+    @Element(name = "dhEmi")
+    protected ZonedDateTime dataHoraEmissao;
+    @Element(name = "verAplic")
+    protected String versaoApp;
+    @Element(name = "serie")
     protected String serie;
-    @Element(name = "nDPS", required = false)
-    protected String ndps;
-    @Element(name = "dCompet", required = false)
-    protected String dCompet;
-    @Element(name = "tpEmit", required = false)
-    protected String tpEmit;
-    @Element(name = "cLocEmi", required = false)
-    protected String cLocEmi;
+    @Element(name = "nDPS")
+    protected String numeroDPS;
+    @Element(name = "dCompet")
+    protected LocalDate dataInicioPrestacaoServico;
+    @Element(name = "tpEmit")
+    protected NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente;
+    @Element(name = "cLocEmi")
+    protected String codigoMunicipioEmissao;
     @Element(name = "subst", required = false)
-    protected NFSeSefinNacionalSubstituicao subst;
-    @Element(name = "prest", required = false)
-    protected NFSeSefinNacionalInfoPrestador prest;
+    protected NFSeSefinNacionalSubstituicao substituicaoNfse;
+    @Element(name = "prest")
+    protected NFSeSefinNacionalInfoPrestador prestador;
     @Element(name = "toma", required = false)
-    protected NFSeSefinNacionalInfoPessoa toma;
+    protected NFSeSefinNacionalInfoPessoa tomador;
     @Element(name = "interm", required = false)
-    protected NFSeSefinNacionalInfoPessoa interm;
-    @Element(name = "serv", required = false)
-    protected NFSeSefinNacionalServ serv;
-    @Element(name = "valores", required = false)
+    protected NFSeSefinNacionalInfoPessoa intermediario;
+    @Element(name = "serv")
+    protected NFSeSefinNacionalServ servicoPrestado;
+    @Element(name = "valores")
     protected NFSeSefinNacionalInfoValores valores;
-    @Attribute(name = "Id", required = false)
+    @Attribute(name = "Id") //todo: implementar a validação da regra (método + teste unitário)
     protected String id;
 
     /**
-     * Gets the value of the tpAmb property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Tipo de ambiente que está sendo transmitido a DPS
+     *
+     * @return tipo de ambiente
      */
-    public String getTpAmb() {
-        return tpAmb;
+    public NFSeSefinNacionalInfDPSTipoAmbiente getTipoAmbiente() {
+        return tipoAmbiente;
     }
 
     /**
-     * Sets the value of the tpAmb property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define o tipo de ambiente que está sendo transmitido a DPS.
+     * todo: Verificar a relação entre o ambiente definido no xml, e a url da api usada para envio (se houver)
+     *
+     * @param tipoAmbiente tipo de ambiente
      */
-    public void setTpAmb(String value) {
-        this.tpAmb = value;
+    public NFSeSefinNacionalInfDPS setTipoAmbiente(NFSeSefinNacionalInfDPSTipoAmbiente tipoAmbiente) {
+        this.tipoAmbiente = tipoAmbiente;
+        return this;
     }
 
     /**
-     * Gets the value of the dhEmi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return data e hora com fuso da emissão do DPS
      */
-    public String getDhEmi() {
-        return dhEmi;
+    public ZonedDateTime getDataHoraEmissao() {
+        return dataHoraEmissao;
     }
 
     /**
-     * Sets the value of the dhEmi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param dataHoraEmissao data e hora da emissão do DPS
      */
-    public void setDhEmi(String value) {
-        this.dhEmi = value;
+    public NFSeSefinNacionalInfDPS setDataHoraEmissao(ZonedDateTime dataHoraEmissao) {
+        this.dataHoraEmissao = dataHoraEmissao;
+        return this;
     }
 
     /**
-     * Gets the value of the verAplic property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Versão do aplicativo que gerou o DPS.
      */
-    public String getVerAplic() {
-        return verAplic;
+    public String getVersaoApp() {
+        return versaoApp;
     }
 
     /**
-     * Sets the value of the verAplic property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param versaoApp Versão do aplicativo que gerou o DPS.
      */
-    public void setVerAplic(String value) {
-        this.verAplic = value;
+    public NFSeSefinNacionalInfDPS setVersaoApp(String versaoApp) {
+        //todo: Validar se pode ser qualquer coisa definida pelo emissor/sistema gerador
+        this.versaoApp = versaoApp;
+        return this;
     }
 
     /**
-     * Gets the value of the serie property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Número do equipamento emissor do DPS ou série do DPS
      */
     public String getSerie() {
         return serie;
     }
 
     /**
-     * Sets the value of the serie property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param serie Número do equipamento emissor do DPS ou série do DPS
      */
-    public void setSerie(String value) {
-        this.serie = value;
+    public NFSeSefinNacionalInfDPS setSerie(String serie) {
+        this.serie = serie;
+        return this;
     }
 
     /**
-     * Gets the value of the ndps property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Número do DPS
      */
-    public String getNDPS() {
-        return ndps;
+    public String getNumeroDPS() {
+        return numeroDPS;
     }
 
     /**
-     * Sets the value of the ndps property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param numeroDPS Número do Documento de Prestação de Serviço - DPS
      */
-    public void setNDPS(String value) {
-        this.ndps = value;
+    public NFSeSefinNacionalInfDPS setNumeroDPS(String numeroDPS) {
+        this.numeroDPS = numeroDPS;
+        return this;
+    }
+
+    public LocalDate getDataInicioPrestacaoServico() {
+        return dataInicioPrestacaoServico;
     }
 
     /**
-     * Gets the value of the dCompet property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Data descrita como a data de inicio da prestação do serviço
+     *
+     * @param dataInicioPrestacaoServico Data de competência do DPS
      */
-    public String getDCompet() {
-        return dCompet;
+    public NFSeSefinNacionalInfDPS setDataInicioPrestacaoServico(LocalDate dataInicioPrestacaoServico) {
+        this.dataInicioPrestacaoServico = dataInicioPrestacaoServico;
+        return this;
     }
 
     /**
-     * Sets the value of the dCompet property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @return Tipo de emitente do DPS
+     * @see NFSeSefinNacionalInfDPSTipoEmitente
      */
-    public void setDCompet(String value) {
-        this.dCompet = value;
+    public NFSeSefinNacionalInfDPSTipoEmitente getTipoEmitente() {
+        return tipoEmitente;
     }
 
     /**
-     * Gets the value of the tpEmit property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @param tipoEmitente Tipo de emitente do DPS
+     * @see NFSeSefinNacionalInfDPSTipoEmitente
      */
-    public String getTpEmit() {
-        return tpEmit;
+    public NFSeSefinNacionalInfDPS setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente) {
+        this.tipoEmitente = tipoEmitente;
+        return this;
     }
 
     /**
-     * Sets the value of the tpEmit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <a href="https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual">Documentações e anexos</a>
+     *
+     * @return código do município de emissão na tabela do IBGE
      */
-    public void setTpEmit(String value) {
-        this.tpEmit = value;
+    public String getCodigoMunicipioEmissao() {
+        return codigoMunicipioEmissao;
     }
 
     /**
-     * Gets the value of the cLocEmi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * <p> O código de município utilizado pelo Sistema Nacional NFS-e é o código definido para cada município pertencente ao
+     * "Anexo V – Tabela de Código de Municípios do IBGE"", que consta ao final do Manual de Orientação ao Contribuinte do ISSQN para a Sefin Nacional NFS-e.</p>
+     *
+     * <p>O município emissor da NFS-e é aquele município em que o emitente da DPS está cadastrado e autorizado a "emitir uma NFS-e",
+     * ou seja, emitir uma DPS para que o sistema nacional valide as informações nela prestadas e gere a NFS-e correspondente para o emitente. </p>
+     *
+     * <p>Para que o sistema nacional emita a NFS-e o município emissor deve ser conveniado e estar ativo no sistema nacional.
+     * Além disso o convênio do município deve permitir que os contribuintes do município utilizem os emissores públicos do Sistema Nacional NFS-e.</p>
+     *
+     * <a href="https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual">Documentações e anexos</a>
+     *
+     * @param codigoMunicipioEmissao código do município de emissão na tabela do IBGE
      */
-    public String getCLocEmi() {
-        return cLocEmi;
+    public NFSeSefinNacionalInfDPS setCodigoMunicipioEmissao(String codigoMunicipioEmissao) {
+        this.codigoMunicipioEmissao = codigoMunicipioEmissao;
+        return this;
     }
 
     /**
-     * Sets the value of the cLocEmi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @return dados da NFS-e a ser substituída
+     * @see NFSeSefinNacionalSubstituicao
      */
-    public void setCLocEmi(String value) {
-        this.cLocEmi = value;
+    public NFSeSefinNacionalSubstituicao getSubstituicaoNfse() {
+        return substituicaoNfse;
     }
 
     /**
-     * Gets the value of the subst property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalSubstituicao }
-     *     
+     * @param substituicaoNfse dados da NFS-e a ser substituída
+     * @see NFSeSefinNacionalSubstituicao
      */
-    public NFSeSefinNacionalSubstituicao getSubst() {
-        return subst;
+    public void setSubstituicao(NFSeSefinNacionalSubstituicao substituicaoNfse) {
+        this.substituicaoNfse = substituicaoNfse;
+    }
+
+    public NFSeSefinNacionalInfoPrestador getPrestador() {
+        return prestador;
     }
 
     /**
-     * Sets the value of the subst property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalSubstituicao }
-     *     
+     * @param prestador informações do prestador de serviço
+     * @see NFSeSefinNacionalInfoPrestador
      */
-    public void setSubst(NFSeSefinNacionalSubstituicao value) {
-        this.subst = value;
+    public NFSeSefinNacionalInfDPS setPrestador(NFSeSefinNacionalInfoPrestador prestador) {
+        this.prestador = prestador;
+        return this;
     }
 
     /**
-     * Gets the value of the prest property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoPrestador }
-     *     
+     * @return informações do tomador de serviço
+     * @see NFSeSefinNacionalInfoPessoa
      */
-    public NFSeSefinNacionalInfoPrestador getPrest() {
-        return prest;
+    public NFSeSefinNacionalInfoPessoa getTomador() {
+        return tomador;
     }
 
     /**
-     * Sets the value of the prest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoPrestador }
-     *     
+     * @param tomador informações do tomador de serviço
+     * @see NFSeSefinNacionalInfoPessoa
      */
-    public void setPrest(NFSeSefinNacionalInfoPrestador value) {
-        this.prest = value;
+    public NFSeSefinNacionalInfDPS setTomador(NFSeSefinNacionalInfoPessoa tomador) {
+        this.tomador = tomador;
+        return this;
     }
 
     /**
-     * Gets the value of the toma property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoPessoa }
-     *     
+     * @return informações do intermediário de serviço
+     * @see NFSeSefinNacionalInfoPessoa
      */
-    public NFSeSefinNacionalInfoPessoa getToma() {
-        return toma;
+    public NFSeSefinNacionalInfoPessoa getIntermediario() {
+        return intermediario;
     }
 
     /**
-     * Sets the value of the toma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoPessoa }
-     *     
+     * @param intermediario informações do intermediário de serviço
+     * @see NFSeSefinNacionalInfoPessoa
      */
-    public void setToma(NFSeSefinNacionalInfoPessoa value) {
-        this.toma = value;
+    public void setIntermediario(NFSeSefinNacionalInfoPessoa intermediario) {
+        this.intermediario = intermediario;
     }
 
     /**
-     * Gets the value of the interm property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoPessoa }
-     *     
+     * @return informações do serviço prestado
+     * @see NFSeSefinNacionalServ
      */
-    public NFSeSefinNacionalInfoPessoa getInterm() {
-        return interm;
+    public NFSeSefinNacionalServ getServicoPrestado() {
+        return servicoPrestado;
     }
 
     /**
-     * Sets the value of the interm property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoPessoa }
-     *     
+     * @param servicoPrestado informações do serviço prestado
+     * @see NFSeSefinNacionalServ
      */
-    public void setInterm(NFSeSefinNacionalInfoPessoa value) {
-        this.interm = value;
+    public NFSeSefinNacionalInfDPS setServicoPrestado(NFSeSefinNacionalServ servicoPrestado) {
+        this.servicoPrestado = servicoPrestado;
+        return this;
     }
 
     /**
-     * Gets the value of the serv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalServ }
-     *     
-     */
-    public NFSeSefinNacionalServ getServ() {
-        return serv;
-    }
-
-    /**
-     * Sets the value of the serv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalServ }
-     *     
-     */
-    public void setServ(NFSeSefinNacionalServ value) {
-        this.serv = value;
-    }
-
-    /**
-     * Gets the value of the valores property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoValores }
-     *     
+     * @return informações dos valores do serviço prestado
+     * @see NFSeSefinNacionalInfoValores
      */
     public NFSeSefinNacionalInfoValores getValores() {
         return valores;
     }
 
     /**
-     * Sets the value of the valores property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoValores }
-     *     
+     * @param value informações dos valores do serviço prestado
+     * @see NFSeSefinNacionalInfoValores
      */
-    public void setValores(NFSeSefinNacionalInfoValores value) {
+    public NFSeSefinNacionalInfDPS setValores(NFSeSefinNacionalInfoValores value) {
         this.valores = value;
+        return this;
     }
 
     /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return ID da DPS no formato:
+     * "DPS" + Cód.Mun (7) + Tipo de Inscrição Federal (1) + Inscrição Federal (14 - CPF completar com 000 à esquerda) + Série DPS (5)+ Núm. DPS (15)
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define o ID da DPS no formato:
+     * "DPS" + Cód.Mun (7) + Tipo de Inscrição Federal (1) + Inscrição Federal (14 - CPF completar com 000 à esquerda) + Série DPS (5)+ Núm. DPS (15)
+     *
+     * @param id ID da DPS
      */
-    public void setId(String value) {
-        this.id = value;
+    public NFSeSefinNacionalInfDPS setId(String id) {
+        this.id = id;
+        return this;
     }
 
 }

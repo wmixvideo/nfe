@@ -45,6 +45,15 @@ public class NFSeHttpClient {
                 .build(), responseBodyHandler);
     }
 
+    public HttpResponse<String> sendPostRequest(final URI uri, final String jsonBody) throws Exception {
+        return this.client.send(HttpRequest.newBuilder()
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .headers("Content-Type", "application/json; charset=utf-8")
+                .timeout(this.timeout)
+                .uri(uri)
+                .build(), HttpResponse.BodyHandlers.ofString());
+    }
+
     private Duration getTimeout() {
         return timeout;
     }

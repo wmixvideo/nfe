@@ -1,35 +1,39 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import com.fincatto.documentofiscal.utils.DFPersister;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.core.Persister;
 import java.io.StringWriter;
 
+@Namespace(reference = "http://www.sped.fazenda.gov.br/nfse")
 @Root(name = "DPS")
 public class NFSeSefinNacionalDPS {
 
-    @Element(required = true)
+    @Element(name = "infDPS")
     protected NFSeSefinNacionalInfDPS infDPS;
-    @Attribute(name = "versao", required = false)
+    @Attribute(name = "versao", empty = "1.00")
     protected String versao;
 
     public NFSeSefinNacionalInfDPS getInfDPS() {
         return infDPS;
     }
 
-    public void setInfDPS(NFSeSefinNacionalInfDPS value) {
+    public NFSeSefinNacionalDPS setInfDPS(NFSeSefinNacionalInfDPS value) {
         this.infDPS = value;
+        return this;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
+    public NFSeSefinNacionalDPS setVersao(String value) {
         this.versao = value;
+        return this;
     }
 
     public String toXml() throws Exception {
-        Persister serializer = new Persister();
+        Persister serializer = new DFPersister();
         StringWriter writer = new StringWriter();
         serializer.write(this, writer);
         return writer.toString();

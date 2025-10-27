@@ -4,134 +4,88 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCLocacaoSublocacao complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCLocacaoSublocacao"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="categ" type="{http://www.sped.fazenda.gov.br/nfse}TSCategoriaServico"/&gt;
- *         &lt;element name="objeto" type="{http://www.sped.fazenda.gov.br/nfse}TCObjetoLocacao"/&gt;
- *         &lt;element name="extensao" type="{http://www.sped.fazenda.gov.br/nfse}TSExtensaoTotal"/&gt;
- *         &lt;element name="nPostes" type="{http://www.sped.fazenda.gov.br/nfse}TSNumeroPostes"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relativas a atividades de Locação, sublocação, arrendamento, direito de passagem ou permissão de uso,
+ * compartilhado ou não, de ferrovia, rodovia, postes, cabos, dutos e condutos de qualquer natureza
  */
 
 @Root(name = "LocacaoSublocacao")
 public class NFSeSefinNacionalLocacaoSublocacao {
 
-    @Element(required = true)
-    protected String categ;
-    @Element(required = true)
-    protected String objeto;
-    @Element(required = true)
+    @Element(name="categ")
+    protected NFSeSefinNacionalLocacaoSublocacaoCategoriaServico categoria;
+    @Element(name="objeto")
+    protected NFSeSefinNacionalLocacaoSublocacaoObjeto objeto;
+    @Element(name="extensao")
     protected String extensao;
-    @Element(required = true)
-    protected String nPostes;
+    @Element(name="nPostes")
+    protected String numeroDePostes;
 
     /**
-     * Gets the value of the categ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Categoria do serviço
      */
-    public String getCateg() {
-        return categ;
+    public NFSeSefinNacionalLocacaoSublocacaoCategoriaServico getCategoria() {
+        return categoria;
     }
 
     /**
-     * Sets the value of the categ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define a categoria do serviço
+     *
+     * @param categoria Categoria do serviço
      */
-    public void setCateg(String value) {
-        this.categ = value;
+    public void setCategoria(NFSeSefinNacionalLocacaoSublocacaoCategoriaServico categoria) {
+        this.categoria = categoria;
     }
 
     /**
-     * Gets the value of the objeto property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso
+     *
+     * @return Objeto da locação/sublocação
      */
-    public String getObjeto() {
+    public NFSeSefinNacionalLocacaoSublocacaoObjeto getObjeto() {
         return objeto;
     }
 
     /**
-     * Sets the value of the objeto property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define o tipo de objetos da locação, sublocação, arrendamento, direito de passagem ou permissão de uso
+     *
+     * @param objeto Objeto da locação/sublocação
      */
-    public void setObjeto(String value) {
-        this.objeto = value;
+    public void setObjeto(NFSeSefinNacionalLocacaoSublocacaoObjeto objeto) {
+        this.objeto = objeto;
     }
 
     /**
-     * Gets the value of the extensao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Extensão total da ferrovia, rodovia, cabos, dutos ou condutos
+     *
+     * @return Extensão da locação/sublocação
      */
     public String getExtensao() {
         return extensao;
     }
 
     /**
-     * Sets the value of the extensao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define a extensão total da ferrovia, rodovia, cabos, dutos ou condutos
+     *
+     * @param value Extensão da locação/sublocação
      */
     public void setExtensao(String value) {
         this.extensao = value;
     }
 
     /**
-     * Gets the value of the nPostes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Número de postes objeto da locação, sublocação, arrendamento, direito de passagem ou permissão de uso
+     * @return Número de postes
      */
-    public String getNPostes() {
-        return nPostes;
+    public String getNumeroPostes() {
+        return numeroDePostes;
     }
 
     /**
-     * Sets the value of the nPostes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Define o número de postes objeto da locação, sublocação, arrendamento, direito de passagem ou permissão de uso
+     * @param value Número de postes
      */
-    public void setNPostes(String value) {
-        this.nPostes = value;
+    public void setNumeroPostes(String value) {
+        this.numeroDePostes = value;
     }
 
 }

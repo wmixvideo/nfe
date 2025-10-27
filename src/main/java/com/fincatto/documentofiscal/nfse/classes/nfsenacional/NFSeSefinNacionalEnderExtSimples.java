@@ -3,38 +3,61 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-@Root(name = "EnderExtSimples")
+@Root(name = "endExt")
 public class NFSeSefinNacionalEnderExtSimples {
 
-    @Element(required = true)
-    protected String cEndPost;
-    @Element(required = true)
-    protected String xCidade;
-    @Element(required = true)
-    protected String xEstProvReg;
+    @Element(name="cEndPost")
+    protected String codigoPostal;
+    @Element(name="xCidade")
+    protected String cidade;
+    @Element(name="xEstProvReg")
+    protected String estadoProvinciaRegiao;
 
-    public String getCEndPost() {
-        return cEndPost;
+    /**
+     * @return Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
+     */
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
 
-    public void setCEndPost(String value) {
-        this.cEndPost = value;
+    /**
+     * Define o Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
+     * @param value Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
+     */
+    public void setCodigoPostal(String value) {
+        this.codigoPostal = value;
     }
 
-    public String getXCidade() {
-        return xCidade;
+    /**
+     * Retorna a cidade
+     * @return Cidade
+     */
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setXCidade(String value) {
-        this.xCidade = value;
+    /**
+     * Define a cidade
+     * @param value Cidade
+     */
+    public void setCidade(String value) {
+        this.cidade = value;
     }
 
-    public String getXEstProvReg() {
-        return xEstProvReg;
+    /**
+     * Retorna o estado, província ou região
+     * @return Estado, província ou região
+     */
+    public String getEstadoProvinciaRegiao() {
+        return estadoProvinciaRegiao;
     }
 
-    public void setXEstProvReg(String value) {
-        this.xEstProvReg = value;
+    /**
+     * Define o estado, província ou região
+     * @param value Estado, província ou região
+     */
+    public void setEstadoProvinciaRegiao(String value) {
+        this.estadoProvinciaRegiao = value;
     }
 
 }

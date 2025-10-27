@@ -3,107 +3,61 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-/**
- * <p>Java class for TCSubstituicao complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCSubstituicao"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="chSubstda" type="{http://www.sped.fazenda.gov.br/nfse}TSChaveNFSe"/&gt;
- *         &lt;element name="cMotivo" type="{http://www.sped.fazenda.gov.br/nfse}TSCodJustSubst"/&gt;
- *         &lt;element name="xMotivo" type="{http://www.sped.fazenda.gov.br/nfse}TSMotivo" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
-
 @Root(name = "Substituicao")
 public class NFSeSefinNacionalSubstituicao {
 
-    @Element(required = true)
-    protected String chSubstda;
-    @Element(required = true)
-    protected String cMotivo;
-    protected String xMotivo;
+    @Element(name="chSubstda")
+    protected String chaveNFSe;
+    @Element(name="cMotivo")
+    protected NFSeSefinNacionalSubstituicaoMotivo motivo;
+    @Element(name="xMotivo", required = false)
+    protected String observacao;
 
     /**
-     * Gets the value of the chSubstda property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Chave de acesso da NFS-e a ser substituída
      */
-    public String getChSubstda() {
-        return chSubstda;
+    public String getChaveNFSe() {
+        return chaveNFSe;
     }
 
     /**
-     * Sets the value of the chSubstda property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param chaveNFSe Chave de acesso da NFS-e a ser substituída
      */
-    public void setChSubstda(String value) {
-        this.chSubstda = value;
+    public void setChaveNFSe(String chaveNFSe) {
+        this.chaveNFSe = chaveNFSe;
     }
 
     /**
-     * Gets the value of the cMotivo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Código do motivo da substituição
+     * @see NFSeSefinNacionalSubstituicaoMotivo
      */
-    public String getCMotivo() {
-        return cMotivo;
+    public NFSeSefinNacionalSubstituicaoMotivo getMotivo() {
+        return motivo;
     }
 
     /**
-     * Sets the value of the cMotivo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param motivo motivo da substituição
+     * @see NFSeSefinNacionalSubstituicaoMotivo
      */
-    public void setCMotivo(String value) {
-        this.cMotivo = value;
+    public void setMotivo(NFSeSefinNacionalSubstituicaoMotivo motivo) {
+        this.motivo = motivo;
     }
 
     /**
-     * Gets the value of the xMotivo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Descrição do motivo da substituição
      */
-    public String getXMotivo() {
-        return xMotivo;
+    public String getMotivoObservacao() {
+        return observacao;
     }
 
     /**
-     * Sets the value of the xMotivo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param observacao Descrição do motivo da substituição
      */
-    public void setXMotivo(String value) {
-        this.xMotivo = value;
+    public void setMotivoObservacao(String observacao) {
+        // Todo
+        //  - Verificar se este campo é obrigatório para algum motivo específico, ou se é sempre opcional -
+        //  - Layout do enum de motivos não deixa claro se é só a descrição replicada de lá, ou se é algo customizável
+        this.observacao = observacao;
     }
 
 }

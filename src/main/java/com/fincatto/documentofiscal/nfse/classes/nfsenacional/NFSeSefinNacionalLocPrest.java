@@ -5,107 +5,64 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * <p>Java class for TCLocPrest complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCLocPrest"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="cLocPrestacao" type="{http://www.sped.fazenda.gov.br/nfse}TSCodMunIBGE" minOccurs="0"/&gt;
- *         &lt;element name="cPaisPrestacao" type="{http://www.sped.fazenda.gov.br/nfse}TSCodPaisISO" minOccurs="0"/&gt;
- *         &lt;element name="opConsumServ" type="{http://www.sped.fazenda.gov.br/nfse}TSOpConsumServ" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relativas ao local da prestação do serviço
  */
 
-@Root(name = "LocPrest")
+@Root(name = "locPrest")
 public class NFSeSefinNacionalLocPrest {
 
     @Element(name = "cLocPrestacao", required = false)
-    protected String cLocPrestacao;
+    protected String codigoMunicipio;
     @Element(name = "cPaisPrestacao", required = false)
-    protected String cPaisPrestacao;
+    protected String codigoPais;
     @Element(name = "opConsumServ", required = false)
-    protected String opConsumServ;
+    protected NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico;
 
     /**
-     * Gets the value of the cLocPrestacao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * <a href="https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual">Documentações e anexos</a>
+     *
+     * @return código do município de emissão na tabela do IBGE
      */
-    public String getCLocPrestacao() {
-        return cLocPrestacao;
+    public String getCodigoMunicipio() {
+        return codigoMunicipio;
     }
 
     /**
-     * Sets the value of the cLocPrestacao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <a href="https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual">Documentações e anexos</a>
+     *
+     * @param codigoMunicipio código do município de emissão na tabela do IBGE
      */
-    public void setCLocPrestacao(String value) {
-        this.cLocPrestacao = value;
+    public NFSeSefinNacionalLocPrest setCodigoMunicipio(String codigoMunicipio) {
+        this.codigoMunicipio = codigoMunicipio;
+        return this;
     }
 
     /**
-     * Gets the value of the cPaisPrestacao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Código do país (Tabela de Países ISO)
      */
-    public String getCPaisPrestacao() {
-        return cPaisPrestacao;
+    public String getCodigoPais() {
+        return codigoPais;
     }
 
     /**
-     * Sets the value of the cPaisPrestacao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param codigoPais Código do país (Tabela de Países ISO)
      */
-    public void setCPaisPrestacao(String value) {
-        this.cPaisPrestacao = value;
+    public void setCodigoPais(String codigoPais) {
+        this.codigoPais = codigoPais;
     }
 
     /**
-     * Gets the value of the opConsumServ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
      */
-    public String getOpConsumServ() {
-        return opConsumServ;
+    public NFSeSefinNacionalLocPrestOpcaoConsumoServico getOpcaoConsumoServico() {
+        return opcaoConsumoServico;
     }
 
     /**
-     * Sets the value of the opConsumServ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param opcaoConsumoServico Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
      */
-    public void setOpConsumServ(String value) {
-        this.opConsumServ = value;
+    public void setOpcaoConsumoServico(NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico) {
+        this.opcaoConsumoServico = opcaoConsumoServico;
     }
 
 }
