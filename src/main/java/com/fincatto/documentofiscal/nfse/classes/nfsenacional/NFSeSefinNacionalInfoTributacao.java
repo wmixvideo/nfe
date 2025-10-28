@@ -4,109 +4,43 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCInfoTributacao complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoTributacao"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="tribMun" type="{http://www.sped.fazenda.gov.br/nfse}TCTribMunicipal"/&gt;
- *         &lt;element name="tribNac" type="{http://www.sped.fazenda.gov.br/nfse}TCTribNacional" minOccurs="0"/&gt;
- *         &lt;element name="totTrib" type="{http://www.sped.fazenda.gov.br/nfse}TCTribTotal"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relacionados aos tributos relacionados ao serviço prestado
  */
 
-@Root(name = "InfoTributacao")
+@Root(name = "trib")
 public class NFSeSefinNacionalInfoTributacao {
 
-    @Element(name = "tribMun", required = false)
-    protected NFSeSefinNacionalTribMunicipal tribMun;
-    @Element(name = "tribFed", required = false)
-    protected NFSeSefinNacionalTribFederal tribFed;
-    @Element(name = "totTrib", required = false)
-    protected NFSeSefinNacionalTribTotal totTrib;
+    @Element(name = "tribMun")
+    protected NFSeSefinNacionalTribMunicipal tributosMunicipais;
+    @Element(name = "tribNac", required = false)
+    protected NFSeSefinNacionalTribFederal tributosNacionais;
+    @Element(name = "totTrib")
+    protected NFSeSefinNacionalTribTotal totalTributos;
 
-    /**
-     * Gets the value of the tribMun property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribMunicipal }
-     *     
-     */
-    public NFSeSefinNacionalTribMunicipal getTribMun() {
-        return tribMun;
+    public NFSeSefinNacionalTribMunicipal getTributosMunicipais() {
+        return tributosMunicipais;
     }
 
-    /**
-     * Sets the value of the tribMun property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalTribMunicipal }
-     * @return
-     *
-     */
-    public NFSeSefinNacionalInfoTributacao setTribMun(NFSeSefinNacionalTribMunicipal value) {
-        this.tribMun = value;
+    public NFSeSefinNacionalInfoTributacao setTributosMunicipais(NFSeSefinNacionalTribMunicipal value) {
+        this.tributosMunicipais = value;
         return this;
     }
 
-    /**
-     * Gets the value of the tribNac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribFederal }
-     *     
-     */
-    public NFSeSefinNacionalTribFederal getTribFed() {
-        return tribFed;
+    public NFSeSefinNacionalTribFederal getTributosNacionais() {
+        return tributosNacionais;
     }
 
-    /**
-     * Sets the value of the tribNac property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalTribFederal }
-     * @return
-     *
-     */
-    public NFSeSefinNacionalInfoTributacao setTribFed(NFSeSefinNacionalTribFederal value) {
-        this.tribFed = value;
+    public NFSeSefinNacionalInfoTributacao setTributosNacionais(NFSeSefinNacionalTribFederal value) {
+        this.tributosNacionais = value;
         return this;
     }
 
-    /**
-     * Gets the value of the totTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribTotal }
-     *     
-     */
-    public NFSeSefinNacionalTribTotal getTotTrib() {
-        return totTrib;
+    public NFSeSefinNacionalTribTotal getTotalTributos() {
+        return totalTributos;
     }
 
-    /**
-     * Sets the value of the totTrib property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalTribTotal }
-     * @return
-     *
-     */
-    public NFSeSefinNacionalInfoTributacao setTotTrib(NFSeSefinNacionalTribTotal value) {
-        this.totTrib = value;
+    public NFSeSefinNacionalInfoTributacao setTotalTributos(NFSeSefinNacionalTribTotal value) {
+        this.totalTributos = value;
         return this;
     }
 

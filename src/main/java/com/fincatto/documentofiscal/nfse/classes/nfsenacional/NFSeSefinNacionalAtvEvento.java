@@ -3,58 +3,99 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+;import java.time.LocalDate;
 
-@Root(name = "AtvEvento")
+/**
+ * Grupo de informações do DPS relativas à Atividade do Evento
+ */
+
+@Root(name = "atvEvento")
 public class NFSeSefinNacionalAtvEvento {
 
-    @Element(required = true)
-    protected String desc;
-    @Element(required = true)
-    protected XMLGregorianCalendar dtIni;
-    @Element(required = true)
-    protected XMLGregorianCalendar dtFim;
+    @Element(name = "desc")
+    protected String descricao;
+    @Element(name = "dtIni")
+    protected LocalDate dataInicio;
+    @Element(name = "dtFim")
+    protected LocalDate dataFim;
+    @Element(name = "id")
     protected String id;
-    protected NFSeSefinNacionalEnderecoSimples end;
+    @Element(name = "end")
+    protected NFSeSefinNacionalEnderecoSimples endereco;
 
-    public String getDesc() {
-        return desc;
+    /**
+     * @return Descrição do evento Artístico, Cultural, Esportivo, etc
+     */
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDesc(String value) {
-        this.desc = value;
+    /**
+     * Descrição do evento Artístico, Cultural, Esportivo, etc
+     * @param descricao Descrição do evento Artístico, Cultural, Esportivo, etc
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public XMLGregorianCalendar getDtIni() {
-        return dtIni;
+    /**
+     * @return Data de Início do Evento
+     */
+    public LocalDate getDataInicio() {
+        return dataInicio;
     }
 
-    public void setDtIni(XMLGregorianCalendar value) {
-        this.dtIni = value;
+    /**
+     * Data de Início do Evento
+     * @param dataInicio Data de Início do Evento
+     */
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public XMLGregorianCalendar getDtFim() {
-        return dtFim;
+    /**
+     * @return Data de Término do Evento
+     */
+    public LocalDate getDataFim() {
+        return dataFim;
     }
 
-    public void setDtFim(XMLGregorianCalendar value) {
-        this.dtFim = value;
+    /**
+     * Data de Término do Evento
+     * @param dataFim Data de Término do Evento
+     */
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
     }
 
+    /**
+     * @return Id do Evento
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * Id do Evento
+     * @param id Id do Evento
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public NFSeSefinNacionalEnderecoSimples getEnd() {
-        return end;
+    /**
+     * @return Endereço do Evento
+     */
+    public NFSeSefinNacionalEnderecoSimples getEndereco() {
+        return endereco;
     }
 
-    public void setEnd(NFSeSefinNacionalEnderecoSimples value) {
-        this.end = value;
+    /**
+     * Endereço do Evento
+     * @param endereco endereço do Evento
+     */
+    public void setEndereco(NFSeSefinNacionalEnderecoSimples endereco) {
+        this.endereco = endereco;
     }
 
 }

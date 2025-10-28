@@ -4,212 +4,124 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCTribMunicipal complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCTribMunicipal"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="tribISSQN" type="{http://www.sped.fazenda.gov.br/nfse}TSTribISSQN"/&gt;
- *         &lt;element name="cPaisResult" type="{http://www.sped.fazenda.gov.br/nfse}TSCodPaisISO" minOccurs="0"/&gt;
- *         &lt;element name="BM" type="{http://www.sped.fazenda.gov.br/nfse}TCBeneficioMunicipal" minOccurs="0"/&gt;
- *         &lt;element name="exigSusp" type="{http://www.sped.fazenda.gov.br/nfse}TCExigSuspensa" minOccurs="0"/&gt;
- *         &lt;element name="tpImunidade" type="{http://www.sped.fazenda.gov.br/nfse}TSTipoImunidadeISSQN" minOccurs="0"/&gt;
- *         &lt;element name="pAliq" type="{http://www.sped.fazenda.gov.br/nfse}TSDec1V2" minOccurs="0"/&gt;
- *         &lt;element name="tpRetISSQN" type="{http://www.sped.fazenda.gov.br/nfse}TSTipoRetISSQN"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
  * 
  */
 
 @Root(name = "TribMunicipal")
 public class NFSeSefinNacionalTribMunicipal {
 
-    @Element(required = true)
-    protected String tribISSQN;
-    protected String cPaisResult;
+    @Element(name = "tribISSQN")
+    protected NFSeSefinNacionalTribMunicipalTributacaoISSQN tributacaoISSQN;
+    @Element(name = "cPaisResult", required = false)
+    protected String codigoPais;
     @Element(name = "BM", required = false)
-    protected NFSeSefinNacionalBeneficioMunicipal bm;
-    protected NFSeSefinNacionalExigSuspensa exigSusp;
-    protected String tpImunidade;
-    protected String pAliq;
-    @Element(required = true)
-    protected String tpRetISSQN;
+    protected NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal;
+    @Element(name = "exigSusp", required = false)
+    protected NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa;
+    @Element(name = "tpImunidade", required = false)
+    protected NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade;
+    @Element(name = "pAliq", required = false)
+    protected String percentualAliquota;
+    @Element(name = "tpRetISSQN")
+    protected NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN tipoRetencaoISSQN;
 
     /**
-     * Gets the value of the tribISSQN property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return tributação do ISSQN sobre o serviço prestado
      */
-    public String getTribISSQN() {
-        return tribISSQN;
+    public NFSeSefinNacionalTribMunicipalTributacaoISSQN getTributacaoISSQN() {
+        return tributacaoISSQN;
     }
 
     /**
-     * Sets the value of the tribISSQN property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     * @return
-     *
+     * @param tributacaoISSQN tributação do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalTribMunicipal setTribISSQN(String value) {
-        this.tribISSQN = value;
+    public NFSeSefinNacionalTribMunicipal setTributacaoISSQN(NFSeSefinNacionalTribMunicipalTributacaoISSQN tributacaoISSQN) {
+        this.tributacaoISSQN = tributacaoISSQN;
         return this;
     }
 
     /**
-     * Gets the value of the cPaisResult property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Código do país onde se verficou o resultado da prestação do serviço para o caso de Exportação de Serviço.(Tabela de Países ISO)
      */
-    public String getCPaisResult() {
-        return cPaisResult;
+    public String getCodigoPais() {
+        return codigoPais;
     }
 
     /**
-     * Sets the value of the cPaisResult property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param codigoPais Código do país onde se verficou o resultado da prestação do serviço para o caso de Exportação de Serviço.(Tabela de Países ISO)
      */
-    public void setCPaisResult(String value) {
-        this.cPaisResult = value;
+    public void setCodigoPais(String codigoPais) {
+        this.codigoPais = codigoPais;
     }
 
     /**
-     * Gets the value of the bm property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalBeneficioMunicipal }
-     *     
+     * @return Benefício Municipal concedido ao prestador do serviço
      */
-    public NFSeSefinNacionalBeneficioMunicipal getBM() {
-        return bm;
+    public NFSeSefinNacionalBeneficioMunicipal getBeneficioMunicipal() {
+        return beneficioMunicipal;
     }
 
     /**
-     * Sets the value of the bm property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalBeneficioMunicipal }
-     *     
+     * @param beneficioMunicipal Benefício Municipal concedido ao prestador do serviço
      */
-    public void setBM(NFSeSefinNacionalBeneficioMunicipal value) {
-        this.bm = value;
+    public void setBeneficioMunicipal(NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal) {
+        this.beneficioMunicipal = beneficioMunicipal;
     }
 
     /**
-     * Gets the value of the exigSusp property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalExigSuspensa }
-     *     
+     * @return Exigibilidade Suspensa do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalExigSuspensa getExigSusp() {
-        return exigSusp;
+    public NFSeSefinNacionalExigSuspensa getExigibilidadeSuspensa() {
+        return exigibilidadeSuspensa;
     }
 
     /**
-     * Sets the value of the exigSusp property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalExigSuspensa }
-     *     
+     * @param exigibilidadeSuspensa Exigibilidade Suspensa do ISSQN sobre o serviço prestado
      */
-    public void setExigSusp(NFSeSefinNacionalExigSuspensa value) {
-        this.exigSusp = value;
+    public void setExigibilidadeSuspensa(NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa) {
+        this.exigibilidadeSuspensa = exigibilidadeSuspensa;
     }
 
     /**
-     * Gets the value of the tpImunidade property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Tipo de imunidade do ISSQN sobre o serviço prestado
      */
-    public String getTpImunidade() {
-        return tpImunidade;
+    public NFSeSefinNacionalTribMunicipalTipoImunidade getTipoImunidade() {
+        return tipoImunidade;
     }
 
     /**
-     * Sets the value of the tpImunidade property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param tipoImunidade Tipo de imunidade do ISSQN sobre o serviço prestado
      */
-    public void setTpImunidade(String value) {
-        this.tpImunidade = value;
+    public void setTipoImunidade(NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade) {
+        this.tipoImunidade = tipoImunidade;
     }
 
     /**
-     * Gets the value of the pAliq property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Percentual da alíquota do ISSQN sobre o serviço prestado
      */
-    public String getPAliq() {
-        return pAliq;
+    public String getPercentualAliquota() {
+        return percentualAliquota;
     }
 
     /**
-     * Sets the value of the pAliq property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param percentualAliquota Percentual da alíquota do ISSQN sobre o serviço prestado
      */
-    public void setPAliq(String value) {
-        this.pAliq = value;
+    public void setPercentualAliquota(String percentualAliquota) {
+        this.percentualAliquota = percentualAliquota;
     }
 
     /**
-     * Gets the value of the tpRetISSQN property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Tipo de retenção do ISSQN sobre o serviço prestado
      */
-    public String getTpRetISSQN() {
-        return tpRetISSQN;
+    public NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN getTipoRetencaoISSQN() {
+        return tipoRetencaoISSQN;
     }
 
     /**
-     * Sets the value of the tpRetISSQN property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     * @return
-     *
+     * @param tipoRetencaoISSQN Tipo de retenção do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalTribMunicipal setTpRetISSQN(String value) {
-        this.tpRetISSQN = value;
+    public NFSeSefinNacionalTribMunicipal setTipoRetencaoISSQN(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN tipoRetencaoISSQN) {
+        this.tipoRetencaoISSQN = tipoRetencaoISSQN;
         return this;
     }
 

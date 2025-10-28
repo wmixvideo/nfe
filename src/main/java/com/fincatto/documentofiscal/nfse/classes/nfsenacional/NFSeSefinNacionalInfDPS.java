@@ -137,7 +137,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return Tipo de emitente do DPS
-     * @see NFSeSefinNacionalInfDPSTipoEmitente
      */
     public NFSeSefinNacionalInfDPSTipoEmitente getTipoEmitente() {
         return tipoEmitente;
@@ -145,7 +144,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param tipoEmitente Tipo de emitente do DPS
-     * @see NFSeSefinNacionalInfDPSTipoEmitente
      */
     public NFSeSefinNacionalInfDPS setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente) {
         this.tipoEmitente = tipoEmitente;
@@ -182,7 +180,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return dados da NFS-e a ser substituída
-     * @see NFSeSefinNacionalSubstituicao
      */
     public NFSeSefinNacionalSubstituicao getSubstituicaoNfse() {
         return substituicaoNfse;
@@ -190,7 +187,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param substituicaoNfse dados da NFS-e a ser substituída
-     * @see NFSeSefinNacionalSubstituicao
      */
     public void setSubstituicao(NFSeSefinNacionalSubstituicao substituicaoNfse) {
         this.substituicaoNfse = substituicaoNfse;
@@ -202,7 +198,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param prestador informações do prestador de serviço
-     * @see NFSeSefinNacionalInfoPrestador
      */
     public NFSeSefinNacionalInfDPS setPrestador(NFSeSefinNacionalInfoPrestador prestador) {
         this.prestador = prestador;
@@ -211,7 +206,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return informações do tomador de serviço
-     * @see NFSeSefinNacionalInfoPessoa
      */
     public NFSeSefinNacionalInfoPessoa getTomador() {
         return tomador;
@@ -219,7 +213,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param tomador informações do tomador de serviço
-     * @see NFSeSefinNacionalInfoPessoa
      */
     public NFSeSefinNacionalInfDPS setTomador(NFSeSefinNacionalInfoPessoa tomador) {
         this.tomador = tomador;
@@ -228,7 +221,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return informações do intermediário de serviço
-     * @see NFSeSefinNacionalInfoPessoa
      */
     public NFSeSefinNacionalInfoPessoa getIntermediario() {
         return intermediario;
@@ -236,7 +228,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param intermediario informações do intermediário de serviço
-     * @see NFSeSefinNacionalInfoPessoa
      */
     public void setIntermediario(NFSeSefinNacionalInfoPessoa intermediario) {
         this.intermediario = intermediario;
@@ -244,7 +235,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return informações do serviço prestado
-     * @see NFSeSefinNacionalServ
      */
     public NFSeSefinNacionalServ getServicoPrestado() {
         return servicoPrestado;
@@ -252,7 +242,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param servicoPrestado informações do serviço prestado
-     * @see NFSeSefinNacionalServ
      */
     public NFSeSefinNacionalInfDPS setServicoPrestado(NFSeSefinNacionalServ servicoPrestado) {
         this.servicoPrestado = servicoPrestado;
@@ -261,7 +250,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @return informações dos valores do serviço prestado
-     * @see NFSeSefinNacionalInfoValores
      */
     public NFSeSefinNacionalInfoValores getValores() {
         return valores;
@@ -269,7 +257,6 @@ public class NFSeSefinNacionalInfDPS {
 
     /**
      * @param value informações dos valores do serviço prestado
-     * @see NFSeSefinNacionalInfoValores
      */
     public NFSeSefinNacionalInfDPS setValores(NFSeSefinNacionalInfoValores value) {
         this.valores = value;

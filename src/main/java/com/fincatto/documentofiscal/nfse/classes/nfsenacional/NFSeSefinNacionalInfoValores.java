@@ -4,133 +4,82 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCInfoValores complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoValores"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="vServPrest" type="{http://www.sped.fazenda.gov.br/nfse}TCVServPrest"/&gt;
- *         &lt;element name="vDescCondIncond" type="{http://www.sped.fazenda.gov.br/nfse}TCVDescCondIncond" minOccurs="0"/&gt;
- *         &lt;element name="vDedRed" type="{http://www.sped.fazenda.gov.br/nfse}TCInfoDedRed" minOccurs="0"/&gt;
- *         &lt;element name="trib" type="{http://www.sped.fazenda.gov.br/nfse}TCInfoTributacao"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relativas à valores do serviço prestado
  */
 
-@Root(name = "InfoValores")
+@Root(name = "infoValores")
 public class NFSeSefinNacionalInfoValores {
 
-    @Element(required = true)
-    protected NFSeSefinNacionalVServPrest vServPrest;
-    protected NFSeSefinNacionalVDescCondIncond vDescCondIncond;
-    protected NFSeSefinNacionalInfoDedRed vDedRed;
-    @Element(required = true)
-    protected NFSeSefinNacionalInfoTributacao trib;
+    @Element(name="vServPrest")
+    protected NFSeSefinNacionalVServPrest valoresServicoPrestado;
+    @Element(name="vDescCondIncond", required = false)
+    protected NFSeSefinNacionalVDescCondIncond valoresDescontosCondicionadosIncondicionados;
+    @Element(name="vDedRed", required = false)
+    protected NFSeSefinNacionalInfoDedRed valoresDeducaoBaseCalculo;
+    @Element(name="trib")
+    protected NFSeSefinNacionalInfoTributacao tributos;
 
     /**
-     * Gets the value of the vServPrest property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalVServPrest }
-     *     
+     * @return Valores do Serviço Prestado
      */
-    public NFSeSefinNacionalVServPrest getVServPrest() {
-        return vServPrest;
+    public NFSeSefinNacionalVServPrest getValoresServicoPrestado() {
+        return valoresServicoPrestado;
     }
 
     /**
-     * Sets the value of the vServPrest property.
+     * Define os Valores do Serviço Prestado
      *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalVServPrest }
-     * @return
-     *
+     * @param valoresServicoPrestado Valores do Serviço Prestado
      */
-    public NFSeSefinNacionalInfoValores setVServPrest(NFSeSefinNacionalVServPrest value) {
-        this.vServPrest = value;
+    public NFSeSefinNacionalInfoValores setValoresServicoPrestado(NFSeSefinNacionalVServPrest valoresServicoPrestado) {
+        this.valoresServicoPrestado = valoresServicoPrestado;
         return this;
     }
 
     /**
-     * Gets the value of the vDescCondIncond property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalVDescCondIncond }
-     *     
+     * @return Valores dos Descontos Condicionados e Incondicionados
      */
-    public NFSeSefinNacionalVDescCondIncond getVDescCondIncond() {
-        return vDescCondIncond;
+    public NFSeSefinNacionalVDescCondIncond getValoresDescontosCondicionadosEIncondicionados() {
+        return valoresDescontosCondicionadosIncondicionados;
     }
 
     /**
-     * Sets the value of the vDescCondIncond property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalVDescCondIncond }
-     *     
-     */
-    public void setVDescCondIncond(NFSeSefinNacionalVDescCondIncond value) {
-        this.vDescCondIncond = value;
-    }
-
-    /**
-     * Gets the value of the vDedRed property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoDedRed }
-     *     
-     */
-    public NFSeSefinNacionalInfoDedRed getVDedRed() {
-        return vDedRed;
-    }
-
-    /**
-     * Sets the value of the vDedRed property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoDedRed }
-     *     
-     */
-    public void setVDedRed(NFSeSefinNacionalInfoDedRed value) {
-        this.vDedRed = value;
-    }
-
-    /**
-     * Gets the value of the trib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoTributacao }
-     *     
-     */
-    public NFSeSefinNacionalInfoTributacao getTrib() {
-        return trib;
-    }
-
-    /**
-     * Sets the value of the trib property.
+     * Define os Valores dos Descontos Condicionados e Incondicionados
      *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalInfoTributacao }
-     * @return
-     *
+     * @param valoresDescontosCondicionadosIncondicionados Valores dos Descontos Condicionados e Incondicionados
      */
-    public NFSeSefinNacionalInfoValores setTrib(NFSeSefinNacionalInfoTributacao value) {
-        this.trib = value;
+    public void setValoresDescontosCondicionadosEIncondicionados(NFSeSefinNacionalVDescCondIncond valoresDescontosCondicionadosIncondicionados) {
+        this.valoresDescontosCondicionadosIncondicionados = valoresDescontosCondicionadosIncondicionados;
+    }
+
+    /**
+     * @return Valores de Dedução da Base de Cálculo
+     */
+    public NFSeSefinNacionalInfoDedRed getValoresDeducaoBaseCalculo() {
+        return valoresDeducaoBaseCalculo;
+    }
+
+    /**
+     * Define os Valores de Dedução da Base de Cálculo
+     *
+     * @param value Valores de Dedução da Base de Cálculo
+     */
+    public void setValoresDeducaoBaseCalculo(NFSeSefinNacionalInfoDedRed value) {
+        this.valoresDeducaoBaseCalculo = value;
+    }
+
+    /**
+     * @return tributos
+     */
+    public NFSeSefinNacionalInfoTributacao getTributos() {
+        return tributos;
+    }
+
+    /**
+     * @param value tributos
+     */
+    public NFSeSefinNacionalInfoValores setTributos(NFSeSefinNacionalInfoTributacao value) {
+        this.tributos = value;
         return this;
     }
 

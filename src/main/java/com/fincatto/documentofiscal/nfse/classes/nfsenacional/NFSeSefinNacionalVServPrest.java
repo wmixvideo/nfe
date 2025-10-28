@@ -4,79 +4,43 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.*;
 
 /**
- * <p>Java class for TCVServPrest complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCVServPrest"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="vReceb" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *         &lt;element name="vServ" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relativas aos valores do serviço prestado
  */
 
-@Root(name = "VServPrest")
+@Root(name = "vServPrest")
 public class NFSeSefinNacionalVServPrest {
 
-    protected String vReceb;
-    @Element(required = true)
-    protected String vServ;
+    @Element(name = "vReceb", required = false)
+    protected String valorRecebidoIntermediario;
+    @Element(name = "vServ")
+    protected String valorServicos;
 
     /**
-     * Gets the value of the vReceb property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor monetário recebido pelo intermediário do serviço (R$)
      */
-    public String getVReceb() {
-        return vReceb;
+    public String getValorRecebidoIntermediario() {
+        return valorRecebidoIntermediario;
     }
 
     /**
-     * Sets the value of the vReceb property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param valorRecebidoIntermediario Valor monetário recebido pelo intermediário do serviço (R$)
      */
-    public void setVReceb(String value) {
-        this.vReceb = value;
+    public void setValorRecebidoIntermediario(String valorRecebidoIntermediario) {
+        this.valorRecebidoIntermediario = valorRecebidoIntermediario;
     }
 
     /**
-     * Gets the value of the vServ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor dos serviços em R$
      */
-    public String getVServ() {
-        return vServ;
+    public String getValorServicos() {
+        return valorServicos;
     }
 
     /**
-     * Sets the value of the vServ property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     * @return
-     *
+     * @param valorServicos Valor dos serviços em R$
      */
-    public NFSeSefinNacionalVServPrest setVServ(String value) {
-        this.vServ = value;
+    public NFSeSefinNacionalVServPrest setValorServicos(String valorServicos) {
+        this.valorServicos = valorServicos;
         return this;
     }
 

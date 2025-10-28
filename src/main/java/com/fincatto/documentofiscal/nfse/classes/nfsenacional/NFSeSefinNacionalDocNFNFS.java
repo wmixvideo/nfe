@@ -6,35 +6,53 @@ import org.simpleframework.xml.*;
 @Root(name = "DocNFNFS")
 public class NFSeSefinNacionalDocNFNFS {
 
-    @Element(name = "nNFS", required = false)
-    protected String nnfs;
-    @Element(required = true)
-    protected String modNFS;
-    @Element(required = true)
-    protected String serieNFS;
+    @Element(name = "nNFS")
+    protected String numero;
+    @Element(name = "modNFS")
+    protected String modelo;
+    @Element(name = "serieNFS")
+    protected String serie;
 
-    public String getNNFS() {
-        return nnfs;
+    /**
+     * @return Número da Nota Fiscal NF ou NFS
+     */
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNNFS(String value) {
-        this.nnfs = value;
+    /**
+     * @param numero Número da Nota Fiscal NF ou NFS
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getModNFS() {
-        return modNFS;
+    /**
+     * @return Modelo da Nota Fiscal NF ou NFS
+     */
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setModNFS(String value) {
-        this.modNFS = value;
+    /**
+     * @param modelo Modelo da Nota Fiscal NF ou NFS
+     */
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    public String getSerieNFS() {
-        return serieNFS;
+    /**
+     * @return Série Nota Fiscal NF ou NFS
+     */
+    public String getSerie() {
+        return serie;
     }
 
-    public void setSerieNFS(String value) {
-        this.serieNFS = value;
+    /**
+     * @param serie Série Nota Fiscal NF ou NFS
+     */
+    public void setSerie(String serie) {
+        this.serie = serie;
     }
 
 }

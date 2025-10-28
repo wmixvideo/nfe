@@ -3,79 +3,123 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-
-@Root(name = "ExploracaoRodoviaria")
+/**
+ * Grupo de informações relativas a pedágio
+ */
+@Root(name = "explRod")
 public class NFSeSefinNacionalExploracaoRodoviaria {
 
-    @Element(required = true)
-    protected String categVeic;
-    @Element(required = true)
-    protected String nEixos;
-    @Element(required = true)
-    protected String rodagem;
-    @Element(required = true)
+    @Element(name="categVeic")
+    protected NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo categoriaVeiculo;
+    @Element(name="nEixos")
+    protected String numeroEixos;
+    @Element(name="rodagem")
+    protected NFSeSefinNacionalExploracaoRodoviariaTipoRodagem tipoRodagem;
+    @Element(name="sentido")
     protected String sentido;
-    @Element(required = true)
-    protected String placa;
-    @Element(required = true)
-    protected String codAcessoPed;
-    @Element(required = true)
-    protected String codContrato;
+    @Element(name="placa")
+    protected String placaVeiculo;
+    @Element(name="codAcessoPed")
+    protected String codigoAcesso;
+    @Element(name="codContrato")
+    protected String codigoContrato;
 
-    public String getCategVeic() {
-        return categVeic;
+    /**
+     * @return Categorias do veículo para cobrança
+     */
+    public NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo getCategoriaVeiculo() {
+        return categoriaVeiculo;
     }
 
-    public void setCategVeic(String value) {
-        this.categVeic = value;
+    /**
+     * @param categoriaVeiculo Categorias do veículo para cobrança
+     */
+    public void setCategoriaVeiculo(NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo categoriaVeiculo) {
+        this.categoriaVeiculo = categoriaVeiculo;
     }
 
-    public String getNEixos() {
-        return nEixos;
+    /**
+     * @return Número de eixos do veículo
+     */
+    public String getNumeroEixos() {
+        return numeroEixos;
     }
 
-    public void setNEixos(String value) {
-        this.nEixos = value;
+    /**
+     * @param numeroEixos Número de eixos do veículo
+     */
+    public void setNumeroEixos(String numeroEixos) {
+        this.numeroEixos = numeroEixos;
     }
 
-    public String getRodagem() {
-        return rodagem;
+    /**
+     * @return Tipo de rodagem do veículo
+     */
+    public NFSeSefinNacionalExploracaoRodoviariaTipoRodagem getTipoRodagem() {
+        return tipoRodagem;
     }
 
-    public void setRodagem(String value) {
-        this.rodagem = value;
+    /**
+     * @param tipoRodagem Tipo de rodagem do veículo
+     */
+    public void setTipoRodagem(NFSeSefinNacionalExploracaoRodoviariaTipoRodagem tipoRodagem) {
+        this.tipoRodagem = tipoRodagem;
     }
 
+    /**
+     * @return Orientação de passagem do veículo: ângulo em graus a partir do norte geográfico em sentido horário, número inteiro de 0 a 359, onde 0º seria o norte, 90º o leste, 180º o sul, 270º o oeste. Precisão mínima de 10
+     */
     public String getSentido() {
         return sentido;
     }
 
-    public void setSentido(String value) {
-        this.sentido = value;
+    /**
+     * @param sentido Orientação de passagem do veículo: ângulo em graus a partir do norte geográfico em sentido horário, número inteiro de 0 a 359, onde 0º seria o norte, 90º o leste, 180º o sul, 270º o oeste. Precisão mínima de 10
+     */
+    public void setSentido(String sentido) {
+        this.sentido = sentido;
     }
 
-    public String getPlaca() {
-        return placa;
+    /**
+     * @return Placa do veículo
+     */
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
     }
 
-    public void setPlaca(String value) {
-        this.placa = value;
+    /**
+     * @param placaVeiculo Placa do veículo
+     */
+    public void setPlacaVeiculo(String placaVeiculo) {
+        this.placaVeiculo = placaVeiculo;
     }
 
-    public String getCodAcessoPed() {
-        return codAcessoPed;
+    /**
+     * @return Código de acesso gerado automaticamente pelo sistema emissor da concessionária.
+     */
+    public String getCodigoAcesso() {
+        return codigoAcesso;
     }
 
-    public void setCodAcessoPed(String value) {
-        this.codAcessoPed = value;
+    /**
+     * @param codigoAcesso Código de acesso gerado automaticamente pelo sistema emissor da concessionária.
+     */
+    public void setCodigoAcesso(String codigoAcesso) {
+        this.codigoAcesso = codigoAcesso;
     }
 
-    public String getCodContrato() {
-        return codContrato;
+    /**
+     * @return Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.
+     */
+    public String getCodigoContrato() {
+        return codigoContrato;
     }
 
-    public void setCodContrato(String value) {
-        this.codContrato = value;
+    /**
+     * @param codigoContrato Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.
+     */
+    public void setCodigoContrato(String codigoContrato) {
+        this.codigoContrato = codigoContrato;
     }
 
 }

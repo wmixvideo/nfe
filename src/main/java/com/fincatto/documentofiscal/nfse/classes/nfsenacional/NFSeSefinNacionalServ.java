@@ -7,220 +7,90 @@ import org.simpleframework.xml.*;
  * Grupo de informações do DPS relativas ao Serviço Prestado
  */
 
-@Root(name = "Serv")
+@Root(name = "serv")
 public class NFSeSefinNacionalServ {
 
     @Element(name = "locPrest")
     protected NFSeSefinNacionalLocPrest localPrestacao;
     @Element(name = "cServ")
-    protected NFSeSefinNacionalCServ cServ;
+    protected NFSeSefinNacionalCServ codigoServico;
     @Element(name = "comExt", required = false)
-    protected NFSeSefinNacionalComercioExterior comExt;
+    protected NFSeSefinNacionalComercioExterior comercioExterior;
     @Element(name = "lsadppu", required = false)
-    protected NFSeSefinNacionalLocacaoSublocacao lsadppu;
+    protected NFSeSefinNacionalLocacaoSublocacao localSubLocacao;
     @Element(name = "obra", required = false)
     protected NFSeSefinNacionalInfoObra obra;
-
-    //todo: terminar tipagem e anotações
     @Element(name = "atvEvento", required = false)
-    protected NFSeSefinNacionalAtvEvento atvEvento;
+    protected NFSeSefinNacionalAtvEvento evento;
     @Element(name = "explRod", required = false)
-    protected NFSeSefinNacionalExploracaoRodoviaria explRod;
+    protected NFSeSefinNacionalExploracaoRodoviaria exploracaoRodoviaria;
     @Element(name = "infoCompl", required = false)
-    protected NFSeSefinNacionalInfoCompl infoCompl;
+    protected NFSeSefinNacionalInfoCompl informacoesComplementares;
 
-    /**
-     * Gets the value of the locPrest property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalLocPrest }
-     *     
-     */
     public NFSeSefinNacionalLocPrest getLocalPrestacao() {
         return localPrestacao;
     }
 
-    /**
-     * Sets the value of the locPrest property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalLocPrest }
-     * @return
-     *
-     */
     public NFSeSefinNacionalServ setLocalPrestacao(NFSeSefinNacionalLocPrest value) {
         this.localPrestacao = value;
         return this;
     }
 
-    /**
-     * Gets the value of the cServ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalCServ }
-     *     
-     */
     public NFSeSefinNacionalCServ getCServ() {
-        return cServ;
+        return codigoServico;
     }
 
-    /**
-     * Sets the value of the cServ property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalCServ }
-     * @return
-     *
-     */
     public NFSeSefinNacionalServ setCServ(NFSeSefinNacionalCServ value) {
-        this.cServ = value;
+        this.codigoServico = value;
         return this;
     }
 
-    /**
-     * Gets the value of the comExt property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalComercioExterior }
-     *     
-     */
-    public NFSeSefinNacionalComercioExterior getComExt() {
-        return comExt;
+    public NFSeSefinNacionalComercioExterior getComercioExterior() {
+        return comercioExterior;
     }
 
-    /**
-     * Sets the value of the comExt property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalComercioExterior }
-     *     
-     */
-    public void setComExt(NFSeSefinNacionalComercioExterior value) {
-        this.comExt = value;
+    public void setComercioExterior(NFSeSefinNacionalComercioExterior value) {
+        this.comercioExterior = value;
     }
 
-    /**
-     * Gets the value of the lsadppu property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalLocacaoSublocacao }
-     *     
-     */
-    public NFSeSefinNacionalLocacaoSublocacao getLsadppu() {
-        return lsadppu;
+    public NFSeSefinNacionalLocacaoSublocacao getLocalSubLocacao() {
+        return localSubLocacao;
     }
 
-    /**
-     * Sets the value of the lsadppu property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalLocacaoSublocacao }
-     *     
-     */
-    public void setLsadppu(NFSeSefinNacionalLocacaoSublocacao value) {
-        this.lsadppu = value;
+    public void setLocalSubLocacao(NFSeSefinNacionalLocacaoSublocacao value) {
+        this.localSubLocacao = value;
     }
 
-    /**
-     * Gets the value of the obra property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoObra }
-     *     
-     */
     public NFSeSefinNacionalInfoObra getObra() {
         return obra;
     }
 
-    /**
-     * Sets the value of the obra property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoObra }
-     *     
-     */
     public void setObra(NFSeSefinNacionalInfoObra value) {
         this.obra = value;
     }
 
-    /**
-     * Gets the value of the atvEvento property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalAtvEvento }
-     *     
-     */
-    public NFSeSefinNacionalAtvEvento getAtvEvento() {
-        return atvEvento;
+    public NFSeSefinNacionalAtvEvento getEvento() {
+        return evento;
     }
 
-    /**
-     * Sets the value of the atvEvento property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalAtvEvento }
-     *     
-     */
-    public void setAtvEvento(NFSeSefinNacionalAtvEvento value) {
-        this.atvEvento = value;
+    public void setEvento(NFSeSefinNacionalAtvEvento value) {
+        this.evento = value;
     }
 
-    /**
-     * Gets the value of the explRod property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalExploracaoRodoviaria }
-     *     
-     */
-    public NFSeSefinNacionalExploracaoRodoviaria getExplRod() {
-        return explRod;
+    public NFSeSefinNacionalExploracaoRodoviaria getExploracaoRodoviaria() {
+        return exploracaoRodoviaria;
     }
 
-    /**
-     * Sets the value of the explRod property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalExploracaoRodoviaria }
-     *     
-     */
-    public void setExplRod(NFSeSefinNacionalExploracaoRodoviaria value) {
-        this.explRod = value;
+    public void setExploracaoRodoviaria(NFSeSefinNacionalExploracaoRodoviaria value) {
+        this.exploracaoRodoviaria = value;
     }
 
-    /**
-     * Gets the value of the infoCompl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfoCompl }
-     *     
-     */
-    public NFSeSefinNacionalInfoCompl getInfoCompl() {
-        return infoCompl;
+    public NFSeSefinNacionalInfoCompl getInformacoesComplementares() {
+        return informacoesComplementares;
     }
 
-    /**
-     * Sets the value of the infoCompl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfoCompl }
-     *     
-     */
-    public void setInfoCompl(NFSeSefinNacionalInfoCompl value) {
-        this.infoCompl = value;
+    public void setInformacoesComplementares(NFSeSefinNacionalInfoCompl value) {
+        this.informacoesComplementares = value;
     }
 
 }

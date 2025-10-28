@@ -4,60 +4,27 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-/**
- * <p>Java class for TCTribNacional complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCTribNacional"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="piscofins" type="{http://www.sped.fazenda.gov.br/nfse}TCTribOutrosPisCofins" minOccurs="0"/&gt;
- *         &lt;element name="vRetCP" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *         &lt;element name="vRetIRRF" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *         &lt;element name="vRetCSLL" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
-
 @Root(name = "TribNacional")
 public class NFSeSefinNacionalTribFederal {
 
     @Element(name = "piscofins", required = false)
     protected NFSeSefinNacionalTribOutrosPisCofins piscofins;
     @Element(name = "vRetCP", required = false)
-    protected String vRetCP;
+    protected String valorCP;
     @Element(name = "vRetIRRF", required = false)
-    protected String vRetIRRF;
+    protected String valorIRRF;
     @Element(name = "vRetCSLL", required = false)
-    protected String vRetCSLL;
+    protected String valorCSLL;
 
     /**
-     * Gets the value of the piscofins property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribOutrosPisCofins }
-     *     
+     * @return Informações dos tributos PIS/COFINS
      */
     public NFSeSefinNacionalTribOutrosPisCofins getPiscofins() {
         return piscofins;
     }
 
     /**
-     * Sets the value of the piscofins property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalTribOutrosPisCofins }
-     * @return
-     *
+     * @param value Informações dos tributos PIS/COFINS
      */
     public NFSeSefinNacionalTribFederal setPiscofins(NFSeSefinNacionalTribOutrosPisCofins value) {
         this.piscofins = value;
@@ -65,75 +32,45 @@ public class NFSeSefinNacionalTribFederal {
     }
 
     /**
-     * Gets the value of the vRetCP property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor retido do tributo CP
      */
-    public String getVRetCP() {
-        return vRetCP;
+    public String getValorCP() {
+        return valorCP;
     }
 
     /**
-     * Sets the value of the vRetCP property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value Valor retido do tributo CP
      */
-    public void setVRetCP(String value) {
-        this.vRetCP = value;
+    public void setValorCP(String value) {
+        this.valorCP = value;
     }
 
     /**
-     * Gets the value of the vRetIRRF property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor retido do tributo IRRF
      */
-    public String getVRetIRRF() {
-        return vRetIRRF;
+    public String getValorIRRF() {
+        return valorIRRF;
     }
 
     /**
-     * Sets the value of the vRetIRRF property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value Valor retido do tributo IRRF
      */
-    public void setVRetIRRF(String value) {
-        this.vRetIRRF = value;
+    public void setValorIRRF(String value) {
+        this.valorIRRF = value;
     }
 
     /**
-     * Gets the value of the vRetCSLL property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor retido do tributo CSLL
      */
-    public String getVRetCSLL() {
-        return vRetCSLL;
+    public String getValorCSLL() {
+        return valorCSLL;
     }
 
     /**
-     * Sets the value of the vRetCSLL property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value Valor retido do tributo CSLL
      */
-    public void setVRetCSLL(String value) {
-        this.vRetCSLL = value;
+    public void setValorCSLL(String value) {
+        this.valorCSLL = value;
     }
 
 }

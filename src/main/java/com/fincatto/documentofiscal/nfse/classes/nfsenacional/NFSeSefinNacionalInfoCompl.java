@@ -1,107 +1,69 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * <p>Java class for TCInfoCompl complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfoCompl"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="idDocTec" type="{http://www.sped.fazenda.gov.br/nfse}TSDRT" minOccurs="0"/&gt;
- *         &lt;element name="docRef" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc255" minOccurs="0"/&gt;
- *         &lt;element name="xInfComp" type="{http://www.sped.fazenda.gov.br/nfse}TSDescInfCompl" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações complementares disponível para todos os serviços prestados
  */
 
-@Root(name = "InfoCompl")
+@Root(name = "infoCompl")
 public class NFSeSefinNacionalInfoCompl {
 
-    protected String idDocTec;
-    protected String docRef;
-    protected String xInfComp;
+    @Element(name = "idDocTec")
+    protected String idDocResponsabilidadeTecnica;
+    @Element(name = "docRef")
+    protected String referenciaDocumento;
+    @Element(name = "xInfComp")
+    protected String informacoesComplementares;
 
     /**
-     * Gets the value of the idDocTec property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.
      */
-    public String getIdDocTec() {
-        return idDocTec;
+    public String getIdDocResponsabilidadeTecnica() {
+        return idDocResponsabilidadeTecnica;
     }
 
     /**
-     * Sets the value of the idDocTec property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param idDocResponsabilidadeTecnica Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.
      */
-    public void setIdDocTec(String value) {
-        this.idDocTec = value;
+    public void setIdDocResponsabilidadeTecnica(String idDocResponsabilidadeTecnica) {
+        this.idDocResponsabilidadeTecnica = idDocResponsabilidadeTecnica;
     }
 
     /**
-     * Gets the value of the docRef property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Chave da nota, número identificador da nota, número do contrato ou outro identificador de documento emitido pelo prestador de serviços,
+     * que subsidia a emissão dessa nota pelo tomador do serviço ou intermediário
+     * (preenchimento obrigatório caso a nota esteja sendo emitida pelo Tomador ou intermediário do serviço)
+     * @return Referência do documento
      */
-    public String getDocRef() {
-        return docRef;
+    public String getReferenciaDocumento() {
+        return referenciaDocumento;
     }
 
     /**
-     * Sets the value of the docRef property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * Chave da nota, número identificador da nota, número do contrato ou outro identificador de documento emitido pelo prestador de serviços,
+     * que subsidia a emissão dessa nota pelo tomador do serviço ou intermediário
+     * (preenchimento obrigatório caso a nota esteja sendo emitida pelo Tomador ou intermediário do serviço)
+     * @param referenciaDocumento Referência do documento
      */
-    public void setDocRef(String value) {
-        this.docRef = value;
+    public void setReferenciaDocumento(String referenciaDocumento) {
+        this.referenciaDocumento = referenciaDocumento;
     }
 
     /**
-     * Gets the value of the xInfComp property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Informações complementares
      */
-    public String getXInfComp() {
-        return xInfComp;
+    public String getInformacoesComplementares() {
+        return informacoesComplementares;
     }
 
     /**
-     * Sets the value of the xInfComp property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param informacoesComplementares Informações complementares
      */
-    public void setXInfComp(String value) {
-        this.xInfComp = value;
+    public void setInformacoesComplementares(String informacoesComplementares) {
+        this.informacoesComplementares = informacoesComplementares;
     }
 
 }

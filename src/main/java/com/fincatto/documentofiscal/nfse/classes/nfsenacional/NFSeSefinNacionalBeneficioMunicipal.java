@@ -6,43 +6,86 @@ import org.simpleframework.xml.*;
 @Root(name = "BeneficioMunicipal")
 public class NFSeSefinNacionalBeneficioMunicipal {
 
-    @Element(required = true)
-    protected String tpBM;
-    @Element(name = "nBM", required = false)
-    protected String nbm;
-    protected String vRedBCBM;
-    protected String pRedBCBM;
+    @Element(name = "tpBM")
+    protected NFSeSefinNacionalBeneficioMunicipalTipoBeneficio tipoBeneficio;
+    @Element(name = "nBM")
+    protected String numeroBeneficio;
+    @Element(name = "vRedBCBM", required = false)
+    protected String valorReducaoBaseCalculoBeneficioMunicipal;
+    @Element(name = "pRedBCBM", required = false)
+    protected String percentualReducaoBaseCalculoBeneficioMunicipal;
 
-    public String getTpBM() {
-        return tpBM;
+    /**
+     *
+     * Identificação da Lei parametrizada pelo município que define o benefício.
+     * Trata-se de um identificador único que foi gerado pelo Sistema Nacional no momento em que o município de incidência do ISSQN incluiu o benefício no sistema.
+     * Tem a seguinte regra de formação: 7 dígitos com o código IBGE do município + 4 dígitos com número sequencial.
+     * Deve ser obtido da parametrização do município de incidência do ISSQN.
+     *
+     * @return tipoBeneficio
+     */
+    public NFSeSefinNacionalBeneficioMunicipalTipoBeneficio getTipoBeneficio() {
+        return tipoBeneficio;
     }
 
-    public void setTpBM(String value) {
-        this.tpBM = value;
+    /**
+     * Identificação da Lei parametrizada pelo município que define o benefício.
+     * Trata-se de um identificador único que foi gerado pelo Sistema Nacional no momento em que o município de incidência do ISSQN incluiu o benefício no sistema.
+     * Tem a seguinte regra de formação: 7 dígitos com o código IBGE do município + 4 dígitos com número sequencial.
+     * Deve ser obtido da parametrização do município de incidência do ISSQN.
+     *
+     * @param tipoBeneficio tipoBeneficio
+     */
+    public void setTipoBeneficio(NFSeSefinNacionalBeneficioMunicipalTipoBeneficio tipoBeneficio) {
+        this.tipoBeneficio = tipoBeneficio;
     }
 
-    public String getNBM() {
-        return nbm;
+    /**
+     * Identificador do benefício municipal parametrizado pelo município.
+     * @return numeroBeneficio
+     */
+    public String getNumeroBeneficio() {
+        return numeroBeneficio;
     }
 
-    public void setNBM(String value) {
-        this.nbm = value;
+    /**
+     * Identificador do benefício municipal parametrizado pelo município.
+     * @param numeroBeneficio numeroBeneficio
+     */
+    public void setNumeroBeneficio(String numeroBeneficio) {
+        this.numeroBeneficio = numeroBeneficio;
     }
 
-    public String getVRedBCBM() {
-        return vRedBCBM;
+    /**
+     * Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     * @return valorReducaoBaseCalculoBeneficioMunicipal
+     */
+    public String getValorReducaoBaseCalculoBeneficioMunicipal() {
+        return valorReducaoBaseCalculoBeneficioMunicipal;
     }
 
-    public void setVRedBCBM(String value) {
-        this.vRedBCBM = value;
+    /**
+     * Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     * @param valorReducaoBaseCalculoBeneficioMunicipal valorReducaoBaseCalculoBeneficioMunicipal
+     */
+    public void setValorReducaoBaseCalculoBeneficioMunicipal(String valorReducaoBaseCalculoBeneficioMunicipal) {
+        this.valorReducaoBaseCalculoBeneficioMunicipal = valorReducaoBaseCalculoBeneficioMunicipal;
     }
 
-    public String getPRedBCBM() {
-        return pRedBCBM;
+    /**
+     * Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     * @return percentualReducaoBaseCalculoBeneficioMunicipal
+     */
+    public String getPercentualReducaoBaseCalculoBeneficioMunicipal() {
+        return percentualReducaoBaseCalculoBeneficioMunicipal;
     }
 
-    public void setPRedBCBM(String value) {
-        this.pRedBCBM = value;
+    /**
+     * Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     * @param percentualReducaoBaseCalculoBeneficioMunicipal percentualReducaoBaseCalculoBeneficioMunicipal
+     */
+    public void setPercentualReducaoBaseCalculoBeneficioMunicipal(String percentualReducaoBaseCalculoBeneficioMunicipal) {
+        this.percentualReducaoBaseCalculoBeneficioMunicipal = percentualReducaoBaseCalculoBeneficioMunicipal;
     }
 
 }

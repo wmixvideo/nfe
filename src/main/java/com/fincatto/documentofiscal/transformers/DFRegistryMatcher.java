@@ -267,5 +267,15 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(NFSeSefinNacionalComercioExteriorCompartilharComMDIC.class, new NFSeSefinNacionalComercioExteriorCompartilharComMDICTransformer());
         super.bind(NFSeSefinNacionalLocacaoSublocacaoCategoriaServico.class, new NFSeSefinNacionalLocacaoSublocacaoCategoriaServicoTransformer());
         super.bind(NFSeSefinNacionalLocacaoSublocacaoObjeto.class, new NFSeSefinNacionalLocacaoSublocacaoObjetoTransformer());
+        super.bind(NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo.class, new NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculoTransformer());
+        super.bind(NFSeSefinNacionalExploracaoRodoviariaTipoRodagem.class, new NFSeSefinNacionalExploracaoRodoviariaTipoRodagemTransformer());
+        super.bind(NFSeSefinNacionalDocDedRedTipoDeducaoReducao.class, new NFSeSefinNacionalDocDedRedTipoDeducaoReducaoTransformer());
+        super.bind(NFSeSefinNacionalTribMunicipalTributacaoISSQN.class, new NFSeSefinNacionalTribMunicipalTributacaoISSQNTransformer());
+        super.bind(NFSeSefinNacionalBeneficioMunicipalTipoBeneficio.class, new NFSeSefinNacionalBeneficioMunicipalTipoBeneficioTransformer());
+        super.bind(NFSeSefinNacionalExigSuspensaTipoSuspensao.class, new NFSeSefinNacionalExigSuspensaTipoSuspensaoTransformer());
+        super.bind(NFSeSefinNacionalTribMunicipalTipoImunidade.class, new NFSeSefinNacionalTribMunicipalTipoImunidadeTransformer());
+        super.bind(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN.class, new NFSeSefinNacionalTribMunicipalTipoRetencaoISSQNTransformer());
+        super.bind(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.class, new NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributariaTransformer());
+        super.bind(NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao.class, new NFSeSefinNacionalTribOutrosPisCofinsTipoRetencaoTransformer());
     }
 }

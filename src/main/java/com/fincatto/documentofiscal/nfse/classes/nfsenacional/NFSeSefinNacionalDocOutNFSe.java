@@ -3,38 +3,56 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-@Root(name = "DocOutNFSe")
+@Root(name = "NFSeMun")
 public class NFSeSefinNacionalDocOutNFSe {
 
-    @Element(required = true)
-    protected String cMunNFSeMun;
-    @Element(name = "nNFSeMun", required = false)
-    protected String nnfSeMun;
-    @Element(required = true)
-    protected String cVerifNFSeMun;
+    @Element(name = "cMunNFSeMun")
+    protected String codigoMunicipio;
+    @Element(name = "nNFSeMun")
+    protected String numeroNFSe;
+    @Element(name = "cVerifNFSeMun")
+    protected String codigoVerificacao;
 
-    public String getCMunNFSeMun() {
-        return cMunNFSeMun;
+    /**
+     * @return Código Município emissor da nota eletrônica municipal (Tabela do IBGE)
+     */
+    public String getCodigoMunicipio() {
+        return codigoMunicipio;
     }
 
-    public void setCMunNFSeMun(String value) {
-        this.cMunNFSeMun = value;
+    /**
+     * @param codigoMunicipio Código Município emissor da nota eletrônica municipal (Tabela do IBGE)
+     */
+    public void setCodigoMunicipio(String codigoMunicipio) {
+        this.codigoMunicipio = codigoMunicipio;
     }
 
-    public String getNNFSeMun() {
-        return nnfSeMun;
+    /**
+     * @return Número da nota eletrônica municipal
+     */
+    public String getNumeroNFSe() {
+        return numeroNFSe;
     }
 
-    public void setNNFSeMun(String value) {
-        this.nnfSeMun = value;
+    /**
+     * @param numeroNFSe Número da nota eletrônica municipal
+     */
+    public void setNumeroNFSe(String numeroNFSe) {
+        this.numeroNFSe = numeroNFSe;
     }
 
-    public String getCVerifNFSeMun() {
-        return cVerifNFSeMun;
+    /**
+     * @return Código de Verificação da nota eletrônica municipal
+     */
+    public String getCodigoVerificacao() {
+        return codigoVerificacao;
     }
 
-    public void setCVerifNFSeMun(String value) {
-        this.cVerifNFSeMun = value;
+    /**
+     * @param codigoVerificacao Código de Verificação da nota eletrônica municipal
+     */
+    public void setCodigoVerificacao(String codigoVerificacao) {
+        this.codigoVerificacao = codigoVerificacao;
     }
 
 }

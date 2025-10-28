@@ -6,25 +6,37 @@ import org.simpleframework.xml.*;
 @Root(name = "ExigSuspensa")
 public class NFSeSefinNacionalExigSuspensa {
 
-    @Element(required = true)
-    protected String tpSusp;
-    @Element(required = true)
-    protected String nProcesso;
+    @Element(name = "tpSusp")
+    protected NFSeSefinNacionalExigSuspensaTipoSuspensao tipoSuspensao;
+    @Element(name = "nProcesso")
+    protected String numeroProcesso;
 
-    public String getTpSusp() {
-        return tpSusp;
+    /**
+     * @return Tipo de Suspensão da Exigibilidade do Crédito Tributário
+     */
+    public NFSeSefinNacionalExigSuspensaTipoSuspensao getTipoSuspensao() {
+        return tipoSuspensao;
     }
 
-    public void setTpSusp(String value) {
-        this.tpSusp = value;
+    /**
+     * @param tipoSuspensao Tipo de Suspensão da Exigibilidade do Crédito Tributário
+     */
+    public void setTipoSuspensao(NFSeSefinNacionalExigSuspensaTipoSuspensao tipoSuspensao) {
+        this.tipoSuspensao = tipoSuspensao;
     }
 
-    public String getNProcesso() {
-        return nProcesso;
+    /**
+     * @return Número do Processo Administrativo ou Judicial
+     */
+    public String getNumeroProcesso() {
+        return numeroProcesso;
     }
 
-    public void setNProcesso(String value) {
-        this.nProcesso = value;
+    /**
+     * @param numeroProcesso Número do Processo Administrativo ou Judicial
+     */
+    public void setNumeroProcesso(String numeroProcesso) {
+        this.numeroProcesso = numeroProcesso;
     }
 
 }

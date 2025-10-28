@@ -1,81 +1,47 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * <p>Java class for TCVDescCondIncond complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCVDescCondIncond"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="vDescIncond" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *         &lt;element name="vDescCond" type="{http://www.sped.fazenda.gov.br/nfse}TSDec15V2" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
+ * Grupo de informações relativas aos descontos condicionados e incondicionados
  */
 
-@Root(name = "VDescCondIncond")
+@Root(name = "vDescCondIncond")
 public class NFSeSefinNacionalVDescCondIncond {
 
-    protected String vDescIncond;
-    protected String vDescCond;
+    @Element(name = "vDescIncond")
+    protected String valorDescontoIncondicionado;
+    @Element(name = "vDescCond")
+    protected String valorDescontoCondicionado;
 
     /**
-     * Gets the value of the vDescIncond property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor monetário do desconto incondicionado (R$)
      */
-    public String getVDescIncond() {
-        return vDescIncond;
+    public String getValorDescontoIncondicionado() {
+        return valorDescontoIncondicionado;
     }
 
     /**
-     * Sets the value of the vDescIncond property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param valorDescontoIncondicionado Valor monetário do desconto incondicionado (R$)
      */
-    public void setVDescIncond(String value) {
-        this.vDescIncond = value;
+    public void setValorDescontoIncondicionado(String valorDescontoIncondicionado) {
+        this.valorDescontoIncondicionado = valorDescontoIncondicionado;
     }
 
     /**
-     * Gets the value of the vDescCond property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Valor monetário do desconto condicionado (R$)
      */
-    public String getVDescCond() {
-        return vDescCond;
+    public String getValorDescontoCondicionado() {
+        return valorDescontoCondicionado;
     }
 
     /**
-     * Sets the value of the vDescCond property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param valorDescontoCondicionado Valor monetário do desconto condicionado (R$)
      */
-    public void setVDescCond(String value) {
-        this.vDescCond = value;
+    public void setValorDescontoCondicionado(String valorDescontoCondicionado) {
+        this.valorDescontoCondicionado = valorDescontoCondicionado;
     }
 
 }

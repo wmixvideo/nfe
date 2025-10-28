@@ -4,138 +4,79 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-/**
- * <p>Java class for TCTribTotal complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCTribTotal"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;choice&gt;
- *           &lt;element name="vTotTrib" type="{http://www.sped.fazenda.gov.br/nfse}TCTribTotalMonet"/&gt;
- *           &lt;element name="pTotTrib" type="{http://www.sped.fazenda.gov.br/nfse}TCTribTotalPercent"/&gt;
- *           &lt;element name="indTotTrib" type="{http://www.sped.fazenda.gov.br/nfse}TSTipoIndTotTrib"/&gt;
- *           &lt;element name="pTotTribSN" type="{http://www.sped.fazenda.gov.br/nfse}TSDec2V2"/&gt;
- *         &lt;/choice&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
-
 @Root(name = "TribTotal")
 public class NFSeSefinNacionalTribTotal {
 
     @Element(name = "vTotTrib", required = false)
-    protected NFSeSefinNacionalTribTotalMonet vTotTrib;
+    protected NFSeSefinNacionalTribTotalMonet valorTotalTributos;
     @Element(name = "pTotTrib", required = false)
-    protected NFSeSefinNacionalTribTotalPercent pTotTrib;
+    protected NFSeSefinNacionalTribTotalPercent percentualTotalTributos;
     @Element(name = "indTotTrib", required = false)
-    protected String indTotTrib;
+    protected String indicadorValorTotalTributos = "0";
     @Element(name = "pTotTribSN", required = false)
-    protected String pTotTribSN;
+    protected String percentualTotalSimplesNacional;
 
     /**
-     * Gets the value of the vTotTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribTotalMonet }
-     *     
+     * @return Valor total dos tributos
      */
-    public NFSeSefinNacionalTribTotalMonet getVTotTrib() {
-        return vTotTrib;
+    public NFSeSefinNacionalTribTotalMonet getValorTotalTributos() {
+        return valorTotalTributos;
     }
 
     /**
-     * Sets the value of the vTotTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribTotalMonet }
-     *     
+     * @param valorTotalTributos Valor total dos tributos
      */
-    public void setVTotTrib(NFSeSefinNacionalTribTotalMonet value) {
-        this.vTotTrib = value;
+    public void setValorTotalTributos(NFSeSefinNacionalTribTotalMonet valorTotalTributos) {
+        this.valorTotalTributos = valorTotalTributos;
     }
 
     /**
-     * Gets the value of the pTotTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalTribTotalPercent }
-     *     
+     * @return Percentual total dos tributos
      */
-    public NFSeSefinNacionalTribTotalPercent getPTotTrib() {
-        return pTotTrib;
+    public NFSeSefinNacionalTribTotalPercent getPercentualTotalTributos() {
+        return percentualTotalTributos;
     }
 
     /**
-     * Sets the value of the pTotTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalTribTotalPercent }
-     *     
+     * @param percentualTotalTributos Percentual total dos tributos
      */
-    public void setPTotTrib(NFSeSefinNacionalTribTotalPercent value) {
-        this.pTotTrib = value;
+    public void setPercentualTotalTributos(NFSeSefinNacionalTribTotalPercent percentualTotalTributos) {
+        this.percentualTotalTributos = percentualTotalTributos;
     }
 
     /**
-     * Gets the value of the indTotTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *  Indicador de informação de valor total de tributos. Possui valor fixo igual a zero (indTotTrib=0).
+     *  Não informar nenhum valor estimado para os Tributos (Decreto 8.264/2014).
+        0 - Não
+     * @return Indicador de valor total dos tributos
      */
-    public String getIndTotTrib() {
-        return indTotTrib;
+    public String getIndicadorValorTotalTributos() {
+        return indicadorValorTotalTributos;
     }
 
     /**
-     * Sets the value of the indTotTrib property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     * @return
-     *
+     *  Indicador de informação de valor total de tributos. Possui valor fixo igual a zero (indTotTrib=0).
+     *  Não informar nenhum valor estimado para os Tributos (Decreto 8.264/2014).
+        0 - Não
+     * @param indicadorValorTotalTributos Indicador de valor total dos tributos
      */
-    public NFSeSefinNacionalTribTotal setIndTotTrib(String value) {
-        this.indTotTrib = value;
+    public NFSeSefinNacionalTribTotal setIndicadorValorTotalTributos(String indicadorValorTotalTributos) {
+        this.indicadorValorTotalTributos = indicadorValorTotalTributos;
         return this;
     }
 
     /**
-     * Gets the value of the pTotTribSN property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return Percentual total do Simples Nacional
      */
-    public String getPTotTribSN() {
-        return pTotTribSN;
+    public String getPercentualTotalSimplesNacional() {
+        return percentualTotalSimplesNacional;
     }
 
     /**
-     * Sets the value of the pTotTribSN property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param percentualTotalSimplesNacional Percentual total do Simples Nacional
      */
-    public void setPTotTribSN(String value) {
-        this.pTotTribSN = value;
+    public void setPercentualTotalSimplesNacional(String percentualTotalSimplesNacional) {
+        this.percentualTotalSimplesNacional = percentualTotalSimplesNacional;
     }
 
 }
