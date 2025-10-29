@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "regEspTrib")
 public enum NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao {
 
     NENHUM("0", "Nenhum"),

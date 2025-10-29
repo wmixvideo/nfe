@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-@Root(name = "Endereco")
+@Root(name = "end")
 public class NFSeSefinNacionalEndereco {
 
     @Element(name = "endNac", required = false)

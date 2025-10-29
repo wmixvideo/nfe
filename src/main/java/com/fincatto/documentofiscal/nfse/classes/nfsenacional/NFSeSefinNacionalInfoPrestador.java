@@ -7,7 +7,7 @@ import org.simpleframework.xml.*;
  * Informações do prestador da NFS-e. Difere das demais pessoas por causa das informações de regimes de tributação
  */
 
-@Root(name = "InfoPrestador")
+@Root(name = "prest")
 public class NFSeSefinNacionalInfoPrestador {
 
     @Element(name = "CNPJ", required = false)
@@ -58,8 +58,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param cpf CPF do prestador de serviço
      */
-    public void setCPF(String cpf) {
+    public NFSeSefinNacionalInfoPrestador setCPF(String cpf) {
         this.cpf = cpf;
+        return this;
     }
 
     /**
@@ -192,5 +193,4 @@ public class NFSeSefinNacionalInfoPrestador {
         this.regimeTributario = regimeTributario;
         return this;
     }
-
 }

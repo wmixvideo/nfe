@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "regApTribSN")
 public enum NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples {
 
     SN("1", "Apuração dos tributos federais e municipal pelo SN"),

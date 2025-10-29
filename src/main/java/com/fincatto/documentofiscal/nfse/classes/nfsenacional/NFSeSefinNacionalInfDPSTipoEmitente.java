@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "tpEmit")
 public enum NFSeSefinNacionalInfDPSTipoEmitente {
 
     PRESTADOR("1", "Prestador"),

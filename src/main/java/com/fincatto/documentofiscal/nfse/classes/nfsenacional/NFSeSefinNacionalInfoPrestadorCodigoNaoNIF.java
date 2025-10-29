@@ -1,6 +1,8 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import org.simpleframework.xml.Root;
 
+@Root(name = "cNaoNIF")
 public enum NFSeSefinNacionalInfoPrestadorCodigoNaoNIF {
 
     DISPENSADO("1", "Dispensado do NIF"),

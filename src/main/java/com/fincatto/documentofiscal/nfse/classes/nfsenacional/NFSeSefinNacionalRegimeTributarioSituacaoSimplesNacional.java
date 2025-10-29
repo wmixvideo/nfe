@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "opSimpNac")
 public enum NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional {
 
     NAO_OPTANTE("1", "Não Optante"),

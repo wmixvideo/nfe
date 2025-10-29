@@ -13,6 +13,8 @@ public class NFSeSefinNacionalDPS {
     protected NFSeSefinNacionalInfDPS infDPS;
     @Attribute(name = "versao", empty = "1.00")
     protected String versao;
+    @Element(name = "Signature", required = false)
+    protected SignatureType signature;
 
     public NFSeSefinNacionalInfDPS getInfDPS() {
         return infDPS;
@@ -29,6 +31,15 @@ public class NFSeSefinNacionalDPS {
 
     public NFSeSefinNacionalDPS setVersao(String value) {
         this.versao = value;
+        return this;
+    }
+
+    public SignatureType getSignature() {
+        return signature;
+    }
+
+    public NFSeSefinNacionalDPS setSignature(SignatureType signature) {
+        this.signature = signature;
         return this;
     }
 

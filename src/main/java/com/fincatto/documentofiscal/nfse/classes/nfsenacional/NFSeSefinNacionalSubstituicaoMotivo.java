@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "cMotivo")
 public enum NFSeSefinNacionalSubstituicaoMotivo {
 
     DESENQUADRAMENTO_SIMPLES_NACIONAL("01", "Desenquadramento de NFS-e do Simples Nacional"),

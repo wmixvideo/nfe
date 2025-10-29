@@ -1,6 +1,9 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 
+import org.simpleframework.xml.Root;
+
+@Root(name = "tpAmb")
 public enum NFSeSefinNacionalInfDPSTipoAmbiente {
 
     PRODUCAO("1", "Produção"),

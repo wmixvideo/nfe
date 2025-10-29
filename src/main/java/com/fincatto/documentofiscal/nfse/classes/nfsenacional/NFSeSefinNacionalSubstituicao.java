@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-@Root(name = "Substituicao")
+@Root(name = "subst")
 public class NFSeSefinNacionalSubstituicao {
 
     @Element(name="chSubstda")

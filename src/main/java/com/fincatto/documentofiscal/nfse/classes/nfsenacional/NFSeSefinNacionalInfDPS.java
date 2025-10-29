@@ -1,6 +1,8 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import com.fincatto.documentofiscal.utils.DFUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.*;
 
 import java.time.LocalDate;
@@ -268,7 +270,7 @@ public class NFSeSefinNacionalInfDPS {
      * "DPS" + Cód.Mun (7) + Tipo de Inscrição Federal (1) + Inscrição Federal (14 - CPF completar com 000 à esquerda) + Série DPS (5)+ Núm. DPS (15)
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -277,9 +279,8 @@ public class NFSeSefinNacionalInfDPS {
      *
      * @param id ID da DPS
      */
-    public NFSeSefinNacionalInfDPS setId(String id) {
+    public void setId(String id) {
+        // todo verificar uma maneira desse get/set ser automático na geração do XML, sem precisar do usuário setar manualmente
         this.id = id;
-        return this;
     }
-
 }
