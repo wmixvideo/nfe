@@ -1,9 +1,11 @@
 package com.fincatto.documentofiscal.nfse;
 
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
+import com.fincatto.documentofiscal.nfse.utils.NFSeDPSUtils;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
 import com.fincatto.documentofiscal.nfse.webservices.WSSefinNFSe;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -135,12 +137,10 @@ public class NFSeTest {
 
     @Test
     public void testeAssinaturaXMLCompleto() throws Exception {
-        System.out.println(assinarXml("<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>"));
+        String xmlString = "<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>";
     }
 
-//    public static String assinarXml(String xmlString, String certificatePath, String password) throws Exception {
     public String assinarXml(String xmlString) throws Exception {
-
         final var keyStore = this.config.getCertificadoKeyStore();
 
         // Obter alias do certificado
@@ -158,35 +158,15 @@ public class NFSeTest {
 
         // 3. Criar a assinatura digital
         XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
-
-        // Criar Reference com transformações Enveloped e C14N
         List<Transform> transforms = new ArrayList<>();
-        transforms.add(signatureFactory.newTransform(Transform.ENVELOPED,
-                (TransformParameterSpec) null));
-        transforms.add(signatureFactory.newTransform(CanonicalizationMethod.INCLUSIVE,
-                (TransformParameterSpec) null));
+        transforms.add(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null));
+        transforms.add(signatureFactory.newTransform(CanonicalizationMethod.INCLUSIVE, (TransformParameterSpec) null));
 
         // Criar Reference com SHA-1
-        Reference reference = signatureFactory.newReference(
-                "",
-                signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
-                transforms,
-                null,
-                null
-        );
+        Reference reference = signatureFactory.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
 
         // Criar SignedInfo com C14N e RSA-SHA1
-        SignedInfo signedInfo = signatureFactory.newSignedInfo(
-                signatureFactory.newCanonicalizationMethod(
-                        CanonicalizationMethod.INCLUSIVE,
-                        (C14NMethodParameterSpec) null
-                ),
-                signatureFactory.newSignatureMethod(
-                        "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
-                        null
-                ),
-                Collections.singletonList(reference)
-        );
+        SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod("http://www.w3.org/2000/09/xmldsig#rsa-sha1", null), Collections.singletonList(reference));
 
         // Criar KeyInfo com dados do certificado X.509
         KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
@@ -205,13 +185,6 @@ public class NFSeTest {
         signature.sign(signContext);
 
         // 5. Converter o documento assinado de volta para String
-        return documentToString(doc);
-    }
-
-    /**
-     * Converte Document para String
-     */
-    private static String documentToString(Document doc) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();
         StringWriter writer = new StringWriter();
@@ -231,17 +204,17 @@ public class NFSeTest {
                 .setDataInicioPrestacaoServico(LocalDate.of(2025, 10, 23))
                 .setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente.PRESTADOR)
                 .setCodigoMunicipioEmissao("4205407")
-                .setPrestador(new NFSeSefinNacionalInfoPrestador().setCNPJ("").setRegimeTributario(new NFSeSefinNacionalRegTrib().setOpSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.NAO_OPTANTE).setRegimeEspecialTributacao(NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.NENHUM)))
+                .setPrestador(new NFSeSefinNacionalInfoPrestador().setCPF("").setRegimeTributario(new NFSeSefinNacionalRegTrib().setOpSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.NAO_OPTANTE).setRegimeEspecialTributacao(NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.NENHUM)))
                 .setTomador(new NFSeSefinNacionalInfoPessoa().setCPF("").setNome(""))
                 .setServicoPrestado(new NFSeSefinNacionalServ().setLocalPrestacao(new NFSeSefinNacionalLocPrest().setCodigoMunicipio("4205407")).setCServ(new NFSeSefinNacionalCServ().setCodigoNacionalTributacaoISSQN("170601").setDescricaoServico("Teste").setCodigoNBS("114061100")))
                 .setValores(new NFSeSefinNacionalInfoValores().setValoresServicoPrestado(new NFSeSefinNacionalVServPrest().setValorServicos("10.00")).setTributos(new NFSeSefinNacionalInfoTributacao().setTributosMunicipais(new NFSeSefinNacionalTribMunicipal().setTributacaoISSQN(NFSeSefinNacionalTribMunicipalTributacaoISSQN.OPERACAO_TRIBUTAVEL).setTipoRetencaoISSQN(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN.NAO_RETIDO)).setTributosNacionais(new NFSeSefinNacionalTribFederal().setPiscofins(new NFSeSefinNacionalTribOutrosPisCofins().setCST(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.CONTRIBUICAO_SEM_INCIDENCIA))).setTotalTributos(new NFSeSefinNacionalTribTotal().setIndicadorValorTotalTributos("0")))));
 
-        // Assinar, comprimir em gzip e gerar Base64 do conteúdo gz
-        final String signedXml = assinarXml(dps.toXml());
+        dps.getInfDPS().setId(NFSeDPSUtils.gerarId(dps));
+
         byte[] gzipped;
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
              java.util.zip.GZIPOutputStream gos = new java.util.zip.GZIPOutputStream(baos)) {
-            gos.write(signedXml.getBytes(StandardCharsets.UTF_8));
+            gos.write(new DFAssinaturaDigital(this.config).setOmitirDeclaracaoXML(false).setUsarIdComoReferencia(false).assinarDocumento(dps.toXml()).getBytes(StandardCharsets.UTF_8));
             gos.finish();
             gzipped = baos.toByteArray();
         }

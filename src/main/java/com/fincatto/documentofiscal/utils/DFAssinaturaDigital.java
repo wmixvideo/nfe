@@ -33,11 +33,32 @@ import java.util.*;
 public class DFAssinaturaDigital implements DFLog {
 
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
-    private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte"};
+    private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte", "infDPS", "infNFSe"};
+    private boolean omitirDeclaracaoXML, usarIdComoReferencia;
     private final DFConfig config;
 
     public DFAssinaturaDigital(final DFConfig config) {
         this.config = config;
+        this.omitirDeclaracaoXML = true;
+        this.usarIdComoReferencia = true;
+    }
+
+    public boolean isOmitirDeclaracaoXML() {
+        return omitirDeclaracaoXML;
+    }
+
+    public DFAssinaturaDigital setOmitirDeclaracaoXML(final boolean omitirDeclaracaoXML) {
+        this.omitirDeclaracaoXML = omitirDeclaracaoXML;
+        return this;
+    }
+
+    public boolean isUsarIdComoReferencia() {
+        return usarIdComoReferencia;
+    }
+
+    public DFAssinaturaDigital setUsarIdComoReferencia(boolean usarIdComoReferencia) {
+        this.usarIdComoReferencia = usarIdComoReferencia;
+        return this;
     }
 
     public static boolean isValida(final InputStream xmlStream) throws Exception {
@@ -111,7 +132,7 @@ public class DFAssinaturaDigital implements DFLog {
                 final String id = element.getAttribute("Id");
                 element.setIdAttribute("Id", true);
 
-                final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
+                final Reference reference = signatureFactory.newReference(this.isUsarIdComoReferencia() ? String.format("#%s", id) : "", signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
                 final SignedInfo signedInfo = signatureFactory.newSignedInfo(signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
                 final XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
                 signature.sign(new DOMSignContext(keyEntry.getPrivateKey(), element.getParentNode()));
@@ -119,7 +140,7 @@ public class DFAssinaturaDigital implements DFLog {
         }
 
         final Transformer transformer = TransformerFactory.newInstance().newTransformer();
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, this.isOmitirDeclaracaoXML() ? "yes" : "no");
         transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
     }
 

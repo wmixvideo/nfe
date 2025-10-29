@@ -12,7 +12,7 @@ public class NFSeSefinNacionalInfoTributacao {
 
     @Element(name = "tribMun")
     protected NFSeSefinNacionalTribMunicipal tributosMunicipais;
-    @Element(name = "tribNac", required = false)
+    @Element(name = "tribFed", required = false)
     protected NFSeSefinNacionalTribFederal tributosNacionais;
     @Element(name = "totTrib")
     protected NFSeSefinNacionalTribTotal totalTributos;
