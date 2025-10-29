@@ -44,7 +44,7 @@ public class NFSeTest {
         this.config = new NFSEConfigFake(System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA"), System.getenv("CADEIA_CERTIFICADOS_PATH"), System.getenv("CADEIA_CERTIFICADOS_SENHA"));
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void consultaConvenioMunicipioTest() throws Exception {
         System.out.println("Teste de consulta de convênio do município na API de Parâmetros Municipais do Governo Federal");
@@ -53,7 +53,7 @@ public class NFSeTest {
         System.out.println(consulta);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void consultaAliquotaMunicipioServicoCompetenciaTest() throws Exception {
         System.out.println("Teste de consulta de alíquota do município para um serviço e competência na API de Parâmetros Municipais do Governo Federal");
@@ -64,7 +64,7 @@ public class NFSeTest {
         System.out.println(consulta);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void consultaHistoricoAliquotaMunicipioServicoTest() throws Exception {
         final var codigoDoMunicipio = "4216602";
@@ -84,7 +84,7 @@ public class NFSeTest {
         //System.out.println(consulta);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void consultaRegimesEspeciaisMunicipioServicoCompetenciaTest() throws Exception {
         final var codigoDoMunicipio = "4216602";
@@ -93,7 +93,7 @@ public class NFSeTest {
         System.out.println(consulta);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void consultaRetencoesMunicipioCompetenciaTest() throws Exception {
         final var codigoDoMunicipio = "4216602";
@@ -101,7 +101,7 @@ public class NFSeTest {
         System.out.println(consulta);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void downloadDANFSePdfChaveAcessoTest() throws Exception {
         System.out.println("Teste de download do DANFSe em PDF utilizando a chave de acesso da NFSe");
@@ -111,6 +111,7 @@ public class NFSeTest {
         FileUtils.writeByteArrayToFile(new File(String.format("%s/%s.pdf", pathToSave, nfseChaveAcesso)), danfsePDF);
     }
 
+    @Ignore
     @Test
     public void downloadXmlNFSeViaChaveAcessoTest() throws Exception {
         System.out.println("Teste de download do xml da NFSe");
@@ -134,22 +135,19 @@ public class NFSeTest {
 
     @Test
     public void testeAssinaturaXMLCompleto() throws Exception {
-        System.out.println(assinarXml("<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>", System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA")));
+        System.out.println(assinarXml("<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>"));
     }
 
-    public static String assinarXml(String xmlString, String certificatePath, String password) throws Exception {
+//    public static String assinarXml(String xmlString, String certificatePath, String password) throws Exception {
+    public String assinarXml(String xmlString) throws Exception {
 
-        // 1. Carregar o certificado
-        KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        try (FileInputStream fis = new FileInputStream(certificatePath)) {
-            keyStore.load(fis, password.toCharArray());
-        }
+        final var keyStore = this.config.getCertificadoKeyStore();
 
         // Obter alias do certificado
         String alias = keyStore.aliases().nextElement();
 
         // Obter chave privada e certificado
-        PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias, password.toCharArray());
+        PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias, this.config.getCertificadoSenha().toCharArray());
         X509Certificate certificate = (X509Certificate) keyStore.getCertificate(alias);
 
         // 2. Parsear o XML
@@ -221,6 +219,7 @@ public class NFSeTest {
         return writer.getBuffer().toString();
     }
 
+    @Ignore
     @Test
     public void testeComunicaDPSNacional() throws Exception {
         final var dps = new NFSeSefinNacionalDPS().setInfDPS(new NFSeSefinNacionalInfDPS()
@@ -238,7 +237,7 @@ public class NFSeTest {
                 .setValores(new NFSeSefinNacionalInfoValores().setValoresServicoPrestado(new NFSeSefinNacionalVServPrest().setValorServicos("10.00")).setTributos(new NFSeSefinNacionalInfoTributacao().setTributosMunicipais(new NFSeSefinNacionalTribMunicipal().setTributacaoISSQN(NFSeSefinNacionalTribMunicipalTributacaoISSQN.OPERACAO_TRIBUTAVEL).setTipoRetencaoISSQN(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN.NAO_RETIDO)).setTributosNacionais(new NFSeSefinNacionalTribFederal().setPiscofins(new NFSeSefinNacionalTribOutrosPisCofins().setCST(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.CONTRIBUICAO_SEM_INCIDENCIA))).setTotalTributos(new NFSeSefinNacionalTribTotal().setIndicadorValorTotalTributos("0")))));
 
         // Assinar, comprimir em gzip e gerar Base64 do conteúdo gz
-        final String signedXml = assinarXml(dps.toXml(), System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA"));
+        final String signedXml = assinarXml(dps.toXml());
         byte[] gzipped;
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
              java.util.zip.GZIPOutputStream gos = new java.util.zip.GZIPOutputStream(baos)) {

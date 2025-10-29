@@ -1,18 +1,14 @@
 package com.fincatto.documentofiscal.nfse;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
 
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
 
-public class NFSEConfigFake extends NFeConfig {
+public class NFSEConfigFake extends NFSeConfig {
 
     private final String certificadoPath;
     private final String certificadoSenha;

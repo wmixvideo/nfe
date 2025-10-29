@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfse.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfse.NFSeConfig;
 import com.fincatto.documentofiscal.nfse.utils.NFSeHttpClient;
 import com.fincatto.documentofiscal.nfse.utils.NFSeObjectMapper;
 
@@ -15,7 +15,7 @@ public class WSDANFSe implements DFLog {
     private final NFSeHttpClient client;
 
 
-    public WSDANFSe(final NFeConfig config) {
+    public WSDANFSe(final NFSeConfig config) {
         this.client = new NFSeHttpClient(config);
     }
 

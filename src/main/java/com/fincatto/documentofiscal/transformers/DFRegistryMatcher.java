@@ -118,12 +118,6 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.transformers.*;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
 import com.fincatto.documentofiscal.nfse.transformer.*;
-import org.simpleframework.xml.transform.RegistryMatcher;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
 
 public class DFRegistryMatcher extends RegistryMatcher {
 

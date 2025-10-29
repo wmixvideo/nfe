@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfse.utils;
 
-import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfse.NFSeConfig;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
 import java.net.URI;
@@ -11,10 +11,10 @@ import java.time.Duration;
 
 public class NFSeHttpClient {
     final HttpClient client;
-    final NFeConfig config;
+    final NFSeConfig config;
     private Duration timeout;
 
-    public NFSeHttpClient(final NFeConfig config) {
+    public NFSeHttpClient(final NFSeConfig config) {
         this.config = config;
         this.timeout = Duration.ofSeconds(20);
         try {
