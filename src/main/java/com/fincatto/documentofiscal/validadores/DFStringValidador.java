@@ -355,6 +355,15 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho15ou17N(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.apenasNumerico(string, info);
+            if (string.length() != 15 && string.length() != 17) {
+                throw new IllegalStateException(String.format("%s \"%s\" deve possuir 15 ou 17 caracteres", info, string));
+            }
+        }
+    }
+
     public static void tamanho12(final String string, final String info) {
         if (string != null) {
             DFStringValidador.validaTamanhoMaximo(string, 12, info);
