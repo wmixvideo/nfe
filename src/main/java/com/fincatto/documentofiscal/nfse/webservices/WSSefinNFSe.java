@@ -12,8 +12,10 @@ import java.net.URI;
 
 public class WSSefinNFSe implements DFLog {
 
+    // todo: adicionar URL de produção quando liberar
+    //    public static final String URL_BASE_SEFINNACIONAL = "https://sefin.nfse.gov.br/sefinnacional";
     public static final String URL_BASE_HOMOLOGACAO_SEFINNACIONAL = "https://sefin.producaorestrita.nfse.gov.br/sefinnacional";
-    public static final String URL_BASE_HOMOLOGACAO_NFSE = URL_BASE_HOMOLOGACAO_SEFINNACIONAL + "/nfse";
+    public static final String URL_HOMOLOGACAO_NFSE = URL_BASE_HOMOLOGACAO_SEFINNACIONAL + "/nfse";
 
     private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeHttpClient client;
@@ -30,7 +32,7 @@ public class WSSefinNFSe implements DFLog {
      * @throws Exception
      */
     public NFSeSefinNacionalGetResponse getNFSeByChaveAcesso(final String nfseChaveAcesso) throws Exception {
-        final var urlHomologacao = new URI(String.format("%s/%s", URL_BASE_HOMOLOGACAO_NFSE, nfseChaveAcesso));
+        final var urlHomologacao = new URI(String.format("%s/%s", URL_HOMOLOGACAO_NFSE, nfseChaveAcesso));
         final var response = client.sendGetRequest(urlHomologacao);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalGetResponse.class);
     }
@@ -42,7 +44,7 @@ public class WSSefinNFSe implements DFLog {
      * @throws Exception
      */
     public NFSeSefinNacionalPostResponseSucesso emitirNFSeByDPS(final String dps) throws Exception {
-        final var urlHomologacao = new URI(String.format("%s", URL_BASE_HOMOLOGACAO_NFSE));
+        final var urlHomologacao = new URI(String.format("%s", URL_HOMOLOGACAO_NFSE));
         final var response = client.sendPostRequest(urlHomologacao, String.format("{dpsXmlGZipB64:\"%s\"}", dps));
 
         if (response.statusCode() != 201) {
