@@ -117,7 +117,7 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorPro
 import com.fincatto.documentofiscal.nfe310.classes.nota.*;
 import com.fincatto.documentofiscal.nfe310.transformers.*;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
-import com.fincatto.documentofiscal.nfse.transformer.*;
+import com.fincatto.documentofiscal.nfse.transformers.*;
 
 public class DFRegistryMatcher extends RegistryMatcher {
 

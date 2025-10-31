@@ -21,7 +21,7 @@ public class NFSeObjectMapper extends ObjectMapper {
         this.registerModule(new SimpleModule().addDeserializer(BigDecimal.class, new StdScalarDeserializer<>(BigDecimal.class) {
             @Override
             public BigDecimal deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-                return new BigDecimal(p.getValueAsString().replace(',', '.'));
+                return new BigDecimal(p.getValueAsString().replace(".", "").replace(',', '.'));
             }
         }));
     }

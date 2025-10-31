@@ -1,6 +1,5 @@
-package com.fincatto.documentofiscal.nfse.transformer;
+package com.fincatto.documentofiscal.nfse.transformers;
 
-import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalInfDPSTipoAmbiente;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalLocPrestOpcaoConsumoServico;
 import org.simpleframework.xml.transform.Transform;
 

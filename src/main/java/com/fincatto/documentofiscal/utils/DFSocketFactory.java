@@ -32,10 +32,7 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         final Socket socket = this.sslContext.getSocketFactory().createSocket();
         ((SSLSocket) socket).setEnabledProtocols(this.config.getSSLProtocolos());
         socket.bind(new InetSocketAddress(localAddress, localPort));
-
-        final int connectTimeout = params.getConnectionTimeout();
-
-        socket.connect(new InetSocketAddress(host, port), connectTimeout);
+        socket.connect(new InetSocketAddress(host, port), params.getConnectionTimeout());
         return socket;
     }
 
@@ -58,6 +55,7 @@ public class DFSocketFactory implements ProtocolSocketFactory {
 
     /**
      * configura o SSLContext com os KeyManagers e TrustManagers informados.
+     *
      * @param km
      * @param tm
      * @param protocol

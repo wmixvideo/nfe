@@ -1,7 +1,6 @@
-package com.fincatto.documentofiscal.nfse.transformer;
+package com.fincatto.documentofiscal.nfse.transformers;
 
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao;
-import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional;
 import org.simpleframework.xml.transform.Transform;
 
 public class NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacaoTransformer implements Transform<NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao>{

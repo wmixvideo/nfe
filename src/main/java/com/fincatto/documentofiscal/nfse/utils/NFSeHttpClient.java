@@ -10,18 +10,11 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 
 public class NFSeHttpClient {
-    final HttpClient client;
-    final NFSeConfig config;
-    private Duration timeout;
+
+    private final NFSeConfig config;
 
     public NFSeHttpClient(final NFSeConfig config) {
         this.config = config;
-        this.timeout = Duration.ofSeconds(20);
-        try {
-            this.client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).followRedirects(HttpClient.Redirect.NORMAL).sslContext(DFSocketFactory.getDefaultSSLContext(config)).build();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -37,24 +30,35 @@ public class NFSeHttpClient {
     }
 
     public <T> HttpResponse<T> sendGetRequest(final URI uri, HttpResponse.BodyHandler<T> responseBodyHandler) throws Exception {
-        return this.client.send(HttpRequest.newBuilder()
-                .GET()
-                .uri(uri)
-                .headers("Content-Type", "application/json; charset=utf-8")
-                .timeout(this.getTimeout())
-                .build(), responseBodyHandler);
+        try (HttpClient client = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .sslContext(DFSocketFactory.getDefaultSSLContext(config))
+                .build()) {
+            return client.send(HttpRequest.newBuilder()
+                            .GET()
+                            .uri(uri)
+                            .headers("Content-Type", "application/json; charset=utf-8")
+                            .timeout(Duration.ofSeconds(30))
+                            .build(),
+                    responseBodyHandler);
+        }
     }
+
 
     public HttpResponse<String> sendPostRequest(final URI uri, final String jsonBody) throws Exception {
-        return this.client.send(HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .headers("Content-Type", "application/json; charset=utf-8")
-                .timeout(this.timeout)
-                .uri(uri)
-                .build(), HttpResponse.BodyHandlers.ofString());
-    }
-
-    private Duration getTimeout() {
-        return timeout;
+        try (HttpClient client = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .sslContext(DFSocketFactory.getDefaultSSLContext(config))
+                .build()) {
+            return client.send(HttpRequest.newBuilder()
+                            .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                            .headers("Content-Type", "application/json; charset=utf-8")
+                            .timeout(Duration.ofSeconds(30))
+                            .uri(uri)
+                            .build(),
+                    HttpResponse.BodyHandlers.ofString());
+        }
     }
 }

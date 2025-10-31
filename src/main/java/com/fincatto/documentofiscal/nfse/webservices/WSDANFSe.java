@@ -3,7 +3,6 @@ package com.fincatto.documentofiscal.nfse.webservices;
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.nfse.NFSeConfig;
 import com.fincatto.documentofiscal.nfse.utils.NFSeHttpClient;
-import com.fincatto.documentofiscal.nfse.utils.NFSeObjectMapper;
 
 import java.net.URI;
 import java.net.http.HttpResponse;
@@ -11,12 +10,10 @@ import java.net.http.HttpResponse;
 public class WSDANFSe implements DFLog {
 
     public static final String URL_BASE_ADN = "https://adn.nfse.gov.br/";
-    private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
-    private final NFSeHttpClient client;
-
+    private final NFSeConfig config;
 
     public WSDANFSe(final NFSeConfig config) {
-        this.client = new NFSeHttpClient(config);
+        this.config = config;
     }
 
     /**
@@ -28,7 +25,7 @@ public class WSDANFSe implements DFLog {
      */
     public byte[] downloadDANFSePdfByChaveAcesso(final String nfseChaveAcesso) throws Exception {
         final var url = new URI(String.format("%s/danfse/%s", URL_BASE_ADN, nfseChaveAcesso));
-        final var response = client.sendGetRequest(url, HttpResponse.BodyHandlers.ofByteArray());
+        final var response = new NFSeHttpClient(this.config).sendGetRequest(url, HttpResponse.BodyHandlers.ofByteArray());
         return response.body();
     }
 }
