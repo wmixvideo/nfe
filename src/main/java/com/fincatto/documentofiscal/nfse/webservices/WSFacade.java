@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfse.webservices;
 
 import com.fincatto.documentofiscal.nfse.NFSeConfig;
+import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalDPS;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalGetResponse;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.NFSeSefinNacionalPostResponseSucesso;
 import com.fincatto.documentofiscal.nfse.classes.parametrosmunicipais.consulta.*;
@@ -21,7 +22,7 @@ public class WSFacade {
     private final WSDANFSe wsDANFSe;
     private final WSSefinNFSe wsSefinNFSe;
 
-    public WSFacade(final NFSeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
+    public WSFacade(final NFSeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
 
         // inicia os servicos disponiveis da nfe
@@ -119,7 +120,7 @@ public class WSFacade {
         return wsSefinNFSe.getNFSeByChaveAcesso(nfseChaveAcesso);
     }
 
-    public NFSeSefinNacionalPostResponseSucesso emitirNFSeByDPS(final String dps) throws Exception {
+    public NFSeSefinNacionalPostResponseSucesso emitirNFSeByDPS(final NFSeSefinNacionalDPS dps) throws Exception {
         return wsSefinNFSe.emitirNFSeByDPS(dps);
     }
 }

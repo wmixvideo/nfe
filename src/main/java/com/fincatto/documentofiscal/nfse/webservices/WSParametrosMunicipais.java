@@ -14,11 +14,11 @@ public class WSParametrosMunicipais implements DFLog {
     public static final String URL_BASE = "https://adn.nfse.gov.br/parametrizacao";
 
     private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
-    private final NFSeHttpClient client;
+    private final NFSeConfig config;
 
 
     public WSParametrosMunicipais(final NFSeConfig config) {
-        this.client = new NFSeHttpClient(config);
+        this.config = config;
     }
 
     /**
@@ -30,7 +30,7 @@ public class WSParametrosMunicipais implements DFLog {
      */
     public NFSeParametrosMunicipaisConvenioResponse consultaConvenioMunicipio(final String codigoMunicipio) throws Exception {
         final var url = new URI(String.format("%s/%s/convenio", URL_BASE, codigoMunicipio));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisConvenioResponse.class);
     }
 
@@ -46,7 +46,7 @@ public class WSParametrosMunicipais implements DFLog {
     public NFSeParametrosMunicipaisAliquotasResponse consultaAliquotaMunicipioServicoCompetencia(final String codigoMunicipio, final String codigoServico, final LocalDate competencia) throws Exception {
         final var competenciaFormatada = formataCompetencia(competencia);
         final var url = new URI(String.format("%s/%s/%s/%s/aliquota", URL_BASE, codigoMunicipio, codigoServico, competenciaFormatada));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisAliquotasResponse.class);
     }
 
@@ -60,7 +60,7 @@ public class WSParametrosMunicipais implements DFLog {
      */
     public NFSeParametrosMunicipaisAliquotasResponse consultaHistoricoAliquotaMunicipioServico(final String codigoMunicipio, final String codigoServico) throws Exception {
         final var url = new URI(String.format("%s/%s/%s/historicoaliquotas", URL_BASE, codigoMunicipio, codigoServico));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisAliquotasResponse.class);
     }
 
@@ -76,7 +76,7 @@ public class WSParametrosMunicipais implements DFLog {
     public NFSeParametrosMunicipaisBeneficioResponse consultaBeneficioMunicipioBeneficioCompetencia(final String codigoMunicipio, final String numeroBeneficio, final LocalDate competencia) throws Exception {
         final var competenciaFormatada = formataCompetencia(competencia);
         final var url = new URI(String.format("%s/%s/%s/%s/beneficio", URL_BASE, codigoMunicipio, numeroBeneficio, competenciaFormatada));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisBeneficioResponse.class);
     }
 
@@ -92,7 +92,7 @@ public class WSParametrosMunicipais implements DFLog {
     public NFSeParametrosMunicipaisRegimesEspeciaisResponse consultaRegimesEspeciaisMunicipioServicoCompetencia(final String codigoMunicipio, final String codigoServico, final LocalDate competencia) throws Exception {
         final var competenciaFormatada = formataCompetencia(competencia);
         final var url = new URI(String.format("%s/%s/%s/%s/regimes_especiais", URL_BASE, codigoMunicipio, codigoServico, competenciaFormatada));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisRegimesEspeciaisResponse.class);
     }
 
@@ -107,7 +107,7 @@ public class WSParametrosMunicipais implements DFLog {
     public NFSeParametrosMunicipaisRetencoesResponse consultaRetencoesMunicipioCompetencia(final String codigoMunicipio, final LocalDate competencia) throws Exception {
         final var competenciaFormatada = formataCompetencia(competencia);
         final var url = new URI(String.format("%s/%s/%s/retencoes", URL_BASE, codigoMunicipio, competenciaFormatada));
-        final var response = client.sendGetRequest(url);
+        final var response = new NFSeHttpClient(config).sendGetRequest(url);
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisRetencoesResponse.class);
     }
 
