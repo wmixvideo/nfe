@@ -21,13 +21,13 @@ public abstract class NFSeDPSUtils {
     public static String gerarId(final NFSeSefinNacionalDPS dps) {
         // Valido as informações necessárias para montar o ID
         assert dps != null : "DPS deve estar preenchido para gerar o ID";
-        final var infDps = dps.getInfDPS();
+        final NFSeSefinNacionalInfDPS infDps = dps.getInfDPS();
         assert infDps != null : "InfDPS deve estar preenchido para gerar o ID";
-        final var codigoMunicipioEmissao = infDps.getCodigoMunicipioEmissao();
+        final String codigoMunicipioEmissao = infDps.getCodigoMunicipioEmissao();
         assert codigoMunicipioEmissao != null : "Código do município de emissão não pode ser nulo para geração do ID da DPS";
-        final var serie = infDps.getSerie();
+        final String serie = infDps.getSerie();
         assert serie != null : "Série do DPS não pode ser nula para geração do ID da DPS";
-        final var numeroDPS = infDps.getNumeroDPS();
+        final String numeroDPS = infDps.getNumeroDPS();
         assert numeroDPS != null : "Número do DPS não pode ser nulo para geração do ID da DPS";
 
         // Monto a inscrição federal de acordo com o emitente
