@@ -3,6 +3,8 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.time.ZonedDateTime;
+
 /**
  * <p>Java class for TCInfEvento complex type.
  * 
@@ -29,186 +31,79 @@ import org.simpleframework.xml.*;
  * 
  */
 
-@Root(name = "InfEvento")
+@Root(name = "infEvento")
 public class NFSeSefinNacionalInfEvento {
 
-    protected String verAplic;
-    @Element(required = true)
-    protected String ambGer;
-    @Element(required = true)
-    protected String nSeqEvento;
-    @Element(required = true)
-    protected String dhProc;
-    @Element(name = "nDFe", required = false)
-    protected String ndFe;
-    @Element(required = true)
-    protected NFSeSefinNacionalPedRegEvt pedRegEvento;
-    @Attribute(name = "Id", required = false)
+    @Element(name = "verAplic", required = false)
+    protected String versaoApp;
+    @Element(name = "ambGer")
+    protected NFSeSefinNacionalInfEventoAmbienteGeracao ambienteGeracao;
+    @Element(name = "nSeqEvento")
+    protected String numeroSequencialEvento;
+    @Element(name = "dhProc")
+    protected ZonedDateTime dataHoraProcessamento;
+    @Element(name = "nDFe")
+    protected String numeroDFe;
+    @Element(name = "pedRegEvento")
+    protected NFSeSefinNacionalPedRegEvt pedidoRegistroEvento;
+    @Attribute(name = "Id")
     protected String id;
 
-    /**
-     * Gets the value of the verAplic property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVerAplic() {
-        return verAplic;
+    public String getVersaoApp() {
+        return versaoApp;
     }
 
-    /**
-     * Sets the value of the verAplic property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVerAplic(String value) {
-        this.verAplic = value;
+    public void setVersaoApp(String value) {
+        this.versaoApp = value;
     }
 
-    /**
-     * Gets the value of the ambGer property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAmbGer() {
-        return ambGer;
+    public NFSeSefinNacionalInfEventoAmbienteGeracao getAmbienteGeracao() {
+        return ambienteGeracao;
     }
 
-    /**
-     * Sets the value of the ambGer property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAmbGer(String value) {
-        this.ambGer = value;
+    public void setAmbienteGeracao(NFSeSefinNacionalInfEventoAmbienteGeracao value) {
+        this.ambienteGeracao = value;
     }
 
-    /**
-     * Gets the value of the nSeqEvento property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNSeqEvento() {
-        return nSeqEvento;
+    public String getNumeroSequencialEvento() {
+        return numeroSequencialEvento;
     }
 
-    /**
-     * Sets the value of the nSeqEvento property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNSeqEvento(String value) {
-        this.nSeqEvento = value;
+    public void setNumeroSequencialEvento(String numeroSequencialEvento) {
+        this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
-    /**
-     * Gets the value of the dhProc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDhProc() {
-        return dhProc;
+    public ZonedDateTime getDataHoraProcessamento() {
+        return dataHoraProcessamento;
     }
 
-    /**
-     * Sets the value of the dhProc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDhProc(String value) {
-        this.dhProc = value;
+    public void setDataHoraProcessamento(ZonedDateTime value) {
+        this.dataHoraProcessamento = value;
     }
 
-    /**
-     * Gets the value of the ndFe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNDFe() {
-        return ndFe;
+    public String getNumeroDFe() {
+        return numeroDFe;
     }
 
-    /**
-     * Sets the value of the ndFe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNDFe(String value) {
-        this.ndFe = value;
+    public void setNumeroDFe(String numeroDFe) {
+        this.numeroDFe = numeroDFe;
     }
 
-    /**
-     * Gets the value of the pedRegEvento property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalPedRegEvt }
-     *     
-     */
-    public NFSeSefinNacionalPedRegEvt getPedRegEvento() {
-        return pedRegEvento;
+    public NFSeSefinNacionalPedRegEvt getPedidoRegistroEvento() {
+        return pedidoRegistroEvento;
     }
 
-    /**
-     * Sets the value of the pedRegEvento property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalPedRegEvt }
-     *     
-     */
-    public void setPedRegEvento(NFSeSefinNacionalPedRegEvt value) {
-        this.pedRegEvento = value;
+    public void setPedidoRegistroEvento(NFSeSefinNacionalPedRegEvt pedidoRegistroEvento) {
+        this.pedidoRegistroEvento = pedidoRegistroEvento;
     }
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getId() {
         return id;
     }
 
     /**
-     * Sets the value of the id property.
-     * 
+     * Identificador do evento: "EVT" + Chave de acesso(50) Tipo do evento (6) + Pedido de Registro do Evento(3) (nPedRegEvento)
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     public void setId(String value) {
         this.id = value;

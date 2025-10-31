@@ -346,9 +346,9 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoValePedagio.class, new MDFTipoValePedagioTransformer());
 
         // NFSe
-        super.bind(NFSeSefinNacionalInfDPSTipoAmbiente.class, new NFSeSefinNacionalInfDPSTipoAmbienteTransformer());
+        super.bind(NFSeSefinNacionalTipoAmbiente.class, new NFSeSefinNacionalTipoAmbienteTransformer());
         super.bind(NFSeSefinNacionalInfDPSTipoEmitente.class, new NFSeSefinNacionalInfDPSTipoEmitenteTransformer());
-        super.bind(NFSeSefinNacionalSubstituicaoMotivo.class, new NFSeSefinNacionalSubstituicaoMotivoTransformer());
+        super.bind(NFSeSefinNacionalTSCodJustSubst.class, new NFSeSefinNacionalTSCodJustSubstTransformer());
         super.bind(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF.class, new NFSeSefinNacionalInfoPrestadorCodigoNaoNIFTransformer());
         super.bind(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.class, new NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacionalTransformer());
         super.bind(NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimples.class, new NFSeSefinNacionalRegimeTributarioApuracaoAposLimiteSimplesTransformer());
@@ -372,5 +372,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN.class, new NFSeSefinNacionalTribMunicipalTipoRetencaoISSQNTransformer());
         super.bind(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.class, new NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributariaTransformer());
         super.bind(NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao.class, new NFSeSefinNacionalTribOutrosPisCofinsTipoRetencaoTransformer());
+        super.bind(NFSeSefinNacionalInfEventoAmbienteGeracao.class, new NFSeSefinNacionalInfEventoAmbienteGeracaoTransformer());
+        super.bind(NFSeSefinNacionalTSCodJustCanc.class, new NFSeSefinNacionalTSCodJustCancTransformer());
+        super.bind(NFSeSefinNacionalTSCodJustAnaliseFiscalCancIndef.class, new NFSeSefinNacionalTSCodJustAnaliseFiscalCancIndefTransformer());
     }
 }

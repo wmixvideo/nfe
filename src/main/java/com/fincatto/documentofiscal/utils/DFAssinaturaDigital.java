@@ -33,7 +33,7 @@ import java.util.*;
 public class DFAssinaturaDigital implements DFLog {
 
     private static final String C14N_TRANSFORM_METHOD = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315";
-    private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte", "infDPS", "infNFSe"};
+    private static final String[] ELEMENTOS_ASSINAVEIS = new String[]{"infEvento", "infCanc", "infNFe", "infInut", "infMDFe", "infCte", "infDPS", "infNFSe", "infPedRegEvt"};
     private boolean omitirDeclaracaoXML, usarIdComoReferencia;
     private final DFConfig config;
 

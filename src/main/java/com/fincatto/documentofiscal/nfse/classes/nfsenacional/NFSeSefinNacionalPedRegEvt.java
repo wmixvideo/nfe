@@ -1,95 +1,42 @@
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
+import com.fincatto.documentofiscal.utils.DFPersister;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.core.Persister;
 import java.io.StringWriter;
 
-/**
- * <p>Java class for TCPedRegEvt complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCPedRegEvt"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="infPedReg" type="{http://www.sped.fazenda.gov.br/nfse}TCInfPedReg"/&gt;
- *         &lt;element ref="{http://www.w3.org/2000/09/xmldsig#}Signature" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="versao" use="required" type="{http://www.sped.fazenda.gov.br/nfse}TVerNFSe" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
-
-@Root(name = "PedRegEvt")
+@Namespace(reference = "http://www.sped.fazenda.gov.br/nfse")
+@Root(name = "pedRegEvento")
 public class NFSeSefinNacionalPedRegEvt {
 
-    @Element(required = true)
+    @Element(name = "infPedReg")
     protected NFSeSefinNacionalInfPedReg infPedReg;
-    @Attribute(name = "versao", required = false)
+    @Element(name = "Signature", required = false)
+    protected SignatureType signature;
+    @Attribute(name = "versao", empty = "1.00")
     protected String versao;
 
-    /**
-     * Gets the value of the infPedReg property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfPedReg }
-     *     
-     */
+
     public NFSeSefinNacionalInfPedReg getInfPedReg() {
         return infPedReg;
     }
 
-    /**
-     * Sets the value of the infPedReg property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalInfPedReg }
-     *     
-     */
-    public void setInfPedReg(NFSeSefinNacionalInfPedReg value) {
+    public NFSeSefinNacionalPedRegEvt setInfPedReg(NFSeSefinNacionalInfPedReg value) {
         this.infPedReg = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the versao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVersao() {
-        return versao;
+    public SignatureType getSignature() {
+        return signature;
     }
 
-    /**
-     * Sets the value of the versao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersao(String value) {
-        this.versao = value;
+    public NFSeSefinNacionalPedRegEvt setSignature(SignatureType signature) {
+        this.signature = signature;
+        return this;
     }
 
-    /**
-     * Converte o objeto para XML
-     *
-     * @return String contendo o XML gerado
-     * @throws Exception se houver erro na serialização
-     */
     public String toXml() throws Exception {
-        Persister serializer = new Persister();
+        Persister serializer = new DFPersister();
         StringWriter writer = new StringWriter();
         serializer.write(this, writer);
         return writer.toString();

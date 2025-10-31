@@ -9,7 +9,7 @@ public class NFSeSefinNacionalSubstituicao {
     @Element(name="chSubstda")
     protected String chaveNFSe;
     @Element(name="cMotivo")
-    protected NFSeSefinNacionalSubstituicaoMotivo motivo;
+    protected NFSeSefinNacionalTSCodJustSubst motivo;
     @Element(name="xMotivo", required = false)
     protected String observacao;
 
@@ -29,17 +29,17 @@ public class NFSeSefinNacionalSubstituicao {
 
     /**
      * @return Código do motivo da substituição
-     * @see NFSeSefinNacionalSubstituicaoMotivo
+     * @see NFSeSefinNacionalTSCodJustSubst
      */
-    public NFSeSefinNacionalSubstituicaoMotivo getMotivo() {
+    public NFSeSefinNacionalTSCodJustSubst getMotivo() {
         return motivo;
     }
 
     /**
      * @param motivo motivo da substituição
-     * @see NFSeSefinNacionalSubstituicaoMotivo
+     * @see NFSeSefinNacionalTSCodJustSubst
      */
-    public void setMotivo(NFSeSefinNacionalSubstituicaoMotivo motivo) {
+    public void setMotivo(NFSeSefinNacionalTSCodJustSubst motivo) {
         this.motivo = motivo;
     }
 

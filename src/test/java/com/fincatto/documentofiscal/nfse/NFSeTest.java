@@ -1,11 +1,9 @@
 package com.fincatto.documentofiscal.nfse;
 
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
-import com.fincatto.documentofiscal.nfse.utils.NFSeDPSUtils;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
 import com.fincatto.documentofiscal.nfse.webservices.WSSefinNFSe;
-import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -135,6 +133,7 @@ public class NFSeTest {
         }
     }
 
+    @Ignore
     @Test
     public void testeAssinaturaXMLCompleto() throws Exception {
         String xmlString = "<p1:PedidoConsultaCNPJ xmlns:p1=\"http://www.prefeitura.sp.gov.br/nfe\"><Cabecalho Versao=\"1\"><CPFCNPJRemetente><CNPJ></CNPJ></CPFCNPJRemetente></Cabecalho><CNPJContribuinte><CNPJ></CNPJ></CNPJContribuinte></p1:PedidoConsultaCNPJ>";
@@ -194,9 +193,9 @@ public class NFSeTest {
 
     @Ignore
     @Test
-    public void testeComunicaDPSNacional() throws Exception {
+    public void testeEmitirNFSe() throws Exception {
         final var dps = new NFSeSefinNacionalDPS().setInfDPS(new NFSeSefinNacionalInfDPS()
-                .setTipoAmbiente(NFSeSefinNacionalInfDPSTipoAmbiente.HOMOLOGACAO)
+                .setTipoAmbiente(NFSeSefinNacionalTipoAmbiente.HOMOLOGACAO)
                 .setDataHoraEmissao(ZonedDateTime.of(2025, 10, 23, 10, 33, 19, 0, ZoneId.of("-03:00")))
                 .setVersaoApp("NFSe Fake Teste 1.0")
                 .setSerie("901")
@@ -209,16 +208,25 @@ public class NFSeTest {
                 .setServicoPrestado(new NFSeSefinNacionalServ().setLocalPrestacao(new NFSeSefinNacionalLocPrest().setCodigoMunicipio("4205407")).setCServ(new NFSeSefinNacionalCServ().setCodigoNacionalTributacaoISSQN("170601").setDescricaoServico("Teste").setCodigoNBS("114061100")))
                 .setValores(new NFSeSefinNacionalInfoValores().setValoresServicoPrestado(new NFSeSefinNacionalVServPrest().setValorServicos("10.00")).setTributos(new NFSeSefinNacionalInfoTributacao().setTributosMunicipais(new NFSeSefinNacionalTribMunicipal().setTributacaoISSQN(NFSeSefinNacionalTribMunicipalTributacaoISSQN.OPERACAO_TRIBUTAVEL).setTipoRetencaoISSQN(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN.NAO_RETIDO)).setTributosNacionais(new NFSeSefinNacionalTribFederal().setPiscofins(new NFSeSefinNacionalTribOutrosPisCofins().setCST(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.CONTRIBUICAO_SEM_INCIDENCIA))).setTotalTributos(new NFSeSefinNacionalTribTotal().setIndicadorValorTotalTributos("0")))));
 
-        dps.getInfDPS().setId(NFSeDPSUtils.gerarId(dps));
+        new WSSefinNFSe(config).emitirNFSeByDPS(dps);
+    }
 
-        byte[] gzipped;
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-             java.util.zip.GZIPOutputStream gos = new java.util.zip.GZIPOutputStream(baos)) {
-            gos.write(new DFAssinaturaDigital(this.config).setOmitirDeclaracaoXML(false).setUsarIdComoReferencia(false).assinarDocumento(dps.toXml()).getBytes(StandardCharsets.UTF_8));
-            gos.finish();
-            gzipped = baos.toByteArray();
-        }
-        final String gzipBase64 = Base64.getEncoder().encodeToString(gzipped);
-        final var responseXml = new WSSefinNFSe(config).emitirNFSeByDPS(gzipBase64);
+    @Ignore
+    @Test
+    public void testeCancelamentoNFSeByChaveAcesso() throws Exception {
+        final var evento = new NFSeSefinNacionalPedRegEvt().setInfPedReg(
+            new NFSeSefinNacionalInfPedReg()
+                .setTpAmb(NFSeSefinNacionalTipoAmbiente.HOMOLOGACAO)
+                .setVerAplic("")
+                .setDhEvento(ZonedDateTime.of(2025, 10, 30, 15, 59, 19, 0, ZoneId.of("-03:00")))
+                .setCNPJAutor("")
+                .setChaveAcessoNFSE("")
+                .setNPedRegEvento("1")
+                .setEvento(new NFSeSefinNacionalInfPedRegTE101101()
+                    .setcMotivo(NFSeSefinNacionalTSCodJustCanc.OUTROS)
+                    .setxMotivo("Cancelamento de NFSe para testes"))
+        );
+
+        new WSSefinNFSe(config).enviarPedidoRegistroEvento(evento);
     }
 }

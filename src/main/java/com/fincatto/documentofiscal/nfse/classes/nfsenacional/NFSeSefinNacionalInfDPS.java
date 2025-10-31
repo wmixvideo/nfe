@@ -1,8 +1,6 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
-import com.fincatto.documentofiscal.utils.DFUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.*;
 
 import java.time.LocalDate;
@@ -12,7 +10,7 @@ import java.time.ZonedDateTime;
 public class NFSeSefinNacionalInfDPS {
 
     @Element(name = "tpAmb")
-    protected NFSeSefinNacionalInfDPSTipoAmbiente tipoAmbiente;
+    protected NFSeSefinNacionalTipoAmbiente tipoAmbiente;
     @Element(name = "dhEmi")
     protected ZonedDateTime dataHoraEmissao;
     @Element(name = "verAplic")
@@ -39,7 +37,7 @@ public class NFSeSefinNacionalInfDPS {
     protected NFSeSefinNacionalServ servicoPrestado;
     @Element(name = "valores")
     protected NFSeSefinNacionalInfoValores valores;
-    @Attribute(name = "Id") //todo: implementar a validação da regra (método + teste unitário)
+    @Attribute(name = "Id", empty = "") //todo: implementar a validação da regra (método + teste unitário)
     protected String id;
 
     /**
@@ -47,7 +45,7 @@ public class NFSeSefinNacionalInfDPS {
      *
      * @return tipo de ambiente
      */
-    public NFSeSefinNacionalInfDPSTipoAmbiente getTipoAmbiente() {
+    public NFSeSefinNacionalTipoAmbiente getTipoAmbiente() {
         return tipoAmbiente;
     }
 
@@ -57,7 +55,7 @@ public class NFSeSefinNacionalInfDPS {
      *
      * @param tipoAmbiente tipo de ambiente
      */
-    public NFSeSefinNacionalInfDPS setTipoAmbiente(NFSeSefinNacionalInfDPSTipoAmbiente tipoAmbiente) {
+    public NFSeSefinNacionalInfDPS setTipoAmbiente(NFSeSefinNacionalTipoAmbiente tipoAmbiente) {
         this.tipoAmbiente = tipoAmbiente;
         return this;
     }
@@ -278,9 +276,10 @@ public class NFSeSefinNacionalInfDPS {
      * "DPS" + Cód.Mun (7) + Tipo de Inscrição Federal (1) + Inscrição Federal (14 - CPF completar com 000 à esquerda) + Série DPS (5)+ Núm. DPS (15)
      *
      * @param id ID da DPS
+     * @return
      */
-    public void setId(String id) {
-        // todo verificar uma maneira desse get/set ser automático na geração do XML, sem precisar do usuário setar manualmente
+    public NFSeSefinNacionalInfDPS setId(String id) {
         this.id = id;
+        return this;
     }
 }

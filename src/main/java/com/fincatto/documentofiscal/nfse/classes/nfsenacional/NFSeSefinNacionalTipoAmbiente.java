@@ -4,7 +4,7 @@ package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 import org.simpleframework.xml.Root;
 
 @Root(name = "tpAmb")
-public enum NFSeSefinNacionalInfDPSTipoAmbiente {
+public enum NFSeSefinNacionalTipoAmbiente {
 
     PRODUCAO("1", "Produção"),
     HOMOLOGACAO("2", "Homologação");
@@ -12,7 +12,7 @@ public enum NFSeSefinNacionalInfDPSTipoAmbiente {
     private final String codigo;
     private final String descricao;
 
-    NFSeSefinNacionalInfDPSTipoAmbiente(final String codigo, final String descricao) {
+    NFSeSefinNacionalTipoAmbiente(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -25,8 +25,8 @@ public enum NFSeSefinNacionalInfDPSTipoAmbiente {
         return descricao;
     }
 
-    public static NFSeSefinNacionalInfDPSTipoAmbiente valueOfCodigo(final String codigo) {
-        for (final NFSeSefinNacionalInfDPSTipoAmbiente tipo : NFSeSefinNacionalInfDPSTipoAmbiente.values()) {
+    public static NFSeSefinNacionalTipoAmbiente valueOfCodigo(final String codigo) {
+        for (final NFSeSefinNacionalTipoAmbiente tipo : NFSeSefinNacionalTipoAmbiente.values()) {
             if (tipo.getCodigo().equals(codigo)) {
                 return tipo;
             }
