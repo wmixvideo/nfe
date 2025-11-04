@@ -1,6 +1,10 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndAltoDesempenho;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoPermissaoAntecipacao;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.math.BigDecimal;
 import java.util.List;
@@ -50,7 +54,15 @@ public class MDFInfoModalRodoviarioInfPag {
      */
     @Element(name = "vContrato", required = true)
     private BigDecimal vContrato;
-    
+
+    /**
+     * Indicador de operação de transporte de alto desempenho.
+     * Operação de transporte com utilização de veículos de frotas dedicadas ou fidelizadas.
+     * Preencher com “1” para indicar operação de transporte de alto desempenho, demais casos não informar a tag
+     */
+    @Element(name = "indAltoDesemp", required = false)
+    private MDFTipoIndAltoDesempenho indAltoDesemp;
+
     /**
      * Indicador da Forma de Pagamento: 0-Pagamento à Vista; 1-Pagamento à
      * Prazo;
@@ -59,10 +71,31 @@ public class MDFInfoModalRodoviarioInfPag {
     private MDFTipoInfPag indPag;
     
     /**
+     * Valor do Adiantamento (usar apenas
+     * em pagamento à Prazo
+     */
+    @Element(name = "vAdiant", required = false)
+    private BigDecimal vAdiant;
+
+    /**
+     * Indicador de declaração de concordância em antecipar o
+     * adiantamento
+     */
+    @Element(name = "indAntecipaAdiant", required = false)
+    private MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento;
+    
+    /**
      * Informações do pagamento a prazo. Obs: Informar somente se indPag for à Prazo
      */
     @ElementList(entry = "infPrazo", inline = true, required = false)
     private List<MDFInfoModalRodoviarioInfPagPrazo> infPrazo;
+    
+    /**
+     * Tipo de Permissão em relação a
+     * antecipação das parcelas
+     */
+    @Element(name = "tpAntecip", required = false)
+    private MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao;
     
     /**
      * Informações bancárias.
@@ -129,12 +162,37 @@ public class MDFInfoModalRodoviarioInfPag {
         this.vContrato = vContrato;
     }
 
+    public MDFTipoIndAltoDesempenho getIndAltoDesemp() {
+        return indAltoDesemp;
+    }
+
+    public void setIndAltoDesemp(MDFTipoIndAltoDesempenho indAltoDesemp) {
+        this.indAltoDesemp = indAltoDesemp;
+    }
+
     public MDFTipoInfPag getIndPag() {
         return indPag;
     }
 
     public void setIndPag(MDFTipoInfPag indPag) {
         this.indPag = indPag;
+    }
+
+    public BigDecimal getVAdiant() {
+        return vAdiant;
+    }
+
+    public void setVAdiant(BigDecimal vAdiant) {
+        DFBigDecimalValidador.tamanho13Com2CasasDecimais(vAdiant, "Valor do Adiantamento");
+        this.vAdiant = vAdiant;
+    }
+    
+    public MDFTipoIndicadorAntecipacaoPagamento getIndicadorAtencipacaoAdiantamento() {
+        return indicadorAtencipacaoAdiantamento;
+    }
+
+    public void setIndicadorAtencipacaoAdiantamento(MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento) {
+        this.indicadorAtencipacaoAdiantamento = indicadorAtencipacaoAdiantamento;
     }
 
     public List<MDFInfoModalRodoviarioInfPagPrazo> getInfPrazo() {
@@ -145,6 +203,14 @@ public class MDFInfoModalRodoviarioInfPag {
         this.infPrazo = infPrazo;
     }
 
+    public MDFTipoPermissaoAntecipacao getTipoPermissaoAntecipacao() {
+        return tipoPermissaoAntecipacao;
+    }
+
+    public void setTipoPermissaoAntecipacao(MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao) {
+        this.tipoPermissaoAntecipacao = tipoPermissaoAntecipacao;
+    }
+    
     public MDFInfoModalRodoviarioInfPagBanco getInfBanc() {
         return infBanc;
     }
@@ -152,5 +218,5 @@ public class MDFInfoModalRodoviarioInfPag {
     public void setInfBanc(MDFInfoModalRodoviarioInfPagBanco infBanc) {
         this.infBanc = infBanc;
     }
-    
+
 }

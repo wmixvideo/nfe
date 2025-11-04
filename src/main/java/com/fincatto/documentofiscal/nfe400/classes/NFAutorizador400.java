@@ -1641,7 +1641,7 @@ public enum NFAutorizador400 {
         if (chaveParser.isEmitidaContingenciaSCVRS()) {
             return NFAutorizador400.SVRS;
         } else if (chaveParser.isEmitidaContingenciaSCVAN()) {
-            return NFAutorizador400.SCAN;
+            return NFAutorizador400.SVAN;
         } else {
             return NFAutorizador400.valueOfCodigoUF(chaveParser.getNFUnidadeFederativa());
         }
@@ -1656,7 +1656,7 @@ public enum NFAutorizador400 {
             case CONTINGENCIA_SVCRS:
                 return NFAutorizador400.SVRS;
             case CONTINGENCIA_SVCAN:
-                return NFAutorizador400.SCAN;
+                return NFAutorizador400.SVAN;
             case CONTINGENCIA_EPEC:
                 return NFAutorizador400.AN;
             default:

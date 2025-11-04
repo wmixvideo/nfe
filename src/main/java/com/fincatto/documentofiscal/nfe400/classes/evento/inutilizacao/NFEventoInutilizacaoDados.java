@@ -27,8 +27,11 @@ public class NFEventoInutilizacaoDados extends DFBase {
     
     @Element(name = "ano")
     private Integer ano;
+
+    @Element(name = "CPF", required = false)
+    private String cpf;
     
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     private String cnpj;
     
     @Element(name = "mod")
@@ -98,6 +101,15 @@ public class NFEventoInutilizacaoDados extends DFBase {
     public void setCnpj(final String cnpj) {
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        DFStringValidador.cpf(cpf);
+        this.cpf = cpf;
     }
 
     public String getModeloDocumentoFiscal() {
