@@ -1,14 +1,14 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoPermissaoAntecipacao;
-import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 
 /**
  * Created by Edivaldo Merlo Stens on 29/06/20.

@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.utils;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFLog;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -85,7 +86,7 @@ public class DFAssinaturaDigital implements DFLog {
         this.getLogger().debug("DN: {}", dn);
 
         final String cn = new LdapName(dn).getRdns().stream()
-                .filter(rdn -> StringUtils.equalsIgnoreCase(rdn.getType(), "CN"))
+                .filter(rdn -> Strings.CI.equals(rdn.getType(), "CN"))
                 .map(val -> String.valueOf(val.getValue()))
                 .findFirst()
                 .orElse("");

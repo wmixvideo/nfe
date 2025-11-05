@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICM
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -683,9 +684,9 @@ public abstract class DFStringValidador {
      * @return retorna a propria {@code String} {
      */
     public static String validador(final String paraValidar, final String info, Integer tamanho, Boolean exatamente, Boolean numerico) {
-        tamanho = ObjectUtils.defaultIfNull(tamanho, 1);
-        exatamente = ObjectUtils.defaultIfNull(exatamente, false);
-        numerico = ObjectUtils.defaultIfNull(numerico, true);
+        tamanho = ObjectUtils.getIfNull(tamanho, 1);
+        exatamente = ObjectUtils.getIfNull(exatamente, false);
+        numerico = ObjectUtils.getIfNull(numerico, true);
         if (paraValidar != null) {
             if (numerico) {
                 DFStringValidador.apenasNumerico(paraValidar, info);
@@ -761,7 +762,7 @@ public abstract class DFStringValidador {
 
     public static String validaIntervalo(final String string, final int inicio, final int fim, final String info, Boolean isNumeric) {
         if (string != null) {
-            isNumeric = ObjectUtils.defaultIfNull(isNumeric, false);
+            isNumeric = ObjectUtils.getIfNull(isNumeric, false);
             if (isNumeric) {
                 DFStringValidador.apenasNumerico(string, info);
             }
@@ -853,13 +854,13 @@ public abstract class DFStringValidador {
     }
 
     public static void equals(final String test, final String tested) {
-        if (!StringUtils.equals(test, tested)) {
+        if (!Strings.CS.equals(test, tested)) {
             throw new IllegalStateException(String.format("Valor('%s') nao corresponde com o padrao('%s')", tested, test));
         }
     }
 
     public static void isBase64(final String string, final String info) {
-        if (!Base64.isArrayByteBase64(string.getBytes())) {
+        if (!Base64.isBase64(string.getBytes())) {
             throw new IllegalStateException(String.format("A string %s com o valor = '%s' precisa ser codificada em Base64. ", info, string));
         }
     }
@@ -869,7 +870,7 @@ public abstract class DFStringValidador {
      */
     public static void validaCodigoRandomico(final String string, final String info) {
         String[] codigosInvalidos = new String[]{"00000000", "11111111", "22222222", "33333333", "44444444", "55555555", "66666666", "77777777", "88888888", "99999999", "12345678", "23456789", "34567890", "45678901", "56789012", "67890123", "78901234", "89012345", "90123456", "01234567"};
-        if (StringUtils.containsAny(string, codigosInvalidos)) {
+        if (Strings.CS.containsAny(string, codigosInvalidos)) {
             throw new IllegalStateException(String.format("%s \"%s\" inválido", info, string));
         }
     }

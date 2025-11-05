@@ -5,7 +5,8 @@ import com.fincatto.documentofiscal.DFBase;
 
 public class CTeEnvioRetornoDados extends DFBase {
 
-    private final CTeEnvioRetorno retorno;
+    private static final long serialVersionUID = 2226440708863648481L;
+	private final CTeEnvioRetorno retorno;
     private final CTeNota loteAssinado;
 	
 	public CTeEnvioRetornoDados(CTeEnvioRetorno retorno, CTeNota loteAssinado) {

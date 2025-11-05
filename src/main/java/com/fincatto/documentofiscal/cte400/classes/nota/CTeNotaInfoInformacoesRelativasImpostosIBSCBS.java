@@ -153,7 +153,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Namespace(reference = CTeConfig.NAMESPACE)
     public class GIBSUF extends DFBase {
 
-      @Element(name = "pIBSUF", required = true)
+      private static final long serialVersionUID = 1L;
+
+	  @Element(name = "pIBSUF", required = true)
       private String pIBSUF;
 
       @Element()
@@ -214,7 +216,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Namespace(reference = CTeConfig.NAMESPACE)
     public class GIBSMun extends DFBase {
 
-      @Element(name = "pIBSMun", required = true)
+      private static final long serialVersionUID = 1L;
+
+	  @Element(name = "pIBSMun", required = true)
       private String pIBSMun;
 
       @Element()
@@ -275,7 +279,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Namespace(reference = CTeConfig.NAMESPACE)
     public class GCBS extends DFBase {
 
-      @Element(name = "pCBS", required = true)
+      private static final long serialVersionUID = 1L;
+
+	  @Element(name = "pCBS", required = true)
       private String pCBS;
 
       @Element()

@@ -11,7 +11,8 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
  */
 public class MDFEnvioRetornoDados extends DFBase {
 
-    private final MDFEnvioRetorno retorno;
+    private static final long serialVersionUID = 1L;
+	private final MDFEnvioRetorno retorno;
     private final MDFe mdfeAssinado;
 
 	public MDFEnvioRetornoDados(MDFEnvioRetorno retorno, MDFe mdfeAssinado) {

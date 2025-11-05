@@ -28,7 +28,11 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/mdfe")
 public class MDFInfMDFeSupl extends DFBase {
 
-    @Element(name = "qrCodMDFe", required = true)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Element(name = "qrCodMDFe", required = true)
     private String qrCodMDFe;
 
     /**

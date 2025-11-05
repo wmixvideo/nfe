@@ -11,7 +11,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 public class CTeInformacaoGtv extends DFBase {
-    @Element(name = "nDoc")
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "nDoc")
     private String documento;
 
     @Element(name = "id")

@@ -10,7 +10,9 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeOSInfoInformacoesRelativasImpostosICMS extends DFBase {
 
-    @Element(name = "ICMS00", required = false)
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "ICMS00", required = false)
     private CTeOSInfoInformacoesRelativasImpostosICMS00 icms00;
 
     @Element(name = "ICMS20", required = false)
