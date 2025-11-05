@@ -32,7 +32,7 @@
     </developers>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>21</java.version>
         <slf4j.version>2.0.13</slf4j.version>
         <junit.version>4.13.2</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,6 +48,12 @@
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
             <version>4.0.2</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>commons-codec</groupId>
+            		<artifactId>commons-codec</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Simple Xml Framework -->
@@ -55,6 +61,12 @@
             <groupId>org.simpleframework</groupId>
             <artifactId>simple-xml</artifactId>
             <version>${simple-xml.version}</version>
+            <exclusions>
+            	<exclusion>
+            		 <groupId>stax</groupId>
+ 					 <artifactId>stax-api</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Commons Lang -->
@@ -75,6 +87,20 @@
                     <groupId>javax.servlet</groupId>
                     <artifactId>servlet-api</artifactId>
                 </exclusion>
+                <exclusion>
+                	<groupId>org.apache.geronimo.specs</groupId>
+                	<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+                </exclusion>
+                <exclusion>
+                	<groupId>org.apache.geronimo.specs</groupId>
+                	<artifactId>
+                		geronimo-activation_1.1_spec
+                	</artifactId>
+                </exclusion>
+                <exclusion>
+                	<groupId>jaxen</groupId>
+                	<artifactId>jaxen</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -94,6 +120,12 @@
             <artifactId>axis2-transport-http</artifactId>
             <version>${axis2.version}</version>
             <scope>compile</scope>
+            <exclusions>
+            	<exclusion>
+            		<groupId>commons-logging</groupId>
+            		<artifactId>commons-logging</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Logging -->
