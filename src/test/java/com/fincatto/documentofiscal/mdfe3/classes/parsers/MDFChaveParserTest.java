@@ -1,14 +1,18 @@
 package com.fincatto.documentofiscal.mdfe3.classes.parsers;
 
-import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
 
 public class MDFChaveParserTest {
 

@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class NFStatusServicoConsultaTest {
 

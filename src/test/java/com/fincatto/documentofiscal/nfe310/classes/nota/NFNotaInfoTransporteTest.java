@@ -1,16 +1,14 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.NFModalidadeFrete;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoTransporte;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoVolume;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.NFModalidadeFrete;
 
 public class NFNotaInfoTransporteTest {
 

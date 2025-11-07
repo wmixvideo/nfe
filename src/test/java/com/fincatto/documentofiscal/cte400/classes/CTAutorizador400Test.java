@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.cte400.classes;
 
-import com.fincatto.documentofiscal.DFAmbiente;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFAmbiente;
 
 public class CTAutorizador400Test {
 

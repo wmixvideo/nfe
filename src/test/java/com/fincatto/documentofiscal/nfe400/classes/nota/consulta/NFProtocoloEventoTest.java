@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.consulta;
 
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
 
 public class NFProtocoloEventoTest {
 

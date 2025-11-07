@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.utils.NFGeraHashCSRT;
+import java.security.KeyStore;
+import java.security.NoSuchAlgorithmException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.KeyStore;
-import java.security.NoSuchAlgorithmException;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe400.utils.NFGeraHashCSRT;
 
 /**
  * Created by Eldevan Nery Junior on 10/04/19.

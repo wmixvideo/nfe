@@ -1,12 +1,13 @@
 package com.fincatto.documentofiscal.cte.classes.distribuicao;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.utils.DFPersister;
+import java.util.Collections;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.core.Persister;
 
-import java.util.Collections;
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.utils.DFPersister;
 
 public class CTDistribuicaoIntRetornoTest {
     

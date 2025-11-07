@@ -1,12 +1,13 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
 
 public class MDFInfoModalRodoviarioPedagioDispTest {
 

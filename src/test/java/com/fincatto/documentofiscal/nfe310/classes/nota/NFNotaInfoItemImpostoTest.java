@@ -1,10 +1,11 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemImpostoTest {
 

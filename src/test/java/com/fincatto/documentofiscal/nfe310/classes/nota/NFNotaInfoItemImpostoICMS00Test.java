@@ -9,7 +9,6 @@ import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoICMS00;
 
 public class NFNotaInfoItemImpostoICMS00Test {
 

@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.NFRegimeTributario;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoEmitente;
 
 public class NFNotaInfoEmitenteTest {
     @Test(expected = IllegalStateException.class)

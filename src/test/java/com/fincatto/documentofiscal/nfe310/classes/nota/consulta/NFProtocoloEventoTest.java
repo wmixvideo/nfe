@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFProtocoloEvento;
 
 public class NFProtocoloEventoTest {
 

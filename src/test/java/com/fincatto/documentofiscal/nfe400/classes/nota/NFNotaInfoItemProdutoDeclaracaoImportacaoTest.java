@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Collections;
 
-import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -9,7 +9,8 @@ import org.simpleframework.xml.Root;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoSuplementares extends DFBase {
 
-    @Element(name = "qrCodCTe")
+    private static final long serialVersionUID = 1L;
+	@Element(name = "qrCodCTe")
     private String qrCode;
 
     public String getQrCode() {

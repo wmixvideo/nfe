@@ -186,7 +186,7 @@ public class MDFeRecepcaoSincStub1 extends org.apache.axis2.client.Stub {
             public void onMessage(final org.apache.axis2.context.MessageContext resultContext) {
                 try {
                     final org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext.getEnvelope();
-                    final java.lang.Object object = MDFeRecepcaoSincStub1.this.fromOM(resultEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.class, MDFeRecepcaoSincStub1.this.getEnvelopeNamespaces(resultEnv));
+                    	MDFeRecepcaoSincStub1.this.fromOM(resultEnv.getBody().getFirstElement(), com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult.class, MDFeRecepcaoSincStub1.this.getEnvelopeNamespaces(resultEnv));
                     ////callback.receiveResultmdfeRecepcaoSinc((com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub1.MdfeRecepcaoSincResult) object);
                 } catch (final org.apache.axis2.AxisFault e) {
                     callback.receiveErrormdfeRecepcaoSinc(e);

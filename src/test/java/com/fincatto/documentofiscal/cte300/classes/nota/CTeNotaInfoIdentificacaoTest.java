@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.cte300.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoIdentificacao;
 
 public class CTeNotaInfoIdentificacaoTest {
 

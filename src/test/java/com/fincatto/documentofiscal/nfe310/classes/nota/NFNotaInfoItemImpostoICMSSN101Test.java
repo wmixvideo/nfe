@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoICMSSN101;
 
 public class NFNotaInfoItemImpostoICMSSN101Test {
 

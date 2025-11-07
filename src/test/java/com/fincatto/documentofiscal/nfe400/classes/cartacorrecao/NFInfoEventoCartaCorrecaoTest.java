@@ -1,17 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.cartacorrecao;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class NFInfoEventoCartaCorrecaoTest {
 

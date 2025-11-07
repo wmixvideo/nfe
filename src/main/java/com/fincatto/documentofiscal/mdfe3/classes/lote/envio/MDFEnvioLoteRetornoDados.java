@@ -10,7 +10,8 @@ import com.fincatto.documentofiscal.DFBase;
  */
 public class MDFEnvioLoteRetornoDados extends DFBase {
 
-    private final MDFEnvioLoteRetorno retorno;
+    private static final long serialVersionUID = 1L;
+	private final MDFEnvioLoteRetorno retorno;
     private final MDFEnvioLote loteAssinado;
 
 	public MDFEnvioLoteRetornoDados(MDFEnvioLoteRetorno retorno, MDFEnvioLote loteAssinado) {
