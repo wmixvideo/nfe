@@ -1,17 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoLacre;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoVolume;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoVolumeTest {
 

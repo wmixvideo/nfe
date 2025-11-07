@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import org.junit.Test;
 
 public class NFNotaInfoAgropecuarioTipoGuiaTest {
 

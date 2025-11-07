@@ -17,7 +17,9 @@ import org.simpleframework.xml.Root;
 @Root(name = "agropecuario")
 public class NFNotaInfoAgropecuarioGuiaTransito extends DFBase {
 
-    @Element(name = "tpGuia")
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "tpGuia")
     private NFNotaInfoAgropecuarioTipoGuia tipoGuia;
 
     @Element(name = "UFGuia")

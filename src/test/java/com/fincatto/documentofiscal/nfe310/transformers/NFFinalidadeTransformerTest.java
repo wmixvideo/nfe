@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
-import com.fincatto.documentofiscal.nfe310.transformers.NFFinalidadeTransformer;
 
 public class NFFinalidadeTransformerTest {
     @Test

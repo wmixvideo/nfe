@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.transformers;
 
-import com.fincatto.documentofiscal.DFPais;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFPais;
 
 public class DFPaisTransformerTest {
 

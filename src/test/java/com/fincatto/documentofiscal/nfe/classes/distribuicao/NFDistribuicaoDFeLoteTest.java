@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
+import java.util.Collections;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Collections;
 
 public class NFDistribuicaoDFeLoteTest {
 

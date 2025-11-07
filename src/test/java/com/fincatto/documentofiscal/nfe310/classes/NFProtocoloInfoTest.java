@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 
 public class NFProtocoloInfoTest {
 

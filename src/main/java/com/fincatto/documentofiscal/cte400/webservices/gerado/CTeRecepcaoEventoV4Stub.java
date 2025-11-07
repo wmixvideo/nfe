@@ -18,9 +18,12 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     protected org.apache.axis2.description.AxisOperation[] _operations;
 
     //hashmaps to keep the fault mapping
-    private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
-    private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
-    private java.util.HashMap faultMessageMap = new java.util.HashMap();
+    @SuppressWarnings("rawtypes")
+	private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
+    @SuppressWarnings("rawtypes")
+	private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
+    @SuppressWarnings("rawtypes")
+	private java.util.HashMap faultMessageMap = new java.util.HashMap();
     private javax.xml.namespace.QName[] opNameArray = null;
     private final DFConfig config;
 
@@ -172,14 +175,15 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
                                     faultElt.getQName(), "cteRecepcaoEvento"));
-                        Class exceptionClass = Class.forName(exceptionClassName);
-                        java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
+						Class<?> exceptionClass = Class.forName(exceptionClassName);
+						java.lang.reflect.Constructor<?> constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
                                     faultElt.getQName(), "cteRecepcaoEvento"));
-                        Class messageClass = Class.forName(messageClassName);
+                        @SuppressWarnings("rawtypes")
+						Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass, null);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
@@ -223,10 +227,11 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     /**
      *  A utility method that copies the namepaces from the SOAPEnvelope
      */
-    private java.util.Map getEnvelopeNamespaces(
+    @SuppressWarnings("rawtypes")
+	private java.util.Map getEnvelopeNamespaces(
         org.apache.axiom.soap.SOAPEnvelope env) {
-        java.util.Map returnMap = new java.util.HashMap();
-        java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
+		java.util.Map<String, String> returnMap = new java.util.HashMap<>();
+		java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
 
         while (namespaceIterator.hasNext()) {
             org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
@@ -250,27 +255,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    private org.apache.axiom.om.OMElement toOM(
-        CteDadosMsg param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
-        try {
-            return param.getOMElement(CteDadosMsg.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-    }
-
-    private org.apache.axiom.om.OMElement toOM(
-        CteRecepcaoEventoResult param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
-        try {
-            return param.getOMElement(CteRecepcaoEventoResult.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-        } catch (org.apache.axis2.databinding.ADBException e) {
-            throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-    }
 
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
         org.apache.axiom.soap.SOAPFactory factory,
@@ -295,13 +279,9 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     /**
      *  get the default envelope
      */
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory) {
-        return factory.getDefaultEnvelope();
-    }
 
     private Object fromOM(org.apache.axiom.om.OMElement param,
-        Class type, java.util.Map extraNamespaces)
+        @SuppressWarnings("rawtypes") Class type, @SuppressWarnings("rawtypes") java.util.Map extraNamespaces)
         throws org.apache.axis2.AxisFault {
         try {
             if (CteDadosMsg.class.equals(
@@ -331,7 +311,9 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteRecepcaoEventoResult implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoEventoV4",
+        private static final long serialVersionUID = 1L;
+
+		public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoEventoV4",
                 "cteRecepcaoEventoResult", "");
 
         /**
@@ -466,126 +448,7 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
             xmlWriter.writeAttribute(namespace, attName, attValue);
         }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(String namespace,
-                                    String attName, String attValue,
-                                    javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(String namespace,
-                                         String attName, javax.xml.namespace.QName qname,
-                                         javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            String attributeNamespace = qname.getNamespaceURI();
-            String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-
-            String attributeValue;
-
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-        private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            String namespaceURI = qname.getNamespaceURI();
-
-            if (namespaceURI != null) {
-                String prefix = xmlWriter.getPrefix(namespaceURI);
-
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                }
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                StringBuffer stringToWrite = new StringBuffer();
-                String namespaceURI = null;
-                String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-
-                    namespaceURI = qnames[i].getNamespaceURI();
-
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                qnames[i]));
-                    }
-                }
-
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-        }
 
         /**
          * Register a namespace prefix
@@ -634,11 +497,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
                 throws Exception {
                 CteRecepcaoEventoResult object = new CteRecepcaoEventoResult();
 
-                int event;
-                String nillableValue = null;
-                String prefix = "";
-                String namespaceuri = "";
-
                 try {
                     while (!reader.isStartElement() && !reader.isEndElement())
                         reader.next();
@@ -675,7 +533,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
 
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
 
                     reader.next();
 
@@ -720,7 +577,9 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteDadosMsg implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoEventoV4",
+        private static final long serialVersionUID = 1L;
+
+		public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoEventoV4",
                 "cteDadosMsg", "");
 
         /**
@@ -855,126 +714,7 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
             xmlWriter.writeAttribute(namespace, attName, attValue);
         }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(String namespace,
-                                    String attName, String attValue,
-                                    javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
 
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(String namespace,
-                                         String attName, javax.xml.namespace.QName qname,
-                                         javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            String attributeNamespace = qname.getNamespaceURI();
-            String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-
-            String attributeValue;
-
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-        private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            String namespaceURI = qname.getNamespaceURI();
-
-            if (namespaceURI != null) {
-                String prefix = xmlWriter.getPrefix(namespaceURI);
-
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                }
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                StringBuffer stringToWrite = new StringBuffer();
-                String namespaceURI = null;
-                String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-
-                    namespaceURI = qnames[i].getNamespaceURI();
-
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                qnames[i]));
-                    }
-                }
-
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-        }
 
         /**
          * Register a namespace prefix
@@ -1023,11 +763,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
                 throws Exception {
                 CteDadosMsg object = new CteDadosMsg();
 
-                int event;
-                String nillableValue = null;
-                String prefix = "";
-                String namespaceuri = "";
-
                 try {
                     while (!reader.isStartElement() && !reader.isEndElement())
                         reader.next();
@@ -1064,8 +799,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
 
                     // Note all attributes that were handled. Used to differ normal attributes
                     // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
-
                     reader.next();
 
                     while (!reader.isStartElement() && !reader.isEndElement())

@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.cte400.classes;
 
-import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 
 public class CTTipoEmissaoTest {
 	

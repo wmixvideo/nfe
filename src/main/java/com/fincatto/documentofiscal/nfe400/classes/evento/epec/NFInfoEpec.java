@@ -7,7 +7,9 @@ import java.time.ZonedDateTime;
 
 public class NFInfoEpec extends NFTipoEvento {
 
-    @Element(name = "cOrgaoAutor", required = true)
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "cOrgaoAutor", required = true)
     protected String orgaoAutor;
 
     @Element(name = "tpAutor", required = true)

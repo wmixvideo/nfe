@@ -12,7 +12,9 @@ import java.math.BigDecimal;
  * @author Ommega Data
  */
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif extends DFBase {
-    // UB99 gMonoDif
+    private static final long serialVersionUID = 1L;
+
+	// UB99 gMonoDif
     @Element(required = false)
     private String pDifIBS; // UB100
 

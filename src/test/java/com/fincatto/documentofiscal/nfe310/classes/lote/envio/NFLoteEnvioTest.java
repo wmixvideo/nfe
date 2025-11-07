@@ -1,16 +1,14 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvio;
-import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 
 public class NFLoteEnvioTest {
 

@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.converters;
 
-import com.fincatto.documentofiscal.nfe310.converters.NFStringNullToEmptyConverter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.NodeMap;
 import org.simpleframework.xml.stream.Position;
+
+import com.fincatto.documentofiscal.nfe310.converters.NFStringNullToEmptyConverter;
 
 public class NFStringNullToEmptyConverterTest {
 

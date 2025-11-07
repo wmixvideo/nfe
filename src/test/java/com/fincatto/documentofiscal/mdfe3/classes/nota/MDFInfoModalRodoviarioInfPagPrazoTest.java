@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MDFInfoModalRodoviarioInfPagPrazoTest  {
 

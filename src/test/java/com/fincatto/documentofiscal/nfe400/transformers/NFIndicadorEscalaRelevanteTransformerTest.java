@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.transformers;
 
 
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorEscalaRelevante;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorEscalaRelevante;
 
 public class NFIndicadorEscalaRelevanteTransformerTest {
 

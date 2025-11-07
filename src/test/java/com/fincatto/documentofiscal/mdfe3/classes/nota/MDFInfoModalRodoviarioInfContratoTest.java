@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MDFInfoModalRodoviarioInfContratoTest {
 

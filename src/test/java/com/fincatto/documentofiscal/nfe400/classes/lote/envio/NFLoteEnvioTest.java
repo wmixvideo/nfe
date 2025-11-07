@@ -1,12 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.envio;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 
 public class NFLoteEnvioTest {
     

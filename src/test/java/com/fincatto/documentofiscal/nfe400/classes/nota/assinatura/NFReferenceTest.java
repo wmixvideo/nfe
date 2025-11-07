@@ -1,14 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.assinatura;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFDigestMethod;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFReference;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFTransform;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NFReferenceTest {
 

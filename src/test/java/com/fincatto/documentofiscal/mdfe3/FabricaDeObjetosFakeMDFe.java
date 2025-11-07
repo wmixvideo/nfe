@@ -1,5 +1,14 @@
 package com.fincatto.documentofiscal.mdfe3;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -77,15 +86,6 @@ import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignatureMe
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFTransform;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFX509Data;
-import java.math.BigDecimal;
-
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class FabricaDeObjetosFakeMDFe {
 

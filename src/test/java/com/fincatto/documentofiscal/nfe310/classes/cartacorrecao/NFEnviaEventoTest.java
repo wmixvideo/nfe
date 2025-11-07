@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.cartacorrecao;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import java.math.BigDecimal;
+import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-import java.util.Collections;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
 
 public class NFEnviaEventoTest {
 

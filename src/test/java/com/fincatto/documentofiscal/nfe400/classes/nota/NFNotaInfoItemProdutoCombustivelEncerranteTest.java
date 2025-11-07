@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoCombustivelEncerranteTest {
 

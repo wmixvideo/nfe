@@ -1,10 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.consulta;
 
-import com.fincatto.documentofiscal.DFAmbiente;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.DFAmbiente;
 
 public class NFLoteConsultaTest {
 

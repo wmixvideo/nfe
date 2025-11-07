@@ -1,8 +1,50 @@
 package com.fincatto.documentofiscal.nfe400;
 
-import com.fincatto.documentofiscal.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFPais;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe400.classes.*;
+import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
+import com.fincatto.documentofiscal.nfe400.classes.NFFinalidade;
+import com.fincatto.documentofiscal.nfe400.classes.NFIndicadorFormaPagamento;
+import com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoCombustivelTipo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoEspecieVeiculo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoArmamentoTipo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoCondicaoChassi;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoRestricao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaCOFINS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaIPI;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoTipoVeiculo;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoVeiculoCor;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigemProcesso;
+import com.fincatto.documentofiscal.nfe400.classes.NFProcessoEmissor;
+import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
+import com.fincatto.documentofiscal.nfe400.classes.NFProtocolo;
+import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
+import com.fincatto.documentofiscal.nfe400.classes.NFRegimeTributario;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
@@ -25,15 +67,6 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignedInfo;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.apache.commons.lang3.StringUtils;
 
 public class FabricaDeObjetosFake {
 

@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.utils.DFPersister;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.utils.DFPersister;
 
 public class NFEnviaEventoRetornoCancelamentoTest {
     

@@ -15,7 +15,9 @@ import java.time.ZonedDateTime;
 
 public class NFInfoEventoEpec extends DFBase {
 
-    @Attribute(name = "Id", required = true)
+    private static final long serialVersionUID = 1L;
+
+	@Attribute(name = "Id", required = true)
     private String identificador;
 
     @Element(name = "cOrgao", required = true)

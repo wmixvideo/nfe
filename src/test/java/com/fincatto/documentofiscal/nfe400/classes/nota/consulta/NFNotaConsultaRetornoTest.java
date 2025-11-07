@@ -1,17 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.consulta;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocolo;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFRetornoCancelamento;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NFNotaConsultaRetornoTest {
 

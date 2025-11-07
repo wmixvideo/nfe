@@ -1,12 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NFNotaInfoItemTest {
 

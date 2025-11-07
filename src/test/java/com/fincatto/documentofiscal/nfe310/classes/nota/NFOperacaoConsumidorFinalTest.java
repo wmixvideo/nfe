@@ -3,9 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.nota;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFOperacaoConsumidorFinal;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFOperadoraCartao;
-
 public class NFOperacaoConsumidorFinalTest {
 
     @Test

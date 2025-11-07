@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFEventoInutilizacaoDadosTest {
 

@@ -16,7 +16,9 @@ import java.util.List;
 @Root(name = "agropecuario")
 public class NFNotaInfoAgropecuario extends DFBase {
 
-    @Element(name = "defensivo", required = false)
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "defensivo", required = false)
     private List<NFNotaInfoAgropecuarioDefensivo> defensivos;
 
     @Element(name = "guiaTransito", required = false)

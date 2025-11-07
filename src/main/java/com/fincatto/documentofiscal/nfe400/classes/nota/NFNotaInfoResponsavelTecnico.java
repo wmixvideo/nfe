@@ -13,7 +13,9 @@ import org.simpleframework.xml.Root;
 @Root(name = "infRespTec")
 public class NFNotaInfoResponsavelTecnico extends DFBase {
     
-    @Element(name = "CNPJ")
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "CNPJ")
     private String cnpj;
     
     @Element(name = "xContato")

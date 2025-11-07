@@ -1,14 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.classes.lote.consulta;
 
+import java.time.ZonedDateTime;
+import java.util.Collections;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.time.ZonedDateTime;
-import java.util.Collections;
 
 public class NFLoteConsultaRetornoTest {
     

@@ -1,12 +1,13 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoAvulsaTest {
 

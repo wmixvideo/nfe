@@ -1,12 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import java.math.BigDecimal;
-
 import java.time.LocalDate;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemProdutoMedicamento;
 
 public class NFNotaInfoItemProdutoMedicamentoTest {
 

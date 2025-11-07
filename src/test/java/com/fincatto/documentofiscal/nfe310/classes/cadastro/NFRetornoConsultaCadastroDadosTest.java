@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroDadosTest {
 

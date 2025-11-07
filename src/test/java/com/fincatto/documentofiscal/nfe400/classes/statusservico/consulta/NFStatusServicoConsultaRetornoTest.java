@@ -1,14 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class NFStatusServicoConsultaRetornoTest {
 

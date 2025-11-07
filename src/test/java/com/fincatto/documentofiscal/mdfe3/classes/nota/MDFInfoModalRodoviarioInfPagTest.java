@@ -1,15 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
 
 public class MDFInfoModalRodoviarioInfPagTest {
 

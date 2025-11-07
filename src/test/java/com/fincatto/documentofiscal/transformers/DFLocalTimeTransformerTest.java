@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.transformers;
 
+import java.time.LocalTime;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.time.LocalTime;
 
 public class DFLocalTimeTransformerTest {
 

@@ -114,7 +114,7 @@ public class NFProtocoloInfo extends DFBase {
     public String getMotivo() {
     	if (StringUtils.isBlank(this.motivo))
     	    //quando nao tiver um retorno, usa o motivo padrao identificado pelo cStat
-            return ObjectUtils.defaultIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
+            return ObjectUtils.getIfNull(NFRetornoStatus.valueOfCodigo(this.status), NFRetornoStatus.CODIGO_999 ).getMotivo();
         return this.motivo;
     }
 

@@ -1,10 +1,10 @@
 package com.fincatto.documentofiscal;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.security.KeyStore;
 import java.util.TimeZone;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 public class DFConfigTest {
     

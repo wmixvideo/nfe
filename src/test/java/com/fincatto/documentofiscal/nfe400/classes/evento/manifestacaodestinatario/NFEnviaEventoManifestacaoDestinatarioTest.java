@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFEnviaEventoManifestacaoDestinatarioTest {
 

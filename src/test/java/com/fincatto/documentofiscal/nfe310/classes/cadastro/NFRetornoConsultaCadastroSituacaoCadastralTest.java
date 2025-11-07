@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFRetornoConsultaCadastroSituacaoCadastralTest {
 

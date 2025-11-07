@@ -1,15 +1,16 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento;
 
+import java.time.ZonedDateTime;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFInfoEventoRetorno;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.time.ZonedDateTime;
 
 public class NFProtocoloEventoCancelamentoTest {
     

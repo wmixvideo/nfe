@@ -1,15 +1,16 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
-import com.fincatto.documentofiscal.utils.DFPersister;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
+import com.fincatto.documentofiscal.utils.DFPersister;
 
 public class NFNotaInfoItemProdutoTest {
 

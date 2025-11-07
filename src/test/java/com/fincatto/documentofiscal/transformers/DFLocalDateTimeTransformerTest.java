@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.transformers;
 
-import com.fincatto.documentofiscal.DFConfig;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.fincatto.documentofiscal.DFConfig;
 
 public class DFLocalDateTimeTransformerTest {
     
