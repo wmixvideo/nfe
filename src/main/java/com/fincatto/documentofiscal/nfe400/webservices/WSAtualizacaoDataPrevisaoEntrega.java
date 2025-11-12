@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
@@ -16,13 +17,14 @@ import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.Date;
 
 class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Atualização da Data de Previsão de Entrega";
+    private static final String DESCRICAO_EVENTO = "Atualiza\\u00E7\\u00E3o da data de previs\\u00E3o de entrega";
     private static final String CODIGO_EVENTO = "112150";
     private final NFeConfig config;
 
@@ -30,31 +32,36 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
         this.config = config;
     }
 
-    NFEnviaEventoRetorno atualizaDataPrevisaoEntrega(final String chaveAcesso, final Date dataPrevisaoEntrega) throws Exception {
-        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAtualizacaoDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega).toString();
+    NFEnviaEventoRetorno atualizaDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento, final int numeroSequencialEvento) throws Exception {
+        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAtualizacaoDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
         final OMElement omElementResult = this.efetuaAtualizacaoDataPrevisaoEntrega(xmlAssinado, chaveAcesso);
 
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private NFEnviaEventoAtualizacaoDataPrevisaoEntrega gerarDadosAtualizacaoDataPrevisaoEntrega (final String chaveAcesso, final Date dataPrevisaoEntrega) {
-        final NFInfoAtualizacaoDataPrevisaoEntrega infoAtualizacaoDataPrevisaoEntrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
-
-        infoAtualizacaoDataPrevisaoEntrega.setDescricaoEvento(WSAtualizacaoDataPrevisaoEntrega.DESCRICAO_EVENTO);
-        infoAtualizacaoDataPrevisaoEntrega.setVersao(WSAtualizacaoDataPrevisaoEntrega.VERSAO_LEIAUTE);
+    private NFEnviaEventoAtualizacaoDataPrevisaoEntrega gerarDadosAtualizacaoDataPrevisaoEntrega (final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento, final int numeroSequencialEvento) {
+        final NFInfoAtualizacaoDataPrevisaoEntrega atualizacaodataentrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
+        atualizacaodataentrega.setDescricaoEvento(WSAtualizacaoDataPrevisaoEntrega.DESCRICAO_EVENTO);
+        atualizacaodataentrega.setVersao(WSAtualizacaoDataPrevisaoEntrega.VERSAO_LEIAUTE);
+        atualizacaodataentrega.setUfAutorEvento(ufAutorEvento);
+        atualizacaodataentrega.setVersaoAplicativo(WSAtualizacaoDataPrevisaoEntrega.VERSAO_LEIAUTE.toString());
+        atualizacaodataentrega.setTipoAutor(tpAutorEvento);
+        atualizacaodataentrega.setDataPrevisaoEntrega(dataPrevisaoEntrega);
 
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
         final NFInfoEventoAtualizacaoDataPrevisaoEntrega infoEvento = new NFInfoEventoAtualizacaoDataPrevisaoEntrega();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
-        //infoEvento.setCpf(chaveParser.getCpfEmitente());
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        //infoEvento.setId(String.format("ID%s%s0%s", WSCancelamento.EVENTO_CANCELAMENTO, chaveAcesso, "1"));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setId(String.format("ID%s%s0%s", WSAtualizacaoDataPrevisaoEntrega.CODIGO_EVENTO, chaveAcesso, "1"));
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
+        infoEvento.setCodigoEvento(WSAtualizacaoDataPrevisaoEntrega.CODIGO_EVENTO);
         infoEvento.setVersaoEvento(WSAtualizacaoDataPrevisaoEntrega.VERSAO_LEIAUTE);
+        infoEvento.setAtualizacaoDataPrevisaoEntrega(atualizacaodataentrega);
 
         final NFEventoAtualizacaoDataPrevisaoEntrega evento = new NFEventoAtualizacaoDataPrevisaoEntrega();
         evento.setInfoEvento(infoEvento);
@@ -69,6 +76,9 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
 
     private OMElement efetuaAtualizacaoDataPrevisaoEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
+
+        System.out.println(xmlAssinado);
+
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         this.getLogger().debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);

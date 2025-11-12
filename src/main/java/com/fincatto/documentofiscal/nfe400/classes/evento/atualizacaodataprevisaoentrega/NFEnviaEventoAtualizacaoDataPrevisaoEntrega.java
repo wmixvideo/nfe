@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega;
 
-import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.DFBase;;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -44,8 +44,9 @@ public class NFEnviaEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
     }
 
     public void setEvento(final List<NFEventoAtualizacaoDataPrevisaoEntrega> evento) {
-        DFListValidador.tamanho20(evento, "Evento de Alteração Data Previsão Entrega");
+        DFListValidador.tamanho20(evento, "Evento de Atualização da Data de Previsão de Entrega");
         this.evento = evento;
     }
+
 }
 

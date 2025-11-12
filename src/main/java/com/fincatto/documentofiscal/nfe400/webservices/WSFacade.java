@@ -24,6 +24,8 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class WSFacade {
 
@@ -38,6 +40,7 @@ public class WSFacade {
     private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
     private final WSDistribuicaoNFe wSDistribuicaoNFe;
     private final WSEpec wsEpec;
+    private final WSAtualizacaoDataPrevisaoEntrega wsAtualizacaoDataPrevisaoEntrega;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -54,6 +57,7 @@ public class WSFacade {
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
         this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
         this.wsEpec = new WSEpec(config);
+        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config);
     }
 
     /**
@@ -396,5 +400,9 @@ public class WSFacade {
      */
     public NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
         return this.wsEpec.enviaEpecAssinado(epecAssinadoXml);
+    }
+
+    public NFEnviaEventoRetorno enviaAtualizacaoDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento,  final int numeroSequencialEvento) throws Exception {
+        return this.wsAtualizacaoDataPrevisaoEntrega.atualizaDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento);
     }
 }

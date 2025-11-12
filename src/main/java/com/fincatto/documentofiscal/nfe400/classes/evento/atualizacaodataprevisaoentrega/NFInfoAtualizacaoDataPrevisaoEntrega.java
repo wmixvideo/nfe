@@ -1,68 +1,51 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega;
 
-import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import org.simpleframework.xml.Attribute;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import org.simpleframework.xml.Element;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 
-public class NFInfoAtualizacaoDataPrevisaoEntrega extends DFBase {
+public class NFInfoAtualizacaoDataPrevisaoEntrega extends NFTipoEvento {
 
-    @Attribute(name = "versao")
-    private String versao;
+    @Element(name = "cOrgaoAutor", required = false)
+    private DFUnidadeFederativa ufAutorEvento;
 
-    @Element(name = "descEvento")
-    private String descricaoEvento;
+    @Element(name = "tpAutor", required = false)
+    private int tipoAutor;
 
-    @Element(name = "cOrgaoAutor")
-    private DFUnidadeFederativa codigoOrgaoAutorEvento;
+    @Element(name = "verAplic", required = false)
+    private String versaoAplicativo;
 
-    @Element(name = "tpAutor")
-    private Integer codigoAutorEvento;
+    @Element(name = "dPrevEntrega", required = false)
+    private LocalDate dataPrevisaoEntrega;
 
-    @Element(name = "verAplic")
-    private String versaoAplicativoAutorEvento;
-
-    public String getVersao() {
-        return versao;
+    public DFUnidadeFederativa getUfAutorEvento() {
+        return ufAutorEvento;
     }
 
-    public void setVersao(final BigDecimal versao) {
-        this.versao = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao");
+    public void setUfAutorEvento(DFUnidadeFederativa ufAutorEvento) {
+        this.ufAutorEvento = ufAutorEvento;
     }
 
-    public String getDescricaoEvento() {
-        return descricaoEvento;
+    public int getTipoAutor() {
+        return tipoAutor;
     }
 
-    public void setDescricaoEvento(String descricaoEvento) {
-        this.descricaoEvento = descricaoEvento;
+    public void setTipoAutor(int tipoAutor) {
+        this.tipoAutor = tipoAutor;
     }
 
-    public DFUnidadeFederativa getOrgao() {
-        return this.codigoOrgaoAutorEvento;
+    public String getVersaoAplicativo() {
+        return versaoAplicativo;
     }
 
-    public void setOrgao(final DFUnidadeFederativa orgao) {
-        this.codigoOrgaoAutorEvento = orgao;
+    public void setVersaoAplicativo(String versaoAplicativo) {
+        this.versaoAplicativo = versaoAplicativo;
     }
 
-    public Integer getCodigoAutorEvento() {
-        return codigoAutorEvento;
-    }
+    public LocalDate getDataPrevisaoEntrega() { return dataPrevisaoEntrega; };
 
-    public void setCodigoAutorEvento(Integer codigoAutorEvento) {
-        this.codigoAutorEvento = codigoAutorEvento;
-    }
-
-    public String getVersaoAplicativoAutorEvento() {
-        return versaoAplicativoAutorEvento;
-    }
-
-    public void setVersaoAplicativoAutorEvento(String versaoAplicativoAutorEvento) {
-        this.versaoAplicativoAutorEvento = versaoAplicativoAutorEvento;
-    }
-
+    public void setDataPrevisaoEntrega(LocalDate dataPrevisaoEntrega) { this.dataPrevisaoEntrega = dataPrevisaoEntrega; };
 }

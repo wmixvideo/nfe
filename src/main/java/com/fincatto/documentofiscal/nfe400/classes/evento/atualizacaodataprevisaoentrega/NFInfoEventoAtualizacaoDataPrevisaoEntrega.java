@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
@@ -15,8 +16,8 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
 
     private static final long serialVersionUID = 2460706933290434169L;
 
-    //@Attribute(name = "Id")
-    //private String id;
+    @Attribute(name = "Id")
+    private String id;
 
     @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
@@ -26,6 +27,9 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
 
     @Element(name = "CNPJ", required = false)
     private String cnpj;
+
+    @Element(name = "CPF", required = false)
+    private String cpf;
 
     @Element(name = "chNFe")
     private String chave;
@@ -43,23 +47,23 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
     private String versaoEvento;
 
     @Element(name = "detEvento")
-    private NFInfoAtualizacaoDataPrevisaoEntrega alteracaoDataPrevisaoEntrega;
-
-    /*public String getId() {
-        return this.id;
-    }*/
-
-    /*public void setId(final String id) {
-        DFStringValidador.exatamente54(id, "Info Evento Alteração Data Previsão Entrega ID");
-        this.id = id;
-    }*/
-
-    public DFUnidadeFederativa getOrgao() {
-        return this.orgao;
-    }
+    private NFInfoAtualizacaoDataPrevisaoEntrega atualizacaoDataPrevisaoEntrega;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
+    }
+
+    public void setVersaoEvento(final BigDecimal versaoEvento) {
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(final String id) {
+        DFStringValidador.exatamente54(id, "Info Evento Cancelamento ID");
+        this.id = id;
     }
 
     public DFAmbiente getAmbiente() {
@@ -79,12 +83,21 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
         this.cnpj = cnpj;
     }
 
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public void setCpf(final String cpf) {
+        DFStringValidador.cpf(cpf);
+        this.cpf = cpf;
+    }
+
     public String getChave() {
         return this.chave;
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Info Evento Alteração Data Previsão Entrega Chave");
+        DFStringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
         this.chave = chave;
     }
 
@@ -101,7 +114,7 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
     }
 
     public void setCodigoEvento(final String codigoEvento) {
-        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Alteração Data Previsão Entrega Codigo");
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
         this.codigoEvento = codigoEvento;
     }
 
@@ -118,16 +131,16 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
         return this.versaoEvento;
     }
 
-    public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
+    public NFInfoAtualizacaoDataPrevisaoEntrega getAtualizacaoDataPrevisaoEntrega() {
+        return this.atualizacaoDataPrevisaoEntrega;
     }
 
-    public NFInfoAtualizacaoDataPrevisaoEntrega getAlteracaoDataPrevisaoEntrega () {
-        return this.alteracaoDataPrevisaoEntrega;
+    public void setAtualizacaoDataPrevisaoEntrega(final NFInfoAtualizacaoDataPrevisaoEntrega atualizacaoDataPrevisaoEntrega) {
+        this.atualizacaoDataPrevisaoEntrega = atualizacaoDataPrevisaoEntrega;
     }
 
-    public void setAlteracaoDataPrevisaoEntrega(final NFInfoAtualizacaoDataPrevisaoEntrega alteracaoDataPrevisaoEntrega) {
-        this.alteracaoDataPrevisaoEntrega = alteracaoDataPrevisaoEntrega;
+    public DFUnidadeFederativa getOrgao() {
+        return this.orgao;
     }
 
 }
