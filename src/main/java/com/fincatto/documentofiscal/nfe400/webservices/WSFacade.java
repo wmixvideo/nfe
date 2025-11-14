@@ -41,6 +41,7 @@ public class WSFacade {
     private final WSDistribuicaoNFe wSDistribuicaoNFe;
     private final WSEpec wsEpec;
     private final WSAtualizacaoDataPrevisaoEntrega wsAtualizacaoDataPrevisaoEntrega;
+    private final WSAceiteDebitoApuracao wsAceiteDebitoAPuracao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -58,6 +59,7 @@ public class WSFacade {
         this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
         this.wsEpec = new WSEpec(config);
         this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config);
+        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config);
     }
 
     /**
@@ -404,5 +406,9 @@ public class WSFacade {
 
     public NFEnviaEventoRetorno enviaAtualizacaoDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento,  final int numeroSequencialEvento) throws Exception {
         return this.wsAtualizacaoDataPrevisaoEntrega.atualizaDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento);
+    }
+
+    public NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento) throws Exception {
+        return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento);
     }
 }

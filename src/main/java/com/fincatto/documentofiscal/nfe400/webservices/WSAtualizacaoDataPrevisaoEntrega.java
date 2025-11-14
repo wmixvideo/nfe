@@ -24,7 +24,7 @@ import java.util.Date;
 
 class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Atualiza\\u00E7\\u00E3o da data de previs\\u00E3o de entrega";
+    private static final String DESCRICAO_EVENTO = "Atualizacao da data de previsao de entrega";
     private static final String CODIGO_EVENTO = "112150";
     private final NFeConfig config;
 

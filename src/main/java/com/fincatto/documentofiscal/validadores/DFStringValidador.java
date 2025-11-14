@@ -562,6 +562,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho2a85(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 2, 85, info);
+        }
+    }
+
     public static void exatamente44(final String string, final String info) {
         if (string != null) {
             DFStringValidador.validaTamanhoExato(string, 44, info);
