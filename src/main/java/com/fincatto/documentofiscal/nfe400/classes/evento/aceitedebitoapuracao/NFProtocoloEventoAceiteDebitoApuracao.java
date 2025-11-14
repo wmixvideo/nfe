@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFEventoAtualizacaoDataPrevisaoEntrega;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;

@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFEventoAtualizacaoDataPrevisaoEntrega;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;

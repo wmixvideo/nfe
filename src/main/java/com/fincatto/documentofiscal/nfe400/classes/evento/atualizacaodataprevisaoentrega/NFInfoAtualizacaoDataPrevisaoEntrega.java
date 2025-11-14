@@ -6,7 +6,6 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import org.simpleframework.xml.Element;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class NFInfoAtualizacaoDataPrevisaoEntrega extends NFTipoEvento {
 
