@@ -77,22 +77,15 @@ class WSAceiteDebitoApuracao implements DFLog {
         final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
 
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-
-        System.out.println("=== XML COMPLETO ASSINADO ===");
-        System.out.println(xmlAssinado);
-        System.out.println("=============================");
-
         this.getLogger().debug(omElementXML.toString());
         dados.setExtraElement(omElementXML);
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
-        final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
-        String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
+        final NFAutorizador400 autorizador = NFAutorizador400.SVRS;
+        final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
-
-        urlWebService = "https://nfe-homologacao.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx?wsdl";
 
         final NFeRecepcaoEvento4Stub.NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
