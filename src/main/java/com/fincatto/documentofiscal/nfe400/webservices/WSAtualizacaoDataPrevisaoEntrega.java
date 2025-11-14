@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
 import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFEnviaEventoAtualizacaoDataPrevisaoEntrega;
 import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFEventoAtualizacaoDataPrevisaoEntrega;
 import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFInfoAtualizacaoDataPrevisaoEntrega;
@@ -32,7 +33,7 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
         this.config = config;
     }
 
-    NFEnviaEventoRetorno atualizaDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento, final int numeroSequencialEvento) throws Exception {
+    NFEnviaEventoRetorno atualizaDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final NFEventoTipoAutor tpAutorEvento, final int numeroSequencialEvento) throws Exception {
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAtualizacaoDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
         final OMElement omElementResult = this.efetuaAtualizacaoDataPrevisaoEntrega(xmlAssinado, chaveAcesso);
@@ -40,7 +41,7 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private NFEnviaEventoAtualizacaoDataPrevisaoEntrega gerarDadosAtualizacaoDataPrevisaoEntrega (final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final int tpAutorEvento, final int numeroSequencialEvento) {
+    private NFEnviaEventoAtualizacaoDataPrevisaoEntrega gerarDadosAtualizacaoDataPrevisaoEntrega (final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final NFEventoTipoAutor tpAutorEvento, final int numeroSequencialEvento) {
         final NFInfoAtualizacaoDataPrevisaoEntrega atualizacaodataentrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
         atualizacaodataentrega.setDescricaoEvento(WSAtualizacaoDataPrevisaoEntrega.DESCRICAO_EVENTO);
         atualizacaodataentrega.setVersao(WSAtualizacaoDataPrevisaoEntrega.VERSAO_LEIAUTE);

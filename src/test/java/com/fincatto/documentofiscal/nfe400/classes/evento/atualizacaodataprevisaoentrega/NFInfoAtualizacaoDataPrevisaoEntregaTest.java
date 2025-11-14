@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,9 +13,9 @@ public class NFInfoAtualizacaoDataPrevisaoEntregaTest {
     @Test
     public void deveObterTipoAutorComoFoiSetado() {
         final NFInfoAtualizacaoDataPrevisaoEntrega infoAtualizacaoDataPrevisaoEntrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
-        final int protocoloAutorizacao = 1;
-        infoAtualizacaoDataPrevisaoEntrega.setTipoAutor(protocoloAutorizacao);
-        Assert.assertEquals(protocoloAutorizacao, infoAtualizacaoDataPrevisaoEntrega.getTipoAutor());
+        final NFEventoTipoAutor tpAutor = NFEventoTipoAutor.EMPRESA_EMITENTE;
+        infoAtualizacaoDataPrevisaoEntrega.setTipoAutor(tpAutor);
+        Assert.assertEquals(tpAutor, infoAtualizacaoDataPrevisaoEntrega.getTipoAutor());
     }
 
     @Test

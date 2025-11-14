@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import org.simpleframework.xml.Element;
 
@@ -13,7 +14,7 @@ public class NFInfoAtualizacaoDataPrevisaoEntrega extends NFTipoEvento {
     private DFUnidadeFederativa ufAutorEvento;
 
     @Element(name = "tpAutor", required = false)
-    private int tipoAutor;
+    private NFEventoTipoAutor tipoAutor;
 
     @Element(name = "verAplic", required = false)
     private String versaoAplicativo;
@@ -29,11 +30,11 @@ public class NFInfoAtualizacaoDataPrevisaoEntrega extends NFTipoEvento {
         this.ufAutorEvento = ufAutorEvento;
     }
 
-    public int getTipoAutor() {
+    public NFEventoTipoAutor getTipoAutor() {
         return tipoAutor;
     }
 
-    public void setTipoAutor(int tipoAutor) {
+    public void setTipoAutor(NFEventoTipoAutor tipoAutor) {
         this.tipoAutor = tipoAutor;
     }
 
