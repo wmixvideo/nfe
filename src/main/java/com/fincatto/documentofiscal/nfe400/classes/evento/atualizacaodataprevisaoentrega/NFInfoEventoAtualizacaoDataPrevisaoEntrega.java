@@ -114,7 +114,7 @@ public class NFInfoEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
     }
 
     public void setCodigoEvento(final String codigoEvento) {
-        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Cancelamento Codigo");
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Codigo");
         this.codigoEvento = codigoEvento;
     }
 

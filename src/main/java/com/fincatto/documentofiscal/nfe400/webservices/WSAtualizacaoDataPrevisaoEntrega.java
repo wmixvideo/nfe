@@ -24,7 +24,7 @@ import java.util.Date;
 
 class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Atualizacao da data de previsao de entrega";
+    private static final String DESCRICAO_EVENTO = "Atualização da Data de Previsão de Entrega";
     private static final String CODIGO_EVENTO = "112150";
     private final NFeConfig config;
 
@@ -56,7 +56,7 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
         infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSAtualizacaoDataPrevisaoEntrega.CODIGO_EVENTO, chaveAcesso, "1"));
+        infoEvento.setId(String.format("ID%s%s0%s", WSAtualizacaoDataPrevisaoEntrega.CODIGO_EVENTO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSAtualizacaoDataPrevisaoEntrega.CODIGO_EVENTO);
@@ -77,7 +77,9 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
     private OMElement efetuaAtualizacaoDataPrevisaoEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
 
+        System.out.println("=== XML COMPLETO ASSINADO ===");
         System.out.println(xmlAssinado);
+        System.out.println("=============================");
 
         final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
         this.getLogger().debug(omElementXML.toString());
@@ -85,10 +87,12 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
 
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
-        final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
+        String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
+
+        urlWebService = "https://nfe-homologacao.svrs.rs.gov.br/ws/recepcaoevento/recepcaoevento4.asmx?wsdl";
 
         final NFeRecepcaoEvento4Stub.NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
         final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();

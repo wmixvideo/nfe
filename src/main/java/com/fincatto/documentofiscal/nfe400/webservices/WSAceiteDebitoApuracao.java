@@ -55,7 +55,7 @@ class WSAceiteDebitoApuracao implements DFLog {
         infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSAceiteDebitoApuracao.CODIGO_EVENTO, chaveAcesso, "1"));
+        infoEvento.setId(String.format("ID%s%s0%s", WSAceiteDebitoApuracao.CODIGO_EVENTO, chaveAcesso, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSAceiteDebitoApuracao.CODIGO_EVENTO);
