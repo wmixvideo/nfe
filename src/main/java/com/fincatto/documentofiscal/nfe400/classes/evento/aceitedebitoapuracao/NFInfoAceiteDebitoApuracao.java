@@ -23,7 +23,7 @@ public class NFInfoAceiteDebitoApuracao extends NFTipoEvento {
         return ufEmitenteEvento;
     }
 
-    public void setUfEmitenteEvento(DFUnidadeFederativa ufAutorEvento) {
+    public void setUfEmitenteEvento(DFUnidadeFederativa ufEmitenteEvento) {
         this.ufEmitenteEvento = ufEmitenteEvento;
     }
 
