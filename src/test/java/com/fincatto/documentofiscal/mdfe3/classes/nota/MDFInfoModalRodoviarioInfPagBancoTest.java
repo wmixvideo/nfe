@@ -87,7 +87,7 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
     public void deveRejeitarPixComTamanhoMaiorQue60() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("x".repeat(61));
+        sb.append(new String(new char[61]).replace("\0", "x"));
         String pix61 = sb.toString();
 
         banco.setPIX(pix61);

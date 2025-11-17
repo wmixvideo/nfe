@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndAltoDesempenho;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoPermissaoAntecipacao;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import java.math.BigDecimal;
@@ -70,18 +71,6 @@ public class MDFInfoModalRodoviarioInfPag {
     private MDFTipoInfPag indPag;
     
     /**
-     * Informações do pagamento a prazo. Obs: Informar somente se indPag for à Prazo
-     */
-    @ElementList(entry = "infPrazo", inline = true, required = false)
-    private List<MDFInfoModalRodoviarioInfPagPrazo> infPrazo;
-    
-    /**
-     * Informações bancárias.
-     */
-    @Element(name = "infBanc", required = true)
-    private MDFInfoModalRodoviarioInfPagBanco infBanc;
-
-    /**
      * Valor do Adiantamento (usar apenas
      * em pagamento à Prazo
      */
@@ -94,6 +83,25 @@ public class MDFInfoModalRodoviarioInfPag {
      */
     @Element(name = "indAntecipaAdiant", required = false)
     private MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento;
+    
+    /**
+     * Informações do pagamento a prazo. Obs: Informar somente se indPag for à Prazo
+     */
+    @ElementList(entry = "infPrazo", inline = true, required = false)
+    private List<MDFInfoModalRodoviarioInfPagPrazo> infPrazo;
+    
+    /**
+     * Tipo de Permissão em relação a
+     * antecipação das parcelas
+     */
+    @Element(name = "tpAntecip", required = false)
+    private MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao;
+    
+    /**
+     * Informações bancárias.
+     */
+    @Element(name = "infBanc", required = true)
+    private MDFInfoModalRodoviarioInfPagBanco infBanc;
 
     public String getXNome() {
         return xNome;
@@ -154,30 +162,6 @@ public class MDFInfoModalRodoviarioInfPag {
         this.vContrato = vContrato;
     }
 
-    public MDFTipoInfPag getIndPag() {
-        return indPag;
-    }
-
-    public void setIndPag(MDFTipoInfPag indPag) {
-        this.indPag = indPag;
-    }
-
-    public List<MDFInfoModalRodoviarioInfPagPrazo> getInfPrazo() {
-        return infPrazo;
-    }
-
-    public void setInfPrazo(List<MDFInfoModalRodoviarioInfPagPrazo> infPrazo) {
-        this.infPrazo = infPrazo;
-    }
-
-    public MDFInfoModalRodoviarioInfPagBanco getInfBanc() {
-        return infBanc;
-    }
-
-    public void setInfBanc(MDFInfoModalRodoviarioInfPagBanco infBanc) {
-        this.infBanc = infBanc;
-    }
-
     public MDFTipoIndAltoDesempenho getIndAltoDesemp() {
         return indAltoDesemp;
     }
@@ -186,12 +170,12 @@ public class MDFInfoModalRodoviarioInfPag {
         this.indAltoDesemp = indAltoDesemp;
     }
 
-    public MDFTipoIndicadorAntecipacaoPagamento getIndicadorAtencipacaoAdiantamento() {
-        return indicadorAtencipacaoAdiantamento;
+    public MDFTipoInfPag getIndPag() {
+        return indPag;
     }
 
-    public void setIndicadorAtencipacaoAdiantamento(MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento) {
-        this.indicadorAtencipacaoAdiantamento = indicadorAtencipacaoAdiantamento;
+    public void setIndPag(MDFTipoInfPag indPag) {
+        this.indPag = indPag;
     }
 
     public BigDecimal getVAdiant() {
@@ -202,4 +186,37 @@ public class MDFInfoModalRodoviarioInfPag {
         DFBigDecimalValidador.tamanho13Com2CasasDecimais(vAdiant, "Valor do Adiantamento");
         this.vAdiant = vAdiant;
     }
+    
+    public MDFTipoIndicadorAntecipacaoPagamento getIndicadorAtencipacaoAdiantamento() {
+        return indicadorAtencipacaoAdiantamento;
+    }
+
+    public void setIndicadorAtencipacaoAdiantamento(MDFTipoIndicadorAntecipacaoPagamento indicadorAtencipacaoAdiantamento) {
+        this.indicadorAtencipacaoAdiantamento = indicadorAtencipacaoAdiantamento;
+    }
+
+    public List<MDFInfoModalRodoviarioInfPagPrazo> getInfPrazo() {
+        return infPrazo;
+    }
+
+    public void setInfPrazo(List<MDFInfoModalRodoviarioInfPagPrazo> infPrazo) {
+        this.infPrazo = infPrazo;
+    }
+
+    public MDFTipoPermissaoAntecipacao getTipoPermissaoAntecipacao() {
+        return tipoPermissaoAntecipacao;
+    }
+
+    public void setTipoPermissaoAntecipacao(MDFTipoPermissaoAntecipacao tipoPermissaoAntecipacao) {
+        this.tipoPermissaoAntecipacao = tipoPermissaoAntecipacao;
+    }
+    
+    public MDFInfoModalRodoviarioInfPagBanco getInfBanc() {
+        return infBanc;
+    }
+
+    public void setInfBanc(MDFInfoModalRodoviarioInfPagBanco infBanc) {
+        this.infBanc = infBanc;
+    }
+
 }
