@@ -287,7 +287,10 @@ public class DFRegistryMatcher extends RegistryMatcher {
         // Reforma tributaria
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoImpostoTributacaoISTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoImpostoTributacaoIBSCBSTransformer());
-        
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFDebito.class, new com.fincatto.documentofiscal.nfe400.transformers.NFDebitoTransformer());
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFCredito.class, new com.fincatto.documentofiscal.nfe400.transformers.NFCreditoTransformer());
+
+
         // CTe
         super.bind(CTModal.class, new CTModalTransformer());
         super.bind(CTTipoCte.class, new CTTipoCteTransformer());
