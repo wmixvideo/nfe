@@ -18,7 +18,7 @@ public class NFNotaInfoSuplementar extends DFBase {
     private String urlConsultaChaveAcesso;
 
     public void setQrCode(final String qrCode) {
-        DFStringValidador.tamanho100a600(qrCode, "QR Code");
+        DFStringValidador.tamanho60a1000(qrCode, "QR Code");
         this.qrCode = qrCode;
     }
 

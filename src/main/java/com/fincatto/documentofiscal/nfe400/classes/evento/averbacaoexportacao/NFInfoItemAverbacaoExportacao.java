@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.averbacaoexportacao;
 
-import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import org.simpleframework.xml.Element;
-
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+
+import org.simpleframework.xml.Element;
+
+import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 
 public class NFInfoItemAverbacaoExportacao extends DFBase {
 
@@ -32,6 +33,9 @@ public class NFInfoItemAverbacaoExportacao extends DFBase {
     @Element(name = "motAlteracao")
     private Integer motivoAlteracao;
 
+	@Element(name = "enquad", required = false)
+	private NFGrupoInfoEnquadramentoItemAverbacaoExportacao grupoInformacaoEnquadramentoItem;
+    
     public ZonedDateTime getDataHoraEmbarque() {
         return dataHoraEmbarque;
     }
@@ -87,5 +91,14 @@ public class NFInfoItemAverbacaoExportacao extends DFBase {
     public void setMotivoAlteracao(Integer motivoAlteracao) {
         this.motivoAlteracao = motivoAlteracao;
     }
+
+	public NFGrupoInfoEnquadramentoItemAverbacaoExportacao getGrupoInformacaoEnquadramentoItem() {
+		return grupoInformacaoEnquadramentoItem;
+	}
+
+	public void setGrupoInformacaoEnquadramentoItem(
+			NFGrupoInfoEnquadramentoItemAverbacaoExportacao grupoInformacaoEnquadramentoItem) {
+		this.grupoInformacaoEnquadramentoItem = grupoInformacaoEnquadramentoItem;
+	}
 
 }

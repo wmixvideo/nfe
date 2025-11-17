@@ -44,7 +44,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.toString();
@@ -54,7 +54,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
     public void naoDevePermitirPercentualAliquotaNulo() {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.toString();
@@ -75,7 +75,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.toString();
     }
@@ -85,7 +85,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.toString();
     }
@@ -95,7 +95,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.toString();
@@ -106,7 +106,7 @@ public class NFNotaInfoItemImpostoICMS15Test {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.setPercentualReducaoAliquota(new BigDecimal("0"));

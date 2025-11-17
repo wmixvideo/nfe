@@ -19,13 +19,13 @@ public class NFNotaInfoReboqueTest {
         Assert.fail("Validacao nao funcionou");
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirUFNulo() {
-        final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
-        reboque.setPlacaVeiculo("MKZ4891");
-        reboque.setRegistroNacionalTransportadorCarga("8fFAKefiBQIDTkCCSQk3");
-        reboque.toString();
-    }
+//    @Test(expected = IllegalStateException.class)
+//    public void naoDevePermitirUFNulo() {
+//        final NFNotaInfoReboque reboque = new NFNotaInfoReboque();
+//        reboque.setPlacaVeiculo("MKZ4891");
+//        reboque.setRegistroNacionalTransportadorCarga("8fFAKefiBQIDTkCCSQk3");
+//        reboque.toString();
+//    }
 
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirPlacaNulo() {

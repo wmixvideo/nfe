@@ -11,6 +11,8 @@ Este é um projeto colaborativo, sinta-se à vontade em usar e colaborar com o m
 
 Antes de submeter um pull request, verifique a estrutura seguida pelo projeto e procure incluir no mesmo testes unitários que garantam que a funcionalidade funciona como o esperado.
 
+Possuímos um grupo de WhatsApp para discussões sobre o desenvolvimento da lib: https://chat.whatsapp.com/LFmqpkoiIYc6Zy3d4TnZGU
+
 ## Antes de usar
 Antes de começar a implementar, é altamente recomendável a leitura da documentação oficial que o governo disponibiliza em http://www.nfe.fazenda.gov.br/portal
 
@@ -149,6 +151,19 @@ final NFCancelamentoRetornoDados retorno = new WSFacade(config).cancelaNota(chav
 Faça a consulta da nota através do facade:
 ```java
 final NFDistribuicaoIntRetorno retorno = new WSFacade(config).consultarDistribuicaoDFe(cnpj, uf, chaveAcesso, nsu, ultNsu);
+```
+
+#### Consulta CTe
+Faça a consulta do CTe através do CTDistribuicaoInt:
+```java
+final CTDistribuicaoInt distDFeInt = new CTDistribuicaoInt();
+distDFeInt.setVersao("1.00");
+ distDFeInt.setAmbiente(isTeste() ? DFAmbiente.HOMOLOGACAO : DFAmbiente.PRODUCAO);
+distDFeInt.setUnidadeFederativaAutor(DFUnidadeFederativa.valueOf("SC"));
+distDFeInt.setCnpj("60436332000145");
+distDFeInt.setDistribuicao(new CTDistribuicaoNSU().setUltimoNSU("000000000036552");
+
+final String retornoConsulta = WSDistribuicaoCTe.consultar(distDFeInt, new NFeConfig());
 ```
 
 ### Convertendo objetos Java em XML

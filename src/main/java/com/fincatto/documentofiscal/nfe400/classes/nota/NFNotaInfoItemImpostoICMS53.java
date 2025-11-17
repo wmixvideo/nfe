@@ -40,7 +40,7 @@ public class NFNotaInfoItemImpostoICMS53 extends DFBase {
     }
 
     public void setSituacaoTributaria(final NFNotaInfoImpostoTributacaoICMS situacaoTributaria) {
-        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COM_RECOLHIMENTO_DIFERIDO)) {
+        if (!situacaoTributaria.equals(NFNotaInfoImpostoTributacaoICMS.CST_53)) {
             throw new IllegalStateException("Situacao tributaria invalida no item ICMS53 ");
         }
         this.situacaoTributaria = situacaoTributaria;

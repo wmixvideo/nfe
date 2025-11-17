@@ -13,6 +13,7 @@ public enum NFNotaMotivoDesoneracaoICMS {
     DEFICIENTE_CONDUTOR("10", "Deficiente condutor"),
     DEFICIENTE_NAO_CONDUTOR("11", "Deficiente n\u00e3o condutor"),
     ORGAO_DE_FOMENTO_DESENVOLVIMENTO_AGROPECUARIO("12", "\u00d5rg\u00e3o de fomento desenvolvimento agropecu\u00e1rio"),
+    OLIMPIADAS_RIO_2016("16", "Olimp\u00edadas Rio 2016 (NT 2015.002)"),
     SOLICITADO_PELO_FISCO("90", "Solicitado pelo Fisco");
 
     private final String codigo;

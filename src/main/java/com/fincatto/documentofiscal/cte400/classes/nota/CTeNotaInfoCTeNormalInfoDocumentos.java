@@ -26,6 +26,9 @@ public class CTeNotaInfoCTeNormalInfoDocumentos extends DFBase {
 
     @ElementList(name = "infOutros", inline = true, required = false)
     private List<CTeNotaInfoCTeNormalInfoDocumentosInfoOutros> infoOutros;
+    
+    @ElementList(name = "infDCe", inline = true, required = false)
+    private List<CTeNotaInfoCTeNormalInfoDocumentosInfoDCe> infoDCe;
 
     public List<CTeNotaInfoCTeNormalInfoDocumentosInfoNF> getInfoNF() {
         return this.infoNF;
@@ -60,4 +63,13 @@ public class CTeNotaInfoCTeNormalInfoDocumentos extends DFBase {
     public void setInfoOutros(final List<CTeNotaInfoCTeNormalInfoDocumentosInfoOutros> infoOutros) {
         this.infoOutros = infoOutros;
     }
+
+    public List<CTeNotaInfoCTeNormalInfoDocumentosInfoDCe> getInfoDCe() {
+        return infoDCe;
+    }
+
+    public void setInfoDCe(List<CTeNotaInfoCTeNormalInfoDocumentosInfoDCe> infoDCe) {
+       this.infoDCe = infoDCe;
+    }
+    
 }

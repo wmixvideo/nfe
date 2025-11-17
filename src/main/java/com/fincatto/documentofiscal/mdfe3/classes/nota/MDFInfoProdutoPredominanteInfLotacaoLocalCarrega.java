@@ -18,10 +18,10 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalCarrega extends DFBase {
     @Element(name = "CEP", required = false)
     private String CEP;
     
-    @Element(name = "latitude", required = true)
+    @Element(name = "latitude", required = false)
     private Float latitude;
     
-    @Element(name = "longitude", required = true)
+    @Element(name = "longitude", required = false)
     private Float longitude;
 
     public String getCEP() {
@@ -47,6 +47,5 @@ public class MDFInfoProdutoPredominanteInfLotacaoLocalCarrega extends DFBase {
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
-    
-    
+
 }

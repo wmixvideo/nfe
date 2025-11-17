@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoICMS60Test {
     @Test(expected = IllegalStateException.class)
     public void naoDevePermitirOrigemNulo() {
         final NFNotaInfoItemImpostoICMS60 icms60 = new NFNotaInfoItemImpostoICMS60();
-        icms60.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
+        icms60.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_60);
         icms60.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
         icms60.setValorICMSSTRetido(new BigDecimal("999999999999.99"));
         Assert.assertNotNull(icms60.toString());
@@ -59,7 +59,7 @@ public class NFNotaInfoItemImpostoICMS60Test {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemImpostoICMS60 icms60 = new NFNotaInfoItemImpostoICMS60();
-        icms60.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.ISENTA_OU_NAO_TRIBUTADA_COM_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA);
+        icms60.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_60);
         icms60.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
         icms60.setValorBCICMSSTRetido(new BigDecimal("999999999999.99"));
         icms60.setPercentualAliquotaICMSSTConsumidorFinal(new BigDecimal("100.0000"));
@@ -69,7 +69,7 @@ public class NFNotaInfoItemImpostoICMS60Test {
         icms60.setPercentualFundoCombatePobrezaRetidoST(new BigDecimal("100.0000"));
         icms60.setValorFundoCombatePobrezaRetidoST(new BigDecimal("999999999999.99"));
         
-        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS60><orig>2</orig><CST>30</CST><vBCSTRet>999999999999.99</vBCSTRet><pST>100.00</pST><vICMSSubstituto>999999999999.99</vICMSSubstituto><vICMSSTRet>999999999999.99</vICMSSTRet><vBCFCPSTRet>999999999999.99</vBCFCPSTRet><pFCPSTRet>100.00</pFCPSTRet><vFCPSTRet>999999999999.99</vFCPSTRet></NFNotaInfoItemImpostoICMS60>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoICMS60><orig>2</orig><CST>60</CST><vBCSTRet>999999999999.99</vBCSTRet><pST>100.00</pST><vICMSSubstituto>999999999999.99</vICMSSubstituto><vICMSSTRet>999999999999.99</vICMSSTRet><vBCFCPSTRet>999999999999.99</vBCFCPSTRet><pFCPSTRet>100.00</pFCPSTRet><vFCPSTRet>999999999999.99</vFCPSTRet></NFNotaInfoItemImpostoICMS60>";
         Assert.assertEquals(xmlEsperado, icms60.toString());
     }
 }

@@ -1037,7 +1037,7 @@ public class FabricaDeObjetosFake {
         icms00.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icms00.setOrigem(NFOrigem.NACIONAL);
         icms00.setPercentualAliquota(new BigDecimal("99.99"));
-        icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
+        icms00.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_00);
         icms00.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         icms00.setValorTributo(new BigDecimal("999999999999.99"));
         icms00.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
@@ -1049,7 +1049,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoICMS02 icms02 = new NFNotaInfoItemImpostoICMS02();
         icms02.setOrigem(NFOrigem.NACIONAL);
         icms02.setPercentualAliquota(new BigDecimal("99.99"));
-        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_SOBRE_IMPOSTO);
+        icms02.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_02);
         icms02.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms02.setValorTributo(new BigDecimal("999999999999.99"));
         return icms02;
@@ -1060,7 +1060,7 @@ public class FabricaDeObjetosFake {
         icms10.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.PAUTA);
         icms10.setOrigem(NFOrigem.NACIONAL);
         icms10.setPercentualAliquota(new BigDecimal("99.99"));
-        icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_INTEGRALMENTE);
+        icms10.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_00);
         icms10.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.MARGEM_VALOR_AGREGADO);
         icms10.setPercentualMargemValorAdicionadoICMSST(BigDecimal.ZERO);
         icms10.setValorBaseCalculo(new BigDecimal("999999999999.99"));
@@ -1077,7 +1077,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoICMS15 icms15 = new NFNotaInfoItemImpostoICMS15();
         icms15.setOrigem(NFOrigem.NACIONAL);
         icms15.setPercentualAliquota(new BigDecimal("99.99"));
-        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_PROPRIA_E_COM_RESPONSABILIDADE_PELO_RETENCAO_SOBRE_COMBUSTIVES);
+        icms15.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_15);
         icms15.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms15.setValorTributo(new BigDecimal("999999999999.99"));
         icms15.setPercentualAliquotaRetencao(new BigDecimal("0"));
@@ -1088,7 +1088,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoICMS53 getNFNotaInfoItemImpostoICMS53() {
         final NFNotaInfoItemImpostoICMS53 icms53 = new NFNotaInfoItemImpostoICMS53();
         icms53.setOrigem(NFOrigem.NACIONAL);
-        icms53.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COM_RECOLHIMENTO_DIFERIDO);
+        icms53.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_53);
         return icms53;
     }
 
@@ -1096,7 +1096,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoICMS61 icms61 = new NFNotaInfoItemImpostoICMS61();
         icms61.setOrigem(NFOrigem.NACIONAL);
         icms61.setPercentualAliquota(new BigDecimal("99.99"));
-        icms61.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.TRIBUTACAO_MONOFASICA_SOBRE_COMBUSTIVEIS_COBRADA_ANTERIORMENTE);
+        icms61.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_61);
         icms61.setQuantidadeBaseCalculo(new BigDecimal("999999999999.99"));
         icms61.setValorTributo(new BigDecimal("999999999999.99"));
         return icms61;
@@ -1104,7 +1104,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoIPITributado getNFNotaInfoItemImpostoIPITributado() {
         final NFNotaInfoItemImpostoIPITributado ipiTributado = new NFNotaInfoItemImpostoIPITributado();
-        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.OUTRAS_ENTRADAS);
+        ipiTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.CST_49);
         ipiTributado.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         ipiTributado.setPercentualAliquota(new BigDecimal("99.99"));
         ipiTributado.setValorTributo(new BigDecimal("999999999999.99"));
@@ -1113,7 +1113,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoIPINaoTributado getNFNotaInfoItemImpostoIPINaoTributado() {
         final NFNotaInfoItemImpostoIPINaoTributado ipiNaoTributado = new NFNotaInfoItemImpostoIPINaoTributado();
-        ipiNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.SAIDA_ISENTA);
+        ipiNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaIPI.CST_52);
         return ipiNaoTributado;
     }
 
@@ -1128,7 +1128,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoPISQuantidade getNFNotaInfoItemImpostoPISQuantidade() {
         final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
         pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO);
+        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_03);
         pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
         return pisQuantidade;
@@ -1136,7 +1136,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoPISOutrasOperacoes getNFNotaInfoItemImpostoPISOutrasOperacoes() {
         final NFNotaInfoItemImpostoPISOutrasOperacoes pisOutrasOperacoes = new NFNotaInfoItemImpostoPISOutrasOperacoes();
-        pisOutrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OUTRAS_OPERACOES_SAIDA);
+        pisOutrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_49);
         pisOutrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
         pisOutrasOperacoes.setValorAliquota(new BigDecimal("9999999999.9999"));
         pisOutrasOperacoes.setValorTributo(new BigDecimal("999999999999.99"));
@@ -1145,14 +1145,14 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoPISNaoTributado getNFNotaInfoItemImpostoPISNaoTributado() {
         final NFNotaInfoItemImpostoPISNaoTributado pisNaoTributado = new NFNotaInfoItemImpostoPISNaoTributado();
-        pisNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_MONOFASICA_ALIQUOTA_ZERO);
+        pisNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_04);
         return pisNaoTributado;
     }
 
     public static NFNotaInfoItemImpostoPISAliquota getNFNotaInfoItemImpostoPISAliquota() {
         final NFNotaInfoItemImpostoPISAliquota pisAliquota = new NFNotaInfoItemImpostoPISAliquota();
         pisAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
+        pisAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_01);
         pisAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         pisAliquota.setValorTributo(new BigDecimal("999999999999.99"));
         return pisAliquota;
@@ -1169,7 +1169,7 @@ public class FabricaDeObjetosFake {
     public static NFNotaInfoItemImpostoCOFINSQuantidade getNFNotaInfoItemImpostoCOFINSQuantidade() {
         final NFNotaInfoItemImpostoCOFINSQuantidade cofinsQuantidade = new NFNotaInfoItemImpostoCOFINSQuantidade();
         cofinsQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_QUANTIDADE_VENDIDA_POR_ALIQUOTA_POR_UNIDADE_PRODUTO);
+        cofinsQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_03);
         cofinsQuantidade.setValorAliquota(new BigDecimal("9999999999"));
         cofinsQuantidade.setValorTributo(new BigDecimal("999999999999"));
         return cofinsQuantidade;
@@ -1179,7 +1179,7 @@ public class FabricaDeObjetosFake {
         final NFNotaInfoItemImpostoCOFINSOutrasOperacoes outrasOperacoes = new NFNotaInfoItemImpostoCOFINSOutrasOperacoes();
         outrasOperacoes.setPercentualCOFINS(new BigDecimal("99.99"));
         outrasOperacoes.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OUTRAS_OPERACOES_SAIDA);
+        outrasOperacoes.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_49);
         outrasOperacoes.setValorAliquota(new BigDecimal("9999999999"));
         outrasOperacoes.setValorBaseCalculo(new BigDecimal("999999999999"));
         outrasOperacoes.setValorCOFINS(new BigDecimal("999999999999"));
@@ -1188,14 +1188,14 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoItemImpostoCOFINSNaoTributavel getNFNotaInfoItemImpostoCOFINSNaoTributavel() {
         final NFNotaInfoItemImpostoCOFINSNaoTributavel cofinsNaoTributado = new NFNotaInfoItemImpostoCOFINSNaoTributavel();
-        cofinsNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_MONOFASICA_ALIQUOTA_ZERO);
+        cofinsNaoTributado.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_04);
         return cofinsNaoTributado;
     }
 
     public static NFNotaInfoItemImpostoCOFINSAliquota getNFNotaInfoItemImpostoCOFINSAliquota() {
         final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
         cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.OPERACAO_TRIBUTAVEL_CUMULATIVO_NAO_CUMULATIVO);
+        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_01);
         cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
         cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
         return cofinsAliquota;
@@ -1402,5 +1402,48 @@ public class FabricaDeObjetosFake {
         mock.setPercentualCreditoPresumido(new BigDecimal("65.12"));
         mock.setValorCreditoPresumido(new BigDecimal("12.73"));
         return mock;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif gMonoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
+        gMonoDif.setPDifIBS(new BigDecimal("9.8765"));
+        gMonoDif.setVIBSMonoDif(new BigDecimal("12345678901.23"));
+        gMonoDif.setPDifCBS(new BigDecimal("5.4321"));
+        gMonoDif.setVCBSMonoDif(new BigDecimal("98765432109.87"));
+
+        return gMonoDif;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao();
+        gMonoPadrao.setQBCMono(new BigDecimal("1234567.8901"));
+        gMonoPadrao.setAdRemIBS(new BigDecimal("9.8765"));
+        gMonoPadrao.setAdRemCBS(new BigDecimal("5.4321"));
+        gMonoPadrao.setVIBSMono(new BigDecimal("12345678901.23"));
+        gMonoPadrao.setVCBSMono(new BigDecimal("98765432109.87"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten();
+        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
+        gMonoReten.setAdRemIBSReten(new BigDecimal("9.8765"));
+        gMonoReten.setAdRemCBSReten(new BigDecimal("5.4321"));
+        gMonoReten.setVIBSMonoReten(new BigDecimal("12345678901.23"));
+        gMonoReten.setVCBSMonoReten(new BigDecimal("98765432109.87"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet();
+        gMonoRet.setqBCMonoRet(new BigDecimal("1234567.8901"));
+        gMonoRet.setAdRemIBSRet(new BigDecimal("9.8765"));
+        gMonoRet.setVIBSMonoRet(new BigDecimal("12345678901.23"));
+        gMonoRet.setAdRemCBSRet(new BigDecimal("5.4321"));
+        gMonoRet.setVCBSMonoRet(new BigDecimal("98765432109.87"));
+
+        return gMonoRet;
     }
 }
