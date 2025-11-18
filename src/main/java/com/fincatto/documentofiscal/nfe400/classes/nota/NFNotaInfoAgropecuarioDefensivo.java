@@ -14,7 +14,9 @@ import org.simpleframework.xml.Root;
 @Root(name = "agropecuario")
 public class NFNotaInfoAgropecuarioDefensivo extends DFBase {
 
-    @Element(name = "nReceituario")
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "nReceituario")
     private String numeroReceituario;
 
     @Element(name = "CPFRespTec")

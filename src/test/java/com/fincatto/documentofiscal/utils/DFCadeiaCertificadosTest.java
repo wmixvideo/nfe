@@ -1,9 +1,10 @@
 package com.fincatto.documentofiscal.utils;
 
-import com.fincatto.documentofiscal.DFAmbiente;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFAmbiente;
 
 @Ignore("A gera\u00e7\u00e3o de cadeia \u00e9 lenta, s\u00f3 deve ser rodado quando efetivamente for testada!")
 public class DFCadeiaCertificadosTest {

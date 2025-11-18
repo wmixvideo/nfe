@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigemProcesso;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoProcessoReferenciado;
 
 public class NFNotaInfoProcessoReferenciadoTest {
 

@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.math.BigDecimal;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoCombustivelTipo;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoEspecieVeiculo;
@@ -9,10 +14,6 @@ import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoR
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemProdutoVeiculoTipoOperacao;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoTipoVeiculo;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoVeiculoCor;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoVeiculoTest {
 

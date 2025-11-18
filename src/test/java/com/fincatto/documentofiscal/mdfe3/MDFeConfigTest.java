@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.mdfe3;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
+import java.security.KeyStore;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.KeyStore;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoEmissao;
 
 public class MDFeConfigTest {
 

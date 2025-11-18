@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.cte400.classes;
 
-import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeTransporte;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.cte200.classes.CTTipoUnidadeTransporte;
 
 public class CTTipoUnidadeTransporteTest {
 

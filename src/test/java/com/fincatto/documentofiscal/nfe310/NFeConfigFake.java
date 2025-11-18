@@ -1,15 +1,15 @@
 package com.fincatto.documentofiscal.nfe310;
 
-import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+
+import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
 
 public class NFeConfigFake extends NFeConfig implements DFLog {
 

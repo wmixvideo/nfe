@@ -14,7 +14,9 @@ import java.math.BigDecimal;
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeOSInfoInformacoesRelativasImpostosICMS90 extends DFBase {
     
-    @Element(name = "CST")
+    private static final long serialVersionUID = 1L;
+
+	@Element(name = "CST")
     private CTCodigoSituacaoTributariaICMS codigoSituacaoTributaria;
 
     @Element(name = "pRedBC", required = false)

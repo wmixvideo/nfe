@@ -73,10 +73,10 @@ public abstract class DFBigDecimalValidador {
     }
 
     public static String validaTamanho(BigDecimal valor, final String info, Integer tamanho, Integer posicaoPontoFlutuante, Boolean pontoFlutuanteExato) {
-        valor = ObjectUtils.defaultIfNull(valor, BigDecimal.ZERO);
-        tamanho = ObjectUtils.defaultIfNull(tamanho, 12);
-        posicaoPontoFlutuante = ObjectUtils.defaultIfNull(posicaoPontoFlutuante, 2);
-        pontoFlutuanteExato = ObjectUtils.defaultIfNull(pontoFlutuanteExato, false);
+        valor = ObjectUtils.getIfNull(valor, BigDecimal.ZERO);
+        tamanho = ObjectUtils.getIfNull(tamanho, 12);
+        posicaoPontoFlutuante = ObjectUtils.getIfNull(posicaoPontoFlutuante, 2);
+        pontoFlutuanteExato = ObjectUtils.getIfNull(pontoFlutuanteExato, false);
         return DFBigDecimalValidador.parse(valor, StringUtils.rightPad("0.", posicaoPontoFlutuante + 2, pontoFlutuanteExato ? "0" : "#"), tamanho, posicaoPontoFlutuante, info);
     }
 

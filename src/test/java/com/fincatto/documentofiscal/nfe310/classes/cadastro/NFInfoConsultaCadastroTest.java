@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFInfoConsultaCadastro;
-
 public class NFInfoConsultaCadastroTest {
 
     @Test(expected = IllegalStateException.class)

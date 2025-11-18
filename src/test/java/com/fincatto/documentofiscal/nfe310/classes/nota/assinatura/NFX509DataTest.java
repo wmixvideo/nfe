@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFX509Data;
-
 public class NFX509DataTest {
 
     @Test

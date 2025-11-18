@@ -5,7 +5,11 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe400.classes.*;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS70Test {
 

@@ -3,10 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFKeyInfo;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignedInfo;
-
 public class NFSignatureTest {
 
     @Test

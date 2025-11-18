@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal.nfe310.classes.lote.envio;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
-
 public class NFLoteIndicadorProcessamentoTest {
 
     @Test

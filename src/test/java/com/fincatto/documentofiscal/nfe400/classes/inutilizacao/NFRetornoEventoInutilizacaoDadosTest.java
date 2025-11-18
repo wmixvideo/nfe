@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.inutilizacao;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Test;
 

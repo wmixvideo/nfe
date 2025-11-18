@@ -1,13 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
-import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.Element;
 
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
+import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
 
 public class NFNotaInfoItemImpostoICMS60Test {
     

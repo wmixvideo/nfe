@@ -1,11 +1,12 @@
 package com.fincatto.documentofiscal.transformers;
 
-import com.fincatto.documentofiscal.DFConfig;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import com.fincatto.documentofiscal.DFConfig;
 
 public class DFZonedDateTimeTransformerTest {
     

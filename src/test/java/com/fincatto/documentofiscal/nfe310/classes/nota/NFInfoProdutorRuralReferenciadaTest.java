@@ -1,8 +1,9 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class NFInfoProdutorRuralReferenciadaTest {
 

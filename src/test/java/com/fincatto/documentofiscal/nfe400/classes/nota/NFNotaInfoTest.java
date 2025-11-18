@@ -1,12 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipo;
 
 public class NFNotaInfoTest {
 

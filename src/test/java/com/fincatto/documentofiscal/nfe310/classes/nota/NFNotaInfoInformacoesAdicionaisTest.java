@@ -1,15 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoInformacoesAdicionais;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoObservacao;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoProcessoReferenciado;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 
 public class NFNotaInfoInformacoesAdicionaisTest {
 

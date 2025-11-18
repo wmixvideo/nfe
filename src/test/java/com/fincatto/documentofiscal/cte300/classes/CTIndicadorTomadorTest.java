@@ -3,8 +3,6 @@ package com.fincatto.documentofiscal.cte300.classes;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fincatto.documentofiscal.cte300.classes.CTIndicadorTomador;
-
 public class CTIndicadorTomadorTest {
 
     @Test

@@ -12,7 +12,9 @@ import java.math.BigDecimal;
  * @author Ommega Data
  */
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet extends DFBase {
-    // UB94 gMonoRet
+    private static final long serialVersionUID = 1L;
+
+	// UB94 gMonoRet
     @Element(required = false)
     private String qBCMonoRet; // UB95
 

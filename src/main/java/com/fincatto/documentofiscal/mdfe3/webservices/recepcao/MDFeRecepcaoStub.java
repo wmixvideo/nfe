@@ -431,7 +431,6 @@ public class MDFeRecepcaoStub extends org.apache.axis2.client.Stub {
             this.serialize(parentQName, xmlWriter, false);
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         public void serialize(final javax.xml.namespace.QName parentQName, final javax.xml.stream.XMLStreamWriter xmlWriter, final boolean serializeType) throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix;

@@ -1,14 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-
-import java.util.ArrayList;
 
 public class NFEnviaEventoRetornoTest {
 

@@ -18,8 +18,6 @@ import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.consultanaoencerrados.MDFeConsultaNaoEncerradosRetorno;
 import com.fincatto.documentofiscal.mdfe3.classes.consultastatusservico.MDFeConsStatServRet;
-import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLote;
-import com.fincatto.documentofiscal.mdfe3.classes.lote.envio.MDFEnvioLoteRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfPag;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFInfoModalRodoviarioInfViagens;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.MDFe;
@@ -32,7 +30,6 @@ import com.fincatto.documentofiscal.utils.DFSocketFactory;
 public class WSFacade {
 
     private final WSStatusConsulta wsStatusConsulta;
-    private final WSRecepcaoLote wsRecepcaoLote;
     private final WSRecepcaoSinc wsRecepcaoSinc;
     private final WSNotaConsulta wsNotaConsulta;
     private final WSCancelamento wsCancelamento;
@@ -48,7 +45,6 @@ public class WSFacade {
     public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wsRecepcaoLote = new WSRecepcaoLote(config);
         this.wsRecepcaoSinc = new WSRecepcaoSinc(config);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
         this.wsNotaConsulta = new WSNotaConsulta(config);
@@ -73,10 +69,6 @@ public class WSFacade {
      * o sefaz
      *
      */
-    @Deprecated
-    public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
-        return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
-    }
     
     /**
      * Faz o envio sincronizado para a SEFAZ

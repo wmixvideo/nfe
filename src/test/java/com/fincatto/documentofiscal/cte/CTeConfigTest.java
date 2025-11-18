@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.cte;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import java.security.KeyStore;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.KeyStore;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
 
 public class CTeConfigTest {
     

@@ -1,18 +1,67 @@
 package com.fincatto.documentofiscal.cte400;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte.CTTipoEmissao;
-import com.fincatto.documentofiscal.cte400.classes.*;
-import com.fincatto.documentofiscal.cte400.classes.nota.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Collections;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTTipoEmissao;
+import com.fincatto.documentofiscal.cte400.classes.CTCodigoSituacaoTributariaICMS;
+import com.fincatto.documentofiscal.cte400.classes.CTFinalidade;
+import com.fincatto.documentofiscal.cte400.classes.CTIndicadorTomador;
+import com.fincatto.documentofiscal.cte400.classes.CTModal;
+import com.fincatto.documentofiscal.cte400.classes.CTProcessoEmissao;
+import com.fincatto.documentofiscal.cte400.classes.CTRetirada;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoImpressao;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoPrazoDataEntrega;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoPrazoHoraEntrega;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeTributario;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoServico;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoUnidadeCarga;
+import com.fincatto.documentofiscal.cte400.classes.CTTomadorServico;
+import com.fincatto.documentofiscal.cte400.classes.CTUnidadeMedida;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaEndereco;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaEnderecoEmitente;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfo;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormal;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalCobranca;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalCobrancaDuplicata;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalCobrancaFatura;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCarga;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoDocumentos;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoDocumentosInfoNFe;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModal;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModalRodoviario;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadas;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModalRodoviarioOrdemColetaAssociadasEmi;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementares;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntrega;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaComDataDefinida;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaComHoraDefinida;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaIntervalo;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaPeriodo;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaSemDataDefinida;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresFluxo;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresFluxoPass;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoDadosComplementaresObservacaoContribuinte;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoEmitente;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoIdentificacao;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoIdentificacaoTomadorServico3;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoIdentificacaoTomadorServico4;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostos;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosICMS;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosICMS00;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosICMSPartilha;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoValorPrestacaoServico;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao;
 
 public class FabricaDeObjetosFake {
 

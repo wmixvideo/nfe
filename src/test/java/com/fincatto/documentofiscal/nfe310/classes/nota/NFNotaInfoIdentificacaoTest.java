@@ -1,21 +1,26 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.DFModelo;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
-import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.*;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFModelo;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
+import com.fincatto.documentofiscal.nfe310.classes.NFFinalidade;
+import com.fincatto.documentofiscal.nfe310.classes.NFFormaPagamentoPrazo;
+import com.fincatto.documentofiscal.nfe310.classes.NFProcessoEmissor;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipo;
+import com.fincatto.documentofiscal.nfe310.classes.NFTipoImpressao;
 
 public class NFNotaInfoIdentificacaoTest {
 

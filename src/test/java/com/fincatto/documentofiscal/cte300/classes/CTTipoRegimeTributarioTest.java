@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 

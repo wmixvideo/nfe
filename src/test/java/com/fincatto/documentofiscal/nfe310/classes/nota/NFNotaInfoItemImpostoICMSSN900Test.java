@@ -9,7 +9,6 @@ import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICM
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaSituacaoOperacionalSimplesNacional;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoICMSSN900;
 
 public class NFNotaInfoItemImpostoICMSSN900Test {
 
