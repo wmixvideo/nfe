@@ -17,13 +17,13 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   @Element(name = "vBCIBSCBS")
   private String vBCIBSCBS; // W35
 
-  @Element(name = "gIBS")
+  @Element(name = "gIBS", required = false)
   private NFNotaInfoIBSCBSTot.GIBS gIBS; // W36
 
-  @Element(name = "gCBS")
+  @Element(name = "gCBS", required = false)
   private NFNotaInfoIBSCBSTot.GCBS gCBS; // W50
 
-  @Element(name = "gMono")
+  @Element(name = "gMono", required = false)
   private NFNotaInfoIBSCBSTot.GMono gMono; // W57
 
   /**
@@ -134,7 +134,7 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
 
     // W37
     public static class GIBSUF extends DFBase {
-    	
+
 	  private static final long serialVersionUID = 2194095471152971393L;
 
       @Element(name = "vDif", required = true)
@@ -216,7 +216,7 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
 
   // W50
   public static class GCBS extends DFBase {
-	  
+
 	private static final long serialVersionUID = 1136600045286532108L;
 
     @Element(required = true)
