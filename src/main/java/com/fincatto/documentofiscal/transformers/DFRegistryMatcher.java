@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.ZonedDateTime;
 
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
+import com.fincatto.documentofiscal.nfe400.transformers.NFEventoTipoAutorTransformer;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
 import com.fincatto.documentofiscal.DFAmbiente;
@@ -400,5 +402,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoIndAltoDesempenho.class, new MDFTipoIndAltoDesempenhoTransformer());
         super.bind(MDFTipoPermissaoAntecipacao.class, new MDFTipoPermissaoAntecipacaoTransformer());
         super.bind(MDFTipoValePedagio.class, new MDFTipoValePedagioTransformer());
+
+        // Eventos
+        super.bind(NFEventoTipoAutor.class, new NFEventoTipoAutorTransformer());
     }
 }
