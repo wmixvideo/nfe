@@ -35,12 +35,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
   @Element(required = false)
   private GTribCompraGov gTribCompraGov; // UB82a
 
-  /**
-   * UB112 - Ajuste competência - apenas requerido quando ind_gAjusteCompet = 1
-   */
-  @Element(name = "gAjusteCompet", required = false)
-  private GrupoAjusteCompetencia grupoAjusteCompetencia;
-
   public String getVBC() {
     return vBC;
   }
@@ -95,14 +89,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   public void setVIBS(BigDecimal vIBS) {
     this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor IBS");
-  }
-
-  public GrupoAjusteCompetencia getGrupoAjusteCompetencia() {
-    return grupoAjusteCompetencia;
-  }
-
-  public void setGrupoAjusteCompetencia(GrupoAjusteCompetencia grupoAjusteCompetencia) {
-    this.grupoAjusteCompetencia = grupoAjusteCompetencia;
   }
 
   // UB17
@@ -534,51 +520,4 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-  /**
-   * UB112 - gAjusteCompet - Ajuste de competência
-   */
-  public static class GrupoAjusteCompetencia extends DFBase {
-
-    /**
-     * UB113 - Ano e mês referência da apuração no formato AAAA-MM
-     */
-    @Element(name = "competApuracao", required = true)
-    private LocalDate dataCompetenciaApuracao;
-
-    /**
-     * UB114 - Valor do IBS
-     */
-    @Element(name = "vIBS")
-    private String valorIBS;
-
-    /**
-     * UB115 - Valor do CBS
-     */
-    @Element(name = "vCBS")
-    private String valorCBS;
-
-    public LocalDate getDataCompetenciaApuracao() {
-      return dataCompetenciaApuracao;
-    }
-
-    public void setDataCompetenciaApuracao(LocalDate dataCompetenciaApuracao) {
-      this.dataCompetenciaApuracao = dataCompetenciaApuracao;
-    }
-
-    public String getValorIBS() {
-      return valorIBS;
-    }
-
-    public void setValorIBS(BigDecimal valorIBS) {
-      this.valorIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor do IBS");;
-    }
-
-    public String getValorCBS() {
-      return valorCBS;
-    }
-
-    public void setValorCBS(BigDecimal valorCBS) {
-      this.valorCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor do CBS");;
-    }
-  }
 }

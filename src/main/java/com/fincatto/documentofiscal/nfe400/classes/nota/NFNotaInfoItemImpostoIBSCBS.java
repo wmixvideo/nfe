@@ -2,8 +2,13 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.YearMonth;
 
 /**
  * UB12
@@ -54,6 +59,12 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
      */
     @Element(name = "gCredPresOper", required = false)
     private NFNotaInfoItemImpostoIBSCBSGCredPresOper grupoCreditoPresumidoOperacao;
+
+    /**
+     * UB112 - Ajuste competência - apenas requerido quando ind_gAjusteCompet = 1
+     */
+    @Element(name = "gAjusteCompet", required = false)
+    private GrupoAjusteCompetencia grupoAjusteCompetencia;
 
     public NFNotaInfoImpostoTributacaoIBSCBS getCst() {
         return cst;
@@ -126,5 +137,61 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
 
     public void setGrupoEstornoCredito(NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito) {
         this.grupoEstornoCredito = grupoEstornoCredito;
+    }
+
+    public GrupoAjusteCompetencia getGrupoAjusteCompetencia() {
+        return grupoAjusteCompetencia;
+    }
+
+    public void setGrupoAjusteCompetencia(GrupoAjusteCompetencia grupoAjusteCompetencia) {
+        this.grupoAjusteCompetencia = grupoAjusteCompetencia;
+    }
+
+    /**
+     * UB112 - gAjusteCompet - Ajuste de competência
+     */
+    public static class GrupoAjusteCompetencia extends DFBase {
+
+        /**
+         * UB113 - Ano e mês referência da apuração no formato AAAA-MM
+         */
+        @Element(name = "competApuracao", required = true)
+        private YearMonth dataCompetenciaApuracao;
+
+        /**
+         * UB114 - Valor do IBS
+         */
+        @Element(name = "vIBS")
+        private String valorIBS;
+
+        /**
+         * UB115 - Valor do CBS
+         */
+        @Element(name = "vCBS")
+        private String valorCBS;
+
+        public YearMonth getDataCompetenciaApuracao() {
+            return dataCompetenciaApuracao;
+        }
+
+        public void setDataCompetenciaApuracao(YearMonth dataCompetenciaApuracao) {
+            this.dataCompetenciaApuracao = dataCompetenciaApuracao;
+        }
+
+        public String getValorIBS() {
+            return valorIBS;
+        }
+
+        public void setValorIBS(BigDecimal valorIBS) {
+            this.valorIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor do IBS");;
+        }
+
+        public String getValorCBS() {
+            return valorCBS;
+        }
+
+        public void setValorCBS(BigDecimal valorCBS) {
+            this.valorCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor do CBS");;
+        }
     }
 }
