@@ -155,7 +155,7 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
         /**
          * UB113 - Ano e mês referência da apuração no formato AAAA-MM
          */
-        @Element(name = "competApuracao", required = true)
+        @Element(name = "competApur", required = true)
         private YearMonth dataCompetenciaApuracao;
 
         /**
