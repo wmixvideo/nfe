@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.transformers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
 
 import org.simpleframework.xml.transform.RegistryMatcher;
@@ -179,6 +180,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(LocalTime.class, new DFLocalTimeTransformer());
         super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
+        super.bind(YearMonth.class, new DFYearMonthTransformer());
         super.bind(ZonedDateTime.class, new DFZonedDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
