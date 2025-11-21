@@ -26,6 +26,12 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   @Element(name = "gMono", required = false)
   private NFNotaInfoIBSCBSTot.GMono gMono; // W57
 
+  /**
+   * W59e - Grupo total do estorno de crédito
+   */
+  @Element(name = "gEstornoCred", required = false)
+  private NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito;
+
   public String getVBCIBSCBS() {
     return vBCIBSCBS;
   }
@@ -56,6 +62,14 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
 
   public void setGMono(NFNotaInfoIBSCBSTot.GMono gMono) {
     this.gMono = gMono;
+  }
+
+  public NFNotaInfoIBSCBSGrupoEstornoCredito getGrupoEstornoCredito() {
+    return grupoEstornoCredito;
+  }
+
+  public void setGrupoEstornoCredito(NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito) {
+    this.grupoEstornoCredito = grupoEstornoCredito;
   }
 
   // W36

@@ -636,6 +636,13 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho1N(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.apenasNumerico(string, info);
+            DFStringValidador.validaTamanhoMaximo(string, 9, info);
+        }
+    }
+
     public static void tamanho2ou3N(final String string, final String info) {
         if (string != null) {
             DFStringValidador.apenasNumerico(string, info);
