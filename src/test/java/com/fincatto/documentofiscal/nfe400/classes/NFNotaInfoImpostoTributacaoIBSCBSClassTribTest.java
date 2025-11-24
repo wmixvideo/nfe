@@ -107,6 +107,7 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 		Assert.assertEquals("410999", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410999.getCodigo());
 		Assert.assertEquals("510001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510001.getCodigo());
 		Assert.assertEquals("510002", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510002.getCodigo());
+        Assert.assertEquals("515001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_515001.getCodigo());
 		Assert.assertEquals("550001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550001.getCodigo());
 		Assert.assertEquals("550002", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550002.getCodigo());
 		Assert.assertEquals("550003", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550003.getCodigo());
@@ -136,6 +137,9 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 		Assert.assertEquals("800001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800001.getCodigo());
 		Assert.assertEquals("800002", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800002.getCodigo());
 		Assert.assertEquals("810001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_810001.getCodigo());
+        Assert.assertEquals("811001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811001.getCodigo());
+        Assert.assertEquals("811002", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811002.getCodigo());
+        Assert.assertEquals("811003", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811003.getCodigo());
 		Assert.assertEquals("820001", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820001.getCodigo());
 		Assert.assertEquals("820002", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820002.getCodigo());
 		Assert.assertEquals("820003", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820003.getCodigo());
@@ -243,7 +247,8 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
     	Assert.assertEquals("Operações não onerosas sem previsão de tributação, não especificadas anteriormente", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410999.getDescricao());
     	Assert.assertEquals("Operações, sujeitas a diferimento, com energia elétrica, relativas à geração, comercialização, distribuição e transmissão", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510001.getDescricao());
     	Assert.assertEquals("Operações, sujeitas a diferimento, com insumos agropecuários e aquícolas destinados a produtor rural contribuinte (Anexo IX)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510002.getDescricao());
-    	Assert.assertEquals("Exportações de bens materiais", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550001.getDescricao());
+        Assert.assertEquals("Operações, sujeitas a diferimento, com insumos agropecuários e aquícolas destinados a produtor rural não contribuinte (Anexo IX)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_515001.getDescricao());
+        Assert.assertEquals("Exportações de bens materiais", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550001.getDescricao());
     	Assert.assertEquals("Regime de Trânsito", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550002.getDescricao());
     	Assert.assertEquals("Regimes de Depósito  (art. 85)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550003.getDescricao());
     	Assert.assertEquals("Regimes de Depósito (art. 87)", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550004.getDescricao());
@@ -271,6 +276,9 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
     	Assert.assertEquals("Fusão, cisão ou incorporação", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800001.getDescricao());
     	Assert.assertEquals("Transferência de crédito do associado, inclusive as cooperativas singulares", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800002.getDescricao());
     	Assert.assertEquals("Crédito presumido sobre o valor apurado nos fornecimentos a partir da ZFM", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_810001.getDescricao());
+        Assert.assertEquals("Anulação de Crédito por Saídas Imunes/Isentas", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811001.getDescricao());
+        Assert.assertEquals("Débitos de notas fiscais não processadas na apuração", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811002.getDescricao());
+        Assert.assertEquals("Desenquadramento do Simples Nacional", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811003.getDescricao());
     	Assert.assertEquals("Documento com informações de fornecimento de serviços de planos de assistência à saúde", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820001.getDescricao());
     	Assert.assertEquals("Documento com informações de fornecimento de serviços de planos de assistência funerária", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820002.getDescricao());
     	Assert.assertEquals("Documento com informações de fornecimento de serviços de planos de assistência à saúde de animais domésticos", NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820003.getDescricao());
@@ -383,6 +391,7 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_410999, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("410999"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("510001"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_510002, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("510002"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_515001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("515001"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("550001"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550002, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("550002"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_550003, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("550003"));
@@ -412,6 +421,9 @@ public class NFNotaInfoImpostoTributacaoIBSCBSClassTribTest {
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("800001"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_800002, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("800002"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_810001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("810001"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("811001"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811002, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("811002"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_811003, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("811003"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820001, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("820001"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820002, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("820002"));
 		Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBSClassTrib.CST_820003, NFNotaInfoImpostoTributacaoIBSCBSClassTrib.valueOfCodigo("820003"));
