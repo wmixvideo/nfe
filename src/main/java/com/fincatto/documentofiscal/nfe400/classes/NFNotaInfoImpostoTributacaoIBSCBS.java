@@ -15,55 +15,58 @@ import java.util.Arrays;
 public enum NFNotaInfoImpostoTributacaoIBSCBS {
 
     CST_000("000", "Tributa\u00e7\u00e3o integral",
-            UM, ZERO, ZERO, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
+            UM, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_010("010", "Tributa\u00e7\u00e3o com al\u00edquotas uniformes",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_011("011", "Tributa\u00e7\u00e3o com al\u00edquotas uniformes reduzidas",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_200("200", "Al\u00edquota reduzida",
-    		 UM, ZERO, UM, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
-    
-    CST_210("210", "Redu\u00e7\u00e3o de al\u00edquota com redutor de base de c\u00e1lculo",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
+    		 UM, ZERO, UM, ZERO, ZERO, ZERO, ZERO),
     
     CST_220("220", "Al\u00edquota fixa",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 UM, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_221("221", "Al\u00edquota fixa proporcional",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		 UM, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_222("222", "Redu\u00e7\u00e3o de base de c\u00e1lculo",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_400("400", "Isen\u00e7\u00e3o",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_410("410", "Imunidade e n\u00e3o incid\u00eancia",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_510("510", "Diferimento",
-    		 UM, ZERO, ZERO, UM, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
+    		 UM, ZERO, ZERO, UM, ZERO, ZERO, ZERO),
+
+    CST_515("515", "Diferimento com redu\u00e7\u00e3o de al\u00edquota",
+            UM, ZERO, UM, UM, ZERO, ZERO, ZERO),
     
     CST_550("550", "Suspens\u00e3o",
-    		 UM, ZERO, ZERO, ZERO, ZERO, SIM, NAO, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
+    		 UM, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_620("620", "Tributa\u00e7\u00e3o monof\u00e1sica",
-    		ZERO, UM, ZERO, ZERO, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, UM, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_800("800", "Transfer\u00eancia de cr\u00e9dito",
-    		ZERO, ZERO, ZERO, ZERO, UM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    		ZERO, ZERO, ZERO, ZERO, UM, ZERO, ZERO),
     
-    CST_810("810", "Ajustes",
-    		 null, null, null, null, null, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    CST_810("810", "Ajustes de IBS na ZFM",
+    		 ZERO, ZERO, ZERO, ZERO, ZERO, UM, ZERO),
+
+    CST_811("811", "Ajustes",
+            ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, UM),
     
     CST_820("820", "Tributa\u00e7\u00e3o em declara\u00e7\u00e3o de regime espec\u00edfico",
-    		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
+    		ZERO, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO),
     
     CST_830("830", "Exclus\u00e3o de base de c\u00e1lculo",
-    		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, SIM, NAO, NAO);
+    		 UM, ZERO, ZERO, ZERO, ZERO, ZERO, ZERO);
 
     private final String codigo;
     private final String descricao;
@@ -72,17 +75,10 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     private final Integer indGRed;
     private final Integer indGDif;
     private final Integer indGTransfCred;
-    private final boolean indNFe;
-    private final boolean indNFCe;
-    private final boolean indCTe;
-    private final boolean indCteOS;
-    private final boolean indBPe;
-    private final boolean indBPeTM;
-    private final boolean indNF3e;
-    private final boolean indNFCom;
-    private final boolean indNFSe;
+    private final Integer indGCredPresIBS;
+    private final Integer indGAjusteCompet;
 
-    private NFNotaInfoImpostoTributacaoIBSCBS(String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif, Integer indGTransfCred, boolean indNFe, boolean indNFCe, boolean indCTe, boolean indCteOS, boolean indBPe, boolean indBPeTM, boolean indNF3e, boolean indNFCom, boolean indNFSe) {
+    private NFNotaInfoImpostoTributacaoIBSCBS(String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif, Integer indGTransfCred, Integer indGCredPresIBS, Integer indGAjusteCompet) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.indGIBSCBS = indGIBSCBS;
@@ -90,15 +86,8 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
         this.indGRed = indGRed;
         this.indGDif = indGDif;
         this.indGTransfCred = indGTransfCred;
-        this.indNFe = indNFe;
-        this.indNFCe = indNFCe;
-        this.indCTe = indCTe;
-        this.indCteOS = indCteOS;
-        this.indBPe = indBPe;
-        this.indBPeTM = indBPeTM;
-        this.indNF3e = indNF3e;
-        this.indNFCom = indNFCom;
-        this.indNFSe = indNFSe;
+        this.indGCredPresIBS = indGCredPresIBS;
+        this.indGAjusteCompet = indGAjusteCompet;
     }
 
 	public String getCodigo() {
@@ -129,41 +118,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
         return indGTransfCred;
     }
 
-    public boolean isIndNFe() {
-        return indNFe;
-    }
+    public Integer getIndGCredPresIBS() { return indGCredPresIBS; }
 
-    public boolean isIndNFCe() {
-        return indNFCe;
-    }
-
-    public boolean isIndCTe() {
-        return indCTe;
-    }
-
-    public boolean isIndCteOS() {
-        return indCteOS;
-    }
-
-    public boolean isIndBPe() {
-        return indBPe;
-    }
-
-    public boolean isIndBPeTM() {
-        return indBPeTM;
-    }
-
-    public boolean isIndNF3e() {
-        return indNF3e;
-    }
-
-    public boolean isIndNFCom() {
-        return indNFCom;
-    }
-
-    public boolean isIndNFSe() {
-        return indNFSe;
-    }
+    public Integer getIndGAjusteCompet() { return indGAjusteCompet; }
 
     @Override
     public String toString() {
