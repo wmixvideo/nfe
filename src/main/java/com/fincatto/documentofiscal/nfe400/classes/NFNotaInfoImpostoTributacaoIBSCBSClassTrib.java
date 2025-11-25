@@ -343,8 +343,17 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	CST_410021("410021", CST_410, "Contribui\u00e7\u00e3o de que trata o art. 149-A da Constitui\u00e7\u00e3o Federal",
 				"Art. 12 § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
-	
-	CST_410999("410999", CST_410, "Opera\u00e7\u00f5es n\u00e3o onerosas sem previs\u00e3o de tributa\u00e7\u00e3o, n\u00e3o especificadas anteriormente",
+
+    CST_410026("410026", CST_410, "Doa\u00e7\u00e3o com anula\u00e7\u00e3o de cr\u00e9dito",
+            "Art. 6º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410029("410029", CST_410, "Opera\u00e7\u00f5es acobertadas somente pelo ICMS",
+            "Art. 4º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410030("410030", CST_410, "Estorno de cr\u00e9dito por perecimento, deterioriza\u00e7\u00e3o, roubo, furto ou extravio",
+            "Art. 47, § 6º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410999("410999", CST_410, "Opera\u00e7\u00f5es n\u00e3o onerosas sem previs\u00e3o de tributa\u00e7\u00e3o, n\u00e3o especificadas anteriormente",
 				"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_510
