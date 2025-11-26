@@ -3,8 +3,11 @@ package com.fincatto.documentofiscal.transformers;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.time.ZonedDateTime;
 
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
+import com.fincatto.documentofiscal.nfe400.transformers.NFEventoTipoAutorTransformer;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
 import com.fincatto.documentofiscal.DFAmbiente;
@@ -179,6 +182,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(LocalTime.class, new DFLocalTimeTransformer());
         super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
         super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
+        super.bind(YearMonth.class, new DFYearMonthTransformer());
         super.bind(ZonedDateTime.class, new DFZonedDateTimeTransformer());
         super.bind(DFUnidadeFederativa.class, new DFUnidadeFederativaTransformer());
         super.bind(NFTipoEmissao.class, new NFTipoEmissaoTransformer());
@@ -287,7 +291,10 @@ public class DFRegistryMatcher extends RegistryMatcher {
         // Reforma tributaria
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoImpostoTributacaoISTransformer());
         super.bind(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.class, new com.fincatto.documentofiscal.nfe400.transformers.NFNotaInfoImpostoTributacaoIBSCBSTransformer());
-        
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFDebito.class, new com.fincatto.documentofiscal.nfe400.transformers.NFDebitoTransformer());
+        super.bind(com.fincatto.documentofiscal.nfe400.classes.NFCredito.class, new com.fincatto.documentofiscal.nfe400.transformers.NFCreditoTransformer());
+
+
         // CTe
         super.bind(CTModal.class, new CTModalTransformer());
         super.bind(CTTipoCte.class, new CTTipoCteTransformer());
@@ -395,5 +402,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
         super.bind(MDFTipoIndAltoDesempenho.class, new MDFTipoIndAltoDesempenhoTransformer());
         super.bind(MDFTipoPermissaoAntecipacao.class, new MDFTipoPermissaoAntecipacaoTransformer());
         super.bind(MDFTipoValePedagio.class, new MDFTipoValePedagioTransformer());
+
+        // Eventos
+        super.bind(NFEventoTipoAutor.class, new NFEventoTipoAutorTransformer());
     }
 }
