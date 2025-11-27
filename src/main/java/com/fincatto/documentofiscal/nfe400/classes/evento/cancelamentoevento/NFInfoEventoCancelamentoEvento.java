@@ -4,7 +4,6 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
-import com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao.NFInfoAceiteDebitoApuracao;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
