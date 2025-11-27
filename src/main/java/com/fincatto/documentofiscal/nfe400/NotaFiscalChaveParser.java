@@ -84,7 +84,7 @@ public class NotaFiscalChaveParser {
      * @return Se chave foi emitida por pessoa fisica.
      */
     public boolean isEmitentePessoaFisica() {
-        return DFUtils.isCpfValido(this.chave.substring(9, 20));
+        return DFUtils.isCpfValido(this.chave.substring(9, 20)) && this.isSerieReservadaPessoaFisica();
     }
 
     /**
@@ -92,7 +92,7 @@ public class NotaFiscalChaveParser {
      * @return Se chave foi emitida por pessoa juridica.
      */
     public boolean isEmitentePessoaJuridica() {
-        return DFUtils.isCnpjValido(this.chave.substring(6, 20));
+        return DFUtils.isCnpjValido(this.chave.substring(6, 20)) && !this.isSerieReservadaPessoaFisica();
     }
 
     /**
@@ -113,5 +113,20 @@ public class NotaFiscalChaveParser {
      */
     public String getCpfEmitente() {
         return isEmitentePessoaFisica() ? this.chave.substring(9, 20) : null;
+    }
+
+    /**
+     * Indica se a chave é de uma série destinada a pessoa física.<br>
+     * De acordo com a documentação: "O CPF deverá constar na Chave de Acesso, precedido por zeros, completando 14 posições; Deverá utilizar a série reservada [920-969]"<br>
+     * <a href="https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=4m9xb5EYa/w=">...</a>
+     *
+     * @return se a serie é destinada a pessoa física.
+     */
+    public boolean isSerieReservadaPessoaFisica() {
+        if (DFUtils.isNumerico(this.getSerie())) {
+            final int serie = Integer.parseInt(this.getSerie());
+            return serie >= 920 && serie <= 969;
+        }
+        return false;
     }
 }

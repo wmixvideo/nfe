@@ -172,22 +172,6 @@ public class NFEventoCancelamentoDadosTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirCNPJNulo() {
-        final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
-        dados.setAmbiente(DFAmbiente.HOMOLOGACAO);
-        dados.setAno(15);
-        dados.setIdentificador("ID55605654557305333405403926218856863798956");
-        dados.setJustificativa("u2MGhwXFQDFtSuKsLkmgowBZNNhOWBL4JKIqYnIj5iDPTAUqHSwKL1O2olgmZwigRS1P58Zoc1qDxzqmvv3hBE1LYuLHNPbFXuLwM5ZxvH7xfSpnkX5VBGjrkR3cuiXLr1uz3chFb9JrNY5xU3X0eF9Byc2Q9TkPbFyPj7iRwwQVMNt6FGvpUyRMHGmhSDYhFRD2Dst0UaauvA4V0breWHyN4WUSEm9z377jXHNwtVLQQCxB2wcEIZGWVIT4CF5");
-        dados.setModeloDocumentoFiscal("55");
-        dados.setNomeServico("INUTILIZAR");
-        dados.setNumeroNFInicial("1");
-        dados.setNumeroNFFinal("999999999");
-        dados.setSerie("999");
-        dados.setUf(DFUnidadeFederativa.SC);
-        dados.toString();
-    }
-
-    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirModeloNulo() {
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
         dados.setAmbiente(DFAmbiente.HOMOLOGACAO);

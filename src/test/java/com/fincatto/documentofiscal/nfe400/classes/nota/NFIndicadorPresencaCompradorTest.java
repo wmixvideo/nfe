@@ -27,4 +27,14 @@ public class NFIndicadorPresencaCompradorTest {
         Assert.assertEquals("9", NFIndicadorPresencaComprador.OPERACAO_NAO_PRESENCIAL_OUTROS.getCodigo());
     }
     
+    @Test
+    public void deveRepresentarADescricaoCorretamente() {
+    	Assert.assertEquals("Não se aplica", NFIndicadorPresencaComprador.NAO_APLICA.getDescricao());
+    	Assert.assertEquals("Operação presencial", NFIndicadorPresencaComprador.OPERACAO_PRESENCIAL.getDescricao());
+    	Assert.assertEquals("Operação não presencial - Internet", NFIndicadorPresencaComprador.OPERACAO_NAO_PRESENCIAL_INTERNET.getDescricao());
+    	Assert.assertEquals("Operação não presencial - Teleatendimento", NFIndicadorPresencaComprador.OPERACAO_NAO_PRESENCIAL_TELEATENDIMENTO.getDescricao());
+    	Assert.assertEquals("NFC-e em operação com entrega a domicílio", NFIndicadorPresencaComprador.NFCE_EM_OPERACAO_COM_ENTREGA_DOMICILIO.getDescricao());
+    	Assert.assertEquals("Operação presencial, fora do estabelecimento", NFIndicadorPresencaComprador.OPERACAO_PRESENCIAL_FORA_ESTABELECIMENTO.getDescricao());
+    	Assert.assertEquals("Operação não presencial - Outros", NFIndicadorPresencaComprador.OPERACAO_NAO_PRESENCIAL_OUTROS.getDescricao());
+    }
 }

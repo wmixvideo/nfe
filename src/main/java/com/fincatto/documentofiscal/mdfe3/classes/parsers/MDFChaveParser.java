@@ -96,7 +96,7 @@ public class MDFChaveParser {
      * @return Se chave foi emitida por pessoa fisica.
      */
     public boolean isEmitentePessoaFisica() {
-        return DFUtils.isCpfValido(this.chave.substring(9, 20));
+        return DFUtils.isCpfValido(this.chave.substring(9, 20)) && this.isSerieReservadaPessoaFisica();
     }
 
     /**
@@ -105,17 +105,17 @@ public class MDFChaveParser {
      * @return Se chave foi emitida por pessoa juridica.
      */
     public boolean isEmitentePessoaJuridica() {
-        return DFUtils.isCnpjValido(this.chave.substring(6, 20));
+        return DFUtils.isCnpjValido(this.chave.substring(6, 20)) && !this.isSerieReservadaPessoaFisica();
     }
 
     /**
-     * Indica se a chave é de uma série destinada a pessoa física com inscrição estadual.<br>
-     * De acordo com a documentação: "Será reservada uma faixa do campo Série do MDF-e (920-969), como forma de identificação da Emitente pessoa física (CPF) com inscrição estadual;"<br>
+     * Indica se a chave é de uma série destinada a pessoa física.<br>
+     * De acordo com a documentação: "Será reservada uma faixa do campo Série do MDF-e (920-969), como forma de identificação da Emitente pessoa física (CPF);"<br>
      * <a href="http://sped.rfb.gov.br/estatico/8A/16CC5375F0AC1A0B7666221FC2116325133C01/MOC_MDFe_VisaoGeral_v3.00a.pdf">...</a>
      *
-     * @return se a serie é destinada a pessoa física com inscrição estadual.
+     * @return se a serie é destinada a pessoa física.
      */
-    public boolean isSerieReservadaPessoaFisicaComInscricaoEstadual() {
+    public boolean isSerieReservadaPessoaFisica() {
         if (DFUtils.isNumerico(this.getSerie())) {
             final int serie = Integer.parseInt(this.getSerie());
             return serie >= 920 && serie <= 969;

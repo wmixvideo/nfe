@@ -6,11 +6,11 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 
 
 public class NFInfoEventoEpec extends DFBase {
@@ -78,9 +78,6 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("CPF ja foi setado");
-        }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -90,9 +87,6 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("CNPJ ja foi setado");
-        }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }
@@ -132,21 +126,21 @@ public class NFInfoEventoEpec extends DFBase {
         this.numeroSequencialEvento = numeroSequencialEvento;
     }
 
-	public String getVersaoEvento() {
+    public String getVersaoEvento() {
         return this.versaoEvento;
     }
 
     public void setVersaoEvento(String versaoEvento) {
-		this.versaoEvento = versaoEvento;
-	}
+        this.versaoEvento = versaoEvento;
+    }
 
-	public NFInfoEpec getEpec() {
-		return epec;
-	}
+    public NFInfoEpec getEpec() {
+        return epec;
+    }
 
-	public void setEpec(final NFInfoEpec epec) {
-		this.epec = epec;
-	}
+    public void setEpec(final NFInfoEpec epec) {
+        this.epec = epec;
+    }
 
     public DFUnidadeFederativa getOrgao() {
         return this.orgao;

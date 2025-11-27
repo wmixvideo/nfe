@@ -43,9 +43,6 @@ public class NFDestinatarioEpec {
 	}
 
 	public void setCnpj(String cnpj) {
-		if (this.cpf != null) {
-            throw new IllegalStateException("CPF ja foi setado");
-        }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
 	}
@@ -55,9 +52,6 @@ public class NFDestinatarioEpec {
 	}
 
 	public void setCpf(String cpf) {
-		if (this.cnpj != null) {
-            throw new IllegalStateException("CNPJ ja foi setado");
-        }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
 	}

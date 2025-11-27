@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoPermissaoAntecipacao;
+import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
@@ -57,6 +59,7 @@ public class MDFInfoModalRodoviarioInfPagPrazo extends DFBase {
     }
 
     public void setVParcela(BigDecimal vParcela) {
+        DFBigDecimalValidador.tamanho13Com2CasasDecimais(vParcela, "Valor da Parcela");
         this.vParcela = vParcela;
     }
 

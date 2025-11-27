@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.simpleframework.xml.Element;
 
@@ -30,12 +31,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   @Element(required = false)
   private GTribRegular gTribRegular; // UB68
-
-  @Element(required = false)
-  private GCredPres gIBSCredPres; // UB73
-
-  @Element(required = false)
-  private GCredPres gCBSCredPres; // UB78
 
   @Element(required = false)
   private GTribCompraGov gTribCompraGov; // UB82a
@@ -78,22 +73,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   public void setGTribRegular(GTribRegular gTribRegular) {
     this.gTribRegular = gTribRegular;
-  }
-
-  public GCredPres getGIBSCredPres() {
-    return gIBSCredPres;
-  }
-
-  public void setGIBSCredPres(GCredPres gIBSCredPres) {
-    this.gIBSCredPres = gIBSCredPres;
-  }
-
-  public GCredPres getGCBSCredPres() {
-    return gCBSCredPres;
-  }
-
-  public void setGCBSCredPres(GCredPres gCBSCredPres) {
-    this.gCBSCredPres = gCBSCredPres;
   }
 
   public GTribCompraGov getGTribCompraGov() {
@@ -392,58 +371,6 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
   }
 
-  // UB73 // UB78
-  public static class GCredPres extends DFBase {
-
-    private static final long serialVersionUID = -366528394939456792L;
-
-    @Element(required = true)
-    private String cCredPres; // UB74 // UB79
-
-    @Element(required = true)
-    private String pCredPres; // UB75 // UB80
-
-    /** VCredPres e VCredPresCondSus sao mutuamente exclusivos **/
-    @Element(required = false)
-    private String vCredPres; // UB76 // UB81
-
-    @Element(required = false)
-    private String vCredPresCondSus; // UB77 // UB82
-
-    public String getcCredPres() {
-      return cCredPres;
-    }
-
-    public void setcCredPres(String cCredPres) {
-      this.cCredPres = cCredPres;
-    }
-
-    public String getPCredPres() {
-      return pCredPres;
-    }
-
-    public void setPCredPres(BigDecimal pCredPres) {
-      this.pCredPres = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pCredPres, "Percentual do Crédito Presumido");
-    }
-
-    public String getVCredPres() {
-      return vCredPres;
-    }
-
-    public void setVCredPres(BigDecimal vCredPres) {
-      this.vCredPres = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCredPres, "Valor do Crédito Presumido");
-    }
-
-    public String getVCredPresCondSus() {
-      return vCredPresCondSus;
-    }
-
-    public void setVCredPresCondSus(BigDecimal vCredPresCondSus) {
-      this.vCredPresCondSus = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCredPresCondSus, "Valor do Crédito Presumido em condição suspensiva");
-    }
-
-  }
-
   // UB82a
   public static class GTribCompraGov extends DFBase {
 
@@ -592,4 +519,5 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
     }
 
   }
+
 }

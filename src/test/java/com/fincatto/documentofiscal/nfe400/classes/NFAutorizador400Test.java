@@ -446,8 +446,8 @@ public class NFAutorizador400Test {
     }
 
     @Test
-    public void deveObterSCANCasoEstejaEmContigencia() {
-        Assert.assertEquals(NFAutorizador400.SCAN, NFAutorizador400.valueOfChaveAcesso("41170705325301000169550020000608246000000003"));
+    public void deveObterSVANCasoEstejaEmContigencia() {
+        Assert.assertEquals(NFAutorizador400.SVAN, NFAutorizador400.valueOfChaveAcesso("41170705325301000169550020000608246000000003"));
     }
 
     @Test
@@ -461,8 +461,8 @@ public class NFAutorizador400Test {
     }
 
     @Test
-    public void deveObterSVCAN() {
-        Assert.assertEquals(NFAutorizador400.SCAN, NFAutorizador400.valueOfTipoEmissao(NFTipoEmissao.CONTINGENCIA_SVCAN, DFUnidadeFederativa.RS));
+    public void deveObterSVAN() {
+        Assert.assertEquals(NFAutorizador400.SVAN, NFAutorizador400.valueOfTipoEmissao(NFTipoEmissao.CONTINGENCIA_SVCAN, DFUnidadeFederativa.RS));
     }
 
     @Test
