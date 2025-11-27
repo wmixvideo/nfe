@@ -46,7 +46,7 @@ public class NFInfoEventoCancelamentoEvento extends DFBase {
     private String versaoEvento;
 
     @Element(name = "detEvento")
-    private NFInfoEventoCancelamento cancelamentoEvento;
+    private NFInfoCancelamentoEvento cancelamentoEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -130,11 +130,11 @@ public class NFInfoEventoCancelamentoEvento extends DFBase {
         return this.versaoEvento;
     }
 
-    public NFInfoEventoCancelamento getCancelamentoEvento() {
+    public NFInfoCancelamentoEvento getCancelamentoEvento() {
         return this.cancelamentoEvento;
     }
 
-    public void setCancelamentoEvento(final NFInfoEventoCancelamento cancelamentoEvento) {
+    public void setCancelamentoEvento(final NFInfoCancelamentoEvento cancelamentoEvento) {
         this.cancelamentoEvento = cancelamentoEvento;
     }
 
