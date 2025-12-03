@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfse.utils;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.nfse.NFSeConfig;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
@@ -9,7 +10,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class NFSeHttpClient {
+/**
+ * Classe utilitária para realizar requisições HTTP (GET e POST) para serviços de NFSe.
+ */
+public class NFSeHttpClient implements DFLog {
 
     private final NFSeConfig config;
 
@@ -29,9 +33,9 @@ public class NFSeHttpClient {
         return sendGetRequest(uri, HttpResponse.BodyHandlers.ofString());
     }
 
-
     public <T> HttpResponse<T> sendGetRequest(final URI uri, HttpResponse.BodyHandler<T> responseBodyHandler) throws Exception {
         // TODO: Quando atualizar o java, mudar para try with resources
+        this.getLogger().debug("Realizando GET em: {}", uri.toString());
         return HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -47,9 +51,9 @@ public class NFSeHttpClient {
 
     }
 
-
     public HttpResponse<String> sendPostRequest(final URI uri, final String jsonBody) throws Exception {
         // TODO: Quando atualizar o java, mudar para try with resources
+        this.getLogger().debug("Realizando POST em: {}", uri.toString());
         return HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .followRedirects(HttpClient.Redirect.NORMAL)

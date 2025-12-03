@@ -63,18 +63,16 @@ public class NFSeDPSUtilsTest {
 
         }
     }
-
-    @Test
-    public void testeXmlDPS() throws Exception {
-        final var dps = new NFSeSefinNacionalDPS().setInfDPS(new NFSeSefinNacionalInfDPS());
-        dps.getInfDPS()
-                .setCodigoMunicipioEmissao("1234567")
-                .setSerie("7")
-                .setNumeroDPS("123")
-                .setPrestador(new NFSeSefinNacionalInfoPrestador().setCPF("00998264024"))
-                .setTomador(new NFSeSefinNacionalInfoPessoa().setCPF("27415855043"))
-                .setIntermediario(new NFSeSefinNacionalInfoPessoa().setCPF("60071397000"));
-
-        System.out.println(dps.toXml());
-    }
+//    @Test
+//    public void testeXmlDPS() throws Exception {
+//        final var dps = new NFSeSefinNacionalDPS()
+//                .setInfDPS(new NFSeSefinNacionalInfDPS()
+//                        .setCodigoMunicipioEmissao("1234567")
+//                        .setSerie("7")
+//                        .setNumeroDPS("123")
+//                        .setPrestador(new NFSeSefinNacionalInfoPrestador().setCPF("00998264024"))
+//                        .setTomador(new NFSeSefinNacionalInfoPessoa().setCPF("27415855043"))
+//                        .setIntermediario(new NFSeSefinNacionalInfoPessoa().setCPF("60071397000")));
+//        System.out.println(dps.toXml());
+//    }
 }

@@ -1,7 +1,9 @@
 
 package com.fincatto.documentofiscal.nfse.classes.nfsenacional;
 
-import org.simpleframework.xml.*;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -229,8 +231,9 @@ public class NFSeSefinNacionalInfDPS {
     /**
      * @param intermediario informações do intermediário de serviço
      */
-    public void setIntermediario(NFSeSefinNacionalInfoPessoa intermediario) {
+    public NFSeSefinNacionalInfDPS setIntermediario(NFSeSefinNacionalInfoPessoa intermediario) {
         this.intermediario = intermediario;
+        return this;
     }
 
     /**

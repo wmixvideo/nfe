@@ -4,7 +4,9 @@ import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
 import com.fincatto.documentofiscal.nfse.webservices.WSSefinNFSe;
+import com.fincatto.documentofiscal.utils.DFCadeiaCertificadosTest;
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,29 +29,42 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.security.*;
+import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 import java.util.zip.GZIPInputStream;
 
+/**
+ * Classe que realiza os testes das NFSe.
+ * Serve como uma documentação de como utilizar a biblioteca para NFSe.
+ * Para gerar a cadeia de certificados, use o metodo {@link DFCadeiaCertificadosTest#geraCadeiaCertificadoHomologacao()}
+ */
 public class NFSeTest {
 
-    NFSEConfigFake config;
+    private NFSEConfigFake config;
 
     @Before
     public void prepara() {
-        this.config = new NFSEConfigFake(System.getenv("CERTIFICADO_PATH"), System.getenv("CERTIFICADO_SENHA"), System.getenv("CADEIA_CERTIFICADOS_PATH"), System.getenv("CADEIA_CERTIFICADOS_SENHA"));
+        this.config = new NFSEConfigFake(
+                System.getenv("CERTIFICADO_PATH"),
+                System.getenv("CERTIFICADO_SENHA"),
+                System.getenv("CADEIA_CERTIFICADOS_PATH"),
+                System.getenv("CADEIA_CERTIFICADOS_SENHA"));
     }
 
     @Ignore
     @Test
     public void consultaConvenioMunicipioTest() throws Exception {
         System.out.println("Teste de consulta de convênio do município na API de Parâmetros Municipais do Governo Federal");
-        final var codigoDoMunicipio = "4216602";
+        final var codigoDoMunicipio = "4216602"; // SC - São José
         final var consulta = new WSParametrosMunicipais(config).consultaConvenioMunicipio(codigoDoMunicipio);
+        Assert.assertNotNull(consulta);
         System.out.println(consulta);
     }
 
@@ -215,16 +230,16 @@ public class NFSeTest {
     @Test
     public void testeCancelamentoNFSeByChaveAcesso() throws Exception {
         final var evento = new NFSeSefinNacionalPedRegEvt().setInfPedReg(
-            new NFSeSefinNacionalInfPedReg()
-                .setTpAmb(NFSeSefinNacionalTipoAmbiente.HOMOLOGACAO)
-                .setVerAplic("")
-                .setDhEvento(ZonedDateTime.of(2025, 10, 30, 15, 59, 19, 0, ZoneId.of("-03:00")))
-                .setCNPJAutor("")
-                .setChaveAcessoNFSE("")
-                .setNPedRegEvento("1")
-                .setEvento(new NFSeSefinNacionalInfPedRegTE101101()
-                    .setcMotivo(NFSeSefinNacionalTSCodJustCanc.OUTROS)
-                    .setxMotivo("Cancelamento de NFSe para testes"))
+                new NFSeSefinNacionalInfPedReg()
+                        .setTpAmb(NFSeSefinNacionalTipoAmbiente.HOMOLOGACAO)
+                        .setVerAplic("")
+                        .setDhEvento(ZonedDateTime.of(2025, 10, 30, 15, 59, 19, 0, ZoneId.of("-03:00")))
+                        .setCNPJAutor("")
+                        .setChaveAcessoNFSE("")
+                        .setNPedRegEvento("1")
+                        .setEvento(new NFSeSefinNacionalInfPedRegTE101101()
+                                .setcMotivo(NFSeSefinNacionalTSCodJustCanc.OUTROS)
+                                .setxMotivo("Cancelamento de NFSe para testes"))
         );
 
         new WSSefinNFSe(config).enviarPedidoRegistroEvento(evento);

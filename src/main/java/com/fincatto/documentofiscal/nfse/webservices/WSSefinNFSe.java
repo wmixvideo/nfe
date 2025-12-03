@@ -17,9 +17,9 @@ import java.util.Base64;
 public class WSSefinNFSe implements DFLog {
 
     // todo: adicionar URL de produção quando liberar
-    //    public static final String URL_BASE_SEFINNACIONAL = "https://sefin.nfse.gov.br/sefinnacional";
-    public static final String URL_BASE_HOMOLOGACAO_SEFINNACIONAL = "https://sefin.producaorestrita.nfse.gov.br/sefinnacional";
-    public static final String URL_HOMOLOGACAO_NFSE = URL_BASE_HOMOLOGACAO_SEFINNACIONAL + "/nfse";
+    public static final String URL_BASE_PRODUCAO = "https://sefin.nfse.gov.br/sefinnacional";
+    public static final String URL_BASE_HOMOLOGACAO = "https://sefin.producaorestrita.nfse.gov.br/sefinnacional";
+    private static final String URL_HOMOLOGACAO_NFSE = URL_BASE_HOMOLOGACAO + "/nfse";
 
     private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeConfig config;
