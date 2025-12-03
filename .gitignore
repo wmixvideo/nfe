@@ -8,3 +8,5 @@ target/
 bin/
 release.properties
 pom.xml.releaseBackup
+.mvn
+.mvn/*

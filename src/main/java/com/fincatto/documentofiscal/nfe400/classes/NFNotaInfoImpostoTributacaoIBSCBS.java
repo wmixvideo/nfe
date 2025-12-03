@@ -25,10 +25,11 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     
     CST_200("200", "Al\u00edquota reduzida",
     		 UM, ZERO, UM, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
-    
+
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
     CST_210("210", "Redu\u00e7\u00e3o de al\u00edquota com redutor de base de c\u00e1lculo",
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
-    
+
     CST_220("220", "Al\u00edquota fixa",
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
@@ -46,6 +47,9 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     
     CST_510("510", "Diferimento",
     		 UM, ZERO, ZERO, UM, ZERO, SIM, SIM, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
+
+    CST_515("515", "Diferimento com redução de alíquota",
+            UM, ZERO, UM, UM, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_550("550", "Suspens\u00e3o",
     		 UM, ZERO, ZERO, ZERO, ZERO, SIM, NAO, NAO, NAO, NAO, NAO, SIM, NAO, SIM),
@@ -56,8 +60,11 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     CST_800("800", "Transfer\u00eancia de cr\u00e9dito",
     		ZERO, ZERO, ZERO, ZERO, UM, SIM, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
-    CST_810("810", "Ajustes",
-    		 null, null, null, null, null, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+    CST_810("810", "Ajuste de IBS na ZFM",
+    		 ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
+
+    CST_811("811", "Ajustes",
+    		 ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO),
     
     CST_820("820", "Tributa\u00e7\u00e3o em declara\u00e7\u00e3o de regime espec\u00edfico",
     		ZERO, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
@@ -72,17 +79,21 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     private final Integer indGRed;
     private final Integer indGDif;
     private final Integer indGTransfCred;
-    private final boolean indNFe;
-    private final boolean indNFCe;
-    private final boolean indCTe;
-    private final boolean indCteOS;
-    private final boolean indBPe;
-    private final boolean indBPeTM;
-    private final boolean indNF3e;
-    private final boolean indNFCom;
-    private final boolean indNFSe;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFe;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFCe;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indCTe;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indCteOS;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indBPe;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indBPeTM;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNF3e;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFCom;
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFSe;
 
-    private NFNotaInfoImpostoTributacaoIBSCBS(String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif, Integer indGTransfCred, boolean indNFe, boolean indNFCe, boolean indCTe, boolean indCteOS, boolean indBPe, boolean indBPeTM, boolean indNF3e, boolean indNFCom, boolean indNFSe) {
+    private NFNotaInfoImpostoTributacaoIBSCBS(
+            String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif,
+            Integer indGTransfCred, boolean indNFe, boolean indNFCe, boolean indCTe, boolean indCteOS, boolean indBPe,
+            boolean indBPeTM, boolean indNF3e, boolean indNFCom, boolean indNFSe
+    ) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.indGIBSCBS = indGIBSCBS;

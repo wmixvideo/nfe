@@ -24,6 +24,8 @@ public class NFNotaInfoImpostoTributacaoIBSCBSTest {
 		Assert.assertEquals("810", NFNotaInfoImpostoTributacaoIBSCBS.CST_810.getCodigo());
 		Assert.assertEquals("820", NFNotaInfoImpostoTributacaoIBSCBS.CST_820.getCodigo());
 		Assert.assertEquals("830", NFNotaInfoImpostoTributacaoIBSCBS.CST_830.getCodigo());
+		Assert.assertEquals("811", NFNotaInfoImpostoTributacaoIBSCBS.CST_811.getCodigo());
+		Assert.assertEquals("515", NFNotaInfoImpostoTributacaoIBSCBS.CST_515.getCodigo());
 	}
 	
     @Test
@@ -42,7 +44,8 @@ public class NFNotaInfoImpostoTributacaoIBSCBSTest {
     	Assert.assertEquals("Suspensão", NFNotaInfoImpostoTributacaoIBSCBS.CST_550.getDescricao());
     	Assert.assertEquals("Tributação monofásica", NFNotaInfoImpostoTributacaoIBSCBS.CST_620.getDescricao());
     	Assert.assertEquals("Transferência de crédito", NFNotaInfoImpostoTributacaoIBSCBS.CST_800.getDescricao());
-    	Assert.assertEquals("Ajustes", NFNotaInfoImpostoTributacaoIBSCBS.CST_810.getDescricao());
+    	Assert.assertEquals("Ajuste de IBS na ZFM", NFNotaInfoImpostoTributacaoIBSCBS.CST_810.getDescricao());
+    	Assert.assertEquals("Ajustes", NFNotaInfoImpostoTributacaoIBSCBS.CST_811.getDescricao());
     	Assert.assertEquals("Tributação em declaração de regime específico", NFNotaInfoImpostoTributacaoIBSCBS.CST_820.getDescricao());
         Assert.assertEquals("Exclusão de base de cálculo", NFNotaInfoImpostoTributacaoIBSCBS.CST_830.getDescricao());
     }
@@ -65,5 +68,7 @@ public class NFNotaInfoImpostoTributacaoIBSCBSTest {
     	Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBS.CST_810, NFNotaInfoImpostoTributacaoIBSCBS.valueOfCodigo("810"));
     	Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBS.CST_820, NFNotaInfoImpostoTributacaoIBSCBS.valueOfCodigo("820"));
         Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBS.CST_830, NFNotaInfoImpostoTributacaoIBSCBS.valueOfCodigo("830"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBS.CST_515, NFNotaInfoImpostoTributacaoIBSCBS.valueOfCodigo("515"));
+        Assert.assertEquals(NFNotaInfoImpostoTributacaoIBSCBS.CST_811, NFNotaInfoImpostoTributacaoIBSCBS.valueOfCodigo("811"));
     }
 }
