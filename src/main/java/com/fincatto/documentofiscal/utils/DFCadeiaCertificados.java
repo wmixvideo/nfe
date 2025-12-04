@@ -33,36 +33,31 @@ public abstract class DFCadeiaCertificados implements DFLog {
 //                // Para NFe...
 //                final String urlNF = aut.getNfeStatusServico(ambiente);
 //                if (StringUtils.isNotBlank(urlNF)) {
-//                    final String host = new URI(urlNF).getHost();
-//                    DFCadeiaCertificados.get(keyStore, host);
+//                    DFCadeiaCertificados.get(keyStore, urlNF);
 //                }
 //
 //                // Para NFCe...
 //                final String urlNFC = aut.getNfceStatusServico(ambiente);
 //                if (StringUtils.isNotBlank(urlNFC)) {
-//                    final String host = new URI(urlNFC).getHost();
-//                    DFCadeiaCertificados.get(keyStore, host);
+//                    DFCadeiaCertificados.get(keyStore, urlNFC);
 //                }
 //            }
 //
 //            //URLs especificas do AN (www.fazenda.gov.br e www1.fazenda.gov.br)
 //            final String urlNF1 = NFAutorizador400.AN.getRecepcaoEventoAN(ambiente);
 //            if (StringUtils.isNotBlank(urlNF1)) {
-//                final String host = new URI(urlNF1).getHost();
-//                DFCadeiaCertificados.get(keyStore, host);
+//                DFCadeiaCertificados.get(keyStore, urlNF1);
 //            }
 //            final String urlNF2 = NFAutorizador400.AN.getNFeDistribuicaoDFe(ambiente);
 //            if (StringUtils.isNotBlank(urlNF2)) {
-//                final String host = new URI(urlNF2).getHost();
-//                DFCadeiaCertificados.get(keyStore, host);
+//                DFCadeiaCertificados.get(keyStore, urlNF2);
 //            }
 //
 //            // MDFE
 //            for (final MDFAutorizador3 aut : MDFAutorizador3.values()) {
 //                final String urlMDFe = aut.getMDFeStatusServico(ambiente);
 //                if (StringUtils.isNotBlank(urlMDFe)) {
-//                    final String host = new URI(urlMDFe).getHost();
-//                    DFCadeiaCertificados.get(keyStore, host);
+//                    DFCadeiaCertificados.get(keyStore, urlMDFe);
 //                }
 //            }
 //
@@ -70,8 +65,7 @@ public abstract class DFCadeiaCertificados implements DFLog {
 //            for (final CTAutorizador31 aut : CTAutorizador31.values()) {
 //                final String urlCTe = aut.getCteStatusServico(ambiente);
 //                if (StringUtils.isNotBlank(urlCTe)) {
-//                    final String host = new URI(urlCTe).getHost();
-//                    DFCadeiaCertificados.get(keyStore, host);
+//                    DFCadeiaCertificados.get(keyStore, urlCTe);
 //                }
 //            }
 //
@@ -79,16 +73,15 @@ public abstract class DFCadeiaCertificados implements DFLog {
 //            for (final CTAutorizador400 aut : CTAutorizador400.values()) {
 //                final String urlCTe = aut.getCteStatusServico(ambiente);
 //                if (StringUtils.isNotBlank(urlCTe)) {
-//                    final String host = new URI(urlCTe).getHost();
-//                    DFCadeiaCertificados.get(keyStore, host);
+//                    DFCadeiaCertificados.get(keyStore, urlCTe);
 //                }
 //            }
 
             // NFSe
-//            DFCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_PRODUCAO);
-//            DFCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_HOMOLOGACAO);
-//            DFCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_PRODUCAO);
-//            DFCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_HOMOLOGACAO);
+            DFCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_PRODUCAO);
+            DFCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_HOMOLOGACAO);
+            DFCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_PRODUCAO);
+            DFCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_HOMOLOGACAO);
             DFCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_PRODUCAO);
             DFCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_HOMOLOGACAO);
 
@@ -98,7 +91,10 @@ public abstract class DFCadeiaCertificados implements DFLog {
         }
     }
 
-    private static void get(final KeyStore keyStore, final String host) throws Exception {
+    private static void get(final KeyStore keyStore, final String url) throws Exception {
+        // obtém o host a partir da URL fornecida - necessário para abrir a conexão SSL
+        final var host = new URI(url).getHost();
+
         final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(keyStore);
 
