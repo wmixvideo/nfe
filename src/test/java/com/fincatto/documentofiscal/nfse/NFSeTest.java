@@ -29,10 +29,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -66,6 +68,7 @@ public class NFSeTest implements DFLog {
         final var codigoDoMunicipio = "4216602"; // SC - São José
         final var consulta = new WSParametrosMunicipais(config).consultaConvenioMunicipio(codigoDoMunicipio);
         Assert.assertNotNull(consulta);
+        Assert.assertEquals("Parâmetros do convênio recuperados com sucesso.", consulta.getMensagem());
         Assert.assertTrue(consulta.getParametrosConvenio().isAderenteAmbienteNacional());
         Assert.assertFalse(consulta.getParametrosConvenio().isAderenteEmissorNacional());
         Assert.assertFalse(consulta.getParametrosConvenio().isAderenteMAN());
@@ -77,12 +80,21 @@ public class NFSeTest implements DFLog {
     @Ignore
     @Test
     public void consultaAliquotaMunicipioServicoCompetenciaTest() throws Exception {
-        System.out.println("Teste de consulta de alíquota do município para um serviço e competência na API de Parâmetros Municipais do Governo Federal");
-        final var codigoDoMunicipio = "4216602";
-        final var codigoDoServico = "31.01.04.000";
+        getLogger().info("Teste de consulta de alíquota do município para um serviço e competência na API de Parâmetros Municipais do Governo Federal");
+        final var codigoDoMunicipio = "4216602"; // SC - São José
+        final var codigoDoServico = "31.01.04.000"; // Serviços técnicos em telecomunicações e congêneres
         final var dataCompetencia = LocalDate.now();
         final var consulta = new WSParametrosMunicipais(config).consultaAliquotaMunicipioServicoCompetencia(codigoDoMunicipio, codigoDoServico, dataCompetencia);
-        System.out.println(consulta);
+        Assert.assertNotNull(consulta);
+        Assert.assertEquals("Alíquotas recuperadas com sucesso.", consulta.getMensagem());
+        Assert.assertNotNull(consulta.getAliquotas());
+        Assert.assertEquals(1, consulta.getAliquotas().size());
+        Assert.assertNotNull(consulta.getAliquotas().get(codigoDoServico));
+        Assert.assertNotNull(consulta.getAliquotas().get(codigoDoServico).get(0));
+        Assert.assertEquals(new BigDecimal("3"), consulta.getAliquotas().get(codigoDoServico).get(0).getAliq());
+        Assert.assertEquals(LocalDateTime.of(2024, 5, 2, 0, 0, 0), consulta.getAliquotas().get(codigoDoServico).get(0).getDtIni());
+        Assert.assertNull(consulta.getAliquotas().get(codigoDoServico).get(0).getDtFim());
+        getLogger().info(consulta.toString());
     }
 
     @Ignore

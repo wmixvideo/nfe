@@ -32,7 +32,7 @@ public class WSParametrosMunicipais implements DFLog {
     public NFSeParametrosMunicipaisConvenioResponse consultaConvenioMunicipio(final String codigoMunicipio) throws Exception {
         final var url = new URI(String.format("%s/%s/convenio", URL_BASE_PRODUCAO, codigoMunicipio));
         final var response = new NFSeHttpClient(config).sendGetRequest(url);
-        getLogger().info(response.body());
+        this.getLogger().info(response.body());
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisConvenioResponse.class);
     }
 
@@ -49,6 +49,7 @@ public class WSParametrosMunicipais implements DFLog {
         final var competenciaFormatada = formataCompetencia(competencia);
         final var url = new URI(String.format("%s/%s/%s/%s/aliquota", URL_BASE_PRODUCAO, codigoMunicipio, codigoServico, competenciaFormatada));
         final var response = new NFSeHttpClient(config).sendGetRequest(url);
+        this.getLogger().info(response.body());
         return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisAliquotasResponse.class);
     }
 
