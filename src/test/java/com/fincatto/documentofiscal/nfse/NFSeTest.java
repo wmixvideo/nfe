@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.nfse;
 
+import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.nfse.classes.nfsenacional.*;
 import com.fincatto.documentofiscal.nfse.webservices.WSDANFSe;
 import com.fincatto.documentofiscal.nfse.webservices.WSParametrosMunicipais;
@@ -45,7 +46,7 @@ import java.util.zip.GZIPInputStream;
  * Serve como uma documentação de como utilizar a biblioteca para NFSe.
  * Para gerar a cadeia de certificados, use o metodo {@link DFCadeiaCertificadosTest#geraCadeiaCertificadoHomologacao()}
  */
-public class NFSeTest {
+public class NFSeTest implements DFLog {
 
     private NFSEConfigFake config;
 
@@ -61,11 +62,16 @@ public class NFSeTest {
     @Ignore
     @Test
     public void consultaConvenioMunicipioTest() throws Exception {
-        System.out.println("Teste de consulta de convênio do município na API de Parâmetros Municipais do Governo Federal");
+        getLogger().info("Teste de consulta de convênio do município na API de Parâmetros Municipais do Governo Federal");
         final var codigoDoMunicipio = "4216602"; // SC - São José
         final var consulta = new WSParametrosMunicipais(config).consultaConvenioMunicipio(codigoDoMunicipio);
         Assert.assertNotNull(consulta);
-        System.out.println(consulta);
+        Assert.assertTrue(consulta.getParametrosConvenio().isAderenteAmbienteNacional());
+        Assert.assertFalse(consulta.getParametrosConvenio().isAderenteEmissorNacional());
+        Assert.assertFalse(consulta.getParametrosConvenio().isAderenteMAN());
+        Assert.assertTrue(consulta.getParametrosConvenio().isPermiteAproveitametoDeCreditos());
+        Assert.assertEquals(1, consulta.getParametrosConvenio().getSituacaoEmissaoPadraoContribuintesRFB());
+        getLogger().info(consulta.toString());
     }
 
     @Ignore

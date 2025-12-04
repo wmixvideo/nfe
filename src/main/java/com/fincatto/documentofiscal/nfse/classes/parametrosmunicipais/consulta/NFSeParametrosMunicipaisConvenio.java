@@ -2,54 +2,47 @@ package com.fincatto.documentofiscal.nfse.classes.parametrosmunicipais.consulta;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = false)
 public class NFSeParametrosMunicipaisConvenio {
     @JsonProperty("aderenteAmbienteNacional")
-    private Integer aderenteAmbienteNacional;
+    @JsonDeserialize(using = NFSeParametrosMunicipaisBooleanJsonDeserialize.class)
+    private boolean aderenteAmbienteNacional;
 
     @JsonProperty("aderenteEmissorNacional")
-    private Integer aderenteEmissorNacional;
+    @JsonDeserialize(using = NFSeParametrosMunicipaisBooleanJsonDeserialize.class)
+    private boolean aderenteEmissorNacional;
 
     @JsonProperty("situacaoEmissaoPadraoContribuintesRFB")
-    private Integer situacaoEmissaoPadraoContribuintesRFB;
+    private int situacaoEmissaoPadraoContribuintesRFB;
 
     @JsonProperty("aderenteMAN")
-    private Integer aderenteMAN;
+    @JsonDeserialize(using = NFSeParametrosMunicipaisBooleanJsonDeserialize.class)
+    private boolean aderenteMAN;
 
     @JsonProperty("permiteAproveitametoDeCreditos")
-    private Boolean permiteAproveitametoDeCreditos;
+    @JsonDeserialize(using = NFSeParametrosMunicipaisBooleanJsonDeserialize.class)
+    private boolean permiteAproveitametoDeCreditos;
 
-    public Integer getAderenteAmbienteNacional() {
+    public boolean isAderenteAmbienteNacional() {
         return aderenteAmbienteNacional;
     }
 
-    public void setAderenteAmbienteNacional(Integer aderenteAmbienteNacional) {
-        this.aderenteAmbienteNacional = aderenteAmbienteNacional;
-    }
-
-    public Integer getAderenteEmissorNacional() {
+    public boolean isAderenteEmissorNacional() {
         return aderenteEmissorNacional;
     }
 
-    public void setAderenteEmissorNacional(Integer aderenteEmissorNacional) {
-        this.aderenteEmissorNacional = aderenteEmissorNacional;
+    public int getSituacaoEmissaoPadraoContribuintesRFB() {
+        return situacaoEmissaoPadraoContribuintesRFB;
     }
 
-    public Integer getAderenteMAN() {
+    public boolean isAderenteMAN() {
         return aderenteMAN;
     }
 
-    public void setAderenteMAN(Integer aderenteMAN) {
-        this.aderenteMAN = aderenteMAN;
-    }
-
-    public Boolean getPermiteAproveitametoDeCreditos() {
+    public boolean isPermiteAproveitametoDeCreditos() {
         return permiteAproveitametoDeCreditos;
-    }
-
-    public void setPermiteAproveitametoDeCreditos(Boolean permiteAproveitametoDeCreditos) {
-        this.permiteAproveitametoDeCreditos = permiteAproveitametoDeCreditos;
     }
 
     @Override

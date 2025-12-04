@@ -12,16 +12,18 @@ import java.io.File;
 public class DFCadeiaCertificadosTest {
 
     @Test
+    @Ignore("Geracao de cacerts de homologacao. Executar sob demanda.")
     public void geraCadeiaCertificadoHomologacao() throws Exception {
         final byte[] cadeia = DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMOLOGACAO, "senha");
-        FileUtils.writeByteArrayToFile(new File("/tmp/homologacao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMOLOGACAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/cacerts_homologacao.jks"), cadeia);
         Assert.assertTrue(cadeia.length > 0);
     }
 
     @Test
+    @Ignore("Geracao de cacerts de producao. Executar sob demanda.")
     public void geraCadeiaCertificadoProducao() throws Exception {
         final byte[] cadeia = DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha");
-        FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
+        FileUtils.writeByteArrayToFile(new File("/tmp/cacerts_producao.jks"), cadeia);
         Assert.assertTrue(cadeia.length > 0);
     }
 }
