@@ -25,19 +25,20 @@ class WSCancelametoEvento implements DFLog {
     private static final String DESCRICAO_EVENTO = "Cancelamento de Evento";
     private static final String CODIGO_EVENTO = "110001";
     private final NFeConfig config;
+
     WSCancelametoEvento(NFeConfig config) {
         this.config = config;
     }
 
     NFEnviaEventoRetorno cancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) throws Exception {
-        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosCancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar,ufEmitenteEvento).toString();
+        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosCancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
         final OMElement omElementResult = this.efetuaCancelamentoevento(xmlAssinado, chaveAcesso);
 
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private NFEnviaEventoCancelamentoEvento gerarDadosCancelamentoEvento (final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) {
+    private NFEnviaEventoCancelamentoEvento gerarDadosCancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) {
         final NFInfoCancelamentoEvento cancelamentoEvento = new NFInfoCancelamentoEvento();
         cancelamentoEvento.setDescricaoEvento(WSCancelametoEvento.DESCRICAO_EVENTO);
         cancelamentoEvento.setVersao(WSCancelametoEvento.VERSAO_LEIAUTE);
@@ -92,4 +93,3 @@ class WSCancelametoEvento implements DFLog {
         return omElementResult;
     }
 }
-;
