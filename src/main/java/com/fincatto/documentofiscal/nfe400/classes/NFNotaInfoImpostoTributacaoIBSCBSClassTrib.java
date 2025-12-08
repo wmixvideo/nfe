@@ -16,11 +16,14 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_400;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_410;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_510;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_515;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_550;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_620;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_800;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_810;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_811;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_820;
+import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_830;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.ZERO;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.UM;
@@ -33,7 +36,6 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.CEM;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.S;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBSClassTrib.IND.NA_SN;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_830;
 import static java.time.LocalDate.of;
 
 import java.time.LocalDate;
@@ -242,13 +244,17 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	CST_200052("200052", CST_200, "Presta\u00e7\u00e3o de servi\u00e7os de profiss\u00f5es intelectuais", 
 				"Art. 127, I a XVIII", PADRAO, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
+
+    // CST_210
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
 	CST_210001("210001", CST_210, "Redutor social aplicado uma \u00fanica vez na aliena\u00e7\u00e3o de bem im\u00f3vel residencial novo",
 				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
+
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
 	CST_210002("210002", CST_210, "Redutor social aplicado uma \u00fanica vez na aliena\u00e7\u00e3o de lote residencial",
 				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
+
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
 	CST_210003("210003", CST_210, "Redutor social em opera\u00e7\u00f5es de loca\u00e7\u00e3o, cess\u00e3o onerosa e arrendamento de bens im\u00f3veis de uso residencial",
 				"Art. 260", PADRAO, NA, SETENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
@@ -337,18 +343,31 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	
 	CST_410021("410021", CST_410, "Contribui\u00e7\u00e3o de que trata o art. 149-A da Constitui\u00e7\u00e3o Federal",
 				"Art. 12 § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, NA, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
-	
-	CST_410999("410999", CST_410, "Opera\u00e7\u00f5es n\u00e3o onerosas sem previs\u00e3o de tributa\u00e7\u00e3o, n\u00e3o especificadas anteriormente",
+
+    CST_410026("410026", CST_410, "Doa\u00e7\u00e3o com anula\u00e7\u00e3o de cr\u00e9dito",
+            "Art. 6º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410029("410029", CST_410, "Opera\u00e7\u00f5es acobertadas somente pelo ICMS",
+            "Art. 4º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410030("410030", CST_410, "Estorno de cr\u00e9dito por perecimento, deterioriza\u00e7\u00e3o, roubo, furto ou extravio",
+            "Art. 47, § 6º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    CST_410999("410999", CST_410, "Opera\u00e7\u00f5es n\u00e3o onerosas sem previs\u00e3o de tributa\u00e7\u00e3o, n\u00e3o especificadas anteriormente",
 				"Art. 4º, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 6, 11)),
 	
 	// CST_510
 	CST_510001("510001", CST_510, "Opera\u00e7\u00f5es, sujeitas a diferimento, com energia el\u00e9trica, relativas \u00e0 gera\u00e7\u00e3o, comercializa\u00e7\u00e3o, distribui\u00e7\u00e3o e transmiss\u00e3o",
 				"Art. 28, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
-	CST_510002("510002", CST_510, "Opera\u00e7\u00f5es, sujeitas a diferimento, com insumos agropecu\u00e1rios e aqu\u00edcolas destinados a produtor rural contribuinte (Anexo IX)",
-				"Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
-	// CST_550
+
+    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
+    CST_510002("510002", CST_510, "Opera\u00e7\u00f5es, sujeitas a diferimento, com insumos agropecu\u00e1rios e aqu\u00edcolas destinados a produtor rural contribuinte (Anexo IX)",
+            "Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+
+    // CST_515
+    CST_515001("515001", CST_515, "Opera\u00e7\u00f5es, sujeitas a diferimento, com insumos agropecu\u00e1rios e aqu\u00edcolas destinados a produtor rural n\u00e3o contribuinte (Anexo IX)",
+            "Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
+    // CST_550
 	CST_550001("550001", CST_550, "Exporta\u00e7\u00f5es de bens materiais",
 				"Art. 82", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
@@ -438,8 +457,19 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	// CST_810
 	CST_810001("810001", CST_810, "Cr\u00e9dito presumido sobre o valor apurado nos fornecimentos a partir da ZFM",
 				"Art. 450", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-	
-	// CST_820
+
+    // CST_811
+    CST_811001("811001", CST_811, "Anula\u00e7\u00e3o de Cr\u00e9dito por Sa\u00eddas Imunes/Isentas",
+            "Art. 51", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 10, 3)),
+
+    CST_811002("811002", CST_811, "D\u00e9bitos de notas fiscais n\u00e3o processadas na apura\u00e7\u00e3o",
+            "Art. 51", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 10, 3)),
+
+    CST_811003("811003", CST_811, "Desenquadramento do Simples Nacional",
+            "Art. 51", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, UM, NA, NA, NA, NA, null, null, of(2025, 10, 3)),
+
+
+    // CST_820
 	CST_820001("820001", CST_820, "Documento com informa\u00e7\u00f5es de fornecimento de servi\u00e7os de planos de assist\u00eancia \u00e0 sa\u00fade",
 				"Art. 235", SEM_ALIQUOTA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 	
