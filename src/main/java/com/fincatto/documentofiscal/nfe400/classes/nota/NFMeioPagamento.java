@@ -21,6 +21,7 @@ public enum NFMeioPagamento {
 	CREDITO_EM_LOJA("21", "Cr\u00e9dito em Loja"),
 	PAGAMENTO_ELETRONICO_NAO_INFORMADO("22", "Pagamento Eletr\u00f4nico n\u00e3o Informado"),
 	SEM_PAGAMENTO("90", "Sem pagamento"),
+	PAGAMENTO_POSTERIOR("91", "Pagamento Posterior"),
 	OUTRO("99", "Outro");
 
 	private final String codigo;
