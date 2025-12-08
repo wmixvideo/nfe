@@ -28,6 +28,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
   @Element(name = "cClassTrib", required = true)
   private String cClassTrib;
 
+  @Element(name = "indDoacao", required = false)
+  private String indDoacao;
+
   @Element(name = "gIBSCBS", required = false)
   private TCIBS gIBSCBS;
 
@@ -45,6 +48,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
   public void setCClassTrib(String cClassTrib) {
     this.cClassTrib = cClassTrib;
+  }
+
+  public String getIndDoacao() {
+    return indDoacao;
+  }
+
+  public void setIndDoacao(String indDoacao) {
+    this.indDoacao = indDoacao;
   }
 
   public TCIBS getGIBSCBS() {
@@ -76,14 +87,11 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Element()
     private CTeTTribRegular gTribRegular;
 
-    @Element(name = "gIBSCredPres")
-    private CTeTCredPres gIBSCredPres;
-
-    @Element(name = "gCBSCredPres")
-    private CTeTCredPres gCBSCredPres;
-
     @Element()
     private CTeTTribCompraGov gTribCompraGov;
+
+    @Element()
+    private CTeTTribEstornoCred gEstornoCred;
 
     public String getVBC() {
       return vBC;
@@ -125,28 +133,20 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
       this.gTribRegular = gTribRegular;
     }
 
-    public CTeTCredPres getGIBSCredPres() {
-      return gIBSCredPres;
-    }
-
-    public void setGIBSCredPres(CTeTCredPres gIBSCredPres) {
-      this.gIBSCredPres = gIBSCredPres;
-    }
-
-    public CTeTCredPres getGCBSCredPres() {
-      return gCBSCredPres;
-    }
-
-    public void setGCBSCredPres(CTeTCredPres gCBSCredPres) {
-      this.gCBSCredPres = gCBSCredPres;
-    }
-
     public CTeTTribCompraGov getGTribCompraGov() {
       return gTribCompraGov;
     }
 
     public void setGTribCompraGov(CTeTTribCompraGov gTribCompraGov) {
       this.gTribCompraGov = gTribCompraGov;
+    }
+
+    public CTeTTribEstornoCred getGEstornoCred() {
+      return gEstornoCred;
+    }
+
+    public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
+      this.gEstornoCred = gEstornoCred;
     }
 
     @Root(name = "gIBSUF")

@@ -26,7 +26,6 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class WSFacade {
 
@@ -43,6 +42,7 @@ public class WSFacade {
     private final WSEpec wsEpec;
     private final WSAtualizacaoDataPrevisaoEntrega wsAtualizacaoDataPrevisaoEntrega;
     private final WSAceiteDebitoApuracao wsAceiteDebitoAPuracao;
+    private final WSCancelametoEvento wsCancelametoEvento;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -61,6 +61,7 @@ public class WSFacade {
         this.wsEpec = new WSEpec(config);
         this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config);
         this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config);
+        this.wsCancelametoEvento = new WSCancelametoEvento(config);
     }
 
     /**
@@ -411,5 +412,9 @@ public class WSFacade {
 
     public NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento) throws Exception {
         return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento);
+    }
+
+    public NFEnviaEventoRetorno cancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) throws Exception {
+        return this.wsCancelametoEvento.cancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento);
     }
 }
