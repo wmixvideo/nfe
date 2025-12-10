@@ -322,17 +322,4 @@
             </build>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>maven-releases</name>
-            <url>https://supbs.ddns.net/nexus/repository/maven-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <name>maven-snapshots</name>
-            <url>https://supbs.ddns.net/nexus/repository/maven-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
