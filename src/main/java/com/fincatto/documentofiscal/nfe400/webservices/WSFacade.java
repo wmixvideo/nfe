@@ -223,7 +223,7 @@ public class WSFacade {
     }
 
     /**
-     * Faz o cancelamento da nota.
+     * Faz o cancelamento da nota. com sequencial fixo 1
      *
      * @param chave chave de acesso da nota
      * @param numeroProtocolo numero do protocolo da nota
@@ -233,7 +233,22 @@ public class WSFacade {
      * o sefaz
      */
     public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
-        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
+        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo, 1);
+    }
+
+    /**
+     * Faz o cancelamento da nota. Com opção de passar o numero sequencial do evento
+     *
+     * @param chave chave de acesso da nota
+     * @param numeroProtocolo numero do protocolo da nota
+     * @param motivo motivo do cancelamento
+     * @param numeroSequencial numero sequencial do evento informado
+     * @return dados do cancelamento da nota retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     */
+    public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo, final int numeroSequencial) throws Exception {
+        return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo, numeroSequencial);
     }
 
     /**
