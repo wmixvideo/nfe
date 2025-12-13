@@ -1,0 +1,25 @@
+package com.fincatto.documentofiscal.nfe400.classes.evento.detevento.alczfmimportacao.imobilizacao;
+
+import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.NFDetEvento;
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+import java.util.List;
+
+@Root(name = "detEvento")
+public class NFDetEventoImportacaoALCZFMNaoConvertidaIsencao extends NFDetEvento implements INFDetEvento {
+
+    @Element(name = "gConsumo")
+    private List<NFDetGrupoConsumoZFM> gruposConsumo;
+
+    public List<NFDetGrupoConsumoZFM> getGruposConsumo() {
+        return gruposConsumo;
+    }
+
+    public void setGruposConsumo(List<NFDetGrupoConsumoZFM> gruposItemNaoInformado) {
+        DFListValidador.tamanho990(gruposItemNaoInformado, "Grupos de itens de consumo");
+        this.gruposConsumo = gruposItemNaoInformado;
+    }
+}

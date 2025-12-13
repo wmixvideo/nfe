@@ -90,4 +90,8 @@ public abstract class DFBigDecimalValidador {
         valor = valor.round(new MathContext(valor.precision(), RoundingMode.UNNECESSARY));
         return new DecimalFormat(formato, DecimalFormatSymbols.getInstance(Locale.US)).format(valor);
     }
+
+    public static void tamanho3Com4CasasDecimais(BigDecimal valor, String info) {
+        DFBigDecimalValidador.parse(valor, "0.00##", 3, 4, info);
+    }
 }

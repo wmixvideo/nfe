@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
@@ -10,7 +11,7 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 
 @Root(strict = false)
-public class NFTipoEvento extends DFBase {
+public class NFTipoEvento extends DFBase implements INFDetEvento {
 
     private static final long serialVersionUID = 172979194017130488L;
 
