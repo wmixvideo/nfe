@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.detevento;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFTipoEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
@@ -12,7 +13,7 @@ import org.simpleframework.xml.Root;
 import java.math.BigDecimal;
 
 @Root(name = "detEvento")
-public abstract class NFDetEvento extends DFBase implements INFDetEvento{
+public abstract class NFDetEvento extends NFTipoEvento {
 
     @Attribute(name = "versao")
     private String versao;

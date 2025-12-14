@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "detEvento")
-public class NFDetEventoInfoEfetPagIntegral extends NFDetEvento implements INFDetEvento {
+public class NFDetEventoInfoEfetPagIntegral extends NFDetEvento {
 
     @Element(name = "indQuitacao")
     private int indicadorQuitacao;

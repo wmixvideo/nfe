@@ -10,7 +10,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFInfoEvento;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.NFDetEvento;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
@@ -60,10 +60,10 @@ abstract class AbstractWSEvento implements DFLog {
      * {@link NFEvento}
      * {@link NFInfoEvento}
      *
-     * @param detEvento            Detalhes específicos do evento.
+     * @param detEvento Detalhes específicos do evento.
      * @return Objeto NFEnviaEvento com os dados padrão preenchidos.
      */
-    protected NFEnviaEvento gerarDadosPaiXml(INFDetEvento detEvento) {
+    protected NFEnviaEvento gerarDadosPaiXml(NFDetEvento detEvento) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(this.chaveAcesso);
         final NFInfoEvento infoEvento = new NFInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());

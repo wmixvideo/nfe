@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.NFDetEvento;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -47,7 +47,7 @@ public class NFInfoEvento extends DFBase {
     private String versaoEvento;
 
     @Element(name = "detEvento")
-    private INFDetEvento dadosEvento;
+    private NFTipoEvento dadosEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
@@ -131,11 +131,11 @@ public class NFInfoEvento extends DFBase {
         return this.versaoEvento;
     }
 
-    public INFDetEvento getDadosEvento() {
+    public NFTipoEvento getDadosEvento() {
         return this.dadosEvento;
     }
 
-    public void setDadosEvento(final INFDetEvento evento) {
+    public void setDadosEvento(final NFTipoEvento evento) {
         this.dadosEvento = evento;
     }
 

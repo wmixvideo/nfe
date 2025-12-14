@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.detevento.apropriacaocomb;
 
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.NFDetEvento;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import org.simpleframework.xml.ElementList;
@@ -9,7 +8,7 @@ import org.simpleframework.xml.Root;
 import java.util.List;
 
 @Root(name = "detEvento")
-public class NFDetEventoSolicitacaoApropriacaoCreditoCombustivel extends NFDetEvento implements INFDetEvento {
+public class NFDetEventoSolicitacaoApropriacaoCreditoCombustivel extends NFDetEvento {
 
     @ElementList(name = "gConsumoComb")
     private List<NFDetGrupoConsumoCombustivel> gruposConsumoCombustivel;

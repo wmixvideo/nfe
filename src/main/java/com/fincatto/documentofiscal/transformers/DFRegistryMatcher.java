@@ -7,7 +7,6 @@ import java.time.YearMonth;
 import java.time.ZonedDateTime;
 
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.INFDetEvento;
 import com.fincatto.documentofiscal.nfe400.transformers.NFEventoTipoAutorTransformer;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
