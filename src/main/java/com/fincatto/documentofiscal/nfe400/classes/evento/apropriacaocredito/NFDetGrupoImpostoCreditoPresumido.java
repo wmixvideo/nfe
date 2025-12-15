@@ -35,7 +35,7 @@ public class NFDetGrupoImpostoCreditoPresumido extends DFBase {
     }
 
     public void setPercentual(BigDecimal percentual) {
-        DFBigDecimalValidador.tamanho3Com4CasasDecimais(percentual, "Percentual do Crédito Presumido");
+        DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentual, "Percentual do Crédito Presumido");
         this.percentual = percentual;
     }
 
