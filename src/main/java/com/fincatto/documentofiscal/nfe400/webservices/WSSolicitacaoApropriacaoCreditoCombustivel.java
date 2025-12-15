@@ -3,13 +3,22 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEvento;
+import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.apropriacaocomb.NFDetEventoSolicitacaoApropriacaoCreditoCombustivel;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.apropriacaocredito.NFDetEventoSolicitacaoApropriacaoCreditoPresumido;
-import com.fincatto.documentofiscal.nfe400.classes.evento.detevento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetEventoSolicitacaoApropriacaoCreditoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFEventoSolicitacaoApropriacaoCreditoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetEventoSolicitacaoApropriacaoCreditoPresumido;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
+import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -75,10 +84,9 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
 
     /**
      * Gera os dados XML específicos do evento de solicitação de apropriação de crédito presumido.
-     * @return {@link NFEnviaEvento} com os dados do evento preenchidos
+     * @return {@link NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel} com os dados do evento preenchidos
      */
-    @Override
-    protected NFEnviaEvento gerarDadosXml() {
+    protected NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel gerarDadosXml() {
         final NFDetEventoSolicitacaoApropriacaoCreditoCombustivel detEvento = new NFDetEventoSolicitacaoApropriacaoCreditoCombustivel();
         detEvento.setDescricaoEvento(WSSolicitacaoApropriacaoCreditoCombustivel.DESCRICAO_EVENTO);
         detEvento.setVersao(WSSolicitacaoApropriacaoCreditoCombustivel.VERSAO_LAYOUT);
@@ -87,6 +95,57 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
         detEvento.setVersaoAplicativo(WSSolicitacaoApropriacaoCreditoCombustivel.VERSAO_LAYOUT.toString());
         detEvento.setGruposConsumoCombustivel(this.gruposComsumoCombustivel);
 
-        return super.gerarDadosPaiXml(detEvento);
+        return gerarDadosPaiXml(detEvento);
+    }
+
+    /**
+     * Orquestra o processo de geração, assinatura e transmissão do evento para a SEFAZ.
+     *
+     * @return {@link NFEnviaEventoRetorno} contendo a resposta do web service.
+     * @throws Exception
+     */
+    public NFEnviaEventoRetorno gerarEnviarEvento() throws Exception {
+        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
+        final String xmlAssinado = new DFAssinaturaDigital(this.config)
+                .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
+        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+    }
+
+    /**
+     * Gera os dados padrão do XML de evento. Referente os grupos pais do detalhamento do evento (detEvento).
+     * Classes pais relacionadas:
+     * {@link NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel}
+     * {@link NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel}
+     * {@link NFEventoSolicitacaoApropriacaoCreditoCombustivel}
+     *
+     * @param detEvento Detalhes específicos do evento.
+     * @return Objeto NFEnviaEvento com os dados padrão preenchidos.
+     */
+    private NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel gerarDadosPaiXml(NFDetEventoSolicitacaoApropriacaoCreditoCombustivel detEvento) {
+        final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(this.chaveAcesso);
+        final NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel infoEvento = new NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel();
+        infoEvento.setAmbiente(this.config.getAmbiente());
+        infoEvento.setChave(this.chaveAcesso);
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
+        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
+        infoEvento.setId(ChaveAcessoUtils.geraIDevento(this.chaveAcesso, this.getCodigoEvento(), numeroSequencialEvento));
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
+        infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
+        infoEvento.setCodigoEvento(this.getCodigoEvento());
+        infoEvento.setVersaoEvento(this.getVersaoLayout());
+        infoEvento.setDetalhesEvento(detEvento);
+
+        final NFEventoSolicitacaoApropriacaoCreditoCombustivel evento = new NFEventoSolicitacaoApropriacaoCreditoCombustivel();
+        evento.setInfoEvento(infoEvento);
+        evento.setVersao(this.getVersaoLayout());
+
+        final NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel enviaEvento = new NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel();
+        enviaEvento.setEvento(Collections.singletonList(evento));
+        enviaEvento.setIdLote(Long.toString(ZonedDateTime.now(this.config.getTimeZone().toZoneId()).toInstant().toEpochMilli()));
+        enviaEvento.setVersao(this.getVersaoLayout());
+        return enviaEvento;
     }
 }
