@@ -1,8 +1,8 @@
-package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento;
+package com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao.NFEventoAceiteDebitoApuracao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFEventoSolicitacaoApropriacaoCreditoCombustivel;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -10,13 +10,13 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFProtocoloEventoCancelamentoEvento extends DFBase {
+public class NFProtocoloEventoSolicitacaoApropriacaoCreditoPresumido extends DFBase {
 
     @Attribute(name = "versao")
     private String versao;
 
     @Element(name = "evento")
-    private NFEventoCancelamentoEvento evento;
+    private NFEventoSolicitacaoApropriacaoCreditoPresumido evento;
 
     @Element(name = "retEvento")
     private NFEventoRetorno eventoRetorno;
@@ -29,11 +29,11 @@ public class NFProtocoloEventoCancelamentoEvento extends DFBase {
         this.versao = versao;
     }
 
-    public NFEventoCancelamentoEvento getEvento() {
+    public NFEventoSolicitacaoApropriacaoCreditoPresumido getEvento() {
         return evento;
     }
 
-    public void setEvento(NFEventoCancelamentoEvento evento) {
+    public void setEvento(NFEventoSolicitacaoApropriacaoCreditoPresumido evento) {
         this.evento = evento;
     }
 
