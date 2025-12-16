@@ -556,6 +556,12 @@ public abstract class DFStringValidador {
         }
     }
 
+    public static void tamanho2a98(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 2, 98, info);
+        }
+    }
+
     public static void tamanho30(final String string, final String info) {
         if (string != null) {
             DFStringValidador.validaTamanhoMaximo(string, 30, info);
