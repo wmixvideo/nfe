@@ -124,10 +124,10 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
         return vIBS;
     }
 
-    public void setvIBS(String vIBS) {
-        this.vIBS = vIBS;
+    public void setvIBS(BigDecimal vIBS) {
+        this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
     }
-
+    
     public GCBS getGCBS() {
       return gCBS;
     }
