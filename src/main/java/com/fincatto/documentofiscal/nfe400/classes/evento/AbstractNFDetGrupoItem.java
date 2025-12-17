@@ -10,23 +10,11 @@ import java.math.BigDecimal;
 
 public abstract class AbstractNFDetGrupoItem extends DFBase {
 
-    @Attribute(name = "nItem")
-    private Integer numeroItem;
-
     @Element(name = "vCBS")
     private BigDecimal valorCBS;
 
     @Element(name = "vIBS")
     private BigDecimal valorIBS;
-
-    public Integer getNumeroItem() {
-        return numeroItem;
-    }
-
-    public void setNumeroItem(Integer numeroItem) {
-        DFIntegerValidador.tamanho1a3(numeroItem, "Número do Item do Documento Fiscal");
-        this.numeroItem = numeroItem;
-    }
 
     public BigDecimal getValorCBS() {
         return valorCBS;
