@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento;
+package com.fincatto.documentofiscal.nfe400.classes.evento.alczfmimportacao;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
@@ -10,13 +10,13 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "procEventoNFe")
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
-public class NFProtocoloEventoCancelamentoEvento extends DFBase {
+public class NFProtocoloEventoImportacaoALCZFMNaoConvertidaIsencao extends DFBase {
 
     @Attribute(name = "versao")
     private String versao;
 
     @Element(name = "evento")
-    private NFEventoCancelamentoEvento evento;
+    private NFEventoImportacaoALCZFMNaoConvertidaIsencao evento;
 
     @Element(name = "retEvento")
     private NFEventoRetorno eventoRetorno;
@@ -29,11 +29,11 @@ public class NFProtocoloEventoCancelamentoEvento extends DFBase {
         this.versao = versao;
     }
 
-    public NFEventoCancelamentoEvento getEvento() {
+    public NFEventoImportacaoALCZFMNaoConvertidaIsencao getEvento() {
         return evento;
     }
 
-    public void setEvento(NFEventoCancelamentoEvento evento) {
+    public void setEvento(NFEventoImportacaoALCZFMNaoConvertidaIsencao evento) {
         this.evento = evento;
     }
 

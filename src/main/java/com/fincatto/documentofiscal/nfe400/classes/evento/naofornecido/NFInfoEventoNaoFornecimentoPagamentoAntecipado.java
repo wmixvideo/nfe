@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.classes.evento;
+package com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido;
 
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFBase;
@@ -12,15 +12,15 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-public class NFInfoEvento extends DFBase {
-    private static final long serialVersionUID = 8878652860997939767L;
-
+public class NFInfoEventoNaoFornecimentoPagamentoAntecipado extends DFBase {
+    private static final long serialVersionUID = 1491402822907097339L;
+    
     @Attribute(name = "Id")
     private String id;
-
+    
     @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
-
+    
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
@@ -29,31 +29,31 @@ public class NFInfoEvento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-
+    
     @Element(name = "chNFe")
     private String chave;
-
+    
     @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-
+    
     @Element(name = "tpEvento")
     private String codigoEvento;
-
+    
     @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
-
+    
     @Element(name = "verEvento")
     private String versaoEvento;
-
+    
     @Element(name = "detEvento")
-    private NFTipoEvento dadosEvento;
+    private NFDetEventoNaoFornecimentoPagamentoAntecipado detalhesEvento;
 
     public void setOrgao(final DFUnidadeFederativa orgao) {
         this.orgao = orgao;
     }
 
     public void setVersaoEvento(final BigDecimal versaoEvento) {
-        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Info Evento Versao");
+        this.versaoEvento = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoEvento, "Versao do Evento");
     }
 
     public String getId() {
@@ -112,9 +112,9 @@ public class NFInfoEvento extends DFBase {
         return this.codigoEvento;
     }
 
-    public void setTipoEvento(final String tipoEvento) {
-        DFStringValidador.exatamente6N(tipoEvento, "Tipo Evento");
-        this.codigoEvento = tipoEvento;
+    public void setCodigoEvento(final String codigoEvento) {
+        DFStringValidador.exatamente6N(codigoEvento, "Info Evento Codigo");
+        this.codigoEvento = codigoEvento;
     }
 
     public int getNumeroSequencialEvento() {
@@ -130,19 +130,15 @@ public class NFInfoEvento extends DFBase {
         return this.versaoEvento;
     }
 
-    public NFTipoEvento getDadosEvento() {
-        return this.dadosEvento;
+    public NFDetEventoNaoFornecimentoPagamentoAntecipado getDetalhesEvento() {
+        return this.detalhesEvento;
     }
 
-    public void setDadosEvento(final NFTipoEvento evento) {
-        this.dadosEvento = evento;
+    public void setDetalhesEvento(final NFDetEventoNaoFornecimentoPagamentoAntecipado detalhesEvento) {
+        this.detalhesEvento = detalhesEvento;
     }
 
     public DFUnidadeFederativa getOrgao() {
         return this.orgao;
-    }
-
-    public void setCodigoEvento(final String codigoEvento) {
-        this.codigoEvento = codigoEvento;
     }
 }
