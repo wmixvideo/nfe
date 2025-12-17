@@ -3,13 +3,15 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.consumopessoal;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root(name = "DFeReferenciado")
 public class NFDetGrupoDfeReferenciado extends DFBase {
 
-    @Element
+    @Element(name = "chaveAcesso")
     private String chaveAcesso;
 
-    @Element
+    @Element(name = "nItem")
     private Integer nItem;
 
     public String getChaveAcesso() {

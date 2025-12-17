@@ -597,7 +597,7 @@ public class WSFacade {
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
-    public NFEnviaEventoRetorno enviaNaoFornecimentoPagamentoAntecipado(
+    public NFEnviaEventoRetorno enviaDestinacaoItemConsumoPessoal(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> grupoItensConsumo,
             final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento
     ) throws Exception {

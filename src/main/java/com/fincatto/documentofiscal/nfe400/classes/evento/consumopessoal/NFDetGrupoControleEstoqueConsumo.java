@@ -4,9 +4,11 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
+@Root(name = "gControleEstoque")
 public class NFDetGrupoControleEstoqueConsumo extends DFBase {
 
     @Element(name = "qConsumo")
