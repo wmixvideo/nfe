@@ -5,9 +5,11 @@ import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
+@Root(name = "gCredito")
 public class NFDetGrupoCredito extends DFBase {
 
     @Attribute(name = "nitem")
