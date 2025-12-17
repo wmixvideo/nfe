@@ -79,15 +79,24 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     private final Integer indGRed;
     private final Integer indGDif;
     private final Integer indGTransfCred;
-    @Deprecated() private final boolean indNFe;
-    @Deprecated() private final boolean indNFCe;
-    @Deprecated() private final boolean indCTe;
-    @Deprecated() private final boolean indCteOS;
-    @Deprecated() private final boolean indBPe;
-    @Deprecated() private final boolean indBPeTM;
-    @Deprecated() private final boolean indNF3e;
-    @Deprecated() private final boolean indNFCom;
-    @Deprecated() private final boolean indNFSe;
+    @Deprecated()
+    private final boolean indNFe;
+    @Deprecated()
+    private final boolean indNFCe;
+    @Deprecated()
+    private final boolean indCTe;
+    @Deprecated()
+    private final boolean indCteOS;
+    @Deprecated()
+    private final boolean indBPe;
+    @Deprecated()
+    private final boolean indBPeTM;
+    @Deprecated()
+    private final boolean indNF3e;
+    @Deprecated()
+    private final boolean indNFCom;
+    @Deprecated()
+    private final boolean indNFSe;
 
     private NFNotaInfoImpostoTributacaoIBSCBS(
             String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif,
