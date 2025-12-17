@@ -4,9 +4,11 @@ import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
+@Root(name = "gPerecimento")
 public class NFDetGrupoItemNaoFornecido extends DFBase {
 
     @Element(name = "nItem")
