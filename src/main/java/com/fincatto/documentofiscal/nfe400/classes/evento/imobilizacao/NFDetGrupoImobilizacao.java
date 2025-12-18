@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "gImobilizacao")
 public class NFDetGrupoImobilizacao extends AbstractNFDetGrupoItem {
 
-    @Attribute(name = "nitem")
+    @Attribute(name = "nItem")
     private Integer numeroItem;
 
     @Element(name = "gControleEstoque")

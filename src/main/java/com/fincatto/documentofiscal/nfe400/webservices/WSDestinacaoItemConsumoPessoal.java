@@ -30,8 +30,8 @@ import java.util.List;
  */
 class WSDestinacaoItemConsumoPessoal extends AbstractWSEvento implements DFLog {
     private static final BigDecimal VERSAO_LAYOUT = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Perecimento, perda, roubo ou furto durante o transporte contratado pelo adquirente";
-    private static final String CODIGO_EVENTO = "211124";
+    private static final String DESCRICAO_EVENTO = "Destina\u00e7\u00e3o de item para consumo pessoal";
+    private static final String CODIGO_EVENTO = "211120";
 
     private List<NFDetGrupoConsumo> gruposConsumo;
     private NFEventoTipoAutor tipoAutor;
