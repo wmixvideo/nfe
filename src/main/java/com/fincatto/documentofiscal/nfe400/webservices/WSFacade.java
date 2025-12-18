@@ -21,6 +21,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpec
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimentoFornecedor;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
@@ -527,7 +528,7 @@ public class WSFacade {
      */
     public NFEnviaEventoRetorno enviaPerdaRouboTransporteFornecedor(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
-            final List<NFDetGrupoPerecimento> gruposPerecimento, final int numeroSequencialEvento
+            final List<NFDetGrupoPerecimentoFornecedor> gruposPerecimento, final int numeroSequencialEvento
     ) throws Exception {
         return this.wsRouboTransporteFornecedor
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposPerecimento, numeroSequencialEvento)
