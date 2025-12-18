@@ -26,7 +26,7 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     CST_200("200", "Al\u00edquota reduzida",
     		 UM, ZERO, UM, ZERO, ZERO, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM, SIM),
 
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela")
+    @Deprecated()
     CST_210("210", "Redu\u00e7\u00e3o de al\u00edquota com redutor de base de c\u00e1lculo",
     		 UM, ZERO, ZERO, ZERO, ZERO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, NAO, SIM),
 
@@ -79,15 +79,24 @@ public enum NFNotaInfoImpostoTributacaoIBSCBS {
     private final Integer indGRed;
     private final Integer indGDif;
     private final Integer indGTransfCred;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFe;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFCe;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indCTe;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indCteOS;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indBPe;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indBPeTM;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNF3e;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFCom;
-    @Deprecated(since = "2025-10-03 - Marcado como removido da tabela") private final boolean indNFSe;
+    @Deprecated()
+    private final boolean indNFe;
+    @Deprecated()
+    private final boolean indNFCe;
+    @Deprecated()
+    private final boolean indCTe;
+    @Deprecated()
+    private final boolean indCteOS;
+    @Deprecated()
+    private final boolean indBPe;
+    @Deprecated()
+    private final boolean indBPeTM;
+    @Deprecated()
+    private final boolean indNF3e;
+    @Deprecated()
+    private final boolean indNFCom;
+    @Deprecated()
+    private final boolean indNFSe;
 
     private NFNotaInfoImpostoTributacaoIBSCBS(
             String codigo, String descricao, Integer indGIBSCBS, Integer indGIBSCBSMono, Integer indGRed, Integer indGDif,
