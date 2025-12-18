@@ -8,7 +8,7 @@ import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "gPerecimento")
+@Root(name = "gItemNaoFornecido")
 public class NFDetGrupoItemNaoFornecido extends DFBase {
 
     @Element(name = "nItem")
