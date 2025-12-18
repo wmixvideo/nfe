@@ -16,10 +16,10 @@ public class NFDetGrupoConsumo extends DFBase {
     @Attribute(name = "nItem")
     private Integer numeroItem;
 
-    @Element(name = "vCBS")
+    @Attribute(name = "vCBS")
     private BigDecimal valorCBS;
 
-    @Element(name = "vIBS")
+    @Attribute(name = "vIBS")
     private BigDecimal valorIBS;
 
     @Element(name = "gControleEstoque")
