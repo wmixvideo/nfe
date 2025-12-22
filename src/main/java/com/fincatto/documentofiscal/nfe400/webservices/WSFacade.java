@@ -459,8 +459,14 @@ public class WSFacade {
         return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento, cnpjCpfAutorEvento);
     }
 
-    public NFEnviaEventoRetorno cancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) throws Exception {
-        return this.wsCancelametoEvento.cancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento);
+    public NFEnviaEventoRetorno cancelamentoEvento(
+            final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento,
+            final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento, final String cnpjCpfAutorEvento
+    ) throws Exception {
+        return this.wsCancelametoEvento.cancelamentoEvento(
+                chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar,
+                ufEmitenteEvento, cnpjCpfAutorEvento
+        );
     }
 
     /**
