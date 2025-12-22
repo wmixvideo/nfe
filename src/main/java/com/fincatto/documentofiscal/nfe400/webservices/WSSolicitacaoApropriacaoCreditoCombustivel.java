@@ -34,6 +34,8 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
     private static final String CODIGO_EVENTO = "211140";
 
     private List<NFDetGrupoConsumoCombustivel> gruposComsumoCombustivel;
+    private String cnpjAutorEvento;
+    private String cpfAutorEvento;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -70,15 +72,20 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
      * @param chaveAcesso Chave de acesso da NF-e relacionada ao evento.
      * @param gruposConsumoCombustivel  Lista de grupos do Consumo de combustivel.
      * @param numeroSequencialEvento Número sequencial do evento.
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return A própria instância de {@link WSSolicitacaoApropriacaoCreditoCombustivel} para permitir encadeamento de chamadas.
      */
     WSSolicitacaoApropriacaoCreditoCombustivel adicionarDadosEvento(
-            final String chaveAcesso, final DFUnidadeFederativa ufAutorEvento, final List<NFDetGrupoConsumoCombustivel> gruposConsumoCombustivel, final int numeroSequencialEvento
+            final String chaveAcesso, final DFUnidadeFederativa ufAutorEvento,
+            final List<NFDetGrupoConsumoCombustivel> gruposConsumoCombustivel, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposComsumoCombustivel = gruposConsumoCombustivel;
         super.numeroSequencialEvento = numeroSequencialEvento;
         super.ufAutorEvento = ufAutorEvento;
+        this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
+        this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
         return this;
     }
 
@@ -128,8 +135,8 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
         final NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel infoEvento = new NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(this.chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(this.cpfAutorEvento);
+        infoEvento.setCnpj(this.cnpjAutorEvento);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(this.chaveAcesso, this.getCodigoEvento(), numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);

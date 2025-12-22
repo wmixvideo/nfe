@@ -455,12 +455,18 @@ public class WSFacade {
         return this.wsAtualizacaoDataPrevisaoEntrega.atualizaDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento);
     }
 
-    public NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento) throws Exception {
-        return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento);
+    public NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento, final String cnpjCpfAutorEvento) throws Exception {
+        return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento, cnpjCpfAutorEvento);
     }
 
-    public NFEnviaEventoRetorno cancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) throws Exception {
-        return this.wsCancelametoEvento.cancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento);
+    public NFEnviaEventoRetorno cancelamentoEvento(
+            final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento,
+            final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento, final String cnpjCpfAutorEvento
+    ) throws Exception {
+        return this.wsCancelametoEvento.cancelamentoEvento(
+                chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar,
+                ufEmitenteEvento, cnpjCpfAutorEvento
+        );
     }
 
     /**
@@ -488,15 +494,17 @@ public class WSFacade {
      * @param chaveAcesso chave de acesso da NF
      * @param gruposCreditoPresumido Lista de grupos do crédito presumido
      * @param numeroSequencialEvento número sequencial do evento
+     * @param cnpjCpfAutorEvento  CNPJ ou CPF do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaSolicitacaoApropriacaoCreditoPresumido(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
-            final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento
+            final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsSolicitacaoApropriacaoCreditoPresumido
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCreditoPresumido, numeroSequencialEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCreditoPresumido, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
     /**
@@ -505,15 +513,17 @@ public class WSFacade {
      * @param chaveAcesso chave de acesso da NF
      * @param gruposPerecimento Lista de grupos de perecimento, perda, roubo ou furto
      * @param numeroSequencialEvento número sequencial do evento
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaPerdaRouboTransporteAdquirente(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
-            final List<NFDetGrupoPerecimento> gruposPerecimento, final int numeroSequencialEvento
+            final List<NFDetGrupoPerecimento> gruposPerecimento, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsRouboTransporteAdquirente
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposPerecimento, numeroSequencialEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposPerecimento, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
 
@@ -541,15 +551,17 @@ public class WSFacade {
      * @param chaveAcesso chave de acesso da NF
      * @param grupoConsumoCombustivel Lista de grupos de consumo de combustível
      * @param numeroSequencialEvento número sequencial do evento
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaSolicitacaoApropriacaoCreditoCombustivel(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
-            final List<NFDetGrupoConsumoCombustivel> grupoConsumoCombustivel, final int numeroSequencialEvento
+            final List<NFDetGrupoConsumoCombustivel> grupoConsumoCombustivel, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsSolicitacaoApropriacaoCreditoCombustivel
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoConsumoCombustivel, numeroSequencialEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoConsumoCombustivel, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
 
@@ -559,15 +571,16 @@ public class WSFacade {
      * @param chaveAcesso chave de acesso da NF
      * @param gruposCredito Lista de grupos de grupo de crédito
      * @param numeroSequencialEvento número sequencial do evento
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaSolicitacaoApropriacaoCreditoBensAtividadeAdquirente(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
-            final List<NFDetGrupoCredito> gruposCredito, final int numeroSequencialEvento
+            final List<NFDetGrupoCredito> gruposCredito, final int numeroSequencialEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCredito, numeroSequencialEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCredito, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
     /**
@@ -595,15 +608,16 @@ public class WSFacade {
      * @param grupoItensConsumo Lista de grupos de grupo de itens para consumo pessoal
      * @param numeroSequencialEvento número sequencial do evento
      * @param tpAutorEvento tipo do autor do evento (emitente ou destinatario)
+     * @param cnpjCpfAutorEvento cnpj ou cpf do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaDestinacaoItemConsumoPessoal(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> grupoItensConsumo,
-            final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento
+            final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsDestinacaoItemConsumoPessoal
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoItensConsumo, numeroSequencialEvento, tpAutorEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoItensConsumo, numeroSequencialEvento, tpAutorEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
 
@@ -613,15 +627,16 @@ public class WSFacade {
      * @param chaveAcesso chave de acesso da NF
      * @param gruposImobilizacao Lista de grupos de grupo de itens imobilizacao
      * @param numeroSequencialEvento número sequencial do evento
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
     public NFEnviaEventoRetorno enviaImobilizacaoItem(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoImobilizacao> gruposImobilizacao,
-            final int numeroSequencialEvento
+            final int numeroSequencialEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
         return this.wsImobilizacaoItem
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposImobilizacao, numeroSequencialEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposImobilizacao, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
     }
     /**
