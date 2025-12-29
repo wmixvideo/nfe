@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFE
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFEventoCancelamentoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFInfoCancelamentoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFInfoEventoCancelamentoEvento;
+import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import org.apache.axiom.om.OMElement;
@@ -30,15 +31,23 @@ class WSCancelametoEvento implements DFLog {
         this.config = config;
     }
 
-    NFEnviaEventoRetorno cancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) throws Exception {
-        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosCancelamentoEvento(chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento).toString();
+    NFEnviaEventoRetorno cancelamentoEvento(
+            final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento,
+            final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento, final String cnpjCpfAutorEvento
+    ) throws Exception {
+        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosCancelamentoEvento(
+                chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento, cnpjCpfAutorEvento
+        ).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
         final OMElement omElementResult = this.efetuaCancelamentoevento(xmlAssinado, chaveAcesso);
 
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private NFEnviaEventoCancelamentoEvento gerarDadosCancelamentoEvento(final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento, final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento) {
+    private NFEnviaEventoCancelamentoEvento gerarDadosCancelamentoEvento(
+            final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento,
+            final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento, final String cnpjCpfAutorEvento
+    ) {
         final NFInfoCancelamentoEvento cancelamentoEvento = new NFInfoCancelamentoEvento();
         cancelamentoEvento.setDescricaoEvento(WSCancelametoEvento.DESCRICAO_EVENTO);
         cancelamentoEvento.setVersao(WSCancelametoEvento.VERSAO_LEIAUTE);
@@ -51,10 +60,10 @@ class WSCancelametoEvento implements DFLog {
         final NFInfoEventoCancelamentoEvento infoEvento = new NFInfoEventoCancelamentoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null);
+        infoEvento.setCnpj(cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSCancelametoEvento.CODIGO_EVENTO, chaveAcesso, numeroSequencialEventoCancelar));
+        infoEvento.setId(ChaveAcessoUtils.geraIDevento(chaveAcesso, WSCancelametoEvento.CODIGO_EVENTO, numeroSequencialEventoCancelar));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEventoCancelar);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSCancelametoEvento.CODIGO_EVENTO);
