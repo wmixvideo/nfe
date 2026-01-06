@@ -168,11 +168,48 @@ public class NFeRetAutorizacao4Stub extends org.apache.axis2.client.Stub {
     @SuppressWarnings("rawtypes")
     private java.lang.Object fromOM(final org.apache.axiom.om.OMElement param, final java.lang.Class type) throws org.apache.axis2.AxisFault {
         try {
+            org.apache.axiom.om.OMElement toParse = param;
             if (NfeDadosMsg.class.equals(type)) {
-                return NfeDadosMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                final javax.xml.namespace.QName expected = NfeDadosMsg.MY_QNAME;
+                if (!expected.equals(param.getQName())) {
+                    org.apache.axiom.om.OMNode childNode = param.getFirstOMChild();
+                    org.apache.axiom.om.OMElement child = null;
+                    while (childNode != null) {
+                        if (childNode instanceof org.apache.axiom.om.OMElement) {
+                            final org.apache.axiom.om.OMElement elem = (org.apache.axiom.om.OMElement) childNode;
+                            if (expected.equals(elem.getQName())) {
+                                child = elem;
+                                break;
+                            }
+                        }
+                        childNode = childNode.getNextOMSibling();
+                    }
+                    if (child != null) {
+                        toParse = child;
+                    }
+                }
+                return NfeDadosMsg.Factory.parse(toParse.getXMLStreamReaderWithoutCaching());
             }
             if (NfeResultMsg.class.equals(type)) {
-                return NfeResultMsg.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                final javax.xml.namespace.QName expected = NfeResultMsg.MY_QNAME;
+                if (!expected.equals(param.getQName())) {
+                    org.apache.axiom.om.OMNode childNode = param.getFirstOMChild();
+                    org.apache.axiom.om.OMElement child = null;
+                    while (childNode != null) {
+                        if (childNode instanceof org.apache.axiom.om.OMElement) {
+                            final org.apache.axiom.om.OMElement elem = (org.apache.axiom.om.OMElement) childNode;
+                            if (expected.equals(elem.getQName())) {
+                                child = elem;
+                                break;
+                            }
+                        }
+                        childNode = childNode.getNextOMSibling();
+                    }
+                    if (child != null) {
+                        toParse = child;
+                    }
+                }
+                return NfeResultMsg.Factory.parse(toParse.getXMLStreamReaderWithoutCaching());
             }
         } catch (final java.lang.Exception e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
