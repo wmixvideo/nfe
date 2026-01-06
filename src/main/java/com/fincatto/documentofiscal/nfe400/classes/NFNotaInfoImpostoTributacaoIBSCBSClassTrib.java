@@ -9,7 +9,6 @@ import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTribu
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_010;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_011;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_200;
-import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_210;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_220;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_221;
 import static com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoIBSCBS.CST_222;
@@ -245,19 +244,6 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	CST_200052("200052", CST_200, "Presta\u00e7\u00e3o de servi\u00e7os de profiss\u00f5es intelectuais", 
 				"Art. 127, I a XVIII", PADRAO, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
-    // CST_210
-    @Deprecated()
-	CST_210001("210001", CST_210, "Redutor social aplicado uma \u00fanica vez na aliena\u00e7\u00e3o de bem im\u00f3vel residencial novo",
-				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-
-    @Deprecated()
-	CST_210002("210002", CST_210, "Redutor social aplicado uma \u00fanica vez na aliena\u00e7\u00e3o de lote residencial",
-				"Arts. 259 e 261", PADRAO, CINQUENTA, CINQUENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-
-    @Deprecated()
-	CST_210003("210003", CST_210, "Redutor social em opera\u00e7\u00f5es de loca\u00e7\u00e3o, cess\u00e3o onerosa e arrendamento de bens im\u00f3veis de uso residencial",
-				"Art. 260", PADRAO, NA, SETENTA, S, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-
 	// CST_220
 	CST_220001("220001", CST_220, "Incorpora\u00e7\u00e3o imobili\u00e1ria submetida ao regime especial de tributa\u00e7\u00e3o",
 				"Art. 485, I", FIXA, NA, NA, NA_SN, ZERO, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
@@ -359,10 +345,6 @@ public enum NFNotaInfoImpostoTributacaoIBSCBSClassTrib {
 	// CST_510
 	CST_510001("510001", CST_510, "Opera\u00e7\u00f5es, sujeitas a diferimento, com energia el\u00e9trica, relativas \u00e0 gera\u00e7\u00e3o, comercializa\u00e7\u00e3o, distribui\u00e7\u00e3o e transmiss\u00e3o",
 				"Art. 28, § 1º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
-
-    @Deprecated()
-    CST_510002("510002", CST_510, "Opera\u00e7\u00f5es, sujeitas a diferimento, com insumos agropecu\u00e1rios e aqu\u00edcolas destinados a produtor rural contribuinte (Anexo IX)",
-            "Art. 138, § 2º", SEM_ALIQUOTA, NA, NA, NA_SN, UM, NA, NA, NA, NA, NA, null, null, of(2025, 5, 19)),
 
     // CST_515
     CST_515001("515001", CST_515, "Opera\u00e7\u00f5es, sujeitas a diferimento, com insumos agropecu\u00e1rios e aqu\u00edcolas destinados a produtor rural n\u00e3o contribuinte (Anexo IX)",
