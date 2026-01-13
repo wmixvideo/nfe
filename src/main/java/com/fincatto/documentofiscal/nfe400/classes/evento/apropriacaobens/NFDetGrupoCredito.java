@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Root(name = "gCredito")
 public class NFDetGrupoCredito extends DFBase {
 
-    @Attribute(name = "nitem")
+    @Attribute(name = "nItem")
     private Integer numeroItem;
 
     @Element(name = "vCredIBS")

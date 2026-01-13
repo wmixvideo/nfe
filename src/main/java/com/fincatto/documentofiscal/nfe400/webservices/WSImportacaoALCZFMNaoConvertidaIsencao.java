@@ -32,7 +32,7 @@ import java.util.List;
 class WSImportacaoALCZFMNaoConvertidaIsencao extends AbstractWSEvento implements DFLog {
     private static final BigDecimal VERSAO_LAYOUT = new BigDecimal("1.00");
     private static final String DESCRICAO_EVENTO = "Importa\u00E7\u00E3o em ALC/ZFM n\u00E3o convertida em isen\u00E7\u00E3o";
-    private static final String CODIGO_EVENTO = "211130";
+    private static final String CODIGO_EVENTO = "112120";
 
     private List<NFDetGrupoConsumoZFM> gruposImobilizacao;
 

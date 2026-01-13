@@ -30,11 +30,13 @@ import java.util.List;
  */
 class WSDestinacaoItemConsumoPessoal extends AbstractWSEvento implements DFLog {
     private static final BigDecimal VERSAO_LAYOUT = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Perecimento, perda, roubo ou furto durante o transporte contratado pelo adquirente";
-    private static final String CODIGO_EVENTO = "211124";
+    private static final String DESCRICAO_EVENTO = "Destina\u00e7\u00e3o de item para consumo pessoal";
+    private static final String CODIGO_EVENTO = "211120";
 
     private List<NFDetGrupoConsumo> gruposConsumo;
     private NFEventoTipoAutor tipoAutor;
+    private String cpfAutorEvento;
+    private String cnpjAutorEvento;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -72,17 +74,20 @@ class WSDestinacaoItemConsumoPessoal extends AbstractWSEvento implements DFLog {
      * @param ufEmitenteEvento      Unidade federativa do emitente do evento.
      * @param gruposConsumo Lista de grupos de itens destinados ao consumo pessoal.
      * @param numeroSequencialEvento Número sequencial do evento.
+     * @param cnpjCpfAutorEvento  cnpj ou cpf do autor do evento, sem formatação.
      * @return A própria instância de {@link WSDestinacaoItemConsumoPessoal} para permitir encadeamento de chamadas.
      */
     WSDestinacaoItemConsumoPessoal adicionarDadosEvento(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> gruposConsumo,
-            final int numeroSequencialEvento, final NFEventoTipoAutor tipoAutor
+            final int numeroSequencialEvento, final NFEventoTipoAutor tipoAutor, final String cnpjCpfAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposConsumo = gruposConsumo;
         super.numeroSequencialEvento = numeroSequencialEvento;
         super.ufAutorEvento = ufEmitenteEvento;
         this.tipoAutor = tipoAutor;
+        this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
+        this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
         return this;
     }
 
@@ -134,8 +139,8 @@ class WSDestinacaoItemConsumoPessoal extends AbstractWSEvento implements DFLog {
         final NFInfoEventoDestinacaoItemConsumoPessoal infoEvento = new NFInfoEventoDestinacaoItemConsumoPessoal();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(this.chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(this.cpfAutorEvento);
+        infoEvento.setCnpj(this.cnpjAutorEvento);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(this.chaveAcesso, this.getCodigoEvento(), numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);

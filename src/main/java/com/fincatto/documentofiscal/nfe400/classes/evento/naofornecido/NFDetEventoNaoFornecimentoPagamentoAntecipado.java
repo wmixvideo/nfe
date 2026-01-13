@@ -11,7 +11,7 @@ import java.util.List;
 @Root(name = "detEvento")
 public class NFDetEventoNaoFornecimentoPagamentoAntecipado extends NFDetEvento {
 
-    @ElementList(name = "gPerecimento", inline = true)
+    @ElementList(name = "gItemNaoFornecido", inline = true)
     private List<NFDetGrupoItemNaoFornecido> gruposItemNaoInformado;
 
     public List<NFDetGrupoItemNaoFornecido> getGruposItemNaoInformado() {

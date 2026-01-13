@@ -32,15 +32,24 @@ class WSAceiteDebitoApuracao implements DFLog {
         this.config = config;
     }
 
-    NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento) throws Exception {
-        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento).toString();
+    NFEnviaEventoRetorno aceiteDebitoApuracao(
+            final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento,
+            final int numeroSequencialEvento, final String cnpjCpfAutorEvento
+    ) throws Exception {
+        final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAceiteDebitoApuracao(
+                chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento, cnpjCpfAutorEvento
+        ).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
         final OMElement omElementResult = this.efetuaAceiteDebitoApuracao(xmlAssinado, chaveAcesso);
 
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
     }
 
-    private NFEnviaEventoAceiteDebitoApuracao gerarDadosAceiteDebitoApuracao (final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento) {
+    private NFEnviaEventoAceiteDebitoApuracao gerarDadosAceiteDebitoApuracao (
+            final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento,
+            final int numeroSequencialEvento, final String cnpjCpfAutorEvento
+
+    ) {
         final NFInfoAceiteDebitoApuracao aceiteDebitoApuracao = new NFInfoAceiteDebitoApuracao();
         aceiteDebitoApuracao.setDescricaoEvento(WSAceiteDebitoApuracao.DESCRICAO_EVENTO);
         aceiteDebitoApuracao.setVersao(WSAceiteDebitoApuracao.VERSAO_LEIAUTE);
@@ -53,8 +62,8 @@ class WSAceiteDebitoApuracao implements DFLog {
         final NFInfoEventoAceiteDebitoApuracao infoEvento = new NFInfoEventoAceiteDebitoApuracao();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null);
+        infoEvento.setCnpj(cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(chaveAcesso, WSAceiteDebitoApuracao.CODIGO_EVENTO, numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);

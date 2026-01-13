@@ -34,6 +34,8 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
     private static final String CODIGO_EVENTO = "211110";
 
     private List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido;
+    private String cnpjAutorEvento;
+    private String cpfAutorEvento;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -71,15 +73,19 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
      * @param ufEmitenteEvento
      * @param gruposCreditoPresumido Lista de grupos do crédito presumido.
      * @param numeroSequencialEvento Número sequencial do evento.
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento (sem formatação).
      * @return A própria instância de {@link WSSolicitacaoApropriacaoCreditoPresumido} para permitir encadeamento de chamadas.
      */
     WSSolicitacaoApropriacaoCreditoPresumido adicionarDadosEvento(
-            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento
+            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposCreditoPresumido = gruposCreditoPresumido;
         super.numeroSequencialEvento = numeroSequencialEvento;
         super.ufAutorEvento = ufEmitenteEvento;
+        this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
+        this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
         return this;
     }
 
@@ -129,8 +135,8 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         final NFInfoEventoSolicitacaoApropriacaoCreditoPresumido infoEvento = new NFInfoEventoSolicitacaoApropriacaoCreditoPresumido();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(this.chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(this.cpfAutorEvento);
+        infoEvento.setCnpj(this.cnpjAutorEvento);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(this.chaveAcesso, this.getCodigoEvento(), numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);

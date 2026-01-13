@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 
 public abstract class AbstractNFDetGrupoItem extends DFBase {
 
-    @Element(name = "vCBS")
-    private BigDecimal valorCBS;
-
     @Element(name = "vIBS")
     private BigDecimal valorIBS;
+
+    @Element(name = "vCBS")
+    private BigDecimal valorCBS;
 
     public BigDecimal getValorCBS() {
         return valorCBS;
