@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosIBSCBS;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
@@ -19,7 +18,7 @@ import java.math.BigDecimal;
 @Namespace(reference = "http://www.portalfiscal.inf.br/cte")
 public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
     private static final long serialVersionUID = -1424546812171486009L;
-    
+
     @Element(name = "ICMS")
     private CTeNotaInfoInformacoesRelativasImpostosICMS icms;
 
@@ -32,15 +31,11 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
     @Element(name = "ICMSUFFim", required = false)
     private CTeNotaInfoInformacoesRelativasImpostosICMSPartilha icmsPartilha;
 
-    @Element(name = "IBSCBS", required = false)
-    private CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs;
-
     public CTeNotaInfoInformacoesRelativasImpostos() {
         this.icms = null;
         this.valorTotalTributos = null;
         this.informacoesAdicionaisFisco = null;
         this.icmsPartilha = null;
-        this.ibsCbs = null;
     }
 
     public CTeNotaInfoInformacoesRelativasImpostosICMS getIcms() {
@@ -88,17 +83,5 @@ public class CTeNotaInfoInformacoesRelativasImpostos extends DFBase {
      */
     public void setIcmsPartilha(final CTeNotaInfoInformacoesRelativasImpostosICMSPartilha icmsPartilha) {
         this.icmsPartilha = icmsPartilha;
-    }
-
-    public CTeNotaInfoInformacoesRelativasImpostosIBSCBS getIbsCbs() {
-        return ibsCbs;
-    }
-
-    /**
-     * Grupo de informações da composição do valor do IBS e da CBS
-     * @param ibsCbs
-     */
-    public void setIbsCbs(CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs) {
-        this.ibsCbs = ibsCbs;
     }
 }
