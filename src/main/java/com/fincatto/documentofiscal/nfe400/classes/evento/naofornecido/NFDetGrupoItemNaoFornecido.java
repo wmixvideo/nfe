@@ -3,15 +3,16 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "gPerecimento")
+@Root(name = "gItemNaoFornecido")
 public class NFDetGrupoItemNaoFornecido extends DFBase {
 
-    @Element(name = "nItem")
+    @Attribute(name = "nItem")
     private Integer numeroItem;
 
     @Element(name = "vIBS")

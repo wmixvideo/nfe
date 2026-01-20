@@ -1,4 +1,4 @@
-package com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb;
+package com.fincatto.documentofiscal.nfe400.classes.evento.roubo;
 
 import com.fincatto.documentofiscal.nfe400.classes.evento.AbstractNFDetGrupoItem;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
@@ -6,21 +6,21 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "gConsumoComb")
-public class NFDetGrupoConsumoCombustivel extends AbstractNFDetGrupoItem {
+@Root(name = "gPerecimento")
+public class NFDetGrupoPerecimentoFornecedor extends AbstractNFDetGrupoItem {
 
     @Attribute(name = "nItem")
     private Integer numeroItem;
 
     @Element(name = "gControleEstoque")
-    private NFDetGrupoControleEstoque grupoControleEstoque;
+    private NFDetGrupoControleEstoquePerecimentoFornecedor grupoControleEstoquePerecimento;
 
-    public NFDetGrupoControleEstoque getGrupoControleEstoque() {
-        return grupoControleEstoque;
+    public NFDetGrupoControleEstoquePerecimentoFornecedor getGrupoControleEstoquePerecimento() {
+        return grupoControleEstoquePerecimento;
     }
 
-    public void setGrupoControleEstoque(NFDetGrupoControleEstoque grupoControleEstoque) {
-        this.grupoControleEstoque = grupoControleEstoque;
+    public void setGrupoControleEstoquePerecimento(NFDetGrupoControleEstoquePerecimentoFornecedor grupoControleEstoquePerecimento) {
+        this.grupoControleEstoquePerecimento = grupoControleEstoquePerecimento;
     }
 
     public Integer getNumeroItem() {

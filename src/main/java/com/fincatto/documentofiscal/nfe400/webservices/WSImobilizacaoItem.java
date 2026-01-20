@@ -35,6 +35,8 @@ class WSImobilizacaoItem extends AbstractWSEvento implements DFLog {
     private static final String CODIGO_EVENTO = "211130";
 
     private List<NFDetGrupoImobilizacao> gruposImobilizacao;
+    private String cpfAutorEvento;
+    private String cnpjAutorEvento;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -71,16 +73,19 @@ class WSImobilizacaoItem extends AbstractWSEvento implements DFLog {
      * @param chaveAcesso            Chave de acesso da NF-e relacionada ao evento.
      * @param gruposImobilizacao Lista de grupos do crédito presumido.
      * @param numeroSequencialEvento Número sequencial do evento.
+     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento sem formatação.
      * @return A própria instância de {@link WSImobilizacaoItem} para permitir encadeamento de chamadas.
      */
     WSImobilizacaoItem adicionarDadosEvento(
             final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoImobilizacao> gruposImobilizacao,
-            final int numeroSequencialEvento
+            final int numeroSequencialEvento, final String cnpjCpfAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposImobilizacao = gruposImobilizacao;
         super.numeroSequencialEvento = numeroSequencialEvento;
         super.ufAutorEvento = ufEmitenteEvento;
+        this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
+        this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
         return this;
     }
 
@@ -130,8 +135,8 @@ class WSImobilizacaoItem extends AbstractWSEvento implements DFLog {
         final NFInfoEventoImobilizacaoItem infoEvento = new NFInfoEventoImobilizacaoItem();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(this.chaveAcesso);
-        infoEvento.setCpf(chaveParser.getCpfEmitente());
-        infoEvento.setCnpj(chaveParser.getCnpjEmitente());
+        infoEvento.setCpf(this.cpfAutorEvento);
+        infoEvento.setCnpj(this.cnpjAutorEvento);
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(this.chaveAcesso, this.getCodigoEvento(), numeroSequencialEvento));
         infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
