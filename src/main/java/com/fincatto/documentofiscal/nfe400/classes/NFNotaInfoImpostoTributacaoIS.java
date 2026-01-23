@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes;
 
 public enum NFNotaInfoImpostoTributacaoIS {
 
-  A_DEFINIR("00", "A Definir");
+  A_DEFINIR("000", "A Definir");
 
   private final String codigo;
   private final String descricao;
