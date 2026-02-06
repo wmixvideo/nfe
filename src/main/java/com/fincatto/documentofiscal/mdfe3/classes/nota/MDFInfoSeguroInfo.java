@@ -18,7 +18,7 @@ public class MDFInfoSeguroInfo extends DFBase {
     @Element(name = "xSeg")
     private String seguradora;
     
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     private String cnpj;
 
     public MDFInfoSeguroInfo() {
