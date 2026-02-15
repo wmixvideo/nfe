@@ -1,23 +1,27 @@
 package com.fincatto.documentofiscal.utils;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public abstract class DFUtils {
-    private static final List<String> CPFS_INVALIDOS = Arrays.asList("00000000000", "11111111111", "22222222222",
+    private static final Pattern SOMENTE_NUMEROS = Pattern.compile("\\d+");
+    private static final Pattern CNPJ_PATTERN = Pattern.compile("^[0-9]{14}$");
+    private static final Pattern CPF_PATTERN = Pattern.compile("^[0-9]{11}$");
+
+    private static final List<String> CPFS_INVALIDOS = List.of("00000000000", "11111111111", "22222222222",
             "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999",
-            "12345678909"
-    );
+            "12345678909");
 
     /**
      * Verifica se o CNPJ informado eh valido. <br>
-     * Nao verifica o tamanho e presume que este seja de 14 digidos e somente numeros.
+     * Nao verifica o tamanho e presume que este seja de 14 digidos e somente
+     * numeros.
      *
      * @param cnpj CNPJ a ser validado.
      * @return Se o CNPJ informado eh valido ou nao.
      */
     public static boolean isCnpjValido(final String cnpj) {
-        if (cnpj == null || !cnpj.matches("^[0-9]{14}$")) {
+        if (cnpj == null || !CNPJ_PATTERN.matcher(cnpj).matches()) {
             return false;
         }
 
@@ -63,13 +67,14 @@ public abstract class DFUtils {
 
     /**
      * Verifica se o CPF informado eh valido. <br>
-     * Nao verifica o tamanho e presume que este seja de 11 digidos e somente numeros.
+     * Nao verifica o tamanho e presume que este seja de 11 digidos e somente
+     * numeros.
      *
      * @param cpf CPF a ser validado.
      * @return Se o CPF informado eh valido ou nao.
      */
     public static boolean isCpfValido(final String cpf) {
-        if (cpf == null || !cpf.matches("^[0-9]{11}$")) {
+        if (cpf == null || !CPF_PATTERN.matcher(cpf).matches()) {
             return false;
         }
 
@@ -82,22 +87,26 @@ public abstract class DFUtils {
         for (int i = 1; i < 10; i++) {
             final int digitoCPF = Integer.parseInt(cpf.substring(i - 1, i));
 
-            // multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por diante
+            // multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por
+            // diante
             d1 += (11 - i) * digitoCPF;
 
-            // para o segundo digito repita o procedimento incluindo o primeiro digito calculado no passo anterior
+            // para o segundo digito repita o procedimento incluindo o primeiro digito
+            // calculado no passo anterior
             d2 += (12 - i) * digitoCPF;
         }
 
         // primeiro resto da divisao por 11
         int resto = d1 % 11;
 
-        // se o resultado for 0 ou 1 o digito eh 0 caso contrario o digito eh 11 menos o resultado anterior
+        // se o resultado for 0 ou 1 o digito eh 0 caso contrario o digito eh 11 menos o
+        // resultado anterior
         final int digito1 = resto < 2 ? 0 : 11 - resto;
 
         // segundo resto da divisao por 11
         resto = (d2 + (2 * digito1)) % 11;
-        // se o resultado for 0 ou 1 o digito eh 0 caso contrario o digito eh 11 menos o resultado anterior
+        // se o resultado for 0 ou 1 o digito eh 0 caso contrario o digito eh 11 menos o
+        // resultado anterior
         final int digito2 = resto < 2 ? 0 : 11 - resto;
 
         // digito verificador do CPF que estah sendo validado
@@ -112,10 +121,11 @@ public abstract class DFUtils {
 
     /**
      * Indica se a String informada é formada por somente caracteres numericos.
+     * 
      * @param str String a ser verificada
      * @return Se a String é numerica.
      */
     public static boolean isNumerico(final String str) {
-        return str != null && str.matches("\\d+");
+        return str != null && SOMENTE_NUMEROS.matcher(str).matches();
     }
 }
