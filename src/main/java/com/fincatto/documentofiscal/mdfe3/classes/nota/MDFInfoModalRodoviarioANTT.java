@@ -38,9 +38,6 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
     @ElementList(entry = "infContratante", inline = true, required = false)
     protected List<MDFInfoModalRodoviarioInfContratante> infContratante;
 
-    @Element(name = "infContrato", required = false)
-    private MDFInfoModalRodoviarioInfContrato infContrato;
-
     @ElementList(entry = "infPag", inline = true, required = false)
     protected List<MDFInfoModalRodoviarioInfPag> infPag;
 
@@ -85,11 +82,4 @@ public class MDFInfoModalRodoviarioANTT extends DFBase {
         this.infPag = infPag;
     }
 
-    public MDFInfoModalRodoviarioInfContrato getInfContrato() {
-        return infContrato;
-    }
-
-    public void setInfContrato(final MDFInfoModalRodoviarioInfContrato infContrato) {
-        this.infContrato = infContrato;
-    }
 }
