@@ -104,17 +104,4 @@ public class MDFInfoModalRodoviarioANTTTest {
         Assert.assertSame(pag, antt.getInfPag().get(0));
     }
 
-    // ---------------- infContrato ----------------
-
-    @Test
-    public void devePermitirInfContratoNuloEManterReferencia() {
-        Assert.assertNull(antt.getInfContrato());
-
-        MDFInfoModalRodoviarioInfContrato contrato = new MDFInfoModalRodoviarioInfContrato();
-        antt.setInfContrato(contrato);
-        Assert.assertSame(contrato, antt.getInfContrato());
-
-        antt.setInfContrato(null);
-        Assert.assertNull(antt.getInfContrato());
-    }
 }

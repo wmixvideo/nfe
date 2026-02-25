@@ -80,7 +80,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Element(name = "gIBSMun", required = true)
     private TCIBS.GIBSMun gIBSMun;
-    
+
     @Element(name = "vIBS", required = true)
     private String vIBS;
 
@@ -92,9 +92,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Element(required = false)
     private CTeTTribCompraGov gTribCompraGov;
-
-    @Element(required = false)
-    private CTeTTribEstornoCred gEstornoCred;
 
     public String getVBC() {
       return vBC;
@@ -121,13 +118,13 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     }
 
     public String getvIBS() {
-        return vIBS;
+      return vIBS;
     }
 
     public void setvIBS(BigDecimal vIBS) {
-        this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
+      this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
     }
-    
+
     public GCBS getGCBS() {
       return gCBS;
     }
@@ -152,14 +149,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
       this.gTribCompraGov = gTribCompraGov;
     }
 
-    public CTeTTribEstornoCred getGEstornoCred() {
-      return gEstornoCred;
-    }
-
-    public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
-      this.gEstornoCred = gEstornoCred;
-    }
-
     @Root(name = "gIBSUF")
     @Namespace(reference = CTeConfig.NAMESPACE)
     public static class GIBSUF extends DFBase {
@@ -167,13 +156,13 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
       @Element(name = "pIBSUF", required = true)
       private String pIBSUF;
 
-      @Element(required = false) 
+      @Element(required = false)
       private CTeTDifIBS gDif;
 
-      @Element(required = false) 
+      @Element(required = false)
       private CTeTDevTrib gDevTrib;
 
-      @Element(required = false) 
+      @Element(required = false)
       private CTeTRed gRed;
 
       @Element(name = "vIBSUF", required = true)
