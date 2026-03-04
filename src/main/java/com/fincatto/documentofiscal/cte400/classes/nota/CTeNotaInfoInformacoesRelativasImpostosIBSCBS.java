@@ -28,6 +28,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
   @Element(name = "cClassTrib", required = true)
   private String cClassTrib;
 
+  @Element(name = "indDoacao", required = false)
+  private String indDoacao;
+
   @Element(name = "gIBSCBS", required = false)
   private TCIBS gIBSCBS;
 
@@ -47,6 +50,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     this.cClassTrib = cClassTrib;
   }
 
+  public String getIndDoacao() {
+    return indDoacao;
+  }
+
+  public void setIndDoacao(String indDoacao) {
+    this.indDoacao = indDoacao;
+  }
+
   public TCIBS getGIBSCBS() {
     return gIBSCBS;
   }
@@ -57,7 +68,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
   @Root(name = "gIBSCBS")
   @Namespace(reference = CTeConfig.NAMESPACE)
-  public class TCIBS extends DFBase {
+  public static class TCIBS extends DFBase {
 
     private static final long serialVersionUID = 6387739393518311269L;
 
@@ -70,19 +81,16 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Element(name = "gIBSMun", required = true)
     private TCIBS.GIBSMun gIBSMun;
 
+    @Element(name = "vIBS", required = true)
+    private String vIBS;
+
     @Element(name = "gCBS", required = true)
     private TCIBS.GCBS gCBS;
 
-    @Element()
+    @Element(required = false)
     private CTeTTribRegular gTribRegular;
 
-    @Element(name = "gIBSCredPres")
-    private CTeTCredPres gIBSCredPres;
-
-    @Element(name = "gCBSCredPres")
-    private CTeTCredPres gCBSCredPres;
-
-    @Element()
+    @Element(required = false)
     private CTeTTribCompraGov gTribCompraGov;
 
     public String getVBC() {
@@ -109,6 +117,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
       this.gIBSMun = gIBSMun;
     }
 
+    public String getvIBS() {
+      return vIBS;
+    }
+
+    public void setvIBS(BigDecimal vIBS) {
+      this.vIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBS, "Valor do IBS");
+    }
+
     public GCBS getGCBS() {
       return gCBS;
     }
@@ -125,22 +141,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
       this.gTribRegular = gTribRegular;
     }
 
-    public CTeTCredPres getGIBSCredPres() {
-      return gIBSCredPres;
-    }
-
-    public void setGIBSCredPres(CTeTCredPres gIBSCredPres) {
-      this.gIBSCredPres = gIBSCredPres;
-    }
-
-    public CTeTCredPres getGCBSCredPres() {
-      return gCBSCredPres;
-    }
-
-    public void setGCBSCredPres(CTeTCredPres gCBSCredPres) {
-      this.gCBSCredPres = gCBSCredPres;
-    }
-
     public CTeTTribCompraGov getGTribCompraGov() {
       return gTribCompraGov;
     }
@@ -151,18 +151,18 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Root(name = "gIBSUF")
     @Namespace(reference = CTeConfig.NAMESPACE)
-    public class GIBSUF extends DFBase {
+    public static class GIBSUF extends DFBase {
 
       @Element(name = "pIBSUF", required = true)
       private String pIBSUF;
 
-      @Element()
+      @Element(required = false)
       private CTeTDifIBS gDif;
 
-      @Element()
+      @Element(required = false)
       private CTeTDevTrib gDevTrib;
 
-      @Element()
+      @Element(required = false)
       private CTeTRed gRed;
 
       @Element(name = "vIBSUF", required = true)
@@ -212,18 +212,18 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Root(name = "gIBSMun")
     @Namespace(reference = CTeConfig.NAMESPACE)
-    public class GIBSMun extends DFBase {
+    public static class GIBSMun extends DFBase {
 
       @Element(name = "pIBSMun", required = true)
       private String pIBSMun;
 
-      @Element()
+      @Element(required = false)
       private CTeTDifIBS gDif;
 
-      @Element()
+      @Element(required = false)
       private CTeTDevTrib gDevTrib;
 
-      @Element()
+      @Element(required = false)
       private CTeTRed gRed;
 
       @Element(name = "vIBSMun", required = true)
@@ -273,18 +273,18 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Root(name = "gCBS")
     @Namespace(reference = CTeConfig.NAMESPACE)
-    public class GCBS extends DFBase {
+    public static class GCBS extends DFBase {
 
       @Element(name = "pCBS", required = true)
       private String pCBS;
 
-      @Element()
+      @Element(required = false)
       private CTeTDifCBS gDif;
 
-      @Element()
+      @Element(required = false)
       private CTeTDevTrib gDevTrib;
 
-      @Element()
+      @Element(required = false)
       private CTeTRed gRed;
 
       @Element(name = "vCBS", required = true)

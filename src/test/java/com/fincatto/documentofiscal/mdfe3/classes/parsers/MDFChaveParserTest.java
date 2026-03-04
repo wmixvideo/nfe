@@ -50,6 +50,19 @@ public class MDFChaveParserTest {
     }
 
     @Test
+    public void deveRetornarCpfEmitenteQuandoAmbosForemValidos() {
+        final MDFChaveParser parserPessoaFisicaJuridica = new MDFChaveParser("51251000000829253050559200000048851205518238");
+
+        //apesar do cnpj ser valido, a chave indica que o emitente é pessoa fisica
+        assertTrue(parserPessoaFisicaJuridica.isEmitentePessoaFisica());
+        assertEquals("00829253050", parserPessoaFisicaJuridica.getCpfEmitente());
+
+        //apesar do cnpj ser valido, a chave indica que o emitente é pessoa fisica
+        assertFalse(parserPessoaFisicaJuridica.isEmitentePessoaJuridica());
+        assertEquals(null, parserPessoaFisicaJuridica.getCnpjEmitente());
+    }
+
+    @Test
     public void deveRetornarModeloCorreto() {
         assertEquals(DFModelo.MDFE, parserPessoaFisica.getModelo());
         assertEquals(DFModelo.MDFE, parserPessoaJuridica.getModelo());
@@ -103,8 +116,17 @@ public class MDFChaveParserTest {
     }
 
     @Test
-    public void deveIdentificarSerieReservadaParaPessoaFisicaComIE() {
-        assertTrue(parserPessoaFisica.isSerieReservadaPessoaFisicaComInscricaoEstadual());
-        assertFalse(parserPessoaJuridica.isSerieReservadaPessoaFisicaComInscricaoEstadual());
+    public void deveIdentificarSerieReservadaParaPessoaFisica() {
+        assertTrue(parserPessoaFisica.isSerieReservadaPessoaFisica());
+        assertFalse(parserPessoaJuridica.isSerieReservadaPessoaFisica());
+    }
+
+    @Test
+    public void emitentePessoaJuridicaMesmoQuandoCpfValida() {
+        final MDFChaveParser parser = new MDFChaveParser("43251047060783000162580010000000071130047529");
+        assertTrue(parser.isEmitentePessoaJuridica());
+        assertFalse(parser.isEmitentePessoaFisica());
+        assertEquals("47060783000162", parser.getCnpjEmitente());
+        assertNull( parser.getCpfEmitente());
     }
 }

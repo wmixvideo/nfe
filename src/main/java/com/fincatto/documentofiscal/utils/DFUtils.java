@@ -1,13 +1,16 @@
 package com.fincatto.documentofiscal.utils;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public abstract class DFUtils {
-    private static final List<String> CPFS_INVALIDOS = Arrays.asList("00000000000", "11111111111", "22222222222",
+    private static final Pattern SOMENTE_NUMEROS = Pattern.compile("\\d+");
+    private static final Pattern CNPJ_PATTERN = Pattern.compile("^[0-9A-Z]{12}[0-9]{2}$");
+    private static final Pattern CPF_PATTERN = Pattern.compile("^[0-9]{11}$");
+
+    private static final List<String> CPFS_INVALIDOS = List.of("00000000000", "11111111111", "22222222222",
             "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999",
-            "12345678909"
-    );
+            "12345678909");
 
     /**
      * Verifica se o CNPJ informado eh valido. <br>
@@ -17,48 +20,33 @@ public abstract class DFUtils {
      * @return Se o CNPJ informado eh valido ou nao.
      */
     public static boolean isCnpjValido(final String cnpj) {
-        if (cnpj == null || !cnpj.matches("^[0-9]{14}$")) {
+        if (cnpj == null || !CNPJ_PATTERN.matcher(cnpj.toUpperCase()).matches()) {
             return false;
         }
 
-        // verifica por falsos positivos
-        if (cnpj.equalsIgnoreCase("00000000000000")) {
+        final String cnpjNormalizado = cnpj.toUpperCase();
+        if (cnpjNormalizado.chars().distinct().count() == 1) {
             return false;
         }
 
-        String cnpjCalculado = cnpj.substring(0, 12);
-        final char[] chrCNPJ = cnpj.toCharArray();
+        final int primeiroDigito = calcularDigitoVerificadorCnpj(cnpjNormalizado, 12);
+        final int segundoDigito = calcularDigitoVerificadorCnpj(cnpjNormalizado, 13);
 
-        // primeira parte
+        return primeiroDigito == Character.getNumericValue(cnpjNormalizado.charAt(12))
+                && segundoDigito == Character.getNumericValue(cnpjNormalizado.charAt(13));
+    }
+
+    private static int calcularDigitoVerificadorCnpj(final String cnpj, final int quantidadePosicoes) {
         int soma = 0;
-        for (int i = 0; i < 4; i++) {
-            if (((chrCNPJ[i] - 48) >= 0) && ((chrCNPJ[i] - 48) <= 9)) {
-                soma += (chrCNPJ[i] - 48) * (6 - (i + 1));
-            }
+        int peso = 2;
+        for (int i = quantidadePosicoes - 1; i >= 0; i--) {
+            final int valor = cnpj.charAt(i) - 48;
+            soma += valor * peso;
+            peso = (peso == 9) ? 2 : peso + 1;
         }
-        for (int i = 0; i < 8; i++) {
-            if (((chrCNPJ[i + 4] - 48) >= 0) && ((chrCNPJ[i + 4] - 48) <= 9)) {
-                soma += (chrCNPJ[i + 4] - 48) * (10 - (i + 1));
-            }
-        }
-        int dig = 11 - (soma % 11);
-        cnpjCalculado += (dig == 10) || (dig == 11) ? "0" : Integer.toString(dig);
+        final int resto = soma % 11;
 
-        // segunda parte
-        soma = 0;
-        for (int i = 0; i < 5; i++) {
-            if (((chrCNPJ[i] - 48) >= 0) && ((chrCNPJ[i] - 48) <= 9)) {
-                soma += (chrCNPJ[i] - 48) * (7 - (i + 1));
-            }
-        }
-        for (int i = 0; i < 8; i++) {
-            if (((chrCNPJ[i + 5] - 48) >= 0) && ((chrCNPJ[i + 5] - 48) <= 9)) {
-                soma += (chrCNPJ[i + 5] - 48) * (10 - (i + 1));
-            }
-        }
-        dig = 11 - (soma % 11);
-        cnpjCalculado += (dig == 10) || (dig == 11) ? "0" : Integer.toString(dig);
-        return cnpj.equals(cnpjCalculado);
+        return (resto < 2) ? 0 : 11 - resto;
     }
 
     /**
@@ -69,7 +57,7 @@ public abstract class DFUtils {
      * @return Se o CPF informado eh valido ou nao.
      */
     public static boolean isCpfValido(final String cpf) {
-        if (cpf == null || !cpf.matches("^[0-9]{11}$")) {
+        if (cpf == null || !CPF_PATTERN.matcher(cpf).matches()) {
             return false;
         }
 
@@ -116,6 +104,6 @@ public abstract class DFUtils {
      * @return Se a String é numerica.
      */
     public static boolean isNumerico(final String str) {
-        return str != null && str.matches("\\d+");
+        return str != null && SOMENTE_NUMEROS.matcher(str).matches();
     }
 }

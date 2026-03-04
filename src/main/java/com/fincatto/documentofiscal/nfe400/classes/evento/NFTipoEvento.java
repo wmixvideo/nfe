@@ -32,7 +32,7 @@ public class NFTipoEvento extends DFBase {
     }
 
     public void setDescricaoEvento(final String descricaoEvento) {
-        DFStringValidador.tamanho4a60(descricaoEvento, "Descricao do Evento");
+        DFStringValidador.tamanho2a98(descricaoEvento, "Descricao do Evento");
         this.descricaoEvento = descricaoEvento;
     }
 

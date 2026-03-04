@@ -18,13 +18,13 @@ public class MDFInfoModalRodoviarioInfPagBanco extends DFBase {
     /**
      * Número do banco
      */
-    @Element(name = "codBanco")
+    @Element(name = "codBanco", required = false)
     private String codBanco;
 
     /**
      * Número da agência bancária
      */
-    @Element(name = "codAgencia")
+    @Element(name = "codAgencia", required = false)
     private String codAgencia;
 
     /**

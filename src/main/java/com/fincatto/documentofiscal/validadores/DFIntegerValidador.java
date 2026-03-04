@@ -53,7 +53,9 @@ public abstract class DFIntegerValidador {
     public static void exatamente2(final Integer valor, final String info) {
         DFIntegerValidador.intervalo(valor, 10, 99, info);
     }
-
+    public static void valor1(final Integer valor, final String info) {
+        DFIntegerValidador.intervalo(valor, 1, 1, info);
+    }
     private static void limite(final Integer valor, final int maximo, final String info) {
         if (valor != null && valor > maximo) {
             throw new NumberFormatException("Valor extrapolou o tamanho do campo " + info);

@@ -1,5 +1,9 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
+import java.util.List;
+
+import org.simpleframework.xml.ElementList;
+
 import com.fincatto.documentofiscal.DFBase;
 
 /**
@@ -11,13 +15,14 @@ public class NFNotaInfoIdentificacaoPagAntecipado extends DFBase {
 
   private static final long serialVersionUID = -2568396066960857836L;
 
-  private String refNFe; // BB02
+  @ElementList(entry = "refNFe", inline = true)
+  private List<String> refNFe; // BB02
 
-  public String getRefNFe() {
+  public List<String> getRefNFe() {
     return refNFe;
   }
 
-  public void setRefNFe(String refNFe) {
+  public void setRefNFe(List<String> refNFe) {
     this.refNFe = refNFe;
   }
 

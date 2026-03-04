@@ -56,7 +56,7 @@ public class NFInfoCancelamento extends NFTipoEvento {
     }
 
     public void setProtocoloAutorizacao(final String protocoloAutorizacao) {
-        DFStringValidador.exatamente15N(protocoloAutorizacao, "Protocolo de Autorizacao");
+        DFStringValidador.tamanho15ou17N(protocoloAutorizacao, "Protocolo de Autorizacao");
         this.protocoloAutorizacao = protocoloAutorizacao;
     }
 

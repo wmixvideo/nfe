@@ -14,13 +14,13 @@ import java.time.ZonedDateTime;
 
 public class NFInfoEventoCancelamento extends DFBase {
     private static final long serialVersionUID = 1491402822907097339L;
-    
+
     @Attribute(name = "Id")
     private String id;
-    
+
     @Element(name = "cOrgao")
     private DFUnidadeFederativa orgao;
-    
+
     @Element(name = "tpAmb")
     private DFAmbiente ambiente;
 
@@ -29,22 +29,22 @@ public class NFInfoEventoCancelamento extends DFBase {
 
     @Element(name = "CPF", required = false)
     private String cpf;
-    
+
     @Element(name = "chNFe")
     private String chave;
-    
+
     @Element(name = "dhEvento")
     private ZonedDateTime dataHoraEvento;
-    
+
     @Element(name = "tpEvento")
     private String codigoEvento;
-    
+
     @Element(name = "nSeqEvento")
     private Integer numeroSequencialEvento;
-    
+
     @Element(name = "verEvento")
     private String versaoEvento;
-    
+
     @Element(name = "detEvento")
     private NFInfoCancelamento cancelamento;
 
@@ -78,9 +78,6 @@ public class NFInfoEventoCancelamento extends DFBase {
     }
 
     public void setCnpj(final String cnpj) {
-        if (this.cpf != null) {
-            throw new IllegalStateException("CPF ja foi setado");
-        }
         DFStringValidador.cnpj(cnpj);
         this.cnpj = cnpj;
     }
@@ -90,9 +87,6 @@ public class NFInfoEventoCancelamento extends DFBase {
     }
 
     public void setCpf(final String cpf) {
-        if (this.cnpj != null) {
-            throw new IllegalStateException("CNPJ ja foi setado");
-        }
         DFStringValidador.cpf(cpf);
         this.cpf = cpf;
     }

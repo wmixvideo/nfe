@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -110,6 +111,12 @@ public class NFNotaInfoIdentificacao extends DFBase {
     
     @Element(name = "gPagAntecipado", required = false)
     private NFNotaInfoIdentificacaoPagAntecipado gPagAntecipado; // BB01
+
+    /**
+     * B10a - Data da previsão de entrega ou disponibilização do bem
+     */
+    @Element(name = "dPrevEntrega", required = false)
+    private LocalDate dataPrevistaEntrega;
 
     public void setUf(final DFUnidadeFederativa uf) {
         this.uf = uf;
@@ -357,6 +364,14 @@ public class NFNotaInfoIdentificacao extends DFBase {
     
     public void setGPagAntecipado(NFNotaInfoIdentificacaoPagAntecipado gPagAntecipado) {
         this.gPagAntecipado = gPagAntecipado;
+    }
+
+    public LocalDate getDataPrevistaEntrega() {
+        return dataPrevistaEntrega;
+    }
+
+    public void setDataPrevistaEntrega(LocalDate dataPrevistaEntrega) {
+        this.dataPrevistaEntrega = dataPrevistaEntrega;
     }
 	
 }
