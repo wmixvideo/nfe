@@ -1,5 +1,6 @@
 package com.fincatto.documentofiscal.utils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -8,7 +9,7 @@ public abstract class DFUtils {
     private static final Pattern CNPJ_PATTERN = Pattern.compile("^[0-9A-Z]{12}[0-9]{2}$");
     private static final Pattern CPF_PATTERN = Pattern.compile("^[0-9]{11}$");
 
-    private static final List<String> CPFS_INVALIDOS = List.of("00000000000", "11111111111", "22222222222",
+    private static final List<String> CPFS_INVALIDOS = Arrays.asList("00000000000", "11111111111", "22222222222",
             "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999",
             "12345678909");
 
