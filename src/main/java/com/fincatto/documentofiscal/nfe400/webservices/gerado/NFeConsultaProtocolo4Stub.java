@@ -91,6 +91,7 @@ public class NFeConsultaProtocolo4Stub extends org.apache.axis2.client.Stub {
             final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());
             _operationClient.getOptions().setAction("http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4/nfeConsultaNF");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+            _operationClient.getOptions().setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
             this.addPropertyToOperationClient(_operationClient, org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR, "&");
             // create a message context
             _messageContext = MessageContextFactory.INSTANCE.create(config);
