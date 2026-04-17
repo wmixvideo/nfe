@@ -1585,10 +1585,7 @@ public class NFNotaInfoItemProdutoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoGrupoCreditoPresumido() {
-        final NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido = new NFNotaInfoItemProdutoGrupoCreditoPresumido();
-        grupoCreditoPresumido.setCodigoBeneficioFiscalCreditoPresumido("DF020111");
-        grupoCreditoPresumido.setPercentualCreditoPresumido(new BigDecimal("65.12"));
-        grupoCreditoPresumido.setValorCreditoPresumido(new BigDecimal("12.73"));
+    	final List<NFNotaInfoItemProdutoGrupoCreditoPresumido> grupoCreditoPresumido = Collections.singletonList(FabricaDeObjetosFake.getNFNotaInfoItemProdutoGrupoCreditoPresumido());
 
         final NFNotaInfoItemProduto nfNotaInfoItemProdutoGrupoCreditoPresumido = FabricaDeObjetosFake.getNFNotaInfoItemProduto();
         nfNotaInfoItemProdutoGrupoCreditoPresumido.setGrupoCreditoPresumido(grupoCreditoPresumido);
