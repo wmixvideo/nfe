@@ -46,6 +46,7 @@ public class DFUtilsTest {
     @Test
     public void deveValidarCnpjAlfanumerico() {
         Assert.assertTrue(DFUtils.isCnpjValido("12ABC34501DE35"));
+        Assert.assertTrue(DFUtils.isCnpjValido("12abc34501de35"));
     }
 
     @Test
