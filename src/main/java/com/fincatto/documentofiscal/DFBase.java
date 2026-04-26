@@ -12,7 +12,8 @@ import java.io.StringWriter;
  */
 public abstract class DFBase implements Serializable {
     private static final long serialVersionUID = 6887612399839814676L;
-    
+    private static final Persister PERSISTER = new DFPersister();
+
     /**
      * Metodo que serializa o objeto para String.
      * Por padrao, usara o {@link DFPersister}.
@@ -21,9 +22,8 @@ public abstract class DFBase implements Serializable {
      */
     @Override
     public String toString() {
-        final Persister persister = new DFPersister();
         try (StringWriter writer = new StringWriter()) {
-            persister.write(this, writer);
+            PERSISTER.write(this, writer);
             return writer.toString();
         } catch (final Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
