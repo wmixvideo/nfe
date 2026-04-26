@@ -195,7 +195,9 @@ public class DFStringValidadorTest {
 
     @Test
     public void deveValidarCNPJ() {
+        DFStringValidador.cnpj("ZLVERP05000160");
         DFStringValidador.cnpj("01234567000100");
+        DFStringValidador.cnpj("ABCDEFGHIJKL80", "");
         DFStringValidador.cnpj("01234567000100", "");
     }
 
@@ -240,6 +242,12 @@ public class DFStringValidadorTest {
     @Test(expected = IllegalStateException.class)
     public void naoDeveValidarCNPJCasoNaoPossua14CaracteresInfo() {
         DFStringValidador.cnpj("1234567890123", "");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCNPJCasoNaoEstejaNoPadrao() {
+        DFStringValidador.cnpj("ZLVERP0500016a");
+        DFStringValidador.cnpj("aLVERP0500016a", "");
     }
 
     @Test
