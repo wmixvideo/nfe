@@ -34,6 +34,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
   @Element(name = "gIBSCBS", required = false)
   private TCIBS gIBSCBS;
 
+  @Element(name = "gEstornoCred", required = false)
+  private CTeTTribEstornoCred gEstornoCred;
+
   public String getCST() {
     return cst;
   }
@@ -66,6 +69,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     this.gIBSCBS = gIBSCBS;
   }
 
+  public CTeTTribEstornoCred getGEstornoCred() {
+    return gEstornoCred;
+  }
+
+  public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
+    this.gEstornoCred = gEstornoCred;
+  }
+
   @Root(name = "gIBSCBS")
   @Namespace(reference = CTeConfig.NAMESPACE)
   public static class TCIBS extends DFBase {
@@ -92,9 +103,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Element(required = false)
     private CTeTTribCompraGov gTribCompraGov;
-
-    @Element()
-    private CTeTTribEstornoCred gEstornoCred;
 
     public String getVBC() {
       return vBC;
@@ -150,14 +158,6 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     public void setGTribCompraGov(CTeTTribCompraGov gTribCompraGov) {
       this.gTribCompraGov = gTribCompraGov;
-    }
-
-    public CTeTTribEstornoCred getGEstornoCred() {
-      return gEstornoCred;
-    }
-
-    public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
-      this.gEstornoCred = gEstornoCred;
     }
 
     @Root(name = "gIBSUF")
