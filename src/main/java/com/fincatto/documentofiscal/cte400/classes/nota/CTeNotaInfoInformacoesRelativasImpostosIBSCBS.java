@@ -93,6 +93,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
     @Element(required = false)
     private CTeTTribCompraGov gTribCompraGov;
 
+    @Element()
+    private CTeTTribEstornoCred gEstornoCred;
+
     public String getVBC() {
       return vBC;
     }
@@ -147,6 +150,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     public void setGTribCompraGov(CTeTTribCompraGov gTribCompraGov) {
       this.gTribCompraGov = gTribCompraGov;
+    }
+
+    public CTeTTribEstornoCred getGEstornoCred() {
+      return gEstornoCred;
+    }
+
+    public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
+      this.gEstornoCred = gEstornoCred;
     }
 
     @Root(name = "gIBSUF")
