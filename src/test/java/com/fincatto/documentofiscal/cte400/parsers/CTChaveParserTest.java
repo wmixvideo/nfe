@@ -72,7 +72,7 @@ public class CTChaveParserTest {
     @Test
     public void deveObterDataDeEmissaoDaChave() {
         final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006041448679011");
-        Assert.assertEquals(LocalDate.of(2605, 5, 1), parser.getDataEmissao());
+        Assert.assertEquals(LocalDate.of(2026, 5, 1), parser.getDataEmissao());
     }
 
     @Test
@@ -84,19 +84,19 @@ public class CTChaveParserTest {
     @Test
     public void deveObterNumeroDaChave() {
         final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006041448679011");
-        Assert.assertEquals("960010000", parser.getNumero());
+        Assert.assertEquals("000000604", parser.getNumero());
     }
 
     @Test
     public void deveObterCnpjEmitenteDaChave() {
         final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006041448679011");
-        Assert.assertEquals("0X0J92JY00019", parser.getCnpjEmitente());
+        Assert.assertEquals("0X0J92JY000196", parser.getCnpjEmitente());
     }
 
     @Test
     public void deveObterCnpjEmitenteDeChavedeSomenteNumeros() {
         final CTChaveParser parser = new CTChaveParser("35260502605000000019657001000000604144867901");
-        Assert.assertEquals("02605000000196", parser.getCnpjEmitente());
+        Assert.assertEquals("02605000000019", parser.getCnpjEmitente());
     }
 
     @Test
@@ -114,13 +114,13 @@ public class CTChaveParserTest {
     @Test
     public void deveObterCodigoNumericoDaChave() {
         final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006041448679011");
-        Assert.assertEquals("60414486", parser.getCodigoNumerico());
+        Assert.assertEquals("44867901", parser.getCodigoNumerico());
     }
 
     @Test
     public void deveObterDVDaChave() {
         final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006041448679011");
-        Assert.assertEquals("9", parser.getDV());
+        Assert.assertEquals("1", parser.getDV());
     }
 
     @Test
@@ -149,13 +149,13 @@ public class CTChaveParserTest {
 
     @Test
     public void deveSerEmitidaContingenciaSCVSP() {
-        final CTChaveParser parser = new CTChaveParser("35260502605000000019657061000000604144867901");
+        final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006048448679011");
         Assert.assertTrue(parser.isEmitidaContingenciaSCVSP());
     }
 
     @Test
     public void deveSerEmitidaContingenciaSCVRS() {
-        final CTChaveParser parser = new CTChaveParser("35260502605000000019657071000000604144867901");
+        final CTChaveParser parser = new CTChaveParser("3526050X0J92JY000196570010000006047448679011");
         Assert.assertTrue(parser.isEmitidaContingenciaSCVRS());
     }
 
