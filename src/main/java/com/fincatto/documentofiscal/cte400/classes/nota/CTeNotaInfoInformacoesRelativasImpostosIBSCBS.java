@@ -345,7 +345,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
   @Root(name = "gEstornoCred")
   @Namespace(reference = CTeConfig.NAMESPACE)
-  public class CTeTTribEstornoCred extends DFBase {
+  public static class CTeTTribEstornoCred extends DFBase {
 
     private static final long serialVersionUID = -3330020091023450254L;
 
