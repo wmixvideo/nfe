@@ -34,6 +34,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
   @Element(name = "gIBSCBS", required = false)
   private TCIBS gIBSCBS;
 
+  @Element(name = "gEstornoCred", required = false)
+  private CTeTTribEstornoCred gEstornoCred;
+
   public String getCST() {
     return cst;
   }
@@ -64,6 +67,14 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
   public void setGIBSCBS(TCIBS gIBSCBS) {
     this.gIBSCBS = gIBSCBS;
+  }
+
+  public CTeTTribEstornoCred getGEstornoCred() {
+    return gEstornoCred;
+  }
+
+  public void setGEstornoCred(CTeTTribEstornoCred gEstornoCred) {
+    this.gEstornoCred = gEstornoCred;
   }
 
   @Root(name = "gIBSCBS")
@@ -330,5 +341,35 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
         this.vCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCBS, "Valor da CBS");
       }
     }
+  }
+
+  @Root(name = "gEstornoCred")
+  @Namespace(reference = CTeConfig.NAMESPACE)
+  public static class CTeTTribEstornoCred extends DFBase {
+
+    private static final long serialVersionUID = -3330020091023450254L;
+
+    @Element(required = true)
+    private String vIBSEstCred;
+
+    @Element(required = true)
+    private String vCBSEstCred;
+
+    public String getVIBSEstCred() {
+      return vIBSEstCred;
+    }
+
+    public void setVIBSEstCred(BigDecimal vIBSEstCred) {
+      this.vIBSEstCred = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSEstCred, "Valor do IBS a ser estornado");
+    }
+
+    public String getvCBSEstCred() {
+      return vCBSEstCred;
+    }
+
+    public void setVCBSEstCred(BigDecimal vCBSEstCred) {
+      this.vCBSEstCred = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCBSEstCred, "Valor do CBS a ser estornado");
+    }
+
   }
 }
