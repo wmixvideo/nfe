@@ -51,7 +51,7 @@ public final class DFXMLValidador {
      * Valida MDFe. Para evitar "org.xml.sax.SAXParseException", message:
      * "Current configuration of the parser doesn't allow a maxOccurs attribute
      * value to be set greater than the value 5.000", foi adicionado a linha
-     * System.setProperty("jdk.xml.maxOccurLimit", "10000");
+     * System.setProperty("jdk.xml.maxOccurLimit", "20000");
      */
     private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         System.setProperty("jdk.xml.maxOccurLimit", "20000");
