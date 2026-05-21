@@ -4,6 +4,8 @@ import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class NFInfoReferenciadaTest {
 
     @Test(expected = IllegalStateException.class)
@@ -143,6 +145,23 @@ public class NFInfoReferenciadaTest {
         } catch (final IllegalStateException e) {
             new NFInfoReferenciada().setChaveAcesso("976491545426199562046180593530960051134629091");
         }
+    }
+
+    @Test
+    public void devePermitirChaveAcessoAlfanumerica() {
+        final NFInfoReferenciada referenciada = new NFInfoReferenciada();
+        // Chave com CNPJ alfanumérico (44 chars)
+        final String chaveAlfanumerica = "422505AB000000000001550010000000011000000010";
+        referenciada.setChaveAcesso(chaveAlfanumerica);
+        assertEquals(chaveAlfanumerica, referenciada.getChaveAcesso());
+    }
+
+    @Test
+    public void devePermitirChaveAcessoCTReferenciadaAlfanumerica() {
+        final NFInfoReferenciada referenciada = new NFInfoReferenciada();
+        // Chave CT-e com CNPJ alfanumérico (44 chars)
+        referenciada.setChaveAcessoCTReferenciada("3526050X0J92JY000196570010000006041448679011");
+        assertEquals("3526050X0J92JY000196570010000006041448679011", referenciada.getChaveAcessoCTReferenciada());
     }
 
     @Test

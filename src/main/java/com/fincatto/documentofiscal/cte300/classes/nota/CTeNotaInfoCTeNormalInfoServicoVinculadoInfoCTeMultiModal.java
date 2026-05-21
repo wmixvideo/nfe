@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalInfoServicoVinculadoInfoCTeMultiModal extends D
      * Chave de acesso do CT-e Multimodal
      */
     public void setChaveCTeMultiModal(final String chaveCTeMultiModal) {
-        DFStringValidador.exatamente44N(chaveCTeMultiModal, "Chave de acesso do CT-e Multimodal");
+        DFStringValidador.exatamente44(chaveCTeMultiModal, "Chave de acesso do CT-e Multimodal");
         this.chaveCTeMultiModal = chaveCTeMultiModal;
     }
 }

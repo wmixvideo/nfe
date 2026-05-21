@@ -86,7 +86,7 @@ public class NFInfoEventoAverbacaoExportacao extends DFBase {
 	}
 
 	public void setChave(final String chave) {
-		DFStringValidador.exatamente44N(chave, "Info Evento Averbacao Exportacao Chave");
+		DFStringValidador.exatamente44(chave, "Info Evento Averbacao Exportacao Chave");
 		this.chave = chave;
 	}
 
