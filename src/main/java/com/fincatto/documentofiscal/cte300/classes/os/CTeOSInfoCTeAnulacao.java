@@ -28,7 +28,7 @@ public class CTeOSInfoCTeAnulacao extends DFBase {
      * Chave de acesso do CT-e original a ser anulado e substituído
      */
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Chave de acesso do CT-e original a ser anulado e substituído");
+        DFStringValidador.exatamente44(chave, "Chave de acesso do CT-e original a ser anulado e substituído");
         this.chave = chave;
     }
 

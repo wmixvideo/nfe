@@ -46,7 +46,7 @@ public class MDFInfoInformacoesCTe {
     }
 
     public void setChaveCTe(String chaveCTe) {
-        DFStringValidador.exatamente44N(chaveCTe, "Chave CT-e informações");
+        DFStringValidador.exatamente44(chaveCTe, "Chave CT-e informações");
         this.chaveCTe = chaveCTe;
     }
 

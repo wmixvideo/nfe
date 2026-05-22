@@ -22,7 +22,7 @@ public class NFNotaInfoItemExportacaoIndireta extends DFBase {
     private String quantidadeItemEfetivamenteExportado;
 
     public void setChaveAcessoNFe(final String chaveAcessoNFe) {
-        DFStringValidador.exatamente44N(chaveAcessoNFe, "Chave de Acesso NFe");
+        DFStringValidador.exatamente44(chaveAcessoNFe, "Chave de Acesso NFe");
         this.chaveAcessoNFe = chaveAcessoNFe;
     }
 

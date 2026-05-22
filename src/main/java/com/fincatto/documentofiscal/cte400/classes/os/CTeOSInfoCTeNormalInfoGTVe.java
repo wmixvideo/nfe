@@ -26,7 +26,7 @@ public class CTeOSInfoCTeNormalInfoGTVe extends DFBase {
     }
 
     public void setChaveGTVe(final String chaveGTVe) {
-        DFStringValidador.exatamente44N(chaveGTVe, "Chave de acesso da Guia de Transporte de Valores Eletrônica (GTVe)");
+        DFStringValidador.exatamente44(chaveGTVe, "Chave de acesso da Guia de Transporte de Valores Eletrônica (GTVe)");
         this.chaveGTVe = chaveGTVe;
     }
 
