@@ -87,14 +87,9 @@ public class DFUtilsTest {
 
     @Test
     public void deveValidarFormatoCnpjMixtoAlfanumerico() {
-        // Testa que CNPJs com mix de letras e números seguem o formato correto
-        String cnpj1 = "A1B2C3D4E5F612";
-        Assert.assertTrue("CNPJ deve ter 14 caracteres", cnpj1.length() == 14);
-        Assert.assertTrue("CNPJ deve seguir padrão alfanumérico", cnpj1.matches("^[0-9A-Z]{12}[0-9]{2}$"));
-        
-        String cnpj2 = "123456ABCDEF01";
-        Assert.assertTrue("CNPJ deve ter 14 caracteres", cnpj2.length() == 14);
-        Assert.assertTrue("CNPJ deve seguir padrão alfanumérico", cnpj2.matches("^[0-9A-Z]{12}[0-9]{2}$"));
+        // Testa CNPJs alfanuméricos válidos (incluindo cálculo de dígitos verificadores)
+        Assert.assertTrue(DFUtils.isCnpjValido("A1B2C3D4E5F668"));
+        Assert.assertTrue(DFUtils.isCnpjValido("123456ABCDEF66"));
     }
 
     @Test
