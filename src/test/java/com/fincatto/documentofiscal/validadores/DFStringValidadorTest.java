@@ -266,6 +266,71 @@ public class DFStringValidadorTest {
     }
 
     @Test
+    public void deveValidarCnpjNumerico() {
+        // Testa CNPJs numéricos válidos
+        DFStringValidador.cnpj("11222333000181");
+        DFStringValidador.cnpj("03918609000132");
+        DFStringValidador.cnpj("00000000000191");
+    }
+
+    @Test
+    public void deveValidarCnpjNumericoComInfo() {
+        // Testa CNPJs numéricos válidos com parâmetro info
+        DFStringValidador.cnpj("11222333000181", "Emitente");
+        DFStringValidador.cnpj("03918609000132", "Destinatario");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoFormatoCTe() {
+        // Testa CNPJs alfanuméricos do formato CTe [A-Z0-9]{12}[0-9]{2}
+        DFStringValidador.cnpj("0JRXDN7G000175");
+        DFStringValidador.cnpj("0X0J92JY000196");
+        DFStringValidador.cnpj("ABCD1234567890");
+        DFStringValidador.cnpj("123456ABCDEF01");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoFormatoCTeComInfo() {
+        // Testa CNPJs alfanuméricos com parâmetro info
+        DFStringValidador.cnpj("0JRXDN7G000175", "Emitente CTe");
+        DFStringValidador.cnpj("0X0J92JY000196", "Destinatario CTe");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoMinusculo() {
+        // Testa CNPJs alfanuméricos com letras minúsculas (devem ser aceitas)
+        DFStringValidador.cnpj("0jrxdn7g000175");
+        DFStringValidador.cnpj("0x0j92jy000196");
+        DFStringValidador.cnpj("abcd1234567890");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComCaracteresEspeciais() {
+        DFStringValidador.cnpj("0JRXDN7G0001@5");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComEspacos() {
+        DFStringValidador.cnpj("0JRXDN7G 00175");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComLetraNoDigitoVerificador() {
+        // Os últimos 2 caracteres devem ser numéricos
+        DFStringValidador.cnpj("0JRXDN7G0001AB");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComTamanhoMenor() {
+        DFStringValidador.cnpj("0JRXDN7G00017");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComTamanhoMaior() {
+        DFStringValidador.cnpj("0JRXDN7G0001755");
+    }
+
+    @Test
     public void deveValidarInscricaoEstadualCasoEstejaNoPadrao() {
         DFStringValidador.inscricaoEstadual("");
         DFStringValidador.inscricaoEstadual("ISENTO");

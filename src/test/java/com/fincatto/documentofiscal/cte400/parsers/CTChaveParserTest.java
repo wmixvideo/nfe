@@ -166,5 +166,45 @@ public class CTChaveParserTest {
         assertTrue(parser.getFormatado().contains(" "));
     }
 
+    @Test
+    public void deveExtrairCnpjAlfanumerico0JRXDN7G000175() {
+        // Teste específico para o CNPJ do erro reportado
+        // Usando mesma estrutura da chave do teste existente, trocando apenas o CNPJ
+        // Chave exemplo: 3526050X0J92JY000196570010000006041448679011
+        // CNPJ na chave: 0X0J92JY000196 (posições 6-19)
+        // Nova chave com: 0JRXDN7G000175
+        final CTChaveParser parser = new CTChaveParser("35260500JRXDN7G00175570010000006041448679011");
+        Assert.assertEquals("00JRXDN7G00175", parser.getCnpjEmitente());
+    }
+
+    @Test
+    public void deveValidarChaveComCnpjAlfanumericoDiversos() {
+        // Testa diferentes padrões de CNPJ alfanumérico usando estruturas válidas
+        
+        // CNPJ com letras e números: 00JRXDN7G00175
+        CTChaveParser parser1 = new CTChaveParser("35260500JRXDN7G00175570010000006041448679011");
+        Assert.assertEquals("00JRXDN7G00175", parser1.getCnpjEmitente());
+
+        // CNPJ mais alfanumérico: ABCD1234567890
+        CTChaveParser parser2 = new CTChaveParser("352605ABCD1234567890570010000006041448679011");
+        Assert.assertEquals("ABCD1234567890", parser2.getCnpjEmitente());
+
+        // CNPJ com números e letras: 123456ABCDEF01
+        CTChaveParser parser3 = new CTChaveParser("352605123456ABCDEF01570010000006041448679011");
+        Assert.assertEquals("123456ABCDEF01", parser3.getCnpjEmitente());
+    }
+
+    @Test
+    public void devePermitirChaveComCnpjTotalmenteAlfanumerico() {
+        final CTChaveParser parser = new CTChaveParser("35260512ABC34501DE35570010000006041448679011");
+        Assert.assertEquals("12ABC34501DE35", parser.getCnpjEmitente());
+    }
+
+    @Test
+    public void devePermitirChaveComCnpjTotalmenteNumerico() {
+        final CTChaveParser parser = new CTChaveParser("35260512345678901234570010000006041448679011");
+        Assert.assertEquals("12345678901234", parser.getCnpjEmitente());
+    }
+
 }
 
