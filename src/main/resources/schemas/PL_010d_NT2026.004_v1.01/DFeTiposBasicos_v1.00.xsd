@@ -366,7 +366,7 @@
 					</xs:element>
 					<xs:element name="qTrib" type="TDec_1104OpRTC">
 						<xs:annotation>
-							<xs:documentation>Quantidade com abse no campo uTrib informado</xs:documentation>
+							<xs:documentation>Quantidade com base no campo uTrib informado</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
