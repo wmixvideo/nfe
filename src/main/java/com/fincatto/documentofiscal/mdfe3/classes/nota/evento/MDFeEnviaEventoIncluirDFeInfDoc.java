@@ -49,7 +49,7 @@ public class MDFeEnviaEventoIncluirDFeInfDoc extends DFBase {
     }
 
     public void setChNFe(String chNFe) {
-        DFStringValidador.exatamente44N(chNFe, "Chave NF-e informações");
+        DFStringValidador.exatamente44(chNFe, "Chave NF-e informações");
         this.chNFe = chNFe;
     }
 

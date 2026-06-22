@@ -24,7 +24,7 @@ public class CTeProtocoloInfo extends DFBase {
     @Element(name = "verAplic")
     private String versaoAplicacao;
     
-    @Element(name = "chCTe")
+    @Element(name = "chCTe", required = false)
     private String chave;
     
     @Element(name = "dhRecbto")

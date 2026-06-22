@@ -16,7 +16,7 @@ public class NFProtocoloEventoCancelamentoEvento extends DFBase {
     private String versao;
 
     @Element(name = "evento")
-    private NFEventoAceiteDebitoApuracao evento;
+    private NFEventoCancelamentoEvento evento;
 
     @Element(name = "retEvento")
     private NFEventoRetorno eventoRetorno;
@@ -29,11 +29,11 @@ public class NFProtocoloEventoCancelamentoEvento extends DFBase {
         this.versao = versao;
     }
 
-    public NFEventoAceiteDebitoApuracao getEvento() {
+    public NFEventoCancelamentoEvento getEvento() {
         return evento;
     }
 
-    public void setEvento(NFEventoAceiteDebitoApuracao evento) {
+    public void setEvento(NFEventoCancelamentoEvento evento) {
         this.evento = evento;
     }
 

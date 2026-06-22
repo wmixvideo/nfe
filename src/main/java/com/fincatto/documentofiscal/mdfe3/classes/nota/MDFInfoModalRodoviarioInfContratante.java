@@ -35,6 +35,9 @@ public class MDFInfoModalRodoviarioInfContratante {
      */
     @Element(name = "idEstrangeiro", required = false)
     private String idEstrangeiro;
+    
+    @Element(name = "infContrato", required = false)
+    private MDFInfoModalRodoviarioInfContrato infContrato;
 
     public String getNome() {
 		return nome;
@@ -80,4 +83,11 @@ public class MDFInfoModalRodoviarioInfContratante {
         this.idEstrangeiro = idEstrangeiro;
     }
 
+    public MDFInfoModalRodoviarioInfContrato getInfContrato() {
+        return infContrato;
+    }
+
+    public void setInfContrato(final MDFInfoModalRodoviarioInfContrato infContrato) {
+        this.infContrato = infContrato;
+    }
 }
