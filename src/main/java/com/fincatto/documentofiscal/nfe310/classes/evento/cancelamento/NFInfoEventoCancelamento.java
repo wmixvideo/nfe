@@ -96,7 +96,7 @@ public class NFInfoEventoCancelamento extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Info Evento Cancelamento Chave");
+        DFStringValidador.exatamente44(chave, "Info Evento Cancelamento Chave");
         this.chave = chave;
     }
 

@@ -13,7 +13,8 @@ public class NFTipoImpressaoTest {
         Assert.assertEquals(NFTipoImpressao.DANFE_SIMPLIFICADO, NFTipoImpressao.valueOfCodigo("3"));
         Assert.assertEquals(NFTipoImpressao.DANFE_NFCE, NFTipoImpressao.valueOfCodigo("4"));
         Assert.assertEquals(NFTipoImpressao.DANFE_NFCE_MENSAGEM_ELETRONICA, NFTipoImpressao.valueOfCodigo("5"));
-        Assert.assertNull(NFTipoImpressao.valueOfCodigo("6"));
+        Assert.assertEquals(NFTipoImpressao.DANFE_SIMPLIFICADO_TIPO_2, NFTipoImpressao.valueOfCodigo("6"));
+        Assert.assertNull(NFTipoImpressao.valueOfCodigo("7"));
     }
 
     @Test

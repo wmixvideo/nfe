@@ -78,7 +78,7 @@ public class MDFInfo extends DFBase {
      * Informar a chave de acesso do MDF-e e precedida do literal "MDFe"
      */
     public void setIdentificador(final String identificador) {
-        DFStringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44(identificador, "Identificador");
         this.identificador = MDFInfo.IDENT + identificador;
     }
 

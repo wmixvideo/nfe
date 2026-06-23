@@ -41,7 +41,7 @@ public class NFNotaConsulta extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Chave de Acesso Nota Consulta");
+        DFStringValidador.exatamente44(chave, "Chave de Acesso Nota Consulta");
         this.chave = chave;
     }
 

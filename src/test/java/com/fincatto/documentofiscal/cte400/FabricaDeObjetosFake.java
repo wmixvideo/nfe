@@ -148,6 +148,12 @@ public class FabricaDeObjetosFake {
         return cteInfoNFe;
     }
 
+    public static CTeNotaInfoCTeNormalInfoDocumentosInfoDCe getInfoDCe() {
+        final CTeNotaInfoCTeNormalInfoDocumentosInfoDCe cteInfoDCe = new CTeNotaInfoCTeNormalInfoDocumentosInfoDCe();
+        cteInfoDCe.setChave("12345678901234567890123456789012345678901234");
+        return cteInfoDCe;
+    }
+
     public static CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga getInfoUnidadeCarga() {
         final CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga cteInfoUnidadeCarga = new CTeNotaInfoCTeNormalInfoDocumentosInfoUnidadeCarga();
         cteInfoUnidadeCarga.setIdentificacaoCarga("IDE");

@@ -13,9 +13,9 @@ public class NotaFiscalChaveParser {
     private final String chave;
 
     public NotaFiscalChaveParser(final String chave) {
-        this.chave = StringUtils.stripToEmpty(chave).replaceAll("\\D", "");
+        this.chave = StringUtils.stripToEmpty(chave).replaceAll("[^A-Za-z0-9]", "").toUpperCase();
         if (this.chave.length() != 44) {
-            throw new IllegalArgumentException(String.format("A chave deve ter exatos 44 caracteres numericos: %s", chave));
+            throw new IllegalArgumentException(String.format("A chave deve ter exatos 44 caracteres alfanumericos: %s", chave));
         }
     }
 
@@ -76,7 +76,7 @@ public class NotaFiscalChaveParser {
     }
 
     public String getFormatado() {
-        return this.chave.replaceFirst("(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
+        return this.chave.replaceFirst("([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})([A-Z0-9]{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
     }
 
     /**

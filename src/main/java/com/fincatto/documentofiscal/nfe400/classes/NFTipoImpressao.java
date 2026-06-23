@@ -7,7 +7,8 @@ public enum NFTipoImpressao {
     DANFE_NORMAL_PAISAGEM("2", "DANFe normal paisagem"),
     DANFE_SIMPLIFICADO("3", "DANFe simplificado"),
     DANFE_NFCE("4", "DANFe NFCe"),
-    DANFE_NFCE_MENSAGEM_ELETRONICA("5", "DANFe NFCe mensagem eletr\u00f4nica");
+    DANFE_NFCE_MENSAGEM_ELETRONICA("5", "DANFe NFCe mensagem eletr\u00f4nica"),
+    DANFE_SIMPLIFICADO_TIPO_2 ("6", "DANFE Simplificado Tipo 2");
 
     private final String codigo;
     private final String descricao;

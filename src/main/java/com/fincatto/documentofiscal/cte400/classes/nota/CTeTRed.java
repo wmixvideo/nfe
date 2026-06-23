@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  *
  * @author Edivaldo Merlo Stens
  */
-@Root(name = "TRed")
+@Root(name = "gRed")
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeTRed extends DFBase {
 

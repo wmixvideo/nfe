@@ -20,7 +20,7 @@ public class CTeInformacaoComprovanteEntrega extends DFBase {
     }
 
     public void setChaveNFe(String chaveNFe) {
-        DFStringValidador.exatamente44N(chaveNFe, "Chave de Acesso");
+        DFStringValidador.exatamente44(chaveNFe, "Chave de Acesso");
         this.chaveNFe = chaveNFe;
     }
 }

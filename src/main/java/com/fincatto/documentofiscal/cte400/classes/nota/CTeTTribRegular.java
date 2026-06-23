@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  *
  * @author Edivaldo Merlo Stens
  */
-@Root(name = "TTribRegular")
+@Root(name = "gTribRegular")
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeTTribRegular extends DFBase {
 

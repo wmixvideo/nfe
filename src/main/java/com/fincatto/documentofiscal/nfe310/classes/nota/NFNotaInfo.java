@@ -79,7 +79,7 @@ public class NFNotaInfo extends DFBase {
     }
 
     public void setIdentificador(final String identificador) {
-        DFStringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44(identificador, "Identificador");
         this.identificador = NFNotaInfo.IDENT + identificador;
     }
 

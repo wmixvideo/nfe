@@ -43,7 +43,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Chave de acesso do CT-e a ser substituído (original)
      */
     public void setChaveCTe(final String chaveCTe) {
-        DFStringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
+        DFStringValidador.exatamente44(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
         this.chaveCTe = chaveCTe;
     }
 
@@ -55,7 +55,7 @@ public class CTeNotaInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Chave de acesso do CT-e de Anulação
      */
     public void setChaveCTeAnulacao(final String chaveCTeAnulacao) {
-        DFStringValidador.exatamente44N(chaveCTeAnulacao, "Chave de acesso do CT-e de Anulação");
+        DFStringValidador.exatamente44(chaveCTeAnulacao, "Chave de acesso do CT-e de Anulação");
         this.chaveCTeAnulacao = chaveCTeAnulacao;
     }
 

@@ -43,7 +43,7 @@ public class CTeNotaInfoCTeNormalInfoDocumentosInfoNFe extends DFBase {
      * Chave de acesso da NF-e
      */
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Chave de acesso da NF-e");
+        DFStringValidador.exatamente44(chave, "Chave de acesso da NF-e");
         this.chave = chave;
     }
 
