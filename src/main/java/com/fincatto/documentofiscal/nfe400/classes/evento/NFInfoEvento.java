@@ -96,7 +96,7 @@ public class NFInfoEvento extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Info Evento Chave");
+        DFStringValidador.exatamente44(chave, "Info Evento Chave");
         this.chave = chave;
     }
 
@@ -134,8 +134,8 @@ public class NFInfoEvento extends DFBase {
         return this.dadosEvento;
     }
 
-    public void setDadosEvento(final NFTipoEvento cartaCorrecao) {
-        this.dadosEvento = cartaCorrecao;
+    public void setDadosEvento(final NFTipoEvento evento) {
+        this.dadosEvento = evento;
     }
 
     public DFUnidadeFederativa getOrgao() {

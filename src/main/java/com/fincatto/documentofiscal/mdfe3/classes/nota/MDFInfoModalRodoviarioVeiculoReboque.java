@@ -6,7 +6,9 @@ import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCarroceria;
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
+import org.simpleframework.xml.Order;
 
+@Order(elements = { "cInt", "placa", "RENAVAM", "tara", "capKG", "capM3", "prop", "tpCar", "UF" })
 public class MDFInfoModalRodoviarioVeiculoReboque extends DFBase {
     private static final long serialVersionUID = -2787982058485353668L;
     @Element(name = "cInt", required = false)

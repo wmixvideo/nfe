@@ -96,7 +96,7 @@ public class NFInfoEventoEpec extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Info Evento Conting\u00eancia EPEC Chave");
+DFStringValidador.exatamente44(chave, "Info Evento Contingência EPEC Chave");
         this.chave = chave;
     }
 

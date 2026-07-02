@@ -1,6 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega;
 
-import com.fincatto.documentofiscal.DFBase;;
+import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -13,7 +13,9 @@ import java.util.List;
 @Namespace(reference = "http://www.portalfiscal.inf.br/nfe")
 public class NFEnviaEventoAtualizacaoDataPrevisaoEntrega extends DFBase {
 
-    @Attribute(name = "versao")
+	private static final long serialVersionUID = 7960049528279343741L;
+
+	@Attribute(name = "versao")
     private String versao;
 
     @Element(name = "idLote")

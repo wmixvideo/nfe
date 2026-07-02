@@ -48,8 +48,8 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "cBenef", required = false)
     private String codigoBeneficioFiscalUF;
 
-    @Element(name = "gCred", required = false)
-    private NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido;
+    @ElementList(entry = "gCred", inline = true, required = false)
+    private List<NFNotaInfoItemProdutoGrupoCreditoPresumido> grupoCreditoPresumido;
 
     @Element(name = "EXTIPI", required = false)
     private String extipi;
@@ -352,7 +352,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     public void setGrupoCreditoPresumido(
-        final NFNotaInfoItemProdutoGrupoCreditoPresumido grupoCreditoPresumido) {
+        final List<NFNotaInfoItemProdutoGrupoCreditoPresumido> grupoCreditoPresumido) {
         this.grupoCreditoPresumido = grupoCreditoPresumido;
     }
 
@@ -524,7 +524,7 @@ public class NFNotaInfoItemProduto extends DFBase {
         return this.rastros;
     }
 
-    public NFNotaInfoItemProdutoGrupoCreditoPresumido getGrupoCreditoPresumido() {
+    public List<NFNotaInfoItemProdutoGrupoCreditoPresumido> getGrupoCreditoPresumido() {
         return grupoCreditoPresumido;
     }
 

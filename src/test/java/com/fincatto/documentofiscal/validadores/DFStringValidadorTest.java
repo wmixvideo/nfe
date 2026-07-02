@@ -195,8 +195,25 @@ public class DFStringValidadorTest {
 
     @Test
     public void deveValidarCNPJ() {
+        DFStringValidador.cnpj("ZLVERP05000160");
         DFStringValidador.cnpj("01234567000100");
+        DFStringValidador.cnpj("ABCDEFGHIJKL80", "");
         DFStringValidador.cnpj("01234567000100", "");
+    }
+
+    @Test
+    public void deveValidarCNPJAlfanumerico() {
+        // CNPJ com letras maiúsculas (novo formato alfanumérico)
+        DFStringValidador.cnpj("12ABC34501DE35");
+        DFStringValidador.cnpj("12ABC34501DE35", "CNPJ Emitente");
+        // CNPJ com letras minúsculas (deve ser aceito pelo formato — normalização de case fica a cargo do chamador)
+        DFStringValidador.cnpj("12abc34501de35");
+        DFStringValidador.cnpj("12abc34501de35", "CNPJ Emitente");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCNPJComUnderscoreNoPrimeiroBlocoDeCaracteres() {
+        DFStringValidador.cnpj("12AB_34501DE35");
     }
 
     @Test(expected = IllegalStateException.class)
@@ -240,6 +257,77 @@ public class DFStringValidadorTest {
     @Test(expected = IllegalStateException.class)
     public void naoDeveValidarCNPJCasoNaoPossua14CaracteresInfo() {
         DFStringValidador.cnpj("1234567890123", "");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCNPJCasoNaoEstejaNoPadrao() {
+        DFStringValidador.cnpj("ZLVERP0500016a");
+        DFStringValidador.cnpj("aLVERP0500016a", "");
+    }
+
+    @Test
+    public void deveValidarCnpjNumerico() {
+        // Testa CNPJs numéricos válidos
+        DFStringValidador.cnpj("11222333000181");
+        DFStringValidador.cnpj("03918609000132");
+        DFStringValidador.cnpj("00000000000191");
+    }
+
+    @Test
+    public void deveValidarCnpjNumericoComInfo() {
+        // Testa CNPJs numéricos válidos com parâmetro info
+        DFStringValidador.cnpj("11222333000181", "Emitente");
+        DFStringValidador.cnpj("03918609000132", "Destinatario");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoFormatoCTe() {
+        // Testa CNPJs alfanuméricos do formato CTe [A-Z0-9]{12}[0-9]{2}
+        DFStringValidador.cnpj("0JRXDN7G000175");
+        DFStringValidador.cnpj("0X0J92JY000196");
+        DFStringValidador.cnpj("ABCD1234567890");
+        DFStringValidador.cnpj("123456ABCDEF01");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoFormatoCTeComInfo() {
+        // Testa CNPJs alfanuméricos com parâmetro info
+        DFStringValidador.cnpj("0JRXDN7G000175", "Emitente CTe");
+        DFStringValidador.cnpj("0X0J92JY000196", "Destinatario CTe");
+    }
+
+    @Test
+    public void deveValidarCnpjAlfanumericoMinusculo() {
+        // Testa CNPJs alfanuméricos com letras minúsculas (devem ser aceitas)
+        DFStringValidador.cnpj("0jrxdn7g000175");
+        DFStringValidador.cnpj("0x0j92jy000196");
+        DFStringValidador.cnpj("abcd1234567890");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComCaracteresEspeciais() {
+        DFStringValidador.cnpj("0JRXDN7G0001@5");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComEspacos() {
+        DFStringValidador.cnpj("0JRXDN7G 00175");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComLetraNoDigitoVerificador() {
+        // Os últimos 2 caracteres devem ser numéricos
+        DFStringValidador.cnpj("0JRXDN7G0001AB");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComTamanhoMenor() {
+        DFStringValidador.cnpj("0JRXDN7G00017");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void naoDeveValidarCnpjComTamanhoMaior() {
+        DFStringValidador.cnpj("0JRXDN7G0001755");
     }
 
     @Test
@@ -422,6 +510,8 @@ public class DFStringValidadorTest {
         DFStringValidador.exatamente17("12345678901234567", "");
         DFStringValidador.exatamente21("123456789012345678901", "");
         DFStringValidador.exatamente44("12345678901234567890123456789012345678901234", "");
+        DFStringValidador.exatamente44("AB345678901234567890123456789012345678901234", "");
+        DFStringValidador.exatamente44("422505AB000000000001550010000000011000000010", "");
         DFStringValidador.exatamente54("123456789012345678901234567890123456789012345678901234", "");
         DFStringValidador.exatamente2N("12", "");
         DFStringValidador.exatamente4N("1234", "");

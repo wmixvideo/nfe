@@ -202,7 +202,7 @@ public abstract class DFStringValidador {
 
     public static void cnpj(final String cnpj) {
         if (cnpj != null) {
-            final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
+            final Matcher matcher = Pattern.compile("^[0-9A-Za-z]{12}[0-9]{2}$").matcher(cnpj);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("Formato CNPJ Invalido (%s)", cnpj));
             }
@@ -211,7 +211,7 @@ public abstract class DFStringValidador {
 
     public static String cnpj(final String cnpj, final String info) {
         if (cnpj != null) {
-            final Matcher matcher = Pattern.compile("^[0-9]{14}$").matcher(cnpj);
+            final Matcher matcher = Pattern.compile("^[0-9A-Za-z]{12}[0-9]{2}$").matcher(cnpj);
             if (!matcher.find()) {
                 throw new IllegalStateException(String.format("Formato CNPJ Invalido (%s) em %s", cnpj, info));
             }
@@ -553,6 +553,12 @@ public abstract class DFStringValidador {
     public static void tamanho2a95(final String string, final String info) {
         if (string != null) {
             DFStringValidador.intervalo(string, 2, 95, info);
+        }
+    }
+
+    public static void tamanho2a98(final String string, final String info) {
+        if (string != null) {
+            DFStringValidador.intervalo(string, 2, 98, info);
         }
     }
 
