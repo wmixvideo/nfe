@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,9 +18,9 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         }
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumeroAtoConcessorioDrawback(new BigInteger("100000000000"));
+        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumeroAtoConcessorioDrawback("999999999999999999999");
     }
 
     @Test(expected = NumberFormatException.class)
@@ -36,7 +35,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
     @Test(expected = NumberFormatException.class)
     public void naoDevePermitirSequencialComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setSequencial(1000);
+        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setSequencial(100000);
     }
 
     @Test
@@ -46,7 +45,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setNumero(999);
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -56,7 +55,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setNumero(999);
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -66,17 +65,17 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
         importacaoAdicao.setNumero(999);
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void naoDevePermitirNumeroNulo() {
+    @Test
+    public void devePermitirNumeroNulo() {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -86,7 +85,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setNumero(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -97,7 +96,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setNumero(999);
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -108,7 +107,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
         importacaoAdicao.setNumero(999);
         importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
         importacaoAdicao.toString();
     }
 
@@ -138,7 +137,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
     @Test
     public void deveObterNumeroAtoConcessorioDrawbackComoFoiSetado() {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
-        final BigInteger numeroAtoConcessorioDrawback = new BigInteger("99999999999");
+        final String numeroAtoConcessorioDrawback = "99999999999";
         importacaoAdicao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
         Assert.assertEquals(numeroAtoConcessorioDrawback, importacaoAdicao.getNumeroAtoConcessorioDrawback());
     }
