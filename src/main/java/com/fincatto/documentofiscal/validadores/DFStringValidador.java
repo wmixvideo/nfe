@@ -698,8 +698,7 @@ public abstract class DFStringValidador {
      *
      * @param numerico se true {@code null} a {@code String} precisa ser
      * numerica[0-9].
-     * @param paraValidar}.
-     * @return retorna a propria {@code String} {
+     * @return retorna a propria {@code String}
      */
     public static String validador(final String paraValidar, final String info, Integer tamanho, Boolean exatamente, Boolean numerico) {
         tamanho = ObjectUtils.defaultIfNull(tamanho, 1);
@@ -802,7 +801,7 @@ public abstract class DFStringValidador {
      * @param digitos
      * @return
      * @throws IllegalStateException se<br>
-     * {@code capacidade = "10000" } & {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos
+     * {@code capacidade = "10000" } &amp; {@code digitos = 3}, ou seja , {@code capacidade.length()-1 > digitos
      * }
      */
     public static String capacidadeNDigitos(final String capacidade, final String info, final int digitos) {

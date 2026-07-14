@@ -154,7 +154,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     /**
-     * @deprecated  substituido por {@link #setCodigoDeBarrasGtin()}
+     * @deprecated  substituido por {@link #setCodigoDeBarrasGtin(String)}
      */
     @Deprecated
     public void setCodigoDeBarras(final String codigoDeBarras) {
@@ -208,7 +208,7 @@ public class NFNotaInfoItemProduto extends DFBase {
     }
 
     /**
-     * @deprecated  substituido por {@link #setCodigoDeBarrasGtinTributavel()}
+     * @deprecated  substituido por {@link #setCodigoDeBarrasGtinTributavel(String)}
      */
     @Deprecated
     public void setCodigoDeBarrasTributavel(final String codigoDeBarras) {
