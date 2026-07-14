@@ -301,6 +301,7 @@ public class WSFacade {
      * @param chave chave de acesso da nota
      * @param numeroProtocolo numero do protocolo da nota
      * @param motivo motivo do cancelamento
+     * @param versaoAplicativoAutorizador versao do aplicativo autorizador do evento
      * @param chaveSubstituta chave de acesso da nota substituta
      * @return dados do cancelamento da nota retornado pelo webservice
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
