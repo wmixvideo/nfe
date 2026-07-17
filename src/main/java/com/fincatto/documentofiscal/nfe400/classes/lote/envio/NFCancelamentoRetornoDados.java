@@ -4,7 +4,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFProtocoloEventoCancelamento;
 
 /**
- * @author Aguinaldo Fryder <aguinaldo@publitechsistemas.com.br>
+ * @author Aguinaldo Fryder &lt;aguinaldo@publitechsistemas.com.br&gt;
  * @since 30/06/23
  */
 public class NFCancelamentoRetornoDados {
