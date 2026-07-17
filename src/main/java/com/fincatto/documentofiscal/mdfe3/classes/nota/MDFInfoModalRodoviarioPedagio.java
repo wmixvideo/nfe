@@ -7,6 +7,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import com.fincatto.documentofiscal.DFBase;
+import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 
 /**
@@ -28,10 +29,10 @@ public class MDFInfoModalRodoviarioPedagio extends DFBase {
 	private List<MDFInfoModalRodoviarioPedagioDisp> dispositivos;
 
 	/**
-	 * <h1>Categoria do Combinação Veicular</h1>
+	 * <h1>Categoria de Combinação Veicular</h1>
 	 */
 	@Element(name = "categCombVeic", required = false)
-	private String categoriaCombinacaoVeicular;
+	private MDFTipoCategoriaCombinacaoVeicular categoriaCombinacaoVeicular;
 
 	public List<MDFInfoModalRodoviarioPedagioDisp> getDispositivos() {
 		return this.dispositivos;
@@ -41,11 +42,11 @@ public class MDFInfoModalRodoviarioPedagio extends DFBase {
 		this.dispositivos = DFListValidador.validaListaObrigatoria(dispositivos, "Dispositivos do Vale Pedagio");
 	}
 
-	public String getCategoriaCombinacaoVeicular() {
+	public MDFTipoCategoriaCombinacaoVeicular getCategoriaCombinacaoVeicular() {
 		return categoriaCombinacaoVeicular;
 	}
 
-	public void setCategoriaCombinacaoVeicular(String categoriaCombinacaoVeicular) {
+	public void setCategoriaCombinacaoVeicular(MDFTipoCategoriaCombinacaoVeicular categoriaCombinacaoVeicular) {
 		this.categoriaCombinacaoVeicular = categoriaCombinacaoVeicular;
 	}
 

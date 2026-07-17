@@ -45,8 +45,8 @@ public class MDFInfo extends DFBase {
     @ElementList(name = "seg", inline = true, required = false)
     private List<MDFInfoSeguro> seguro;
     
-    @ElementList(name = "prodPred", inline = true, required = false)
-    private List<MDFInfoProdutoPredominante> prodPred;
+    @Element(name = "prodPred", required = false)
+    private MDFInfoProdutoPredominante prodPred;
 
     @Element(name = "tot")
     private MDFInfoTotal infoTotal;
@@ -191,11 +191,11 @@ public class MDFInfo extends DFBase {
         this.seguro = seguro;
     }
 
-    public List<MDFInfoProdutoPredominante> getProdPred() {
+    public MDFInfoProdutoPredominante getProdPred() {
         return prodPred;
     }
 
-    public void setProdPred(List<MDFInfoProdutoPredominante> prodPred) {
+    public void setProdPred(MDFInfoProdutoPredominante prodPred) {
         this.prodPred = prodPred;
     }
 
