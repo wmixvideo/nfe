@@ -170,61 +170,53 @@ public class CTeRecepcaoSimpV4Stub extends org.apache.axis2.client.Stub {
 
             return (com.fincatto.documentofiscal.cte400.webservices.gerado.CTeRecepcaoSimpV4Stub.CteRecepcaoSimpResult) object;
         } catch (org.apache.axis2.AxisFault f) {
-            org.apache.axiom.om.OMElement faultElt = f.getDetail();
-
-            if (faultElt != null) {
-                if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
-                                faultElt.getQName(), "cteRecepcaoSimp"))) {
-                    //make the fault by reflection
-                    try {
-                        java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "cteRecepcaoSimp"));
-                        java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-                        java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(java.lang.String.class);
-                        java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
-
-                        //message class
-                        java.lang.String messageClassName = (java.lang.String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "cteRecepcaoSimp"));
-                        java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-                        java.lang.Object messageObject = fromOM(faultElt,
-                                messageClass, null);
-                        java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
-
-                        throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    } catch (java.lang.ClassCastException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.InstantiationException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }
-                } else {
-                    throw f;
-                }
-            } else {
-                throw f;
-            }
+            throw mapAxisFault(f);
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
                                .cleanup(_messageContext);
             }
+        }
+    }
+
+    //converte um AxisFault na excecao de negocio mapeada (por reflexao); se nao houver
+    //mapeamento ou a reflexao falhar, relanca o proprio AxisFault (que estende RemoteException).
+    private java.rmi.RemoteException mapAxisFault(org.apache.axis2.AxisFault f)
+        throws org.apache.axis2.AxisFault {
+        org.apache.axiom.om.OMElement faultElt = f.getDetail();
+
+        if (faultElt == null) {
+            throw f;
+        }
+
+        org.apache.axis2.client.FaultMapKey faultKey = new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),
+                "cteRecepcaoSimp");
+
+        if (!faultExceptionNameMap.containsKey(faultKey)) {
+            throw f;
+        }
+
+        //make the fault by reflection
+        try {
+            java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap.get(faultKey);
+            java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
+            java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(java.lang.String.class);
+            java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
+
+            //message class
+            java.lang.String messageClassName = (java.lang.String) faultMessageMap.get(faultKey);
+            java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
+            java.lang.Object messageObject = fromOM(faultElt, messageClass, null);
+            java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
+                    new java.lang.Class[] { messageClass });
+            m.invoke(ex, new java.lang.Object[] { messageObject });
+
+            return new java.rmi.RemoteException(ex.getMessage(), ex);
+        } catch (java.lang.ClassCastException | java.lang.ClassNotFoundException
+                | java.lang.NoSuchMethodException | java.lang.reflect.InvocationTargetException
+                | java.lang.IllegalAccessException | java.lang.InstantiationException e) {
+            // we cannot intantiate the class - throw the original Axis fault
+            throw f;
         }
     }
 
@@ -329,8 +321,9 @@ public class CTeRecepcaoSimpV4Stub extends org.apache.axis2.client.Stub {
     }
 
     public static class CteRecepcaoSimpResult implements org.apache.axis2.databinding.ADBBean {
+        private static final java.lang.String LOCAL_NAME = "cteRecepcaoSimpResult";
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoSimpV4",
-                "cteRecepcaoSimpResult", "");
+                LOCAL_NAME, "");
 
         /**
          * field for ExtraElement
@@ -396,11 +389,11 @@ public class CTeRecepcaoSimpV4Stub extends org.apache.axis2.client.Stub {
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":cteRecepcaoSimpResult", xmlWriter);
+                        namespacePrefix + ":" + LOCAL_NAME, xmlWriter);
                 } else {
                     writeAttribute("xsi",
                         "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "cteRecepcaoSimpResult", xmlWriter);
+                        LOCAL_NAME, xmlWriter);
                 }
             }
 
@@ -660,7 +653,7 @@ public class CTeRecepcaoSimpV4Stub extends org.apache.axis2.client.Stub {
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
                                         ":") + 1);
 
-                            if (!"cteRecepcaoSimpResult".equals(type)) {
+                            if (!LOCAL_NAME.equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
                                                                .getNamespaceURI(nsPrefix);
