@@ -35,7 +35,7 @@ public class NFGeraChave {
                 indice = 0;
             }
 
-            valorTemp = Integer.parseInt(String.valueOf(valores[i - 1]));
+            valorTemp = valores[i - 1] - '0';
             multTemp = valoresInt[indice++];
             soma += valorTemp * multTemp;
         }

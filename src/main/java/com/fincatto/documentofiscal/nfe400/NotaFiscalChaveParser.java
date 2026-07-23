@@ -67,12 +67,22 @@ public class NotaFiscalChaveParser {
         return this.getSerie().matches("9[0-9]{2}");
     }
 
+    /**
+     * Indica se a nota foi emitida em contingencia SVC-AN.<br>
+     * Comparado via {@link #getFormaEmissao()} (e nao mais por regex sobre a chave inteira),
+     * pois o CNPJ alfanumerico (NT 2026.004) pode inserir letras nas posicoes 6-19 da chave,
+     * o que impediria um regex do tipo "\\d{34}..." de casar.
+     */
     public boolean isEmitidaContingenciaSCVAN() {
-        return this.chave.matches("\\d{34}6\\d{9}");
+        return getFormaEmissao() == NFTipoEmissao.CONTINGENCIA_SVCAN;
     }
 
+    /**
+     * Indica se a nota foi emitida em contingencia SVC-RS.<br>
+     * Ver observacao de {@link #isEmitidaContingenciaSCVAN()} sobre CNPJ alfanumerico.
+     */
     public boolean isEmitidaContingenciaSCVRS() {
-        return this.chave.matches("\\d{34}7\\d{9}");
+        return getFormaEmissao() == NFTipoEmissao.CONTINGENCIA_SVCRS;
     }
 
     public String getFormatado() {

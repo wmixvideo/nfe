@@ -12,6 +12,8 @@ import java.util.Objects;
  * Pode ser chamada por new {@link #NFVerificaChave(String)} e depois {@link #isChaveValida()}
  * Ou por NFVerificaChave.{@link #isChaveValida(String)}, verifique a classe de testes NFVerificaChaveTest para mais
  * detalhes .
+ * <br>
+ * Aceita chave com CNPJ alfanumerico do emitente nas posicoes 6-19 (NT 2026.004).
  */
 public class NFVerificaChave {
 
@@ -32,7 +34,9 @@ public class NFVerificaChave {
             if (indice >= valoresInt.length) {
                 indice = 0;
             }
-            valorTemp = Integer.parseInt(String.valueOf(valores[i - 1]));
+            // Aritmetica de char (ASCII - 48) em vez de parse decimal: com CNPJ alfanumerico (NT 2026.004)
+            // a chave pode conter letras nas posicoes 6-19, e Integer.parseInt lancaria NumberFormatException.
+            valorTemp = valores[i - 1] - '0';
             multTemp = valoresInt[indice++];
             soma += valorTemp * multTemp;
         }
@@ -45,7 +49,7 @@ public class NFVerificaChave {
     }
 
     private Integer getChaveAcessoDV() {
-        return Integer.valueOf(StringUtils.substring(this.chave, 43,45));
+        return Integer.valueOf(StringUtils.substring(this.chave, 43,44));
     }
 
     public boolean isChaveValida(){
