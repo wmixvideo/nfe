@@ -48,6 +48,18 @@ public final class DFXMLValidador {
      * "Current configuration of the parser doesn't allow a maxOccurs attribute
      * value to be set greater than the value 5.000", foi adicionado a linha
      * System.setProperty("jdk.xml.maxOccurLimit", "10000");
+     * <br>
+     * Schema PL_MDFe_300b_NT012025_1.03: adota CNPJ alfanumerico (NT 2026.004) no tipo TCnpj e
+     * chave de acesso alfanumerica no tipo TChMDFe/TChCTe/TChNFe. Comparado ao pacote anterior
+     * (PL_MDFe_300b_NT022024), as demais diferencas sao apenas relaxamentos de schema (campos que
+     * passam a ser opcionais, novos valores de enumeracao, aumento de maxLength) - nenhum XML
+     * valido antes deixa de validar apos a troca.
+     * <br>
+     * Limitacao conhecida do pacote oficial (arquivo .xsd fornecido pelo governo, nao alterado
+     * neste projeto): o atributo Id de infMDFe usa um tipo anonimo proprio ainda com o padrao
+     * numerico "MDFe[0-9]{44}", nao atualizado junto com TChMDFe. Uma chave de acesso realmente
+     * alfanumerica (letras nas posicoes 6-19) portanto ainda e rejeitada nesse atributo especifico
+     * ate a SEFAZ/ENCAT corrigir o pacote. Ver MDFProcessadoTest.schemaOficialAindaRejeitaAtributoIdComChaveDeAcessoAlfanumerica.
      *
      * @param xml
      * @param xsd
@@ -58,7 +70,7 @@ public final class DFXMLValidador {
      */
     private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
         System.setProperty("jdk.xml.maxOccurLimit", "20000");
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300b_NT022024/%s", xsd));
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300b_NT012025_1.03/%s", xsd));
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
         schema.newValidator().validate(new StreamSource(new StringReader(xml)));

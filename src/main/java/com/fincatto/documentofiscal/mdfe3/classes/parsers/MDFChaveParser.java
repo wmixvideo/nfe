@@ -9,16 +9,22 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 
 /**
- * Classe responsavel por fazer o parse da chave do MDFe.
+ * Classe responsavel por fazer o parse da chave do MDFe.<br>
+ * Aceita chave com CNPJ alfanumerico do emitente nas posicoes 6-19 (NT 2026.004).
  */
 public class MDFChaveParser {
 
     private final String chave;
 
+    /**
+     * Normaliza a chave para maiusculas e remove qualquer caractere que nao seja alfanumerico.<br>
+     * A partir do CNPJ alfanumerico (NT 2026.004), a chave de 44 posicoes pode conter letras
+     * nas posicoes 6-19 (CNPJ do emitente), entao nao pode mais ser tratada como somente digitos.
+     */
     public MDFChaveParser(final String chave) {
-        this.chave = StringUtils.stripToEmpty(chave).replaceAll("\\D", "");
+        this.chave = StringUtils.stripToEmpty(chave).replaceAll("[^A-Za-z0-9]", "").toUpperCase();
         if (this.chave.length() != 44) {
-            throw new IllegalArgumentException(String.format("A chave do MDFe deve ter exatos 44 caracteres numericos: %s", chave));
+            throw new IllegalArgumentException(String.format("A chave do MDFe deve ter exatos 44 caracteres alfanumericos: %s", chave));
         }
     }
 
@@ -87,7 +93,7 @@ public class MDFChaveParser {
     }
 
     public String getFormatado() {
-        return this.chave.replaceFirst("(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})(\\d{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
+        return this.chave.replaceFirst("(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})", "$1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11");
     }
 
     /**
