@@ -157,6 +157,10 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe400(arquivoXML, "cteOS_v4.00.xsd");
     }
 
+    public static boolean validaNotaCteSimp400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "cteSimp_v4.00.xsd");
+    }
+
     public static boolean validaEventoCTe400(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaCTe400(arquivoXML, "eventoCTe_v4.00.xsd");
     }
