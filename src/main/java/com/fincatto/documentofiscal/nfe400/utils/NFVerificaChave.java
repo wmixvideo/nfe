@@ -36,7 +36,8 @@ public class NFVerificaChave {
             }
             // Aritmetica de char (ASCII - 48) em vez de parse decimal: com CNPJ alfanumerico (NT 2026.004)
             // a chave pode conter letras nas posicoes 6-19, e Integer.parseInt lancaria NumberFormatException.
-            valorTemp = valores[i - 1] - '0';
+            final char c = Character.toUpperCase(valores[i - 1]);
+            valorTemp = c - '0';
             multTemp = valoresInt[indice++];
             soma += valorTemp * multTemp;
         }
