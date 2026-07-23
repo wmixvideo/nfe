@@ -106,7 +106,6 @@ public class CTeConsultaV4Stub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      *
-     * @see com.fincatto.documentofiscal.cte400.webservices.gerado.CTeConsultaV4#cteConsultaCT
      * @param cteDadosMsg
      */
     public CteConsultaCTResult cteConsultaCT(

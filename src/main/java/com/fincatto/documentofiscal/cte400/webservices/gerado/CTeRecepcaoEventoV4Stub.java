@@ -106,7 +106,6 @@ public class CTeRecepcaoEventoV4Stub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      *
-     * @see com.fincatto.documentofiscal.cte400.webservices.gerado.CTeRecepcaoEventoV4#cteRecepcaoEvento
      * @param cteDadosMsg
      */
     public CteRecepcaoEventoResult cteRecepcaoEvento(
