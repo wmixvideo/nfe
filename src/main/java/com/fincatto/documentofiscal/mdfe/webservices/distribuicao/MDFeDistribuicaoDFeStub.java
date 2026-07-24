@@ -105,7 +105,6 @@ public class MDFeDistribuicaoDFeStub extends org.apache.axis2.client.Stub {
 	/**
 	 * Auto generated method signature
 	 *
-	 * @see com.fincatto.documentofiscal.mdfe.webservices.distribuicao.MDFeDistribuicaoDFe#mdfeDistDFeInteresse
 	 * @param mdfeDadosMsg
 	 * @param mdfeCabecMsg
 	 */

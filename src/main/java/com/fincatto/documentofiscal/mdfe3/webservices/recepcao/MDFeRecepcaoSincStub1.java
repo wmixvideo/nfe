@@ -87,7 +87,6 @@ public class MDFeRecepcaoSincStub1 extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * @param mdfeDadosMsg0
-     * @param mdfeCabecMsg1
      */
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
