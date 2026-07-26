@@ -26,4 +26,24 @@ public class NFVerificaChaveTest {
         Assert.assertFalse(NFVerificaChave.isChaveValida(chave));
     }
 
+    /**
+     * Chave com CNPJ alfanumerico do emitente (NT 2026.004) nas posicoes 6-19.<br>
+     * Antes da correcao, o calculo do DV usava Integer.parseInt sobre cada caractere
+     * da chave e lancava NumberFormatException ao encontrar uma letra.
+     */
+    @Test
+    public void verificaChaveComCnpjAlfanumericoNaoLancaExcecaoECalculaDVCorretamente() {
+        final String chaveValida = "432505AB123456789012550010000000011000000011";
+        Assert.assertEquals(44, chaveValida.length());
+        final NFVerificaChave nfVerificaChave = new NFVerificaChave(chaveValida);
+        Assert.assertEquals(Integer.valueOf(1), nfVerificaChave.calculaDV());
+        Assert.assertTrue(nfVerificaChave.isChaveValida());
+    }
+
+    @Test
+    public void verificaChaveComCnpjAlfanumericoEDVIncorretoRetornaInvalida() {
+        final String chaveComDvErrado = "432505AB123456789012550010000000011000000012";
+        Assert.assertFalse(NFVerificaChave.isChaveValida(chaveComDvErrado));
+    }
+
 }

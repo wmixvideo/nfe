@@ -2,18 +2,16 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.DFBigIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends DFBase {
     private static final long serialVersionUID = -7286071184901675008L;
     
-    @Element(name = "nAdicao")
+    @Element(name = "nAdicao", required = false)
     private Integer numero;
     
     @Element(name = "nSeqAdic")
@@ -26,15 +24,17 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends DFBase {
     private String desconto;
 
     @Element(name = "nDraw", required = false)
-    private BigInteger numeroAtoConcessorioDrawback;
+    private String numeroAtoConcessorioDrawback;
 
     public void setNumero(final Integer numero) {
-        DFIntegerValidador.tamanho3(numero, "Numero Declaracao Importacao Adicao");
+        if (numero != null) {
+            DFIntegerValidador.tamanho3(numero, "Numero Declaracao Importacao Adicao");
+        }
         this.numero = numero;
     }
 
     public void setSequencial(final Integer sequencial) {
-        DFIntegerValidador.tamanho3(sequencial, "Sequencial Declaracao Importacao Adicao");
+        DFIntegerValidador.tamanho5(sequencial, "Sequencial Declaracao Importacao Adicao");
         this.sequencial = sequencial;
     }
 
@@ -47,8 +47,8 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends DFBase {
         this.desconto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(desconto, "Desconto Declaracao Importacao Adicao");
     }
 
-    public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
-        DFBigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio Declaracao Importacao Adicao");
+    public void setNumeroAtoConcessorioDrawback(final String numeroAtoConcessorioDrawback) {
+        DFStringValidador.tamanho20(numeroAtoConcessorioDrawback, "Numero Ato Concessorio Declaracao Importacao Adicao");
         this.numeroAtoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 
@@ -68,7 +68,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao extends DFBase {
         return this.desconto;
     }
 
-    public BigInteger getNumeroAtoConcessorioDrawback() {
+    public String getNumeroAtoConcessorioDrawback() {
         return this.numeroAtoConcessorioDrawback;
     }
 }

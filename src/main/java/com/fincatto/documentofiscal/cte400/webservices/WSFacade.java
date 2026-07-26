@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoC
 import com.fincatto.documentofiscal.cte400.classes.consultastatusservico.CTeConsStatServRet;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeOSEnvioRetornoDados;
+import com.fincatto.documentofiscal.cte400.classes.envio.CTeSimpEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeInformacaoCartaCorrecao;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
@@ -16,6 +17,7 @@ import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEn
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte400.classes.os.CTeOS;
+import com.fincatto.documentofiscal.cte400.classes.simp.CTeNotaSimp;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 
@@ -45,6 +47,7 @@ public class WSFacade {
     private final WSInsucessoEntrega wsInsucessoEntrega;
     private final WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
     private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
+    private final WSRecepcaoCTeSimp wsRecepcaoCTeSimp;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
         Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
@@ -64,6 +67,7 @@ public class WSFacade {
         this.wsInsucessoEntrega = new WSInsucessoEntrega(config);
         this.wsCancelamentoInsucessoEntrega = new WSCancelamentoInsucessoEntrega(config);
         this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config);
+        this.wsRecepcaoCTeSimp = new WSRecepcaoCTeSimp(config);
     }
 
     /**
@@ -567,6 +571,17 @@ public class WSFacade {
      * */
     public CTeOSEnvioRetornoDados enviaCTe(CTeOS cteOS) throws Exception {
         return this.wsRecepcaoCTeOS.enviaCTe(cteOS);
+    }
+
+    /**
+     * Faz o envio do CT-e Simplificado (modelo 57, NT 2024.002) para a SEFAZ.
+     *
+     * @param cteSimp a ser eviado para a SEFAZ
+     * @return dados do retorno do envio do CT-e Simplificado e o xml assinado
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     * */
+    public CTeSimpEnvioRetornoDados enviaCTe(CTeNotaSimp cteSimp) throws Exception {
+        return this.wsRecepcaoCTeSimp.enviaCTe(cteSimp);
     }
 
 }

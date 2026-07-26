@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -56,12 +55,6 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
      */
     @Element(name = "tpValePed", required = false)
     private MDFTipoValePedagio tipoValePedagio;
-
-    /**
-     * <h1>Categoria de Combinação Veicular</h1>
-     */
-    @Element(name = "categCombVeic", required = false)
-    private MDFTipoCategoriaCombinacaoVeicular categoriaCombinacaoVeicular;
 
     public String getCnpjFornecedora() {
         return this.cnpjFornecedora;
@@ -119,13 +112,5 @@ public class MDFInfoModalRodoviarioPedagioDisp extends DFBase {
 
     public void setTipoValePedagio(MDFTipoValePedagio tipoValePedagio) {
         this.tipoValePedagio = tipoValePedagio;
-    }
-
-    public MDFTipoCategoriaCombinacaoVeicular getCategoriaCombinacaoVeicular() {
-        return categoriaCombinacaoVeicular;
-    }
-
-    public void setCategoriaCombinacaoVeicular(MDFTipoCategoriaCombinacaoVeicular categoriaCombinacaoVeicular) {
-        this.categoriaCombinacaoVeicular = categoriaCombinacaoVeicular;
     }
 }

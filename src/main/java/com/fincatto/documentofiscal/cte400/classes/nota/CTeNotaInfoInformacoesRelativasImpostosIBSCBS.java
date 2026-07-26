@@ -91,7 +91,7 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
     @Element(name = "gIBSMun", required = true)
     private TCIBS.GIBSMun gIBSMun;
-
+    
     @Element(name = "vIBS", required = true)
     private String vIBS;
 

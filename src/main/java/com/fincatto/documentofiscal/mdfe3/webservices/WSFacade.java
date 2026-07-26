@@ -248,11 +248,13 @@ public class WSFacade {
     /**
      * Faz a inclusão de DF-e no MDF-e Rodoviário.
      *
-     * @param chaveAcesso
-     * @param nomeCondutor
-     * @param cpfCondutor
-     * @return
-     * @throws Exception
+     * @param chaveAcesso chave de acesso do MDF-e
+     * @param nProt numero do protocolo de autorizacao do MDF-e
+     * @param cMunCarrega codigo do municipio de carregamento
+     * @param xMunCarrega nome do municipio de carregamento
+     * @param infDoc lista de documentos fiscais a incluir
+     * @return dados da inclusao de DF-e retornados pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc) throws Exception {
         return this.wsIncluirDFe.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc);

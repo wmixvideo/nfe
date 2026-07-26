@@ -19,6 +19,7 @@ import com.fincatto.documentofiscal.mdfe3.FabricaDeObjetosFakeMDFe;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.junit.Assert;
 import org.junit.Test;
+import org.xml.sax.SAXParseException;
 
 /**
  *
@@ -37,5 +38,59 @@ public class MDFProcessadoTest {
     @Test
     public void deveValidarMDFeProcessado() throws Exception {
         Assert.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlActual.replace("schemaLocation=\"\" ", "")));
+    }
+
+    /**
+     * Regressao/E2E da NT 2026.004: com o schema do MDFe repontado para PL_MDFe_300b_NT012025_1.03
+     * (ver DFXMLValidador.validaMDF), um MDFe com CNPJ alfanumerico do emitente deve continuar
+     * validando normalmente contra o XSD oficial (sem qualquer alteracao no arquivo .xsd).
+     */
+    @Test
+    public void deveValidarMDFeProcessadoComCnpjAlfanumericoDoEmitente() throws Exception {
+        final String cnpjAlfanumerico = "AB999999999999";
+        Assert.assertEquals(14, cnpjAlfanumerico.length());
+
+        // troca apenas a tag <CNPJ> (nao o "99999999999999" cru, que tambem aparece dentro de
+        // <nProt>999999999999999</nProt>, um campo de 15 digitos nao relacionado a CNPJ)
+        final String xmlComCnpjAlfa = xmlActual
+                .replace("schemaLocation=\"\" ", "")
+                .replace("<CNPJ>99999999999999</CNPJ>", "<CNPJ>" + cnpjAlfanumerico + "</CNPJ>");
+
+        // garante que a substituicao realmente ocorreu (o teste nao pode "passar" por engano)
+        Assert.assertTrue(xmlComCnpjAlfa.contains("<CNPJ>" + cnpjAlfanumerico + "</CNPJ>"));
+
+        Assert.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlComCnpjAlfa));
+    }
+
+    /**
+     * Limitacao conhecida do pacote oficial PL_MDFe_300b_NT012025_1.03 (arquivo .xsd fornecido
+     * pelo governo, sem qualquer alteracao neste projeto): o atributo Id de infMDFe usa um tipo
+     * anonimo proprio com o padrao antigo "MDFe[0-9]{44}", diferente do tipo nomeado TChMDFe
+     * (usado em chMDFe/qrCodMDFe), que ja foi corrigido para aceitar letras. Ou seja, mesmo apos
+     * repontar para o pacote mais novo, uma chave de acesso realmente alfanumerica ainda e
+     * rejeitada pela validacao local de XSD, ate que a SEFAZ/ENCAT publique uma correcao para
+     * esse atributo especifico. Este teste documenta o comportamento atual.
+     */
+    @Test
+    public void schemaOficialAindaRejeitaAtributoIdComChaveDeAcessoAlfanumerica() {
+        final String chaveNumerica = "33200736293264000128580010000000301045981192";
+        final String chaveAlfanumerica = "332007AB999999999999580010000000301045981192";
+        Assert.assertEquals(44, chaveAlfanumerica.length());
+
+        final String xmlComChaveAlfa = xmlActual
+                .replace("schemaLocation=\"\" ", "")
+                .replace(chaveNumerica, chaveAlfanumerica);
+        Assert.assertTrue(xmlComChaveAlfa.contains(chaveAlfanumerica));
+
+        try {
+            DFXMLValidador.validaMDFeProcessado(xmlComChaveAlfa);
+            Assert.fail("Esperava rejeicao pelo atributo Id (padrao MDFe[0-9]{44} ainda numerico no pacote oficial); "
+                    + "se este teste comecou a falhar aqui, a SEFAZ/ENCAT provavelmente corrigiu o pacote e este "
+                    + "teste (e o comentario acima) podem ser atualizados.");
+        } catch (final SAXParseException e) {
+            Assert.assertTrue(e.getMessage().contains("Id"));
+        } catch (final Exception e) {
+            Assert.fail("Esperava especificamente SAXParseException, mas veio: " + e.getClass());
+        }
     }
 }

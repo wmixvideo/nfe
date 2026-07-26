@@ -44,7 +44,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoTest {
         try {
             new NFNotaInfoItemProdutoDeclaracaoImportacao().setNumeroRegistro("");
         } catch (final IllegalStateException e) {
-            new NFNotaInfoItemProdutoDeclaracaoImportacao().setNumeroRegistro("ZRJihqWLyHnb1");
+            new NFNotaInfoItemProdutoDeclaracaoImportacao().setNumeroRegistro("ZRJihqWLyHnb1234");
         }
     }
 

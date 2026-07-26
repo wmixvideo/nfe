@@ -1,7 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigInteger;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,15 +7,15 @@ import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 
 public class NFNotaInfoItemDetalheExportacaoTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = IllegalStateException.class)
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
-        new NFNotaInfoItemDetalheExportacao().setNumeroAtoConcessorioDrawback(new BigInteger("100000000000"));
+        new NFNotaInfoItemDetalheExportacao().setNumeroAtoConcessorioDrawback("999999999999999999999");
     }
 
     @Test
     public void deveObterNumeroAtoConcessorioDrawbackComoFoiSetado() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
-        final BigInteger numeroAtoConcessorioDrawback = new BigInteger("99999999999");
+        final String numeroAtoConcessorioDrawback = "99999999999";
         detalheExportacao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
         Assert.assertEquals(numeroAtoConcessorioDrawback, detalheExportacao.getAtoConcessorioDrawback());
     }
@@ -33,7 +31,7 @@ public class NFNotaInfoItemDetalheExportacaoTest {
     @Test
     public void devePermitirExportacaoIndiretaNulo() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
-        detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        detalheExportacao.setNumeroAtoConcessorioDrawback("99999999999");
         detalheExportacao.toString();
     }
 
@@ -48,7 +46,7 @@ public class NFNotaInfoItemDetalheExportacaoTest {
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final NFNotaInfoItemDetalheExportacao detalheExportacao = new NFNotaInfoItemDetalheExportacao();
         detalheExportacao.setExportacaoIndireta(FabricaDeObjetosFake.getNFNotaInfoItemExportacaoIndireta());
-        detalheExportacao.setNumeroAtoConcessorioDrawback(new BigInteger("99999999999"));
+        detalheExportacao.setNumeroAtoConcessorioDrawback("99999999999");
 
         final String xmlEsperado = "<NFNotaInfoItemDetalheExportacao><nDraw>99999999999</nDraw><exportInd><nRE>999999999999</nRE><chNFe>99921995966146649003423495876439081543214139</chNFe><qExport>9999999999.9999</qExport></exportInd></NFNotaInfoItemDetalheExportacao>";
         Assert.assertEquals(xmlEsperado, detalheExportacao.toString());

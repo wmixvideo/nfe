@@ -73,27 +73,27 @@ public class NFNotaInfoItemImpostoIBSCBSGCredPresOper extends DFBase {
     }
 
     /**
-     * UB123 & UB127 - gIBSCredPres & gCBSCredPres - Grupo de informações do crédito presumido referente ao IBS e CBS
+     * UB123 &amp; UB127 - gIBSCredPres &amp; gCBSCredPres - Grupo de informações do crédito presumido referente ao IBS e CBS
      */
     public static class GCredPres extends DFBase {
 
         private static final long serialVersionUID = -366528394939456792L;
 
         /**
-         * UB124 & UB128 - Percentual do crédito presumido.
+         * UB124 &amp; UB128 - Percentual do crédito presumido.
          */
         @Element(required = true)
         private String pCredPres;
 
         /**
-         * UB125 & UB129 - Valor do crédito presumido.
+         * UB125 &amp; UB129 - Valor do crédito presumido.
          * VCredPres e VCredPresCondSus sao mutuamente exclusivos
          **/
         @Element(required = false)
         private String vCredPres;
 
         /**
-         * UB126 & UB130 - Valor do crédito presumido em condição suspensiva.
+         * UB126 &amp; UB130 - Valor do crédito presumido em condição suspensiva.
          */
         @Element(required = false)
         private String vCredPresCondSus;

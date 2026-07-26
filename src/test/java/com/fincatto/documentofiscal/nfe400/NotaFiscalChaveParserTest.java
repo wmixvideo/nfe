@@ -133,4 +133,29 @@ public class NotaFiscalChaveParserTest {
         assertEquals("47060783000162", parser.getCnpjEmitente());
         assertNull(parser.getCpfEmitente());
     }
+
+    @Test
+    public void naoDeveSerEmitidaContingenciaSCVANOuSCVRSQuandoEmissaoNormal() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000121000000010");
+        assertFalse(parser.isEmitidaContingenciaSCVAN());
+        assertFalse(parser.isEmitidaContingenciaSCVRS());
+    }
+
+    /**
+     * Antes da correcao, isEmitidaContingenciaSCVAN() usava um regex "\\d{34}6\\d{9}" que nunca
+     * casava quando havia letras (CNPJ alfanumerico, NT 2026.004) nas posicoes 6-19 da chave.
+     */
+    @Test
+    public void deveSerEmitidaContingenciaSCVANComCnpjAlfanumericoNaChave() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000126000000010");
+        assertTrue(parser.isEmitidaContingenciaSCVAN());
+        assertFalse(parser.isEmitidaContingenciaSCVRS());
+    }
+
+    @Test
+    public void deveSerEmitidaContingenciaSCVRSComCnpjAlfanumericoNaChave() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000127000000010");
+        assertTrue(parser.isEmitidaContingenciaSCVRS());
+        assertFalse(parser.isEmitidaContingenciaSCVAN());
+    }
 }

@@ -94,7 +94,6 @@ public class CadConsultaCadastro4Stub extends org.apache.axis2.client.Stub {
 
     /**
      * Auto generated method signature Serviço destinado à consulta no Cadastro.
-     * @see CadConsultaCadastro4#consultaCadastro
      * @param nfeDadosMsg0
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
