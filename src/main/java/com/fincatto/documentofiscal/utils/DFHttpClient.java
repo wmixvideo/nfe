@@ -40,7 +40,10 @@ public class DFHttpClient implements Closeable {
     /**
      * @param sslContext SSLContext ja configurado com o certificado A1 e a cadeia da SEFAZ,
      * tipicamente obtido de {@link DFSocketFactory#getSslContext()}.
-     * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes.
+     * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes -
+     * ver o comentario no construtor sobre o mapeamento (historico, de compatibilidade com o
+     * Axis2) entre {@link DFConfig#getSoTimeoutEmMillis()}/{@link DFConfig#getTimeoutRequisicaoEmMillis()}
+     * e os timeouts de conexao/leitura do httpclient5.
      */
     public DFHttpClient(final SSLContext sslContext, final DFConfig config) {
         // SSLConnectionSocketFactory (usada em versoes anteriores desta classe) esta deprecated
@@ -48,8 +51,15 @@ public class DFHttpClient implements Closeable {
         final DefaultClientTlsStrategy tlsStrategy =
                 new DefaultClientTlsStrategy(sslContext, config.getSSLProtocolos(), null, SSLBufferMode.STATIC, new DefaultHostnameVerifier());
 
-        // mesmo mapeamento que o MessageContextFactory ja fazia para o Axis2: getSoTimeoutEmMillis()
-        // alimenta o timeout de conexao e getTimeoutRequisicaoEmMillis() o timeout de leitura da resposta.
+        // FIXME - mapeamento historico de compatibilidade, NAO o que os nomes/Javadoc de DFConfig sugerem:
+        // config.getSoTimeoutEmMillis() esta documentado em DFConfig como "timeout do socket", mas aqui
+        // alimenta o CONNECT timeout, e config.getTimeoutRequisicaoEmMillis() alimenta o timeout de LEITURA
+        // da resposta (abaixo, no RequestConfig). Isso reproduz de proposito o mesmo mapeamento (aparentemente
+        // trocado) que o MessageContextFactory ja fazia para o Axis2 - HTTPConstants.SO_TIMEOUT recebia
+        // getTimeoutRequisicaoEmMillis() e HTTPConstants.CONNECTION_TIMEOUT recebia getSoTimeoutEmMillis().
+        // Mantido assim para nao mudar o comportamento em producao sem decisao explicita dos donos do projeto.
+        // Se um dia confirmarem que foi um engano do codigo original, ajustar aqui E os Javadocs de DFConfig
+        // juntos - nao "corrigir" só um lado, ou os dois ficam contraditorios de novo.
         final ConnectionConfig connectionConfig = ConnectionConfig.custom()
                 .setConnectTimeout(Timeout.ofMilliseconds(config.getSoTimeoutEmMillis()))
                 .build();
