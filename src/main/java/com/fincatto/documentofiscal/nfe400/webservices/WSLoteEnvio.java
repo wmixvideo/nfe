@@ -14,27 +14,29 @@ import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCode20;
 import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeContingenciaOffline20;
 import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeEmissaoNormal20;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.StringReader;
-import java.util.Iterator;
 
 class WSLoteEnvio implements DFLog {
 
-    private static final String NFE_ELEMENTO = "NFe";
-    private final NFeConfig config;
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeAutorizacao4";
+    private static final String SOAP_ACTION = WSLoteEnvio.NAMESPACE_WSDL + "/nfeAutorizacaoLote";
 
-    WSLoteEnvio(final NFeConfig config) {
+    private final NFeConfig config;
+    private final DFHttpClient httpClient;
+
+    WSLoteEnvio(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
@@ -107,11 +109,10 @@ class WSLoteEnvio implements DFLog {
         }
     }
 
-	private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo, boolean validarXML)
-			throws Exception {
-		final NfeResultMsg autorizacaoLoteResult = comunicaLoteRaw(loteAssinadoXml, modelo, validarXML);
-		final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class,
-				autorizacaoLoteResult.getExtraElement().toString());
+    private NFLoteEnvioRetorno comunicaLote(final String loteAssinadoXml, final DFModelo modelo, boolean validarXML)
+            throws Exception {
+        final String xmlResultado = this.efetuaComunicacaoLote(loteAssinadoXml, modelo, validarXML);
+        final NFLoteEnvioRetorno loteEnvioRetorno = this.config.getPersister().read(NFLoteEnvioRetorno.class, xmlResultado);
         this.getLogger().debug(loteEnvioRetorno.toString());
         return loteEnvioRetorno;
     }
@@ -122,18 +123,21 @@ class WSLoteEnvio implements DFLog {
 
     NfeResultMsg comunicaLoteRaw(final String loteAssinadoXml, final DFModelo modelo, boolean validarXML)
             throws Exception {
+        final String xmlResultado = this.efetuaComunicacaoLote(loteAssinadoXml, modelo, validarXML);
+        return WSLoteEnvio.criarNfeResultMsg(xmlResultado);
+    }
 
+    /**
+     * Valida (se pedido), envia o lote assinado para a sefaz via {@link DFHttpClient} e
+     * devolve o XML de negocio ja desempacotado do envelope SOAP 1.2 de resposta.
+     */
+    private String efetuaComunicacaoLote(final String loteAssinadoXml, final DFModelo modelo, final boolean validarXML)
+            throws Exception {
         if (validarXML) {
             // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de
             // comunicar com a sefaz
             DFXMLValidador.validaLote400(loteAssinadoXml);
         }
-
-        // envia o lote para a sefaz
-        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-
-        final NFeAutorizacao4Stub.NfeDadosMsg dados = new NFeAutorizacao4Stub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
 
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(),
@@ -146,22 +150,23 @@ class WSLoteEnvio implements DFLog {
                     + ", autorizador " + autorizador.name());
         }
 
-        return new NFeAutorizacao4Stub(endpoint, config).nfeAutorizacaoLote(dados);
+        final String envelope = DFSoapEnvelope.envelopar(WSLoteEnvio.NAMESPACE_WSDL, "nfeDadosMsg", loteAssinadoXml);
+        final String resposta = this.httpClient.postSoap(endpoint, WSLoteEnvio.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
 
-    private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
+    /**
+     * Reconstroi o {@link NfeResultMsg} do Axis2 a partir do XML de negocio ja desempacotado,
+     * sem nenhuma chamada de rede via Axis2 - mantido apenas para nao quebrar a assinatura
+     * publica de {@link WSFacade#getNfeResultMsg}.
+     */
+    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws Exception {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
+        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));
         final StAXOMBuilder builder = new StAXOMBuilder(reader);
-        final OMElement ome = builder.getDocumentElement();
-        final Iterator<?> children = ome.getChildrenWithLocalName(WSLoteEnvio.NFE_ELEMENTO);
-        while (children.hasNext()) {
-            final OMElement omElement = (OMElement) children.next();
-            if ((omElement != null) && (WSLoteEnvio.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NAMESPACE, null);
-            }
-        }
-        return ome;
+        final NfeResultMsg resultMsg = new NfeResultMsg();
+        resultMsg.setExtraElement(builder.getDocumentElement());
+        return resultMsg;
     }
 }

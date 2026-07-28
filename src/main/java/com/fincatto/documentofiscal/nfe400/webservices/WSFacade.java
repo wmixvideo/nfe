@@ -77,7 +77,7 @@ public class WSFacade implements Closeable {
         this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
         // inicia os servicos disponiveis da nfe
-        this.wsLoteEnvio = new WSLoteEnvio(config);
+        this.wsLoteEnvio = new WSLoteEnvio(config, this.httpClient);
         this.wsLoteConsulta = new WSLoteConsulta(config);
         this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
         this.wsNotaConsulta = new WSNotaConsulta(config);
@@ -105,8 +105,8 @@ public class WSFacade implements Closeable {
 
     /**
      * Libera o pool de conexoes HTTP usado pelos servicos ja migrados para {@code httpclient5}
-     * (atualmente, apenas a consulta de status). Chamar quando esta instancia de {@link WSFacade}
-     * nao for mais utilizada - por exemplo, no encerramento da aplicacao.
+     * (atualmente, a consulta de status e o envio de lote). Chamar quando esta instancia de
+     * {@link WSFacade} nao for mais utilizada - por exemplo, no encerramento da aplicacao.
      *
      * @throws IOException caso ocorra falha ao liberar as conexoes.
      */
