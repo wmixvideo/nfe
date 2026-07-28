@@ -27,9 +27,12 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -37,8 +40,9 @@ import java.security.UnrecoverableKeyException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class WSFacade {
+public class WSFacade implements Closeable {
 
+    private final DFHttpClient httpClient;
     private final WSLoteEnvio wsLoteEnvio;
     private final WSLoteConsulta wsLoteConsulta;
     private final WSStatusConsulta wsStatusConsulta;
@@ -65,12 +69,17 @@ public class WSFacade {
     private final WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+        final DFSocketFactory socketFactory = new DFSocketFactory(config);
+        Protocol.registerProtocol("https", new Protocol("https", socketFactory, 443));
+
+        // migracao gradual para httpclient5: o cliente novo reaproveita o mesmo SSLContext do certificado A1
+        // usado pelo DFSocketFactory acima. Servicos ainda nao migrados continuam usando o Axis2 normalmente.
+        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
         // inicia os servicos disponiveis da nfe
         this.wsLoteEnvio = new WSLoteEnvio(config);
         this.wsLoteConsulta = new WSLoteConsulta(config);
-        this.wsStatusConsulta = new WSStatusConsulta(config);
+        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
         this.wsNotaConsulta = new WSNotaConsulta(config);
         this.wsCartaCorrecao = new WSCartaCorrecao(config);
         this.wsCancelamento = new WSCancelamento(config);
@@ -92,6 +101,18 @@ public class WSFacade {
         this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config);
         this.wsImobilizacaoItem = new WSImobilizacaoItem(config);
         this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config);
+    }
+
+    /**
+     * Libera o pool de conexoes HTTP usado pelos servicos ja migrados para {@code httpclient5}
+     * (atualmente, apenas a consulta de status). Chamar quando esta instancia de {@link WSFacade}
+     * nao for mais utilizada - por exemplo, no encerramento da aplicacao.
+     *
+     * @throws IOException caso ocorra falha ao liberar as conexoes.
+     */
+    @Override
+    public void close() throws IOException {
+        this.httpClient.close();
     }
 
     /**

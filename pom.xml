@@ -40,6 +40,7 @@
         <axis2.version>1.7.9</axis2.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
+		<httpclient5.version>5.6.2</httpclient5.version>
     </properties>
 
     <dependencies>
@@ -95,7 +96,12 @@
             <version>${axis2.version}</version>
             <scope>compile</scope>
         </dependency>
-
+		<!--  HttpClient5 (substituto do Axis2 para o transporte HTTP/SOAP, migracao em andamento servico a servico)  -->
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>${httpclient5.version}</version>
+		</dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

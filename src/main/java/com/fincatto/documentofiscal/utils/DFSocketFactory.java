@@ -31,6 +31,17 @@ public class DFSocketFactory implements ProtocolSocketFactory {
         this.sslContext = this.createSSLContext(config);
     }
 
+    /**
+     * Expoe o {@link SSLContext} ja montado a partir do certificado A1 (via {@link DFKeyManager})
+     * e da cadeia de certificados da SEFAZ, para que outros clientes HTTP (ex.: {@link DFHttpClient})
+     * possam reaproveita-lo sem duplicar a leitura do KeyStore/TrustStore.
+     *
+     * @return o SSLContext usado para o mTLS com a SEFAZ.
+     */
+    public SSLContext getSslContext() {
+        return this.sslContext;
+    }
+
     @Override
     public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort, final HttpConnectionParams params) throws IOException {
         final Socket socket = this.sslContext.getSocketFactory().createSocket();
