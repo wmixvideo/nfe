@@ -78,35 +78,37 @@ public class WSFacade implements Closeable {
 
         // inicia os servicos disponiveis da nfe
         this.wsLoteEnvio = new WSLoteEnvio(config, this.httpClient);
-        this.wsLoteConsulta = new WSLoteConsulta(config);
+        this.wsLoteConsulta = new WSLoteConsulta(config, this.httpClient);
         this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
-        this.wsNotaConsulta = new WSNotaConsulta(config);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config);
-        this.wsCancelamento = new WSCancelamento(config);
-        this.wsConsultaCadastro = new WSConsultaCadastro(config);
-        this.wsInutilizacao = new WSInutilizacao(config);
-        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
+        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
+        this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
+        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
+        this.wsConsultaCadastro = new WSConsultaCadastro(config, this.httpClient);
+        this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
+        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config, this.httpClient);
         this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
-        this.wsEpec = new WSEpec(config);
-        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config);
-        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config);
-        this.wsCancelametoEvento = new WSCancelametoEvento(config);
-        this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(config);
-        this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(config);
-        this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(config);
-        this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(config);
-        this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(config);
-        this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(config);
-        this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(config);
-        this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config);
-        this.wsImobilizacaoItem = new WSImobilizacaoItem(config);
-        this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config);
+        this.wsEpec = new WSEpec(config, this.httpClient);
+        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config, this.httpClient);
+        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config, this.httpClient);
+        this.wsCancelametoEvento = new WSCancelametoEvento(config, this.httpClient);
+        this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(config, this.httpClient);
+        this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(config, this.httpClient);
+        this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(config, this.httpClient);
+        this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(config, this.httpClient);
+        this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config, this.httpClient);
+        this.wsImobilizacaoItem = new WSImobilizacaoItem(config, this.httpClient);
+        this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config, this.httpClient);
     }
 
     /**
      * Libera o pool de conexoes HTTP usado pelos servicos ja migrados para {@code httpclient5}
-     * (atualmente, a consulta de status e o envio de lote). Chamar quando esta instancia de
-     * {@link WSFacade} nao for mais utilizada - por exemplo, no encerramento da aplicacao.
+     * (todos os servicos do nfe400, exceto a distribuicao de DF-e - {@link
+     * com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe} - que
+     * continua no Axis2). Chamar quando esta instancia de {@link WSFacade} nao for mais
+     * utilizada - por exemplo, no encerramento da aplicacao.
      *
      * @throws IOException caso ocorra falha ao liberar as conexoes.
      */

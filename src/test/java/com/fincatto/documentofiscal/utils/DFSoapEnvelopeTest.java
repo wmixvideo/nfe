@@ -4,6 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Testa {@link DFSoapEnvelope}, responsavel por montar e desempacotar o envelope SOAP 1.2 dos
+ * webservices da SEFAZ migrados do Axis2 para {@code httpclient5}: envelopar (concatenacao de
+ * texto do XML de negocio dentro do wrapper), desempacotar no caso comum de 1 nivel de wrapper
+ * e no caso de 2 niveis (ex.: NFeDistribuicaoDFe), propagacao de {@code soap:Fault} como
+ * {@link DFSoapFaultException} e o hardening contra XXE no parsing da resposta.
+ *
  * @author Marcos Lombardi de Andrade
  */
 public class DFSoapEnvelopeTest {
@@ -68,6 +74,47 @@ public class DFSoapEnvelopeTest {
     @Test(expected = IllegalStateException.class)
     public void deveLancarIllegalStateExceptionParaRespostaQueNaoEUmEnvelopeSoapValido() throws DFSoapFaultException {
         DFSoapEnvelope.desempacotar("isto nao e um XML valido");
+    }
+
+    @Test
+    public void deveDesempacotarDoisNiveisDeWrapperQuandoPedidoExplicitamente() throws DFSoapFaultException {
+        // reproduz o corpo SOAP da NFeDistribuicaoDFe: nfeDistDFeInteresseResponse > NFeDistDFeInteresseResult > XML de negocio
+        final String respostaComDoisWrappers = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<nfeDistDFeInteresseResponse xmlns=\"" + NAMESPACE_WSDL + "\">"
+                + "<NFeDistDFeInteresseResult>"
+                + "<retDistDFeInt xmlns=\"http://www.portalfiscal.inf.br/nfe\" versao=\"1.01\">"
+                + "<cStat>137</cStat>"
+                + "</retDistDFeInt>"
+                + "</NFeDistDFeInteresseResult>"
+                + "</nfeDistDFeInteresseResponse>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+
+        final String xmlNegocio = DFSoapEnvelope.desempacotar(respostaComDoisWrappers, 2);
+
+        Assert.assertTrue(xmlNegocio.startsWith("<retDistDFeInt"));
+        Assert.assertTrue(xmlNegocio.contains("<cStat>137</cStat>"));
+        Assert.assertFalse("nao deve sobrar nenhum wrapper no resultado", xmlNegocio.contains("nfeDistDFeInteresseResponse") || xmlNegocio.contains("NFeDistDFeInteresseResult"));
+    }
+
+    @Test
+    public void deveLancarDFSoapFaultExceptionComDoisNiveisDeWrapperQuandoRespostaForFault() {
+        final String respostaComFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<soap:Fault>"
+                + "<soap:Code><soap:Value>soap:Receiver</soap:Value></soap:Code>"
+                + "<soap:Reason><soap:Text xml:lang=\"pt\">Servico Paralisado Temporariamente</soap:Text></soap:Reason>"
+                + "</soap:Fault>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+
+        try {
+            DFSoapEnvelope.desempacotar(respostaComFault, 2);
+            Assert.fail("deveria ter lancado DFSoapFaultException");
+        } catch (final DFSoapFaultException e) {
+            Assert.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
+        }
     }
 
     @Test

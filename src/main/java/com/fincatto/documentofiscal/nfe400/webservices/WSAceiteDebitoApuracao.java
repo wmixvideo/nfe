@@ -13,10 +13,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao.N
 import com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao.NFInfoAceiteDebitoApuracao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.aceitedebitoapuracao.NFInfoEventoAceiteDebitoApuracao;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -24,12 +22,14 @@ import java.util.Collections;
 
 class WSAceiteDebitoApuracao implements DFLog {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
-    private static final String DESCRICAO_EVENTO = "Aceite de d\u00e9bito na apura\u00e7\u00e3o por emiss\u00e3o de nota de cr\u00e9dito";
+    private static final String DESCRICAO_EVENTO = "Aceite de débito na apuração por emissão de nota de crédito";
     private static final String CODIGO_EVENTO = "211128";
     private final NFeConfig config;
+    private final DFHttpClient httpClient;
 
-    WSAceiteDebitoApuracao(NFeConfig config) {
+    WSAceiteDebitoApuracao(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno aceiteDebitoApuracao(
@@ -40,9 +40,9 @@ class WSAceiteDebitoApuracao implements DFLog {
                 chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento, cnpjCpfAutorEvento
         ).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.efetuaAceiteDebitoApuracao(xmlAssinado, chaveAcesso);
+        final String xmlResultado = this.efetuaAceiteDebitoApuracao(xmlAssinado, chaveAcesso);
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     private NFEnviaEventoAceiteDebitoApuracao gerarDadosAceiteDebitoApuracao (
@@ -83,13 +83,13 @@ class WSAceiteDebitoApuracao implements DFLog {
         return enviaEvento;
     }
 
-    private OMElement efetuaAceiteDebitoApuracao(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
+    /**
+     * Envia o evento de aceite de debito de apuracao assinado para a SEFAZ e devolve o XML de
+     * negocio da resposta. Endpoint sempre resolvido via {@code NFAutorizador400.SVRS}; o envio
+     * em si e compartilhado com os demais servicos de evento via
+     * {@link AbstractWSEvento#enviarEvento} (ver spec da migracao).
+     */
+    private String efetuaAceiteDebitoApuracao(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.SVRS;
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
@@ -97,11 +97,6 @@ class WSAceiteDebitoApuracao implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final NFeRecepcaoEvento4Stub.NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-
-        return omElementResult;
+        return AbstractWSEvento.enviarEvento(this.httpClient, urlWebService, xmlAssinado);
     }
 }
-;

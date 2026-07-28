@@ -15,7 +15,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.infoefetivopagamento.N
 import com.fincatto.documentofiscal.nfe400.classes.evento.infoefetivopagamento.NFInfoEventoInfoEfetPagIntegral;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -58,8 +58,8 @@ class WSInfoEfetPagIntegral extends AbstractWSEvento implements DFLog {
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSInfoEfetPagIntegral(NFeConfig config) {
-        super(config);
+    WSInfoEfetPagIntegral(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -89,9 +89,9 @@ class WSInfoEfetPagIntegral extends AbstractWSEvento implements DFLog {
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = super.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = super.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

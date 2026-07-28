@@ -13,10 +13,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisa
 import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFInfoAtualizacaoDataPrevisaoEntrega;
 import com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevisaoentrega.NFInfoEventoAtualizacaoDataPrevisaoEntrega;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,17 +26,19 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
     private static final String DESCRICAO_EVENTO = "Atualização da Data de Previsão de Entrega";
     private static final String CODIGO_EVENTO = "112150";
     private final NFeConfig config;
+    private final DFHttpClient httpClient;
 
-    WSAtualizacaoDataPrevisaoEntrega(NFeConfig config) {
+    WSAtualizacaoDataPrevisaoEntrega(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno atualizaDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final NFEventoTipoAutor tpAutorEvento, final int numeroSequencialEvento) throws Exception {
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosAtualizacaoDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.efetuaAtualizacaoDataPrevisaoEntrega(xmlAssinado, chaveAcesso);
+        final String xmlResultado = this.efetuaAtualizacaoDataPrevisaoEntrega(xmlAssinado, chaveAcesso);
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     private NFEnviaEventoAtualizacaoDataPrevisaoEntrega gerarDadosAtualizacaoDataPrevisaoEntrega (final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final NFEventoTipoAutor tpAutorEvento, final int numeroSequencialEvento) {
@@ -75,13 +75,13 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
         return enviaEvento;
     }
 
-    private OMElement efetuaAtualizacaoDataPrevisaoEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
+    /**
+     * Envia o evento de atualizacao de data de previsao de entrega assinado para a SEFAZ e
+     * devolve o XML de negocio da resposta. Endpoint sempre resolvido via
+     * {@code NFAutorizador400.SVRS}; o envio em si e compartilhado com os demais servicos de
+     * evento via {@link AbstractWSEvento#enviarEvento} (ver spec da migracao).
+     */
+    private String efetuaAtualizacaoDataPrevisaoEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.SVRS;
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
@@ -89,10 +89,6 @@ class WSAtualizacaoDataPrevisaoEntrega implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final NFeRecepcaoEvento4Stub.NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-        return omElementResult;
+        return AbstractWSEvento.enviarEvento(this.httpClient, urlWebService, xmlAssinado);
     }
 }
-;

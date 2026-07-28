@@ -14,7 +14,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFE
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFInfoEventoSolicitacaoApropriacaoCreditoPresumido;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -62,8 +62,8 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSSolicitacaoApropriacaoCreditoPresumido(NFeConfig config) {
-        super(config);
+    WSSolicitacaoApropriacaoCreditoPresumido(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -115,9 +115,9 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

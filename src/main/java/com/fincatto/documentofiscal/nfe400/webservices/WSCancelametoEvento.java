@@ -12,10 +12,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFE
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFInfoCancelamentoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFInfoEventoCancelamentoEvento;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -26,9 +24,11 @@ class WSCancelametoEvento implements DFLog {
     private static final String DESCRICAO_EVENTO = "Cancelamento de Evento";
     private static final String CODIGO_EVENTO = "110001";
     private final NFeConfig config;
+    private final DFHttpClient httpClient;
 
-    WSCancelametoEvento(NFeConfig config) {
+    WSCancelametoEvento(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno cancelamentoEvento(
@@ -39,9 +39,9 @@ class WSCancelametoEvento implements DFLog {
                 chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar, ufEmitenteEvento, cnpjCpfAutorEvento
         ).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.efetuaCancelamentoevento(xmlAssinado, chaveAcesso);
+        final String xmlResultado = this.efetuaCancelamentoevento(xmlAssinado, chaveAcesso);
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     private NFEnviaEventoCancelamentoEvento gerarDadosCancelamentoEvento(
@@ -81,13 +81,13 @@ class WSCancelametoEvento implements DFLog {
         return enviaEvento;
     }
 
-    private OMElement efetuaCancelamentoevento(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
+    /**
+     * Envia o evento de cancelamento de evento assinado para a SEFAZ e devolve o XML de negocio
+     * da resposta. Endpoint sempre resolvido via {@code NFAutorizador400.SVRS} (nao depende da
+     * UF do emitente); o envio em si e compartilhado com os demais servicos de evento via
+     * {@link AbstractWSEvento#enviarEvento} (ver spec da migracao).
+     */
+    private String efetuaCancelamentoevento(final String xmlAssinado, final String chaveAcesso) throws Exception {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.SVRS;
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
@@ -95,10 +95,6 @@ class WSCancelametoEvento implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final NFeRecepcaoEvento4Stub.NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-
-        return omElementResult;
+        return AbstractWSEvento.enviarEvento(this.httpClient, urlWebService, xmlAssinado);
     }
 }

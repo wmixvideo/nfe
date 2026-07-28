@@ -58,18 +58,35 @@ public final class DFSoapEnvelope {
      * @throws DFSoapFaultException se a resposta for um {@code soap:Fault}.
      */
     public static String desempacotar(final String respostaXml) throws DFSoapFaultException {
+        return DFSoapEnvelope.desempacotar(respostaXml, 1);
+    }
+
+    /**
+     * Variante de {@link #desempacotar(String)} para operacoes cujo WSDL aninha o XML de
+     * negocio dentro de mais de um elemento wrapper (ex.: NFeDistribuicaoDFe, cujo corpo SOAP e
+     * {@code nfeDistDFeInteresseResponse > NFeDistDFeInteresseResult > <retDistDFeInt>...},
+     * dois niveis de wrapper em vez de um).
+     *
+     * @param niveisDeWrapper quantidade de elementos wrapper entre {@code soap:Body} e o XML de
+     * negocio (1 para o caso comum, coberto pelo overload de um argumento).
+     */
+    public static String desempacotar(final String respostaXml, final int niveisDeWrapper) throws DFSoapFaultException {
         try {
             final Document documento = criarDocumentBuilderFactory().newDocumentBuilder().parse(new InputSource(new StringReader(respostaXml)));
 
             final Element body = (Element) documento.getElementsByTagNameNS(SOAP12_NS, "Body").item(0);
-            final Element primeiroFilho = primeiroElementoFilho(body);
+            Element wrapperAtual = primeiroElementoFilho(body);
 
-            if ("Fault".equals(primeiroFilho.getLocalName())) {
-                throw new DFSoapFaultException(textoDoFault(primeiroFilho));
+            if ("Fault".equals(wrapperAtual.getLocalName())) {
+                throw new DFSoapFaultException(textoDoFault(wrapperAtual));
             }
 
-            // primeiroFilho = elemento wrapper (ex.: nfeResultMsg); o filho dele e o XML de negocio
-            return serializar(primeiroElementoFilho(primeiroFilho));
+            // desce um nivel de wrapper por vez ate sobrar so o penultimo, cujo filho e o XML de negocio
+            for (int nivel = 1; nivel < niveisDeWrapper; nivel++) {
+                wrapperAtual = primeiroElementoFilho(wrapperAtual);
+            }
+
+            return serializar(primeiroElementoFilho(wrapperAtual));
         } catch (final DFSoapFaultException e) {
             throw e;
         } catch (final Exception e) {
