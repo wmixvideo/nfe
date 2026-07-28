@@ -9,6 +9,9 @@ import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFInfoConsultaCadast
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+
+import java.io.IOException;
 
 class WSConsultaCadastro implements DFLog {
 
@@ -47,7 +50,7 @@ class WSConsultaCadastro implements DFLog {
      * manualmente antes de passar para o envelopar - resultado equivalente ao que o stub MT
      * gerava, sem precisar de um segundo metodo de envelopamento generico so para este caso.
      */
-    private String efetuaConsulta(final DFUnidadeFederativa uf, final String xmlConsulta) throws Exception {
+    private String efetuaConsulta(final DFUnidadeFederativa uf, final String xmlConsulta) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);
         final String urlConsulta = autorizador.getConsultaCadastro(this.config.getAmbiente());
         if (urlConsulta == null) {

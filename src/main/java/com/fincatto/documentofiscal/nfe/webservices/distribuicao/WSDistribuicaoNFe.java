@@ -7,11 +7,13 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
@@ -76,7 +78,8 @@ public class WSDistribuicaoNFe {
      * direto), com {@code nfeDadosMsg} dentro dele - por isso o {@code <nfeDadosMsg>} extra e
      * montado manualmente antes de {@link DFSoapEnvelope#envelopar}.
      */
-    private String efetuaConsulta(final String xmlEnvio) throws Exception {
+    private String efetuaConsulta(final String xmlEnvio)
+            throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         final String endpoint = NFAutorizador400.AN.getNFeDistribuicaoDFe(this.config.getAmbiente());
 
         final String envelope = WSDistribuicaoNFe.construirEnvelope(xmlEnvio);

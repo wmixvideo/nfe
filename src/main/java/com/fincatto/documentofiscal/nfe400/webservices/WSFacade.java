@@ -44,6 +44,7 @@ import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 public class WSFacade implements Closeable {
 
@@ -220,10 +221,10 @@ public class WSFacade implements Closeable {
      *
      * @param chaveDeAcesso chave de acesso da nota
      * @return dados da consulta da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws IOException caso nao consiga se conectar a SEFAZ.
+     * @throws DFSoapFaultException caso a SEFAZ devolva um soap:Fault.
      */
-    public String consultaNotaAsString(final String chaveDeAcesso) throws Exception {
+    public String consultaNotaAsString(final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         return this.wsNotaConsulta.consultaNotaAsString(chaveDeAcesso);
     }
 
