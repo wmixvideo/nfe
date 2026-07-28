@@ -16,6 +16,7 @@ import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.reactor.ssl.SSLBufferMode;
+import org.apache.hc.core5.util.TimeValue;
 import org.apache.hc.core5.util.Timeout;
 
 import javax.net.ssl.SSLContext;
@@ -35,6 +36,15 @@ import java.nio.charset.StandardCharsets;
  * @author Marcos Lombardi de Andrade
  */
 public class DFHttpClient implements Closeable {
+
+    // A SEFAZ fecha conexoes keep-alive do lado dela sem que o pool perceba, deixando sockets
+    // em CLOSE_WAIT em instancias de vida longa. As tres politicas abaixo mitigam isso:
+    // TTL limita a vida total de cada conexao (mesmo em uso constante); a validacao apos
+    // inatividade descarta conexoes mortas antes do reuso; e a thread de despejo (evict*)
+    // fecha proativamente conexoes ociosas/expiradas sem depender de uma proxima requisicao.
+    private static final Timeout TEMPO_VIDA_MAXIMO_CONEXAO = Timeout.ofMinutes(1);
+    private static final Timeout VALIDAR_APOS_INATIVIDADE = Timeout.ofSeconds(2);
+    private static final TimeValue OCIOSIDADE_MAXIMA_CONEXAO = TimeValue.ofSeconds(30);
 
     private final CloseableHttpClient httpClient;
 
@@ -61,6 +71,8 @@ public class DFHttpClient implements Closeable {
         // DFConfig se o comportamento historico de timeout precisar ser preservado.
         final ConnectionConfig connectionConfig = ConnectionConfig.custom()
                 .setConnectTimeout(Timeout.ofMilliseconds(config.getTimeoutRequisicaoEmMillis()))
+                .setTimeToLive(TEMPO_VIDA_MAXIMO_CONEXAO)
+                .setValidateAfterInactivity(VALIDAR_APOS_INATIVIDADE)
                 .build();
 
         final PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
@@ -75,6 +87,8 @@ public class DFHttpClient implements Closeable {
         this.httpClient = HttpClients.custom()
                 .setConnectionManager(connectionManager)
                 .setDefaultRequestConfig(requestConfig)
+                .evictExpiredConnections()
+                .evictIdleConnections(OCIOSIDADE_MAXIMA_CONEXAO)
                 .build();
     }
 
