@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.security.KeyManagementException;
@@ -39,7 +41,7 @@ import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
-public class WSEpec implements DFLog {
+public class WSEpec implements DFLog, Closeable {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     public static final String TIPO_EVENTO_EPEC = "110140";
@@ -74,6 +76,19 @@ public class WSEpec implements DFLog {
             this.httpClientProprio = new DFHttpClient(socketFactory.getSslContext(), this.config);
         }
         return this.httpClientProprio;
+    }
+
+    /**
+     * Libera o pool de conexoes do {@link DFHttpClient} proprio, se algum tiver sido criado
+     * (isto e, se esta instancia foi construida via {@link #WSEpec(NFeConfig)} e chegou a fazer
+     * alguma chamada de rede). Nao fecha o {@link DFHttpClient} compartilhado recebido do
+     * {@link WSFacade} - quem o criou e responsavel por fecha-lo (ver {@link WSFacade#close()}).
+     */
+    @Override
+    public synchronized void close() throws IOException {
+        if (this.httpClientProprio != null) {
+            this.httpClientProprio.close();
+        }
     }
 
     NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {

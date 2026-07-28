@@ -69,8 +69,12 @@ public final class DFSoapEnvelope {
      *
      * @param niveisDeWrapper quantidade de elementos wrapper entre {@code soap:Body} e o XML de
      * negocio (1 para o caso comum, coberto pelo overload de um argumento).
+     * @throws IllegalArgumentException se {@code niveisDeWrapper} for menor que 1.
      */
     public static String desempacotar(final String respostaXml, final int niveisDeWrapper) throws DFSoapFaultException {
+        if (niveisDeWrapper < 1) {
+            throw new IllegalArgumentException("niveisDeWrapper deve ser no minimo 1, recebido: " + niveisDeWrapper);
+        }
         try {
             final Document documento = criarDocumentBuilderFactory().newDocumentBuilder().parse(new InputSource(new StringReader(respostaXml)));
 

@@ -110,17 +110,23 @@ public class WSFacade implements Closeable {
     }
 
     /**
-     * Libera o pool de conexoes HTTP usado pelos servicos ja migrados para {@code httpclient5}
-     * (todos os servicos do nfe400, exceto a distribuicao de DF-e - {@link
-     * com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe} - que
-     * continua no Axis2). Chamar quando esta instancia de {@link WSFacade} nao for mais
-     * utilizada - por exemplo, no encerramento da aplicacao.
+     * Libera o pool de conexoes HTTP compartilhado entre todos os servicos do nfe400 (todos ja
+     * migrados para {@code httpclient5}), e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * proprio de {@link com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe}
+     * - que nao compartilha o pool acima, mas tambem ja esta em {@code httpclient5}. Chamar
+     * quando esta instancia de {@link WSFacade} nao for mais utilizada - por exemplo, no
+     * encerramento da aplicacao.
      *
      * @throws IOException caso ocorra falha ao liberar as conexoes.
      */
     @Override
     public void close() throws IOException {
         this.httpClient.close();
+        // WSDistribuicaoNFe nao compartilha o pool acima - cria o proprio DFHttpClient sob
+        // demanda (ver o Javadoc de WSDistribuicaoNFe.close()). Fecha-lo aqui evita vazar essa
+        // conexao para quem so conhece o WSFacade e nunca teria como chamar
+        // wSDistribuicaoNFe.close() diretamente.
+        this.wSDistribuicaoNFe.close();
     }
 
     /**

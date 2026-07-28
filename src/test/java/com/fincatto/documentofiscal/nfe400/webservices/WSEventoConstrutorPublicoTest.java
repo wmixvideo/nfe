@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
@@ -14,7 +16,9 @@ import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
  * acontecia na construcao. Este teste e a garantia de regressao dessa promessa: construir as
  * duas classes com o construtor publico de 1 argumento nao deve lancar nenhuma excecao,
  * independente da instancia de {@link com.fincatto.documentofiscal.utils.DFHttpClient} nunca
- * ter sido efetivamente criada.
+ * ter sido efetivamente criada. Tambem cobre {@code close()} (ambas passaram a implementar
+ * {@link java.io.Closeable}): fechar sem nunca ter feito nenhuma chamada de rede deve ser um
+ * no-op seguro (o cliente HTTP proprio, se nunca criado, nao pode gerar NullPointerException).
  *
  * @author Marcos Lombardi de Andrade
  */
@@ -28,5 +32,15 @@ public class WSEventoConstrutorPublicoTest {
     @Test
     public void construtorPublicoDeUmArgumentoDoWSManifestacaoDestinatarioNaoDeveLancarExcecao() {
         new WSManifestacaoDestinatario(new NFeConfigFake());
+    }
+
+    @Test
+    public void closeDoWSEpecSemNenhumaChamadaDeRedeNaoDeveLancarExcecao() throws IOException {
+        new WSEpec(new NFeConfigFake()).close();
+    }
+
+    @Test
+    public void closeDoWSManifestacaoDestinatarioSemNenhumaChamadaDeRedeNaoDeveLancarExcecao() throws IOException {
+        new WSManifestacaoDestinatario(new NFeConfigFake()).close();
     }
 }

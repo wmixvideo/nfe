@@ -117,6 +117,16 @@ public class DFSoapEnvelopeTest {
         }
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarIllegalArgumentExceptionQuandoNiveisDeWrapperForZero() throws DFSoapFaultException {
+        DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deveLancarIllegalArgumentExceptionQuandoNiveisDeWrapperForNegativo() throws DFSoapFaultException {
+        DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", -1);
+    }
+
     @Test
     public void enveloparEDesempacotarDevemSerRoundTripParaOMesmoXmlDeNegocio() throws DFSoapFaultException {
         final String xmlNegocio = "<retConsStatServ xmlns=\"http://www.portalfiscal.inf.br/nfe\" versao=\"4.00\"><cStat>107</cStat></retConsStatServ>";

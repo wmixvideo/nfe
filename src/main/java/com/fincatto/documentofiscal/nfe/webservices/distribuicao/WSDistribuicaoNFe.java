@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +24,7 @@ import java.security.UnrecoverableKeyException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 
-public class WSDistribuicaoNFe {
+public class WSDistribuicaoNFe implements Closeable {
 
     private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe";
     private static final String SOAP_ACTION = WSDistribuicaoNFe.NAMESPACE_WSDL + "/nfeDistDFeInteresse";
@@ -48,6 +49,19 @@ public class WSDistribuicaoNFe {
             this.httpClient = new DFHttpClient(socketFactory.getSslContext(), this.config);
         }
         return this.httpClient;
+    }
+
+    /**
+     * Libera o pool de conexoes do {@link DFHttpClient} desta instancia, se algum tiver sido
+     * criado (isto e, se ja foi feita alguma chamada de rede). {@code WSDistribuicaoNFe} nao e
+     * gerenciada pelo {@link com.fincatto.documentofiscal.nfe400.webservices.WSFacade} - quem a
+     * constroi diretamente e responsavel por chamar {@link #close()} quando nao for mais usa-la.
+     */
+    @Override
+    public synchronized void close() throws IOException {
+        if (this.httpClient != null) {
+            this.httpClient.close();
+        }
     }
 
     /**
@@ -81,6 +95,9 @@ public class WSDistribuicaoNFe {
     private String efetuaConsulta(final String xmlEnvio)
             throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         final String endpoint = NFAutorizador400.AN.getNFeDistribuicaoDFe(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDFe, autorizador " + NFAutorizador400.AN.name());
+        }
 
         final String envelope = WSDistribuicaoNFe.construirEnvelope(xmlEnvio);
         final String resposta = this.getHttpClient().postSoap(endpoint, WSDistribuicaoNFe.SOAP_ACTION, envelope);
