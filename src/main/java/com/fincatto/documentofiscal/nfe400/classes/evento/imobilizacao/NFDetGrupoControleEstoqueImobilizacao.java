@@ -12,18 +12,17 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoqueImobilizacao extends DFBase {
 
     @Element(name = "qImobilizado")
-    private BigDecimal quantidade;
+    private String quantidade;
 
     @Element(name = "uImobilizado")
     private String unidade;
 
-    public BigDecimal getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
     public void setQuantidade(BigDecimal quantidade) {
-        DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade");
-        this.quantidade = quantidade;
+        this.quantidade = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade");
     }
 
     public String getUnidade() {

@@ -12,18 +12,17 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoqueNaoFornecimento extends DFBase {
 
     @Element(name = "qNaoFornecida")
-    private BigDecimal quantidade;
+    private String quantidade;
 
     @Element(name = "uNaoFornecida")
     private String unidadeMedida;
 
-    public BigDecimal getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
     public void setQuantidade(BigDecimal quantidade) {
-        DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade não fornecida");
-        this.quantidade = quantidade;
+        this.quantidade = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade não fornecida");
     }
 
     public String getUnidadeMedida() {
