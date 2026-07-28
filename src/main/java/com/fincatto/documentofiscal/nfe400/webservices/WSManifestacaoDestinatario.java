@@ -1,19 +1,30 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.*;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
 
 public class WSManifestacaoDestinatario implements DFLog {
 
@@ -39,7 +50,7 @@ public class WSManifestacaoDestinatario implements DFLog {
         this.httpClientCompartilhado = httpClient;
     }
 
-    private synchronized DFHttpClient getHttpClient() throws Exception {
+    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         if (this.httpClientCompartilhado != null) {
             return this.httpClientCompartilhado;
         }
@@ -90,7 +101,8 @@ public class WSManifestacaoDestinatario implements DFLog {
      * compartilhado com os demais servicos de evento via {@link AbstractWSEvento#enviarEvento}
      * (ver spec da migracao).
      */
-    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws Exception {
+    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso)
+            throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = autorizador.getRecepcaoEventoAN(this.config.getAmbiente());

@@ -1,23 +1,34 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.StringReader;
+import java.math.BigDecimal;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.apache.commons.lang3.StringUtils;
-
+import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFDestinatarioEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEventoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEventoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFDestinatarioEpec;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
@@ -27,11 +38,6 @@ import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import java.io.StringReader;
 
 public class WSEpec implements DFLog {
 
@@ -59,7 +65,7 @@ public class WSEpec implements DFLog {
         this.httpClientCompartilhado = httpClient;
     }
 
-    private synchronized DFHttpClient getHttpClient() throws Exception {
+    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         if (this.httpClientCompartilhado != null) {
             return this.httpClientCompartilhado;
         }
@@ -191,7 +197,7 @@ public class WSEpec implements DFLog {
         return AbstractWSEvento.enviarEvento(this.getHttpClient(), endpoint, loteAssinadoXml);
     }
 
-    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws Exception {
+    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
         final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));

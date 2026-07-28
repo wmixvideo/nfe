@@ -1,5 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -10,8 +12,6 @@ import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
-
-import java.io.IOException;
 
 /**
  * Consulta o status do servico da SEFAZ responsavel por uma UF (NF-e e NFC-e).

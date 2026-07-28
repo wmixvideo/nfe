@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -10,9 +15,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetorno
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
-import org.apache.commons.lang3.StringUtils;
-
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSInutilizacao implements DFLog {
 
@@ -46,7 +49,7 @@ class WSInutilizacao implements DFLog {
      * servicos migrados (WSStatusConsulta, WSLoteEnvio, servicos de evento): concatenacao de
      * texto na ida, parsing DOM na volta, sem passar mais pelo stub Axis2 NFeInutilizacao4Stub.
      */
-    private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws Exception {
+    private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
 

@@ -1,5 +1,12 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -7,18 +14,17 @@ import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.*;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEnviaEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFProtocoloEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFPersister;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSCancelamento implements DFLog {
 
@@ -64,7 +70,7 @@ class WSCancelamento implements DFLog {
      * si e compartilhado com os demais servicos de evento via {@link AbstractWSEvento#enviarEvento}
      * (ver spec da migracao).
      */
-    private String efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
+    private String efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());

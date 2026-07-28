@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -8,8 +11,7 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
-
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSLoteConsulta implements DFLog {
 
@@ -39,7 +41,7 @@ class WSLoteConsulta implements DFLog {
      * migrados: concatenacao de texto na ida, parsing DOM na volta, sem passar mais pelo stub
      * Axis2 NFeRetAutorizacao4Stub.
      */
-    private String efetuaConsulta(final String xmlConsulta, final DFModelo modelo) throws Exception {
+    private String efetuaConsulta(final String xmlConsulta, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
         final String urlWebService = DFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
         if (urlWebService == null) {

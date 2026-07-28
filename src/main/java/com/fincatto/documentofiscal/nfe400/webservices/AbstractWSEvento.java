@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -8,8 +11,7 @@ import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
-
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 abstract class AbstractWSEvento implements DFLog {
 
@@ -39,9 +41,10 @@ abstract class AbstractWSEvento implements DFLog {
      * @param xmlAssinado XML do evento assinado digitalmente.
      * @param chaveAcesso Chave de acesso da NF-e relacionada ao evento.
      * @return XML de negocio da resposta do web service (ja desempacotado do envelope SOAP).
-     * @throws Exception Caso ocorra algum erro durante a transmissão.
+     * @throws IOException caso nao consiga se conectar a SEFAZ.
+     * @throws DFSoapFaultException caso a SEFAZ devolva um soap:Fault.
      */
-    protected String transmiteEvento(final String xmlAssinado, final String chaveAcesso) throws Exception {
+    protected String transmiteEvento(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.SVRS;
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ?
@@ -65,7 +68,7 @@ abstract class AbstractWSEvento implements DFLog {
      * pelos servicos que nao se encaixam nesse padrao de heranca (carta de correcao,
      * cancelamento, manifestacao do destinatario, EPEC, etc), que chamam este metodo direto.
      */
-    static String enviarEvento(final DFHttpClient httpClient, final String endpoint, final String xmlAssinado) throws Exception {
+    static String enviarEvento(final DFHttpClient httpClient, final String endpoint, final String xmlAssinado) throws IOException, DFSoapFaultException {
         final String envelope = DFSoapEnvelope.envelopar(AbstractWSEvento.NAMESPACE_WSDL, "nfeDadosMsg", xmlAssinado);
         final String resposta = httpClient.postSoap(endpoint, AbstractWSEvento.SOAP_ACTION, envelope);
         return DFSoapEnvelope.desempacotar(resposta);

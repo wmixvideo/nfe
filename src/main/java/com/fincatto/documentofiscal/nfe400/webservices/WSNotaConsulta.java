@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -9,8 +12,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
-
-import java.math.BigDecimal;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSNotaConsulta implements DFLog {
     private static final String NOME_SERVICO = "CONSULTAR";
@@ -29,7 +31,7 @@ class WSNotaConsulta implements DFLog {
         return this.config.getPersister().read(NFNotaConsultaRetorno.class, this.consultaNotaAsString(chaveDeAcesso));
     }
 
-    public String consultaNotaAsString(String chaveDeAcesso) throws Exception {
+    public String consultaNotaAsString(String chaveDeAcesso) throws IOException, DFSoapFaultException {
         final String xmlConsulta = this.gerarDadosConsulta(chaveDeAcesso).toString();
         this.getLogger().debug(xmlConsulta);
 
@@ -44,7 +46,7 @@ class WSNotaConsulta implements DFLog {
      * migrados: concatenacao de texto na ida, parsing DOM na volta, sem passar mais pelo stub
      * Axis2 NFeConsultaProtocolo4Stub.
      */
-    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso) throws Exception {
+    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
 
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveDeAcesso);

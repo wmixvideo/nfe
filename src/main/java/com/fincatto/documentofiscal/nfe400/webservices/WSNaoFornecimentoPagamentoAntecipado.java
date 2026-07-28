@@ -1,13 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetEventoSolicitacaoApropriacaoCreditoPresumido;
+import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrupoItemNaoFornecido;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFEnviaEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFEventoNaoFornecimentoPagamentoAntecipado;
@@ -15,11 +20,6 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFInfoEve
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Classe responsável por informar o Fornecimento não realizado com pagamento antecipado

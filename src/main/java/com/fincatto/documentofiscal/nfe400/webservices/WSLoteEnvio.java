@@ -1,5 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.StringReader;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
@@ -19,12 +28,6 @@ import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-import java.io.StringReader;
 
 class WSLoteEnvio implements DFLog {
 
@@ -160,7 +163,7 @@ class WSLoteEnvio implements DFLog {
      * sem nenhuma chamada de rede via Axis2 - mantido apenas para nao quebrar a assinatura
      * publica de {@link WSFacade#getNfeResultMsg}.
      */
-    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws Exception {
+    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
         final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));

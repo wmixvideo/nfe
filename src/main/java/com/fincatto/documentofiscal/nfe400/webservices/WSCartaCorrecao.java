@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -14,10 +19,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtoc
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSCartaCorrecao implements DFLog {
 
@@ -71,7 +73,7 @@ class WSCartaCorrecao implements DFLog {
      * via heranca (a assinatura publica desta classe nao se encaixa no padrao de
      * AbstractWSEvento).
      */
-    private String efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws Exception {
+    private String efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
 
         final NFAutorizador400 autorizacao = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
