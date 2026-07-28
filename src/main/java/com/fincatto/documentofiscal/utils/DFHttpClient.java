@@ -52,17 +52,15 @@ public class DFHttpClient implements Closeable {
         final DefaultClientTlsStrategy tlsStrategy =
                 new DefaultClientTlsStrategy(sslContext, config.getSSLProtocolos(), null, SSLBufferMode.STATIC, new DefaultHostnameVerifier());
 
-        // FIXME - mapeamento historico de compatibilidade, NAO o que os nomes/Javadoc de DFConfig sugerem:
-        // config.getSoTimeoutEmMillis() esta documentado em DFConfig como "timeout do socket", mas aqui
-        // alimenta o CONNECT timeout, e config.getTimeoutRequisicaoEmMillis() alimenta o timeout de LEITURA
-        // da resposta (abaixo, no RequestConfig). Isso reproduz de proposito o mesmo mapeamento (aparentemente
-        // trocado) que o MessageContextFactory ja fazia para o Axis2 - HTTPConstants.SO_TIMEOUT recebia
-        // getTimeoutRequisicaoEmMillis() e HTTPConstants.CONNECTION_TIMEOUT recebia getSoTimeoutEmMillis().
-        // Mantido assim para nao mudar o comportamento em producao sem decisao explicita dos donos do projeto.
-        // Se um dia confirmarem que foi um engano do codigo original, ajustar aqui E os Javadocs de DFConfig
-        // juntos - nao "corrigir" só um lado, ou os dois ficam contraditorios de novo.
+        // Mapeamento alinhado ao Javadoc de DFConfig (nao ao que o Axis2/MessageContextFactory fazia):
+        // getSoTimeoutEmMillis() = "timeout do socket" -> timeout de LEITURA da resposta (RequestConfig,
+        // equivalente ao antigo SO_TIMEOUT); getTimeoutRequisicaoEmMillis() = "timeout da requisicao" ->
+        // timeout de CONEXAO (ConnectionConfig), o tempo para estabelecer a conexao antes de enviar a
+        // requisicao. O MessageContextFactory (Axis2, legado) usa esses dois getters trocados em relacao
+        // a este mapeamento; ao migrar um servico do Axis2 para o DFHttpClient, revisar os valores de
+        // DFConfig se o comportamento historico de timeout precisar ser preservado.
         final ConnectionConfig connectionConfig = ConnectionConfig.custom()
-                .setConnectTimeout(Timeout.ofMilliseconds(config.getSoTimeoutEmMillis()))
+                .setConnectTimeout(Timeout.ofMilliseconds(config.getTimeoutRequisicaoEmMillis()))
                 .build();
 
         final PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
@@ -71,7 +69,7 @@ public class DFHttpClient implements Closeable {
                 .build();
 
         final RequestConfig requestConfig = RequestConfig.custom()
-                .setResponseTimeout(Timeout.ofMilliseconds(config.getTimeoutRequisicaoEmMillis()))
+                .setResponseTimeout(Timeout.ofMilliseconds(config.getSoTimeoutEmMillis()))
                 .build();
 
         this.httpClient = HttpClients.custom()
