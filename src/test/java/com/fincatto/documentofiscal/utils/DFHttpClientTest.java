@@ -21,6 +21,9 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+/**
+ * @author Marcos Lombardi de Andrade
+ */
 public class DFHttpClientTest {
 
     private HttpServer servidor;

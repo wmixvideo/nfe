@@ -3,6 +3,9 @@ package com.fincatto.documentofiscal.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * @author Marcos Lombardi de Andrade
+ */
 public class DFSoapEnvelopeTest {
 
     private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4";

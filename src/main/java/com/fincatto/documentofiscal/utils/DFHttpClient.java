@@ -32,6 +32,7 @@ import java.nio.charset.StandardCharsets;
  * Uma unica instancia deve ser compartilhada entre todas as chamadas de um mesmo
  * {@link com.fincatto.documentofiscal.DFConfig} - o pool de conexoes interno cuida do reuso
  * de sockets TLS entre requisicoes.
+ * @author Marcos Lombardi de Andrade
  */
 public class DFHttpClient implements Closeable {
 

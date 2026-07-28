@@ -23,6 +23,7 @@ import java.io.StringWriter;
  * <p>
  * Substitui a montagem via {@code Axiom}/{@code ADBBean} por concatenacao de texto na ida
  * (o XML de negocio ja chega pronto como {@code String}) e parsing DOM na volta.
+ * @author Marcos Lombardi de Andrade
  */
 public final class DFSoapEnvelope {
 
