@@ -23,7 +23,7 @@ public class CTeOSInfoCTeNormalInfoCTeSubstituicao extends DFBase {
      * Chave de acesso do CT-e a ser substituído (original)
      */
     public void setChaveCTe(final String chaveCTe) {
-        DFStringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
+        DFStringValidador.exatamente44(chaveCTe, "Chave de acesso do CT-e a ser substituído (original)");
         this.chaveCTe = chaveCTe;
     }
 }

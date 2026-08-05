@@ -1,23 +1,21 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigInteger;
-
 import org.simpleframework.xml.Element;
 
 import com.fincatto.documentofiscal.DFBase;
-import com.fincatto.documentofiscal.validadores.DFBigIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 
 public class NFNotaInfoItemDetalheExportacao extends DFBase {
     private static final long serialVersionUID = 8265188954413940773L;
 
     @Element(name = "nDraw", required = false)
-    private BigInteger atoConcessorioDrawback;
+    private String atoConcessorioDrawback;
 
     @Element(name = "exportInd", required = false)
     private NFNotaInfoItemExportacaoIndireta exportacaoIndireta;
 
-    public void setNumeroAtoConcessorioDrawback(final BigInteger numeroAtoConcessorioDrawback) {
-        DFBigIntegerValidador.tamanho11(numeroAtoConcessorioDrawback, "Numero Ato Concessorio");
+    public void setNumeroAtoConcessorioDrawback(final String numeroAtoConcessorioDrawback) {
+        DFStringValidador.tamanho20(numeroAtoConcessorioDrawback, "Numero Ato Concessorio");
         this.atoConcessorioDrawback = numeroAtoConcessorioDrawback;
     }
 
@@ -25,7 +23,7 @@ public class NFNotaInfoItemDetalheExportacao extends DFBase {
         this.exportacaoIndireta = exportacaoIndireta;
     }
 
-    public BigInteger getAtoConcessorioDrawback() {
+    public String getAtoConcessorioDrawback() {
         return this.atoConcessorioDrawback;
     }
 

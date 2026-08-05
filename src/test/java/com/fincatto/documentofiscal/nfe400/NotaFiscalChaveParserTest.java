@@ -31,9 +31,24 @@ public class NotaFiscalChaveParserTest {
         new NotaFiscalChaveParser("1734119042676883974264088457913359614139959 ");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void naoDevePermitirChaveComLetras() {
-        new NotaFiscalChaveParser("1734119042676883974264088457913359614139959A");
+    @Test
+    public void devePermitirChaveAlfanumerica() {
+        // CNPJ alfanumérico: posições 6-19 contêm letras (44 chars)
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("422505AB000000000001550010000000011000000010");
+        assertNotNull(parser.getChave());
+        assertEquals(44, parser.getChave().length());
+    }
+
+    @Test
+    public void deveNormalizarChaveAlfanumericaParaMaiusculas() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("422505ab000000000001550010000000011000000010");
+        assertEquals("422505AB000000000001550010000000011000000010", parser.getChave());
+    }
+
+    @Test
+    public void deveFormatarChaveAlfanumerica() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("422505AB000000000001550010000000011000000010");
+        assertEquals("4225 05AB 0000 0000 0001 5500 1000 0000 0110 0000 0010", parser.getFormatado());
     }
 
     @Test
@@ -117,5 +132,30 @@ public class NotaFiscalChaveParserTest {
         assertFalse(parser.isEmitentePessoaFisica());
         assertEquals("47060783000162", parser.getCnpjEmitente());
         assertNull(parser.getCpfEmitente());
+    }
+
+    @Test
+    public void naoDeveSerEmitidaContingenciaSCVANOuSCVRSQuandoEmissaoNormal() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000121000000010");
+        assertFalse(parser.isEmitidaContingenciaSCVAN());
+        assertFalse(parser.isEmitidaContingenciaSCVRS());
+    }
+
+    /**
+     * Antes da correcao, isEmitidaContingenciaSCVAN() usava um regex "\\d{34}6\\d{9}" que nunca
+     * casava quando havia letras (CNPJ alfanumerico, NT 2026.004) nas posicoes 6-19 da chave.
+     */
+    @Test
+    public void deveSerEmitidaContingenciaSCVANComCnpjAlfanumericoNaChave() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000126000000010");
+        assertTrue(parser.isEmitidaContingenciaSCVAN());
+        assertFalse(parser.isEmitidaContingenciaSCVRS());
+    }
+
+    @Test
+    public void deveSerEmitidaContingenciaSCVRSComCnpjAlfanumericoNaChave() {
+        final NotaFiscalChaveParser parser = new NotaFiscalChaveParser("421511AB12CD34EF5678550010000000127000000010");
+        assertTrue(parser.isEmitidaContingenciaSCVRS());
+        assertFalse(parser.isEmitidaContingenciaSCVAN());
     }
 }

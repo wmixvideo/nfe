@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
-import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;

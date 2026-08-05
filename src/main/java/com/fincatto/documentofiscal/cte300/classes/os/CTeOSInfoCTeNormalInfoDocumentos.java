@@ -82,7 +82,7 @@ public class CTeOSInfoCTeNormalInfoDocumentos extends DFBase {
     }
 
     public void setChaveBilhetePassagem(String chaveBilhetePassagem) {
-        DFStringValidador.exatamente44N(chaveBilhetePassagem, "Chave de acesso do Bilhete de Passagem Eletrônico");
+        DFStringValidador.exatamente44(chaveBilhetePassagem, "Chave de acesso do Bilhete de Passagem Eletrônico");
         this.chaveBilhetePassagem = chaveBilhetePassagem;
     }
 }

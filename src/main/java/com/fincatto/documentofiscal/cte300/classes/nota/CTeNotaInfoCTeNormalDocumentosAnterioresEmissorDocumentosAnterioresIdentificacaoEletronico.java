@@ -31,7 +31,7 @@ public class CTeNotaInfoCTeNormalDocumentosAnterioresEmissorDocumentosAnteriores
      * Chave de acesso do CT-e
      */
     public void setChaveCTe(final String chaveCTe) {
-        DFStringValidador.exatamente44N(chaveCTe, "Chave de acesso do CT-e");
+        DFStringValidador.exatamente44(chaveCTe, "Chave de acesso do CT-e");
         this.chaveCTe = chaveCTe;
     }
 }

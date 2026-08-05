@@ -53,6 +53,15 @@ public class NFNotaInfoItemExportacaoIndiretaTest {
     }
 
     @Test
+    public void devePermitirChaveAcessoNFeAlfanumerica() {
+        final NFNotaInfoItemExportacaoIndireta exportacaoIndireta = new NFNotaInfoItemExportacaoIndireta();
+        // CNPJ alfanumérico na chave NF-e (44 chars)
+        final String chaveAlfanumerica = "422505AB000000000001550010000000011000000010";
+        exportacaoIndireta.setChaveAcessoNFe(chaveAlfanumerica);
+        Assert.assertEquals(chaveAlfanumerica, exportacaoIndireta.getChaveAcessoNFe());
+    }
+
+    @Test
     public void deveObterNumeroRegistroExportacaoComoFoiSetado() {
         final NFNotaInfoItemExportacaoIndireta exportacaoIndireta = new NFNotaInfoItemExportacaoIndireta();
         final BigInteger numeroRegistroExportacao = new BigInteger("999999999999");

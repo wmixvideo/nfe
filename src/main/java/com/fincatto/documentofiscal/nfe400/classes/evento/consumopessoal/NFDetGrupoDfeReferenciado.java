@@ -19,7 +19,7 @@ public class NFDetGrupoDfeReferenciado extends DFBase {
     }
 
     public void setChaveAcesso(String chaveAcesso) {
-        DFStringValidador.exatamente44N(chaveAcesso, "Chave de Acesso");
+        DFStringValidador.exatamente44(chaveAcesso, "Chave de Acesso");
         this.chaveAcesso = chaveAcesso;
     }
 

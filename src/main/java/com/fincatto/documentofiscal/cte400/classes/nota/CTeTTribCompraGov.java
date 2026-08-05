@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  *
  * @author Edivaldo Merlo Stens
  */
-@Root(name = "TTribCompraGov")
+@Root(name = "gTribCompraGov")
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeTTribCompraGov extends DFBase {
 

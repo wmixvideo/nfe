@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
  *
  * @author Edivaldo Merlo Stens
  */
-@Root(name = "TDifCBS")
+@Root(name = "gDif")
 @Namespace(reference = CTeConfig.NAMESPACE)
 public class CTeTDifCBS extends DFBase {
 

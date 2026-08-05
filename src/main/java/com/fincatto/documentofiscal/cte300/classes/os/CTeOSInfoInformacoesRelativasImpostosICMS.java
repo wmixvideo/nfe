@@ -57,7 +57,7 @@ public class CTeOSInfoInformacoesRelativasImpostosICMS extends DFBase {
     }
 
     /**
-     * Prestação sujeito à tributação com redução de BC do ICMS<
+     * Prestação sujeito à tributação com redução de BC do ICMS
      */
     public void setIcms20(final CTeOSInfoInformacoesRelativasImpostosICMS20 icms20) {
         this.icms20 = icms20;

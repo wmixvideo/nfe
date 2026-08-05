@@ -14,13 +14,12 @@ import com.fincatto.documentofiscal.nfe400.classes.NFTipoImpressao;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
-import org.apache.commons.lang3.StringUtils;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 public class NFNotaInfoIdentificacao extends DFBase {
     private static final long serialVersionUID = -2568396066960865875L;
@@ -76,10 +75,10 @@ public class NFNotaInfoIdentificacao extends DFBase {
     @Element(name = "finNFe")
     private NFFinalidade finalidade; // B25
     
-    @Element(required = false)
+    @Element(name = "tpNFDebito", required = false)    
     private NFDebito tpNFDebito; // B25.1
     
-    @Element(required = false)
+    @Element(name = "tpNFCredito",required = false)
     private NFCredito tpNFCredito; // B25.2
 
     @Element(name = "indFinal")

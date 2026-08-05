@@ -1,6 +1,5 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
 import org.junit.Assert;
 import org.junit.Before;
@@ -155,16 +154,5 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
 
         disp.setTipoValePedagio(null);
         Assert.assertNull(disp.getTipoValePedagio());
-    }
-
-    @Test
-    public void deveSetarEObterCategoriaCombinacaoVeicular() {
-        MDFTipoCategoriaCombinacaoVeicular categoriaCombinacaoVeicular = MDFTipoCategoriaCombinacaoVeicular.values()[0];
-
-        disp.setCategoriaCombinacaoVeicular(categoriaCombinacaoVeicular);
-        Assert.assertEquals(categoriaCombinacaoVeicular, disp.getCategoriaCombinacaoVeicular());
-
-        disp.setCategoriaCombinacaoVeicular(null);
-        Assert.assertNull(disp.getCategoriaCombinacaoVeicular());
     }
 }

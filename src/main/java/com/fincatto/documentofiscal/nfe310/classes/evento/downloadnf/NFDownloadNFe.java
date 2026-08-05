@@ -74,7 +74,7 @@ public class NFDownloadNFe extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "chave de acesso");
+        DFStringValidador.exatamente44(chave, "chave de acesso");
         this.chave = chave;
     }
 }

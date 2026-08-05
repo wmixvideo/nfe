@@ -6,6 +6,10 @@ public abstract class DFIntegerValidador {
         DFIntegerValidador.limite(valor, 9999, info);
     }
 
+    public static void tamanho5(final Integer valor, final String info) {
+        DFIntegerValidador.limite(valor, 99999, info);
+    }
+
     public static void tamanho7(final Integer valor, final String info) {
         DFIntegerValidador.limite(valor, 9999999, info);
     }

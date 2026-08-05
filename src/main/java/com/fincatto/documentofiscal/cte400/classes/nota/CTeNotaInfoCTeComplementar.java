@@ -27,7 +27,7 @@ public class CTeNotaInfoCTeComplementar extends DFBase {
      * Chave do CT-e complementado
      */
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Chave do CT-e complementado");
+        DFStringValidador.exatamente44(chave, "Chave do CT-e complementado");
         this.chave = chave;
     }
 }

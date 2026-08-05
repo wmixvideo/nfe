@@ -135,7 +135,7 @@ public class FabricaDeObjetosFakeMDFe {
         a.setMdfInfoModal(getMDFInfoModal());
         a.setInformacoesDocumentos(getMDFInfoInformacoesDocumentos());
         a.setSeguro(Collections.singletonList(getMDFInfoSeguro()));
-        a.setProdPred(Collections.singletonList(getMDFInfoProdutoPredominante()));
+        a.setProdPred(getMDFInfoProdutoPredominante());
         a.setInfoTotal(getMDFInfoTotal());
         a.setLacres(Collections.singletonList(getMDFInfoLacre1A60()));
         a.setAutorizacaoDownload(Collections.singletonList(getMDFInfoAutorizacaoDownload()));

@@ -84,7 +84,7 @@ public class CTeNotaInfo extends DFBase {
      * Informar a chave de acesso do CT-e e precedida do literal "CTe"
      */
     public void setIdentificador(final String identificador) {
-        DFStringValidador.exatamente44N(identificador, "Identificador");
+        DFStringValidador.exatamente44(identificador, "Identificador");
         this.identificador = CTeNotaInfo.IDENT + identificador;
     }
 

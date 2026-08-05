@@ -101,7 +101,7 @@ public class CTeInfoEvento extends DFBase {
     }
 
     public void setChave(final String chave) {
-        DFStringValidador.exatamente44N(chave, "Info Evento Chave");
+        DFStringValidador.exatamente44(chave, "Info Evento Chave");
         this.chave = chave;
     }
 

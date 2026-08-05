@@ -90,7 +90,6 @@ public class MDFeRecepcaoSincStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * @param mdfeDadosMsg0
-     * @param mdfeCabecMsg1
      */
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -159,7 +158,6 @@ public class MDFeRecepcaoSincStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature for Asynchronous Invocations
      * @param mdfeDadosMsg0
-     * @param mdfeCabecMsg1
      */
     public void startmdfeRecepcao(final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincStub.MdfeDadosMsg mdfeDadosMsg0, final com.fincatto.documentofiscal.mdfe3.webservices.recepcao.MDFeRecepcaoSincCallbackHandler callback) throws java.rmi.RemoteException {
         final org.apache.axis2.client.OperationClient _operationClient = this._serviceClient.createClient(this._operations[0].getName());

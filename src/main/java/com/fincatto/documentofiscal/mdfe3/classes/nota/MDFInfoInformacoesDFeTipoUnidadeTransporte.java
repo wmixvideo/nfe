@@ -38,7 +38,7 @@ public class MDFInfoInformacoesDFeTipoUnidadeTransporte {
     @ElementList(entry = "infUnidCarga", inline = true, required = false)
     private List<MDFInfoInformacoesDFeTipoUnidadeCarga> infUnidCarga;
 
-    @Element(name = "qtdRat")
+    @Element(name = "qtdRat", required = false)
     private String qtdRateada;
 
     public MDFTipoUnidadeTransporte getTipoUnidadeTransporte() {
