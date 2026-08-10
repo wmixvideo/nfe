@@ -110,8 +110,14 @@ public final class DFSoapEnvelope {
         factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
         factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
         factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         factory.setXIncludeAware(false);
         factory.setExpandEntityReferences(false);
+        try {
+            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        } catch (final IllegalArgumentException e) {
+            // provider JAXP nao suporta o atributo - segue com o comportamento padrao dele
+        }
         return factory;
     }
 
