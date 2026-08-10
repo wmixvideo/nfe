@@ -12,6 +12,7 @@ import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuil
 import org.apache.hc.client5.http.ssl.DefaultClientTlsStrategy;
 import org.apache.hc.client5.http.ssl.DefaultHostnameVerifier;
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHeaders;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
@@ -108,7 +109,8 @@ public class DFHttpClient implements Closeable {
         post.setHeader(HttpHeaders.CONTENT_TYPE, "application/soap+xml; charset=UTF-8; action=\"" + soapAction + "\"");
 
         return this.httpClient.execute(post, response -> {
-            final String corpo = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+            final HttpEntity entity = response.getEntity();
+            final String corpo = entity == null ? "" : EntityUtils.toString(entity, StandardCharsets.UTF_8);
             if (response.getCode() >= 300) {
                 throw new ClientProtocolException("SEFAZ respondeu HTTP " + response.getCode() + ": " + corpo);
             }
