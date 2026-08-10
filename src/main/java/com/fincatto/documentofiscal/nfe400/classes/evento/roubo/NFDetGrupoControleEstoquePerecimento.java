@@ -12,25 +12,25 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoquePerecimento extends DFBase {
 
     @Element(name = "qPerecimento")
-    private String quantidade;
+    private String quantidadePerecimento;
 
     @Element(name = "uPerecimento")
-    private String unidade;
+    private String unidadePerecimento;
 
-    public String getQuantidade() {
-        return quantidade;
+    public String getQuantidadePerecimento() {
+        return quantidadePerecimento;
     }
 
-    public void setQuantidade(BigDecimal quantidade) {
-        this.quantidade = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade Perecimento");
+    public void setQuantidadePerecimento(BigDecimal quantidadePerecimento) {
+        this.quantidadePerecimento = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidadePerecimento, "Quantidade Perecimento");
     }
 
-    public String getUnidade() {
-        return unidade;
+    public String getUnidadePerecimento() {
+        return unidadePerecimento;
     }
 
-    public void setUnidade(String unidade) {
-        DFStringValidador.tamanho6N(unidade, "Unidade Perecimento");
-        this.unidade = unidade;
+    public void setUnidadePerecimento(String unidadePerecimento) {
+        DFStringValidador.tamanho6N(unidadePerecimento, "Unidade Perecimento");
+        this.unidadePerecimento = unidadePerecimento;
     }
 }
