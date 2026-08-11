@@ -9,8 +9,6 @@ import java.security.UnrecoverableKeyException;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.apache.commons.httpclient.protocol.Protocol;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -75,11 +73,13 @@ public class WSFacade implements Closeable {
     private final WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: todos os
+        // servicos deste facade ja usam o DFHttpClient injetado (httpclient5), entao nao ha mais
+        // stub Axis2/httpclient3 remanescente que dependa do registro global de protocolo "https"
+        // via Protocol.registerProtocol - o que e bom, pois essa chamada mutaria um registro
+        // estatico compartilhado com os facades legados (NFe 3.10, CTe), substituindo o
+        // certificado usado por instancias concorrentes.
         final DFSocketFactory socketFactory = new DFSocketFactory(config);
-        Protocol.registerProtocol("https", new Protocol("https", socketFactory, 443));
-
-        // migracao gradual para httpclient5: o cliente novo reaproveita o mesmo SSLContext do certificado A1
-        // usado pelo DFSocketFactory acima. Servicos ainda nao migrados continuam usando o Axis2 normalmente.
         this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
         // inicia os servicos disponiveis da nfe
