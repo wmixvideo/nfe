@@ -129,4 +129,32 @@ public class MDFChaveParserTest {
         assertEquals("47060783000162", parser.getCnpjEmitente());
         assertNull( parser.getCpfEmitente());
     }
+
+    /**
+     * A partir do CNPJ alfanumerico (NT 2026.004) a chave do MDFe pode conter letras
+     * nas posicoes 6-19 (CNPJ do emitente). Antes da correcao, o construtor removia
+     * qualquer letra via replaceAll("\\D", "") e a chave resultante, com menos de 44
+     * caracteres, lancava IllegalArgumentException de tamanho invalido.
+     */
+    @Test
+    public void devePermitirChaveComCnpjAlfanumerico() {
+        final MDFChaveParser parser = new MDFChaveParser("351910AB12CD34EF5602580010000000121000000015");
+        assertEquals(44, parser.getChave().length());
+        assertTrue(parser.isEmitentePessoaJuridica());
+        assertFalse(parser.isEmitentePessoaFisica());
+        assertEquals("AB12CD34EF5602", parser.getCnpjEmitente());
+        assertNull(parser.getCpfEmitente());
+    }
+
+    @Test
+    public void deveNormalizarChaveComCnpjAlfanumericoParaMaiusculas() {
+        final MDFChaveParser parser = new MDFChaveParser("351910ab12cd34ef5602580010000000121000000015");
+        assertEquals("351910AB12CD34EF5602580010000000121000000015", parser.getChave());
+    }
+
+    @Test
+    public void deveFormatarChaveComCnpjAlfanumerico() {
+        final MDFChaveParser parser = new MDFChaveParser("351910AB12CD34EF5602580010000000121000000015");
+        assertEquals("3519 10AB 12CD 34EF 5602 5800 1000 0000 1210 0000 0015", parser.getFormatado());
+    }
 }

@@ -7,6 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+/**
+ * Gera a chave de acesso do MDFe e o respectivo digito verificador.<br>
+ * Suporta CNPJ alfanumerico do emitente (NT 2026.004): o DV e calculado via aritmetica
+ * de char (ASCII - 48), que funciona tanto para digitos quanto para letras A-Z.
+ */
 public class MDFGeraChave {
 
     private final MDFe mdfe;
@@ -36,7 +41,7 @@ public class MDFGeraChave {
                 indice = 0;
             }
 
-            valorTemp = Integer.parseInt(String.valueOf(valores[i - 1]));
+            valorTemp = valores[i - 1] - '0';
             multTemp = valoresInt[indice++];
             soma += valorTemp * multTemp;
         }
