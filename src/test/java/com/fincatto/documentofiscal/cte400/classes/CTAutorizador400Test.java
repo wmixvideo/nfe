@@ -54,6 +54,7 @@ public class CTAutorizador400Test {
     	Assert.assertEquals("https://hcte.fazenda.mg.gov.br/cte/services/CTeConsultaV4", autorizador.getCteConsultaProtocolo(DFAmbiente.HOMOLOGACAO));
     	Assert.assertEquals("https://hcte.fazenda.mg.gov.br/cte/services/CTeStatusServicoV4", autorizador.getCteStatusServico(DFAmbiente.HOMOLOGACAO));
     	Assert.assertEquals("https://hcte.fazenda.mg.gov.br/cte/services/CTeRecepcaoEventoV4", autorizador.getRecepcaoEvento(DFAmbiente.HOMOLOGACAO));
+		Assert.assertEquals("https://portalcte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml", autorizador.getCteQrCode(DFAmbiente.HOMOLOGACAO));
 
 		Assert.assertEquals("https://cte.fazenda.mg.gov.br/cte/services/CTeRecepcaoSincV4", autorizador.getCteRecepcaoSinc(DFAmbiente.PRODUCAO));
 		Assert.assertEquals("https://cte.fazenda.mg.gov.br/cte/services/CTeRecepcaoOSV4", autorizador.getCteRecepcaoOS(DFAmbiente.PRODUCAO));
