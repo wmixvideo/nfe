@@ -10,7 +10,7 @@ import java.util.List;
 @Root(name = "detEvento")
 public class NFDetEventoSolicitacaoApropriacaoCreditoPresumido extends NFDetEvento {
 
-    @ElementList(name = "gCredPres", inline = true)
+    @ElementList(name = "gCredPresOper", inline = true)
     private List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido;
 
     public List<NFDetGrupoCreditoPresumido> getGruposCreditoPresumido() {

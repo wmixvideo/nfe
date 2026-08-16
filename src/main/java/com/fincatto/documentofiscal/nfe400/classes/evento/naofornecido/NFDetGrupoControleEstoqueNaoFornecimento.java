@@ -12,26 +12,25 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoqueNaoFornecimento extends DFBase {
 
     @Element(name = "qNaoFornecida")
-    private BigDecimal quantidade;
+    private String quantidadeNaoFornecida;
 
     @Element(name = "uNaoFornecida")
-    private String unidadeMedida;
+    private String unidadeMedidaNaoFornecimento;
 
-    public BigDecimal getQuantidade() {
-        return quantidade;
+    public String getQuantidadeNaoFornecida() {
+        return quantidadeNaoFornecida;
     }
 
-    public void setQuantidade(BigDecimal quantidade) {
-        DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade não fornecida");
-        this.quantidade = quantidade;
+    public void setQuantidadeNaoFornecida(BigDecimal quantidadeNaoFornecida) {
+        this.quantidadeNaoFornecida = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidadeNaoFornecida, "Quantidade não fornecida");
     }
 
-    public String getUnidadeMedida() {
-        return unidadeMedida;
+    public String getUnidadeMedidaNaoFornecimento() {
+        return unidadeMedidaNaoFornecimento;
     }
 
-    public void setUnidadeMedida(String unidadeMedida) {
-        DFStringValidador.tamanho6(unidadeMedida, "Unidade de Medida");
-        this.unidadeMedida = unidadeMedida;
+    public void setUnidadeMedidaNaoFornecimento(String unidadeMedidaNaoFornecimento) {
+        DFStringValidador.tamanho6(unidadeMedidaNaoFornecimento, "Unidade de Medida");
+        this.unidadeMedidaNaoFornecimento = unidadeMedidaNaoFornecimento;
     }
 }
