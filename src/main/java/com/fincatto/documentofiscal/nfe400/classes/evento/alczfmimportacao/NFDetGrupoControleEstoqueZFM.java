@@ -12,26 +12,25 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoqueZFM extends DFBase {
 
     @Element(name = "qtde")
-    private BigDecimal quantidade;
+    private String quantidadeZFM;
 
     @Element(name = "unidade")
-    private String unidade;
+    private String unidadeZFM;
 
-    public BigDecimal getQuantidade() {
-        return quantidade;
+    public String getQuantidadeZFM() {
+        return quantidadeZFM;
     }
 
-    public void setQuantidade(BigDecimal quantidade) {
-        DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade");
-        this.quantidade = quantidade;
+    public void setQuantidadeZFM(BigDecimal quantidadeZFM) {
+        this.quantidadeZFM = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidadeZFM, "Quantidade");
     }
 
-    public String getUnidade() {
-        return unidade;
+    public String getUnidadeZFM() {
+        return unidadeZFM;
     }
 
-    public void setUnidade(String unidade) {
-        DFStringValidador.tamanho6(unidade, "Unidade de medida");
-        this.unidade = unidade;
+    public void setUnidadeZFM(String unidadeZFM) {
+        DFStringValidador.tamanho6(unidadeZFM, "Unidade de medida");
+        this.unidadeZFM = unidadeZFM;
     }
 }
