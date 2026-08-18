@@ -9,26 +9,11 @@ import java.math.BigDecimal;
 
 public class NFDetGrupoImpostoCreditoPresumido extends DFBase {
 
-    /**
-     * Código de Classificação do Crédito Presumido
-     */
-    @Element(name = "cCredPres")
-    private String codigoClassicacaoCreditoPresumido;
-
     @Element(name = "pCredPres")
     private BigDecimal percentual;
 
     @Element(name = "vCredPres")
     private BigDecimal valor;
-
-    public String getCodigoClassicacaoCreditoPresumido() {
-        return codigoClassicacaoCreditoPresumido;
-    }
-
-    public void setCodigoClassicacaoCreditoPresumido(String codigoClassicacaoCreditoPresumido) {
-        DFStringValidador.tamanho2N(codigoClassicacaoCreditoPresumido, "Código de Classificação do Crédito Presumido");
-        this.codigoClassicacaoCreditoPresumido = codigoClassicacaoCreditoPresumido;
-    }
 
     public BigDecimal getPercentual() {
         return percentual;

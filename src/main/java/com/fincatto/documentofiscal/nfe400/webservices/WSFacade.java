@@ -502,10 +502,10 @@ public class WSFacade {
     public NFEnviaEventoRetorno enviaSolicitacaoApropriacaoCreditoPresumido(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
             final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
-            final String cnpjCpfAutorEvento
+            final String cnpjCpfAutorEvento, final NFEventoTipoAutor tpAutorEvento
     ) throws Exception {
         return this.wsSolicitacaoApropriacaoCreditoPresumido
-                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCreditoPresumido, numeroSequencialEvento, cnpjCpfAutorEvento)
+                .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCreditoPresumido, numeroSequencialEvento, cnpjCpfAutorEvento, tpAutorEvento)
                 .gerarEnviarEvento();
     }
     /**
@@ -613,6 +613,7 @@ public class WSFacade {
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
      */
+    @Deprecated(since = "Evento removido em razão da revogação do § 6º do art. 57. da Lei Complementar nº 214/2025 pela Lei Complementar nº 227/2026", forRemoval = true)
     public NFEnviaEventoRetorno enviaDestinacaoItemConsumoPessoal(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> grupoItensConsumo,
             final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento, final String cnpjCpfAutorEvento

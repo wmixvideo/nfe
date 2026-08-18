@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -15,14 +16,20 @@ public class NFDetGrupoCreditoPresumido extends DFBase {
     @Attribute(name = "nItem")
     private Integer numeroItem;
 
-    @Element(name = "vBC")
+    @Element(name = "vBCCredPres")
     private BigDecimal valorBaseCalculo;
 
-    @Element(name = "gIBS", required = false)
+    @Element(name = "gIBSCredPres", required = false)
     private NFDetGrupoImpostoCreditoPresumido grupoIbsCreditoPresumido;
 
-    @Element(name = "gCBS", required = false)
+    @Element(name = "gCBSCredPres", required = false)
     private NFDetGrupoImpostoCreditoPresumido grupoCbsCreditoPresumido;
+
+    /**
+     * Código de Classificação do Crédito Presumido
+     */
+    @Element(name = "cCredPres")
+    private String codigoClassicacaoCreditoPresumido;
 
     public Integer getNumeroItem() {
         return numeroItem;
@@ -56,5 +63,14 @@ public class NFDetGrupoCreditoPresumido extends DFBase {
 
     public void setGrupoCbsCreditoPresumido(NFDetGrupoImpostoCreditoPresumido grupoCbsCreditoPresumido) {
         this.grupoCbsCreditoPresumido = grupoCbsCreditoPresumido;
+    }
+
+    public String getCodigoClassicacaoCreditoPresumido() {
+        return codigoClassicacaoCreditoPresumido;
+    }
+
+    public void setCodigoClassicacaoCreditoPresumido(String codigoClassicacaoCreditoPresumido) {
+        DFStringValidador.tamanho2N(codigoClassicacaoCreditoPresumido, "Código de Classificação do Crédito Presumido");
+        this.codigoClassicacaoCreditoPresumido = codigoClassicacaoCreditoPresumido;
     }
 }
