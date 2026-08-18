@@ -28,6 +28,7 @@ import java.util.List;
  *
  * @author Marcos Della Justina Schulz
  */
+@Deprecated(since = "Evento removido em razão da revogação do § 6º do art. 57. da Lei Complementar nº 214/2025 pela Lei Complementar nº 227/2026", forRemoval = true)
 class WSDestinacaoItemConsumoPessoal extends AbstractWSEvento implements DFLog {
     private static final BigDecimal VERSAO_LAYOUT = new BigDecimal("1.00");
     private static final String DESCRICAO_EVENTO = "Destina\u00e7\u00e3o de item para consumo pessoal";
