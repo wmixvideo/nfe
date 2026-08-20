@@ -49,6 +49,32 @@ public final class DFSoapEnvelope {
     }
 
     /**
+     * Envelopa o XML de negocio dentro de {@code soap:Envelope/soap:Body/wrapperElemento}, com
+     * um {@code soap:Header} adicional - usado por WSDLs que exigem cabecalho (ex.: o
+     * {@code cteCabecMsg} de todo webservice do cte300, com {@code cUF}/{@code versaoDados|).
+     * Overload aditivo: nao afeta {@link #envelopar(String, String, String)}, usado por
+     * servicos sem cabecalho (nfe400, cte400).
+     *
+     * @param namespace namespace do elemento de cabecalho e do elemento wrapper do corpo (o
+     * mesmo, conforme o WSDL da operacao).
+     * @param headerElemento nome local do elemento de cabecalho (ex.: {@code cteCabecMsg}).
+     * @param headerXml XML do cabecalho ja serializado (ex.: {@code <cUF>35</cUF><versaoDados>3.00</versaoDados>}).
+     * @param bodyElemento nome local do elemento wrapper do corpo (ex.: {@code cteDadosMsg}).
+     * @param xmlNegocio XML de negocio ja serializado, com seu proprio namespace.
+     * @return o envelope SOAP 1.2 completo, pronto para ser enviado no corpo da requisicao HTTP.
+     */
+    public static String envelopar(final String namespace, final String headerElemento, final String headerXml, final String bodyElemento, final String xmlNegocio) {
+        return "<soap:Envelope xmlns:soap=\"" + SOAP12_NS + "\">"
+                + "<soap:Header>"
+                + "<" + headerElemento + " xmlns=\"" + namespace + "\">" + headerXml + "</" + headerElemento + ">"
+                + "</soap:Header>"
+                + "<soap:Body>"
+                + "<" + bodyElemento + " xmlns=\"" + namespace + "\">" + xmlNegocio + "</" + bodyElemento + ">"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+    }
+
+    /**
      * Desempacota a resposta SOAP 1.2 devolvida pela SEFAZ, retornando o XML de negocio
      * (o filho do elemento wrapper, ex.: {@code retConsStatServ}) pronto para ser lido pelo
      * {@link org.simpleframework.xml.core.Persister}.

@@ -44,6 +44,15 @@ import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+/**
+ * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 4.00 (envio/consulta de
+ * lote, status, consulta de nota e cadastro, e a longa lista de eventos - cancelamento, carta
+ * de correcao, EPEC, manifestacao do destinatario, atualizacao de data de previsao de entrega,
+ * aceite de debito de apuracao, imobilizacao, insucesso/comprovante de entrega, entre outros).
+ * A maioria dos eventos compartilha a mecanica de transporte de {@link AbstractWSEvento}. Todos
+ * os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o
+ * descarte dos pools de conexao mantidos por esta instancia.
+ */
 public class WSFacade implements Closeable {
 
     private final DFHttpClient httpClient;
@@ -116,17 +125,24 @@ public class WSFacade implements Closeable {
      * - que nao compartilha o pool acima, mas tambem ja esta em {@code httpclient5}. Chamar
      * quando esta instancia de {@link WSFacade} nao for mais utilizada - por exemplo, no
      * encerramento da aplicacao.
+     * <p>
+     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
+     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
+     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
      *
      * @throws IOException caso ocorra falha ao liberar as conexoes.
      */
     @Override
+    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        this.httpClient.close();
-        // WSDistribuicaoNFe nao compartilha o pool acima - cria o proprio DFHttpClient sob
-        // demanda (ver o Javadoc de WSDistribuicaoNFe.close()). Fecha-lo aqui evita vazar essa
-        // conexao para quem so conhece o WSFacade e nunca teria como chamar
+        // WSDistribuicaoNFe nao compartilha o pool do httpClient acima - cria o proprio
+        // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoNFe.close()). Fecha-lo aqui
+        // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
         // wSDistribuicaoNFe.close() diretamente.
-        this.wSDistribuicaoNFe.close();
+        try (WSDistribuicaoNFe wSDistribuicaoNFe = this.wSDistribuicaoNFe; DFHttpClient httpClient = this.httpClient) {
+            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
+            // declaracao (httpClient primeiro, depois wSDistribuicaoNFe), mesmo que um deles lance excecao
+        }
     }
 
     /**

@@ -7,61 +7,51 @@ import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeInutilizacao2Stub.NfeInutilizacaoNF2Result;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 class WSInutilizacao implements DFLog {
-    
+
     private static final String VERSAO_SERVICO = "3.10";
     private static final String NOME_SERVICO = "INUTILIZAR";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeInutilizacao2";
+    private static final String SOAP_ACTION = WSInutilizacao.NAMESPACE_WSDL + "/nfeInutilizacaoNF2";
     private final NFeConfig config;
-    
-    WSInutilizacao(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSInutilizacao(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
-        final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml, modelo);
-        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaInutilizacao(eventoAssinadoXml, modelo);
+        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, xmlResultado);
     }
-    
+
     NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo).toString();
         final String inutilizacaoXMLAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
-        final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
-        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
+        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, xmlResultado);
     }
-    
-    private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws Exception {
-        final NfeInutilizacao2Stub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSInutilizacao.VERSAO_SERVICO);
-        
-        final NfeInutilizacao2Stub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-        
-        final NfeInutilizacao2Stub.NfeDadosMsg dados = new NfeDadosMsg();
-        final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
-        this.getLogger().debug(omElement.toString());
-        dados.setExtraElement(omElement);
-        
+
+    private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
-        final NfeInutilizacaoNF2Result nf2Result = new NfeInutilizacao2Stub(urlWebService, config).nfeInutilizacaoNF2(dados, cabecalhoE);
-        final OMElement dadosRetorno = nf2Result.getExtraElement();
-        this.getLogger().debug(dadosRetorno.toString());
-        return dadosRetorno;
+
+        final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + WSInutilizacao.VERSAO_SERVICO + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSInutilizacao.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", inutilizacaoXMLAssinado);
+        final String resposta = this.httpClient.postSoap(urlWebService, WSInutilizacao.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();
@@ -79,7 +69,7 @@ class WSInutilizacao implements DFLog {
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
         dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + anoInutilizacaoNumeracao + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
-        
+
         inutilizacao.setVersao(new BigDecimal(WSInutilizacao.VERSAO_SERVICO));
         inutilizacao.setDados(dados);
         return inutilizacao;

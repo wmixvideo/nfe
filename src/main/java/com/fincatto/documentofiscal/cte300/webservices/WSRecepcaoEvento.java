@@ -9,11 +9,10 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeInfoEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeTipoEvento;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
-import com.fincatto.documentofiscal.cte300.webservices.recepcaoevento.RecepcaoEventoStub;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -21,41 +20,34 @@ import java.util.List;
 
 abstract class WSRecepcaoEvento implements DFLog {
 
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CteRecepcaoEvento";
+    private static final String SOAP_ACTION = WSRecepcaoEvento.NAMESPACE_WSDL + "/cteRecepcaoEvento";
+
     protected final CTeConfig config;
+    private final DFHttpClient httpClient;
     private final List<DFModelo> modelosPermitidos;
 
-    WSRecepcaoEvento(CTeConfig config, List<DFModelo> modelosPermitidos) {
+    WSRecepcaoEvento(CTeConfig config, DFHttpClient httpClient, List<DFModelo> modelosPermitidos) {
         this.config = config;
+        this.httpClient = httpClient;
         this.modelosPermitidos = modelosPermitidos;
     }
 
-    protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
+    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
         return efetuaEvento(xmlAssinado, chaveAcesso, versao, false);
     }
 
-    protected OMElement efetuaEventoSVC(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
+    protected String efetuaEventoSVC(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
         return efetuaEvento(xmlAssinado, chaveAcesso, versao, true);
     }
 
-    protected OMElement efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
+    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         if (!modelosPermitidos.contains(ctChaveParser.getModelo())) {
             throw new IllegalArgumentException("CT-e do modelo \"" + ctChaveParser.getModelo().toString() + "\" não é permitido nesse evento.");
         }
 
         DFXMLValidador.validaEventoCTe300(xmlAssinado);
-
-        final RecepcaoEventoStub.CteCabecMsg cabec = new RecepcaoEventoStub.CteCabecMsg();
-        cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        cabec.setVersaoDados(DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao do Evento"));
-
-        final RecepcaoEventoStub.CteCabecMsgE cabecE = new RecepcaoEventoStub.CteCabecMsgE();
-        cabecE.setCteCabecMsg(cabec);
-
-        final RecepcaoEventoStub.CteDadosMsg dados = new RecepcaoEventoStub.CteDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
 
         final CTAutorizador31 autorizador;
         if (contingencia) {
@@ -68,10 +60,11 @@ abstract class WSRecepcaoEvento implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + ctChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        RecepcaoEventoStub.CteRecepcaoEventoResult cteRecepcaoEventoResult = new RecepcaoEventoStub(urlWebService, config).cteRecepcaoEvento(dados, cabecE);
-        final OMElement omElementResult = cteRecepcaoEventoResult.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-        return omElementResult;
+        final String versaoDados = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versao, "Versao do Evento");
+        final String cabecalho = "<cUF>" + ctChaveParser.getNFUnidadeFederativa().getCodigoIbge() + "</cUF><versaoDados>" + versaoDados + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSRecepcaoEvento.NAMESPACE_WSDL, "cteCabecMsg", cabecalho, "cteDadosMsg", xmlAssinado);
+        final String resposta = this.httpClient.postSoap(urlWebService, WSRecepcaoEvento.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
 
     protected CTeEvento gerarEvento(String chaveAcesso, BigDecimal versao, CTeTipoEvento evento, String codigoEvento, String cpfOuCnpj, int sequencialEvento) {
@@ -108,6 +101,4 @@ abstract class WSRecepcaoEvento implements DFLog {
 
         return cteEvento;
     }
-
-
 }

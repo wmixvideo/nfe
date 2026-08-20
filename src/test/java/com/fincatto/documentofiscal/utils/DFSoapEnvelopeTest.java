@@ -136,4 +136,44 @@ public class DFSoapEnvelopeTest {
 
         Assert.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
     }
+
+    @Test
+    public void deveEnveloparXmlDeNegocioComCabecalhoQuandoOverloadDeCincoArgumentosForUsado() {
+        final String namespace = "http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico";
+        final String headerXml = "<cUF>35</cUF><versaoDados>3.00</versaoDados>";
+        final String xmlNegocio = "<consStatServ xmlns=\"http://www.portalfiscal.inf.br/cte\" versao=\"3.00\"><tpAmb>2</tpAmb></consStatServ>";
+
+        final String envelope = DFSoapEnvelope.envelopar(namespace, "cteCabecMsg", headerXml, "cteDadosMsg", xmlNegocio);
+
+        Assert.assertTrue(envelope.startsWith("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"));
+        Assert.assertTrue(envelope.contains("<soap:Header>"));
+        Assert.assertTrue(envelope.contains("<cteCabecMsg xmlns=\"" + namespace + "\">" + headerXml + "</cteCabecMsg>"));
+        Assert.assertTrue(envelope.contains("</soap:Header>"));
+        Assert.assertTrue(envelope.contains("<soap:Body>"));
+        Assert.assertTrue(envelope.contains("<cteDadosMsg xmlns=\"" + namespace + "\">" + xmlNegocio + "</cteDadosMsg>"));
+        Assert.assertTrue(envelope.endsWith("</soap:Body></soap:Envelope>"));
+        // o cabecalho deve vir antes do corpo, na ordem exigida pelo XML Schema (sequence)
+        Assert.assertTrue(envelope.indexOf("<soap:Header>") < envelope.indexOf("<soap:Body>"));
+    }
+
+    @Test
+    public void enveloparComCabecalhoEDesempacotarDevemSerRoundTripParaOMesmoXmlDeNegocio() throws DFSoapFaultException {
+        final String namespace = "http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico";
+        final String xmlNegocio = "<retConsStatServ xmlns=\"http://www.portalfiscal.inf.br/cte\" versao=\"3.00\"><cStat>107</cStat></retConsStatServ>";
+
+        // a resposta da SEFAZ nao tem cabecalho, so o corpo - o envelope de pedido com
+        // cabecalho e a resposta sem cabecalho sao simulados separadamente aqui
+        final String envelopeDoPedido = DFSoapEnvelope.envelopar(namespace, "cteCabecMsg", "<cUF>35</cUF><versaoDados>3.00</versaoDados>", "cteDadosMsg", "<consStatServ/>");
+        Assert.assertTrue(envelopeDoPedido.contains("<soap:Header>"));
+
+        final String respostaSefaz = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<cteResultMsg xmlns=\"" + namespace + "\">"
+                + xmlNegocio
+                + "</cteResultMsg>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+        final String xmlDesempacotado = DFSoapEnvelope.desempacotar(respostaSefaz);
+        Assert.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
+    }
 }

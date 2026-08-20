@@ -212,7 +212,13 @@ public class WSEpec implements DFLog, Closeable {
         return AbstractWSEvento.enviarEvento(this.getHttpClient(), endpoint, loteAssinadoXml);
     }
 
-    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
+    /**
+     * Reconstroi o {@link NfeResultMsg} do Axis2 a partir do XML de negocio ja desempacotado,
+     * sem nenhuma chamada de rede via Axis2 - mantido apenas para nao quebrar a assinatura
+     * publica de {@link #comunicaLoteRaw}. Pacote-privado (em vez de {@code private}) para
+     * poder ser testado diretamente - mesmo padrao usado em {@code WSLoteEnvio.criarNfeResultMsg}.
+     */
+    static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
         final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));

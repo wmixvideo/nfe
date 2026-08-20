@@ -18,19 +18,27 @@ import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte400.classes.os.CTeOS;
 import com.fincatto.documentofiscal.cte400.classes.simp.CTeNotaSimp;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 import java.util.List;
 
-public class WSFacade {
+/**
+ * Ponto de entrada publico para todos os webservices de CT-e 4.00 (status, consulta, recepcao
+ * de CT-e/OS/simplificado, eventos - cancelamento, carta de correcao, EPEC, GTV, comprovante de
+ * entrega, insucesso de entrega, prestacao em desacordo, registro multimodal - e distribuicao de
+ * DF-e). Todos os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()}
+ * para o descarte dos pools de conexao mantidos por esta instancia.
+ */
+public class WSFacade implements Closeable {
 
+    private final DFHttpClient httpClient;
     private final WSStatusConsulta wsStatusConsulta;
     private final WSRecepcaoCTe wsRecepcaoCTe;
     private final WSDistribuicaoCTe wsDistribuicaoCTe;
@@ -49,25 +57,61 @@ public class WSFacade {
     private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
     private final WSRecepcaoCTeSimp wsRecepcaoCTeSimp;
 
-    public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
-        this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wsRecepcaoCTe = new WSRecepcaoCTe(config);
+    public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: o
+        // Protocol.registerProtocol que existia aqui antes mutava um registro estatico global
+        // (org.apache.commons.httpclient.protocol.Protocol), compartilhado por todos os facades
+        // da lib - cada instancia criada sobrescrevia o certificado usado por instancias
+        // concorrentes de outros modulos (nfe310, mdfe3, etc). Removido: cada servico deste
+        // facade agora usa o DFHttpClient injetado (httpclient5), que carrega seu proprio
+        // SSLContext, sem registro global.
+        final DFSocketFactory socketFactory = new DFSocketFactory(config);
+        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
+
+        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
+        this.wsRecepcaoCTe = new WSRecepcaoCTe(config, this.httpClient);
         this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config);
-        this.wsConsulta = new WSConsulta(config);
-        this.wsCancelamento = new WSCancelamento(config);
-        this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config);
-        this.wsRegistroMultimodal = new WSRegistroMultimodal(config);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config);
-        this.wsComprovanteEntrega = new WSComprovanteEntrega(config);
-        this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config);
-        this.wsEpec = new WSEpec(config);
-        this.wsGtv = new WSGtv(config);
-        this.wsCancelamentoPrestacaoEmDesacordo = new WSCancelamentoPrestacaoEmDesacordo(config);
-        this.wsInsucessoEntrega = new WSInsucessoEntrega(config);
-        this.wsCancelamentoInsucessoEntrega = new WSCancelamentoInsucessoEntrega(config);
-        this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config);
-        this.wsRecepcaoCTeSimp = new WSRecepcaoCTeSimp(config);
+        this.wsConsulta = new WSConsulta(config, this.httpClient);
+        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
+        this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config, this.httpClient);
+        this.wsRegistroMultimodal = new WSRegistroMultimodal(config, this.httpClient);
+        this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
+        this.wsComprovanteEntrega = new WSComprovanteEntrega(config, this.httpClient);
+        this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config, this.httpClient);
+        this.wsEpec = new WSEpec(config, this.httpClient);
+        this.wsGtv = new WSGtv(config, this.httpClient);
+        this.wsCancelamentoPrestacaoEmDesacordo = new WSCancelamentoPrestacaoEmDesacordo(config, this.httpClient);
+        this.wsInsucessoEntrega = new WSInsucessoEntrega(config, this.httpClient);
+        this.wsCancelamentoInsucessoEntrega = new WSCancelamentoInsucessoEntrega(config, this.httpClient);
+        this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config, this.httpClient);
+        this.wsRecepcaoCTeSimp = new WSRecepcaoCTeSimp(config, this.httpClient);
+    }
+
+    /**
+     * Libera o pool de conexoes HTTP compartilhado entre todos os servicos deste facade ja
+     * migrados para {@code httpclient5}, e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * proprio de {@link com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe}
+     * - que nao compartilha o pool acima (e tambem usada pelo cte300), mas tambem ja esta em
+     * {@code httpclient5}. Chamar quando esta instancia de {@link WSFacade} nao for mais
+     * utilizada.
+     *
+     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
+     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
+     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
+     *
+     * @throws IOException caso ocorra falha ao liberar as conexoes.
+     */
+    @Override
+    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
+    public void close() throws IOException {
+        // WSDistribuicaoCTe nao compartilha o pool do httpClient acima - cria o proprio
+        // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoCTe.close()). Fecha-lo aqui
+        // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
+        // wsDistribuicaoCTe.close() diretamente.
+        try (WSDistribuicaoCTe wsDistribuicaoCTe = this.wsDistribuicaoCTe; DFHttpClient httpClient = this.httpClient) {
+            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
+            // declaracao (httpClient primeiro, depois wsDistribuicaoCTe), mesmo que um deles lance excecao
+        }
     }
 
     /**

@@ -6,8 +6,9 @@ import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeSimpEnvioRetorno;
 import com.fincatto.documentofiscal.cte400.classes.envio.CTeSimpEnvioRetornoDados;
 import com.fincatto.documentofiscal.cte400.classes.simp.CTeNotaSimp;
-import com.fincatto.documentofiscal.cte400.webservices.gerado.CTeRecepcaoSimpV4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
 import java.io.ByteArrayOutputStream;
@@ -16,10 +17,16 @@ import java.util.Base64;
 import java.util.zip.GZIPOutputStream;
 
 class WSRecepcaoCTeSimp implements DFLog {
-    private final CTeConfig config;
 
-    WSRecepcaoCTeSimp(final CTeConfig config) {
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CTeRecepcaoSimpV4";
+    private static final String SOAP_ACTION = WSRecepcaoCTeSimp.NAMESPACE_WSDL + "/cteRecepcaoSimp";
+
+    private final CTeConfig config;
+    private final DFHttpClient httpClient;
+
+    WSRecepcaoCTeSimp(final CTeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     public CTeSimpEnvioRetornoDados enviaCTe(CTeNotaSimp cteSimp) throws Exception {
@@ -41,18 +48,17 @@ class WSRecepcaoCTeSimp implements DFLog {
             conteudoCompactado = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
         }
 
-        final CTeRecepcaoSimpV4Stub.CteDadosMsg dados = new CTeRecepcaoSimpV4Stub.CteDadosMsg();
-        dados.setCteDadosMsg(conteudoCompactado);
-
         final CTAutorizador400 autorizador = CTAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
         final String endpoint = autorizador.getCteRecepcaoSimp(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Recepcao Simp, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        final CTeRecepcaoSimpV4Stub.CteRecepcaoSimpResult autorizacaoLoteResult = new CTeRecepcaoSimpV4Stub(endpoint, config).cteRecepcaoSimp(dados);
-        final CTeSimpEnvioRetorno retorno = this.config.getPersister().read(CTeSimpEnvioRetorno.class, autorizacaoLoteResult.getExtraElement().toString());
+
+        final String envelope = DFSoapEnvelope.envelopar(WSRecepcaoCTeSimp.NAMESPACE_WSDL, "cteDadosMsg", conteudoCompactado);
+        final String resposta = this.httpClient.postSoap(endpoint, WSRecepcaoCTeSimp.SOAP_ACTION, envelope);
+        final String xmlResultado = DFSoapEnvelope.desempacotar(resposta);
+        final CTeSimpEnvioRetorno retorno = this.config.getPersister().read(CTeSimpEnvioRetorno.class, xmlResultado);
         this.getLogger().debug(retorno.toString());
         return retorno;
     }
-
 }

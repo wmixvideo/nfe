@@ -161,9 +161,11 @@ class WSLoteEnvio implements DFLog {
     /**
      * Reconstroi o {@link NfeResultMsg} do Axis2 a partir do XML de negocio ja desempacotado,
      * sem nenhuma chamada de rede via Axis2 - mantido apenas para nao quebrar a assinatura
-     * publica de {@link WSFacade#getNfeResultMsg}.
+     * publica de {@link WSFacade#getNfeResultMsg}. Pacote-privado (em vez de {@code private})
+     * para poder ser testado diretamente: e o unico ponto do projeto que ainda exercita
+     * {@link StAXOMBuilder}/axiom-impl em tempo de execucao.
      */
-    private static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
+    static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
         final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));
