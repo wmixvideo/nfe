@@ -32,15 +32,15 @@ abstract class WSRecepcaoEvento implements DFLog {
         this.modelosPermitidos = modelosPermitidos;
     }
 
-    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
-        return efetuaEvento(xmlAssinado, chaveAcesso, versao, false);
+    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso) throws Exception {
+        return efetuaEvento(xmlAssinado, chaveAcesso, false);
     }
 
-    protected String efetuaEventoSVC(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao) throws Exception {
-        return efetuaEvento(xmlAssinado, chaveAcesso, versao, true);
+    protected String efetuaEventoSVC(final String xmlAssinado, final String chaveAcesso) throws Exception {
+        return efetuaEvento(xmlAssinado, chaveAcesso, true);
     }
 
-    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final BigDecimal versao, final boolean contingencia) throws Exception {
+    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final boolean contingencia) throws Exception {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         if (!modelosPermitidos.contains(ctChaveParser.getModelo())) {
             throw new IllegalArgumentException("CT-e do modelo \"" + ctChaveParser.getModelo().toString() + "\" não é permitido nesse evento.");

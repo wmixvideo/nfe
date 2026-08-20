@@ -108,7 +108,7 @@ public class WSFacade implements Closeable {
         // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoCTe.close()). Fecha-lo aqui
         // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
         // wsDistribuicaoCTe.close() diretamente.
-        try (WSDistribuicaoCTe wsDistribuicaoCTe = this.wsDistribuicaoCTe; DFHttpClient httpClient = this.httpClient) {
+        try (WSDistribuicaoCTe wsDistribuicaoCTeFechavel = this.wsDistribuicaoCTe; DFHttpClient httpClientFechavel = this.httpClient) {
             // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
             // declaracao (httpClient primeiro, depois wsDistribuicaoCTe), mesmo que um deles lance excecao
         }

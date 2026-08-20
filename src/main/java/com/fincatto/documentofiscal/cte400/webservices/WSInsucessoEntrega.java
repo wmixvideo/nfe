@@ -40,7 +40,7 @@ class WSInsucessoEntrega extends WSRecepcaoEvento {
     }
 
     private String efetuaComprovanteEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEvento(xmlAssinado, chaveAcesso, VERSAO_LEIAUTE);
+        return super.efetuaEvento(xmlAssinado, chaveAcesso);
     }
 
     private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {

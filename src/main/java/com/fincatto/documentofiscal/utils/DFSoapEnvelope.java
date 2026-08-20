@@ -28,6 +28,7 @@ import java.io.StringWriter;
 public final class DFSoapEnvelope {
 
     private static final String SOAP12_NS = "http://www.w3.org/2003/05/soap-envelope";
+    private static final String ATRIBUTO_XMLNS = " xmlns=\"";
 
     private DFSoapEnvelope() {
     }
@@ -43,7 +44,7 @@ public final class DFSoapEnvelope {
     public static String envelopar(final String wrapperNamespace, final String wrapperElemento, final String xmlNegocio) {
         return "<soap:Envelope xmlns:soap=\"" + SOAP12_NS + "\">"
                 + "<soap:Body>"
-                + "<" + wrapperElemento + " xmlns=\"" + wrapperNamespace + "\">" + xmlNegocio + "</" + wrapperElemento + ">"
+                + "<" + wrapperElemento + ATRIBUTO_XMLNS + wrapperNamespace + "\">" + xmlNegocio + "</" + wrapperElemento + ">"
                 + "</soap:Body>"
                 + "</soap:Envelope>";
     }
@@ -66,10 +67,10 @@ public final class DFSoapEnvelope {
     public static String envelopar(final String namespace, final String headerElemento, final String headerXml, final String bodyElemento, final String xmlNegocio) {
         return "<soap:Envelope xmlns:soap=\"" + SOAP12_NS + "\">"
                 + "<soap:Header>"
-                + "<" + headerElemento + " xmlns=\"" + namespace + "\">" + headerXml + "</" + headerElemento + ">"
+                + "<" + headerElemento + ATRIBUTO_XMLNS + namespace + "\">" + headerXml + "</" + headerElemento + ">"
                 + "</soap:Header>"
                 + "<soap:Body>"
-                + "<" + bodyElemento + " xmlns=\"" + namespace + "\">" + xmlNegocio + "</" + bodyElemento + ">"
+                + "<" + bodyElemento + ATRIBUTO_XMLNS + namespace + "\">" + xmlNegocio + "</" + bodyElemento + ">"
                 + "</soap:Body>"
                 + "</soap:Envelope>";
     }
@@ -163,7 +164,7 @@ public final class DFSoapEnvelope {
         return textos.getLength() > 0 ? textos.item(0).getTextContent() : fault.getTextContent();
     }
 
-    private static String serializar(final Element elemento) throws Exception {
+    private static String serializar(final Element elemento) throws javax.xml.transform.TransformerException {
         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
         // Hardening extra contra XXE (defesa em profundidade - o elemento aqui ja vem de um DOM
         // parseado com o DocumentBuilderFactory endurecido em criarDocumentBuilderFactory(), entao

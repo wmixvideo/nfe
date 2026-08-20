@@ -24,7 +24,7 @@ class WSEpec extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno enviaEpecAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final String xmlResultado = super.efetuaEventoSVC(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
+        final String xmlResultado = super.efetuaEventoSVC(eventoAssinadoXml, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 

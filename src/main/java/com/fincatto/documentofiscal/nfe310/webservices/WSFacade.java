@@ -93,7 +93,7 @@ public class WSFacade implements Closeable {
     @Override
     @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        try (WSDistribuicaoNFe wSDistribuicaoNFe = this.wSDistribuicaoNFe; DFHttpClient httpClient = this.httpClient) {
+        try (WSDistribuicaoNFe wSDistribuicaoNFeFechavel = this.wSDistribuicaoNFe; DFHttpClient httpClientFechavel = this.httpClient) {
             // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
             // declaracao (httpClient primeiro, depois wSDistribuicaoNFe), mesmo que um deles lance excecao
         }

@@ -5,8 +5,10 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.parsers.MDFChaveParser;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
@@ -26,7 +28,7 @@ final class WSTransporteEvento {
     private WSTransporteEvento() {
     }
 
-    static String enviarEvento(final DFHttpClient httpClient, final MDFeConfig config, final String xmlAssinado, final String chaveAcesso, final BigDecimal versaoLeiaute) throws Exception {
+    static String enviarEvento(final DFHttpClient httpClient, final MDFeConfig config, final String xmlAssinado, final String chaveAcesso, final BigDecimal versaoLeiaute) throws IOException, DFSoapFaultException {
         final MDFChaveParser mdfChaveParser = new MDFChaveParser(chaveAcesso);
         final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(mdfChaveParser.getNFUnidadeFederativa());
         final String urlWebService = autorizador.getMDFeRecepcaoEvento(config.getAmbiente());
@@ -44,7 +46,7 @@ final class WSTransporteEvento {
      * HTTP local, sem depender de URLs reais da SEFAZ. Mesmo padrao ja usado em
      * {@code AbstractWSEvento.enviarEvento} (nfe400).
      */
-    static String enviarEvento(final DFHttpClient httpClient, final String urlWebService, final String xmlAssinado, final String codigoIbgeUf, final BigDecimal versaoLeiaute) throws Exception {
+    static String enviarEvento(final DFHttpClient httpClient, final String urlWebService, final String xmlAssinado, final String codigoIbgeUf, final BigDecimal versaoLeiaute) throws IOException, DFSoapFaultException {
         final String versaoDados = DFBigDecimalValidador.tamanho5Com2CasasDecimais(versaoLeiaute, "Versao do Evento");
         final String cabecalho = "<cUF>" + codigoIbgeUf + "</cUF><versaoDados>" + versaoDados + "</versaoDados>";
         final String envelope = DFSoapEnvelope.envelopar(WSTransporteEvento.NAMESPACE_WSDL, "mdfeCabecMsg", cabecalho, "mdfeDadosMsg", xmlAssinado);

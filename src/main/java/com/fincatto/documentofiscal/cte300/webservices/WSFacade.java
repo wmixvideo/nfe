@@ -101,7 +101,7 @@ public class WSFacade implements Closeable {
     @Override
     @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        try (WSDistribuicaoCTe wSDistribuicaoCTe = this.wSDistribuicaoCTe; DFHttpClient httpClient = this.httpClient) {
+        try (WSDistribuicaoCTe wSDistribuicaoCTeFechavel = this.wSDistribuicaoCTe; DFHttpClient httpClientFechavel = this.httpClient) {
             // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
             // declaracao (httpClient primeiro, depois wSDistribuicaoCTe), mesmo que um deles lance excecao
         }
@@ -197,7 +197,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
-        return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
+        // modelo mantido na assinatura publica por compatibilidade com o padrao dos demais modulos (nfe310/nfe400/mdfe3);
+        // CT-e nao distingue URL de inutilizacao por modelo, entao nao ha o que repassar internamente.
+        return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
     }
 
     /**

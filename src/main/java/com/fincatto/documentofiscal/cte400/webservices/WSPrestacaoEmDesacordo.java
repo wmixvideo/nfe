@@ -24,7 +24,7 @@ class WSPrestacaoEmDesacordo extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno prestacaoEmDesacordoAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 

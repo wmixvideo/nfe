@@ -89,7 +89,8 @@ public class WSDistribuicaoCTe implements Closeable {
      * {@link #consultar(String, DFUnidadeFederativa, String, String)} quando possivel.
      */
     @Deprecated
-    public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
+    public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config)
+            throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         final String endpoint = CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDFe, autorizador " + CTAutorizador.AN.name());

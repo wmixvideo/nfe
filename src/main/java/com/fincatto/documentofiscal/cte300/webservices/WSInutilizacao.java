@@ -34,7 +34,7 @@ class WSInutilizacao {
         this.httpClient = httpClient;
     }
 
-    CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
+    CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
         final String xmlResultado = this.efetuaInutilizacao(eventoAssinadoXml);
         return new DFPersister().read(CTeRetornoEventoInutilizacao.class, xmlResultado);
     }
