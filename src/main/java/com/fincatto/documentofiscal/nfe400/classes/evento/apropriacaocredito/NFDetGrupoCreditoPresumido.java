@@ -51,15 +51,6 @@ public class NFDetGrupoCreditoPresumido extends DFBase {
         this.valorBaseCalculo = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorBaseCalculo, "Valor da Base de Cálculo do Crédito Presumido");
     }
 
-    public String getCodigoClassicacaoCreditoPresumido() {
-        return codigoClassicacaoCreditoPresumido;
-    }
-
-    public void setCodigoClassicacaoCreditoPresumido(String codigoClassicacaoCreditoPresumido) {
-        DFStringValidador.tamanho2N(codigoClassicacaoCreditoPresumido, "Código de Classificação do Crédito Presumido");
-        this.codigoClassicacaoCreditoPresumido = codigoClassicacaoCreditoPresumido;
-    }
-
     public NFDetGrupoImpostoCreditoPresumido getGrupoIbsCreditoPresumido() {
         return grupoIbsCreditoPresumido;
     }
@@ -74,5 +65,14 @@ public class NFDetGrupoCreditoPresumido extends DFBase {
 
     public void setGrupoCbsCreditoPresumido(NFDetGrupoImpostoCreditoPresumido grupoCbsCreditoPresumido) {
         this.grupoCbsCreditoPresumido = grupoCbsCreditoPresumido;
+    }
+
+    public String getCodigoClassicacaoCreditoPresumido() {
+        return codigoClassicacaoCreditoPresumido;
+    }
+
+    public void setCodigoClassicacaoCreditoPresumido(String codigoClassicacaoCreditoPresumido) {
+        DFStringValidador.tamanho2N(codigoClassicacaoCreditoPresumido, "Código de Classificação do Crédito Presumido");
+        this.codigoClassicacaoCreditoPresumido = codigoClassicacaoCreditoPresumido;
     }
 }
