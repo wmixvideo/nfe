@@ -12,26 +12,25 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoqueImobilizacao extends DFBase {
 
     @Element(name = "qImobilizado")
-    private BigDecimal quantidade;
+    private String quantidadeImobilizada;
 
     @Element(name = "uImobilizado")
-    private String unidade;
+    private String unidadeImobilizada;
 
-    public BigDecimal getQuantidade() {
-        return quantidade;
+    public String getQuantidadeImobilizada() {
+        return quantidadeImobilizada;
     }
 
-    public void setQuantidade(BigDecimal quantidade) {
-        DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidade, "Quantidade");
-        this.quantidade = quantidade;
+    public void setQuantidadeImobilizada(BigDecimal quantidadeImobilizada) {
+        this.quantidadeImobilizada = DFBigDecimalValidador.tamanho11Com4CasasDecimais(quantidadeImobilizada, "Quantidade");
     }
 
-    public String getUnidade() {
-        return unidade;
+    public String getUnidadeImobilizada() {
+        return unidadeImobilizada;
     }
 
-    public void setUnidade(String unidade) {
-        DFStringValidador.tamanho6(unidade, "Unidade de medida");
-        this.unidade = unidade;
+    public void setUnidadeImobilizada(String unidadeImobilizada) {
+        DFStringValidador.tamanho6(unidadeImobilizada, "Unidade de medida");
+        this.unidadeImobilizada = unidadeImobilizada;
     }
 }

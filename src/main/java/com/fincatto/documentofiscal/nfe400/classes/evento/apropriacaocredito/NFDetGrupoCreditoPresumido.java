@@ -10,26 +10,29 @@ import org.simpleframework.xml.Root;
 
 import java.math.BigDecimal;
 
-@Root(name = "gCredPres")
+/**
+ * P23 - gCredPresOper - Informações de crédito presumido por item.
+ */
+@Root(name = "gCredPresOper")
 public class NFDetGrupoCreditoPresumido extends DFBase {
 
     @Attribute(name = "nItem")
     private Integer numeroItem;
 
     @Element(name = "vBCCredPres")
-    private BigDecimal valorBaseCalculo;
+    private String valorBaseCalculo;
+
+    /**
+     * P25a - Código de Classificação do Crédito Presumido, conforme tabela cCredPres (Anexo IV).
+     */
+    @Element(name = "cCredPres")
+    private String codigoClassicacaoCreditoPresumido;
 
     @Element(name = "gIBSCredPres", required = false)
     private NFDetGrupoImpostoCreditoPresumido grupoIbsCreditoPresumido;
 
     @Element(name = "gCBSCredPres", required = false)
     private NFDetGrupoImpostoCreditoPresumido grupoCbsCreditoPresumido;
-
-    /**
-     * Código de Classificação do Crédito Presumido
-     */
-    @Element(name = "cCredPres")
-    private String codigoClassicacaoCreditoPresumido;
 
     public Integer getNumeroItem() {
         return numeroItem;
@@ -40,13 +43,12 @@ public class NFDetGrupoCreditoPresumido extends DFBase {
         this.numeroItem = numeroItem;
     }
 
-    public BigDecimal getValorBaseCalculo() {
+    public String getValorBaseCalculo() {
         return valorBaseCalculo;
     }
 
     public void setValorBaseCalculo(BigDecimal valorBaseCalculo) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorBaseCalculo, "Valor da Base de Cálculo do Crédito Presumido");
-        this.valorBaseCalculo = valorBaseCalculo;
+        this.valorBaseCalculo = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorBaseCalculo, "Valor da Base de Cálculo do Crédito Presumido");
     }
 
     public NFDetGrupoImpostoCreditoPresumido getGrupoIbsCreditoPresumido() {
