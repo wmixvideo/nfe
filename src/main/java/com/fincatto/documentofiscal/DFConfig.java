@@ -115,7 +115,43 @@ public abstract class DFConfig {
     public int getSoTimeoutEmMillis() {
         return DFSocketFactory.SO_TIMEOUT_PADRAO_EM_MILLIS;
     }
-    
+
+    /**
+     * Numero maximo de conexoes simultaneas mantidas no pool de {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * para uma mesma rota (o mesmo host/porta de um autorizador da SEFAZ). O default do
+     * httpclient5 quando nao configurado explicitamente e 5 - baixo demais para emissao de
+     * documentos fiscais em lote com varias requisicoes concorrentes contra o mesmo autorizador.
+     *
+     * @return numero maximo de conexoes por rota.
+     */
+    public int getMaxConexoesPorRota() {
+        return 20;
+    }
+
+    /**
+     * Numero maximo de conexoes simultaneas mantidas no pool de {@link com.fincatto.documentofiscal.utils.DFHttpClient},
+     * somando todas as rotas (autorizadores) usadas por esta instancia. O default do
+     * httpclient5 quando nao configurado explicitamente e 25.
+     *
+     * @return numero maximo de conexoes no pool.
+     */
+    public int getMaxConexoesTotal() {
+        return 40;
+    }
+
+    /**
+     * Tempo maximo de espera por uma conexao livre do pool de {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * antes de falhar com timeout, quando todas as conexoes disponiveis (ate
+     * {@link #getMaxConexoesPorRota()}) estao em uso. O default do httpclient5 quando nao
+     * configurado explicitamente e 3 minutos - alto demais para nao reter threads da aplicacao
+     * sob pico de carga.
+     *
+     * @return timeout de espera por uma conexao do pool, em milissegundos.
+     */
+    public int getTimeoutFilaConexaoEmMillis() {
+        return 10_000;
+    }
+
     /**
      * Retorna o timezone a ser usado no sistema.
      * Por padrao, vai usar o timezone default da maquina.
