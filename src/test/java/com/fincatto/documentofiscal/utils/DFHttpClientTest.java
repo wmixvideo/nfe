@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.net.ssl.SSLContext;
@@ -112,6 +113,49 @@ public class DFHttpClientTest {
         // porta 1 normalmente esta livre/sem listener - falha de conexao, nao de resposta HTTP
         this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
         this.httpClient.postSoap("http://localhost:1/", "acao", "<envelope/>");
+    }
+
+    @Test
+    public void deveLancarDFSoapFaultExceptionQuandoCorpoDeErroForUmSoapFaultReconhecivel() throws Exception {
+        // a SEFAZ por vezes devolve soap:Fault sob HTTP 500, assim como o Axis2/HTTPSender legado tratava
+        final String envelopeComFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<soap:Fault>"
+                + "<soap:Code><soap:Value>soap:Receiver</soap:Value></soap:Code>"
+                + "<soap:Reason><soap:Text xml:lang=\"pt\">Servico Paralisado Temporariamente</soap:Text></soap:Reason>"
+                + "</soap:Fault>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+        final String endpoint = this.iniciarServidor(exchange -> responder(exchange, 500, envelopeComFault));
+        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+
+        try {
+            this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
+            Assert.fail("deveria ter lancado DFSoapFaultException para soap:Fault sob HTTP 500");
+        } catch (final DFSoapFaultException e) {
+            Assert.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
+        }
+    }
+
+    @Test
+    public void naoDeveReenviarAutomaticamenteUmPostQuandoServidorResponderIndisponibilidadeMomentanea() throws Exception {
+        final AtomicInteger requisicoesRecebidas = new AtomicInteger();
+        final String endpoint = this.iniciarServidor(exchange -> {
+            requisicoesRecebidas.incrementAndGet();
+            responder(exchange, 503, "servico temporariamente indisponivel");
+        });
+        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+
+        try {
+            this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
+            Assert.fail("deveria ter lancado excecao para HTTP 503");
+        } catch (final ClientProtocolException e) {
+            Assert.assertTrue(e.getMessage().contains("503"));
+        }
+
+        // um POST de operacao fiscal nao pode ser reenviado automaticamente pelo transporte -
+        // com o retry automatico do httpclient5 ativo (default), esse contador seria 2
+        Assert.assertEquals(1, requisicoesRecebidas.get());
     }
 
     private String iniciarServidor(final HttpHandler handler) throws IOException {

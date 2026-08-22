@@ -157,6 +157,41 @@ public class DFSoapEnvelopeTest {
     }
 
     @Test
+    public void deveReconhecerFaultEmCorpoDevolvidoComStatusHttpDeErro() {
+        // mesma forma de soap:Fault que a SEFAZ devolve sob HTTP 200 (deveLancarDFSoapFaultExceptionComOMotivoQuandoRespostaForFault),
+        // mas aqui simulando o cenario de HTTP 500 com Fault no corpo (como o Axis2/HTTPSender legado tratava)
+        final String respostaComFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<soap:Fault>"
+                + "<soap:Code><soap:Value>soap:Receiver</soap:Value></soap:Code>"
+                + "<soap:Reason><soap:Text xml:lang=\"pt\">Servico Paralisado Temporariamente</soap:Text></soap:Reason>"
+                + "</soap:Fault>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+
+        final DFSoapFaultException fault = DFSoapEnvelope.tentarReconhecerFault(respostaComFault);
+
+        Assert.assertNotNull(fault);
+        Assert.assertEquals("Servico Paralisado Temporariamente", fault.getMessage());
+    }
+
+    @Test
+    public void naoDeveReconhecerFaultQuandoCorpoNaoForUmEnvelopeSoapValido() {
+        Assert.assertNull(DFSoapEnvelope.tentarReconhecerFault("servico temporariamente indisponivel"));
+    }
+
+    @Test
+    public void naoDeveReconhecerFaultQuandoBodyNaoComecarComFault() {
+        final String respostaSemFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+                + "<soap:Body>"
+                + "<nfeResultMsg xmlns=\"" + NAMESPACE_WSDL + "\"><retConsStatServ/></nfeResultMsg>"
+                + "</soap:Body>"
+                + "</soap:Envelope>";
+
+        Assert.assertNull(DFSoapEnvelope.tentarReconhecerFault(respostaSemFault));
+    }
+
+    @Test
     public void enveloparComCabecalhoEDesempacotarDevemSerRoundTripParaOMesmoXmlDeNegocio() throws DFSoapFaultException {
         final String namespace = "http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico";
         final String xmlNegocio = "<retConsStatServ xmlns=\"http://www.portalfiscal.inf.br/cte\" versao=\"3.00\"><cStat>107</cStat></retConsStatServ>";
