@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.utils;
 
-import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
-import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
-import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
-import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.net.ssl.*;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.security.KeyStore;
@@ -17,6 +7,35 @@ import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
+import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
+import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
+
+/**
+ * Ferramenta administrativa offline para gerar o {@link KeyStore} da cadeia de certificados da
+ * SEFAZ (o {@code producao.cacerts}/{@code homologacao.cacerts} usado por
+ * {@link com.fincatto.documentofiscal.DFConfig#getCadeiaCertificadosKeyStore()}). Nao participa
+ * do fluxo de emissao de documentos fiscais em runtime.
+ * <p>
+ * <b>Atencao:</b> {@link #get} usa um padrao <i>trust-on-first-use</i> - aceita e grava no
+ * keystore de saida qualquer certificado devolvido pelo host consultado, sem validar a cadeia
+ * contra uma autoridade certificadora confiavel previamente conhecida. Isso e aceitavel apenas
+ * porque a execucao e manual, feita uma vez por um operador contra os hosts fixos e conhecidos
+ * da SEFAZ, e o resultado deve ser conferido antes de distribuido - o fingerprint SHA-1/MD5 de
+ * cada certificado capturado e logado em debug justamente para essa conferencia manual. Nunca
+ * reutilize esse padrao em codigo que valide certificados de servidor em tempo de execucao.
+ */
 public abstract class DFCadeiaCertificados implements DFLog {
     
     private static final int PORT = 443;

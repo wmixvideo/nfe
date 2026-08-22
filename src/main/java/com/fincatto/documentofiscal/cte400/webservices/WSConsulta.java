@@ -5,45 +5,51 @@ import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsulta;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
-import com.fincatto.documentofiscal.cte400.webservices.gerado.CTeConsultaV4Stub;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class WSConsulta implements DFLog {
 
     private static final String NOME_SERVICO = "CONSULTAR";
-    private final CTeConfig config;
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4";
+    private static final String SOAP_ACTION = WSConsulta.NAMESPACE_WSDL + "/cteConsultaCT";
 
-    WSConsulta(final CTeConfig config) {
+    private final CTeConfig config;
+    private final DFHttpClient httpClient;
+
+    WSConsulta(final CTeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        this.getLogger().debug(omElementConsulta.toString());
+        final String xmlConsulta = this.gerarDadosConsulta(chaveDeAcesso).toString();
+        this.getLogger().debug(xmlConsulta);
 
-        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
-        this.getLogger().debug(omElementRetorno.toString());
+        final String xmlResultado = this.efetuaConsulta(xmlConsulta, chaveDeAcesso);
+        this.getLogger().debug(xmlResultado);
 
-        final CTeNotaConsultaRetorno retorno = this.config.getPersister().read(CTeNotaConsultaRetorno.class, omElementRetorno.toString());
+        final CTeNotaConsultaRetorno retorno = this.config.getPersister().read(CTeNotaConsultaRetorno.class, xmlResultado);
         this.getLogger().debug(retorno.toString());
         return retorno;
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
-        final CTeConsultaV4Stub.CteDadosMsg dados = new CTeConsultaV4Stub.CteDadosMsg();
-        dados.setExtraElement(omElementConsulta);
-
+    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso)
+            throws IOException, DFSoapFaultException {
         final CTAutorizador400 autorizador = CTAutorizador400.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = autorizador.getCteConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         this.getLogger().debug(endpoint);
-        final CTeConsultaV4Stub.CteConsultaCTResult cteConsultaCTResult = new CTeConsultaV4Stub(endpoint, config).cteConsultaCT(dados);
-        return cteConsultaCTResult.getExtraElement();
+
+        final String envelope = DFSoapEnvelope.envelopar(WSConsulta.NAMESPACE_WSDL, "cteDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSConsulta.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
 
     private CTeNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {

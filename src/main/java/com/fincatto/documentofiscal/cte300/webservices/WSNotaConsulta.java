@@ -6,47 +6,43 @@ import com.fincatto.documentofiscal.cte300.classes.CTAutorizador31;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsulta;
 import com.fincatto.documentofiscal.cte300.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte300.parsers.CTChaveParser;
-import com.fincatto.documentofiscal.cte300.webservices.consulta.CteConsultaStub;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-
+import java.io.IOException;
 import java.math.BigDecimal;
 
 class WSNotaConsulta implements DFLog {
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String VERSAO_SERVICO = "3.00";
-    private final CTeConfig config;
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CteConsulta";
+    private static final String SOAP_ACTION = WSNotaConsulta.NAMESPACE_WSDL + "/cteConsultaCT";
 
-    WSNotaConsulta(final CTeConfig config) {
+    private final CTeConfig config;
+    private final DFHttpClient httpClient;
+
+    WSNotaConsulta(final CTeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        this.getLogger().debug(omElementConsulta.toString());
+        final String xmlConsulta = this.gerarDadosConsulta(chaveDeAcesso).toString();
+        this.getLogger().debug(xmlConsulta);
 
-        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
-        this.getLogger().debug(omElementRetorno.toString());
-    
-        final CTeNotaConsultaRetorno retorno = this.config.getPersister().read(CTeNotaConsultaRetorno.class, omElementRetorno.toString());
+        final String xmlResultado = this.efetuaConsulta(xmlConsulta, chaveDeAcesso);
+        this.getLogger().debug(xmlResultado);
+
+        final CTeNotaConsultaRetorno retorno = this.config.getPersister().read(CTeNotaConsultaRetorno.class, xmlResultado);
         this.getLogger().debug(retorno.toString());
         return retorno;
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
+    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveDeAcesso);
-        final CteConsultaStub.CteCabecMsg cabec = new CteConsultaStub.CteCabecMsg();
-        cabec.setCUF(ctChaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        cabec.setVersaoDados(WSNotaConsulta.VERSAO_SERVICO);
-
-        final CteConsultaStub.CteCabecMsgE cabecE = new CteConsultaStub.CteCabecMsgE();
-        cabecE.setCteCabecMsg(cabec);
-
-        final CteConsultaStub.CteDadosMsg dados = new CteConsultaStub.CteDadosMsg();
-        dados.setExtraElement(omElementConsulta);
-    
-        this.getLogger().debug(cabec.toString());
+        final String cabecalho = "<cUF>" + ctChaveParser.getNFUnidadeFederativa().getCodigoIbge() + "</cUF><versaoDados>" + WSNotaConsulta.VERSAO_SERVICO + "</versaoDados>";
+        this.getLogger().debug(cabecalho);
 
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = autorizador.getCteConsultaProtocolo(this.config.getAmbiente());
@@ -54,8 +50,10 @@ class WSNotaConsulta implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
         this.getLogger().debug(endpoint);
-        final CteConsultaStub.CteConsultaCTResult cteConsultaCTResult = new CteConsultaStub(endpoint, config).cteConsultaCT(dados, cabecE);
-        return cteConsultaCTResult.getExtraElement();
+
+        final String envelope = DFSoapEnvelope.envelopar(WSNotaConsulta.NAMESPACE_WSDL, "cteCabecMsg", cabecalho, "cteDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSNotaConsulta.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
 
     private CTeNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {

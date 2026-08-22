@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFLog;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.net.ssl.X509KeyManager;
 import java.net.Socket;
@@ -24,7 +25,10 @@ public class DFKeyManager implements X509KeyManager, DFLog {
     
     public DFKeyManager(DFConfig config) throws KeyStoreException {
         this.ks = config.getCertificadoKeyStore();
-        this.alias = getAlias(this.ks);
+        // mesma prioridade usada por DFAssinaturaDigital.getPrivateKeyEntry(): honra o alias
+        // configurado (necessario em keystores com mais de uma chave) e so cai no primeiro
+        // alias de chave do keystore quando nenhum foi informado.
+        this.alias = StringUtils.isNotBlank(config.getCertificadoAlias()) ? config.getCertificadoAlias() : getAlias(this.ks);
         this.password = config.getCertificadoSenha();
     }
     

@@ -6,8 +6,8 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.gtv.CTeEnviaEventoGtv;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,13 +19,13 @@ class WSGtv extends WSRecepcaoEvento {
     private static final String EVENTO_GTV = "110170";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTeOS);
 
-    WSGtv(final CTeConfig config) {
-        super(config, modelosPermitidos);
+    WSGtv(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
-    
+
     CTeEventoRetorno enviaGtvAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSGtv.VERSAO_LEIAUTE);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSGtv.VERSAO_LEIAUTE);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno enviaGtv(final String chaveAcesso, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {

@@ -1,15 +1,13 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 import java.time.LocalDate;
 import java.util.List;
-
-import org.apache.commons.httpclient.protocol.Protocol;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoIntRetorno;
@@ -27,10 +25,26 @@ import com.fincatto.documentofiscal.mdfe3.classes.nota.consulta.MDFeNotaConsulta
 import com.fincatto.documentofiscal.mdfe3.classes.nota.envio.MDFEnvioRetornoDados;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeEnviaEventoIncluirDFeInfDoc;
 import com.fincatto.documentofiscal.mdfe3.classes.nota.evento.MDFeRetorno;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
-public class WSFacade {
+/**
+ * Ponto de entrada publico para todos os webservices de MDF-e 3.00 (status, consulta - recibo e
+ * nao encerrados -, recepcao de lote/sincrona, eventos - cancelamento, encerramento, inclusao
+ * de condutor/DF-e, pagamento de transporte - e distribuicao de DF-e). As 5 classes de evento
+ * compartilham a mecanica de envio via {@link WSTransporteEvento}. Todos os servicos ja
+ * migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o descarte dos pools de
+ * conexao mantidos por esta instancia.
+ * <p>
+ * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.mdfe3.MDFeConfig}/
+ * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
+ * instancia mantem um pool de conexoes HTTP proprio e uma thread de fundo (daemon) para
+ * descartar conexoes ociosas; recriar {@link WSFacade} por documento acumula pools e threads
+ * sem chamar {@link #close()} entre eles.
+ */
+public class WSFacade implements Closeable {
 
+    private final DFHttpClient httpClient;
     private final WSStatusConsulta wsStatusConsulta;
     private final WSRecepcaoLote wsRecepcaoLote;
     private final WSRecepcaoSinc wsRecepcaoSinc;
@@ -45,26 +59,56 @@ public class WSFacade {
     private final WSDistribuicaoMDFe wsDistribuicaoMDFe;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
-    public WSFacade(final MDFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
-        this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wsRecepcaoLote = new WSRecepcaoLote(config);
-        this.wsRecepcaoSinc = new WSRecepcaoSinc(config);
+    public WSFacade(final MDFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: o
+        // Protocol.registerProtocol que existia aqui antes mutava um registro estatico global
+        // (org.apache.commons.httpclient.protocol.Protocol), compartilhado por todos os facades
+        // da lib - cada instancia criada sobrescrevia o certificado usado por instancias
+        // concorrentes de outros modulos. Removido: cada servico deste facade agora usa o
+        // DFHttpClient injetado (httpclient5), que carrega seu proprio SSLContext.
+        final DFSocketFactory socketFactory = new DFSocketFactory(config);
+        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
+
+        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
+        this.wsRecepcaoLote = new WSRecepcaoLote(config, this.httpClient);
+        this.wsRecepcaoSinc = new WSRecepcaoSinc(config, this.httpClient);
 //        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
-        this.wsNotaConsulta = new WSNotaConsulta(config);
-        this.wsCancelamento = new WSCancelamento(config);
-        this.wsEncerramento = new WSEncerramento(config);
-        this.wsConsultaRecibo = new WSConsultaRecibo(config);
-        this.wsConsultaNaoEncerrados = new WSConsultaNaoEncerrados(config);
-        this.wsIncluirCondutor = new WSIncluirCondutor(config);
-        this.wsIncluirDFe = new WSIncluirDFe(config);
-        this.wsPagamentoTransporte = new WSPagamentoTransporte(config);
+        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
+        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
+        this.wsEncerramento = new WSEncerramento(config, this.httpClient);
+        this.wsConsultaRecibo = new WSConsultaRecibo(config, this.httpClient);
+        this.wsConsultaNaoEncerrados = new WSConsultaNaoEncerrados(config, this.httpClient);
+        this.wsIncluirCondutor = new WSIncluirCondutor(config, this.httpClient);
+        this.wsIncluirDFe = new WSIncluirDFe(config, this.httpClient);
+        this.wsPagamentoTransporte = new WSPagamentoTransporte(config, this.httpClient);
         this.wsDistribuicaoMDFe = new WSDistribuicaoMDFe(config);
     }
 
     /**
+     * Libera o pool de conexoes HTTP compartilhado entre os servicos deste facade ja migrados
+     * para {@code httpclient5}, e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * proprio de {@link com.fincatto.documentofiscal.mdfe.webservices.distribuicao.WSDistribuicaoMDFe}
+     * - que nao compartilha o pool acima, mas tambem ja esta em {@code httpclient5}. Chamar
+     * quando esta instancia de {@link WSFacade} nao for mais utilizada.
+     * <p>
+     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
+     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
+     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
+     *
+     * @throws IOException caso ocorra falha ao liberar as conexoes.
+     */
+    @Override
+    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
+    public void close() throws IOException {
+        try (WSDistribuicaoMDFe wsDistribuicaoMDFeFechavel = this.wsDistribuicaoMDFe; DFHttpClient httpClientFechavel = this.httpClient) {
+            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
+            // declaracao (httpClient primeiro, depois wsDistribuicaoMDFe), mesmo que um deles lance excecao
+        }
+    }
+
+    /**
      * Serviços Assincronos serão desativados na data de 30 de Junho de 2024 conforme versa a NT 2024.001.
-     * 
+     *
      * Faz o envio do lote para a SEFAZ
      *
      * @param mdfEnvioLote a ser eviado para a SEFAZ
@@ -77,7 +121,7 @@ public class WSFacade {
     public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
         return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
     }
-    
+
     /**
      * Faz o envio sincronizado para a SEFAZ
      *
@@ -297,7 +341,7 @@ public class WSFacade {
     public MDFeRetorno pagamentoTransporteAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
         return this.wsPagamentoTransporte.pagamentoAssinado(chaveAcesso, eventoAssinadoXml);
     }
-    
+
     /**
      * Faz consulta de distribuicao dos MDFe.
      *
@@ -311,5 +355,5 @@ public class WSFacade {
     public MDFeDistribuicaoIntRetorno consultarDistribuicaoMDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         return this.wsDistribuicaoMDFe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
     }
-    
+
 }

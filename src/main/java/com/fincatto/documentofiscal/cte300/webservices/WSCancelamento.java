@@ -7,8 +7,8 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeEnviaEventoCancelamento;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,14 +19,14 @@ class WSCancelamento extends WSRecepcaoEvento {
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE, DFModelo.CTeOS);
-    
-    WSCancelamento(final CTeConfig config) {
-        super(config, modelosPermitidos);
+
+    WSCancelamento(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
-    
+
     CTeEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSCancelamento.VERSAO_LEIAUTE);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSCancelamento.VERSAO_LEIAUTE);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {

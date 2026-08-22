@@ -1,48 +1,94 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.StringReader;
+import java.math.BigDecimal;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.commons.lang3.StringUtils;
-
+import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFDestinatarioEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEventoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEpec;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEventoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFDestinatarioEpec;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
+import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import java.io.StringReader;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Iterator;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 
-public class WSEpec implements DFLog {
+public class WSEpec implements DFLog, Closeable {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     public static final String TIPO_EVENTO_EPEC = "110140";
     public static final String DESCRICAO_EVENTO_EPEC = "EPEC";
-    private static final String NFE_ELEMENTO = "NFe";
     private final NFeConfig config;
+    // DFHttpClient recebido do WSFacade (compartilhado com os demais servicos migrados) quando
+    // esta classe e construida atraves dele; fica null quando construida via
+    // WSEpec(NFeConfig) diretamente por codigo externo.
+    private final DFHttpClient httpClientCompartilhado;
+    // Criado sob demanda (lazy) apenas quando ninguem injetou um DFHttpClient - so na primeira
+    // chamada de rede, nunca no construtor. Mesma razao documentada em
+    // WSManifestacaoDestinatario: preservar o comportamento anterior (falha de certificado/SSL
+    // so aparece ao chamar a SEFAZ, nunca ao instanciar a classe) sem quebrar quem ja chama
+    // WSEpec(NFeConfig) hoje.
+    private DFHttpClient httpClientProprio;
 
-    public WSEpec(NFeConfig config) {
+    public WSEpec(final NFeConfig config) {
+        this(config, null);
+    }
+
+    WSEpec(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClientCompartilhado = httpClient;
+    }
+
+    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        if (this.httpClientCompartilhado != null) {
+            return this.httpClientCompartilhado;
+        }
+        if (this.httpClientProprio == null) {
+            final DFSocketFactory socketFactory = new DFSocketFactory(this.config);
+            this.httpClientProprio = new DFHttpClient(socketFactory.getSslContext(), this.config);
+        }
+        return this.httpClientProprio;
+    }
+
+    /**
+     * Libera o pool de conexoes do {@link DFHttpClient} proprio, se algum tiver sido criado
+     * (isto e, se esta instancia foi construida via {@link #WSEpec(NFeConfig)} e chegou a fazer
+     * alguma chamada de rede). Nao fecha o {@link DFHttpClient} compartilhado recebido do
+     * {@link WSFacade} - quem o criou e responsavel por fecha-lo (ver {@link WSFacade#close()}).
+     */
+    @Override
+    public synchronized void close() throws IOException {
+        if (this.httpClientProprio != null) {
+            this.httpClientProprio.close();
+        }
     }
 
     NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
@@ -127,21 +173,33 @@ public class WSEpec implements DFLog {
     }
 
     private NFEnviaEventoEpecRetorno comunicaEpec(String epecAssinadoXml) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeResultMsg recepcaoLoteResult = comunicaLoteRaw(epecAssinadoXml, DFModelo.NFE);
-        final OMElement omElementResult = recepcaoLoteResult.getExtraElement();
-        String xmlRetorno = omElementResult.toString();
+        final String xmlRetorno = this.efetuaComunicacaoEpec(epecAssinadoXml, DFModelo.NFE);
         return this.config.getPersister().read(NFEnviaEventoEpecRetorno.class, xmlRetorno);
     }
 
+    /**
+     * Metodo publico legado que devolve o tipo do Axis2 ({@code NFeRecepcaoEvento4Stub.NfeResultMsg}).
+     * Mantido por compatibilidade de API (WSEpec e classe publica, sem garantia de que so o
+     * WSFacade a use) - a assinatura e o tipo de retorno nao mudam, mas o objeto e reconstruido
+     * localmente a partir do XML de resposta, sem nenhuma chamada de rede via Axis2. Mesmo
+     * padrao usado em WSLoteEnvio.comunicaLoteRaw.
+     */
     public NFeRecepcaoEvento4Stub.NfeResultMsg comunicaLoteRaw(String loteAssinadoXml, DFModelo modelo) throws Exception {
+        final String xmlRetorno = this.efetuaComunicacaoEpec(loteAssinadoXml, modelo);
+        return WSEpec.criarNfeResultMsg(xmlRetorno);
+    }
+
+    /**
+     * Valida, envia o EPEC assinado para a SEFAZ via {@link DFHttpClient} e devolve o XML de
+     * negocio ja desempacotado do envelope SOAP 1.2 de resposta. O evento EPEC embute a propria
+     * NF-e/NFC-e (elemento {@code <NFe>}) dentro do XML assinado; como o novo caminho concatena
+     * o XML ja serializado (em vez de reconstruir a arvore via Axiom, como o Axis2 fazia), nao
+     * e mais necessario forcar {@code xmlns} em cada {@code <NFe>} embutido - o namespace ja
+     * vem herdado do elemento pai no XML original.
+     */
+    private String efetuaComunicacaoEpec(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         // valida o epec assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         DFXMLValidador.validaEpec(loteAssinadoXml);
-
-        // envia o lote para a sefaz
-        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
 
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
@@ -151,22 +209,28 @@ public class WSEpec implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        return new NFeRecepcaoEvento4Stub(endpoint, config).nfeRecepcaoEvento(dados);
+        return AbstractWSEvento.enviarEvento(this.getHttpClient(), endpoint, loteAssinadoXml);
     }
 
-    private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
+    /**
+     * Reconstroi o {@link NfeResultMsg} do Axis2 a partir do XML de negocio ja desempacotado,
+     * sem nenhuma chamada de rede via Axis2 - mantido apenas para nao quebrar a assinatura
+     * publica de {@link #comunicaLoteRaw}. Pacote-privado (em vez de {@code private}) para
+     * poder ser testado diretamente - mesmo padrao usado em {@code WSLoteEnvio.criarNfeResultMsg}.
+     */
+    static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
+        // Defesa em profundidade contra XXE: xmlNegocio hoje sempre chega aqui ja desempacotado
+        // por DFSoapEnvelope.desempacotar (que ja endurece o parsing DOM da resposta), mas o
+        // StAX do JDK nao desabilita DTD/entidades externas por padrao - se um refactor futuro
+        // passar XML bruto para este metodo, essa protecao evita reabrir a superficie de XXE.
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));
         final StAXOMBuilder builder = new StAXOMBuilder(reader);
-        final OMElement ome = builder.getDocumentElement();
-        final Iterator<?> children = ome.getChildrenWithLocalName(WSEpec.NFE_ELEMENTO);
-        while (children.hasNext()) {
-            final OMElement omElement = (OMElement) children.next();
-            if ((omElement != null) && (WSEpec.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NAMESPACE, null);
-            }
-        }
-        return ome;
+        final NfeResultMsg resultMsg = new NfeResultMsg();
+        resultMsg.setExtraElement(builder.getDocumentElement());
+        return resultMsg;
     }
 }

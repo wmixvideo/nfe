@@ -1,5 +1,14 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.LocalDate;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -8,37 +17,51 @@ import com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoN
 import com.fincatto.documentofiscal.nfe400.classes.cadastro.NFRetornoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.alczfmimportacao.NFDetGrupoConsumoZFM;
-import com.fincatto.documentofiscal.nfe400.classes.evento.consumopessoal.NFDetGrupoConsumo;
-import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaobens.NFDetGrupoCredito;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetGrupoCreditoPresumido;
-import com.fincatto.documentofiscal.nfe400.classes.evento.imobilizacao.NFDetGrupoImobilizacao;
-import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrupoItemNaoFornecido;
-import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.consumopessoal.NFDetGrupoConsumo;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.imobilizacao.NFDetGrupoImobilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrupoItemNaoFornecido;
+import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimentoFornecedor;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.time.LocalDate;
-import java.util.List;
+/**
+ * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 4.00 (envio/consulta de
+ * lote, status, consulta de nota e cadastro, e a longa lista de eventos - cancelamento, carta
+ * de correcao, EPEC, manifestacao do destinatario, atualizacao de data de previsao de entrega,
+ * aceite de debito de apuracao, imobilizacao, insucesso/comprovante de entrega, entre outros).
+ * A maioria dos eventos compartilha a mecanica de transporte de {@link AbstractWSEvento}. Todos
+ * os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o
+ * descarte dos pools de conexao mantidos por esta instancia.
+ * <p>
+ * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
+ * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
+ * instancia mantem um pool de conexoes HTTP proprio e uma thread de fundo (daemon) para
+ * descartar conexoes ociosas; recriar {@link WSFacade} por documento acumula pools e threads
+ * sem chamar {@link #close()} entre eles.
+ */
+public class WSFacade implements Closeable {
 
-public class WSFacade {
-
+    private final DFHttpClient httpClient;
     private final WSLoteEnvio wsLoteEnvio;
     private final WSLoteConsulta wsLoteConsulta;
     private final WSStatusConsulta wsStatusConsulta;
@@ -65,33 +88,67 @@ public class WSFacade {
     private final WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: todos os
+        // servicos deste facade ja usam o DFHttpClient injetado (httpclient5), entao nao ha mais
+        // stub Axis2/httpclient3 remanescente que dependa do registro global de protocolo "https"
+        // via Protocol.registerProtocol - o que e bom, pois essa chamada mutaria um registro
+        // estatico compartilhado com os facades legados (NFe 3.10, CTe), substituindo o
+        // certificado usado por instancias concorrentes.
+        final DFSocketFactory socketFactory = new DFSocketFactory(config);
+        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
         // inicia os servicos disponiveis da nfe
-        this.wsLoteEnvio = new WSLoteEnvio(config);
-        this.wsLoteConsulta = new WSLoteConsulta(config);
-        this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wsNotaConsulta = new WSNotaConsulta(config);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config);
-        this.wsCancelamento = new WSCancelamento(config);
-        this.wsConsultaCadastro = new WSConsultaCadastro(config);
-        this.wsInutilizacao = new WSInutilizacao(config);
-        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
+        this.wsLoteEnvio = new WSLoteEnvio(config, this.httpClient);
+        this.wsLoteConsulta = new WSLoteConsulta(config, this.httpClient);
+        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
+        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
+        this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
+        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
+        this.wsConsultaCadastro = new WSConsultaCadastro(config, this.httpClient);
+        this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
+        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config, this.httpClient);
         this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
-        this.wsEpec = new WSEpec(config);
-        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config);
-        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config);
-        this.wsCancelametoEvento = new WSCancelametoEvento(config);
-        this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(config);
-        this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(config);
-        this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(config);
-        this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(config);
-        this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(config);
-        this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(config);
-        this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(config);
-        this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config);
-        this.wsImobilizacaoItem = new WSImobilizacaoItem(config);
-        this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config);
+        this.wsEpec = new WSEpec(config, this.httpClient);
+        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config, this.httpClient);
+        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config, this.httpClient);
+        this.wsCancelametoEvento = new WSCancelametoEvento(config, this.httpClient);
+        this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(config, this.httpClient);
+        this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(config, this.httpClient);
+        this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(config, this.httpClient);
+        this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(config, this.httpClient);
+        this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(config, this.httpClient);
+        this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config, this.httpClient);
+        this.wsImobilizacaoItem = new WSImobilizacaoItem(config, this.httpClient);
+        this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config, this.httpClient);
+    }
+
+    /**
+     * Libera o pool de conexoes HTTP compartilhado entre todos os servicos do nfe400 (todos ja
+     * migrados para {@code httpclient5}), e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
+     * proprio de {@link com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe}
+     * - que nao compartilha o pool acima, mas tambem ja esta em {@code httpclient5}. Chamar
+     * quando esta instancia de {@link WSFacade} nao for mais utilizada - por exemplo, no
+     * encerramento da aplicacao.
+     * <p>
+     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
+     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
+     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
+     *
+     * @throws IOException caso ocorra falha ao liberar as conexoes.
+     */
+    @Override
+    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
+    public void close() throws IOException {
+        // WSDistribuicaoNFe nao compartilha o pool do httpClient acima - cria o proprio
+        // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoNFe.close()). Fecha-lo aqui
+        // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
+        // wSDistribuicaoNFe.close() diretamente.
+        try (WSDistribuicaoNFe wSDistribuicaoNFeFechavel = this.wSDistribuicaoNFe; DFHttpClient httpClientFechavel = this.httpClient) {
+            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
+            // declaracao (httpClient primeiro, depois wSDistribuicaoNFe), mesmo que um deles lance excecao
+        }
     }
 
     /**
@@ -192,10 +249,10 @@ public class WSFacade {
      *
      * @param chaveDeAcesso chave de acesso da nota
      * @return dados da consulta da nota retornado pelo webservice
-     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
-     * o sefaz
+     * @throws IOException caso nao consiga se conectar a SEFAZ.
+     * @throws DFSoapFaultException caso a SEFAZ devolva um soap:Fault.
      */
-    public String consultaNotaAsString(final String chaveDeAcesso) throws Exception {
+    public String consultaNotaAsString(final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         return this.wsNotaConsulta.consultaNotaAsString(chaveDeAcesso);
     }
 
