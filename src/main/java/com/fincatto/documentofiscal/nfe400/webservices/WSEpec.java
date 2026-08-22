@@ -221,6 +221,12 @@ public class WSEpec implements DFLog, Closeable {
     static NfeResultMsg criarNfeResultMsg(final String xmlNegocio) throws XMLStreamException {
         final XMLInputFactory factory = XMLInputFactory.newInstance();
         factory.setProperty(XMLInputFactory.IS_COALESCING, false);
+        // Defesa em profundidade contra XXE: xmlNegocio hoje sempre chega aqui ja desempacotado
+        // por DFSoapEnvelope.desempacotar (que ja endurece o parsing DOM da resposta), mas o
+        // StAX do JDK nao desabilita DTD/entidades externas por padrao - se um refactor futuro
+        // passar XML bruto para este metodo, essa protecao evita reabrir a superficie de XXE.
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
         final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(xmlNegocio));
         final StAXOMBuilder builder = new StAXOMBuilder(reader);
         final NfeResultMsg resultMsg = new NfeResultMsg();
