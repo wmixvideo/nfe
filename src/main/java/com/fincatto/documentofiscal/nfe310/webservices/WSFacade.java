@@ -1,5 +1,12 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -20,13 +27,6 @@ import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
 /**
  * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 3.10 (envio/consulta de
  * lote, status, consulta de nota e cadastro, download, eventos - cancelamento, carta de
@@ -36,6 +36,12 @@ import java.security.UnrecoverableKeyException;
  * ainda um caminho separado para a Bahia (WSDL proprio). Todos os servicos ja migrados de Axis2
  * para {@code httpclient5}; ver {@link #close()} para o descarte dos pools de conexao mantidos
  * por esta instancia.
+ * <p>
+ * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
+ * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
+ * instancia mantem um pool de conexoes HTTP proprio e uma thread de fundo (daemon) para
+ * descartar conexoes ociosas; recriar {@link WSFacade} por documento acumula pools e threads
+ * sem chamar {@link #close()} entre eles.
  */
 public class WSFacade implements Closeable {
 
