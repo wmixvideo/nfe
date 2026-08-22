@@ -4,8 +4,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -156,6 +163,65 @@ public class DFHttpClientTest {
         // um POST de operacao fiscal nao pode ser reenviado automaticamente pelo transporte -
         // com o retry automatico do httpclient5 ativo (default), esse contador seria 2
         Assert.assertEquals(1, requisicoesRecebidas.get());
+    }
+
+    @Test(expected = IOException.class)
+    public void deveLancarIOExceptionQuandoRespostaDemoraMaisQueOTimeoutDeLeitura() throws Exception {
+        final String endpoint = this.iniciarServidor(exchange -> {
+            try {
+                Thread.sleep(500);
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            responder(exchange, 200, "<ok/>");
+        });
+        final DFConfigTeste configComTimeoutDeLeituraCurto = new DFConfigTeste() {
+            @Override
+            public int getSoTimeoutEmMillis() {
+                return 100;
+            }
+        };
+        this.httpClient = new DFHttpClient(SSLContext.getDefault(), configComTimeoutDeLeituraCurto);
+
+        this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
+    }
+
+    @Test(expected = UnknownHostException.class)
+    public void deveLancarUnknownHostExceptionParaHostInexistente() throws Exception {
+        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+        // ".invalid" e reservado pela RFC 2606 para nunca resolver - garante a falha de DNS sem depender de um host de rede real
+        this.httpClient.postSoap("http://webservice-sefaz-teste.invalid/", "acao", "<envelope/>");
+    }
+
+    @Test
+    public void deveAtenderRequisicoesConcorrentesReaproveitandoOMesmoPoolDeConexoes() throws Exception {
+        final int totalRequisicoes = 30; // acima do default de DFConfig.getMaxConexoesPorRota() (20), forca fila/reuso no pool
+        final AtomicInteger requisicoesRecebidas = new AtomicInteger();
+        final String endpoint = this.iniciarServidor(exchange -> {
+            requisicoesRecebidas.incrementAndGet();
+            try {
+                Thread.sleep(30);
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            responder(exchange, 200, "<ok/>");
+        });
+        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+
+        final ExecutorService executor = Executors.newFixedThreadPool(totalRequisicoes);
+        try {
+            final List<Future<String>> respostas = new ArrayList<>();
+            for (int i = 0; i < totalRequisicoes; i++) {
+                respostas.add(executor.submit(() -> this.httpClient.postSoap(endpoint, "acao", "<envelope/>")));
+            }
+            for (final Future<String> resposta : respostas) {
+                Assert.assertEquals("<ok/>", resposta.get(10, TimeUnit.SECONDS));
+            }
+        } finally {
+            executor.shutdown();
+        }
+
+        Assert.assertEquals(totalRequisicoes, requisicoesRecebidas.get());
     }
 
     private String iniciarServidor(final HttpHandler handler) throws IOException {
