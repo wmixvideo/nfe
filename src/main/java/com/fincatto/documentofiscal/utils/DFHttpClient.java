@@ -70,8 +70,12 @@ public class DFHttpClient implements Closeable {
         // requisicao. O MessageContextFactory (Axis2, legado) usa esses dois getters trocados em relacao
         // a este mapeamento; ao migrar um servico do Axis2 para o DFHttpClient, revisar os valores de
         // DFConfig se o comportamento historico de timeout precisar ser preservado.
+        //
+        // Os tres getters de timeout/pool de DFConfig documentam fallback para um valor padrao
+        // quando o valor configurado nao for positivo - aplicado aqui via comFallback(), ja que
+        // nenhum dos getters valida isso sozinho.
         final ConnectionConfig connectionConfig = ConnectionConfig.custom()
-                .setConnectTimeout(Timeout.ofMilliseconds(config.getTimeoutRequisicaoEmMillis()))
+                .setConnectTimeout(Timeout.ofMilliseconds(comFallback(config.getTimeoutRequisicaoEmMillis(), DFSocketFactory.TIMEOUT_PADRAO_EM_MILLIS)))
                 .setTimeToLive(TEMPO_VIDA_MAXIMO_CONEXAO)
                 .setValidateAfterInactivity(VALIDAR_APOS_INATIVIDADE)
                 .build();
@@ -79,10 +83,21 @@ public class DFHttpClient implements Closeable {
         final PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
                 .setTlsSocketStrategy(tlsStrategy)
                 .setDefaultConnectionConfig(connectionConfig)
+                // Defaults do httpclient5 quando nao configurados (5 por rota, 25 no total) sao
+                // baixos demais para emissao de documentos fiscais em lote contra o mesmo
+                // autorizador - ver DFConfig.getMaxConexoesPorRota()/getMaxConexoesTotal().
+                .setMaxConnPerRoute(comFallback(config.getMaxConexoesPorRota(), 20))
+                .setMaxConnTotal(comFallback(config.getMaxConexoesTotal(), 40))
                 .build();
 
         final RequestConfig requestConfig = RequestConfig.custom()
-                .setResponseTimeout(Timeout.ofMilliseconds(config.getSoTimeoutEmMillis()))
+                // getSoTimeoutEmMillis() aceita zero como valor valido (convencao classica de
+                // java.net.Socket#setSoTimeout: zero = timeout infinito) - so um valor negativo
+                // cai no fallback, por isso o uso de comFallbackPermitindoZero aqui.
+                .setResponseTimeout(Timeout.ofMilliseconds(comFallbackPermitindoZero(config.getSoTimeoutEmMillis(), DFSocketFactory.SO_TIMEOUT_PADRAO_EM_MILLIS)))
+                // Default do httpclient5 quando nao configurado e 3 minutos - tempo demais para
+                // reter uma thread da aplicacao esperando uma conexao do pool sob pico de carga.
+                .setConnectionRequestTimeout(Timeout.ofMilliseconds(comFallback(config.getTimeoutFilaConexaoEmMillis(), 10_000)))
                 .build();
 
         this.httpClient = HttpClients.custom()
@@ -97,7 +112,29 @@ public class DFHttpClient implements Closeable {
                 // seguramente reenviavel sem uma decisao de negocio. Desabilitar o retry
                 // automatico transfere essa decisao para quem chama postSoap.
                 .disableAutomaticRetries()
+                // Os endpoints da SEFAZ sao fixos e conhecidos - nao ha cenario legitimo de
+                // redirect nas chamadas deste cliente. Desabilitar reforca essa premissa como
+                // defesa em profundidade (o DefaultRedirectStrategy padrao ja nao seguiria um
+                // redirect de POST, exceto 303, mas aqui a intencao fica explicita e auditavel).
+                .disableRedirectHandling()
                 .build();
+    }
+
+    /**
+     * Aplica o fallback documentado nos getters de timeout/pool de {@link DFConfig}: um valor
+     * configurado nao positivo (zero ou negativo) e substituido pelo padrao.
+     */
+    private static int comFallback(final int valorConfigurado, final int valorPadrao) {
+        return valorConfigurado > 0 ? valorConfigurado : valorPadrao;
+    }
+
+    /**
+     * Mesmo fallback de {@link #comFallback}, mas aceitando zero como valor valido (usado por
+     * {@link DFConfig#getSoTimeoutEmMillis()}, cujo contrato documentado segue a convencao
+     * classica de {@code java.net.Socket#setSoTimeout}: zero significa timeout infinito).
+     */
+    private static int comFallbackPermitindoZero(final int valorConfigurado, final int valorPadrao) {
+        return valorConfigurado >= 0 ? valorConfigurado : valorPadrao;
     }
 
     /**
