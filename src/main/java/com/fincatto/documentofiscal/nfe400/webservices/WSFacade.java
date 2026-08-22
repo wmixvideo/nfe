@@ -52,6 +52,12 @@ import com.fincatto.documentofiscal.utils.DFSoapFaultException;
  * A maioria dos eventos compartilha a mecanica de transporte de {@link AbstractWSEvento}. Todos
  * os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o
  * descarte dos pools de conexao mantidos por esta instancia.
+ * <p>
+ * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
+ * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
+ * instancia mantem um pool de conexoes HTTP proprio e uma thread de fundo (daemon) para
+ * descartar conexoes ociosas; recriar {@link WSFacade} por documento acumula pools e threads
+ * sem chamar {@link #close()} entre eles.
  */
 public class WSFacade implements Closeable {
 
