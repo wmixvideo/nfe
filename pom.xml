@@ -214,6 +214,18 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!--
+                Scan de vulnerabilidades conhecidas (CVE) nas dependencias, incluindo o
+                transporte HTTP/XML (httpclient5, axiom, xmlsec). Sem <executions>, entao NAO
+                roda em nenhuma fase do build padrao (mvn test/install) - so sob demanda via
+                'mvn dependency-check:check', para nao depender de acesso a rede (download do
+                banco NVD) durante um build normal/CI offline.
+            -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>13.0.0</version>
+            </plugin>
         </plugins>
     </build>
 
