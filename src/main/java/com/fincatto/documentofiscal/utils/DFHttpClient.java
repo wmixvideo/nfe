@@ -90,6 +90,13 @@ public class DFHttpClient implements Closeable {
                 .setDefaultRequestConfig(requestConfig)
                 .evictExpiredConnections()
                 .evictIdleConnections(OCIOSIDADE_MAXIMA_CONEXAO)
+                // O DefaultHttpRequestRetryStrategy do httpclient5, instalado por padrao quando
+                // nenhuma estrategia e configurada, reenvia automaticamente em HTTP 429/503 sem
+                // verificar se o metodo e idempotente - e toda requisicao feita por este cliente
+                // e um POST de operacao fiscal (lote de autorizacao, evento, etc.), nunca
+                // seguramente reenviavel sem uma decisao de negocio. Desabilitar o retry
+                // automatico transfere essa decisao para quem chama postSoap.
+                .disableAutomaticRetries()
                 .build();
     }
 
@@ -100,22 +107,51 @@ public class DFHttpClient implements Closeable {
      * @param soapAction action da operacao, conforme o WSDL (ex.: {@code .../NFeStatusServico4/nfeStatusServicoNF}).
      * @param envelopeXml envelope SOAP 1.2 completo, tipicamente montado por {@link DFSoapEnvelope#envelopar}.
      * @return o corpo da resposta HTTP.
-     * @throws IOException em caso de falha de conexao ou resposta HTTP de erro (codigo &gt;= 300).
+     * @throws DFSoapFaultException se a SEFAZ devolver um {@code soap:Fault} reconhecivel no corpo,
+     * mesmo quando acompanhado de um codigo HTTP de erro (a SEFAZ as vezes devolve Fault sob HTTP 500,
+     * assim como o Axis2/HTTPSender legado tratava esse cenario).
+     * @throws IOException em caso de falha de conexao ou resposta HTTP de erro (codigo &gt;= 300) cujo
+     * corpo nao seja um {@code soap:Fault} reconhecivel.
      */
-    public String postSoap(final String endpoint, final String soapAction, final String envelopeXml) throws IOException {
+    public String postSoap(final String endpoint, final String soapAction, final String envelopeXml) throws IOException, DFSoapFaultException {
         final HttpPost post = new HttpPost(endpoint);
         post.setEntity(new StringEntity(envelopeXml, ContentType.create("application/soap+xml", StandardCharsets.UTF_8)));
         // SOAP 1.2 carrega a action dentro do Content-Type, nao num header SOAPAction separado (como no SOAP 1.1)
         post.setHeader(HttpHeaders.CONTENT_TYPE, "application/soap+xml; charset=UTF-8; action=\"" + soapAction + "\"");
 
-        return this.httpClient.execute(post, response -> {
-            final HttpEntity entity = response.getEntity();
-            final String corpo = entity == null ? "" : EntityUtils.toString(entity, StandardCharsets.UTF_8);
-            if (response.getCode() >= 300) {
-                throw new ClientProtocolException("SEFAZ respondeu HTTP " + response.getCode() + ": " + corpo);
-            }
-            return corpo;
-        });
+        try {
+            return this.httpClient.execute(post, response -> {
+                final HttpEntity entity = response.getEntity();
+                final String corpo = entity == null ? "" : EntityUtils.toString(entity, StandardCharsets.UTF_8);
+                if (response.getCode() >= 300) {
+                    // HttpClientResponseHandler.handleResponse so pode lancar HttpException/IOException,
+                    // entao a DFSoapFaultException (checked, nao-IOException) precisa atravessar como
+                    // RuntimeException e ser desembrulhada depois do execute() abaixo.
+                    final DFSoapFaultException fault = DFSoapEnvelope.tentarReconhecerFault(corpo);
+                    if (fault != null) {
+                        throw new FaultCarrier(fault);
+                    }
+                    throw new ClientProtocolException("SEFAZ respondeu HTTP " + response.getCode() + ": " + corpo);
+                }
+                return corpo;
+            });
+        } catch (final FaultCarrier carrier) {
+            throw carrier.fault;
+        }
+    }
+
+    /**
+     * Carrega uma {@link DFSoapFaultException} para fora do handler de {@link #postSoap}, cuja
+     * assinatura funcional nao permite excecoes checked alem de {@code IOException}.
+     */
+    private static final class FaultCarrier extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+        private final transient DFSoapFaultException fault;
+
+        FaultCarrier(final DFSoapFaultException fault) {
+            super(fault);
+            this.fault = fault;
+        }
     }
 
     /**
