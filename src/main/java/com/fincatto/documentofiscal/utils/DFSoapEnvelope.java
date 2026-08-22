@@ -126,6 +126,32 @@ public final class DFSoapEnvelope {
     }
 
     /**
+     * Tenta reconhecer um {@code soap:Fault} no corpo de uma resposta HTTP de erro (codigo HTTP
+     * &gt;= 300) - a SEFAZ por vezes devolve o Fault dentro de um envelope SOAP 1.2 valido sob um
+     * codigo de erro (tipicamente HTTP 500), cenario que o {@code HTTPSender} do Axis2 legado
+     * tratava especialmente. Ao contrario de {@link #desempacotar}, nunca lanca excecao: um corpo
+     * que nao seja um envelope SOAP 1.2 valido, ou cujo {@code soap:Body} nao comece com
+     * {@code soap:Fault}, simplesmente nao e reconhecido como Fault.
+     *
+     * @param respostaXml corpo da resposta HTTP.
+     * @return a excecao representando o Fault reconhecido, ou {@code null} se o corpo nao for um
+     * {@code soap:Fault} reconhecivel.
+     */
+    static DFSoapFaultException tentarReconhecerFault(final String respostaXml) {
+        try {
+            final Document documento = criarDocumentBuilderFactory().newDocumentBuilder().parse(new InputSource(new StringReader(respostaXml)));
+            final Element body = (Element) documento.getElementsByTagNameNS(SOAP12_NS, "Body").item(0);
+            if (body == null) {
+                return null;
+            }
+            final Element primeiroFilho = primeiroElementoFilho(body);
+            return "Fault".equals(primeiroFilho.getLocalName()) ? new DFSoapFaultException(textoDoFault(primeiroFilho)) : null;
+        } catch (final Exception e) {
+            return null;
+        }
+    }
+
+    /**
      * DocumentBuilderFactory endurecido contra XXE (entidades externas/DTD) - a resposta e um
      * XML vindo pela rede (o webservice da SEFAZ), entao nao deve ser tratada como confiavel
      * por padrao para fins de parsing.
