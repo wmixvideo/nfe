@@ -609,6 +609,7 @@ public enum NFRetornoStatus {
     CODIGO_977(977, "Rejei\u00E7\u00E3o: Identificador do CSRT revogado"),
     CODIGO_978(978, "Rejei\u00E7\u00E3o: Hash do CSRT diverge do calculado"),
     CODIGO_999(999, "Rejei\u00e7\u00e3o: Erro n\u00e3o catalogado"),
+    CODIGO_1021(1021, "Rejei\u00e7\u00e3o: Grupo IBS/CBS informado indevidamente"),
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
     private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
