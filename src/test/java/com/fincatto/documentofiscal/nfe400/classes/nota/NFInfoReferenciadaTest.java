@@ -1,37 +1,37 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFInfoReferenciadaTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void devePermitirSetarApenasUmChaveAcessoCTReferenciada() {
-        final NFInfoReferenciada referenciada = new NFInfoReferenciada();
-        referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
-        try {
-            referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException ignored) {
-        }
-        try {
-            referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException ignored) {
-        }
-        try {
-            referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException ignored) {
-        }
-        try {
-            referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException ignored) {
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoReferenciada referenciada = new NFInfoReferenciada();
+            referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
+            try {
+                referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException ignored) {
+            }
+            try {
+                referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException ignored) {
+            }
+            try {
+                referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException ignored) {
+            }
+            try {
+                referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException ignored) {
+            }
+        });
     }
 
     @Test
@@ -40,22 +40,22 @@ public class NFInfoReferenciadaTest {
         referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
         try {
             referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -66,22 +66,22 @@ public class NFInfoReferenciadaTest {
         referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
         try {
             referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -92,22 +92,22 @@ public class NFInfoReferenciadaTest {
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         try {
             referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -118,33 +118,35 @@ public class NFInfoReferenciadaTest {
         referenciada.setCupomFiscalReferenciado(FabricaDeObjetosFake.getNFInfoCupomFiscalReferenciado());
         try {
             referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcesso("97649154542619956204618059353096005113462909");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setChaveAcessoCTReferenciada("976491545426199562046180593530960051134629091");
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             referenciada.setInfoNFProdutorRuralReferenciada(FabricaDeObjetosFake.getNFInfoProdutorRuralReferenciada());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirChaveAcessoComTamanhoInvalido() {
-        try {
-            new NFInfoReferenciada().setChaveAcesso("9764915454261995620461805935309600511346290");
-        } catch (final IllegalStateException e) {
-            new NFInfoReferenciada().setChaveAcesso("976491545426199562046180593530960051134629091");
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFInfoReferenciada().setChaveAcesso("9764915454261995620461805935309600511346290");
+            } catch (final IllegalStateException e) {
+                new NFInfoReferenciada().setChaveAcesso("976491545426199562046180593530960051134629091");
+            }
+        });
     }
 
     @Test
@@ -153,7 +155,7 @@ public class NFInfoReferenciadaTest {
         // Chave com CNPJ alfanumérico (44 chars)
         final String chaveAlfanumerica = "422505AB000000000001550010000000011000000010";
         referenciada.setChaveAcesso(chaveAlfanumerica);
-        assertEquals(chaveAlfanumerica, referenciada.getChaveAcesso());
+        Assertions.assertEquals(chaveAlfanumerica, referenciada.getChaveAcesso());
     }
 
     @Test
@@ -161,7 +163,7 @@ public class NFInfoReferenciadaTest {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         // Chave CT-e com CNPJ alfanumérico (44 chars)
         referenciada.setChaveAcessoCTReferenciada("3526050X0J92JY000196570010000006041448679011");
-        assertEquals("3526050X0J92JY000196570010000006041448679011", referenciada.getChaveAcessoCTReferenciada());
+        Assertions.assertEquals("3526050X0J92JY000196570010000006041448679011", referenciada.getChaveAcessoCTReferenciada());
     }
 
     @Test
@@ -183,6 +185,6 @@ public class NFInfoReferenciadaTest {
         final NFInfoReferenciada referenciada = new NFInfoReferenciada();
         referenciada.setModelo1por1Referenciada(FabricaDeObjetosFake.getNFInfoModelo1Por1AReferenciada());
         final String xmlEsperado = "<NFInfoReferenciada><refNF><cUF>43</cUF><AAMM>1408</AAMM><CNPJ>12345678901234</CNPJ><mod>01</mod><serie>999</serie><nNF>999999999</nNF></refNF></NFInfoReferenciada>";
-        Assert.assertEquals(xmlEsperado, referenciada.toString());
+        Assertions.assertEquals(xmlEsperado, referenciada.toString());
     }
 }

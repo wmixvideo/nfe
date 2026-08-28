@@ -1,14 +1,13 @@
 package com.fincatto.documentofiscal.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Testa {@link DFSoapEnvelope}, responsavel por montar e desempacotar o envelope SOAP 1.2 dos
- * webservices da SEFAZ migrados do Axis2 para {@code httpclient5}: envelopar (concatenacao de
- * texto do XML de negocio dentro do wrapper), desempacotar no caso comum de 1 nivel de wrapper
- * e no caso de 2 niveis (ex.: NFeDistribuicaoDFe), propagacao de {@code soap:Fault} como
- * {@link DFSoapFaultException} e o hardening contra XXE no parsing da resposta.
+ * webservices da SEFAZ: envelopar (concatenacao de texto do XML de negocio dentro do wrapper),
+ * desempacotar no caso comum de 1 nivel de wrapper e no caso de 2 niveis (ex.: NFeDistribuicaoDFe),
+ * propagacao de {@code soap:Fault} como {@link DFSoapFaultException} e o hardening contra XXE no parsing da resposta.
  *
  * @author Marcos Lombardi de Andrade
  */
@@ -22,12 +21,12 @@ public class DFSoapEnvelopeTest {
 
         final String envelope = DFSoapEnvelope.envelopar(NAMESPACE_WSDL, "nfeDadosMsg", xmlNegocio);
 
-        Assert.assertTrue(envelope.startsWith("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"));
-        Assert.assertTrue(envelope.contains("<soap:Body>"));
-        Assert.assertTrue(envelope.contains("<nfeDadosMsg xmlns=\"" + NAMESPACE_WSDL + "\">"));
-        Assert.assertTrue(envelope.contains(xmlNegocio));
-        Assert.assertTrue(envelope.contains("</nfeDadosMsg>"));
-        Assert.assertTrue(envelope.endsWith("</soap:Body></soap:Envelope>"));
+        Assertions.assertTrue(envelope.startsWith("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"));
+        Assertions.assertTrue(envelope.contains("<soap:Body>"));
+        Assertions.assertTrue(envelope.contains("<nfeDadosMsg xmlns=\"" + NAMESPACE_WSDL + "\">"));
+        Assertions.assertTrue(envelope.contains(xmlNegocio));
+        Assertions.assertTrue(envelope.contains("</nfeDadosMsg>"));
+        Assertions.assertTrue(envelope.endsWith("</soap:Body></soap:Envelope>"));
     }
 
     @Test
@@ -46,10 +45,10 @@ public class DFSoapEnvelopeTest {
 
         final String xmlNegocio = DFSoapEnvelope.desempacotar(respostaSefaz);
 
-        Assert.assertTrue(xmlNegocio.startsWith("<retConsStatServ"));
-        Assert.assertTrue(xmlNegocio.contains("<cStat>107</cStat>"));
-        Assert.assertTrue(xmlNegocio.contains("<xMotivo>Servico em Operacao</xMotivo>"));
-        Assert.assertFalse("nao deve sobrar o wrapper nfeResultMsg no resultado", xmlNegocio.contains("nfeResultMsg"));
+        Assertions.assertTrue(xmlNegocio.startsWith("<retConsStatServ"));
+        Assertions.assertTrue(xmlNegocio.contains("<cStat>107</cStat>"));
+        Assertions.assertTrue(xmlNegocio.contains("<xMotivo>Servico em Operacao</xMotivo>"));
+        Assertions.assertFalse(xmlNegocio.contains("nfeResultMsg"));
     }
 
     @Test
@@ -65,15 +64,15 @@ public class DFSoapEnvelopeTest {
 
         try {
             DFSoapEnvelope.desempacotar(respostaComFault);
-            Assert.fail("deveria ter lancado DFSoapFaultException");
+            Assertions.fail("deveria ter lancado DFSoapFaultException");
         } catch (final DFSoapFaultException e) {
-            Assert.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
+            Assertions.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarIllegalStateExceptionParaRespostaQueNaoEUmEnvelopeSoapValido() throws DFSoapFaultException {
-        DFSoapEnvelope.desempacotar("isto nao e um XML valido");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFSoapEnvelope.desempacotar("isto nao e um XML valido"));
     }
 
     @Test
@@ -93,9 +92,9 @@ public class DFSoapEnvelopeTest {
 
         final String xmlNegocio = DFSoapEnvelope.desempacotar(respostaComDoisWrappers, 2);
 
-        Assert.assertTrue(xmlNegocio.startsWith("<retDistDFeInt"));
-        Assert.assertTrue(xmlNegocio.contains("<cStat>137</cStat>"));
-        Assert.assertFalse("nao deve sobrar nenhum wrapper no resultado", xmlNegocio.contains("nfeDistDFeInteresseResponse") || xmlNegocio.contains("NFeDistDFeInteresseResult"));
+        Assertions.assertTrue(xmlNegocio.startsWith("<retDistDFeInt"));
+        Assertions.assertTrue(xmlNegocio.contains("<cStat>137</cStat>"));
+        Assertions.assertFalse(xmlNegocio.contains("nfeDistDFeInteresseResponse") || xmlNegocio.contains("NFeDistDFeInteresseResult"));
     }
 
     @Test
@@ -111,20 +110,20 @@ public class DFSoapEnvelopeTest {
 
         try {
             DFSoapEnvelope.desempacotar(respostaComFault, 2);
-            Assert.fail("deveria ter lancado DFSoapFaultException");
+            Assertions.fail("deveria ter lancado DFSoapFaultException");
         } catch (final DFSoapFaultException e) {
-            Assert.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
+            Assertions.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void deveLancarIllegalArgumentExceptionQuandoNiveisDeWrapperForZero() throws DFSoapFaultException {
-        DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", 0);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", 0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void deveLancarIllegalArgumentExceptionQuandoNiveisDeWrapperForNegativo() throws DFSoapFaultException {
-        DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", -1);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> DFSoapEnvelope.desempacotar("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"><soap:Body/></soap:Envelope>", -1));
     }
 
     @Test
@@ -134,7 +133,7 @@ public class DFSoapEnvelopeTest {
         final String envelope = DFSoapEnvelope.envelopar(NAMESPACE_WSDL, "nfeResultMsg", xmlNegocio);
         final String xmlDesempacotado = DFSoapEnvelope.desempacotar(envelope);
 
-        Assert.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
+        Assertions.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
     }
 
     @Test
@@ -145,21 +144,21 @@ public class DFSoapEnvelopeTest {
 
         final String envelope = DFSoapEnvelope.envelopar(namespace, "cteCabecMsg", headerXml, "cteDadosMsg", xmlNegocio);
 
-        Assert.assertTrue(envelope.startsWith("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"));
-        Assert.assertTrue(envelope.contains("<soap:Header>"));
-        Assert.assertTrue(envelope.contains("<cteCabecMsg xmlns=\"" + namespace + "\">" + headerXml + "</cteCabecMsg>"));
-        Assert.assertTrue(envelope.contains("</soap:Header>"));
-        Assert.assertTrue(envelope.contains("<soap:Body>"));
-        Assert.assertTrue(envelope.contains("<cteDadosMsg xmlns=\"" + namespace + "\">" + xmlNegocio + "</cteDadosMsg>"));
-        Assert.assertTrue(envelope.endsWith("</soap:Body></soap:Envelope>"));
+        Assertions.assertTrue(envelope.startsWith("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"));
+        Assertions.assertTrue(envelope.contains("<soap:Header>"));
+        Assertions.assertTrue(envelope.contains("<cteCabecMsg xmlns=\"" + namespace + "\">" + headerXml + "</cteCabecMsg>"));
+        Assertions.assertTrue(envelope.contains("</soap:Header>"));
+        Assertions.assertTrue(envelope.contains("<soap:Body>"));
+        Assertions.assertTrue(envelope.contains("<cteDadosMsg xmlns=\"" + namespace + "\">" + xmlNegocio + "</cteDadosMsg>"));
+        Assertions.assertTrue(envelope.endsWith("</soap:Body></soap:Envelope>"));
         // o cabecalho deve vir antes do corpo, na ordem exigida pelo XML Schema (sequence)
-        Assert.assertTrue(envelope.indexOf("<soap:Header>") < envelope.indexOf("<soap:Body>"));
+        Assertions.assertTrue(envelope.indexOf("<soap:Header>") < envelope.indexOf("<soap:Body>"));
     }
 
     @Test
     public void deveReconhecerFaultEmCorpoDevolvidoComStatusHttpDeErro() {
         // mesma forma de soap:Fault que a SEFAZ devolve sob HTTP 200 (deveLancarDFSoapFaultExceptionComOMotivoQuandoRespostaForFault),
-        // mas aqui simulando o cenario de HTTP 500 com Fault no corpo (como o Axis2/HTTPSender legado tratava)
+        // mas aqui simulando o cenario de HTTP 500 com Fault no corpo
         final String respostaComFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Body>"
                 + "<soap:Fault>"
@@ -171,13 +170,13 @@ public class DFSoapEnvelopeTest {
 
         final DFSoapFaultException fault = DFSoapEnvelope.tentarReconhecerFault(respostaComFault);
 
-        Assert.assertNotNull(fault);
-        Assert.assertEquals("Servico Paralisado Temporariamente", fault.getMessage());
+        Assertions.assertNotNull(fault);
+        Assertions.assertEquals("Servico Paralisado Temporariamente", fault.getMessage());
     }
 
     @Test
     public void naoDeveReconhecerFaultQuandoCorpoNaoForUmEnvelopeSoapValido() {
-        Assert.assertNull(DFSoapEnvelope.tentarReconhecerFault("servico temporariamente indisponivel"));
+        Assertions.assertNull(DFSoapEnvelope.tentarReconhecerFault("servico temporariamente indisponivel"));
     }
 
     @Test
@@ -188,7 +187,7 @@ public class DFSoapEnvelopeTest {
                 + "</soap:Body>"
                 + "</soap:Envelope>";
 
-        Assert.assertNull(DFSoapEnvelope.tentarReconhecerFault(respostaSemFault));
+        Assertions.assertNull(DFSoapEnvelope.tentarReconhecerFault(respostaSemFault));
     }
 
     @Test
@@ -199,7 +198,7 @@ public class DFSoapEnvelopeTest {
         // a resposta da SEFAZ nao tem cabecalho, so o corpo - o envelope de pedido com
         // cabecalho e a resposta sem cabecalho sao simulados separadamente aqui
         final String envelopeDoPedido = DFSoapEnvelope.envelopar(namespace, "cteCabecMsg", "<cUF>35</cUF><versaoDados>3.00</versaoDados>", "cteDadosMsg", "<consStatServ/>");
-        Assert.assertTrue(envelopeDoPedido.contains("<soap:Header>"));
+        Assertions.assertTrue(envelopeDoPedido.contains("<soap:Header>"));
 
         final String respostaSefaz = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Body>"
@@ -209,6 +208,6 @@ public class DFSoapEnvelopeTest {
                 + "</soap:Body>"
                 + "</soap:Envelope>";
         final String xmlDesempacotado = DFSoapEnvelope.desempacotar(respostaSefaz);
-        Assert.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
+        Assertions.assertTrue(xmlDesempacotado.contains("<cStat>107</cStat>"));
     }
 }

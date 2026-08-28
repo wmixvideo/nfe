@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.webservices;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Pina o formato exato do envelope SOAP 1.2 montado por {@link WSStatusConsulta}: sem
@@ -16,11 +16,11 @@ public class WSStatusConsultaTest {
     public void deveMontarEnvelopeSemSoapHeader() {
         final String envelope = WSStatusConsulta.montarEnvelope("<consStatServ/>");
 
-        Assert.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+        Assertions.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Body>"
                 + "<cteDadosMsg xmlns=\"http://www.portalfiscal.inf.br/cte/wsdl/CTeStatusServicoV4\"><consStatServ/></cteDadosMsg>"
                 + "</soap:Body>"
                 + "</soap:Envelope>", envelope);
-        Assert.assertFalse("cte400 nao deve enviar cteCabecMsg", envelope.contains("cteCabecMsg"));
+        Assertions.assertFalse(envelope.contains("cteCabecMsg"));
     }
 }

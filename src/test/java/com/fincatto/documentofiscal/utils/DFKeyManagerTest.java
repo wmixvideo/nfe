@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,8 +16,7 @@ import java.security.cert.X509Certificate;
 /**
  * Testa {@link DFKeyManager} com um keystore de mais de uma chave, cenario em que
  * {@link DFConfig#getCertificadoAlias()} precisa ser respeitado para que o certificado
- * apresentado no handshake mTLS seja o mesmo usado para assinar o XML (ver
- * {@link DFAssinaturaDigital#getPrivateKeyEntry}).
+ * apresentado no handshake mTLS seja o mesmo usado para assinar o XML.
  *
  * @author Marcos Lombardi de Andrade
  */
@@ -30,7 +29,7 @@ public class DFKeyManagerTest {
 
     private Path keystorePath;
 
-    @After
+    @AfterAll
     public void removeKeystoreTemporario() throws IOException {
         if (this.keystorePath != null) {
             Files.deleteIfExists(this.keystorePath);
@@ -44,10 +43,10 @@ public class DFKeyManagerTest {
 
         final DFKeyManager keyManager = new DFKeyManager(new DFConfigTeste(keyStore, DFKeyManagerTest.ALIAS_SEGUNDO));
 
-        Assert.assertEquals(DFKeyManagerTest.ALIAS_SEGUNDO, keyManager.chooseClientAlias(null, null, null));
+        Assertions.assertEquals(DFKeyManagerTest.ALIAS_SEGUNDO, keyManager.chooseClientAlias(null, null, null));
         final X509Certificate[] cadeia = keyManager.getCertificateChain(DFKeyManagerTest.ALIAS_SEGUNDO);
-        Assert.assertEquals("CN=segundo", cadeia[0].getSubjectX500Principal().getName());
-        Assert.assertNotNull(keyManager.getPrivateKey(DFKeyManagerTest.ALIAS_SEGUNDO));
+        Assertions.assertEquals("CN=segundo", cadeia[0].getSubjectX500Principal().getName());
+        Assertions.assertNotNull(keyManager.getPrivateKey(DFKeyManagerTest.ALIAS_SEGUNDO));
     }
 
     @Test
@@ -58,9 +57,8 @@ public class DFKeyManagerTest {
         final DFKeyManager keyManager = new DFKeyManager(new DFConfigTeste(keyStore, null));
 
         final String aliasEscolhido = keyManager.chooseClientAlias(null, null, null);
-        Assert.assertTrue("alias inesperado: " + aliasEscolhido,
-                DFKeyManagerTest.ALIAS_PRIMEIRO.equals(aliasEscolhido) || DFKeyManagerTest.ALIAS_SEGUNDO.equals(aliasEscolhido));
-        Assert.assertNotNull(keyManager.getPrivateKey(aliasEscolhido));
+        Assertions.assertTrue(DFKeyManagerTest.ALIAS_PRIMEIRO.equals(aliasEscolhido) || DFKeyManagerTest.ALIAS_SEGUNDO.equals(aliasEscolhido));
+        Assertions.assertNotNull(keyManager.getPrivateKey(aliasEscolhido));
     }
 
     private static Path criarKeystoreComDoisAliases() throws IOException, InterruptedException {

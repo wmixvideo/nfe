@@ -16,14 +16,10 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 /**
- * Monta e desempacota o envelope SOAP 1.2 no mesmo formato que os stubs gerados pelo Axis2
- * (via WSDL2Java) produziam para os webservices da SEFAZ: um unico elemento "wrapper"
+ * Monta e desempacota o envelope SOAP 1.2: um unico elemento "wrapper"
  * (ex.: {@code nfeDadosMsg}/{@code nfeResultMsg}) dentro de {@code soap:Body}, contendo o
  * XML de negocio (ja serializado pelo Simple XML Framework) como filho direto.
  * <p>
- * Substitui a montagem via {@code Axiom}/{@code ADBBean} por concatenacao de texto na ida
- * (o XML de negocio ja chega pronto como {@code String}) e parsing DOM na volta.
- * @author Marcos Lombardi de Andrade
  */
 public final class DFSoapEnvelope {
 
@@ -128,8 +124,7 @@ public final class DFSoapEnvelope {
     /**
      * Tenta reconhecer um {@code soap:Fault} no corpo de uma resposta HTTP de erro (codigo HTTP
      * &gt;= 300) - a SEFAZ por vezes devolve o Fault dentro de um envelope SOAP 1.2 valido sob um
-     * codigo de erro (tipicamente HTTP 500), cenario que o {@code HTTPSender} do Axis2 legado
-     * tratava especialmente. Ao contrario de {@link #desempacotar}, nunca lanca excecao: um corpo
+     * codigo de erro (tipicamente HTTP 500). Ao contrario de {@link #desempacotar}, nunca lanca excecao: um corpo
      * que nao seja um envelope SOAP 1.2 valido, ou cujo {@code soap:Body} nao comece com
      * {@code soap:Fault}, simplesmente nao e reconhecido como Fault.
      *

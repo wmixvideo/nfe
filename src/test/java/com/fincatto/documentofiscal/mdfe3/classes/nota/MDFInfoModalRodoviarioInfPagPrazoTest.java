@@ -1,19 +1,17 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import static org.junit.Assert.assertEquals;
 
 public class MDFInfoModalRodoviarioInfPagPrazoTest  {
 
     private MDFInfoModalRodoviarioInfPagPrazo prazo;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.prazo = new MDFInfoModalRodoviarioInfPagPrazo();
     }
@@ -23,7 +21,7 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
     @Test
     public void deveAceitarNParcelaComTamanhoMinimo() {
         prazo.setNParcela("1");
-        assertEquals("001", prazo.getNParcela());
+        Assertions.assertEquals("001", prazo.getNParcela());
     }
 
     @Test
@@ -34,8 +32,8 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
 
         prazo.setNParcela(nParcela60);
 
-        assertEquals(60, prazo.getNParcela().length());
-        assertEquals(nParcela60, prazo.getNParcela());
+        Assertions.assertEquals(60, prazo.getNParcela().length());
+        Assertions.assertEquals(nParcela60, prazo.getNParcela());
     }
 
     // ---------------- dVenc ----------------
@@ -47,7 +45,7 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
         LocalDate dataValida = LocalDate.of(2025, 10, 7);
         prazo.setDVenc(dataValida);
 
-        assertEquals(dataValida, prazo.getDVenc());
+        Assertions.assertEquals(dataValida, prazo.getDVenc());
     }
 
     @Test
@@ -58,10 +56,10 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
         LocalDate segunda  = LocalDate.of(2025, 12, 31);
 
         prazo.setDVenc(primeira);
-        assertEquals(primeira, prazo.getDVenc());
+        Assertions.assertEquals(primeira, prazo.getDVenc());
 
         prazo.setDVenc(segunda);
-        assertEquals(segunda, prazo.getDVenc());
+        Assertions.assertEquals(segunda, prazo.getDVenc());
     }
 
     @Test
@@ -69,12 +67,12 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
         MDFInfoModalRodoviarioInfPagPrazo prazo = new MDFInfoModalRodoviarioInfPagPrazo();
 
         prazo.setDVenc(null);
-        Assert.assertNull(prazo.getDVenc());
+        Assertions.assertNull(prazo.getDVenc());
 
         prazo.setDVenc(LocalDate.of(2025, 10, 7));
-        Assert.assertNotNull(prazo.getDVenc());
+        Assertions.assertNotNull(prazo.getDVenc());
         prazo.setDVenc(null);
-        Assert.assertNull(prazo.getDVenc());
+        Assertions.assertNull(prazo.getDVenc());
     }
 
     // ---------------- vParcela ----------------
@@ -83,23 +81,23 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
     public void deveAceitarVParcelaValidoNoLimite() {
         BigDecimal limite = new BigDecimal("9999999999.99");
         prazo.setVParcela(limite);
-        assertEquals(0, prazo.getVParcela().compareTo(limite));
+        Assertions.assertEquals(0, prazo.getVParcela().compareTo(limite));
     }
 
     @Test
     public void deveAceitarVParcelaValidoIntermediario() {
         BigDecimal valor = new BigDecimal("1234567890.23");
         prazo.setVParcela(valor);
-        assertEquals(0, prazo.getVParcela().compareTo(valor));
+        Assertions.assertEquals(0, prazo.getVParcela().compareTo(valor));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarVParcelaComMaisDe2CasasDecimais() {
-        prazo.setVParcela(new BigDecimal("10.999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> prazo.setVParcela(new BigDecimal("10.999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarVParcelaComMaisDe13Digitos() {
-        prazo.setVParcela(new BigDecimal("100000000000.00"));
+        Assertions.assertThrows(NumberFormatException.class, () -> prazo.setVParcela(new BigDecimal("100000000000.00")));
     }
 }

@@ -42,13 +42,12 @@ class WSConsultaCadastro implements DFLog {
      * Envia a consulta de cadastro para a SEFAZ via {@link DFHttpClient} e devolve o XML de
      * negocio ja desempacotado do envelope SOAP 1.2 de resposta.
      * <p>
-     * O Mato Grosso (MT) usa um WSDL a parte (antigo {@code MTCadConsultaCadastro4Stub}) cujo
-     * corpo SOAP tem um nivel extra de aninhamento: o elemento de operacao
+     * O Mato Grosso (MT) usa um WSDL a parte cujo corpo SOAP tem um nivel extra de aninhamento: o elemento de operacao
      * {@code <consultaCadastro>} envolve o {@code <nfeDadosMsg>}, em vez de {@code nfeDadosMsg}
      * ser o elemento direto do corpo como em todas as outras UFs. {@link DFSoapEnvelope#envelopar}
      * so monta um nivel de wrapper, entao para o MT o {@code <nfeDadosMsg>} extra e montado
-     * manualmente antes de passar para o envelopar - resultado equivalente ao que o stub MT
-     * gerava, sem precisar de um segundo metodo de envelopamento generico so para este caso.
+     * manualmente antes de passar para o envelopar, sem precisar de um segundo metodo de envelopamento
+     * generico so para este caso.
      */
     private String efetuaConsulta(final DFUnidadeFederativa uf, final String xmlConsulta) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(uf);

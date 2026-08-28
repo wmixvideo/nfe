@@ -32,9 +32,7 @@ import java.util.List;
 /**
  * Ponto de entrada publico para todos os webservices de CT-e 3.00 (status, consulta, recepcao
  * de lote e OS, eventos - cancelamento, carta de correcao, EPEC, GTV, comprovante de entrega,
- * prestacao em desacordo, registro multimodal - e distribuicao de DF-e). Todos os servicos ja
- * migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o descarte dos pools de
- * conexao mantidos por esta instancia.
+ * prestacao em desacordo, registro multimodal - e distribuicao de DF-e).
  * <p>
  * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.cte.CTeConfig}/
  * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
@@ -62,12 +60,6 @@ public class WSFacade implements Closeable {
     private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
     public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: o
-        // Protocol.registerProtocol que existia aqui antes mutava um registro estatico global
-        // (org.apache.commons.httpclient.protocol.Protocol), compartilhado por todos os facades
-        // da lib - cada instancia criada sobrescrevia o certificado usado por instancias
-        // concorrentes de outros modulos. Removido: cada servico deste facade agora usa o
-        // DFHttpClient injetado (httpclient5), que carrega seu proprio SSLContext.
         final DFSocketFactory socketFactory = new DFSocketFactory(config);
         this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
@@ -77,7 +69,7 @@ public class WSFacade implements Closeable {
         this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
         this.wsCancelamento = new WSCancelamento(config, this.httpClient);
         this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
-        this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config);
+        this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config, this.httpClient);
         this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config, this.httpClient);
         this.wsRegistroMultimodal = new WSRegistroMultimodal(config, this.httpClient);
         this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
@@ -88,28 +80,10 @@ public class WSFacade implements Closeable {
         this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config, this.httpClient);
     }
 
-    /**
-     * Libera o pool de conexoes HTTP compartilhado entre os servicos deste facade ja migrados
-     * para {@code httpclient5}, e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
-     * proprio de {@link com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe}
-     * - que nao compartilha o pool acima (e tambem usada pelo cte400), mas tambem ja esta em
-     * {@code httpclient5}. Antes desta migracao o WSDistribuicaoCTe nao mantinha nenhum recurso
-     * persistente (o Axis2 construia o stub por chamada); agora mantem um pool proprio que
-     * precisa ser liberado explicitamente - da o close() aqui, mesmo padrao ja usado no
-     * WSFacade do cte400.
-     * <p>
-     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
-     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
-     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
-     *
-     * @throws IOException caso ocorra falha ao liberar as conexoes.
-     */
     @Override
-    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        try (WSDistribuicaoCTe wSDistribuicaoCTeFechavel = this.wSDistribuicaoCTe; DFHttpClient httpClientFechavel = this.httpClient) {
-            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
-            // declaracao (httpClient primeiro, depois wSDistribuicaoCTe), mesmo que um deles lance excecao
+        if(this.httpClient != null){
+            this.httpClient.close();
         }
     }
 

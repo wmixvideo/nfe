@@ -1,7 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.IOException;
-
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
@@ -13,13 +11,8 @@ import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
-/**
- * Consulta o status do servico da SEFAZ responsavel por uma UF (NF-e e NFC-e).
- * <p>
- * Primeiro servico do modulo nfe400 migrado do Axis2 para {@code httpclient5} - o envelope
- * SOAP 1.2 e montado/desempacotado manualmente por {@link DFSoapEnvelope}, no mesmo formato
- * que o stub gerado pelo Axis2 (WSDL2Java) produzia.
- */
+import java.io.IOException;
+
 class WSStatusConsulta implements DFLog {
 
     private static final String NOME_SERVICO = "STATUS";

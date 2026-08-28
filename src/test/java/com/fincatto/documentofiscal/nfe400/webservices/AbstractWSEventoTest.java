@@ -1,19 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyStore;
-
-import javax.net.ssl.SSLContext;
-
-import org.apache.hc.client5.http.ClientProtocolException;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
@@ -21,14 +7,26 @@ import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import javax.net.ssl.SSLContext;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyStore;
 
 /**
  * Testa {@link AbstractWSEvento#enviarEvento}, o metodo estatico que concentra a mecanica de
  * transporte (montar envelope SOAP 1.2, enviar via {@link DFHttpClient}, desempacotar a
- * resposta) reaproveitada por todos os 17 servicos de evento do nfe400 migrados do Axis2 para
- * httpclient5 (carta de correcao, cancelamento, manifestacao do destinatario, EPEC e os 10
- * eventos que herdam de {@link AbstractWSEvento}). Segue o mesmo padrao de servidor HTTP local
- * (sem dependencias externas de mock) ja usado em {@code DFHttpClientTest}.
+ * resposta) reaproveitada por todos os 17 servicos de evento do nfe400
+ * (carta de correcao, cancelamento, manifestacao do destinatario, EPEC e os 10 eventos que
+ * herdam de {@link AbstractWSEvento}). Segue o mesmo padrao de servidor HTTP local (sem dependencias externas de mock)
+ * ja usado em {@code DFHttpClientTest}.
  * 
  * @author Marcos Lombardi de Andrade
  */
@@ -37,7 +35,7 @@ public class AbstractWSEventoTest {
     private HttpServer servidor;
     private DFHttpClient httpClient;
 
-    @After
+    @AfterAll
     public void encerraClienteEServidor() throws IOException {
         if (this.httpClient != null) {
             this.httpClient.close();
@@ -63,11 +61,11 @@ public class AbstractWSEventoTest {
         AbstractWSEvento.enviarEvento(this.httpClient, endpoint, xmlAssinado);
 
         // a action do SOAP 1.2 vai dentro do Content-Type (nao num header SOAPAction separado)
-        Assert.assertTrue(contentTypeRecebido.toString().contains(AbstractWSEvento.SOAP_ACTION));
+        Assertions.assertTrue(contentTypeRecebido.toString().contains(AbstractWSEvento.SOAP_ACTION));
         // o wrapper nfeDadosMsg usa o namespace da operacao nfeRecepcaoEvento
-        Assert.assertTrue(corpoRecebido.toString().contains("<nfeDadosMsg xmlns=\"" + AbstractWSEvento.NAMESPACE_WSDL + "\">"));
-        // o XML assinado vai embutido tal qual, sem reprocessamento (concatenacao de texto, nao montagem via Axiom)
-        Assert.assertTrue(corpoRecebido.toString().contains(xmlAssinado));
+        Assertions.assertTrue(corpoRecebido.toString().contains("<nfeDadosMsg xmlns=\"" + AbstractWSEvento.NAMESPACE_WSDL + "\">"));
+        // o XML assinado vai embutido tal qual, sem reprocessamento (concatenacao de texto)
+        Assertions.assertTrue(corpoRecebido.toString().contains(xmlAssinado));
     }
 
     @Test
@@ -78,10 +76,10 @@ public class AbstractWSEventoTest {
 
         final String xmlResultado = AbstractWSEvento.enviarEvento(this.httpClient, endpoint, "<envEvento/>");
 
-        Assert.assertTrue(xmlResultado.startsWith("<retEnvEvento"));
-        Assert.assertTrue(xmlResultado.contains("<cStat>135</cStat>"));
-        Assert.assertTrue(xmlResultado.contains("<xMotivo>Evento registrado</xMotivo>"));
-        Assert.assertFalse("nao deve sobrar o wrapper nfeResultMsg no resultado", xmlResultado.contains("nfeResultMsg"));
+        Assertions.assertTrue(xmlResultado.startsWith("<retEnvEvento"));
+        Assertions.assertTrue(xmlResultado.contains("<cStat>135</cStat>"));
+        Assertions.assertTrue(xmlResultado.contains("<xMotivo>Evento registrado</xMotivo>"));
+        Assertions.assertFalse(xmlResultado.contains("nfeResultMsg"));
     }
 
     @Test
@@ -99,9 +97,9 @@ public class AbstractWSEventoTest {
 
         try {
             AbstractWSEvento.enviarEvento(this.httpClient, endpoint, "<envEvento/>");
-            Assert.fail("deveria ter lancado DFSoapFaultException");
+            Assertions.fail("deveria ter lancado DFSoapFaultException");
         } catch (final DFSoapFaultException e) {
-            Assert.assertEquals("Rejeicao: Chave de Acesso invalida", e.getMessage());
+            Assertions.assertEquals("Rejeicao: Chave de Acesso invalida", e.getMessage());
         }
     }
 
@@ -112,9 +110,9 @@ public class AbstractWSEventoTest {
 
         try {
             AbstractWSEvento.enviarEvento(this.httpClient, endpoint, "<envEvento/>");
-            Assert.fail("deveria ter lancado ClientProtocolException");
+            Assertions.fail("deveria ter lancado ClientProtocolException");
         } catch (final ClientProtocolException e) {
-            Assert.assertTrue(e.getMessage().contains("500"));
+            Assertions.assertTrue(e.getMessage().contains("500"));
         }
     }
 

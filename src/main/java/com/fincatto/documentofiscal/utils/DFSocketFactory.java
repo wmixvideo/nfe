@@ -13,11 +13,7 @@ import java.security.UnrecoverableKeyException;
 
 /**
  * Monta o {@link SSLContext} usado no mTLS com a SEFAZ a partir do certificado A1 (via
- * {@link DFKeyManager}) e da cadeia de certificados configurada. Ate a migracao Axis2 -&gt;
- * HttpClient5 esta classe tambem implementava {@code org.apache.commons.httpclient.protocol.ProtocolSocketFactory}
- * (Commons-HttpClient 3, usada pelo transporte do Axis2); essa interface e os metodos
- * {@code createSocket(...)} que ela exigia foram removidos por nao terem mais nenhum chamador -
- * hoje o unico uso desta classe e {@link #getSslContext()}.
+ * {@link DFKeyManager}) e da cadeia de certificados configurada.
  */
 public class DFSocketFactory {
 

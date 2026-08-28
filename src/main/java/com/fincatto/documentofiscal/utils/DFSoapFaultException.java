@@ -1,10 +1,8 @@
 package com.fincatto.documentofiscal.utils;
 
 /**
- * Representa um {@code soap:Fault} devolvido pelo webservice da SEFAZ - equivalente,
- * neste novo transporte, ao {@code org.apache.axis2.AxisFault} que o Axis2 lancava
- * para o mesmo cenario.
- * @author Marcos Lombardi de Andrade
+ * Representa um {@code soap:Fault} devolvido pelo webservice da SEFAZ;
+ *
  * @see DFSoapEnvelope#desempacotar(String)
  */
 public class DFSoapFaultException extends Exception {

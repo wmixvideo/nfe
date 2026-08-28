@@ -1,18 +1,16 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import org.junit.Assert;
-
-import static org.junit.Assert.assertEquals;
 
 public class MDFInfoModalRodoviarioInfContratoTest {
 
     private MDFInfoModalRodoviarioInfContrato contrato;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.contrato = new MDFInfoModalRodoviarioInfContrato();
     }
@@ -24,7 +22,7 @@ public class MDFInfoModalRodoviarioInfContratoTest {
 
         contrato.setValorContratoGlobal(validoLimite);
 
-        assertEquals("Valor retornado deve ser igual ao atribuído (compareTo == 0)", 0, contrato.getValorContratoGlobal().compareTo(validoLimite));
+        Assertions.assertEquals(0, contrato.getValorContratoGlobal().compareTo(validoLimite));
     }
 
     @Test
@@ -33,22 +31,26 @@ public class MDFInfoModalRodoviarioInfContratoTest {
 
         contrato.setValorContratoGlobal(valor);
 
-        assertEquals(0, contrato.getValorContratoGlobal().compareTo(valor));
+        Assertions.assertEquals(0, contrato.getValorContratoGlobal().compareTo(valor));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarValorContratoGlobalComMaisDe13DigitosTotais() {
+        Assertions.assertThrows(NumberFormatException.class, () -> {
 
-        BigDecimal invalido = new BigDecimal("100000000000.00");
+            BigDecimal invalido = new BigDecimal("100000000000.00");
 
-        contrato.setValorContratoGlobal(invalido);
+            contrato.setValorContratoGlobal(invalido);
+        });
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarValorContratoGlobalComMaisDe2CasasDecimais() {
+        Assertions.assertThrows(NumberFormatException.class, () -> {
 
-        BigDecimal invalido = new BigDecimal("1.234"); // 3 casas decimais
+            BigDecimal invalido = new BigDecimal("1.234"); // 3 casas decimais
 
-        contrato.setValorContratoGlobal(invalido);
+            contrato.setValorContratoGlobal(invalido);
+        });
     }
 }

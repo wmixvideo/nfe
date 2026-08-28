@@ -1,12 +1,5 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -27,15 +20,20 @@ import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStat
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+
 /**
  * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 3.10 (envio/consulta de
  * lote, status, consulta de nota e cadastro, download, eventos - cancelamento, carta de
  * correcao, inutilizacao, manifestacao do destinatario - e distribuicao de DF-e). Ao contrario
  * do mdfe3, as 4 classes de evento nao foram unificadas num helper compartilhado: cada uma
  * resolve endpoint/cabecalho de forma genuinamente diferente. Status e consulta de nota tem
- * ainda um caminho separado para a Bahia (WSDL proprio). Todos os servicos ja migrados de Axis2
- * para {@code httpclient5}; ver {@link #close()} para o descarte dos pools de conexao mantidos
- * por esta instancia.
+ * ainda um caminho separado para a Bahia (WSDL proprio).
  * <p>
  * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
  * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
@@ -79,29 +77,13 @@ public class WSFacade implements Closeable {
         this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config, this.httpClient);
         this.wsNotaDownload = new WSNotaDownload(config, this.httpClient);
-        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
+        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config, this.httpClient);
     }
 
-    /**
-     * Libera o pool de conexoes HTTP compartilhado entre os servicos deste facade ja migrados
-     * para {@code httpclient5}, e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
-     * proprio de {@link com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe}
-     * - que nao compartilha o pool acima (e tambem usado pelo nfe400), mas tambem ja esta em
-     * {@code httpclient5}. Chamar quando esta instancia de {@link WSFacade} nao for mais
-     * utilizada.
-     * <p>
-     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
-     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
-     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
-     *
-     * @throws IOException caso ocorra falha ao liberar as conexoes.
-     */
     @Override
-    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        try (WSDistribuicaoNFe wSDistribuicaoNFeFechavel = this.wSDistribuicaoNFe; DFHttpClient httpClientFechavel = this.httpClient) {
-            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
-            // declaracao (httpClient primeiro, depois wSDistribuicaoNFe), mesmo que um deles lance excecao
+        if(this.httpClient != null){
+            this.httpClient.close();
         }
     }
 

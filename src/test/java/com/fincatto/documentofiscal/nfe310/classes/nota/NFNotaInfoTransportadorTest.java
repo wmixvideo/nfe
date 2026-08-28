@@ -1,24 +1,24 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoTransportador;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoTransportadorTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNomeMunicipioTamanhoInvalido() {
-        final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
-        try {
-            transportador.setNomeMunicipio("");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn1");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
+            try {
+                transportador.setNomeMunicipio("");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn1");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
@@ -28,16 +28,18 @@ public class NFNotaInfoTransportadorTest {
         transportador.setNomeMunicipio("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirRazaoSocialInvalido() {
-        final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
-        try {
-            transportador.setRazaoSocial("");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn1");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
+            try {
+                transportador.setRazaoSocial("");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                transportador.setRazaoSocial("4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn1");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
@@ -56,16 +58,18 @@ public class NFNotaInfoTransportadorTest {
         transportador.setInscricaoEstadual("12345678901234");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirInscricaoEstadualInvalido() {
-        final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
-        try {
-            transportador.setInscricaoEstadual("I");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            transportador.setInscricaoEstadual("ISENTOISENTOISE");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoTransportador transportador = new NFNotaInfoTransportador();
+            try {
+                transportador.setInscricaoEstadual("I");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                transportador.setInscricaoEstadual("ISENTOISENTOISE");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
@@ -148,45 +152,53 @@ public class NFNotaInfoTransportadorTest {
         transportador.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSetarCPFCasoCNPJEstejaSetado() {
-        final NFNotaInfoTransportador nfNotaInfoTransportador = new NFNotaInfoTransportador();
-        nfNotaInfoTransportador.setCpf("13484327401");
-        nfNotaInfoTransportador.setCnpj("34843274000164");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoTransportador nfNotaInfoTransportador = new NFNotaInfoTransportador();
+            nfNotaInfoTransportador.setCpf("13484327401");
+            nfNotaInfoTransportador.setCnpj("34843274000164");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSetarCNPJCasoCPFEstejaSetado() {
-        final NFNotaInfoTransportador nfNotaInfoTransportador = new NFNotaInfoTransportador();
-        nfNotaInfoTransportador.setCnpj("34843274000164");
-        nfNotaInfoTransportador.setCpf("13484327401");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoTransportador nfNotaInfoTransportador = new NFNotaInfoTransportador();
+            nfNotaInfoTransportador.setCnpj("34843274000164");
+            nfNotaInfoTransportador.setCpf("13484327401");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCPFInvalido() {
-        try {
-            new NFNotaInfoTransportador().setCpf("134843274012");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoTransportador().setCpf("1348432740");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoTransportador().setCpf("134843274012");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoTransportador().setCpf("1348432740");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCNPJInvalido() {
-        try {
-            new NFNotaInfoTransportador().setCnpj("348432740001641");
-            Assert.fail("validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoTransportador().setCnpj("3484327400016");
-        }
-        Assert.fail("validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoTransportador().setCnpj("348432740001641");
+                Assertions.fail("validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoTransportador().setCnpj("3484327400016");
+            }
+            Assertions.fail("validacao nao funcionou");
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoTransportador><CNPJ>34843274000164</CNPJ><xNome>4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn</xNome><IE>ISENTO</IE><xEnder>D8nOWsHxI5K4RgYTUGwWgIKajhiUf4Q7aOOmaTV2wnYV0kQ5MezOjqfoPcNY</xEnder><xMun>4lb4Qv5yi9oYq7s8fF98a0EEv98oAxl0CIs5gzyKNVp1skE3IHD9Z7JbjHCn</xMun><UF>SP</UF></NFNotaInfoTransportador>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoTransportador().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoTransportador().toString());
     }
 }

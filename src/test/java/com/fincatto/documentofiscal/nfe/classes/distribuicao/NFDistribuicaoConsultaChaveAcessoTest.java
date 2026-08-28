@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFDistribuicaoConsultaChaveAcessoTest {
 
@@ -9,7 +9,7 @@ public class NFDistribuicaoConsultaChaveAcessoTest {
     public void deveSerChaveAcessoCorreta() {
         final NFDistribuicaoConsultaChaveAcesso distribuicaoInt = new NFDistribuicaoConsultaChaveAcesso();
         distribuicaoInt.setChaveAcesso("12345678901234567890123456789012345678901234");
-        Assert.assertEquals("12345678901234567890123456789012345678901234", distribuicaoInt.getChaveAcesso());
+        Assertions.assertEquals("12345678901234567890123456789012345678901234", distribuicaoInt.getChaveAcesso());
     }
 
     @Test
@@ -17,7 +17,7 @@ public class NFDistribuicaoConsultaChaveAcessoTest {
         final NFDistribuicaoConsultaChaveAcesso distribuicaoInt = new NFDistribuicaoConsultaChaveAcesso();
         distribuicaoInt.setChaveAcesso("12345678901234567890123456789012345678901234");
         final String retorno = "<NFDistribuicaoConsultaChaveAcesso><chNFe>12345678901234567890123456789012345678901234</chNFe></NFDistribuicaoConsultaChaveAcesso>";
-        Assert.assertEquals(retorno, distribuicaoInt.toString());
+        Assertions.assertEquals(retorno, distribuicaoInt.toString());
     }
 
 }

@@ -33,8 +33,7 @@ import java.util.List;
  * Ponto de entrada publico para todos os webservices de CT-e 4.00 (status, consulta, recepcao
  * de CT-e/OS/simplificado, eventos - cancelamento, carta de correcao, EPEC, GTV, comprovante de
  * entrega, insucesso de entrega, prestacao em desacordo, registro multimodal - e distribuicao de
- * DF-e). Todos os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()}
- * para o descarte dos pools de conexao mantidos por esta instancia.
+ * DF-e).
  * <p>
  * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.cte.CTeConfig}/
  * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
@@ -76,7 +75,7 @@ public class WSFacade implements Closeable {
 
         this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
         this.wsRecepcaoCTe = new WSRecepcaoCTe(config, this.httpClient);
-        this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config);
+        this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config, this.httpClient);
         this.wsConsulta = new WSConsulta(config, this.httpClient);
         this.wsCancelamento = new WSCancelamento(config, this.httpClient);
         this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config, this.httpClient);
@@ -93,30 +92,10 @@ public class WSFacade implements Closeable {
         this.wsRecepcaoCTeSimp = new WSRecepcaoCTeSimp(config, this.httpClient);
     }
 
-    /**
-     * Libera o pool de conexoes HTTP compartilhado entre todos os servicos deste facade ja
-     * migrados para {@code httpclient5}, e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
-     * proprio de {@link com.fincatto.documentofiscal.cte.webservices.distribuicao.WSDistribuicaoCTe}
-     * - que nao compartilha o pool acima (e tambem usada pelo cte300), mas tambem ja esta em
-     * {@code httpclient5}. Chamar quando esta instancia de {@link WSFacade} nao for mais
-     * utilizada.
-     *
-     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
-     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
-     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
-     *
-     * @throws IOException caso ocorra falha ao liberar as conexoes.
-     */
     @Override
-    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        // WSDistribuicaoCTe nao compartilha o pool do httpClient acima - cria o proprio
-        // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoCTe.close()). Fecha-lo aqui
-        // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
-        // wsDistribuicaoCTe.close() diretamente.
-        try (WSDistribuicaoCTe wsDistribuicaoCTeFechavel = this.wsDistribuicaoCTe; DFHttpClient httpClientFechavel = this.httpClient) {
-            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
-            // declaracao (httpClient primeiro, depois wsDistribuicaoCTe), mesmo que um deles lance excecao
+        if(this.httpClient != null){
+            this.httpClient.close();
         }
     }
 

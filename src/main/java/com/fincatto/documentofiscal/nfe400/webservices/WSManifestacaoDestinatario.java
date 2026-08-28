@@ -1,6 +1,16 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.Closeable;
+import com.fincatto.documentofiscal.DFLog;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
+import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.*;
+import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.KeyManagementException;
@@ -10,70 +20,15 @@ import java.security.UnrecoverableKeyException;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
-import com.fincatto.documentofiscal.DFLog;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEnviaEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFProtocoloEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFTipoEventoManifestacaoDestinatario;
-import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.utils.DFHttpClient;
-import com.fincatto.documentofiscal.utils.DFSoapFaultException;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
-
-public class WSManifestacaoDestinatario implements DFLog, Closeable {
+public class WSManifestacaoDestinatario implements DFLog {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private final NFeConfig config;
-    // DFHttpClient recebido do WSFacade (compartilhado com os demais servicos migrados) quando
-    // esta classe e construida atraves dele; fica null quando construida via
-    // WSManifestacaoDestinatario(NFeConfig) diretamente por codigo externo.
-    private final DFHttpClient httpClientCompartilhado;
-    // Criado sob demanda (lazy) apenas quando ninguem injetou um DFHttpClient - so na primeira
-    // chamada de rede, nunca no construtor. Isso preserva o comportamento anterior a esta
-    // migracao, em que problemas de certificado/SSL so apareciam ao efetivamente chamar a
-    // SEFAZ, nunca ao instanciar a classe (o construtor publico de 1 argumento nao pode
-    // declarar as excecoes checked de KeyStore/SSL sem quebrar quem ja o chama hoje).
-    private DFHttpClient httpClientProprio;
-
-    public WSManifestacaoDestinatario(final NFeConfig config) {
-        this(config, null);
-    }
+    private final DFHttpClient httpClient;
 
     WSManifestacaoDestinatario(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
-        this.httpClientCompartilhado = httpClient;
-    }
-
-    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        if (this.httpClientCompartilhado != null) {
-            return this.httpClientCompartilhado;
-        }
-        if (this.httpClientProprio == null) {
-            final DFSocketFactory socketFactory = new DFSocketFactory(this.config);
-            this.httpClientProprio = new DFHttpClient(socketFactory.getSslContext(), this.config);
-        }
-        return this.httpClientProprio;
-    }
-
-    /**
-     * Libera o pool de conexoes do {@link DFHttpClient} proprio, se algum tiver sido criado
-     * (isto e, se esta instancia foi construida via {@link #WSManifestacaoDestinatario(NFeConfig)}
-     * e chegou a fazer alguma chamada de rede). Nao fecha o {@link DFHttpClient} compartilhado
-     * recebido do {@link WSFacade} - quem o criou e responsavel por fecha-lo (ver
-     * {@link WSFacade#close()}).
-     */
-    @Override
-    public synchronized void close() throws IOException {
-        if (this.httpClientProprio != null) {
-            this.httpClientProprio.close();
-        }
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
@@ -125,7 +80,7 @@ public class WSManifestacaoDestinatario implements DFLog, Closeable {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        return AbstractWSEvento.enviarEvento(this.getHttpClient(), urlWebService, xmlAssinado);
+        return AbstractWSEvento.enviarEvento(this.httpClient, urlWebService, xmlAssinado);
     }
 
     private NFEnviaEventoManifestacaoDestinatario gerarDadosManifestacaoDestinatario(final String chaveAcesso, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cpfOuCnpj) {

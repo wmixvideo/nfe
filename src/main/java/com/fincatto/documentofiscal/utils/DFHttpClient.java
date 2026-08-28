@@ -27,9 +27,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Cliente HTTP compartilhado para os webservices SOAP da SEFAZ, baseado no
- * {@code org.apache.httpcomponents.client5:httpclient5}. Substitui, servico a servico,
- * o transporte que hoje o Axis2 provia, reaproveitando o mesmo {@link SSLContext} do
- * certificado A1 usado no mTLS.
+ * {@code org.apache.httpcomponents.client5:httpclient5}.
  * <p>
  * Uma unica instancia deve ser compartilhada entre todas as chamadas de um mesmo
  * {@link com.fincatto.documentofiscal.DFConfig} - o pool de conexoes interno cuida do reuso
@@ -52,28 +50,12 @@ public class DFHttpClient implements Closeable {
     /**
      * @param sslContext SSLContext ja configurado com o certificado A1 e a cadeia da SEFAZ,
      * tipicamente obtido de {@link DFSocketFactory#getSslContext()}.
-     * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes -
-     * ver o comentario no construtor sobre o mapeamento (historico, de compatibilidade com o
-     * Axis2) entre {@link DFConfig#getSoTimeoutEmMillis()}/{@link DFConfig#getTimeoutRequisicaoEmMillis()}
-     * e os timeouts de conexao/leitura do httpclient5.
+     * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes
      */
     public DFHttpClient(final SSLContext sslContext, final DFConfig config) {
-        // SSLConnectionSocketFactory (usada em versoes anteriores desta classe) esta deprecated
-        // no httpclient5 5.6+ em favor de TlsSocketStrategy/DefaultClientTlsStrategy.
         final DefaultClientTlsStrategy tlsStrategy =
                 new DefaultClientTlsStrategy(sslContext, config.getSSLProtocolos(), null, SSLBufferMode.STATIC, new DefaultHostnameVerifier());
 
-        // Mapeamento alinhado ao Javadoc de DFConfig (nao ao que o Axis2/MessageContextFactory fazia):
-        // getSoTimeoutEmMillis() = "timeout do socket" -> timeout de LEITURA da resposta (RequestConfig,
-        // equivalente ao antigo SO_TIMEOUT); getTimeoutRequisicaoEmMillis() = "timeout da requisicao" ->
-        // timeout de CONEXAO (ConnectionConfig), o tempo para estabelecer a conexao antes de enviar a
-        // requisicao. O MessageContextFactory (Axis2, legado) usa esses dois getters trocados em relacao
-        // a este mapeamento; ao migrar um servico do Axis2 para o DFHttpClient, revisar os valores de
-        // DFConfig se o comportamento historico de timeout precisar ser preservado.
-        //
-        // Os tres getters de timeout/pool de DFConfig documentam fallback para um valor padrao
-        // quando o valor configurado nao for positivo - aplicado aqui via comFallback(), ja que
-        // nenhum dos getters valida isso sozinho.
         final ConnectionConfig connectionConfig = ConnectionConfig.custom()
                 .setConnectTimeout(Timeout.ofMilliseconds(comFallback(config.getTimeoutRequisicaoEmMillis(), DFSocketFactory.TIMEOUT_PADRAO_EM_MILLIS)))
                 .setTimeToLive(TEMPO_VIDA_MAXIMO_CONEXAO)
@@ -145,8 +127,7 @@ public class DFHttpClient implements Closeable {
      * @param envelopeXml envelope SOAP 1.2 completo, tipicamente montado por {@link DFSoapEnvelope#envelopar}.
      * @return o corpo da resposta HTTP.
      * @throws DFSoapFaultException se a SEFAZ devolver um {@code soap:Fault} reconhecivel no corpo,
-     * mesmo quando acompanhado de um codigo HTTP de erro (a SEFAZ as vezes devolve Fault sob HTTP 500,
-     * assim como o Axis2/HTTPSender legado tratava esse cenario).
+     * mesmo quando acompanhado de um codigo HTTP de erro (a SEFAZ as vezes devolve Fault sob HTTP 500).
      * @throws IOException em caso de falha de conexao ou resposta HTTP de erro (codigo &gt;= 300) cujo
      * corpo nao seja um {@code soap:Fault} reconhecivel.
      */
@@ -197,6 +178,8 @@ public class DFHttpClient implements Closeable {
      */
     @Override
     public void close() throws IOException {
-        this.httpClient.close();
+        if(this.httpClient != null) {
+            this.httpClient.close();
+        }
     }
 }

@@ -11,9 +11,7 @@ import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.KeyManagementException;
@@ -23,55 +21,18 @@ import java.security.UnrecoverableKeyException;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
-public class WSManifestacaoDestinatario implements DFLog, Closeable {
+public class WSManifestacaoDestinatario implements DFLog {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento";
     private static final String SOAP_ACTION = WSManifestacaoDestinatario.NAMESPACE_WSDL + "/nfeRecepcaoEvento";
 
     private final NFeConfig config;
-    // DFHttpClient recebido do WSFacade (compartilhado com os demais servicos migrados) quando
-    // esta classe e construida atraves dele; fica null quando construida via
-    // WSManifestacaoDestinatario(NFeConfig) diretamente por codigo externo.
-    private final DFHttpClient httpClientCompartilhado;
-    // Criado sob demanda (lazy) apenas quando ninguem injetou um DFHttpClient - so na primeira
-    // chamada de rede, nunca no construtor, preservando o comportamento anterior a esta
-    // migracao (o construtor publico de 1 argumento nao pode declarar as excecoes checked de
-    // KeyStore/SSL sem quebrar quem ja o chama hoje).
-    private DFHttpClient httpClientProprio;
-
-    public WSManifestacaoDestinatario(final NFeConfig config) {
-        this(config, null);
-    }
+    private final DFHttpClient httpClient;
 
     WSManifestacaoDestinatario(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
-        this.httpClientCompartilhado = httpClient;
-    }
-
-    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        if (this.httpClientCompartilhado != null) {
-            return this.httpClientCompartilhado;
-        }
-        if (this.httpClientProprio == null) {
-            final DFSocketFactory socketFactory = new DFSocketFactory(this.config);
-            this.httpClientProprio = new DFHttpClient(socketFactory.getSslContext(), this.config);
-        }
-        return this.httpClientProprio;
-    }
-
-    /**
-     * Libera o pool de conexoes do {@link DFHttpClient} proprio, se algum tiver sido criado
-     * (isto e, se esta instancia foi construida via {@link #WSManifestacaoDestinatario(NFeConfig)}
-     * e chegou a fazer alguma chamada de rede). Nao fecha o {@link DFHttpClient} compartilhado
-     * recebido do {@link WSFacade} - quem o criou e responsavel por fecha-lo (ver
-     * {@link WSFacade#close()}).
-     */
-    @Override
-    public synchronized void close() throws IOException {
-        if (this.httpClientProprio != null) {
-            this.httpClientProprio.close();
-        }
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
@@ -97,7 +58,7 @@ public class WSManifestacaoDestinatario implements DFLog, Closeable {
 
         final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + WSManifestacaoDestinatario.VERSAO_LEIAUTE.toPlainString() + "</versaoDados>";
         final String envelope = DFSoapEnvelope.envelopar(WSManifestacaoDestinatario.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlAssinado);
-        final String resposta = this.getHttpClient().postSoap(urlWebService, WSManifestacaoDestinatario.SOAP_ACTION, envelope);
+        final String resposta = this.httpClient.postSoap(urlWebService, WSManifestacaoDestinatario.SOAP_ACTION, envelope);
         return DFSoapEnvelope.desempacotar(resposta);
     }
 

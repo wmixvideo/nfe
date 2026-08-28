@@ -1,26 +1,26 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoLacre;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoLacreTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNumeroLacreNulo() {
-        new NFNotaInfoLacre().toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoLacre().toString());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNumeroLacreComTamanhoInvalido() {
-        try {
-            new NFNotaInfoLacre().setNumeroLacre("");
-            Assert.fail("Validacao falhou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoLacre().setNumeroLacre("su0ue1tNrrSACxDPXEYVFAqtc2IsnlONmb5AIAv24XjKALlpJ8h5HpUviB3p1");
-        }
-        Assert.fail("Validacao falhou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoLacre().setNumeroLacre("");
+                Assertions.fail("Validacao falhou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoLacre().setNumeroLacre("su0ue1tNrrSACxDPXEYVFAqtc2IsnlONmb5AIAv24XjKALlpJ8h5HpUviB3p1");
+            }
+            Assertions.fail("Validacao falhou");
+        });
     }
 
     @Test
@@ -29,6 +29,6 @@ public class NFNotaInfoLacreTest {
         lacre.setNumeroLacre("su0ue1tNrrSACxDPXEYVFAqtc2IsnlONmb5AIAv24XjKALlpJ8h5HpUviB3p");
         final String xmlEsperado = "<NFNotaInfoLacre><nLacre>su0ue1tNrrSACxDPXEYVFAqtc2IsnlONmb5AIAv24XjKALlpJ8h5HpUviB3p</nLacre></NFNotaInfoLacre>";
 
-        Assert.assertEquals(xmlEsperado, lacre.toString());
+        Assertions.assertEquals(xmlEsperado, lacre.toString());
     }
 }

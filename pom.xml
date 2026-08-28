@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
-    <version>5.0.74-SNAPSHOT</version>
+    <version>5.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
@@ -34,13 +34,12 @@
     <properties>
         <java.version>11</java.version>
         <slf4j.version>2.0.18</slf4j.version>
-        <junit.version>4.13.2</junit.version>
+        <junit.version>6.1.3</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <axiom.version>1.2.21</axiom.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
-		<httpclient5.version>5.6.2</httpclient5.version>
+		<httpclient5.version>5.6.4</httpclient5.version>
     </properties>
 
     <dependencies>
@@ -65,49 +64,12 @@
             <version>${commons-lang3.version}</version>
         </dependency>
 
-		<!-- HttpClient5 (substituto do Axis2 para o transporte HTTP/SOAP de todos os webservices) -->
 		<dependency>
 			<groupId>org.apache.httpcomponents.client5</groupId>
 			<artifactId>httpclient5</artifactId>
 			<version>${httpclient5.version}</version>
 		</dependency>
 
-        <!-- Axiom: usado apenas para o tipo OMElement mantido por compatibilidade nos poucos
-             metodos publicos legados que devolviam tipos derivados do stub Axis2 (ver
-             NFeAutorizacao4Stub.NfeResultMsg / NFeRecepcaoEvento4Stub.NfeResultMsg em nfe400 e
-             WSDistribuicaoCTe). Nao ha mais dependencia do Axis2 em si.
-             geronimo-stax-api_1.0_spec e woodstox-core-asl excluidos: sao a implementacao StAX
-             legada que o axiom (de 2018) trazia por padrao, anterior ao Java 6 embutir StAX na
-             JDK, e duplicavam - com uma versao bem mais antiga - o woodstox-core ja trazido
-             pelo xmlsec. Mesmo com a exclusao, o axiom continua emitindo o warning benigno
-             "Unable to determine dialect of the StAX implementation" ao usar StAXOMBuilder (ver
-             WSLoteEnvio/WSEpec.criarNfeResultMsg): o detector de dialeto do axiom 1.2.21 nao
-             reconhece o layout do woodstox-core moderno (6.x) e cai no fallback generico, que
-             funciona corretamente (coberto por WSLoteEnvioTest/WSEpecTest) - so deixa de usar
-             uma otimizacao especifica do dialeto Woodstox. -->
-        <dependency>
-            <groupId>org.apache.ws.commons.axiom</groupId>
-            <artifactId>axiom-api</artifactId>
-            <version>${axiom.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-stax-api_1.0_spec</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.ws.commons.axiom</groupId>
-            <artifactId>axiom-impl</artifactId>
-            <version>${axiom.version}</version>
-            <scope>runtime</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.codehaus.woodstox</groupId>
-                    <artifactId>woodstox-core-asl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -123,8 +85,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
@@ -216,7 +178,7 @@
             </plugin>
             <!--
                 Scan de vulnerabilidades conhecidas (CVE) nas dependencias, incluindo o
-                transporte HTTP/XML (httpclient5, axiom, xmlsec). Sem <executions>, entao NAO
+                transporte HTTP/XML (httpclient5, xmlsec). Sem <executions>, entao NAO
                 roda em nenhuma fase do build padrao (mvn test/install) - so sob demanda via
                 'mvn dependency-check:check', para nao depender de acesso a rede (download do
                 banco NVD) durante um build normal/CI offline.

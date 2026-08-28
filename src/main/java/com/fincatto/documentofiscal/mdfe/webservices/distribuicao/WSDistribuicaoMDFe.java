@@ -1,20 +1,5 @@
 package com.fincatto.documentofiscal.mdfe.webservices.distribuicao;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoInt;
@@ -25,43 +10,28 @@ import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
+import org.apache.commons.lang3.StringUtils;
 
-public class WSDistribuicaoMDFe implements Closeable {
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
+
+public class WSDistribuicaoMDFe {
 
 	private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeDistribuicaoDFe";
 	private static final String SOAP_ACTION = WSDistribuicaoMDFe.NAMESPACE_WSDL + "/mdfeDistDFeInteresse";
 
 	private final MDFeConfig config;
-	// Criado sob demanda (lazy), na primeira chamada de rede - nao no construtor.
-	// WSDistribuicaoMDFe e classe publica com construtor publico de 1 argumento; manter a
-	// criacao preguicosa evita que problemas de certificado/SSL passem a aparecer na construcao
-	// (quebra de compatibilidade), quando antes so apareciam ao efetivamente chamar a SEFAZ.
-	private DFHttpClient httpClient;
+	private final DFHttpClient httpClient;
 
-	public WSDistribuicaoMDFe(final MDFeConfig config) {
+	public WSDistribuicaoMDFe(final MDFeConfig config, final DFHttpClient httpClient) {
 		this.config = config;
-	}
-
-	private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-		if (this.httpClient == null) {
-			final DFSocketFactory socketFactory = new DFSocketFactory(this.config);
-			this.httpClient = new DFHttpClient(socketFactory.getSslContext(), this.config);
-		}
-		return this.httpClient;
-	}
-
-	/**
-	 * Libera o pool de conexoes do {@link DFHttpClient} desta instancia, se algum tiver sido
-	 * criado (isto e, se ja foi feita alguma chamada de rede). Quem a constroi diretamente e
-	 * responsavel por chamar {@link #close()} quando nao for mais usa-la.
-	 */
-	@Override
-	public synchronized void close() throws IOException {
-		if (this.httpClient != null) {
-			this.httpClient.close();
-		}
+		this.httpClient = httpClient;
 	}
 
 	public MDFeDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
@@ -77,14 +47,9 @@ public class WSDistribuicaoMDFe implements Closeable {
 	 * Envia a consulta de distribuicao para a SEFAZ via {@link DFHttpClient} e devolve o XML de
 	 * negocio ja desempacotado do envelope SOAP 1.2 de resposta. Diferente de
 	 * {@code WSDistribuicaoNFe}/{@code WSDistribuicaoCTe}, esta operacao NAO aninha o corpo em
-	 * um wrapper com o nome da operacao - confirmado no stub gerado
-	 * ({@code MDFeDistribuicaoDFeStub}): o pedido poe {@code mdfeDadosMsg} como filho direto do
-	 * {@code soap:Body}, e a resposta tem apenas 1 nivel de wrapper (o primeiro filho do Body ja
-	 * e o elemento de resultado). Usa o padrao simples de 5 argumentos, igual ao resto do
-	 * modulo, sem caso especial.
+	 * um wrapper com o nome da operacao.
 	 */
-	private String efetuaConsulta(final String xmlEnvio, final DFUnidadeFederativa uf)
-			throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+	private String efetuaConsulta(final String xmlEnvio, final DFUnidadeFederativa uf) throws IOException, DFSoapFaultException {
 		final String endpoint = MDFAutorizador3.RS.getMDFeDistribuicao(this.config.getAmbiente());
 		if (endpoint == null) {
 			throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDFe, autorizador RS");
@@ -92,7 +57,7 @@ public class WSDistribuicaoMDFe implements Closeable {
 
 		final String cabecalho = "<cUF>" + uf.getCodigo() + "</cUF><versaoDados>1.00</versaoDados>";
 		final String envelope = DFSoapEnvelope.envelopar(WSDistribuicaoMDFe.NAMESPACE_WSDL, "mdfeCabecMsg", cabecalho, "mdfeDadosMsg", xmlEnvio);
-		final String resposta = this.getHttpClient().postSoap(endpoint, WSDistribuicaoMDFe.SOAP_ACTION, envelope);
+		final String resposta = this.httpClient.postSoap(endpoint, WSDistribuicaoMDFe.SOAP_ACTION, envelope);
 		return DFSoapEnvelope.desempacotar(resposta);
 	}
 

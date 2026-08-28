@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.cte300.webservices;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Pina o formato exato do envelope SOAP 1.2 montado por {@link WSStatusConsulta}, em especial o
@@ -19,7 +18,7 @@ public class WSStatusConsultaTest {
     public void deveMontarEnvelopeComCteCabecMsgContendoCUFEVersaoDados() {
         final String envelope = WSStatusConsulta.montarEnvelope(DFUnidadeFederativa.SP, "<consStatServ/>");
 
-        Assert.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+        Assertions.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Header>"
                 + "<cteCabecMsg xmlns=\"http://www.portalfiscal.inf.br/cte/wsdl/CteStatusServico\">"
                 + "<cUF>35</cUF><versaoDados>3.00</versaoDados>"
@@ -36,7 +35,7 @@ public class WSStatusConsultaTest {
         final String envelopeSP = WSStatusConsulta.montarEnvelope(DFUnidadeFederativa.SP, "<consStatServ/>");
         final String envelopeRJ = WSStatusConsulta.montarEnvelope(DFUnidadeFederativa.RJ, "<consStatServ/>");
 
-        Assert.assertTrue(envelopeSP.contains("<cUF>35</cUF>"));
-        Assert.assertTrue(envelopeRJ.contains("<cUF>33</cUF>"));
+        Assertions.assertTrue(envelopeSP.contains("<cUF>35</cUF>"));
+        Assertions.assertTrue(envelopeRJ.contains("<cUF>33</cUF>"));
     }
 }

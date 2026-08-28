@@ -1,10 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -16,6 +11,10 @@ import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 
 class WSInutilizacao implements DFLog {
 
@@ -45,9 +44,7 @@ class WSInutilizacao implements DFLog {
 
     /**
      * Envia o XML de inutilizacao assinado para a SEFAZ via {@link DFHttpClient} e devolve o
-     * XML de negocio ja desempacotado do envelope SOAP 1.2 de resposta. Mesmo padrao dos demais
-     * servicos migrados (WSStatusConsulta, WSLoteEnvio, servicos de evento): concatenacao de
-     * texto na ida, parsing DOM na volta, sem passar mais pelo stub Axis2 NFeInutilizacao4Stub.
+     * XML de negocio ja desempacotado do envelope SOAP 1.2 de resposta.
      */
     private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());

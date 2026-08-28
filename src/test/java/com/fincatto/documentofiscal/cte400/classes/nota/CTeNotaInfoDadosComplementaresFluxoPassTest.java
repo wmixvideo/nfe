@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresFluxoPassTest {
 
@@ -9,20 +9,22 @@ public class CTeNotaInfoDadosComplementaresFluxoPassTest {
     public void deveTerEntre1e15Caracteres() {
         final CTeNotaInfoDadosComplementaresFluxoPass pass = new CTeNotaInfoDadosComplementaresFluxoPass();
         pass.setPass("123456789012345");
-        Assert.assertEquals("123456789012345", pass.getPass());
+        Assertions.assertEquals("123456789012345", pass.getPass());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveTerMaisQue15Caracteres() {
-        final CTeNotaInfoDadosComplementaresFluxoPass pass = new CTeNotaInfoDadosComplementaresFluxoPass();
-        pass.setPass("123456789012345678");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final CTeNotaInfoDadosComplementaresFluxoPass pass = new CTeNotaInfoDadosComplementaresFluxoPass();
+            pass.setPass("123456789012345678");
+        });
     }
 
     @Test
     public void deveGerarXmlCorreto() {
         final CTeNotaInfoDadosComplementaresFluxoPass pass = new CTeNotaInfoDadosComplementaresFluxoPass();
         pass.setPass("123456789012345");
-        Assert.assertEquals("<pass><xPass>123456789012345</xPass></pass>", pass.toString());
+        Assertions.assertEquals("<pass><xPass>123456789012345</xPass></pass>", pass.toString());
     }
 
 }

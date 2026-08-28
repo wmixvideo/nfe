@@ -1,9 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.webservices;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Pina o formato exato do envelope SOAP 1.2 montado por {@link WSCartaCorrecao}: com
@@ -21,7 +20,7 @@ public class WSCartaCorrecaoTest {
     public void deveMontarEnvelopeComNfeCabecMsgUsandoOCufConfiguradoNaoODaChaveDeAcesso() {
         final String envelope = WSCartaCorrecao.montarEnvelope(DFUnidadeFederativa.SP, "<envEvento/>");
 
-        Assert.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+        Assertions.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Header>"
                 + "<nfeCabecMsg xmlns=\"http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento\">"
                 + "<cUF>35</cUF><versaoDados>1.00</versaoDados>"

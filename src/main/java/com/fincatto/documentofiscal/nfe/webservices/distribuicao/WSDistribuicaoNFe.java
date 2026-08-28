@@ -5,7 +5,6 @@ import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
@@ -13,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -24,44 +22,18 @@ import java.security.UnrecoverableKeyException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
 
-public class WSDistribuicaoNFe implements Closeable {
+public class WSDistribuicaoNFe {
 
     private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe";
     private static final String SOAP_ACTION = WSDistribuicaoNFe.NAMESPACE_WSDL + "/nfeDistDFeInteresse";
-    // o corpo SOAP desta operacao aninha o XML de negocio dois niveis abaixo do soap:Body:
-    // nfeDistDFeInteresseResponse > NFeDistDFeInteresseResult > XML de negocio.
     private static final int NIVEIS_DE_WRAPPER_NA_RESPOSTA = 2;
 
     private final NFeConfig config;
-    // Criado sob demanda (lazy), na primeira chamada de rede - nao no construtor. WSDistribuicaoNFe
-    // e classe publica com construtor publico de 1 argumento; manter a criacao preguicosa evita
-    // que problemas de certificado/SSL passem a aparecer na construcao (quebra de compatibilidade),
-    // quando antes so apareciam ao efetivamente chamar a SEFAZ.
-    private DFHttpClient httpClient;
+    private final DFHttpClient httpClient;
 
-    public WSDistribuicaoNFe(final NFeConfig config) {
+    public WSDistribuicaoNFe(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
-    }
-
-    private synchronized DFHttpClient getHttpClient() throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        if (this.httpClient == null) {
-            final DFSocketFactory socketFactory = new DFSocketFactory(this.config);
-            this.httpClient = new DFHttpClient(socketFactory.getSslContext(), this.config);
-        }
-        return this.httpClient;
-    }
-
-    /**
-     * Libera o pool de conexoes do {@link DFHttpClient} desta instancia, se algum tiver sido
-     * criado (isto e, se ja foi feita alguma chamada de rede). {@code WSDistribuicaoNFe} nao e
-     * gerenciada pelo {@link com.fincatto.documentofiscal.nfe400.webservices.WSFacade} - quem a
-     * constroi diretamente e responsavel por chamar {@link #close()} quando nao for mais usa-la.
-     */
-    @Override
-    public synchronized void close() throws IOException {
-        if (this.httpClient != null) {
-            this.httpClient.close();
-        }
+        this.httpClient = httpClient;
     }
 
     /**
@@ -100,7 +72,7 @@ public class WSDistribuicaoNFe implements Closeable {
         }
 
         final String envelope = WSDistribuicaoNFe.construirEnvelope(xmlEnvio);
-        final String resposta = this.getHttpClient().postSoap(endpoint, WSDistribuicaoNFe.SOAP_ACTION, envelope);
+        final String resposta = this.httpClient.postSoap(endpoint, WSDistribuicaoNFe.SOAP_ACTION, envelope);
         return DFSoapEnvelope.desempacotar(resposta, WSDistribuicaoNFe.NIVEIS_DE_WRAPPER_NA_RESPOSTA);
     }
 

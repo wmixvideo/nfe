@@ -1,14 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.time.LocalDate;
-import java.util.List;
-
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -32,26 +23,28 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrup
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimentoFornecedor;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetornoDados;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeAutorizacao4Stub;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+import com.fincatto.documentofiscal.utils.DFSocketFactory;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 4.00 (envio/consulta de
  * lote, status, consulta de nota e cadastro, e a longa lista de eventos - cancelamento, carta
  * de correcao, EPEC, manifestacao do destinatario, atualizacao de data de previsao de entrega,
  * aceite de debito de apuracao, imobilizacao, insucesso/comprovante de entrega, entre outros).
- * A maioria dos eventos compartilha a mecanica de transporte de {@link AbstractWSEvento}. Todos
- * os servicos ja migrados de Axis2 para {@code httpclient5}; ver {@link #close()} para o
- * descarte dos pools de conexao mantidos por esta instancia.
+ * A maioria dos eventos compartilha a mecanica de transporte de {@link AbstractWSEvento}.
  * <p>
  * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
  * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
@@ -88,12 +81,6 @@ public class WSFacade implements Closeable {
     private final WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: todos os
-        // servicos deste facade ja usam o DFHttpClient injetado (httpclient5), entao nao ha mais
-        // stub Axis2/httpclient3 remanescente que dependa do registro global de protocolo "https"
-        // via Protocol.registerProtocol - o que e bom, pois essa chamada mutaria um registro
-        // estatico compartilhado com os facades legados (NFe 3.10, CTe), substituindo o
-        // certificado usado por instancias concorrentes.
         final DFSocketFactory socketFactory = new DFSocketFactory(config);
         this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
 
@@ -107,7 +94,7 @@ public class WSFacade implements Closeable {
         this.wsConsultaCadastro = new WSConsultaCadastro(config, this.httpClient);
         this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
         this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config, this.httpClient);
-        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
+        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config, this.httpClient);
         this.wsEpec = new WSEpec(config, this.httpClient);
         this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config, this.httpClient);
         this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config, this.httpClient);
@@ -124,30 +111,10 @@ public class WSFacade implements Closeable {
         this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config, this.httpClient);
     }
 
-    /**
-     * Libera o pool de conexoes HTTP compartilhado entre todos os servicos do nfe400 (todos ja
-     * migrados para {@code httpclient5}), e tambem o {@link com.fincatto.documentofiscal.utils.DFHttpClient}
-     * proprio de {@link com.fincatto.documentofiscal.nfe.webservices.distribuicao.WSDistribuicaoNFe}
-     * - que nao compartilha o pool acima, mas tambem ja esta em {@code httpclient5}. Chamar
-     * quando esta instancia de {@link WSFacade} nao for mais utilizada - por exemplo, no
-     * encerramento da aplicacao.
-     * <p>
-     * Os dois pools sao fechados via try-with-resources: se o primeiro {@code close()} lancar
-     * excecao, o segundo ainda assim e chamado (evitando vazar a conexao dele), e a excecao do
-     * segundo - se houver - e anexada como suprimida a excecao do primeiro.
-     *
-     * @throws IOException caso ocorra falha ao liberar as conexoes.
-     */
     @Override
-    @SuppressWarnings("try") // corpo intencionalmente vazio: o try-with-resources fecha os dois recursos so pelo efeito colateral do close() implicito
     public void close() throws IOException {
-        // WSDistribuicaoNFe nao compartilha o pool do httpClient acima - cria o proprio
-        // DFHttpClient sob demanda (ver o Javadoc de WSDistribuicaoNFe.close()). Fecha-lo aqui
-        // evita vazar essa conexao para quem so conhece o WSFacade e nunca teria como chamar
-        // wSDistribuicaoNFe.close() diretamente.
-        try (WSDistribuicaoNFe wSDistribuicaoNFeFechavel = this.wSDistribuicaoNFe; DFHttpClient httpClientFechavel = this.httpClient) {
-            // corpo vazio: o try-with-resources fecha os dois recursos, na ordem inversa da
-            // declaracao (httpClient primeiro, depois wSDistribuicaoNFe), mesmo que um deles lance excecao
+        if(this.httpClient != null){
+            this.httpClient.close();
         }
     }
 
@@ -163,7 +130,7 @@ public class WSFacade implements Closeable {
     public NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote, boolean validarXML) throws Exception {
         if (lote.getIndicadorProcessamento().equals(NFLoteIndicadorProcessamento.PROCESSAMENTO_SINCRONO) && lote.getNotas().size() > 1) {
             throw new IllegalArgumentException("Apenas uma nota permitida no modo sincrono!");
-        } else if (lote.getNotas().size() == 0) {
+        } else if (lote.getNotas().isEmpty()) {
             throw new IllegalArgumentException("Nenhuma nota informada no envio do Lote!");
         }
         return this.wsLoteEnvio.enviaLote(lote, validarXML);
@@ -202,8 +169,8 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
      * o sefaz
      */
-    public NFeAutorizacao4Stub.NfeResultMsg getNfeResultMsg(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        return this.wsLoteEnvio.comunicaLoteRaw(loteAssinadoXml, modelo, true);
+    public String getNfeResultMsg(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        return this.wsLoteEnvio.efetuaComunicacaoLote(loteAssinadoXml, modelo, true);
     }
 
     /**

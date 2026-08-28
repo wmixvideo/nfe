@@ -1,8 +1,5 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -13,6 +10,9 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaR
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 
 class WSNotaConsulta implements DFLog {
     private static final String NOME_SERVICO = "CONSULTAR";
@@ -42,9 +42,7 @@ class WSNotaConsulta implements DFLog {
 
     /**
      * Envia a consulta da nota para a SEFAZ via {@link DFHttpClient} e devolve o XML de negocio
-     * ja desempacotado do envelope SOAP 1.2 de resposta. Mesmo padrao dos demais servicos
-     * migrados: concatenacao de texto na ida, parsing DOM na volta, sem passar mais pelo stub
-     * Axis2 NFeConsultaProtocolo4Stub.
+     * ja desempacotado do envelope SOAP 1.2 de resposta.
      */
     private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);

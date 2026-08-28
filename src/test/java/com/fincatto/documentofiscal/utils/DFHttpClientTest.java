@@ -1,5 +1,16 @@
 package com.fincatto.documentofiscal.utils;
 
+import com.fincatto.documentofiscal.DFConfig;
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import javax.net.ssl.SSLContext;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,19 +27,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import javax.net.ssl.SSLContext;
-
-import org.apache.hc.client5.http.ClientProtocolException;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.DFConfig;
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
-
 /**
  * @author Marcos Lombardi de Andrade
  */
@@ -37,7 +35,7 @@ public class DFHttpClientTest {
     private HttpServer servidor;
     private DFHttpClient httpClient;
 
-    @After
+    @AfterAll
     public void encerraClienteEServidor() throws IOException {
         if (this.httpClient != null) {
             this.httpClient.close();
@@ -63,8 +61,8 @@ public class DFHttpClientTest {
 
         this.httpClient.postSoap(endpoint, actionEsperada, envelope);
 
-        Assert.assertEquals("application/soap+xml; charset=UTF-8; action=\"" + actionEsperada + "\"", contentTypeRecebido.get());
-        Assert.assertEquals(envelope, corpoRecebido.get());
+        Assertions.assertEquals("application/soap+xml; charset=UTF-8; action=\"" + actionEsperada + "\"", contentTypeRecebido.get());
+        Assertions.assertEquals(envelope, corpoRecebido.get());
     }
 
     @Test
@@ -74,7 +72,7 @@ public class DFHttpClientTest {
 
         final String resposta = this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
 
-        Assert.assertEquals("<retConsStatServ><cStat>107</cStat></retConsStatServ>", resposta);
+        Assertions.assertEquals("<retConsStatServ><cStat>107</cStat></retConsStatServ>", resposta);
     }
 
     @Test
@@ -82,7 +80,7 @@ public class DFHttpClientTest {
         final String endpoint = this.iniciarServidor(exchange -> responder(exchange, 299, "<ok/>"));
         this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
 
-        Assert.assertEquals("<ok/>", this.httpClient.postSoap(endpoint, "acao", "<envelope/>"));
+        Assertions.assertEquals("<ok/>", this.httpClient.postSoap(endpoint, "acao", "<envelope/>"));
     }
 
     @Test
@@ -94,10 +92,10 @@ public class DFHttpClientTest {
 
         try {
             this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
-            Assert.fail("deveria ter lancado excecao para HTTP 300");
+            Assertions.fail("deveria ter lancado excecao para HTTP 300");
         } catch (final ClientProtocolException e) {
-            Assert.assertTrue(e.getMessage().contains("300"));
-            Assert.assertTrue(e.getMessage().contains("codigo limite"));
+            Assertions.assertTrue(e.getMessage().contains("300"));
+            Assertions.assertTrue(e.getMessage().contains("codigo limite"));
         }
     }
 
@@ -108,23 +106,25 @@ public class DFHttpClientTest {
 
         try {
             this.httpClient.postSoap(endpoint, "acao-qualquer", "<envelope/>");
-            Assert.fail("deveria ter lancado excecao para HTTP 500");
+            Assertions.fail("deveria ter lancado excecao para HTTP 500");
         } catch (final ClientProtocolException e) {
-            Assert.assertTrue(e.getMessage().contains("500"));
-            Assert.assertTrue(e.getMessage().contains("servico indisponivel"));
+            Assertions.assertTrue(e.getMessage().contains("500"));
+            Assertions.assertTrue(e.getMessage().contains("servico indisponivel"));
         }
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void deveLancarIOExceptionQuandoNaoConseguirConectar() throws Exception {
-        // porta 1 normalmente esta livre/sem listener - falha de conexao, nao de resposta HTTP
-        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
-        this.httpClient.postSoap("http://localhost:1/", "acao", "<envelope/>");
+        Assertions.assertThrows(IOException.class, () -> {
+            // porta 1 normalmente esta livre/sem listener - falha de conexao, nao de resposta HTTP
+            this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+            this.httpClient.postSoap("http://localhost:1/", "acao", "<envelope/>");
+        });
     }
 
     @Test
     public void deveLancarDFSoapFaultExceptionQuandoCorpoDeErroForUmSoapFaultReconhecivel() throws Exception {
-        // a SEFAZ por vezes devolve soap:Fault sob HTTP 500, assim como o Axis2/HTTPSender legado tratava
+        // a SEFAZ por vezes devolve soap:Fault sob HTTP 500
         final String envelopeComFault = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Body>"
                 + "<soap:Fault>"
@@ -138,9 +138,9 @@ public class DFHttpClientTest {
 
         try {
             this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
-            Assert.fail("deveria ter lancado DFSoapFaultException para soap:Fault sob HTTP 500");
+            Assertions.fail("deveria ter lancado DFSoapFaultException para soap:Fault sob HTTP 500");
         } catch (final DFSoapFaultException e) {
-            Assert.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
+            Assertions.assertEquals("Servico Paralisado Temporariamente", e.getMessage());
         }
     }
 
@@ -155,42 +155,46 @@ public class DFHttpClientTest {
 
         try {
             this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
-            Assert.fail("deveria ter lancado excecao para HTTP 503");
+            Assertions.fail("deveria ter lancado excecao para HTTP 503");
         } catch (final ClientProtocolException e) {
-            Assert.assertTrue(e.getMessage().contains("503"));
+            Assertions.assertTrue(e.getMessage().contains("503"));
         }
 
         // um POST de operacao fiscal nao pode ser reenviado automaticamente pelo transporte -
         // com o retry automatico do httpclient5 ativo (default), esse contador seria 2
-        Assert.assertEquals(1, requisicoesRecebidas.get());
+        Assertions.assertEquals(1, requisicoesRecebidas.get());
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void deveLancarIOExceptionQuandoRespostaDemoraMaisQueOTimeoutDeLeitura() throws Exception {
-        final String endpoint = this.iniciarServidor(exchange -> {
-            try {
-                Thread.sleep(500);
-            } catch (final InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            responder(exchange, 200, "<ok/>");
-        });
-        final DFConfigTeste configComTimeoutDeLeituraCurto = new DFConfigTeste() {
-            @Override
-            public int getSoTimeoutEmMillis() {
-                return 100;
-            }
-        };
-        this.httpClient = new DFHttpClient(SSLContext.getDefault(), configComTimeoutDeLeituraCurto);
+        Assertions.assertThrows(IOException.class, () -> {
+            final String endpoint = this.iniciarServidor(exchange -> {
+                try {
+                    Thread.sleep(500);
+                } catch (final InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                responder(exchange, 200, "<ok/>");
+            });
+            final DFConfigTeste configComTimeoutDeLeituraCurto = new DFConfigTeste() {
+                @Override
+                public int getSoTimeoutEmMillis() {
+                    return 100;
+                }
+            };
+            this.httpClient = new DFHttpClient(SSLContext.getDefault(), configComTimeoutDeLeituraCurto);
 
-        this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
+            this.httpClient.postSoap(endpoint, "acao", "<envelope/>");
+        });
     }
 
-    @Test(expected = UnknownHostException.class)
+    @Test
     public void deveLancarUnknownHostExceptionParaHostInexistente() throws Exception {
-        this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
-        // ".invalid" e reservado pela RFC 2606 para nunca resolver - garante a falha de DNS sem depender de um host de rede real
-        this.httpClient.postSoap("http://webservice-sefaz-teste.invalid/", "acao", "<envelope/>");
+        Assertions.assertThrows(UnknownHostException.class, () -> {
+            this.httpClient = new DFHttpClient(SSLContext.getDefault(), new DFConfigTeste());
+            // ".invalid" e reservado pela RFC 2606 para nunca resolver - garante a falha de DNS sem depender de um host de rede real
+            this.httpClient.postSoap("http://webservice-sefaz-teste.invalid/", "acao", "<envelope/>");
+        });
     }
 
     @Test
@@ -215,13 +219,13 @@ public class DFHttpClientTest {
                 respostas.add(executor.submit(() -> this.httpClient.postSoap(endpoint, "acao", "<envelope/>")));
             }
             for (final Future<String> resposta : respostas) {
-                Assert.assertEquals("<ok/>", resposta.get(10, TimeUnit.SECONDS));
+                Assertions.assertEquals("<ok/>", resposta.get(10, TimeUnit.SECONDS));
             }
         } finally {
             executor.shutdown();
         }
 
-        Assert.assertEquals(totalRequisicoes, requisicoesRecebidas.get());
+        Assertions.assertEquals(totalRequisicoes, requisicoesRecebidas.get());
     }
 
     private String iniciarServidor(final HttpHandler handler) throws IOException {

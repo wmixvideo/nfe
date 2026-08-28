@@ -1,24 +1,22 @@
 package com.fincatto.documentofiscal.mdfe3.webservices;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-
-import javax.net.ssl.SSLContext;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.mdfe3.MDFeConfigFake;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import javax.net.ssl.SSLContext;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Pina o formato exato do envelope SOAP 1.2 montado por {@link WSTransporteEvento}, a mecanica
@@ -36,7 +34,7 @@ public class WSTransporteEventoTest {
     private HttpServer servidor;
     private DFHttpClient httpClient;
 
-    @After
+    @AfterAll
     public void encerraClienteEServidor() throws IOException {
         if (this.httpClient != null) {
             this.httpClient.close();
@@ -61,8 +59,8 @@ public class WSTransporteEventoTest {
 
         final String xmlResultado = WSTransporteEvento.enviarEvento(this.httpClient, endpoint, xmlAssinado, "33", new BigDecimal("3.00"));
 
-        Assert.assertTrue(contentTypeRecebido.toString().contains("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento/mdfeRecepcaoEvento"));
-        Assert.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
+        Assertions.assertTrue(contentTypeRecebido.toString().contains("http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento/mdfeRecepcaoEvento"));
+        Assertions.assertEquals("<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">"
                 + "<soap:Header>"
                 + "<mdfeCabecMsg xmlns=\"http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento\"><cUF>33</cUF><versaoDados>3.00</versaoDados></mdfeCabecMsg>"
                 + "</soap:Header>"
@@ -70,7 +68,7 @@ public class WSTransporteEventoTest {
                 + "<mdfeDadosMsg xmlns=\"http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRecepcaoEvento\">" + xmlAssinado + "</mdfeDadosMsg>"
                 + "</soap:Body>"
                 + "</soap:Envelope>", corpoRecebido.toString());
-        Assert.assertTrue(xmlResultado.startsWith("<retEventoMDFe"));
+        Assertions.assertTrue(xmlResultado.startsWith("<retEventoMDFe"));
     }
 
     @Test
@@ -88,9 +86,9 @@ public class WSTransporteEventoTest {
 
         try {
             WSTransporteEvento.enviarEvento(this.httpClient, endpoint, "<eventoMDFe/>", "35", new BigDecimal("3.00"));
-            Assert.fail("deveria ter lancado DFSoapFaultException");
+            Assertions.fail("deveria ter lancado DFSoapFaultException");
         } catch (final DFSoapFaultException e) {
-            Assert.assertEquals("Rejeicao: evento invalido", e.getMessage());
+            Assertions.assertEquals("Rejeicao: evento invalido", e.getMessage());
         }
     }
 
