@@ -42,42 +42,27 @@ import java.util.List;
  */
 public class WSFacade implements Closeable {
 
+    private final CTeConfig config;
     private final DFHttpClient httpClient;
-    private final WSStatusConsulta wsStatusConsulta;
-    private final WSRecepcaoLote wsRecepcaoLote;
-    private final WSNotaConsulta wsNotaConsulta;
-    private final WSCancelamento wsCancelamento;
-    private final WSInutilizacao wsInutilizacao;
-    private final WSDistribuicaoCTe wSDistribuicaoCTe;
-    private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
-    private final WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
-    private final WSRegistroMultimodal wsRegistroMultimodal;
-    private final WSCartaCorrecao wsCartaCorrecao;
-    private final WSComprovanteEntrega wsComprovanteEntrega;
-    private final WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
-    private final WSEpec wsEpec;
-    private final WSGtv wsGtv;
-    private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
+    private WSStatusConsulta wsStatusConsulta;
+    private WSRecepcaoLote wsRecepcaoLote;
+    private WSNotaConsulta wsNotaConsulta;
+    private WSCancelamento wsCancelamento;
+    private WSInutilizacao wsInutilizacao;
+    private WSDistribuicaoCTe wSDistribuicaoCTe;
+    private WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
+    private WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
+    private WSRegistroMultimodal wsRegistroMultimodal;
+    private WSCartaCorrecao wsCartaCorrecao;
+    private WSComprovanteEntrega wsComprovanteEntrega;
+    private WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
+    private WSEpec wsEpec;
+    private WSGtv wsGtv;
+    private WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
     public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        final DFSocketFactory socketFactory = new DFSocketFactory(config);
-        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
-
-        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
-        this.wsRecepcaoLote = new WSRecepcaoLote(config, this.httpClient);
-        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config, this.httpClient);
-        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
-        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
-        this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
-        this.wSDistribuicaoCTe = new WSDistribuicaoCTe(config, this.httpClient);
-        this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(config, this.httpClient);
-        this.wsRegistroMultimodal = new WSRegistroMultimodal(config, this.httpClient);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
-        this.wsComprovanteEntrega = new WSComprovanteEntrega(config, this.httpClient);
-        this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(config, this.httpClient);
-        this.wsEpec = new WSEpec(config, this.httpClient);
-        this.wsGtv = new WSGtv(config, this.httpClient);
-        this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(config, this.httpClient);
+        this.config = config;
+        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config);
     }
 
     @Override
@@ -95,6 +80,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
+        if (this.wsStatusConsulta == null) {
+            this.wsStatusConsulta = new WSStatusConsulta(this.config, this.httpClient);
+        }
         return this.wsStatusConsulta.consultaStatus(uf);
     }
 
@@ -106,6 +94,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeEnvioLoteRetornoDados envioRecepcaoLote(CTeEnvioLote cteRecepcao) throws Exception {
+        if (this.wsRecepcaoLote == null) {
+            this.wsRecepcaoLote = new WSRecepcaoLote(this.config, this.httpClient);
+        }
         return this.wsRecepcaoLote.envioRecepcao(cteRecepcao);
     }
 
@@ -117,6 +108,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeConsultaRecLoteRet consultaEnvioRecepcaoLote(String numRecibo) throws Exception {
+        if (this.wsRecepcaoLoteRetorno == null) {
+            this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(this.config, this.httpClient);
+        }
         return this.wsRecepcaoLoteRetorno.consultaLote(numRecibo);
     }
 
@@ -128,6 +122,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        if (this.wsNotaConsulta == null) {
+            this.wsNotaConsulta = new WSNotaConsulta(this.config, this.httpClient);
+        }
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
@@ -141,6 +138,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 
@@ -154,6 +154,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -166,6 +169,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoCancelamento(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.getXmlAssinado(chave, numeroProtocolo, motivo);
     }
 
@@ -179,6 +185,9 @@ public class WSFacade implements Closeable {
     public CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
         // modelo mantido na assinatura publica por compatibilidade com o padrao dos demais modulos (nfe310/nfe400/mdfe3);
         // CT-e nao distingue URL de inutilizacao por modelo, entao nao ha o que repassar internamente.
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml);
     }
 
@@ -195,6 +204,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 
@@ -211,6 +223,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoInutilizacao(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.getXmlAssinado(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 
@@ -234,6 +249,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public CTDistribuicaoIntRetorno consultarDistribuicaoCTe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        if (this.wSDistribuicaoCTe == null) {
+            this.wSDistribuicaoCTe = new WSDistribuicaoCTe(this.config, this.httpClient);
+        }
         return this.wSDistribuicaoCTe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
     }
 
@@ -248,6 +266,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno cancelaComprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+        if (this.wsCancelamentoComprovanteEntrega == null) {
+            this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsCancelamentoComprovanteEntrega.cancelaComprovanteEntrega(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
     }
 
@@ -261,6 +282,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno cancelaComprovanteEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCancelamentoComprovanteEntrega == null) {
+            this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsCancelamentoComprovanteEntrega.cancelaComprovanteEntregaAssinado(chave, eventoAssinadoXml);
     }
 
@@ -274,6 +298,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoCancelamentoComprovanteEntrega(final String chave, final String protocoloAutorizacao, final String protocoloComprovanteEntrega, final int sequencialEvento) throws Exception {
+        if (this.wsCancelamentoComprovanteEntrega == null) {
+            this.wsCancelamentoComprovanteEntrega = new WSCancelamentoComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsCancelamentoComprovanteEntrega.getXmlAssinado(chave, protocoloAutorizacao, protocoloComprovanteEntrega, sequencialEvento);
     }
 
@@ -290,6 +317,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno corrigeNota(final String chave, String grupoAlterado, String campoAlterado, String valorAlterado, Integer numeroItemAlterado, int sequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNota(chave, grupoAlterado, campoAlterado, valorAlterado, numeroItemAlterado, sequencialEvento);
     }
 
@@ -303,6 +333,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno corrigeNota(final String chave, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNota(chave, correcoes, sequencialEvento);
     }
 
@@ -316,6 +349,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -328,6 +364,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoCartaCorreca(final String chave, List<CTeInformacaoCartaCorrecao> correcoes, int sequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.getXmlAssinado(chave, correcoes, sequencialEvento);
     }
 
@@ -340,6 +379,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno comprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        if (this.wsComprovanteEntrega == null) {
+            this.wsComprovanteEntrega = new WSComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsComprovanteEntrega.comprovanteEntrega(chave, comprovanteEntrega, sequencialEvento);
     }
 
@@ -353,6 +395,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno comprovanteEntregaAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsComprovanteEntrega == null) {
+            this.wsComprovanteEntrega = new WSComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsComprovanteEntrega.comprovanteEntregaAssinado(chave, eventoAssinadoXml);
     }
 
@@ -364,6 +409,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoComprovanteEntrega(final String chave, final CTeEnviaEventoComprovanteEntrega comprovanteEntrega, final int sequencialEvento) throws Exception {
+        if (this.wsComprovanteEntrega == null) {
+            this.wsComprovanteEntrega = new WSComprovanteEntrega(this.config, this.httpClient);
+        }
         return this.wsComprovanteEntrega.getXmlAssinado(chave, comprovanteEntrega, sequencialEvento);
     }
 
@@ -375,6 +423,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno enviaEpec(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.enviaEpec(chave, eventoEpec);
     }
 
@@ -388,6 +439,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno enviaEpecAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.enviaEpecAssinado(chave, eventoAssinadoXml);
     }
 
@@ -399,6 +453,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoEpec(final String chave, final CTeEnviaEventoEpec eventoEpec) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.getXmlAssinado(chave, eventoEpec);
     }
 
@@ -411,6 +468,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno enviaGtv(final String chave, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
+        if (this.wsGtv == null) {
+            this.wsGtv = new WSGtv(this.config, this.httpClient);
+        }
         return this.wsGtv.enviaGtv(chave, eventoGtv, sequencialEvento);
     }
 
@@ -424,6 +484,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno enviaGtvAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsGtv == null) {
+            this.wsGtv = new WSGtv(this.config, this.httpClient);
+        }
         return this.wsGtv.enviaGtvAssinada(chave, eventoAssinadoXml);
     }
 
@@ -436,6 +499,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoGtv(final String chave, final CTeEnviaEventoGtv eventoGtv, final int sequencialEvento) throws Exception {
+        if (this.wsGtv == null) {
+            this.wsGtv = new WSGtv(this.config, this.httpClient);
+        }
         return this.wsGtv.getXmlAssinado(chave, eventoGtv, sequencialEvento);
     }
 
@@ -449,6 +515,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno prestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        if (this.wsPrestacaoEmDesacordo == null) {
+            this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(this.config, this.httpClient);
+        }
         return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordo(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
@@ -462,6 +531,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno prestacaoEmDesacordoAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsPrestacaoEmDesacordo == null) {
+            this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(this.config, this.httpClient);
+        }
         return this.wsPrestacaoEmDesacordo.prestacaoEmDesacordoAssinada(chave, eventoAssinadoXml);
     }
 
@@ -474,6 +546,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoPrestacaoEmDesacordo(final String chave, final String observacao, final String cpfOuCnpj, final int sequencialEvento) throws Exception {
+        if (this.wsPrestacaoEmDesacordo == null) {
+            this.wsPrestacaoEmDesacordo = new WSPrestacaoEmDesacordo(this.config, this.httpClient);
+        }
         return this.wsPrestacaoEmDesacordo.getXmlAssinado(chave, observacao, cpfOuCnpj, sequencialEvento);
     }
 
@@ -487,6 +562,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno registroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
+        if (this.wsRegistroMultimodal == null) {
+            this.wsRegistroMultimodal = new WSRegistroMultimodal(this.config, this.httpClient);
+        }
         return this.wsRegistroMultimodal.registroMultimodal(chave, informacoesAdicionais, numeroDocumento);
     }
 
@@ -500,6 +578,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public CTeEventoRetorno registroMultimodalAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsRegistroMultimodal == null) {
+            this.wsRegistroMultimodal = new WSRegistroMultimodal(this.config, this.httpClient);
+        }
         return this.wsRegistroMultimodal.registroMultimodalAssinado(chave, eventoAssinadoXml);
     }
 
@@ -512,6 +593,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml
      */
     public String getXmlAssinadoRegistroMultimodal(final String chave, final String informacoesAdicionais, final String numeroDocumento) throws Exception {
+        if (this.wsRegistroMultimodal == null) {
+            this.wsRegistroMultimodal = new WSRegistroMultimodal(this.config, this.httpClient);
+        }
         return this.wsRegistroMultimodal.getXmlAssinado(chave, informacoesAdicionais, numeroDocumento);
     }
 
@@ -523,6 +607,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      * */
     public CTeOSEnvioRetornoDados envioRecepcaoLote(CTeOS cteOS) throws Exception {
+        if (this.wsRecepcaoCTeOS == null) {
+            this.wsRecepcaoCTeOS = new WSRecepcaoCTeOS(this.config, this.httpClient);
+        }
         return this.wsRecepcaoCTeOS.envioRecepcao(cteOS);
     }
 

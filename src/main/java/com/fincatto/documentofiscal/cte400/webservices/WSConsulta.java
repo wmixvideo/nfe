@@ -12,7 +12,7 @@ import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class WSConsulta implements DFLog {
+class WSConsulta implements DFLog {
 
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CTeConsultaV4";
@@ -26,7 +26,7 @@ public class WSConsulta implements DFLog {
         this.httpClient = httpClient;
     }
 
-    public CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+    CTeNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
         final String xmlConsulta = this.gerarDadosConsulta(chaveDeAcesso).toString();
         this.getLogger().debug(xmlConsulta);
 

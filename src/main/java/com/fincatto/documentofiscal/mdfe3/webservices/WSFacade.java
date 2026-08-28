@@ -42,44 +42,25 @@ import java.util.List;
  */
 public class WSFacade implements Closeable {
 
+    private final MDFeConfig config;
     private final DFHttpClient httpClient;
-    private final WSStatusConsulta wsStatusConsulta;
-    private final WSRecepcaoLote wsRecepcaoLote;
-    private final WSRecepcaoSinc wsRecepcaoSinc;
-    private final WSNotaConsulta wsNotaConsulta;
-    private final WSCancelamento wsCancelamento;
-    private final WSEncerramento wsEncerramento;
-    private final WSConsultaRecibo wsConsultaRecibo;
-    private final WSConsultaNaoEncerrados wsConsultaNaoEncerrados;
-    private final WSIncluirCondutor wsIncluirCondutor;
-    private final WSIncluirDFe wsIncluirDFe;
-    private final WSPagamentoTransporte wsPagamentoTransporte;
-    private final WSDistribuicaoMDFe wsDistribuicaoMDFe;
+    private WSStatusConsulta wsStatusConsulta;
+    private WSRecepcaoLote wsRecepcaoLote;
+    private WSRecepcaoSinc wsRecepcaoSinc;
+    private WSNotaConsulta wsNotaConsulta;
+    private WSCancelamento wsCancelamento;
+    private WSEncerramento wsEncerramento;
+    private WSConsultaRecibo wsConsultaRecibo;
+    private WSConsultaNaoEncerrados wsConsultaNaoEncerrados;
+    private WSIncluirCondutor wsIncluirCondutor;
+    private WSIncluirDFe wsIncluirDFe;
+    private WSPagamentoTransporte wsPagamentoTransporte;
+    private WSDistribuicaoMDFe wsDistribuicaoMDFe;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     public WSFacade(final MDFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        // DFSocketFactory e usado apenas para montar o SSLContext do certificado A1: o
-        // Protocol.registerProtocol que existia aqui antes mutava um registro estatico global
-        // (org.apache.commons.httpclient.protocol.Protocol), compartilhado por todos os facades
-        // da lib - cada instancia criada sobrescrevia o certificado usado por instancias
-        // concorrentes de outros modulos. Removido: cada servico deste facade agora usa o
-        // DFHttpClient injetado (httpclient5), que carrega seu proprio SSLContext.
-        final DFSocketFactory socketFactory = new DFSocketFactory(config);
-        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
-
-        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
-        this.wsRecepcaoLote = new WSRecepcaoLote(config, this.httpClient);
-        this.wsRecepcaoSinc = new WSRecepcaoSinc(config, this.httpClient);
-//        this.wsRecepcaoLoteRetorno = new WSRecepcaoLoteRetorno(config);
-        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
-        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
-        this.wsEncerramento = new WSEncerramento(config, this.httpClient);
-        this.wsConsultaRecibo = new WSConsultaRecibo(config, this.httpClient);
-        this.wsConsultaNaoEncerrados = new WSConsultaNaoEncerrados(config, this.httpClient);
-        this.wsIncluirCondutor = new WSIncluirCondutor(config, this.httpClient);
-        this.wsIncluirDFe = new WSIncluirDFe(config, this.httpClient);
-        this.wsPagamentoTransporte = new WSPagamentoTransporte(config, this.httpClient);
-        this.wsDistribuicaoMDFe = new WSDistribuicaoMDFe(config, this.httpClient);
+        this.config = config;
+        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config);
     }
 
     @Override
@@ -102,6 +83,9 @@ public class WSFacade implements Closeable {
      */
     @Deprecated
     public MDFEnvioLoteRetornoDados envioRecepcaoLote(MDFEnvioLote mdfEnvioLote) throws Exception {
+        if (this.wsRecepcaoLote == null) {
+            this.wsRecepcaoLote = new WSRecepcaoLote(this.config, this.httpClient);
+        }
         return this.wsRecepcaoLote.envioRecepcao(mdfEnvioLote);
     }
 
@@ -115,6 +99,9 @@ public class WSFacade implements Closeable {
      *
      */
     public MDFEnvioRetornoDados envioRecepcaoSinc(MDFe mdfEnvio) throws Exception {
+        if (this.wsRecepcaoSinc == null) {
+            this.wsRecepcaoSinc = new WSRecepcaoSinc(this.config, this.httpClient);
+        }
         return this.wsRecepcaoSinc.envioRecepcaoSinc(mdfEnvio);
     }
 
@@ -128,6 +115,9 @@ public class WSFacade implements Closeable {
      *
      */
     public MDFEnvioRetornoDados envioRecepcaoSincAssinado(final String mdfEnvioAssinado) throws Exception {
+        if (this.wsRecepcaoSinc == null) {
+            this.wsRecepcaoSinc = new WSRecepcaoSinc(this.config, this.httpClient);
+        }
         return this.wsRecepcaoSinc.envioRecepcaoSincAssinado(mdfEnvioAssinado);
     }
 
@@ -141,6 +131,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeConsStatServRet consultaStatus(final DFUnidadeFederativa uf) throws Exception {
+        if (this.wsStatusConsulta == null) {
+            this.wsStatusConsulta = new WSStatusConsulta(this.config, this.httpClient);
+        }
         return this.wsStatusConsulta.consultaStatus(uf);
     }
 
@@ -150,6 +143,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeConsStatServRet consultaStatus() throws Exception {
+        if (this.wsStatusConsulta == null) {
+            this.wsStatusConsulta = new WSStatusConsulta(this.config, this.httpClient);
+        }
         return this.wsStatusConsulta.consultaStatus(DFUnidadeFederativa.RS);
     }
 
@@ -162,6 +158,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeNotaConsultaRetorno consultaMdfe(final String chaveDeAcesso) throws Exception {
+        if (this.wsNotaConsulta == null) {
+            this.wsNotaConsulta = new WSNotaConsulta(this.config, this.httpClient);
+        }
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
@@ -176,6 +175,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeRetorno cancelaMdfe(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 
@@ -190,6 +192,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeRetorno cancelaMdfeAssinado(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -208,6 +213,9 @@ public class WSFacade implements Closeable {
      */
     public MDFeRetorno encerramento(final String chaveAcesso, final String numeroProtocolo,
             final String codigoMunicipio, final LocalDate dataEncerramento, final DFUnidadeFederativa unidadeFederativa) throws Exception {
+        if (this.wsEncerramento == null) {
+            this.wsEncerramento = new WSEncerramento(this.config, this.httpClient);
+        }
         return this.wsEncerramento.encerraMdfe(chaveAcesso, numeroProtocolo, codigoMunicipio, dataEncerramento, unidadeFederativa);
     }
 
@@ -220,6 +228,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno encerramentoAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        if (this.wsEncerramento == null) {
+            this.wsEncerramento = new WSEncerramento(this.config, this.httpClient);
+        }
         return this.wsEncerramento.encerramentoMdfeAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
@@ -232,6 +243,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeConsultaReciboRetorno consultaRecibo(final String numeroRecibo) throws Exception {
+        if (this.wsConsultaRecibo == null) {
+            this.wsConsultaRecibo = new WSConsultaRecibo(this.config, this.httpClient);
+        }
         return this.wsConsultaRecibo.consultaRecibo(numeroRecibo);
     }
 
@@ -244,6 +258,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public MDFeConsultaNaoEncerradosRetorno consultaNaoEncerrados(final String cnpj) throws Exception {
+        if (this.wsConsultaNaoEncerrados == null) {
+            this.wsConsultaNaoEncerrados = new WSConsultaNaoEncerrados(this.config, this.httpClient);
+        }
         return this.wsConsultaNaoEncerrados.consultaNaoEncerrados(cnpj);
     }
 
@@ -257,6 +274,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
+        if (this.wsIncluirCondutor == null) {
+            this.wsIncluirCondutor = new WSIncluirCondutor(this.config, this.httpClient);
+        }
         return this.wsIncluirCondutor.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor);
     }
 
@@ -269,6 +289,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno incluirCondutorAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        if (this.wsIncluirCondutor == null) {
+            this.wsIncluirCondutor = new WSIncluirCondutor(this.config, this.httpClient);
+        }
         return this.wsIncluirCondutor.incluirCondutorAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
@@ -284,6 +307,9 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc) throws Exception {
+        if (this.wsIncluirDFe == null) {
+            this.wsIncluirDFe = new WSIncluirDFe(this.config, this.httpClient);
+        }
         return this.wsIncluirDFe.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc);
     }
 
@@ -296,6 +322,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno incluirDFeAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        if (this.wsIncluirDFe == null) {
+            this.wsIncluirDFe = new WSIncluirDFe(this.config, this.httpClient);
+        }
         return this.wsIncluirDFe.incluirDFeAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
@@ -310,6 +339,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno pagamentoTransporte(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens) throws Exception {
+        if (this.wsPagamentoTransporte == null) {
+            this.wsPagamentoTransporte = new WSPagamentoTransporte(this.config, this.httpClient);
+        }
         return this.wsPagamentoTransporte.pagamento(chaveAcesso, nProt, infPag, infViagens);
     }
 
@@ -322,6 +354,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno pagamentoTransporteAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
+        if (this.wsPagamentoTransporte == null) {
+            this.wsPagamentoTransporte = new WSPagamentoTransporte(this.config, this.httpClient);
+        }
         return this.wsPagamentoTransporte.pagamentoAssinado(chaveAcesso, eventoAssinadoXml);
     }
 
@@ -336,6 +371,9 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeDistribuicaoIntRetorno consultarDistribuicaoMDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        if (this.wsDistribuicaoMDFe == null) {
+            this.wsDistribuicaoMDFe = new WSDistribuicaoMDFe(this.config, this.httpClient);
+        }
         return this.wsDistribuicaoMDFe.consultar(cpfOuCnpj, uf, nsu, ultNsu);
     }
 
