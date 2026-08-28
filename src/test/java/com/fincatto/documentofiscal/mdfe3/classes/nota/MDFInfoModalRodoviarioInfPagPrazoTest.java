@@ -98,6 +98,6 @@ public class MDFInfoModalRodoviarioInfPagPrazoTest  {
 
     @Test
     public void deveRejeitarVParcelaComMaisDe13Digitos() {
-        Assertions.assertThrows(NumberFormatException.class, () -> prazo.setVParcela(new BigDecimal("100000000000.00")));
+        Assertions.assertThrows(NumberFormatException.class, () -> prazo.setVParcela(new BigDecimal("10000000000000.00")));
     }
 }

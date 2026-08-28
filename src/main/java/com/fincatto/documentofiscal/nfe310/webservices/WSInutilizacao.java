@@ -45,6 +45,9 @@ class WSInutilizacao implements DFLog {
     private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
+        if (urlWebService == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Inutilizacao " + modelo.name() + ", autorizador " + autorizador.name());
+        }
 
         final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + WSInutilizacao.VERSAO_SERVICO + "</versaoDados>";
         final String envelope = DFSoapEnvelope.envelopar(WSInutilizacao.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", inutilizacaoXMLAssinado);

@@ -9,6 +9,7 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.*;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
+import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
@@ -16,7 +17,6 @@ import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
@@ -45,8 +45,7 @@ public class WSEpec implements DFLog {
             final NFNota nota = eventoEpec.getNota();
             final NFGeraChave geraChave = new NFGeraChave(nota);
             String chave = geraChave.getChaveAcesso();
-            eventoEpec.getInfoEvento().setIdentificador(
-                    "ID" + TIPO_EVENTO_EPEC + chave + (nSeqEvento < 10 ? "0" + nSeqEvento : nSeqEvento));
+            eventoEpec.getInfoEvento().setIdentificador(ChaveAcessoUtils.geraIDevento(chave, WSEpec.TIPO_EVENTO_EPEC, nSeqEvento));
             eventoEpec.getInfoEvento().setNumeroSequencialEvento(nSeqEvento++);
             eventoEpec.getInfoEvento().setChave(chave);
         }
@@ -58,10 +57,9 @@ public class WSEpec implements DFLog {
 
     private NFEnviaEventoEpec criaEnvioEpec(NFLoteEnvio loteEnvio) {
         NFEnviaEventoEpec nfEnviaEventoEpec = new NFEnviaEventoEpec();
-        nfEnviaEventoEpec.setIdLote(StringUtils.isBlank(loteEnvio.getIdLote()) ? String.valueOf(new java.util.Date().getTime()) : loteEnvio.getIdLote());
+        nfEnviaEventoEpec.setIdLote(StringUtils.isBlank(loteEnvio.getIdLote()) ? String.valueOf(System.currentTimeMillis()) : loteEnvio.getIdLote());
         nfEnviaEventoEpec.setVersao("1.00");
         nfEnviaEventoEpec.setEvento(new ArrayList<NFEventoEpec>());
-        int i = 1;
         for (NFNota nfNota : loteEnvio.getNotas()) {
             NFEventoEpec nfEventoEpec = new NFEventoEpec();
             nfEventoEpec.setNota(nfNota);
@@ -75,12 +73,11 @@ public class WSEpec implements DFLog {
                 infEpec.setCpf(nfNota.getInfo().getEmitente().getCpf());
             }
             infEpec.setCodigoEvento(WSEpec.TIPO_EVENTO_EPEC);
-            infEpec.setNumeroSequencialEvento(i++);
             infEpec.setOrgao(DFUnidadeFederativa.RFB);
             infEpec.setVersaoEvento("1.00");
             infEpec.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
             NFInfoEpec nfInfoEpec = new NFInfoEpec();
-            nfInfoEpec.setDataHoraEmissao(ZonedDateTime.ofInstant(nfNota.getInfo().getIdentificacao().getDataHoraEmissao().toInstant(), ZoneId.systemDefault()));
+            nfInfoEpec.setDataHoraEmissao(ZonedDateTime.ofInstant(nfNota.getInfo().getIdentificacao().getDataHoraEmissao().toInstant(), this.config.getTimeZone().toZoneId()));
             nfInfoEpec.setDescricaoEvento(WSEpec.DESCRICAO_EVENTO_EPEC);
             nfInfoEpec.setInscricaoEstadualEmitente(nfNota.getInfo().getEmitente().getInscricaoEstadual());
             nfInfoEpec.setOrgaoAutor(DFUnidadeFederativa.valueOfCodigo(nfNota.getInfo().getEmitente().getEndereco().getUf()).getCodigoIbge());
@@ -132,9 +129,9 @@ public class WSEpec implements DFLog {
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
-        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getRecepcaoEvento(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getRecepcaoEvento(this.config.getAmbiente()) : autorizador.getNfceRecepcaoEvento(this.config.getAmbiente());
         if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
         return AbstractWSEvento.enviarEvento(this.httpClient, endpoint, loteAssinadoXml);

@@ -32,7 +32,7 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
  * keystore de saida qualquer certificado devolvido pelo host consultado, sem validar a cadeia
  * contra uma autoridade certificadora confiavel previamente conhecida. Isso e aceitavel apenas
  * porque a execucao e manual, feita uma vez por um operador contra os hosts fixos e conhecidos
- * da SEFAZ, e o resultado deve ser conferido antes de distribuido - o fingerprint SHA-1/MD5 de
+ * da SEFAZ, e o resultado deve ser conferido antes de distribuido - o fingerprint SHA-256 de
  * cada certificado capturado e logado em debug justamente para essa conferencia manual. Nunca
  * reutilize esse padrao em codigo que valide certificados de servidor em tempo de execucao.
  */
@@ -139,22 +139,27 @@ public abstract class DFCadeiaCertificados implements DFLog {
             sslSocket.setSoTimeout(10000);
             sslSocket.startHandshake();
         } catch (final Exception e) {
-            DFLog.getLogger(DFCadeiaCertificados.class).error(String.format("[%s] %s", host, e.toString()));
+            // loga com stack trace e segue: o keystore resultante fica sem os certificados deste
+            // host - o operador deve conferir o log antes de distribuir o arquivo gerado
+            DFLog.getLogger(DFCadeiaCertificados.class).error(String.format("Falha ao capturar certificados de [%s] - keystore resultante NAO contem este host", host), e);
         }
         
         // se conseguir obter a cadeia de certificados, adiciona no keystore
         if (savingTrustManager.chain != null) {
             DFLog.getLogger(DFCadeiaCertificados.class).debug("Certificados enviados pelo servidor: {}", savingTrustManager.chain.length);
-            final MessageDigest sha1 = MessageDigest.getInstance("SHA1");
-            final MessageDigest md5 = MessageDigest.getInstance("MD5");
+            final MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             for (int i = 0; i < savingTrustManager.chain.length; i++) {
                 final X509Certificate certificate = savingTrustManager.chain[i];
-                sha1.update(certificate.getEncoded());
-                md5.update(certificate.getEncoded());
-    
                 final String alias = String.format("%s.%s", host, i + 1);
                 keyStore.setCertificateEntry(alias, certificate);
-                DFLog.getLogger(DFCadeiaCertificados.class).debug("Adicionado certificado no keystore com o alias: {}", alias);
+                // fingerprint logado para a conferencia manual do padrao trust-on-first-use
+                // documentada no javadoc da classe
+                sha256.reset();
+                final StringBuilder fingerprint = new StringBuilder();
+                for (final byte b : sha256.digest(certificate.getEncoded())) {
+                    fingerprint.append(String.format("%02X", b));
+                }
+                DFLog.getLogger(DFCadeiaCertificados.class).debug("Adicionado certificado no keystore com o alias: {} (SHA-256: {})", alias, fingerprint);
             }
         }
     }

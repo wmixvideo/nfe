@@ -152,21 +152,7 @@ public final class DFSoapEnvelope {
      * por padrao para fins de parsing.
      */
     private static DocumentBuilderFactory criarDocumentBuilderFactory() throws javax.xml.parsers.ParserConfigurationException {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-        factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-        factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-        factory.setXIncludeAware(false);
-        factory.setExpandEntityReferences(false);
-        try {
-            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-        } catch (final IllegalArgumentException e) {
-            // provider JAXP nao suporta o atributo - segue com o comportamento padrao dele
-        }
-        return factory;
+        return DFXmlSeguro.documentBuilderFactory();
     }
 
     private static Element primeiroElementoFilho(final Element pai) {
@@ -186,19 +172,7 @@ public final class DFSoapEnvelope {
     }
 
     private static String serializar(final Element elemento) throws javax.xml.transform.TransformerException {
-        final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        // Hardening extra contra XXE (defesa em profundidade - o elemento aqui ja vem de um DOM
-        // parseado com o DocumentBuilderFactory endurecido em criarDocumentBuilderFactory(), entao
-        // nao ha DTD/stylesheet externo a resolver neste transform). Alguns providers JAXP alternativos
-        // (ex.: o Xalan empacotado pelo WildFly/JBoss, diferente do Xalan interno do JDK) nao suportam
-        // esses atributos e lancam IllegalArgumentException - nesse caso, seguimos sem eles.
-        try {
-            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
-        } catch (final IllegalArgumentException e) {
-            // provider JAXP nao suporta o atributo - segue com o comportamento padrao dele
-        }
-        final Transformer transformer = transformerFactory.newTransformer();
+        final Transformer transformer = DFXmlSeguro.transformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         final StringWriter writer = new StringWriter();
         transformer.transform(new DOMSource(elemento), new StreamResult(writer));

@@ -54,20 +54,14 @@ class WSNotaConsulta implements DFLog {
     }
 
     private String efetuaConsultaSVRS(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
-        final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
-        final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
-        final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
-        if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
-        }
-
-        final String cabecalho = "<cUF>" + notaFiscalChaveParser.getNFUnidadeFederativa().getCodigoIbge() + "</cUF><versaoDados>" + WSNotaConsulta.VERSAO_SERVICO + "</versaoDados>";
-        final String envelope = DFSoapEnvelope.envelopar(WSNotaConsulta.NAMESPACE_WSDL_SVRS, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
-        final String resposta = this.httpClient.postSoap(endpoint, WSNotaConsulta.SOAP_ACTION_SVRS, envelope);
-        return DFSoapEnvelope.desempacotar(resposta);
+        return this.efetuaConsulta(xmlConsulta, chaveDeAcesso, WSNotaConsulta.NAMESPACE_WSDL_SVRS, WSNotaConsulta.SOAP_ACTION_SVRS);
     }
 
     private String efetuaConsultaBA(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
+        return this.efetuaConsulta(xmlConsulta, chaveDeAcesso, WSNotaConsulta.NAMESPACE_WSDL_BA, WSNotaConsulta.SOAP_ACTION_BA);
+    }
+
+    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso, final String namespace, final String soapAction) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
@@ -76,8 +70,8 @@ class WSNotaConsulta implements DFLog {
         }
 
         final String cabecalho = "<cUF>" + notaFiscalChaveParser.getNFUnidadeFederativa().getCodigoIbge() + "</cUF><versaoDados>" + WSNotaConsulta.VERSAO_SERVICO + "</versaoDados>";
-        final String envelope = DFSoapEnvelope.envelopar(WSNotaConsulta.NAMESPACE_WSDL_BA, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
-        final String resposta = this.httpClient.postSoap(endpoint, WSNotaConsulta.SOAP_ACTION_BA, envelope);
+        final String envelope = DFSoapEnvelope.envelopar(namespace, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, soapAction, envelope);
         return DFSoapEnvelope.desempacotar(resposta);
     }
 

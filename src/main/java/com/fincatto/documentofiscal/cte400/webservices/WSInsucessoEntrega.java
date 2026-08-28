@@ -24,26 +24,22 @@ class WSInsucessoEntrega extends WSRecepcaoEvento {
     }
 
     CTeEventoRetorno insucessoEntregaAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final String xmlResultado = this.efetuaComprovanteEntrega(eventoAssinadoXml, chaveAcesso);
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno insucessoEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, insucessoEntrega, sequencialEvento);
-        final String xmlResultado = this.efetuaComprovanteEntrega(xmlAssinado, chaveAcesso);
+        final String xmlResultado = super.efetuaEvento(xmlAssinado, chaveAcesso);
         return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     String getXmlAssinado(final String chave, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
-        final String xml = this.gerarDadosComprovanteEntrega(chave, insucessoEntrega, sequencialEvento).toString();
+        final String xml = this.gerarDadosInsucessoEntrega(chave, insucessoEntrega, sequencialEvento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
     }
 
-    private String efetuaComprovanteEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEvento(xmlAssinado, chaveAcesso);
-    }
-
-    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
+    private CTeEvento gerarDadosInsucessoEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
         insucessoEntrega.setDescricaoEvento(DESCRICAO_EVENTO);
 
         DFXMLValidador.validaEventoInsucessoEntregaCTe400(insucessoEntrega.toString());

@@ -54,8 +54,8 @@ class WSCartaCorrecao implements DFLog {
         final NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
 
         final NFProtocoloEventoCartaCorrecao nfProtocoloEventoCartaCorrecao = new NFProtocoloEventoCartaCorrecao();
-        nfProtocoloEventoCartaCorrecao.setEvento(evento.getEvento().get(0));
-        nfProtocoloEventoCartaCorrecao.setEventoRetorno(retorno.getEventoRetorno().get(0));
+        nfProtocoloEventoCartaCorrecao.setEvento(evento.getEvento().stream().findFirst().orElse(null));
+        nfProtocoloEventoCartaCorrecao.setEventoRetorno(retorno.getEventoRetorno() == null ? null : retorno.getEventoRetorno().stream().findFirst().orElse(null));
         return nfProtocoloEventoCartaCorrecao;
     }
 
@@ -76,7 +76,9 @@ class WSCartaCorrecao implements DFLog {
     private String efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
 
-        final NFAutorizador400 autorizacao = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
+        // resolve pelo autorizador da chave de acesso (e nao pela UF do config) para funcionar
+        // tambem com notas emitidas em contingencia SVC-RS/SVC-AN, como faz o WSCancelamento
+        final NFAutorizador400 autorizacao = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizacao.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizacao.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizacao.name());

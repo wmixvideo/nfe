@@ -41,10 +41,10 @@ class WSConsultaCadastro implements DFLog {
 
     private String efetuaConsulta(final DFUnidadeFederativa uf, final String xmlConsulta) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
-        if (autorizador == null) {
-            throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
-        }
         final String endpoint = autorizador.getConsultaCadastro(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalStateException(String.format("UF %s nao possui URL de ConsultaCadastro (autorizador %s, ambiente %s)", uf.getDescricao(), autorizador.name(), this.config.getAmbiente()));
+        }
 
         final String cabecalho = "<cUF>" + uf.getCodigoIbge() + "</cUF><versaoDados>" + WSConsultaCadastro.VERSAO_SERVICO + "</versaoDados>";
         final String envelope = DFSoapEnvelope.envelopar(WSConsultaCadastro.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);

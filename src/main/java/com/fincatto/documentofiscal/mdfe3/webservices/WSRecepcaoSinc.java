@@ -48,9 +48,6 @@ class WSRecepcaoSinc implements DFLog {
     }
 
     private MDFEnvioRetorno comunicaSinc(final String mdfeAssinadoXml) throws Exception {
-        //devido a limitacao padrao de 5000 da jdk
-        //veja em https://docs.oracle.com/javase/7/docs/api/javax/xml/XMLConstants.html#FEATURE_SECURE_PROCESSING
-        System.setProperty("jdk.xml.maxOccurLimit", "10000");
         //valida o mdfe assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         DFXMLValidador.validaMDFe(mdfeAssinadoXml);
 

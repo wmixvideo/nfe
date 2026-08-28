@@ -20,7 +20,7 @@ class WSPagamentoTransporte implements DFLog {
 
     private static final String DESCRICAO_EVENTO = "Pagamento Operação MDF-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
-    private static final String EVENTO_ENCERRAMENTO = "110116";
+    private static final String EVENTO_PAGAMENTO = "110116";
     private final MDFeConfig config;
     private final DFHttpClient httpClient;
 
@@ -35,13 +35,17 @@ class WSPagamentoTransporte implements DFLog {
     }
 
     MDFeRetorno pagamento(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens) throws Exception {
-        final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, nProt, infPag, infViagens).toString();
-        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
+        return this.pagamento(chaveAcesso, nProt, infPag, infViagens, 1);
+    }
+
+    MDFeRetorno pagamento(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens, final int numeroSequencialEvento) throws Exception {
+        final String pagamentoXML = this.gerarDadosPagamento(chaveAcesso, nProt, infPag, infViagens, numeroSequencialEvento).toString();
+        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(pagamentoXML);
         final String xmlResultado = WSTransporteEvento.enviarEvento(this.httpClient, this.config, xmlAssinado, chaveAcesso, WSPagamentoTransporte.VERSAO_LEIAUTE);
         return this.config.getPersister().read(MDFeRetorno.class, xmlResultado);
     }
 
-    private MDFeEvento gerarDadosEncerramento(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens) {
+    private MDFeEvento gerarDadosPagamento(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens, final int numeroSequencialEvento) {
         final MDFChaveParser chaveParser = new MDFChaveParser(chaveAcesso);
 
         final MDFeEnviaEventoPagamento pagamento = new MDFeEnviaEventoPagamento();
@@ -57,17 +61,18 @@ class WSPagamentoTransporte implements DFLog {
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSPagamentoTransporte.EVENTO_ENCERRAMENTO, chaveAcesso, "1"));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setId(String.format("ID%s%s%02d", WSPagamentoTransporte.EVENTO_PAGAMENTO, chaveAcesso, numeroSequencialEvento));
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        infoEvento.setCodigoEvento(WSPagamentoTransporte.EVENTO_ENCERRAMENTO);
+        infoEvento.setCodigoEvento(WSPagamentoTransporte.EVENTO_PAGAMENTO);
         infoEvento.setDetEvento(mdFeDetalhamentoEvento);
 
-        final MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
-        mdfeEventoEncerramento.setInfoEvento(infoEvento);
-        mdfeEventoEncerramento.setVersao(WSPagamentoTransporte.VERSAO_LEIAUTE);
-        return mdfeEventoEncerramento;
+        final MDFeEvento mdfeEventoPagamento = new MDFeEvento();
+        mdfeEventoPagamento.setInfoEvento(infoEvento);
+        mdfeEventoPagamento.setVersao(WSPagamentoTransporte.VERSAO_LEIAUTE);
+        return mdfeEventoPagamento;
     }
 }

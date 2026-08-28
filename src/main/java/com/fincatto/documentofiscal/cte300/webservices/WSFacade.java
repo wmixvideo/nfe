@@ -44,21 +44,21 @@ public class WSFacade implements Closeable {
 
     private final CTeConfig config;
     private final DFHttpClient httpClient;
-    private WSStatusConsulta wsStatusConsulta;
-    private WSRecepcaoLote wsRecepcaoLote;
-    private WSNotaConsulta wsNotaConsulta;
-    private WSCancelamento wsCancelamento;
-    private WSInutilizacao wsInutilizacao;
-    private WSDistribuicaoCTe wSDistribuicaoCTe;
-    private WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
-    private WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
-    private WSRegistroMultimodal wsRegistroMultimodal;
-    private WSCartaCorrecao wsCartaCorrecao;
-    private WSComprovanteEntrega wsComprovanteEntrega;
-    private WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
-    private WSEpec wsEpec;
-    private WSGtv wsGtv;
-    private WSRecepcaoCTeOS wsRecepcaoCTeOS;
+    private volatile WSStatusConsulta wsStatusConsulta;
+    private volatile WSRecepcaoLote wsRecepcaoLote;
+    private volatile WSNotaConsulta wsNotaConsulta;
+    private volatile WSCancelamento wsCancelamento;
+    private volatile WSInutilizacao wsInutilizacao;
+    private volatile WSDistribuicaoCTe wSDistribuicaoCTe;
+    private volatile WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
+    private volatile WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
+    private volatile WSRegistroMultimodal wsRegistroMultimodal;
+    private volatile WSCartaCorrecao wsCartaCorrecao;
+    private volatile WSComprovanteEntrega wsComprovanteEntrega;
+    private volatile WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
+    private volatile WSEpec wsEpec;
+    private volatile WSGtv wsGtv;
+    private volatile WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
     public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         this.config = config;

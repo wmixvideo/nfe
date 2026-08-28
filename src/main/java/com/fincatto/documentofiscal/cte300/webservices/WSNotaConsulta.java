@@ -47,7 +47,7 @@ class WSNotaConsulta implements DFLog {
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = autorizador.getCteConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + ctChaveParser.getNFUnidadeFederativa().name());
         }
         this.getLogger().debug(endpoint);
 

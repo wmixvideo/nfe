@@ -4,6 +4,7 @@ import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.CTAutorizador400;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsulta;
+import com.fincatto.documentofiscal.cte400.parsers.CTChaveParser;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
@@ -43,7 +44,7 @@ class WSConsulta implements DFLog {
         final CTAutorizador400 autorizador = CTAutorizador400.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = autorizador.getCteConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + new CTChaveParser(chaveDeAcesso).getNFUnidadeFederativa().name());
         }
         this.getLogger().debug(endpoint);
 

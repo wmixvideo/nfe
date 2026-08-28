@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.cte300.webservices;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.cte.CTeConfig;
-import com.fincatto.documentofiscal.cte300.classes.evento.CTeDetalhamentoEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.cancelamento.CTeEnviaEventoCancelamento;
@@ -44,9 +43,6 @@ class WSCancelamento extends WSRecepcaoEvento {
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
         cancelamento.setJustificativa(motivo.trim());
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
-        CTeDetalhamentoEvento cTeDetalhamentoEventoCancelamento = new CTeDetalhamentoEvento();
-        cTeDetalhamentoEventoCancelamento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
-        cTeDetalhamentoEventoCancelamento.setEvento(cancelamento);
 
         DFXMLValidador.validaEventoCancelamentoCTe300(cancelamento.toString());
 

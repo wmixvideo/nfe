@@ -8,15 +8,12 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.*;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFEventoNaoProcessadoException;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
@@ -52,15 +49,15 @@ public class WSManifestacaoDestinatario implements DFLog {
         final NFEnviaEventoManifestacaoDestinatario evento = this.config.getPersister().read(NFEnviaEventoManifestacaoDestinatario.class, xmlAssinado);
         final NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
 
-        // Excessao se o codigo status do retorno diferente de 128 - Lote de Evento Processado
+        // Excecao se o codigo status do retorno for diferente de 128 - Lote de Evento Processado
         if (retorno.getCodigoStatusReposta() != 128) {
-            throw new RuntimeException("Status: " + retorno.getCodigoStatusReposta() + " - Motivo: " + retorno.getMotivo());
+            throw new DFEventoNaoProcessadoException(retorno.getCodigoStatusReposta(), retorno.getMotivo());
         }
 
         NFProtocoloEventoManifestacaoDestinatario nfProtocoloEventoManifestacaoDestinatario = new NFProtocoloEventoManifestacaoDestinatario();
         nfProtocoloEventoManifestacaoDestinatario.setVersao(evento.getVersao());
-        nfProtocoloEventoManifestacaoDestinatario.setEvento(evento.getEvento().get(0));
-        nfProtocoloEventoManifestacaoDestinatario.setEventoRetorno(retorno.getEventoRetorno().get(0));
+        nfProtocoloEventoManifestacaoDestinatario.setEvento(evento.getEvento().stream().findFirst().orElse(null));
+        nfProtocoloEventoManifestacaoDestinatario.setEventoRetorno(retorno.getEventoRetorno() == null ? null : retorno.getEventoRetorno().stream().findFirst().orElse(null));
         return nfProtocoloEventoManifestacaoDestinatario;
     }
 
@@ -71,8 +68,7 @@ public class WSManifestacaoDestinatario implements DFLog {
      * compartilhado com os demais servicos de evento via {@link AbstractWSEvento#enviarEvento}
      * (ver spec da migracao).
      */
-    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso)
-            throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = autorizador.getRecepcaoEventoAN(this.config.getAmbiente());

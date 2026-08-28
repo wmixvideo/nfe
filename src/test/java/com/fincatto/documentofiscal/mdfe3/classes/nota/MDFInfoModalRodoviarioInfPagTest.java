@@ -139,7 +139,10 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
     @Test
     public void deveAceitarVAdiantValidoNoLimite() {
-        Assertions.assertThrows(NumberFormatException.class, () -> pag.setVAdiant(new BigDecimal("99999999999.99")));
+        // TDec_1302: ate 13 digitos inteiros e 2 decimais
+        final BigDecimal limite = new BigDecimal("9999999999999.99");
+        pag.setVAdiant(limite);
+        Assertions.assertEquals(0, pag.getVAdiant().compareTo(limite));
     }
 
     @Test
@@ -149,7 +152,7 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
     @Test
     public void deveRejeitarVAdiantComMaisDe13Digitos() {
-        Assertions.assertThrows(NumberFormatException.class, () -> pag.setVAdiant(new BigDecimal("10000000000.00")));
+        Assertions.assertThrows(NumberFormatException.class, () -> pag.setVAdiant(new BigDecimal("10000000000000.00")));
     }
 
     @Test

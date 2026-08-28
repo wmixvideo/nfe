@@ -14,10 +14,6 @@ import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
@@ -47,8 +43,7 @@ public class WSManifestacaoDestinatario implements DFLog {
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
-    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso)
-            throws IOException, DFSoapFaultException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+    private String efetuaManifestacaoDestinatario(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = autorizador.getRecepcaoEventoAN(this.config.getAmbiente());

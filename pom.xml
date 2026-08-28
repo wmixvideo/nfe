@@ -85,8 +85,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- agregador: traz api + engine + params; sem ele o engine so funciona porque o
+                 surefire resolve a versao implicitamente, o que e fragil -->
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
@@ -135,11 +137,17 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.15.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <optimize>true</optimize>
-                    <debug>false</debug>
+                    <!-- release (e nao source/target) impede o uso acidental de APIs de JDKs mais
+                         novos quando a CI compila com Java 21; debug info mantida (padrao) para
+                         que stack traces dos usuarios da lib tenham numero de linha -->
+                    <release>${java.version}</release>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
             </plugin>
 
             <!-- Cobertura de testes -->
@@ -148,7 +156,8 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
                 <configuration>
-                    <repoToken>QTRbpWiuiwIHGrc0arqKxXsAtiVoLMc5h</repoToken>
+                    <!-- token vem do secret COVERALLS_REPO_TOKEN da CI - nunca commitar o valor -->
+                    <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
                 </configuration>
                 <dependencies>
                     <dependency>

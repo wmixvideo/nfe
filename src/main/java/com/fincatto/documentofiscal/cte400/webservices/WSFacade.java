@@ -46,23 +46,23 @@ public class WSFacade implements Closeable {
     private final CTeConfig config;
     private final DFHttpClient httpClient;
 
-    private WSStatusConsulta wsStatusConsulta;
-    private WSRecepcaoCTe wsRecepcaoCTe;
-    private WSDistribuicaoCTe wsDistribuicaoCTe;
-    private WSConsulta wsConsulta;
-    private WSCancelamento wsCancelamento;
-    private WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
-    private WSRegistroMultimodal wsRegistroMultimodal;
-    private WSCartaCorrecao wsCartaCorrecao;
-    private WSComprovanteEntrega wsComprovanteEntrega;
-    private WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
-    private WSEpec wsEpec;
-    private WSGtv wsGtv;
-    private WSCancelamentoPrestacaoEmDesacordo wsCancelamentoPrestacaoEmDesacordo;
-    private WSInsucessoEntrega wsInsucessoEntrega;
-    private WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
-    private WSRecepcaoCTeOS wsRecepcaoCTeOS;
-    private WSRecepcaoCTeSimp wsRecepcaoCTeSimp;
+    private volatile WSStatusConsulta wsStatusConsulta;
+    private volatile WSRecepcaoCTe wsRecepcaoCTe;
+    private volatile WSDistribuicaoCTe wsDistribuicaoCTe;
+    private volatile WSConsulta wsConsulta;
+    private volatile WSCancelamento wsCancelamento;
+    private volatile WSPrestacaoEmDesacordo wsPrestacaoEmDesacordo;
+    private volatile WSRegistroMultimodal wsRegistroMultimodal;
+    private volatile WSCartaCorrecao wsCartaCorrecao;
+    private volatile WSComprovanteEntrega wsComprovanteEntrega;
+    private volatile WSCancelamentoComprovanteEntrega wsCancelamentoComprovanteEntrega;
+    private volatile WSEpec wsEpec;
+    private volatile WSGtv wsGtv;
+    private volatile WSCancelamentoPrestacaoEmDesacordo wsCancelamentoPrestacaoEmDesacordo;
+    private volatile WSInsucessoEntrega wsInsucessoEntrega;
+    private volatile WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
+    private volatile WSRecepcaoCTeOS wsRecepcaoCTeOS;
+    private volatile WSRecepcaoCTeSimp wsRecepcaoCTeSimp;
 
     public WSFacade(final CTeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         this.config = config;
