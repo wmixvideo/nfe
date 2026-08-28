@@ -6,7 +6,7 @@ import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ public class WSTransporteEventoTest {
     private HttpServer servidor;
     private DFHttpClient httpClient;
 
-    @AfterAll
+    @AfterEach
     public void encerraClienteEServidor() throws IOException {
         if (this.httpClient != null) {
             this.httpClient.close();

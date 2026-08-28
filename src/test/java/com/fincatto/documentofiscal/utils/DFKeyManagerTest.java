@@ -2,7 +2,7 @@ package com.fincatto.documentofiscal.utils;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ public class DFKeyManagerTest {
 
     private Path keystorePath;
 
-    @AfterAll
+    @AfterEach
     public void removeKeystoreTemporario() throws IOException {
         if (this.keystorePath != null) {
             Files.deleteIfExists(this.keystorePath);
