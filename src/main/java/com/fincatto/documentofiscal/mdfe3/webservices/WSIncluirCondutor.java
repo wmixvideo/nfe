@@ -18,7 +18,7 @@ class WSIncluirCondutor implements DFLog {
 
     private static final String DESCRICAO_EVENTO = "Inclusao Condutor";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
-    private static final String EVENTO_ENCERRAMENTO = "110114";
+    private static final String EVENTO_INCLUSAO_CONDUTOR = "110114";
     private final MDFeConfig config;
     private final DFHttpClient httpClient;
 
@@ -33,13 +33,17 @@ class WSIncluirCondutor implements DFLog {
     }
 
     MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
-        final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, nomeCondutor, cpfCondutor).toString();
-        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
+        return this.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor, 1);
+    }
+
+    MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor, final int numeroSequencialEvento) throws Exception {
+        final String inclusaoCondutorXML = this.gerarDadosInclusaoCondutor(chaveAcesso, nomeCondutor, cpfCondutor, numeroSequencialEvento).toString();
+        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(inclusaoCondutorXML);
         final String xmlResultado = WSTransporteEvento.enviarEvento(this.httpClient, this.config, xmlAssinado, chaveAcesso, WSIncluirCondutor.VERSAO_LEIAUTE);
         return this.config.getPersister().read(MDFeRetorno.class, xmlResultado);
     }
 
-    private MDFeEvento gerarDadosEncerramento(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) {
+    private MDFeEvento gerarDadosInclusaoCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor, final int numeroSequencialEvento) {
         final MDFChaveParser chaveParser = new MDFChaveParser(chaveAcesso);
 
         final MDFInfoModalRodoviarioVeiculoCondutor condutor = new MDFInfoModalRodoviarioVeiculoCondutor();
@@ -57,17 +61,18 @@ class WSIncluirCondutor implements DFLog {
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSIncluirCondutor.EVENTO_ENCERRAMENTO, chaveAcesso, "1"));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setId(String.format("ID%s%s%02d", WSIncluirCondutor.EVENTO_INCLUSAO_CONDUTOR, chaveAcesso, numeroSequencialEvento));
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        infoEvento.setCodigoEvento(WSIncluirCondutor.EVENTO_ENCERRAMENTO);
+        infoEvento.setCodigoEvento(WSIncluirCondutor.EVENTO_INCLUSAO_CONDUTOR);
         infoEvento.setDetEvento(mdFeDetalhamentoEvento);
 
-        final MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
-        mdfeEventoEncerramento.setInfoEvento(infoEvento);
-        mdfeEventoEncerramento.setVersao(WSIncluirCondutor.VERSAO_LEIAUTE);
-        return mdfeEventoEncerramento;
+        final MDFeEvento mdfeEventoInclusaoCondutor = new MDFeEvento();
+        mdfeEventoInclusaoCondutor.setInfoEvento(infoEvento);
+        mdfeEventoInclusaoCondutor.setVersao(WSIncluirCondutor.VERSAO_LEIAUTE);
+        return mdfeEventoInclusaoCondutor;
     }
 }

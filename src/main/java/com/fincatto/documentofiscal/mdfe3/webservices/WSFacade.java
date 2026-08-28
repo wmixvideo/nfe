@@ -44,18 +44,18 @@ public class WSFacade implements Closeable {
 
     private final MDFeConfig config;
     private final DFHttpClient httpClient;
-    private WSStatusConsulta wsStatusConsulta;
-    private WSRecepcaoLote wsRecepcaoLote;
-    private WSRecepcaoSinc wsRecepcaoSinc;
-    private WSNotaConsulta wsNotaConsulta;
-    private WSCancelamento wsCancelamento;
-    private WSEncerramento wsEncerramento;
-    private WSConsultaRecibo wsConsultaRecibo;
-    private WSConsultaNaoEncerrados wsConsultaNaoEncerrados;
-    private WSIncluirCondutor wsIncluirCondutor;
-    private WSIncluirDFe wsIncluirDFe;
-    private WSPagamentoTransporte wsPagamentoTransporte;
-    private WSDistribuicaoMDFe wsDistribuicaoMDFe;
+    private volatile WSStatusConsulta wsStatusConsulta;
+    private volatile WSRecepcaoLote wsRecepcaoLote;
+    private volatile WSRecepcaoSinc wsRecepcaoSinc;
+    private volatile WSNotaConsulta wsNotaConsulta;
+    private volatile WSCancelamento wsCancelamento;
+    private volatile WSEncerramento wsEncerramento;
+    private volatile WSConsultaRecibo wsConsultaRecibo;
+    private volatile WSConsultaNaoEncerrados wsConsultaNaoEncerrados;
+    private volatile WSIncluirCondutor wsIncluirCondutor;
+    private volatile WSIncluirDFe wsIncluirDFe;
+    private volatile WSPagamentoTransporte wsPagamentoTransporte;
+    private volatile WSDistribuicaoMDFe wsDistribuicaoMDFe;
 
 //	private final WSRecepcaoLoteRetorno wsRecepcaoLoteRetorno;
     public WSFacade(final MDFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
@@ -274,10 +274,25 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor) throws Exception {
+        return this.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor, 1);
+    }
+
+    /**
+     * Faz a inclusão de condutor do veículo de MDF-e Rodoviário, informando o número sequencial
+     * do evento (necessário a partir da segunda inclusão no mesmo MDF-e).
+     *
+     * @param chaveAcesso chave de acesso do MDF-e
+     * @param nomeCondutor nome do condutor incluído
+     * @param cpfCondutor CPF do condutor incluído
+     * @param numeroSequencialEvento número sequencial do evento (1 para a primeira inclusão)
+     * @return dados da inclusão retornados pelo webservice
+     * @throws Exception caso não consiga gerar o xml ou problema de conexão com a sefaz
+     */
+    public MDFeRetorno incluirCondutor(final String chaveAcesso, final String nomeCondutor, final String cpfCondutor, final int numeroSequencialEvento) throws Exception {
         if (this.wsIncluirCondutor == null) {
             this.wsIncluirCondutor = new WSIncluirCondutor(this.config, this.httpClient);
         }
-        return this.wsIncluirCondutor.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor);
+        return this.wsIncluirCondutor.incluirCondutor(chaveAcesso, nomeCondutor, cpfCondutor, numeroSequencialEvento);
     }
 
     /**
@@ -307,10 +322,27 @@ public class WSFacade implements Closeable {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc) throws Exception {
+        return this.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc, 1);
+    }
+
+    /**
+     * Faz a inclusão de DF-e no MDF-e Rodoviário, informando o número sequencial do evento
+     * (necessário a partir da segunda inclusão no mesmo MDF-e).
+     *
+     * @param chaveAcesso chave de acesso do MDF-e
+     * @param nProt numero do protocolo de autorizacao do MDF-e
+     * @param cMunCarrega codigo do municipio de carregamento
+     * @param xMunCarrega nome do municipio de carregamento
+     * @param infDoc lista de documentos fiscais a incluir
+     * @param numeroSequencialEvento número sequencial do evento (1 para a primeira inclusão)
+     * @return dados da inclusao de DF-e retornados pelo webservice
+     * @throws Exception caso não consiga gerar o xml ou problema de conexão com a sefaz
+     */
+    public MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc, final int numeroSequencialEvento) throws Exception {
         if (this.wsIncluirDFe == null) {
             this.wsIncluirDFe = new WSIncluirDFe(this.config, this.httpClient);
         }
-        return this.wsIncluirDFe.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc);
+        return this.wsIncluirDFe.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc, numeroSequencialEvento);
     }
 
     /**
@@ -339,10 +371,26 @@ public class WSFacade implements Closeable {
      * @throws Exception
      */
     public MDFeRetorno pagamentoTransporte(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens) throws Exception {
+        return this.pagamentoTransporte(chaveAcesso, nProt, infPag, infViagens, 1);
+    }
+
+    /**
+     * Faz o evento de Pagamento da Operação de Transporte, informando o número sequencial do
+     * evento (necessário a partir do segundo pagamento no mesmo MDF-e).
+     *
+     * @param chaveAcesso chave de acesso do MDF-e
+     * @param nProt numero do protocolo de autorizacao do MDF-e
+     * @param infPag informações de pagamento
+     * @param infViagens informações de viagens
+     * @param numeroSequencialEvento número sequencial do evento (1 para o primeiro pagamento)
+     * @return dados do pagamento retornados pelo webservice
+     * @throws Exception caso não consiga gerar o xml ou problema de conexão com a sefaz
+     */
+    public MDFeRetorno pagamentoTransporte(final String chaveAcesso, final String nProt, final List<MDFInfoModalRodoviarioInfPag> infPag, final List<MDFInfoModalRodoviarioInfViagens> infViagens, final int numeroSequencialEvento) throws Exception {
         if (this.wsPagamentoTransporte == null) {
             this.wsPagamentoTransporte = new WSPagamentoTransporte(this.config, this.httpClient);
         }
-        return this.wsPagamentoTransporte.pagamento(chaveAcesso, nProt, infPag, infViagens);
+        return this.wsPagamentoTransporte.pagamento(chaveAcesso, nProt, infPag, infViagens, numeroSequencialEvento);
     }
 
     /**

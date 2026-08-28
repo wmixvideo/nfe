@@ -65,6 +65,11 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected CTeEvento gerarEvento(String chaveAcesso, BigDecimal versao, CTeTipoEvento evento, String codigoEvento, String cpfOuCnpj, int sequencialEvento) throws Exception {
+        // o Id do evento no CT-e 4.00 tem 53 caracteres (ID[0-9]{53} no eventoCTeTiposBasico_v4.00.xsd),
+        // sobrando exatamente 3 digitos para o sequencial
+        if (sequencialEvento < 1 || sequencialEvento > 999) {
+            throw new IllegalArgumentException(String.format("Sequencial do evento (%s) fora do intervalo [1-999]", sequencialEvento));
+        }
         final CTChaveParser chaveParser = new CTChaveParser(chaveAcesso);
 
         CTeDetalhamentoEvento cteDetalhamentoEventoCancelamento = new CTeDetalhamentoEvento();

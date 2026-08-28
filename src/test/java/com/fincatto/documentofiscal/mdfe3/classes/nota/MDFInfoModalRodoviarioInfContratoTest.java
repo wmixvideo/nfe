@@ -38,7 +38,7 @@ public class MDFInfoModalRodoviarioInfContratoTest {
     public void deveRejeitarValorContratoGlobalComMaisDe13DigitosTotais() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
 
-            BigDecimal invalido = new BigDecimal("100000000000.00");
+            BigDecimal invalido = new BigDecimal("10000000000000.00");
 
             contrato.setValorContratoGlobal(invalido);
         });

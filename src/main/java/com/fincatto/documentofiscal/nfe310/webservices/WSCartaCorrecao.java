@@ -52,7 +52,9 @@ class WSCartaCorrecao implements DFLog {
     private String efetuaCorrecao(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
 
-        final NFAutorizador31 autorizacao = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
+        // resolve pelo autorizador da chave de acesso (e nao pela UF do config) para funcionar
+        // tambem com notas emitidas em contingencia SVC-RS/SVC-AN, como faz o WSCancelamento
+        final NFAutorizador31 autorizacao = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizacao.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizacao.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizacao.name());

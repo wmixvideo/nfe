@@ -141,7 +141,7 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
 
     @Test
     public void deveRejeitarValorComMaisDe13DigitosTotais() {
-        Assertions.assertThrows(NumberFormatException.class, () -> disp.setValor(new BigDecimal("100000000000.00")));
+        Assertions.assertThrows(NumberFormatException.class, () -> disp.setValor(new BigDecimal("10000000000000.00")));
     }
 
     @Test

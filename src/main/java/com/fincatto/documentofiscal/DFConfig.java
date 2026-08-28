@@ -14,8 +14,23 @@ import java.util.TimeZone;
  */
 public abstract class DFConfig {
     
+    /**
+     * @deprecated {@link TimeZone} e mutavel - qualquer codigo com acesso a esta constante pode
+     * alterar o fuso compartilhado por toda a aplicacao. Use {@link #getTimezoneSP()}, que
+     * devolve uma copia defensiva.
+     */
+    @Deprecated
     public static final TimeZone TIMEZONE_SP = TimeZone.getTimeZone("America/Sao_Paulo");
-    private Persister persister;
+    private volatile Persister persister;
+
+    /**
+     * Fuso horario de Sao Paulo (America/Sao_Paulo), em copia defensiva.
+     *
+     * @return copia do TimeZone de Sao Paulo, segura para modificacao pelo chamador.
+     */
+    public static TimeZone getTimezoneSP() {
+        return TimeZone.getTimeZone("America/Sao_Paulo");
+    }
     
     /**
      * Indica o ambiente de trabalho, se em producao ou homologacao.

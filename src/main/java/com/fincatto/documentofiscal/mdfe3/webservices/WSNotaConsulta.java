@@ -42,10 +42,12 @@ class WSNotaConsulta implements DFLog {
         final MDFChaveParser ctChaveParser = new MDFChaveParser(chaveDeAcesso);
         final String cabecalho = "<cUF>" + ctChaveParser.getNFUnidadeFederativa().getCodigoIbge() + "</cUF><versaoDados>" + WSNotaConsulta.VERSAO_SERVICO + "</versaoDados>";
 
-        final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(this.config.getCUF());
+        // resolve o autorizador pela UF da chave de acesso (mesma fonte usada no cabecalho <cUF>
+        // acima), permitindo consultar MDF-e emitido em UF diferente da configurada
+        final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(ctChaveParser.getNFUnidadeFederativa());
         final String endpoint = autorizador.getMDFeConsulta(this.config.getAmbiente());
         if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta, autorizador " + autorizador.name() + ", UF " + ctChaveParser.getNFUnidadeFederativa().name());
         }
 
         final String envelope = DFSoapEnvelope.envelopar(WSNotaConsulta.NAMESPACE_WSDL, "mdfeCabecMsg", cabecalho, "mdfeDadosMsg", xmlConsulta);

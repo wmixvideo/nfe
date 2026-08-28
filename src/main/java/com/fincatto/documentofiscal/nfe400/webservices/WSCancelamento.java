@@ -3,7 +3,6 @@ package com.fincatto.documentofiscal.nfe400.webservices;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +22,6 @@ import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoReto
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-import com.fincatto.documentofiscal.utils.DFPersister;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSCancelamento implements DFLog {
@@ -52,9 +50,9 @@ class WSCancelamento implements DFLog {
         final String xmlResultado = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
         NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
 
-        NFEnviaEventoCancelamento eventoAssinado = new DFPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
+        NFEnviaEventoCancelamento eventoAssinado = this.config.getPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
 
-        final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Arrays.asList() : retorno.getEventoRetorno();
+        final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Collections.emptyList() : retorno.getEventoRetorno();
 
         NFProtocoloEventoCancelamento protocolo = new NFProtocoloEventoCancelamento();
         protocolo.setVersao("1.00");
@@ -97,7 +95,7 @@ class WSCancelamento implements DFLog {
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(chaveAcesso, WSCancelamento.EVENTO_CANCELAMENTO, numeroSequencial));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setNumeroSequencialEvento(numeroSequencial);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
         infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);

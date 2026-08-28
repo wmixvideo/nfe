@@ -45,17 +45,17 @@ public class WSFacade implements Closeable {
 
     private final NFeConfig config;
     private final DFHttpClient httpClient;
-    private WSLoteEnvio wsLoteEnvio;
-    private WSLoteConsulta wsLoteConsulta;
-    private WSStatusConsulta wsStatusConsulta;
-    private WSNotaConsulta wsNotaConsulta;
-    private WSCartaCorrecao wsCartaCorrecao;
-    private WSCancelamento wsCancelamento;
-    private WSConsultaCadastro wsConsultaCadastro;
-    private WSInutilizacao wsInutilizacao;
-    private WSManifestacaoDestinatario wSManifestacaoDestinatario;
-    private WSNotaDownload wsNotaDownload;
-    private WSDistribuicaoNFe wSDistribuicaoNFe;
+    private volatile WSLoteEnvio wsLoteEnvio;
+    private volatile WSLoteConsulta wsLoteConsulta;
+    private volatile WSStatusConsulta wsStatusConsulta;
+    private volatile WSNotaConsulta wsNotaConsulta;
+    private volatile WSCartaCorrecao wsCartaCorrecao;
+    private volatile WSCancelamento wsCancelamento;
+    private volatile WSConsultaCadastro wsConsultaCadastro;
+    private volatile WSInutilizacao wsInutilizacao;
+    private volatile WSManifestacaoDestinatario wSManifestacaoDestinatario;
+    private volatile WSNotaDownload wsNotaDownload;
+    private volatile WSDistribuicaoNFe wSDistribuicaoNFe;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         this.config = config;

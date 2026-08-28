@@ -45,6 +45,9 @@ class WSLoteEnvio implements DFLog {
      * Retorna o Lote assinado.
      */
     NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
+        if (lote.getNotas() == null || lote.getNotas().isEmpty()) {
+            throw new IllegalArgumentException("Nenhuma nota informada no envio do Lote!");
+        }
         // adiciona a chave e o dv antes de assinar
         for (final NFNota nota : lote.getNotas()) {
             final NFGeraChave geraChave = new NFGeraChave(nota);

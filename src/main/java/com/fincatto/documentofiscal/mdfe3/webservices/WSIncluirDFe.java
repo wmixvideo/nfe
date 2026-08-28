@@ -18,7 +18,7 @@ class WSIncluirDFe implements DFLog {
 
     private static final String DESCRICAO_EVENTO = "Inclusao DF-e";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("3.00");
-    private static final String EVENTO_ENCERRAMENTO = "110115";
+    private static final String EVENTO_INCLUSAO_DFE = "110115";
     private final MDFeConfig config;
     private final DFHttpClient httpClient;
 
@@ -33,13 +33,17 @@ class WSIncluirDFe implements DFLog {
     }
 
     MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc) throws Exception {
-        final String encerramentoNotaXML = this.gerarDadosEncerramento(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc).toString();
-        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(encerramentoNotaXML);
+        return this.incluirDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc, 1);
+    }
+
+    MDFeRetorno incluirDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc, final int numeroSequencialEvento) throws Exception {
+        final String inclusaoDFeXML = this.gerarDadosInclusaoDFe(chaveAcesso, nProt, cMunCarrega, xMunCarrega, infDoc, numeroSequencialEvento).toString();
+        final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(inclusaoDFeXML);
         final String xmlResultado = WSTransporteEvento.enviarEvento(this.httpClient, this.config, xmlAssinado, chaveAcesso, WSIncluirDFe.VERSAO_LEIAUTE);
         return this.config.getPersister().read(MDFeRetorno.class, xmlResultado);
     }
 
-    private MDFeEvento gerarDadosEncerramento(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc) {
+    private MDFeEvento gerarDadosInclusaoDFe(final String chaveAcesso, final String nProt, final String cMunCarrega, final String xMunCarrega, final List<MDFeEnviaEventoIncluirDFeInfDoc> infDoc, final int numeroSequencialEvento) {
         final MDFChaveParser chaveParser = new MDFChaveParser(chaveAcesso);
 
         final MDFeEnviaEventoIncluirDFe incluirDFe = new MDFeEnviaEventoIncluirDFe();
@@ -56,17 +60,18 @@ class WSIncluirDFe implements DFLog {
         final MDFeInfoEvento infoEvento = new MDFeInfoEvento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
+        infoEvento.setCpf(chaveParser.getCpfEmitente());
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
-        infoEvento.setId(String.format("ID%s%s0%s", WSIncluirDFe.EVENTO_ENCERRAMENTO, chaveAcesso, "1"));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setId(String.format("ID%s%s%02d", WSIncluirDFe.EVENTO_INCLUSAO_DFE, chaveAcesso, numeroSequencialEvento));
+        infoEvento.setNumeroSequencialEvento(numeroSequencialEvento);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa().getCodigoIbge());
-        infoEvento.setCodigoEvento(WSIncluirDFe.EVENTO_ENCERRAMENTO);
+        infoEvento.setCodigoEvento(WSIncluirDFe.EVENTO_INCLUSAO_DFE);
         infoEvento.setDetEvento(mdFeDetalhamentoEvento);
 
-        final MDFeEvento mdfeEventoEncerramento = new MDFeEvento();
-        mdfeEventoEncerramento.setInfoEvento(infoEvento);
-        mdfeEventoEncerramento.setVersao(WSIncluirDFe.VERSAO_LEIAUTE);
-        return mdfeEventoEncerramento;
+        final MDFeEvento mdfeEventoInclusaoDFe = new MDFeEvento();
+        mdfeEventoInclusaoDFe.setInfoEvento(infoEvento);
+        mdfeEventoInclusaoDFe.setVersao(WSIncluirDFe.VERSAO_LEIAUTE);
+        return mdfeEventoInclusaoDFe;
     }
 }

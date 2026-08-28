@@ -38,9 +38,14 @@ public class DFSocketFactory {
     }
 
     private SSLContext createSSLContext(final DFConfig config) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException, UnrecoverableKeyException {
+        if (config.getSSLProtocolos() == null || config.getSSLProtocolos().length == 0) {
+            throw new IllegalStateException("Nenhum protocolo TLS configurado em getSSLProtocolos()");
+        }
         final KeyManager[] keyManagers = this.createKeyManagers(config);
         final TrustManager[] trustManagers = this.createTrustManagers(config);
-        final SSLContext sslContext = SSLContext.getInstance(config.getSSLProtocolos()[0]);
+        // "TLS" negocia a melhor versao disponivel; a restricao as versoes de getSSLProtocolos()
+        // e aplicada por conexao no DefaultClientTlsStrategy montado em DFHttpClient
+        final SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(keyManagers, trustManagers, null);
         return sslContext;
     }

@@ -15,7 +15,6 @@ import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTEventoI
 import com.fincatto.documentofiscal.cte300.classes.evento.inutilizacao.CTeRetornoEventoInutilizacao;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
-import com.fincatto.documentofiscal.utils.DFPersister;
 import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
@@ -36,13 +35,13 @@ class WSInutilizacao {
 
     CTeRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml) throws Exception {
         final String xmlResultado = this.efetuaInutilizacao(eventoAssinadoXml);
-        return new DFPersister().read(CTeRetornoEventoInutilizacao.class, xmlResultado);
+        return this.config.getPersister().read(CTeRetornoEventoInutilizacao.class, xmlResultado);
     }
 
     CTeRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         final String inutilizacaoXMLAssinado = getXmlAssinado(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
         final String xmlResultado = this.efetuaInutilizacao(inutilizacaoXMLAssinado);
-        return new DFPersister().read(CTeRetornoEventoInutilizacao.class, xmlResultado);
+        return this.config.getPersister().read(CTeRetornoEventoInutilizacao.class, xmlResultado);
     }
 
     String getXmlAssinado(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
@@ -56,6 +55,9 @@ class WSInutilizacao {
 
         final CTAutorizador31 autorizador = CTAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = autorizador.getCteInutilizacao(this.config.getAmbiente());
+        if (urlWebService == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Inutilizacao, autorizador " + autorizador.name());
+        }
 
         final String envelope = DFSoapEnvelope.envelopar(WSInutilizacao.NAMESPACE_WSDL, "cteCabecMsg", cabecalho, "cteDadosMsg", inutilizacaoXMLAssinado);
         final String resposta = this.httpClient.postSoap(urlWebService, WSInutilizacao.SOAP_ACTION, envelope);
@@ -80,7 +82,7 @@ class WSInutilizacao {
         final String numeroInicialTamanhoMaximo = StringUtils.leftPad(numeroInicial, 9, "0");
         final String numeroFinalTamanhoMaximo = StringUtils.leftPad(numeroFinal, 9, "0");
         final String serieTamanhoMaximo = StringUtils.leftPad(serie, 3, "0");
-        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
+        dados.setIdentificador("ID" + this.config.getCUF().getCodigoIbge() + anoInutilizacaoNumeracao + cnpjEmitente + modelo.getCodigo() + serieTamanhoMaximo + numeroInicialTamanhoMaximo + numeroFinalTamanhoMaximo);
         inutilizacao.setVersao(new BigDecimal(WSInutilizacao.VERSAO_SERVICO));
         inutilizacao.setDados(dados);
         return inutilizacao;

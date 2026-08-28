@@ -21,11 +21,11 @@ public abstract class DFUtils {
      * @return Se o CNPJ informado eh valido ou nao.
      */
     public static boolean isCnpjValido(final String cnpj) {
-        if (cnpj == null || !CNPJ_PATTERN.matcher(cnpj.toUpperCase()).matches()) {
+        if (cnpj == null || !CNPJ_PATTERN.matcher(cnpj.toUpperCase(java.util.Locale.ROOT)).matches()) {
             return false;
         }
 
-        final String cnpjNormalizado = cnpj.toUpperCase();
+        final String cnpjNormalizado = cnpj.toUpperCase(java.util.Locale.ROOT);
         if (cnpjNormalizado.chars().distinct().count() == 1) {
             return false;
         }
