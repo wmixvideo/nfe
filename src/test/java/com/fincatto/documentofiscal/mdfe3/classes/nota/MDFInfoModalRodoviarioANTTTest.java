@@ -14,13 +14,13 @@ public class MDFInfoModalRodoviarioANTTTest {
 
     @BeforeEach
     public void setUp() {
-        this.antt =  new MDFInfoModalRodoviarioANTT();
+        this.antt = new MDFInfoModalRodoviarioANTT();
     }
 
     @Test
     public void deveAceitarRntrcCom8Caracteres() {
         antt.setRntrc("12345678");
-        Assertions.assertEquals("getRntrc deve refletir o valor setado", "12345678", antt.getRntrc());
+        Assertions.assertEquals("12345678", antt.getRntrc());
     }
 
     @Test

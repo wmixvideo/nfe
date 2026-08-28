@@ -73,7 +73,7 @@ public class NFNotaInfoFormaPagamentoTest {
         formaPagamento.setMeioPagamento(NFMeioPagamento.OUTRO);
         formaPagamento.setDescricaoMeioPagamento("Nota promissoria");
         Assertions.assertEquals("99", formaPagamento.getMeioPagamento().getCodigo());
-        Assertions.assertNotNull("Rejeicao 441: Descricao do pagamento obrigatoria para meio de pagamento 99 - Outros", formaPagamento.getDescricaoMeioPagamento());
+        Assertions.assertNotNull(formaPagamento.getDescricaoMeioPagamento());
     }
 
     /**
@@ -86,7 +86,7 @@ public class NFNotaInfoFormaPagamentoTest {
         final NFNotaInfoFormaPagamento formaPagamento = new NFNotaInfoFormaPagamento();
         formaPagamento.setMeioPagamento(NFMeioPagamento.DINHEIRO);
         Assertions.assertNotEquals("99", formaPagamento.getMeioPagamento().getCodigo());
-        Assertions.assertNull("Rejeição 442: Descricao do pagamento nao permitida", formaPagamento.getDescricaoMeioPagamento());
+        Assertions.assertNull(formaPagamento.getDescricaoMeioPagamento());
     }
 
     @Test
@@ -114,5 +114,4 @@ public class NFNotaInfoFormaPagamentoTest {
         formaPagamento.setUfTransacionalPagamento(DFUnidadeFederativa.SC);
         Assertions.assertEquals(xmlEsperado, formaPagamento.toString());
     }
-
 }
