@@ -54,61 +54,36 @@ import java.util.List;
  */
 public class WSFacade implements Closeable {
 
+    private final NFeConfig config;
     private final DFHttpClient httpClient;
-    private final WSLoteEnvio wsLoteEnvio;
-    private final WSLoteConsulta wsLoteConsulta;
-    private final WSStatusConsulta wsStatusConsulta;
-    private final WSNotaConsulta wsNotaConsulta;
-    private final WSCartaCorrecao wsCartaCorrecao;
-    private final WSCancelamento wsCancelamento;
-    private final WSConsultaCadastro wsConsultaCadastro;
-    private final WSInutilizacao wsInutilizacao;
-    private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
-    private final WSDistribuicaoNFe wSDistribuicaoNFe;
-    private final WSEpec wsEpec;
-    private final WSAtualizacaoDataPrevisaoEntrega wsAtualizacaoDataPrevisaoEntrega;
-    private final WSAceiteDebitoApuracao wsAceiteDebitoAPuracao;
-    private final WSCancelametoEvento wsCancelametoEvento;
-    private final WSInfoEfetPagIntegral wsInfoEfetPagIntegral;
-    private final WSSolicitacaoApropriacaoCreditoPresumido wsSolicitacaoApropriacaoCreditoPresumido;
-    private final WSSolicitacaoApropriacaoCreditoCombustivel wsSolicitacaoApropriacaoCreditoCombustivel;
-    private final WSRouboTransporteAdquirente wsRouboTransporteAdquirente;
-    private final WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte;
-    private final WSRouboTransporteFornecedor wsRouboTransporteFornecedor;
-    private final WSNaoFornecimentoPagamentoAntecipado wsNaoFornecimentoPagamentoAntecipado;
-    private final WSDestinacaoItemConsumoPessoal wsDestinacaoItemConsumoPessoal;
-    private final WSImobilizacaoItem wsImobilizacaoItem;
-    private final WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
+    private WSLoteEnvio wsLoteEnvio;
+    private WSLoteConsulta wsLoteConsulta;
+    private WSStatusConsulta wsStatusConsulta;
+    private WSNotaConsulta wsNotaConsulta;
+    private WSCartaCorrecao wsCartaCorrecao;
+    private WSCancelamento wsCancelamento;
+    private WSConsultaCadastro wsConsultaCadastro;
+    private WSInutilizacao wsInutilizacao;
+    private WSManifestacaoDestinatario wSManifestacaoDestinatario;
+    private WSDistribuicaoNFe wSDistribuicaoNFe;
+    private WSEpec wsEpec;
+    private WSAtualizacaoDataPrevisaoEntrega wsAtualizacaoDataPrevisaoEntrega;
+    private WSAceiteDebitoApuracao wsAceiteDebitoAPuracao;
+    private WSCancelametoEvento wsCancelametoEvento;
+    private WSInfoEfetPagIntegral wsInfoEfetPagIntegral;
+    private WSSolicitacaoApropriacaoCreditoPresumido wsSolicitacaoApropriacaoCreditoPresumido;
+    private WSSolicitacaoApropriacaoCreditoCombustivel wsSolicitacaoApropriacaoCreditoCombustivel;
+    private WSRouboTransporteAdquirente wsRouboTransporteAdquirente;
+    private WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte;
+    private WSRouboTransporteFornecedor wsRouboTransporteFornecedor;
+    private WSNaoFornecimentoPagamentoAntecipado wsNaoFornecimentoPagamentoAntecipado;
+    private WSDestinacaoItemConsumoPessoal wsDestinacaoItemConsumoPessoal;
+    private WSImobilizacaoItem wsImobilizacaoItem;
+    private WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
-        final DFSocketFactory socketFactory = new DFSocketFactory(config);
-        this.httpClient = new DFHttpClient(socketFactory.getSslContext(), config);
-
-        // inicia os servicos disponiveis da nfe
-        this.wsLoteEnvio = new WSLoteEnvio(config, this.httpClient);
-        this.wsLoteConsulta = new WSLoteConsulta(config, this.httpClient);
-        this.wsStatusConsulta = new WSStatusConsulta(config, this.httpClient);
-        this.wsNotaConsulta = new WSNotaConsulta(config, this.httpClient);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config, this.httpClient);
-        this.wsCancelamento = new WSCancelamento(config, this.httpClient);
-        this.wsConsultaCadastro = new WSConsultaCadastro(config, this.httpClient);
-        this.wsInutilizacao = new WSInutilizacao(config, this.httpClient);
-        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config, this.httpClient);
-        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config, this.httpClient);
-        this.wsEpec = new WSEpec(config, this.httpClient);
-        this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(config, this.httpClient);
-        this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(config, this.httpClient);
-        this.wsCancelametoEvento = new WSCancelametoEvento(config, this.httpClient);
-        this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(config, this.httpClient);
-        this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(config, this.httpClient);
-        this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(config, this.httpClient);
-        this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(config, this.httpClient);
-        this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(config, this.httpClient);
-        this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(config, this.httpClient);
-        this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(config, this.httpClient);
-        this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(config, this.httpClient);
-        this.wsImobilizacaoItem = new WSImobilizacaoItem(config, this.httpClient);
-        this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(config, this.httpClient);
+        this.config = config;
+        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config);
     }
 
     @Override
@@ -133,6 +108,9 @@ public class WSFacade implements Closeable {
         } else if (lote.getNotas().isEmpty()) {
             throw new IllegalArgumentException("Nenhuma nota informada no envio do Lote!");
         }
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.enviaLote(lote, validarXML);
     }
     
@@ -141,6 +119,9 @@ public class WSFacade implements Closeable {
     }
 
     public NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.getLoteAssinado(lote);
     }
 
@@ -155,6 +136,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
 
@@ -170,6 +154,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public String getNfeResultMsg(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.efetuaComunicacaoLote(loteAssinadoXml, modelo, true);
     }
 
@@ -183,6 +170,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final DFModelo modelo) throws Exception {
+        if (this.wsLoteConsulta == null) {
+            this.wsLoteConsulta = new WSLoteConsulta(this.config, this.httpClient);
+        }
         return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
     }
 
@@ -196,6 +186,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo) throws Exception {
+        if (this.wsStatusConsulta == null) {
+            this.wsStatusConsulta = new WSStatusConsulta(this.config, this.httpClient);
+        }
         return this.wsStatusConsulta.consultaStatus(uf, modelo);
     }
 
@@ -208,6 +201,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        if (this.wsNotaConsulta == null) {
+            this.wsNotaConsulta = new WSNotaConsulta(this.config, this.httpClient);
+        }
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
@@ -220,6 +216,9 @@ public class WSFacade implements Closeable {
      * @throws DFSoapFaultException caso a SEFAZ devolva um soap:Fault.
      */
     public String consultaNotaAsString(final String chaveDeAcesso) throws IOException, DFSoapFaultException {
+        if (this.wsNotaConsulta == null) {
+            this.wsNotaConsulta = new WSNotaConsulta(this.config, this.httpClient);
+        }
         return this.wsNotaConsulta.consultaNotaAsString(chaveDeAcesso);
     }
 
@@ -235,6 +234,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
@@ -249,6 +251,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -261,18 +266,30 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String eventoAssinadoXml) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinada(eventoAssinadoXml);
     }
 
     public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String eventoAssinadoXml) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(eventoAssinadoXml);
     }
 
     public NFProtocoloEventoCartaCorrecao corrigeNotaAssinadaProtocolo(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinadaProtocolo(getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento));
     }
 
     public String getXmlAssinado(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.getXmlAssinado(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
@@ -287,6 +304,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo, 1);
     }
 
@@ -302,6 +322,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFCancelamentoRetornoDados cancelaNota(final String chave, final String numeroProtocolo, final String motivo, final int numeroSequencial) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo, numeroSequencial);
     }
 
@@ -316,6 +339,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
     
@@ -332,6 +358,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chave, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNotaPorSubstituicao(chave, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta);
     }
 
@@ -346,6 +375,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
     }
 
@@ -364,6 +396,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 
@@ -377,6 +412,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
+        if (this.wsConsultaCadastro == null) {
+            this.wsConsultaCadastro = new WSConsultaCadastro(this.config, this.httpClient);
+        }
         return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
     }
 
@@ -393,10 +431,16 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+        if (this.wSManifestacaoDestinatario == null) {
+            this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(this.config, this.httpClient);
+        }
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj);
     }
 
     public NFProtocoloEventoManifestacaoDestinatario manifestaDestinatarioNotaProtocolo(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+        if (this.wSManifestacaoDestinatario == null) {
+            this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(this.config, this.httpClient);
+        }
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaProtocolo(chave, tipoEvento, motivo, cnpj);
     }
 
@@ -412,6 +456,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wSManifestacaoDestinatario == null) {
+            this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(this.config, this.httpClient);
+        }
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -437,6 +484,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
+        if (this.wSDistribuicaoNFe == null) {
+            this.wSDistribuicaoNFe = new WSDistribuicaoNFe(this.config, this.httpClient);
+        }
         return this.wSDistribuicaoNFe.consultar(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu);
     }
 
@@ -449,6 +499,9 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFEnviaEventoEpecRetorno enviaLoteEpec(final NFLoteEnvio lote) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.enviaEpec(lote);
     }
 
@@ -461,6 +514,9 @@ public class WSFacade implements Closeable {
      * o ambiente nacional da sefaz
      */
     public NFEnviaEventoEpecRetorno enviaEpec(final NFLoteEnvio lote) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.enviaEpec(lote);
     }
 
@@ -473,14 +529,23 @@ public class WSFacade implements Closeable {
      * o ambiente nacional da sefaz
      */
     public NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
+        if (this.wsEpec == null) {
+            this.wsEpec = new WSEpec(this.config, this.httpClient);
+        }
         return this.wsEpec.enviaEpecAssinado(epecAssinadoXml);
     }
 
     public NFEnviaEventoRetorno enviaAtualizacaoDataPrevisaoEntrega(final String chaveAcesso, final LocalDate dataPrevisaoEntrega, final DFUnidadeFederativa ufAutorEvento, final NFEventoTipoAutor tpAutorEvento, final int numeroSequencialEvento) throws Exception {
+        if (this.wsAtualizacaoDataPrevisaoEntrega == null) {
+            this.wsAtualizacaoDataPrevisaoEntrega = new WSAtualizacaoDataPrevisaoEntrega(this.config, this.httpClient);
+        }
         return this.wsAtualizacaoDataPrevisaoEntrega.atualizaDataPrevisaoEntrega(chaveAcesso, dataPrevisaoEntrega, ufAutorEvento, tpAutorEvento, numeroSequencialEvento);
     }
 
     public NFEnviaEventoRetorno aceiteDebitoApuracao(final String chaveAcesso, final int indAceitacao, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento, final String cnpjCpfAutorEvento) throws Exception {
+        if (this.wsAceiteDebitoAPuracao == null) {
+            this.wsAceiteDebitoAPuracao = new WSAceiteDebitoApuracao(this.config, this.httpClient);
+        }
         return this.wsAceiteDebitoAPuracao.aceiteDebitoApuracao(chaveAcesso, indAceitacao, ufEmitenteEvento, numeroSequencialEvento, cnpjCpfAutorEvento);
     }
 
@@ -488,6 +553,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final String codigoEventoAutorizado, final String numeroProtocoloEvento,
             final int numeroSequencialEventoCancelar, final DFUnidadeFederativa ufEmitenteEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsCancelametoEvento == null) {
+            this.wsCancelametoEvento = new WSCancelametoEvento(this.config, this.httpClient);
+        }
         return this.wsCancelametoEvento.cancelamentoEvento(
                 chaveAcesso, codigoEventoAutorizado, numeroProtocoloEvento, numeroSequencialEventoCancelar,
                 ufEmitenteEvento, cnpjCpfAutorEvento
@@ -508,6 +576,9 @@ public class WSFacade implements Closeable {
     public NFEnviaEventoRetorno enviaInformacaoEfetivoPagamentoIntegral(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final int numeroSequencialEvento
     ) throws Exception {
+        if (this.wsInfoEfetPagIntegral == null) {
+            this.wsInfoEfetPagIntegral = new WSInfoEfetPagIntegral(this.config, this.httpClient);
+        }
         return this.wsInfoEfetPagIntegral
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, numeroSequencialEvento)
                 .gerarEnviarEvento();
@@ -528,6 +599,9 @@ public class WSFacade implements Closeable {
             final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
             final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsSolicitacaoApropriacaoCreditoPresumido == null) {
+            this.wsSolicitacaoApropriacaoCreditoPresumido = new WSSolicitacaoApropriacaoCreditoPresumido(this.config, this.httpClient);
+        }
         return this.wsSolicitacaoApropriacaoCreditoPresumido
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCreditoPresumido, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -547,6 +621,9 @@ public class WSFacade implements Closeable {
             final List<NFDetGrupoPerecimento> gruposPerecimento, final int numeroSequencialEvento,
             final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsRouboTransporteAdquirente == null) {
+            this.wsRouboTransporteAdquirente = new WSRouboTransporteAdquirente(this.config, this.httpClient);
+        }
         return this.wsRouboTransporteAdquirente
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposPerecimento, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -565,6 +642,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
             final List<NFDetGrupoPerecimentoFornecedor> gruposPerecimento, final int numeroSequencialEvento
     ) throws Exception {
+        if (this.wsRouboTransporteFornecedor == null) {
+            this.wsRouboTransporteFornecedor = new WSRouboTransporteFornecedor(this.config, this.httpClient);
+        }
         return this.wsRouboTransporteFornecedor
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposPerecimento, numeroSequencialEvento)
                 .gerarEnviarEvento();
@@ -585,6 +665,9 @@ public class WSFacade implements Closeable {
             final List<NFDetGrupoConsumoCombustivel> grupoConsumoCombustivel, final int numeroSequencialEvento,
             final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsSolicitacaoApropriacaoCreditoCombustivel == null) {
+            this.wsSolicitacaoApropriacaoCreditoCombustivel = new WSSolicitacaoApropriacaoCreditoCombustivel(this.config, this.httpClient);
+        }
         return this.wsSolicitacaoApropriacaoCreditoCombustivel
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoConsumoCombustivel, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -604,6 +687,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
             final List<NFDetGrupoCredito> gruposCredito, final int numeroSequencialEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte == null) {
+            this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte = new WSSolicitacaoApropriacaoCreditoBensAtdAdquirinte(this.config, this.httpClient);
+        }
         return this.wsSolicitacaoApropriacaoCreditoBensAtdAdquirinte
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposCredito, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -621,6 +707,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento,
             final List<NFDetGrupoItemNaoFornecido> gruposItemNaoFornecedo, final int numeroSequencialEvento
     ) throws Exception {
+        if (this.wsNaoFornecimentoPagamentoAntecipado == null) {
+            this.wsNaoFornecimentoPagamentoAntecipado = new WSNaoFornecimentoPagamentoAntecipado(this.config, this.httpClient);
+        }
         return this.wsNaoFornecimentoPagamentoAntecipado
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposItemNaoFornecedo, numeroSequencialEvento)
                 .gerarEnviarEvento();
@@ -641,6 +730,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> grupoItensConsumo,
             final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsDestinacaoItemConsumoPessoal == null) {
+            this.wsDestinacaoItemConsumoPessoal = new WSDestinacaoItemConsumoPessoal(this.config, this.httpClient);
+        }
         return this.wsDestinacaoItemConsumoPessoal
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, grupoItensConsumo, numeroSequencialEvento, tpAutorEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -660,6 +752,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoImobilizacao> gruposImobilizacao,
             final int numeroSequencialEvento, final String cnpjCpfAutorEvento
     ) throws Exception {
+        if (this.wsImobilizacaoItem == null) {
+            this.wsImobilizacaoItem = new WSImobilizacaoItem(this.config, this.httpClient);
+        }
         return this.wsImobilizacaoItem
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposImobilizacao, numeroSequencialEvento, cnpjCpfAutorEvento)
                 .gerarEnviarEvento();
@@ -677,6 +772,9 @@ public class WSFacade implements Closeable {
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumoZFM> gruposImobilizacao,
             final int numeroSequencialEvento
     ) throws Exception {
+        if (this.wsImportacaoALCZFMNaoConvertidaIsencao == null) {
+            this.wsImportacaoALCZFMNaoConvertidaIsencao = new WSImportacaoALCZFMNaoConvertidaIsencao(this.config, this.httpClient);
+        }
         return this.wsImportacaoALCZFMNaoConvertidaIsencao
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposImobilizacao, numeroSequencialEvento)
                 .gerarEnviarEvento();
