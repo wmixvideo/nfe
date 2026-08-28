@@ -76,7 +76,7 @@ public class CTeNotaInfoResponsavelTecnico extends DFBase {
     }
 
     public void setIdCSRT(String idCSRT) {
-        DFStringValidador.exatamente2N(idCSRT, "Responsavel tecnico");
+        DFStringValidador.tamanho3N(idCSRT, "Responsavel tecnico");
         this.idCSRT = idCSRT;
     }
 
