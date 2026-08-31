@@ -17,45 +17,56 @@ import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteEnvioRetorno
 import com.fincatto.documentofiscal.nfe310.classes.lote.envio.NFLoteIndicadorProcessamento;
 import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 
-public class WSFacade {
+/**
+ * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 3.10 (envio/consulta de
+ * lote, status, consulta de nota e cadastro, download, eventos - cancelamento, carta de
+ * correcao, inutilizacao, manifestacao do destinatario - e distribuicao de DF-e). Ao contrario
+ * do mdfe3, as 4 classes de evento nao foram unificadas num helper compartilhado: cada uma
+ * resolve endpoint/cabecalho de forma genuinamente diferente. Status e consulta de nota tem
+ * ainda um caminho separado para a Bahia (WSDL proprio).
+ * <p>
+ * Uma instancia deve ser criada uma vez por {@link com.fincatto.documentofiscal.nfe.NFeConfig}/
+ * certificado e reaproveitada entre chamadas - nao recriada por documento fiscal emitido. Cada
+ * instancia mantem um pool de conexoes HTTP proprio e uma thread de fundo (daemon) para
+ * descartar conexoes ociosas; recriar {@link WSFacade} por documento acumula pools e threads
+ * sem chamar {@link #close()} entre eles.
+ */
+public class WSFacade implements Closeable {
 
-    private final WSLoteEnvio wsLoteEnvio;
-    private final WSLoteConsulta wsLoteConsulta;
-    private final WSStatusConsulta wsStatusConsulta;
-    private final WSNotaConsulta wsNotaConsulta;
-    private final WSCartaCorrecao wsCartaCorrecao;
-    private final WSCancelamento wsCancelamento;
-    private final WSConsultaCadastro wsConsultaCadastro;
-    private final WSInutilizacao wsInutilizacao;
-    private final WSManifestacaoDestinatario wSManifestacaoDestinatario;
-    private final WSNotaDownload wsNotaDownload;
-    private final WSDistribuicaoNFe wSDistribuicaoNFe;
+    private final NFeConfig config;
+    private final DFHttpClient httpClient;
+    private volatile WSLoteEnvio wsLoteEnvio;
+    private volatile WSLoteConsulta wsLoteConsulta;
+    private volatile WSStatusConsulta wsStatusConsulta;
+    private volatile WSNotaConsulta wsNotaConsulta;
+    private volatile WSCartaCorrecao wsCartaCorrecao;
+    private volatile WSCancelamento wsCancelamento;
+    private volatile WSConsultaCadastro wsConsultaCadastro;
+    private volatile WSInutilizacao wsInutilizacao;
+    private volatile WSManifestacaoDestinatario wSManifestacaoDestinatario;
+    private volatile WSNotaDownload wsNotaDownload;
+    private volatile WSDistribuicaoNFe wSDistribuicaoNFe;
 
-    public WSFacade(final NFeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+    public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        this.config = config;
+        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config);
+    }
 
-        // inicia os servicos disponiveis da nfe
-        this.wsLoteEnvio = new WSLoteEnvio(config);
-        this.wsLoteConsulta = new WSLoteConsulta(config);
-        this.wsStatusConsulta = new WSStatusConsulta(config);
-        this.wsNotaConsulta = new WSNotaConsulta(config);
-        this.wsCartaCorrecao = new WSCartaCorrecao(config);
-        this.wsCancelamento = new WSCancelamento(config);
-        this.wsConsultaCadastro = new WSConsultaCadastro(config);
-        this.wsInutilizacao = new WSInutilizacao(config);
-        this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(config);
-        this.wsNotaDownload = new WSNotaDownload(config);
-        this.wSDistribuicaoNFe = new WSDistribuicaoNFe(config);
+    @Override
+    public void close() throws IOException {
+        if(this.httpClient != null){
+            this.httpClient.close();
+        }
     }
 
     /**
@@ -70,10 +81,16 @@ public class WSFacade {
         } else if (lote.getNotas().size() == 0) {
             throw new IllegalArgumentException("Nenhuma nota informada no envio do Lote!");
         }
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.enviaLote(lote);
     }
 
     public NFLoteEnvio getLoteAssinado(final NFLoteEnvio lote) throws Exception {
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.getLoteAssinado(lote);
     }
 
@@ -85,6 +102,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        if (this.wsLoteEnvio == null) {
+            this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
+        }
         return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
     }
 
@@ -96,6 +116,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final DFModelo modelo) throws Exception {
+        if (this.wsLoteConsulta == null) {
+            this.wsLoteConsulta = new WSLoteConsulta(this.config, this.httpClient);
+        }
         return this.wsLoteConsulta.consultaLote(numeroRecibo, modelo);
     }
 
@@ -107,6 +130,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFStatusServicoConsultaRetorno consultaStatus(final DFUnidadeFederativa uf, final DFModelo modelo) throws Exception {
+        if (this.wsStatusConsulta == null) {
+            this.wsStatusConsulta = new WSStatusConsulta(this.config, this.httpClient);
+        }
         return this.wsStatusConsulta.consultaStatus(uf, modelo);
     }
 
@@ -117,6 +143,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
+        if (this.wsNotaConsulta == null) {
+            this.wsNotaConsulta = new WSNotaConsulta(this.config, this.httpClient);
+        }
         return this.wsNotaConsulta.consultaNota(chaveDeAcesso);
     }
 
@@ -129,6 +158,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno corrigeNota(final String chaveDeAcesso, final String textoCorrecao, final int numeroSequencialEvento) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNota(chaveDeAcesso, textoCorrecao, numeroSequencialEvento);
     }
 
@@ -140,6 +172,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno corrigeNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCartaCorrecao == null) {
+            this.wsCartaCorrecao = new WSCartaCorrecao(this.config, this.httpClient);
+        }
         return this.wsCartaCorrecao.corrigeNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -152,6 +187,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno cancelaNota(final String chave, final String numeroProtocolo, final String motivo) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNota(chave, numeroProtocolo, motivo);
     }
 
@@ -163,6 +201,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno cancelaNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsCancelamento == null) {
+            this.wsCancelamento = new WSCancelamento(this.config, this.httpClient);
+        }
         return this.wsCancelamento.cancelaNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -174,6 +215,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNotaAssinada(eventoAssinadoXml, modelo);
     }
 
@@ -190,6 +234,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
+        if (this.wsInutilizacao == null) {
+            this.wsInutilizacao = new WSInutilizacao(this.config, this.httpClient);
+        }
         return this.wsInutilizacao.inutilizaNota(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo);
     }
 
@@ -201,6 +248,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
+        if (this.wsConsultaCadastro == null) {
+            this.wsConsultaCadastro = new WSConsultaCadastro(this.config, this.httpClient);
+        }
         return this.wsConsultaCadastro.consultaCadastro(cnpj, uf);
     }
 
@@ -214,6 +264,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNota(final String chave, final NFTipoEventoManifestacaoDestinatario tipoEvento, final String motivo, final String cnpj) throws Exception {
+        if (this.wSManifestacaoDestinatario == null) {
+            this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(this.config, this.httpClient);
+        }
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNota(chave, tipoEvento, motivo, cnpj);
     }
 
@@ -225,6 +278,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFEnviaEventoRetorno manifestaDestinatarioNotaAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wSManifestacaoDestinatario == null) {
+            this.wSManifestacaoDestinatario = new WSManifestacaoDestinatario(this.config, this.httpClient);
+        }
         return this.wSManifestacaoDestinatario.manifestaDestinatarioNotaAssinada(chave, eventoAssinadoXml);
     }
 
@@ -236,6 +292,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
+        if (this.wsNotaDownload == null) {
+            this.wsNotaDownload = new WSNotaDownload(this.config, this.httpClient);
+        }
         return this.wsNotaDownload.downloadNota(cnpj, chave);
     }
 
@@ -253,6 +312,9 @@ public class WSFacade {
      * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
      */
     public NFDistribuicaoIntRetorno consultarDistribuicaoDFe(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
+        if (this.wSDistribuicaoNFe == null) {
+            this.wSDistribuicaoNFe = new WSDistribuicaoNFe(this.config, this.httpClient);
+        }
         return this.wSDistribuicaoNFe.consultar(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu);
     }
 }

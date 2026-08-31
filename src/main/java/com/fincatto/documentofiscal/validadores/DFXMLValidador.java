@@ -4,35 +4,88 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 public final class DFXMLValidador {
 
-    private static boolean valida(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_008i2/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
+    private static final String PACOTE_NFE310 = "schemas/PL_008i2";
+    private static final String PACOTE_NFE400 = "schemas/PL_010e_NT2025.002_v1.01";
+    private static final String PACOTE_MDFE300 = "schemas/PL_MDFe_300b_NT012025_1.03";
+    private static final String PACOTE_CTE300 = "schemas/PL_CTe_300a_NT2022.001";
+    private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.002 RTC_1.00";
+    private static final String PACOTE_NFE_DIST_DFE = "schemas/PL_NFeDistDFe_102";
+    private static final String PACOTE_CTE_DIST_DFE = "schemas/PL_CTeDistDFe_100";
+    private static final String PACOTE_MDFE_DIST_DFE = "schemas/PL_MDFeDistDFe_100";
+    private static final String PACOTE_EPEC = "schemas/Evento_EPEC_PL_v1.01";
+
+    /**
+     * Limite de maxOccurs aceito na compilacao dos schemas (o padrao do JDK e 5000 e alguns
+     * schemas da SEFAZ, como o do MDF-e, declaram valores maiores). Configurado por instancia de
+     * {@link SchemaFactory} - e nao mais via {@code System.setProperty("jdk.xml.maxOccurLimit")},
+     * que mutava uma propriedade global do processo e afetava todo parsing XML da aplicacao
+     * hospedeira.
+     */
+    private static final String MAX_OCCUR_LIMIT = "20000";
+
+    /**
+     * Valida o XML contra o XSD do pacote indicado, com o parser endurecido: DTD externo da
+     * instancia bloqueado ({@code ACCESS_EXTERNAL_DTD}) e schema resolvido apenas do classpath.
+     */
+    private static boolean valida(final String xml, final String pacote, final String xsd) throws IOException, SAXException {
+        final String caminho = pacote + "/" + xsd;
+        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(caminho);
+        if (xsdPath == null) {
+            throw new IllegalStateException("Schema nao encontrado no classpath: " + caminho + " (verifique o empacotamento dos resources)");
+        }
+
+        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        setPropertyOpcional(schemaFactory, XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        // limite de maxOccurs local a esta factory; nomes variam por versao do JDK
+        if (!setPropertyOpcional(schemaFactory, "jdk.xml.maxOccurLimit", DFXMLValidador.MAX_OCCUR_LIMIT)) {
+            setPropertyOpcional(schemaFactory, "http://www.oracle.com/xml/jaxp/properties/maxOccurLimit", DFXMLValidador.MAX_OCCUR_LIMIT);
+        }
+
+        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toString()));
+        final Validator validator = schema.newValidator();
+        setPropertyOpcional(validator, XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        setPropertyOpcional(validator, XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        validator.validate(new StreamSource(new StringReader(xml)));
         return true;
+    }
+
+    private static boolean setPropertyOpcional(final SchemaFactory factory, final String nome, final String valor) {
+        try {
+            factory.setProperty(nome, valor);
+            return true;
+        } catch (final SAXException e) {
+            // provider JAXP nao suporta a propriedade - segue com o comportamento padrao dele
+            return false;
+        }
+    }
+
+    private static void setPropertyOpcional(final Validator validator, final String nome, final String valor) {
+        try {
+            validator.setProperty(nome, valor);
+        } catch (final SAXException e) {
+            // provider JAXP nao suporta a propriedade - segue com o comportamento padrao dele
+        }
     }
 
     public static boolean validaLote(final String arquivoXML) throws Exception {
-        return DFXMLValidador.valida(arquivoXML, "enviNFe_v3.10.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_NFE310, "enviNFe_v3.10.xsd");
     }
 
     public static boolean validaNota(final String arquivoXML) throws Exception {
-        return DFXMLValidador.valida(arquivoXML, "nfe_v3.10.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_NFE310, "nfe_v3.10.xsd");
     }
 
     public static boolean valida400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_010e_NT2025.002_v1.01/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
+        return DFXMLValidador.valida(xml, DFXMLValidador.PACOTE_NFE400, xsd);
     }
 
     public static boolean validaLote400(final String arquivoXML) throws Exception {
@@ -44,10 +97,7 @@ public final class DFXMLValidador {
     }
 
     /**
-     * Valida MDFe. Para evitar "org.xml.sax.SAXParseException", message:
-     * "Current configuration of the parser doesn't allow a maxOccurs attribute
-     * value to be set greater than the value 5.000", foi adicionado a linha
-     * System.setProperty("jdk.xml.maxOccurLimit", "10000");
+     * Valida MDFe.
      * <br>
      * Schema PL_MDFe_300b_NT012025_1.03: adota CNPJ alfanumerico (NT 2026.004) no tipo TCnpj e
      * chave de acesso alfanumerica no tipo TChMDFe/TChCTe/TChNFe. Comparado ao pacote anterior
@@ -60,21 +110,9 @@ public final class DFXMLValidador {
      * numerico "MDFe[0-9]{44}", nao atualizado junto com TChMDFe. Uma chave de acesso realmente
      * alfanumerica (letras nas posicoes 6-19) portanto ainda e rejeitada nesse atributo especifico
      * ate a SEFAZ/ENCAT corrigir o pacote. Ver MDFProcessadoTest.schemaOficialAindaRejeitaAtributoIdComChaveDeAcessoAlfanumerica.
-     *
-     * @param xml
-     * @param xsd
-     * @return
-     * @throws IOException
-     * @throws SAXException
-     * @throws URISyntaxException
      */
-    private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        System.setProperty("jdk.xml.maxOccurLimit", "20000");
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFe_300b_NT012025_1.03/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
+    private static boolean validaMDF(final String xml, final String xsd) throws IOException, SAXException {
+        return DFXMLValidador.valida(xml, DFXMLValidador.PACOTE_MDFE300, xsd);
     }
 
     public static boolean validaLoteMDFe(final String arquivoXML) throws Exception {
@@ -84,7 +122,7 @@ public final class DFXMLValidador {
     public static boolean validaMDFe(final String arquivoXML) throws Exception {
         return DFXMLValidador.validaMDF(arquivoXML, "mdfe_v3.00.xsd");
     }
-    
+
     public static boolean validaMDFeProcessado(final String xml) throws Exception {
         return DFXMLValidador.validaMDF(xml, "procMDFe_v3.00.xsd");
     }
@@ -97,12 +135,8 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaMDF(xml, "evPagtoOperMDFe_v3.00.xsd");
     }
 
-    private static boolean validaCTe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_300a_NT2022.001/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
+    private static boolean validaCTe(final String xml, final String xsd) throws IOException, SAXException {
+        return DFXMLValidador.valida(xml, DFXMLValidador.PACOTE_CTE300, xsd);
     }
 
     public static boolean validaLoteCTe300(final String arquivoXML) throws Exception {
@@ -153,12 +187,8 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe(arquivoXML, "evRegMultimodal_v3.00.xsd");
     }
 
-    private static boolean validaCTe400(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTe_400_NT2025.001_RTC_1.14/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
+    private static boolean validaCTe400(final String xml, final String xsd) throws IOException, SAXException {
+        return DFXMLValidador.valida(xml, DFXMLValidador.PACOTE_CTE400, xsd);
     }
 
     public static boolean validaNotaCte400(final String arquivoXML) throws Exception {
@@ -221,52 +251,23 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe400(arquivoXML, "evIECTe_v4.00.xsd");
     }
 
-    private static boolean validaDfe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_NFeDistDFe_102/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
-    }
-    private static boolean validaDistribuicaoCTe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_CTeDistDFe_100/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
-    }
     public static boolean validaDistribuicaoCTe(final String arquivoXML) throws IOException, SAXException, URISyntaxException {
-        return DFXMLValidador.validaDistribuicaoCTe(arquivoXML, "distDFeInt_v1.00.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_CTE_DIST_DFE, "distDFeInt_v1.00.xsd");
     }
 
-    private static boolean validaDistribuicaoMDFe(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/PL_MDFeDistDFe_100/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
-    }
     public static boolean validaDistribuicaoMDFe(final String arquivoXML) throws IOException, SAXException, URISyntaxException {
-        return DFXMLValidador.validaDistribuicaoMDFe(arquivoXML, "distDFeInt_v1.00.xsd");
-    }
-    
-    public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
-        return DFXMLValidador.validaDfe(arquivoXML, "distDFeInt_v1.01.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_MDFE_DIST_DFE, "distDFeInt_v1.00.xsd");
     }
 
-    private static boolean validaEpec(final String xml, final String xsd) throws IOException, SAXException, URISyntaxException {
-        final URL xsdPath = DFXMLValidador.class.getClassLoader().getResource(String.format("schemas/Evento_EPEC_PL_v1.01/%s", xsd));
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-        final Schema schema = schemaFactory.newSchema(new StreamSource(xsdPath.toURI().toString()));
-        schema.newValidator().validate(new StreamSource(new StringReader(xml)));
-        return true;
+    public static boolean validaConsultaDfe(final String arquivoXML) throws Exception {
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_NFE_DIST_DFE, "distDFeInt_v1.01.xsd");
     }
 
     public static boolean validaEpec(final String arquivoXML) throws Exception {
-        return DFXMLValidador.validaEpec(arquivoXML, "envEPEC_v1.00.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_EPEC, "envEPEC_v1.00.xsd");
     }
 
     public static boolean validaEventoEpec(final String arquivoXML) throws Exception {
-        return DFXMLValidador.validaEpec(arquivoXML, "EPEC_v1.00.xsd");
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_EPEC, "EPEC_v1.00.xsd");
     }
 }

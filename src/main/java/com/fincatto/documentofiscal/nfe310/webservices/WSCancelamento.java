@@ -10,77 +10,66 @@ import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFEventoC
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.documentofiscal.nfe310.parsers.NotaFiscalChaveParser;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.RecepcaoEventoStub.NfeRecepcaoEventoResult;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
 class WSCancelamento implements DFLog {
-    
+
     private static final String DESCRICAO_EVENTO = "Cancelamento";
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String EVENTO_CANCELAMENTO = "110111";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/RecepcaoEvento";
+    private static final String SOAP_ACTION = WSCancelamento.NAMESPACE_WSDL + "/nfeRecepcaoEvento";
     private final NFeConfig config;
-    
-    WSCancelamento(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSCancelamento(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
-    
+
     NFEnviaEventoRetorno cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
-        final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
-    
-    private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final RecepcaoEventoStub.NfeCabecMsg cabecalho = new NfeCabecMsg();
-        cabecalho.setCUF(this.config.getCUF().getCodigoIbge());
-        cabecalho.setVersaoDados(WSCancelamento.VERSAO_LEIAUTE.toPlainString());
-        
-        final RecepcaoEventoStub.NfeCabecMsgE cabecalhoE = new NfeCabecMsgE();
-        cabecalhoE.setNfeCabecMsg(cabecalho);
-        
-        final RecepcaoEventoStub.NfeDadosMsg dados = new NfeDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-        
+
+    private String efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
-        
-        final NfeRecepcaoEventoResult nfeRecepcaoEvento = new RecepcaoEventoStub(urlWebService, config).nfeRecepcaoEvento(dados, cabecalhoE);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-        return omElementResult;
+
+        final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + WSCancelamento.VERSAO_LEIAUTE.toPlainString() + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSCancelamento.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlAssinado);
+        final String resposta = this.httpClient.postSoap(urlWebService, WSCancelamento.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo) {
         final NotaFiscalChaveParser chaveParser = new NotaFiscalChaveParser(chaveAcesso);
-        
+
         final NFInfoCancelamento cancelamento = new NFInfoCancelamento();
         cancelamento.setDescricaoEvento(WSCancelamento.DESCRICAO_EVENTO);
         cancelamento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
         cancelamento.setJustificativa(motivo);
         cancelamento.setProtocoloAutorizacao(numeroProtocolo);
-        
+
         final NFInfoEventoCancelamento infoEvento = new NFInfoEventoCancelamento();
         infoEvento.setAmbiente(this.config.getAmbiente());
         infoEvento.setChave(chaveAcesso);
@@ -92,11 +81,11 @@ class WSCancelamento implements DFLog {
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
         infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
         infoEvento.setCancelamento(cancelamento);
-        
+
         final NFEventoCancelamento evento = new NFEventoCancelamento();
         evento.setInfoEvento(infoEvento);
         evento.setVersao(WSCancelamento.VERSAO_LEIAUTE);
-        
+
         final NFEnviaEventoCancelamento enviaEvento = new NFEnviaEventoCancelamento();
         enviaEvento.setEvento(Collections.singletonList(evento));
         enviaEvento.setIdLote(Long.toString(ZonedDateTime.now(this.config.getTimeZone().toZoneId()).toInstant().toEpochMilli()));

@@ -10,26 +10,24 @@ import java.math.BigDecimal;
 public class NFDetGrupoControleEstoquePerecimentoFornecedor extends NFDetGrupoControleEstoquePerecimento {
 
     @Element(name = "vIBS")
-    private BigDecimal valorIBS;
+    private String valorIBS;
 
     @Element(name = "vCBS")
-    private BigDecimal valorCBS;
+    private String valorCBS;
 
-    public BigDecimal getValorIBS() {
+    public String getValorIBS() {
         return valorIBS;
     }
 
     public void setValorIBS(BigDecimal valorIBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor IBS");
-        this.valorIBS = valorIBS;
+        this.valorIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor IBS");
     }
 
-    public BigDecimal getValorCBS() {
+    public String getValorCBS() {
         return valorCBS;
     }
 
     public void setValorCBS(BigDecimal valorCBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor CBS");
-        this.valorCBS = valorCBS;
+        this.valorCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor CBS");
     }
 }

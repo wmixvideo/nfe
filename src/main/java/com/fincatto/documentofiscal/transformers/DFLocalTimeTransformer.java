@@ -7,9 +7,11 @@ import java.time.format.DateTimeFormatter;
 
 public class DFLocalTimeTransformer implements Transform<LocalTime> {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     @Override
     public LocalTime read(final String time) {
-        return LocalTime.from(DateTimeFormatter.ofPattern("HH:mm:ss").parse(time));
+        return LocalTime.from(DFLocalTimeTransformer.FORMATTER.parse(time));
     }
 
     @Override

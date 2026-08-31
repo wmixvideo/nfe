@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoCategoriaCombinacaoVeicular;
 import com.fincatto.documentofiscal.utils.DFPersister;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class MDFInfoModalRodoviarioPedagioTest {
         final int fimUltimoDisp = xml.lastIndexOf("</disp>") + "</disp>".length();
         final int posicaoCategCombVeic = xml.indexOf("<categCombVeic>");
 
-        Assert.assertTrue("categCombVeic deve estar presente no XML", posicaoCategCombVeic >= 0);
-        Assert.assertTrue("categCombVeic deve vir depois de fechar todos os <disp>", posicaoCategCombVeic >= fimUltimoDisp);
+        Assertions.assertTrue(posicaoCategCombVeic >= 0);
+        Assertions.assertTrue(posicaoCategCombVeic >= fimUltimoDisp);
 
         final String[] blocosDisp = xml.split("<disp>");
         for (int i = 1; i < blocosDisp.length; i++) {
             final String conteudoDisp = blocosDisp[i].substring(0, blocosDisp[i].indexOf("</disp>"));
-            Assert.assertFalse("categCombVeic nao deve aparecer dentro de <disp>", conteudoDisp.contains("categCombVeic"));
+            Assertions.assertFalse(conteudoDisp.contains("categCombVeic"));
         }
     }
 
@@ -41,7 +41,7 @@ public class MDFInfoModalRodoviarioPedagioTest {
 
         final String xml = pedagio.toString();
 
-        Assert.assertFalse("categCombVeic nao deve aparecer quando nulo", xml.contains("categCombVeic"));
+        Assertions.assertFalse(xml.contains("categCombVeic"));
     }
 
     @Test
@@ -52,10 +52,10 @@ public class MDFInfoModalRodoviarioPedagioTest {
         final String xml = original.toString();
         final MDFInfoModalRodoviarioPedagio lido = persister.read(MDFInfoModalRodoviarioPedagio.class, xml);
 
-        Assert.assertNotNull(lido);
-        Assert.assertEquals(original.getCategoriaCombinacaoVeicular(), lido.getCategoriaCombinacaoVeicular());
-        Assert.assertEquals(original.getDispositivos().size(), lido.getDispositivos().size());
-        Assert.assertEquals(original.getDispositivos().get(0).getCnpjFornecedora(), lido.getDispositivos().get(0).getCnpjFornecedora());
+        Assertions.assertNotNull(lido);
+        Assertions.assertEquals(original.getCategoriaCombinacaoVeicular(), lido.getCategoriaCombinacaoVeicular());
+        Assertions.assertEquals(original.getDispositivos().size(), lido.getDispositivos().size());
+        Assertions.assertEquals(original.getDispositivos().get(0).getCnpjFornecedora(), lido.getDispositivos().get(0).getCnpjFornecedora());
     }
 
     private MDFInfoModalRodoviarioPedagio buildPedagioComDoisDispositivos() {

@@ -6,8 +6,8 @@ import com.fincatto.documentofiscal.cte300.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte300.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte300.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,13 +19,13 @@ class WSPrestacaoEmDesacordo extends WSRecepcaoEvento {
     private static final String EVENTO_SERVICO_EM_DESACORDO = "610110";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE, DFModelo.CTeOS);
 
-    WSPrestacaoEmDesacordo(final CTeConfig config) {
-        super(config, modelosPermitidos);
+    WSPrestacaoEmDesacordo(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
 
     CTeEventoRetorno prestacaoEmDesacordoAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSPrestacaoEmDesacordo.VERSAO_LEIAUTE);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, WSPrestacaoEmDesacordo.VERSAO_LEIAUTE);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno prestacaoEmDesacordo(final String chaveAcesso, final String motivo, final String cpfOuCnpj, final int sequencialEvento) throws Exception {

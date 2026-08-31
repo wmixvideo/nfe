@@ -6,8 +6,8 @@ import com.fincatto.documentofiscal.cte400.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoCancelamentoInsucessoEntrega;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,13 +19,13 @@ class WSCancelamentoInsucessoEntrega extends WSRecepcaoEvento {
     private static final String EVENTO_CANCELAMENTO_INSUCESSO_DE_ENTREGA = "110191";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE);
 
-    WSCancelamentoInsucessoEntrega(final CTeConfig config) {
-        super(config, modelosPermitidos);
+    WSCancelamentoInsucessoEntrega(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
 
     CTeEventoRetorno cancelaInsucessoEntregaAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = super.efetuaEvento(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno cancelaInsucessoEntrega(final String chaveAcesso, final String protocoloAutorizacao, final String protocoloInsucessoEntrega, final int sequencialEvento) throws Exception {
