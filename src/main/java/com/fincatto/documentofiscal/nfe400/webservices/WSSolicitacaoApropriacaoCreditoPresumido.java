@@ -36,6 +36,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
     private List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido;
     private String cnpjAutorEvento;
     private String cpfAutorEvento;
+    private NFEventoTipoAutor tipoAutor;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -73,12 +74,14 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
      * @param ufEmitenteEvento
      * @param gruposCreditoPresumido Lista de grupos do crédito presumido.
      * @param numeroSequencialEvento Número sequencial do evento.
-     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento (sem formatação).
+     * @param cnpjCpfAutorEvento     CNPJ ou CPF do autor do evento (sem formatação).
+     * @param tpAutorEvento          Tipo de autor do evento.
      * @return A própria instância de {@link WSSolicitacaoApropriacaoCreditoPresumido} para permitir encadeamento de chamadas.
      */
     WSSolicitacaoApropriacaoCreditoPresumido adicionarDadosEvento(
-            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
-            final String cnpjCpfAutorEvento
+            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento,
+            final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento, NFEventoTipoAutor tpAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposCreditoPresumido = gruposCreditoPresumido;
@@ -86,6 +89,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         super.ufAutorEvento = ufEmitenteEvento;
         this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
         this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
+        this.tipoAutor = tpAutorEvento;
         return this;
     }
 
@@ -97,7 +101,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         final NFDetEventoSolicitacaoApropriacaoCreditoPresumido detEvento = new NFDetEventoSolicitacaoApropriacaoCreditoPresumido();
         detEvento.setDescricaoEvento(WSSolicitacaoApropriacaoCreditoPresumido.DESCRICAO_EVENTO);
         detEvento.setVersao(WSSolicitacaoApropriacaoCreditoPresumido.VERSAO_LAYOUT);
-        detEvento.setTipoAutor(NFEventoTipoAutor.EMPRESA_DESTINADA);
+        detEvento.setTipoAutor(this.tipoAutor);
         detEvento.setVersaoAplicativo(WSSolicitacaoApropriacaoCreditoPresumido.VERSAO_LAYOUT.toString());
         detEvento.setUfAutorEvento(super.ufAutorEvento);
         detEvento.setGruposCreditoPresumido(this.gruposCreditoPresumido);

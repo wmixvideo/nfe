@@ -3,7 +3,13 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.fincatto.documentofiscal.validadores.DFListValidador;
+import com.fincatto.documentofiscal.validadores.DFStringValidador;
+import org.apache.commons.lang3.ObjectUtils;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 /**
  * // B31
@@ -22,6 +28,23 @@ public class NFNotaInfoIdentificacaoCompraGov extends DFBase {
 
   @Element(required = true)
   private String tpOperGov; // B34
+
+  @ElementList(required = false, inline = true, entry = "refDFeAnt")
+  private List<String> documentosAnteriores;
+
+  public List<String> getDocumentosAnteriores() {
+    return documentosAnteriores;
+  }
+
+  public void setDocumentosAnteriores(List<String> documentosAnteriores) {
+    DFListValidador.validaListaNaoObrigatoria(documentosAnteriores, 99, "Documentos Anteriores");
+    if (ObjectUtils.isNotEmpty(documentosAnteriores)) {
+      for (final String documentoAnterior : documentosAnteriores) {
+        DFStringValidador.exatamente44(documentoAnterior, "Documento Anterior");
+      }
+    }
+    this.documentosAnteriores = documentosAnteriores;
+  }
 
   public String getTpEnteGov() {
     return tpEnteGov;
