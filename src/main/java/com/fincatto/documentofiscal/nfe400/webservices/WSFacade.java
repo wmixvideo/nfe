@@ -25,6 +25,8 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPereci
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownloadXMLRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
@@ -37,6 +39,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -80,6 +83,8 @@ public class WSFacade implements Closeable {
     private volatile WSDestinacaoItemConsumoPessoal wsDestinacaoItemConsumoPessoal;
     private volatile WSImobilizacaoItem wsImobilizacaoItem;
     private volatile WSImportacaoALCZFMNaoConvertidaIsencao wsImportacaoALCZFMNaoConvertidaIsencao;
+    private volatile WSNFCeListagemChaves wsNFCeListagemChaves;
+    private volatile WSNFCeDownloadXML wsNFCeDownloadXML;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         this.config = config;
@@ -778,5 +783,37 @@ public class WSFacade implements Closeable {
         return this.wsImportacaoALCZFMNaoConvertidaIsencao
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, gruposImobilizacao, numeroSequencialEvento)
                 .gerarEnviarEvento();
+    }
+
+    /**
+     * Servico exclusivo da SEFAZ-SP para obtencao da relacao de chaves das NFC-e recebidas pela Sefaz num
+     * determinado periodo, para o contribuinte identificado pelo CNPJ do certificado digital utilizado na chamada.
+     *
+     * @param dataHoraInicial data e hora inicial do periodo de busca
+     * @param dataHoraFinal data e hora final do periodo de busca (opcional)
+     * @return dados da listagem de chaves de NFC-e retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     */
+    public NFCeListagemChavesRetorno consultaListagemChavesNFCe(final LocalDateTime dataHoraInicial, final LocalDateTime dataHoraFinal) throws Exception {
+        if (this.wsNFCeListagemChaves == null) {
+            this.wsNFCeListagemChaves = new WSNFCeListagemChaves(this.config, this.httpClient);
+        }
+        return this.wsNFCeListagemChaves.consultaListagemChaves(dataHoraInicial, dataHoraFinal);
+    }
+
+    /**
+     * Servico exclusivo da SEFAZ-SP para download do XML de uma NFC-e (e seus eventos associados) a partir da sua chave de acesso.
+     *
+     * @param chaveDeAcesso chave de acesso da NFC-e
+     * @return dados do download do XML da NFC-e retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     * o sefaz
+     */
+    public NFCeDownloadXMLRetorno downloadXMLNFCe(final String chaveDeAcesso) throws Exception {
+        if (this.wsNFCeDownloadXML == null) {
+            this.wsNFCeDownloadXML = new WSNFCeDownloadXML(this.config, this.httpClient);
+        }
+        return this.wsNFCeDownloadXML.downloadXML(chaveDeAcesso);
     }
 }
