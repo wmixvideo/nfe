@@ -1,19 +1,5 @@
 package com.fincatto.documentofiscal.mdfe.webservices.distribuicao;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-
-import javax.xml.stream.XMLStreamException;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoInt;
@@ -21,41 +7,56 @@ import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoIn
 import com.fincatto.documentofiscal.mdfe.classes.distribuicao.MDFeDistribuicaoNSU;
 import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
 
 public class WSDistribuicaoMDFe {
 
-	private final MDFeConfig config;
+	private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeDistribuicaoDFe";
+	private static final String SOAP_ACTION = WSDistribuicaoMDFe.NAMESPACE_WSDL + "/mdfeDistDFeInteresse";
 
-	public WSDistribuicaoMDFe(final MDFeConfig config) {
+	private final MDFeConfig config;
+	private final DFHttpClient httpClient;
+
+	public WSDistribuicaoMDFe(final MDFeConfig config, final DFHttpClient httpClient) {
 		this.config = config;
+		this.httpClient = httpClient;
 	}
 
 	public MDFeDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
-		try {
-			String xmlEnvio = this.gerarMDFeDistribuicaoInt(cpfOuCnpj, nsu, ultNsu).toString();
+		String xmlEnvio = this.gerarMDFeDistribuicaoInt(cpfOuCnpj, nsu, ultNsu).toString();
 
-			DFXMLValidador.validaDistribuicaoMDFe(xmlEnvio);
+		DFXMLValidador.validaDistribuicaoMDFe(xmlEnvio);
 
-			final OMElement ome = AXIOMUtil.stringToOM(xmlEnvio);
+		final String xmlResultado = this.efetuaConsulta(xmlEnvio, uf);
+		return this.config.getPersister().read(MDFeDistribuicaoIntRetorno.class, xmlResultado);
+	}
 
-			final MDFeDistribuicaoDFeStub.MdfeDadosMsg mdfeDadosMsg = new MDFeDistribuicaoDFeStub.MdfeDadosMsg();
-			mdfeDadosMsg.setExtraElement(ome);
-
-			final MDFeDistribuicaoDFeStub.MdfeCabecMsg mdfeCabecMsg = new MDFeDistribuicaoDFeStub.MdfeCabecMsg();
-			mdfeCabecMsg.setCUF(uf.getCodigo());
-			mdfeCabecMsg.setVersaoDados("1.00");
-
-			final MDFeDistribuicaoDFeStub.MdfeCabecMsgE mdfeCabecMsgE = new MDFeDistribuicaoDFeStub.MdfeCabecMsgE();
-			mdfeCabecMsgE.setMdfeCabecMsg(mdfeCabecMsg);
-			
-			final MDFeDistribuicaoDFeStub stub = new MDFeDistribuicaoDFeStub(MDFAutorizador3.RS.getMDFeDistribuicao(config.getAmbiente()));
-			final MDFeDistribuicaoDFeStub.MdfeDistDFeInteresseResult result = stub.mdfeDistDFeInteresse(mdfeDadosMsg, mdfeCabecMsgE);
-
-			return this.config.getPersister().read(MDFeDistribuicaoIntRetorno.class, result.getExtraElement().toString());
-		} catch (RemoteException | XMLStreamException e) {
-			throw new Exception(e.getMessage());
+	/**
+	 * Envia a consulta de distribuicao para a SEFAZ via {@link DFHttpClient} e devolve o XML de
+	 * negocio ja desempacotado do envelope SOAP 1.2 de resposta. Diferente de
+	 * {@code WSDistribuicaoNFe}/{@code WSDistribuicaoCTe}, esta operacao NAO aninha o corpo em
+	 * um wrapper com o nome da operacao.
+	 */
+	private String efetuaConsulta(final String xmlEnvio, final DFUnidadeFederativa uf) throws IOException, DFSoapFaultException {
+		final String endpoint = MDFAutorizador3.RS.getMDFeDistribuicao(this.config.getAmbiente());
+		if (endpoint == null) {
+			throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDFe, autorizador RS");
 		}
+
+		final String cabecalho = "<cUF>" + uf.getCodigo() + "</cUF><versaoDados>1.00</versaoDados>";
+		final String envelope = DFSoapEnvelope.envelopar(WSDistribuicaoMDFe.NAMESPACE_WSDL, "mdfeCabecMsg", cabecalho, "mdfeDadosMsg", xmlEnvio);
+		final String resposta = this.httpClient.postSoap(endpoint, WSDistribuicaoMDFe.SOAP_ACTION, envelope);
+		return DFSoapEnvelope.desempacotar(resposta);
 	}
 
 	private MDFeDistribuicaoInt gerarMDFeDistribuicaoInt(final String cpfOuCnpj, final String nsu,
@@ -82,18 +83,10 @@ public class WSDistribuicaoMDFe {
 		if (conteudoEncode == null || conteudoEncode.length() == 0) {
 			return "";
 		}
-		final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);// java 8
-		// final byte[] conteudo =
-		// DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
+		final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
+		// le os bytes crus (sem readLine), preservando quebras de linha dentro de campos texto do XML
 		try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
-			try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8))) {
-				StringBuilder outStr = new StringBuilder();
-				String line;
-				while ((line = bf.readLine()) != null) {
-					outStr.append(line);
-				}
-				return outStr.toString();
-			}
+			return new String(gis.readAllBytes(), StandardCharsets.UTF_8);
 		}
 	}
 }

@@ -2,67 +2,75 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaCOFINS;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoCOFINSAliquotaTest {
     
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setValor(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoCOFINSAliquota().setValor(new BigDecimal("10000000000000")));
     }
     
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBaseCaluloTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalculo(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoCOFINSAliquota().setValorBaseCalculo(new BigDecimal("10000000000000")));
     }
     
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaTamanhoInvalido() {
-        new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoCOFINSAliquota().setPercentualAliquota(new BigDecimal("1000")));
     }
     
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValorBaseCalculoNulo() {
-        final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
-        cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
-        cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
+            cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
+            cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
+            cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
+            cofinsAliquota.toString();
+        });
     }
     
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValorAliquotaNulo() {
-        final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
-        cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
-        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        cofinsAliquota.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
+            cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
+            cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
+            cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+            cofinsAliquota.toString();
+        });
     }
     
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveSituacaoTributariaAliquotaNulo() {
-        final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
-        cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
-        cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        cofinsAliquota.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
+            cofinsAliquota.setPercentualAliquota(new BigDecimal("99.99"));
+            cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
+            cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+            cofinsAliquota.toString();
+        });
     }
     
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaNulo() {
-        final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
-        cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
-        cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
-        cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
-        cofinsAliquota.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoCOFINSAliquota cofinsAliquota = new NFNotaInfoItemImpostoCOFINSAliquota();
+            cofinsAliquota.setSituacaoTributaria(NFNotaInfoSituacaoTributariaCOFINS.CST_67);
+            cofinsAliquota.setValor(new BigDecimal("999999999999.99"));
+            cofinsAliquota.setValorBaseCalculo(new BigDecimal("999999999999.99"));
+            cofinsAliquota.toString();
+        });
     }
     
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoCOFINSAliquota><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></NFNotaInfoItemImpostoCOFINSAliquota>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSAliquota().toString());
     }
 }

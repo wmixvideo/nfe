@@ -6,8 +6,8 @@ import com.fincatto.documentofiscal.cte400.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoInsucessoEntrega;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,31 +19,27 @@ class WSInsucessoEntrega extends WSRecepcaoEvento {
     private static final String EVENTO_INSUCESSO_DE_ENTREGA = "110190";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE);
 
-    WSInsucessoEntrega(final CTeConfig config) {
-        super(config, modelosPermitidos);
+    WSInsucessoEntrega(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
 
     CTeEventoRetorno insucessoEntregaAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaComprovanteEntrega(eventoAssinadoXml, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(eventoAssinadoXml, chaveAcesso);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno insucessoEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
         final String xmlAssinado = this.getXmlAssinado(chaveAcesso, insucessoEntrega, sequencialEvento);
-        final OMElement omElementResult = this.efetuaComprovanteEntrega(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEvento(xmlAssinado, chaveAcesso);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     String getXmlAssinado(final String chave, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
-        final String xml = this.gerarDadosComprovanteEntrega(chave, insucessoEntrega, sequencialEvento).toString();
+        final String xml = this.gerarDadosInsucessoEntrega(chave, insucessoEntrega, sequencialEvento).toString();
         return new DFAssinaturaDigital(this.config).assinarDocumento(xml);
     }
 
-    private OMElement efetuaComprovanteEntrega(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        return super.efetuaEvento(xmlAssinado, chaveAcesso, VERSAO_LEIAUTE);
-    }
-
-    private CTeEvento gerarDadosComprovanteEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
+    private CTeEvento gerarDadosInsucessoEntrega(final String chaveAcesso, final CTeEnviaEventoInsucessoEntrega insucessoEntrega, final int sequencialEvento) throws Exception {
         insucessoEntrega.setDescricaoEvento(DESCRICAO_EVENTO);
 
         DFXMLValidador.validaEventoInsucessoEntregaCTe400(insucessoEntrega.toString());

@@ -5,58 +5,51 @@ import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf.NFDownloadNFe;
 import com.fincatto.documentofiscal.nfe310.classes.evento.downloadnf.NFDownloadNFeRetorno;
-import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub;
-import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDadosMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.downloadnf.NfeDownloadNFStub.NfeDownloadNFResult;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.rmi.RemoteException;
 
 class WSNotaDownload implements DFLog {
-    
+
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     private static final String NOME_SERVICO = "DOWNLOAD NFE";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeDownloadNF";
+    private static final String SOAP_ACTION = WSNotaDownload.NAMESPACE_WSDL + "/nfeDownloadNF";
+
     private final NFeConfig config;
-    
-    WSNotaDownload(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSNotaDownload(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFDownloadNFeRetorno downloadNota(final String cnpj, final String chave) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosDownloadNF(cnpj, chave).toString());
-        this.getLogger().debug(omElementConsulta.toString());
-        
-        final OMElement omElementRetorno = this.efetuaDownloadNF(omElementConsulta);
-        this.getLogger().debug(omElementRetorno.toString());
-        
-        return this.config.getPersister().read(NFDownloadNFeRetorno.class, omElementRetorno.toString());
+        final String xmlConsulta = this.gerarDadosDownloadNF(cnpj, chave).toString();
+        this.getLogger().debug(xmlConsulta);
+
+        final String xmlResultado = this.efetuaDownloadNF(xmlConsulta);
+        this.getLogger().debug(xmlResultado);
+
+        return this.config.getPersister().read(NFDownloadNFeRetorno.class, xmlResultado);
     }
-    
-    private OMElement efetuaDownloadNF(final OMElement omElementConsulta) throws RemoteException {
-        final NfeCabecMsg cabec = new NfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(WSNotaDownload.VERSAO_LEIAUTE.toPlainString());
-        
-        final NfeDownloadNFStub.NfeCabecMsgE cabecE = new NfeCabecMsgE();
-        cabecE.setNfeCabecMsg(cabec);
-        
-        final NfeDownloadNFStub.NfeDadosMsg dados = new NfeDadosMsg();
-        dados.setExtraElement(omElementConsulta);
-        
+
+    private String efetuaDownloadNF(final String xmlConsulta) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(this.config.getCUF());
         final String endpoint = autorizador.getNfeDownloadNF(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para DownloadNF, autorizador " + autorizador.name());
         }
-        
-        final NfeDownloadNFResult nfeDownloadNFResult = new NfeDownloadNFStub(endpoint, config).nfeDownloadNF(dados, cabecE);
-        return nfeDownloadNFResult.getExtraElement();
+
+        final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + WSNotaDownload.VERSAO_LEIAUTE.toPlainString() + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSNotaDownload.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSNotaDownload.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFDownloadNFe gerarDadosDownloadNF(final String cnpj, final String chave) {
         final NFDownloadNFe nfDownloadNFe = new NFDownloadNFe();
         nfDownloadNFe.setVersao(WSNotaDownload.VERSAO_LEIAUTE.toPlainString());

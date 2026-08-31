@@ -4,8 +4,8 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 
@@ -24,6 +24,6 @@ public class NFLoteEnvioRetornoTest {
         retorno.setVersaoAplicacao("2.00");
         
         final String xmlEsperado = "<retEnviNFe versao=\"4.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>2</tpAmb><verAplic>2.00</verAplic><cStat>iejsasfisf</cStat><xMotivo>kdosfksodf</xMotivo><cUF>29</cUF><dhRecbto>2014-01-01T10:10:10-02:00</dhRecbto><infRec><nRec>845e40545</nRec><tMed>430kfszodkgvre</tMed></infRec></retEnviNFe>";
-        Assert.assertEquals(xmlEsperado, retorno.toString());
+        Assertions.assertEquals(xmlEsperado, retorno.toString());
     }
 }

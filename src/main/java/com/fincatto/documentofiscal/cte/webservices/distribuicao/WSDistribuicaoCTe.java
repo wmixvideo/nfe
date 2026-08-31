@@ -1,82 +1,68 @@
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoConsultaNSU;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
 import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.cte.CTeConfig;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.rmi.RemoteException;
-import java.util.Base64;
-import java.util.zip.GZIPInputStream;
-import javax.xml.stream.XMLStreamException;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.zip.GZIPInputStream;
+
+/**
+ * Cliente do webservice de Distribuicao de DF-e do CT-e (consulta de documentos por NSU/interesse).
+ * Servico compartilhado por CT-e 3.00 e 4.00 (usado tanto pelo {@code WSFacade} do {@code cte300}
+ * quanto do {@code cte400}), por isso vive no pacote legado {@code com.fincatto.documentofiscal.cte}
+ * em vez de dentro de um dos dois modulos versionados.
+ */
 public class WSDistribuicaoCTe {
 
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/cte/wsdl/CTeDistribuicaoDFe";
+    private static final String SOAP_ACTION = WSDistribuicaoCTe.NAMESPACE_WSDL + "/cteDistDFeInteresse";
+    private static final int NIVEIS_DE_WRAPPER_NA_RESPOSTA = 2;
+
     private final CTeConfig config;
+    private final DFHttpClient httpClient;
 
-    public WSDistribuicaoCTe(final CTeConfig config) {
+    public WSDistribuicaoCTe(final CTeConfig config, final DFHttpClient httpClient) {
         this.config = config;
-    }
-
-    /**
-     * Metodo para consultar os conhecimentos de transporte e retorna uma String<br>
-     * E importante salvar esta String para nao perder nenhuma informacao<br>
-     * A receita nao disponibiliza o conhecimento varias vezes para consultar, retorna rejeicao: Consumo indevido
-     */
-    @Deprecated
-    public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
-        try {
-            final OMElement ome = AXIOMUtil.stringToOM(distDFeInt.toString());
-
-            final CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0 dadosMsgType0 = new CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0();
-            dadosMsgType0.setExtraElement(ome);
-
-            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse distDFeInteresse = new CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse();
-            distDFeInteresse.setCteDadosMsg(dadosMsgType0);
-
-            final CTeDistribuicaoDFeSoapStub stub = new CTeDistribuicaoDFeSoapStub(CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente()), config);
-            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresseResponse result = stub.cteDistDFeInteresse(distDFeInteresse);
-
-            return result.getCteDistDFeInteresseResult().getExtraElement().toString();
-        } catch (RemoteException | XMLStreamException e) {
-            throw new Exception(e.getMessage());
-        }
+        this.httpClient = httpClient;
     }
 
     public CTDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
-        try {
-            String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
+        final String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
 
-            DFXMLValidador.validaDistribuicaoCTe(xmlEnvio);
+        DFXMLValidador.validaDistribuicaoCTe(xmlEnvio);
 
-            final OMElement ome = AXIOMUtil.stringToOM(xmlEnvio);
+        final String xmlResultado = this.efetuaConsulta(xmlEnvio);
+        return this.config.getPersister().read(CTDistribuicaoIntRetorno.class, xmlResultado);
+    }
 
-            final CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0 dadosMsgType0 = new CTeDistribuicaoDFeSoapStub.CteDadosMsg_type0();
-            dadosMsgType0.setExtraElement(ome);
-
-            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse distDFeInteresse = new CTeDistribuicaoDFeSoapStub.CteDistDFeInteresse();
-            distDFeInteresse.setCteDadosMsg(dadosMsgType0);
-
-            final CTeDistribuicaoDFeSoapStub stub = new CTeDistribuicaoDFeSoapStub(CTAutorizador.AN.getDistribuicaoDFe(config.getAmbiente()), config);
-            final CTeDistribuicaoDFeSoapStub.CteDistDFeInteresseResponse result = stub.cteDistDFeInteresse(distDFeInteresse);
-            return this.config.getPersister().read(CTDistribuicaoIntRetorno.class, result.getCteDistDFeInteresseResult().getExtraElement().toString());
-        } catch (RemoteException | XMLStreamException e) {
-            throw new Exception(e.getMessage());
+    /**
+     * Envia a consulta de distribuicao para a SEFAZ via {@link DFHttpClient} e devolve o XML de
+     * negocio ja desempacotado do envelope SOAP 1.2 de resposta - mesmo padrao aninhado de
+     * {@code WSDistribuicaoNFe#efetuaConsulta}: o wrapper e {@code cteDistDFeInteresse} (nao
+     * {@code cteDadosMsg} direto), com {@code cteDadosMsg} dentro dele.
+     */
+    private String efetuaConsulta(final String xmlEnvio) throws IOException, DFSoapFaultException {
+        final String endpoint = CTAutorizador.AN.getDistribuicaoDFe(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para DistribuicaoDFe, autorizador " + CTAutorizador.AN.name());
         }
+
+        final String envelope = DFSoapEnvelope.envelopar(WSDistribuicaoCTe.NAMESPACE_WSDL, "cteDistDFeInteresse", "<cteDadosMsg>" + xmlEnvio + "</cteDadosMsg>");
+        final String resposta = this.httpClient.postSoap(endpoint, WSDistribuicaoCTe.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta, WSDistribuicaoCTe.NIVEIS_DE_WRAPPER_NA_RESPOSTA);
     }
 
     private CTDistribuicaoInt gerarCTeDistribuicaoInt(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) {
@@ -103,17 +89,10 @@ public class WSDistribuicaoCTe {
         if (conteudoEncode == null || conteudoEncode.length() == 0) {
             return "";
         }
-        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);//java 8
-        //final byte[] conteudo = DatatypeConverter.parseBase64Binary(conteudoEncode);//java 7
+        final byte[] conteudo = Base64.getDecoder().decode(conteudoEncode);
+        // le os bytes crus (sem readLine), preservando quebras de linha dentro de campos texto do XML
         try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
-            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8))) {
-                StringBuilder outStr = new StringBuilder();
-                String line;
-                while ((line = bf.readLine()) != null) {
-                    outStr.append(line);
-                }
-                return outStr.toString();
-            }
+            return new String(gis.readAllBytes(), StandardCharsets.UTF_8);
         }
     }
 }

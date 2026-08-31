@@ -1,28 +1,28 @@
 package com.fincatto.documentofiscal.validadores;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DFStringValidadorTest {
 
     @Test
     public void deveValidarDataPadraoBrasileiro() { DFStringValidador.mmaaaa("12/2014"); }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaPadraoAmericano() {
-        DFStringValidador.mmaaaa("2014-12");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.mmaaaa("2014-12"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaSemCaracterSeparador() {
-        DFStringValidador.mmaaaa("201412");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.mmaaaa("201412"));
     }
 
     @Test
     public void deveValidarDataPadraoAnoMes() { DFStringValidador.aamm("1412"); }
 
-    @Test(expected = IllegalStateException.class)
-    public void deveLancarExcecaoDataPadraoAnoMesComBarra() { DFStringValidador.aamm("14/12"); }
+    @Test
+    public void deveLancarExcecaoDataPadraoAnoMesComBarra() { Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.aamm("14/12")); }
 
     @Test
     public void deveValidarTamanhoDeStringCasoEstejaDentroIntervalo60() {
@@ -36,11 +36,11 @@ public class DFStringValidadorTest {
         DFStringValidador.telefone("30303030", "Numero de telefone");
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void deveLancarExcecaoTelefone() { DFStringValidador.telefone("(48)30303020"); }
+    @Test
+    public void deveLancarExcecaoTelefone() { Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.telefone("(48)30303020")); }
 
-    @Test(expected = IllegalStateException.class)
-    public void deveLancarExcecaoTelefoneComInfo() { DFStringValidador.telefone("(48)30303020", "Numero telefone"); }
+    @Test
+    public void deveLancarExcecaoTelefoneComInfo() { Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.telefone("(48)30303020", "Numero telefone")); }
 
     @Test
     public void deveValidarEmail() {
@@ -48,23 +48,25 @@ public class DFStringValidadorTest {
         DFStringValidador.email("nfe@teste.com.br", "Email");
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void deveLancarExcecaoEmail() { DFStringValidador.email("nfeteste.com.br"); }
+    @Test
+    public void deveLancarExcecaoEmail() { Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.email("nfeteste.com.br")); }
 
-    @Test(expected = IllegalStateException.class)
-    public void deveLancarExcecaoEmailInfo() { DFStringValidador.email("nfeteste.com.br", "Email"); }
+    @Test
+    public void deveLancarExcecaoEmailInfo() { Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.email("nfeteste.com.br", "Email")); }
 
 
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo60() {
-        try {
-            DFStringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh1", "");
-            Assert.fail("Validacao falhou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.tamanho60("", "");
-        }
-        Assert.fail("Validacao falhou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.tamanho60("oO3xPZlrBVtl4YcGaFLDmKouamLIoyIptA1fZ8CBfZWjzsjMW7ozuF1bkQrh1", "");
+                Assertions.fail("Validacao falhou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.tamanho60("", "");
+            }
+            Assertions.fail("Validacao falhou");
+        });
     }
 
     @Test
@@ -73,20 +75,22 @@ public class DFStringValidadorTest {
         DFStringValidador.tamanho2ou3N("999", "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNaoNumerosParaTamanho2ou3N() {
-        DFStringValidador.tamanho2ou3N("0N", "");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.tamanho2ou3N("0N", ""));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirExtrapolarTamanho2ou3N() {
-        try {
-            DFStringValidador.tamanho2ou3N("9", "");
-            Assert.fail();
-        } catch (final IllegalStateException e) {
-            DFStringValidador.tamanho2ou3N("1000", "");
-            Assert.fail();
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.tamanho2ou3N("9", "");
+                Assertions.fail();
+            } catch (final IllegalStateException e) {
+                DFStringValidador.tamanho2ou3N("1000", "");
+                Assertions.fail();
+            }
+        });
     }
 
     @Test
@@ -144,15 +148,17 @@ public class DFStringValidadorTest {
         DFStringValidador.validador("123", "", 5, false);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo22() {
-        try {
-            DFStringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV1", "");
-            Assert.fail("Validacao falhou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.tamanho22("", "");
-        }
-        Assert.fail("Validacao falhou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.tamanho22("AZgCErXz4DlSwRmsJaeyUV1", "");
+                Assertions.fail("Validacao falhou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.tamanho22("", "");
+            }
+            Assertions.fail("Validacao falhou");
+        });
     }
 
     @Test
@@ -161,15 +167,17 @@ public class DFStringValidadorTest {
         DFStringValidador.tamanho20("o", "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo20() {
-        try {
-            DFStringValidador.tamanho20("AZgCErXz4DlSwRmsJaey1", "");
-            Assert.fail("Validacao falhou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.tamanho20("", "");
-        }
-        Assert.fail("Validacao falhou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.tamanho20("AZgCErXz4DlSwRmsJaey1", "");
+                Assertions.fail("Validacao falhou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.tamanho20("", "");
+            }
+            Assertions.fail("Validacao falhou");
+        });
     }
 
     @Test
@@ -182,15 +190,17 @@ public class DFStringValidadorTest {
         DFStringValidador.placaDeVeiculo("MK8851", "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarPlacaDeVeiculoCasoNaoPossua6ou7Caracteres() {
-        try {
-            DFStringValidador.placaDeVeiculo("MK885");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.placaDeVeiculo("MKZT8851");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.placaDeVeiculo("MK885");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.placaDeVeiculo("MKZT8851");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
@@ -211,58 +221,66 @@ public class DFStringValidadorTest {
         DFStringValidador.cnpj("12abc34501de35", "CNPJ Emitente");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCNPJComUnderscoreNoPrimeiroBlocoDeCaracteres() {
-        DFStringValidador.cnpj("12AB_34501DE35");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("12AB_34501DE35"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarPlacaDeVeiculoCasoNaoPossua6ou7CaracteresInfo() {
-        DFStringValidador.placaDeVeiculo("MKZT8851", "");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.placaDeVeiculo("MKZT8851", ""));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCPFCasoNaoPossua11Caracteres() {
-        try {
-            DFStringValidador.cpf("1234567890");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.cpf("123456789012");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.cpf("1234567890");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.cpf("123456789012");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCPFCasoNaoPossua11CaracteresInfo() {
-        try {
-            DFStringValidador.cpf("1234567890", "");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.cpf("123456789012", "");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.cpf("1234567890", "");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.cpf("123456789012", "");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCNPJCasoNaoPossua14Caracteres() {
-        try {
-            DFStringValidador.cnpj("1234567890123");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.cnpj("123456789012345");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.cnpj("1234567890123");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.cnpj("123456789012345");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCNPJCasoNaoPossua14CaracteresInfo() {
-        DFStringValidador.cnpj("1234567890123", "");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("1234567890123", ""));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCNPJCasoNaoEstejaNoPadrao() {
-        DFStringValidador.cnpj("ZLVERP0500016a");
-        DFStringValidador.cnpj("aLVERP0500016a", "");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            DFStringValidador.cnpj("ZLVERP0500016a");
+            DFStringValidador.cnpj("aLVERP0500016a", "");
+        });
     }
 
     @Test
@@ -304,30 +322,32 @@ public class DFStringValidadorTest {
         DFStringValidador.cnpj("abcd1234567890");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCnpjComCaracteresEspeciais() {
-        DFStringValidador.cnpj("0JRXDN7G0001@5");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("0JRXDN7G0001@5"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCnpjComEspacos() {
-        DFStringValidador.cnpj("0JRXDN7G 00175");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("0JRXDN7G 00175"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCnpjComLetraNoDigitoVerificador() {
-        // Os últimos 2 caracteres devem ser numéricos
-        DFStringValidador.cnpj("0JRXDN7G0001AB");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            // Os últimos 2 caracteres devem ser numéricos
+            DFStringValidador.cnpj("0JRXDN7G0001AB");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCnpjComTamanhoMenor() {
-        DFStringValidador.cnpj("0JRXDN7G00017");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("0JRXDN7G00017"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarCnpjComTamanhoMaior() {
-        DFStringValidador.cnpj("0JRXDN7G0001755");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.cnpj("0JRXDN7G0001755"));
     }
 
     @Test
@@ -340,36 +360,42 @@ public class DFStringValidadorTest {
         DFStringValidador.inscricaoEstadualSemIsencao("12345678901234", "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarInscricaoEstadualCasoNaoEstejaNoTamanho() {
-        try {
-            DFStringValidador.inscricaoEstadual("1");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.inscricaoEstadual("123456789012345");
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.inscricaoEstadual("1");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.inscricaoEstadual("123456789012345");
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarInscricaoEstadualSemIsencaoCasoNaoEstejaNoTamanho() {
-        try {
-            DFStringValidador.inscricaoEstadualSemIsencao("1");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.inscricaoEstadualSemIsencao("123456789012345");
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.inscricaoEstadualSemIsencao("1");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.inscricaoEstadualSemIsencao("123456789012345");
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarInscricaoEstadualSemIsencaoInfoCasoNaoEstejaNoTamanho() {
-        try {
-            DFStringValidador.inscricaoEstadualSemIsencao("1", "");
-        } catch (final IllegalStateException e) {
-            DFStringValidador.inscricaoEstadualSemIsencao("123456789012345", "");
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.inscricaoEstadualSemIsencao("1", "");
+            } catch (final IllegalStateException e) {
+                DFStringValidador.inscricaoEstadualSemIsencao("123456789012345", "");
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveValidarInscricaoEstadualCasoEstejaForaDoPadrao() {
-        DFStringValidador.inscricaoEstadual("ISENT0");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.inscricaoEstadual("ISENT0"));
     }
 
     @Test
@@ -380,21 +406,23 @@ public class DFStringValidadorTest {
         DFStringValidador.codigoDeBarras("");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCodigoDeBarrasComValorInvalido() {
-        try {
-            DFStringValidador.codigoDeBarras("356472100398610");
-        } catch (final IllegalStateException e) {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
             try {
-                DFStringValidador.codigoDeBarras("35647210039");
-            } catch (final IllegalStateException e2) {
+                DFStringValidador.codigoDeBarras("356472100398610");
+            } catch (final IllegalStateException e) {
                 try {
-                    DFStringValidador.codigoDeBarras("3564721");
-                } catch (final IllegalStateException e3) {
-                    DFStringValidador.codigoDeBarras("3");
+                    DFStringValidador.codigoDeBarras("35647210039");
+                } catch (final IllegalStateException e2) {
+                    try {
+                        DFStringValidador.codigoDeBarras("3564721");
+                    } catch (final IllegalStateException e3) {
+                        DFStringValidador.codigoDeBarras("3");
+                    }
                 }
             }
-        }
+        });
     }
 
     @Test
@@ -405,31 +433,35 @@ public class DFStringValidadorTest {
         DFStringValidador.ncm("99999999");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNCMForaDoLimite2Posicoes() {
-        try {
-            DFStringValidador.ncm("9");
-            Assert.fail();
-        } catch (final IllegalStateException e) {
-            DFStringValidador.ncm("000");
-            Assert.fail();
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.ncm("9");
+                Assertions.fail();
+            } catch (final IllegalStateException e) {
+                DFStringValidador.ncm("000");
+                Assertions.fail();
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNCMForaDoLimite8Posicoes() {
-        try {
-            DFStringValidador.ncm("9999999");
-            Assert.fail();
-        } catch (final IllegalStateException e) {
-            DFStringValidador.ncm("000000000");
-            Assert.fail();
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFStringValidador.ncm("9999999");
+                Assertions.fail();
+            } catch (final IllegalStateException e) {
+                DFStringValidador.ncm("000000000");
+                Assertions.fail();
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void stringNotEquals(){
-        DFStringValidador.equals("teste", "test");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.equals("teste", "test"));
     }
 
     @Test
@@ -437,17 +469,19 @@ public class DFStringValidadorTest {
         DFStringValidador.equals("teste", "teste");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void emailError(){
-        try {
-            DFStringValidador.email("teste@teste");
-        } catch (final IllegalStateException e) {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
             try {
-                DFStringValidador.email("teste@");
-            } catch (final IllegalStateException e2) {
-                    DFStringValidador.email("@teste");
+                DFStringValidador.email("teste@teste");
+            } catch (final IllegalStateException e) {
+                try {
+                    DFStringValidador.email("teste@");
+                } catch (final IllegalStateException e2) {
+                        DFStringValidador.email("@teste");
+                }
             }
-        }
+        });
     }
 
     @Test
@@ -463,33 +497,37 @@ public class DFStringValidadorTest {
         DFStringValidador.capacidadeNDigitos("10000", "capacidadeNDigitos",4);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void taraError(){
-        try {
-            DFStringValidador.capacidadeNDigitos("10000.0", "capacidadeNDigitos",5);
-        } catch (final IllegalStateException e) {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
             try {
-                DFStringValidador.capacidadeNDigitos("1000KG", "capacidadeNDigitos",5);
-            } catch (final IllegalStateException e2) {
-                DFStringValidador.capacidadeNDigitos("", "capacidadeNDigitos",5);
+                DFStringValidador.capacidadeNDigitos("10000.0", "capacidadeNDigitos",5);
+            } catch (final IllegalStateException e) {
+                try {
+                    DFStringValidador.capacidadeNDigitos("1000KG", "capacidadeNDigitos",5);
+                } catch (final IllegalStateException e2) {
+                    DFStringValidador.capacidadeNDigitos("", "capacidadeNDigitos",5);
+                }
             }
-        }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void validadorStrings(){
-        try {
-            DFStringValidador.validador("1000000",
-                    "Totais", 6,false, true);
-        } catch (final IllegalStateException e) {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
             try {
-                DFStringValidador.validador("a",
+                DFStringValidador.validador("1000000",
                         "Totais", 6,false, true);
-            } catch (final IllegalStateException e2) {
-                DFStringValidador.validador("10000",
-                        "Totais", 6,true, true);
+            } catch (final IllegalStateException e) {
+                try {
+                    DFStringValidador.validador("a",
+                            "Totais", 6,false, true);
+                } catch (final IllegalStateException e2) {
+                    DFStringValidador.validador("10000",
+                            "Totais", 6,true, true);
+                }
             }
-        }
+        });
     }
 
     @Test
@@ -530,9 +568,9 @@ public class DFStringValidadorTest {
         DFStringValidador.fci("12345678-1234-1234-1234-123456789012");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirFCIComTamanhoIncorreto(){
-        DFStringValidador.fci("12345678-1234-1234-1234-1234");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.fci("12345678-1234-1234-1234-1234"));
     }
 
     @Test
@@ -540,9 +578,9 @@ public class DFStringValidadorTest {
         DFStringValidador.nve("AB1234");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNVEComTamanhoIncorreto(){
-        DFStringValidador.nve("X12345f");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.nve("X12345f"));
     }
 
     @Test
@@ -550,9 +588,9 @@ public class DFStringValidadorTest {
         DFStringValidador.itemListaServico("11.11");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirItemListaServicoIncorreto(){
-        DFStringValidador.itemListaServico("15.xx");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.itemListaServico("15.xx"));
     }
 
     @Test
@@ -561,9 +599,9 @@ public class DFStringValidadorTest {
         DFStringValidador.modeloDocumentoFiscal("65");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirModeloDocumentoFiscalDiferente(){
-        DFStringValidador.modeloDocumentoFiscal("01");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.modeloDocumentoFiscal("01"));
     }
 
     @Test
@@ -571,8 +609,8 @@ public class DFStringValidadorTest {
         DFStringValidador.identificador("ID12345678901234567890123456789012345678901");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirIdentificadorDiferenteDoPadrao(){
-        DFStringValidador.identificador("ID1234567890123456789012345678901234567890");
+        Assertions.assertThrows(IllegalStateException.class, () -> DFStringValidador.identificador("ID1234567890123456789012345678901234567890"));
     }
 }

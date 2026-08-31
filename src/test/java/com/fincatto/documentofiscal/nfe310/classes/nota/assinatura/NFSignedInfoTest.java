@@ -1,12 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFCanonicalizationMethod;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFReference;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignatureMethod;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignedInfo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFSignedInfoTest {
 
@@ -16,7 +11,7 @@ public class NFSignedInfoTest {
         final NFCanonicalizationMethod canonicalizationMethod = new NFCanonicalizationMethod();
         canonicalizationMethod.setAlgorithm("canonicalization method");
         info.setCanonicalizationMethod(canonicalizationMethod);
-        Assert.assertEquals(canonicalizationMethod, info.getCanonicalizationMethod());
+        Assertions.assertEquals(canonicalizationMethod, info.getCanonicalizationMethod());
     }
 
     @Test
@@ -24,7 +19,7 @@ public class NFSignedInfoTest {
         final NFSignedInfo info = new NFSignedInfo();
         final NFReference reference = new NFReference();
         info.setReference(reference);
-        Assert.assertEquals(reference, info.getReference());
+        Assertions.assertEquals(reference, info.getReference());
     }
 
     @Test
@@ -33,6 +28,6 @@ public class NFSignedInfoTest {
         final NFSignatureMethod signatureMethod = new NFSignatureMethod();
         signatureMethod.setAlgorithm("signature method");
         info.setSignatureMethod(signatureMethod);
-        Assert.assertEquals(signatureMethod, info.getSignatureMethod());
+        Assertions.assertEquals(signatureMethod, info.getSignatureMethod());
     }
 }

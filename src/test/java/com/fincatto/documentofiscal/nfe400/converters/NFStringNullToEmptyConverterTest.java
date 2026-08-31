@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe400.converters;
 
 import com.fincatto.documentofiscal.nfe310.converters.NFStringNullToEmptyConverter;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.NodeMap;
 import org.simpleframework.xml.stream.Position;
@@ -11,7 +11,7 @@ public class NFStringNullToEmptyConverterTest {
 
     @Test
     public void deveRetornarStringVaziaCasoSejaValorNulo() throws Exception {
-        Assert.assertEquals("", new NFStringNullToEmptyConverter().read(new InputNodeMock()));
+        Assertions.assertEquals("", new NFStringNullToEmptyConverter().read(new InputNodeMock()));
     }
 
     class InputNodeMock implements InputNode {

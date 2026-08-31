@@ -1,9 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFTransform;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFTransformTest {
 
@@ -12,6 +10,6 @@ public class NFTransformTest {
         final NFTransform transform = new NFTransform();
         final String algorithm = "Algorithm";
         transform.setAlgorithm(algorithm);
-        Assert.assertEquals(algorithm, transform.getAlgorithm());
+        Assertions.assertEquals(algorithm, transform.getAlgorithm());
     }
 }

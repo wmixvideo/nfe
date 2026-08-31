@@ -1,21 +1,23 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.math.BigDecimal;
 
 public class NFInformacaoImpostoDevolvidoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorIPINulo() {
-        new NFInformacaoImpostoDevolvido().toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFInformacaoImpostoDevolvido().toString());
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorIPIInvalido() {
-        final NFInformacaoImpostoDevolvido informacaoImpostoDevolvido = new NFInformacaoImpostoDevolvido();
-        informacaoImpostoDevolvido.setValorIPIDevolvido(new BigDecimal("10000000000000.00"));
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            final NFInformacaoImpostoDevolvido informacaoImpostoDevolvido = new NFInformacaoImpostoDevolvido();
+            informacaoImpostoDevolvido.setValorIPIDevolvido(new BigDecimal("10000000000000.00"));
+        });
     }
 
     @Test
@@ -24,6 +26,6 @@ public class NFInformacaoImpostoDevolvidoTest {
         informacaoImpostoDevolvido.setValorIPIDevolvido(new BigDecimal("9999999999999.99"));
 
         final String xmlEsperado = "<NFInformacaoImpostoDevolvido><vIPIDevol>9999999999999.99</vIPIDevol></NFInformacaoImpostoDevolvido>";
-        Assert.assertEquals(xmlEsperado, informacaoImpostoDevolvido.toString());
+        Assertions.assertEquals(xmlEsperado, informacaoImpostoDevolvido.toString());
     }
 }

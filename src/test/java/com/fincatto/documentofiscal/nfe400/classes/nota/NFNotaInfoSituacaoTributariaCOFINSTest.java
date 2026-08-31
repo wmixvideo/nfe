@@ -1,19 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaCOFINS;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoSituacaoTributariaCOFINSTest {
 
     @Test
     public void deveRetornarSituacaotributariaCOFINSAoPassarCodigoValido() {
-        Assert.assertNotNull(NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo("01"));
+        Assertions.assertNotNull(NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo("01"));
     }
 
     @Test
     public void deveRetornarNuloCasoPasseValorInvalido() {
-        Assert.assertNull(NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo("00"));
+        Assertions.assertNull(NFNotaInfoSituacaoTributariaCOFINS.valueOfCodigo("00"));
     }
 }

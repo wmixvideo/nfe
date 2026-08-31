@@ -184,7 +184,6 @@ public class DFRegistryMatcher extends RegistryMatcher {
     super.bind(DFAmbiente.class, new DFAmbienteTransformer());
     super.bind(LocalDate.class, new DFLocalDateTransformer());
     super.bind(LocalTime.class, new DFLocalTimeTransformer());
-    super.bind(ZonedDateTime.class, new DFDateTimeTransformer());
     super.bind(LocalDateTime.class, new DFLocalDateTimeTransformer());
     super.bind(YearMonth.class, new DFYearMonthTransformer());
     super.bind(ZonedDateTime.class, new DFZonedDateTimeTransformer());

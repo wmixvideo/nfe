@@ -4,8 +4,8 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraQRCode;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -22,14 +22,14 @@ public class NFGeraQRCodeTest {
         nota.getInfoSuplementar().setQrCode(new NFGeraQRCode(nota, this.createConfigTest()).getQRCode());
 
         final String urlEsperada = nota.getInfo().getIdentificacao().getUf().getQrCodeHomologacao() + NFGeraQRCodeTest.URL_TEST;
-        Assert.assertEquals(urlEsperada, nota.getInfoSuplementar().getQrCode());
+        Assertions.assertEquals(urlEsperada, nota.getInfoSuplementar().getQrCode());
     }
 
     @Test
     public void geraSHA1() throws Exception {
         final String entrada = "chNFe=28140300156225000131650110000151341562040824&nVersao=100&tpAmb=1&cDest=13017959000181&dhEmi=323031342d30332d31385431303a35353a33332d30333a3030&vNF=60.90&vICMS=12.75&digVal=797a4759685578312f5859597a6b7357422b6650523351633530633d&cIdToken=000001SEU-CODIGO-CSC-CONTRIBUINTE-36-CARACTERES";
         final String saida = NFGeraQRCode.sha1(entrada);
-        Assert.assertEquals(saida, "329f9d7b9fc5650372c1b2699ab88e9e22e0d33a");
+        Assertions.assertEquals(saida, "329f9d7b9fc5650372c1b2699ab88e9e22e0d33a");
     }
 
     private NFeConfig createConfigTest() {

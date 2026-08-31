@@ -4,8 +4,8 @@ import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final DFAmbiente ambiente = DFAmbiente.PRODUCAO;
         infoEventoManifestacaoDestinatario.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, infoEventoManifestacaoDestinatario.getAmbiente());
+        Assertions.assertEquals(ambiente, infoEventoManifestacaoDestinatario.getAmbiente());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final NFInfoManifestacaoDestinatario infoManifestacaoDestinatario = FabricaDeObjetosFake.getNFInfoManifestacaoDestinatario();
         infoEventoManifestacaoDestinatario.setManifestacaoDestinatario(infoManifestacaoDestinatario);
-        Assert.assertEquals(infoManifestacaoDestinatario, infoEventoManifestacaoDestinatario.getManifestacaoDestinatario());
+        Assertions.assertEquals(infoManifestacaoDestinatario, infoEventoManifestacaoDestinatario.getManifestacaoDestinatario());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final String chave = "81568004734874930428983724940883089298523837";
         infoEventoManifestacaoDestinatario.setChave(chave);
-        Assert.assertEquals(chave, infoEventoManifestacaoDestinatario.getChave());
+        Assertions.assertEquals(chave, infoEventoManifestacaoDestinatario.getChave());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final String cnpj = "12345678901234";
         infoEventoManifestacaoDestinatario.setCnpj(cnpj);
-        Assert.assertEquals(cnpj, infoEventoManifestacaoDestinatario.getCnpj());
+        Assertions.assertEquals(cnpj, infoEventoManifestacaoDestinatario.getCnpj());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final ZonedDateTime dataHoraEvento = ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-10 10:10:10")), DFConfig.TIMEZONE_SP.toZoneId());
         infoEventoManifestacaoDestinatario.setDataHoraEvento(dataHoraEvento);
-        Assert.assertEquals(dataHoraEvento, infoEventoManifestacaoDestinatario.getDataHoraEvento());
+        Assertions.assertEquals(dataHoraEvento, infoEventoManifestacaoDestinatario.getDataHoraEvento());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final String id = "hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6";
         infoEventoManifestacaoDestinatario.setId(id);
-        Assert.assertEquals(id, infoEventoManifestacaoDestinatario.getId());
+        Assertions.assertEquals(id, infoEventoManifestacaoDestinatario.getId());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final int numeroSequencialEvento = 99;
         infoEventoManifestacaoDestinatario.setNumeroSequencialEvento(numeroSequencialEvento);
-        Assert.assertEquals(numeroSequencialEvento, infoEventoManifestacaoDestinatario.getNumeroSequencialEvento());
+        Assertions.assertEquals(numeroSequencialEvento, infoEventoManifestacaoDestinatario.getNumeroSequencialEvento());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.BA;
         infoEventoManifestacaoDestinatario.setOrgao(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, infoEventoManifestacaoDestinatario.getOrgao());
+        Assertions.assertEquals(unidadeFederativa, infoEventoManifestacaoDestinatario.getOrgao());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final String codigoEvento = "123546";
         infoEventoManifestacaoDestinatario.setCodigoEvento(codigoEvento);
-        Assert.assertEquals(codigoEvento, infoEventoManifestacaoDestinatario.getCodigoEvento());
+        Assertions.assertEquals(codigoEvento, infoEventoManifestacaoDestinatario.getCodigoEvento());
     }
 
     @Test
@@ -91,12 +91,12 @@ public class NFInfoEventoManifestacaoDestinatarioTest {
         final NFInfoEventoManifestacaoDestinatario infoEventoManifestacaoDestinatario = new NFInfoEventoManifestacaoDestinatario();
         final BigDecimal versaoEvento = new BigDecimal("3.99");
         infoEventoManifestacaoDestinatario.setVersaoEvento(versaoEvento);
-        Assert.assertEquals(versaoEvento.toString(), infoEventoManifestacaoDestinatario.getVersaoEvento());
+        Assertions.assertEquals(versaoEvento.toString(), infoEventoManifestacaoDestinatario.getVersaoEvento());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFInfoEventoManifestacaoDestinatario Id=\"hluU2zKt4QK5bEktOiGfpZw64535p2A4Z5m5egLQbMpjnCH48c1aw6\"><cOrgao>42</cOrgao><tpAmb>2</tpAmb><CNPJ>12345678901234</CNPJ><chNFe>81568004734874930428983724940883089298523837</chNFe><dhEvento>2014-01-01T10:10:10-02:00</dhEvento><tpEvento>123456</tpEvento><nSeqEvento>2</nSeqEvento><verEvento>2.49</verEvento><detEvento versao=\"3.10\"><descEvento>Operacao nao Realizada</descEvento><xJust>Justificativa qualquer coisa</xJust></detEvento></NFInfoEventoManifestacaoDestinatario>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoEventoManifestacaoDestinatario().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFInfoEventoManifestacaoDestinatario().toString());
     }
 }
