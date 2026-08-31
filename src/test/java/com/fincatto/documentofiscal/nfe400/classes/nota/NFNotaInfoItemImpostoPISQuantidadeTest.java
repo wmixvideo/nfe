@@ -1,69 +1,76 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoSituacaoTributariaPIS;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoPISQuantidadeTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISQuantidade().setValorTributo(new BigDecimal("99999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISQuantidade().setValorTributo(new BigDecimal("99999999999999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorlAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISQuantidade().setValorAliquota(new BigDecimal("999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISQuantidade().setValorAliquota(new BigDecimal("999999999999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISQuantidade().setQuantidadeVendida(new BigDecimal("9999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISQuantidade().setQuantidadeVendida(new BigDecimal("9999999999999")));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitrSituacaoTributariaNulo() {
-        final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
-        pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
-        pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
-        pisQuantidade.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
+            pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+            pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
+            pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
+            pisQuantidade.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitrQuantidadeVendidaNulo() {
-        final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
-        pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
-        pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
-        pisQuantidade.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
+            pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
+            pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
+            pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
+            pisQuantidade.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitrValorAliquotaNulo() {
-        final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
-        pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
-        pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
-        pisQuantidade.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
+            pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+            pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
+            pisQuantidade.setValorTributo(new BigDecimal("999999999999.99"));
+            pisQuantidade.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitrValorTributoNulo() {
-        final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
-        pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
-        pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
-        pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
-        pisQuantidade.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoPISQuantidade pisQuantidade = new NFNotaInfoItemImpostoPISQuantidade();
+            pisQuantidade.setQuantidadeVendida(new BigDecimal("99999999999.9999"));
+            pisQuantidade.setSituacaoTributaria(NFNotaInfoSituacaoTributariaPIS.CST_61);
+            pisQuantidade.setValorAliquota(new BigDecimal("9999999999.9999"));
+            pisQuantidade.toString();
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISQuantidade><CST>03</CST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></NFNotaInfoItemImpostoPISQuantidade>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade().toString());
     }
 }

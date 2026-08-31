@@ -6,21 +6,14 @@ import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte400.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.cte400.classes.CTIndicadorTomador;
-import com.fincatto.documentofiscal.cte400.classes.CTModal;
-import com.fincatto.documentofiscal.cte400.classes.CTProcessoEmissao;
-import com.fincatto.documentofiscal.cte400.classes.CTRetirada;
-import com.fincatto.documentofiscal.cte400.classes.CTTipoImpressao;
-import com.fincatto.documentofiscal.cte400.classes.CTTipoServico;
-import com.fincatto.documentofiscal.cte400.classes.CTTomadorServico;
-import com.fincatto.documentofiscal.cte400.classes.CTUnidadeMedida;
-import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModal;
+import com.fincatto.documentofiscal.cte400.classes.*;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCarga;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModal;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostos;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXParseException;
 
 import java.math.BigDecimal;
@@ -44,10 +37,9 @@ public class CTeNotaSimpTest {
         final String xml = cteSimp.toString();
         try {
             DFXMLValidador.validaNotaCteSimp400(xml);
-            Assert.fail("Esperava falha de validacao apenas pela ausencia da assinatura (Signature)");
+            Assertions.fail("Esperava falha de validacao apenas pela ausencia da assinatura (Signature)");
         } catch (final SAXParseException e) {
-            Assert.assertTrue("Erro de schema inesperado (fora da assinatura): " + e.getMessage(),
-                    e.getMessage().contains("Signature"));
+            Assertions.assertTrue(e.getMessage().contains("Signature"));
         }
     }
 

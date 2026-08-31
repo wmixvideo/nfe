@@ -6,53 +6,49 @@ import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsulta;
 import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.NfeRetAutorizacaoStub.NfeRetAutorizacaoLoteResult;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.rmi.RemoteException;
 
 class WSLoteConsulta implements DFLog {
-    
+
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NfeRetAutorizacao";
+    private static final String SOAP_ACTION = WSLoteConsulta.NAMESPACE_WSDL + "/nfeRetAutorizacaoLote";
+
     private final NFeConfig config;
-    
-    WSLoteConsulta(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSLoteConsulta(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFLoteConsultaRetorno consultaLote(final String numeroRecibo, final DFModelo modelo) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        this.getLogger().debug(omElementConsulta.toString());
-        
-        final OMElement omElementResult = this.efetuaConsulta(omElementConsulta, modelo);
-        this.getLogger().debug(omElementResult.toString());
-        
-        return this.config.getPersister().read(NFLoteConsultaRetorno.class, omElementResult.toString());
+        final String xmlConsulta = this.gerarDadosConsulta(numeroRecibo).toString();
+        this.getLogger().debug(xmlConsulta);
+
+        final String xmlResultado = this.efetuaConsulta(xmlConsulta, modelo);
+        this.getLogger().debug(xmlResultado);
+
+        return this.config.getPersister().read(NFLoteConsultaRetorno.class, xmlResultado);
     }
-    
-    private OMElement efetuaConsulta(final OMElement omElement, final DFModelo modelo) throws RemoteException {
-        final NfeRetAutorizacaoStub.NfeCabecMsg cabec = new NfeRetAutorizacaoStub.NfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(this.config.getVersao());
-        
-        final NfeRetAutorizacaoStub.NfeCabecMsgE cabecE = new NfeRetAutorizacaoStub.NfeCabecMsgE();
-        cabecE.setNfeCabecMsg(cabec);
-        
-        final NfeRetAutorizacaoStub.NfeDadosMsg dados = new NfeRetAutorizacaoStub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
-        
+
+    private String efetuaConsulta(final String xmlConsulta, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-        final String urlWebService = DFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
-        if (urlWebService == null) {
+        final String endpoint = DFModelo.NFCE.equals(modelo) ? autorizador.getNfceRetAutorizacao(this.config.getAmbiente()) : autorizador.getNfeRetAutorizacao(this.config.getAmbiente());
+        if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RetAutorizacao " + modelo.name() + ", autorizador " + autorizador.name());
         }
-        
-        final NfeRetAutorizacaoLoteResult autorizacaoLoteResult = new NfeRetAutorizacaoStub(urlWebService, config).nfeRetAutorizacaoLote(dados, cabecE);
-        return autorizacaoLoteResult.getExtraElement();
+
+        final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + this.config.getVersao() + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSLoteConsulta.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSLoteConsulta.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFLoteConsulta gerarDadosConsulta(final String numeroRecibo) {
         final NFLoteConsulta consulta = new NFLoteConsulta();
         consulta.setRecibo(numeroRecibo);

@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.FabricaDeObjetosFakeMDFe;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -35,6 +35,6 @@ public class MDFInfoIdentificacaoTest {
                 + "</infMunCarrega>"
                 + "<dhIniViagem>2019-05-28T11:07:55-03:00</dhIniViagem>"
                 + "</ide>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeMDFe.getMDFInfoIdentificacao().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFakeMDFe.getMDFInfoIdentificacao().toString());
     }
 }

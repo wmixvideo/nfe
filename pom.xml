@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.wmixvideo</groupId>
     <artifactId>nfe</artifactId>
-    <version>5.0.75-SNAPSHOT</version>
+    <version>5.1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfe</name>
     <description>Biblioteca de comunicacao de nota fiscal eletronica brasileira</description>
@@ -34,12 +34,12 @@
     <properties>
         <java.version>11</java.version>
         <slf4j.version>2.0.18</slf4j.version>
-        <junit.version>4.13.2</junit.version>
+        <junit.version>6.1.3</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <axis2.version>1.7.9</axis2.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
+		<httpclient5.version>5.6.4</httpclient5.version>
     </properties>
 
     <dependencies>
@@ -64,37 +64,11 @@
             <version>${commons-lang3.version}</version>
         </dependency>
 
-        <!-- Axis 2 -->
-        <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-kernel</artifactId>
-            <version>${axis2.version}</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-adb</artifactId>
-            <version>${axis2.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-transport-local</artifactId>
-            <version>${axis2.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2-transport-http</artifactId>
-            <version>${axis2.version}</version>
-            <scope>compile</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>${httpclient5.version}</version>
+		</dependency>
 
         <!-- Logging -->
         <dependency>
@@ -111,8 +85,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <!-- agregador: traz api + engine + params; sem ele o engine so funciona porque o
+                 surefire resolve a versao implicitamente, o que e fragil -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
@@ -161,11 +137,17 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.15.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <optimize>true</optimize>
-                    <debug>false</debug>
+                    <!-- release (e nao source/target) impede o uso acidental de APIs de JDKs mais
+                         novos quando a CI compila com Java 21; debug info mantida (padrao) para
+                         que stack traces dos usuarios da lib tenham numero de linha -->
+                    <release>${java.version}</release>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
             </plugin>
 
             <!-- Cobertura de testes -->
@@ -174,7 +156,8 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
                 <configuration>
-                    <repoToken>QTRbpWiuiwIHGrc0arqKxXsAtiVoLMc5h</repoToken>
+                    <!-- token vem do secret COVERALLS_REPO_TOKEN da CI - nunca commitar o valor -->
+                    <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -201,6 +184,18 @@
                         <exclude>**/webservices/**/*</exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <!--
+                Scan de vulnerabilidades conhecidas (CVE) nas dependencias, incluindo o
+                transporte HTTP/XML (httpclient5, xmlsec). Sem <executions>, entao NAO
+                roda em nenhuma fase do build padrao (mvn test/install) - so sob demanda via
+                'mvn dependency-check:check', para nao depender de acesso a rede (download do
+                banco NVD) durante um build normal/CI offline.
+            -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>13.0.0</version>
             </plugin>
         </plugins>
     </build>

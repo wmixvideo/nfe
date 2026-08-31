@@ -3,8 +3,8 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.nota.assinatura.NFSignature;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +16,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         retornoInfoCancelamento.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, retornoInfoCancelamento.getAmbiente());
+        Assertions.assertEquals(ambiente, retornoInfoCancelamento.getAmbiente());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String chave = "chave";
         retornoInfoCancelamento.setChave(chave);
-        Assert.assertEquals(chave, retornoInfoCancelamento.getChave());
+        Assertions.assertEquals(chave, retornoInfoCancelamento.getChave());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String codigoStatus = "codigo";
         retornoInfoCancelamento.setCodigoStatus(codigoStatus);
-        Assert.assertEquals(codigoStatus, retornoInfoCancelamento.getCodigoStatus());
+        Assertions.assertEquals(codigoStatus, retornoInfoCancelamento.getCodigoStatus());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final LocalDateTime dataHoraRecebimento = LocalDateTime.from(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").parse("2010-10-10 10:10:10"));
         retornoInfoCancelamento.setDatahoraRecebimento(dataHoraRecebimento);
-        Assert.assertEquals(dataHoraRecebimento, retornoInfoCancelamento.getDatahoraRecebimento());
+        Assertions.assertEquals(dataHoraRecebimento, retornoInfoCancelamento.getDatahoraRecebimento());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String identificador = "identificador";
         retornoInfoCancelamento.setIdentificador(identificador);
-        Assert.assertEquals(identificador, retornoInfoCancelamento.getIdentificador());
+        Assertions.assertEquals(identificador, retornoInfoCancelamento.getIdentificador());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String motivo = "motivo";
         retornoInfoCancelamento.setMotivo(motivo);
-        Assert.assertEquals(motivo, retornoInfoCancelamento.getMotivo());
+        Assertions.assertEquals(motivo, retornoInfoCancelamento.getMotivo());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String numeroProtocolo = "numeroProtocolo";
         retornoInfoCancelamento.setNumeroProtocolo(numeroProtocolo);
-        Assert.assertEquals(numeroProtocolo, retornoInfoCancelamento.getNumeroProtocolo());
+        Assertions.assertEquals(numeroProtocolo, retornoInfoCancelamento.getNumeroProtocolo());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
         retornoInfoCancelamento.setUf(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, retornoInfoCancelamento.getUf());
+        Assertions.assertEquals(unidadeFederativa, retornoInfoCancelamento.getUf());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final String versaoAplicacao = "3.10";
         retornoInfoCancelamento.setVersaoAplicacao(versaoAplicacao);
-        Assert.assertEquals(versaoAplicacao, retornoInfoCancelamento.getVersaoAplicacao());
+        Assertions.assertEquals(versaoAplicacao, retornoInfoCancelamento.getVersaoAplicacao());
     }
 
     @Test
@@ -88,6 +88,6 @@ public class NFRetornoInfoCancelamentoTest {
         final NFRetornoInfoCancelamento retornoInfoCancelamento = new NFRetornoInfoCancelamento();
         final NFSignature assinatura = new NFSignature();
         retornoInfoCancelamento.setAssinatura(assinatura);
-        Assert.assertEquals(assinatura, retornoInfoCancelamento.getAssinatura());
+        Assertions.assertEquals(assinatura, retornoInfoCancelamento.getAssinatura());
     }
 }

@@ -1,14 +1,14 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MDFInfoModalRodoviarioInfPagBancoTest {
 
     private MDFInfoModalRodoviarioInfPagBanco banco;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.banco = new MDFInfoModalRodoviarioInfPagBanco();
     }
@@ -22,8 +22,8 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         banco.setCNPJIPEF(valorCurto);
 
         String esperado = "000" + valorCurto; // 14 posições
-        Assert.assertEquals(14, banco.getCNPJIPEF().length());
-        Assert.assertEquals(esperado, banco.getCNPJIPEF());
+        Assertions.assertEquals(14, banco.getCNPJIPEF().length());
+        Assertions.assertEquals(esperado, banco.getCNPJIPEF());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
 
         banco.setCNPJIPEF(null);
 
-        Assert.assertNull(banco.getCNPJIPEF());
+        Assertions.assertNull(banco.getCNPJIPEF());
     }
 
     @Test
@@ -40,8 +40,8 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         String cnpj14 = "12345678901234";
         banco.setCNPJIPEF(cnpj14);
 
-        Assert.assertEquals(14, banco.getCNPJIPEF().length());
-        Assert.assertEquals(cnpj14, banco.getCNPJIPEF());
+        Assertions.assertEquals(14, banco.getCNPJIPEF().length());
+        Assertions.assertEquals(cnpj14, banco.getCNPJIPEF());
     }
 
     @Test
@@ -50,8 +50,8 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         String maiorQue14 = "1234567890123456"; // 16
         banco.setCNPJIPEF(maiorQue14);
 
-        Assert.assertEquals(maiorQue14.length(), banco.getCNPJIPEF().length());
-        Assert.assertEquals(maiorQue14, banco.getCNPJIPEF());
+        Assertions.assertEquals(maiorQue14.length(), banco.getCNPJIPEF().length());
+        Assertions.assertEquals(maiorQue14, banco.getCNPJIPEF());
     }
 
     // ---------------- PIX ----------------
@@ -62,7 +62,7 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
         String pixMin = "ab";
         banco.setPIX(pixMin);
 
-        Assert.assertEquals(pixMin, banco.getPIX());
+        Assertions.assertEquals(pixMin, banco.getPIX());
     }
 
     @Test
@@ -74,22 +74,26 @@ public class MDFInfoModalRodoviarioInfPagBancoTest {
 
         banco.setPIX(pixMax);
 
-        Assert.assertEquals(60, banco.getPIX().length());
-        Assert.assertEquals(pixMax, banco.getPIX());
+        Assertions.assertEquals(60, banco.getPIX().length());
+        Assertions.assertEquals(pixMax, banco.getPIX());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarPixComTamanho1() {
-        banco.setPIX("a"); // 1 char
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            banco.setPIX("a"); // 1 char
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarPixComTamanhoMaiorQue60() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(new String(new char[61]).replace("\0", "x"));
-        String pix61 = sb.toString();
+            StringBuilder sb = new StringBuilder();
+            sb.append(new String(new char[61]).replace("\0", "x"));
+            String pix61 = sb.toString();
 
-        banco.setPIX(pix61);
+            banco.setPIX(pix61);
+        });
     }
 }

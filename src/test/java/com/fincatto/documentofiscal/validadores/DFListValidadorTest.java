@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.validadores;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,13 +36,15 @@ public class DFListValidadorTest {
         return lista;
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoExtrapoleTamanho10() {
-        final List<Object> lista = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
-            lista.add(new Object());
-        }
-        DFListValidador.tamanho10(lista, "");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final List<Object> lista = new ArrayList<>();
+            for (int i = 0; i < 11; i++) {
+                lista.add(new Object());
+            }
+            DFListValidador.tamanho10(lista, "");
+        });
     }
 
     @Test
@@ -54,13 +56,15 @@ public class DFListValidadorTest {
         DFListValidador.tamanho10(lista, "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoExtrapoleTamanho120() {
-        final List<Object> lista = new ArrayList<>();
-        for (int i = 0; i < 121; i++) {
-            lista.add(new Object());
-        }
-        DFListValidador.tamanho120(lista, "");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final List<Object> lista = new ArrayList<>();
+            for (int i = 0; i < 121; i++) {
+                lista.add(new Object());
+            }
+            DFListValidador.tamanho120(lista, "");
+        });
     }
 
     @Test
@@ -82,18 +86,20 @@ public class DFListValidadorTest {
         DFListValidador.tamanho31Obrigatorio(lista, "");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoEstejaForaDoIntervalo() {
-        try {
-            DFListValidador.tamanho31Obrigatorio(Collections.emptyList(), "");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            final List<Object> lista = new ArrayList<>();
-            for (int i = 0; i < 32; i++) {
-                lista.add(new Object());
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                DFListValidador.tamanho31Obrigatorio(Collections.emptyList(), "");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                final List<Object> lista = new ArrayList<>();
+                for (int i = 0; i < 32; i++) {
+                    lista.add(new Object());
+                }
+                DFListValidador.tamanho31Obrigatorio(lista, "");
             }
-            DFListValidador.tamanho31Obrigatorio(lista, "");
-        }
-        Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 }

@@ -1,17 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.CTRetirada;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTRetiradaTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTRetirada.valueOfCodigo(null));
-    	Assert.assertEquals("0", CTRetirada.SIM.getCodigo());
-    	Assert.assertEquals("1", CTRetirada.NAO.getCodigo());
+    	Assertions.assertNull(CTRetirada.valueOfCodigo(null));
+    	Assertions.assertEquals("0", CTRetirada.SIM.getCodigo());
+    	Assertions.assertEquals("1", CTRetirada.NAO.getCodigo());
     }
 
 }

@@ -1,100 +1,110 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe310.classes.NFOrigem;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoICMSST;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMSSTTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBCICMSSTRetidoUFRemetenteComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTRetidoUFRemetente(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTRetidoUFRemetente(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBCICMSSTUFDestinoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTUFDestino(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMSST().setValorBCICMSSTUFDestino(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorICMSSTRetidoUFRemetenteComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorICMSSTRetidoUFRemetente(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMSST().setValorICMSSTRetidoUFRemetente(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorICMSSTUFDestinoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMSST().setValorICMSSTUFDestino(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMSST().setValorICMSSTUFDestino(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSituacaoTributariaNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setOrigem(NFOrigem.NACIONAL);
-        icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setOrigem(NFOrigem.NACIONAL);
+            icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirOrigemNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
-        icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+            icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorBCICMSSTRetidoUFRemetenteNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
-        icmsst.setOrigem(NFOrigem.NACIONAL);
-        icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+            icmsst.setOrigem(NFOrigem.NACIONAL);
+            icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirBCICMSSTUFDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
-        icmsst.setOrigem(NFOrigem.NACIONAL);
-        icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+            icmsst.setOrigem(NFOrigem.NACIONAL);
+            icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorICMSSTRetidoUFRemetenteNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
-        icmsst.setOrigem(NFOrigem.NACIONAL);
-        icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+            icmsst.setOrigem(NFOrigem.NACIONAL);
+            icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorICMSUFDestinoNulo() {
-        final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
-        icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
-        icmsst.setOrigem(NFOrigem.NACIONAL);
-        icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
-        icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
-        icmsst.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMSST icmsst = new NFNotaInfoItemImpostoICMSST();
+            icmsst.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.COM_REDUCAO_BASE_CALCULO);
+            icmsst.setOrigem(NFOrigem.NACIONAL);
+            icmsst.setValorBCICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.setValorBCICMSSTUFDestino(new BigDecimal("999999999999.99"));
+            icmsst.setValorICMSSTRetidoUFRemetente(new BigDecimal("999999999999.99"));
+            icmsst.toString();
+        });
     }
 
     @Test
@@ -108,6 +118,6 @@ public class NFNotaInfoItemImpostoICMSSTTest {
         icmsst.setValorICMSSTUFDestino(new BigDecimal("999999999999.99"));
 
         final String xmlEsperado = "<NFNotaInfoItemImpostoICMSST><orig>0</orig><CST>20</CST><vBCSTRet>999999999999.99</vBCSTRet><vICMSSTRet>999999999999.99</vICMSSTRet><vBCSTDest>999999999999.99</vBCSTDest><vICMSSTDest>999999999999.99</vICMSSTDest></NFNotaInfoItemImpostoICMSST>";
-        Assert.assertEquals(xmlEsperado, icmsst.toString());
+        Assertions.assertEquals(xmlEsperado, icmsst.toString());
     }
 }

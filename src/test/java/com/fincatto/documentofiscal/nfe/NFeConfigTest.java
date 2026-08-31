@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe;
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 
@@ -12,10 +12,10 @@ public class NFeConfigTest {
     public void testaParametrosPadrao() {
         final NFeConfigTeste config = new NFeConfigTeste();
 
-        Assert.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
-        Assert.assertEquals(NFTipoEmissao.EMISSAO_NORMAL, config.getTipoEmissao());
-        Assert.assertNull(config.getCodigoSegurancaContribuinte());
-        Assert.assertNull(config.getCodigoSegurancaContribuinteID());
+        Assertions.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
+        Assertions.assertEquals(NFTipoEmissao.EMISSAO_NORMAL, config.getTipoEmissao());
+        Assertions.assertNull(config.getCodigoSegurancaContribuinte());
+        Assertions.assertNull(config.getCodigoSegurancaContribuinteID());
     }
 
     private class NFeConfigTeste extends NFeConfig {

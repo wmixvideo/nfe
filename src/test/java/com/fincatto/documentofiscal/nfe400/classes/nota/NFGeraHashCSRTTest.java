@@ -3,8 +3,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraHashCSRT;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -21,7 +21,7 @@ public class NFGeraHashCSRTTest {
 
     @Test
     public void geraHashCSRTConformeEsperado() throws NoSuchAlgorithmException {
-        Assert.assertEquals("aWv6LeEM4X6u4+qBI2OYZ8grigw=",
+        Assertions.assertEquals("aWv6LeEM4X6u4+qBI2OYZ8grigw=",
                 new NFGeraHashCSRT(CHAVE_TO_TEST, this.createConfigTest()).getHashCSRT());
     }
 
@@ -29,7 +29,7 @@ public class NFGeraHashCSRTTest {
     public void geraSHA1() throws Exception {
         final String entrada = this.createConfigTest().getCSRT() + CHAVE_TO_TEST;
         final String saida = NFGeraHashCSRT.getStringSha1(entrada);
-        Assert.assertEquals(saida, "696bfa2de10ce17eaee3ea8123639867c82b8a0c");
+        Assertions.assertEquals(saida, "696bfa2de10ce17eaee3ea8123639867c82b8a0c");
     }
 
     /**

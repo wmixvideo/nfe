@@ -7,9 +7,8 @@ import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeComplement
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCTeSubstituicao;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoServicoVinculadoInfoCTeMultiModal;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsulta;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Testes para verificar que as classes CTE 400 aceitam chaves alfanuméricas de 44 caracteres
@@ -26,59 +25,59 @@ public class CTeChaveAlfanumericaTest {
     public void cteInfoEventoDeveAceitarChaveAlfanumerica() {
         final CTeInfoEvento evento = new CTeInfoEvento();
         evento.setChave(CHAVE_CTE_ALFANUMERICA_44);
-        assertEquals(CHAVE_CTE_ALFANUMERICA_44, evento.getChave());
+        Assertions.assertEquals(CHAVE_CTE_ALFANUMERICA_44, evento.getChave());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void cteInfoEventoNaoDeveAceitarChaveMenorQue44() {
-        new CTeInfoEvento().setChave("3526050X0J92JY000196570010000006041448679");
+        Assertions.assertThrows(IllegalStateException.class, () -> new CTeInfoEvento().setChave("3526050X0J92JY000196570010000006041448679"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void cteInfoEventoNaoDeveAceitarChaveMaiorQue44() {
-        new CTeInfoEvento().setChave("3526050X0J92JY000196570010000006041448679011AB");
+        Assertions.assertThrows(IllegalStateException.class, () -> new CTeInfoEvento().setChave("3526050X0J92JY000196570010000006041448679011AB"));
     }
 
     @Test
     public void comprovanteEntregaDeveAceitarChaveNFeAlfanumerica() {
         final CTeInformacaoComprovanteEntrega entrega = new CTeInformacaoComprovanteEntrega();
         entrega.setChaveNFe(CHAVE_NFE_ALFANUMERICA_44);
-        assertEquals(CHAVE_NFE_ALFANUMERICA_44, entrega.getChaveNFe());
+        Assertions.assertEquals(CHAVE_NFE_ALFANUMERICA_44, entrega.getChaveNFe());
     }
 
     @Test
     public void insucessoEntregaDeveAceitarChaveNFeAlfanumerica() {
         final CTeInformacaoInsucessoEntrega insucesso = new CTeInformacaoInsucessoEntrega();
         insucesso.setChaveNFe(CHAVE_NFE_ALFANUMERICA_44);
-        assertEquals(CHAVE_NFE_ALFANUMERICA_44, insucesso.getChaveNFe());
+        Assertions.assertEquals(CHAVE_NFE_ALFANUMERICA_44, insucesso.getChaveNFe());
     }
 
     @Test
     public void cteNotaConsultaDeveAceitarChaveAlfanumerica() {
         final CTeNotaConsulta consulta = new CTeNotaConsulta();
         consulta.setChave(CHAVE_CTE_ALFANUMERICA_44);
-        assertEquals(CHAVE_CTE_ALFANUMERICA_44, consulta.getChave());
+        Assertions.assertEquals(CHAVE_CTE_ALFANUMERICA_44, consulta.getChave());
     }
 
     @Test
     public void cteComplementarDeveAceitarChaveAlfanumerica() {
         final CTeNotaInfoCTeComplementar complementar = new CTeNotaInfoCTeComplementar();
         complementar.setChave(CHAVE_CTE_ALFANUMERICA_44);
-        assertEquals(CHAVE_CTE_ALFANUMERICA_44, complementar.getChave());
+        Assertions.assertEquals(CHAVE_CTE_ALFANUMERICA_44, complementar.getChave());
     }
 
     @Test
     public void cteSubstituicaoDeveAceitarChaveAlfanumerica() {
         final CTeNotaInfoCTeNormalInfoCTeSubstituicao substituicao = new CTeNotaInfoCTeNormalInfoCTeSubstituicao();
         substituicao.setChaveCTe(CHAVE_CTE_ALFANUMERICA_44);
-        assertEquals(CHAVE_CTE_ALFANUMERICA_44, substituicao.getChaveCTe());
+        Assertions.assertEquals(CHAVE_CTE_ALFANUMERICA_44, substituicao.getChaveCTe());
     }
 
     @Test
     public void cteMultiModalDeveAceitarChaveAlfanumerica() {
         final CTeNotaInfoCTeNormalInfoServicoVinculadoInfoCTeMultiModal multimodal = new CTeNotaInfoCTeNormalInfoServicoVinculadoInfoCTeMultiModal();
         multimodal.setChaveCTeMultiModal(CHAVE_CTE_ALFANUMERICA_44);
-        assertEquals(CHAVE_CTE_ALFANUMERICA_44, multimodal.getChaveCTeMultiModal());
+        Assertions.assertEquals(CHAVE_CTE_ALFANUMERICA_44, multimodal.getChaveCTeMultiModal());
     }
 }
 
