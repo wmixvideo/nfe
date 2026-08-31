@@ -5,11 +5,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringReader;
@@ -21,13 +19,10 @@ import java.io.StringWriter;
  * XML de negocio (ja serializado pelo Simple XML Framework) como filho direto.
  * <p>
  */
-public final class DFSoapEnvelope {
+public abstract class DFSoapEnvelope {
 
     private static final String SOAP12_NS = "http://www.w3.org/2003/05/soap-envelope";
     private static final String ATRIBUTO_XMLNS = " xmlns=\"";
-
-    private DFSoapEnvelope() {
-    }
 
     /**
      * Envelopa o XML de negocio dentro de {@code soap:Envelope/soap:Body/wrapperElemento}.
@@ -51,7 +46,6 @@ public final class DFSoapEnvelope {
      * {@code cteCabecMsg} de todo webservice do cte300, com {@code cUF}/{@code versaoDados|).
      * Overload aditivo: nao afeta {@link #envelopar(String, String, String)}, usado por
      * servicos sem cabecalho (nfe400, cte400).
-     *
      * @param namespace namespace do elemento de cabecalho e do elemento wrapper do corpo (o
      * mesmo, conforme o WSDL da operacao).
      * @param headerElemento nome local do elemento de cabecalho (ex.: {@code cteCabecMsg}).
