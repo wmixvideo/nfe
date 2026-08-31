@@ -157,7 +157,7 @@
                 <version>4.3.0</version>
                 <configuration>
                     <!-- token vem do secret COVERALLS_REPO_TOKEN da CI - nunca commitar o valor -->
-                    <repoToken>${env.COVERALLS_REPO_TOKEN}</repoToken>
+                    <repoToken>${COVERALLS_REPO_TOKEN}</repoToken>
                 </configuration>
                 <dependencies>
                     <dependency>

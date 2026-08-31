@@ -27,6 +27,4 @@ jobs:
         run: mvn clean package --file pom.xml
 
       - name: Coverage tests
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: mvn clean test jacoco:report coveralls:report --file pom.xml
+        run: mvn clean test jacoco:report coveralls:report --file pom.xml -DCOVERALLS_REPO_TOKEN="${{ secrets.COVERALLS_REPO_TOKEN }}"
