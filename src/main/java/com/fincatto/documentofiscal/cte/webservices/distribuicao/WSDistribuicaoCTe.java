@@ -39,13 +39,54 @@ public class WSDistribuicaoCTe {
         this.httpClient = httpClient;
     }
 
-    public CTDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+
+    /**
+     * Faz consulta de distribuicao dos CTe e devolve o XML de resposta bruto (sem
+     * desserializar), tal como recebido/desempacotado do envelope SOAP retornado pela SEFAZ.
+     * Pode ser feita utilizando o CTe (numero sequencial unico) da receita.
+     *
+     * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
+     * @param uf        Unidade federativa da pessoa juridica a consultar
+     * @param nsu       Número Sequencial Único. Geralmente esta consulta será
+     *                  utilizada quando identificado pelo interessado um NSU faltante. O Web
+     *                  Service retornará o documento ou informará que o NSU não existe no
+     *                  Ambiente Nacional. Assim, esta consulta fechará a lacuna do NSU
+     *                  identificado como faltante.
+     * @param ultNsu    Último NSU recebido pelo ator. Caso seja informado com
+     *                  zero, ou com um NSU muito antigo, a consulta retornará unicamente as
+     *                  informações resumidas e documentos fiscais eletrônicos que tenham sido
+     *                  recepcionados pelo Ambiente Nacional nos últimos 3 meses.
+     * @return String do XML de retorno da consulta, sem conversão para {@link CTDistribuicaoIntRetorno}
+     * @throws Exception caso nao consiga gerar/validar o xml de envio ou haja
+     *                    problema de conexao com o sefaz
+     */
+    public String consultarRaw(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
         final String xmlEnvio = this.gerarCTeDistribuicaoInt(cpfOuCnpj, uf, nsu, ultNsu).toString();
-
         DFXMLValidador.validaDistribuicaoCTe(xmlEnvio);
+        return this.efetuaConsulta(xmlEnvio);
+    }
 
-        final String xmlResultado = this.efetuaConsulta(xmlEnvio);
-        return this.config.getPersister().read(CTDistribuicaoIntRetorno.class, xmlResultado);
+    /**
+     * Faz consulta de distribuicao dos CTe e desserializa o retorno em {@link CTDistribuicaoIntRetorno}.
+     * Pode ser feita utilizando o CTe (numero sequencial unico) da receita.
+     *
+     * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
+     * @param uf        Unidade federativa da pessoa juridica a consultar
+     * @param nsu       Número Sequencial Único. Geralmente esta consulta será
+     *                  utilizada quando identificado pelo interessado um NSU faltante. O Web
+     *                  Service retornará o documento ou informará que o NSU não existe no
+     *                  Ambiente Nacional. Assim, esta consulta fechará a lacuna do NSU
+     *                  identificado como faltante.
+     * @param ultNsu    Último NSU recebido pelo ator. Caso seja informado com
+     *                  zero, ou com um NSU muito antigo, a consulta retornará unicamente as
+     *                  informações resumidas e documentos fiscais eletrônicos que tenham sido
+     *                  recepcionados pelo Ambiente Nacional nos últimos 3 meses.
+     * @return {@link CTDistribuicaoIntRetorno} com o resultado da consulta de distribuicao
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     *                   o sefaz
+     */
+    public CTDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        return this.config.getPersister().read(CTDistribuicaoIntRetorno.class, this.consultarRaw(cpfOuCnpj, uf, nsu, ultNsu));
     }
 
     /**

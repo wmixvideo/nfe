@@ -232,6 +232,32 @@ public class WSFacade implements Closeable {
     /**
      * Faz consulta de distribuicao dos CTe.
      * Pode ser feita utilizando o CTe (numero sequencial unico) da receita.
+     *
+     * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
+     * @param uf        Unidade federativa da pessoa juridica a consultar
+     * @param nsu       Número Sequencial Único. Geralmente esta consulta será
+     *                  utilizada quando identificado pelo interessado um NSU faltante. O Web
+     *                  Service retornará o documento ou informará que o NSU não existe no
+     *                  Ambiente Nacional. Assim, esta consulta fechará a lacuna do NSU
+     *                  identificado como faltante.
+     * @param ultNsu    Último NSU recebido pelo ator. Caso seja informado com
+     *                  zero, ou com um NSU muito antigo, a consulta retornará unicamente as
+     *                  informações resumidas e documentos fiscais eletrônicos que tenham sido
+     *                  recepcionados pelo Ambiente Nacional nos últimos 3 meses.
+     * @return String da consulta retornado pelo webservice limitando um total de 50 registros
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com
+     *                   o sefaz
+     */
+    public String consultarDistribuicaoCTeRaw(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String nsu, final String ultNsu) throws Exception {
+        if (this.wSDistribuicaoCTe == null) {
+            this.wSDistribuicaoCTe = new WSDistribuicaoCTe(this.config, this.httpClient);
+        }
+        return this.wSDistribuicaoCTe.consultarRaw(cpfOuCnpj, uf, nsu, ultNsu);
+    }
+
+    /**
+     * Faz consulta de distribuicao dos CTe.
+     * Pode ser feita utilizando o CTe (numero sequencial unico) da receita.
      * @param cpfOuCnpj CPF ou CNPJ da pessoa fisica ou juridica a consultar
      * @param uf Unidade federativa da pessoa juridica a consultar
      * @param nsu Número Sequencial Único. Geralmente esta consulta será
