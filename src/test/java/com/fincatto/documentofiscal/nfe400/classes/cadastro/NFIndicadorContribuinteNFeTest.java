@@ -1,21 +1,21 @@
 package com.fincatto.documentofiscal.nfe400.classes.cadastro;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFIndicadorContribuinteNFeTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals(NFIndicadorContribuinteNFe.NAO_CREDENCIADO_PARA_EMISSAO_NFE, NFIndicadorContribuinteNFe.valueOfCodigo(0));
-        Assert.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO, NFIndicadorContribuinteNFe.valueOfCodigo(1));
-        Assert.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO_COM_OBRIGATORIEDADE_PARA_TODAS_OPERACOES, NFIndicadorContribuinteNFe.valueOfCodigo(2));
-        Assert.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO_COM_OBRIGATORIEDADE_PARCIAL, NFIndicadorContribuinteNFe.valueOfCodigo(3));
-        Assert.assertEquals(NFIndicadorContribuinteNFe.SEFAZ_NAO_FORNECE_ESSA_INFO, NFIndicadorContribuinteNFe.valueOfCodigo(4));
+        Assertions.assertEquals(NFIndicadorContribuinteNFe.NAO_CREDENCIADO_PARA_EMISSAO_NFE, NFIndicadorContribuinteNFe.valueOfCodigo(0));
+        Assertions.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO, NFIndicadorContribuinteNFe.valueOfCodigo(1));
+        Assertions.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO_COM_OBRIGATORIEDADE_PARA_TODAS_OPERACOES, NFIndicadorContribuinteNFe.valueOfCodigo(2));
+        Assertions.assertEquals(NFIndicadorContribuinteNFe.CREDENCIADO_COM_OBRIGATORIEDADE_PARCIAL, NFIndicadorContribuinteNFe.valueOfCodigo(3));
+        Assertions.assertEquals(NFIndicadorContribuinteNFe.SEFAZ_NAO_FORNECE_ESSA_INFO, NFIndicadorContribuinteNFe.valueOfCodigo(4));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoNaoEncontreCodigo() {
-        NFIndicadorContribuinteNFe.valueOfCodigo(5);
+        Assertions.assertThrows(IllegalStateException.class, () -> NFIndicadorContribuinteNFe.valueOfCodigo(5));
     }
 }

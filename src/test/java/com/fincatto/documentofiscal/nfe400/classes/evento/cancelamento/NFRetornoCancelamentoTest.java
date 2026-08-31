@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFRetornoCancelamentoTest {
 
@@ -11,7 +11,7 @@ public class NFRetornoCancelamentoTest {
         final NFRetornoInfoCancelamento infoCancelamento = new NFRetornoInfoCancelamento();
         cancelamento.setInfoCancelamento(infoCancelamento);
 
-        Assert.assertEquals(infoCancelamento, cancelamento.getInfoCancelamento());
+        Assertions.assertEquals(infoCancelamento, cancelamento.getInfoCancelamento());
     }
 
     @Test
@@ -19,6 +19,6 @@ public class NFRetornoCancelamentoTest {
         final NFRetornoCancelamento cancelamento = new NFRetornoCancelamento();
         final String versao = "3.10";
         cancelamento.setVersao(versao);
-        Assert.assertEquals("3.10", cancelamento.getVersao());
+        Assertions.assertEquals("3.10", cancelamento.getVersao());
     }
 }

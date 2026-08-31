@@ -3,8 +3,8 @@ package com.fincatto.documentofiscal.nfe400.classes.evento;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 
@@ -15,7 +15,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         eventoRetorno.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, eventoRetorno.getAmbiente());
+        Assertions.assertEquals(ambiente, eventoRetorno.getAmbiente());
     }
     
     @Test
@@ -23,7 +23,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String chave = "27453083767543876731879602388114613152665633";
         eventoRetorno.setChave(chave);
-        Assert.assertEquals(chave, eventoRetorno.getChave());
+        Assertions.assertEquals(chave, eventoRetorno.getChave());
     }
     
     @Test
@@ -31,7 +31,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final int codigoStatus = 100;
         eventoRetorno.setCodigoStatus(codigoStatus);
-        Assert.assertEquals(codigoStatus, eventoRetorno.getCodigoStatus(), 0);
+        Assertions.assertEquals(codigoStatus, eventoRetorno.getCodigoStatus(), 0);
     }
     
     @Test
@@ -39,7 +39,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String cpf = "23999597116";
         eventoRetorno.setCpf(cpf);
-        Assert.assertEquals(cpf, eventoRetorno.getCpf());
+        Assertions.assertEquals(cpf, eventoRetorno.getCpf());
     }
     
     @Test
@@ -47,7 +47,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String cnpj = "55745965229517";
         eventoRetorno.setCnpj(cnpj);
-        Assert.assertEquals(cnpj, eventoRetorno.getCnpj());
+        Assertions.assertEquals(cnpj, eventoRetorno.getCnpj());
     }
     
     @Test
@@ -55,7 +55,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final ZonedDateTime dataHoraRegistro = ZonedDateTime.of(2010, 10, 10, 10, 10, 10, 0, DFConfig.TIMEZONE_SP.toZoneId());
         eventoRetorno.setDataHoraRegistro(dataHoraRegistro);
-        Assert.assertEquals(dataHoraRegistro, eventoRetorno.getDataHoraRegistro());
+        Assertions.assertEquals(dataHoraRegistro, eventoRetorno.getDataHoraRegistro());
     }
     
     @Test
@@ -63,7 +63,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String descricaoEvento = "Carta de correcao";
         eventoRetorno.setDescricaoEvento(descricaoEvento);
-        Assert.assertEquals(descricaoEvento, eventoRetorno.getDescricaoEvento());
+        Assertions.assertEquals(descricaoEvento, eventoRetorno.getDescricaoEvento());
     }
     
     @Test
@@ -71,7 +71,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String email = "teste@teste.com";
         eventoRetorno.setEmail(email);
-        Assert.assertEquals(email, eventoRetorno.getEmail());
+        Assertions.assertEquals(email, eventoRetorno.getEmail());
     }
     
     @Test
@@ -79,7 +79,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String id = "identificador";
         eventoRetorno.setId(id);
-        Assert.assertEquals(id, eventoRetorno.getId());
+        Assertions.assertEquals(id, eventoRetorno.getId());
     }
     
     @Test
@@ -87,7 +87,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String motivo = "motivo de teste";
         eventoRetorno.setMotivo(motivo);
-        Assert.assertEquals(motivo, eventoRetorno.getMotivo());
+        Assertions.assertEquals(motivo, eventoRetorno.getMotivo());
     }
     
     @Test
@@ -95,7 +95,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String numeroProtocolo = "132456789";
         eventoRetorno.setNumeroProtocolo(numeroProtocolo);
-        Assert.assertEquals(numeroProtocolo, eventoRetorno.getNumeroProtocolo());
+        Assertions.assertEquals(numeroProtocolo, eventoRetorno.getNumeroProtocolo());
     }
     
     @Test
@@ -103,7 +103,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final int numeroSequencialEvento = 1;
         eventoRetorno.setNumeroSequencialEvento(numeroSequencialEvento);
-        Assert.assertEquals(numeroSequencialEvento, eventoRetorno.getNumeroSequencialEvento(), 0);
+        Assertions.assertEquals(numeroSequencialEvento, eventoRetorno.getNumeroSequencialEvento(), 0);
     }
     
     @Test
@@ -111,7 +111,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.AC;
         eventoRetorno.setOrgao(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
+        Assertions.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
     }
     
     @Test
@@ -119,7 +119,7 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String tipoEvento = "150";
         eventoRetorno.setTipoEvento(tipoEvento);
-        Assert.assertEquals(tipoEvento, eventoRetorno.getTipoEvento());
+        Assertions.assertEquals(tipoEvento, eventoRetorno.getTipoEvento());
     }
     
     @Test
@@ -127,6 +127,6 @@ public class NFInfoEventoRetornoTest {
         final NFInfoEventoRetorno eventoRetorno = new NFInfoEventoRetorno();
         final String versaoAplicativo = "v10.0";
         eventoRetorno.setVersaoAplicativo(versaoAplicativo);
-        Assert.assertEquals(versaoAplicativo, eventoRetorno.getVersaoAplicativo());
+        Assertions.assertEquals(versaoAplicativo, eventoRetorno.getVersaoAplicativo());
     }
 }

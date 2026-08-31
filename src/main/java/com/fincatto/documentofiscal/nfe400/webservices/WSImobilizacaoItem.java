@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -14,12 +19,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.imobilizacao.NFEventoI
 import com.fincatto.documentofiscal.nfe400.classes.evento.imobilizacao.NFInfoEventoImobilizacaoItem;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 
 /**
@@ -63,8 +63,8 @@ class WSImobilizacaoItem extends AbstractWSEvento implements DFLog {
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSImobilizacaoItem(NFeConfig config) {
-        super(config);
+    WSImobilizacaoItem(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -115,9 +115,9 @@ class WSImobilizacaoItem extends AbstractWSEvento implements DFLog {
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFDistribuicaoConsultaNSUTest {
 
@@ -10,7 +10,7 @@ public class NFDistribuicaoConsultaNSUTest {
     public void deveGerarConsultaComNSU() {
         final NFDistribuicaoConsultaNSU distribuicaoNSU = new NFDistribuicaoConsultaNSU();
         distribuicaoNSU.setNsu("000000000000015");
-        Assert.assertEquals("000000000000015", distribuicaoNSU.getNsu());
+        Assertions.assertEquals("000000000000015", distribuicaoNSU.getNsu());
     }
 
     @Test
@@ -18,7 +18,7 @@ public class NFDistribuicaoConsultaNSUTest {
         final NFDistribuicaoConsultaNSU distribuicaoNSU = new NFDistribuicaoConsultaNSU();
         distribuicaoNSU.setNsu("000000000000000");
         final String retorno = "<NFDistribuicaoConsultaNSU><NSU>000000000000000</NSU></NFDistribuicaoConsultaNSU>";
-        Assert.assertEquals(retorno, distribuicaoNSU.toString());
+        Assertions.assertEquals(retorno, distribuicaoNSU.toString());
     }
 
 }
