@@ -1,27 +1,25 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoTipoVeiculo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoTipoVeiculoTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("06", NFNotaInfoTipoVeiculo.AUTOMOVEL.getCodigo());
-        Assert.assertEquals("14", NFNotaInfoTipoVeiculo.CAMINHAO.getCodigo());
-        Assert.assertEquals("13", NFNotaInfoTipoVeiculo.CAMINHONETA.getCodigo());
-        Assert.assertEquals("24", NFNotaInfoTipoVeiculo.CARGA_CAM.getCodigo());
-        Assert.assertEquals("02", NFNotaInfoTipoVeiculo.CICLOMOTO.getCodigo());
-        Assert.assertEquals("22", NFNotaInfoTipoVeiculo.ESP_ONIBUS.getCodigo());
-        Assert.assertEquals("07", NFNotaInfoTipoVeiculo.MICROONIBUS.getCodigo());
-        Assert.assertEquals("23", NFNotaInfoTipoVeiculo.MISTO_CAM.getCodigo());
-        Assert.assertEquals("04", NFNotaInfoTipoVeiculo.MOTOCICLO.getCodigo());
-        Assert.assertEquals("03", NFNotaInfoTipoVeiculo.MOTONETA.getCodigo());
-        Assert.assertEquals("08", NFNotaInfoTipoVeiculo.ONIBUS.getCodigo());
-        Assert.assertEquals("10", NFNotaInfoTipoVeiculo.REBOQUE.getCodigo());
-        Assert.assertEquals("05", NFNotaInfoTipoVeiculo.TRICICLO.getCodigo());
-        Assert.assertEquals("17", NFNotaInfoTipoVeiculo.TRATOR.getCodigo());
+        Assertions.assertEquals("06", NFNotaInfoTipoVeiculo.AUTOMOVEL.getCodigo());
+        Assertions.assertEquals("14", NFNotaInfoTipoVeiculo.CAMINHAO.getCodigo());
+        Assertions.assertEquals("13", NFNotaInfoTipoVeiculo.CAMINHONETA.getCodigo());
+        Assertions.assertEquals("24", NFNotaInfoTipoVeiculo.CARGA_CAM.getCodigo());
+        Assertions.assertEquals("02", NFNotaInfoTipoVeiculo.CICLOMOTO.getCodigo());
+        Assertions.assertEquals("22", NFNotaInfoTipoVeiculo.ESP_ONIBUS.getCodigo());
+        Assertions.assertEquals("07", NFNotaInfoTipoVeiculo.MICROONIBUS.getCodigo());
+        Assertions.assertEquals("23", NFNotaInfoTipoVeiculo.MISTO_CAM.getCodigo());
+        Assertions.assertEquals("04", NFNotaInfoTipoVeiculo.MOTOCICLO.getCodigo());
+        Assertions.assertEquals("03", NFNotaInfoTipoVeiculo.MOTONETA.getCodigo());
+        Assertions.assertEquals("08", NFNotaInfoTipoVeiculo.ONIBUS.getCodigo());
+        Assertions.assertEquals("10", NFNotaInfoTipoVeiculo.REBOQUE.getCodigo());
+        Assertions.assertEquals("05", NFNotaInfoTipoVeiculo.TRICICLO.getCodigo());
+        Assertions.assertEquals("17", NFNotaInfoTipoVeiculo.TRATOR.getCodigo());
     }
 }

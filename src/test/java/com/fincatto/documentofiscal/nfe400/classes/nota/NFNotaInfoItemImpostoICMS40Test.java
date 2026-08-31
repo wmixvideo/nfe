@@ -1,19 +1,18 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS40Test {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorICMSComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS40().setValorICMSDesoneracao(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS40().setValorICMSDesoneracao(new BigDecimal("10000000000000")));
     }
 
     @Test
@@ -35,22 +34,26 @@ public class NFNotaInfoItemImpostoICMS40Test {
         icms40.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirOrigemNulo() {
-        final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
-        icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
-        icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
-        icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
-        icms40.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
+            icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
+            icms40.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_40);
+            icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
+            icms40.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSituacaoTributariaNulo() {
-        final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
-        icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
-        icms40.setOrigem(NFOrigem.NACIONAL);
-        icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
-        icms40.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS40 icms40 = new NFNotaInfoItemImpostoICMS40();
+            icms40.setMotivoDesoneracaoICMS(NFNotaMotivoDesoneracaoICMS.TAXI);
+            icms40.setOrigem(NFOrigem.NACIONAL);
+            icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
+            icms40.toString();
+        });
     }
 
     @Test
@@ -72,6 +75,6 @@ public class NFNotaInfoItemImpostoICMS40Test {
         icms40.setValorICMSDesoneracao(new BigDecimal("99999999999.99"));
 
         final String xmlEsperado = "<NFNotaInfoItemImpostoICMS40><orig>0</orig><CST>40</CST><vICMSDeson>99999999999.99</vICMSDeson><motDesICMS>1</motDesICMS></NFNotaInfoItemImpostoICMS40>";
-        Assert.assertEquals(xmlEsperado, icms40.toString());
+        Assertions.assertEquals(xmlEsperado, icms40.toString());
     }
 }

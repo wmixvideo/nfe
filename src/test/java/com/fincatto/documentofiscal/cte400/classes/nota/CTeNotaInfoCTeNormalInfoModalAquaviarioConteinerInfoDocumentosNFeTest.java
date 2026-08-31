@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
-import com.fincatto.documentofiscal.cte400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -16,9 +15,9 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosNFeTe
         infNFe.setUnidadeRateada(BigDecimal.ONE);
 
         final String xml = infNFe.toString();
-        Assert.assertNotNull(xml);
-        Assert.assertTrue(xml.contains("infNFe"));
-        Assert.assertTrue(xml.contains("<chave>"));
+        Assertions.assertNotNull(xml);
+        Assertions.assertTrue(xml.contains("infNFe"));
+        Assertions.assertTrue(xml.contains("<chave>"));
     }
 }
 

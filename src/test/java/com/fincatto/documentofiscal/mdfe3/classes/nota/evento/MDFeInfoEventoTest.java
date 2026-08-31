@@ -1,19 +1,11 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota.evento;
 
 import com.fincatto.documentofiscal.DFAmbiente;
-import junit.framework.TestCase;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import java.time.ZonedDateTime;
 
-import static org.junit.Assert.*;
-
 public class MDFeInfoEventoTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void devePermitirSetarEObterTodosOsCamposComValoresValidos() {
@@ -33,36 +25,36 @@ public class MDFeInfoEventoTest {
         MDFeDetalhamentoEvento detalhamento = new MDFeDetalhamentoEvento();
         evento.setDetEvento(detalhamento);
 
-        assertEquals("ID1234567890123456789012345678901234567890123456789012", evento.getId());
-        assertEquals("35", evento.getOrgao());
-        assertEquals(DFAmbiente.HOMOLOGACAO, evento.getAmbiente());
-        assertEquals("12345678000195", evento.getCnpj());
-        assertEquals("12345678909", evento.getCpf());
-        assertEquals("12345678901234567890123456789012345678901234", evento.getChave());
-        assertEquals(dataHora, evento.getDataHoraEvento());
-        assertEquals("110111", evento.getCodigoEvento());
-        assertEquals(1, evento.getNumeroSequencialEvento());
-        assertEquals("1.00", evento.getVersaoEvento());
-        assertEquals(detalhamento, evento.getDetEvento());
+        Assertions.assertEquals("ID1234567890123456789012345678901234567890123456789012", evento.getId());
+        Assertions.assertEquals("35", evento.getOrgao());
+        Assertions.assertEquals(DFAmbiente.HOMOLOGACAO, evento.getAmbiente());
+        Assertions.assertEquals("12345678000195", evento.getCnpj());
+        Assertions.assertEquals("12345678909", evento.getCpf());
+        Assertions.assertEquals("12345678901234567890123456789012345678901234", evento.getChave());
+        Assertions.assertEquals(dataHora, evento.getDataHoraEvento());
+        Assertions.assertEquals("110111", evento.getCodigoEvento());
+        Assertions.assertEquals(1, evento.getNumeroSequencialEvento());
+        Assertions.assertEquals("1.00", evento.getVersaoEvento());
+        Assertions.assertEquals(detalhamento, evento.getDetEvento());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoParaIdInvalido() {
-        new MDFeInfoEvento().setId("ID_INVALIDO");
+        Assertions.assertThrows(IllegalStateException.class, () -> new MDFeInfoEvento().setId("ID_INVALIDO"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoParaChaveInvalida() {
-        new MDFeInfoEvento().setChave("CHAVE_INVALIDA");
+        Assertions.assertThrows(IllegalStateException.class, () -> new MDFeInfoEvento().setChave("CHAVE_INVALIDA"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoParaCodigoEventoInvalido() {
-        new MDFeInfoEvento().setCodigoEvento("123");
+        Assertions.assertThrows(IllegalStateException.class, () -> new MDFeInfoEvento().setCodigoEvento("123"));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveLancarExcecaoParaNumeroSequencialEventoInvalido() {
-        new MDFeInfoEvento().setNumeroSequencialEvento(102030);
+        Assertions.assertThrows(NumberFormatException.class, () -> new MDFeInfoEvento().setNumeroSequencialEvento(102030));
     }
 }

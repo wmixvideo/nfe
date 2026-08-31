@@ -1,12 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.lote.consulta;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
-import com.fincatto.documentofiscal.nfe310.classes.lote.consulta.NFLoteConsulta;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFLoteConsultaTest {
 
@@ -18,6 +16,6 @@ public class NFLoteConsultaTest {
         consulta.setVersao(new BigDecimal("2.00"));
 
         final String xmlEsperado = "<consReciNFe versao=\"2.00\" xmlns=\"http://www.portalfiscal.inf.br/nfe\"><tpAmb>2</tpAmb><nRec>ItbDxsHiXUqeCEM</nRec></consReciNFe>";
-        Assert.assertEquals(xmlEsperado, consulta.toString());
+        Assertions.assertEquals(xmlEsperado, consulta.toString());
     }
 }

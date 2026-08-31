@@ -1,9 +1,7 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresFluxo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresFluxoTest {
 
@@ -13,9 +11,9 @@ public class CTeNotaInfoDadosComplementaresFluxoTest {
         fluxo.setDestino("Destino");
         fluxo.setOrigem("Origem");
         fluxo.setRota("Rota");
-        Assert.assertEquals("Destino", fluxo.getDestino());
-        Assert.assertEquals("Origem", fluxo.getOrigem());
-        Assert.assertEquals("Rota", fluxo.getRota());
+        Assertions.assertEquals("Destino", fluxo.getDestino());
+        Assertions.assertEquals("Origem", fluxo.getOrigem());
+        Assertions.assertEquals("Rota", fluxo.getRota());
     }
 
     @Test
@@ -26,6 +24,6 @@ public class CTeNotaInfoDadosComplementaresFluxoTest {
         fluxo.setRota("Rota");
 
         final String xml = "<fluxo><xOrig>Origem</xOrig><xDest>Destino</xDest><xRota>Rota</xRota></fluxo>";
-        Assert.assertEquals(xml, fluxo.toString());
+        Assertions.assertEquals(xml, fluxo.toString());
     }
 }

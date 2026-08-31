@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 import java.util.TimeZone;
@@ -11,11 +11,11 @@ public class DFConfigTest {
     @Test
     public void testaDefaults() {
         final DFConfig config = new DFConfigTeste();
-        Assert.assertEquals(DFAmbiente.HOMOLOGACAO, config.getAmbiente());
-        Assert.assertEquals(DFModelo.NFE, config.getModelo());
-        Assert.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
-        Assert.assertNotNull(config.getTimeZone());
-        Assert.assertEquals(60000, config.getTimeoutRequisicaoEmMillis());
+        Assertions.assertEquals(DFAmbiente.HOMOLOGACAO, config.getAmbiente());
+        Assertions.assertEquals(DFModelo.NFE, config.getModelo());
+        Assertions.assertEquals("TLSv1.2", config.getSSLProtocolos()[0]);
+        Assertions.assertNotNull(config.getTimeZone());
+        Assertions.assertEquals(60000, config.getTimeoutRequisicaoEmMillis());
     }
     
     @Test
@@ -26,7 +26,7 @@ public class DFConfigTest {
                 return TimeZone.getTimeZone("America/Sao_Paulo");
             }
         };
-        Assert.assertEquals(TimeZone.getTimeZone("America/Sao_Paulo"), config.getTimeZone());
+        Assertions.assertEquals(TimeZone.getTimeZone("America/Sao_Paulo"), config.getTimeZone());
     }
     
     @Test
@@ -37,7 +37,7 @@ public class DFConfigTest {
                 return TimeZone.getTimeZone("America/New_York");
             }
         };
-        Assert.assertEquals(TimeZone.getTimeZone("America/New_York"), config.getTimeZone());
+        Assertions.assertEquals(TimeZone.getTimeZone("America/New_York"), config.getTimeZone());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class DFConfigTest {
                 return 30_000;
             }
         };
-        Assert.assertEquals(30_000, config.getTimeoutRequisicaoEmMillis());
+        Assertions.assertEquals(30_000, config.getTimeoutRequisicaoEmMillis());
     }
     
     private static class DFConfigTeste extends DFConfig {

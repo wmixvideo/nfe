@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -17,7 +17,7 @@ public class NFNotaInfoItemProdutoCombustivelEncerranteTest {
         combustivel.setValorEncerramentoFinal(new BigDecimal("200"));
 
         String xml = "<NFNotaInfoItemProdutoCombustivelEncerrante><nBico>1</nBico><nBomba>2</nBomba><nTanque>10</nTanque><vEncIni>100.000</vEncIni><vEncFin>200.000</vEncFin></NFNotaInfoItemProdutoCombustivelEncerrante>";
-        Assert.assertEquals(xml, combustivel.toString());
+        Assertions.assertEquals(xml, combustivel.toString());
 
     }
 
