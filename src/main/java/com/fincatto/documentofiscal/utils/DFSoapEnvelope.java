@@ -21,13 +21,10 @@ import java.io.StringWriter;
  * XML de negocio (ja serializado pelo Simple XML Framework) como filho direto.
  * <p>
  */
-public final class DFSoapEnvelope {
+public abstract class DFSoapEnvelope {
 
     private static final String SOAP12_NS = "http://www.w3.org/2003/05/soap-envelope";
     private static final String ATRIBUTO_XMLNS = " xmlns=\"";
-
-    private DFSoapEnvelope() {
-    }
 
     /**
      * Envelopa o XML de negocio dentro de {@code soap:Envelope/soap:Body/wrapperElemento}.
