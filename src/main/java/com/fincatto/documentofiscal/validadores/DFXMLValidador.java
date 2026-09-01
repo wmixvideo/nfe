@@ -17,7 +17,7 @@ public final class DFXMLValidador {
     private static final String PACOTE_NFE400 = "schemas/PL_010e_NT2025.002_v1.01";
     private static final String PACOTE_MDFE300 = "schemas/PL_MDFe_300b_NT012025_1.03";
     private static final String PACOTE_CTE300 = "schemas/PL_CTe_300a_NT2022.001";
-    private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.002 RTC_1.00";
+    private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.002 RTC_1.01_corr";
     private static final String PACOTE_NFE_DIST_DFE = "schemas/PL_NFeDistDFe_102";
     private static final String PACOTE_CTE_DIST_DFE = "schemas/PL_CTeDistDFe_100";
     private static final String PACOTE_MDFE_DIST_DFE = "schemas/PL_MDFeDistDFe_100";
