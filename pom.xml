@@ -135,7 +135,7 @@
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.15.0</version>
+                <version>3.16.0</version>
                 <configuration>
                     <!-- release (e nao source/target) impede o uso acidental de APIs de JDKs mais
                          novos quando a CI compila com Java 21; debug info mantida (padrao) para
