@@ -234,6 +234,30 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Consulta cadastro             | Estável             |
 | Manifestação de destinatário  | Estável             |
 
+## Preenchimento do destinatário por CPF/CNPJ (opcional)
+
+Recurso aditivo e opcional para pré-preencher o destinatário da nota a partir de uma consulta de CPF ou CNPJ. Vive no pacote `com.fincatto.documentofiscal.lookup`, não altera nenhuma classe existente e só é usado por quem chamar o resolver. Não adiciona dependência nova: o cliente HTTP é o da própria JDK 11 e o parser JSON é interno.
+
+O contrato é plugável. A interface `PessoaLookup` devolve um objeto normalizado (`PessoaFiscal`), e a `NFDestinatarioResolver` transforma esse objeto em um `NFNotaInfoDestinatario` do pacote nfe400, com o `NFEndereco` embutido, populado pelos setters das próprias classes. Qualquer fonte de dados pode implementar `PessoaLookup`; a implementação de referência é a `CpfCnpjComBrLookup`, sobre a API pública cpfcnpj.com.br.
+
+```java
+// Token obtido no painel da conta, em API, aba Tokens.
+// Para testar sem custo existe um token público que devolve dados fictícios.
+final PessoaLookup lookup = new CpfCnpjComBrLookup("5ae973d7a997af13f0aaf2bf60e65803");
+final NFDestinatarioResolver resolver = new NFDestinatarioResolver(lookup);
+
+// Detecta CPF (11 dígitos) ou CNPJ (14 caracteres) automaticamente.
+final NFNotaInfoDestinatario destinatario = resolver.porDocumento("00000000000");
+
+// Também é possível ir direto ao ponto:
+final NFNotaInfoDestinatario porCpf = resolver.porCpf("000.000.000-00");
+final NFNotaInfoDestinatario porCnpj = resolver.porCnpj("11.222.333/0001-81");
+```
+
+Sobre a fonte de dados: os dados são em tempo real (D+0), refletindo a Receita Federal no instante da consulta. Por padrão a `CpfCnpjComBrLookup` usa o pacote 3 para CPF (nome mais endereço) e o pacote 5 para CNPJ (razão social, endereço da matriz e código IBGE do município, encaixe direto em `cMun`). O pacote de CNPJ pode ser trocado no construtor para o pacote 6, que traz os mesmos campos do 5 acrescidos de dados do Simples Nacional.
+
+Limitação importante (Inscrição Estadual): a API não fornece IE nem IM, portanto o resolver nunca as preenche. O indicador de IE assume, por padrão, `NFIndicadorIEDestinatario.NAO_CONTRIBUINTE` (`indIEDest=9`). Esse é o cenário de encaixe forte: NFC-e (modelo 65) e NF-e a consumidor final pessoa física, em que a IE não se informa e os pacotes cobrem o destinatário por completo. Para destinatário contribuinte de ICMS (`indIEDest=1`), use a sobrecarga `porCnpj(cnpj, indicador)` e complete a IE por outra fonte (entrada manual ou a consulta de cadastro na SEFAZ, que exige certificado). Nesse caso, o recurso serve como pré-preenchimento, não como preenchimento total.
+
 ## Requisitos
 
 JDK >= 1.8<br>
