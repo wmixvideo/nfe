@@ -48,6 +48,29 @@ public class MiniJsonTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
+    public void deveInterpretarArrayDeObjetosComObjetoAninhado() {
+        final String json = "{\"inscricoesEstaduais\":["
+                + "{\"inscricao_estadual\":\"103947736\",\"ativo\":true,\"estado\":{\"id\":9,\"nome\":\"Goias\",\"sigla\":\"GO\",\"ibge_id\":52}},"
+                + "{\"inscricao_estadual\":\"290123456\",\"ativo\":false,\"estado\":{\"id\":25,\"nome\":\"Sao Paulo\",\"sigla\":\"SP\",\"ibge_id\":35}}"
+                + "]}";
+        final Map<String, Object> mapa = (Map<String, Object>) MiniJson.parse(json);
+        final List<Object> inscricoes = (List<Object>) mapa.get("inscricoesEstaduais");
+        Assertions.assertEquals(2, inscricoes.size());
+
+        final Map<String, Object> primeira = (Map<String, Object>) inscricoes.get(0);
+        Assertions.assertEquals("103947736", primeira.get("inscricao_estadual"));
+        Assertions.assertEquals(Boolean.TRUE, primeira.get("ativo"));
+        final Map<String, Object> estadoPrimeira = (Map<String, Object>) primeira.get("estado");
+        Assertions.assertEquals("GO", estadoPrimeira.get("sigla"));
+        Assertions.assertEquals(52L, estadoPrimeira.get("ibge_id"));
+
+        final Map<String, Object> segunda = (Map<String, Object>) inscricoes.get(1);
+        Assertions.assertEquals(Boolean.FALSE, segunda.get("ativo"));
+        Assertions.assertEquals("SP", ((Map<String, Object>) segunda.get("estado")).get("sigla"));
+    }
+
+    @Test
     public void deveRecusarJsonInvalido() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> MiniJson.parse("{\"status\":"));
     }

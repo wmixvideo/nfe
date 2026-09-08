@@ -1,6 +1,8 @@
 package com.fincatto.documentofiscal.lookup;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -18,21 +20,26 @@ import java.util.regex.Pattern;
  * de testes que devolve dados fictícios. A documentação da API, com a lista de pacotes e a
  * geração do token, está em <a href="https://www.cpfcnpj.com.br/dev/">cpfcnpj.com.br/dev</a>.</p>
  *
- * <p><strong>Inscrição Estadual:</strong> a API não fornece IE nem IM, portanto esta consulta
- * nunca as preenche. Veja a {@link NFDestinatarioResolver} para o detalhamento de quando isso
- * é suficiente (NFC-e e venda a consumidor final, {@code indIEDest=9}) e quando o chamador
- * precisa completar a IE por outra fonte (destinatário contribuinte de ICMS).</p>
+ * <p><strong>Inscrição Estadual:</strong> os pacotes de endereço (3, 5 e 6) não trazem IE.
+ * Para o B2B entre contribuintes existe {@link #consultarInscricoesEstaduais(String)}, que
+ * usa o pacote CNPJ H (identificador 16) e devolve a lista de Inscrições Estaduais da empresa
+ * (uma por unidade federativa, com a marca de ativa ou não). A montagem do destinatário com a
+ * IE está na {@link NFDestinatarioResolver}: quando não há IE ativa, o destinatário segue como
+ * {@code indIEDest=9} (NFC-e e venda a consumidor final); havendo IE ativa para a UF do endereço,
+ * ele vira contribuinte de ICMS ({@code indIEDest=1}). A IM continua fora do escopo desta fonte.</p>
  */
-public class CpfCnpjComBrLookup implements PessoaLookup {
+public class CpfCnpjComBrLookup implements PessoaLookup, InscricaoEstadualLookup {
 
     private static final String BASE_URL = "https://api.cpfcnpj.com.br";
     private static final int PACOTE_CPF_PADRAO = 3;
     private static final int PACOTE_CNPJ_PADRAO = 5;
+    private static final int PACOTE_IE_PADRAO = 16;
     private static final Pattern TOKEN_SEGURO = Pattern.compile("[A-Za-z0-9._~-]+");
 
     private final String token;
     private final int pacoteCpf;
     private final int pacoteCnpj;
+    private final int pacoteIe;
     private final HttpTransport transporte;
 
     /**
@@ -57,8 +64,9 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
     }
 
     /**
-     * Cria a consulta com um transporte HTTP próprio. Útil para reaproveitar o httpclient5
-     * do projeto ou para testes com respostas simuladas.
+     * Cria a consulta com um transporte HTTP próprio, usando o pacote 16 para Inscrição
+     * Estadual. Útil para reaproveitar o httpclient5 do projeto ou para testes com respostas
+     * simuladas.
      *
      * @param token      token de acesso.
      * @param pacoteCpf  identificador do pacote a usar em consultas de CPF.
@@ -66,6 +74,20 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
      * @param transporte transporte HTTP a utilizar.
      */
     public CpfCnpjComBrLookup(final String token, final int pacoteCpf, final int pacoteCnpj, final HttpTransport transporte) {
+        this(token, pacoteCpf, pacoteCnpj, PACOTE_IE_PADRAO, transporte);
+    }
+
+    /**
+     * Cria a consulta escolhendo todos os pacotes, inclusive o de Inscrição Estadual, e um
+     * transporte HTTP próprio.
+     *
+     * @param token      token de acesso.
+     * @param pacoteCpf  identificador do pacote a usar em consultas de CPF.
+     * @param pacoteCnpj identificador do pacote a usar em consultas de CNPJ.
+     * @param pacoteIe   identificador do pacote a usar em consultas de Inscrição Estadual (padrão 16).
+     * @param transporte transporte HTTP a utilizar.
+     */
+    public CpfCnpjComBrLookup(final String token, final int pacoteCpf, final int pacoteCnpj, final int pacoteIe, final HttpTransport transporte) {
         if (!Documentos.preenchido(token)) {
             throw new IllegalArgumentException("Token de acesso obrigatório");
         }
@@ -79,6 +101,7 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
         this.token = tokenLimpo;
         this.pacoteCpf = pacoteCpf;
         this.pacoteCnpj = pacoteCnpj;
+        this.pacoteIe = pacoteIe;
         this.transporte = transporte;
     }
 
@@ -102,6 +125,48 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
         final Map<String, Object> resposta = requisitar(this.pacoteCnpj, documento);
         final EnderecoFiscal endereco = enderecoDeCnpj(resposta);
         return new PessoaFiscal(PessoaFiscal.TipoPessoa.JURIDICA, documento, texto(resposta, "razao"), texto(resposta, "email"), endereco);
+    }
+
+    /**
+     * Consulta as Inscrições Estaduais de uma pessoa jurídica pelo pacote CNPJ H
+     * (identificador 16). O corpo esperado traz o array {@code inscricoesEstaduais}, com um
+     * objeto por unidade federativa: {@code inscricao_estadual}, {@code ativo} e um objeto
+     * {@code estado} aninhado com a {@code sigla} da UF.
+     *
+     * @param cnpj CNPJ a consultar, com ou sem máscara. Aceita CNPJ alfanumérico.
+     * @return lista de inscrições estaduais; vazia quando a empresa não tem IE cadastrada.
+     * @throws PessoaLookupException quando a consulta falha ou o documento é recusado pela fonte.
+     */
+    @Override
+    public List<InscricaoEstadual> consultarInscricoesEstaduais(final String cnpj) throws PessoaLookupException {
+        final String documento = Documentos.normalizaCnpj(cnpj);
+        if (documento.length() != 14) {
+            throw new PessoaLookupException("CNPJ deve conter 14 caracteres: " + cnpj);
+        }
+        final Map<String, Object> resposta = requisitar(this.pacoteIe, documento);
+        return inscricoesDe(resposta);
+    }
+
+    private static List<InscricaoEstadual> inscricoesDe(final Map<String, Object> resposta) {
+        final List<Object> itens = lista(resposta, "inscricoesEstaduais");
+        final List<InscricaoEstadual> inscricoes = new ArrayList<>();
+        if (itens == null) {
+            return inscricoes;
+        }
+        for (final Object item : itens) {
+            if (!(item instanceof Map)) {
+                continue;
+            }
+            @SuppressWarnings("unchecked") final Map<String, Object> mapa = (Map<String, Object>) item;
+            final String numero = Documentos.apenasDigitos(texto(mapa, "inscricao_estadual"));
+            if (numero.isEmpty()) {
+                continue;
+            }
+            final Map<String, Object> estado = objeto(mapa, "estado");
+            final String sigla = estado == null ? null : texto(estado, "sigla");
+            inscricoes.add(new InscricaoEstadual(numero, sigla, booleano(mapa, "ativo")));
+        }
+        return inscricoes;
     }
 
     private Map<String, Object> requisitar(final int pacote, final String documento) throws PessoaLookupException {
@@ -211,5 +276,22 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
     private static Map<String, Object> objeto(final Map<String, Object> mapa, final String chave) {
         final Object valor = mapa.get(chave);
         return valor instanceof Map ? (Map<String, Object>) valor : null;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static List<Object> lista(final Map<String, Object> mapa, final String chave) {
+        final Object valor = mapa.get(chave);
+        return valor instanceof List ? (List<Object>) valor : null;
+    }
+
+    private static boolean booleano(final Map<String, Object> mapa, final String chave) {
+        final Object valor = mapa.get(chave);
+        if (valor instanceof Boolean) {
+            return (Boolean) valor;
+        }
+        if (valor instanceof String) {
+            return Boolean.parseBoolean(((String) valor).trim());
+        }
+        return false;
     }
 }

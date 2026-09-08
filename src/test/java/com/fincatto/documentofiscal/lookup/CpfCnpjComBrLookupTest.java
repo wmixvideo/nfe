@@ -1,11 +1,16 @@
 package com.fincatto.documentofiscal.lookup;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CpfCnpjComBrLookupTest {
+
+    private static final String JSON_CNPJ_PACOTE_16 = "{\"status\":1,\"cnpj\":\"11222333000181\",\"razao\":\"TOKEN TEST LTDA\",\"inscricoesEstaduais\":[{\"inscricao_estadual\":\"103947736\",\"ativo\":true,\"estado\":{\"id\":9,\"nome\":\"Goias\",\"sigla\":\"GO\",\"ibge_id\":52}},{\"inscricao_estadual\":\"290123456\",\"ativo\":false,\"estado\":{\"id\":25,\"nome\":\"Sao Paulo\",\"sigla\":\"SP\",\"ibge_id\":35}}],\"pacoteUsado\":16}";
+
+    private static final String JSON_CNPJ_PACOTE_16_SEM_IE = "{\"status\":1,\"cnpj\":\"11222333000181\",\"razao\":\"TOKEN TEST LTDA\",\"inscricoesEstaduais\":[],\"pacoteUsado\":16}";
 
     private static final String JSON_CPF_PACOTE_3 = "{\"status\":1,\"cpf\":\"000.000.000-00\",\"nome\":\"Test Token\",\"nascimento\":\"31/12/1900\",\"endereco\":\"Rua A\",\"numero\":\"100 B\",\"complemento\":\"Apto 03\",\"bairro\":\"Centro\",\"cep\":\"99999123\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"ibge\":\"1234567\",\"genero\":\"M\",\"pacoteUsado\":3,\"saldo\":123}";
 
@@ -94,6 +99,59 @@ public class CpfCnpjComBrLookupTest {
     public void deveRejeitarTokenComCaractereInvalido() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CpfCnpjComBrLookup("tok 123", 3, 5, new TransporteFake(JSON_CPF_PACOTE_3)));
+    }
+
+    @Test
+    public void deveConsultarInscricoesEstaduaisComPacote16() throws PessoaLookupException {
+        final TransporteFake transporte = new TransporteFake(JSON_CNPJ_PACOTE_16);
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, transporte);
+
+        final List<InscricaoEstadual> inscricoes = lookup.consultarInscricoesEstaduais("11.222.333/0001-81");
+
+        Assertions.assertEquals("https://api.cpfcnpj.com.br/tok123/16/11222333000181", transporte.getUltimaUrl());
+        Assertions.assertEquals(2, inscricoes.size());
+        Assertions.assertEquals("103947736", inscricoes.get(0).getInscricao());
+        Assertions.assertEquals("GO", inscricoes.get(0).getUf());
+        Assertions.assertTrue(inscricoes.get(0).isAtivo());
+        Assertions.assertEquals("290123456", inscricoes.get(1).getInscricao());
+        Assertions.assertEquals("SP", inscricoes.get(1).getUf());
+        Assertions.assertFalse(inscricoes.get(1).isAtivo());
+    }
+
+    @Test
+    public void deveDevolverListaVaziaQuandoNaoHaInscricaoEstadual() throws PessoaLookupException {
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, new TransporteFake(JSON_CNPJ_PACOTE_16_SEM_IE));
+        Assertions.assertTrue(lookup.consultarInscricoesEstaduais("11222333000181").isEmpty());
+    }
+
+    @Test
+    public void deveDevolverListaVaziaQuandoCampoDeInscricoesAusente() throws PessoaLookupException {
+        final String semCampo = "{\"status\":1,\"cnpj\":\"11222333000181\",\"razao\":\"TOKEN TEST LTDA\",\"pacoteUsado\":16}";
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, new TransporteFake(semCampo));
+        Assertions.assertTrue(lookup.consultarInscricoesEstaduais("11222333000181").isEmpty());
+    }
+
+    @Test
+    public void deveUsarPacoteDeInscricaoEstadualConfigurado() throws PessoaLookupException {
+        final TransporteFake transporte = new TransporteFake(JSON_CNPJ_PACOTE_16);
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, 21, transporte);
+
+        lookup.consultarInscricoesEstaduais("11222333000181");
+
+        Assertions.assertEquals("https://api.cpfcnpj.com.br/tok123/21/11222333000181", transporte.getUltimaUrl());
+    }
+
+    @Test
+    public void deveLancarExcecaoNaInscricaoEstadualQuandoStatusForZero() {
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, new TransporteFake(JSON_ERRO));
+        Assertions.assertThrows(PessoaLookupException.class,
+                () -> lookup.consultarInscricoesEstaduais("11222333000181"));
+    }
+
+    @Test
+    public void deveRecusarInscricaoEstadualComCnpjInvalido() {
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, new TransporteFake(JSON_CNPJ_PACOTE_16));
+        Assertions.assertThrows(PessoaLookupException.class, () -> lookup.consultarInscricoesEstaduais("123"));
     }
 
     @Test

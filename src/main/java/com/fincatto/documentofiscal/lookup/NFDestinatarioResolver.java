@@ -1,5 +1,8 @@
 package com.fincatto.documentofiscal.lookup;
 
+import java.util.List;
+import java.util.regex.Pattern;
+
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFEndereco;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFIndicadorIEDestinatario;
@@ -14,13 +17,17 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoDestinatario;
  * chama os setters existentes e devolve o destinatário com o {@link NFEndereco} embutido,
  * pronto para receber os demais dados da nota.</p>
  *
- * <p><strong>Inscrição Estadual (IE):</strong> este resolver nunca preenche a IE, porque a
- * fonte de dados não a fornece. O indicador de IE do destinatário assume, por padrão,
- * {@link NFIndicadorIEDestinatario#NAO_CONTRIBUINTE} ({@code indIEDest=9}). Esse é o cenário
- * de encaixe forte: NFC-e (modelo 65) e NF-e a consumidor final pessoa física, em que a IE
- * não se informa. Para destinatário contribuinte de ICMS ({@code indIEDest=1}), use a
- * sobrecarga que recebe o indicador e complete a IE por outra fonte (entrada manual ou a
- * consulta de cadastro na SEFAZ, que exige certificado).</p>
+ * <p><strong>Inscrição Estadual (IE):</strong> por padrão o indicador de IE do destinatário
+ * assume {@link NFIndicadorIEDestinatario#NAO_CONTRIBUINTE} ({@code indIEDest=9}), sem IE. Esse
+ * é o cenário de encaixe forte: NFC-e (modelo 65) e NF-e a consumidor final pessoa física, em
+ * que a IE não se informa. Para o B2B entre contribuintes existe
+ * {@link #porCnpjComInscricaoEstadual(String)}: quando a fonte implementa
+ * {@link InscricaoEstadualLookup} (o caso da {@link CpfCnpjComBrLookup}, via pacote 16), o
+ * resolver seleciona a IE ativa cuja unidade federativa coincide com a UF do endereço do
+ * destinatário e, havendo uma, marca o destinatário como contribuinte de ICMS
+ * ({@code indIEDest=1}) e preenche a IE. Sem IE ativa para a UF, o destinatário permanece como
+ * não contribuinte, sem IE: o resolver nunca presume o regime de isento
+ * ({@code indIEDest=2}), que depende de informação que a fonte não fornece.</p>
  */
 public class NFDestinatarioResolver {
 
@@ -28,6 +35,7 @@ public class NFDestinatarioResolver {
     private static final int TAMANHO_MINIMO_BAIRRO = 2;
     private static final int TAMANHO_CEP = 8;
     private static final int TAMANHO_CODIGO_MUNICIPIO = 7;
+    private static final Pattern IE_SCHEMA = Pattern.compile("[0-9]{2,14}");
 
     private final PessoaLookup lookup;
 
@@ -102,6 +110,77 @@ public class NFDestinatarioResolver {
             return porCnpj(documento, indicadorCnpj);
         }
         throw new IllegalArgumentException("Documento não é um CPF (11 dígitos) nem um CNPJ (14 caracteres): " + documento);
+    }
+
+    /**
+     * Resolve o destinatário por CNPJ preenchendo a Inscrição Estadual (IE) quando cabível.
+     * A fonte precisa implementar {@link InscricaoEstadualLookup} (o caso da
+     * {@link CpfCnpjComBrLookup}); do contrário, use {@link #porCnpj(String)}.
+     *
+     * <p>O resolver consulta os dados cadastrais e as IEs, e escolhe a IE ativa cuja unidade
+     * federativa coincide com a UF do endereço do destinatário. Havendo essa IE ativa, o
+     * destinatário vira contribuinte de ICMS ({@code indIEDest=1}) com a IE preenchida. Não
+     * havendo, permanece como não contribuinte ({@code indIEDest=9}) sem IE, sem nunca presumir
+     * o regime de isento.</p>
+     *
+     * @param cnpj CNPJ a consultar, com ou sem máscara.
+     * @return destinatário preenchido, com IE quando há inscrição ativa para a UF do endereço.
+     * @throws PessoaLookupException quando a consulta falha.
+     * @throws IllegalStateException quando a fonte não fornece Inscrição Estadual.
+     */
+    public NFNotaInfoDestinatario porCnpjComInscricaoEstadual(final String cnpj) throws PessoaLookupException {
+        if (!(this.lookup instanceof InscricaoEstadualLookup)) {
+            throw new IllegalStateException("A fonte de consulta não fornece Inscrição Estadual (pacote 16); use porCnpj(cnpj) ou uma fonte que implemente InscricaoEstadualLookup");
+        }
+        final PessoaFiscal pessoa = this.lookup.consultarCnpj(cnpj);
+        final List<InscricaoEstadual> inscricoes = ((InscricaoEstadualLookup) this.lookup).consultarInscricoesEstaduais(cnpj);
+        final String uf = pessoa.getEndereco() == null ? null : pessoa.getEndereco().getUf();
+        final InscricaoEstadual ativa = inscricaoAtivaDaUf(inscricoes, uf);
+        if (ativa == null) {
+            return montar(pessoa, NFIndicadorIEDestinatario.NAO_CONTRIBUINTE);
+        }
+        final NFNotaInfoDestinatario destinatario = montar(pessoa, NFIndicadorIEDestinatario.CONTRIBUINTE_ICMS);
+        destinatario.setInscricaoEstadual(ativa.getInscricao().trim());
+        return destinatario;
+    }
+
+    /**
+     * Resolve o destinatário detectando CPF ou CNPJ. Para CPF, segue como não contribuinte;
+     * para CNPJ, preenche a IE quando cabível, como em {@link #porCnpjComInscricaoEstadual(String)}.
+     *
+     * @param documento CPF ou CNPJ, com ou sem máscara.
+     * @return destinatário preenchido.
+     * @throws PessoaLookupException quando a consulta falha.
+     * @throws IllegalStateException quando o documento é CNPJ e a fonte não fornece IE.
+     */
+    public NFNotaInfoDestinatario porDocumentoComInscricaoEstadual(final String documento) throws PessoaLookupException {
+        final String normalizado = Documentos.normalizaCnpj(documento);
+        if (normalizado.length() == 11 && Documentos.apenasDigitos(documento).length() == 11) {
+            return porCpf(documento);
+        }
+        if (normalizado.length() == 14) {
+            return porCnpjComInscricaoEstadual(documento);
+        }
+        throw new IllegalArgumentException("Documento não é um CPF (11 dígitos) nem um CNPJ (14 caracteres): " + documento);
+    }
+
+    private static InscricaoEstadual inscricaoAtivaDaUf(final List<InscricaoEstadual> inscricoes, final String uf) {
+        if (inscricoes == null || inscricoes.isEmpty() || !Documentos.preenchido(uf)) {
+            return null;
+        }
+        final String alvo = uf.trim().toUpperCase();
+        for (final InscricaoEstadual inscricao : inscricoes) {
+            if (inscricao.isAtivo() && Documentos.preenchido(inscricao.getUf())
+                    && alvo.equals(inscricao.getUf().trim().toUpperCase())
+                    && ieValida(inscricao.getInscricao())) {
+                return inscricao;
+            }
+        }
+        return null;
+    }
+
+    private static boolean ieValida(final String inscricao) {
+        return inscricao != null && IE_SCHEMA.matcher(inscricao.trim()).matches();
     }
 
     private NFNotaInfoDestinatario montar(final PessoaFiscal pessoa, final NFIndicadorIEDestinatario indicador) {
