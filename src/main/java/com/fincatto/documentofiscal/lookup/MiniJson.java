@@ -16,8 +16,11 @@ import java.util.Map;
  */
 final class MiniJson {
 
+    private static final int PROFUNDIDADE_MAXIMA = 64;
+
     private final String texto;
     private int posicao;
+    private int profundidade;
 
     private MiniJson(final String texto) {
         this.texto = texto;
@@ -58,11 +61,15 @@ final class MiniJson {
     }
 
     private Map<String, Object> lerObjeto() {
+        if (++this.profundidade > PROFUNDIDADE_MAXIMA) {
+            throw new IllegalArgumentException("Aninhamento JSON acima do limite de " + PROFUNDIDADE_MAXIMA + " níveis");
+        }
         final Map<String, Object> objeto = new LinkedHashMap<>();
         this.posicao++;
         ignorarEspacos();
         if (verChar() == '}') {
             this.posicao++;
+            this.profundidade--;
             return objeto;
         }
         while (true) {
@@ -89,15 +96,20 @@ final class MiniJson {
             }
             throw new IllegalArgumentException("Esperado ',' ou '}' na posição " + this.posicao);
         }
+        this.profundidade--;
         return objeto;
     }
 
     private List<Object> lerLista() {
+        if (++this.profundidade > PROFUNDIDADE_MAXIMA) {
+            throw new IllegalArgumentException("Aninhamento JSON acima do limite de " + PROFUNDIDADE_MAXIMA + " níveis");
+        }
         final List<Object> lista = new ArrayList<>();
         this.posicao++;
         ignorarEspacos();
         if (verChar() == ']') {
             this.posicao++;
+            this.profundidade--;
             return lista;
         }
         while (true) {
@@ -114,6 +126,7 @@ final class MiniJson {
             }
             throw new IllegalArgumentException("Esperado ',' ou ']' na posição " + this.posicao);
         }
+        this.profundidade--;
         return lista;
     }
 

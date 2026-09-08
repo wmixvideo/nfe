@@ -238,10 +238,10 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 
 Recurso aditivo e opcional para pré-preencher o destinatário da nota a partir de uma consulta de CPF ou CNPJ. Vive no pacote `com.fincatto.documentofiscal.lookup`, não altera nenhuma classe existente e só é usado por quem chamar o resolver. Não adiciona dependência nova: o cliente HTTP é o da própria JDK 11 e o parser JSON é interno.
 
-O contrato é plugável. A interface `PessoaLookup` devolve um objeto normalizado (`PessoaFiscal`), e a `NFDestinatarioResolver` transforma esse objeto em um `NFNotaInfoDestinatario` do pacote nfe400, com o `NFEndereco` embutido, populado pelos setters das próprias classes. Qualquer fonte de dados pode implementar `PessoaLookup`; a implementação de referência é a `CpfCnpjComBrLookup`, sobre a API pública cpfcnpj.com.br.
+O contrato é plugável. A interface `PessoaLookup` devolve um objeto normalizado (`PessoaFiscal`), e a `NFDestinatarioResolver` transforma esse objeto em um `NFNotaInfoDestinatario` do pacote nfe400, com o `NFEndereco` embutido, populado pelos setters das próprias classes. Qualquer fonte de dados pode implementar `PessoaLookup`; a implementação de referência é a `CpfCnpjComBrLookup`, sobre a API pública cpfcnpj.com.br. A documentação da API, com a lista de pacotes e a geração do token, fica em [cpfcnpj.com.br/dev](https://www.cpfcnpj.com.br/dev/).
 
 ```java
-// Token obtido no painel da conta, em API, aba Tokens.
+// Token obtido no painel da conta, em API, aba Tokens (veja https://www.cpfcnpj.com.br/dev/).
 // Para testar sem custo existe um token público que devolve dados fictícios.
 final PessoaLookup lookup = new CpfCnpjComBrLookup("5ae973d7a997af13f0aaf2bf60e65803");
 final NFDestinatarioResolver resolver = new NFDestinatarioResolver(lookup);

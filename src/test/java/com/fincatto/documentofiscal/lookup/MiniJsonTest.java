@@ -51,4 +51,13 @@ public class MiniJsonTest {
     public void deveRecusarJsonInvalido() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> MiniJson.parse("{\"status\":"));
     }
+
+    @Test
+    public void deveRecusarAninhamentoProfundoSemEstourarPilha() {
+        final StringBuilder profundo = new StringBuilder();
+        for (int i = 0; i < 5000; i++) {
+            profundo.append('[');
+        }
+        Assertions.assertThrows(IllegalArgumentException.class, () -> MiniJson.parse(profundo.toString()));
+    }
 }

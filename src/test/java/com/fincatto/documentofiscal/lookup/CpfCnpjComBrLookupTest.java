@@ -89,4 +89,20 @@ public class CpfCnpjComBrLookupTest {
     public void deveExigirToken() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new CpfCnpjComBrLookup("  "));
     }
+
+    @Test
+    public void deveRejeitarTokenComCaractereInvalido() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CpfCnpjComBrLookup("tok 123", 3, 5, new TransporteFake(JSON_CPF_PACOTE_3)));
+    }
+
+    @Test
+    public void deveFormatarNumeroInteiroSemPontoDecimal() throws PessoaLookupException {
+        final String jsonNumeroFloat = "{\"status\":1,\"nome\":\"Test Token\",\"endereco\":\"Rua A\",\"numero\":85.0,\"cep\":\"99999123\",\"cidade\":\"Sao Paulo\",\"uf\":\"SP\",\"ibge\":\"1234567\"}";
+        final CpfCnpjComBrLookup lookup = new CpfCnpjComBrLookup("tok123", 3, 5, new TransporteFake(jsonNumeroFloat));
+
+        final PessoaFiscal pessoa = lookup.consultarCpf("00000000000");
+
+        Assertions.assertEquals("85", pessoa.getEndereco().getNumero());
+    }
 }

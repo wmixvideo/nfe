@@ -28,7 +28,13 @@ final class JdkHttpTransport implements HttpTransport {
 
     @Override
     public String get(final String url) throws IOException {
-        final HttpRequest requisicao = HttpRequest.newBuilder(URI.create(url))
+        final URI uri;
+        try {
+            uri = URI.create(url);
+        } catch (final IllegalArgumentException e) {
+            throw new IOException("URL de consulta inválida");
+        }
+        final HttpRequest requisicao = HttpRequest.newBuilder(uri)
                 .timeout(this.timeoutRequisicao)
                 .header("Accept", "application/json")
                 .GET()

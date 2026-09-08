@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.lookup;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Implementação de referência de {@link PessoaLookup} sobre a API pública cpfcnpj.com.br.
@@ -14,7 +15,8 @@ import java.util.Map;
  *
  * <p>Esta classe é aditiva e opcional: nada no restante do SDK depende dela. O token é obtido
  * no painel da conta, em API, aba Tokens. Para experimentar sem custo existe um token público
- * de testes que devolve dados fictícios.</p>
+ * de testes que devolve dados fictícios. A documentação da API, com a lista de pacotes e a
+ * geração do token, está em <a href="https://www.cpfcnpj.com.br/dev/">cpfcnpj.com.br/dev</a>.</p>
  *
  * <p><strong>Inscrição Estadual:</strong> a API não fornece IE nem IM, portanto esta consulta
  * nunca as preenche. Veja a {@link NFDestinatarioResolver} para o detalhamento de quando isso
@@ -26,6 +28,7 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
     private static final String BASE_URL = "https://api.cpfcnpj.com.br";
     private static final int PACOTE_CPF_PADRAO = 3;
     private static final int PACOTE_CNPJ_PADRAO = 5;
+    private static final Pattern TOKEN_SEGURO = Pattern.compile("[A-Za-z0-9._~-]+");
 
     private final String token;
     private final int pacoteCpf;
@@ -69,7 +72,11 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
         if (transporte == null) {
             throw new IllegalArgumentException("Transporte HTTP obrigatório");
         }
-        this.token = token.trim();
+        final String tokenLimpo = token.trim();
+        if (!TOKEN_SEGURO.matcher(tokenLimpo).matches()) {
+            throw new IllegalArgumentException("Token de acesso contém caracteres inválidos para a URL");
+        }
+        this.token = tokenLimpo;
         this.pacoteCpf = pacoteCpf;
         this.pacoteCnpj = pacoteCnpj;
         this.transporte = transporte;
@@ -170,8 +177,15 @@ public class CpfCnpjComBrLookup implements PessoaLookup {
         if (valor == null) {
             return null;
         }
-        if (valor instanceof Long || valor instanceof Double) {
-            return valor instanceof Long ? Long.toString((Long) valor) : String.valueOf(valor);
+        if (valor instanceof Long) {
+            return Long.toString((Long) valor);
+        }
+        if (valor instanceof Double) {
+            final double numero = (Double) valor;
+            if (!Double.isNaN(numero) && !Double.isInfinite(numero) && numero == Math.rint(numero)) {
+                return Long.toString((long) numero);
+            }
+            return String.valueOf(numero);
         }
         return valor.toString();
     }
