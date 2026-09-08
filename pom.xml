@@ -147,7 +147,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.6</version>
+                <version>3.6.0</version>
             </plugin>
 
             <!-- Cobertura de testes -->
@@ -311,7 +311,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.6</version>
+                        <version>3.6.0</version>
                     </plugin>
                 </plugins>
             </build>
