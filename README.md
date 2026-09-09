@@ -234,6 +234,33 @@ String xmlNotaProcessadaPeloSefaz = notaProcessada.toString();
 | Consulta cadastro             | Estável             |
 | Manifestação de destinatário  | Estável             |
 
+## Preenchimento do destinatário por CPF/CNPJ (opcional)
+
+Recurso aditivo e opcional para pré-preencher o destinatário da nota a partir de uma consulta de CPF ou CNPJ. Vive no pacote `com.fincatto.documentofiscal.lookup`, não altera nenhuma classe existente e só é usado por quem chamar o resolver. Não adiciona dependência nova: o cliente HTTP é o da própria JDK 11 e o parser JSON é interno.
+
+O contrato é plugável. A interface `PessoaLookup` devolve um objeto normalizado (`PessoaFiscal`), e a `NFDestinatarioResolver` transforma esse objeto em um `NFNotaInfoDestinatario` do pacote nfe400, com o `NFEndereco` embutido, populado pelos setters das próprias classes. Qualquer fonte de dados pode implementar `PessoaLookup`; a implementação de referência é a `CpfCnpjComBrLookup`, sobre a API pública cpfcnpj.com.br. A documentação da API, com a lista de pacotes e a geração do token, fica em [cpfcnpj.com.br/dev](https://www.cpfcnpj.com.br/dev/).
+
+```java
+// Token obtido no painel da conta, em API, aba Tokens (veja https://www.cpfcnpj.com.br/dev/).
+// Para testar sem custo existe um token público que devolve dados fictícios.
+final PessoaLookup lookup = new CpfCnpjComBrLookup("5ae973d7a997af13f0aaf2bf60e65803");
+final NFDestinatarioResolver resolver = new NFDestinatarioResolver(lookup);
+
+// Detecta CPF (11 dígitos) ou CNPJ (14 caracteres) automaticamente.
+final NFNotaInfoDestinatario destinatario = resolver.porDocumento("00000000000");
+
+// Também é possível ir direto ao ponto:
+final NFNotaInfoDestinatario porCpf = resolver.porCpf("000.000.000-00");
+final NFNotaInfoDestinatario porCnpj = resolver.porCnpj("11.222.333/0001-81");
+
+// B2B entre contribuintes: preenche a Inscrição Estadual quando cabível (pacote 16).
+final NFNotaInfoDestinatario contribuinte = resolver.porCnpjComInscricaoEstadual("11.222.333/0001-81");
+```
+
+Sobre a fonte de dados: os dados são em tempo real (D+0), refletindo a Receita Federal no instante da consulta. Por padrão a `CpfCnpjComBrLookup` usa o pacote 3 para CPF (nome mais endereço) e o pacote 5 para CNPJ (razão social, endereço da matriz e código IBGE do município, encaixe direto em `cMun`). O pacote de CNPJ pode ser trocado no construtor para o pacote 6, que traz os mesmos campos do 5 acrescidos de dados do Simples Nacional.
+
+Inscrição Estadual (IE), pacote H (ID 16): para o B2B entre contribuintes, a `CpfCnpjComBrLookup` também consulta as Inscrições Estaduais da empresa pelo pacote 16 (uma por unidade federativa, com a marca de ativa ou não), exposto por `consultarInscricoesEstaduais(cnpj)` e pela interface opcional `InscricaoEstadualLookup`. O método `porCnpjComInscricaoEstadual(cnpj)` do resolver escolhe a IE ativa cuja UF coincide com a UF do endereço do destinatário: havendo uma, o destinatário vira contribuinte de ICMS (`indIEDest=1`) com a IE preenchida; não havendo IE ativa para a UF, segue como não contribuinte (`indIEDest=9`) sem IE. O resolver nunca presume o regime de isento (`indIEDest=2`), que depende de informação que a fonte não fornece. Para NFC-e (modelo 65) e venda a consumidor final pessoa física, em que a IE não se informa, os métodos `porCpf`, `porCnpj` e `porDocumento` cobrem o destinatário por completo em `indIEDest=9`. A IM continua fora do escopo desta fonte.
+
 ## Requisitos
 
 JDK >= 1.8<br>
