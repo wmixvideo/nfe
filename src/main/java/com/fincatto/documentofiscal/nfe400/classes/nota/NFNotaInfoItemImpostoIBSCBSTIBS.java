@@ -477,8 +477,23 @@ public class NFNotaInfoItemImpostoIBSCBSTIBS extends DFBase {
 
     private static final long serialVersionUID = -366525684939456789L;
 
+    /**
+     * NT 2025.002-RTC V.14
+     * Percentual de devolução do IBS
+     */
+    @Element(required = true)
+    private String pDevTrib;
+
     @Element(required = true)
     private String vDevTrib; // UB25 // UB44
+
+    public String getpDevTrib() {
+      return pDevTrib;
+    }
+
+    public void setpDevTrib(BigDecimal pDevTrib) {
+      this.pDevTrib = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pDevTrib, "Percentual do tributo devolvido");
+    }
 
     public String getVDevTrib() {
       return vDevTrib;
