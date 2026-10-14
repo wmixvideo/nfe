@@ -39,7 +39,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <commons-lang3.version>3.21.0</commons-lang3.version>
         <simple-xml.version>2.7.1</simple-xml.version>
-		<httpclient5.version>5.6.4</httpclient5.version>
+		<httpclient5.version>5.6.5</httpclient5.version>
     </properties>
 
     <dependencies>
