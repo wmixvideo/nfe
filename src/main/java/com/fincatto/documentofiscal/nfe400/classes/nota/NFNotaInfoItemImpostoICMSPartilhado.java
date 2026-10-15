@@ -55,12 +55,6 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends DFBase {
     @Element(name = "vICMSST")
     private String valorICMSST;
     
-    @Element(name = "pBCOp")
-    private String percentualBCOperacaoPropria;
-    
-    @Element(name = "UFST")
-    private String ufICMSST;
-
     @Element(name = "vBCFCPST", required = false)
     private String valorBaseCalculoFcpSt;
 
@@ -69,6 +63,12 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends DFBase {
 
     @Element(name = "vFCPST", required = false)
     private String valorFcpSt;
+
+    @Element(name = "pBCOp")
+    private String percentualBCOperacaoPropria;
+    
+    @Element(name = "UFST")
+    private String ufICMSST;
 
     @Element(name = "vICMSDeson", required = false)
     private String valorIcmsDesonerado;
