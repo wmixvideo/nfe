@@ -1,19 +1,31 @@
-name: "Release Master"
+name: "Release"
 
-# Run workflow on commits to the `master` branch
+# Run manually from Actions > Release > Run workflow (or `gh workflow run release.yml`)
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "master"
+    inputs:
+      version:
+        description: "Release version (X.Y.Z). Leave empty to use the pom version without -SNAPSHOT"
+        required: false
+        type: string
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.ssh_private_key }}
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -21,10 +33,23 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.ssh_private_key }}
+      - name: Resolve versions
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          CURRENT=$(mvn --batch-mode --quiet help:evaluate -Dexpression=project.version -DforceStdout)
+          VERSION="${INPUT_VERSION:-${CURRENT%-SNAPSHOT}}"
+          if [[ ! "$VERSION" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "::error::Version '$VERSION' must follow the format X.Y.Z"
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" > /dev/null; then
+            echo "::error::Tag v$VERSION already exists"
+            exit 1
+          fi
+          echo "release=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "next=${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.$((BASH_REMATCH[3] + 1))-SNAPSHOT" >> "$GITHUB_OUTPUT"
 
       - name: Configure Git user
         run: |
@@ -38,9 +63,28 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.OSS_SONATYPE_TOKEN_USER }}
           nexus_password: ${{ secrets.OSS_SONATYPE_TOKEN_PASSWORD }}
-          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
+          maven_goals_phases: clean -B release:prepare release:perform -DreleaseVersion=${{ steps.version.outputs.release }} -DdevelopmentVersion=${{ steps.version.outputs.next }} -Darguments="-DskipTests" -P ossrh
 
+      # Deploys the released version from the tag checked out by release:perform
       - name: Release GitHub package
-        run: mvn --batch-mode deploy -P github
+        run: mvn --batch-mode deploy -DskipTests -P github --file target/checkout/pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release draft
+        uses: release-drafter/release-drafter@v7
+        with:
+          version: ${{ steps.version.outputs.release }}
+          tag: v${{ steps.version.outputs.release }}
+          name: Release v${{ steps.version.outputs.release }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.release }}
+        run: |
+          zip -j nfe.zip "target/checkout/target/nfe-$VERSION.jar"
+          gh release upload "v$VERSION" nfe.zip --clobber
