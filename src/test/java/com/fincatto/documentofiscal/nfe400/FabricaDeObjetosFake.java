@@ -1384,10 +1384,10 @@ public class FabricaDeObjetosFake {
     }
 
     public static NFInformacaoIntermediador getNFInformacaoIntermediador() {
-    	final NFInformacaoIntermediador intermediador = new NFInformacaoIntermediador();
-    	intermediador.setCnpj("12345678901234");
-    	intermediador.setIdCadIntTran("123456789012345678901234567890123456789012345678901234567890");
-    	return intermediador;
+        final NFInformacaoIntermediador intermediador = new NFInformacaoIntermediador();
+        intermediador.setCnpj("12345678901234");
+        intermediador.setIdCadIntTran("123456789012345678901234567890123456789012345678901234567890");
+        return intermediador;
     }
 
     public static NFInfoSolicitacaoNFF getNFInfoSolicNFF(){
@@ -1445,5 +1445,192 @@ public class FabricaDeObjetosFake {
         gMonoRet.setVCBSMonoRet(new BigDecimal("98765432109.87"));
 
         return gMonoRet;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao();
+        gMonoPadrao.setQBCMono(new BigDecimal("1234567.8901"));
+        gMonoPadrao.setAdRemIBS(new BigDecimal("9.8765"));
+        gMonoPadrao.setVIBSMono(new BigDecimal("12345678901.23"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten();
+        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
+        gMonoReten.setAdRemIBSReten(new BigDecimal("9.8765"));
+        gMonoReten.setVIBSMonoReten(new BigDecimal("12345678901.23"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet();
+        gMonoRet.setVIBSMonoRet(new BigDecimal("12345678901.23"));
+
+        return gMonoRet;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca();
+        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
+        gpBioDiferenca.setvIBSDiferenca(new BigDecimal("12345678901.23"));
+
+        return gpBioDiferenca;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
+        gMonoPadrao.setvBCMono(new BigDecimal("12345678901.23"));
+        gMonoPadrao.setpAliqMonoUF(new BigDecimal("9.8765"));
+        gMonoPadrao.setvIBSMonoUf(new BigDecimal("12345678901.23"));
+        gMonoPadrao.setpAliqMonoMun(new BigDecimal("5.4321"));
+        gMonoPadrao.setvIBSMonoMun(new BigDecimal("98765432109.87"));
+        gMonoPadrao.setvIBSMono(new BigDecimal("12345678901.23"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten();
+        gMonoReten.setvBCMonoReten(new BigDecimal("12345678901.23"));
+        gMonoReten.setpAliqMonoReten(new BigDecimal("9.8765"));
+        gMonoReten.setvIBSMonoReten(new BigDecimal("12345678901.23"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet();
+        gMonoRet.setVIBSMonoRet(new BigDecimal("12345678901.23"));
+
+        return gMonoRet;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGpBioDiferenca getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGpBioDiferenca() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGpBioDiferenca();
+        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
+        gpBioDiferenca.setvIBSDiferenca(new BigDecimal("12345678901.23"));
+
+        return gpBioDiferenca;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao();
+        gMonoPadrao.setQBCMono(new BigDecimal("1234567.8901"));
+        gMonoPadrao.setAdRemCBS(new BigDecimal("5.4321"));
+        gMonoPadrao.setvCBSMono(new BigDecimal("98765432109.87"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten();
+        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
+        gMonoReten.setAdRemCBSReten(new BigDecimal("5.4321"));
+        gMonoReten.setvCBSMonoReten(new BigDecimal("98765432109.87"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet();
+        gMonoRet.setvCBSMonoRet(new BigDecimal("98765432109.87"));
+
+        return gMonoRet;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca();
+        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
+        gpBioDiferenca.setvCBSDiferenca(new BigDecimal("98765432109.87"));
+
+        return gpBioDiferenca;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao();
+        gMonoPadrao.setvBCMono(new BigDecimal("98765432109.87"));
+        gMonoPadrao.setpAliqMonoCBS(new BigDecimal("5.4321"));
+        gMonoPadrao.setvCBSMono(new BigDecimal("98765432109.87"));
+
+        return gMonoPadrao;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten();
+        gMonoReten.setvBCMonoReten(new BigDecimal("98765432109.87"));
+        gMonoReten.setpAliqMonoReten(new BigDecimal("5.4321"));
+        gMonoReten.setvCBSMonoReten(new BigDecimal("98765432109.87"));
+
+        return gMonoReten;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet();
+        gMonoRet.setvCBSMonoRet(new BigDecimal("98765432109.87"));
+
+        return gMonoRet;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca();
+        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
+        gpBioDiferenca.setvCBSDiferenca(new BigDecimal("98765432109.87"));
+
+        return gpBioDiferenca;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
+        gIBSMonoAdRem.setgMonoPadrao(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao());
+        gIBSMonoAdRem.setgMonoReten(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten());
+        gIBSMonoAdRem.setgMonoRet(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet());
+        gIBSMonoAdRem.setGpBioDiferenca(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca());
+
+        return gIBSMonoAdRem;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
+        gIBSMonoAdValorem.setgMonoPadrao(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao());
+        gIBSMonoAdValorem.setgMonoReten(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten());
+        gIBSMonoAdValorem.setgMonoRet(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet());
+        gIBSMonoAdValorem.setGpBioDiferenca(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGpBioDiferenca());
+
+        return gIBSMonoAdValorem;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem gCBSMonoAdRem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem();
+        gCBSMonoAdRem.setgMonoPadrao(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao());
+        gCBSMonoAdRem.setgMonoReten(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten());
+        gCBSMonoAdRem.setgMonoRet(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet());
+        gCBSMonoAdRem.setGpBioDiferenca(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca());
+
+        return gCBSMonoAdRem;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem() {
+        NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem gCBSMonoAdValorem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem();
+        gCBSMonoAdValorem.setgMonoPadrao(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao());
+        gCBSMonoAdValorem.setgMonoReten(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten());
+        gCBSMonoAdValorem.setgMonoRet(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet());
+        gCBSMonoAdValorem.setGpBioDiferenca(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca());
+
+        return gCBSMonoAdValorem;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasia getNFNotaInfoItemImpostoIBSCBSMonofasia() {
+        NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setgIBSMonoAdRem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem());
+        monofasia.setgIBSMonoAdValorem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem());
+        monofasia.setgCBSMonoAdRem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem());
+        monofasia.setgCBSMonoAdValorem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem());
+        monofasia.setVTotIBSMonoItem(new BigDecimal("1234567890.12"));
+        monofasia.setVTotCBSMonoItem(new BigDecimal("1234567890.12"));
+
+        return monofasia;
     }
 }
