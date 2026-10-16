@@ -337,6 +337,20 @@ public class NFAutorizador400Test {
         Assertions.assertEquals("https://nfe.fazenda.sp.gov.br/ws/nfestatusservico4.asmx", autorizador.getNfeStatusServico(DFAmbiente.PRODUCAO));
         Assertions.assertEquals("https://nfe.fazenda.sp.gov.br/ws/nferecepcaoevento4.asmx", autorizador.getRecepcaoEvento(DFAmbiente.PRODUCAO));
         Assertions.assertEquals("https://nfe.fazenda.sp.gov.br/ws/nfeinutilizacao4.asmx", autorizador.getNfeInutilizacao(DFAmbiente.PRODUCAO));
+        Assertions.assertEquals("https://homologacao.nfce.fazenda.sp.gov.br/ws/NFCeListagemChaves.asmx", autorizador.getNfceListagemChaves(DFAmbiente.HOMOLOGACAO));
+        Assertions.assertEquals("https://nfce.fazenda.sp.gov.br/ws/NFCeListagemChaves.asmx", autorizador.getNfceListagemChaves(DFAmbiente.PRODUCAO));
+        Assertions.assertEquals("https://homologacao.nfce.fazenda.sp.gov.br/ws/NFCeDownloadXML.asmx", autorizador.getNfceDownloadXML(DFAmbiente.HOMOLOGACAO));
+        Assertions.assertEquals("https://nfce.fazenda.sp.gov.br/ws/NFCeDownloadXML.asmx", autorizador.getNfceDownloadXML(DFAmbiente.PRODUCAO));
+    }
+
+    @Test
+    public void naoPodeConsultarListagemChavesNFCeForaDeSP() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> NFAutorizador400.MG.getNfceListagemChaves(DFAmbiente.PRODUCAO));
+    }
+
+    @Test
+    public void naoPodeFazerDownloadXMLNFCeForaDeSP() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> NFAutorizador400.SVRS.getNfceDownloadXML(DFAmbiente.PRODUCAO));
     }
 
     @Test
