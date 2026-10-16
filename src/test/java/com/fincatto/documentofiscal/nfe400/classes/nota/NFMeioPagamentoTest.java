@@ -25,7 +25,10 @@ public class NFMeioPagamentoTest {
         Assertions.assertEquals(NFMeioPagamento.PIX_ESTATICO, NFMeioPagamento.valueOfCodigo("20"));        
         Assertions.assertEquals(NFMeioPagamento.CREDITO_EM_LOJA, NFMeioPagamento.valueOfCodigo("21"));        
         Assertions.assertEquals(NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO, NFMeioPagamento.valueOfCodigo("22"));        
+        Assertions.assertEquals(NFMeioPagamento.PIX_AUTOMATICO, NFMeioPagamento.valueOfCodigo("23"));
+        Assertions.assertEquals(NFMeioPagamento.TEF, NFMeioPagamento.valueOfCodigo("24"));
         Assertions.assertEquals(NFMeioPagamento.SEM_PAGAMENTO, NFMeioPagamento.valueOfCodigo("90"));
+        Assertions.assertEquals(NFMeioPagamento.PAGAMENTO_POSTERIOR, NFMeioPagamento.valueOfCodigo("91"));
         Assertions.assertEquals(NFMeioPagamento.OUTRO, NFMeioPagamento.valueOfCodigo("99"));
     }
 
@@ -49,7 +52,10 @@ public class NFMeioPagamentoTest {
         Assertions.assertEquals("20", NFMeioPagamento.PIX_ESTATICO.getCodigo());        
         Assertions.assertEquals("21", NFMeioPagamento.CREDITO_EM_LOJA.getCodigo());        
         Assertions.assertEquals("22", NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO.getCodigo());        
+        Assertions.assertEquals("23", NFMeioPagamento.PIX_AUTOMATICO.getCodigo());
+        Assertions.assertEquals("24", NFMeioPagamento.TEF.getCodigo());
         Assertions.assertEquals("90", NFMeioPagamento.SEM_PAGAMENTO.getCodigo());
+        Assertions.assertEquals("91", NFMeioPagamento.PAGAMENTO_POSTERIOR.getCodigo());
         Assertions.assertEquals("99", NFMeioPagamento.OUTRO.getCodigo());
     }
     
@@ -73,7 +79,23 @@ public class NFMeioPagamentoTest {
         Assertions.assertEquals("20 - Pagamento Instantâneo (PIX) - Estático", NFMeioPagamento.PIX_ESTATICO.toString());        
         Assertions.assertEquals("21 - Crédito em Loja", NFMeioPagamento.CREDITO_EM_LOJA.toString());        
         Assertions.assertEquals("22 - Pagamento Eletrônico não Informado", NFMeioPagamento.PAGAMENTO_ELETRONICO_NAO_INFORMADO.toString());        
+        Assertions.assertEquals("23 - Pagamento Instantâneo (PIX) - Automático", NFMeioPagamento.PIX_AUTOMATICO.toString());
+        Assertions.assertEquals("24 - TEF / booktransfer", NFMeioPagamento.TEF.toString());
         Assertions.assertEquals("90 - Sem pagamento", NFMeioPagamento.SEM_PAGAMENTO.toString());
+        Assertions.assertEquals("91 - Pagamento Posterior", NFMeioPagamento.PAGAMENTO_POSTERIOR.toString());
         Assertions.assertEquals("99 - Outro", NFMeioPagamento.OUTRO.toString());
+    }
+
+    @Test
+    public void deveRetornarNuloParaCodigoInexistente() {
+        Assertions.assertNull(NFMeioPagamento.valueOfCodigo("25"));
+        Assertions.assertNull(NFMeioPagamento.valueOfCodigo(null));
+    }
+
+    @Test
+    public void deveRepresentarADescricaoCorretamente() {
+        Assertions.assertEquals("Pagamento Instantâneo (PIX) - Automático", NFMeioPagamento.PIX_AUTOMATICO.getDescricao());
+        Assertions.assertEquals("TEF / booktransfer", NFMeioPagamento.TEF.getDescricao());
+        Assertions.assertEquals("Pagamento Posterior", NFMeioPagamento.PAGAMENTO_POSTERIOR.getDescricao());
     }
 }

@@ -5,7 +5,9 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
+import com.fincatto.documentofiscal.nfe400.classes.NFNotaMotivoDesoneracaoICMS;
 import com.fincatto.documentofiscal.nfe400.classes.NFOrigem;
+import com.fincatto.documentofiscal.nfe400.classes.NFTipoDeducaoIcms;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import org.simpleframework.xml.Element;
 
@@ -53,11 +55,78 @@ public class NFNotaInfoItemImpostoICMSPartilhado extends DFBase {
     @Element(name = "vICMSST")
     private String valorICMSST;
     
+    @Element(name = "vBCFCPST", required = false)
+    private String valorBaseCalculoFcpSt;
+
+    @Element(name = "pFCPST", required = false)
+    private String percentualFcpSt;
+
+    @Element(name = "vFCPST", required = false)
+    private String valorFcpSt;
+
     @Element(name = "pBCOp")
     private String percentualBCOperacaoPropria;
     
     @Element(name = "UFST")
     private String ufICMSST;
+
+    @Element(name = "vICMSDeson", required = false)
+    private String valorIcmsDesonerado;
+
+    @Element(name = "motDesICMS", required = false)
+    private NFNotaMotivoDesoneracaoICMS motivoDesoneracaoIcms;
+
+    @Element(name = "indDeduzDeson", required = false)
+    private NFTipoDeducaoIcms indicadorDeducaoDesoneracao;
+
+    public NFTipoDeducaoIcms getIndicadorDeducaoDesoneracao() {
+        return indicadorDeducaoDesoneracao;
+    }
+
+    public void setIndicadorDeducaoDesoneracao(NFTipoDeducaoIcms indicadorDeducaoDesoneracao) {
+        this.indicadorDeducaoDesoneracao = indicadorDeducaoDesoneracao;
+    }
+
+    public NFNotaMotivoDesoneracaoICMS getMotivoDesoneracaoIcms() {
+        return motivoDesoneracaoIcms;
+    }
+
+    public void setMotivoDesoneracaoIcms(NFNotaMotivoDesoneracaoICMS motivoDesoneracaoIcms) {
+        this.motivoDesoneracaoIcms = motivoDesoneracaoIcms;
+    }
+
+    public String getValorIcmsDesonerado() {
+        return valorIcmsDesonerado;
+    }
+
+    public void setValorIcmsDesonerado(BigDecimal valorIcmsDesonerado) {
+        this.valorIcmsDesonerado = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorIcmsDesonerado, "Valor ICMS Desonerado");
+    }
+
+    public String getValorFcpSt() {
+        return valorFcpSt;
+    }
+
+    public void setValorFcpSt(BigDecimal valorFcpSt) {
+        this.valorFcpSt = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorFcpSt, "Valor FCP ST");
+    }
+
+    public String getPercentualFcpSt() {
+        return percentualFcpSt;
+    }
+
+    public void setPercentualFcpSt(BigDecimal percentualFcpSt) {
+        this.percentualFcpSt = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualFcpSt, "Percentual FCP ST");
+    }
+
+    public String getValorBaseCalculoFcpSt() {
+        return valorBaseCalculoFcpSt;
+    }
+
+    public void setValorBaseCalculoFcpSt(BigDecimal valorBaseCalculoFcpSt) {
+        this.valorBaseCalculoFcpSt = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorBaseCalculoFcpSt, "Valor Base Cálculo FCP ST");
+    }
+
 
     public void setOrigem(final NFOrigem origem) {
         this.origem = origem;
