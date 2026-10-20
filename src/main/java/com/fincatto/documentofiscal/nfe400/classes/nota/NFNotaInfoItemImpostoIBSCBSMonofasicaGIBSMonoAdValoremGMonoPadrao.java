@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  *
  * @author Ommega Data
  */
-@Order(elements = {"vBCMono", "pAliqMonoUF", "vIBSMonoUf", "pAliqMonoMun", "vIBSMonoMun", "vIBSMono"})
+@Order(elements = {"vBCMono", "pAliqMonoUF", "vIBSMonoUF", "pAliqMonoMun", "vIBSMonoMun", "vIBSMono"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao extends DFBase {
 
     @Element(name = "vBCMono", required = true)
@@ -21,8 +21,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao e
     @Element(name = "pAliqMonoUF", required = true)
     private String pAliqMonoUF; // UB91b
 
-    @Element(name = "vIBSMonoUf", required = true)
-    private String vIBSMonoUf; // UB91c
+    @Element(name = "vIBSMonoUF", required = true)
+    private String vIBSMonoUF; // UB91c
 
     @Element(name = "pAliqMonoMun", required = true)
     private String pAliqMonoMun; // UB91d
@@ -49,12 +49,12 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao e
         this.pAliqMonoUF = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqMonoUF, "Alíquota ad valorem do IBS Estadual");
     }
 
-    public String getvIBSMonoUf() {
-        return vIBSMonoUf;
+    public String getvIBSMonoUF() {
+        return vIBSMonoUF;
     }
 
-    public void setvIBSMonoUf(BigDecimal vIBSMonoUf) {
-        this.vIBSMonoUf = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vIBSMonoUf, "Valor do IBS monofásico Estadual");
+    public void setvIBSMonoUF(BigDecimal vIBSMonoUF) {
+        this.vIBSMonoUF = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vIBSMonoUF, "Valor do IBS monofásico Estadual");
     }
 
     public String getpAliqMonoMun() {

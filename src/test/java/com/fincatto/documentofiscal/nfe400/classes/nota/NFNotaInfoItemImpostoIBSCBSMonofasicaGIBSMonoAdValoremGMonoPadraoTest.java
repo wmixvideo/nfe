@@ -27,7 +27,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadraoTe
     @Test
     public void naoDevePermitirVIBSMonoUfComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvIBSMonoUf(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvIBSMonoUF(new BigDecimal("10000000000000"));
         });
     }
 
@@ -69,8 +69,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadraoTe
     @Test
     public void deveSetarVIBSMonoUfCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvIBSMonoUf(new BigDecimal("12345678901.23"));
-        Assertions.assertEquals("12345678901.23", gMonoPadrao.getvIBSMonoUf());
+        gMonoPadrao.setvIBSMonoUF(new BigDecimal("12345678901.23"));
+        Assertions.assertEquals("12345678901.23", gMonoPadrao.getvIBSMonoUF());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadraoTe
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao><vBCMono>12345678901.23</vBCMono><pAliqMonoUF>9.8765</pAliqMonoUF><vIBSMonoUf>12345678901.23</vIBSMonoUf><pAliqMonoMun>5.4321</pAliqMonoMun><vIBSMonoMun>98765432109.87</vIBSMonoMun><vIBSMono>12345678901.23</vIBSMono></NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao>";
+        final String xmlEsperado = "<NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao><vBCMono>12345678901.23</vBCMono><pAliqMonoUF>9.8765</pAliqMonoUF><vIBSMonoUF>12345678901.23</vIBSMonoUF><pAliqMonoMun>5.4321</pAliqMonoMun><vIBSMonoMun>98765432109.87</vIBSMonoMun><vIBSMono>12345678901.23</vIBSMono></NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao>";
         Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().toString());
     }
 }

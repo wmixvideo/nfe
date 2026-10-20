@@ -1484,7 +1484,7 @@ public class FabricaDeObjetosFake {
         NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
         gMonoPadrao.setvBCMono(new BigDecimal("12345678901.23"));
         gMonoPadrao.setpAliqMonoUF(new BigDecimal("9.8765"));
-        gMonoPadrao.setvIBSMonoUf(new BigDecimal("12345678901.23"));
+        gMonoPadrao.setvIBSMonoUF(new BigDecimal("12345678901.23"));
         gMonoPadrao.setpAliqMonoMun(new BigDecimal("5.4321"));
         gMonoPadrao.setvIBSMonoMun(new BigDecimal("98765432109.87"));
         gMonoPadrao.setvIBSMono(new BigDecimal("12345678901.23"));
@@ -1622,11 +1622,19 @@ public class FabricaDeObjetosFake {
         return gCBSMonoAdValorem;
     }
 
-    public static NFNotaInfoItemImpostoIBSCBSMonofasia getNFNotaInfoItemImpostoIBSCBSMonofasia() {
+    public static NFNotaInfoItemImpostoIBSCBSMonofasia getNFNotaInfoItemImpostoIBSCBSMonofasiaAdRem() {
         NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
         monofasia.setgIBSMonoAdRem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem());
-        monofasia.setgIBSMonoAdValorem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem());
         monofasia.setgCBSMonoAdRem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem());
+        monofasia.setVTotIBSMonoItem(new BigDecimal("1234567890.12"));
+        monofasia.setVTotCBSMonoItem(new BigDecimal("1234567890.12"));
+
+        return monofasia;
+    }
+
+    public static NFNotaInfoItemImpostoIBSCBSMonofasia getNFNotaInfoItemImpostoIBSCBSMonofasiaAdValorem() {
+        NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setgIBSMonoAdValorem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem());
         monofasia.setgCBSMonoAdValorem(getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem());
         monofasia.setVTotIBSMonoItem(new BigDecimal("1234567890.12"));
         monofasia.setVTotCBSMonoItem(new BigDecimal("1234567890.12"));
