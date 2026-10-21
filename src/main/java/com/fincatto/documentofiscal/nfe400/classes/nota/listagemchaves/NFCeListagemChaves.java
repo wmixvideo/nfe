@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 @Root(name = "nfceListagemChaves")
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeListagemChaves extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8224706369395052302L;
 
     private static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Root(name = "retNfceListagemChaves", strict = false)
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeListagemChavesRetorno extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -414350360080806035L;
 
     @Attribute(name = "versao", required = false)
     private String versao;

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Root(name = "retNfceDownloadXML", strict = false)
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeDownloadXMLRetorno extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5793798672736578599L;
 
     @Attribute(name = "versao", required = false)
     private String versao;

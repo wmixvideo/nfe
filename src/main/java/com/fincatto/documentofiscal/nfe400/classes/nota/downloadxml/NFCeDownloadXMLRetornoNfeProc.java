@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 @Root(name = "nfeProc", strict = false)
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeDownloadXMLRetornoNfeProc extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5435024053609129373L;
 
     @Attribute(name = "versao", required = false)
     private String versao;

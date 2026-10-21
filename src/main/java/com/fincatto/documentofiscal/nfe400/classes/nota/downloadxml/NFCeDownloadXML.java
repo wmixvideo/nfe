@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Root(name = "nfceDownloadXML")
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeDownloadXML extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8080980125917701981L;
 
     @Attribute(name = "versao")
     private String versao;

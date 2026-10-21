@@ -12,7 +12,7 @@ import java.util.List;
 @Root(name = "proc")
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeDownloadXMLRetornoProc extends DFBase {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 311626701732539300L;
 
     @Element(name = "nfeProc", required = false)
     private NFCeDownloadXMLRetornoNfeProc nfeProc;
