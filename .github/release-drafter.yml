@@ -5,21 +5,26 @@ commitish: master
 
 categories:
   - title: 'Novidades'
-    labels:
-      - feature
-      - enhancement
+    when:
+      labels:
+        - feature
+        - enhancement
   - title: 'Correções'
-    labels:
-      - bug
+    when:
+      labels:
+        - bug
   - title: 'Segurança'
-    labels:
-      - security
+    when:
+      labels:
+        - security
   - title: 'Documentação'
-    labels:
-      - documentation
+    when:
+      labels:
+        - documentation
   - title: 'Dependências'
-    labels:
-      - dependencies
+    when:
+      labels:
+        - dependencies
 
 change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
 no-changes-template: '- Nenhuma alteração'
