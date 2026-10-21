@@ -13,15 +13,15 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRetTest 
     @Test
     public void naoDevePermitirVCBSMonoRetComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet().setvCBSMonoRet(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet().setVCBSMonoRet(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarVCBSMonoRetCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet gMonoRet = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet();
-        gMonoRet.setvCBSMonoRet(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoRet.getvCBSMonoRet());
+        gMonoRet.setVCBSMonoRet(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoRet.getVCBSMonoRet());
     }
 
     @Test

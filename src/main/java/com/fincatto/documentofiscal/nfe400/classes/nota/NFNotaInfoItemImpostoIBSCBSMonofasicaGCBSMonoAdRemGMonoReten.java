@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"qBCMonoReten", "adRemCBSReten", "vCBSMonoReten"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten extends DFBase {
 
+    private static final long serialVersionUID = -3978517686141237797L;
+
     @Element(name = "qBCMonoReten", required = true)
     private String qBCMonoReten; // UB97a
 
@@ -24,12 +26,12 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten extend
     @Element(name = "vCBSMonoReten", required = true)
     private String vCBSMonoReten; // UB97c
 
-    public String getqBCMonoReten() {
+    public String getQBCMonoReten() {
         return qBCMonoReten;
     }
 
-    public void setqBCMonoReten(BigDecimal qBCMonoReten) {
-        this.qBCMonoReten = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(qBCMonoReten, "Quantidade tributada sujeita à retenção na monofasia");
+    public void setQBCMonoReten(BigDecimal qBCMonoReten) {
+        this.qBCMonoReten = DFBigDecimalValidador.tamanho15Com4CasasDecimais(qBCMonoReten, "Quantidade tributada sujeita à retenção na monofasia");
     }
 
     public String getAdRemCBSReten() {
@@ -40,11 +42,11 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten extend
         this.adRemCBSReten = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(adRemCBSReten, "Alíquota ad rem da CBS sujeita à retenção");
     }
 
-    public String getvCBSMonoReten() {
+    public String getVCBSMonoReten() {
         return vCBSMonoReten;
     }
 
-    public void setvCBSMonoReten(BigDecimal vCBSMonoReten) {
+    public void setVCBSMonoReten(BigDecimal vCBSMonoReten) {
         this.vCBSMonoReten = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vCBSMonoReten, "Valor da CBS monofásica sujeita à retenção");
     }
 }

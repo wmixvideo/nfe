@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"gMonoPadrao", "gMonoReten", "gMonoRet", "gpBioDiferenca"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem extends DFBase {
 
+    private static final long serialVersionUID = -6521574290557507988L;
+
     @Element(name = "gMonoPadrao", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao gMonoPadrao; // UB96
 
@@ -27,27 +29,27 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem extends DFBase {
     @Element(name = "gpBioDiferenca", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca gpBioDiferenca; // UB99
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao getgMonoPadrao() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao getGMonoPadrao() {
         return gMonoPadrao;
     }
 
-    public void setgMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao gMonoPadrao) {
+    public void setGMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao gMonoPadrao) {
         this.gMonoPadrao = gMonoPadrao;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten getgMonoReten() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten getGMonoReten() {
         return gMonoReten;
     }
 
-    public void setgMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten gMonoReten) {
+    public void setGMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten gMonoReten) {
         this.gMonoReten = gMonoReten;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet getgMonoRet() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet getGMonoRet() {
         return gMonoRet;
     }
 
-    public void setgMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet gMonoRet) {
+    public void setGMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRet gMonoRet) {
         this.gMonoRet = gMonoRet;
     }
 

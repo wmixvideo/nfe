@@ -13,7 +13,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRetenTest {
     @Test
     public void naoDevePermitirQBCMonoRetenComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten().setqBCMonoReten(new BigDecimal("100000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten().setQBCMonoReten(new BigDecimal("100000000000"));
         });
     }
 
@@ -27,15 +27,15 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRetenTest {
     @Test
     public void naoDevePermitirVCBSMonoRetenComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten().setvCBSMonoReten(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten().setVCBSMonoReten(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarQBCMonoRetenCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten();
-        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
-        Assertions.assertEquals("1234567.8901", gMonoReten.getqBCMonoReten());
+        gMonoReten.setQBCMonoReten(new BigDecimal("1234567.8901"));
+        Assertions.assertEquals("1234567.8901", gMonoReten.getQBCMonoReten());
     }
 
     @Test
@@ -48,8 +48,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoRetenTest {
     @Test
     public void deveSetarVCBSMonoRetenCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoReten();
-        gMonoReten.setvCBSMonoReten(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoReten.getvCBSMonoReten());
+        gMonoReten.setVCBSMonoReten(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoReten.getVCBSMonoReten());
     }
 
     @Test

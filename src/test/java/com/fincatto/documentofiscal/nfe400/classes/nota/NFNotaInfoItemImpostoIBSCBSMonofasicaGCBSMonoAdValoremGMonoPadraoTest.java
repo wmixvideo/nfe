@@ -13,43 +13,43 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadraoTe
     @Test
     public void naoDevePermitirVBCMonoComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setvBCMono(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setVBCMono(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirPAliqMonoCBSComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setpAliqMonoCBS(new BigDecimal("1000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setPAliqMonoCBS(new BigDecimal("1000"));
         });
     }
 
     @Test
     public void naoDevePermitirVCBSMonoComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setvCBSMono(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao().setVCBSMono(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarVBCMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvBCMono(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoPadrao.getvBCMono());
+        gMonoPadrao.setVBCMono(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoPadrao.getVBCMono());
     }
 
     @Test
     public void deveSetarPAliqMonoCBSCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setpAliqMonoCBS(new BigDecimal("5.4321"));
-        Assertions.assertEquals("5.4321", gMonoPadrao.getpAliqMonoCBS());
+        gMonoPadrao.setPAliqMonoCBS(new BigDecimal("5.4321"));
+        Assertions.assertEquals("5.4321", gMonoPadrao.getPAliqMonoCBS());
     }
 
     @Test
     public void deveSetarVCBSMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvCBSMono(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoPadrao.getvCBSMono());
+        gMonoPadrao.setVCBSMono(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoPadrao.getVCBSMono());
     }
 
     @Test

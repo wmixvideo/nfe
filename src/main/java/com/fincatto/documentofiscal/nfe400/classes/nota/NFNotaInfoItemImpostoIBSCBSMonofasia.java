@@ -17,9 +17,6 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
 
   private static final long serialVersionUID = -366528394939416671L;
 
-  private boolean isSelecionadoIBS = false;
-  private boolean isSelecionadoCBS = false;
-
   @Element(name = "gIBSMonoAdRem", required = false)
   private NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem; // UB85a
 
@@ -39,39 +36,47 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   @Element(name = "vTotCBSMonoItem", required = true)
   private String vTotCBSMonoItem; // UB105b
 
-  public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem getgIBSMonoAdRem() {
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem getGIBSMonoAdRem() {
     return gIBSMonoAdRem;
   }
 
-  public void setgIBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem) {
-    this.validaApenasUmIBSSelecionado();
+  public void setGIBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem) {
+    if (gIBSMonoAdRem != null && this.gIBSMonoAdValorem != null) {
+      throw new IllegalStateException("Ja possui grupo IBS monofasico ad valorem selecionado");
+    }
     this.gIBSMonoAdRem = gIBSMonoAdRem;
   }
 
-  public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem getgIBSMonoAdValorem() {
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem getGIBSMonoAdValorem() {
     return gIBSMonoAdValorem;
   }
 
-  public void setgIBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem) {
-    this.validaApenasUmIBSSelecionado();
+  public void setGIBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem) {
+    if (gIBSMonoAdValorem != null && this.gIBSMonoAdRem != null) {
+      throw new IllegalStateException("Ja possui grupo IBS monofasico ad rem selecionado");
+    }
     this.gIBSMonoAdValorem = gIBSMonoAdValorem;
   }
 
-  public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem getgCBSMonoAdRem() {
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem getGCBSMonoAdRem() {
     return gCBSMonoAdRem;
   }
 
-  public void setgCBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem gCBSMonoAdRem) {
-    this.validaApenasUmCBSSelecionado();
+  public void setGCBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem gCBSMonoAdRem) {
+    if (gCBSMonoAdRem != null && this.gCBSMonoAdValorem != null) {
+      throw new IllegalStateException("Ja possui grupo CBS monofasico ad valorem selecionado");
+    }
     this.gCBSMonoAdRem = gCBSMonoAdRem;
   }
 
-  public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem getgCBSMonoAdValorem() {
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem getGCBSMonoAdValorem() {
     return gCBSMonoAdValorem;
   }
 
-  public void setgCBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem gCBSMonoAdValorem) {
-    this.validaApenasUmCBSSelecionado();
+  public void setGCBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem gCBSMonoAdValorem) {
+    if (gCBSMonoAdValorem != null && this.gCBSMonoAdRem != null) {
+      throw new IllegalStateException("Ja possui grupo CBS monofasico ad rem selecionado");
+    }
     this.gCBSMonoAdValorem = gCBSMonoAdValorem;
   }
 
@@ -89,19 +94,5 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
 
   public void setVTotCBSMonoItem(BigDecimal vTotCBSMonoItem) {
     this.vTotCBSMonoItem = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTotCBSMonoItem, "Total da CBS Monofásica");
-  }
-
-  private void validaApenasUmIBSSelecionado() {
-    if (this.isSelecionadoIBS) {
-      throw new IllegalStateException("Ja possui IBS selecionado");
-    }
-    this.isSelecionadoIBS = true;
-  }
-
-  private void validaApenasUmCBSSelecionado() {
-    if (this.isSelecionadoCBS) {
-      throw new IllegalStateException("Ja possui CBS selecionado");
-    }
-    this.isSelecionadoCBS = true;
   }
 }

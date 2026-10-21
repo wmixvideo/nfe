@@ -13,29 +13,29 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferencaTes
     @Test
     public void naoDevePermitirQBCBioCombComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca().setqBCBioComb(new BigDecimal("100000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca().setQBCBioComb(new BigDecimal("100000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirVCBSDiferencaComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca().setvCBSDiferenca(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca().setVCBSDiferenca(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarQBCBioCombCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca();
-        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
-        Assertions.assertEquals("1234567.8901", gpBioDiferenca.getqBCBioComb());
+        gpBioDiferenca.setQBCBioComb(new BigDecimal("1234567.8901"));
+        Assertions.assertEquals("1234567.8901", gpBioDiferenca.getQBCBioComb());
     }
 
     @Test
     public void deveSetarVCBSDiferencaCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGpBioDiferenca();
-        gpBioDiferenca.setvCBSDiferenca(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gpBioDiferenca.getvCBSDiferenca());
+        gpBioDiferenca.setVCBSDiferenca(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gpBioDiferenca.getVCBSDiferenca());
     }
 
     @Test

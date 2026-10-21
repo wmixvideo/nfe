@@ -13,24 +13,24 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremTest {
     public void deveSetarGMonoPadraoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
-        gIBSMonoAdValorem.setgMonoPadrao(gMonoPadrao);
-        Assertions.assertSame(gMonoPadrao, gIBSMonoAdValorem.getgMonoPadrao());
+        gIBSMonoAdValorem.setGMonoPadrao(gMonoPadrao);
+        Assertions.assertSame(gMonoPadrao, gIBSMonoAdValorem.getGMonoPadrao());
     }
 
     @Test
     public void deveSetarGMonoRetenCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten gMonoReten = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
-        gIBSMonoAdValorem.setgMonoReten(gMonoReten);
-        Assertions.assertSame(gMonoReten, gIBSMonoAdValorem.getgMonoReten());
+        gIBSMonoAdValorem.setGMonoReten(gMonoReten);
+        Assertions.assertSame(gMonoReten, gIBSMonoAdValorem.getGMonoReten());
     }
 
     @Test
     public void deveSetarGMonoRetCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet gMonoRet = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoRet();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
-        gIBSMonoAdValorem.setgMonoRet(gMonoRet);
-        Assertions.assertSame(gMonoRet, gIBSMonoAdValorem.getgMonoRet());
+        gIBSMonoAdValorem.setGMonoRet(gMonoRet);
+        Assertions.assertSame(gMonoRet, gIBSMonoAdValorem.getGMonoRet());
     }
 
     @Test

@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"vIBSMonoRet"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet extends DFBase {
 
+    private static final long serialVersionUID = -2986364112412910662L;
+
     @Element(name = "vIBSMonoRet", required = true)
     private String vIBSMonoRet; // UB88a
 

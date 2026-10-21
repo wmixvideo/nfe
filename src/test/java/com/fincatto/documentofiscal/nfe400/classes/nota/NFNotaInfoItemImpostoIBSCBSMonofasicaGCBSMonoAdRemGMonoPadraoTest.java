@@ -27,7 +27,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadraoTest {
     @Test
     public void naoDevePermitirVCBSMonoComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao().setvCBSMono(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao().setVCBSMono(new BigDecimal("10000000000000"));
         });
     }
 
@@ -48,8 +48,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadraoTest {
     @Test
     public void deveSetarVCBSMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao();
-        gMonoPadrao.setvCBSMono(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoPadrao.getvCBSMono());
+        gMonoPadrao.setVCBSMono(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoPadrao.getVCBSMono());
     }
 
     @Test

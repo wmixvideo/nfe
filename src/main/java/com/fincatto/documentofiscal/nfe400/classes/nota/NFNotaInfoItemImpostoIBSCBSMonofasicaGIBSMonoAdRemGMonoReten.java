@@ -12,8 +12,10 @@ import java.math.BigDecimal;
  *
  * @author Ommega Data
  */
-@Order(elements = {"qBCMonoReten", "adRemIBSReten", "vIBSMonoReten",})
+@Order(elements = {"qBCMonoReten", "adRemIBSReten", "vIBSMonoReten"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten extends DFBase {
+
+    private static final long serialVersionUID = -785768645700093297L;
 
     @Element(name = "qBCMonoReten", required = true)
     private String qBCMonoReten; // UB87a
@@ -24,12 +26,12 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten extend
     @Element(name = "vIBSMonoReten", required = true)
     private String vIBSMonoReten; // UB87c
 
-    public String getqBCMonoReten() {
+    public String getQBCMonoReten() {
         return qBCMonoReten;
     }
 
-    public void setqBCMonoReten(BigDecimal qBCMonoReten) {
-        this.qBCMonoReten = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(qBCMonoReten, "Quantidade tributada sujeita à retenção na monofasia");
+    public void setQBCMonoReten(BigDecimal qBCMonoReten) {
+        this.qBCMonoReten = DFBigDecimalValidador.tamanho15Com4CasasDecimais(qBCMonoReten, "Quantidade tributada sujeita à retenção na monofasia");
     }
 
     public String getAdRemIBSReten() {

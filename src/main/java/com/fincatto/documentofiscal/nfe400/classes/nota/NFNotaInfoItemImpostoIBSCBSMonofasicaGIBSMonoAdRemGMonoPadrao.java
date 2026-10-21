@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"qBCMono", "adRemIBS", "vIBSMono"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao extends DFBase {
 
+    private static final long serialVersionUID = -4704874647983175033L;
+
     @Element(name = "qBCMono", required = true)
     private String qBCMono; // UB86a
 
@@ -29,7 +31,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao exten
     }
 
     public void setQBCMono(BigDecimal qBCMono) {
-        this.qBCMono = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(qBCMono, "Quantidade tributada na monofasia");
+        this.qBCMono = DFBigDecimalValidador.tamanho15Com4CasasDecimais(qBCMono, "Quantidade tributada na monofasia");
     }
 
     public String getAdRemIBS() {

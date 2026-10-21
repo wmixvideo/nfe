@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"vBCMono", "pAliqMonoCBS", "vCBSMono"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao extends DFBase {
 
+    private static final long serialVersionUID = 6520481263562332168L;
+
     @Element(name = "vBCMono", required = true)
     private String vBCMono; // UB101a
 
@@ -24,27 +26,27 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao e
     @Element(name = "vCBSMono", required = true)
     private String vCBSMono; // UB101c
 
-    public String getvBCMono() {
+    public String getVBCMono() {
         return vBCMono;
     }
 
-    public void setvBCMono(BigDecimal vBCMono) {
+    public void setVBCMono(BigDecimal vBCMono) {
         this.vBCMono = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vBCMono, "Valor tributado na monofasia");
     }
 
-    public String getpAliqMonoCBS() {
+    public String getPAliqMonoCBS() {
         return pAliqMonoCBS;
     }
 
-    public void setpAliqMonoCBS(BigDecimal pAliqMonoCBS) {
+    public void setPAliqMonoCBS(BigDecimal pAliqMonoCBS) {
         this.pAliqMonoCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqMonoCBS, "Alíquota ad valorem da CBS");
     }
 
-    public String getvCBSMono() {
+    public String getVCBSMono() {
         return vCBSMono;
     }
 
-    public void setvCBSMono(BigDecimal vCBSMono) {
+    public void setVCBSMono(BigDecimal vCBSMono) {
         this.vCBSMono = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vCBSMono, "Valor da CBS monofásica");
     }
 }

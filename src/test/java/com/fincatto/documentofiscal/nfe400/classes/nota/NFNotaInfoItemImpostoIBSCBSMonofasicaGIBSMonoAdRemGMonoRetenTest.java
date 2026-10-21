@@ -13,7 +13,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRetenTest {
     @Test
     public void naoDevePermitirQBCMonoRetenComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten().setqBCMonoReten(new BigDecimal("100000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten().setQBCMonoReten(new BigDecimal("100000000000"));
         });
     }
 
@@ -34,8 +34,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRetenTest {
     @Test
     public void deveSetarQBCMonoRetenCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten gMonoReten = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten();
-        gMonoReten.setqBCMonoReten(new BigDecimal("1234567.8901"));
-        Assertions.assertEquals("1234567.8901", gMonoReten.getqBCMonoReten());
+        gMonoReten.setQBCMonoReten(new BigDecimal("1234567.8901"));
+        Assertions.assertEquals("1234567.8901", gMonoReten.getQBCMonoReten());
     }
 
     @Test

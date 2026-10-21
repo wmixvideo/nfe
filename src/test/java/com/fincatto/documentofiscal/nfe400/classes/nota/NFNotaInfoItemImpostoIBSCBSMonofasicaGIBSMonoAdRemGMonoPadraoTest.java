@@ -32,6 +32,13 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadraoTest {
     }
 
     @Test
+    public void deveSerializarQBCMonoComQuatroCasasDecimais() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao padrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao();
+        padrao.setQBCMono(new BigDecimal("10.5"));
+        Assertions.assertEquals("10.5000", padrao.getQBCMono());
+    }
+
+    @Test
     public void deveSetarQBCMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao();
         gMonoPadrao.setQBCMono(new BigDecimal("1234567.8901"));

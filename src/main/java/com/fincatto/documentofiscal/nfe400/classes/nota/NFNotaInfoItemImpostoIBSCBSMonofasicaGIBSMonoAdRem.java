@@ -12,6 +12,8 @@ import org.simpleframework.xml.Order;
 @Order(elements = {"gMonoPadrao", "gMonoReten", "gMonoRet", "gpBioDiferenca"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem extends DFBase {
 
+    private static final long serialVersionUID = 9194922809335403603L;
+
     @Element(name = "gMonoPadrao", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao; // UB86
 
@@ -24,27 +26,27 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem extends DFBase {
     @Element(name = "gpBioDiferenca", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca gpBioDiferenca; // UB89
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao getgMonoPadrao() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao getGMonoPadrao() {
         return gMonoPadrao;
     }
 
-    public void setgMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao) {
+    public void setGMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao) {
         this.gMonoPadrao = gMonoPadrao;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten getgMonoReten() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten getGMonoReten() {
         return gMonoReten;
     }
 
-    public void setgMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten gMonoReten) {
+    public void setGMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten gMonoReten) {
         this.gMonoReten = gMonoReten;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet getgMonoRet() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet getGMonoRet() {
         return gMonoRet;
     }
 
-    public void setgMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet gMonoRet) {
+    public void setGMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet gMonoRet) {
         this.gMonoRet = gMonoRet;
     }
 

@@ -13,24 +13,24 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemTest {
     public void deveSetarGMonoPadraoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao gMonoPadrao = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoPadrao();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
-        gIBSMonoAdRem.setgMonoPadrao(gMonoPadrao);
-        Assertions.assertSame(gMonoPadrao, gIBSMonoAdRem.getgMonoPadrao());
+        gIBSMonoAdRem.setGMonoPadrao(gMonoPadrao);
+        Assertions.assertSame(gMonoPadrao, gIBSMonoAdRem.getGMonoPadrao());
     }
 
     @Test
     public void deveSetarGMonoRetenCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten gMonoReten = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoReten();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
-        gIBSMonoAdRem.setgMonoReten(gMonoReten);
-        Assertions.assertSame(gMonoReten, gIBSMonoAdRem.getgMonoReten());
+        gIBSMonoAdRem.setGMonoReten(gMonoReten);
+        Assertions.assertSame(gMonoReten, gIBSMonoAdRem.getGMonoReten());
     }
 
     @Test
     public void deveSetarGMonoRetCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet gMonoRet = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGMonoRet();
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
-        gIBSMonoAdRem.setgMonoRet(gMonoRet);
-        Assertions.assertSame(gMonoRet, gIBSMonoAdRem.getgMonoRet());
+        gIBSMonoAdRem.setGMonoRet(gMonoRet);
+        Assertions.assertSame(gMonoRet, gIBSMonoAdRem.getGMonoRet());
     }
 
     @Test

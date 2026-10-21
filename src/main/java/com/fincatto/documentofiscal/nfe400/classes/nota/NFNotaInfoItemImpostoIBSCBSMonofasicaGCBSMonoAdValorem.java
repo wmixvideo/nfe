@@ -12,6 +12,8 @@ import org.simpleframework.xml.Order;
 @Order(elements = {"gMonoPadrao", "gMonoReten", "gMonoRet", "gpBioDiferenca"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem extends DFBase {
 
+    private static final long serialVersionUID = 8773783208476751334L;
+
     @Element(name = "gMonoPadrao", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao; // UB101
 
@@ -24,27 +26,27 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem extends DFBa
     @Element(name = "gpBioDiferenca", required = false)
     private NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGpBioDiferenca gpBioDiferenca; // UB104
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao getgMonoPadrao() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao getGMonoPadrao() {
         return gMonoPadrao;
     }
 
-    public void setgMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao) {
+    public void setGMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoPadrao gMonoPadrao) {
         this.gMonoPadrao = gMonoPadrao;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten getgMonoReten() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten getGMonoReten() {
         return gMonoReten;
     }
 
-    public void setgMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten gMonoReten) {
+    public void setGMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoReten gMonoReten) {
         this.gMonoReten = gMonoReten;
     }
 
-    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet getgMonoRet() {
+    public NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet getGMonoRet() {
         return gMonoRet;
     }
 
-    public void setgMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet gMonoRet) {
+    public void setGMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValoremGMonoRet gMonoRet) {
         this.gMonoRet = gMonoRet;
     }
 

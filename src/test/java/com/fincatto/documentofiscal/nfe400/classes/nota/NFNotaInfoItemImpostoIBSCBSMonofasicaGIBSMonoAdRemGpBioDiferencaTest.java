@@ -13,29 +13,29 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferencaTes
     @Test
     public void naoDevePermitirQBCBioCombComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca().setqBCBioComb(new BigDecimal("100000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca().setQBCBioComb(new BigDecimal("100000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirVIBSDiferencaComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca().setvIBSDiferenca(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca().setVIBSDiferenca(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarQBCBioCombCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca();
-        gpBioDiferenca.setqBCBioComb(new BigDecimal("1234567.8901"));
-        Assertions.assertEquals("1234567.8901", gpBioDiferenca.getqBCBioComb());
+        gpBioDiferenca.setQBCBioComb(new BigDecimal("1234567.8901"));
+        Assertions.assertEquals("1234567.8901", gpBioDiferenca.getQBCBioComb());
     }
 
     @Test
     public void deveSetarVIBSDiferencaCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca gpBioDiferenca = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca();
-        gpBioDiferenca.setvIBSDiferenca(new BigDecimal("12345678901.23"));
-        Assertions.assertEquals("12345678901.23", gpBioDiferenca.getvIBSDiferenca());
+        gpBioDiferenca.setVIBSDiferenca(new BigDecimal("12345678901.23"));
+        Assertions.assertEquals("12345678901.23", gpBioDiferenca.getVIBSDiferenca());
     }
 
     @Test

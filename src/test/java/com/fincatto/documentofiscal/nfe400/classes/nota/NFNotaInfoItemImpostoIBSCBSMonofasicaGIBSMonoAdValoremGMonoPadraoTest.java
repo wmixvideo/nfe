@@ -13,85 +13,85 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadraoTe
     @Test
     public void naoDevePermitirVBCMonoComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvBCMono(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setVBCMono(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirPAliqMonoUFComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setpAliqMonoUF(new BigDecimal("1000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setPAliqMonoUF(new BigDecimal("1000"));
         });
     }
 
     @Test
     public void naoDevePermitirVIBSMonoUfComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvIBSMonoUF(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setVIBSMonoUF(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirPAliqMonoMunComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setpAliqMonoMun(new BigDecimal("1000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setPAliqMonoMun(new BigDecimal("1000"));
         });
     }
 
     @Test
     public void naoDevePermitirVIBSMonoMunComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvIBSMonoMun(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setVIBSMonoMun(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void naoDevePermitirVIBSMonoComTamanhoInvalido() {
         Assertions.assertThrows(NumberFormatException.class, () -> {
-            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setvIBSMono(new BigDecimal("10000000000000"));
+            new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao().setVIBSMono(new BigDecimal("10000000000000"));
         });
     }
 
     @Test
     public void deveSetarVBCMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvBCMono(new BigDecimal("12345678901.23"));
-        Assertions.assertEquals("12345678901.23", gMonoPadrao.getvBCMono());
+        gMonoPadrao.setVBCMono(new BigDecimal("12345678901.23"));
+        Assertions.assertEquals("12345678901.23", gMonoPadrao.getVBCMono());
     }
 
     @Test
     public void deveSetarPAliqMonoUFCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setpAliqMonoUF(new BigDecimal("9.8765"));
-        Assertions.assertEquals("9.8765", gMonoPadrao.getpAliqMonoUF());
+        gMonoPadrao.setPAliqMonoUF(new BigDecimal("9.8765"));
+        Assertions.assertEquals("9.8765", gMonoPadrao.getPAliqMonoUF());
     }
 
     @Test
     public void deveSetarVIBSMonoUfCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvIBSMonoUF(new BigDecimal("12345678901.23"));
-        Assertions.assertEquals("12345678901.23", gMonoPadrao.getvIBSMonoUF());
+        gMonoPadrao.setVIBSMonoUF(new BigDecimal("12345678901.23"));
+        Assertions.assertEquals("12345678901.23", gMonoPadrao.getVIBSMonoUF());
     }
 
     @Test
     public void deveSetarPAliqMonoMunCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setpAliqMonoMun(new BigDecimal("5.4321"));
-        Assertions.assertEquals("5.4321", gMonoPadrao.getpAliqMonoMun());
+        gMonoPadrao.setPAliqMonoMun(new BigDecimal("5.4321"));
+        Assertions.assertEquals("5.4321", gMonoPadrao.getPAliqMonoMun());
     }
 
     @Test
     public void deveSetarVIBSMonoMunCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvIBSMonoMun(new BigDecimal("98765432109.87"));
-        Assertions.assertEquals("98765432109.87", gMonoPadrao.getvIBSMonoMun());
+        gMonoPadrao.setVIBSMonoMun(new BigDecimal("98765432109.87"));
+        Assertions.assertEquals("98765432109.87", gMonoPadrao.getVIBSMonoMun());
     }
 
     @Test
     public void deveSetarVIBSMonoCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao gMonoPadrao = new NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoPadrao();
-        gMonoPadrao.setvIBSMono(new BigDecimal("12345678901.23"));
-        Assertions.assertEquals("12345678901.23", gMonoPadrao.getvIBSMono());
+        gMonoPadrao.setVIBSMono(new BigDecimal("12345678901.23"));
+        Assertions.assertEquals("12345678901.23", gMonoPadrao.getVIBSMono());
     }
 
     @Test

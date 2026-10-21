@@ -42,32 +42,69 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasiaTest {
     public void deveSetarGIBSMonoAdRemCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
         final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
-        monofasia.setgIBSMonoAdRem(gIBSMonoAdRem);
-        Assertions.assertSame(gIBSMonoAdRem, monofasia.getgIBSMonoAdRem());
+        monofasia.setGIBSMonoAdRem(gIBSMonoAdRem);
+        Assertions.assertSame(gIBSMonoAdRem, monofasia.getGIBSMonoAdRem());
     }
 
     @Test
     public void deveSetarGIBSMonoAdValoremCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
         final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
-        monofasia.setgIBSMonoAdValorem(gIBSMonoAdValorem);
-        Assertions.assertSame(gIBSMonoAdValorem, monofasia.getgIBSMonoAdValorem());
+        monofasia.setGIBSMonoAdValorem(gIBSMonoAdValorem);
+        Assertions.assertSame(gIBSMonoAdValorem, monofasia.getGIBSMonoAdValorem());
     }
 
     @Test
     public void deveSetarGCBSMonoAdRemCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem gCBSMonoAdRem = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem();
         final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
-        monofasia.setgCBSMonoAdRem(gCBSMonoAdRem);
-        Assertions.assertSame(gCBSMonoAdRem, monofasia.getgCBSMonoAdRem());
+        monofasia.setGCBSMonoAdRem(gCBSMonoAdRem);
+        Assertions.assertSame(gCBSMonoAdRem, monofasia.getGCBSMonoAdRem());
     }
 
     @Test
     public void deveSetarGCBSMonoAdValoremCorretamente() {
         final NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem gCBSMonoAdValorem = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem();
         final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
-        monofasia.setgCBSMonoAdValorem(gCBSMonoAdValorem);
-        Assertions.assertSame(gCBSMonoAdValorem, monofasia.getgCBSMonoAdValorem());
+        monofasia.setGCBSMonoAdValorem(gCBSMonoAdValorem);
+        Assertions.assertSame(gCBSMonoAdValorem, monofasia.getGCBSMonoAdValorem());
+    }
+
+    @Test
+    public void naoDevePermitirIBSAdRemEAdValoremSimultaneos() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setGIBSMonoAdRem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem());
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            monofasia.setGIBSMonoAdValorem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem());
+        });
+    }
+
+    @Test
+    public void naoDevePermitirCBSAdRemEAdValoremSimultaneos() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setGCBSMonoAdValorem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem());
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            monofasia.setGCBSMonoAdRem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem());
+        });
+    }
+
+    @Test
+    public void devePermitirSubstituirOMesmoGrupo() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setGIBSMonoAdRem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem());
+        final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem substituto = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem();
+        monofasia.setGIBSMonoAdRem(substituto);
+        Assertions.assertSame(substituto, monofasia.getGIBSMonoAdRem());
+    }
+
+    @Test
+    public void devePermitirTrocarDeGrupoAposLimparOAnterior() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasia monofasia = new NFNotaInfoItemImpostoIBSCBSMonofasia();
+        monofasia.setGIBSMonoAdRem(FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem());
+        monofasia.setGIBSMonoAdRem(null);
+        final NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem adValorem = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem();
+        monofasia.setGIBSMonoAdValorem(adValorem);
+        Assertions.assertSame(adValorem, monofasia.getGIBSMonoAdValorem());
     }
 
     @Test

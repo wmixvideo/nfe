@@ -14,25 +14,27 @@ import java.math.BigDecimal;
  */
 @Order(elements = {"qBCBioComb", "vIBSDiferenca"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRemGpBioDiferenca extends DFBase {
+
+    private static final long serialVersionUID = -224632089685660764L;
     @Element(name = "qBCBioComb", required = true)
     private String qBCBioComb; // UB89a
 
     @Element(name = "vIBSDiferenca", required = true)
     private String vIBSDiferenca; // UB89b
 
-    public String getqBCBioComb() {
+    public String getQBCBioComb() {
         return qBCBioComb;
     }
 
-    public void setqBCBioComb(BigDecimal qBCBioComb) {
-        this.qBCBioComb = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(qBCBioComb, "Quantidade de Biocombustível (EAC) a recolher ou a ressarcir");
+    public void setQBCBioComb(BigDecimal qBCBioComb) {
+        this.qBCBioComb = DFBigDecimalValidador.tamanho15Com4CasasDecimais(qBCBioComb, "Quantidade de Biocombustível (EAC) a recolher ou a ressarcir");
     }
 
-    public String getvIBSDiferenca() {
+    public String getVIBSDiferenca() {
         return vIBSDiferenca;
     }
 
-    public void setvIBSDiferenca(BigDecimal vIBSDiferenca) {
+    public void setVIBSDiferenca(BigDecimal vIBSDiferenca) {
         this.vIBSDiferenca = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vIBSDiferenca, "Valor do IBS correspondente a diferença em relação ao pBioObrigatorio");
     }
 }

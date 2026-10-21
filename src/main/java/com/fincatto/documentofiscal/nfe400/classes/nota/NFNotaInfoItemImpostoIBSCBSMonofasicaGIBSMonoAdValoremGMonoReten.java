@@ -12,8 +12,10 @@ import java.math.BigDecimal;
  *
  * @author Ommega Data
  */
-@Order(elements = {"vBCMonoReten", "pAliqMonoReten", "vIBSMonoReten",})
+@Order(elements = {"vBCMonoReten", "pAliqMonoReten", "vIBSMonoReten"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten extends DFBase {
+
+    private static final long serialVersionUID = -3883596870990251648L;
 
     @Element(name = "vBCMonoReten", required = true)
     private String vBCMonoReten; // UB92a
@@ -24,27 +26,27 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValoremGMonoReten ex
     @Element(name = "vIBSMonoReten", required = true)
     private String vIBSMonoReten; // UB92c
 
-    public String getvBCMonoReten() {
+    public String getVBCMonoReten() {
         return vBCMonoReten;
     }
 
-    public void setvBCMonoReten(BigDecimal vBCMonoReten) {
+    public void setVBCMonoReten(BigDecimal vBCMonoReten) {
         this.vBCMonoReten = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vBCMonoReten, "Valor tributado sujeito à retenção na monofasia");
     }
 
-    public String getpAliqMonoReten() {
+    public String getPAliqMonoReten() {
         return pAliqMonoReten;
     }
 
-    public void setpAliqMonoReten(BigDecimal pAliqMonoReten) {
+    public void setPAliqMonoReten(BigDecimal pAliqMonoReten) {
         this.pAliqMonoReten = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(pAliqMonoReten, "Alíquota ad valorem do IBS sujeito à retenção");
     }
 
-    public String getvIBSMonoReten() {
+    public String getVIBSMonoReten() {
         return vIBSMonoReten;
     }
 
-    public void setvIBSMonoReten(BigDecimal vIBSMonoReten) {
+    public void setVIBSMonoReten(BigDecimal vIBSMonoReten) {
         this.vIBSMonoReten = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vIBSMonoReten, "Valor do IBS monofásico sujeito à retenção");
     }
 }

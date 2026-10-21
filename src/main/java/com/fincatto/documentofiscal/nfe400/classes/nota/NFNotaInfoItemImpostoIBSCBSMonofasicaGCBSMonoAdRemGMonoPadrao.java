@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 @Order(elements = {"qBCMono", "adRemCBS", "vCBSMono"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao extends DFBase {
 
+    private static final long serialVersionUID = -3772768572377005807L;
+
     @Element(name = "qBCMono", required = true)
     private String qBCMono; // UB96a
 
@@ -29,7 +31,7 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao exten
     }
 
     public void setQBCMono(BigDecimal qBCMono) {
-        this.qBCMono = DFBigDecimalValidador.tamanho15comAte4CasasDecimais(qBCMono, "Quantidade tributada na monofasia");
+        this.qBCMono = DFBigDecimalValidador.tamanho15Com4CasasDecimais(qBCMono, "Quantidade tributada na monofasia");
     }
 
     public String getAdRemCBS() {
@@ -40,11 +42,11 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRemGMonoPadrao exten
         this.adRemCBS = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(adRemCBS, "Alíquota ad rem da CBS");
     }
 
-    public String getvCBSMono() {
+    public String getVCBSMono() {
         return vCBSMono;
     }
 
-    public void setvCBSMono(BigDecimal vCBSMono) {
+    public void setVCBSMono(BigDecimal vCBSMono) {
         this.vCBSMono = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vCBSMono, "Valor da CBS monofásica");
     }
 }
