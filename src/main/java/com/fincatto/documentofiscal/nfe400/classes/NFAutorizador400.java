@@ -1140,6 +1140,16 @@ public enum NFAutorizador400 {
         }
 
         @Override
+        public String getNfceListagemChaves(final DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/NFCeListagemChaves.asmx" : "https://nfce.fazenda.sp.gov.br/ws/NFCeListagemChaves.asmx";
+        }
+
+        @Override
+        public String getNfceDownloadXML(final DFAmbiente ambiente) {
+            return DFAmbiente.HOMOLOGACAO.equals(ambiente) ? "https://homologacao.nfce.fazenda.sp.gov.br/ws/NFCeDownloadXML.asmx" : "https://nfce.fazenda.sp.gov.br/ws/NFCeDownloadXML.asmx";
+        }
+
+        @Override
         public DFUnidadeFederativa[] getUFs() {
             return new DFUnidadeFederativa[]{DFUnidadeFederativa.SP};
         }
@@ -1536,6 +1546,14 @@ public enum NFAutorizador400 {
     public abstract String getRecepcaoEventoAN(final DFAmbiente ambiente);
 
     public abstract String getNFeDistribuicaoDFe(final DFAmbiente ambiente);
+
+    public String getNfceListagemChaves(final DFAmbiente ambiente) {
+        throw new UnsupportedOperationException("Servico exclusivo da SEFAZ-SP");
+    }
+
+    public String getNfceDownloadXML(final DFAmbiente ambiente) {
+        throw new UnsupportedOperationException("Servico exclusivo da SEFAZ-SP");
+    }
 
     public abstract DFUnidadeFederativa[] getUFs();
 
