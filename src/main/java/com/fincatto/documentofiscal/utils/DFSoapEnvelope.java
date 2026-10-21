@@ -43,7 +43,7 @@ public abstract class DFSoapEnvelope {
     /**
      * Envelopa o XML de negocio dentro de {@code soap:Envelope/soap:Body/wrapperElemento}, com
      * um {@code soap:Header} adicional - usado por WSDLs que exigem cabecalho (ex.: o
-     * {@code cteCabecMsg} de todo webservice do cte300, com {@code cUF}/{@code versaoDados|).
+     * {@code cteCabecMsg} de todo webservice do cte300, com {@code cUF}/{@code versaoDados}).
      * Overload aditivo: nao afeta {@link #envelopar(String, String, String)}, usado por
      * servicos sem cabecalho (nfe400, cte400).
      * @param namespace namespace do elemento de cabecalho e do elemento wrapper do corpo (o
