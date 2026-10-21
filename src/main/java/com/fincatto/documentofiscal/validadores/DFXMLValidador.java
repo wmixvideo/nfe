@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 public final class DFXMLValidador {
 
     private static final String PACOTE_NFE310 = "schemas/PL_008i2";
-    private static final String PACOTE_NFE400 = "schemas/PL_010e_NT2025.002_v1.01";
+    private static final String PACOTE_NFE400 = "schemas/PL_010f_v1.04";
     private static final String PACOTE_MDFE300 = "schemas/PL_MDFe_300b_NT012025_1.03";
     private static final String PACOTE_CTE300 = "schemas/PL_CTe_300a_NT2022.001";
     private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.002_RTC_1.01";
