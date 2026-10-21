@@ -34,7 +34,7 @@ class WSNFCeDownloadXML implements DFLog {
     }
 
     private String efetuaDownload(final String xmlConsulta, final String chave) throws Exception {
-        final String endpoint = NFAutorizador400.SP.getNfceDownloadXML(this.config.getAmbiente());
+        final String endpoint = NFAutorizador400.valueOfChaveAcesso(chave).getNfceDownloadXML(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para NFCeDownloadXML, chave " + chave);
         }

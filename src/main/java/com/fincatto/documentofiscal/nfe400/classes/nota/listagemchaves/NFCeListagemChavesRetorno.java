@@ -9,6 +9,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Root(name = "retNfceListagemChaves", strict = false)
@@ -26,7 +27,7 @@ public class NFCeListagemChavesRetorno extends DFBase {
     private String versaoAplicacao;
 
     @Element(name = "dhReq")
-    private String dataHoraRequisicao;
+    private LocalDateTime dataHoraRequisicao;
 
     @Element(name = "cStat")
     private String status;
@@ -38,7 +39,7 @@ public class NFCeListagemChavesRetorno extends DFBase {
     private List<String> chaves;
 
     @Element(name = "dhEmisUltNfce", required = false)
-    private String dataHoraEmissaoUltimaNFCe;
+    private LocalDateTime dataHoraEmissaoUltimaNFCe;
 
     public String getVersao() {
         return this.versao;
@@ -64,11 +65,11 @@ public class NFCeListagemChavesRetorno extends DFBase {
         this.versaoAplicacao = versaoAplicacao;
     }
 
-    public String getDataHoraRequisicao() {
+    public LocalDateTime getDataHoraRequisicao() {
         return this.dataHoraRequisicao;
     }
 
-    public void setDataHoraRequisicao(final String dataHoraRequisicao) {
+    public void setDataHoraRequisicao(final LocalDateTime dataHoraRequisicao) {
         this.dataHoraRequisicao = dataHoraRequisicao;
     }
 
@@ -96,11 +97,11 @@ public class NFCeListagemChavesRetorno extends DFBase {
         this.chaves = chaves;
     }
 
-    public String getDataHoraEmissaoUltimaNFCe() {
+    public LocalDateTime getDataHoraEmissaoUltimaNFCe() {
         return this.dataHoraEmissaoUltimaNFCe;
     }
 
-    public void setDataHoraEmissaoUltimaNFCe(final String dataHoraEmissaoUltimaNFCe) {
+    public void setDataHoraEmissaoUltimaNFCe(final LocalDateTime dataHoraEmissaoUltimaNFCe) {
         this.dataHoraEmissaoUltimaNFCe = dataHoraEmissaoUltimaNFCe;
     }
 }

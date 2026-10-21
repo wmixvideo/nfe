@@ -789,6 +789,10 @@ public class WSFacade implements Closeable {
     /**
      * Servico exclusivo da SEFAZ-SP para obtencao da relacao de chaves das NFC-e recebidas pela Sefaz num
      * determinado periodo, para o contribuinte identificado pelo CNPJ do certificado digital utilizado na chamada.
+     * Limites do servico (NT SAE-NFC-e v1.0.0): consulta apenas os ultimos 100 dias, retorna no maximo 2.000 chaves
+     * por consulta e possui limite de requisicoes por IP.
+     * Quando a listagem vem incompleta, o campo dhEmisUltNfce do retorno traz a data e hora de emissao da ultima NFC-e
+     * listada; use-o como data e hora inicial de uma nova consulta para obter as chaves restantes.
      *
      * @param dataHoraInicial data e hora inicial do periodo de busca
      * @param dataHoraFinal data e hora final do periodo de busca (opcional)
@@ -805,6 +809,7 @@ public class WSFacade implements Closeable {
 
     /**
      * Servico exclusivo da SEFAZ-SP para download do XML de uma NFC-e (e seus eventos associados) a partir da sua chave de acesso.
+     * Limites do servico (NT SAE-NFC-e v1.0.0): somente NFC-e dos ultimos 100 dias e limite de requisicoes por IP.
      *
      * @param chaveDeAcesso chave de acesso da NFC-e
      * @return dados do download do XML da NFC-e retornado pelo webservice

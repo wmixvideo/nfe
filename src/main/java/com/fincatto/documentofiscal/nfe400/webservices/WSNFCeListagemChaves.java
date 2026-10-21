@@ -35,7 +35,7 @@ class WSNFCeListagemChaves implements DFLog {
     }
 
     private String efetuaConsulta(final String xmlConsulta) throws Exception {
-        final String endpoint = NFAutorizador400.SP.getNfceListagemChaves(this.config.getAmbiente());
+        final String endpoint = NFAutorizador400.valueOfCodigoUF(this.config.getCUF()).getNfceListagemChaves(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para NFCeListagemChaves");
         }

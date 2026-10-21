@@ -8,6 +8,8 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
+import java.time.LocalDateTime;
+
 @Root(name = "retNfceDownloadXML", strict = false)
 @Namespace(reference = NFeConfig.NAMESPACE)
 public class NFCeDownloadXMLRetorno extends DFBase {
@@ -23,7 +25,7 @@ public class NFCeDownloadXMLRetorno extends DFBase {
     private String versaoAplicacao;
 
     @Element(name = "dhReq")
-    private String dataHoraRequisicao;
+    private LocalDateTime dataHoraRequisicao;
 
     @Element(name = "cStat")
     private String status;
@@ -58,11 +60,11 @@ public class NFCeDownloadXMLRetorno extends DFBase {
         this.versaoAplicacao = versaoAplicacao;
     }
 
-    public String getDataHoraRequisicao() {
+    public LocalDateTime getDataHoraRequisicao() {
         return this.dataHoraRequisicao;
     }
 
-    public void setDataHoraRequisicao(final String dataHoraRequisicao) {
+    public void setDataHoraRequisicao(final LocalDateTime dataHoraRequisicao) {
         this.dataHoraRequisicao = dataHoraRequisicao;
     }
 

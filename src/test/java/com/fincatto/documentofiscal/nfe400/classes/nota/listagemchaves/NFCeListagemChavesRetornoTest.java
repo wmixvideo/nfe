@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.utils.DFPersister;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class NFCeListagemChavesRetornoTest {
     @Test
     public void deveObterDataHoraEmissaoUltimaNFCeComoFoiSetado() {
         final NFCeListagemChavesRetorno retorno = new NFCeListagemChavesRetorno();
-        retorno.setDataHoraEmissaoUltimaNFCe("2026-07-21T15:30:00");
-        Assertions.assertEquals("2026-07-21T15:30:00", retorno.getDataHoraEmissaoUltimaNFCe());
+        retorno.setDataHoraEmissaoUltimaNFCe(LocalDateTime.of(2026, 7, 21, 15, 30));
+        Assertions.assertEquals(LocalDateTime.of(2026, 7, 21, 15, 30), retorno.getDataHoraEmissaoUltimaNFCe());
     }
 
     @Test
@@ -72,7 +73,8 @@ public class NFCeListagemChavesRetornoTest {
         Assertions.assertEquals("100", retorno.getStatus());
         Assertions.assertEquals("Consulta realizada com sucesso", retorno.getMotivo());
         Assertions.assertEquals(2, retorno.getChaves().size());
-        Assertions.assertEquals("2026-07-21T15:00:00", retorno.getDataHoraEmissaoUltimaNFCe());
+        Assertions.assertEquals(LocalDateTime.of(2026, 7, 21, 15, 0), retorno.getDataHoraEmissaoUltimaNFCe());
+        Assertions.assertEquals(LocalDateTime.of(2026, 7, 21, 15, 30), retorno.getDataHoraRequisicao());
     }
 
     @Test
