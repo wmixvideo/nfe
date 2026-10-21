@@ -56,6 +56,9 @@ jobs:
         run: |
           git config user.email "oss@t3w.io"
           git config user.name "T3W Continuous Integration"
+          # O release:perform clona o repositório de novo (target/checkout) e esse clone não lê a
+          # config local deste checkout; propaga a chave SSH do checkout para a config global
+          git config --global core.sshCommand "$(git config --local core.sshCommand)"
 
       # Settings com as credenciais do Sonatype e a passphrase do GPG, usado só na publicação no Maven Central
       - name: Configure Maven settings for Sonatype
