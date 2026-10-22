@@ -17,6 +17,21 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
 
   private static final long serialVersionUID = -366528394939416671L;
 
+  @Deprecated(since = "2025.002-RTC-1.5", forRemoval = true)
+  @Element(required = false)
+  private NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao gMonoPadrao; // UB84a
+
+  @Deprecated(since = "2025.002-RTC-1.5", forRemoval = true)
+  @Element(required = false)
+  private NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten gMonoReten; // UB90
+
+  @Deprecated(since = "2025.002-RTC-1.5", forRemoval = true)
+  @Element(required = false)
+  private NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet gMonoRet; // UB94
+
+  @Element(required = false)
+  private NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif gMonoDif; // UB99
+
   @Element(name = "gIBSMonoAdRem", required = false)
   private NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem; // UB85a
 
@@ -95,4 +110,37 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   public void setVTotCBSMonoItem(BigDecimal vTotCBSMonoItem) {
     this.vTotCBSMonoItem = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vTotCBSMonoItem, "Total da CBS Monofásica");
   }
+
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao getgMonoPadrao() {
+    return gMonoPadrao;
+  }
+
+  public void setgMonoPadrao(NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao gMonoPadrao) {
+    this.gMonoPadrao = gMonoPadrao;
+  }
+
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten getgMonoReten() {
+    return gMonoReten;
+  }
+
+  public void setgMonoReten(NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoReten gMonoReten) {
+    this.gMonoReten = gMonoReten;
+  }
+
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet getgMonoRet() {
+    return gMonoRet;
+  }
+
+  public void setgMonoRet(NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoRet gMonoRet) {
+    this.gMonoRet = gMonoRet;
+  }
+
+  public NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif getgMonoDif() {
+    return gMonoDif;
+  }
+
+  public void setgMonoDif(NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif gMonoDif) {
+    this.gMonoDif = gMonoDif;
+  }
+
 }
