@@ -56,8 +56,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   }
 
   public void setGIBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdRem gIBSMonoAdRem) {
-    if (gIBSMonoAdRem != null && this.gIBSMonoAdValorem != null) {
-      throw new IllegalStateException("Ja possui grupo IBS monofasico ad valorem selecionado");
+    if (gIBSMonoAdRem != null && this.gIBSMonoAdRem != null) {
+      throw new IllegalStateException("Ja possui grupo IBS monofasico ad rem selecionado");
     }
     this.gIBSMonoAdRem = gIBSMonoAdRem;
   }
@@ -67,8 +67,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   }
 
   public void setGIBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGIBSMonoAdValorem gIBSMonoAdValorem) {
-    if (gIBSMonoAdValorem != null && this.gIBSMonoAdRem != null) {
-      throw new IllegalStateException("Ja possui grupo IBS monofasico ad rem selecionado");
+    if (gIBSMonoAdValorem != null && this.gIBSMonoAdValorem != null) {
+      throw new IllegalStateException("Ja possui grupo IBS monofasico ad valorem selecionado");
     }
     this.gIBSMonoAdValorem = gIBSMonoAdValorem;
   }
@@ -78,8 +78,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   }
 
   public void setGCBSMonoAdRem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdRem gCBSMonoAdRem) {
-    if (gCBSMonoAdRem != null && this.gCBSMonoAdValorem != null) {
-      throw new IllegalStateException("Ja possui grupo CBS monofasico ad valorem selecionado");
+    if (gCBSMonoAdRem != null && this.gCBSMonoAdRem != null) {
+      throw new IllegalStateException("Ja possui grupo CBS monofasico ad rem selecionado");
     }
     this.gCBSMonoAdRem = gCBSMonoAdRem;
   }
@@ -89,8 +89,8 @@ public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
   }
 
   public void setGCBSMonoAdValorem(NFNotaInfoItemImpostoIBSCBSMonofasicaGCBSMonoAdValorem gCBSMonoAdValorem) {
-    if (gCBSMonoAdValorem != null && this.gCBSMonoAdRem != null) {
-      throw new IllegalStateException("Ja possui grupo CBS monofasico ad rem selecionado");
+    if (gCBSMonoAdValorem != null && this.gCBSMonoAdValorem != null) {
+      throw new IllegalStateException("Ja possui grupo CBS monofasico ad valor rem selecionado");
     }
     this.gCBSMonoAdValorem = gCBSMonoAdValorem;
   }
