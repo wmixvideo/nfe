@@ -12,7 +12,7 @@ import org.simpleframework.xml.Order;
  * @author Edivaldo Merlo Stens
  * @author Ommega Data
  */
-@Order(elements = {"gIBSMonoAdRem", "gIBSMonoAdValorem", "gCBSMonoAdRem", "gCBSMonoAdValorem", "vTotIBSMonoItem", "vTotCBSMonoItem"})
+@Order(elements = {"gMonoPadrao", "gMonoReten", "gMonoRet", "gMonoDif", "gIBSMonoAdRem", "gIBSMonoAdValorem", "gCBSMonoAdRem", "gCBSMonoAdValorem", "vTotIBSMonoItem", "vTotCBSMonoItem"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
 
   private static final long serialVersionUID = -366528394939416671L;
