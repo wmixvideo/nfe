@@ -124,7 +124,9 @@ final class DanfeCabecalho {
         canvas.codigoBarras128(x + 4, largura - 8, 24f, texto(chaveAcesso));
         canvas.avancar(26);
         canvas.caixa(x, largura, 26f, "CHAVE DE ACESSO", "", ESQUERDA);
-        escreverEm(canvas, 11, x + 2, largura - 4, DanfeFormatador.chaveAcesso(chaveAcesso), 7f);
+        canvas.avancar(11);
+        canvas.textoCentralizado(x + 2, largura - 4, DanfeFormatador.chaveAcesso(chaveAcesso), 7f);
+        canvas.avancar(-11);
         canvas.avancar(26);
         canvas.caixa(x, largura, 26f, "", "", ESQUERDA);
         escreverEm(canvas, 3, x + 2, largura - 4,

@@ -363,6 +363,19 @@ final class DanfeCanvas {
     }
 
     /**
+     * Desenha uma unica linha de texto centralizada na largura informada, a partir do cursor; nao quebra nem pagina.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a desenhar
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     */
+    void textoCentralizado(final float x, final float largura, final String texto, final float tamanhoFonte) {
+        final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, texto, tamanhoFonte));
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, MARGEM + x + sobra / 2, this.y - tamanhoFonte, texto);
+    }
+
+    /**
      * Desenha um quadro com rotulo pequeno no topo e valor abaixo; rotulo e valor mais largos que a caixa sao cortados.
      *
      * @param x deslocamento horizontal a partir da margem, em pontos
