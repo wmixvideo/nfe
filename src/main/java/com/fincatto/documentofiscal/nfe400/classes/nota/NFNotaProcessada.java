@@ -30,7 +30,7 @@ public class NFNotaProcessada extends DFBase {
     private NFProtocolo protocolo;
 
     /**
-     * Monta o XML da nota autorizada (nfeProc, versao 4.00) a partir da nota assinada e do protocolo de autorizacao.
+     * Gera o XML da nota autorizada (nfeProc, versao 4.00) a partir da nota assinada e do protocolo de autorizacao.
      *
      * @param notaAssinada nota assinada, como devolvida em {@code getLoteAssinado()}; nao pode ser alterada apos a assinatura
      * @param protocoloInfo protocolo de autorizacao devolvido pela SEFAZ
