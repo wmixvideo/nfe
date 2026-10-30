@@ -44,6 +44,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownload
 import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfe;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeCreditos;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
@@ -148,6 +149,32 @@ public class WSFacade implements Closeable {
      */
     public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage) {
         return new NFGeraDanfe().gerar(nota, logoImage);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada, com rodape personalizado em todas as paginas.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos rodape) {
+        return new NFGeraDanfe().gerar(nota, logoImage, rodape);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF, com rodape personalizado em todas as paginas.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage, final DanfeCreditos rodape) {
+        return new NFGeraDanfe().gerar(xmlNfe, logoImage, rodape);
     }
 
     /**

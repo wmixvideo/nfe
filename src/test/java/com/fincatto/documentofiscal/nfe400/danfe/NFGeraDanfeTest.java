@@ -147,4 +147,50 @@ class NFGeraDanfeTest {
         semNota.setNota(null);
         Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(semNota, null));
     }
+
+    private static String textoDaPagina(final PDDocument documento, final int pagina) throws Exception {
+        final PDFTextStripper leitor = new PDFTextStripper();
+        leitor.setStartPage(pagina);
+        leitor.setEndPage(pagina);
+        return leitor.getText(documento);
+    }
+
+    @Test
+    void deveImprimirRodapePersonalizadoEmTodasAsPaginas() throws Exception {
+        final DanfeCreditos rodape = new DanfeCreditos("Desenvolvido por Fulano - (11) 99999-0000", "www.exemplo.com.br");
+        final byte[] pdf = gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null, rodape);
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            Assertions.assertTrue(documento.getNumberOfPages() > 1);
+            for (int pagina = 1; pagina <= documento.getNumberOfPages(); pagina++) {
+                final String texto = textoDaPagina(documento, pagina);
+                Assertions.assertTrue(texto.contains("Desenvolvido por Fulano - (11) 99999-0000"), "p\u00e1gina " + pagina);
+                Assertions.assertTrue(texto.contains("www.exemplo.com.br"), "p\u00e1gina " + pagina);
+            }
+        }
+    }
+
+    @Test
+    void naoDeveImprimirRodapeQuandoNaoInformado() throws Exception {
+        final String xml = DanfeFixtures.xml();
+        try (final PDDocument esperado = Loader.loadPDF(gerador.gerar(xml, null));
+             final PDDocument obtido = Loader.loadPDF(gerador.gerar(xml, null, null))) {
+            Assertions.assertEquals(esperado.getNumberOfPages(), obtido.getNumberOfPages());
+            Assertions.assertEquals(textoDaPagina(esperado, 1), textoDaPagina(obtido, 1));
+        }
+        try (final PDDocument esperado = Loader.loadPDF(gerador.gerar(xml, null));
+             final PDDocument obtido = Loader.loadPDF(gerador.gerar(xml, null, new DanfeCreditos(null, null)))) {
+            Assertions.assertEquals(textoDaPagina(esperado, 1), textoDaPagina(obtido, 1));
+        }
+    }
+
+    @Test
+    void deveCortarTextoDeRodapeMuitoLongoSemInvadirOutroLado() throws Exception {
+        final String longo = String.join(" ", java.util.Collections.nCopies(60, "palavra"));
+        final byte[] pdf = gerador.gerar(DanfeFixtures.xml(), null, new DanfeCreditos(longo, "www.exemplo.com.br"));
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            final String texto = textoDaPagina(documento, 1);
+            Assertions.assertTrue(texto.contains("www.exemplo.com.br"));
+            Assertions.assertFalse(texto.contains(longo));
+        }
+    }
 }
