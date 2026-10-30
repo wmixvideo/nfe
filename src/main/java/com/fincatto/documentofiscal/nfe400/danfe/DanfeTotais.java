@@ -145,16 +145,16 @@ final class DanfeTotais {
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
         final NFEndereco endereco = destinatario == null ? null : destinatario.getEndereco();
         titulo(canvas, "DESTINAT\u00c1RIO / REMETENTE");
-        linha(canvas, new float[]{55, 22, 23},
+        linha(canvas, new float[]{56.5f, 25.5f, 18},
                 texto("NOME / RAZ\u00c3O SOCIAL", destinatario == null ? "" : destinatario.getRazaoSocial()),
                 texto("CNPJ / CPF", destinatario == null ? "" : DanfeFormatador.cnpjOuCpf(destinatario.getCpfj())),
                 texto("DATA DE EMISS\u00c3O", identificacao == null ? "" : DanfeFormatador.data(identificacao.getDataHoraEmissao())));
-        linha(canvas, new float[]{45, 20, 13, 22},
+        linha(canvas, new float[]{46, 24.5f, 11.5f, 18},
                 texto("ENDERE\u00c7O", endereco == null ? "" : junta(endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento())),
                 texto("BAIRRO / DISTRITO", endereco == null ? "" : endereco.getBairro()),
                 texto("CEP", endereco == null ? "" : endereco.getCep()),
                 texto("DATA DE ENTRADA / SA\u00cdDA", identificacao == null ? "" : DanfeFormatador.data(identificacao.getDataHoraSaidaOuEntrada())));
-        linha(canvas, new float[]{35, 18, 6, 22, 19},
+        linha(canvas, new float[]{30, 18, 8.5f, 25.5f, 18},
                 texto("MUNIC\u00cdPIO", endereco == null ? "" : endereco.getDescricaoMunicipio()),
                 texto("FONE / FAX", endereco == null ? "" : endereco.getTelefone()),
                 texto("UF", endereco == null ? "" : endereco.getUf()),
@@ -284,7 +284,7 @@ final class DanfeTotais {
         }
         final NFNotaInfoTransportador transportador = transporte.getTransportador();
         titulo(canvas, "TRANSPORTADOR / VOLUMES TRANSPORTADOS");
-        linha(canvas, new float[]{30, 20, 12, 12, 6, 20},
+        linha(canvas, new float[]{30, 20, 12, 13, 6, 19},
                 texto("RAZ\u00c3O SOCIAL", transportador == null ? "" : transportador.getRazaoSocial()),
                 texto("FRETE POR CONTA", transporte.getModalidadeFrete() == null ? "" : transporte.getModalidadeFrete().getCodigo() + " - " + transporte.getModalidadeFrete().getDescricao()),
                 texto("C\u00d3DIGO ANTT", transporte.getVeiculo() == null ? "" : transporte.getVeiculo().getRegistroNacionalTransportadorCarga()),
