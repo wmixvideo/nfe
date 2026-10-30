@@ -1,15 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
-import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
-import com.fincatto.documentofiscal.nfe400.danfe.DanfeFixtures;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+
+import javax.imageio.ImageIO;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeFixtures;
 
 /**
  * Testes da geracao do DANFE pelo {@link com.fincatto.documentofiscal.nfe400.webservices.WSFacade}.
