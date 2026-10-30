@@ -367,16 +367,9 @@ O retorno depende do modo de processamento:
 Por lei, o XML da nota autorizada deve ser guardado, e é ele que gera o DANFE. Esse XML (`nfeProc`) junta a nota **assinada** e o protocolo de autorização, nessa forma:
 
 ```java
-NFNota notaAssinada = resultado.getLoteAssinado().getNotas().get(0);
-
-NFProtocolo protocolo = new NFProtocolo();
-protocolo.setVersao("4.00");
-protocolo.setProtocoloInfo(retorno.getProtocoloInfo());
-
-NFNotaProcessada notaProcessada = new NFNotaProcessada();
-notaProcessada.setVersao(new BigDecimal("4.00"));
-notaProcessada.setNota(notaAssinada);
-notaProcessada.setProtocolo(protocolo);
+NFNotaProcessada notaProcessada = NFNotaProcessada.gera(
+        resultado.getLoteAssinado().getNotas().get(0),
+        retorno.getProtocoloInfo());
 
 String xmlParaGuardar = notaProcessada.toString();
 ```
