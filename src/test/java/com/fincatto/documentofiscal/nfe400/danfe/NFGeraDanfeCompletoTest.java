@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.nfe400.danfe;
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfo;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItem;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoSuplementar;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -66,7 +67,7 @@ class NFGeraDanfeCompletoTest {
             // itens
             "DESCRIÇÃO DO PRODUTO / SERVIÇO", "QTD / UN", "BASES DE CÁLCULO", "ALÍQUOTAS", "VALOR DOS TRIBUTOS",
             // adicionais
-            "INFORMAÇÕES COMPLEMENTARES", "RESERVADO AO FISCO"
+            "INFORMAÇÕES COMPLEMENTARES", "RESERVADO AO FISCO", "QR CODE"
     };
 
     private final NFGeraDanfe gerador = new NFGeraDanfe();
@@ -115,6 +116,10 @@ class NFGeraDanfeCompletoTest {
         }
         info.setItens(lista);
         nota.getNota().setInfo(info);
+        final NFNotaInfoSuplementar suplementar = new NFNotaInfoSuplementar();
+        suplementar.setQrCode("https://www.fazenda.pr.gov.br/nfe/qrcode?p=" + CHAVE + "|2|2|1|A1B2C3D4E5F60718293A4B5C6D7E8F9012345678");
+        suplementar.setUrlConsultaChaveAcesso("https://www.nfe.fazenda.gov.br/portal/consulta.aspx");
+        nota.getNota().setInfoSuplementar(suplementar);
         return nota.toString();
     }
 
@@ -148,6 +153,7 @@ class NFGeraDanfeCompletoTest {
             Assertions.assertTrue(texto.contains("141260000123456"));
             Assertions.assertTrue(texto.contains("4126 1011 2223 3300 0181 5500 1000 1234 5618 7654 3215"));
             Assertions.assertTrue(texto.contains("100,00"));
+            Assertions.assertFalse(texto.contains("QR CODE"), "sem infNFeSupl não há QR Code");
         }
     }
 
