@@ -521,6 +521,8 @@ Rejeição não é exceção. A SEFAZ responde normalmente com um código de sta
 NFProtocoloInfo protocolo = resultado.getRetorno().getProtocoloInfo();
 switch (protocolo.getStatus()) { // texto, como devolvido pela SEFAZ
     case "100": // autorizada
+    case "120": // autorizada, com alerta
+    case "150": // autorizada, fora de prazo
         break;
     case "110": // uso denegado
         break;
@@ -534,6 +536,8 @@ Alguns códigos frequentes:
 | Código | Significado | O que fazer |
 |---|---|---|
 | 100 | Autorizado o uso da NF-e | Guardar o `nfeProc` |
+| 120 | Autorizado o uso da NF-e, com alerta (NT 2026.002, inicialmente só na NFC-e) | A nota está autorizada: guarde o `nfeProc`. O alerta avisa de uma inconsistência, mas não exige corrigir nem reenviar |
+| 150 | Autorizado o uso da NF-e, autorização fora de prazo | A nota está autorizada: guarde o `nfeProc` |
 | 110 | Uso denegado | A situação do emitente ou do destinatário impede a autorização; não adianta reenviar |
 | 204 | Duplicidade de NF-e | A nota já foi enviada; consulte pela chave de acesso em vez de reenviar |
 | 539 | Duplicidade de NF-e, com diferença na chave de acesso | A numeração já foi usada em outra nota: use outro número ou inutilize a faixa |
