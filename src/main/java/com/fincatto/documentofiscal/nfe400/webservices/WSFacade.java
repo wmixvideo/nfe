@@ -1,5 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -23,24 +33,23 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrup
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimentoFornecedor;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownloadXMLRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfe;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeNfceAnexo;
+import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfeNfce;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeCreditos;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-
-import java.io.Closeable;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 4.00 (envio/consulta de
@@ -96,6 +105,150 @@ public class WSFacade implements Closeable {
         if(this.httpClient != null){
             this.httpClient.close();
         }
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF, sem logotipo.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe) {
+        return this.geraDanfe(xmlNfe, null);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage) {
+        return new NFGeraDanfe().gerar(xmlNfe, logoImage);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF, com rodape personalizado em todas as paginas.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage, final DanfeCreditos creditos) {
+        return new NFGeraDanfe().gerar(xmlNfe, logoImage, creditos);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada, sem logotipo.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota) {
+        return this.geraDanfe(nota, null);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage) {
+        return new NFGeraDanfe().gerar(nota, logoImage);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada, com rodape personalizado em todas as paginas.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos creditos) {
+        return new NFGeraDanfe().gerar(nota, logoImage, creditos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF, em papel de 80 mm, sem logotipo e sem rodape personalizado.
+     *
+     * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfeNfce(final String xmlNfe) {
+        return this.geraDanfeNfce(xmlNfe, null);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF, em papel de 80 mm e sem logotipo.
+     *
+     * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfeNfce(final String xmlNfe, final DanfeCreditos creditos) {
+        return new NFGeraDanfeNfce().gerar(xmlNfe, creditos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir da nota processada, em papel de 80 mm, sem logotipo e sem rodape personalizado.
+     *
+     * @param nota nota processada (NFC-e com o protocolo de autorizacao)
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfeNfce(final NFNotaProcessada nota) {
+        return this.geraDanfeNfce(nota, null);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir da nota processada, em papel de 80 mm e sem logotipo.
+     *
+     * @param nota nota processada (NFC-e com o protocolo de autorizacao)
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos) {
+        return new NFGeraDanfeNfce().gerar(nota, creditos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF, em papel de 80 mm e sem logotipo, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] geraDanfeNfce(final String xmlNfe, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+        return new NFGeraDanfeNfce().gerar(xmlNfe, creditos, anexos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir da nota processada, em papel de 80 mm e sem logotipo, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param nota nota processada (NFC-e com o protocolo de autorizacao)
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+        return new NFGeraDanfeNfce().gerar(nota, creditos, anexos);
     }
 
     /**
@@ -730,8 +883,9 @@ public class WSFacade implements Closeable {
      * @param cnpjCpfAutorEvento cnpj ou cpf do autor do evento sem formatação.
      * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
      * @throws Exception
+     * @since Evento removido em razão da revogação do § 6º do art. 57. da Lei Complementar nº 214/2025 pela Lei Complementar nº 227/2026
      */
-    @Deprecated(since = "Evento removido em razão da revogação do § 6º do art. 57. da Lei Complementar nº 214/2025 pela Lei Complementar nº 227/2026", forRemoval = true)
+    @Deprecated()
     public NFEnviaEventoRetorno enviaDestinacaoItemConsumoPessoal(
             final String chaveAcesso, final DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoConsumo> grupoItensConsumo,
             final int numeroSequencialEvento, final NFEventoTipoAutor tpAutorEvento, final String cnpjCpfAutorEvento

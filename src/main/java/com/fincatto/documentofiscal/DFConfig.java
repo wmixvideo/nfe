@@ -87,7 +87,7 @@ public abstract class DFConfig {
     /**
      * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
      * Para gerar a cadeia, use o utilitario fornecido com a biblioteca:<br>
-     * FileUtils.writeByteArrayToFile(new File("/tmp/producao.cacerts"), NFGeraCadeiaCertificados.geraCadeiaCertificados(NFAmbiente.PRODUCAO, "senha"));
+     * FileUtils.writeByteArrayToFile(new File("/tmp/producao.jks"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
      *
      * @return KeyStore da cadeia de certificados.
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
