@@ -64,6 +64,8 @@ final class DanfeCanvas {
     private float y;
     private String marcaDagua;
     private final DanfeCreditos creditos;
+    private final PDRectangle pagina;
+    private final float margem;
 
     DanfeCanvas(final PDDocument documento) {
         this(documento, null);
@@ -74,7 +76,22 @@ final class DanfeCanvas {
      * @param creditos rodape personalizado impresso em todas as paginas, ou null; quando informado, reserva a faixa inferior da pagina
      */
     DanfeCanvas(final PDDocument documento, final DanfeCreditos creditos) {
+        this(documento, PDRectangle.A4, MARGEM, creditos);
+    }
+
+    /**
+     * @param documento documento onde as paginas sao criadas
+     * @param pagina tamanho das paginas
+     * @param margem margem das quatro bordas, em pontos
+     */
+    DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem) {
+        this(documento, pagina, margem, null);
+    }
+
+    private DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem, final DanfeCreditos creditos) {
         this.documento = documento;
+        this.pagina = pagina;
+        this.margem = margem;
         // sem nenhum texto nao ha o que imprimir, entao tambem nao reserva a faixa inferior
         this.creditos = creditos != null && (creditos.getEsquerda() != null || creditos.getDireita() != null) ? creditos : null;
         try {
@@ -125,14 +142,14 @@ final class DanfeCanvas {
     }
 
     /**
-     * Adiciona uma pagina A4 ao documento e posiciona o cursor no topo, dentro da margem.
+     * Adiciona uma pagina ao documento e posiciona o cursor no topo, dentro da margem.
      */
     private void abrirPagina() {
         try {
-            final PDPage pagina = new PDPage(PDRectangle.A4);
-            this.documento.addPage(pagina);
-            this.conteudo = new PDPageContentStream(this.documento, pagina);
-            this.y = PDRectangle.A4.getHeight() - MARGEM;
+            final PDPage novaPagina = new PDPage(this.pagina);
+            this.documento.addPage(novaPagina);
+            this.conteudo = new PDPageContentStream(this.documento, novaPagina);
+            this.y = this.pagina.getHeight() - this.margem;
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -158,6 +175,13 @@ final class DanfeCanvas {
     }
 
     /**
+     * @return largura entre as margens esquerda e direita, em pontos
+     */
+    float larguraUtil() {
+        return this.pagina.getWidth() - 2 * this.margem;
+    }
+
+    /**
      * Move o cursor para baixo (ou para cima, se negativo).
      *
      * @param altura deslocamento em pontos
@@ -170,7 +194,7 @@ final class DanfeCanvas {
      * @return espaco vertical que ainda cabe na pagina, em pontos
      */
     float restante() {
-        return this.y - MARGEM - (this.creditos == null ? 0 : ALTURA_RODAPE);
+        return this.y - this.margem - (this.creditos == null ? 0 : ALTURA_RODAPE);
     }
 
     /**
@@ -201,12 +225,12 @@ final class DanfeCanvas {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
             this.conteudo.setNonStrokingColor(new Color(225, 225, 225));
-            this.conteudo.addRect(MARGEM, this.y - ALTURA_TITULO, LARGURA_UTIL, ALTURA_TITULO);
+            this.conteudo.addRect(this.margem, this.y - ALTURA_TITULO, larguraUtil(), ALTURA_TITULO);
             this.conteudo.fillAndStroke();
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
-        escrever(this.negrito, 7f, Color.BLACK, MARGEM + 2, this.y - 7.5f, limpar(texto));
+        escrever(this.negrito, 7f, Color.BLACK, this.margem + 2, this.y - 7.5f, limpar(texto));
     }
 
     /**
@@ -257,12 +281,16 @@ final class DanfeCanvas {
      * @return linhas que cabem na largura (pelo menos uma)
      */
     List<String> quebrar(final String texto, final float largura, final float tamanhoFonte) {
+        return quebrar(this.fonte, texto, largura, tamanhoFonte);
+    }
+
+    private List<String> quebrar(final PDFont fonteDoTexto, final String texto, final float largura, final float tamanhoFonte) {
         if (texto == null) {
             return Collections.singletonList("");
         }
         final List<String> linhas = new ArrayList<>();
         for (final String paragrafo : texto.split("\r?\n", -1)) {
-            quebrarParagrafo(limpar(paragrafo), largura, tamanhoFonte, linhas);
+            quebrarParagrafo(fonteDoTexto, limpar(paragrafo), largura, tamanhoFonte, linhas);
         }
         return linhas;
     }
@@ -270,14 +298,14 @@ final class DanfeCanvas {
     /**
      * Quebra um paragrafo (sem quebras de linha) e acrescenta as linhas resultantes a lista.
      */
-    private void quebrarParagrafo(final String paragrafo, final float largura, final float tamanhoFonte, final List<String> linhas) {
+    private void quebrarParagrafo(final PDFont fonteDoTexto, final String paragrafo, final float largura, final float tamanhoFonte, final List<String> linhas) {
         StringBuilder atual = new StringBuilder();
         for (final String palavra : paragrafo.split(" ")) {
             if (palavra.isEmpty()) {
                 continue;
             }
             final String candidato = atual.length() == 0 ? palavra : atual + " " + palavra;
-            if (largura(candidato, tamanhoFonte) <= largura) {
+            if (larguraNaFonte(fonteDoTexto, candidato, tamanhoFonte) <= largura) {
                 atual = new StringBuilder(candidato);
                 continue;
             }
@@ -285,12 +313,12 @@ final class DanfeCanvas {
                 linhas.add(atual.toString());
                 atual = new StringBuilder();
             }
-            if (largura(palavra, tamanhoFonte) <= largura) {
+            if (larguraNaFonte(fonteDoTexto, palavra, tamanhoFonte) <= largura) {
                 atual.append(palavra);
                 continue;
             }
             for (final char c : palavra.toCharArray()) {
-                if (atual.length() > 0 && largura(atual.toString() + c, tamanhoFonte) > largura) {
+                if (atual.length() > 0 && larguraNaFonte(fonteDoTexto, atual.toString() + c, tamanhoFonte) > largura) {
                     linhas.add(atual.toString());
                     atual = new StringBuilder();
                 }
@@ -355,9 +383,27 @@ final class DanfeCanvas {
      * @return altura ocupada, em pontos
      */
     float texto(final float x, final float largura, final String texto, final float tamanhoFonte) {
-        final List<String> linhas = quebrar(texto, largura, tamanhoFonte);
+        return texto(x, largura, texto, tamanhoFonte, Alinhamento.ESQUERDA, false);
+    }
+
+    /**
+     * Desenha o texto quebrado a partir do cursor, com cada linha alinhada dentro da largura; nao pagina.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a desenhar
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @param alinhamento alinhamento de cada linha dentro da largura
+     * @param negrito true para desenhar na fonte em negrito
+     * @return altura ocupada, em pontos
+     */
+    float texto(final float x, final float largura, final String texto, final float tamanhoFonte, final Alinhamento alinhamento, final boolean negrito) {
+        final PDFont fonteDoTexto = negrito ? this.negrito : this.fonte;
+        final List<String> linhas = quebrar(fonteDoTexto, texto, largura, tamanhoFonte);
         for (int i = 0; i < linhas.size(); i++) {
-            escrever(this.fonte, tamanhoFonte, Color.BLACK, MARGEM + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+            final float sobra = Math.max(0f, largura - larguraNaFonte(fonteDoTexto, linhas.get(i), tamanhoFonte));
+            final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
+            escrever(fonteDoTexto, tamanhoFonte, Color.BLACK, this.margem + x + deslocamento, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
         }
         return linhas.size() * alturaLinha(tamanhoFonte);
     }
@@ -372,7 +418,29 @@ final class DanfeCanvas {
      */
     void textoCentralizado(final float x, final float largura, final String texto, final float tamanhoFonte) {
         final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, texto, tamanhoFonte));
-        escrever(this.fonte, tamanhoFonte, Color.BLACK, MARGEM + x + sobra / 2, this.y - tamanhoFonte, texto);
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x + sobra / 2, this.y - tamanhoFonte, texto);
+    }
+
+    /**
+     * Desenha uma linha horizontal no nivel do cursor; nao move o cursor.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura comprimento da linha, em pontos
+     * @param espessura espessura do traco, em pontos
+     * @param tracejada true para tracejada (3 pontos de traco e 2 de vazio), false para inteira
+     */
+    void linhaHorizontal(final float x, final float largura, final float espessura, final boolean tracejada) {
+        try {
+            this.conteudo.setStrokingColor(Color.BLACK);
+            this.conteudo.setLineWidth(espessura);
+            this.conteudo.setLineDashPattern(tracejada ? new float[]{3f, 2f} : new float[0], 0);
+            this.conteudo.moveTo(this.margem + x, this.y);
+            this.conteudo.lineTo(this.margem + x + largura, this.y);
+            this.conteudo.stroke();
+            this.conteudo.setLineDashPattern(new float[0], 0);
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     /**
@@ -389,17 +457,17 @@ final class DanfeCanvas {
         try {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
-            this.conteudo.addRect(MARGEM + x, this.y - altura, largura, altura);
+            this.conteudo.addRect(this.margem + x, this.y - altura, largura, altura);
             this.conteudo.stroke();
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
         final float disponivel = largura - 4;
-        escrever(this.fonte, TAMANHO_ROTULO, Color.GRAY, MARGEM + x + 2, this.y - 6.5f, cortar(limpar(rotulo), TAMANHO_ROTULO, disponivel));
+        escrever(this.fonte, TAMANHO_ROTULO, Color.GRAY, this.margem + x + 2, this.y - 6.5f, cortar(limpar(rotulo), TAMANHO_ROTULO, disponivel));
         final String texto = cortar(limpar(valor), TAMANHO_VALOR, disponivel);
         final float sobra = disponivel - larguraNaFonte(this.fonte, texto, TAMANHO_VALOR);
         final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-        escrever(this.fonte, TAMANHO_VALOR, Color.BLACK, MARGEM + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
+        escrever(this.fonte, TAMANHO_VALOR, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
     }
 
     /**
@@ -455,7 +523,7 @@ final class DanfeCanvas {
                 while (fim < bits.length && bits[fim]) {
                     fim++;
                 }
-                this.conteudo.addRect(MARGEM + x + i * modulo, this.y - altura, (fim - i) * modulo, altura);
+                this.conteudo.addRect(this.margem + x + i * modulo, this.y - altura, (fim - i) * modulo, altura);
                 i = fim;
             }
             this.conteudo.fill();
@@ -480,7 +548,7 @@ final class DanfeCanvas {
             for (int linha = 0; linha < matriz.getHeight(); linha++) {
                 for (int coluna = 0; coluna < matriz.getWidth(); coluna++) {
                     if (matriz.get(coluna, linha)) {
-                        this.conteudo.addRect(MARGEM + x + coluna * modulo, this.y - (linha + 1) * modulo, modulo, modulo);
+                        this.conteudo.addRect(this.margem + x + coluna * modulo, this.y - (linha + 1) * modulo, modulo, modulo);
                     }
                 }
             }
@@ -507,7 +575,7 @@ final class DanfeCanvas {
             final float escala = Math.min(largura / figura.getWidth(), altura / figura.getHeight());
             final float w = figura.getWidth() * escala;
             final float h = figura.getHeight() * escala;
-            this.conteudo.drawImage(figura, MARGEM + x + (largura - w) / 2, this.y - altura + (altura - h) / 2, w, h);
+            this.conteudo.drawImage(figura, this.margem + x + (largura - w) / 2, this.y - altura + (altura - h) / 2, w, h);
         } catch (final Exception e) {
             // logotipo invalido: o espaco fica em branco
         }
@@ -539,13 +607,13 @@ final class DanfeCanvas {
      * Escreve o rodape personalizado na base da pagina: um texto em cada ponta, cortado para nao se encontrarem.
      */
     private void desenharRodape(final PDPage pagina) throws IOException {
-        final float metade = (LARGURA_UTIL - 4) / 2;
+        final float metade = (larguraUtil() - 4) / 2;
         final String esquerda = cortar(limpar(this.creditos.getEsquerda()), TAMANHO_RODAPE, metade);
         final String direita = cortar(limpar(this.creditos.getDireita()), TAMANHO_RODAPE, metade);
         try (final PDPageContentStream fluxo = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
             fluxo.setNonStrokingColor(Color.BLACK);
-            escreverRodape(fluxo, MARGEM + 2, esquerda);
-            escreverRodape(fluxo, PDRectangle.A4.getWidth() - MARGEM - 2 - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
+            escreverRodape(fluxo, this.margem + 2, esquerda);
+            escreverRodape(fluxo, this.pagina.getWidth() - this.margem - 2 - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
         }
     }
 
@@ -555,7 +623,7 @@ final class DanfeCanvas {
         }
         fluxo.beginText();
         fluxo.setFont(this.fonte, TAMANHO_RODAPE);
-        fluxo.newLineAtOffset(x, MARGEM + 1);
+        fluxo.newLineAtOffset(x, this.margem + 1);
         fluxo.showText(texto);
         fluxo.endText();
     }
@@ -573,8 +641,8 @@ final class DanfeCanvas {
             fluxo.beginText();
             fluxo.setFont(this.negrito, tamanho);
             fluxo.setTextMatrix(Matrix.getRotateInstance(angulo,
-                    PDRectangle.A4.getWidth() / 2 - (float) (largura / 2 * Math.cos(angulo)),
-                    PDRectangle.A4.getHeight() / 2 - (float) (largura / 2 * Math.sin(angulo))));
+                    this.pagina.getWidth() / 2 - (float) (largura / 2 * Math.cos(angulo)),
+                    this.pagina.getHeight() / 2 - (float) (largura / 2 * Math.sin(angulo))));
             fluxo.showText(texto);
             fluxo.endText();
         }

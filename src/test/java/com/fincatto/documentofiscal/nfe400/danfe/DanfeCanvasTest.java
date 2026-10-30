@@ -245,4 +245,90 @@ class DanfeCanvasTest {
         Assertions.assertTrue(barras > vazio + 200);
         Assertions.assertTrue(qr > vazio + 200);
     }
+
+    @Test
+    void devePermitirPaginaComTamanhoEMargemProprios() throws Exception {
+        try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
+            final DanfeCanvas canvas = new DanfeCanvas(documento, new org.apache.pdfbox.pdmodel.common.PDRectangle(212f, 400f), 8f);
+            Assertions.assertEquals(196f, canvas.larguraUtil(), 0.001f);
+            Assertions.assertEquals(392f, canvas.y(), 0.001f);
+            canvas.fechar();
+            documento.save(saida);
+            try (final PDDocument lido = Loader.loadPDF(saida.toByteArray())) {
+                Assertions.assertEquals(212f, lido.getPage(0).getMediaBox().getWidth(), 0.001f);
+                Assertions.assertEquals(400f, lido.getPage(0).getMediaBox().getHeight(), 0.001f);
+            }
+        }
+    }
+
+    /** Posicao x do primeiro e do fim do ultimo glifo do texto desenhado, em pontos a partir da borda da pagina. */
+    private static float[] extensaoHorizontal(final byte[] pdf) throws Exception {
+        final float[] extensao = {Float.MAX_VALUE, 0f};
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            new PDFTextStripper() {
+                @Override
+                protected void processTextPosition(final org.apache.pdfbox.text.TextPosition texto) {
+                    extensao[0] = Math.min(extensao[0], texto.getX());
+                    extensao[1] = Math.max(extensao[1], texto.getX() + texto.getWidth());
+                }
+            }.getText(documento);
+        }
+        return extensao;
+    }
+
+    private static byte[] pdfNoCupom(final DanfeCanvas.Alinhamento alinhamento) throws Exception {
+        try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
+            final DanfeCanvas canvas = new DanfeCanvas(documento, new org.apache.pdfbox.pdmodel.common.PDRectangle(212f, 400f), 8f);
+            canvas.texto(0, canvas.larguraUtil(), "ABC", 10f, alinhamento, false);
+            canvas.fechar();
+            documento.save(saida);
+            return saida.toByteArray();
+        }
+    }
+
+    @Test
+    void deveAlinharTextoNoCentroEADireitaDentroDaLargura() throws Exception {
+        final float[] esquerda = extensaoHorizontal(pdfNoCupom(DanfeCanvas.Alinhamento.ESQUERDA));
+        final float[] centro = extensaoHorizontal(pdfNoCupom(DanfeCanvas.Alinhamento.CENTRO));
+        final float[] direita = extensaoHorizontal(pdfNoCupom(DanfeCanvas.Alinhamento.DIREITA));
+        Assertions.assertEquals(8f, esquerda[0], 0.5f);
+        Assertions.assertTrue(esquerda[0] < centro[0] && centro[0] < direita[0]);
+        Assertions.assertEquals(106f, (centro[0] + centro[1]) / 2, 0.5f);
+        Assertions.assertEquals(204f, direita[1], 0.5f);
+    }
+
+    @Test
+    void deveQuebrarTextoNegritoEmVariasLinhasERetornarAltura() throws Exception {
+        final float[] altura = new float[1];
+        final StringBuilder longo = new StringBuilder();
+        for (int i = 0; i < 40; i++) {
+            longo.append("palavra ");
+        }
+        final byte[] pdf = pdf(canvas -> altura[0] = canvas.texto(0, 100f, longo.toString(), 8f, DanfeCanvas.Alinhamento.ESQUERDA, true));
+        Assertions.assertTrue(altura[0] > 3 * 8f * 1.2f);
+        Assertions.assertTrue(texto(pdf, 1).contains("palavra"));
+    }
+
+    /** Operadores do primeiro fluxo de conteudo da pagina, como texto. */
+    private static String conteudoComoTexto(final byte[] pdf) throws Exception {
+        try (final PDDocument documento = Loader.loadPDF(pdf); java.io.InputStream conteudo = documento.getPage(0).getContents()) {
+            return new String(conteudo.readAllBytes(), java.nio.charset.StandardCharsets.ISO_8859_1);
+        }
+    }
+
+    @Test
+    void deveDesenharLinhaHorizontalSolidaETracejadaSemMoverOCursor() throws Exception {
+        final float[] y = new float[2];
+        final byte[] pdf = pdf(canvas -> {
+            y[0] = canvas.y();
+            canvas.linhaHorizontal(0, 100f, 1.2f, false);
+            canvas.linhaHorizontal(0, 100f, 0.5f, true);
+            y[1] = canvas.y();
+        });
+        Assertions.assertEquals(y[0], y[1], 0.001f);
+        final String conteudo = conteudoComoTexto(pdf);
+        Assertions.assertTrue(conteudo.contains("1.2 w"));
+        Assertions.assertTrue(conteudo.contains("[3 2 ] 0 d"));
+        Assertions.assertEquals(1, conteudo.split("\\[3 2 \\] 0 d", -1).length - 1);
+    }
 }

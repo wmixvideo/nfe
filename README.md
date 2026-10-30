@@ -400,6 +400,23 @@ byte[] pdf = facade.geraDanfe(notaProcessada, logo, creditos);
 
 Notas emitidas em homologação saem com a marca d'água "SEM VALOR FISCAL". Se não precisar do `WSFacade`, use direto `new NFGeraDanfe().gerar(...)`, que não exige `NFeConfig` nem certificado.
 
+### Gerar o cupom DANFE NFC-e (modelo 65)
+O cupom da NFC-e (leiaute do Manual de Padrões do DANFE NFC-e e QR Code, versão 3.3) sai em papel térmico de **80 mm**, sem logotipo e em uma página só, com a altura do conteúdo. As impressoras térmicas não imprimem rente à borda, então o texto respeita 4 mm de margem de cada lado (72 mm de área útil). O QR Code vem do `infNFeSupl` do XML:
+
+```java
+byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar);
+Files.write(Paths.get("/caminho/cupom.pdf"), pdf);
+```
+
+Para imprimir os créditos do seu sistema no fim do cupom (qualquer texto de `DanfeCreditos` pode ser `null`):
+
+```java
+DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Minha Empresa", "www.minhaempresa.com.br");
+byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, creditos);
+```
+
+Só aceita o modelo 65 e exige o protocolo de autorização. A exceção é a contingência off-line (`tpEmis=9`), em que o cupom sai da `NFe` ainda sem protocolo, com a mensagem "EMITIDA EM CONTINGÊNCIA". Em homologação, sai "EMITIDA EM AMBIENTE DE HOMOLOGAÇÃO – SEM VALOR FISCAL". Também dá para usar direto `new NFGeraDanfeNfce().gerar(...)`, sem `NFeConfig` nem certificado.
+
 ### Consultar uma nota pela chave de acesso
 ```java
 NFNotaConsultaRetorno retorno = facade.consultaNota(chaveDeAcesso);

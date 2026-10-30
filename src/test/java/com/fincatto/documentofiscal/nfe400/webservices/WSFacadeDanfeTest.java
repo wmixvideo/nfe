@@ -11,7 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeCreditos;
 import com.fincatto.documentofiscal.nfe400.danfe.DanfeFixtures;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeNfceFixtures;
+import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfeNfce;
 
 /**
  * Testes da geracao do DANFE pelo {@link com.fincatto.documentofiscal.nfe400.webservices.WSFacade}.
@@ -59,6 +62,36 @@ class WSFacadeDanfeTest {
         nota.setProtocolo(null);
         try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
             Assertions.assertThrows(IllegalArgumentException.class, () -> facade.geraDanfe(nota));
+        }
+    }
+
+    @Test
+    void deveGerarDanfeNfceAPartirDoXmlEDoObjeto() throws Exception {
+        try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
+            final String xml = DanfeNfceFixtures.xml();
+            Assertions.assertTrue(ehPdf(facade.geraDanfeNfce(xml)));
+            final NFNotaProcessada nota = new com.fincatto.documentofiscal.utils.DFPersister().read(NFNotaProcessada.class, xml);
+            Assertions.assertTrue(ehPdf(facade.geraDanfeNfce(nota)));
+        }
+    }
+
+    @Test
+    void deveGerarDanfeNfceEm80MmComCreditos() throws Exception {
+        try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
+            final byte[] pdf = facade.geraDanfeNfce(DanfeNfceFixtures.xml(), new DanfeCreditos("Desenvolvido por Exemplo", null));
+            Assertions.assertTrue(ehPdf(pdf));
+            try (final org.apache.pdfbox.pdmodel.PDDocument documento = org.apache.pdfbox.Loader.loadPDF(pdf)) {
+                Assertions.assertEquals(NFGeraDanfeNfce.LARGURA_80_MM * 72f / 25.4f, documento.getPage(0).getMediaBox().getWidth(), 0.01f);
+                Assertions.assertTrue(new org.apache.pdfbox.text.PDFTextStripper().getText(documento).contains("Desenvolvido por Exemplo"));
+            }
+        }
+    }
+
+    @Test
+    void naoDeveGerarDanfeNfceParaXmlSemProtocolo() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().semProtocolo().build();
+        try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
+            Assertions.assertThrows(IllegalArgumentException.class, () -> facade.geraDanfeNfce(xml));
         }
     }
 }
