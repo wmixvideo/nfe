@@ -19,6 +19,11 @@ import java.io.IOException;
 public class NFGeraDanfe {
 
     private static final String MENSAGEM_SEM_PROTOCOLO = "XML sem protocolo de autoriza\u00e7\u00e3o: n\u00e3o \u00e9 poss\u00edvel gerar o DANFE";
+    private static final String MENSAGEM_NOTA_NAO_INFORMADA = "Nota processada n\u00e3o informada";
+    private static final String MENSAGEM_NOTA_SEM_DADOS = "Nota processada sem os dados da NF-e (identifica\u00e7\u00e3o e emitente)";
+    private static final String MENSAGEM_ERRO_GERAR_PDF = "Erro ao gerar o PDF do DANFE";
+    private static final String MENSAGEM_XML_NAO_INFORMADO = "XML da NF-e n\u00e3o informado";
+    private static final String MENSAGEM_XML_INVALIDO = "XML da NF-e inv\u00e1lido";
 
     /**
      * Gera o DANFE em PDF a partir do XML do nfeProc.
@@ -82,14 +87,14 @@ public class NFGeraDanfe {
      */
     private static void validar(final NFNotaProcessada nota) {
         if (nota == null) {
-            throw new IllegalArgumentException("Nota processada nao informada");
+            throw new IllegalArgumentException(MENSAGEM_NOTA_NAO_INFORMADA);
         }
         if (nota.getProtocolo() == null) {
             throw new IllegalArgumentException(MENSAGEM_SEM_PROTOCOLO);
         }
         if (nota.getNota() == null || nota.getNota().getInfo() == null || nota.getNota().getInfo().getIdentificacao() == null
                 || nota.getNota().getInfo().getEmitente() == null) {
-            throw new IllegalArgumentException("Nota processada sem os dados da NF-e (identificacao e emitente)");
+            throw new IllegalArgumentException(MENSAGEM_NOTA_SEM_DADOS);
         }
     }
 
@@ -117,7 +122,7 @@ public class NFGeraDanfe {
             documento.save(saida);
             return new Pdf(saida.toByteArray(), paginas);
         } catch (final IOException e) {
-            throw new IllegalStateException("Erro ao gerar o PDF do DANFE", e);
+            throw new IllegalStateException(MENSAGEM_ERRO_GERAR_PDF, e);
         }
     }
 
@@ -147,7 +152,7 @@ public class NFGeraDanfe {
      */
     NFNotaProcessada ler(final String xmlNfe) {
         if (xmlNfe == null || xmlNfe.trim().isEmpty()) {
-            throw new IllegalArgumentException("XML da NF-e n\u00e3o informado");
+            throw new IllegalArgumentException(MENSAGEM_XML_NAO_INFORMADO);
         }
         if (!xmlNfe.contains("protNFe")) {
             throw new IllegalArgumentException(MENSAGEM_SEM_PROTOCOLO);
@@ -156,7 +161,7 @@ public class NFGeraDanfe {
         try {
             nota = new DFPersister().read(NFNotaProcessada.class, xmlNfe);
         } catch (final Exception e) {
-            throw new IllegalArgumentException("XML da NF-e inv\u00e1lido", e);
+            throw new IllegalArgumentException(MENSAGEM_XML_INVALIDO, e);
         }
         return nota;
     }
