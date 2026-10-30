@@ -44,6 +44,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownload
 import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfe;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeNfceAnexo;
 import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfeNfce;
 import com.fincatto.documentofiscal.nfe400.danfe.DanfeCreditos;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
@@ -222,6 +223,32 @@ public class WSFacade implements Closeable {
      */
     public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos) {
         return new NFGeraDanfeNfce().gerar(nota, creditos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF, em papel de 80 mm e sem logotipo, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] geraDanfeNfce(final String xmlNfe, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+        return new NFGeraDanfeNfce().gerar(xmlNfe, creditos, anexos);
+    }
+
+    /**
+     * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir da nota processada, em papel de 80 mm e sem logotipo, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param nota nota processada (NFC-e com o protocolo de autorizacao)
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+        return new NFGeraDanfeNfce().gerar(nota, creditos, anexos);
     }
 
     /**

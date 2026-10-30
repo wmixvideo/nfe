@@ -283,21 +283,79 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
-    void deveSepararOsItensComLinhasTracejadasEOsBlocosComLinhasGrossas() throws Exception {
+    void deveSepararOsItensComLinhasContinuasFinasEOsBlocosComLinhasGrossas() throws Exception {
         final String conteudo = conteudoDaPagina(gerador.gerar(DanfeNfceFixtures.xml(), null));
-        // tracejada antes de cada um dos 3 itens; grossa acima do cabecalho dos itens, depois do ultimo item e depois do pagamento
-        Assertions.assertEquals(3, ocorrencias(conteudo, "[3 2 ] 0 d"));
+        // fina antes de cada um dos 3 itens; grossa acima do cabecalho dos itens, depois do ultimo item e depois do pagamento; nenhuma pontilhada
+        Assertions.assertEquals(3, ocorrencias(conteudo, "0.5 w"));
         Assertions.assertEquals(3, ocorrencias(conteudo, "1.2 w"));
-        final String tresMais = conteudoDaPagina(gerador.gerar(DanfeNfceFixtures.nfce().itens(5).build(), null));
-        Assertions.assertEquals(5, ocorrencias(tresMais, "[3 2 ] 0 d"));
-        Assertions.assertEquals(3, ocorrencias(tresMais, "1.2 w"));
+        Assertions.assertEquals(0, ocorrencias(conteudo, "[3 2 ] 0 d"));
+        final String cincoItens = conteudoDaPagina(gerador.gerar(DanfeNfceFixtures.nfce().itens(5).build(), null));
+        Assertions.assertEquals(5, ocorrencias(cincoItens, "0.5 w"));
+        Assertions.assertEquals(3, ocorrencias(cincoItens, "1.2 w"));
+        Assertions.assertEquals(0, ocorrencias(cincoItens, "[3 2 ] 0 d"));
     }
 
-    /**
-     * Distancia, em pontos, entre o fim do rotulo e o inicio do "R$" na mesma linha do PDF; mede se o "R$" esta junto do valor, a direita.
-     * Devolve -1 se nao achar a linha.
-     */
-    private static float distanciaEntreRotuloEMoeda(final byte[] pdf, final String rotulo) throws Exception {
+    private static final String RECIBO_CLIENTE = "   REDE EXEMPLO\n   VIA CLIENTE\nCARTAO DEBITO  R$ 20,00\nAUT 123456";
+
+    @Test
+    void deveGerarOMesmoCupomSemAnexosComListaNulaOuVazia() throws Exception {
+        final String xml = DanfeNfceFixtures.xml();
+        final String semAnexos = texto(gerador.gerar(xml, null));
+        Assertions.assertEquals(semAnexos, texto(gerador.gerar(xml, null, null)));
+        Assertions.assertEquals(semAnexos, texto(gerador.gerar(xml, null, java.util.Collections.emptyList())));
+    }
+
+    @Test
+    void deveImprimirAnexoDepoisDoCupomEDosCreditosComTituloETextoELinhaDeCorte() throws Exception {
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), new DanfeCreditos("Desenvolvido por Exemplo", null),
+                java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente(RECIBO_CLIENTE)));
+        final String texto = texto(pdf);
+        final int creditos = texto.indexOf("Desenvolvido por Exemplo");
+        final int titulo = texto.indexOf("COMPROVANTE TEF \u2013 VIA DO CLIENTE");
+        Assertions.assertTrue(creditos >= 0 && titulo > creditos);
+        Assertions.assertTrue(texto.indexOf("CARTAO DEBITO") > titulo);
+        Assertions.assertTrue(texto.contains("AUT 123456"));
+        // a linha de corte do anexo e a unica pontilhada; as 3 dos itens sao finas e continuas
+        Assertions.assertEquals(1, ocorrencias(conteudoDaPagina(pdf), "[3 2 ] 0 d"));
+        Assertions.assertEquals(4, ocorrencias(conteudoDaPagina(pdf), "0.5 w"));
+    }
+
+    @Test
+    void deveImprimirViasEConfissaoDeDividaNaOrdemInformada() throws Exception {
+        final String texto = texto(gerador.gerar(DanfeNfceFixtures.xml(), null, java.util.Arrays.asList(
+                DanfeNfceAnexo.viaEstabelecimento("RECIBO LOJA"), DanfeNfceAnexo.viaCliente("RECIBO CLIENTE"), DanfeNfceAnexo.confissaoDeDivida("DEVO PAGAR"))));
+        final int loja = texto.indexOf("VIA DO ESTABELECIMENTO");
+        final int cliente = texto.indexOf("VIA DO CLIENTE");
+        final int divida = texto.indexOf("CONFISS\u00c3O DE D\u00cdVIDA");
+        Assertions.assertTrue(loja > 0 && cliente > loja && divida > cliente);
+        Assertions.assertTrue(texto.indexOf("DEVO PAGAR") > divida);
+    }
+
+    @Test
+    void deveImprimirAnexoSemTituloEAumentarAAlturaDaPagina() throws Exception {
+        final String xml = DanfeNfceFixtures.xml();
+        final float semAnexo = alturaDaPagina(gerador.gerar(xml, null));
+        final byte[] pdf = gerador.gerar(xml, null, java.util.Collections.singletonList(new DanfeNfceAnexo(null, "L1\nL2\nL3\nL4\nL5")));
+        Assertions.assertTrue(alturaDaPagina(pdf) - semAnexo >= 5 * 7f * 1.2f);
+        Assertions.assertTrue(texto(pdf).contains("L1 L2 L3 L4 L5"));
+    }
+
+    @Test
+    void deveGerarComAnexosPeloObjetoNotaProcessada() throws Exception {
+        final NFNotaProcessada nota = new DFPersister().read(NFNotaProcessada.class, DanfeNfceFixtures.xml());
+        Assertions.assertTrue(texto(gerador.gerar(nota, null, java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente("ABC")))).contains("ABC"));
+    }
+
+    @Test
+    void deveLancarExcecaoParaAnexoNuloNaLista() {
+        final String xml = DanfeNfceFixtures.xml();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(xml, null, java.util.Collections.singletonList(null)));
+    }
+
+    @Test
+    void deveDeixarEspacoEntreUmAnexoEOTituloDoProximo() throws Exception {
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), null, java.util.Arrays.asList(
+                new DanfeNfceAnexo("T1", "ZZZ"), new DanfeNfceAnexo("WWW", "texto")));
         final java.util.List<org.apache.pdfbox.text.TextPosition> glifos = new java.util.ArrayList<>();
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
             new PDFTextStripper() {
@@ -307,29 +365,9 @@ class NFGeraDanfeNfceTest {
                 }
             }.getText(documento);
         }
-        final StringBuilder todos = new StringBuilder();
-        for (final org.apache.pdfbox.text.TextPosition g : glifos) {
-            todos.append(g.getUnicode());
-        }
-        final int inicio = todos.indexOf(rotulo);
-        if (inicio < 0) {
-            return -1;
-        }
-        final int fimRotulo = inicio + rotulo.length() - 1;
-        final float yDaLinha = glifos.get(inicio).getY();
-        for (int i = fimRotulo + 1; i < glifos.size() - 1; i++) {
-            if (Math.abs(glifos.get(i).getY() - yDaLinha) < 1f && "R".equals(glifos.get(i).getUnicode()) && "$".equals(glifos.get(i + 1).getUnicode())) {
-                return glifos.get(i).getX() - (glifos.get(fimRotulo).getX() + glifos.get(fimRotulo).getWidth());
-            }
-        }
-        return -1;
-    }
-
-    @Test
-    void deveImprimirMoedaJuntoDoValorADireitaEnaoNoRotuloDosTotais() throws Exception {
-        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.nfce().outrasDespesas("2.50").troco("1.00").pagamento("01", "100.00").build(), null);
-        for (final String rotulo : new String[]{"SUB-TOTAL", "DESCONTO", "ACR\u00c9SCIMO", "VALOR TOTAL", "TROCO"}) {
-            Assertions.assertTrue(distanciaEntreRotuloEMoeda(pdf, rotulo) > 40f, rotulo + ": " + distanciaEntreRotuloEMoeda(pdf, rotulo));
-        }
+        final float yUltimaLinha = glifos.stream().filter(g -> "Z".equals(g.getUnicode())).reduce((primeiro, ultimo) -> ultimo).get().getY();
+        final float yTitulo = glifos.stream().filter(g -> "W".equals(g.getUnicode())).findFirst().get().getY();
+        // a linha de corte e o espaco acima e abaixo dela separam as linhas por bem mais que uma linha de texto (8,4 pt)
+        Assertions.assertTrue(yTitulo - yUltimaLinha >= 27f, "distancia: " + (yTitulo - yUltimaLinha));
     }
 }

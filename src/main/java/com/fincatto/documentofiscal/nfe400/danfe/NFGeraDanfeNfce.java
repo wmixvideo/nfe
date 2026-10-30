@@ -11,6 +11,8 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir do XML da NFC-e, sem logotipo.
@@ -37,6 +39,7 @@ public class NFGeraDanfeNfce {
     private static final String MENSAGEM_NOTA_NAO_INFORMADA = "Nota processada não informada";
     private static final String MENSAGEM_NOTA_SEM_DADOS = "Nota sem os dados da NFC-e (identificação e emitente)";
     private static final String MENSAGEM_XML_NAO_INFORMADO = "XML da NFC-e não informado";
+    private static final String MENSAGEM_ANEXO_NULO = "A lista de anexos tem um anexo nulo";
     private static final String MENSAGEM_XML_INVALIDO = "XML da NFC-e inválido";
     private static final String MENSAGEM_ERRO_GERAR_PDF = "Erro ao gerar o PDF do DANFE NFC-e";
 
@@ -56,7 +59,20 @@ public class NFGeraDanfeNfce {
      * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
      */
     public byte[] gerar(final String xmlNfe, final DanfeCreditos creditos) {
-        return this.gerar(ler(xmlNfe), creditos);
+        return this.gerar(ler(xmlNfe), creditos, Collections.<DanfeNfceAnexo>emptyList());
+    }
+
+    /**
+     * Gera o cupom em PDF a partir do XML da NFC-e, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, na ordem da lista, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] gerar(final String xmlNfe, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+        return this.gerar(ler(xmlNfe), creditos, anexos);
     }
 
     /**
@@ -68,9 +84,26 @@ public class NFGeraDanfeNfce {
      * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e ou nao tiver o protocolo de autorizacao
      */
     public byte[] gerar(final NFNotaProcessada nota, final DanfeCreditos creditos) {
+        return this.gerar(nota, creditos, Collections.<DanfeNfceAnexo>emptyList());
+    }
+
+    /**
+     * Gera o cupom em PDF a partir da nota processada, com anexos (comprovante de pagamento, confissao de divida etc.) depois do cupom.
+     *
+     * @param nota nota processada; o protocolo pode faltar apenas em contingencia off-line
+     * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
+     * @param anexos blocos de texto impressos depois do cupom, na ordem da lista, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
+     */
+    public byte[] gerar(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
         validar(nota);
-        final Pdf medida = renderizar(nota, ALTURA_MAXIMA, creditos);
-        return renderizar(nota, medida.alturaUsada + 2 * MARGEM, creditos).bytes;
+        final List<DanfeNfceAnexo> lista = anexos == null ? Collections.<DanfeNfceAnexo>emptyList() : anexos;
+        if (lista.contains(null)) {
+            throw new IllegalArgumentException(MENSAGEM_ANEXO_NULO);
+        }
+        final Pdf medida = renderizar(nota, ALTURA_MAXIMA, creditos, lista);
+        return renderizar(nota, medida.alturaUsada + 2 * MARGEM, creditos, lista).bytes;
     }
 
     /**
@@ -102,12 +135,13 @@ public class NFGeraDanfeNfce {
      * @param nota nota processada
      * @param alturaPagina altura da pagina, em pontos
      * @param creditos rodape personalizado, ou null
+     * @param anexos anexos impressos depois do cupom, sem nulos
      * @return PDF e a altura que o conteudo ocupou, sem as margens
      */
-    private Pdf renderizar(final NFNotaProcessada nota, final float alturaPagina, final DanfeCreditos creditos) {
+    private Pdf renderizar(final NFNotaProcessada nota, final float alturaPagina, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, new PDRectangle(LARGURA_PAGINA, alturaPagina), MARGEM);
-            DanfeNfceCorpo.desenhar(canvas, nota, creditos);
+            DanfeNfceCorpo.desenhar(canvas, nota, creditos, anexos);
             final float alturaUsada = alturaPagina - MARGEM - canvas.y();
             canvas.fechar();
             documento.save(saida);

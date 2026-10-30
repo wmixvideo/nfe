@@ -35,7 +35,9 @@ final class DanfeNfceCorpo {
     private static final float ESPACO_SECAO = 4f;
     private static final float FOLGA_COLUNA = 4f;
     private static final float ESPESSURA_LINHA_INTEIRA = 1.2f;
-    private static final float ESPESSURA_LINHA_PONTILHADA = 0.5f;
+    private static final float ESPESSURA_LINHA_FINA = 0.5f;
+    private static final float ESPACO_ANTES_DO_CORTE = 12f;
+    private static final float ESPACO_DEPOIS_DO_CORTE = 4.5f;
     private static final float ESPACO_LINHA = 1.5f;
     private static final float LADO_QR_CODE = 25 * DanfeCanvas.MM;
     private static final float MARGEM_SEGURA_QR_CODE = 3 * DanfeCanvas.MM;
@@ -52,8 +54,9 @@ final class DanfeNfceCorpo {
      * @param canvas area de desenho, ja com o tamanho de pagina do cupom
      * @param nota nota processada (NFC-e)
      * @param creditos rodape personalizado, ou null
+     * @param anexos anexos impressos depois do cupom, cada um depois de uma linha de corte
      */
-    static void desenhar(final DanfeCanvas canvas, final NFNotaProcessada nota, final DanfeCreditos creditos) {
+    static void desenhar(final DanfeCanvas canvas, final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
         final NFNotaInfo info = nota.getNota().getInfo();
         cabecalho(canvas, info.getEmitente());
         titulo(canvas);
@@ -72,6 +75,23 @@ final class DanfeNfceCorpo {
         qrCode(canvas, suplementar);
         complementares(canvas, adicionais == null ? null : adicionais.getInformacoesComplementaresInteresseContribuinte());
         creditos(canvas, creditos);
+        for (final DanfeNfceAnexo anexo : anexos) {
+            anexo(canvas, anexo);
+        }
+    }
+
+    /**
+     * Anexo depois do cupom: linha de corte pontilhada, titulo em negrito (se houver) e texto em fonte monoespacada.
+     */
+    private static void anexo(final DanfeCanvas canvas, final DanfeNfceAnexo anexo) {
+        canvas.avancar(ESPACO_ANTES_DO_CORTE);
+        separador(canvas, ESPESSURA_LINHA_FINA, true);
+        canvas.avancar(ESPACO_DEPOIS_DO_CORTE);
+        if (anexo.getTitulo() != null && !anexo.getTitulo().isEmpty()) {
+            centralizado(canvas, anexo.getTitulo(), TAMANHO, true);
+            canvas.avancar(ESPACO_LINHA);
+        }
+        canvas.avancar(canvas.textoPreformatado(0, canvas.larguraUtil(), anexo.getTexto(), TAMANHO));
     }
 
     /**
@@ -255,7 +275,7 @@ final class DanfeNfceCorpo {
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "CÓDIGO DESCRIÇÃO", "", "", "", true);
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QUANTIDADE", "UN", "VL.UNIT.", "VL.TOTAL", true);
         for (final NFNotaInfoItem item : itens) {
-            separador(canvas, ESPESSURA_LINHA_PONTILHADA, true);
+            separador(canvas, ESPESSURA_LINHA_FINA, false);
             final String codigoDescricao = valorOuVazio(item.getProduto().getCodigo()) + " " + valorOuVazio(item.getProduto().getDescricao());
             canvas.avancar(canvas.texto(0, canvas.larguraUtil(), codigoDescricao, TAMANHO, ESQUERDA, false));
             linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade(item.getProduto().getQuantidadeComercial()),

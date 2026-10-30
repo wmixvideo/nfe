@@ -331,4 +331,36 @@ class DanfeCanvasTest {
         Assertions.assertTrue(conteudo.contains("[3 2 ] 0 d"));
         Assertions.assertEquals(1, conteudo.split("\\[3 2 \\] 0 d", -1).length - 1);
     }
+
+    @Test
+    void deveDesenharTextoPreformatadoPreservandoEspacosEmFonteMonoespacada() throws Exception {
+        final float[] altura = new float[1];
+        final byte[] pdf = pdf(canvas -> altura[0] = canvas.textoPreformatado(0, 200f, "A    B\r\nCC", 7f));
+        Assertions.assertEquals(2 * 7f * 1.2f, altura[0], 0.001f);
+        final java.util.List<org.apache.pdfbox.text.TextPosition> glifos = new java.util.ArrayList<>();
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            new PDFTextStripper() {
+                @Override
+                protected void processTextPosition(final org.apache.pdfbox.text.TextPosition texto) {
+                    glifos.add(texto);
+                }
+            }.getText(documento);
+        }
+        final float xA = glifos.stream().filter(g -> "A".equals(g.getUnicode())).findFirst().get().getX();
+        final float xB = glifos.stream().filter(g -> "B".equals(g.getUnicode())).findFirst().get().getX();
+        // 5 colunas de 0,6 * 7 pt: os 4 espacos entre A e B foram mantidos
+        Assertions.assertEquals(5 * 0.6f * 7f, xB - xA, 0.5f);
+    }
+
+    @Test
+    void deveQuebrarLinhaPreformatadaMaiorQueALarguraPorCaractereSemPerderNenhum() throws Exception {
+        final float[] altura = new float[1];
+        final StringBuilder longa = new StringBuilder();
+        for (int i = 0; i < 100; i++) {
+            longa.append('X');
+        }
+        final byte[] pdf = pdf(canvas -> altura[0] = canvas.textoPreformatado(0, 100f, longa.toString(), 7f));
+        Assertions.assertTrue(altura[0] >= 4 * 7f * 1.2f);
+        Assertions.assertEquals(100, texto(pdf, 1).replaceAll("\\s", "").length());
+    }
 }

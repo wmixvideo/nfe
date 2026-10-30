@@ -13,6 +13,7 @@ import com.fincatto.documentofiscal.nfe400.NFeConfigFake;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.nfe400.danfe.DanfeCreditos;
 import com.fincatto.documentofiscal.nfe400.danfe.DanfeFixtures;
+import com.fincatto.documentofiscal.nfe400.danfe.DanfeNfceAnexo;
 import com.fincatto.documentofiscal.nfe400.danfe.DanfeNfceFixtures;
 import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfeNfce;
 
@@ -92,6 +93,21 @@ class WSFacadeDanfeTest {
         final String xml = DanfeNfceFixtures.nfce().semProtocolo().build();
         try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
             Assertions.assertThrows(IllegalArgumentException.class, () -> facade.geraDanfeNfce(xml));
+        }
+    }
+
+    @Test
+    void deveGerarDanfeNfceComAnexosAPartirDoXmlEDoObjeto() throws Exception {
+        try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
+            final String xml = DanfeNfceFixtures.xml();
+            final java.util.List<DanfeNfceAnexo> anexos = java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente("RECIBO DO CLIENTE"));
+            for (final byte[] pdf : new byte[][]{facade.geraDanfeNfce(xml, null, anexos),
+                    facade.geraDanfeNfce(new com.fincatto.documentofiscal.utils.DFPersister().read(NFNotaProcessada.class, xml), null, anexos)}) {
+                Assertions.assertTrue(ehPdf(pdf));
+                try (final org.apache.pdfbox.pdmodel.PDDocument documento = org.apache.pdfbox.Loader.loadPDF(pdf)) {
+                    Assertions.assertTrue(new org.apache.pdfbox.text.PDFTextStripper().getText(documento).contains("RECIBO DO CLIENTE"));
+                }
+            }
         }
     }
 }

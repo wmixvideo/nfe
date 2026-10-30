@@ -50,6 +50,7 @@ final class DanfeCanvas {
 
     private static final byte[] FONTE_REGULAR = lerRecurso("/fonts/LiberationSans-Regular.ttf");
     private static final byte[] FONTE_NEGRITO = lerRecurso("/fonts/LiberationSans-Bold.ttf");
+    private static final byte[] FONTE_MONOESPACADA = lerRecurso("/fonts/LiberationMono-Regular.ttf");
     private static final float TAMANHO_ROTULO = 5.5f;
     private static final float TAMANHO_RODAPE = 6f;
     private static final float ALTURA_RODAPE = 10f;
@@ -59,6 +60,7 @@ final class DanfeCanvas {
     private final PDDocument documento;
     private final PDFont fonte;
     private final PDFont negrito;
+    private final PDFont monoespacada;
     private final CmapLookup glifos;
     private PDPageContentStream conteudo;
     private float y;
@@ -99,6 +101,7 @@ final class DanfeCanvas {
             this.glifos = regular.getUnicodeCmapLookup();
             this.fonte = PDType0Font.load(documento, regular, true);
             this.negrito = PDType0Font.load(documento, new TTFParser().parse(new RandomAccessReadBuffer(FONTE_NEGRITO)), true);
+            this.monoespacada = PDType0Font.load(documento, new TTFParser().parse(new RandomAccessReadBuffer(FONTE_MONOESPACADA)), true);
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -419,6 +422,36 @@ final class DanfeCanvas {
     void textoCentralizado(final float x, final float largura, final String texto, final float tamanhoFonte) {
         final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, texto, tamanhoFonte));
         escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x + sobra / 2, this.y - tamanhoFonte, texto);
+    }
+
+    /**
+     * Desenha texto ja formatado em colunas, em fonte monoespacada, a partir do cursor: preserva os espacos e as quebras de
+     * linha do texto e quebra por caractere a linha que passar da largura. Nao pagina nem move o cursor.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a desenhar, com quebras de linha {@code \n} ou {@code \r\n}
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @return altura ocupada, em pontos
+     */
+    float textoPreformatado(final float x, final float largura, final String texto, final float tamanhoFonte) {
+        final List<String> linhas = new ArrayList<>();
+        for (final String linha : (texto == null ? "" : texto).split("\r?\n", -1)) {
+            String resto = limpar(linha);
+            while (larguraNaFonte(this.monoespacada, resto, tamanhoFonte) > largura && resto.length() > 1) {
+                int corte = resto.length() - 1;
+                while (corte > 1 && larguraNaFonte(this.monoespacada, resto.substring(0, corte), tamanhoFonte) > largura) {
+                    corte--;
+                }
+                linhas.add(resto.substring(0, corte));
+                resto = resto.substring(corte);
+            }
+            linhas.add(resto);
+        }
+        for (int i = 0; i < linhas.size(); i++) {
+            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+        }
+        return linhas.size() * alturaLinha(tamanhoFonte);
     }
 
     /**

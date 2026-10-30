@@ -415,6 +415,19 @@ DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Minha Empresa", "ww
 byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, creditos);
 ```
 
+Para imprimir o comprovante do cartão (TEF), a confissão de dívida ou qualquer outro texto do seu sistema **depois do cupom**, na mesma página e separado por uma linha de corte, passe uma lista de `DanfeNfceAnexo`. O texto já vem pronto (por exemplo, o recibo que o TEF devolveu) e sai em fonte monoespaçada, com os espaços e as quebras de linha preservados (cerca de 48 colunas):
+
+```java
+List<DanfeNfceAnexo> anexos = Arrays.asList(
+        DanfeNfceAnexo.viaEstabelecimento(reciboLojaDoTef),
+        DanfeNfceAnexo.viaCliente(reciboClienteDoTef),
+        DanfeNfceAnexo.confissaoDeDivida(textoDaConfissao),
+        new DanfeNfceAnexo("OBSERVAÇÃO", "Qualquer outro texto"));
+byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, creditos, anexos);
+```
+
+A lib não confere o conteúdo dos anexos. Cada UF tem suas regras para o comprovante: no RS (IN RE 81/2022) e no CE (IN 87/2025), por exemplo, se o DANFE NFC-e for impresso, o comprovante sai no mesmo equipamento, então basta passar os anexos na mesma chamada; na BA o comprovante pode sair em outro equipamento, desde que traga o CNPJ do estabelecimento. Confirme a regra vigente na legislação da sua UF.
+
 Só aceita o modelo 65 e exige o protocolo de autorização. A exceção é a contingência off-line (`tpEmis=9`), em que o cupom sai da `NFe` ainda sem protocolo, com a mensagem "EMITIDA EM CONTINGÊNCIA". Em homologação, sai "EMITIDA EM AMBIENTE DE HOMOLOGAÇÃO – SEM VALOR FISCAL". Também dá para usar direto `new NFGeraDanfeNfce().gerar(...)`, sem `NFeConfig` nem certificado.
 
 ### Consultar uma nota pela chave de acesso
