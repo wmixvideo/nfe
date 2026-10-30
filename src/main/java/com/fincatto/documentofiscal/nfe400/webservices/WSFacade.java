@@ -1,5 +1,15 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -23,24 +33,20 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrup
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.roubo.NFDetGrupoPerecimentoFornecedor;
 import com.fincatto.documentofiscal.nfe400.classes.lote.consulta.NFLoteConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.lote.envio.*;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetorno;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvioRetornoDados;
+import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteIndicadorProcessamento;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownloadXMLRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
+import com.fincatto.documentofiscal.nfe400.danfe.NFGeraDanfe;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
-
-import java.io.Closeable;
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Ponto de entrada publico para todos os webservices de NF-e/NFC-e 4.00 (envio/consulta de
@@ -96,6 +102,52 @@ public class WSFacade implements Closeable {
         if(this.httpClient != null){
             this.httpClient.close();
         }
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF, sem logotipo.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe) {
+        return this.geraDanfe(xmlNfe, null);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF.
+     *
+     * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage) {
+        return new NFGeraDanfe().gerar(xmlNfe, logoImage);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada, sem logotipo.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota) {
+        return this.geraDanfe(nota, null);
+    }
+
+    /**
+     * Gera o DANFE (NF-e modelo 55, A4 retrato) em PDF a partir da nota processada.
+     *
+     * @param nota nota processada (NF-e com o protocolo de autorizacao)
+     * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
+     * @return bytes do PDF
+     * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
+     */
+    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage) {
+        return new NFGeraDanfe().gerar(nota, logoImage);
     }
 
     /**

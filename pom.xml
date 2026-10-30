@@ -50,11 +50,34 @@
             <version>4.0.2</version>
         </dependency>
 
+        <!-- Geracao do DANFE em PDF -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.4</version>
+        </dependency>
+
         <!-- Simple Xml Framework -->
         <dependency>
             <groupId>org.simpleframework</groupId>
             <artifactId>simple-xml</artifactId>
             <version>${simple-xml.version}</version>
+            <exclusions>
+                <!-- APIs StAX já fornecidas pelo JDK (módulo java.xml); evita pacote dividido -->
+                <exclusion>
+                    <groupId>stax</groupId>
+                    <artifactId>stax-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>stax</groupId>
+                    <artifactId>stax</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Commons Lang -->
