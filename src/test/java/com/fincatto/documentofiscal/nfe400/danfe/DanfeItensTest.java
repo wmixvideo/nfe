@@ -135,4 +135,35 @@ class DanfeItensTest {
         Assertions.assertTrue(desenhar(Collections.emptyList()).texto.contains("DADOS DOS PRODUTOS / SERVI\u00c7OS"));
         Assertions.assertTrue(desenhar(null).texto.contains("DADOS DOS PRODUTOS / SERVI\u00c7OS"));
     }
+
+    private static NFNotaInfoItem itemSimples() {
+        final NFNotaInfoItem item = FabricaDeObjetosFake.getNFNotaInfoItem();
+        item.setInformacoesAdicionais(null);
+        item.getProduto().setDescricao("Produto simples");
+        item.getProduto().setNcm("04061010");
+        item.getProduto().setCfop("5102");
+        item.getProduto().setQuantidadeComercial(new java.math.BigDecimal("2"));
+        item.getProduto().setValorUnitario(new java.math.BigDecimal("50"));
+        return item;
+    }
+
+    @Test
+    void deveCompletarDuasCasasNaQuantidadeENoValorUnitario() throws Exception {
+        final String texto = desenhar(Collections.singletonList(itemSimples())).texto;
+        Assertions.assertTrue(texto.contains("2,00 [") , "quantidade");
+        Assertions.assertTrue(texto.contains("50,00"), "valor unit\u00e1rio");
+    }
+
+    @Test
+    void naoDeveQuebrarCstECfopNaColunaEstreita() throws Exception {
+        try (final PDDocument documento = new PDDocument()) {
+            final DanfeCanvas canvas = new DanfeCanvas(documento);
+            DanfeItens.desenhar(canvas, Collections.singletonList(itemSimples()));
+            final float antes = canvas.y();
+            DanfeItens.desenhar(canvas, Collections.singletonList(itemSimples()));
+            final float alturaDaLinha = antes - canvas.y() - DanfeCanvas.ALTURA_TITULO - 14f;
+            // descricao + NCM + 2 linhas de CST/CFOP cabem em 2 linhas de texto
+            Assertions.assertEquals(2 * canvas.alturaLinha(6f) + 4f, alturaDaLinha, 0.01f);
+        }
+    }
 }

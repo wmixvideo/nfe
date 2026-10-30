@@ -34,6 +34,16 @@ class DanfeFormatadorTest {
     }
 
     @Test
+    void deveCompletarCasasDecimaisMinimasSemCortarAsExistentes() {
+        Assertions.assertEquals("50,00", DanfeFormatador.valor("50", 2));
+        Assertions.assertEquals("2,00", DanfeFormatador.valor("2", 2));
+        Assertions.assertEquals("1.234,50", DanfeFormatador.valor("1234.5", 2));
+        Assertions.assertEquals("0,12345", DanfeFormatador.valor("0.12345", 2));
+        Assertions.assertEquals("", DanfeFormatador.valor(null, 2));
+        Assertions.assertEquals("abc", DanfeFormatador.valor("abc", 2));
+    }
+
+    @Test
     void deveFormatarValoresMantendoCasasDoXml() {
         Assertions.assertEquals("1.234,5", DanfeFormatador.valor("1234.5"));
         Assertions.assertEquals("0,00", DanfeFormatador.valor("0.00"));

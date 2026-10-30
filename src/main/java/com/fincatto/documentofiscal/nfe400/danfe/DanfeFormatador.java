@@ -99,6 +99,28 @@ final class DanfeFormatador {
     }
 
     /**
+     * Como {@link #valor(String)}, mas completa com zeros ate o minimo de casas decimais (ex.: "50" vira "50,00"); mais casas que o minimo sao mantidas.
+     *
+     * @param valor valor numerico do XML
+     * @param casasMinimas minimo de casas decimais
+     * @return valor com separador de milhar e virgula decimal
+     */
+    static String valor(final String valor, final int casasMinimas) {
+        if (valor == null || !valor.matches("-?\\d+(\\.\\d+)?")) {
+            return valor(valor);
+        }
+        final int casas = valor.contains(".") ? valor.length() - valor.indexOf('.') - 1 : 0;
+        final StringBuilder completo = new StringBuilder(valor);
+        if (casas == 0 && casasMinimas > 0) {
+            completo.append('.');
+        }
+        for (int i = casas; i < casasMinimas; i++) {
+            completo.append('0');
+        }
+        return valor(completo.toString());
+    }
+
+    /**
      * Formata a data como dd/MM/yyyy.
      *
      * @param data data e hora

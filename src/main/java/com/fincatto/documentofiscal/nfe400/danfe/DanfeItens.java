@@ -28,7 +28,7 @@ final class DanfeItens {
 
     /** Colunas e larguras em pontos; a ultima ocupa o que sobra da largura util. */
     private static final String[] TITULOS = {"DESCRI\u00c7\u00c3O DO PRODUTO / SERVI\u00c7O", "CST/CFOP", "QTD / UN", "VLR UNIT", "VLR TOTAL", "BASES DE C\u00c1LCULO", "AL\u00cdQUOTAS", "VALOR DOS TRIBUTOS"};
-    private static final float[] LARGURAS = {118f, 32f, 44f, 44f, 44f, 86f, 90f, 0f};
+    private static final float[] LARGURAS = {114f, 42f, 44f, 44f, 44f, 82f, 88f, 0f};
 
     /**
      * Classe utilitaria, nao deve ser instanciada.
@@ -166,8 +166,8 @@ final class DanfeItens {
         return new String[]{
                 primeira.toString(),
                 (icms.cst == null ? "" : "CST " + icms.cst + "\n") + "CFOP " + (produto == null ? "" : texto(produto.getCfop())),
-                produto == null ? "" : DanfeFormatador.valor(produto.getQuantidadeComercial()) + "\n[" + texto(produto.getUnidadeComercial()) + "]",
-                produto == null ? "" : DanfeFormatador.valor(produto.getValorUnitario()),
+                produto == null ? "" : DanfeFormatador.valor(produto.getQuantidadeComercial(), 2) + "\n[" + texto(produto.getUnidadeComercial()) + "]",
+                produto == null ? "" : DanfeFormatador.valor(produto.getValorUnitario(), 2),
                 produto == null ? "" : DanfeFormatador.valor(produto.getValorTotalBruto()),
                 linhas(
                         par("ICMS", valor(icms.base)),
