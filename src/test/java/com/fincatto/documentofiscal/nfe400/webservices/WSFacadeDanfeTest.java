@@ -35,8 +35,9 @@ class WSFacadeDanfeTest {
 
     @Test
     void naoDeveGerarDanfeParaXmlSemProtocolo() throws Exception {
+        final String xml = DanfeFixtures.xmlSemProtocolo();
         try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> facade.geraDanfe(DanfeFixtures.xmlSemProtocolo()));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> facade.geraDanfe(xml));
         }
     }
 
