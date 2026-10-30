@@ -63,7 +63,7 @@ final class DanfeCanvas {
     private PDPageContentStream conteudo;
     private float y;
     private String marcaDagua;
-    private final DanfeCreditos rodape;
+    private final DanfeCreditos creditos;
 
     DanfeCanvas(final PDDocument documento) {
         this(documento, null);
@@ -71,12 +71,12 @@ final class DanfeCanvas {
 
     /**
      * @param documento documento onde as paginas sao criadas
-     * @param rodape rodape personalizado impresso em todas as paginas, ou null; quando informado, reserva a faixa inferior da pagina
+     * @param creditos rodape personalizado impresso em todas as paginas, ou null; quando informado, reserva a faixa inferior da pagina
      */
-    DanfeCanvas(final PDDocument documento, final DanfeCreditos rodape) {
+    DanfeCanvas(final PDDocument documento, final DanfeCreditos creditos) {
         this.documento = documento;
         // sem nenhum texto nao ha o que imprimir, entao tambem nao reserva a faixa inferior
-        this.rodape = rodape != null && (rodape.getEsquerda() != null || rodape.getDireita() != null) ? rodape : null;
+        this.creditos = creditos != null && (creditos.getEsquerda() != null || creditos.getDireita() != null) ? creditos : null;
         try {
             final TrueTypeFont regular = new TTFParser().parse(new RandomAccessReadBuffer(FONTE_REGULAR));
             this.glifos = regular.getUnicodeCmapLookup();
@@ -170,7 +170,7 @@ final class DanfeCanvas {
      * @return espaco vertical que ainda cabe na pagina, em pontos
      */
     float restante() {
-        return this.y - MARGEM - (this.rodape == null ? 0 : ALTURA_RODAPE);
+        return this.y - MARGEM - (this.creditos == null ? 0 : ALTURA_RODAPE);
     }
 
     /**
@@ -507,7 +507,7 @@ final class DanfeCanvas {
         try {
             this.conteudo.close();
             for (final PDPage pagina : this.documento.getPages()) {
-                if (this.rodape != null) {
+                if (this.creditos != null) {
                     desenharRodape(pagina);
                 }
                 if (this.marcaDagua != null) {
@@ -527,8 +527,8 @@ final class DanfeCanvas {
      */
     private void desenharRodape(final PDPage pagina) throws IOException {
         final float metade = (LARGURA_UTIL - 4) / 2;
-        final String esquerda = cortar(limpar(this.rodape.getEsquerda()), TAMANHO_RODAPE, metade);
-        final String direita = cortar(limpar(this.rodape.getDireita()), TAMANHO_RODAPE, metade);
+        final String esquerda = cortar(limpar(this.creditos.getEsquerda()), TAMANHO_RODAPE, metade);
+        final String direita = cortar(limpar(this.creditos.getDireita()), TAMANHO_RODAPE, metade);
         try (final PDPageContentStream fluxo = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
             fluxo.setNonStrokingColor(Color.BLACK);
             escreverRodape(fluxo, MARGEM + 2, esquerda);

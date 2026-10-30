@@ -156,9 +156,9 @@ class NFGeraDanfeTest {
     }
 
     @Test
-    void deveImprimirRodapePersonalizadoEmTodasAsPaginas() throws Exception {
-        final DanfeCreditos rodape = new DanfeCreditos("Desenvolvido por Fulano - (11) 99999-0000", "www.exemplo.com.br");
-        final byte[] pdf = gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null, rodape);
+    void deveImprimirCreditosEmTodasAsPaginas() throws Exception {
+        final DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Fulano - (11) 99999-0000", "www.exemplo.com.br");
+        final byte[] pdf = gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null, creditos);
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
             Assertions.assertTrue(documento.getNumberOfPages() > 1);
             for (int pagina = 1; pagina <= documento.getNumberOfPages(); pagina++) {

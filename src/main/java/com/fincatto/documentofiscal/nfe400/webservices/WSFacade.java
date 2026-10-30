@@ -156,12 +156,12 @@ public class WSFacade implements Closeable {
      *
      * @param nota nota processada (NF-e com o protocolo de autorizacao)
      * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
-     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
      * @return bytes do PDF
      * @throws IllegalArgumentException se a nota for nula, estiver incompleta ou sem o protocolo de autorizacao
      */
-    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos rodape) {
-        return new NFGeraDanfe().gerar(nota, logoImage, rodape);
+    public byte[] geraDanfe(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos creditos) {
+        return new NFGeraDanfe().gerar(nota, logoImage, creditos);
     }
 
     /**
@@ -169,12 +169,12 @@ public class WSFacade implements Closeable {
      *
      * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
      * @param logoImage imagem do logotipo do emitente (PNG, JPEG etc.); se nula ou invalida o espaco fica em branco
-     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
      * @return bytes do PDF
      * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
      */
-    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage, final DanfeCreditos rodape) {
-        return new NFGeraDanfe().gerar(xmlNfe, logoImage, rodape);
+    public byte[] geraDanfe(final String xmlNfe, final byte[] logoImage, final DanfeCreditos creditos) {
+        return new NFGeraDanfe().gerar(xmlNfe, logoImage, creditos);
     }
 
     /**

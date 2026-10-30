@@ -37,12 +37,12 @@ public class NFGeraDanfe {
      *
      * @param xmlNfe XML do nfeProc (NF-e com o protocolo de autorizacao)
      * @param logoImage imagem do logotipo do emitente; se nula ou invalida o espaco do logotipo fica em branco
-     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
      * @return bytes do PDF
      * @throws IllegalArgumentException se o XML for invalido ou nao tiver o protocolo de autorizacao
      */
-    public byte[] gerar(final String xmlNfe, final byte[] logoImage, final DanfeCreditos rodape) {
-        return this.gerar(ler(xmlNfe), logoImage, rodape);
+    public byte[] gerar(final String xmlNfe, final byte[] logoImage, final DanfeCreditos creditos) {
+        return this.gerar(ler(xmlNfe), logoImage, creditos);
     }
 
     /**
@@ -62,16 +62,16 @@ public class NFGeraDanfe {
      *
      * @param nota nota processada
      * @param logoImage imagem do logotipo do emitente; se nula ou invalida o espaco do logotipo fica em branco
-     * @param rodape textos do rodape; se nulo, o DANFE sai sem rodape personalizado
+     * @param creditos creditos (textos do rodape); se nulo, o DANFE sai sem rodape personalizado
      * @return bytes do PDF
      * @throws IllegalArgumentException se a nota for nula, estiver sem os dados da NF-e ou sem o protocolo de autorizacao
      */
-    public byte[] gerar(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos rodape) {
+    public byte[] gerar(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos creditos) {
         validar(nota);
         final byte[] logo = logoValido(logoImage);
-        final Pdf primeiro = renderizar(nota, logo, 1, rodape);
+        final Pdf primeiro = renderizar(nota, logo, 1, creditos);
         // o total de folhas so e conhecido depois de desenhar: refaz quando a nota passa de uma pagina
-        return primeiro.paginas == 1 ? primeiro.bytes : renderizar(nota, logo, primeiro.paginas, rodape).bytes;
+        return primeiro.paginas == 1 ? primeiro.bytes : renderizar(nota, logo, primeiro.paginas, creditos).bytes;
     }
 
     /**
@@ -99,12 +99,12 @@ public class NFGeraDanfe {
      * @param nota nota processada
      * @param logo logotipo ja validado, ou null
      * @param totalFolhas total de folhas impresso no cabecalho
-     * @param rodape rodape personalizado, ou null
+     * @param creditos rodape personalizado, ou null
      * @return PDF e numero de paginas geradas
      */
-    private Pdf renderizar(final NFNotaProcessada nota, final byte[] logo, final int totalFolhas, final DanfeCreditos rodape) {
+    private Pdf renderizar(final NFNotaProcessada nota, final byte[] logo, final int totalFolhas, final DanfeCreditos creditos) {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
-            final DanfeCanvas canvas = new DanfeCanvas(documento, rodape);
+            final DanfeCanvas canvas = new DanfeCanvas(documento, creditos);
             DanfeCabecalho.desenhar(canvas, nota, logo, totalFolhas);
             DanfeTotais.desenhar(canvas, nota.getNota().getInfo());
             DanfeItens.desenhar(canvas, nota.getNota().getInfo().getItens());
