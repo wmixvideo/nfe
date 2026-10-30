@@ -136,7 +136,7 @@ final class DanfeCabecalho {
      * Desenha a natureza da operacao e o protocolo de autorizacao.
      */
     private static void linhaNaturezaEProtocolo(final DanfeCanvas canvas, final NFNotaInfoIdentificacao identificacao, final NFProtocoloInfo protocolo) {
-        final float larguraNatureza = LARGURA_UTIL * 0.55f;
+        final float larguraNatureza = LARGURA_EMITENTE + LARGURA_DANFE;
         canvas.caixa(0, larguraNatureza, ALTURA_QUADRO, "NATUREZA DA OPERA\u00c7\u00c3O", identificacao.getNaturezaOperacao(), ESQUERDA);
         final String valorProtocolo = protocolo == null ? "" : texto(protocolo.getNumeroProtocolo()) + " - " + DanfeFormatador.dataHoraLocal(protocolo.getDataRecebimento());
         canvas.caixa(larguraNatureza, LARGURA_UTIL - larguraNatureza, ALTURA_QUADRO, "PROTOCOLO DE AUTORIZA\u00c7\u00c3O DE USO", valorProtocolo, DIREITA);
@@ -155,7 +155,7 @@ final class DanfeCabecalho {
 
     /** O tipo de regime de apuracao do IBS/CBS e campo reservado pela NT 2026.010: o quadro fica em branco e e o ultimo a ser desenhado. */
     private static void linhaRegime(final DanfeCanvas canvas, final NFNotaInfoEmitente emitente) {
-        final float larguraCrt = LARGURA_UTIL * 0.55f;
+        final float larguraCrt = LARGURA_EMITENTE + LARGURA_DANFE;
         final String crt = emitente.getRegimeTributario() == null ? "" : emitente.getRegimeTributario().toString().toUpperCase(Locale.forLanguageTag("pt-BR"));
         canvas.caixa(0, larguraCrt, ALTURA_QUADRO, "C\u00d3DIGO DO REGIME TRIBUT\u00c1RIO", crt, ESQUERDA);
         canvas.caixa(larguraCrt, LARGURA_UTIL - larguraCrt, ALTURA_QUADRO, "TIPO DE REGIME DE APURA\u00c7\u00c3O DO IBS E DA CBS", "", ESQUERDA);

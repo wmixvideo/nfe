@@ -84,6 +84,17 @@ final class DanfeItens {
     }
 
     /**
+     * @return posicao, em pontos, em que a coluna comeca; usada para alinhar outros blocos com as colunas dos itens
+     */
+    static float inicioDaColuna(final int coluna) {
+        float inicio = 0;
+        for (int i = 0; i < coluna; i++) {
+            inicio += larguraDaColuna(i);
+        }
+        return inicio;
+    }
+
+    /**
      * @return largura da coluna em pontos; a ultima ocupa o que sobra da largura util
      */
     private static float larguraDaColuna(final int coluna) {

@@ -31,6 +31,8 @@ import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.LARGURA_UTIL
 final class DanfeTotais {
 
     private static final float ALTURA_QUADRO = 22f;
+    /** Inicio de cada grupo da fatura (e o fim do ultimo); o terceiro grupo comeca na coluna da chave de acesso. */
+    private static final float[] GRUPOS_FATURA = {0f, 0.3f, 0.6f, 1f};
     private static final DateTimeFormatter VENCIMENTO = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
@@ -145,7 +147,7 @@ final class DanfeTotais {
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
         final NFEndereco endereco = destinatario == null ? null : destinatario.getEndereco();
         titulo(canvas, "DESTINAT\u00c1RIO / REMETENTE");
-        linha(canvas, new float[]{56.5f, 25.5f, 18},
+        linha(canvas, new float[]{60, 22, 18},
                 texto("NOME / RAZ\u00c3O SOCIAL", destinatario == null ? "" : destinatario.getRazaoSocial()),
                 texto("CNPJ / CPF", destinatario == null ? "" : DanfeFormatador.cnpjOuCpf(destinatario.getCpfj())),
                 texto("DATA DE EMISS\u00c3O", identificacao == null ? "" : DanfeFormatador.data(identificacao.getDataHoraEmissao())));
@@ -154,7 +156,7 @@ final class DanfeTotais {
                 texto("BAIRRO / DISTRITO", endereco == null ? "" : endereco.getBairro()),
                 texto("CEP", endereco == null ? "" : endereco.getCep()),
                 texto("DATA DE ENTRADA / SA\u00cdDA", identificacao == null ? "" : DanfeFormatador.data(identificacao.getDataHoraSaidaOuEntrada())));
-        linha(canvas, new float[]{30, 18, 8.5f, 25.5f, 18},
+        linha(canvas, new float[]{30, 18, 12, 22, 18},
                 texto("MUNIC\u00cdPIO", endereco == null ? "" : endereco.getDescricaoMunicipio()),
                 texto("FONE / FAX", endereco == null ? "" : endereco.getTelefone()),
                 texto("UF", endereco == null ? "" : endereco.getUf()),
@@ -184,12 +186,12 @@ final class DanfeTotais {
         }
         titulo(canvas, "FATURA / DUPLICATAS");
         final List<NFNotaInfoParcela> parcelas = cobranca.getParcelas();
-        for (int i = 0; i < parcelas.size(); i += 4) {
+        for (int i = 0; i < parcelas.size(); i += 3) {
             canvas.garantir(ALTURA_QUADRO);
-            final float grupo = LARGURA_UTIL / 4;
-            for (int j = 0; j < 4 && i + j < parcelas.size(); j++) {
+            for (int j = 0; j < 3 && i + j < parcelas.size(); j++) {
                 final NFNotaInfoParcela parcela = parcelas.get(i + j);
-                final float x = j * grupo;
+                final float x = LARGURA_UTIL * GRUPOS_FATURA[j];
+                final float grupo = LARGURA_UTIL * (GRUPOS_FATURA[j + 1] - GRUPOS_FATURA[j]);
                 canvas.caixa(x, grupo * 0.3f, ALTURA_QUADRO, "FATURA/DUPLICATA", parcela.getNumeroParcela(), ESQUERDA);
                 canvas.caixa(x + grupo * 0.3f, grupo * 0.35f, ALTURA_QUADRO, "VENCIMENTO",
                         parcela.getDataVencimento() == null ? "" : VENCIMENTO.format(parcela.getDataVencimento()), ESQUERDA);
@@ -315,7 +317,11 @@ final class DanfeTotais {
             liquido = volume.getPesoLiquido() == null ? liquido : liquido.add(new BigDecimal(volume.getPesoLiquido()));
         }
         final NFNotaInfoVolume primeiro = volumes.get(0);
-        linha(canvas, new float[]{12, 20, 20, 16, 16, 16},
+        // numeracao, peso bruto e peso liquido alinhados com as colunas BASES DE CALCULO, ALIQUOTAS e VALOR DOS TRIBUTOS dos itens
+        final float inicioBases = DanfeItens.inicioDaColuna(5);
+        linha(canvas, new float[]{inicioBases * 0.2f, inicioBases * 0.4f, inicioBases * 0.4f,
+                        DanfeItens.inicioDaColuna(6) - inicioBases, DanfeItens.inicioDaColuna(7) - DanfeItens.inicioDaColuna(6),
+                        LARGURA_UTIL - DanfeItens.inicioDaColuna(7)},
                 texto("QUANTIDADE", quantidade.toString()),
                 texto("ESP\u00c9CIE", primeiro.getEspecieVolumesTransportados()),
                 texto("MARCA", primeiro.getMarca()),
