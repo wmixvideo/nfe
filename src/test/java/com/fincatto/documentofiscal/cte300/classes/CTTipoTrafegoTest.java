@@ -1,19 +1,17 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.CTTipoTrafego;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTTipoTrafegoTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTTipoTrafego.valueOfCodigo(null));
-    	Assert.assertEquals("0", CTTipoTrafego.PROPRIO.getCodigo());
-    	Assert.assertEquals("1", CTTipoTrafego.MUTUO.getCodigo());
-    	Assert.assertEquals("2", CTTipoTrafego.RODOFERROVIARIO.getCodigo());
-    	Assert.assertEquals("3", CTTipoTrafego.RODOVIARIO.getCodigo());
+    	Assertions.assertNull(CTTipoTrafego.valueOfCodigo(null));
+    	Assertions.assertEquals("0", CTTipoTrafego.PROPRIO.getCodigo());
+    	Assertions.assertEquals("1", CTTipoTrafego.MUTUO.getCodigo());
+    	Assertions.assertEquals("2", CTTipoTrafego.RODOFERROVIARIO.getCodigo());
+    	Assertions.assertEquals("3", CTTipoTrafego.RODOVIARIO.getCodigo());
 	}
 
 }

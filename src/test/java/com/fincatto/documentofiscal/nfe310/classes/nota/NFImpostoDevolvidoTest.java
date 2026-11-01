@@ -1,38 +1,42 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFImpostoDevolvido;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFImpostoDevolvidoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorIPIDevolvidoNula() {
-        final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
-        impostoDevolvido.setPercentualDevolucao(new BigDecimal("999.99"));
-        impostoDevolvido.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
+            impostoDevolvido.setPercentualDevolucao(new BigDecimal("999.99"));
+            impostoDevolvido.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirPercentualDevolucaoNula() {
-        final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
-        impostoDevolvido.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
+            impostoDevolvido.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirImportacaoPIPDevolvidaNula() {
-        final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
-        impostoDevolvido.setPercentualDevolucao(new BigDecimal("100"));
-        impostoDevolvido.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFImpostoDevolvido impostoDevolvido = new NFImpostoDevolvido();
+            impostoDevolvido.setPercentualDevolucao(new BigDecimal("100"));
+            impostoDevolvido.toString();
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFImpostoDevolvido><pDevol>100.00</pDevol><IPI><vIPIDevol>9999999999999.99</vIPIDevol></IPI></NFImpostoDevolvido>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFImpostoDevolvido().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFImpostoDevolvido().toString());
     }
 }

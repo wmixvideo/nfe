@@ -1,10 +1,8 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoHoraEntrega;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresEntregaSemHoraDefinidaTest {
 
@@ -12,13 +10,13 @@ public class CTeNotaInfoDadosComplementaresEntregaSemHoraDefinidaTest {
     public void deveSerTipoPrazoEntregaSemHoraDefinida() {
         final CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida entregaSemHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida();
         entregaSemHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.SEM_HORA_DEFINIDA);
-        Assert.assertEquals("0", entregaSemHoraDefinida.getTipoPrazoHoraEntrega().getCodigo());
+        Assertions.assertEquals("0", entregaSemHoraDefinida.getTipoPrazoHoraEntrega().getCodigo());
     }
 
     @Test
     public void deveGerarXmlCorreto() {
         final CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida entregaSemHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaSemHoraDefinida();
         entregaSemHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.A_PARTIR_DO_HORARIO);
-        Assert.assertEquals("<semHora><tpHor>3</tpHor></semHora>", entregaSemHoraDefinida.toString());
+        Assertions.assertEquals("<semHora><tpHor>3</tpHor></semHora>", entregaSemHoraDefinida.toString());
     }
 }

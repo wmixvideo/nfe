@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">    
+  <xs:element name="nfceDownloadXML">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="tpAmb" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="9"/>
+        </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="chNFCe" minOccurs="1" maxOccurs="1" >
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:pattern value="[0-9]{6}[A-Z0-9]{12}[0-9]{26}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="versao">
+	   <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="[0-9]{1}[.][0-9]{0,2}"/>
+              </xs:restriction>
+	   </xs:simpleType>
+	</xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,13 +1,13 @@
 package com.fincatto.documentofiscal.nfe400.classes.inutilizacao;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacaoDados;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NFRetornoEventoInutilizacaoDadosTest {
 
@@ -16,7 +16,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         dados.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, dados.getAmbiente());
+        Assertions.assertEquals(ambiente, dados.getAmbiente());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final int ano = 2015;
         dados.setAno(ano);
-        Assert.assertEquals(ano, dados.getAno(), 0);
+        Assertions.assertEquals(ano, dados.getAno(), 0);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String cnpj = "44806226000150";
         dados.setCnpj(cnpj);
-        Assert.assertEquals(cnpj, dados.getCnpj());
+        Assertions.assertEquals(cnpj, dados.getCnpj());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final LocalDateTime datahoraRecebimento = LocalDateTime.parse("2010-10-10 10:10:10", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         dados.setDatahoraRecebimento(datahoraRecebimento);
-        Assert.assertEquals(datahoraRecebimento, dados.getDatahoraRecebimento());
+        Assertions.assertEquals(datahoraRecebimento, dados.getDatahoraRecebimento());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String identificador = "NFe132465789123456789";
         dados.setIdentificador(identificador);
-        Assert.assertEquals(identificador, dados.getIdentificador());
+        Assertions.assertEquals(identificador, dados.getIdentificador());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String modeloNotaFiscal = "55";
         dados.setModeloNotaFiscal(modeloNotaFiscal);
-        Assert.assertEquals(modeloNotaFiscal, dados.getModeloNotaFiscal());
+        Assertions.assertEquals(modeloNotaFiscal, dados.getModeloNotaFiscal());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String motivo = "motivo de teste";
         dados.setMotivo(motivo);
-        Assert.assertEquals(motivo, dados.getMotivo());
+        Assertions.assertEquals(motivo, dados.getMotivo());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final String numeroNFFinal = "654231";
         dados.setNumeroNFFinal(numeroNFFinal);
 
-        Assert.assertEquals(numeroNFFinal, dados.getNumeroNFFinal());
+        Assertions.assertEquals(numeroNFFinal, dados.getNumeroNFFinal());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String numeroNFInicial = "132456";
         dados.setNumeroNFInicial(numeroNFInicial);
-        Assert.assertEquals(numeroNFInicial, dados.getNumeroNFInicial());
+        Assertions.assertEquals(numeroNFInicial, dados.getNumeroNFInicial());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String numeroProtocolo = "123465789";
         dados.setNumeroProtocolo(numeroProtocolo);
-        Assert.assertEquals(numeroProtocolo, dados.getNumeroProtocolo());
+        Assertions.assertEquals(numeroProtocolo, dados.getNumeroProtocolo());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String serie = "088";
         dados.setSerie(serie);
-        Assert.assertEquals(serie, dados.getSerie());
+        Assertions.assertEquals(serie, dados.getSerie());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String status = "Em andamento";
         dados.setStatus(status);
-        Assert.assertEquals(status, dados.getStatus());
+        Assertions.assertEquals(status, dados.getStatus());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
         dados.setUf(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, dados.getUf());
+        Assertions.assertEquals(unidadeFederativa, dados.getUf());
     }
 
     @Test
@@ -121,6 +121,6 @@ public class NFRetornoEventoInutilizacaoDadosTest {
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         final String versaoAplicacao = "v10.0";
         dados.setVersaoAplicacao(versaoAplicacao);
-        Assert.assertEquals(versaoAplicacao, dados.getVersaoAplicacao());
+        Assertions.assertEquals(versaoAplicacao, dados.getVersaoAplicacao());
     }
 }

@@ -1,44 +1,48 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoCompra;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoCompraTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirPedidoComTamanhoNaoPermitido() {
-        try {
-            new NFNotaInfoCompra().setPedido("");
-            Assert.fail("Validacao nao esta funcionando corretamente");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoCompra().setPedido("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca");
-        }
-        Assert.fail("Validacao nao esta funcionando corretamente");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoCompra().setPedido("");
+                Assertions.fail("Validacao nao esta funcionando corretamente");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoCompra().setPedido("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca");
+            }
+            Assertions.fail("Validacao nao esta funcionando corretamente");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNotaDeEmpenhoComTamanhoNaoPermitido() {
-        try {
-            new NFNotaInfoCompra().setNotaDeEmpenho("");
-            Assert.fail("Validacao nao esta funcionando corretamente");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoCompra().setNotaDeEmpenho("uCJhbWe0g8OQ8KtSKlkXpRC");
-        }
-        Assert.fail("Validacao nao esta funcionando corretamente");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoCompra().setNotaDeEmpenho("");
+                Assertions.fail("Validacao nao esta funcionando corretamente");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoCompra().setNotaDeEmpenho("uCJhbWe0g8OQ8KtSKlkXpRC");
+            }
+            Assertions.fail("Validacao nao esta funcionando corretamente");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirContratoComTamanhoNaoPermitido() {
-        try {
-            new NFNotaInfoCompra().setContrato("");
-            Assert.fail("Validacao nao esta funcionando corretamente");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoCompra().setContrato("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca");
-        }
-        Assert.fail("Validacao nao esta funcionando corretamente");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoCompra().setContrato("");
+                Assertions.fail("Validacao nao esta funcionando corretamente");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoCompra().setContrato("9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca");
+            }
+            Assertions.fail("Validacao nao esta funcionando corretamente");
+        });
     }
 
     @Test
@@ -68,6 +72,6 @@ public class NFNotaInfoCompraTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoCompra><xNEmp>abcefghijklmnopqrstuvx</xNEmp><xPed>1kG8gghJ0YTrUZnt00BJlOsFCtj43eV5mEHHXUzp3rD6QwwUwX4GPavXkMB1</xPed><xCont>9tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzc</xCont></NFNotaInfoCompra>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCompra().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCompra().toString());
     }
 }

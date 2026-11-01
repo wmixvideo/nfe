@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe310.utils.NFGeraChave;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFGeraChaveTest {
 
@@ -17,12 +16,12 @@ public class NFGeraChaveTest {
         nota.getInfo().getEmitente().setCnpj(null);
 
         final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
-        Assert.assertEquals("43101000012345678901559999999999991999999993", chaveAcesso);
-        Assert.assertEquals(44, chaveAcesso.length());
+        Assertions.assertEquals("43101000012345678901559999999999991999999993", chaveAcesso);
+        Assertions.assertEquals(44, chaveAcesso.length());
 
         nota.getInfo().setIdentificador(chaveAcesso);
-        Assert.assertEquals("NFe43101000012345678901559999999999991999999993", nota.getInfo().getIdentificador());
-        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+        Assertions.assertEquals("NFe43101000012345678901559999999999991999999993", nota.getInfo().getIdentificador());
+        Assertions.assertEquals(47, nota.getInfo().getIdentificador().length());
     }
 
     @Test
@@ -33,12 +32,12 @@ public class NFGeraChaveTest {
         nota.getInfo().getEmitente().setCnpj("12345678901234");
 
         final String chaveAcesso = new NFGeraChave(nota).getChaveAcesso();
-        Assert.assertEquals("43101012345678901234559999999999991999999999", chaveAcesso);
-        Assert.assertEquals(44, chaveAcesso.length());
+        Assertions.assertEquals("43101012345678901234559999999999991999999999", chaveAcesso);
+        Assertions.assertEquals(44, chaveAcesso.length());
 
         nota.getInfo().setIdentificador(chaveAcesso);
-        Assert.assertEquals("NFe43101012345678901234559999999999991999999999", nota.getInfo().getIdentificador());
-        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+        Assertions.assertEquals("NFe43101012345678901234559999999999991999999999", nota.getInfo().getIdentificador());
+        Assertions.assertEquals(47, nota.getInfo().getIdentificador().length());
     }
 
     @Test
@@ -52,19 +51,21 @@ public class NFGeraChaveTest {
         nota.getInfo().getIdentificacao().setCodigoRandomico(geraChave.geraCodigoRandomico());
 
         final String chaveAcesso = geraChave.getChaveAcesso();
-        Assert.assertEquals("43101012345678901234559999999999991696178050", chaveAcesso);
-        Assert.assertEquals(44, chaveAcesso.length());
+        Assertions.assertEquals("43101012345678901234559999999999991696178050", chaveAcesso);
+        Assertions.assertEquals(44, chaveAcesso.length());
 
         nota.getInfo().setIdentificador(chaveAcesso);
-        Assert.assertEquals("NFe43101012345678901234559999999999991696178050", nota.getInfo().getIdentificador());
-        Assert.assertEquals(47, nota.getInfo().getIdentificador().length());
+        Assertions.assertEquals("NFe43101012345678901234559999999999991696178050", nota.getInfo().getIdentificador());
+        Assertions.assertEquals(47, nota.getInfo().getIdentificador().length());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void geraChaveDeAcessoSemCodigoRandomicoRetornaExcecao() {
-        final NFNota nota = new NFNota();
-        nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
-        nota.getInfo().getIdentificacao().setCodigoRandomico(null);
-        new NFGeraChave(nota).getChaveAcesso();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNota nota = new NFNota();
+            nota.setInfo(FabricaDeObjetosFake.getNFNotaInfo());
+            nota.getInfo().getIdentificacao().setCodigoRandomico(null);
+            new NFGeraChave(nota).getChaveAcesso();
+        });
     }
 }

@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 
@@ -19,9 +19,9 @@ public class CTeNotaInfoCTeNormalInfoModalAquaviarioConteinerInfoDocumentosTest 
         infDoc.setInfoDocumentosNFe(Collections.singletonList(infNFe));
         
         final String xml = infDoc.toString();
-        Assert.assertNotNull(xml);
-        Assert.assertTrue(xml.contains("infNFe"));
-        Assert.assertTrue(xml.contains("<chave>"));
+        Assertions.assertNotNull(xml);
+        Assertions.assertTrue(xml.contains("infNFe"));
+        Assertions.assertTrue(xml.contains("<chave>"));
     }
 }
 

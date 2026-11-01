@@ -1,8 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -16,7 +15,7 @@ public class NFNotaInfoItemProdutoDetalhamentoEmbalagemTest {
         detalhamentoEmbalagem.setVolumeProdutoEmbalagem(BigDecimal.TEN);
 
         final String xmlEsperado = "<NFNotaInfoItemProdutoDetalhamentoEmbalagem><xEmb>123456</xEmb><qVolEmb>10.000</qVolEmb><uEmb>CM</uEmb></NFNotaInfoItemProdutoDetalhamentoEmbalagem>";
-        Assert.assertEquals(xmlEsperado, detalhamentoEmbalagem.toString());
+        Assertions.assertEquals(xmlEsperado, detalhamentoEmbalagem.toString());
     }
 
 }

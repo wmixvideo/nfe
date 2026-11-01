@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.security.NoSuchAlgorithmException;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.utils.qrcode20.NFGeraQRCodeEmissaoNormal20;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.security.NoSuchAlgorithmException;
 
 public class NFGeraQRCodeEmissaoNormal20Test {
 
@@ -20,7 +19,7 @@ public class NFGeraQRCodeEmissaoNormal20Test {
         nota.getInfoSuplementar().setQrCode(new NFGeraQRCodeEmissaoNormal20(nota, NFGeraQRCode20Test.createConfigTest()).getQRCode());
 
         final String urlEsperada = nota.getInfo().getIdentificacao().getUf().getQrCodeProducao() + URL_TEST;
-        Assert.assertEquals(urlEsperada, nota.getInfoSuplementar().getQrCode());
+        Assertions.assertEquals(urlEsperada, nota.getInfoSuplementar().getQrCode());
     }
 
 }

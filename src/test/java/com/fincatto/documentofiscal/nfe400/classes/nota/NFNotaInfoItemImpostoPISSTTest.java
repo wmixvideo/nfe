@@ -1,36 +1,36 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoPISSTTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorlTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setValorTributo(new BigDecimal("99999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISST().setValorTributo(new BigDecimal("99999999999999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorlAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setValorAliquota(new BigDecimal("999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISST().setValorAliquota(new BigDecimal("999999999999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setPercentualAliquota(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISST().setPercentualAliquota(new BigDecimal("1000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBaseCalculoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setValorBaseCalculo(new BigDecimal("99999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISST().setValorBaseCalculo(new BigDecimal("99999999999999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirQuantidadeVendidaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoPISST().setQuantidadeVendida(new BigDecimal("9999999999999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoPISST().setQuantidadeVendida(new BigDecimal("9999999999999")));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST1.setValorBaseCalculo(BigDecimal.ONE);
         try {
             impostoPISST1.setQuantidadeVendida(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
         } catch (final IllegalStateException ignored) {
         }
 
@@ -47,7 +47,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST2.setPercentualAliquota(BigDecimal.ONE);
         try {
             impostoPISST2.setQuantidadeVendida(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -58,7 +58,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST1.setQuantidadeVendida(BigDecimal.ONE);
         try {
             impostoPISST1.setValorBaseCalculo(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
         } catch (final IllegalStateException ignored) {
         }
 
@@ -66,7 +66,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST2.setValorAliquota(BigDecimal.ONE);
         try {
             impostoPISST2.setValorBaseCalculo(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -77,7 +77,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST1.setPercentualAliquota(BigDecimal.ONE);
         try {
             impostoPISST1.setValorAliquota(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
         } catch (final IllegalStateException ignored) {
         }
 
@@ -85,7 +85,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST2.setValorBaseCalculo(BigDecimal.ONE);
         try {
             impostoPISST2.setValorAliquota(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -96,7 +96,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST1.setValorAliquota(BigDecimal.ONE);
         try {
             impostoPISST1.setPercentualAliquota(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se valor aliquota foi setado");
         } catch (final IllegalStateException ignored) {
         }
 
@@ -104,7 +104,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST2.setQuantidadeVendida(BigDecimal.ONE);
         try {
             impostoPISST2.setPercentualAliquota(BigDecimal.ONE);
-            Assert.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
+            Assertions.fail("Nao deve permitir setar percentual aliquota se quantidade vendida foi setado");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -117,7 +117,7 @@ public class NFNotaInfoItemImpostoPISSTTest {
         impostoPISST.setValorTributo(new BigDecimal("999999999999.99"));
 
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></NFNotaInfoItemImpostoPISST>";
-        Assert.assertEquals(xmlEsperado, impostoPISST.toString());
+        Assertions.assertEquals(xmlEsperado, impostoPISST.toString());
     }
 
     @Test
@@ -125,17 +125,17 @@ public class NFNotaInfoItemImpostoPISSTTest {
         final NFNotaInfoItemImpostoPISST compoeValor = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST();
         compoeValor.setIndicadorSomaPISST(NFIndicadorSomaPISST.COMPOE_VALOR_TOTAL);
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS><indSomaPISST>1</indSomaPISST></NFNotaInfoItemImpostoPISST>";
-        Assert.assertEquals(xmlEsperado, compoeValor.toString());
+        Assertions.assertEquals(xmlEsperado, compoeValor.toString());
 
         final NFNotaInfoItemImpostoPISST naoCompoeValor = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST();
         naoCompoeValor.setIndicadorSomaPISST(NFIndicadorSomaPISST.NAO_COMPOE_VALOR_TOTAL);
         final String xmlEsperadoII = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS><indSomaPISST>0</indSomaPISST></NFNotaInfoItemImpostoPISST>";
-        Assert.assertEquals(xmlEsperadoII, naoCompoeValor.toString());
+        Assertions.assertEquals(xmlEsperadoII, naoCompoeValor.toString());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecidoQuantidadeVendaAliquota() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoPISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></NFNotaInfoItemImpostoPISST>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST().toString());
     }
 }

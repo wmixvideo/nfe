@@ -7,50 +7,57 @@ import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsulta;
 import com.fincatto.documentofiscal.nfe400.classes.nota.consulta.NFNotaConsultaRetorno;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeConsultaProtocolo4Stub.NfeConsultaNFResult;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 class WSNotaConsulta implements DFLog {
     private static final String NOME_SERVICO = "CONSULTAR";
     private static final String VERSAO_SERVICO = "4.00";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeConsultaProtocolo4";
+    private static final String SOAP_ACTION = WSNotaConsulta.NAMESPACE_WSDL + "/nfeConsultaNF";
     private final NFeConfig config;
-    
-    WSNotaConsulta(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSNotaConsulta(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFNotaConsultaRetorno consultaNota(final String chaveDeAcesso) throws Exception {
-        return this.config.getPersister().read(NFNotaConsultaRetorno.class, consultaNotaAsString(chaveDeAcesso).toString());
+        return this.config.getPersister().read(NFNotaConsultaRetorno.class, this.consultaNotaAsString(chaveDeAcesso));
     }
 
-    public String consultaNotaAsString(String chaveDeAcesso) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(chaveDeAcesso).toString());
-        this.getLogger().debug(omElementConsulta.toString());
+    public String consultaNotaAsString(String chaveDeAcesso) throws IOException, DFSoapFaultException {
+        final String xmlConsulta = this.gerarDadosConsulta(chaveDeAcesso).toString();
+        this.getLogger().debug(xmlConsulta);
 
-        final OMElement omElementRetorno = this.efetuaConsulta(omElementConsulta, chaveDeAcesso);
-        this.getLogger().debug(omElementRetorno.toString());
-        return omElementRetorno.toString();
+        final String xmlRetorno = this.efetuaConsulta(xmlConsulta, chaveDeAcesso);
+        this.getLogger().debug(xmlRetorno);
+        return xmlRetorno;
     }
 
-    private OMElement efetuaConsulta(final OMElement omElementConsulta, final String chaveDeAcesso) throws Exception {
+    /**
+     * Envia a consulta da nota para a SEFAZ via {@link DFHttpClient} e devolve o XML de negocio
+     * ja desempacotado do envelope SOAP 1.2 de resposta.
+     */
+    private String efetuaConsulta(final String xmlConsulta, final String chaveDeAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser notaFiscalChaveParser = new NotaFiscalChaveParser(chaveDeAcesso);
-        
-        final NFeConsultaProtocolo4Stub.NfeDadosMsg dados = new NFeConsultaProtocolo4Stub.NfeDadosMsg();
-        dados.setExtraElement(omElementConsulta);
 
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveDeAcesso);
         final String endpoint = DFModelo.NFCE.equals(notaFiscalChaveParser.getModelo()) ? autorizador.getNfceConsultaProtocolo(this.config.getAmbiente()) : autorizador.getNfeConsultaProtocolo(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para ConsultaProtocolo " + notaFiscalChaveParser.getModelo().name() + ", autorizador " + autorizador.name());
         }
-        final NfeConsultaNFResult consultaNFResult = new NFeConsultaProtocolo4Stub(endpoint, config).nfeConsultaNF(dados);
-        return consultaNFResult.getExtraElement();
+
+        final String envelope = DFSoapEnvelope.envelopar(WSNotaConsulta.NAMESPACE_WSDL, "nfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSNotaConsulta.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFNotaConsulta gerarDadosConsulta(final String chaveDeAcesso) {
         final NFNotaConsulta notaConsulta = new NFNotaConsulta();
         notaConsulta.setAmbiente(this.config.getAmbiente());

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
  *
  * @author Ommega Data
  */
+@Deprecated(since = "2025.002-RTC-1.5", forRemoval = true)
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoPadrao extends DFBase {
     // UB84a gMonoPadrao
     @Element(required = false)

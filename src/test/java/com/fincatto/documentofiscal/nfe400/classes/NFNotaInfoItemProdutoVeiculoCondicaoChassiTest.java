@@ -1,20 +1,20 @@
 package com.fincatto.documentofiscal.nfe400.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemProdutoVeiculoCondicaoChassiTest {
 
     @Test
     public void deveObterVeiculoCondicaoChassiApartirDoSeuCodigo() {
-        Assert.assertEquals(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL, NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("N"));
-        Assert.assertEquals(NFNotaInfoItemProdutoVeiculoCondicaoChassi.REMARCADO, NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("R"));
-        Assert.assertNull(NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("S"));
+        Assertions.assertEquals(NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL, NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("N"));
+        Assertions.assertEquals(NFNotaInfoItemProdutoVeiculoCondicaoChassi.REMARCADO, NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("R"));
+        Assertions.assertNull(NFNotaInfoItemProdutoVeiculoCondicaoChassi.valueOfCodigo("S"));
     }
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("N", NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL.getCodigo());
-        Assert.assertEquals("R", NFNotaInfoItemProdutoVeiculoCondicaoChassi.REMARCADO.getCodigo());
+        Assertions.assertEquals("N", NFNotaInfoItemProdutoVeiculoCondicaoChassi.NORMAL.getCodigo());
+        Assertions.assertEquals("R", NFNotaInfoItemProdutoVeiculoCondicaoChassi.REMARCADO.getCodigo());
     }
 }

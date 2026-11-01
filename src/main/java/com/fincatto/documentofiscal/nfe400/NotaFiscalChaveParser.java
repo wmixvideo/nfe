@@ -1,12 +1,13 @@
 package com.fincatto.documentofiscal.nfe400;
 
+import java.time.LocalDate;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.utils.DFUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import java.time.LocalDate;
 
 public class NotaFiscalChaveParser {
 

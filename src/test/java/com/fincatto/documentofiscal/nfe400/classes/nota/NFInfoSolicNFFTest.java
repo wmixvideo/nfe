@@ -1,15 +1,17 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFInfoSolicNFFTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorComTamanhoInvalido() {
-        final NFInfoSolicitacaoNFF nfInfoSolicNFF = new NFInfoSolicitacaoNFF();
-        nfInfoSolicNFF.setSolicitacao("1");
-        nfInfoSolicNFF.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoSolicitacaoNFF nfInfoSolicNFF = new NFInfoSolicitacaoNFF();
+            nfInfoSolicNFF.setSolicitacao("1");
+            nfInfoSolicNFF.toString();
+        });
     }
 
 
@@ -19,6 +21,6 @@ public class NFInfoSolicNFFTest {
         nfInfoSolicNFF.setSolicitacao("1234567890");
 
         final String xmlEsperado = "<infSolicNFF><xSolic>1234567890</xSolic></infSolicNFF>";
-        Assert.assertEquals(xmlEsperado, nfInfoSolicNFF.toString());
+        Assertions.assertEquals(xmlEsperado, nfInfoSolicNFF.toString());
     }
 }

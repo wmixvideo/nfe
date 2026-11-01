@@ -1,11 +1,9 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.cte300.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoHoraEntrega;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresEntregaIntervalo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresEntregaIntervaloTest {
 
@@ -15,12 +13,12 @@ public class CTeNotaInfoDadosComplementaresEntregaIntervaloTest {
         entregaIntervalo.setHoraInicio(FabricaDeObjetosFake.getLocalTime());
         entregaIntervalo.setHoraFim(FabricaDeObjetosFake.getLocalTime());
         entregaIntervalo.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_INTERVALO_DE_TEMPO);
-        Assert.assertEquals("4", entregaIntervalo.getTipoPrazoHoraEntrega().getCodigo());
+        Assertions.assertEquals("4", entregaIntervalo.getTipoPrazoHoraEntrega().getCodigo());
     }
 
     @Test
     public void deveGerarXmlCorreto() {
-        Assert.assertEquals("<noInter><tpHor>4</tpHor><hIni>10:10:10</hIni><hFim>10:10:10</hFim></noInter>", FabricaDeObjetosFake.getEntregaIntervalo().toString());
+        Assertions.assertEquals("<noInter><tpHor>4</tpHor><hIni>10:10:10</hIni><hFim>10:10:10</hFim></noInter>", FabricaDeObjetosFake.getEntregaIntervalo().toString());
     }
 
 }

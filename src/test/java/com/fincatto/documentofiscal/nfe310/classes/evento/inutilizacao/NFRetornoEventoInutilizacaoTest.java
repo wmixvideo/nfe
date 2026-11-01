@@ -1,14 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
-import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.documentofiscal.nfe310.classes.evento.inutilizacao.NFRetornoEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFSignature;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFRetornoEventoInutilizacaoTest {
 
@@ -17,7 +13,7 @@ public class NFRetornoEventoInutilizacaoTest {
         final NFRetornoEventoInutilizacao eventoInutilizacao = new NFRetornoEventoInutilizacao();
         final String versao = "1.30";
         eventoInutilizacao.setVersao(new BigDecimal(versao));
-        Assert.assertEquals(versao, eventoInutilizacao.getVersao());
+        Assertions.assertEquals(versao, eventoInutilizacao.getVersao());
     }
 
     @Test
@@ -25,7 +21,7 @@ public class NFRetornoEventoInutilizacaoTest {
         final NFRetornoEventoInutilizacao eventoInutilizacao = new NFRetornoEventoInutilizacao();
         final NFRetornoEventoInutilizacaoDados dados = new NFRetornoEventoInutilizacaoDados();
         eventoInutilizacao.setDados(dados);
-        Assert.assertEquals(dados, eventoInutilizacao.getDados());
+        Assertions.assertEquals(dados, eventoInutilizacao.getDados());
     }
 
     @Test
@@ -35,6 +31,6 @@ public class NFRetornoEventoInutilizacaoTest {
         final String signatureValue = "signature";
         assinatura.setSignatureValue(signatureValue);
         eventoInutilizacao.setAssinatura(assinatura);
-        Assert.assertEquals(assinatura, eventoInutilizacao.getAssinatura());
+        Assertions.assertEquals(assinatura, eventoInutilizacao.getAssinatura());
     }
 }

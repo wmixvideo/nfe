@@ -1,19 +1,19 @@
 package com.fincatto.documentofiscal.nfe400.utils;
 
-import junit.framework.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class ChaveAcessoUtilsTest extends TestCase {
+public class ChaveAcessoUtilsTest {
 
     @Test
     public void testGeraIDevento_deveGerarIdComZeroEsquerdaSequancial() {
         String idGerado = ChaveAcessoUtils.geraIDevento("12345678901234567890123456789012345678901234", "110112", 5);
-        assertEquals("ID1101121234567890123456789012345678901234567890123405", idGerado);
+        Assertions.assertEquals("ID1101121234567890123456789012345678901234567890123405", idGerado);
     }
 
     @Test
     public void testGeraIDevento_naoDeveGerarIdComZeroEsquerdaSequancial() {
         String idGerado = ChaveAcessoUtils.geraIDevento("12345678901234567890123456789012345678901234", "110112", 10);
-        assertEquals("ID1101121234567890123456789012345678901234567890123410", idGerado);
+        Assertions.assertEquals("ID1101121234567890123456789012345678901234567890123410", idGerado);
     }
 }

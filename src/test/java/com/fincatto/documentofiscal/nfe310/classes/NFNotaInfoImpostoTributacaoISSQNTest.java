@@ -1,17 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoImpostoTributacaoISSQN;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoImpostoTributacaoISSQNTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("I", NFNotaInfoImpostoTributacaoISSQN.ISENTA.getCodigo());
-        Assert.assertEquals("S", NFNotaInfoImpostoTributacaoISSQN.SUBSTITUTA.getCodigo());
-        Assert.assertEquals("N", NFNotaInfoImpostoTributacaoISSQN.NORMAL.getCodigo());
-        Assert.assertEquals("R", NFNotaInfoImpostoTributacaoISSQN.RETIDA.getCodigo());
+        Assertions.assertEquals("I", NFNotaInfoImpostoTributacaoISSQN.ISENTA.getCodigo());
+        Assertions.assertEquals("S", NFNotaInfoImpostoTributacaoISSQN.SUBSTITUTA.getCodigo());
+        Assertions.assertEquals("N", NFNotaInfoImpostoTributacaoISSQN.NORMAL.getCodigo());
+        Assertions.assertEquals("R", NFNotaInfoImpostoTributacaoISSQN.RETIDA.getCodigo());
     }
 }

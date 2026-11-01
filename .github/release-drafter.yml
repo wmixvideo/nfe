@@ -1,0 +1,37 @@
+name-template: 'Release v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+tag-prefix: 'v'
+commitish: master
+
+categories:
+  - title: 'Novidades'
+    when:
+      labels:
+        - feature
+        - enhancement
+  - title: 'Correções'
+    when:
+      labels:
+        - bug
+  - title: 'Segurança'
+    when:
+      labels:
+        - security
+  - title: 'Documentação'
+    when:
+      labels:
+        - documentation
+  - title: 'Dependências'
+    when:
+      labels:
+        - dependencies
+
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+no-changes-template: '- Nenhuma alteração'
+
+template: |
+  ## Alterações
+
+  $CHANGES
+
+  **Comparação completa**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION

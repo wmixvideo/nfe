@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.validadores;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DFIntegerValidadorTest {
     @Test
@@ -19,14 +20,14 @@ public class DFIntegerValidadorTest {
         DFIntegerValidador.exatamente7(9999999, "");
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveLancarExcecaoCasoValorParaTamanho7SejaInvalido() {
-        DFIntegerValidador.tamanho7(10000000, "");
+        Assertions.assertThrows(NumberFormatException.class, () -> DFIntegerValidador.tamanho7(10000000, ""));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveLancarExcecaoCasoValorParaTamanho4SejaInvalido() {
-        DFIntegerValidador.tamanho4(10000, "");
+        Assertions.assertThrows(NumberFormatException.class, () -> DFIntegerValidador.tamanho4(10000, ""));
     }
 
     @Test

@@ -1,50 +1,52 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
 public class MDFInfoModalRodoviarioANTTTest {
 
     private MDFInfoModalRodoviarioANTT antt;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        this.antt =  new MDFInfoModalRodoviarioANTT();
+        this.antt = new MDFInfoModalRodoviarioANTT();
     }
 
     @Test
     public void deveAceitarRntrcCom8Caracteres() {
         antt.setRntrc("12345678");
-        assertEquals("getRntrc deve refletir o valor setado", "12345678", antt.getRntrc());
+        Assertions.assertEquals("12345678", antt.getRntrc());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarRntrcVazio() {
-        antt.setRntrc("");
+        Assertions.assertThrows(IllegalStateException.class, () -> antt.setRntrc(""));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarRntrcComMenosDe8Chars() {
-        antt.setRntrc("1234567"); // 7
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            antt.setRntrc("1234567"); // 7
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarRntrcComMaisDe8Chars() {
-        antt.setRntrc("123456789"); // 9
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            antt.setRntrc("123456789"); // 9
+        });
     }
 
     // ---------------- infCIOT ----------------
     @Test
     public void deveAceitarInfCiotNulo() {
         antt.setInfCIOT(null);
-        Assert.assertNull(antt.getInfCIOT());
+        Assertions.assertNull(antt.getInfCIOT());
     }
 
     @Test
@@ -52,7 +54,7 @@ public class MDFInfoModalRodoviarioANTTTest {
         List<MDFInfoModalRodoviarioInfCIOT> emptyList = Collections.emptyList();
         antt.setInfCIOT(emptyList);
 
-        Assert.assertSame(emptyList, antt.getInfCIOT());
+        Assertions.assertSame(emptyList, antt.getInfCIOT());
     }
 
     @Test
@@ -65,8 +67,8 @@ public class MDFInfoModalRodoviarioANTTTest {
 
         antt.setInfCIOT(lista);
 
-        Assert.assertEquals(1, antt.getInfCIOT().size());
-        Assert.assertSame(item, antt.getInfCIOT().get(0));
+        Assertions.assertEquals(1, antt.getInfCIOT().size());
+        Assertions.assertSame(item, antt.getInfCIOT().get(0));
     }
 
     // ---------------- valePed ----------------
@@ -75,7 +77,7 @@ public class MDFInfoModalRodoviarioANTTTest {
     public void deveAceitarValePedNuloEVazio() {
 
         antt.setValePedagio(null);
-        Assert.assertNull(antt.getValePedagio());
+        Assertions.assertNull(antt.getValePedagio());
 
     }
 
@@ -83,13 +85,13 @@ public class MDFInfoModalRodoviarioANTTTest {
     @Test
     public void deveAceitarInfPagNuloEVazio() {
         antt.setInfPag(null);
-        Assert.assertNull(antt.getInfPag());
+        Assertions.assertNull(antt.getInfPag());
 
         List<MDFInfoModalRodoviarioInfPag> infPags = new ArrayList<>();
         antt.setInfPag(infPags);
 
-        Assert.assertSame(infPags, antt.getInfPag());
-        Assert.assertTrue(antt.getInfPag().isEmpty());
+        Assertions.assertSame(infPags, antt.getInfPag());
+        Assertions.assertTrue(antt.getInfPag().isEmpty());
     }
 
     @Test
@@ -100,8 +102,8 @@ public class MDFInfoModalRodoviarioANTTTest {
 
         antt.setInfPag(infPags);
 
-        Assert.assertEquals(1, antt.getInfPag().size());
-        Assert.assertSame(pag, antt.getInfPag().get(0));
+        Assertions.assertEquals(1, antt.getInfPag().size());
+        Assertions.assertSame(pag, antt.getInfPag().get(0));
     }
 
 }

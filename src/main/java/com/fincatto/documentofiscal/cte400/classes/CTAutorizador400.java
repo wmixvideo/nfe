@@ -136,7 +136,7 @@ public enum CTAutorizador400 {
     
         @Override
         public String getCteQrCode(DFAmbiente ambiente) {
-            return "https://cte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml";
+            return "https://portalcte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml";
         }
     
         @Override

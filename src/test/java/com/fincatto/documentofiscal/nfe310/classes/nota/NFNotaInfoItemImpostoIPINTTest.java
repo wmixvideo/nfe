@@ -1,10 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoSituacaoTributariaIPI;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoIPINT;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemImpostoIPINTTest {
 
@@ -13,7 +11,7 @@ public class NFNotaInfoItemImpostoIPINTTest {
         final NFNotaInfoItemImpostoIPINT itemImpostoIPINT = new NFNotaInfoItemImpostoIPINT();
         final NFNotaInfoSituacaoTributariaIPI entradaIsenta = NFNotaInfoSituacaoTributariaIPI.ENTRADA_ISENTA;
         itemImpostoIPINT.setSituacaoTributariaIPI(entradaIsenta);
-        Assert.assertEquals(entradaIsenta, itemImpostoIPINT.getSituacaoTributariaIPI());
+        Assertions.assertEquals(entradaIsenta, itemImpostoIPINT.getSituacaoTributariaIPI());
     }
 
     @Test
@@ -22,6 +20,6 @@ public class NFNotaInfoItemImpostoIPINTTest {
         itemImpostoIPINT.setSituacaoTributariaIPI(NFNotaInfoSituacaoTributariaIPI.ENTRADA_ISENTA);
 
         final String xmlEsperado = "<NFNotaInfoItemImpostoIPINT><IPINT>02</IPINT></NFNotaInfoItemImpostoIPINT>";
-        Assert.assertEquals(xmlEsperado, itemImpostoIPINT.toString());
+        Assertions.assertEquals(xmlEsperado, itemImpostoIPINT.toString());
     }
 }

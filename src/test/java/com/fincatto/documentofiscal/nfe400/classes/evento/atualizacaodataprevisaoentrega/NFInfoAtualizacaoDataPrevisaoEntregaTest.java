@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.evento.atualizacaodataprevis
 
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +15,7 @@ public class NFInfoAtualizacaoDataPrevisaoEntregaTest {
         final NFInfoAtualizacaoDataPrevisaoEntrega infoAtualizacaoDataPrevisaoEntrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
         final NFEventoTipoAutor tpAutor = NFEventoTipoAutor.EMPRESA_EMITENTE;
         infoAtualizacaoDataPrevisaoEntrega.setTipoAutor(tpAutor);
-        Assert.assertEquals(tpAutor, infoAtualizacaoDataPrevisaoEntrega.getTipoAutor());
+        Assertions.assertEquals(tpAutor, infoAtualizacaoDataPrevisaoEntrega.getTipoAutor());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class NFInfoAtualizacaoDataPrevisaoEntregaTest {
         final NFInfoAtualizacaoDataPrevisaoEntrega infoAtualizacaoDataPrevisaoEntrega = new NFInfoAtualizacaoDataPrevisaoEntrega();
         final DFUnidadeFederativa ufAutorEvento = DFUnidadeFederativa.PR;
         infoAtualizacaoDataPrevisaoEntrega.setUfAutorEvento(ufAutorEvento);
-        Assert.assertEquals(ufAutorEvento, infoAtualizacaoDataPrevisaoEntrega.getUfAutorEvento());
+        Assertions.assertEquals(ufAutorEvento, infoAtualizacaoDataPrevisaoEntrega.getUfAutorEvento());
     }
 
     @Test
@@ -34,6 +34,6 @@ public class NFInfoAtualizacaoDataPrevisaoEntregaTest {
         LocalDate data = LocalDate.parse("2025-11-12", formatter);
 
         infoAtualizacaoDataPrevisaoEntrega.setDataPrevisaoEntrega(data);
-        Assert.assertEquals(data, infoAtualizacaoDataPrevisaoEntrega.getDataPrevisaoEntrega());
+        Assertions.assertEquals(data, infoAtualizacaoDataPrevisaoEntrega.getDataPrevisaoEntrega());
     }
 }

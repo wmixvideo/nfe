@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemImpostoPISTest {
 
@@ -13,17 +13,17 @@ public class NFNotaInfoItemImpostoPISTest {
 
         try {
             pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -35,17 +35,17 @@ public class NFNotaInfoItemImpostoPISTest {
 
         try {
             pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -57,17 +57,17 @@ public class NFNotaInfoItemImpostoPISTest {
 
         try {
             pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setQuantidade(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISQuantidade());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -79,17 +79,17 @@ public class NFNotaInfoItemImpostoPISTest {
 
         try {
             pis.setAliquota(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISAliquota());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setNaoTributado(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISNaoTributado());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
         try {
             pis.setOutrasOperacoes(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISOutrasOperacoes());
-            Assert.fail("Validacao nao funcionou");
+            Assertions.fail("Validacao nao funcionou");
         } catch (final IllegalStateException ignored) {
         }
     }
@@ -97,6 +97,6 @@ public class NFNotaInfoItemImpostoPISTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoPIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq></NFNotaInfoItemImpostoPIS>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS().toString());
     }
 }

@@ -1,25 +1,26 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFConsultaCadastro;
-import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFInfoConsultaCadastro;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFConsultaCadastroTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirVersaoNulo() {
-        final NFConsultaCadastro consultaCadastro = new NFConsultaCadastro();
-        consultaCadastro.setConsultaCadastro(new NFInfoConsultaCadastro());
-        consultaCadastro.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFConsultaCadastro consultaCadastro = new NFConsultaCadastro();
+            consultaCadastro.setConsultaCadastro(new NFInfoConsultaCadastro());
+            consultaCadastro.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirInfoConsultaCadastroNulo() {
-        final NFConsultaCadastro consultaCadastro = new NFConsultaCadastro();
-        consultaCadastro.setVersao("3.10");
-        consultaCadastro.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFConsultaCadastro consultaCadastro = new NFConsultaCadastro();
+            consultaCadastro.setVersao("3.10");
+            consultaCadastro.toString();
+        });
     }
 
     @Test
@@ -28,13 +29,13 @@ public class NFConsultaCadastroTest {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         consultaCadastro.setConsultaCadastro(infoConsultaCadastro);
 
-        Assert.assertEquals(infoConsultaCadastro, consultaCadastro.getConsultaCadastro());
+        Assertions.assertEquals(infoConsultaCadastro, consultaCadastro.getConsultaCadastro());
     }
 
     @Test
     public void deveObterOMesmoValorSetadoParaVersao() {
         final NFConsultaCadastro consultaCadastro = new NFConsultaCadastro();
         consultaCadastro.setVersao("3.10");
-        Assert.assertEquals("3.10", consultaCadastro.getVersao());
+        Assertions.assertEquals("3.10", consultaCadastro.getVersao());
     }
 }

@@ -17,8 +17,8 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.FabricaDeObjetosFakeMDFe;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXParseException;
 
 /**
@@ -32,12 +32,12 @@ public class MDFProcessadoTest {
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        Assert.assertEquals(xmlEspected, xmlActual);
+        Assertions.assertEquals(xmlEspected, xmlActual);
     }
 
     @Test
     public void deveValidarMDFeProcessado() throws Exception {
-        Assert.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlActual.replace("schemaLocation=\"\" ", "")));
+        Assertions.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlActual.replace("schemaLocation=\"\" ", "")));
     }
 
     /**
@@ -48,7 +48,7 @@ public class MDFProcessadoTest {
     @Test
     public void deveValidarMDFeProcessadoComCnpjAlfanumericoDoEmitente() throws Exception {
         final String cnpjAlfanumerico = "AB999999999999";
-        Assert.assertEquals(14, cnpjAlfanumerico.length());
+        Assertions.assertEquals(14, cnpjAlfanumerico.length());
 
         // troca apenas a tag <CNPJ> (nao o "99999999999999" cru, que tambem aparece dentro de
         // <nProt>999999999999999</nProt>, um campo de 15 digitos nao relacionado a CNPJ)
@@ -57,9 +57,9 @@ public class MDFProcessadoTest {
                 .replace("<CNPJ>99999999999999</CNPJ>", "<CNPJ>" + cnpjAlfanumerico + "</CNPJ>");
 
         // garante que a substituicao realmente ocorreu (o teste nao pode "passar" por engano)
-        Assert.assertTrue(xmlComCnpjAlfa.contains("<CNPJ>" + cnpjAlfanumerico + "</CNPJ>"));
+        Assertions.assertTrue(xmlComCnpjAlfa.contains("<CNPJ>" + cnpjAlfanumerico + "</CNPJ>"));
 
-        Assert.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlComCnpjAlfa));
+        Assertions.assertTrue(DFXMLValidador.validaMDFeProcessado(xmlComCnpjAlfa));
     }
 
     /**
@@ -75,22 +75,22 @@ public class MDFProcessadoTest {
     public void schemaOficialAindaRejeitaAtributoIdComChaveDeAcessoAlfanumerica() {
         final String chaveNumerica = "33200736293264000128580010000000301045981192";
         final String chaveAlfanumerica = "332007AB999999999999580010000000301045981192";
-        Assert.assertEquals(44, chaveAlfanumerica.length());
+        Assertions.assertEquals(44, chaveAlfanumerica.length());
 
         final String xmlComChaveAlfa = xmlActual
                 .replace("schemaLocation=\"\" ", "")
                 .replace(chaveNumerica, chaveAlfanumerica);
-        Assert.assertTrue(xmlComChaveAlfa.contains(chaveAlfanumerica));
+        Assertions.assertTrue(xmlComChaveAlfa.contains(chaveAlfanumerica));
 
         try {
             DFXMLValidador.validaMDFeProcessado(xmlComChaveAlfa);
-            Assert.fail("Esperava rejeicao pelo atributo Id (padrao MDFe[0-9]{44} ainda numerico no pacote oficial); "
+            Assertions.fail("Esperava rejeicao pelo atributo Id (padrao MDFe[0-9]{44} ainda numerico no pacote oficial); "
                     + "se este teste comecou a falhar aqui, a SEFAZ/ENCAT provavelmente corrigiu o pacote e este "
                     + "teste (e o comentario acima) podem ser atualizados.");
         } catch (final SAXParseException e) {
-            Assert.assertTrue(e.getMessage().contains("Id"));
+            Assertions.assertTrue(e.getMessage().contains("Id"));
         } catch (final Exception e) {
-            Assert.fail("Esperava especificamente SAXParseException, mas veio: " + e.getClass());
+            Assertions.fail("Esperava especificamente SAXParseException, mas veio: " + e.getClass());
         }
     }
 }

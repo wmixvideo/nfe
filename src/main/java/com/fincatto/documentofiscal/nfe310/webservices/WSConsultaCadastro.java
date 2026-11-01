@@ -7,54 +7,51 @@ import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFConsultaCadastro;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFInfoConsultaCadastro;
 import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFRetornoConsultaCadastro;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsg;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeCabecMsgE;
-import com.fincatto.documentofiscal.nfe310.webservices.gerado.CadConsultaCadastro2Stub.NfeDadosMsg;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
-import java.rmi.RemoteException;
+import java.io.IOException;
 
 class WSConsultaCadastro implements DFLog {
-    
+
     private static final String NOME_SERVICO = "CONS-CAD";
     private static final String VERSAO_SERVICO = "2.00";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/CadConsultaCadastro2";
+    private static final String SOAP_ACTION = WSConsultaCadastro.NAMESPACE_WSDL + "/consultaCadastro2";
+
     private final NFeConfig config;
-    
-    WSConsultaCadastro(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSConsultaCadastro(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFRetornoConsultaCadastro consultaCadastro(final String cnpj, final DFUnidadeFederativa uf) throws Exception {
         final NFConsultaCadastro dadosConsulta = this.getDadosConsulta(cnpj, uf);
         final String xmlConsulta = dadosConsulta.toString();
         this.getLogger().debug(xmlConsulta);
-        
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(xmlConsulta);
-        final OMElement resultado = this.efetuaConsulta(uf, omElementConsulta);
-        this.getLogger().debug(resultado.toString());
-        
-        return this.config.getPersister().read(NFRetornoConsultaCadastro.class, resultado.toString());
+
+        final String xmlResultado = this.efetuaConsulta(uf, xmlConsulta);
+        this.getLogger().debug(xmlResultado);
+
+        return this.config.getPersister().read(NFRetornoConsultaCadastro.class, xmlResultado);
     }
-    
-    private OMElement efetuaConsulta(final DFUnidadeFederativa uf, final OMElement omElementConsulta) throws RemoteException {
-        final CadConsultaCadastro2Stub.NfeCabecMsg cabec = new NfeCabecMsg();
-        cabec.setCUF(uf.getCodigoIbge());
-        cabec.setVersaoDados(WSConsultaCadastro.VERSAO_SERVICO);
-        
-        final NfeCabecMsgE cabecE = new NfeCabecMsgE();
-        cabecE.setNfeCabecMsg(cabec);
-        
-        final NfeDadosMsg nfeDadosMsg = new NfeDadosMsg();
-        nfeDadosMsg.setExtraElement(omElementConsulta);
+
+    private String efetuaConsulta(final DFUnidadeFederativa uf, final String xmlConsulta) throws IOException, DFSoapFaultException {
         final NFAutorizador31 autorizador = NFAutorizador31.valueOfCodigoUF(uf);
-        if (autorizador == null) {
-            throw new IllegalStateException(String.format("UF %s nao possui autorizador para este servico", uf.getDescricao()));
+        final String endpoint = autorizador.getConsultaCadastro(this.config.getAmbiente());
+        if (endpoint == null) {
+            throw new IllegalStateException(String.format("UF %s nao possui URL de ConsultaCadastro (autorizador %s, ambiente %s)", uf.getDescricao(), autorizador.name(), this.config.getAmbiente()));
         }
-        return new CadConsultaCadastro2Stub(autorizador.getConsultaCadastro(this.config.getAmbiente()), config).consultaCadastro2(nfeDadosMsg, cabecE).getExtraElement();
+
+        final String cabecalho = "<cUF>" + uf.getCodigoIbge() + "</cUF><versaoDados>" + WSConsultaCadastro.VERSAO_SERVICO + "</versaoDados>";
+        final String envelope = DFSoapEnvelope.envelopar(WSConsultaCadastro.NAMESPACE_WSDL, "nfeCabecMsg", cabecalho, "nfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSConsultaCadastro.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFConsultaCadastro getDadosConsulta(final String cnpj, final DFUnidadeFederativa uf) {
         final NFConsultaCadastro consulta = new NFConsultaCadastro();
         consulta.setVersao(WSConsultaCadastro.VERSAO_SERVICO);

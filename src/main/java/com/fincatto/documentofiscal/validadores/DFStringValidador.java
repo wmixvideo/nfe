@@ -2,7 +2,6 @@ package com.fincatto.documentofiscal.validadores;
 
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,6 +9,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Base64;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public abstract class DFStringValidador {
     public static void mmaaaa(final String mmaaaa) {
         if (mmaaaa != null) {
             try {
-                DateTimeFormatter.ofPattern("mm/yyyy").parse(mmaaaa);
+                DateTimeFormatter.ofPattern("MM/yyyy").parse(mmaaaa);
             } catch (final Exception e) {
                 throw new IllegalStateException(String.format("Formato invalido (mm/aaaa) (%s)", mmaaaa));
             }
@@ -29,7 +30,7 @@ public abstract class DFStringValidador {
     public static void aamm(final String aamm) {
         if (aamm != null) {
             try {
-                DateTimeFormatter.ofPattern("yymm").parse(aamm);
+                DateTimeFormatter.ofPattern("yyMM").parse(aamm);
             } catch (final Exception e) {
                 throw new IllegalStateException(String.format("Formato invalido (aamm) (%s)", aamm));
             }
@@ -38,8 +39,10 @@ public abstract class DFStringValidador {
 
     public static void codigoDeBarras(final String codigoDeBarras) {
         if (codigoDeBarras != null) {
-            final Matcher matcher = Pattern.compile("^([0-9]{0}|[0-9]{8}|[0-9]{12,14}|SEM GTIN)$").matcher(codigoDeBarras);
-            if (!matcher.find()) {
+            // string vazia e permitida: o schema da NF-e aceita <cEAN></cEAN> vazio quando o
+            // produto nao possui codigo de barras
+            final Matcher matcher = Pattern.compile("^([0-9]{8}|[0-9]{12,14}|SEM GTIN)?$").matcher(codigoDeBarras);
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Codigo de barras com formato invalido (%s)", codigoDeBarras));
             }
         }
@@ -48,7 +51,7 @@ public abstract class DFStringValidador {
     public static void telefone(final String telefone) {
         if (telefone != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Telefone de tamanho invalido (%s)", telefone));
             }
         }
@@ -57,7 +60,7 @@ public abstract class DFStringValidador {
     public static String telefone(final String telefone, final String info) {
         if (telefone != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{6,14}$").matcher(telefone);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Telefone de tamanho invalido (%s) em %s", telefone, info));
             }
         }
@@ -66,9 +69,9 @@ public abstract class DFStringValidador {
 
     public static void email(final String email) {
         if (email != null) {
-            final String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            final String regex = "^[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6})$";
             final Matcher matcher = Pattern.compile(regex).matcher(email);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Email invalido (%s)", email));
             }
         }
@@ -76,9 +79,9 @@ public abstract class DFStringValidador {
 
     public static String email(final String email, final String info) {
         if (email != null) {
-            final String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            final String regex = "^[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6})$";
             final Matcher matcher = Pattern.compile(regex).matcher(email);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Email invalido (%s) em %s", email, info));
             }
         }
@@ -185,7 +188,7 @@ public abstract class DFStringValidador {
     public static void placaDeVeiculo(final String placaVeiculo) {
         if (placaVeiculo != null) {
             final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z]{3}[0-9][A-Z][0-9]{2})$").matcher(placaVeiculo);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Placa de veiculo nao esta no padrao (%s)", placaVeiculo));
             }
         }
@@ -194,7 +197,7 @@ public abstract class DFStringValidador {
     public static void placaDeVeiculo(final String placaVeiculo, final String info) {
         if (placaVeiculo != null) {
             final Matcher matcher = Pattern.compile("^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z]{3}[0-9][A-Z][0-9]{2})$").matcher(placaVeiculo);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("%s nao esta no padrao (%s)", info, placaVeiculo));
             }
         }
@@ -203,7 +206,7 @@ public abstract class DFStringValidador {
     public static void cnpj(final String cnpj) {
         if (cnpj != null) {
             final Matcher matcher = Pattern.compile("^[0-9A-Za-z]{12}[0-9]{2}$").matcher(cnpj);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Formato CNPJ Invalido (%s)", cnpj));
             }
         }
@@ -212,7 +215,7 @@ public abstract class DFStringValidador {
     public static String cnpj(final String cnpj, final String info) {
         if (cnpj != null) {
             final Matcher matcher = Pattern.compile("^[0-9A-Za-z]{12}[0-9]{2}$").matcher(cnpj);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Formato CNPJ Invalido (%s) em %s", cnpj, info));
             }
         }
@@ -222,7 +225,7 @@ public abstract class DFStringValidador {
     public static void cpf(final String cpf) {
         if (cpf != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Formato CPF Invalido (%s)", cpf));
             }
         }
@@ -231,7 +234,7 @@ public abstract class DFStringValidador {
     public static String cpf(final String cpf, final String info) {
         if (cpf != null) {
             final Matcher matcher = Pattern.compile("^[0-9]{11}$").matcher(cpf);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Formato CPF Invalido (%s) em %s", cpf, info));
             }
         }
@@ -241,7 +244,7 @@ public abstract class DFStringValidador {
     public static void inscricaoEstadual(final String inscricaoEstadual) {
         if (inscricaoEstadual != null) {
             final Matcher matcher = Pattern.compile("^(ISENTO|[0-9]{2,14}|)$").matcher(inscricaoEstadual);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Inscricao estadual invalido (%s)", inscricaoEstadual));
             }
         }
@@ -250,7 +253,7 @@ public abstract class DFStringValidador {
     public static void inscricaoEstadualSemIsencao(final String inscricaoEstadual) {
         if (inscricaoEstadual != null) {
             final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Inscricao estadual invalido (%s)", inscricaoEstadual));
             }
         }
@@ -259,7 +262,7 @@ public abstract class DFStringValidador {
     public static String inscricaoEstadualSemIsencao(final String inscricaoEstadual, final String info) {
         if (inscricaoEstadual != null) {
             final Matcher matcher = Pattern.compile("^([0-9]{2,14}|)$").matcher(inscricaoEstadual);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Inscricao estadual invalido (%s) em %s", inscricaoEstadual, info));
             }
         }
@@ -335,8 +338,8 @@ public abstract class DFStringValidador {
 
     public static void codigoProdutoAnvisa(final String string, final String info) {
         if (string != null) {
-            if (string.toUpperCase().matches("[A-Z]*")) {
-                if (!Objects.equals(string.toUpperCase(), "ISENTO")) {
+            if (string.toUpperCase(Locale.ROOT).matches("[A-Z]+")) {
+                if (!Objects.equals(string.toUpperCase(Locale.ROOT), "ISENTO")) {
                     throw new IllegalStateException(String.format("C\u00f3digo produto anvisa (%s) diferente de ISENTO", string));
                 }
             } else {
@@ -422,6 +425,7 @@ public abstract class DFStringValidador {
 
     public static void tamanho6N(final String string, final String info) {
         if (string != null) {
+            DFStringValidador.apenasNumerico(string, info);
             DFStringValidador.validaTamanhoMaximo(string, 6, info);
         }
     }
@@ -645,7 +649,7 @@ public abstract class DFStringValidador {
     public static void tamanho1N(final String string, final String info) {
         if (string != null) {
             DFStringValidador.apenasNumerico(string, info);
-            DFStringValidador.validaTamanhoMaximo(string, 9, info);
+            DFStringValidador.validaTamanhoMaximo(string, 1, info);
         }
     }
 
@@ -734,7 +738,7 @@ public abstract class DFStringValidador {
     public static void fci(final String numeroControleFCI) {
         if (numeroControleFCI != null) {
             final Matcher matcher = Pattern.compile("^([A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12})$").matcher(numeroControleFCI);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("FCI fora do padrao (%s)", numeroControleFCI));
             }
         }
@@ -743,7 +747,7 @@ public abstract class DFStringValidador {
     public static void ncm(final String ncm) {
         if (ncm != null) {
             final Matcher matcher = Pattern.compile("^([0-9]{2}|[0-9]{8})$").matcher(ncm);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("NCM fora do padrao (%s)", ncm));
             }
         }
@@ -807,7 +811,7 @@ public abstract class DFStringValidador {
     public static String capacidadeNDigitos(final String capacidade, final String info, final int digitos) {
         if (capacidade != null) {
             final Matcher matcher = Pattern.compile("^(0|[1-9]{1}[0-9]{0," + digitos + "})$").matcher(capacidade);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("%s fora do padrao (%s)", info, capacidade));
             }
         }
@@ -817,7 +821,7 @@ public abstract class DFStringValidador {
     public static void nve(final String nve) {
         if (nve != null) {
             final Matcher matcher = Pattern.compile("^[A-Z]{2}[0-9]{4}$").matcher(nve);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("NVE fora do padrao (%s)", nve));
             }
         }
@@ -826,7 +830,7 @@ public abstract class DFStringValidador {
     public static void itemListaServico(final String itemListaServicos) {
         if (itemListaServicos != null) {
             final Matcher matcher = Pattern.compile("^\\d{2}\\.\\d{2}$").matcher(itemListaServicos);
-            if (!matcher.find()) {
+            if (!matcher.matches()) {
                 throw new IllegalStateException(String.format("Item Lista de servico fora do padrao (%s)", itemListaServicos));
             }
         }
@@ -851,22 +855,26 @@ public abstract class DFStringValidador {
     }
 
     public static void modeloDocumentoFiscal(final String modeloDocumentoFiscal) {
-        if (!modeloDocumentoFiscal.equals("55") && !modeloDocumentoFiscal.equals("65")) {
+        if (modeloDocumentoFiscal != null && !modeloDocumentoFiscal.equals("55") && !modeloDocumentoFiscal.equals("65")) {
             throw new IllegalStateException(String.format("Modelo Fiscal Invalido (%s)", modeloDocumentoFiscal));
         }
     }
 
     public static void identificador(final String identificador) {
-        final Matcher matcher = Pattern.compile("^ID\\d{41}$").matcher(identificador);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
+        if (identificador != null) {
+            final Matcher matcher = Pattern.compile("^ID\\d{41}$").matcher(identificador);
+            if (!matcher.matches()) {
+                throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
+            }
         }
     }
 
     public static void identificadorCTe(final String identificador) {
-        final Matcher matcher = Pattern.compile("^ID\\d{39}$").matcher(identificador);
-        if (!matcher.find()) {
-            throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
+        if (identificador != null) {
+            final Matcher matcher = Pattern.compile("^ID\\d{39}$").matcher(identificador);
+            if (!matcher.matches()) {
+                throw new IllegalStateException(String.format("Identificador fora do padrao (%s)", identificador));
+            }
         }
     }
 
@@ -877,8 +885,12 @@ public abstract class DFStringValidador {
     }
 
     public static void isBase64(final String string, final String info) {
-        if (!Base64.isArrayByteBase64(string.getBytes())) {
-            throw new IllegalStateException(String.format("A string %s com o valor = '%s' precisa ser codificada em Base64. ", info, string));
+        if (string != null) {
+            try {
+                Base64.getDecoder().decode(string);
+            } catch (final IllegalArgumentException e) {
+                throw new IllegalStateException(String.format("A string %s com o valor = '%s' precisa ser codificada em Base64. ", info, string));
+            }
         }
     }
 

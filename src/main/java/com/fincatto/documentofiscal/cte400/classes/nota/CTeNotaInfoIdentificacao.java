@@ -10,11 +10,13 @@ import com.fincatto.documentofiscal.cte400.classes.*;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 /**
  * Identificacao do CT-e
@@ -126,7 +128,13 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     
     @Element(name = "xJust", required = false)
     private String justificativa;
-    
+
+    @Element(name = "tpPagAnt", required = false)
+    private String tipoPagamentoAntecipado;
+
+    @Element(name = "gPagAntecipado", required = false)
+    private GrupoPagamentoAntecipado grupoPagamentoAntecipado;
+
     public DFUnidadeFederativa getCodigoUF() {
         return this.codigoUF;
     }
@@ -572,5 +580,53 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     public void setJustificativa(final String justificativa) {
         DFStringValidador.tamanho15a256(justificativa, "Justificativa da entrada em contingencia");
         this.justificativa = justificativa;
+    }
+
+    public String getTpPagAnt() {
+        return this.tipoPagamentoAntecipado;
+    }
+
+    /**
+     * NT 2026.002 - Tipo de pagamento antecipado.<br>
+     * 1 = Pagamento Antecipado; 3 = Fornecimento com pagamento realizado
+     * anteriormente. Opcional; informar apenas em caso de antecipacao de
+     * pagamento.
+     */
+    public void setTpPagAnt(final String tipoPagamentoAntecipado) {
+        this.tipoPagamentoAntecipado = tipoPagamentoAntecipado;
+    }
+
+    public GrupoPagamentoAntecipado getGPagAntecipado() {
+        return this.grupoPagamentoAntecipado;
+    }
+
+    /**
+     * NT 2026.002 - Grupo de antecipacao de pagamento.<br>
+     * Permite informar apenas quando tpPagAnt = 3.
+     */
+    public void setGPagAntecipado(final GrupoPagamentoAntecipado grupoPagamentoAntecipado) {
+        this.grupoPagamentoAntecipado = grupoPagamentoAntecipado;
+    }
+
+    /**
+     * Grupo de antecipacao de pagamento (ide/gPagAntecipado).<br>
+     * Contem de 1 a 99 chaves de acesso de CT-e de pagamento antecipado
+     * (chCTePagAnt, com tpPagAnt = 1).
+     */
+    @Root(name = "gPagAntecipado")
+    @Namespace(reference = CTeConfig.NAMESPACE)
+    public static class GrupoPagamentoAntecipado extends DFBase {
+        private static final long serialVersionUID = 7938149076755500267L;
+
+        @ElementList(entry = "chCTePagAnt", inline = true, required = true)
+        private List<String> chavesPagamentoAntecipado;
+
+        public List<String> getChCTePagAnt() {
+            return this.chavesPagamentoAntecipado;
+        }
+
+        public void setChCTePagAnt(final List<String> chavesPagamentoAntecipado) {
+            this.chavesPagamentoAntecipado = chavesPagamentoAntecipado;
+        }
     }
 }

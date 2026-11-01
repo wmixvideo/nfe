@@ -1,11 +1,9 @@
 package com.fincatto.documentofiscal.cte300.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.cte300.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.cte300.classes.CTTipoPrazoDataEntrega;
-import com.fincatto.documentofiscal.cte300.classes.nota.CTeNotaInfoDadosComplementaresEntregaPeriodo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresEntregaPeriodoTest {
 
@@ -13,12 +11,12 @@ public class CTeNotaInfoDadosComplementaresEntregaPeriodoTest {
     public void deveSerTipoPrazoEntregaPeriodo() {
         final CTeNotaInfoDadosComplementaresEntregaPeriodo entregaPeriodo = new CTeNotaInfoDadosComplementaresEntregaPeriodo();
         entregaPeriodo.setTipoPrazoDataEntrega(CTTipoPrazoDataEntrega.NO_PERIODO);
-        Assert.assertEquals("4", entregaPeriodo.getTipoPrazoDataEntrega().getCodigo());
+        Assertions.assertEquals("4", entregaPeriodo.getTipoPrazoDataEntrega().getCodigo());
     }
 
     @Test
     public void deveGerarXmlCorreto() {
-        Assert.assertEquals("<noPeriodo><tpPer>4</tpPer><dIni>2018-01-22</dIni><dFim>2018-01-22</dFim></noPeriodo>", FabricaDeObjetosFake.getEntregaPeriodo().toString());
+        Assertions.assertEquals("<noPeriodo><tpPer>4</tpPer><dIni>2018-01-22</dIni><dFim>2018-01-22</dFim></noPeriodo>", FabricaDeObjetosFake.getEntregaPeriodo().toString());
     }
 
 }

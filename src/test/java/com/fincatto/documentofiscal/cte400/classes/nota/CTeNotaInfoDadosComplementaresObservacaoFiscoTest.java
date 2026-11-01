@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.cte400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresObservacaoFiscoTest {
 
@@ -10,20 +10,24 @@ public class CTeNotaInfoDadosComplementaresObservacaoFiscoTest {
         final CTeNotaInfoDadosComplementaresObservacaoFisco observacao = new CTeNotaInfoDadosComplementaresObservacaoFisco();
         observacao.setCampo("Observacao");
         observacao.setTexto("Texto");
-        Assert.assertEquals("Observacao", observacao.getCampo());
-        Assert.assertEquals("Texto", observacao.getTexto());
+        Assertions.assertEquals("Observacao", observacao.getCampo());
+        Assertions.assertEquals("Texto", observacao.getTexto());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveTerAte20caracteres() {
-        final CTeNotaInfoDadosComplementaresObservacaoFisco observacao = new CTeNotaInfoDadosComplementaresObservacaoFisco();
-        observacao.setCampo("Campo deve ter ate 20 caracteres");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final CTeNotaInfoDadosComplementaresObservacaoFisco observacao = new CTeNotaInfoDadosComplementaresObservacaoFisco();
+            observacao.setCampo("Campo deve ter ate 20 caracteres");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveTerAte60caracteres() {
-        final CTeNotaInfoDadosComplementaresObservacaoFisco observacao = new CTeNotaInfoDadosComplementaresObservacaoFisco();
-        observacao.setTexto("Campo deve ter ate 60 caracteres. Campo deve ter ate 60 caracteres.");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final CTeNotaInfoDadosComplementaresObservacaoFisco observacao = new CTeNotaInfoDadosComplementaresObservacaoFisco();
+            observacao.setTexto("Campo deve ter ate 60 caracteres. Campo deve ter ate 60 caracteres.");
+        });
     }
 
     @Test
@@ -32,7 +36,7 @@ public class CTeNotaInfoDadosComplementaresObservacaoFiscoTest {
         observacao.setCampo("Observacao");
         observacao.setTexto("Texto");
         final String xml = "<ObsFisco xCampo=\"Observacao\"><xTexto>Texto</xTexto></ObsFisco>";
-        Assert.assertEquals(xml, observacao.toString());
+        Assertions.assertEquals(xml, observacao.toString());
     }
 
 }

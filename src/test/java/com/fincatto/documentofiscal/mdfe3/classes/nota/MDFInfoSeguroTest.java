@@ -1,8 +1,8 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.FabricaDeObjetosFakeMDFe;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -25,6 +25,6 @@ public class MDFInfoSeguroTest {
                 + "<nAver>1245789865322154879865325487986532154876</nAver>"
                 + "<nAver>1245789865322154879865325487986532154877</nAver>"
                 + "</seg>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFakeMDFe.getMDFInfoSeguro().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFakeMDFe.getMDFInfoSeguro().toString());
     }
 }

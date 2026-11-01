@@ -1,11 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class NFNotaInfoAgropecuarioTest {
 
@@ -40,17 +40,17 @@ public class NFNotaInfoAgropecuarioTest {
         NFNotaInfoAgropecuarioGuiaTransito g = guia("SP", "SERIE123", 123456789);
         agro.setGuiaTransito(g);
 
-        assertEquals(defensivos, agro.getDefensivos());
-        assertEquals("123456789012345678901234567890", agro.getDefensivos().get(0).getNumeroReceituario());
-        assertEquals("12345678909", agro.getDefensivos().get(0).getCPFRespTec());
-        assertEquals("ABCDEFGHIJABCDEFGHIJABCDEFGHIJ", agro.getDefensivos().get(1).getNumeroReceituario());
-        assertEquals("98765432100", agro.getDefensivos().get(1).getCPFRespTec());
+        Assertions.assertEquals(defensivos, agro.getDefensivos());
+        Assertions.assertEquals("123456789012345678901234567890", agro.getDefensivos().get(0).getNumeroReceituario());
+        Assertions.assertEquals("12345678909", agro.getDefensivos().get(0).getCPFRespTec());
+        Assertions.assertEquals("ABCDEFGHIJABCDEFGHIJABCDEFGHIJ", agro.getDefensivos().get(1).getNumeroReceituario());
+        Assertions.assertEquals("98765432100", agro.getDefensivos().get(1).getCPFRespTec());
 
-        assertEquals(g, agro.getGuiaTransito());
-        assertEquals(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoAgropecuarioTipoGuia.GTA, agro.getGuiaTransito().getTipoGuia());
-        assertEquals("SP", agro.getGuiaTransito().getUfGuia());
-        assertEquals("SERIE123", agro.getGuiaTransito().getSerieGuia());
-        assertEquals(Integer.valueOf(123456789), agro.getGuiaTransito().getNumeroGuia());
+        Assertions.assertEquals(g, agro.getGuiaTransito());
+        Assertions.assertEquals(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoAgropecuarioTipoGuia.GTA, agro.getGuiaTransito().getTipoGuia());
+        Assertions.assertEquals("SP", agro.getGuiaTransito().getUfGuia());
+        Assertions.assertEquals("SERIE123", agro.getGuiaTransito().getSerieGuia());
+        Assertions.assertEquals(Integer.valueOf(123456789), agro.getGuiaTransito().getNumeroGuia());
 
     }
 
@@ -60,12 +60,12 @@ public class NFNotaInfoAgropecuarioTest {
         NFNotaInfoAgropecuarioGuiaTransito g = guia("MG", "SERIE999", 987654321);
         agro.setGuiaTransito(g);
 
-        assertNull(agro.getDefensivos());
-        assertNotNull(agro.getGuiaTransito());
-        assertEquals(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoAgropecuarioTipoGuia.GTA, agro.getGuiaTransito().getTipoGuia());
-        assertEquals("MG", agro.getGuiaTransito().getUfGuia());
-        assertEquals("SERIE999", agro.getGuiaTransito().getSerieGuia());
-        assertEquals(Integer.valueOf(987654321), agro.getGuiaTransito().getNumeroGuia());
+        Assertions.assertNull(agro.getDefensivos());
+        Assertions.assertNotNull(agro.getGuiaTransito());
+        Assertions.assertEquals(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoAgropecuarioTipoGuia.GTA, agro.getGuiaTransito().getTipoGuia());
+        Assertions.assertEquals("MG", agro.getGuiaTransito().getUfGuia());
+        Assertions.assertEquals("SERIE999", agro.getGuiaTransito().getSerieGuia());
+        Assertions.assertEquals(Integer.valueOf(987654321), agro.getGuiaTransito().getNumeroGuia());
     }
 
     @Test
@@ -74,13 +74,13 @@ public class NFNotaInfoAgropecuarioTest {
         List<NFNotaInfoAgropecuarioDefensivo> defensivos = defensivosPadrao();
         agro.setDefensivos(defensivos);
 
-        assertNull(agro.getGuiaTransito());
-        assertNotNull(agro.getDefensivos());
-        assertEquals(2, agro.getDefensivos().size());
-        assertEquals("123456789012345678901234567890", agro.getDefensivos().get(0).getNumeroReceituario());
-        assertEquals("12345678909", agro.getDefensivos().get(0).getCPFRespTec());
-        assertEquals("ABCDEFGHIJABCDEFGHIJABCDEFGHIJ", agro.getDefensivos().get(1).getNumeroReceituario());
-        assertEquals("98765432100", agro.getDefensivos().get(1).getCPFRespTec());
+        Assertions.assertNull(agro.getGuiaTransito());
+        Assertions.assertNotNull(agro.getDefensivos());
+        Assertions.assertEquals(2, agro.getDefensivos().size());
+        Assertions.assertEquals("123456789012345678901234567890", agro.getDefensivos().get(0).getNumeroReceituario());
+        Assertions.assertEquals("12345678909", agro.getDefensivos().get(0).getCPFRespTec());
+        Assertions.assertEquals("ABCDEFGHIJABCDEFGHIJABCDEFGHIJ", agro.getDefensivos().get(1).getNumeroReceituario());
+        Assertions.assertEquals("98765432100", agro.getDefensivos().get(1).getCPFRespTec());
     }
 
     @Test

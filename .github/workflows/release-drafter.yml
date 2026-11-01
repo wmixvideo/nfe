@@ -1,0 +1,23 @@
+name: "Release Drafter"
+
+# Keeps a draft of the next release updated with every merge into master
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+concurrency:
+  group: release-drafter
+  cancel-in-progress: true
+
+jobs:
+  update-draft:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Update release draft
+        uses: release-drafter/release-drafter@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

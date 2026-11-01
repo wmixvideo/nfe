@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoItemModalidadeBCICMSST;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoCOFINS notaInfoItemImpostoCOFINS = FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS();
         imposto.setCofins(notaInfoItemImpostoCOFINS);
-        Assert.assertEquals(notaInfoItemImpostoCOFINS, imposto.getCofins());
+        Assertions.assertEquals(notaInfoItemImpostoCOFINS, imposto.getCofins());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoISSQN issqn = FabricaDeObjetosFake.getNFNotaInfoItemImpostoISSQN();
         imposto.setIssqn(issqn);
-        Assert.assertEquals(issqn, imposto.getIssqn());
+        Assertions.assertEquals(issqn, imposto.getIssqn());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoCOFINSST notaInfoItemImpostoCOFINSST = FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINSST();
         imposto.setCofinsst(notaInfoItemImpostoCOFINSST);
-        Assert.assertEquals(notaInfoItemImpostoCOFINSST, imposto.getCofinsst());
+        Assertions.assertEquals(notaInfoItemImpostoCOFINSST, imposto.getCofinsst());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoICMS notaInfoItemImpostoICMS = FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS();
         imposto.setIcms(notaInfoItemImpostoICMS);
-        Assert.assertEquals(notaInfoItemImpostoICMS, imposto.getIcms());
+        Assertions.assertEquals(notaInfoItemImpostoICMS, imposto.getIcms());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoImportacao notaInfoItemImpostoImportacao = FabricaDeObjetosFake.getNFNotaInfoItemImpostoImportacao();
         imposto.setImpostoImportacao(notaInfoItemImpostoImportacao);
-        Assert.assertEquals(notaInfoItemImpostoImportacao, imposto.getImpostoImportacao());
+        Assertions.assertEquals(notaInfoItemImpostoImportacao, imposto.getImpostoImportacao());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoIPI impostoIPI = FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPI();
         imposto.setIpi(impostoIPI);
-        Assert.assertEquals(impostoIPI, imposto.getIpi());
+        Assertions.assertEquals(impostoIPI, imposto.getIpi());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoPIS pis = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS();
         imposto.setPis(pis);
-        Assert.assertEquals(pis, imposto.getPis());
+        Assertions.assertEquals(pis, imposto.getPis());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoPISST pisst = FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST();
         imposto.setPisst(pisst);
-        Assert.assertEquals(pisst, imposto.getPisst());
+        Assertions.assertEquals(pisst, imposto.getPisst());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final NFNotaInfoItemImpostoICMSUFDestino icmsUfDestino = FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino();
         imposto.setIcmsUfDestino(icmsUfDestino);
-        Assert.assertEquals(icmsUfDestino, imposto.getIcmsUfDestino());
+        Assertions.assertEquals(icmsUfDestino, imposto.getIcmsUfDestino());
     }
 
     @Test
@@ -86,12 +86,12 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         final String valorTotalTributos = "999999999999.99";
         imposto.setValorTotalTributos(new BigDecimal(valorTotalTributos));
-        Assert.assertEquals(valorTotalTributos, imposto.getValorTotalTributos());
+        Assertions.assertEquals(valorTotalTributos, imposto.getValorTotalTributos());
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorTotalTributosComTamanhoInvalido() {
-        new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImposto().setValorTotalTributos(new BigDecimal("10000000000000")));
     }
 
     @Test
@@ -157,7 +157,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -171,7 +171,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -185,7 +185,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -199,7 +199,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -227,7 +227,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -242,7 +242,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -256,7 +256,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -270,7 +270,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setIcmsUfDestino(FabricaDeObjetosFake.getNFNotaaInfoItemImpostoICMSUFDestino());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
 
     @Test
@@ -284,7 +284,7 @@ public class NFNotaInfoItemImpostoTest {
         imposto.setPis(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPIS());
         imposto.setValorTotalTributos(new BigDecimal("999999999999.99"));
         imposto.setPisst(FabricaDeObjetosFake.getNFNotaInfoItemImpostoPISST());
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
     
     @Test
@@ -293,33 +293,37 @@ public class NFNotaInfoItemImpostoTest {
         final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
         icms.setIcms10(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS10());
         imposto.setIcms(icms);
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertNotNull(imposto.toString());
     }
     
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveGerarIcms10PercentualMVANulo() {
-        final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
-        final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
-        icms.setIcms10(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS10());
-        icms.getIcms10().setPercentualMargemValorAdicionadoICMSST(null);
-        imposto.setIcms(icms);
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
+            final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
+            icms.setIcms10(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS10());
+            icms.getIcms10().setPercentualMargemValorAdicionadoICMSST(null);
+            imposto.setIcms(icms);
+            Assertions.assertNotNull(imposto.toString());
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDeveGerarIcms10ComPercentualMVA() {
-        final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
-        final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
-        icms.setIcms10(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS10());
-        icms.getIcms10().setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
-        icms.getIcms10().setPercentualMargemValorAdicionadoICMSST(BigDecimal.ONE);
-        imposto.setIcms(icms);
-        Assert.assertNotNull(imposto.toString());
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
+            final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
+            icms.setIcms10(FabricaDeObjetosFake.getNFNotaInfoItemImpostoICMS10());
+            icms.getIcms10().setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.PRECO_TABELADO);
+            icms.getIcms10().setPercentualMargemValorAdicionadoICMSST(BigDecimal.ONE);
+            imposto.setIcms(icms);
+            Assertions.assertNotNull(imposto.toString());
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImposto><vTotTrib>999999999999.99</vTotTrib><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>1</modBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP></ICMS00></ICMS><IPI><CNPJProd>12345678901234</CNPJProd><cSelo>iNEFifS1jexTxcCvgjlQ186nR6JAwM2koyjbWKA1DJSLmZy432GoSwoygXc5</cSelo><qSelo>999999999999</qSelo><cEnq>aT2</cEnq><IPITrib><CST>49</CST><vBC>999999999999.99</vBC><pIPI>99.99</pIPI><vIPI>999999999999.99</vIPI></IPITrib></IPI><II><vBC>999999999999.99</vBC><vDespAdu>999999999999.99</vDespAdu><vII>999999999999.99</vII><vIOF>999999999999.99</vIOF></II><PIS><PISAliq><CST>01</CST><vBC>999999999999.99</vBC><pPIS>99.99</pPIS><vPIS>999999999999.99</vPIS></PISAliq></PIS><PISST><qBCProd>99999999999.9999</qBCProd><vAliqProd>9999999999.9999</vAliqProd><vPIS>999999999999.99</vPIS></PISST><COFINS><COFINSAliq><CST>01</CST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.99</vCOFINS></COFINSAliq></COFINS><COFINSST><vBC>999999999999.99</vBC><pCOFINS>99.99</pCOFINS><vCOFINS>999999999999.00</vCOFINS></COFINSST><ICMSUFDest><vBCUFDest>9999999999999.99</vBCUFDest><vBCFCPUFDest>9999999999999.99</vBCFCPUFDest><pFCPUFDest>999.9999</pFCPUFDest><pICMSUFDest>999.9999</pICMSUFDest><pICMSInter>7.00</pICMSInter><pICMSInterPart>999.9999</pICMSInterPart><vFCPUFDest>9999999999999.99</vFCPUFDest><vICMSUFDest>9999999999999.99</vICMSUFDest><vICMSUFRemet>9999999999999.99</vICMSUFRemet></ICMSUFDest></NFNotaInfoItemImposto>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImposto().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImposto().toString());
     }
 }

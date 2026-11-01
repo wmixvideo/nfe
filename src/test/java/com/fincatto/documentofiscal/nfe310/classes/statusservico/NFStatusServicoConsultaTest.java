@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.statusservico;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe310.classes.statusservico.consulta.NFStatusServicoConsulta;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFStatusServicoConsultaTest {
 
@@ -14,7 +13,7 @@ public class NFStatusServicoConsultaTest {
         final NFStatusServicoConsulta servicoConsulta = new NFStatusServicoConsulta();
         final String versao = "3.10";
         servicoConsulta.setVersao(versao);
-        Assert.assertEquals(versao, servicoConsulta.getVersao());
+        Assertions.assertEquals(versao, servicoConsulta.getVersao());
     }
 
     @Test
@@ -22,7 +21,7 @@ public class NFStatusServicoConsultaTest {
         final NFStatusServicoConsulta servicoConsulta = new NFStatusServicoConsulta();
         final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         servicoConsulta.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, servicoConsulta.getAmbiente());
+        Assertions.assertEquals(ambiente, servicoConsulta.getAmbiente());
     }
 
     @Test
@@ -30,7 +29,7 @@ public class NFStatusServicoConsultaTest {
         final NFStatusServicoConsulta servicoConsulta = new NFStatusServicoConsulta();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SP;
         servicoConsulta.setUf(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, servicoConsulta.getUf());
+        Assertions.assertEquals(unidadeFederativa, servicoConsulta.getUf());
     }
 
     @Test
@@ -38,6 +37,6 @@ public class NFStatusServicoConsultaTest {
         final NFStatusServicoConsulta servicoConsulta = new NFStatusServicoConsulta();
         final String servico = "STATUS";
         servicoConsulta.setServico(servico);
-        Assert.assertEquals(servico, servicoConsulta.getServico());
+        Assertions.assertEquals(servico, servicoConsulta.getServico());
     }
 }

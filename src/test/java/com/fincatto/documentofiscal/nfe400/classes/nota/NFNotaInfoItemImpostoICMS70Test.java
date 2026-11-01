@@ -1,67 +1,66 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.classes.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemImpostoICMS70Test {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("10000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualAliquota(new BigDecimal("10000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualAliquotaImpostoICMSST(new BigDecimal("1000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualMargemValorAdicionadoICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualMargemValorAdicionadoICMSST(new BigDecimal("1000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualReducaoBCComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBC(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBC(new BigDecimal("1000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPercentualReducaoBCICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBCICMSST(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualReducaoBCICMSST(new BigDecimal("1000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBCComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorBC(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setValorBC(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorBCSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorBCST(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setValorBCST(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorICMSSTComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorICMSST(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setValorICMSST(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirValorTributoComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoICMS70().setValorTributo(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoICMS70().setValorTributo(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobreza() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualFundoCombatePobreza(BigDecimal.ZERO);
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualFundoCombatePobreza(BigDecimal.ZERO));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorZeradoParaPercentualFundoCombatePobrezaST() {
-        new NFNotaInfoItemImpostoICMS70().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO);
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoItemImpostoICMS70().setPercentualFundoCombatePobrezaST(BigDecimal.ZERO));
     }
 
     @Test
@@ -116,160 +115,172 @@ public class NFNotaInfoItemImpostoICMS70Test {
         icms70.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSituacaoTributariaNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirModalidadeBCNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirModalidadeDeterminacaoBCICMSSTNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirOrigemNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirPercentualAliquotaImpostoICMSSTNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
     @Test
@@ -298,30 +309,32 @@ public class NFNotaInfoItemImpostoICMS70Test {
         icms70.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void devePermitirPercentualReducaoBCNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
     @Test
@@ -350,108 +363,116 @@ public class NFNotaInfoItemImpostoICMS70Test {
         icms70.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorBCNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorBCSTNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorICMSSTNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorTributo(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorTributo(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirValorTributoNulo() {
-        final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
-        icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
-        icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
-        icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
-        icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
-        icms70.setPercentualAliquota(new BigDecimal("99.99"));
-        icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
-        icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
-        icms70.setValorBC(new BigDecimal("999999999999.99"));
-        icms70.setValorBCST(new BigDecimal("999999999999.99"));
-        icms70.setValorICMSST(new BigDecimal("999999999999.99"));
-        icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
-        icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
-        icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
-        icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
-        icms70.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemImpostoICMS70 icms70 = new NFNotaInfoItemImpostoICMS70();
+            icms70.setSituacaoTributaria(NFNotaInfoImpostoTributacaoICMS.CST_70);
+            icms70.setModalidadeBCICMS(NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO);
+            icms70.setModalidadeBCICMSST(NFNotaInfoItemModalidadeBCICMSST.LISTA_NEUTRA);
+            icms70.setOrigem(NFOrigem.ESTRANGEIRA_ADQUIRIDA_MERCADO_INTERNO);
+            icms70.setPercentualAliquota(new BigDecimal("99.99"));
+            icms70.setPercentualAliquotaImpostoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualMargemValorAdicionadoICMSST(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBC(new BigDecimal("99.99"));
+            icms70.setPercentualReducaoBCICMSST(new BigDecimal("99.99"));
+            icms70.setValorBC(new BigDecimal("999999999999.99"));
+            icms70.setValorBCST(new BigDecimal("999999999999.99"));
+            icms70.setValorICMSST(new BigDecimal("999999999999.99"));
+            icms70.setDesoneracao(NFNotaMotivoDesoneracaoICMS.OUTROS);
+            icms70.setValorICMSDesoneracao(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobreza(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobreza(new BigDecimal("999999999999.99"));
+            icms70.setValorBCFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.setPercentualFundoCombatePobrezaST(new BigDecimal("99.99"));
+            icms70.setValorFundoCombatePobrezaST(new BigDecimal("999999999999.99"));
+            icms70.toString();
+        });
     }
 
     @Test
@@ -482,6 +503,6 @@ public class NFNotaInfoItemImpostoICMS70Test {
         icms70.setMotivoDesoneracaoICMSST(NFNotaMotivoDesoneracaoICMS.PRODUTOR_AGROPECUARIO);
 
         final String xmlEsperado = "<NFNotaInfoItemImpostoICMS70><orig>2</orig><CST>70</CST><modBC>3</modBC><pRedBC>99.99</pRedBC><vBC>999999999999.99</vBC><pICMS>99.99</pICMS><vICMS>999999999999.99</vICMS><vBCFCP>999999999999.99</vBCFCP><pFCP>99.99</pFCP><vFCP>999999999999.99</vFCP><modBCST>3</modBCST><pMVAST>99.99</pMVAST><pRedBCST>99.99</pRedBCST><vBCST>999999999999.99</vBCST><pICMSST>99.99</pICMSST><vICMSST>999999999999.99</vICMSST><vBCFCPST>999999999999.99</vBCFCPST><pFCPST>99.99</pFCPST><vFCPST>999999999999.99</vFCPST><vICMSDeson>999999999999.99</vICMSDeson><motDesICMS>9</motDesICMS><vICMSSTDeson>999999999999.99</vICMSSTDeson><motDesICMSST>3</motDesICMSST></NFNotaInfoItemImpostoICMS70>";
-        Assert.assertEquals(xmlEsperado, icms70.toString());
+        Assertions.assertEquals(xmlEsperado, icms70.toString());
     }
 }

@@ -1,21 +1,19 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoItemImpostoIPINaoTributado;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemImpostoIPINaoTributadoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSituacaoTributariaNulo() {
-        new NFNotaInfoItemImpostoIPINaoTributado().toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoItemImpostoIPINaoTributado().toString());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemImpostoIPINaoTributado><CST>52</CST></NFNotaInfoItemImpostoIPINaoTributado>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoIPINaoTributado().toString());
     }
 }

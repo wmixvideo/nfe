@@ -5,34 +5,39 @@ import com.fincatto.documentofiscal.mdfe3.MDFeConfig;
 import com.fincatto.documentofiscal.mdfe3.classes.MDFAutorizador3;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaRecibo;
 import com.fincatto.documentofiscal.mdfe3.classes.consultaRecibo.MDFeConsultaReciboRetorno;
-import com.fincatto.documentofiscal.mdfe3.webservices.retornorecepcao.MDFeRetRecepcaoStub;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
-import java.rmi.RemoteException;
+import java.io.IOException;
 
 /**
  * Created by Eldevan Nery Junior on 30/11/17.
  * Classe para envio do pedido de Consulta do recibo MDF-e.
  */
 class WSConsultaRecibo implements DFLog {
-    
+
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/mdfe/wsdl/MDFeRetRecepcao";
+    private static final String SOAP_ACTION = WSConsultaRecibo.NAMESPACE_WSDL + "/mdfeRetRecepcao";
+
     private final MDFeConfig config;
-    
-    WSConsultaRecibo(final MDFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSConsultaRecibo(final MDFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     MDFeConsultaReciboRetorno consultaRecibo(final String numeroRecibo) throws Exception {
-        final OMElement omElementConsulta = AXIOMUtil.stringToOM(this.gerarDadosConsulta(numeroRecibo).toString());
-        this.getLogger().debug(omElementConsulta.toString());
-        
-        final OMElement omElementResult = this.efetuaConsultaRecibo(omElementConsulta);
-        this.getLogger().debug(omElementResult.toString());
-        
-        return this.config.getPersister().read(MDFeConsultaReciboRetorno.class, omElementResult.toString());
+        final String xmlConsulta = this.gerarDadosConsulta(numeroRecibo).toString();
+        this.getLogger().debug(xmlConsulta);
+
+        final String xmlResultado = this.efetuaConsultaRecibo(xmlConsulta);
+        this.getLogger().debug(xmlResultado);
+
+        return this.config.getPersister().read(MDFeConsultaReciboRetorno.class, xmlResultado);
     }
-    
+
     private MDFeConsultaRecibo gerarDadosConsulta(final String numeroRecibo) {
         final MDFeConsultaRecibo consultaRecibo = new MDFeConsultaRecibo();
         consultaRecibo.setNumeroRecibo(numeroRecibo);
@@ -40,23 +45,18 @@ class WSConsultaRecibo implements DFLog {
         consultaRecibo.setVersao(MDFeConfig.VERSAO);
         return consultaRecibo;
     }
-    
-    private OMElement efetuaConsultaRecibo(final OMElement omElement) throws RemoteException {
-        final MDFeRetRecepcaoStub.MdfeCabecMsg cabec = new MDFeRetRecepcaoStub.MdfeCabecMsg();
-        cabec.setCUF(this.config.getCUF().getCodigoIbge());
-        cabec.setVersaoDados(MDFeConfig.VERSAO);
-        
-        final MDFeRetRecepcaoStub.MdfeCabecMsgE cabecEnv = new MDFeRetRecepcaoStub.MdfeCabecMsgE();
-        cabecEnv.setMdfeCabecMsg(cabec);
-        
-        final MDFeRetRecepcaoStub.MdfeDadosMsg dados = new MDFeRetRecepcaoStub.MdfeDadosMsg();
-        dados.setExtraElement(omElement);
-        
+
+    private String efetuaConsultaRecibo(final String xmlConsulta) throws IOException, DFSoapFaultException {
+        final String cabecalho = "<cUF>" + this.config.getCUF().getCodigoIbge() + "</cUF><versaoDados>" + MDFeConfig.VERSAO + "</versaoDados>";
+
         final MDFAutorizador3 autorizador = MDFAutorizador3.valueOfCodigoUF(this.config.getCUF());
         final String endpoint = autorizador.getMDFeRetornoRecepcao(this.config.getAmbiente());
         if (endpoint == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para Consulta Recibo, autorizador " + autorizador.name() + ", UF " + this.config.getCUF().name());
         }
-        return new MDFeRetRecepcaoStub(endpoint, config).mdfeRetRecepcao(dados, cabecEnv).getExtraElement();
+
+        final String envelope = DFSoapEnvelope.envelopar(WSConsultaRecibo.NAMESPACE_WSDL, "mdfeCabecMsg", cabecalho, "mdfeDadosMsg", xmlConsulta);
+        final String resposta = this.httpClient.postSoap(endpoint, WSConsultaRecibo.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
 }

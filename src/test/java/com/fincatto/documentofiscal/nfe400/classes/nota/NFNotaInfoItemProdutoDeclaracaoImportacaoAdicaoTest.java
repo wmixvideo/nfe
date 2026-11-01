@@ -1,41 +1,42 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCodigoFabricanteComTamanhoInvalido() {
-        try {
-            new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setCodigoFabricante("");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki1");
-        }
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setCodigoFabricante("");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki1");
+            }
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNumeroAtoConcessorioDrawbackComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumeroAtoConcessorioDrawback("999999999999999999999");
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumeroAtoConcessorioDrawback("999999999999999999999"));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirDescontoComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setDesconto(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setDesconto(new BigDecimal("10000000000000")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirNumeroComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumero(1000);
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setNumero(1000));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirSequencialComTamanhoInvalido() {
-        new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setSequencial(100000);
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().setSequencial(100000));
     }
 
     @Test
@@ -49,14 +50,16 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCodigoFabricanteNulo() {
-        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
-        importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
-        importacaoAdicao.setNumero(999);
-        importacaoAdicao.setSequencial(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
-        importacaoAdicao.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+            importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
+            importacaoAdicao.setNumero(999);
+            importacaoAdicao.setSequencial(999);
+            importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
+            importacaoAdicao.toString();
+        });
     }
 
     @Test
@@ -79,14 +82,16 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         importacaoAdicao.toString();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirSequencialNulo() {
-        final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
-        importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
-        importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
-        importacaoAdicao.setNumero(999);
-        importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
-        importacaoAdicao.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
+            importacaoAdicao.setCodigoFabricante("sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki");
+            importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
+            importacaoAdicao.setNumero(999);
+            importacaoAdicao.setNumeroAtoConcessorioDrawback("99999999999");
+            importacaoAdicao.toString();
+        });
     }
 
     @Test
@@ -116,14 +121,14 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         final String codigoFabricante = "sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki";
         importacaoAdicao.setCodigoFabricante(codigoFabricante);
-        Assert.assertEquals(codigoFabricante, importacaoAdicao.getCodigoFabricante());
+        Assertions.assertEquals(codigoFabricante, importacaoAdicao.getCodigoFabricante());
     }
 
     @Test
     public void deveObterDescontoComoFoiSetado() {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         importacaoAdicao.setDesconto(new BigDecimal("999999999999.99"));
-        Assert.assertEquals("999999999999.99", importacaoAdicao.getDesconto());
+        Assertions.assertEquals("999999999999.99", importacaoAdicao.getDesconto());
     }
 
     @Test
@@ -131,7 +136,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         final Integer numero = 999;
         importacaoAdicao.setNumero(numero);
-        Assert.assertEquals(numero, importacaoAdicao.getNumero());
+        Assertions.assertEquals(numero, importacaoAdicao.getNumero());
     }
 
     @Test
@@ -139,7 +144,7 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         final String numeroAtoConcessorioDrawback = "99999999999";
         importacaoAdicao.setNumeroAtoConcessorioDrawback(numeroAtoConcessorioDrawback);
-        Assert.assertEquals(numeroAtoConcessorioDrawback, importacaoAdicao.getNumeroAtoConcessorioDrawback());
+        Assertions.assertEquals(numeroAtoConcessorioDrawback, importacaoAdicao.getNumeroAtoConcessorioDrawback());
     }
 
     @Test
@@ -147,12 +152,12 @@ public class NFNotaInfoItemProdutoDeclaracaoImportacaoAdicaoTest {
         final NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao importacaoAdicao = new NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao();
         final Integer sequencial = 999;
         importacaoAdicao.setSequencial(sequencial);
-        Assert.assertEquals(sequencial, importacaoAdicao.getSequencial());
+        Assertions.assertEquals(sequencial, importacaoAdicao.getSequencial());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao><nAdicao>999</nAdicao><nSeqAdic>999</nSeqAdic><cFabricante>sA2FBRFMMNgF1AKRDDXYOlc3zGvzEc69l6zQ5O5uAUe82XZ3szQfw01DW0Ki</cFabricante><vDescDI>999999999999.99</vDescDI><nDraw>99999999999</nDraw></NFNotaInfoItemProdutoDeclaracaoImportacaoAdicao>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemProdutoDeclaracaoImportacaoAdicao().toString());
     }
 }

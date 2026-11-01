@@ -41,10 +41,8 @@ public class DFAssinaturaDigital implements DFLog {
     }
 
     public static boolean isValida(final InputStream xmlStream) throws Exception {
-        final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-
-        final Document document = dbf.newDocumentBuilder().parse(xmlStream);
+        // parser endurecido: o XML validado aqui e, por definicao, de origem externa
+        final Document document = DFXmlSeguro.documentBuilderFactory().newDocumentBuilder().parse(xmlStream);
         final NodeList nodeList = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         if (nodeList.getLength() == 0) {
             throw new IllegalStateException("Nao foi encontrada a assinatura do XML.");
@@ -53,8 +51,10 @@ public class DFAssinaturaDigital implements DFLog {
         final DOMValidateContext validateContext = new DOMValidateContext(new DFKeySelector(), nodeList.item(0));
         for (final String tag : DFAssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
             final NodeList elements = document.getElementsByTagName(tag);
-            if (elements.getLength() > 0) {
-                validateContext.setIdAttributeNS((Element) elements.item(0), null, "Id");
+            // registra o atributo Id de todos os elementos (um lote pode ter varios infNFe, por
+            // exemplo) para que as referencias #Id de qualquer assinatura do documento resolvam
+            for (int i = 0; i < elements.getLength(); i++) {
+                validateContext.setIdAttributeNS((Element) elements.item(i), null, "Id");
             }
         }
 
@@ -100,15 +100,17 @@ public class DFAssinaturaDigital implements DFLog {
         final KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
         final X509Data x509Data = keyInfoFactory.newX509Data(Collections.singletonList((X509Certificate) keyEntry.getCertificate()));
         final KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(x509Data));
-        final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
-
-        final Document document = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(xmlReader));
+        final Document document = DFXmlSeguro.documentBuilderFactory().newDocumentBuilder().parse(new InputSource(xmlReader));
         for (final String elementoAssinavel : elementosAssinaveis) {
             final NodeList elements = document.getElementsByTagName(elementoAssinavel);
             for (int i = 0; i < elements.getLength(); i++) {
                 final Element element = (Element) elements.item(i);
                 final String id = element.getAttribute("Id");
+                if (StringUtils.isBlank(id)) {
+                    // sem o atributo Id a referencia viraria "#" (o documento inteiro), gerando
+                    // assinatura invalida rejeitada pela SEFAZ sem indicacao da causa
+                    throw new IllegalStateException("Elemento <" + elementoAssinavel + "> sem o atributo Id preenchido - impossivel assinar.");
+                }
                 element.setIdAttribute("Id", true);
 
                 final Reference reference = signatureFactory.newReference("#" + id, signatureFactory.newDigestMethod(DigestMethod.SHA1, null), transforms, null, null);
@@ -118,31 +120,48 @@ public class DFAssinaturaDigital implements DFLog {
             }
         }
 
-        final Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        final Transformer transformer = DFXmlSeguro.transformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         transformer.transform(new DOMSource(document), new StreamResult(xmlAssinado));
     }
 
     private KeyStore.PrivateKeyEntry getPrivateKeyEntry() throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
         final KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(this.config.getCertificadoSenha().toCharArray());
-        if (StringUtils.isNotBlank(config.getCertificadoAlias())) {
-            this.getLogger().debug("Usando alias informado: '{}'", config.getCertificadoAlias());
-            return (KeyStore.PrivateKeyEntry) config.getCertificadoKeyStore().getEntry(config.getCertificadoAlias(), passwordProtection);
-        } else {
-            final KeyStore ks = config.getCertificadoKeyStore();
-            for (Enumeration<String> e = ks.aliases(); e.hasMoreElements(); ) {
-                final String alias = e.nextElement();
-                if (ks.isKeyEntry(alias)) {
-                    this.getLogger().debug("Usando alias descoberto: '{}'", alias);
-                    return (KeyStore.PrivateKeyEntry) ks.getEntry(alias, passwordProtection);
+        try {
+            if (StringUtils.isNotBlank(config.getCertificadoAlias())) {
+                this.getLogger().debug("Usando alias informado: '{}'", config.getCertificadoAlias());
+                return getPrivateKeyEntry(config.getCertificadoKeyStore(), config.getCertificadoAlias(), passwordProtection);
+            } else {
+                final KeyStore ks = config.getCertificadoKeyStore();
+                for (Enumeration<String> e = ks.aliases(); e.hasMoreElements(); ) {
+                    final String alias = e.nextElement();
+                    if (ks.isKeyEntry(alias)) {
+                        this.getLogger().debug("Usando alias descoberto: '{}'", alias);
+                        return getPrivateKeyEntry(ks, alias, passwordProtection);
+                    }
                 }
+                throw new KeyStoreException("N\u00E3o foi poss\u00EDvel encontrar a chave privada do certificado!");
             }
-            throw new KeyStoreException("N\u00E3o foi poss\u00EDvel encontrar a chave privada do certificado!");
+        } finally {
+            try {
+                // zera o char[] da senha copiado para a PasswordProtection (Destroyable)
+                passwordProtection.destroy();
+            } catch (final Exception e) {
+                // destroy() da PasswordProtection nao lanca na pratica - ignora por seguranca
+            }
         }
     }
 
+    private static KeyStore.PrivateKeyEntry getPrivateKeyEntry(final KeyStore keyStore, final String alias, final KeyStore.PasswordProtection passwordProtection) throws KeyStoreException, NoSuchAlgorithmException, UnrecoverableEntryException {
+        final KeyStore.Entry entry = keyStore.getEntry(alias, passwordProtection);
+        if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
+            throw new KeyStoreException("Alias '" + alias + "' nao encontrado no KeyStore ou nao contem chave privada!");
+        }
+        return (KeyStore.PrivateKeyEntry) entry;
+    }
+
     public String assinarString(final String string) throws Exception {
-        final byte[] buffer = string.getBytes();
+        final byte[] buffer = string.getBytes(java.nio.charset.StandardCharsets.UTF_8);
         final Signature signatureProvider = Signature.getInstance("SHA1withRSA");
         signatureProvider.initSign(getPrivateKeyEntry().getPrivateKey());
         signatureProvider.update(buffer, 0, buffer.length);

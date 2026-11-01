@@ -2,8 +2,8 @@ package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.cte400.FabricaDeObjetosFake;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoPrazoHoraEntrega;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTeNotaInfoDadosComplementaresEntregaComHoraDefinidaTest {
 
@@ -12,19 +12,21 @@ public class CTeNotaInfoDadosComplementaresEntregaComHoraDefinidaTest {
         final CTeNotaInfoDadosComplementaresEntregaComHoraDefinida entregaComHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaComHoraDefinida();
         entregaComHoraDefinida.setHoraProgramada(FabricaDeObjetosFake.getLocalTime());
         entregaComHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_HORARIO);
-        Assert.assertEquals("1", entregaComHoraDefinida.getTipoPrazoHoraEntrega().getCodigo());
+        Assertions.assertEquals("1", entregaComHoraDefinida.getTipoPrazoHoraEntrega().getCodigo());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveSerTipoPrazoEntregaSemHoraProgramada() {
-        final CTeNotaInfoDadosComplementaresEntregaComHoraDefinida entregaComHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaComHoraDefinida();
-        entregaComHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_HORARIO);
-        entregaComHoraDefinida.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final CTeNotaInfoDadosComplementaresEntregaComHoraDefinida entregaComHoraDefinida = new CTeNotaInfoDadosComplementaresEntregaComHoraDefinida();
+            entregaComHoraDefinida.setTipoPrazoHoraEntrega(CTTipoPrazoHoraEntrega.NO_HORARIO);
+            entregaComHoraDefinida.toString();
+        });
     }
 
     @Test
     public void deveGerarXmlCorreto() {
-        Assert.assertEquals("<comHora><tpHor>1</tpHor><hProg>10:10:10</hProg></comHora>", FabricaDeObjetosFake.getEntregaComHoraDefinida().toString());
+        Assertions.assertEquals("<comHora><tpHor>1</tpHor><hProg>10:10:10</hProg></comHora>", FabricaDeObjetosFake.getEntregaComHoraDefinida().toString());
     }
 
 }

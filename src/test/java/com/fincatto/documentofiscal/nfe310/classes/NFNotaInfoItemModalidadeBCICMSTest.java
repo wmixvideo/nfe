@@ -1,17 +1,15 @@
 package com.fincatto.documentofiscal.nfe310.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.NFNotaInfoItemModalidadeBCICMS;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemModalidadeBCICMSTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("0", NFNotaInfoItemModalidadeBCICMS.MVA.getCodigo());
-        Assert.assertEquals("1", NFNotaInfoItemModalidadeBCICMS.PAUTA.getCodigo());
-        Assert.assertEquals("2", NFNotaInfoItemModalidadeBCICMS.PRECO_TABELADO_MAXIMO.getCodigo());
-        Assert.assertEquals("3", NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO.getCodigo());
+        Assertions.assertEquals("0", NFNotaInfoItemModalidadeBCICMS.MVA.getCodigo());
+        Assertions.assertEquals("1", NFNotaInfoItemModalidadeBCICMS.PAUTA.getCodigo());
+        Assertions.assertEquals("2", NFNotaInfoItemModalidadeBCICMS.PRECO_TABELADO_MAXIMO.getCodigo());
+        Assertions.assertEquals("3", NFNotaInfoItemModalidadeBCICMS.VALOR_OPERACAO.getCodigo());
     }
 }

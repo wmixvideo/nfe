@@ -1,20 +1,19 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoCanaFornecimentoDiarioTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirDiaAcima31() {
-        new NFNotaInfoCanaFornecimentoDiario().setDia(32);
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoCanaFornecimentoDiario().setDia(32));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirDiaMenor1() {
-        new NFNotaInfoCanaFornecimentoDiario().setDia(0);
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFNotaInfoCanaFornecimentoDiario().setDia(0));
     }
 
     @Test
@@ -23,16 +22,18 @@ public class NFNotaInfoCanaFornecimentoDiarioTest {
         new NFNotaInfoCanaFornecimentoDiario().setDia(30);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirQuantidadeNulo() {
-        final NFNotaInfoCanaFornecimentoDiario canaFornecimentoDiario = new NFNotaInfoCanaFornecimentoDiario();
-        canaFornecimentoDiario.setDia(15);
-        canaFornecimentoDiario.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFNotaInfoCanaFornecimentoDiario canaFornecimentoDiario = new NFNotaInfoCanaFornecimentoDiario();
+            canaFornecimentoDiario.setDia(15);
+            canaFornecimentoDiario.toString();
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoCanaFornecimentoDiario dia=\"15\"><qtde>3</qtde></NFNotaInfoCanaFornecimentoDiario>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoCanaFornecimentoDiario().toString());
     }
 }

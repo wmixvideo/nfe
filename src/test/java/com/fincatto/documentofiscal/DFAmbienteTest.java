@@ -1,20 +1,21 @@
 package com.fincatto.documentofiscal;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DFAmbienteTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals("1", DFAmbiente.PRODUCAO.getCodigo());
-        Assert.assertEquals("2", DFAmbiente.HOMOLOGACAO.getCodigo());
+        Assertions.assertEquals("1", DFAmbiente.PRODUCAO.getCodigo());
+        Assertions.assertEquals("2", DFAmbiente.HOMOLOGACAO.getCodigo());
     }
 
     @Test
     public void deveObterStringficadoCorretamente() {
-        Assert.assertEquals("1 - Produ\u00e7\u00e3o", DFAmbiente.PRODUCAO.toString());
-        Assert.assertEquals("2 - Homologa\u00e7\u00e3o", DFAmbiente.HOMOLOGACAO.toString());
+        Assertions.assertEquals("1 - Produ\u00e7\u00e3o", DFAmbiente.PRODUCAO.toString());
+        Assertions.assertEquals("2 - Homologa\u00e7\u00e3o", DFAmbiente.HOMOLOGACAO.toString());
 
     }
 }

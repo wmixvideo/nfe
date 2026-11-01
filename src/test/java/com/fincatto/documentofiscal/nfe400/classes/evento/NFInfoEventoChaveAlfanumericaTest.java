@@ -3,9 +3,8 @@ package com.fincatto.documentofiscal.nfe400.classes.evento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamentoevento.NFInfoEventoCancelamentoEvento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFInfoEventoManifestacaoDestinatario;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Testes para verificar que os eventos de NF-e aceitam chaves com CNPJ alfanumérico (44 caracteres).
@@ -21,38 +20,38 @@ public class NFInfoEventoChaveAlfanumericaTest {
     public void nfInfoEventoDeveAceitarChaveAlfanumerica() {
         final NFInfoEvento evento = new NFInfoEvento();
         evento.setChave(CHAVE_ALFANUMERICA_44);
-        assertEquals(CHAVE_ALFANUMERICA_44, evento.getChave());
+        Assertions.assertEquals(CHAVE_ALFANUMERICA_44, evento.getChave());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void nfInfoEventoNaoDeveAceitarChaveMenorQue44() {
-        new NFInfoEvento().setChave("422505AB0000000000015500100000000110000000");
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFInfoEvento().setChave("422505AB0000000000015500100000000110000000"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void nfInfoEventoNaoDeveAceitarChaveMaiorQue44() {
-        new NFInfoEvento().setChave("422505AB0000000000015500100000000110000000100");
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFInfoEvento().setChave("422505AB0000000000015500100000000110000000100"));
     }
 
     @Test
     public void nfInfoEventoCancelamentoDeveAceitarChaveAlfanumerica() {
         final NFInfoEventoCancelamento cancelamento = new NFInfoEventoCancelamento();
         cancelamento.setChave(CHAVE_ALFANUMERICA_44);
-        assertEquals(CHAVE_ALFANUMERICA_44, cancelamento.getChave());
+        Assertions.assertEquals(CHAVE_ALFANUMERICA_44, cancelamento.getChave());
     }
 
     @Test
     public void nfInfoEventoCancelamentoEventoDeveAceitarChaveAlfanumerica() {
         final NFInfoEventoCancelamentoEvento cancelamentoEvento = new NFInfoEventoCancelamentoEvento();
         cancelamentoEvento.setChave(CHAVE_ALFANUMERICA_44);
-        assertEquals(CHAVE_ALFANUMERICA_44, cancelamentoEvento.getChave());
+        Assertions.assertEquals(CHAVE_ALFANUMERICA_44, cancelamentoEvento.getChave());
     }
 
     @Test
     public void nfInfoEventoManifestacaoDestinatarioDeveAceitarChaveAlfanumerica() {
         final NFInfoEventoManifestacaoDestinatario manifestacao = new NFInfoEventoManifestacaoDestinatario();
         manifestacao.setChave(CHAVE_ALFANUMERICA_44);
-        assertEquals(CHAVE_ALFANUMERICA_44, manifestacao.getChave());
+        Assertions.assertEquals(CHAVE_ALFANUMERICA_44, manifestacao.getChave());
     }
 }
 

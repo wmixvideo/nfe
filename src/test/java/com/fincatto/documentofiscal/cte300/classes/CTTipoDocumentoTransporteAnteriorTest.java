@@ -1,22 +1,20 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.CTTipoDocumentoTransporteAnterior;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTTipoDocumentoTransporteAnteriorTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTTipoDocumentoTransporteAnterior.valueOfCodigo(null));
-    	Assert.assertEquals("07", CTTipoDocumentoTransporteAnterior.ATRE.getCodigo());
-    	Assert.assertEquals("08", CTTipoDocumentoTransporteAnterior.DTA.getCodigo());
-    	Assert.assertEquals("09", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_AEREO_INTERNACIONAL.getCodigo());
-    	Assert.assertEquals("10", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_CARTA_DE_PORTE_INTERNACIONAL.getCodigo());
-    	Assert.assertEquals("11", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_AVULSO.getCodigo());
-    	Assert.assertEquals("12", CTTipoDocumentoTransporteAnterior.TIF.getCodigo());
-    	Assert.assertEquals("13", CTTipoDocumentoTransporteAnterior.BL.getCodigo());
+    	Assertions.assertNull(CTTipoDocumentoTransporteAnterior.valueOfCodigo(null));
+    	Assertions.assertEquals("07", CTTipoDocumentoTransporteAnterior.ATRE.getCodigo());
+    	Assertions.assertEquals("08", CTTipoDocumentoTransporteAnterior.DTA.getCodigo());
+    	Assertions.assertEquals("09", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_AEREO_INTERNACIONAL.getCodigo());
+    	Assertions.assertEquals("10", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_CARTA_DE_PORTE_INTERNACIONAL.getCodigo());
+    	Assertions.assertEquals("11", CTTipoDocumentoTransporteAnterior.CONHECIMENTO_AVULSO.getCodigo());
+    	Assertions.assertEquals("12", CTTipoDocumentoTransporteAnterior.TIF.getCodigo());
+    	Assertions.assertEquals("13", CTTipoDocumentoTransporteAnterior.BL.getCodigo());
 	}
 
 }

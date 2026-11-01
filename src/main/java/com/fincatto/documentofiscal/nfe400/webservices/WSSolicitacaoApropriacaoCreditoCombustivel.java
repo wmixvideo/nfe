@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -7,19 +12,14 @@ import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetEventoSolicitacaoApropriacaoCreditoCombustivel;
+import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFEnviaEventoSolicitacaoApropriacaoCreditoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFEventoSolicitacaoApropriacaoCreditoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFInfoEventoSolicitacaoApropriacaoCreditoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetEventoSolicitacaoApropriacaoCreditoPresumido;
-import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 /**
  * Classe responsável por informar a solicitação de apropriação de crédito de combustível.
@@ -62,8 +62,8 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSSolicitacaoApropriacaoCreditoCombustivel(NFeConfig config) {
-        super(config);
+    WSSolicitacaoApropriacaoCreditoCombustivel(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -115,9 +115,9 @@ class WSSolicitacaoApropriacaoCreditoCombustivel extends AbstractWSEvento implem
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
  *
  * @author Ommega Data
  */
+@Deprecated(since = "2025.002-RTC-1.5", forRemoval = true)
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif extends DFBase {
     // UB99 gMonoDif
     @Element(required = false)

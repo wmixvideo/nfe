@@ -1,11 +1,9 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoLacre;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoVolume;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,46 +22,54 @@ public class NFNotaInfoVolumeTest {
         new NFNotaInfoVolume().setLacres(lacres);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirLacresComTamanhoInvalido() {
-        final List<NFNotaInfoLacre> lacres = new ArrayList<>();
-        for (int i = 0; i < 5001; i++) {
-            lacres.add(new NFNotaInfoLacre());
-        }
-        new NFNotaInfoVolume().setLacres(lacres);
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final List<NFNotaInfoLacre> lacres = new ArrayList<>();
+            for (int i = 0; i < 5001; i++) {
+                lacres.add(new NFNotaInfoLacre());
+            }
+            new NFNotaInfoVolume().setLacres(lacres);
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNumerocaoVolumesComTamanhoInvalido() {
-        try {
-            new NFNotaInfoVolume().setNumeracaoVolumesTransportados("");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoVolume().setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoVolume().setNumeracaoVolumesTransportados("");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoVolume().setNumeracaoVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirMarcaComTaamnhoInvalido() {
-        try {
-            new NFNotaInfoVolume().setMarca("");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoVolume().setMarca("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoVolume().setMarca("");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoVolume().setMarca("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirEspecieVolumesTransportadosComTamanhoInvalido() {
-        try {
-            new NFNotaInfoVolume().setEspecieVolumesTransportados("");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoVolume().setEspecieVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoVolume().setEspecieVolumesTransportados("");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoVolume().setEspecieVolumesTransportados("mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb1");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
@@ -165,6 +171,6 @@ public class NFNotaInfoVolumeTest {
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoVolume><qVol>99999999999</qVol><esp>3Qf46HFs7FcWlhuQqLJ96vsrgJHu6B5ZXmmwMZ1RtvQVOV4Yp6M9VNqn5Ecb</esp><marca>lc0w13Xw2PxsSD4u4q3N6Qix9ZuCFm0HXo6BxBmKnjVbh9Xwy3k9UwBNfuYo</marca><nVol>mcBUtZwnI5DKj2YZNAcLP7W9h6j1xKmF5SX1BTKmsvyg0H5xSrfVw8HGn8eb</nVol><pesoL>1.000</pesoL><pesoB>1.358</pesoB><lacres><nLacre>gvmjb9BB2cmwsLbzeR3Bsk8QbA7b1XEgXUhKeS9QZGiwhFnqDtEzS3377MP2</nLacre></lacres></NFNotaInfoVolume>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoVolume().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoVolume().toString());
     }
 }

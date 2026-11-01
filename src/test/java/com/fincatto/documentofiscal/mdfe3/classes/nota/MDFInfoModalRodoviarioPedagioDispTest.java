@@ -1,9 +1,9 @@
 package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoValePedagio;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,7 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
 
     private MDFInfoModalRodoviarioPedagioDisp disp;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.disp = new MDFInfoModalRodoviarioPedagioDisp();
     }
@@ -23,12 +23,14 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         String cnpjValido = "27865757000102"; // use um CNPJ válido do seu corpus, se preferir
         disp.setCnpjFornecedora(cnpjValido);
 
-        Assert.assertEquals(cnpjValido, disp.getCnpjFornecedora());
+        Assertions.assertEquals(cnpjValido, disp.getCnpjFornecedora());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCnpjFornecedoraInvalido() {
-        disp.setCnpjFornecedora("123456780001001"); // inválido
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            disp.setCnpjFornecedora("123456780001001"); // inválido
+        });
     }
 
     // ---------------- Número do Comprovante ----------------
@@ -38,24 +40,28 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
 
         // mínimo: 1 dígito numérico
         disp.setNumeroComprovante("1");
-        Assert.assertEquals("1", disp.getNumeroComprovante());
+        Assertions.assertEquals("1", disp.getNumeroComprovante());
 
         // máximo: 20 dígitos numéricos
         String vinte = "12345678901234567890";
         disp.setNumeroComprovante(vinte);
-        Assert.assertEquals(vinte, disp.getNumeroComprovante());
+        Assertions.assertEquals(vinte, disp.getNumeroComprovante());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarNumeroComprovanteComLetras() {
-        disp.setNumeroComprovante("ABC123"); // não numérico
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            disp.setNumeroComprovante("ABC123"); // não numérico
 
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarNumeroComprovanteComMaisDe20Digitos() {
-        disp.setNumeroComprovante("123456789012345678901"); // 21 dígitos
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            disp.setNumeroComprovante("123456789012345678901"); // 21 dígitos
 
+        });
     }
 
     // ---------------- CNPJ/CPF Pagadora (exclusão mútua) ----------------
@@ -67,16 +73,18 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         String cnpj = "27865757000102";
         disp.setCnpjPagadora(cnpj);
 
-        Assert.assertEquals(cnpj, disp.getCnpjPagadora());
-        Assert.assertNull(disp.getCpfPagadora());
+        Assertions.assertEquals(cnpj, disp.getCnpjPagadora());
+        Assertions.assertNull(disp.getCpfPagadora());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarSetarCpfQuandoCnpjPagadoraJaSetado() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
 
-        disp.setCnpjPagadora("27865757000102");
-        disp.setCpfPagadora("12345678909"); // deve falhar (exclusão mútua)
+            disp.setCnpjPagadora("27865757000102");
+            disp.setCpfPagadora("12345678909"); // deve falhar (exclusão mútua)
+        });
     }
 
     @Test
@@ -86,27 +94,29 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         String cpf = "12345678909"; // use um CPF válido do seu corpus, se preferir
         disp.setCpfPagadora(cpf);
 
-        Assert.assertEquals(cpf, disp.getCpfPagadora());
-        Assert.assertNull(disp.getCnpjPagadora());
+        Assertions.assertEquals(cpf, disp.getCpfPagadora());
+        Assertions.assertNull(disp.getCnpjPagadora());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarSetarCnpjQuandoCpfPagadoraJaSetado() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
 
-        disp.setCpfPagadora("12345678909");
-        disp.setCnpjPagadora("27865757000102"); // deve falhar (exclusão mútua)
+            disp.setCpfPagadora("12345678909");
+            disp.setCnpjPagadora("27865757000102"); // deve falhar (exclusão mútua)
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCnpjPagadoraInvalido() {
-        disp.setCnpjPagadora("123456780001001");
+        Assertions.assertThrows(IllegalStateException.class, () -> disp.setCnpjPagadora("123456780001001"));
 
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCpfPagadoraInvalido() {
-        disp.setCpfPagadora("000000000011");
+        Assertions.assertThrows(IllegalStateException.class, () -> disp.setCpfPagadora("000000000011"));
 
     }
 
@@ -117,7 +127,7 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         BigDecimal limite = new BigDecimal("9999999999.99");
         disp.setValor(limite);
 
-        Assert.assertEquals("9999999999.99", disp.getValor());
+        Assertions.assertEquals("9999999999.99", disp.getValor());
     }
 
     @Test
@@ -126,17 +136,17 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         BigDecimal valor = new BigDecimal("1234567890.23");
         disp.setValor(valor);
 
-        Assert.assertEquals("1234567890.23", disp.getValor());
+        Assertions.assertEquals("1234567890.23", disp.getValor());
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarValorComMaisDe13DigitosTotais() {
-        disp.setValor(new BigDecimal("100000000000.00"));
+        Assertions.assertThrows(NumberFormatException.class, () -> disp.setValor(new BigDecimal("10000000000000.00")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarValorComMaisDe2CasasDecimais() {
-        disp.setValor(new BigDecimal("10.999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> disp.setValor(new BigDecimal("10.999")));
 
     }
 
@@ -150,9 +160,9 @@ public class MDFInfoModalRodoviarioPedagioDispTest {
         MDFTipoValePedagio qualquer = MDFTipoValePedagio.values()[0];
 
         disp.setTipoValePedagio(qualquer);
-        Assert.assertEquals(qualquer, disp.getTipoValePedagio());
+        Assertions.assertEquals(qualquer, disp.getTipoValePedagio());
 
         disp.setTipoValePedagio(null);
-        Assert.assertNull(disp.getTipoValePedagio());
+        Assertions.assertNull(disp.getTipoValePedagio());
     }
 }

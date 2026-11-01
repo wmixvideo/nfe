@@ -39,7 +39,7 @@ public abstract class DFListValidador {
     }
 
     public static <E> void tamanho5(final List<E> lista, final String info) {
-        DFListValidador.validaTamanho(lista, 5000, info);
+        DFListValidador.validaTamanho(lista, 5, info);
     }
 
     public static <E> void tamanho100(final List<E> lista, final String info) {

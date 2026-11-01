@@ -6,43 +6,31 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
-import org.apache.axiom.om.OMElement;
-import org.apache.commons.lang3.StringUtils;
-
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEventoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFInfoEventoEpec;
-import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFDestinatarioEpec;
+import com.fincatto.documentofiscal.nfe400.classes.evento.epec.*;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFLoteEnvio;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
+import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.nfe400.utils.NFGeraChave;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import java.io.StringReader;
-import java.time.ZoneId;
+import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.Iterator;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import org.apache.axiom.om.impl.builder.StAXOMBuilder;
+import java.util.ArrayList;
 
 public class WSEpec implements DFLog {
 
     private static final BigDecimal VERSAO_LEIAUTE = new BigDecimal("1.00");
     public static final String TIPO_EVENTO_EPEC = "110140";
     public static final String DESCRICAO_EVENTO_EPEC = "EPEC";
-    private static final String NFE_ELEMENTO = "NFe";
     private final NFeConfig config;
+    private final DFHttpClient httpClient;
 
-    public WSEpec(NFeConfig config) {
+    WSEpec(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoEpecRetorno enviaEpecAssinado(final String epecAssinadoXml) throws Exception {
@@ -57,8 +45,7 @@ public class WSEpec implements DFLog {
             final NFNota nota = eventoEpec.getNota();
             final NFGeraChave geraChave = new NFGeraChave(nota);
             String chave = geraChave.getChaveAcesso();
-            eventoEpec.getInfoEvento().setIdentificador(
-                    "ID" + TIPO_EVENTO_EPEC + chave + (nSeqEvento < 10 ? "0" + nSeqEvento : nSeqEvento));
+            eventoEpec.getInfoEvento().setIdentificador(ChaveAcessoUtils.geraIDevento(chave, WSEpec.TIPO_EVENTO_EPEC, nSeqEvento));
             eventoEpec.getInfoEvento().setNumeroSequencialEvento(nSeqEvento++);
             eventoEpec.getInfoEvento().setChave(chave);
         }
@@ -70,10 +57,9 @@ public class WSEpec implements DFLog {
 
     private NFEnviaEventoEpec criaEnvioEpec(NFLoteEnvio loteEnvio) {
         NFEnviaEventoEpec nfEnviaEventoEpec = new NFEnviaEventoEpec();
-        nfEnviaEventoEpec.setIdLote(StringUtils.isBlank(loteEnvio.getIdLote()) ? String.valueOf(new java.util.Date().getTime()) : loteEnvio.getIdLote());
+        nfEnviaEventoEpec.setIdLote(StringUtils.isBlank(loteEnvio.getIdLote()) ? String.valueOf(System.currentTimeMillis()) : loteEnvio.getIdLote());
         nfEnviaEventoEpec.setVersao("1.00");
         nfEnviaEventoEpec.setEvento(new ArrayList<NFEventoEpec>());
-        int i = 1;
         for (NFNota nfNota : loteEnvio.getNotas()) {
             NFEventoEpec nfEventoEpec = new NFEventoEpec();
             nfEventoEpec.setNota(nfNota);
@@ -87,12 +73,11 @@ public class WSEpec implements DFLog {
                 infEpec.setCpf(nfNota.getInfo().getEmitente().getCpf());
             }
             infEpec.setCodigoEvento(WSEpec.TIPO_EVENTO_EPEC);
-            infEpec.setNumeroSequencialEvento(i++);
             infEpec.setOrgao(DFUnidadeFederativa.RFB);
             infEpec.setVersaoEvento("1.00");
             infEpec.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
             NFInfoEpec nfInfoEpec = new NFInfoEpec();
-            nfInfoEpec.setDataHoraEmissao(ZonedDateTime.ofInstant(nfNota.getInfo().getIdentificacao().getDataHoraEmissao().toInstant(), ZoneId.systemDefault()));
+            nfInfoEpec.setDataHoraEmissao(ZonedDateTime.ofInstant(nfNota.getInfo().getIdentificacao().getDataHoraEmissao().toInstant(), this.config.getTimeZone().toZoneId()));
             nfInfoEpec.setDescricaoEvento(WSEpec.DESCRICAO_EVENTO_EPEC);
             nfInfoEpec.setInscricaoEstadualEmitente(nfNota.getInfo().getEmitente().getInscricaoEstadual());
             nfInfoEpec.setOrgaoAutor(DFUnidadeFederativa.valueOfCodigo(nfNota.getInfo().getEmitente().getEndereco().getUf()).getCodigoIbge());
@@ -127,46 +112,28 @@ public class WSEpec implements DFLog {
     }
 
     private NFEnviaEventoEpecRetorno comunicaEpec(String epecAssinadoXml) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeResultMsg recepcaoLoteResult = comunicaLoteRaw(epecAssinadoXml, DFModelo.NFE);
-        final OMElement omElementResult = recepcaoLoteResult.getExtraElement();
-        String xmlRetorno = omElementResult.toString();
+        final String xmlRetorno = this.efetuaComunicacaoEpec(epecAssinadoXml, DFModelo.NFE);
         return this.config.getPersister().read(NFEnviaEventoEpecRetorno.class, xmlRetorno);
     }
 
-    public NFeRecepcaoEvento4Stub.NfeResultMsg comunicaLoteRaw(String loteAssinadoXml, DFModelo modelo) throws Exception {
+    /**
+     * Valida, envia o EPEC assinado para a SEFAZ via {@link DFHttpClient} e devolve o XML de
+     * negocio ja desempacotado do envelope SOAP 1.2 de resposta. O evento EPEC embute a propria
+     * NF-e/NFC-e (elemento {@code <NFe>}) dentro do XML assinado; como o novo caminho concatena
+     * o XML ja serializado.
+     */
+    public String efetuaComunicacaoEpec(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
         // valida o epec assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz
         DFXMLValidador.validaEpec(loteAssinadoXml);
-
-        // envia o lote para a sefaz
-        final OMElement omElement = this.nfeToOMElement(loteAssinadoXml);
-
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-        dados.setExtraElement(omElement);
 
         // define o tipo de emissao
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
 
-        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getRecepcaoEvento(this.config.getAmbiente()) : autorizador.getNfceAutorizacao(this.config.getAmbiente());
+        final String endpoint = DFModelo.NFE.equals(modelo) ? autorizador.getRecepcaoEvento(this.config.getAmbiente()) : autorizador.getNfceRecepcaoEvento(this.config.getAmbiente());
         if (endpoint == null) {
-            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Autorizacao " + modelo.name() + ", autorizador " + autorizador.name());
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + modelo.name() + ", autorizador " + autorizador.name());
         }
 
-        return new NFeRecepcaoEvento4Stub(endpoint, config).nfeRecepcaoEvento(dados);
-    }
-
-    private OMElement nfeToOMElement(final String documento) throws XMLStreamException {
-        final XMLInputFactory factory = XMLInputFactory.newInstance();
-        factory.setProperty(XMLInputFactory.IS_COALESCING, false);
-        final XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(documento));
-        final StAXOMBuilder builder = new StAXOMBuilder(reader);
-        final OMElement ome = builder.getDocumentElement();
-        final Iterator<?> children = ome.getChildrenWithLocalName(WSEpec.NFE_ELEMENTO);
-        while (children.hasNext()) {
-            final OMElement omElement = (OMElement) children.next();
-            if ((omElement != null) && (WSEpec.NFE_ELEMENTO.equals(omElement.getLocalName()))) {
-                omElement.addAttribute("xmlns", NFeConfig.NAMESPACE, null);
-            }
-        }
-        return ome;
+        return AbstractWSEvento.enviarEvento(this.httpClient, endpoint, loteAssinadoXml);
     }
 }

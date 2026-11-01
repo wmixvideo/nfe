@@ -1,5 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -7,21 +13,16 @@ import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.*;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEnviaEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
+import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFProtocoloEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.lote.envio.NFCancelamentoRetornoDados;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeRecepcaoEvento4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.utils.DFPersister;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 
 class WSCancelamento implements DFLog {
 
@@ -31,25 +32,27 @@ class WSCancelamento implements DFLog {
     private static final String DESCRICAO_EVENTO_CANCELAMENTO_POR_SUBSTITUICAO = "Cancelamento por substituicao";
     private static final String EVENTO_CANCELAMENTO_POR_SUBSTITUICAO = "110112";
     private final NFeConfig config;
+    private final DFHttpClient httpClient;
 
-    WSCancelamento(final NFeConfig config) {
+    WSCancelamento(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
 
     NFEnviaEventoRetorno cancelaNotaAssinada(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaCancelamento(eventoAssinadoXml, chaveAcesso);
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     NFCancelamentoRetornoDados cancelaNota(final String chaveAcesso, final String numeroProtocolo, final String motivo, final int numeroSequencial) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamento(chaveAcesso, numeroProtocolo, motivo, numeroSequencial).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
-        final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
+        NFEnviaEventoRetorno retorno = this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
 
-        NFEnviaEventoCancelamento eventoAssinado = new DFPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
+        NFEnviaEventoCancelamento eventoAssinado = this.config.getPersister().read(NFEnviaEventoCancelamento.class, xmlAssinado);
 
-        final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Arrays.asList() : retorno.getEventoRetorno();
+        final List<NFEventoRetorno> eventoRetorno = retorno.getEventoRetorno() == null ? Collections.emptyList() : retorno.getEventoRetorno();
 
         NFProtocoloEventoCancelamento protocolo = new NFProtocoloEventoCancelamento();
         protocolo.setVersao("1.00");
@@ -59,12 +62,13 @@ class WSCancelamento implements DFLog {
         return new NFCancelamentoRetornoDados(retorno, protocolo);
     }
 
-    private OMElement efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws Exception {
-        final NFeRecepcaoEvento4Stub.NfeDadosMsg dados = new NFeRecepcaoEvento4Stub.NfeDadosMsg();
-        final OMElement omElementXML = AXIOMUtil.stringToOM(xmlAssinado);
-        this.getLogger().debug(omElementXML.toString());
-        dados.setExtraElement(omElementXML);
-
+    /**
+     * Envia o evento de cancelamento assinado para a SEFAZ e devolve o XML de negocio da
+     * resposta. Resolucao de endpoint especifica desta classe (por chave de acesso); o envio em
+     * si e compartilhado com os demais servicos de evento via {@link AbstractWSEvento#enviarEvento}
+     * (ver spec da migracao).
+     */
+    private String efetuaCancelamento(final String xmlAssinado, final String chaveAcesso) throws IOException, DFSoapFaultException {
         final NotaFiscalChaveParser parser = new NotaFiscalChaveParser(chaveAcesso);
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfChaveAcesso(chaveAcesso);
         final String urlWebService = DFModelo.NFCE.equals(parser.getModelo()) ? autorizador.getNfceRecepcaoEvento(this.config.getAmbiente()) : autorizador.getRecepcaoEvento(this.config.getAmbiente());
@@ -72,10 +76,7 @@ class WSCancelamento implements DFLog {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + parser.getModelo().name() + ", autorizador " + autorizador.name());
         }
 
-        final NfeResultMsg nfeRecepcaoEvento = new NFeRecepcaoEvento4Stub(urlWebService, config).nfeRecepcaoEvento(dados);
-        final OMElement omElementResult = nfeRecepcaoEvento.getExtraElement();
-        this.getLogger().debug(omElementResult.toString());
-        return omElementResult;
+        return AbstractWSEvento.enviarEvento(this.httpClient, urlWebService, xmlAssinado);
     }
 
     private NFEnviaEventoCancelamento gerarDadosCancelamento(final String chaveAcesso, final String numeroProtocolo, final String motivo, int numeroSequencial) {
@@ -94,7 +95,7 @@ class WSCancelamento implements DFLog {
         infoEvento.setCnpj(chaveParser.getCnpjEmitente());
         infoEvento.setDataHoraEvento(ZonedDateTime.now(this.config.getTimeZone().toZoneId()));
         infoEvento.setId(ChaveAcessoUtils.geraIDevento(chaveAcesso, WSCancelamento.EVENTO_CANCELAMENTO, numeroSequencial));
-        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setNumeroSequencialEvento(numeroSequencial);
         infoEvento.setOrgao(chaveParser.getNFUnidadeFederativa());
         infoEvento.setCodigoEvento(WSCancelamento.EVENTO_CANCELAMENTO);
         infoEvento.setVersaoEvento(WSCancelamento.VERSAO_LEIAUTE);
@@ -114,8 +115,8 @@ class WSCancelamento implements DFLog {
     NFEnviaEventoRetorno cancelaNotaPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) throws Exception {
         final String cancelamentoNotaXML = this.gerarDadosCancelamentoPorSubstituicao(chaveAcesso, numeroProtocolo, motivo, versaoAplicativoAutorizador, chaveSubstituta).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoNotaXML);
-        final OMElement omElementResult = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaCancelamento(xmlAssinado, chaveAcesso);
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     private NFEnviaEventoCancelamento gerarDadosCancelamentoPorSubstituicao(final String chaveAcesso, final String numeroProtocolo, final String motivo, final String versaoAplicativoAutorizador, final String chaveSubstituta) {

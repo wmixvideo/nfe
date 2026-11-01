@@ -1,11 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota.assinatura;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFDigestMethod;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFReference;
 import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFTransform;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class NFReferenceTest {
         final NFReference reference = new NFReference();
         final String digestValue = "digest value";
         reference.setDigestValue(digestValue);
-        Assert.assertEquals(digestValue, reference.getDigestValue());
+        Assertions.assertEquals(digestValue, reference.getDigestValue());
     }
 
     @Test
@@ -25,7 +24,7 @@ public class NFReferenceTest {
         final NFReference reference = new NFReference();
         final List<NFTransform> transform = new ArrayList<>();
         reference.setTransform(transform);
-        Assert.assertEquals(transform, reference.getTransform());
+        Assertions.assertEquals(transform, reference.getTransform());
     }
 
     @Test
@@ -33,7 +32,7 @@ public class NFReferenceTest {
         final NFReference reference = new NFReference();
         final String uri = "uri";
         reference.setUri(uri);
-        Assert.assertEquals(uri, reference.getUri());
+        Assertions.assertEquals(uri, reference.getUri());
     }
 
     @Test
@@ -42,6 +41,6 @@ public class NFReferenceTest {
         final NFDigestMethod digestMethod = new NFDigestMethod();
         digestMethod.setAlgorithm("digest method");
         reference.setDigestMethod(digestMethod);
-        Assert.assertEquals(digestMethod, reference.getDigestMethod());
+        Assertions.assertEquals(digestMethod, reference.getDigestMethod());
     }
 }

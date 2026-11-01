@@ -1,18 +1,16 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.CTIndicadorTomador;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTIndicadorTomadorTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTIndicadorTomador.valueOfCodigo(null));
-    	Assert.assertEquals("1", CTIndicadorTomador.CONTRIBUINTE_ICMS.getCodigo());
-    	Assert.assertEquals("2", CTIndicadorTomador.CONTRIBUINTE_ISENTO.getCodigo());
-        Assert.assertEquals("9", CTIndicadorTomador.NAO_CONTRIBUINTE.getCodigo());
+    	Assertions.assertNull(CTIndicadorTomador.valueOfCodigo(null));
+    	Assertions.assertEquals("1", CTIndicadorTomador.CONTRIBUINTE_ICMS.getCodigo());
+    	Assertions.assertEquals("2", CTIndicadorTomador.CONTRIBUINTE_ISENTO.getCodigo());
+        Assertions.assertEquals("9", CTIndicadorTomador.NAO_CONTRIBUINTE.getCodigo());
     }
 
 }

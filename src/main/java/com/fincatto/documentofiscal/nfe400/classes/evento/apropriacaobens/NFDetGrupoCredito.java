@@ -16,10 +16,10 @@ public class NFDetGrupoCredito extends DFBase {
     private Integer numeroItem;
 
     @Element(name = "vCredIBS")
-    private BigDecimal valorCreditoIBS;
+    private String valorCreditoIBS;
 
     @Element(name = "vCredCBS")
-    private BigDecimal valorCreditoCBS;
+    private String valorCreditoCBS;
 
     public Integer getNumeroItem() {
         return numeroItem;
@@ -30,21 +30,19 @@ public class NFDetGrupoCredito extends DFBase {
         this.numeroItem = numeroItem;
     }
 
-    public BigDecimal getValorCreditoIBS() {
+    public String getValorCreditoIBS() {
         return valorCreditoIBS;
     }
 
     public void setValorCreditoIBS(BigDecimal valorCreditoIBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCreditoIBS, "Valor do Crédito IBS");
-        this.valorCreditoIBS = valorCreditoIBS;
+        this.valorCreditoIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCreditoIBS, "Valor do Crédito IBS");
     }
 
-    public BigDecimal getValorCreditoCBS() {
+    public String getValorCreditoCBS() {
         return valorCreditoCBS;
     }
 
     public void setValorCreditoCBS(BigDecimal valorCreditoCBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCreditoCBS, "Valor do Crédito CBS");
-        this.valorCreditoCBS = valorCreditoCBS;
+        this.valorCreditoCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCreditoCBS, "Valor do Crédito CBS");
     }
 }

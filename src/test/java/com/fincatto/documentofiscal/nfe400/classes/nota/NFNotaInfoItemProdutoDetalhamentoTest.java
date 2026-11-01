@@ -1,10 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.math.BigDecimal;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFNotaInfoItemProdutoDetalhamentoTest {
 
@@ -15,7 +12,7 @@ public class NFNotaInfoItemProdutoDetalhamentoTest {
         produtoDetalhamento.setCodigoOperacaoNFF("4");
 
         final String xmlEsperado = "<NFNotaInfoItemProdutoDetalhamento><cProdFisco>1234567890123</cProdFisco><cOperNFF>4</cOperNFF></NFNotaInfoItemProdutoDetalhamento>";
-        Assert.assertEquals(xmlEsperado, produtoDetalhamento.toString());
+        Assertions.assertEquals(xmlEsperado, produtoDetalhamento.toString());
     }
 
 }

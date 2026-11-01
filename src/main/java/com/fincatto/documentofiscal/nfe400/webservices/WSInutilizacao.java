@@ -7,52 +7,57 @@ import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFRetornoEventoInutilizacao;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub;
-import com.fincatto.documentofiscal.nfe400.webservices.gerado.NFeInutilizacao4Stub.NfeResultMsg;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import com.fincatto.documentofiscal.validadores.DFStringValidador;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFSoapEnvelope;
+import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 class WSInutilizacao implements DFLog {
-    
+
     private static final String VERSAO_SERVICO = "4.00";
     private static final String NOME_SERVICO = "INUTILIZAR";
+    private static final String NAMESPACE_WSDL = "http://www.portalfiscal.inf.br/nfe/wsdl/NFeInutilizacao4";
+    private static final String SOAP_ACTION = WSInutilizacao.NAMESPACE_WSDL + "/nfeInutilizacaoNF";
     private final NFeConfig config;
-    
-    WSInutilizacao(final NFeConfig config) {
+    private final DFHttpClient httpClient;
+
+    WSInutilizacao(final NFeConfig config, final DFHttpClient httpClient) {
         this.config = config;
+        this.httpClient = httpClient;
     }
-    
+
     NFRetornoEventoInutilizacao inutilizaNotaAssinada(final String eventoAssinadoXml, final DFModelo modelo) throws Exception {
-        final OMElement omElementResult = this.efetuaInutilizacao(eventoAssinadoXml, modelo);
-        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaInutilizacao(eventoAssinadoXml, modelo);
+        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, xmlResultado);
     }
-    
+
     NFRetornoEventoInutilizacao inutilizaNota(final int anoInutilizacaoNumeracao, final String cnpjEmitente, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) throws Exception {
         final String inutilizacaoXML = this.geraDadosInutilizacao(anoInutilizacaoNumeracao, cnpjEmitente, serie, numeroInicial, numeroFinal, justificativa, modelo).toString();
         final String inutilizacaoXMLAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(inutilizacaoXML);
-        final OMElement omElementResult = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
-        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, omElementResult.toString());
+        final String xmlResultado = this.efetuaInutilizacao(inutilizacaoXMLAssinado, modelo);
+        return this.config.getPersister().read(NFRetornoEventoInutilizacao.class, xmlResultado);
     }
-    
-    private OMElement efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws Exception {
-        final NFeInutilizacao4Stub.NfeDadosMsg dados = new NFeInutilizacao4Stub.NfeDadosMsg();
-        final OMElement omElement = AXIOMUtil.stringToOM(inutilizacaoXMLAssinado);
-        this.getLogger().debug(omElement.toString());
-        dados.setExtraElement(omElement);
-        
+
+    /**
+     * Envia o XML de inutilizacao assinado para a SEFAZ via {@link DFHttpClient} e devolve o
+     * XML de negocio ja desempacotado do envelope SOAP 1.2 de resposta.
+     */
+    private String efetuaInutilizacao(final String inutilizacaoXMLAssinado, final DFModelo modelo) throws IOException, DFSoapFaultException {
         final NFAutorizador400 autorizador = NFAutorizador400.valueOfCodigoUF(this.config.getCUF());
         final String urlWebService = DFModelo.NFE.equals(modelo) ? autorizador.getNfeInutilizacao(this.config.getAmbiente()) : autorizador.getNfceInutilizacao(this.config.getAmbiente());
-        final NfeResultMsg nf4Result = new NFeInutilizacao4Stub(urlWebService, config).nfeInutilizacaoNF(dados);
-        final OMElement dadosRetorno = nf4Result.getExtraElement();
-        this.getLogger().debug(dadosRetorno.toString());
-        return dadosRetorno;
+        if (urlWebService == null) {
+            throw new IllegalArgumentException("Nao foi possivel encontrar URL para Inutilizacao " + modelo.name() + ", autorizador " + autorizador.name());
+        }
+
+        final String envelope = DFSoapEnvelope.envelopar(WSInutilizacao.NAMESPACE_WSDL, "nfeDadosMsg", inutilizacaoXMLAssinado);
+        final String resposta = this.httpClient.postSoap(urlWebService, WSInutilizacao.SOAP_ACTION, envelope);
+        return DFSoapEnvelope.desempacotar(resposta);
     }
-    
+
     private NFEnviaEventoInutilizacao geraDadosInutilizacao(final int anoInutilizacaoNumeracao, final String cpfOuCnpj, final String serie, final String numeroInicial, final String numeroFinal, final String justificativa, final DFModelo modelo) {
         final NFEnviaEventoInutilizacao inutilizacao = new NFEnviaEventoInutilizacao();
         final NFEventoInutilizacaoDados dados = new NFEventoInutilizacaoDados();

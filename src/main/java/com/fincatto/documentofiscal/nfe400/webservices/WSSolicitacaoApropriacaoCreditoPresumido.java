@@ -1,5 +1,10 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
@@ -14,12 +19,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFE
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFInfoEventoSolicitacaoApropriacaoCreditoPresumido;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 /**
  * Classe responsável por informar a solicitação de apropriação de crédito presumido
@@ -36,6 +36,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
     private List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido;
     private String cnpjAutorEvento;
     private String cpfAutorEvento;
+    private NFEventoTipoAutor tipoAutor;
 
     @Override
     protected BigDecimal getVersaoLayout() {
@@ -62,8 +63,8 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSSolicitacaoApropriacaoCreditoPresumido(NFeConfig config) {
-        super(config);
+    WSSolicitacaoApropriacaoCreditoPresumido(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -73,12 +74,14 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
      * @param ufEmitenteEvento
      * @param gruposCreditoPresumido Lista de grupos do crédito presumido.
      * @param numeroSequencialEvento Número sequencial do evento.
-     * @param cnpjCpfAutorEvento CNPJ ou CPF do autor do evento (sem formatação).
+     * @param cnpjCpfAutorEvento     CNPJ ou CPF do autor do evento (sem formatação).
+     * @param tpAutorEvento          Tipo de autor do evento.
      * @return A própria instância de {@link WSSolicitacaoApropriacaoCreditoPresumido} para permitir encadeamento de chamadas.
      */
     WSSolicitacaoApropriacaoCreditoPresumido adicionarDadosEvento(
-            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento, final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
-            final String cnpjCpfAutorEvento
+            final String chaveAcesso, DFUnidadeFederativa ufEmitenteEvento,
+            final List<NFDetGrupoCreditoPresumido> gruposCreditoPresumido, final int numeroSequencialEvento,
+            final String cnpjCpfAutorEvento, NFEventoTipoAutor tpAutorEvento
     ) {
         super.chaveAcesso = chaveAcesso;
         this.gruposCreditoPresumido = gruposCreditoPresumido;
@@ -86,6 +89,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         super.ufAutorEvento = ufEmitenteEvento;
         this.cpfAutorEvento = cnpjCpfAutorEvento.length() == 11 ? cnpjCpfAutorEvento : null;
         this.cnpjAutorEvento = cnpjCpfAutorEvento.length() > 11 ? cnpjCpfAutorEvento : null;
+        this.tipoAutor = tpAutorEvento;
         return this;
     }
 
@@ -97,7 +101,7 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         final NFDetEventoSolicitacaoApropriacaoCreditoPresumido detEvento = new NFDetEventoSolicitacaoApropriacaoCreditoPresumido();
         detEvento.setDescricaoEvento(WSSolicitacaoApropriacaoCreditoPresumido.DESCRICAO_EVENTO);
         detEvento.setVersao(WSSolicitacaoApropriacaoCreditoPresumido.VERSAO_LAYOUT);
-        detEvento.setTipoAutor(NFEventoTipoAutor.EMPRESA_DESTINADA);
+        detEvento.setTipoAutor(this.tipoAutor);
         detEvento.setVersaoAplicativo(WSSolicitacaoApropriacaoCreditoPresumido.VERSAO_LAYOUT.toString());
         detEvento.setUfAutorEvento(super.ufAutorEvento);
         detEvento.setGruposCreditoPresumido(this.gruposCreditoPresumido);
@@ -115,9 +119,9 @@ class WSSolicitacaoApropriacaoCreditoPresumido extends AbstractWSEvento implemen
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

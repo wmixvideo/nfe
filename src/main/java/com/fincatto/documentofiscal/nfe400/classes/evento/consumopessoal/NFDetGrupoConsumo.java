@@ -17,10 +17,10 @@ public class NFDetGrupoConsumo extends DFBase {
     private Integer numeroItem;
 
     @Element(name = "vIBS")
-    private BigDecimal valorIBS;
+    private String valorIBS;
 
     @Element(name = "vCBS")
-    private BigDecimal valorCBS;
+    private String valorCBS;
 
     @Element(name = "gControleEstoque")
     private NFDetGrupoControleEstoqueConsumo controleEstoque;
@@ -53,21 +53,19 @@ public class NFDetGrupoConsumo extends DFBase {
         this.numeroItem = numeroItem;
     }
 
-    public BigDecimal getValorCBS() {
+    public String getValorCBS() {
         return valorCBS;
     }
 
     public void setValorCBS(BigDecimal valorCBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor CBS");
-        this.valorCBS = valorCBS;
+        this.valorCBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorCBS, "Valor CBS");
     }
 
-    public BigDecimal getValorIBS() {
+    public String getValorIBS() {
         return valorIBS;
     }
 
     public void setValorIBS(BigDecimal valorIBS) {
-        DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor IBS");
-        this.valorIBS = valorIBS;
+        this.valorIBS = DFBigDecimalValidador.tamanho13Com2CasasDecimais(valorIBS, "Valor IBS");
     }
 }

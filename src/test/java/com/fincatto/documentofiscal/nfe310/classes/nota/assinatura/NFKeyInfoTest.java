@@ -1,10 +1,7 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.assinatura;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFKeyInfo;
-import com.fincatto.documentofiscal.nfe310.classes.nota.assinatura.NFX509Data;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFKeyInfoTest {
 
@@ -13,6 +10,6 @@ public class NFKeyInfoTest {
         final NFKeyInfo keyInfo = new NFKeyInfo();
         final NFX509Data data = new NFX509Data();
         keyInfo.setData(data);
-        Assert.assertEquals(data, keyInfo.getData());
+        Assertions.assertEquals(data, keyInfo.getData());
     }
 }

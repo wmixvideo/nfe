@@ -1,46 +1,129 @@
-name: "Release Master"
+name: "Release"
 
-# Run workflow on commits to the `master` branch
+# Run manually from Actions > Release > Run workflow (or `gh workflow run release.yml`)
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "master"
+    inputs:
+      version:
+        description: "Release version (X.Y.Z). Leave empty to use the pom version without -SNAPSHOT"
+        required: false
+        type: string
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          ssh-key: ${{ secrets.ssh_private_key }}
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
+          gpg-private-key: ${{ secrets.gpg_private_key }}
 
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.ssh_private_key }}
+      - name: Resolve versions
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          CURRENT=$(mvn --batch-mode --quiet help:evaluate -Dexpression=project.version -DforceStdout)
+          VERSION="${INPUT_VERSION:-${CURRENT%-SNAPSHOT}}"
+          if [[ ! "$VERSION" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "::error::Version '$VERSION' must follow the format X.Y.Z"
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" > /dev/null; then
+            echo "::error::Tag v$VERSION already exists"
+            exit 1
+          fi
+          echo "release=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "next=${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.$((BASH_REMATCH[3] + 1))-SNAPSHOT" >> "$GITHUB_OUTPUT"
 
       - name: Configure Git user
         run: |
           git config user.email "oss@t3w.io"
           git config user.name "T3W Continuous Integration"
+          # O release:perform clona o repositório de novo (target/checkout) e esse clone não lê a
+          # config local deste checkout; propaga a chave SSH do checkout para a config global
+          git config --global core.sshCommand "$(git config --local core.sshCommand)"
+
+      # Settings com as credenciais do Sonatype e a passphrase do GPG, usado só na publicação no Maven Central
+      - name: Configure Maven settings for Sonatype
+        run: |
+          cat > "$RUNNER_TEMP/sonatype-settings.xml" <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <profiles>
+              <profile>
+                <id>gpg</id>
+                <activation>
+                  <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                  <gpg.executable>gpg</gpg.executable>
+                  <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
+                </properties>
+              </profile>
+            </profiles>
+            <servers>
+              <server>
+                <id>ossrh</id>
+                <username>${env.OSSRH_USERNAME}</username>
+                <password>${env.OSSRH_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
 
       - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
-        with:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.OSS_SONATYPE_TOKEN_USER }}
-          nexus_password: ${{ secrets.OSS_SONATYPE_TOKEN_PASSWORD }}
-          maven_goals_phases: clean -B release:prepare release:perform -Darguments="-DskipTests" -P ossrh
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSS_SONATYPE_TOKEN_USER }}
+          OSSRH_PASSWORD: ${{ secrets.OSS_SONATYPE_TOKEN_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
+        run: >
+          mvn clean release:prepare release:perform
+          --batch-mode
+          --activate-profiles ossrh,deploy
+          --settings "$RUNNER_TEMP/sonatype-settings.xml"
+          -DreleaseVersion=${{ steps.version.outputs.release }}
+          -DdevelopmentVersion=${{ steps.version.outputs.next }}
+          -Darguments="-DskipTests"
 
+      # Deploys the released version from the tag checked out by release:perform
       - name: Release GitHub package
-        run: mvn --batch-mode deploy -P github
+        run: mvn --batch-mode deploy -DskipTests -P github --file target/checkout/pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release draft
+        uses: release-drafter/release-drafter@v7
+        with:
+          version: ${{ steps.version.outputs.release }}
+          tag: v${{ steps.version.outputs.release }}
+          name: Release v${{ steps.version.outputs.release }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.release }}
+        run: |
+          zip -j nfe.zip "target/checkout/target/nfe-$VERSION.jar"
+          gh release upload "v$VERSION" nfe.zip --clobber

@@ -43,7 +43,7 @@ public abstract class DFIntegerValidador {
     }
 
     public static void exatamente1(final Integer valor, final String info) {
-        DFIntegerValidador.limite(valor, 9, info);
+        DFIntegerValidador.intervalo(valor, 0, 9, info);
     }
 
     public static void tamanho1a2(final int valor, final String info) {
@@ -61,7 +61,8 @@ public abstract class DFIntegerValidador {
         DFIntegerValidador.intervalo(valor, 1, 1, info);
     }
     private static void limite(final Integer valor, final int maximo, final String info) {
-        if (valor != null && valor > maximo) {
+        // os campos numericos da SEFAZ validados por tamanho nao admitem valores negativos
+        if (valor != null && (valor < 0 || valor > maximo)) {
             throw new NumberFormatException("Valor extrapolou o tamanho do campo " + info);
         }
     }

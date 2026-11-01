@@ -2,9 +2,9 @@ package com.fincatto.documentofiscal.mdfe3.classes.nota;
 
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoIndicadorAntecipacaoPagamento;
 import com.fincatto.documentofiscal.mdfe3.classes.def.MDFTipoInfPag;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
     private MDFInfoModalRodoviarioInfPag pag;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.pag = new MDFInfoModalRodoviarioInfPag();
     }
@@ -28,28 +28,34 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setCpf(cpfValido);
 
-        Assert.assertEquals(cpfValido, pag.getCpf());
-        Assert.assertNull(pag.getCnpj());
-        Assert.assertNull(pag.getIdEstrangeiro());
+        Assertions.assertEquals(cpfValido, pag.getCpf());
+        Assertions.assertNull(pag.getCnpj());
+        Assertions.assertNull(pag.getIdEstrangeiro());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCpfQuandoJaExisteCnpj() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setCnpj("27865757000102"); // assumir válido; foco aqui é exclusão mútua
-        pag.setCpf("12345678909");     // deve falhar porque CNPJ já foi setado
+            pag.setCnpj("27865757000102"); // assumir válido; foco aqui é exclusão mútua
+            pag.setCpf("12345678909");     // deve falhar porque CNPJ já foi setado
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCpfQuandoJaExisteIdEstrangeiro() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setIdEstrangeiro("EXT-ABC-123");
-        pag.setCpf("12345678909");
+            pag.setIdEstrangeiro("EXT-ABC-123");
+            pag.setCpf("12345678909");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCpfInvalido() {
-        pag.setCpf("000000000010"); // inválido
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            pag.setCpf("000000000010"); // inválido
+        });
     }
 
     @Test
@@ -59,28 +65,34 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setCnpj(cnpjValido);
 
-        Assert.assertEquals(cnpjValido, pag.getCnpj());
-        Assert.assertNull(pag.getCpf());
-        Assert.assertNull(pag.getIdEstrangeiro());
+        Assertions.assertEquals(cnpjValido, pag.getCnpj());
+        Assertions.assertNull(pag.getCpf());
+        Assertions.assertNull(pag.getIdEstrangeiro());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCnpjQuandoJaExisteCpf() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setCpf("12345678909");
-        pag.setCnpj("27865757000102"); // deve falhar porque CPF já foi setado
+            pag.setCpf("12345678909");
+            pag.setCnpj("27865757000102"); // deve falhar porque CPF já foi setado
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCnpjQuandoJaExisteIdEstrangeiro() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setIdEstrangeiro("EXT-XYZ-999");
-        pag.setCnpj("27865757000102");
+            pag.setIdEstrangeiro("EXT-XYZ-999");
+            pag.setCnpj("27865757000102");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarCnpjInvalido() {
-        pag.setCnpj("123456780301001"); // inválido
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            pag.setCnpj("123456780301001"); // inválido
+        });
     }
 
     @Test
@@ -88,23 +100,27 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setIdEstrangeiro("EXT-0001");
 
-        Assert.assertEquals("EXT-0001", pag.getIdEstrangeiro());
-        Assert.assertNull(pag.getCpf());
-        Assert.assertNull(pag.getCnpj());
+        Assertions.assertEquals("EXT-0001", pag.getIdEstrangeiro());
+        Assertions.assertNull(pag.getCpf());
+        Assertions.assertNull(pag.getCnpj());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarIdEstrangeiroQuandoJaExisteCpf() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setCpf("12345678909");
-        pag.setIdEstrangeiro("EXT-0002");
+            pag.setCpf("12345678909");
+            pag.setIdEstrangeiro("EXT-0002");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveRejeitarIdEstrangeiroQuandoJaExisteCnpj() {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
 
-        pag.setCnpj("27865757000102");
-        pag.setIdEstrangeiro("EXT-0003");
+            pag.setCnpj("27865757000102");
+            pag.setIdEstrangeiro("EXT-0003");
+        });
     }
 
     // ---------------- Valores e enums ----------------
@@ -115,25 +131,28 @@ public class MDFInfoModalRodoviarioInfPagTest {
         BigDecimal valor = new BigDecimal("12345678901.23"); // 11+2
         pag.setVContrato(valor);
 
-        Assert.assertEquals(0, pag.getVContrato().compareTo(valor));
+        Assertions.assertEquals(0, pag.getVContrato().compareTo(valor));
 
         pag.setVContrato(null);
-        Assert.assertNull(pag.getVContrato());
+        Assertions.assertNull(pag.getVContrato());
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveAceitarVAdiantValidoNoLimite() {
-        pag.setVAdiant(new BigDecimal("99999999999.99"));
+        // TDec_1302: ate 13 digitos inteiros e 2 decimais
+        final BigDecimal limite = new BigDecimal("9999999999999.99");
+        pag.setVAdiant(limite);
+        Assertions.assertEquals(0, pag.getVAdiant().compareTo(limite));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarVAdiantComMaisDe2Casas() {
-        pag.setVAdiant(new BigDecimal("10.999"));
+        Assertions.assertThrows(NumberFormatException.class, () -> pag.setVAdiant(new BigDecimal("10.999")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void deveRejeitarVAdiantComMaisDe13Digitos() {
-        pag.setVAdiant(new BigDecimal("10000000000.00"));
+        Assertions.assertThrows(NumberFormatException.class, () -> pag.setVAdiant(new BigDecimal("10000000000000.00")));
     }
 
     @Test
@@ -144,8 +163,8 @@ public class MDFInfoModalRodoviarioInfPagTest {
                 MDFTipoIndicadorAntecipacaoPagamento.SIM
         );
 
-        Assert.assertEquals(MDFTipoInfPag.A_PRAZO, pag.getIndPag());
-        Assert.assertEquals(MDFTipoIndicadorAntecipacaoPagamento.SIM,
+        Assertions.assertEquals(MDFTipoInfPag.A_PRAZO, pag.getIndPag());
+        Assertions.assertEquals(MDFTipoIndicadorAntecipacaoPagamento.SIM,
                 pag.getIndicadorAtencipacaoAdiantamento());
     }
 
@@ -155,13 +174,13 @@ public class MDFInfoModalRodoviarioInfPagTest {
     public void deveAceitarCompNuloEVazio() {
 
         pag.setComp(null);
-        Assert.assertNull(pag.getComp());
+        Assertions.assertNull(pag.getComp());
 
         List<MDFInfoModalRodoviarioInfPagComp> vazia = Collections.emptyList();
         pag.setComp(vazia);
 
-        Assert.assertSame(vazia, pag.getComp());
-        Assert.assertTrue(pag.getComp().isEmpty());
+        Assertions.assertSame(vazia, pag.getComp());
+        Assertions.assertTrue(pag.getComp().isEmpty());
     }
 
     @Test
@@ -173,21 +192,21 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setComp(lista);
 
-        Assert.assertEquals(1, pag.getComp().size());
-        Assert.assertSame(c, pag.getComp().get(0));
+        Assertions.assertEquals(1, pag.getComp().size());
+        Assertions.assertSame(c, pag.getComp().get(0));
     }
 
     @Test
     public void deveAceitarInfPrazoNuloEVazio() {
 
         pag.setInfPrazo(null);
-        Assert.assertNull(pag.getInfPrazo());
+        Assertions.assertNull(pag.getInfPrazo());
 
         List<MDFInfoModalRodoviarioInfPagPrazo> vazia = Collections.emptyList();
         pag.setInfPrazo(vazia);
 
-        Assert.assertSame(vazia, pag.getInfPrazo());
-        Assert.assertTrue(pag.getInfPrazo().isEmpty());
+        Assertions.assertSame(vazia, pag.getInfPrazo());
+        Assertions.assertTrue(pag.getInfPrazo().isEmpty());
     }
 
     @Test
@@ -199,22 +218,22 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setInfPrazo(lista);
 
-        Assert.assertEquals(1, pag.getInfPrazo().size());
-        Assert.assertSame(p1, pag.getInfPrazo().get(0));
+        Assertions.assertEquals(1, pag.getInfPrazo().size());
+        Assertions.assertSame(p1, pag.getInfPrazo().get(0));
     }
 
     @Test
     public void deveSetarEObterInfBanc() {
 
-        Assert.assertNull(pag.getInfBanc());
+        Assertions.assertNull(pag.getInfBanc());
 
         MDFInfoModalRodoviarioInfPagBanco banco = new MDFInfoModalRodoviarioInfPagBanco();
         pag.setInfBanc(banco);
 
-        Assert.assertSame(banco, pag.getInfBanc());
+        Assertions.assertSame(banco, pag.getInfBanc());
 
         pag.setInfBanc(null);
-        Assert.assertNull(pag.getInfBanc());
+        Assertions.assertNull(pag.getInfBanc());
     }
 
     // ---------------- Campos simples ----------------
@@ -224,6 +243,6 @@ public class MDFInfoModalRodoviarioInfPagTest {
 
         pag.setXNome("Contratante XPTO");
 
-        Assert.assertEquals("Contratante XPTO", pag.getXNome());
+        Assertions.assertEquals("Contratante XPTO", pag.getXNome());
     }
 }

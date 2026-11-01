@@ -1,17 +1,15 @@
 package com.fincatto.documentofiscal.cte300.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.cte300.classes.CTProcessoEmissao;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTProcessoEmissaoTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTProcessoEmissao.valueOfCodigo(null));
-    	Assert.assertEquals("0", CTProcessoEmissao.EMISSOR_CONTRIBUINTE.getCodigo());
-    	Assert.assertEquals("3", CTProcessoEmissao.EMISSOR_FISCO.getCodigo());
+    	Assertions.assertNull(CTProcessoEmissao.valueOfCodigo(null));
+    	Assertions.assertEquals("0", CTProcessoEmissao.EMISSOR_CONTRIBUINTE.getCodigo());
+    	Assertions.assertEquals("3", CTProcessoEmissao.EMISSOR_FISCO.getCodigo());
     }
 
 }

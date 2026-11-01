@@ -1,14 +1,15 @@
 package com.fincatto.documentofiscal.validadores;
 
-import java.math.BigInteger;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.math.BigInteger;
 
 public class DFBigIntegerValidadorTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirTamanhoMaiorQue12() {
-        DFBigIntegerValidador.tamanho12(new BigInteger("1000000000000"), "");
+        Assertions.assertThrows(NumberFormatException.class, () -> DFBigIntegerValidador.tamanho12(new BigInteger("1000000000000"), ""));
     }
 
     @Test
@@ -17,9 +18,9 @@ public class DFBigIntegerValidadorTest {
         DFBigIntegerValidador.tamanho12(new BigInteger("999999999999"), "");
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirTamanhoMaiorQue11() {
-        DFBigIntegerValidador.tamanho11(new BigInteger("100000000000"), "");
+        Assertions.assertThrows(NumberFormatException.class, () -> DFBigIntegerValidador.tamanho11(new BigInteger("100000000000"), ""));
     }
 
     @Test

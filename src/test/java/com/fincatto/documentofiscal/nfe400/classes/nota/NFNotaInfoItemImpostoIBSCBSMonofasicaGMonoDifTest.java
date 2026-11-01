@@ -1,66 +1,58 @@
 package com.fincatto.documentofiscal.nfe400.classes.nota;
 
-import com.fincatto.documentofiscal.nfe400.FabricaDeObjetosFake;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.math.BigDecimal;
 
 /**
- * @author Ommega Data
+ * Grupo legado gMonoDif (UB99), mantido para compatibilidade com o leiaute anterior a NT 2025.002 RTC 1.5.
+ * @author Marcos Della Justina Schulz
  */
+@SuppressWarnings("removal")
 public class NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDifTest {
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPDifIBSComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifIBS(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifIBS(new BigDecimal("1000")));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifIBS(new BigDecimal("1.12345")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirVIBSMonoDifComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVIBSMonoDif(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVIBSMonoDif(new BigDecimal("10000000000000")));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVIBSMonoDif(new BigDecimal("1.123")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirPDifCBSComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifCBS(new BigDecimal("1000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifCBS(new BigDecimal("1000")));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setPDifCBS(new BigDecimal("1.12345")));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test
     public void naoDevePermitirVCBSMonoDifComTamanhoInvalido() {
-        new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVCBSMonoDif(new BigDecimal("10000000000000"));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVCBSMonoDif(new BigDecimal("10000000000000")));
+        Assertions.assertThrows(NumberFormatException.class, () -> new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().setVCBSMonoDif(new BigDecimal("1.123")));
     }
 
     @Test
-    public void deveSetarPDifIBSCorretamente() {
-        final NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif monoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
-        monoDif.setPDifIBS(new BigDecimal("9.8765"));
-        Assert.assertEquals("9.8765", monoDif.getPDifIBS());
-    }
-
-    @Test
-    public void deveSetarVIBSMonoDifCorretamente() {
-        final NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif monoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
-        monoDif.setVIBSMonoDif(new BigDecimal("12345678901.23"));
-        Assert.assertEquals("12345678901.23", monoDif.getVIBSMonoDif());
-    }
-
-    @Test
-    public void deveSetarPDifCBSCorretamente() {
-        final NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif monoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
-        monoDif.setPDifCBS(new BigDecimal("5.4321"));
-        Assert.assertEquals("5.4321", monoDif.getPDifCBS());
-    }
-
-    @Test
-    public void deveSetarVCBSMonoDifCorretamente() {
-        final NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif monoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
-        monoDif.setVCBSMonoDif(new BigDecimal("98765432109.87"));
-        Assert.assertEquals("98765432109.87", monoDif.getVCBSMonoDif());
+    public void naoDeveGerarCamposNulos() {
+        Assertions.assertEquals("<NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif/>", new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().toString());
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
-        final String xmlEsperado = "<NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif><pDifIBS>9.8765</pDifIBS><vIBSMonoDif>12345678901.23</vIBSMonoDif><pDifCBS>5.4321</pDifCBS><vCBSMonoDif>98765432109.87</vCBSMonoDif></NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif().toString());
+        final String xmlEsperado = "<NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif><pDifIBS>12.3456</pDifIBS><vIBSMonoDif>1234567890123.45</vIBSMonoDif><pDifCBS>100.00</pDifCBS><vCBSMonoDif>9876543210.98</vCBSMonoDif></NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif>";
+        Assertions.assertEquals(xmlEsperado, getGMonoDif().toString());
+    }
+
+    static NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif getGMonoDif() {
+        final NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif gMonoDif = new NFNotaInfoItemImpostoIBSCBSMonofasicaGMonoDif();
+        gMonoDif.setPDifIBS(new BigDecimal("12.3456"));
+        gMonoDif.setVIBSMonoDif(new BigDecimal("1234567890123.45"));
+        gMonoDif.setPDifCBS(new BigDecimal("100"));
+        gMonoDif.setVCBSMonoDif(new BigDecimal("9876543210.98"));
+        return gMonoDif;
     }
 }

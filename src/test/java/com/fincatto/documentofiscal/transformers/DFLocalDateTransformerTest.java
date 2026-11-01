@@ -1,23 +1,23 @@
 package com.fincatto.documentofiscal.transformers;
 
-import java.time.LocalDate;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.time.LocalDate;
 
 public class DFLocalDateTransformerTest {
 
     @Test
     public void deveTransformarDataStringEmLocalDate() throws Exception {
-        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01-02:00").toString());
-        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01").toString());
-        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006").toString());
-        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006 12:00:01").toString());
-        Assert.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01T00:00:00-03:00").toString());
+        Assertions.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01-02:00").toString());
+        Assertions.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01").toString());
+        Assertions.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006").toString());
+        Assertions.assertEquals("2006-02-01", new DFLocalDateTransformer().read("01/02/2006 12:00:01").toString());
+        Assertions.assertEquals("2006-02-01", new DFLocalDateTransformer().read("2006-02-01T00:00:00-03:00").toString());
     }
 
     @Test
     public void deveTransformarLocalDateEmString() throws Exception {
-        Assert.assertEquals("2015-10-04", new DFLocalDateTransformer().write(LocalDate.of(2015, 10, 4)));
+        Assertions.assertEquals("2015-10-04", new DFLocalDateTransformer().write(LocalDate.of(2015, 10, 4)));
     }
 }

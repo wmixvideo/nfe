@@ -39,8 +39,8 @@ public class NFGeraHashCSRT {
     }
 
     public static byte[] getSha1(String toEncode) throws NoSuchAlgorithmException {
-        return MessageDigest.
-                getInstance("SHA1").digest(toEncode.getBytes());
+        // charset explicito: com o encoding default da plataforma o hash variaria entre ambientes
+        return MessageDigest.getInstance("SHA1").digest(toEncode.getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
 
     public static String getStringSha1(String toEncode) throws NoSuchAlgorithmException {

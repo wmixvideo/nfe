@@ -1,11 +1,9 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota.consulta;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEvento;
 import com.fincatto.documentofiscal.nfe310.classes.evento.NFEventoRetorno;
-import com.fincatto.documentofiscal.nfe310.classes.nota.consulta.NFProtocoloEvento;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFProtocoloEventoTest {
 
@@ -14,7 +12,7 @@ public class NFProtocoloEventoTest {
         final NFProtocoloEvento evento = new NFProtocoloEvento();
         final String versao = "3.10";
         evento.setVersao(versao);
-        Assert.assertEquals(versao, evento.getVersao());
+        Assertions.assertEquals(versao, evento.getVersao());
     }
 
     @Test
@@ -22,7 +20,7 @@ public class NFProtocoloEventoTest {
         final NFProtocoloEvento protocoloEvento = new NFProtocoloEvento();
         final NFEvento evento = new NFEvento();
         protocoloEvento.setEvento(evento);
-        Assert.assertEquals(evento, protocoloEvento.getEvento());
+        Assertions.assertEquals(evento, protocoloEvento.getEvento());
     }
 
     @Test
@@ -30,6 +28,6 @@ public class NFProtocoloEventoTest {
         final NFProtocoloEvento protocoloEvento = new NFProtocoloEvento();
         final NFEventoRetorno infoEventoRetorno = new NFEventoRetorno();
         protocoloEvento.setEventoRetorno(infoEventoRetorno);
-        Assert.assertEquals(infoEventoRetorno, protocoloEvento.getInfoEventoRetorno());
+        Assertions.assertEquals(infoEventoRetorno, protocoloEvento.getInfoEventoRetorno());
     }
 }

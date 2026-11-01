@@ -6,8 +6,8 @@ import com.fincatto.documentofiscal.cte400.classes.evento.CTeEvento;
 import com.fincatto.documentofiscal.cte400.classes.evento.CTeEventoRetorno;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,13 +19,13 @@ class WSEpec extends WSRecepcaoEvento {
     private static final String EVENTO_EPEC = "110113";
     private static final List<DFModelo> modelosPermitidos = Arrays.asList(DFModelo.CTE);
 
-    WSEpec(final CTeConfig config) {
-        super(config, modelosPermitidos);
+    WSEpec(final CTeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient, modelosPermitidos);
     }
-    
+
     CTeEventoRetorno enviaEpecAssinado(final String chaveAcesso, final String eventoAssinadoXml) throws Exception {
-        final OMElement omElementResult = super.efetuaEventoSVC(eventoAssinadoXml, chaveAcesso, VERSAO_LEIAUTE);
-        return this.config.getPersister().read(CTeEventoRetorno.class, omElementResult.toString());
+        final String xmlResultado = super.efetuaEventoSVC(eventoAssinadoXml, chaveAcesso);
+        return this.config.getPersister().read(CTeEventoRetorno.class, xmlResultado);
     }
 
     CTeEventoRetorno enviaEpec(final String chaveAcesso, final CTeEnviaEventoEpec eventoEpec) throws Exception {

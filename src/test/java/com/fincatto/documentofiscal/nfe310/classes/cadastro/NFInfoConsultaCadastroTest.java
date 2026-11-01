@@ -1,28 +1,30 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFInfoConsultaCadastro;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFInfoConsultaCadastroTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirUfNulo() {
-        final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
-        infoConsultaCadastro.setCnpj("56138725000103");
-        infoConsultaCadastro.setInscricaoEstadual("90321");
-        infoConsultaCadastro.setServico("CONS-CAD");
-        infoConsultaCadastro.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
+            infoConsultaCadastro.setCnpj("56138725000103");
+            infoConsultaCadastro.setInscricaoEstadual("90321");
+            infoConsultaCadastro.setServico("CONS-CAD");
+            infoConsultaCadastro.toString();
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirServicoNulo() {
-        final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
-        infoConsultaCadastro.setCnpj("56138725000103");
-        infoConsultaCadastro.setInscricaoEstadual("90321");
-        infoConsultaCadastro.setUf("SC");
-        infoConsultaCadastro.toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
+            infoConsultaCadastro.setCnpj("56138725000103");
+            infoConsultaCadastro.setInscricaoEstadual("90321");
+            infoConsultaCadastro.setUf("SC");
+            infoConsultaCadastro.toString();
+        });
     }
 
     //    @Test(expected = IllegalStateException.class)
@@ -58,48 +60,52 @@ public class NFInfoConsultaCadastroTest {
     public void deveObterOqueUFFoiSetado() {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         infoConsultaCadastro.setUf("SC");
-        Assert.assertEquals("SC", infoConsultaCadastro.getUf());
+        Assertions.assertEquals("SC", infoConsultaCadastro.getUf());
     }
 
     @Test
     public void deveObterOqueServicoFoiSetado() {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         infoConsultaCadastro.setServico("CONS-CAD");
-        Assert.assertEquals("CONS-CAD", infoConsultaCadastro.getServico());
+        Assertions.assertEquals("CONS-CAD", infoConsultaCadastro.getServico());
     }
 
     @Test
     public void deveObterOqueIEFoiSetado() {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         infoConsultaCadastro.setInscricaoEstadual("90321");
-        Assert.assertEquals("90321", infoConsultaCadastro.getInscricaoEstadual());
+        Assertions.assertEquals("90321", infoConsultaCadastro.getInscricaoEstadual());
     }
 
     @Test
     public void deveObterOqueCpfFoiSetado() {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         infoConsultaCadastro.setCpf("56138725000");
-        Assert.assertEquals("56138725000", infoConsultaCadastro.getCpf());
+        Assertions.assertEquals("56138725000", infoConsultaCadastro.getCpf());
     }
 
     @Test
     public void deveObterOqueCnpjFoiSetado() {
         final NFInfoConsultaCadastro infoConsultaCadastro = new NFInfoConsultaCadastro();
         infoConsultaCadastro.setCnpj("56138725000103");
-        Assert.assertEquals("56138725000103", infoConsultaCadastro.getCnpj());
+        Assertions.assertEquals("56138725000103", infoConsultaCadastro.getCnpj());
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCNPJSetadoQuandoCPFEstaSetado() {
-        final NFInfoConsultaCadastro referenciada = new NFInfoConsultaCadastro();
-        referenciada.setCpf("12345678901");
-        referenciada.setCnpj("12345678901234");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoConsultaCadastro referenciada = new NFInfoConsultaCadastro();
+            referenciada.setCpf("12345678901");
+            referenciada.setCnpj("12345678901234");
+        });
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirCPFSetadoQuandoCNPJEstaSetado() {
-        final NFInfoConsultaCadastro referenciada = new NFInfoConsultaCadastro();
-        referenciada.setCnpj("12345678901234");
-        referenciada.setCpf("12345678901");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            final NFInfoConsultaCadastro referenciada = new NFInfoConsultaCadastro();
+            referenciada.setCnpj("12345678901234");
+            referenciada.setCpf("12345678901");
+        });
     }
 }

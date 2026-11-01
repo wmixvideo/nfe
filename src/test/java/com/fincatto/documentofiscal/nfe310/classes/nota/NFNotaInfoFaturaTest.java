@@ -1,12 +1,10 @@
 package com.fincatto.documentofiscal.nfe310.classes.nota;
 
-import java.math.BigDecimal;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.nfe310.FabricaDeObjetosFake;
-import com.fincatto.documentofiscal.nfe310.classes.nota.NFNotaInfoFatura;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class NFNotaInfoFaturaTest {
 
@@ -15,7 +13,7 @@ public class NFNotaInfoFaturaTest {
         final NFNotaInfoFatura fatura = new NFNotaInfoFatura();
         final String numeroFatura = "KDVAp0aewPjmHaTsjbDX1O6NOR9tc7TxGflFLXsMZt2hEKar3oqzZ11uzEQF";
         fatura.setNumeroFatura(numeroFatura);
-        Assert.assertEquals(numeroFatura, fatura.getNumeroFatura());
+        Assertions.assertEquals(numeroFatura, fatura.getNumeroFatura());
     }
 
     @Test
@@ -23,7 +21,7 @@ public class NFNotaInfoFaturaTest {
         final NFNotaInfoFatura fatura = new NFNotaInfoFatura();
         final String valorDesconto = "1000.00";
         fatura.setValorDesconto(new BigDecimal(valorDesconto));
-        Assert.assertEquals(valorDesconto, fatura.getValorDesconto());
+        Assertions.assertEquals(valorDesconto, fatura.getValorDesconto());
     }
 
     @Test
@@ -31,7 +29,7 @@ public class NFNotaInfoFaturaTest {
         final NFNotaInfoFatura fatura = new NFNotaInfoFatura();
         final String valorLiquidoFatura = "1000.00";
         fatura.setValorLiquidoFatura(new BigDecimal(valorLiquidoFatura));
-        Assert.assertEquals(valorLiquidoFatura, fatura.getValorLiquidoFatura());
+        Assertions.assertEquals(valorLiquidoFatura, fatura.getValorLiquidoFatura());
     }
 
     @Test
@@ -39,7 +37,7 @@ public class NFNotaInfoFaturaTest {
         final NFNotaInfoFatura fatura = new NFNotaInfoFatura();
         final String valorOriginalFatura = "1000.00";
         fatura.setValorOriginalFatura(new BigDecimal(valorOriginalFatura));
-        Assert.assertEquals(valorOriginalFatura, fatura.getValorOriginalFatura());
+        Assertions.assertEquals(valorOriginalFatura, fatura.getValorOriginalFatura());
     }
 
     @Test
@@ -84,20 +82,22 @@ public class NFNotaInfoFaturaTest {
         new NFNotaInfoFatura().setNumeroFatura("9");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void naoDevePermitirNumeroFaturaComTamanhoInvalido() {
-        try {
-            new NFNotaInfoFatura().setNumeroFatura("tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca1");
-            Assert.fail("Validacao nao funcionou");
-        } catch (final IllegalStateException e) {
-            new NFNotaInfoFatura().setNumeroFatura("");
-        }
-        Assert.fail("Validacao nao funcionou");
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            try {
+                new NFNotaInfoFatura().setNumeroFatura("tQtearTIcXmO9vxNr3TPhSaItw5mk3zyTVlf2aIFXqqvtXrHoa0qPWKzUzca1");
+                Assertions.fail("Validacao nao funcionou");
+            } catch (final IllegalStateException e) {
+                new NFNotaInfoFatura().setNumeroFatura("");
+            }
+            Assertions.fail("Validacao nao funcionou");
+        });
     }
 
     @Test
     public void deveGerarXMLDeAcordoComOPadraoEstabelecido() {
         final String xmlEsperado = "<NFNotaInfoFatura><nFat>KDVAp0aewPjmHaTsjbDX1O6NOR9tc7TxGflFLXsMZt2hEKar3oqzZ11uzEQF</nFat><vOrig>3001.15</vOrig><vDesc>0.15</vDesc><vLiq>3000.00</vLiq></NFNotaInfoFatura>";
-        Assert.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoFatura().toString());
+        Assertions.assertEquals(xmlEsperado, FabricaDeObjetosFake.getNFNotaInfoFatura().toString());
     }
 }

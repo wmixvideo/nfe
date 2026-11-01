@@ -1,25 +1,25 @@
 package com.fincatto.documentofiscal.nfe400.webservices;
 
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFLog;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.nfe.NFeConfig;
 import com.fincatto.documentofiscal.nfe400.NotaFiscalChaveParser;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEnviaEventoRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.NFEventoTipoAutor;
-import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetEventoSolicitacaoApropriacaoCreditoPresumido;
+import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFDetGrupoItemNaoFornecido;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFEnviaEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.classes.evento.naofornecido.NFInfoEventoNaoFornecimentoPagamentoAntecipado;
 import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
-import org.apache.axiom.om.OMElement;
-
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.Collections;
-import java.util.List;
+import com.fincatto.documentofiscal.utils.DFHttpClient;
 
 /**
  * Classe responsável por informar o Fornecimento não realizado com pagamento antecipado
@@ -60,8 +60,8 @@ class WSNaoFornecimentoPagamentoAntecipado extends AbstractWSEvento implements D
      *
      * @param config Configuração da NF-e utilizada para a comunicação com o web service.
      */
-    WSNaoFornecimentoPagamentoAntecipado(NFeConfig config) {
-        super(config);
+    WSNaoFornecimentoPagamentoAntecipado(final NFeConfig config, final DFHttpClient httpClient) {
+        super(config, httpClient);
     }
 
     /**
@@ -109,9 +109,9 @@ class WSNaoFornecimentoPagamentoAntecipado extends AbstractWSEvento implements D
         final String atualizacaoDataPrevisaoEntregaXMl = this.gerarDadosXml().toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config)
                 .assinarDocumento(atualizacaoDataPrevisaoEntregaXMl);
-        final OMElement omElementResult = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
+        final String xmlResultado = this.transmiteEvento(xmlAssinado, this.getChaveAcesso());
 
-        return this.config.getPersister().read(NFEnviaEventoRetorno.class, omElementResult.toString());
+        return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
 
     /**

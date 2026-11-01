@@ -1,16 +1,16 @@
 package com.fincatto.documentofiscal.cte400.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CTFinalidadeTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-    	Assert.assertNull(CTFinalidade.valueOfCodigo(null));
-    	Assert.assertEquals("0", CTFinalidade.NORMAL.getCodigo());
-    	Assert.assertEquals("1", CTFinalidade.COMPLEMENTAR.getCodigo());
-    	Assert.assertEquals("3", CTFinalidade.SUBSTITUTO.getCodigo());
+    	Assertions.assertNull(CTFinalidade.valueOfCodigo(null));
+    	Assertions.assertEquals("0", CTFinalidade.NORMAL.getCodigo());
+    	Assertions.assertEquals("1", CTFinalidade.COMPLEMENTAR.getCodigo());
+    	Assertions.assertEquals("3", CTFinalidade.SUBSTITUTO.getCodigo());
     }
 
 }

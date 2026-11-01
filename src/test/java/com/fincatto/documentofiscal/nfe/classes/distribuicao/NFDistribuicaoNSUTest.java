@@ -1,20 +1,20 @@
 package com.fincatto.documentofiscal.nfe.classes.distribuicao;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFDistribuicaoNSUTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveGerarErroAoNaoInformarONSU() {
-        new NFDistribuicaoNSU().toString();
+        Assertions.assertThrows(IllegalStateException.class, () -> new NFDistribuicaoNSU().toString());
     }
 
     @Test
     public void deveEnviarUltimoNSU() {
         final NFDistribuicaoNSU distribuicaoNSU = new NFDistribuicaoNSU();
         distribuicaoNSU.setUltimoNSU("000000000000012");
-        Assert.assertEquals("000000000000012", distribuicaoNSU.getUltimoNSU());
+        Assertions.assertEquals("000000000000012", distribuicaoNSU.getUltimoNSU());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class NFDistribuicaoNSUTest {
         final NFDistribuicaoNSU distribuicaoNSU = new NFDistribuicaoNSU();
         distribuicaoNSU.setUltimoNSU("000000000000000");
         final String retorno = "<NFDistribuicaoNSU><ultNSU>000000000000000</ultNSU></NFDistribuicaoNSU>";
-        Assert.assertEquals(retorno, distribuicaoNSU.toString());
+        Assertions.assertEquals(retorno, distribuicaoNSU.toString());
     }
 
 }

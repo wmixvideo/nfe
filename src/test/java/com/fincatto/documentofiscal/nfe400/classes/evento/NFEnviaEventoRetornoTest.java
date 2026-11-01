@@ -1,12 +1,11 @@
 package com.fincatto.documentofiscal.nfe400.classes.evento;
 
-import java.util.ArrayList;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class NFEnviaEventoRetornoTest {
 
@@ -15,7 +14,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final DFAmbiente ambiente = DFAmbiente.HOMOLOGACAO;
         eventoRetorno.setAmbiente(ambiente);
-        Assert.assertEquals(ambiente, eventoRetorno.getAmbiente());
+        Assertions.assertEquals(ambiente, eventoRetorno.getAmbiente());
     }
 
     @Test
@@ -23,7 +22,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final int codigoStatusReposta = 900;
         eventoRetorno.setCodigoStatusReposta(codigoStatusReposta);
-        Assert.assertEquals(codigoStatusReposta, eventoRetorno.getCodigoStatusReposta(), 0);
+        Assertions.assertEquals(codigoStatusReposta, eventoRetorno.getCodigoStatusReposta(), 0);
     }
 
     @Test
@@ -31,7 +30,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final ArrayList<NFEventoRetorno> eventosRetorno = new ArrayList<>();
         eventoRetorno.setEventoRetorno(eventosRetorno);
-        Assert.assertEquals(eventosRetorno, eventoRetorno.getEventoRetorno());
+        Assertions.assertEquals(eventosRetorno, eventoRetorno.getEventoRetorno());
     }
 
     @Test
@@ -39,7 +38,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final String idLote = "99";
         eventoRetorno.setIdLote(idLote);
-        Assert.assertEquals(idLote, eventoRetorno.getIdLote());
+        Assertions.assertEquals(idLote, eventoRetorno.getIdLote());
     }
 
     @Test
@@ -47,7 +46,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final String motivo = "Motivo turpe";
         eventoRetorno.setMotivo(motivo);
-        Assert.assertEquals(motivo, eventoRetorno.getMotivo());
+        Assertions.assertEquals(motivo, eventoRetorno.getMotivo());
     }
 
     @Test
@@ -55,7 +54,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final DFUnidadeFederativa unidadeFederativa = DFUnidadeFederativa.SC;
         eventoRetorno.setOrgao(unidadeFederativa);
-        Assert.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
+        Assertions.assertEquals(unidadeFederativa, eventoRetorno.getOrgao());
     }
 
     @Test
@@ -63,7 +62,7 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final String versao = "3.10";
         eventoRetorno.setVersao(versao);
-        Assert.assertEquals(versao, eventoRetorno.getVersao());
+        Assertions.assertEquals(versao, eventoRetorno.getVersao());
     }
 
     @Test
@@ -71,6 +70,6 @@ public class NFEnviaEventoRetornoTest {
         final NFEnviaEventoRetorno eventoRetorno = new NFEnviaEventoRetorno();
         final String versaoAplicativo = "v10.0";
         eventoRetorno.setVersaoAplicativo(versaoAplicativo);
-        Assert.assertEquals(versaoAplicativo, eventoRetorno.getVersaoAplicativo());
+        Assertions.assertEquals(versaoAplicativo, eventoRetorno.getVersaoAplicativo());
     }
 }

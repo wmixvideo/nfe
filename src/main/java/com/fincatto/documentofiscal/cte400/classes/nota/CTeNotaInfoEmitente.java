@@ -38,6 +38,9 @@ public class CTeNotaInfoEmitente extends DFBase {
     @Element(name = "CRT")
     private CTTipoRegimeTributario tipoRegimeTributario;
 
+    @Element(name = "ISUFEmit", required = false)
+    private String inscricaoSuframa;
+
     public String getCnpj() {
         return this.cnpj;
     }
@@ -117,5 +120,20 @@ public class CTeNotaInfoEmitente extends DFBase {
     public CTeNotaInfoEmitente setTipoRegimeTributario(CTTipoRegimeTributario tipoRegimeTributario) {
         this.tipoRegimeTributario = tipoRegimeTributario;
         return this;
+    }
+
+    public String getISUFEmit() {
+        return this.inscricaoSuframa;
+    }
+
+    /**
+     * Inscrição do emitente na Suframa (8 a 9 dígitos).<br>
+     * NT 2026.002 - obrigatório nas operações que se beneficiam de incentivos
+     * fiscais nas áreas sob controle da SUFRAMA com alíquota zero da CBS
+     * (arts. 451 e 466 da LC 214/25).
+     */
+    public void setISUFEmit(final String inscricaoSuframa) {
+        DFStringValidador.tamanho8a9(inscricaoSuframa, "Inscrição do emitente na Suframa");
+        this.inscricaoSuframa = inscricaoSuframa;
     }
 }

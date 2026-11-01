@@ -1,20 +1,18 @@
 package com.fincatto.documentofiscal.nfe310.classes.cadastro;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.fincatto.documentofiscal.nfe310.classes.cadastro.NFSituacaoContribuinte;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NFSituacaoContribuinteTest {
 
     @Test
     public void deveRepresentarOCodigoCorretamente() {
-        Assert.assertEquals(NFSituacaoContribuinte.NAO_HABILITADO, NFSituacaoContribuinte.valueOfCodigo(0));
-        Assert.assertEquals(NFSituacaoContribuinte.HABILITADO, NFSituacaoContribuinte.valueOfCodigo(1));
+        Assertions.assertEquals(NFSituacaoContribuinte.NAO_HABILITADO, NFSituacaoContribuinte.valueOfCodigo(0));
+        Assertions.assertEquals(NFSituacaoContribuinte.HABILITADO, NFSituacaoContribuinte.valueOfCodigo(1));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void deveLancarExcecaoCasoRecebaParametroNaoMapeado() {
-        NFSituacaoContribuinte.valueOfCodigo(2);
+        Assertions.assertThrows(IllegalStateException.class, () -> NFSituacaoContribuinte.valueOfCodigo(2));
     }
 }
