@@ -424,6 +424,8 @@ public class FabricaDeObjetosFake {
         produtoMedicamento.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
         produtoMedicamento.setVeiculo(FabricaDeObjetosFake.getNFNotaInfoItemProdutoVeiculo());
         produtoMedicamento.setNomeclaturaValorAduaneiroEstatistica(Collections.singletonList("AZ0123"));
+        produtoMedicamento.setValorLiquidoUnitario(new BigDecimal("9999999999.9999999999"));
+        produtoMedicamento.setValorLiquidoTotal(new BigDecimal("999999999999.99"));
         return produtoMedicamento;
     }
 
@@ -857,6 +859,8 @@ public class FabricaDeObjetosFake {
         produto.setValorUnitario(new BigDecimal("9999999999.9999999999"));
         produto.setNomeclaturaValorAduaneiroEstatistica(Collections.singletonList("AZ0123"));
         produto.setValorUnitarioTributavel(new BigDecimal("9999999999.9999999999"));
+        produto.setValorLiquidoUnitario(new BigDecimal("9999999999.9999999999"));
+        produto.setValorLiquidoTotal(new BigDecimal("999999999999.99"));
         return produto;
     }
 
