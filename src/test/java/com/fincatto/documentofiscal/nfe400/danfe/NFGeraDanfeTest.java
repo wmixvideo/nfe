@@ -54,6 +54,14 @@ class NFGeraDanfeTest {
     }
 
     @Test
+    void deveRejeitarProtocoloSemInfoDeProtocolo() {
+        final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
+        nota.getProtocolo().setProtocoloInfo(null);
+        final IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota, null));
+        Assertions.assertTrue(e.getMessage().contains("protocolo"));
+    }
+
+    @Test
     void deveGerarDanfeParaStatusAutorizados() {
         for (final String status : new String[]{"100", "120", "150"}) {
             final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
