@@ -31,7 +31,7 @@ public class NFGeraDanfeNfce {
     public static final float LARGURA_80_MM = 80f;
 
     /**
-     * Margem lateral do cupom, em milimetros (o manual exige no minimo 2 mm).
+     * Margem lateral do cupom, em milimetros (margem seguranca minimo 1 mm).
      */
     public static final float MARGEM_LATERAL_MM = 1f;
 
