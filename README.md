@@ -401,7 +401,7 @@ byte[] pdf = facade.geraDanfe(notaProcessada, logo, creditos);
 Notas emitidas em homologação saem com a marca d'água "SEM VALOR FISCAL". Se não precisar do `WSFacade`, use direto `new NFGeraDanfe().gerar(...)`, que não exige `NFeConfig` nem certificado.
 
 ### Gerar o cupom DANFE NFC-e (modelo 65)
-O cupom da NFC-e (leiaute do Manual de Padrões do DANFE NFC-e e QR Code, versão 3.3) sai em papel térmico de **80 mm**, sem logotipo e em uma página só, com a altura do conteúdo. As impressoras térmicas não imprimem rente à borda, então o texto respeita 4 mm de margem de cada lado (72 mm de área útil). O QR Code vem do `infNFeSupl` do XML:
+O cupom da NFC-e (leiaute do Manual de Padrões do DANFE NFC-e e QR Code, versão 3.3) sai em papel térmico de **80 mm**, sem logotipo e em uma página só, com a altura do conteúdo. As impressoras térmicas não imprimem rente à borda, então o texto respeita 1 mm de margem de cada lado (78 mm de área útil). O QR Code vem do `infNFeSupl` do XML:
 
 ```java
 byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar);
