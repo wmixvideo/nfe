@@ -50,6 +50,14 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void deveLancarExcecaoParaProtocoloSemInfoDeProtocolo() throws Exception {
+        final NFNotaProcessada nota = new DFPersister().read(NFNotaProcessada.class, DanfeNfceFixtures.nfce().build());
+        nota.getProtocolo().setProtocoloInfo(null);
+        final IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota, null));
+        Assertions.assertTrue(e.getMessage().contains("protocolo"));
+    }
+
+    @Test
     void deveGerarParaStatusAutorizados() {
         for (final String status : new String[]{"100", "120", "150"}) {
             final String xml = DanfeNfceFixtures.nfce().build().replace("<cStat>100</cStat>", "<cStat>" + status + "</cStat>");
