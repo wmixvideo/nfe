@@ -84,7 +84,7 @@ final class DanfeTotais {
     static void desenhar(final DanfeCanvas canvas, final NFNotaInfo info) {
         destinatario(canvas, info);
         fatura(canvas, info.getCobranca());
-        totalProdutos(canvas, info.getTotal() == null ? null : info.getTotal().getIcmsTotal());
+        totalProdutos(canvas, info.getTotal());
         totalIcms(canvas, info.getTotal() == null ? null : info.getTotal().getIcmsTotal());
         totalIbsCbsIs(canvas, info.getTotal());
         issqn(canvas, info);
@@ -202,9 +202,12 @@ final class DanfeTotais {
     }
 
     /**
-     * Desenha os totais dos produtos e o total da nota.
+     * Desenha os totais dos produtos e o total da nota: vNFTot (com IBS/CBS/IS) quando informado, senao ICMSTot.vNF.
      */
-    private static void totalProdutos(final DanfeCanvas canvas, final NFNotaInfoICMSTotal icms) {
+    private static void totalProdutos(final DanfeCanvas canvas, final NFNotaInfoTotal total) {
+        final NFNotaInfoICMSTotal icms = total == null ? null : total.getIcmsTotal();
+        final String vNFTot = total == null ? null : total.getVNFTot();
+        final String valorNota = vNFTot == null || vNFTot.trim().isEmpty() ? (icms == null ? null : icms.getValorTotalNFe()) : vNFTot;
         titulo(canvas, "TOTAL DOS PRODUTOS E TOTAL DA NOTA");
         linha(canvas, new float[]{1, 1, 1, 1, 1},
                 numero("VALOR TOTAL DOS PRODUTOS", icms == null ? null : icms.getValorTotalDosProdutosServicos()),
@@ -212,7 +215,7 @@ final class DanfeTotais {
                 numero("VALOR DO SEGURO", icms == null ? null : icms.getValorTotalSeguro()),
                 numero("DESCONTO", icms == null ? null : icms.getValorTotalDesconto()),
                 numero("OUTRAS DESPESAS", icms == null ? null : icms.getOutrasDespesasAcessorias()));
-        linha(canvas, new float[]{1, 4}, numero("VALOR TOTAL DA NOTA", icms == null ? null : icms.getValorTotalNFe()), texto("", ""));
+        linha(canvas, new float[]{1, 4}, numero("VALOR TOTAL DA NOTA", valorNota), texto("", ""));
     }
 
     /**

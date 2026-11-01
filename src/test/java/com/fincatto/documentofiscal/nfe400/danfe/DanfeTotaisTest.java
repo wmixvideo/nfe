@@ -65,6 +65,19 @@ class DanfeTotaisTest {
     }
 
     @Test
+    void deveImprimirVNFTotComoTotalDaNotaQuandoInformadoECaiParaVNFSemEle() throws Exception {
+        final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
+        info.getTotal().getIcmsTotal().setValorTotalNFe(new java.math.BigDecimal("111.11"));
+        final String semVNFTot = desenhar(info);
+        Assertions.assertTrue(semVNFTot.contains("111,11"));
+
+        info.getTotal().setVNFTot(new java.math.BigDecimal("222.22"));
+        final String comVNFTot = desenhar(info);
+        Assertions.assertTrue(comVNFTot.contains("222,22"));
+        Assertions.assertFalse(comVNFTot.contains("111,11"));
+    }
+
+    @Test
     void deveDesenharDestinatarioETotaisDaNota() throws Exception {
         final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
         final String texto = desenhar(info);
