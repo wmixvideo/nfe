@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.danfe;
 
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe.NFTipoEmissao;
+import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNota;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
@@ -36,6 +37,7 @@ public class NFGeraDanfeNfce {
 
     private static final String MENSAGEM_NAO_E_NFCE = "O XML não é de uma NFC-e (modelo 65)";
     private static final String MENSAGEM_SEM_PROTOCOLO = "XML sem protocolo de autorização: não é possível gerar o DANFE NFC-e";
+    private static final String MENSAGEM_NAO_AUTORIZADA = "NFC-e sem protocolo de autorização válido (cStat diferente de 100, 120 ou 150): não é possível gerar o DANFE NFC-e";
     private static final String MENSAGEM_NOTA_NAO_INFORMADA = "Nota processada não informada";
     private static final String MENSAGEM_NOTA_SEM_DADOS = "Nota sem os dados da NFC-e (identificação e emitente)";
     private static final String MENSAGEM_XML_NAO_INFORMADO = "XML da NFC-e não informado";
@@ -126,6 +128,12 @@ public class NFGeraDanfeNfce {
         }
         if (nota.getProtocolo() == null && identificacao.getTipoEmissao() != NFTipoEmissao.CONTIGENCIA_OFFLINE) {
             throw new IllegalArgumentException(MENSAGEM_SEM_PROTOCOLO);
+        }
+        if (nota.getProtocolo() != null) {
+            final NFProtocoloInfo protocoloInfo = nota.getProtocolo().getProtocoloInfo();
+            if (protocoloInfo == null || !NFGeraDanfe.STATUS_AUTORIZADOS.contains(protocoloInfo.getStatus())) {
+                throw new IllegalArgumentException(MENSAGEM_NAO_AUTORIZADA);
+            }
         }
     }
 

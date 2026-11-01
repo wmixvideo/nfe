@@ -26,6 +26,7 @@ public final class DanfeFixtures {
     public static NFNotaProcessada notaProcessada() {
         final NFNotaProcessada nota = FabricaDeObjetosFake.getNFNotaProcessada();
         nota.getNota().getInfo().setPagamento(FabricaDeObjetosFake.getNFNotaInfoPagamento());
+        nota.getProtocolo().getProtocoloInfo().setStatus("100");
         return nota;
     }
 

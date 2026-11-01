@@ -41,7 +41,24 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
-    void deveGerarSemProtocoloEmContingenciaOffline() throws Exception {
+    void deveLancarExcecaoParaProtocoloComStatusNaoAutorizado() {
+        for (final String status : new String[]{"204", "110", "301"}) {
+            final String xml = DanfeNfceFixtures.nfce().build().replace("<cStat>100</cStat>", "<cStat>" + status + "</cStat>");
+            final IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(xml, null), "cStat " + status);
+            Assertions.assertTrue(e.getMessage().contains("protocolo"));
+        }
+    }
+
+    @Test
+    void deveGerarParaStatusAutorizados() {
+        for (final String status : new String[]{"100", "120", "150"}) {
+            final String xml = DanfeNfceFixtures.nfce().build().replace("<cStat>100</cStat>", "<cStat>" + status + "</cStat>");
+            Assertions.assertTrue(gerador.gerar(xml, null).length > 0, "cStat " + status);
+        }
+    }
+
+    @Test
+    void deveGerarSemProtocoloEmContingenciaOffline()throws Exception {
         final String xml = DanfeNfceFixtures.nfce().tipoEmissao("9").semProtocolo().build();
         try (final PDDocument documento = Loader.loadPDF(gerador.gerar(xml, null))) {
             Assertions.assertEquals(1, documento.getNumberOfPages());

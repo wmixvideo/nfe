@@ -44,7 +44,26 @@ class NFGeraDanfeTest {
     }
 
     @Test
-    void deveGerarPdfValidoParaNotaProcessada() throws Exception {
+    void deveRejeitarProtocoloComStatusNaoAutorizado() {
+        for (final String status : new String[]{"204", "110", "301", "OK"}) {
+            final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
+            nota.getProtocolo().getProtocoloInfo().setStatus(status);
+            Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota, null), "cStat " + status);
+            Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota.toString(), null), "cStat " + status);
+        }
+    }
+
+    @Test
+    void deveGerarDanfeParaStatusAutorizados() {
+        for (final String status : new String[]{"100", "120", "150"}) {
+            final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
+            nota.getProtocolo().getProtocoloInfo().setStatus(status);
+            Assertions.assertTrue(gerador.gerar(nota, null).length > 0, "cStat " + status);
+        }
+    }
+
+    @Test
+    void deveGerarPdfValidoParaNotaProcessada()throws Exception {
         final byte[] pdf = gerador.gerar(DanfeFixtures.xml(), null);
         Assertions.assertEquals("%PDF", new String(pdf, 0, 4, StandardCharsets.US_ASCII));
         try (final PDDocument documento = Loader.loadPDF(pdf)) {

@@ -183,6 +183,7 @@ class NFGeraDanfeCompletoTest {
     @Test
     void deveGerarPdfCompletoPeloObjetoNotaProcessada() throws Exception {
         final NFNotaProcessada nota = FabricaDeObjetosFake.getNFNotaProcessada();
+        nota.getProtocolo().getProtocoloInfo().setStatus("100");
         try (final PDDocument documento = Loader.loadPDF(gerador.gerar(nota, logotipo()))) {
             Assertions.assertTrue(documento.getNumberOfPages() >= 1);
         }
