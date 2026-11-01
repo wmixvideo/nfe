@@ -26,14 +26,14 @@ public class NFGeraDanfeNfce {
 
     /**
      * Largura do papel termico, em milimetros. A area impressa e menor: as impressoras termicas nao imprimem rente a borda,
-     * por isso o conteudo respeita {@link #MARGEM_LATERAL_MM} de cada lado (72 mm de area util em papel de 80 mm).
+     * por isso o conteudo respeita {@link #MARGEM_LATERAL_MM} de cada lado (78 mm de area util em papel de 80 mm).
      */
     public static final float LARGURA_80_MM = 80f;
 
     /**
      * Margem lateral do cupom, em milimetros (o manual exige no minimo 2 mm).
      */
-    public static final float MARGEM_LATERAL_MM = 4f;
+    public static final float MARGEM_LATERAL_MM = 1f;
 
     private static final String MENSAGEM_NAO_E_NFCE = "O XML não é de uma NFC-e (modelo 65)";
     private static final String MENSAGEM_SEM_PROTOCOLO = "XML sem protocolo de autorização: não é possível gerar o DANFE NFC-e";
