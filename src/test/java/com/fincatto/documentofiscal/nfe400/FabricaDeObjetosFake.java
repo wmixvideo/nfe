@@ -593,6 +593,7 @@ public class FabricaDeObjetosFake {
 
     public static NFNotaInfoTotal getNFNotaInfoTotal() {
         final NFNotaInfoTotal total = new NFNotaInfoTotal();
+        total.setValorTotalLiquidoProdutos(new BigDecimal("999999999999.99"));
         total.setIcmsTotal(FabricaDeObjetosFake.getNFNotaInfoICMSTotal());
         total.setIssqnTotal(FabricaDeObjetosFake.getNFNotaInfoISSQNTotal());
         total.setRetencoesTributos(FabricaDeObjetosFake.getNFNotaInfoRetencoesTributos());

@@ -11,6 +11,9 @@ import org.simpleframework.xml.Element;
 public class NFNotaInfoTotal extends DFBase {
     private static final long serialVersionUID = 4579495471129802055L;
     
+    @Element(name = "vProdLiqTot", required = false)
+    private String valorTotalLiquidoProdutos;
+
     @Element(name = "ICMSTot")
     private NFNotaInfoICMSTotal icmsTotal;
 
@@ -29,6 +32,10 @@ public class NFNotaInfoTotal extends DFBase {
     @Element(name = "vNFTot", required = false)
     private String vNFTot; // W60
 
+    public void setValorTotalLiquidoProdutos(final BigDecimal valorTotalLiquidoProdutos) {
+        this.valorTotalLiquidoProdutos = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalLiquidoProdutos, "Valor Total Líquido dos Produtos");
+    }
+
     public void setIcmsTotal(final NFNotaInfoICMSTotal icmsTotal) {
         this.icmsTotal = icmsTotal;
     }
@@ -39,6 +46,10 @@ public class NFNotaInfoTotal extends DFBase {
 
     public void setRetencoesTributos(final NFNotaInfoRetencoesTributos retencoesTributos) {
         this.retencoesTributos = retencoesTributos;
+    }
+
+    public String getValorTotalLiquidoProdutos() {
+        return this.valorTotalLiquidoProdutos;
     }
 
     public NFNotaInfoICMSTotal getIcmsTotal() {
