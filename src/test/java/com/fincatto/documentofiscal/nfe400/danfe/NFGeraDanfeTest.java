@@ -62,6 +62,15 @@ class NFGeraDanfeTest {
     }
 
     @Test
+    void deveRejeitarNotaQueNaoEModelo55() {
+        final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
+        nota.getNota().getInfo().getIdentificacao().setModelo(com.fincatto.documentofiscal.DFModelo.NFCE);
+        final IllegalArgumentException e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota, null));
+        Assertions.assertTrue(e.getMessage().contains("NF-e"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(nota.toString(), null));
+    }
+
+    @Test
     void deveGerarDanfeParaStatusAutorizados() {
         for (final String status : new String[]{"100", "120", "150"}) {
             final NFNotaProcessada nota = DanfeFixtures.notaProcessada();

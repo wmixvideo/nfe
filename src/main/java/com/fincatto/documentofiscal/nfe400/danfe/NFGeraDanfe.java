@@ -1,6 +1,7 @@
 package com.fincatto.documentofiscal.nfe400.danfe;
 
 import com.fincatto.documentofiscal.DFAmbiente;
+import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.utils.DFPersister;
@@ -26,6 +27,7 @@ public class NFGeraDanfe {
     private static final String MENSAGEM_NAO_AUTORIZADA = "NF-e sem protocolo de autorização válido (cStat diferente de 100, 120 ou 150): não é possível gerar o DANFE";
     /** cStat que indicam NF-e autorizada: 100 (autorizado o uso), 120 e 150 (autorizado fora do prazo). */
     static final Set<String> STATUS_AUTORIZADOS = new HashSet<>(Arrays.asList("100", "120", "150"));
+    private static final String MENSAGEM_NAO_E_NFE = "O XML n\u00e3o \u00e9 de uma NF-e (modelo 55): para NFC-e use NFGeraDanfeNfce";
     private static final String MENSAGEM_NOTA_NAO_INFORMADA = "Nota processada n\u00e3o informada";
     private static final String MENSAGEM_NOTA_SEM_DADOS = "Nota processada sem os dados da NF-e (identifica\u00e7\u00e3o e emitente)";
     private static final String MENSAGEM_ERRO_GERAR_PDF = "Erro ao gerar o PDF do DANFE";
@@ -106,6 +108,9 @@ public class NFGeraDanfe {
         if (nota.getNota() == null || nota.getNota().getInfo() == null || nota.getNota().getInfo().getIdentificacao() == null
                 || nota.getNota().getInfo().getEmitente() == null) {
             throw new IllegalArgumentException(MENSAGEM_NOTA_SEM_DADOS);
+        }
+        if (nota.getNota().getInfo().getIdentificacao().getModelo() != DFModelo.NFE) {
+            throw new IllegalArgumentException(MENSAGEM_NAO_E_NFE);
         }
     }
 
