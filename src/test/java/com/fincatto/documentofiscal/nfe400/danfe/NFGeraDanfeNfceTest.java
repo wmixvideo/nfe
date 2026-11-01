@@ -58,6 +58,15 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void deveImprimirVNFTotComoValorTotalQuandoInformado() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().build();
+        Assertions.assertFalse(textoDe(xml).contains("VALOR TOTAL R$ 99,99"));
+        final String comVNFTot = xml.replace("</ICMSTot>", "</ICMSTot><vNFTot>99.99</vNFTot>");
+        final String texto = textoDe(comVNFTot);
+        Assertions.assertTrue(texto.contains("VALOR TOTAL R$ 99,99"));
+    }
+
+    @Test
     void deveGerarParaStatusAutorizados() {
         for (final String status : new String[]{"100", "120", "150"}) {
             final String xml = DanfeNfceFixtures.nfce().build().replace("<cStat>100</cStat>", "<cStat>" + status + "</cStat>");

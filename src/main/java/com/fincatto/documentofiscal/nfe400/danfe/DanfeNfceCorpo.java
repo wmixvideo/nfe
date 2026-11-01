@@ -62,7 +62,8 @@ final class DanfeNfceCorpo {
         titulo(canvas);
         itens(canvas, info.getItens());
         final NFNotaInfoICMSTotal total = info.getTotal() == null ? null : info.getTotal().getIcmsTotal();
-        totais(canvas, info.getItens() == null ? 0 : info.getItens().size(), total);
+        final String vNFTot = info.getTotal() == null ? null : info.getTotal().getVNFTot();
+        totais(canvas, info.getItens() == null ? 0 : info.getItens().size(), total, vNFTot);
         pagamento(canvas, info.getPagamento());
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
         final boolean contingencia = identificacao.getTipoEmissao() == NFTipoEmissao.CONTIGENCIA_OFFLINE;
@@ -299,9 +300,9 @@ final class DanfeNfceCorpo {
     }
 
     /**
-     * Divisao IV: quantidade de itens, subtotal, desconto e acrescimo (so se existirem) e valor total.
+     * Divisao IV: quantidade de itens, subtotal, desconto e acrescimo (so se existirem) e valor total (vNFTot, com IBS/CBS/IS, quando informado; senao ICMSTot.vNF).
      */
-    private static void totais(final DanfeCanvas canvas, final int quantidadeDeItens, final NFNotaInfoICMSTotal total) {
+    private static void totais(final DanfeCanvas canvas, final int quantidadeDeItens, final NFNotaInfoICMSTotal total, final String vNFTot) {
         parLinha(canvas, "QTD. TOTAL DE ITENS", String.valueOf(quantidadeDeItens), TAMANHO, false);
         if (total == null) {
             return;
@@ -314,7 +315,7 @@ final class DanfeNfceCorpo {
         if (acrescimo.signum() > 0) {
             parLinha(canvas, "ACRÉSCIMO", dinheiro(acrescimo.toPlainString(), 2), TAMANHO, false);
         }
-        parLinha(canvas, "VALOR TOTAL", dinheiro(total.getValorTotalNFe(), 2), TAMANHO_TOTAL, true);
+        parLinha(canvas, "VALOR TOTAL", dinheiro(vNFTot == null || vNFTot.trim().isEmpty() ? total.getValorTotalNFe() : vNFTot, 2), TAMANHO_TOTAL, true);
     }
 
     /**
