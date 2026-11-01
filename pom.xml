@@ -150,25 +150,6 @@
                 <version>3.6.1</version>
             </plugin>
 
-            <!-- Method 2 -->
-            <!-- Package all libraries classes into one runnable jar -->
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-
             <!-- Cobertura de testes -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
