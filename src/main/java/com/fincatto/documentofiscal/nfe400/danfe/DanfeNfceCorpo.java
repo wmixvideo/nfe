@@ -122,7 +122,7 @@ final class DanfeNfceCorpo {
      */
     private static void consulta(final DanfeCanvas canvas, final NFNotaInfoSuplementar suplementar, final String chaveAcesso) {
         centralizado(canvas, "Consulte pela Chave de Acesso em", TAMANHO, true);
-        if (suplementar != null && suplementar.getUrlConsultaChaveAcesso() != null) {
+        if (suplementar != null && suplementar.getUrlConsultaChaveAcesso() != null && !suplementar.getUrlConsultaChaveAcesso().isEmpty()) {
             centralizado(canvas, suplementar.getUrlConsultaChaveAcesso(), TAMANHO, false);
         }
         centralizado(canvas, DanfeFormatador.chaveAcesso(chaveAcesso), TAMANHO, false);
