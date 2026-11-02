@@ -43,15 +43,14 @@ final class DanfeCabecalho {
      * @param canvas area de desenho
      * @param nota nota processada
      * @param logoImage logotipo do emitente, ou null
-     * @param totalFolhas total de folhas impresso em "FOLHA 1/N"
      */
-    static void desenhar(final DanfeCanvas canvas, final NFNotaProcessada nota, final byte[] logoImage, final int totalFolhas) {
+    static void desenhar(final DanfeCanvas canvas, final NFNotaProcessada nota, final byte[] logoImage) {
         final NFNotaInfo info = nota.getNota().getInfo();
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
         final NFNotaInfoEmitente emitente = info.getEmitente();
         canhoto(canvas, identificacao, emitente);
         emitente(canvas, emitente, logoImage);
-        danfe(canvas, identificacao, totalFolhas);
+        danfe(canvas, identificacao);
         chave(canvas, info.getChaveAcesso());
         canvas.avancar(ALTURA_CABECALHO);
         linhaNaturezaEProtocolo(canvas, identificacao, nota.getProtocolo() == null ? null : nota.getProtocolo().getProtocoloInfo());
@@ -99,9 +98,9 @@ final class DanfeCabecalho {
     }
 
     /**
-     * Desenha o quadro "DANFE" com tipo de operacao, numero, serie e folha.
+     * Desenha o quadro "DANFE" com tipo de operacao, numero e serie.
      */
-    private static void danfe(final DanfeCanvas canvas, final NFNotaInfoIdentificacao identificacao, final int totalFolhas) {
+    private static void danfe(final DanfeCanvas canvas, final NFNotaInfoIdentificacao identificacao) {
         canvas.caixa(LARGURA_EMITENTE, LARGURA_DANFE, ALTURA_CABECALHO, "", "", ESQUERDA);
         escreverEm(canvas, 4, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DANFE", 11f);
         escreverEm(canvas, 18, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DOCUMENTO AUXILIAR DA NOTA FISCAL ELETR\u00d4NICA", 5.5f);
@@ -110,7 +109,7 @@ final class DanfeCabecalho {
         canvas.avancar(-34);
         escreverEm(canvas, 50, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "0 - ENTRADA   1 - SA\u00cdDA", 5.5f);
         escreverEm(canvas, 58, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4,
-                DanfeFormatador.numeroNota(identificacao.getNumeroNota()) + "\nS\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie()) + "   FOLHA 1/" + totalFolhas, 6.5f);
+                DanfeFormatador.numeroNota(identificacao.getNumeroNota()) + "\nS\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie()), 6.5f);
     }
 
     /**

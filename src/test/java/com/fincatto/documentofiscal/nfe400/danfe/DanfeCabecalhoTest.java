@@ -51,9 +51,6 @@ class DanfeCabecalhoTest {
         Assertions.assertTrue(texto.contains(nota.getNota().getInfo().getEmitente().getRazaoSocial().substring(0, 20)));
         Assertions.assertTrue(texto.contains("N\u00ba 999.999.999"));
         Assertions.assertTrue(texto.contains("S\u00c9RIE 999"));
-        try (final PDDocument documento = Loader.loadPDF(gerador.gerar(nota.toString(), null))) {
-            Assertions.assertTrue(texto.contains("FOLHA 1/" + documento.getNumberOfPages()), "total de folhas");
-        }
         Assertions.assertTrue(texto.contains("PROTOCOLO DE AUTORIZA\u00c7\u00c3O DE USO"));
         Assertions.assertTrue(texto.contains(nota.getProtocolo().getProtocoloInfo().getNumeroProtocolo()));
     }
@@ -63,7 +60,7 @@ class DanfeCabecalhoTest {
         final String texto;
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento);
-            DanfeCabecalho.desenhar(canvas, DanfeFixtures.notaProcessada(), null, 1);
+            DanfeCabecalho.desenhar(canvas, DanfeFixtures.notaProcessada(), null);
             canvas.fechar();
             documento.save(saida);
             texto = texto(saida.toByteArray());

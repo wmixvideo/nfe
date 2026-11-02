@@ -3,6 +3,7 @@ package com.fincatto.documentofiscal.nfe400.danfe;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.utils.DFPersister;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -83,9 +84,7 @@ public class NFGeraDanfe {
     public byte[] gerar(final NFNotaProcessada nota, final byte[] logoImage, final DanfeCreditos creditos) {
         validar(nota);
         final byte[] logo = logoValido(logoImage);
-        final Pdf primeiro = renderizar(nota, logo, 1, creditos);
-        // o total de folhas so e conhecido depois de desenhar: refaz quando a nota passa de uma pagina
-        return primeiro.paginas == 1 ? primeiro.bytes : renderizar(nota, logo, primeiro.paginas, creditos).bytes;
+        return renderizar(nota, logo, creditos);
     }
 
     /**
@@ -119,43 +118,26 @@ public class NFGeraDanfe {
      *
      * @param nota nota processada
      * @param logo logotipo ja validado, ou null
-     * @param totalFolhas total de folhas impresso no cabecalho
      * @param creditos rodape personalizado, ou null
-     * @return PDF e numero de paginas geradas
+     * @return bytes do PDF
      */
-    private Pdf renderizar(final NFNotaProcessada nota, final byte[] logo, final int totalFolhas, final DanfeCreditos creditos) {
+    private byte[] renderizar(final NFNotaProcessada nota, final byte[] logo, final DanfeCreditos creditos) {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, creditos);
-            DanfeCabecalho.desenhar(canvas, nota, logo, totalFolhas);
+            final NFNotaInfoIdentificacao identificacao = nota.getNota().getInfo().getIdentificacao();
+            canvas.numerarFolhas("NF-e " + DanfeFormatador.numeroNota(identificacao.getNumeroNota()).replace("N\u00ba ", ""));
+            DanfeCabecalho.desenhar(canvas, nota, logo);
             DanfeTotais.desenhar(canvas, nota.getNota().getInfo());
             DanfeItens.desenhar(canvas, nota.getNota().getInfo().getItens());
             DanfeRodape.desenhar(canvas, nota.getNota());
             if (nota.getNota().getInfo().getIdentificacao().getAmbiente() == DFAmbiente.HOMOLOGACAO) {
                 canvas.marcaDagua("SEM VALOR FISCAL");
             }
-            final int paginas = canvas.paginas();
             canvas.fechar();
             documento.save(saida);
-            return new Pdf(saida.toByteArray(), paginas);
+            return saida.toByteArray();
         } catch (final IOException e) {
             throw new IllegalStateException(MENSAGEM_ERRO_GERAR_PDF, e);
-        }
-    }
-
-    /**
-     * PDF gerado e seu numero de paginas.
-     */
-    private static final class Pdf {
-        private final byte[] bytes;
-        private final int paginas;
-
-        /**
-         * @param bytes conteudo do PDF
-         * @param paginas numero de paginas
-         */
-        private Pdf(final byte[] bytes, final int paginas) {
-            this.bytes = bytes;
-            this.paginas = paginas;
         }
     }
 
