@@ -140,6 +140,8 @@ byte[] homologacao = DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.HOMO
 Files.write(Paths.get("/caminho/cadeia-homologacao.jks"), homologacao);
 ```
 
+O arquivo segue o tipo padrão de `KeyStore` do JDK (PKCS12 a partir do Java 9, JKS no Java 8); a extensão `.jks` é só o nome. Ele pode ser carregado como `"JKS"`, como no exemplo da configuração, ou como `"PKCS12"`, porque o JDK mantém a compatibilidade entre os dois formatos (`keystore.type.compat=true`, o padrão).
+
 As SEFAZ trocam seus certificados de tempos em tempos. Se aparecerem erros de SSL/handshake, gere a cadeia novamente. Lembre-se também de que o certificado A1 do emitente costuma valer apenas um ano.
 
 ### Certificado instalado no Windows (A1 ou A3)
