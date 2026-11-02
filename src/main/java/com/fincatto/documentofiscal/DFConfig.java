@@ -88,6 +88,8 @@ public abstract class DFConfig {
      * KeyStore contendo a cadeia de certificados da SEFAZ de destino. <br>
      * Para gerar a cadeia, use o utilitario fornecido com a biblioteca:<br>
      * FileUtils.writeByteArrayToFile(new File("/tmp/producao.jks"), DFCadeiaCertificados.geraCadeiaCertificados(DFAmbiente.PRODUCAO, "senha"));
+     * O arquivo segue o tipo padrao de KeyStore do JDK (PKCS12 a partir do Java 9, JKS no Java 8); a extensao .jks e so o nome.
+     * Ele pode ser carregado como "JKS" ou como "PKCS12", pois o JDK mantem a compatibilidade entre os dois (keystore.type.compat=true, o padrao).
      *
      * @return KeyStore da cadeia de certificados.
      * @throws KeyStoreException Caso nao consiga carregar o KeyStore.
