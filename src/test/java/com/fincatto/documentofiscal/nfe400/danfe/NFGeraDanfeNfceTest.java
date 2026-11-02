@@ -341,6 +341,46 @@ class NFGeraDanfeNfceTest {
     private static final String RECIBO_CLIENTE = "   REDE EXEMPLO\n   VIA CLIENTE\nCARTAO DEBITO  R$ 20,00\nAUT 123456";
 
     @Test
+    void devePaginarSemPassarDoLimiteDeAlturaQuandoOsAnexosSaoGrandes() throws Exception {
+        final StringBuilder anexo = new StringBuilder();
+        for (int i = 0; i < 3000; i++) {
+            anexo.append(String.format("LINHA%05d%n", i));
+        }
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), null,
+                java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente(anexo.toString())));
+        try (final org.apache.pdfbox.pdmodel.PDDocument documento = org.apache.pdfbox.Loader.loadPDF(pdf)) {
+            Assertions.assertTrue(documento.getNumberOfPages() > 1);
+            for (final org.apache.pdfbox.pdmodel.PDPage pagina : documento.getPages()) {
+                Assertions.assertTrue(pagina.getMediaBox().getHeight() <= 14400f, "altura da p\u00e1gina");
+            }
+            // so a ultima pagina e cortada na altura do conteudo, e o texto dela continua dentro da pagina
+            final int ultima = documento.getNumberOfPages();
+            final float alturaUltima = documento.getPage(ultima - 1).getMediaBox().getHeight();
+            Assertions.assertEquals(14400f, documento.getPage(0).getMediaBox().getHeight(), 0.01f);
+            Assertions.assertTrue(alturaUltima < 14400f, "ultima p\u00e1gina menor que o limite");
+            final float[] limites = {Float.MAX_VALUE, -Float.MAX_VALUE};
+            final org.apache.pdfbox.text.PDFTextStripper extrator = new org.apache.pdfbox.text.PDFTextStripper() {
+                @Override
+                protected void processTextPosition(final org.apache.pdfbox.text.TextPosition texto) {
+                    limites[0] = Math.min(limites[0], texto.getYDirAdj() - texto.getHeightDir());
+                    limites[1] = Math.max(limites[1], texto.getYDirAdj());
+                    super.processTextPosition(texto);
+                }
+            };
+            extrator.setStartPage(ultima);
+            extrator.setEndPage(ultima);
+            extrator.getText(documento);
+            Assertions.assertTrue(limites[0] >= 0f, "texto n\u00e3o passa do topo da \u00faltima p\u00e1gina");
+            Assertions.assertTrue(limites[1] <= alturaUltima, "texto n\u00e3o passa da base da \u00faltima p\u00e1gina");
+        }
+        final String texto = texto(pdf);
+        for (final int numero : new int[]{0, 1, 1499, 1500, 2999}) {
+            final String marca = String.format("LINHA%05d", numero);
+            Assertions.assertEquals(1, ocorrencias(texto, marca), marca);
+        }
+    }
+
+    @Test
     void deveGerarOMesmoCupomSemAnexosComListaNulaOuVazia() throws Exception {
         final String xml = DanfeNfceFixtures.xml();
         final String semAnexos = texto(gerador.gerar(xml, null));

@@ -46,7 +46,7 @@ public class NFGeraDanfeNfce {
     private static final String MENSAGEM_ERRO_GERAR_PDF = "Erro ao gerar o PDF do DANFE NFC-e";
 
     /**
-     * Altura da pagina na primeira passada, so para medir o conteudo; e o maior tamanho de pagina aceito pelos leitores de PDF.
+     * Maior altura de pagina aceita pelos leitores de PDF (200 polegadas); tambem e a altura da pagina na primeira passada, que so mede o conteudo.
      */
     private static final float ALTURA_MAXIMA = 14400f;
     private static final float MARGEM = MARGEM_LATERAL_MM * DanfeCanvas.MM;
@@ -104,8 +104,14 @@ public class NFGeraDanfeNfce {
         if (lista.contains(null)) {
             throw new IllegalArgumentException(MENSAGEM_ANEXO_NULO);
         }
-        final Pdf medida = renderizar(nota, ALTURA_MAXIMA, creditos, lista);
-        return renderizar(nota, medida.alturaUsada + 2 * MARGEM, creditos, lista).bytes;
+        // primeira passada so para medir: sem paginar, o conteudo desce alem do fim da pagina e a altura usada sai certa
+        final Pdf medida = renderizar(nota, ALTURA_MAXIMA, creditos, lista, false);
+        final float alturaDoCupom = medida.alturaUsada + 2 * MARGEM;
+        if (alturaDoCupom <= ALTURA_MAXIMA) {
+            return renderizar(nota, alturaDoCupom, creditos, lista, false).bytes;
+        }
+        // maior que o limite dos leitores de PDF: continua em novas paginas de 80 mm, com a altura maxima
+        return renderizar(nota, ALTURA_MAXIMA, creditos, lista, true).bytes;
     }
 
     /**
@@ -144,12 +150,20 @@ public class NFGeraDanfeNfce {
      * @param alturaPagina altura da pagina, em pontos
      * @param creditos rodape personalizado, ou null
      * @param anexos anexos impressos depois do cupom, sem nulos
+     * @param paginar true para abrir novas paginas quando o conteudo passar do fim; false para manter tudo numa pagina so
      * @return PDF e a altura que o conteudo ocupou, sem as margens
      */
-    private Pdf renderizar(final NFNotaProcessada nota, final float alturaPagina, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
+    private Pdf renderizar(final NFNotaProcessada nota, final float alturaPagina, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos,
+                           final boolean paginar) {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, new PDRectangle(LARGURA_PAGINA, alturaPagina), MARGEM);
+            if (!paginar) {
+                canvas.semPaginacao();
+            }
             DanfeNfceCorpo.desenhar(canvas, nota, creditos, anexos);
+            if (paginar) {
+                canvas.encolherUltimaPagina();
+            }
             final float alturaUsada = alturaPagina - MARGEM - canvas.y();
             canvas.fechar();
             documento.save(saida);

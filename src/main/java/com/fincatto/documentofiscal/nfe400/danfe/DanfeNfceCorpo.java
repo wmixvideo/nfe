@@ -41,6 +41,14 @@ final class DanfeNfceCorpo {
     private static final float ESPACO_LINHA = 1.5f;
     private static final float LADO_QR_CODE = 25 * DanfeCanvas.MM;
     private static final float MARGEM_SEGURA_QR_CODE = 3 * DanfeCanvas.MM;
+    /**
+     * Espaco que um item ou o inicio de um anexo precisa para nao ficar partido entre duas paginas (so vale quando o cupom e paginado).
+     */
+    private static final float ALTURA_MINIMA_BLOCO = 60f;
+    /**
+     * Espaco reservado para tudo o que vem depois dos itens (totais ate creditos), para esse trecho nao ser partido entre duas paginas.
+     */
+    private static final float RESERVA_FIM_DO_CUPOM = 4000f;
 
     /**
      * Classe utilitaria, nao deve ser instanciada.
@@ -63,6 +71,7 @@ final class DanfeNfceCorpo {
         itens(canvas, info.getItens());
         final NFNotaInfoICMSTotal total = info.getTotal() == null ? null : info.getTotal().getIcmsTotal();
         final String vNFTot = info.getTotal() == null ? null : info.getTotal().getVNFTot();
+        canvas.garantir(RESERVA_FIM_DO_CUPOM);
         totais(canvas, info.getItens() == null ? 0 : info.getItens().size(), total, vNFTot);
         pagamento(canvas, info.getPagamento());
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
@@ -85,6 +94,7 @@ final class DanfeNfceCorpo {
      * Anexo depois do cupom: linha de corte pontilhada, titulo em negrito (se houver) e texto em fonte monoespacada.
      */
     private static void anexo(final DanfeCanvas canvas, final DanfeNfceAnexo anexo) {
+        canvas.garantir(ALTURA_MINIMA_BLOCO);
         canvas.avancar(ESPACO_ANTES_DO_CORTE);
         separador(canvas, ESPESSURA_LINHA_FINA, true);
         canvas.avancar(ESPACO_DEPOIS_DO_CORTE);
@@ -92,7 +102,11 @@ final class DanfeNfceCorpo {
             centralizado(canvas, anexo.getTitulo(), TAMANHO, true);
             canvas.avancar(ESPACO_LINHA);
         }
-        canvas.avancar(canvas.textoPreformatado(0, canvas.larguraUtil(), anexo.getTexto(), TAMANHO));
+        // linha a linha, para o texto poder continuar na pagina seguinte
+        for (final String linha : (anexo.getTexto() == null ? "" : anexo.getTexto()).split("\r?\n", -1)) {
+            canvas.garantir(canvas.alturaPreformatado(canvas.larguraUtil(), linha, TAMANHO));
+            canvas.avancar(canvas.textoPreformatado(0, canvas.larguraUtil(), linha, TAMANHO));
+        }
     }
 
     /**
@@ -277,6 +291,7 @@ final class DanfeNfceCorpo {
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "CÓDIGO DESCRIÇÃO", "", "", "", true);
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QUANTIDADE", "UN", "VL.UNIT.", "VL.TOTAL", true);
         for (final NFNotaInfoItem item : itens) {
+            canvas.garantir(ALTURA_MINIMA_BLOCO);
             separador(canvas, ESPESSURA_LINHA_FINA, false);
             final String codigoDescricao = valorOuVazio(item.getProduto().getCodigo()) + " " + valorOuVazio(item.getProduto().getDescricao());
             canvas.avancar(canvas.texto(0, canvas.larguraUtil(), codigoDescricao, TAMANHO, ESQUERDA, false));

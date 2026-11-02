@@ -68,6 +68,8 @@ final class DanfeCanvas {
     private String marcaDagua;
     private final DanfeCreditos creditos;
     private boolean numerarFolhas;
+    private boolean paginar = true;
+    private boolean encolherUltimaPagina;
     private String identificacaoDoRodape = "";
     private final PDRectangle pagina;
     private final float margem;
@@ -211,12 +213,12 @@ final class DanfeCanvas {
     }
 
     /**
-     * Abre uma nova pagina quando o espaco restante e menor que a altura pedida.
+     * Abre uma nova pagina quando o espaco restante e menor que a altura pedida; sem efeito depois de {@link #semPaginacao()}.
      *
      * @param altura espaco necessario, em pontos
      */
     void garantir(final float altura) {
-        if (restante() < altura) {
+        if (this.paginar && restante() < altura) {
             novaPagina();
         }
     }
@@ -438,6 +440,40 @@ final class DanfeCanvas {
      * @return altura ocupada, em pontos
      */
     float textoPreformatado(final float x, final float largura, final String texto, final float tamanhoFonte) {
+        final List<String> linhas = linhasPreformatadas(largura, texto, tamanhoFonte);
+        for (int i = 0; i < linhas.size(); i++) {
+            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+        }
+        return linhas.size() * alturaLinha(tamanhoFonte);
+    }
+
+    /**
+     * Altura que {@link #textoPreformatado} ocuparia para o mesmo texto, sem desenhar nada.
+     *
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a medir
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @return altura ocupada, em pontos
+     */
+    float alturaPreformatado(final float largura, final String texto, final float tamanhoFonte) {
+        return linhasPreformatadas(largura, texto, tamanhoFonte).size() * alturaLinha(tamanhoFonte);
+    }
+
+    /**
+     * Passa a ignorar {@link #garantir}: todo o conteudo fica na mesma pagina, qualquer que seja o tamanho.
+     */
+    void semPaginacao() {
+        this.paginar = false;
+    }
+
+    /**
+     * Ao fechar, reduz a ultima pagina a altura que o conteudo ocupou (mais as margens), em vez de deixa-la com a altura cheia.
+     */
+    void encolherUltimaPagina() {
+        this.encolherUltimaPagina = true;
+    }
+
+    private List<String> linhasPreformatadas(final float largura, final String texto, final float tamanhoFonte) {
         final List<String> linhas = new ArrayList<>();
         for (final String linha : (texto == null ? "" : texto).split("\r?\n", -1)) {
             String resto = limpar(linha);
@@ -451,10 +487,7 @@ final class DanfeCanvas {
             }
             linhas.add(resto);
         }
-        for (int i = 0; i < linhas.size(); i++) {
-            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
-        }
-        return linhas.size() * alturaLinha(tamanhoFonte);
+        return linhas;
     }
 
     /**
@@ -623,6 +656,9 @@ final class DanfeCanvas {
     void fechar() {
         try {
             this.conteudo.close();
+            if (this.encolherUltimaPagina) {
+                encolher(this.documento.getPage(this.documento.getNumberOfPages() - 1));
+            }
             for (final PDPage pagina : this.documento.getPages()) {
                 if (this.creditos != null || this.numerarFolhas) {
                     desenharRodape(pagina, this.documento.getPages().indexOf(pagina) + 1, this.documento.getNumberOfPages());
@@ -633,6 +669,24 @@ final class DanfeCanvas {
             }
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
+        }
+    }
+
+    /**
+     * Corta a base da pagina logo abaixo do conteudo: o conteudo desce a distancia cortada, para continuar a margem de cima.
+     */
+    private void encolher(final PDPage pagina) throws IOException {
+        final float corte = this.y - this.margem;
+        if (corte <= 0) {
+            return;
+        }
+        pagina.setMediaBox(new PDRectangle(this.pagina.getWidth(), this.pagina.getHeight() - corte));
+        try (final PDPageContentStream antes = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.PREPEND, true, false)) {
+            antes.saveGraphicsState();
+            antes.transform(Matrix.getTranslateInstance(0, -corte));
+        }
+        try (final PDPageContentStream depois = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.APPEND, true, false)) {
+            depois.restoreGraphicsState();
         }
     }
 
