@@ -391,7 +391,7 @@ byte[] logo = Files.readAllBytes(Paths.get("/caminho/logo.png"));
 byte[] pdf = facade.geraDanfe(notaProcessada, logo);
 ```
 
-Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber:
+Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber. O centro do rodapé de cada página traz, em cinza e letra pequena, o número da nota e a página (`NF-e 999.999.999 - Página 2/5`):
 
 ```java
 DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Minha Empresa - (11) 99999-0000", "www.minhaempresa.com.br");
@@ -401,7 +401,7 @@ byte[] pdf = facade.geraDanfe(notaProcessada, logo, creditos);
 Notas emitidas em homologação saem com a marca d'água "SEM VALOR FISCAL". Se não precisar do `WSFacade`, use direto `new NFGeraDanfe().gerar(...)`, que não exige `NFeConfig` nem certificado.
 
 ### Gerar o cupom DANFE NFC-e (modelo 65)
-O cupom da NFC-e (leiaute do Manual de Padrões do DANFE NFC-e e QR Code, versão 3.3) sai em papel térmico de **80 mm**, sem logotipo e em uma página só, com a altura do conteúdo. As impressoras térmicas não imprimem rente à borda, então o texto respeita 1 mm de margem de cada lado (78 mm de área útil). O QR Code vem do `infNFeSupl` do XML:
+O cupom da NFC-e (leiaute do Manual de Padrões do DANFE NFC-e e QR Code, versão 3.3) sai em papel térmico de **80 mm**, sem logotipo e em uma página só, com a altura do conteúdo. Se o cupom passar de 14400 pt (cerca de 5 m, o maior tamanho de página que os leitores de PDF aceitam), por exemplo com anexos muito longos, ele continua em novas páginas de 80 mm, sem partir uma linha ao meio, e a última página é cortada na altura do que foi impresso. As impressoras térmicas não imprimem rente à borda, então o texto respeita 1 mm de margem de cada lado (78 mm de área útil). O QR Code vem do `infNFeSupl` do XML:
 
 ```java
 byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar);
@@ -573,7 +573,8 @@ Para validar um XML contra os schemas oficiais sem enviá-lo, use `DFXMLValidado
 - Validação do XML contra os schemas (XSD) oficiais antes do envio.
 - Assinatura digital automática com certificado A1, e métodos que aceitam XML já assinado para A3.
 - Geração automática do QR Code da NFC-e.
-- Geração do DANFE da NF-e em PDF, com logotipo e créditos opcionais.
+- Geração do DANFE da NF-e em PDF, com logotipo, créditos opcionais e numeração das páginas no rodapé.
+- Geração do cupom DANFE da NFC-e em PDF (80 mm), com créditos e anexos opcionais, como o comprovante do TEF.
 - Geração da cadeia de certificados da SEFAZ.
 - Conversão entre objetos Java e XML nos dois sentidos.
 - Suporte a fuso horário configurável (`getTimeZone()`).
@@ -608,3 +609,5 @@ Mais detalhes sobre as convenções do projeto estão no [AGENTS.md](AGENTS.md).
 
 ## Licença
 Distribuído sob a [licença Apache 2.0](LICENSE).
+
+O PDF do DANFE embute as fontes Liberation (licença SIL OFL 1.1). O texto da licença e a lista de autores estão em [`src/main/resources/fonts`](src/main/resources/fonts).
