@@ -182,4 +182,39 @@ class DanfeItensTest {
         final String texto = desenhar(Collections.singletonList(item)).texto;
         Assertions.assertTrue(texto.contains("77,66"), "valor do ICMS monof\u00e1sico");
     }
+
+    @Test
+    void deveMapearValoresDoIcms15NaTabelaDeItens() throws Exception {
+        final NFNotaInfoItem item = itemSimples();
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS15 icms15 = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS15();
+        icms15.setOrigem(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.NACIONAL);
+        icms15.setSituacaoTributaria(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS.CST_15);
+        icms15.setQuantidadeBaseCalculo(new java.math.BigDecimal("1234.56"));
+        icms15.setPercentualAliquota(new java.math.BigDecimal("1.2345"));
+        icms15.setValorTributo(new java.math.BigDecimal("88.77"));
+        icms15.setQuantidadeBaseCalculoTributadaSujeitaRetencao(new java.math.BigDecimal("10.00"));
+        icms15.setPercentualAliquotaRetencao(new java.math.BigDecimal("2.0000"));
+        icms15.setValorTributoRetencao(new java.math.BigDecimal("5.55"));
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS icms = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS();
+        icms.setIcms15(icms15);
+        item.getImposto().setIcms(icms);
+        final String texto = desenhar(Collections.singletonList(item)).texto;
+        Assertions.assertTrue(texto.contains("88,77"), "valor do ICMS monof\u00e1sico pr\u00f3prio");
+    }
+
+    @Test
+    void deveMapearValoresDoIcms61NaTabelaDeItens() throws Exception {
+        final NFNotaInfoItem item = itemSimples();
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS61 icms61 = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS61();
+        icms61.setOrigem(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.NACIONAL);
+        icms61.setSituacaoTributaria(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS.CST_61);
+        icms61.setQuantidadeBaseCalculo(new java.math.BigDecimal("1234.56"));
+        icms61.setPercentualAliquota(new java.math.BigDecimal("1.2345"));
+        icms61.setValorTributo(new java.math.BigDecimal("66.44"));
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS icms = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS();
+        icms.setIcms61(icms61);
+        item.getImposto().setIcms(icms);
+        final String texto = desenhar(Collections.singletonList(item)).texto;
+        Assertions.assertTrue(texto.contains("66,44"), "valor do ICMS monof\u00e1sico cobrado anteriormente");
+    }
 }

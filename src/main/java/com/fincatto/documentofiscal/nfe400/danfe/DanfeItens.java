@@ -274,7 +274,7 @@ final class DanfeItens {
             return new Icms(cst(icms.getIcms10().getOrigem(), icms.getIcms10().getSituacaoTributaria().getCodigo()), icms.getIcms10().getValorBaseCalculo(), icms.getIcms10().getPercentualAliquota(), icms.getIcms10().getValorTributo());
         }
         if (icms.getIcms15() != null) {
-            return new Icms(cst(icms.getIcms15().getOrigem(), icms.getIcms15().getSituacaoTributaria().getCodigo()), null, null, null);
+            return new Icms(cst(icms.getIcms15().getOrigem(), icms.getIcms15().getSituacaoTributaria().getCodigo()), icms.getIcms15().getQuantidadeBaseCalculo(), icms.getIcms15().getPercentualAliquota(), icms.getIcms15().getValorTributo());
         }
         if (icms.getIcms20() != null) {
             return new Icms(cst(icms.getIcms20().getOrigem(), icms.getIcms20().getSituacaoTributaria().getCodigo()), icms.getIcms20().getValorBCICMS(), icms.getIcms20().getPercentualAliquota(), icms.getIcms20().getValorTributo());
@@ -295,7 +295,7 @@ final class DanfeItens {
             return new Icms(cst(icms.getIcms60().getOrigem(), icms.getIcms60().getSituacaoTributaria().getCodigo()), null, null, null);
         }
         if (icms.getIcms61() != null) {
-            return new Icms(cst(icms.getIcms61().getOrigem(), icms.getIcms61().getSituacaoTributaria().getCodigo()), null, null, null);
+            return new Icms(cst(icms.getIcms61().getOrigem(), icms.getIcms61().getSituacaoTributaria().getCodigo()), icms.getIcms61().getQuantidadeBaseCalculo(), icms.getIcms61().getPercentualAliquota(), icms.getIcms61().getValorTributo());
         }
         if (icms.getIcms70() != null) {
             return new Icms(cst(icms.getIcms70().getOrigem(), icms.getIcms70().getSituacaoTributaria().getCodigo()), icms.getIcms70().getValorBC(), icms.getIcms70().getPercentualAliquota(), icms.getIcms70().getValorTributo());
