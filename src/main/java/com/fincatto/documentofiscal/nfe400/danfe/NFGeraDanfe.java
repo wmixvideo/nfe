@@ -125,7 +125,7 @@ public class NFGeraDanfe {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, creditos);
             final NFNotaInfoIdentificacao identificacao = nota.getNota().getInfo().getIdentificacao();
-            canvas.numerarFolhas("NF-e " + DanfeFormatador.numeroNota(identificacao.getNumeroNota()).replace("N\u00ba ", ""));
+            canvas.numerarFolhas("NF-e " + DanfeFormatador.numeroNotaSemZeros(identificacao.getNumeroNota()));
             DanfeCabecalho.desenhar(canvas, nota, logo);
             DanfeTotais.desenhar(canvas, nota.getNota().getInfo());
             DanfeItens.desenhar(canvas, nota.getNota().getInfo().getItens());

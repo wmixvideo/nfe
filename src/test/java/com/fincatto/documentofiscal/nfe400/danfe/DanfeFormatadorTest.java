@@ -28,8 +28,9 @@ class DanfeFormatadorTest {
 
     @Test
     void deveFormatarNumeroESerie() {
-        Assertions.assertEquals("N\u00ba 000.000.001", DanfeFormatador.numeroNota("1"));
+        Assertions.assertEquals("N\u00ba 1", DanfeFormatador.numeroNota("1"));
         Assertions.assertEquals("N\u00ba 123.456.789", DanfeFormatador.numeroNota("123456789"));
+        Assertions.assertEquals("N\u00ba 500", DanfeFormatador.numeroNota("000000500"));
         Assertions.assertEquals("001", DanfeFormatador.serie("1"));
     }
 
@@ -87,5 +88,15 @@ class DanfeFormatadorTest {
         Assertions.assertEquals("", DanfeFormatador.hora(null));
         Assertions.assertEquals("", DanfeFormatador.dataHora(null));
         Assertions.assertEquals("", DanfeFormatador.semCaracteresDeControle(null));
+    }
+
+    @Test
+    void deveFormatarNumeroDaNotaSemZerosAEsquerda() {
+        Assertions.assertEquals("500", DanfeFormatador.numeroNotaSemZeros("000000500"));
+        Assertions.assertEquals("1", DanfeFormatador.numeroNotaSemZeros("1"));
+        Assertions.assertEquals("1.234", DanfeFormatador.numeroNotaSemZeros("000001234"));
+        Assertions.assertEquals("999.999.999", DanfeFormatador.numeroNotaSemZeros("999999999"));
+        Assertions.assertEquals("0", DanfeFormatador.numeroNotaSemZeros("0"));
+        Assertions.assertEquals("", DanfeFormatador.numeroNotaSemZeros(null));
     }
 }

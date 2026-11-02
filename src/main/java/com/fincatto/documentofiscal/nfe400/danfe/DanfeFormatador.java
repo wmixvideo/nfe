@@ -54,7 +54,7 @@ final class DanfeFormatador {
     }
 
     /**
-     * Formata o numero da nota como "No 000.000.000".
+     * Formata o numero da nota como "No 500" ou "No 1.234", sem zeros a esquerda.
      *
      * @param numero numero da nota
      * @return numero formatado
@@ -63,8 +63,21 @@ final class DanfeFormatador {
         if (numero == null) {
             return "";
         }
-        final String preenchido = String.format("%9s", numero).replace(' ', '0');
-        return "N\u00ba " + preenchido.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3");
+        return "N\u00ba " + numeroNotaSemZeros(numero);
+    }
+
+    /**
+     * Numero da nota sem zeros a esquerda e com ponto a cada tres digitos (500 fica 500; 1234 fica 1.234).
+     *
+     * @param numero numero da nota
+     * @return numero formatado, ou vazio se nulo
+     */
+    static String numeroNotaSemZeros(final String numero) {
+        if (numero == null) {
+            return "";
+        }
+        final String semZeros = numero.replaceFirst("^0+(?!$)", "");
+        return semZeros.replaceAll("(?<=\\d)(?=(\\d{3})+$)", ".");
     }
 
     /**
