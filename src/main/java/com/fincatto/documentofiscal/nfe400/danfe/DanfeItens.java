@@ -45,6 +45,7 @@ final class DanfeItens {
         private final String base;
         private final String aliquota;
         private final String valor;
+        private final boolean aliquotaAdRem;
 
         /**
          * @param cst CST ou CSOSN com a origem, ou null
@@ -53,10 +54,18 @@ final class DanfeItens {
          * @param valor valor do ICMS, ou null
          */
         private Icms(final String cst, final String base, final String aliquota, final String valor) {
+            this(cst, base, aliquota, valor, false);
+        }
+
+        /**
+         * @param aliquotaAdRem true quando a aliquota e ad rem (valor em reais por unidade), e nao um percentual
+         */
+        private Icms(final String cst, final String base, final String aliquota, final String valor, final boolean aliquotaAdRem) {
             this.cst = cst;
             this.base = base;
             this.aliquota = aliquota;
             this.valor = valor;
+            this.aliquotaAdRem = aliquotaAdRem;
         }
     }
 
@@ -186,7 +195,7 @@ final class DanfeItens {
                         par("IS", valor(is == null ? null : is.getVBCIS())),
                         par("IPI", valor(ipi == null ? null : ipi.getValorBaseCalculo()))),
                 linhas(
-                        juntar(par("ICMS", percentual(icms.aliquota)), par("CBS", percentual(aliquotaCbs))),
+                        juntar(par("ICMS", icms.aliquotaAdRem ? adRem(icms.aliquota) : percentual(icms.aliquota)), par("CBS", percentual(aliquotaCbs))),
                         juntar(par("IBS UF", percentual(aliquotaUf)), par("IPI", percentual(ipi == null ? null : ipi.getPercentualAliquota()))),
                         juntar(par("IBS MUN", percentual(aliquotaMun)), par("IS", percentual(is == null ? null : is.getPIS())))),
                 linhas(
@@ -215,6 +224,13 @@ final class DanfeItens {
      */
     private static String percentual(final String xml) {
         return xml == null ? null : DanfeFormatador.valor(xml) + "%";
+    }
+
+    /**
+     * Aliquota ad rem: valor em reais por unidade, sem o simbolo de percentual.
+     */
+    private static String adRem(final String xml) {
+        return xml == null ? null : "R$ " + DanfeFormatador.valor(xml);
     }
 
     /**
@@ -268,13 +284,13 @@ final class DanfeItens {
             return new Icms(cst(icms.getIcms00().getOrigem(), icms.getIcms00().getSituacaoTributaria().getCodigo()), icms.getIcms00().getValorBaseCalculo(), icms.getIcms00().getPercentualAliquota(), icms.getIcms00().getValorTributo());
         }
         if (icms.getIcms02() != null) {
-            return new Icms(cst(icms.getIcms02().getOrigem(), icms.getIcms02().getSituacaoTributaria().getCodigo()), icms.getIcms02().getQuantidadeBaseCalculo(), icms.getIcms02().getPercentualAliquota(), icms.getIcms02().getValorTributo());
+            return new Icms(cst(icms.getIcms02().getOrigem(), icms.getIcms02().getSituacaoTributaria().getCodigo()), icms.getIcms02().getQuantidadeBaseCalculo(), icms.getIcms02().getPercentualAliquota(), icms.getIcms02().getValorTributo(), true);
         }
         if (icms.getIcms10() != null) {
             return new Icms(cst(icms.getIcms10().getOrigem(), icms.getIcms10().getSituacaoTributaria().getCodigo()), icms.getIcms10().getValorBaseCalculo(), icms.getIcms10().getPercentualAliquota(), icms.getIcms10().getValorTributo());
         }
         if (icms.getIcms15() != null) {
-            return new Icms(cst(icms.getIcms15().getOrigem(), icms.getIcms15().getSituacaoTributaria().getCodigo()), icms.getIcms15().getQuantidadeBaseCalculo(), icms.getIcms15().getPercentualAliquota(), icms.getIcms15().getValorTributo());
+            return new Icms(cst(icms.getIcms15().getOrigem(), icms.getIcms15().getSituacaoTributaria().getCodigo()), icms.getIcms15().getQuantidadeBaseCalculo(), icms.getIcms15().getPercentualAliquota(), icms.getIcms15().getValorTributo(), true);
         }
         if (icms.getIcms20() != null) {
             return new Icms(cst(icms.getIcms20().getOrigem(), icms.getIcms20().getSituacaoTributaria().getCodigo()), icms.getIcms20().getValorBCICMS(), icms.getIcms20().getPercentualAliquota(), icms.getIcms20().getValorTributo());
@@ -289,13 +305,13 @@ final class DanfeItens {
             return new Icms(cst(icms.getIcms51().getOrigem(), icms.getIcms51().getSituacaoTributaria().getCodigo()), icms.getIcms51().getValorBCICMS(), icms.getIcms51().getPercentualICMS(), icms.getIcms51().getValorICMS());
         }
         if (icms.getIcms53() != null) {
-            return new Icms(cst(icms.getIcms53().getOrigem(), icms.getIcms53().getSituacaoTributaria().getCodigo()), null, icms.getIcms53().getPercentualAliquota(), icms.getIcms53().getValorTributo());
+            return new Icms(cst(icms.getIcms53().getOrigem(), icms.getIcms53().getSituacaoTributaria().getCodigo()), null, icms.getIcms53().getPercentualAliquota(), icms.getIcms53().getValorTributo(), true);
         }
         if (icms.getIcms60() != null) {
             return new Icms(cst(icms.getIcms60().getOrigem(), icms.getIcms60().getSituacaoTributaria().getCodigo()), null, null, null);
         }
         if (icms.getIcms61() != null) {
-            return new Icms(cst(icms.getIcms61().getOrigem(), icms.getIcms61().getSituacaoTributaria().getCodigo()), icms.getIcms61().getQuantidadeBaseCalculo(), icms.getIcms61().getPercentualAliquota(), icms.getIcms61().getValorTributo());
+            return new Icms(cst(icms.getIcms61().getOrigem(), icms.getIcms61().getSituacaoTributaria().getCodigo()), icms.getIcms61().getQuantidadeBaseCalculo(), icms.getIcms61().getPercentualAliquota(), icms.getIcms61().getValorTributo(), true);
         }
         if (icms.getIcms70() != null) {
             return new Icms(cst(icms.getIcms70().getOrigem(), icms.getIcms70().getSituacaoTributaria().getCodigo()), icms.getIcms70().getValorBC(), icms.getIcms70().getPercentualAliquota(), icms.getIcms70().getValorTributo());
