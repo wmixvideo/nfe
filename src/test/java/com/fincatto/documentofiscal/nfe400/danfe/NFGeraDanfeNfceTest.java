@@ -381,6 +381,26 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void devePaginarOsCreditosQuandoPassamDeUmaPagina() throws Exception {
+        final StringBuilder creditos = new StringBuilder();
+        for (int i = 0; i < 2000; i++) {
+            creditos.append(String.format("CREDITO%05d%n", i));
+        }
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), new DanfeCreditos(creditos.toString(), null));
+        try (final org.apache.pdfbox.pdmodel.PDDocument documento = org.apache.pdfbox.Loader.loadPDF(pdf)) {
+            Assertions.assertTrue(documento.getNumberOfPages() > 1);
+            for (final org.apache.pdfbox.pdmodel.PDPage pagina : documento.getPages()) {
+                Assertions.assertTrue(pagina.getMediaBox().getHeight() <= 14400f, "altura da p\u00e1gina");
+            }
+        }
+        final String texto = texto(pdf);
+        for (final int numero : new int[]{0, 1, 999, 1000, 1999}) {
+            final String marca = String.format("CREDITO%05d", numero);
+            Assertions.assertEquals(1, ocorrencias(texto, marca), marca);
+        }
+    }
+
+    @Test
     void deveGerarOMesmoCupomSemAnexosComListaNulaOuVazia() throws Exception {
         final String xml = DanfeNfceFixtures.xml();
         final String semAnexos = texto(gerador.gerar(xml, null));
