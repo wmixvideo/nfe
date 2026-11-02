@@ -393,7 +393,7 @@ byte[] logo = Files.readAllBytes(Paths.get("/caminho/logo.png"));
 byte[] pdf = facade.geraDanfe(notaProcessada, logo);
 ```
 
-Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber. O centro do rodapé de cada página traz, em cinza e letra pequena, o número da nota e a página (`NF-e 999.999.999 - Página 2/5`):
+Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber. O centro do rodapé de cada página traz, em cinza e letra pequena, o número da nota, sem zeros à esquerda, e a página (`NF-e 500 - Página 2/5`):
 
 ```java
 DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Minha Empresa - (11) 99999-0000", "www.minhaempresa.com.br");
