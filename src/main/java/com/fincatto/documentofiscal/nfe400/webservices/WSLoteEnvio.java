@@ -34,7 +34,11 @@ class WSLoteEnvio implements DFLog {
     }
 
     NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
-        return this.comunicaLote(loteAssinadoXml, modelo);
+        return this.enviaLoteAssinado(loteAssinadoXml, modelo, true);
+    }
+
+    NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo, final boolean validarXML) throws Exception {
+        return this.comunicaLote(loteAssinadoXml, modelo, validarXML);
     }
 
     NFLoteEnvioRetornoDados enviaLote(final NFLoteEnvio lote, boolean validarXML) throws Exception {
