@@ -101,8 +101,11 @@ public class NFGeraDanfeNfce {
     public byte[] gerar(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos) {
         validar(nota);
         final List<DanfeNfceAnexo> lista = anexos == null ? Collections.<DanfeNfceAnexo>emptyList() : anexos;
-        if (lista.contains(null)) {
-            throw new IllegalArgumentException(MENSAGEM_ANEXO_NULO);
+        // por iteracao: contains(null) lanca NullPointerException em listas imutaveis (List.of, List.copyOf)
+        for (final DanfeNfceAnexo anexo : lista) {
+            if (anexo == null) {
+                throw new IllegalArgumentException(MENSAGEM_ANEXO_NULO);
+            }
         }
         // primeira passada so para medir: sem paginar, o conteudo desce alem do fim da pagina e a altura usada sai certa
         final Pdf medida = renderizar(nota, ALTURA_MAXIMA, creditos, lista, false);
