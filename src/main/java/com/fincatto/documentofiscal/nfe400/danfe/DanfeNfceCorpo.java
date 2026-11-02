@@ -217,7 +217,8 @@ final class DanfeNfceCorpo {
     private static void cabecalho(final DanfeCanvas canvas, final NFNotaInfoEmitente emitente) {
         centralizado(canvas, emitente.getRazaoSocial(), TAMANHO_TOTAL, true);
         final String ie = emitente.getInscricaoEstadual() == null ? "" : " - IE " + emitente.getInscricaoEstadual();
-        centralizado(canvas, "CNPJ " + DanfeFormatador.cnpjOuCpf(emitente.getCpfj()) + ie, TAMANHO, true);
+        final String rotuloDocumento = emitente.getCpf() != null && !emitente.getCpf().isEmpty() ? "CPF " : "CNPJ ";
+        centralizado(canvas, rotuloDocumento + DanfeFormatador.cnpjOuCpf(emitente.getCpfj()) + ie, TAMANHO, true);
         centralizado(canvas, endereco(emitente.getEndereco()), TAMANHO, false);
         canvas.avancar(ESPACO_SECAO);
     }

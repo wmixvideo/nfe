@@ -124,6 +124,15 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void deveRotularComoCpfQuandoOEmitenteForPessoaFisica() throws Exception {
+        final String xml = DanfeNfceFixtures.xml().replace("<CNPJ>11222333000181</CNPJ>", "<CPF>12345678909</CPF>");
+        Assertions.assertNotEquals(DanfeNfceFixtures.xml(), xml);
+        final String texto = textoDe(xml);
+        Assertions.assertTrue(texto.contains("CPF 123.456.789-09 - IE 1234567890"));
+        Assertions.assertFalse(texto.contains("CNPJ 123.456.789-09"));
+    }
+
+    @Test
     void deveImprimirCabecalhoComRazaoSocialCnpjIeEEnderecoSemPais() throws Exception {
         final String texto = textoDe(DanfeNfceFixtures.xml());
         Assertions.assertTrue(texto.contains("EMPRESA EXEMPLO COMERCIO LTDA"));
