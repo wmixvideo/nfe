@@ -46,7 +46,8 @@ final class DanfeNfceCorpo {
      */
     private static final float ALTURA_MINIMA_BLOCO = 60f;
     /**
-     * Espaco reservado para tudo o que vem depois dos itens (totais ate creditos), para esse trecho nao ser partido entre duas paginas.
+     * Espaco reservado para o trecho de tamanho limitado que vem depois dos itens (totais ate o QR Code), para ele nao ser partido
+     * entre duas paginas. As informacoes complementares e os creditos, de tamanho livre, sao paginados linha a linha.
      */
     private static final float RESERVA_FIM_DO_CUPOM = 4000f;
 
@@ -207,7 +208,7 @@ final class DanfeNfceCorpo {
         if (infCpl == null || infCpl.isEmpty()) {
             return;
         }
-        canvas.avancar(canvas.texto(0, canvas.larguraUtil(), infCpl, TAMANHO, ESQUERDA, false));
+        canvas.textoPaginado(0, canvas.larguraUtil(), infCpl, TAMANHO, ESQUERDA, false);
         canvas.avancar(ESPACO_SECAO);
     }
 
@@ -220,7 +221,7 @@ final class DanfeNfceCorpo {
         }
         for (final String texto : new String[]{creditos.getEsquerda(), creditos.getDireita()}) {
             if (texto != null && !texto.isEmpty()) {
-                centralizado(canvas, texto, TAMANHO, true);
+                canvas.textoPaginado(0, canvas.larguraUtil(), texto, TAMANHO, CENTRO, true);
             }
         }
     }

@@ -417,6 +417,28 @@ final class DanfeCanvas {
     }
 
     /**
+     * Como {@link #texto(float, float, String, float, Alinhamento, boolean)}, mas linha a linha e movendo o cursor: se o cupom for
+     * paginado, o texto continua na pagina seguinte em vez de passar do limite de altura da pagina.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a desenhar
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @param alinhamento alinhamento de cada linha dentro da largura
+     * @param negrito true para desenhar na fonte em negrito
+     */
+    void textoPaginado(final float x, final float largura, final String texto, final float tamanhoFonte, final Alinhamento alinhamento, final boolean negrito) {
+        final PDFont fonteDoTexto = negrito ? this.negrito : this.fonte;
+        for (final String linha : quebrar(fonteDoTexto, texto, largura, tamanhoFonte)) {
+            garantir(alturaLinha(tamanhoFonte));
+            final float sobra = Math.max(0f, largura - larguraNaFonte(fonteDoTexto, linha, tamanhoFonte));
+            final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
+            escrever(fonteDoTexto, tamanhoFonte, Color.BLACK, this.margem + x + deslocamento, this.y - tamanhoFonte, linha);
+            avancar(alturaLinha(tamanhoFonte));
+        }
+    }
+
+    /**
      * Desenha uma unica linha de texto centralizada na largura informada, a partir do cursor; nao quebra nem pagina.
      *
      * @param x deslocamento horizontal a partir da margem, em pontos
