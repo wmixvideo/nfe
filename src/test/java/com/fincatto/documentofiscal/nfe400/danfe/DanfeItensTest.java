@@ -207,6 +207,24 @@ class DanfeItensTest {
     }
 
     @Test
+    void deveMapearValoresDoIcms53NaTabelaDeItens() throws Exception {
+        final NFNotaInfoItem item = itemSimples();
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS53 icms53 = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS53();
+        icms53.setOrigem(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.NACIONAL);
+        icms53.setSituacaoTributaria(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS.CST_53);
+        icms53.setQuantidadeBaseCalculo(new java.math.BigDecimal("4321.09"));
+        icms53.setPercentualAliquota(new java.math.BigDecimal("1.2345"));
+        icms53.setValorTributo(new java.math.BigDecimal("55.33"));
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS icms = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS();
+        icms.setIcms53(icms53);
+        item.getImposto().setIcms(icms);
+        final String texto = desenhar(Collections.singletonList(item)).texto;
+        Assertions.assertTrue(texto.contains("4.321,09"), "quantidade tributada (base)");
+        Assertions.assertTrue(texto.contains("ICMS R$ 1,2345"), "al\u00edquota ad rem em reais");
+        Assertions.assertTrue(texto.contains("55,33"), "valor do ICMS monof\u00e1sico");
+    }
+
+    @Test
     void deveMapearValoresDoIcms61NaTabelaDeItens() throws Exception {
         final NFNotaInfoItem item = itemSimples();
         final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS61 icms61 = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS61();

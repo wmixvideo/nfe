@@ -305,7 +305,7 @@ final class DanfeItens {
             return new Icms(cst(icms.getIcms51().getOrigem(), icms.getIcms51().getSituacaoTributaria().getCodigo()), icms.getIcms51().getValorBCICMS(), icms.getIcms51().getPercentualICMS(), icms.getIcms51().getValorICMS());
         }
         if (icms.getIcms53() != null) {
-            return new Icms(cst(icms.getIcms53().getOrigem(), icms.getIcms53().getSituacaoTributaria().getCodigo()), null, icms.getIcms53().getPercentualAliquota(), icms.getIcms53().getValorTributo(), true);
+            return new Icms(cst(icms.getIcms53().getOrigem(), icms.getIcms53().getSituacaoTributaria().getCodigo()), icms.getIcms53().getQuantidadeBaseCalculo(), icms.getIcms53().getPercentualAliquota(), icms.getIcms53().getValorTributo(), true);
         }
         if (icms.getIcms60() != null) {
             return new Icms(cst(icms.getIcms60().getOrigem(), icms.getIcms60().getSituacaoTributaria().getCodigo()), null, null, null);
