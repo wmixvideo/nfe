@@ -166,4 +166,20 @@ class DanfeItensTest {
             Assertions.assertEquals(2 * canvas.alturaLinha(6f) + 4f, alturaDaLinha, 0.01f);
         }
     }
+
+    @Test
+    void deveMapearValoresDoIcms02NaTabelaDeItens() throws Exception {
+        final NFNotaInfoItem item = itemSimples();
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS02 icms02 = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS02();
+        icms02.setOrigem(com.fincatto.documentofiscal.nfe400.classes.NFOrigem.NACIONAL);
+        icms02.setSituacaoTributaria(com.fincatto.documentofiscal.nfe400.classes.NFNotaInfoImpostoTributacaoICMS.CST_02);
+        icms02.setQuantidadeBaseCalculo(new java.math.BigDecimal("1234.56"));
+        icms02.setPercentualAliquota(new java.math.BigDecimal("1.2345"));
+        icms02.setValorTributo(new java.math.BigDecimal("77.66"));
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS icms = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoICMS();
+        icms.setIcms02(icms02);
+        item.getImposto().setIcms(icms);
+        final String texto = desenhar(Collections.singletonList(item)).texto;
+        Assertions.assertTrue(texto.contains("77,66"), "valor do ICMS monof\u00e1sico");
+    }
 }
