@@ -29,6 +29,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.downloadxml.NFCeDownload
 import com.fincatto.documentofiscal.nfe400.classes.nota.listagemchaves.NFCeListagemChavesRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.statusservico.consulta.NFStatusServicoConsultaRetorno;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
+import com.fincatto.documentofiscal.utils.DFResolvedorEndpoint;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
 import com.fincatto.documentofiscal.utils.DFSocketFactory;
 
@@ -87,8 +88,18 @@ public class WSFacade implements Closeable {
     private volatile WSNFCeDownloadXML wsNFCeDownloadXML;
 
     public WSFacade(final NFeConfig config) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
+        this(config, DFResolvedorEndpoint.padrao());
+    }
+
+    /**
+     * Cria uma facade com resolucao de endpoints isolada nesta instancia.
+     *
+     * @param config configuracao fiscal e de transporte.
+     * @param resolvedorEndpoint resolvedor aplicado ao endpoint oficial imediatamente antes do POST.
+     */
+    public WSFacade(final NFeConfig config, final DFResolvedorEndpoint resolvedorEndpoint) throws KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException {
         this.config = config;
-        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config);
+        this.httpClient = new DFHttpClient(new DFSocketFactory(config).getSslContext(), config, resolvedorEndpoint);
     }
 
     @Override
@@ -141,10 +152,22 @@ public class WSFacade implements Closeable {
      * o sefaz
      */
     public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo) throws Exception {
+        return this.enviaLoteAssinado(loteAssinadoXml, modelo, true);
+    }
+
+    /**
+     * Faz o envio de um lote previamente assinado, com controle explicito da validacao XSD.
+     *
+     * @param loteAssinadoXml lote assinado no formato XML.
+     * @param modelo modelo da nota (NF-e ou NFC-e).
+     * @param validarXML indica se o lote deve ser validado contra o XSD antes da transmissao.
+     * @return dados do lote retornado pelo webservice.
+     */
+    public NFLoteEnvioRetorno enviaLoteAssinado(final String loteAssinadoXml, final DFModelo modelo, final boolean validarXML) throws Exception {
         if (this.wsLoteEnvio == null) {
             this.wsLoteEnvio = new WSLoteEnvio(this.config, this.httpClient);
         }
-        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo);
+        return this.wsLoteEnvio.enviaLoteAssinado(loteAssinadoXml, modelo, validarXML);
     }
 
     /**

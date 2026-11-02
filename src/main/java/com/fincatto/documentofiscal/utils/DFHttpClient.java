@@ -24,6 +24,7 @@ import javax.net.ssl.SSLContext;
 import java.io.Closeable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Cliente HTTP compartilhado para os webservices SOAP da SEFAZ, baseado no
@@ -46,6 +47,7 @@ public class DFHttpClient implements Closeable {
     private static final TimeValue OCIOSIDADE_MAXIMA_CONEXAO = TimeValue.ofSeconds(30);
 
     private final CloseableHttpClient httpClient;
+    private final DFResolvedorEndpoint resolvedorEndpoint;
 
     /**
      * @param sslContext SSLContext ja configurado com o certificado A1 e a cadeia da SEFAZ,
@@ -53,6 +55,16 @@ public class DFHttpClient implements Closeable {
      * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes
      */
     public DFHttpClient(final SSLContext sslContext, final DFConfig config) {
+        this(sslContext, config, DFResolvedorEndpoint.padrao());
+    }
+
+    /**
+     * @param sslContext SSLContext ja configurado com o certificado A1 e a cadeia da SEFAZ.
+     * @param config configuracao de timeouts e protocolos TLS a ser usada nas requisicoes.
+     * @param resolvedorEndpoint resolvedor de endpoints desta instancia do cliente.
+     */
+    public DFHttpClient(final SSLContext sslContext, final DFConfig config, final DFResolvedorEndpoint resolvedorEndpoint) {
+        this.resolvedorEndpoint = Objects.requireNonNull(resolvedorEndpoint, "resolvedorEndpoint");
         final DefaultClientTlsStrategy tlsStrategy =
                 new DefaultClientTlsStrategy(sslContext, config.getSSLProtocolos(), null, SSLBufferMode.STATIC, new DefaultHostnameVerifier());
 
@@ -132,7 +144,8 @@ public class DFHttpClient implements Closeable {
      * corpo nao seja um {@code soap:Fault} reconhecivel.
      */
     public String postSoap(final String endpoint, final String soapAction, final String envelopeXml) throws IOException, DFSoapFaultException {
-        final HttpPost post = new HttpPost(endpoint);
+        final String endpointResolvido = Objects.requireNonNull(this.resolvedorEndpoint.resolver(endpoint), "endpoint resolvido");
+        final HttpPost post = new HttpPost(endpointResolvido);
         post.setEntity(new StringEntity(envelopeXml, ContentType.create("application/soap+xml", StandardCharsets.UTF_8)));
         // SOAP 1.2 carrega a action dentro do Content-Type, nao num header SOAPAction separado (como no SOAP 1.1)
         post.setHeader(HttpHeaders.CONTENT_TYPE, "application/soap+xml; charset=UTF-8; action=\"" + soapAction + "\"");
