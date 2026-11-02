@@ -260,72 +260,72 @@ final class DanfeItens {
     /**
      * Extrai CST, base, aliquota e valor do ICMS do grupo informado no item.
      */
-    private static Icms icms(final NFNotaInfoItemImpostoICMS i) {
-        if (i == null) {
+    private static Icms icms(final NFNotaInfoItemImpostoICMS icms) {
+        if (icms == null) {
             return Icms.VAZIO;
         }
-        if (i.getIcms00() != null) {
-            return new Icms(cst(i.getIcms00().getOrigem(), i.getIcms00().getSituacaoTributaria().getCodigo()), i.getIcms00().getValorBaseCalculo(), i.getIcms00().getPercentualAliquota(), i.getIcms00().getValorTributo());
+        if (icms.getIcms00() != null) {
+            return new Icms(cst(icms.getIcms00().getOrigem(), icms.getIcms00().getSituacaoTributaria().getCodigo()), icms.getIcms00().getValorBaseCalculo(), icms.getIcms00().getPercentualAliquota(), icms.getIcms00().getValorTributo());
         }
-        if (i.getIcms02() != null) {
-            return new Icms(cst(i.getIcms02().getOrigem(), i.getIcms02().getSituacaoTributaria().getCodigo()), i.getIcms02().getQuantidadeBaseCalculo(), i.getIcms02().getPercentualAliquota(), i.getIcms02().getValorTributo());
+        if (icms.getIcms02() != null) {
+            return new Icms(cst(icms.getIcms02().getOrigem(), icms.getIcms02().getSituacaoTributaria().getCodigo()), icms.getIcms02().getQuantidadeBaseCalculo(), icms.getIcms02().getPercentualAliquota(), icms.getIcms02().getValorTributo());
         }
-        if (i.getIcms10() != null) {
-            return new Icms(cst(i.getIcms10().getOrigem(), i.getIcms10().getSituacaoTributaria().getCodigo()), i.getIcms10().getValorBaseCalculo(), i.getIcms10().getPercentualAliquota(), i.getIcms10().getValorTributo());
+        if (icms.getIcms10() != null) {
+            return new Icms(cst(icms.getIcms10().getOrigem(), icms.getIcms10().getSituacaoTributaria().getCodigo()), icms.getIcms10().getValorBaseCalculo(), icms.getIcms10().getPercentualAliquota(), icms.getIcms10().getValorTributo());
         }
-        if (i.getIcms15() != null) {
-            return new Icms(cst(i.getIcms15().getOrigem(), i.getIcms15().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcms15() != null) {
+            return new Icms(cst(icms.getIcms15().getOrigem(), icms.getIcms15().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcms20() != null) {
-            return new Icms(cst(i.getIcms20().getOrigem(), i.getIcms20().getSituacaoTributaria().getCodigo()), i.getIcms20().getValorBCICMS(), i.getIcms20().getPercentualAliquota(), i.getIcms20().getValorTributo());
+        if (icms.getIcms20() != null) {
+            return new Icms(cst(icms.getIcms20().getOrigem(), icms.getIcms20().getSituacaoTributaria().getCodigo()), icms.getIcms20().getValorBCICMS(), icms.getIcms20().getPercentualAliquota(), icms.getIcms20().getValorTributo());
         }
-        if (i.getIcms30() != null) {
-            return new Icms(cst(i.getIcms30().getOrigem(), i.getIcms30().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcms30() != null) {
+            return new Icms(cst(icms.getIcms30().getOrigem(), icms.getIcms30().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcms40() != null) {
-            return new Icms(cst(i.getIcms40().getOrigem(), i.getIcms40().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcms40() != null) {
+            return new Icms(cst(icms.getIcms40().getOrigem(), icms.getIcms40().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcms51() != null) {
-            return new Icms(cst(i.getIcms51().getOrigem(), i.getIcms51().getSituacaoTributaria().getCodigo()), i.getIcms51().getValorBCICMS(), i.getIcms51().getPercentualICMS(), i.getIcms51().getValorICMS());
+        if (icms.getIcms51() != null) {
+            return new Icms(cst(icms.getIcms51().getOrigem(), icms.getIcms51().getSituacaoTributaria().getCodigo()), icms.getIcms51().getValorBCICMS(), icms.getIcms51().getPercentualICMS(), icms.getIcms51().getValorICMS());
         }
-        if (i.getIcms53() != null) {
-            return new Icms(cst(i.getIcms53().getOrigem(), i.getIcms53().getSituacaoTributaria().getCodigo()), null, i.getIcms53().getPercentualAliquota(), i.getIcms53().getValorTributo());
+        if (icms.getIcms53() != null) {
+            return new Icms(cst(icms.getIcms53().getOrigem(), icms.getIcms53().getSituacaoTributaria().getCodigo()), null, icms.getIcms53().getPercentualAliquota(), icms.getIcms53().getValorTributo());
         }
-        if (i.getIcms60() != null) {
-            return new Icms(cst(i.getIcms60().getOrigem(), i.getIcms60().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcms60() != null) {
+            return new Icms(cst(icms.getIcms60().getOrigem(), icms.getIcms60().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcms61() != null) {
-            return new Icms(cst(i.getIcms61().getOrigem(), i.getIcms61().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcms61() != null) {
+            return new Icms(cst(icms.getIcms61().getOrigem(), icms.getIcms61().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcms70() != null) {
-            return new Icms(cst(i.getIcms70().getOrigem(), i.getIcms70().getSituacaoTributaria().getCodigo()), i.getIcms70().getValorBC(), i.getIcms70().getPercentualAliquota(), i.getIcms70().getValorTributo());
+        if (icms.getIcms70() != null) {
+            return new Icms(cst(icms.getIcms70().getOrigem(), icms.getIcms70().getSituacaoTributaria().getCodigo()), icms.getIcms70().getValorBC(), icms.getIcms70().getPercentualAliquota(), icms.getIcms70().getValorTributo());
         }
-        if (i.getIcms90() != null) {
-            return new Icms(cst(i.getIcms90().getOrigem(), i.getIcms90().getSituacaoTributaria().getCodigo()), i.getIcms90().getValorBC(), i.getIcms90().getPercentualAliquota(), i.getIcms90().getValorTributo());
+        if (icms.getIcms90() != null) {
+            return new Icms(cst(icms.getIcms90().getOrigem(), icms.getIcms90().getSituacaoTributaria().getCodigo()), icms.getIcms90().getValorBC(), icms.getIcms90().getPercentualAliquota(), icms.getIcms90().getValorTributo());
         }
-        if (i.getIcmsPartilhado() != null) {
-            return new Icms(cst(i.getIcmsPartilhado().getOrigem(), i.getIcmsPartilhado().getSituacaoTributaria().getCodigo()), i.getIcmsPartilhado().getValorBCICMS(), i.getIcmsPartilhado().getPercentualAliquotaImposto(), i.getIcmsPartilhado().getValorICMS());
+        if (icms.getIcmsPartilhado() != null) {
+            return new Icms(cst(icms.getIcmsPartilhado().getOrigem(), icms.getIcmsPartilhado().getSituacaoTributaria().getCodigo()), icms.getIcmsPartilhado().getValorBCICMS(), icms.getIcmsPartilhado().getPercentualAliquotaImposto(), icms.getIcmsPartilhado().getValorICMS());
         }
-        if (i.getIcmsst() != null) {
-            return new Icms(cst(i.getIcmsst().getOrigem(), i.getIcmsst().getSituacaoTributaria().getCodigo()), null, null, null);
+        if (icms.getIcmsst() != null) {
+            return new Icms(cst(icms.getIcmsst().getOrigem(), icms.getIcmsst().getSituacaoTributaria().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn101() != null) {
-            return new Icms(cst(i.getIcmssn101().getOrigem(), i.getIcmssn101().getSituacaoOperacaoSN().getCodigo()), null, null, null);
+        if (icms.getIcmssn101() != null) {
+            return new Icms(cst(icms.getIcmssn101().getOrigem(), icms.getIcmssn101().getSituacaoOperacaoSN().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn102() != null) {
-            return new Icms(cst(i.getIcmssn102().getOrigem(), i.getIcmssn102().getSituacaoOperacaoSN().getCodigo()), null, null, null);
+        if (icms.getIcmssn102() != null) {
+            return new Icms(cst(icms.getIcmssn102().getOrigem(), icms.getIcmssn102().getSituacaoOperacaoSN().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn201() != null) {
-            return new Icms(cst(i.getIcmssn201().getOrigem(), i.getIcmssn201().getSituacaoOperacaoSN().getCodigo()), null, null, null);
+        if (icms.getIcmssn201() != null) {
+            return new Icms(cst(icms.getIcmssn201().getOrigem(), icms.getIcmssn201().getSituacaoOperacaoSN().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn202() != null) {
-            return new Icms(cst(i.getIcmssn202().getOrigem(), i.getIcmssn202().getSituacaoOperacaoSN().getCodigo()), null, null, null);
+        if (icms.getIcmssn202() != null) {
+            return new Icms(cst(icms.getIcmssn202().getOrigem(), icms.getIcmssn202().getSituacaoOperacaoSN().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn500() != null) {
-            return new Icms(cst(i.getIcmssn500().getOrigem(), i.getIcmssn500().getSituacaoOperacaoSN().getCodigo()), null, null, null);
+        if (icms.getIcmssn500() != null) {
+            return new Icms(cst(icms.getIcmssn500().getOrigem(), icms.getIcmssn500().getSituacaoOperacaoSN().getCodigo()), null, null, null);
         }
-        if (i.getIcmssn900() != null) {
-            return new Icms(cst(i.getIcmssn900().getOrigem(), i.getIcmssn900().getSituacaoOperacaoSN().getCodigo()), i.getIcmssn900().getValorBCICMS(), i.getIcmssn900().getPercentualAliquotaImposto(), i.getIcmssn900().getValorICMS());
+        if (icms.getIcmssn900() != null) {
+            return new Icms(cst(icms.getIcmssn900().getOrigem(), icms.getIcmssn900().getSituacaoOperacaoSN().getCodigo()), icms.getIcmssn900().getValorBCICMS(), icms.getIcmssn900().getPercentualAliquotaImposto(), icms.getIcmssn900().getValorICMS());
         }
         return Icms.VAZIO;
     }
