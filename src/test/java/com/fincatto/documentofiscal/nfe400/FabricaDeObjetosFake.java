@@ -1097,6 +1097,12 @@ public class FabricaDeObjetosFake {
         return icms53;
     }
 
+    public static NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip getNFNotaInfoItemImpostoICMSPrevistoPagtoAntecip() {
+        final NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip icmsPrevisto = new NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip();
+        icmsPrevisto.setValorICMSPrevisto(new BigDecimal("999999999999.99"));
+        return icmsPrevisto;
+    }
+
     public static NFNotaInfoItemImpostoICMS61 getNFNotaInfoItemImpostoICMS61() {
         final NFNotaInfoItemImpostoICMS61 icms61 = new NFNotaInfoItemImpostoICMS61();
         icms61.setOrigem(NFOrigem.NACIONAL);
