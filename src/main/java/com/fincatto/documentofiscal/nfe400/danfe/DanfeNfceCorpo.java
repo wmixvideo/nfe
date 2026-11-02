@@ -103,11 +103,7 @@ final class DanfeNfceCorpo {
             centralizado(canvas, anexo.getTitulo(), TAMANHO, true);
             canvas.avancar(ESPACO_LINHA);
         }
-        // linha a linha, para o texto poder continuar na pagina seguinte
-        for (final String linha : (anexo.getTexto() == null ? "" : anexo.getTexto()).split("\r?\n", -1)) {
-            canvas.garantir(canvas.alturaPreformatado(canvas.larguraUtil(), linha, TAMANHO));
-            canvas.avancar(canvas.textoPreformatado(0, canvas.larguraUtil(), linha, TAMANHO));
-        }
+        canvas.textoPreformatadoPaginado(0, canvas.larguraUtil(), anexo.getTexto(), TAMANHO);
     }
 
     /**
@@ -344,7 +340,10 @@ final class DanfeNfceCorpo {
         }
         parLinha(canvas, "FORMA PAGAMENTO", "VALOR PAGO", TAMANHO, false);
         for (final NFNotaInfoFormaPagamento forma : pagamento.getDetalhamentoFormasPagamento()) {
-            final String meio = forma.getMeioPagamento() == null ? valorOuVazio(forma.getDescricaoMeioPagamento()) : forma.getMeioPagamento().getDescricao();
+            // xPag (descricao informada pelo emitente) tem prioridade; a descricao do enum e a alternativa
+            final String meio = forma.getDescricaoMeioPagamento() != null && !forma.getDescricaoMeioPagamento().isEmpty()
+                    ? forma.getDescricaoMeioPagamento()
+                    : forma.getMeioPagamento() == null ? "" : forma.getMeioPagamento().getDescricao();
             parLinha(canvas, meio, dinheiro(forma.getValorPagamento(), 2), TAMANHO, false);
         }
         if (positivo(pagamento.getValorTroco())) {

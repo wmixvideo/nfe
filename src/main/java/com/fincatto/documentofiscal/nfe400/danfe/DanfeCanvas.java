@@ -470,15 +470,20 @@ final class DanfeCanvas {
     }
 
     /**
-     * Altura que {@link #textoPreformatado} ocuparia para o mesmo texto, sem desenhar nada.
+     * Como {@link #textoPreformatado}, mas reserva espaco para cada linha visual (ja quebrada pela largura) antes de desenha-la e
+     * move o cursor: se o cupom for paginado, o texto continua na pagina seguinte, mesmo no meio de uma linha original muito longa.
      *
+     * @param x deslocamento horizontal a partir da margem, em pontos
      * @param largura largura disponivel, em pontos
-     * @param texto texto a medir
+     * @param texto texto a desenhar, com quebras de linha {@code \n} ou {@code \r\n}
      * @param tamanhoFonte tamanho da fonte, em pontos
-     * @return altura ocupada, em pontos
      */
-    float alturaPreformatado(final float largura, final String texto, final float tamanhoFonte) {
-        return linhasPreformatadas(largura, texto, tamanhoFonte).size() * alturaLinha(tamanhoFonte);
+    void textoPreformatadoPaginado(final float x, final float largura, final String texto, final float tamanhoFonte) {
+        for (final String linha : linhasPreformatadas(largura, texto, tamanhoFonte)) {
+            garantir(alturaLinha(tamanhoFonte));
+            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte, linha);
+            avancar(alturaLinha(tamanhoFonte));
+        }
     }
 
     /**
@@ -497,15 +502,13 @@ final class DanfeCanvas {
 
     private List<String> linhasPreformatadas(final float largura, final String texto, final float tamanhoFonte) {
         final List<String> linhas = new ArrayList<>();
+        // fonte monoespacada: todos os caracteres tem a mesma largura, entao o corte e direto (a folga cobre erro de ponto flutuante)
+        final int cabem = Math.max(1, (int) ((largura + 0.001f) / larguraNaFonte(this.monoespacada, "M", tamanhoFonte)));
         for (final String linha : (texto == null ? "" : texto).split("\r?\n", -1)) {
             String resto = limpar(linha);
-            while (larguraNaFonte(this.monoespacada, resto, tamanhoFonte) > largura && resto.length() > 1) {
-                int corte = resto.length() - 1;
-                while (corte > 1 && larguraNaFonte(this.monoespacada, resto.substring(0, corte), tamanhoFonte) > largura) {
-                    corte--;
-                }
-                linhas.add(resto.substring(0, corte));
-                resto = resto.substring(corte);
+            while (resto.length() > cabem) {
+                linhas.add(resto.substring(0, cabem));
+                resto = resto.substring(cabem);
             }
             linhas.add(resto);
         }

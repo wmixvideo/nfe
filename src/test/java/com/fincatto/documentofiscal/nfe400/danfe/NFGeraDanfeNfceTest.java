@@ -401,6 +401,23 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void devePaginarUmaLinhaDeAnexoMaiorQueUmaPagina() throws Exception {
+        final StringBuilder linha = new StringBuilder();
+        for (int i = 0; i < 200000; i++) {
+            linha.append(i % 10);
+        }
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), null,
+                java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente(linha.toString())));
+        try (final org.apache.pdfbox.pdmodel.PDDocument documento = org.apache.pdfbox.Loader.loadPDF(pdf)) {
+            Assertions.assertTrue(documento.getNumberOfPages() > 1);
+            for (final org.apache.pdfbox.pdmodel.PDPage pagina : documento.getPages()) {
+                Assertions.assertTrue(pagina.getMediaBox().getHeight() <= 14400f, "altura da p\u00e1gina");
+            }
+        }
+        Assertions.assertTrue(texto(pdf).replaceAll("\\s", "").contains(linha.substring(0, 200)));
+    }
+
+    @Test
     void deveGerarOMesmoCupomSemAnexosComListaNulaOuVazia() throws Exception {
         final String xml = DanfeNfceFixtures.xml();
         final String semAnexos = texto(gerador.gerar(xml, null));
@@ -447,6 +464,20 @@ class NFGeraDanfeNfceTest {
     void deveGerarComAnexosPeloObjetoNotaProcessada() throws Exception {
         final NFNotaProcessada nota = new DFPersister().read(NFNotaProcessada.class, DanfeNfceFixtures.xml());
         Assertions.assertTrue(texto(gerador.gerar(nota, null, java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente("ABC")))).contains("ABC"));
+    }
+
+    @Test
+    void deveAceitarListaImutavelDeAnexos() throws Exception {
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), null, java.util.Collections.unmodifiableList(
+                java.util.Collections.singletonList(DanfeNfceAnexo.viaCliente("ABC"))));
+        Assertions.assertTrue(texto(pdf).contains("ABC"));
+    }
+
+    @Test
+    void deveImprimirADescricaoXPagQuandoInformada() throws Exception {
+        final String xml = DanfeNfceFixtures.xml().replaceFirst("<tPag>\\d+</tPag>", "<tPag>99</tPag><xPag>Nota promissoria</xPag>");
+        Assertions.assertTrue(xml.contains("<xPag>"));
+        Assertions.assertTrue(texto(gerador.gerar(xml, null)).contains("Nota promissoria"));
     }
 
     @Test
