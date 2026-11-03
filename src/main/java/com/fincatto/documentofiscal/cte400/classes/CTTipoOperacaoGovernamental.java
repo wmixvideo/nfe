@@ -22,12 +22,17 @@ public enum CTTipoOperacaoGovernamental {
         return descricao;
     }
 
-    public CTTipoOperacaoGovernamental valueOfCodigo(String codigo) {
+    public static CTTipoOperacaoGovernamental valueOfCodigo(String codigo) {
         for (CTTipoOperacaoGovernamental tipo : CTTipoOperacaoGovernamental.values()) {
             if (tipo.getCodigo().equals(codigo)) {
                 return tipo;
             }
         }
-        throw new IllegalArgumentException("Código inválido: " + codigo);
+        throw null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

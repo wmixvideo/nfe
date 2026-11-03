@@ -23,7 +23,7 @@ public class CTeNotaInfoValorPrestacaoServico extends DFBase {
     @Element(name = "vTPrest")
     private String valorTotalPrestacaoServico;
 
-    @Element(name = "vTPrestLiq")
+    @Element(name = "vTPrestLiq", required = false)
     private String valorTotalLiquidoPrestacaoServico;
 
     @Element(name = "vRec")

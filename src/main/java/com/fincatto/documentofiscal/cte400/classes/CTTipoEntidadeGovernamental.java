@@ -7,7 +7,7 @@ public enum CTTipoEntidadeGovernamental {
     DISTRITO_FEDERAL("3", "Distrito Federal"),
     MUNICIPIOS("4", "Municípios"),
     CONSORCIO_PUBLICO("5", "Consórcio Público"),
-    COMITE_GESTOR_IB("6", "Comitê Gestor do IBS");
+    COMITE_GESTOR_IBS("6", "Comitê Gestor do IBS");
 
     private String codigo;
     private String descricao;
@@ -32,5 +32,10 @@ public enum CTTipoEntidadeGovernamental {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return codigo + " - " + descricao;
     }
 }

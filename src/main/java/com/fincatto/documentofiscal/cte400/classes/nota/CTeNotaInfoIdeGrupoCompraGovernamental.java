@@ -39,7 +39,7 @@ public class CTeNotaInfoIdeGrupoCompraGovernamental extends DFBase {
     }
 
     public void setPercentualRedutor(BigDecimal percentualRedutor) {
-        this.percentualRedutor = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualRedutor, "Percentual Redutor");;
+        this.percentualRedutor = DFBigDecimalValidador.tamanho7ComAte4CasasDecimais(percentualRedutor, "Percentual Redutor");
     }
 
     public CTTipoOperacaoGovernamental getTipoOperacaoGovernamental() {
