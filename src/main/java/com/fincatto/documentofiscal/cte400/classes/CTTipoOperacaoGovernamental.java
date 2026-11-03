@@ -28,7 +28,7 @@ public enum CTTipoOperacaoGovernamental {
                 return tipo;
             }
         }
-        throw null;
+        return null;
     }
 
     @Override
