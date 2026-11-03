@@ -129,6 +129,9 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     @Element(name = "xJust", required = false)
     private String justificativa;
 
+    @Element(name = "gCompraGov")
+    private CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental;
+
     @Element(name = "tpPagAnt", required = false)
     private String tipoPagamentoAntecipado;
 

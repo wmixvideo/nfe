@@ -36,6 +36,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosICMS extends DFBase {
     @Element(name = "ICMSSN", required = false)
     private CTeNotaInfoInformacoesRelativasImpostosICMSSN icmssn;
 
+    @Element(name = "gICMSPrevistoPagtoAntecip", required = false)
+    private CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip grupoIcmsPrevistoPagamentoAntecipado;
+
     public CTeNotaInfoInformacoesRelativasImpostosICMS00 getIcms00() {
         return this.icms00;
     }
