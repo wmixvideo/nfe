@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/cte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/cte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="eventoCTeTiposBasico_v4.00.xsd"/>
+	<xs:include schemaLocation="DFeTiposBasicos_v1.00.xsd"/>
+	<xs:element name="evApropriaCredPres">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do evento de Apropriação de crédito presumido - 211110</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="descEvento">
+					<xs:annotation>
+						<xs:documentation>Descrição do Evento - “Apropriação Credito Presumido”</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="Apropriação Credito Presumido"/>
+							<xs:enumeration value="Apropriacao Credito Presumido"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="vBCCredPres" type="TDec_1302">
+					<xs:annotation>
+						<xs:documentation>Valor da base de cálculo do item</xs:documentation>
+						<xs:documentation>Valor total da base de cálculo da operação do crédito presumido </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="cCredPres">
+					<xs:annotation>
+						<xs:documentation>Código de Classificação do Crédito presumido, conforme tabela cCredPres (Anexo IV) </xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:pattern value="\d{2}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="gIBSCredPres" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Grupo de informações do crédito presumido do IBS</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pCredPres" type="TDec_0302_04RTC">
+								<xs:annotation>
+									<xs:documentation>Percentual do Crédito Presumido</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="vCredPres" type="TDec1302RTC">
+								<xs:annotation>
+									<xs:documentation>Valor do Crédito Presumido</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="gCBSCredPres" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Grupo de informações do crédito presumido da CBS</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pCredPres" type="TDec_0302_04RTC">
+								<xs:annotation>
+									<xs:documentation>Percentual do Crédito Presumido</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="vCredPres" type="TDec1302RTC">
+								<xs:annotation>
+									<xs:documentation>Valor do Crédito Presumido</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="xDecPag">
+					<xs:annotation>
+						<xs:documentation>Declaração de Pagamento ao TAC/MEI.</xs:documentation>
+						<xs:documentation>Preencher conforme exigência do indicador ind_xDecPag da tabela cCredPres, mediante o uso de um dos literais apresentados a seguir: 
+
+“Declaro, para fins de apropriação do crédito presumido solicitado, relativo à operação registrada no documento fiscal eletrônico a que se refere este evento: I – já ter efetuado o pagamento integral do valor da prestação do serviço ao transportador, nos termos do art. 126, § 5º, II, da Lei Complementar nº 214, de 16 de janeiro de 2025; II – estar ciente de que a prestação de declaração falsa sujeita-me às penalidades administrativas e sanções penais previstas na legislação, sem prejuízo do estorno do crédito indevidamente apropriado com os acréscimos legais.” (texto com acentuação) 
+
+“Declaro, para fins de apropriacao do credito presumido solicitado, relativo a operacao registrada no documento fiscal eletronico a que se refere este evento: I – ja ter efetuado o pagamento integral do valor da prestacao do servico ao transportador, nos termos do art. 126, paragrafo 5o, II, da Lei Complementar no 214, de 16 de janeiro de 2025; II – estar ciente de que a prestacao de declaracao falsa sujeita-me as penalidades administrativas e sancoes penais previstas na legislacao, sem prejuizo do estorno do credito indevidamente apropriado com os acrescimos legais.” (texto sem acentuação) </xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="Declaro, para fins de apropriação do crédito presumido solicitado, relativo à operação registrada no documento fiscal eletrônico a que se refere este evento: I – já ter efetuado o pagamento integral do valor da prestação do serviço ao transportador, nos termos do art. 126, § 5º, II, da Lei Complementar nº 214, de 16 de janeiro de 2025; II – estar ciente de que a prestação de declaração falsa sujeita-me às penalidades administrativas e sanções penais previstas na legislação, sem prejuízo do estorno do crédito indevidamente apropriado com os acréscimos legais."/>
+							<xs:enumeration value="Declaro, para fins de apropriacao do credito presumido solicitado, relativo a operacao registrada no documento fiscal eletronico a que se refere este evento: I – ja ter efetuado o pagamento integral do valor da prestacao do servico ao transportador, nos termos do art. 126, paragrafo 5o, II, da Lei Complementar no 214, de 16 de janeiro de 2025; II – estar ciente de que a prestacao de declaracao falsa sujeita-me as penalidades administrativas e sancoes penais previstas na legislacao, sem prejuizo do estorno do credito indevidamente apropriado com os acrescimos legais."/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
