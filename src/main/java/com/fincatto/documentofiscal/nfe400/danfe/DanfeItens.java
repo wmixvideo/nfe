@@ -9,26 +9,33 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoIPI
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemImpostoIS;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoItemProduto;
 
-import java.util.ArrayList;
+import java.awt.Color;
 import java.util.List;
 
+import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.CENTRO;
+import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.DIREITA;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.ESQUERDA;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.LARGURA_UTIL;
 
 /**
- * Tabela "Dados dos Produtos / Servicos" com as colunas de IBS, CBS e IS da NT 2026.010 (item 4.3) e paginacao por item.
+ * Tabela "Dados dos Produtos / Servicos" com as colunas de IBS, CBS e IS da NT 2026.010 (item 4.3) e paginacao por item, na
+ * disposicao do modelo retrato da NT.
  *
  * @author Marcos Lombardi de Andrade
  */
 final class DanfeItens {
 
-    private static final float TAMANHO_FONTE = 6f;
+    private static final float TAMANHO_FONTE = 5f;
     private static final float ALTURA_CABECALHO = 14f;
-    private static final float RECUO = 2f;
+    private static final float RECUO = 1.5f;
+    /** Todo item ocupa ao menos as quatro linhas das bases de calculo (ICMS, IBS/CBS, IS e IPI). */
+    private static final int LINHAS_MINIMAS = 4;
+    /** Parte da largura das colunas de aliquotas e valores ocupada pelo primeiro par de cada linha, cujos rotulos sao mais longos. */
+    private static final float PRIMEIRO_PAR = 0.575f;
 
-    /** Colunas e larguras em pontos; a ultima ocupa o que sobra da largura util. */
-    private static final String[] TITULOS = {"DESCRI\u00c7\u00c3O DO PRODUTO / SERVI\u00c7O", "CST/CFOP", "QTD / UN", "VLR UNIT", "VLR TOTAL", "BASES DE C\u00c1LCULO", "AL\u00cdQUOTAS", "VALOR DOS TRIBUTOS"};
-    private static final float[] LARGURAS = {114f, 42f, 44f, 44f, 44f, 82f, 88f, 0f};
+    /** Colunas e larguras em pontos, as do modelo da NT; a ultima ocupa o que sobra da largura util. */
+    private static final String[] TITULOS = {"DESCRI\u00c7\u00c3O DO PRODUTO / SERVI\u00c7O", "CST / CFOP", "QTD / UN", "VLR UNIT", "VLR TOTAL", "BASES DE C\u00c1LCULO", "AL\u00cdQUOTAS", "VALOR DOS TRIBUTOS"};
+    private static final float[] LARGURAS = {116.6f, 33.9f, 42f, 47.8f, 47.8f, 76.4f, 75.5f, 0f};
 
     /**
      * Classe utilitaria, nao deve ser instanciada.
@@ -82,13 +89,12 @@ final class DanfeItens {
             return;
         }
         for (final NFNotaInfoItem item : itens) {
-            final String[] celulas = celulas(item);
-            final float altura = alturaDaLinha(canvas, celulas);
+            final float altura = alturaDaLinha(canvas, item);
             if (canvas.restante() < altura) {
                 canvas.novaPagina();
                 cabecalho(canvas);
             }
-            linha(canvas, celulas, altura);
+            linha(canvas, item, altura);
         }
     }
 
@@ -118,49 +124,39 @@ final class DanfeItens {
     }
 
     /**
-     * Desenha o titulo do bloco e o cabecalho das colunas.
+     * Desenha o titulo do bloco e o cabecalho das colunas, em negrito e centralizado.
      */
     private static void cabecalho(final DanfeCanvas canvas) {
         canvas.titulo("DADOS DOS PRODUTOS / SERVI\u00c7OS");
         canvas.avancar(DanfeCanvas.ALTURA_TITULO);
-        float x = 0;
         for (int i = 0; i < TITULOS.length; i++) {
-            canvas.caixa(x, larguraDaColuna(i), ALTURA_CABECALHO, TITULOS[i], "", ESQUERDA);
-            x += larguraDaColuna(i);
+            final float largura = larguraDaColuna(i) - 2 * RECUO;
+            final float topo = (ALTURA_CABECALHO - canvas.quebrar(TITULOS[i], largura, TAMANHO_FONTE, true).size() * canvas.alturaLinha(TAMANHO_FONTE)) / 2;
+            canvas.caixa(inicioDaColuna(i), larguraDaColuna(i), ALTURA_CABECALHO, "", "", ESQUERDA);
+            canvas.avancar(topo);
+            canvas.texto(inicioDaColuna(i) + RECUO, largura, TITULOS[i], TAMANHO_FONTE, CENTRO, true);
+            canvas.avancar(-topo);
         }
         canvas.avancar(ALTURA_CABECALHO);
     }
 
     /**
-     * @return altura da linha, que e a da celula com mais linhas de texto
+     * @return altura do item: a da coluna da descricao (descricao, informacoes adicionais e NCM) ou a das quatro bases de calculo
      */
-    private static float alturaDaLinha(final DanfeCanvas canvas, final String[] celulas) {
-        int linhas = 1;
-        for (int i = 0; i < celulas.length; i++) {
-            linhas = Math.max(linhas, canvas.quebrar(celulas[i], larguraDaColuna(i) - 2 * RECUO, TAMANHO_FONTE).size());
+    private static float alturaDaLinha(final DanfeCanvas canvas, final NFNotaInfoItem item) {
+        final float largura = larguraDaColuna(0) - 2 * RECUO;
+        int linhas = canvas.quebrar(descricao(item), largura, TAMANHO_FONTE).size() + canvas.quebrar(ncm(item), largura, TAMANHO_FONTE).size();
+        if (item.getInformacoesAdicionais() != null) {
+            linhas += canvas.quebrar(informacoes(item), largura, TAMANHO_FONTE).size();
         }
-        return linhas * canvas.alturaLinha(TAMANHO_FONTE) + 2 * RECUO;
+        return Math.max(linhas, LINHAS_MINIMAS) * canvas.alturaLinha(TAMANHO_FONTE) + 2 * RECUO;
     }
 
     /**
-     * Desenha as celulas de um item e avanca o cursor.
+     * Desenha as celulas de um item e avanca o cursor. Os rotulos sao fixos, como no modelo da NT 2026.010; valores ausentes no
+     * XML nao sao impressos, e o rotulo sai sozinho.
      */
-    private static void linha(final DanfeCanvas canvas, final String[] celulas, final float altura) {
-        float x = 0;
-        for (int i = 0; i < celulas.length; i++) {
-            canvas.caixa(x, larguraDaColuna(i), altura, "", "", ESQUERDA);
-            canvas.avancar(RECUO);
-            canvas.texto(x + RECUO, larguraDaColuna(i) - 2 * RECUO, celulas[i], TAMANHO_FONTE);
-            canvas.avancar(-RECUO);
-            x += larguraDaColuna(i);
-        }
-        canvas.avancar(altura);
-    }
-
-    /**
-     * Monta o texto de cada coluna do item; valores ausentes no XML nao sao impressos.
-     */
-    private static String[] celulas(final NFNotaInfoItem item) {
+    private static void linha(final DanfeCanvas canvas, final NFNotaInfoItem item, final float altura) {
         final NFNotaInfoItemProduto produto = item.getProduto();
         final NFNotaInfoItemImpostoIBSCBS ibscbs = item.getImposto() == null ? null : item.getImposto().getIbsCbs();
         final NFNotaInfoItemImpostoIBSCBSTIBS grupo = ibscbs == null ? null : ibscbs.getGIBSCBS();
@@ -175,34 +171,114 @@ final class DanfeItens {
         final String aliquotaMun = mun == null ? null : mun.getGRed() != null ? mun.getGRed().getPAliqEfet() : mun.getPIBSMun();
         final String aliquotaCbs = cbs == null ? null : cbs.getGRed() != null ? cbs.getGRed().getPAliqEfet() : cbs.getPCBS();
 
-        final String descricao = produto == null ? "" : produto.getDescricao();
-        final StringBuilder primeira = new StringBuilder(texto(descricao));
-        if (item.getInformacoesAdicionais() != null) {
-            primeira.append('\n').append('[').append(item.getInformacoesAdicionais()).append(']');
+        for (int i = 0; i < LARGURAS.length; i++) {
+            canvas.caixa(inicioDaColuna(i), larguraDaColuna(i), altura, "", "", ESQUERDA);
         }
-        final String classificacao = ibscbs == null || ibscbs.getcClassTrib() == null ? "" : " [cClassTrib " + ibscbs.getcClassTrib() + "]";
-        primeira.append("\n[NCM ").append(produto == null ? "" : texto(produto.getNcm())).append(']').append(classificacao);
+        canvas.avancar(RECUO);
+        desenharDescricao(canvas, item, altura - 2 * RECUO);
+        pontilhados(canvas, 1, Color.BLACK, new String[][]{{"CST", icms.cst}, {"CFOP", produto == null ? null : produto.getCfop()}});
+        centralizados(canvas, 2, produto == null ? "" : DanfeFormatador.valor(produto.getQuantidadeComercial(), 2),
+                produto == null ? null : "[" + texto(produto.getUnidadeComercial()) + "]");
+        centralizados(canvas, 3, produto == null ? "" : DanfeFormatador.valor(produto.getValorUnitario(), 2), null);
+        centralizados(canvas, 4, produto == null ? "" : DanfeFormatador.valor(produto.getValorTotalBruto()), null);
+        pontilhados(canvas, 5, Color.GRAY, new String[][]{
+                {"ICMS", valor(icms.base)},
+                {"IBS / CBS", valor(grupo == null ? null : grupo.getVBC())},
+                {"IS", valor(is == null ? null : is.getVBCIS())},
+                {"IPI", valor(ipi == null ? null : ipi.getValorBaseCalculo())}});
+        pares(canvas, 6, new String[][]{
+                {"ICMS", icms.aliquotaAdRem ? adRem(icms.aliquota) : percentual(icms.aliquota), "CBS", percentual(aliquotaCbs)},
+                {"IBS UF", percentual(aliquotaUf), "IPI", percentual(ipi == null ? null : ipi.getPercentualAliquota())},
+                {"IBS MUN", percentual(aliquotaMun), "IS", percentual(is == null ? null : is.getPIS())}});
+        pares(canvas, 7, new String[][]{
+                {"ICMS", valor(icms.valor), "CBS", valor(cbs == null ? null : cbs.getVCBS())},
+                {"IBS UF", valor(uf == null ? null : uf.getVIBSUF()), "IPI", valor(ipi == null ? null : ipi.getValorTributo())},
+                {"IBS MUN", valor(mun == null ? null : mun.getVIBSMun()), "IS", valor(is == null ? null : is.getVIS())}});
+        canvas.avancar(altura - RECUO);
+    }
 
-        return new String[]{
-                primeira.toString(),
-                (icms.cst == null ? "" : "CST " + icms.cst + "\n") + "CFOP " + (produto == null ? "" : texto(produto.getCfop())),
-                produto == null ? "" : DanfeFormatador.valor(produto.getQuantidadeComercial(), 2) + "\n[" + texto(produto.getUnidadeComercial()) + "]",
-                produto == null ? "" : DanfeFormatador.valor(produto.getValorUnitario(), 2),
-                produto == null ? "" : DanfeFormatador.valor(produto.getValorTotalBruto()),
-                linhas(
-                        par("ICMS", valor(icms.base)),
-                        par("IBS/CBS", valor(grupo == null ? null : grupo.getVBC())),
-                        par("IS", valor(is == null ? null : is.getVBCIS())),
-                        par("IPI", valor(ipi == null ? null : ipi.getValorBaseCalculo()))),
-                linhas(
-                        juntar(par("ICMS", icms.aliquotaAdRem ? adRem(icms.aliquota) : percentual(icms.aliquota)), par("CBS", percentual(aliquotaCbs))),
-                        juntar(par("IBS UF", percentual(aliquotaUf)), par("IPI", percentual(ipi == null ? null : ipi.getPercentualAliquota()))),
-                        juntar(par("IBS MUN", percentual(aliquotaMun)), par("IS", percentual(is == null ? null : is.getPIS())))),
-                linhas(
-                        juntar(par("ICMS", valor(icms.valor)), par("CBS", valor(cbs == null ? null : cbs.getVCBS()))),
-                        juntar(par("IBS UF", valor(uf == null ? null : uf.getVIBSUF())), par("IPI", valor(ipi == null ? null : ipi.getValorTributo()))),
-                        juntar(par("IBS MUN", valor(mun == null ? null : mun.getVIBSMun())), par("IS", valor(is == null ? null : is.getVIS()))))
-        };
+    /**
+     * Desenha descricao e informacoes adicionais (em cinza) no topo da celula e NCM e cClassTrib (em cinza, a direita) na base.
+     */
+    private static void desenharDescricao(final DanfeCanvas canvas, final NFNotaInfoItem item, final float alturaUtil) {
+        final float largura = larguraDaColuna(0) - 2 * RECUO;
+        final float alturaDescricao = canvas.texto(RECUO, largura, descricao(item), TAMANHO_FONTE);
+        if (item.getInformacoesAdicionais() != null) {
+            canvas.avancar(alturaDescricao);
+            canvas.texto(RECUO, largura, informacoes(item), TAMANHO_FONTE, ESQUERDA, false, Color.GRAY);
+            canvas.avancar(-alturaDescricao);
+        }
+        final float topoNcm = alturaUtil - canvas.quebrar(ncm(item), largura, TAMANHO_FONTE).size() * canvas.alturaLinha(TAMANHO_FONTE);
+        canvas.avancar(topoNcm);
+        canvas.texto(RECUO, largura, ncm(item), TAMANHO_FONTE, DIREITA, false, Color.GRAY);
+        canvas.avancar(-topoNcm);
+    }
+
+    /**
+     * Desenha, um por linha, os pares de rotulo e valor ligados por pontos.
+     */
+    private static void pontilhados(final DanfeCanvas canvas, final int coluna, final Color corDoRotulo, final String[][] pares) {
+        final float linha = canvas.alturaLinha(TAMANHO_FONTE);
+        for (int i = 0; i < pares.length; i++) {
+            canvas.avancar(i * linha);
+            canvas.pontilhado(inicioDaColuna(coluna) + RECUO, larguraDaColuna(coluna) - 2 * RECUO, pares[i][0], pares[i][1], TAMANHO_FONTE, corDoRotulo);
+            canvas.avancar(-i * linha);
+        }
+    }
+
+    /**
+     * Desenha dois pares de rotulo e valor ligados por pontos em cada linha, separados por "/".
+     */
+    private static void pares(final DanfeCanvas canvas, final int coluna, final String[][] linhas) {
+        final float x = inicioDaColuna(coluna) + RECUO;
+        final float separador = canvas.largura(" / ", TAMANHO_FONTE);
+        final float primeiro = (larguraDaColuna(coluna) - 2 * RECUO - separador) * PRIMEIRO_PAR;
+        final float segundo = larguraDaColuna(coluna) - 2 * RECUO - separador - primeiro;
+        final float linha = canvas.alturaLinha(TAMANHO_FONTE);
+        for (int i = 0; i < linhas.length; i++) {
+            canvas.avancar(i * linha);
+            canvas.pontilhado(x, primeiro, linhas[i][0], linhas[i][1], TAMANHO_FONTE, Color.GRAY);
+            canvas.textoCentralizado(x + primeiro, separador, "/", TAMANHO_FONTE);
+            canvas.pontilhado(x + primeiro + separador, segundo, linhas[i][2], linhas[i][3], TAMANHO_FONTE, Color.GRAY);
+            canvas.avancar(-i * linha);
+        }
+    }
+
+    /**
+     * Desenha o valor centralizado e, se houver, uma segunda linha centralizada em cinza (a unidade, na quantidade).
+     */
+    private static void centralizados(final DanfeCanvas canvas, final int coluna, final String valor, final String segunda) {
+        final float x = inicioDaColuna(coluna) + RECUO;
+        final float largura = larguraDaColuna(coluna) - 2 * RECUO;
+        final float altura = canvas.texto(x, largura, valor, TAMANHO_FONTE, CENTRO, false);
+        if (segunda != null) {
+            canvas.avancar(altura);
+            canvas.texto(x, largura, segunda, TAMANHO_FONTE, CENTRO, false, Color.GRAY);
+            canvas.avancar(-altura);
+        }
+    }
+
+    /**
+     * @return descricao do produto, ou vazio
+     */
+    private static String descricao(final NFNotaInfoItem item) {
+        return item.getProduto() == null ? "" : texto(item.getProduto().getDescricao());
+    }
+
+    /**
+     * @return informacoes adicionais do produto entre colchetes
+     */
+    private static String informacoes(final NFNotaInfoItem item) {
+        return "[" + item.getInformacoesAdicionais() + "]";
+    }
+
+    /**
+     * @return NCM e, se houver, a classificacao tributaria do IBS/CBS, entre colchetes
+     */
+    private static String ncm(final NFNotaInfoItem item) {
+        final NFNotaInfoItemImpostoIBSCBS ibscbs = item.getImposto() == null ? null : item.getImposto().getIbsCbs();
+        final String classificacao = ibscbs == null || ibscbs.getcClassTrib() == null ? "" : " [cClassTrib " + ibscbs.getcClassTrib() + "]";
+        return "[NCM " + (item.getProduto() == null ? "" : texto(item.getProduto().getNcm())) + "]" + classificacao;
     }
 
     /**
@@ -231,39 +307,6 @@ final class DanfeItens {
      */
     private static String adRem(final String xml) {
         return xml == null ? null : "R$ " + DanfeFormatador.valor(xml);
-    }
-
-    /**
-     * @return "ROTULO valor", ou null quando o valor nao existe no XML (nada e inferido)
-     */
-    private static String par(final String rotulo, final String valor) {
-        return valor == null ? null : rotulo + " " + valor;
-    }
-
-    /**
-     * @return os pares existentes separados por " / ", ou null se nenhum existir
-     */
-    private static String juntar(final String... pares) {
-        final List<String> presentes = new ArrayList<>();
-        for (final String par : pares) {
-            if (par != null) {
-                presentes.add(par);
-            }
-        }
-        return presentes.isEmpty() ? null : String.join(" / ", presentes);
-    }
-
-    /**
-     * @return as linhas existentes separadas por quebra de linha
-     */
-    private static String linhas(final String... linhas) {
-        final List<String> presentes = new ArrayList<>();
-        for (final String linha : linhas) {
-            if (linha != null) {
-                presentes.add(linha);
-            }
-        }
-        return String.join("\n", presentes);
     }
 
     /**

@@ -162,8 +162,8 @@ class DanfeItensTest {
             final float antes = canvas.y();
             DanfeItens.desenhar(canvas, Collections.singletonList(itemSimples()));
             final float alturaDaLinha = antes - canvas.y() - DanfeCanvas.ALTURA_TITULO - 14f;
-            // descricao + NCM + 2 linhas de CST/CFOP cabem em 2 linhas de texto
-            Assertions.assertEquals(2 * canvas.alturaLinha(6f) + 4f, alturaDaLinha, 0.01f);
+            // descricao, NCM e as 2 linhas de CST/CFOP cabem nas 4 linhas das bases de calculo, como no modelo da NT 2026.010
+            Assertions.assertEquals(4 * canvas.alturaLinha(5f) + 3f, alturaDaLinha, 0.01f);
         }
     }
 
@@ -180,7 +180,7 @@ class DanfeItensTest {
         icms.setIcms02(icms02);
         item.getImposto().setIcms(icms);
         final String texto = desenhar(Collections.singletonList(item)).texto;
-        Assertions.assertTrue(texto.contains("ICMS R$ 1,2345"), "al\u00edquota ad rem em reais");
+        Assertions.assertTrue(texto.matches("(?s).*ICMS\\.+\\s*R\\$ 1,2345.*"), "al\u00edquota ad rem em reais");
         Assertions.assertFalse(texto.contains("1,2345%"), "ad rem n\u00e3o \u00e9 percentual");
         Assertions.assertTrue(texto.contains("77,66"), "valor do ICMS monof\u00e1sico");
     }
@@ -201,7 +201,7 @@ class DanfeItensTest {
         icms.setIcms15(icms15);
         item.getImposto().setIcms(icms);
         final String texto = desenhar(Collections.singletonList(item)).texto;
-        Assertions.assertTrue(texto.contains("ICMS R$ 1,2345"), "al\u00edquota ad rem em reais");
+        Assertions.assertTrue(texto.matches("(?s).*ICMS\\.+\\s*R\\$ 1,2345.*"), "al\u00edquota ad rem em reais");
         Assertions.assertFalse(texto.contains("1,2345%"), "ad rem n\u00e3o \u00e9 percentual");
         Assertions.assertTrue(texto.contains("88,77"), "valor do ICMS monof\u00e1sico pr\u00f3prio");
     }
@@ -220,7 +220,7 @@ class DanfeItensTest {
         item.getImposto().setIcms(icms);
         final String texto = desenhar(Collections.singletonList(item)).texto;
         Assertions.assertTrue(texto.contains("4.321,09"), "quantidade tributada (base)");
-        Assertions.assertTrue(texto.contains("ICMS R$ 1,2345"), "al\u00edquota ad rem em reais");
+        Assertions.assertTrue(texto.matches("(?s).*ICMS\\.+\\s*R\\$ 1,2345.*"), "al\u00edquota ad rem em reais");
         Assertions.assertTrue(texto.contains("55,33"), "valor do ICMS monof\u00e1sico");
     }
 
@@ -237,7 +237,7 @@ class DanfeItensTest {
         icms.setIcms61(icms61);
         item.getImposto().setIcms(icms);
         final String texto = desenhar(Collections.singletonList(item)).texto;
-        Assertions.assertTrue(texto.contains("ICMS R$ 1,2345"), "al\u00edquota ad rem em reais");
+        Assertions.assertTrue(texto.matches("(?s).*ICMS\\.+\\s*R\\$ 1,2345.*"), "al\u00edquota ad rem em reais");
         Assertions.assertFalse(texto.contains("1,2345%"), "ad rem n\u00e3o \u00e9 percentual");
         Assertions.assertTrue(texto.contains("66,44"), "valor do ICMS monof\u00e1sico cobrado anteriormente");
     }

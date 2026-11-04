@@ -432,14 +432,58 @@ final class DanfeCanvas {
      * @return altura ocupada, em pontos
      */
     float texto(final float x, final float largura, final String texto, final float tamanhoFonte, final Alinhamento alinhamento, final boolean negrito) {
+        return texto(x, largura, texto, tamanhoFonte, alinhamento, negrito, Color.BLACK);
+    }
+
+    /**
+     * Como {@link #texto(float, float, String, float, Alinhamento, boolean)}, na cor informada.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto a desenhar
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @param alinhamento alinhamento de cada linha dentro da largura
+     * @param negrito true para desenhar na fonte em negrito
+     * @param cor cor do texto
+     * @return altura ocupada, em pontos
+     */
+    float texto(final float x, final float largura, final String texto, final float tamanhoFonte, final Alinhamento alinhamento, final boolean negrito,
+                final Color cor) {
         final PDFont fonteDoTexto = negrito ? this.negrito : this.fonte;
         final List<String> linhas = quebrar(fonteDoTexto, texto, largura, tamanhoFonte);
         for (int i = 0; i < linhas.size(); i++) {
             final float sobra = Math.max(0f, largura - larguraNaFonte(fonteDoTexto, linhas.get(i), tamanhoFonte));
             final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-            escrever(fonteDoTexto, tamanhoFonte, Color.BLACK, this.margem + x + deslocamento, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+            escrever(fonteDoTexto, tamanhoFonte, cor, this.margem + x + deslocamento, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
         }
         return linhas.size() * alturaLinha(tamanhoFonte);
+    }
+
+    /**
+     * Desenha uma linha com o rotulo a esquerda e o valor a direita, ligados por pontos, como nos itens do modelo da NT 2026.010;
+     * sem valor, so o rotulo. Quando os dois nao cabem juntos, o rotulo e cortado. Nao quebra nem move o cursor.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param rotulo rotulo, desenhado com os pontos na cor informada
+     * @param valor valor, em preto, ou null
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @param corDoRotulo cor do rotulo e dos pontos
+     */
+    void pontilhado(final float x, final float largura, final String rotulo, final String valor, final float tamanhoFonte, final Color corDoRotulo) {
+        final String textoDoValor = valor == null ? "" : limpar(valor);
+        final float larguraDoValor = larguraNaFonte(this.fonte, textoDoValor, tamanhoFonte);
+        final float espaco = textoDoValor.isEmpty() ? 0 : larguraDoValor + 1;
+        final String textoDoRotulo = cortar(limpar(rotulo), tamanhoFonte, Math.max(0f, largura - espaco));
+        final StringBuilder rotuloComPontos = new StringBuilder(textoDoRotulo);
+        if (!textoDoValor.isEmpty()) {
+            final float sobra = largura - espaco - larguraNaFonte(this.fonte, textoDoRotulo, tamanhoFonte);
+            for (int i = (int) (sobra / larguraNaFonte(this.fonte, ".", tamanhoFonte)); i > 0; i--) {
+                rotuloComPontos.append('.');
+            }
+        }
+        escrever(this.fonte, tamanhoFonte, corDoRotulo, this.margem + x, this.y - tamanhoFonte, rotuloComPontos.toString());
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x + largura - larguraDoValor, this.y - tamanhoFonte, textoDoValor);
     }
 
     /**
