@@ -504,4 +504,52 @@ class NFGeraDanfeNfceTest {
         // a linha de corte e o espaco acima e abaixo dela separam as linhas por bem mais que uma linha de texto (8,4 pt)
         Assertions.assertTrue(yTitulo - yUltimaLinha >= 27f, "distancia: " + (yTitulo - yUltimaLinha));
     }
+
+    @Test
+    void devePaginarOTituloLongoDoAnexoQueNaoCabeNoFimDaPagina() throws Exception {
+        final String titulo = String.join(" ", java.util.Collections.nCopies(260, "TITULO"));
+        final java.util.List<DanfeNfceAnexo> anexos = new java.util.ArrayList<>();
+        // tamanhos variados, para que o inicio dos anexos caia em pontos diferentes das paginas
+        for (int i = 0; i < 300; i++) {
+            anexos.add(new DanfeNfceAnexo((i + " " + titulo).substring(0, 400 + (i * 97) % 1400),
+                    String.join("\n", java.util.Collections.nCopies(10 + (i * 13) % 60, "LINHA DO ANEXO"))));
+        }
+        final byte[] pdf = gerador.gerar(DanfeNfceFixtures.xml(), null, anexos);
+        Assertions.assertTrue(paginas(pdf) > 1);
+        Assertions.assertEquals(0, letrasAbaixoDaAreaUtil(pdf));
+    }
+
+    private static int paginas(final byte[] pdf) throws Exception {
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            return documento.getNumberOfPages();
+        }
+    }
+
+    /**
+     * Letras desenhadas abaixo da area util (na margem inferior ou fora da pagina), somadas em todas as paginas.
+     */
+    private static int letrasAbaixoDaAreaUtil(final byte[] pdf) throws Exception {
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            final float margem = NFGeraDanfeNfce.MARGEM_LATERAL_MM * DanfeCanvas.MM;
+            int abaixo = 0;
+            for (int pagina = 1; pagina <= documento.getNumberOfPages(); pagina++) {
+                final float altura = documento.getPage(pagina - 1).getMediaBox().getHeight();
+                final int[] contagem = {0};
+                final PDFTextStripper extrator = new PDFTextStripper() {
+                    @Override
+                    protected void processTextPosition(final org.apache.pdfbox.text.TextPosition letra) {
+                        if (letra.getYDirAdj() > altura - margem + 0.5f) {
+                            contagem[0]++;
+                        }
+                        super.processTextPosition(letra);
+                    }
+                };
+                extrator.setStartPage(pagina);
+                extrator.setEndPage(pagina);
+                extrator.getText(documento);
+                abaixo += contagem[0];
+            }
+            return abaixo;
+        }
+    }
 }

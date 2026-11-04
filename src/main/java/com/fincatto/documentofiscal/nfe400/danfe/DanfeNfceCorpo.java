@@ -100,7 +100,8 @@ final class DanfeNfceCorpo {
         separador(canvas, ESPESSURA_LINHA_FINA, true);
         canvas.avancar(ESPACO_DEPOIS_DO_CORTE);
         if (anexo.getTitulo() != null && !anexo.getTitulo().isEmpty()) {
-            centralizado(canvas, anexo.getTitulo(), TAMANHO, true);
+            // o titulo tem tamanho livre, como o texto do anexo: num cupom paginado, continua na pagina seguinte em vez de passar do fim
+            canvas.textoPaginado(0, canvas.larguraUtil(), anexo.getTitulo(), TAMANHO, CENTRO, true);
             canvas.avancar(ESPACO_LINHA);
         }
         canvas.textoPreformatadoPaginado(0, canvas.larguraUtil(), anexo.getTexto(), TAMANHO);
