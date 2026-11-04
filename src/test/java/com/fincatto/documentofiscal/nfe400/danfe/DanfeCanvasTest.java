@@ -287,6 +287,24 @@ class DanfeCanvasTest {
     }
 
     @Test
+    void qrCodeDeveUsarONivelMDeCorrecaoDeErros() throws Exception {
+        final String conteudo = "https://www.fazenda.pr.gov.br/nfce/qrcode?p=41261011222333000181650010000012341876543210|2|1|1|ABCDEF0123456789";
+        final byte[] pdf = pdf(canvas -> {
+            canvas.avancar(20f);
+            canvas.qrCode(20f, 120f, conteudo);
+        });
+        // le o QR Code desenhado, como um leitor faria, e confere o nivel exigido pelo Manual de Padroes do DANFE NFC-e (item 4.5.2)
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            final BufferedImage imagem = new org.apache.pdfbox.rendering.PDFRenderer(documento).renderImageWithDPI(0, 200);
+            final int[] pixels = imagem.getRGB(0, 0, imagem.getWidth(), imagem.getHeight(), null, 0, imagem.getWidth());
+            final com.google.zxing.Result lido = new com.google.zxing.qrcode.QRCodeReader().decode(new com.google.zxing.BinaryBitmap(
+                    new com.google.zxing.common.HybridBinarizer(new com.google.zxing.RGBLuminanceSource(imagem.getWidth(), imagem.getHeight(), pixels))));
+            Assertions.assertEquals(conteudo, lido.getText());
+            Assertions.assertEquals("M", lido.getResultMetadata().get(com.google.zxing.ResultMetadataType.ERROR_CORRECTION_LEVEL));
+        }
+    }
+
+    @Test
     void devePermitirPaginaComTamanhoEMargemProprios() throws Exception {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, new org.apache.pdfbox.pdmodel.common.PDRectangle(212f, 400f), 8f);

@@ -5,6 +5,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.Code128Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDFormContentStream;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,7 +27,9 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Primitivas de desenho do DANFE sobre o PDFBox: caixas com rotulo, texto com quebra, codigo de barras, QR Code, imagem e paginacao.
@@ -748,7 +751,11 @@ final class DanfeCanvas {
      */
     void qrCode(final float x, final float tamanho, final String texto) {
         try {
-            final BitMatrix matriz = new QRCodeWriter().encode(texto, BarcodeFormat.QR_CODE, 0, 0, Collections.singletonMap(EncodeHintType.MARGIN, 0));
+            final Map<EncodeHintType, Object> parametros = new EnumMap<>(EncodeHintType.class);
+            parametros.put(EncodeHintType.MARGIN, 0);
+            // o ZXing usa o nivel L por padrao; o Manual de Padroes Tecnicos do DANFE NFC-e e QR Code (versao 5.1, item 4.5.2) exige o M
+            parametros.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+            final BitMatrix matriz = new QRCodeWriter().encode(texto, BarcodeFormat.QR_CODE, 0, 0, parametros);
             final float modulo = tamanho / matriz.getWidth();
             this.conteudo.setNonStrokingColor(Color.BLACK);
             for (int linha = 0; linha < matriz.getHeight(); linha++) {
