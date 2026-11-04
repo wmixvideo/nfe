@@ -5,24 +5,21 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.Code128Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
-import org.apache.fontbox.ttf.CmapLookup;
-import org.apache.fontbox.ttf.TTFParser;
-import org.apache.fontbox.ttf.TrueTypeFont;
-import org.apache.pdfbox.io.RandomAccessReadBuffer;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.apache.pdfbox.pdmodel.font.encoding.GlyphList;
+import org.apache.pdfbox.pdmodel.font.encoding.WinAnsiEncoding;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.graphics.state.PDExtendedGraphicsState;
 import org.apache.pdfbox.util.Matrix;
 
 import java.awt.Color;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,9 +45,6 @@ final class DanfeCanvas {
 
     static final float ALTURA_TITULO = 10f;
 
-    private static final byte[] FONTE_REGULAR = lerRecurso("/fonts/LiberationSans-Regular.ttf");
-    private static final byte[] FONTE_NEGRITO = lerRecurso("/fonts/LiberationSans-Bold.ttf");
-    private static final byte[] FONTE_MONOESPACADA = lerRecurso("/fonts/LiberationMono-Regular.ttf");
     private static final float TAMANHO_ROTULO = 5.5f;
     private static final float TAMANHO_RODAPE = 6f;
     private static final Color COR_RODAPE = new Color(64, 64, 64);
@@ -62,7 +56,6 @@ final class DanfeCanvas {
     private final PDFont fonte;
     private final PDFont negrito;
     private final PDFont monoespacada;
-    private final CmapLookup glifos;
     private PDPageContentStream conteudo;
     private float y;
     private String marcaDagua;
@@ -101,43 +94,15 @@ final class DanfeCanvas {
         this.margem = margem;
         // sem nenhum texto nao ha o que imprimir, entao tambem nao reserva a faixa inferior
         this.creditos = creditos != null && (creditos.getEsquerda() != null || creditos.getDireita() != null) ? creditos : null;
-        try {
-            final TrueTypeFont regular = new TTFParser().parse(new RandomAccessReadBuffer(FONTE_REGULAR));
-            this.glifos = regular.getUnicodeCmapLookup();
-            this.fonte = PDType0Font.load(documento, regular, true);
-            this.negrito = PDType0Font.load(documento, new TTFParser().parse(new RandomAccessReadBuffer(FONTE_NEGRITO)), true);
-            this.monoespacada = PDType0Font.load(documento, new TTFParser().parse(new RandomAccessReadBuffer(FONTE_MONOESPACADA)), true);
-        } catch (final IOException e) {
-            throw new UncheckedIOException(e);
-        }
+        // fontes padrao do PDF, sem embutir: o WinAnsi delas cobre todo o Latin-1 que o XSD aceita nos textos da nota (TString)
+        this.fonte = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
+        this.negrito = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
+        this.monoespacada = new PDType1Font(Standard14Fonts.FontName.COURIER);
         abrirPagina();
     }
 
     /**
-     * Le uma fonte embutida no jar.
-     *
-     * @param caminho caminho do recurso
-     * @return bytes do arquivo da fonte
-     */
-    private static byte[] lerRecurso(final String caminho) {
-        try (final InputStream entrada = DanfeCanvas.class.getResourceAsStream(caminho)) {
-            if (entrada == null) {
-                throw new IllegalStateException("Fonte do DANFE nao encontrada: " + caminho);
-            }
-            final ByteArrayOutputStream saida = new ByteArrayOutputStream();
-            final byte[] buffer = new byte[8192];
-            int lidos;
-            while ((lidos = entrada.read(buffer)) != -1) {
-                saida.write(buffer, 0, lidos);
-            }
-            return saida.toByteArray();
-        } catch (final IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    /**
-     * Prepara o texto para o PDF: troca caracteres de controle por espaco e o que a fonte nao tem por "?".
+     * Prepara o texto para o PDF: troca caracteres de controle por espaco e o que esta fora do WinAnsi das fontes por "?".
      *
      * @param texto texto original, ou null
      * @return texto que a fonte consegue desenhar
@@ -145,7 +110,7 @@ final class DanfeCanvas {
     private String limpar(final String texto) {
         final StringBuilder resultado = new StringBuilder();
         DanfeFormatador.semCaracteresDeControle(texto).codePoints()
-                .forEach(codigo -> resultado.appendCodePoint(this.glifos.getGlyphId(codigo) != 0 ? codigo : '?'));
+                .forEach(codigo -> resultado.appendCodePoint(WinAnsiEncoding.INSTANCE.contains(GlyphList.getAdobeGlyphList().codePointToName(codigo)) ? codigo : '?'));
         return resultado.toString();
     }
 

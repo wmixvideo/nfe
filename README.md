@@ -611,5 +611,3 @@ Mais detalhes sobre as convenções do projeto estão no [AGENTS.md](AGENTS.md).
 
 ## Licença
 Distribuído sob a [licença Apache 2.0](LICENSE).
-
-O PDF do DANFE embute as fontes Liberation (licença SIL OFL 1.1). O texto da licença e a lista de autores estão em [`src/main/resources/fonts`](src/main/resources/fonts).

@@ -118,7 +118,7 @@ class DanfeCanvasTest {
     }
 
     @Test
-    void deveEmbutirALiberationSansRegularENegritoNoPdf() throws Exception {
+    void deveUsarAHelveticaRegularENegritoSemEmbutirNoPdf() throws Exception {
         final byte[] pdf = pdf(canvas -> {
             canvas.titulo("TITULO");
             canvas.caixa(0, 100f, 24f, "ROTULO", "valor", DanfeCanvas.Alinhamento.ESQUERDA);
@@ -127,23 +127,26 @@ class DanfeCanvasTest {
             final java.util.List<String> nomes = new java.util.ArrayList<>();
             for (final org.apache.pdfbox.cos.COSName nome : documento.getPage(0).getResources().getFontNames()) {
                 final org.apache.pdfbox.pdmodel.font.PDFont fonte = documento.getPage(0).getResources().getFont(nome);
-                Assertions.assertTrue(fonte.isEmbedded(), "fonte nao embutida: " + fonte.getName());
+                Assertions.assertFalse(fonte.isEmbedded(), "fonte embutida: " + fonte.getName());
                 nomes.add(fonte.getName());
             }
-            Assertions.assertTrue(nomes.stream().anyMatch(n -> n.contains("LiberationSans") && n.contains("Bold")), nomes.toString());
-            Assertions.assertTrue(nomes.stream().anyMatch(n -> n.contains("LiberationSans") && !n.contains("Bold")), nomes.toString());
+            Assertions.assertTrue(nomes.contains("Helvetica"), nomes.toString());
+            Assertions.assertTrue(nomes.contains("Helvetica-Bold"), nomes.toString());
         }
     }
 
     @Test
-    void devePreservarCaracteresForaDoLatin1ESubstituirOQueAFonteNaoTem() throws Exception {
+    void devePreservarOLatin1ESubstituirOQueEstaForaDoWinAnsi() throws Exception {
         final byte[] pdf = pdf(canvas -> {
+            canvas.caixa(0, 200f, 24f, "R", "A\u00c7\u00c3O \u00e1\u00e9\u00ed\u00f3\u00fa \u00fc \u00ba \u20ac", DanfeCanvas.Alinhamento.ESQUERDA);
+            canvas.avancar(24f);
             canvas.caixa(0, 200f, 24f, "R", "\u0141\u00f3d\u017a", DanfeCanvas.Alinhamento.ESQUERDA);
             canvas.avancar(24f);
             canvas.caixa(0, 200f, 24f, "R", "A\uD83D\uDE00B", DanfeCanvas.Alinhamento.ESQUERDA);
         });
         final String texto = texto(pdf, 1);
-        Assertions.assertTrue(texto.contains("\u0141\u00f3d\u017a"), texto);
+        Assertions.assertTrue(texto.contains("A\u00c7\u00c3O \u00e1\u00e9\u00ed\u00f3\u00fa \u00fc \u00ba \u20ac"), texto);
+        Assertions.assertTrue(texto.contains("?\u00f3d?"), texto);
         Assertions.assertTrue(texto.contains("A?B"), texto);
     }
 
