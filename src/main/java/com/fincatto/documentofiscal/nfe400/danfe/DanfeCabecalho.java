@@ -114,7 +114,8 @@ final class DanfeCabecalho {
         final List<String> linhas = new ArrayList<>();
         final NFEndereco endereco = emitente.getEndereco();
         if (endereco != null) {
-            linhas.add(texto(endereco.getLogradouro()) + ", " + texto(endereco.getNumero()) + " \u2013 " + texto(endereco.getBairro()));
+            final String complemento = endereco.getComplemento() == null || endereco.getComplemento().trim().isEmpty() ? "" : ", " + endereco.getComplemento();
+            linhas.add(texto(endereco.getLogradouro()) + ", " + texto(endereco.getNumero()) + complemento + " \u2013 " + texto(endereco.getBairro()));
             linhas.add(texto(endereco.getDescricaoMunicipio()) + "/" + texto(endereco.getUf()) + " \u2013 CEP " + DanfeFormatador.cep(endereco.getCep()));
             linhas.add("Fone: " + DanfeFormatador.telefone(endereco.getTelefone()));
         }

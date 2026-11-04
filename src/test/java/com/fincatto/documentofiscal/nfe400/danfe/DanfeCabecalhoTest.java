@@ -119,6 +119,16 @@ class DanfeCabecalhoTest {
         Assertions.assertEquals(depoisDoLogotipo, letras(pdf, "Fone: (48) 3035-9700")[0].getXDirAdj(), 0.5f, "telefone depois do logotipo");
     }
 
+    @Test
+    void deveImprimirOComplementoDoEnderecoDoEmitente() throws Exception {
+        final NFNotaProcessada nota = notaComEmitenteCurto();
+        final String semComplemento = texto(gerador.gerar(nota, null)).replaceAll("\\s+", " ");
+        Assertions.assertTrue(semComplemento.contains("Rua Exemplo, 100 – Centro"), semComplemento);
+        nota.getNota().getInfo().getEmitente().getEndereco().setComplemento("Sala 101");
+        final String comComplemento = texto(gerador.gerar(nota, null)).replaceAll("\\s+", " ");
+        Assertions.assertTrue(comComplemento.contains("Rua Exemplo, 100, Sala 101 – Centro"), comComplemento);
+    }
+
     /**
      * Nota com razao social e endereco curtos, que cabem no quadro do emitente com ou sem logotipo.
      */
@@ -127,6 +137,7 @@ class DanfeCabecalhoTest {
         nota.getNota().getInfo().getEmitente().setRazaoSocial("Empresa Exemplo Ltda");
         nota.getNota().getInfo().getEmitente().getEndereco().setLogradouro("Rua Exemplo");
         nota.getNota().getInfo().getEmitente().getEndereco().setNumero("100");
+        nota.getNota().getInfo().getEmitente().getEndereco().setComplemento(null);
         nota.getNota().getInfo().getEmitente().getEndereco().setBairro("Centro");
         nota.getNota().getInfo().getEmitente().getEndereco().setDescricaoMunicipio("Florianopolis");
         nota.getNota().getInfo().getEmitente().getEndereco().setTelefone("4830359700");
