@@ -3,7 +3,6 @@ package com.fincatto.documentofiscal.nfe400.danfe;
 import com.fincatto.documentofiscal.DFAmbiente;
 import com.fincatto.documentofiscal.DFModelo;
 import com.fincatto.documentofiscal.nfe400.classes.NFProtocoloInfo;
-import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoIdentificacao;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import com.fincatto.documentofiscal.utils.DFPersister;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -124,8 +123,6 @@ public class NFGeraDanfe {
     private byte[] renderizar(final NFNotaProcessada nota, final byte[] logo, final DanfeCreditos creditos) {
         try (final PDDocument documento = new PDDocument(); final ByteArrayOutputStream saida = new ByteArrayOutputStream()) {
             final DanfeCanvas canvas = new DanfeCanvas(documento, creditos);
-            final NFNotaInfoIdentificacao identificacao = nota.getNota().getInfo().getIdentificacao();
-            canvas.numerarFolhas("NF-e " + DanfeFormatador.numeroNotaSemZeros(identificacao.getNumeroNota()));
             DanfeCabecalho.desenhar(canvas, nota, logo);
             canvas.cabecalhoDasFolhasSeguintes(() -> DanfeCabecalho.identificacao(canvas, nota, logo));
             DanfeTotais.desenhar(canvas, nota.getNota().getInfo());

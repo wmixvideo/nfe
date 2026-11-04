@@ -129,7 +129,7 @@ class NFGeraDanfeTest {
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
             Assertions.assertTrue(documento.getNumberOfPages() > 1);
             for (int pagina = 1; pagina <= documento.getNumberOfPages(); pagina++) {
-                Assertions.assertTrue(fluxosDeConteudo(pdf, pagina) > 3, "p\u00e1gina " + pagina);
+                Assertions.assertTrue(fluxosDeConteudo(pdf, pagina) > 1, "p\u00e1gina " + pagina);
             }
         }
     }
@@ -139,8 +139,7 @@ class NFGeraDanfeTest {
         final byte[] pdf = gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null);
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
             for (int pagina = 1; pagina <= documento.getNumberOfPages(); pagina++) {
-                // conteudo + rodape com a numeracao das folhas (que o PDFBox envolve em q/Q), sem marca d'agua
-                Assertions.assertEquals(3, fluxosDeConteudo(pdf, pagina), "p\u00e1gina " + pagina);
+                Assertions.assertEquals(1, fluxosDeConteudo(pdf, pagina), "p\u00e1gina " + pagina);
             }
         }
     }
@@ -228,23 +227,6 @@ class NFGeraDanfeTest {
             final String texto = textoDaPagina(documento, 1);
             Assertions.assertTrue(texto.contains("www.exemplo.com.br"));
             Assertions.assertFalse(texto.contains(longo));
-        }
-    }
-
-    @Test
-    void deveNumerarAsFolhasNoRodapeDeTodasAsPaginas() throws Exception {
-        final byte[] pdf = gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null);
-        try (final PDDocument documento = Loader.loadPDF(pdf)) {
-            final int total = documento.getNumberOfPages();
-            Assertions.assertTrue(total > 1);
-            for (int pagina = 1; pagina <= total; pagina++) {
-                final org.apache.pdfbox.text.PDFTextStripper extrator = new org.apache.pdfbox.text.PDFTextStripper();
-                extrator.setStartPage(pagina);
-                extrator.setEndPage(pagina);
-                final String texto = extrator.getText(documento).replaceAll("\\s+", " ");
-                Assertions.assertTrue(texto.contains("P\u00e1gina " + pagina + "/" + total), "p\u00e1gina " + pagina);
-                Assertions.assertTrue(texto.contains("NF-e 999.999.999 - P\u00e1gina " + pagina + "/" + total), "n\u00famero da nota no rodap\u00e9, p\u00e1gina " + pagina);
-            }
         }
     }
 

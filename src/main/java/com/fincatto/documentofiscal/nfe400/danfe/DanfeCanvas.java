@@ -63,10 +63,8 @@ final class DanfeCanvas {
     private float y;
     private String marcaDagua;
     private final DanfeCreditos creditos;
-    private boolean numerarFolhas;
     private boolean paginar = true;
     private boolean encolherUltimaPagina;
-    private String identificacaoDoRodape = "";
     private Runnable cabecalhoDasFolhasSeguintes;
     private PDFormXObject totalDeFolhas;
     private float tamanhoDoTotalDeFolhas;
@@ -212,7 +210,7 @@ final class DanfeCanvas {
      * @return espaco vertical que ainda cabe na pagina, em pontos
      */
     float restante() {
-        return this.y - this.margem - (this.creditos == null && !this.numerarFolhas ? 0 : ALTURA_RODAPE);
+        return this.y - this.margem - (this.creditos == null ? 0 : ALTURA_RODAPE);
     }
 
     /**
@@ -704,8 +702,8 @@ final class DanfeCanvas {
                 encolher(this.documento.getPage(this.documento.getNumberOfPages() - 1));
             }
             for (final PDPage pagina : this.documento.getPages()) {
-                if (this.creditos != null || this.numerarFolhas) {
-                    desenharRodape(pagina, this.documento.getPages().indexOf(pagina) + 1, this.documento.getNumberOfPages());
+                if (this.creditos != null) {
+                    desenharRodape(pagina);
                 }
                 if (this.marcaDagua != null) {
                     desenharMarcaDagua(pagina);
@@ -740,29 +738,15 @@ final class DanfeCanvas {
     /**
      * Escreve o rodape personalizado na base da pagina: um texto em cada ponta, cortado para nao se encontrarem.
      */
-    private void desenharRodape(final PDPage pagina, final int folha, final int totalFolhas) throws IOException {
-        final String numeracao = this.numerarFolhas ? this.identificacaoDoRodape + "P\u00e1gina " + folha + "/" + totalFolhas : "";
-        final float larguraNumeracao = larguraNaFonte(this.fonte, numeracao, TAMANHO_RODAPE);
-        final float metade = (larguraUtil() - 4 - (numeracao.isEmpty() ? 0 : larguraNumeracao + 8)) / 2;
-        final String esquerda = this.creditos == null ? "" : cortar(limpar(this.creditos.getEsquerda()), TAMANHO_RODAPE, metade);
-        final String direita = this.creditos == null ? "" : cortar(limpar(this.creditos.getDireita()), TAMANHO_RODAPE, metade);
-        final float bordaDireita = this.pagina.getWidth() - this.margem - 2;
+    private void desenharRodape(final PDPage pagina) throws IOException {
+        final float metade = (larguraUtil() - 4) / 2;
+        final String esquerda = cortar(limpar(this.creditos.getEsquerda()), TAMANHO_RODAPE, metade);
+        final String direita = cortar(limpar(this.creditos.getDireita()), TAMANHO_RODAPE, metade);
         try (final PDPageContentStream fluxo = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
             fluxo.setNonStrokingColor(COR_RODAPE);
             escreverRodape(fluxo, this.margem + 2, esquerda);
-            escreverRodape(fluxo, (this.pagina.getWidth() - larguraNumeracao) / 2, numeracao);
-            escreverRodape(fluxo, bordaDireita - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
+            escreverRodape(fluxo, this.pagina.getWidth() - this.margem - 2 - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
         }
-    }
-
-    /**
-     * Passa a imprimir "P\u00e1gina n/N" no centro do rodape de todas as paginas, reservando a faixa inferior.
-     *
-     * @param identificacao texto impresso antes da numeracao para identificar o documento (ex.: "NF-e 000.000.001"), ou null
-     */
-    void numerarFolhas(final String identificacao) {
-        this.numerarFolhas = true;
-        this.identificacaoDoRodape = identificacao == null || identificacao.isEmpty() ? "" : identificacao + "  -  ";
     }
 
     private void escreverRodape(final PDPageContentStream fluxo, final float x, final String texto) throws IOException {
