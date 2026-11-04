@@ -159,6 +159,14 @@ class DanfeCanvasTest {
     }
 
     @Test
+    void caixaDeveDiminuirAFonteDoValorEmVezDeCortarOsDigitos() throws Exception {
+        // maior valor do XSD (TDec_1302) na coluna VALOR da fatura, a mais estreita dos quadros com valores
+        final String valor = "9.999.999.999.999,99";
+        final byte[] pdf = pdf(canvas -> canvas.caixa(0, 46.8f, 17.5f, "VALOR", valor, DanfeCanvas.Alinhamento.ESQUERDA));
+        Assertions.assertTrue(texto(pdf, 1).contains(valor), texto(pdf, 1));
+    }
+
+    @Test
     void caixaDeveCortarRotuloMaisLargoQueACaixa() throws Exception {
         final String rotulo = "R\u00d3TULO MUITO LONGO PARA UMA CAIXA ESTREITA";
         final byte[] pdf = pdf(canvas -> canvas.caixa(0, 40f, 24f, rotulo, "", DanfeCanvas.Alinhamento.ESQUERDA));

@@ -56,6 +56,7 @@ final class DanfeCanvas {
     private static final Color COR_RODAPE = new Color(64, 64, 64);
     private static final float ALTURA_RODAPE = 10f;
     private static final float TAMANHO_VALOR = 6f;
+    private static final float TAMANHO_MINIMO_VALOR = 4f;
     private static final float ESPACO_LINHA = 1.2f;
 
     private final PDDocument documento;
@@ -626,7 +627,8 @@ final class DanfeCanvas {
     }
 
     /**
-     * Desenha um quadro com rotulo pequeno no topo e valor abaixo; rotulo e valor mais largos que a caixa sao cortados.
+     * Desenha um quadro com rotulo pequeno no topo e valor abaixo. O rotulo mais largo que a caixa e cortado; o valor primeiro
+     * diminui de fonte, ate {@link #TAMANHO_MINIMO_VALOR}, e so e cortado se ainda assim nao couber.
      *
      * @param x deslocamento horizontal a partir da margem, em pontos
      * @param largura largura do quadro, em pontos
@@ -662,10 +664,16 @@ final class DanfeCanvas {
         }
         final float disponivel = largura - 4;
         escrever(this.fonte, tamanhoRotulo, Color.GRAY, this.margem + x + 2, this.y - 6.5f, cortar(limpar(rotulo), tamanhoRotulo, disponivel));
-        final String texto = cortar(limpar(valor), TAMANHO_VALOR, disponivel);
-        final float sobra = disponivel - larguraNaFonte(this.fonte, texto, TAMANHO_VALOR);
+        // diminuir a fonte antes de cortar evita perder digitos e casas decimais de valores grandes
+        final String limpo = limpar(valor);
+        float tamanhoValor = TAMANHO_VALOR;
+        while (tamanhoValor > TAMANHO_MINIMO_VALOR && larguraNaFonte(this.fonte, limpo, tamanhoValor) > disponivel) {
+            tamanhoValor -= 0.5f;
+        }
+        final String texto = cortar(limpo, tamanhoValor, disponivel);
+        final float sobra = disponivel - larguraNaFonte(this.fonte, texto, tamanhoValor);
         final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-        escrever(this.fonte, TAMANHO_VALOR, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
+        escrever(this.fonte, tamanhoValor, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
     }
 
     /**
