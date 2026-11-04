@@ -115,18 +115,17 @@ final class DanfeCabecalho {
      */
     private static void danfe(final DanfeCanvas canvas, final NFNotaInfoIdentificacao identificacao) {
         canvas.caixa(LARGURA_EMITENTE, LARGURA_DANFE, ALTURA_CABECALHO, "", "", ESQUERDA);
-        escreverEm(canvas, 4, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DANFE", 11f);
-        escreverEm(canvas, 18, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DOCUMENTO AUXILIAR DA NOTA FISCAL ELETR\u00d4NICA", 5.5f);
+        escreverEm(canvas, 4, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DANFE", 11f, CENTRO);
+        escreverEm(canvas, 18, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "DOCUMENTO AUXILIAR DA NOTA FISCAL ELETR\u00d4NICA", 5.5f, CENTRO);
         canvas.avancar(34);
         canvas.caixa(LARGURA_EMITENTE + (LARGURA_DANFE - 20) / 2, 20f, 14f, "", identificacao.getTipo() == null ? "" : identificacao.getTipo().getCodigo(), CENTRO);
         canvas.avancar(-34);
-        escreverEm(canvas, 50, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "0 - ENTRADA   1 - SA\u00cdDA", 5.5f);
-        final String serie = "S\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie());
-        escreverEm(canvas, 58, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, DanfeFormatador.numeroNota(identificacao.getNumeroNota()) + "\n" + serie, 6.5f);
+        escreverEm(canvas, 50, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "0 - ENTRADA   1 - SA\u00cdDA", 5.5f, CENTRO);
+        escreverEm(canvas, 58, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, DanfeFormatador.numeroNota(identificacao.getNumeroNota()), 6.5f, CENTRO);
         // numero da folha e total de folhas no alto de cada folha (MOC 7.0, Anexo II, item 3.10.2), ao lado da serie como no modelo da NT 2026.010
         final float linhaDaSerie = 58 + canvas.alturaLinha(6.5f);
         canvas.avancar(linhaDaSerie);
-        canvas.folha(LARGURA_EMITENTE + 2 + canvas.largura(serie + "  ", 6.5f), 6.5f);
+        canvas.folha(LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "S\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie()) + "   ", 6.5f);
         canvas.avancar(-linhaDaSerie);
     }
 
@@ -185,8 +184,16 @@ final class DanfeCabecalho {
      * Escreve o texto deslocado para baixo em relacao ao cursor, devolvendo o cursor ao lugar.
      */
     private static void escreverEm(final DanfeCanvas canvas, final float deslocamentoY, final float x, final float largura, final String texto, final float tamanho) {
+        escreverEm(canvas, deslocamentoY, x, largura, texto, tamanho, ESQUERDA);
+    }
+
+    /**
+     * Como {@link #escreverEm(DanfeCanvas, float, float, float, String, float)}, com cada linha alinhada dentro da largura.
+     */
+    private static void escreverEm(final DanfeCanvas canvas, final float deslocamentoY, final float x, final float largura, final String texto, final float tamanho,
+                                   final DanfeCanvas.Alinhamento alinhamento) {
         canvas.avancar(deslocamentoY);
-        canvas.texto(x, largura, texto, tamanho);
+        canvas.texto(x, largura, texto, tamanho, alinhamento, false);
         canvas.avancar(-deslocamentoY);
     }
 

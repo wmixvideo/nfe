@@ -157,16 +157,21 @@ final class DanfeCanvas {
     }
 
     /**
-     * Escreve "FOLHA n/N" a partir do cursor, com o numero desta pagina; nao move o cursor. O total de folhas so e conhecido
-     * ao fechar o documento, entao fica num XObject desenhado em todas as paginas e preenchido em {@link #fechar()}.
+     * Escreve o texto seguido de "FOLHA n/N", com o numero desta pagina, numa linha centralizada na largura; nao move o cursor.
+     * O total de folhas so e conhecido ao fechar o documento, entao fica num XObject desenhado em todas as paginas e preenchido
+     * em {@link #fechar()}; para centralizar, supoe-se que o total tem tantos digitos quanto o numero da folha.
      *
      * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura disponivel, em pontos
+     * @param texto texto antes da folha, ou vazio
      * @param tamanhoFonte tamanho da fonte, em pontos
      */
-    void folha(final float x, final float tamanhoFonte) {
-        final String folha = "FOLHA " + paginas() + "/";
+    void folha(final float x, final float largura, final String texto, final float tamanhoFonte) {
+        final String folha = limpar(texto) + "FOLHA " + paginas() + "/";
+        final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, folha + paginas(), tamanhoFonte));
+        final float inicio = this.margem + x + sobra / 2;
         final float yBase = this.y - tamanhoFonte;
-        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x, yBase, folha);
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, inicio, yBase, folha);
         if (this.totalDeFolhas == null) {
             this.totalDeFolhas = new PDFormXObject(this.documento);
             this.totalDeFolhas.setResources(new PDResources());
@@ -175,7 +180,7 @@ final class DanfeCanvas {
         }
         try {
             this.conteudo.saveGraphicsState();
-            this.conteudo.transform(Matrix.getTranslateInstance(this.margem + x + larguraNaFonte(this.fonte, folha, tamanhoFonte), yBase));
+            this.conteudo.transform(Matrix.getTranslateInstance(inicio + larguraNaFonte(this.fonte, folha, tamanhoFonte), yBase));
             this.conteudo.drawForm(this.totalDeFolhas);
             this.conteudo.restoreGraphicsState();
         } catch (final IOException e) {
@@ -684,7 +689,7 @@ final class DanfeCanvas {
     }
 
     /**
-     * Fecha a ultima pagina, escreve o total de folhas de {@link #folha(float, float)} e aplica a marca d'agua, se houver, em todas elas.
+     * Fecha a ultima pagina, escreve o total de folhas de {@link #folha(float, float, String, float)} e aplica a marca d'agua, se houver, em todas elas.
      */
     void fechar() {
         try {

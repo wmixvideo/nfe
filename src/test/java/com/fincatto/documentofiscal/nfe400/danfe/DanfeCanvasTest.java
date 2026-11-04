@@ -225,12 +225,12 @@ class DanfeCanvasTest {
     @Test
     void deveEscreverAFolhaComOTotalDePaginasConhecidoAoFechar() throws Exception {
         final byte[] pdf = pdf(canvas -> {
-            canvas.folha(0, 6.5f);
+            canvas.folha(0, 200f, "SERIE 001   ", 6.5f);
             canvas.novaPagina();
-            canvas.folha(0, 6.5f);
+            canvas.folha(0, 200f, "", 6.5f);
             canvas.novaPagina();
         });
-        Assertions.assertTrue(texto(pdf, 1).contains("FOLHA 1/3"), texto(pdf, 1));
+        Assertions.assertTrue(texto(pdf, 1).replaceAll("\\s+", " ").contains("SERIE 001 FOLHA 1/3"), texto(pdf, 1));
         Assertions.assertTrue(texto(pdf, 2).contains("FOLHA 2/3"), texto(pdf, 2));
         Assertions.assertFalse(texto(pdf, 3).contains("FOLHA"), texto(pdf, 3));
     }
