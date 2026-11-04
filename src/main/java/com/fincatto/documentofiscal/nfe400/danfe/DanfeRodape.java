@@ -6,6 +6,7 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoSuplementar;
 
 import java.util.List;
 
+import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.CENTRO;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.ESQUERDA;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.LARGURA_UTIL;
 
@@ -16,11 +17,18 @@ import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.LARGURA_UTIL
  */
 final class DanfeRodape {
 
-    private static final float TAMANHO_FONTE = 6.5f;
-    private static final float ALTURA_ROTULO = 12f;
-    private static final float ALTURA_MINIMA = 50f;
-    private static final float ALTURA_QR_CODE = 74f;
-    private static final float LADO_QR_CODE = 60f;
+    // medidas do modelo retrato da NT 2026.010
+    private static final float TAMANHO_FONTE = 5f;
+    private static final float TAMANHO_ROTULO = 4.5f;
+    private static final float ALTURA_ROTULO = 10f;
+    private static final float ALTURA_MINIMA = 61f;
+    private static final float LADO_QR_CODE = 52f;
+    /** Parte da largura util ocupada pelos dados adicionais quando ha QR Code. */
+    private static final float LARGURA_DADOS_COM_QR_CODE = 0.783f;
+    /** Parte dos dados adicionais ocupada pelas informacoes complementares; o resto e do fisco. */
+    private static final float LARGURA_COMPLEMENTARES = 0.571f;
+    /** Espaco entre os dados adicionais e o quadro do QR Code. */
+    private static final float ESPACO_QR_CODE = 4.8f;
 
     /**
      * Classe utilitaria, nao deve ser instanciada.
@@ -39,29 +47,34 @@ final class DanfeRodape {
         final NFNotaInfoSuplementar suplementar = nota.getInfoSuplementar();
         final String qrCode = suplementar == null ? null : suplementar.getQrCode();
 
-        final float larguraComplementares = LARGURA_UTIL * (qrCode == null ? 0.62f : 0.42f);
-        final float larguraFisco = LARGURA_UTIL * (qrCode == null ? 0.38f : 0.30f);
+        final float larguraDados = qrCode == null ? LARGURA_UTIL : LARGURA_UTIL * LARGURA_DADOS_COM_QR_CODE;
+        final float larguraComplementares = larguraDados * LARGURA_COMPLEMENTARES;
+        final float larguraFisco = larguraDados - larguraComplementares;
         final List<String> complementares = canvas.quebrar(adicionais == null ? null : adicionais.getInformacoesComplementaresInteresseContribuinte(), larguraComplementares - 4, TAMANHO_FONTE);
         final List<String> fisco = canvas.quebrar(adicionais == null ? null : adicionais.getInformacoesAdicionaisInteresseFisco(), larguraFisco - 4, TAMANHO_FONTE);
 
-        canvas.garantir(DanfeCanvas.ESPACO_ENTRE_BLOCOS + DanfeCanvas.ALTURA_TITULO + (qrCode == null ? ALTURA_MINIMA : ALTURA_QR_CODE));
+        canvas.garantir(DanfeCanvas.ESPACO_ENTRE_BLOCOS + DanfeCanvas.ALTURA_TITULO + ALTURA_MINIMA);
         canvas.avancar(DanfeCanvas.ESPACO_ENTRE_BLOCOS);
-        canvas.titulo("DADOS ADICIONAIS");
+        canvas.titulo(0, larguraDados, "DADOS ADICIONAIS", ESQUERDA);
+        if (qrCode != null) {
+            canvas.titulo(larguraDados + ESPACO_QR_CODE, LARGURA_UTIL - larguraDados - ESPACO_QR_CODE, "QR CODE", CENTRO);
+        }
         canvas.avancar(DanfeCanvas.ALTURA_TITULO);
 
         final float necessaria = Math.max(complementares.size(), fisco.size()) * canvas.alturaLinha(TAMANHO_FONTE) + ALTURA_ROTULO;
-        final float altura = Math.min(canvas.restante(), Math.max(qrCode == null ? ALTURA_MINIMA : ALTURA_QR_CODE, necessaria));
+        final float altura = Math.min(canvas.restante(), Math.max(ALTURA_MINIMA, necessaria));
         final int capacidade = capacidade(canvas, altura);
         quadroDeTexto(canvas, 0, larguraComplementares, altura, "INFORMA\u00c7\u00d5ES COMPLEMENTARES", complementares, capacidade);
         quadroDeTexto(canvas, larguraComplementares, larguraFisco, altura, "RESERVADO AO FISCO", fisco, capacidade);
         if (qrCode != null) {
-            final float x = larguraComplementares + larguraFisco;
+            // quadro proprio, separado dos dados adicionais, com o QR Code centralizado
+            final float x = larguraDados + ESPACO_QR_CODE;
             final float largura = LARGURA_UTIL - x;
-            canvas.caixa(x, largura, altura, "QR CODE", "", ESQUERDA);
-            final float lado = Math.min(LADO_QR_CODE, Math.min(altura - ALTURA_ROTULO - 2, largura - 8));
-            canvas.avancar(ALTURA_ROTULO);
+            final float lado = Math.min(LADO_QR_CODE, Math.min(altura - 4, largura - 8));
+            canvas.caixa(x, largura, altura, "", "", ESQUERDA);
+            canvas.avancar((altura - lado) / 2);
             canvas.qrCode(x + (largura - lado) / 2, lado, qrCode);
-            canvas.avancar(-ALTURA_ROTULO);
+            canvas.avancar(-(altura - lado) / 2);
         }
         canvas.avancar(altura);
 
@@ -80,7 +93,7 @@ final class DanfeRodape {
      * Desenha um quadro com rotulo e as primeiras linhas que cabem.
      */
     private static void quadroDeTexto(final DanfeCanvas canvas, final float x, final float largura, final float altura, final String rotulo, final List<String> linhas, final int capacidade) {
-        canvas.caixa(x, largura, altura, rotulo, "", ESQUERDA);
+        canvas.caixa(x, largura, altura, rotulo, "", ESQUERDA, TAMANHO_ROTULO);
         canvas.avancar(ALTURA_ROTULO - 2);
         canvas.texto(x + 2, largura - 4, String.join("\n", linhas.subList(0, Math.min(capacidade, linhas.size()))), TAMANHO_FONTE);
         canvas.avancar(-(ALTURA_ROTULO - 2));

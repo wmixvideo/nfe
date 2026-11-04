@@ -245,16 +245,31 @@ final class DanfeCanvas {
      * @param texto titulo do bloco
      */
     void titulo(final String texto) {
+        titulo(0, larguraUtil(), texto, Alinhamento.ESQUERDA);
+    }
+
+    /**
+     * Desenha a barra de titulo de um bloco na largura informada, com {@link #ALTURA_TITULO}; nao move o cursor.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura da barra, em pontos
+     * @param texto titulo do bloco
+     * @param alinhamento alinhamento do titulo dentro da barra
+     */
+    void titulo(final float x, final float largura, final String texto, final Alinhamento alinhamento) {
         try {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
             this.conteudo.setNonStrokingColor(new Color(225, 225, 225));
-            this.conteudo.addRect(this.margem, this.y - ALTURA_TITULO, larguraUtil(), ALTURA_TITULO);
+            this.conteudo.addRect(this.margem + x, this.y - ALTURA_TITULO, largura, ALTURA_TITULO);
             this.conteudo.fillAndStroke();
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
-        escrever(this.negrito, TAMANHO_TITULO, Color.BLACK, this.margem + 2, this.y - 6.3f, limpar(texto));
+        final String limpo = limpar(texto);
+        final float sobra = Math.max(0f, largura - 4 - larguraNaFonte(this.negrito, limpo, TAMANHO_TITULO));
+        final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
+        escrever(this.negrito, TAMANHO_TITULO, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - 6.3f, limpo);
     }
 
     /**
