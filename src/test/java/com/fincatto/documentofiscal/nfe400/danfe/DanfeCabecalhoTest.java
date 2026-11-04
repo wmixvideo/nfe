@@ -4,12 +4,15 @@ import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaProcessada;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.TextPosition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Testes do cabecalho do DANFE (canhoto, emitente, chave e regime).
@@ -89,8 +92,74 @@ class DanfeCabecalhoTest {
         Assertions.assertTrue(temImagem(comLogo));
         Assertions.assertFalse(temImagem(semLogo));
         Assertions.assertFalse(temImagem(logoInvalido));
-        Assertions.assertEquals(texto(semLogo), texto(comLogo));
+        // com logotipo o texto do emitente fica mais estreito e pode quebrar em outros pontos
+        Assertions.assertTrue(texto(comLogo).replaceAll("\\s+", " ").contains(DanfeFixtures.notaProcessada().getNota().getInfo().getEmitente().getRazaoSocial().substring(0, 20)));
         Assertions.assertEquals(texto(semLogo), texto(logoInvalido));
+    }
+
+    @Test
+    void deveCentralizarOEmitenteNoQuadroSemLogotipo() throws Exception {
+        final byte[] pdf = gerador.gerar(notaComEmitenteCurto(), null);
+        Assertions.assertFalse(temImagem(pdf));
+        final float centroDoQuadro = DanfeCanvas.MARGEM + DanfeCabecalho.LARGURA_EMITENTE / 2;
+        final TextPosition[] razaoSocial = letras(pdf, "Empresa Exemplo Ltda");
+        Assertions.assertEquals(centroDoQuadro, centro(razaoSocial), 0.5f, "razão social centralizada");
+        Assertions.assertTrue(razaoSocial[0].getFont().getName().contains("Bold"), "razão social em negrito");
+        Assertions.assertEquals(centroDoQuadro, centro(letras(pdf, "Fone: (48) 3035-9700")), 0.5f, "telefone centralizado");
+    }
+
+    @Test
+    void deveAlinharOEmitenteAEsquerdaDepoisDoLogotipo() throws Exception {
+        final byte[] pdf = gerador.gerar(notaComEmitenteCurto(), png());
+        Assertions.assertTrue(temImagem(pdf));
+        final float depoisDoLogotipo = DanfeCanvas.MARGEM + DanfeCabecalho.LARGURA_LOGO + 4;
+        final TextPosition[] razaoSocial = letras(pdf, "Empresa Exemplo Ltda");
+        Assertions.assertEquals(depoisDoLogotipo, razaoSocial[0].getXDirAdj(), 0.5f, "razão social depois do logotipo");
+        Assertions.assertTrue(razaoSocial[0].getFont().getName().contains("Bold"), "razão social em negrito");
+        Assertions.assertEquals(depoisDoLogotipo, letras(pdf, "Fone: (48) 3035-9700")[0].getXDirAdj(), 0.5f, "telefone depois do logotipo");
+    }
+
+    /**
+     * Nota com razao social e endereco curtos, que cabem no quadro do emitente com ou sem logotipo.
+     */
+    private static NFNotaProcessada notaComEmitenteCurto() {
+        final NFNotaProcessada nota = DanfeFixtures.notaProcessada();
+        nota.getNota().getInfo().getEmitente().setRazaoSocial("Empresa Exemplo Ltda");
+        nota.getNota().getInfo().getEmitente().getEndereco().setLogradouro("Rua Exemplo");
+        nota.getNota().getInfo().getEmitente().getEndereco().setNumero("100");
+        nota.getNota().getInfo().getEmitente().getEndereco().setBairro("Centro");
+        nota.getNota().getInfo().getEmitente().getEndereco().setDescricaoMunicipio("Florianopolis");
+        nota.getNota().getInfo().getEmitente().getEndereco().setTelefone("4830359700");
+        return nota;
+    }
+
+    /**
+     * @return primeira e ultima letra do texto procurado na primeira pagina, na ordem em que foram desenhadas
+     */
+    private static TextPosition[] letras(final byte[] pdf, final String procurado) throws Exception {
+        final List<TextPosition> letras = new ArrayList<>();
+        final PDFTextStripper leitor = new PDFTextStripper() {
+            @Override
+            protected void processTextPosition(final TextPosition letra) {
+                letras.add(letra);
+            }
+        };
+        leitor.setEndPage(1);
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            leitor.getText(documento);
+        }
+        final StringBuilder texto = new StringBuilder();
+        letras.forEach(letra -> texto.append(letra.getUnicode()));
+        final int inicio = texto.indexOf(procurado);
+        Assertions.assertTrue(inicio >= 0, procurado);
+        return new TextPosition[]{letras.get(inicio), letras.get(inicio + procurado.length() - 1)};
+    }
+
+    /**
+     * @return centro horizontal do texto, entre o inicio da primeira letra e o fim da ultima
+     */
+    private static float centro(final TextPosition[] letras) {
+        return (letras[0].getXDirAdj() + letras[1].getXDirAdj() + letras[1].getWidthDirAdj()) / 2;
     }
 
     @Test

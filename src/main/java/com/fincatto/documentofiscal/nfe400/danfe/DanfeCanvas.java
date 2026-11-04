@@ -305,6 +305,19 @@ final class DanfeCanvas {
         return quebrar(this.fonte, texto, largura, tamanhoFonte);
     }
 
+    /**
+     * Como {@link #quebrar(String, float, float)}, medindo na fonte em negrito quando pedido.
+     *
+     * @param texto texto a quebrar, ou null
+     * @param largura largura maxima de cada linha, em pontos
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @param negrito true para medir na fonte em negrito
+     * @return linhas que cabem na largura (pelo menos uma)
+     */
+    List<String> quebrar(final String texto, final float largura, final float tamanhoFonte, final boolean negrito) {
+        return quebrar(negrito ? this.negrito : this.fonte, texto, largura, tamanhoFonte);
+    }
+
     private List<String> quebrar(final PDFont fonteDoTexto, final String texto, final float largura, final float tamanhoFonte) {
         if (texto == null) {
             return Collections.singletonList("");
@@ -561,6 +574,22 @@ final class DanfeCanvas {
      * @param alinhamento alinhamento do valor
      */
     void caixa(final float x, final float largura, final float altura, final String rotulo, final String valor, final Alinhamento alinhamento) {
+        caixa(x, largura, altura, rotulo, valor, alinhamento, TAMANHO_ROTULO);
+    }
+
+    /**
+     * Como {@link #caixa(float, float, float, String, String, Alinhamento)}, com o rotulo no tamanho informado.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param largura largura do quadro, em pontos
+     * @param altura altura do quadro, em pontos
+     * @param rotulo rotulo do quadro
+     * @param valor valor do quadro
+     * @param alinhamento alinhamento do valor
+     * @param tamanhoRotulo tamanho da fonte do rotulo, em pontos
+     */
+    void caixa(final float x, final float largura, final float altura, final String rotulo, final String valor, final Alinhamento alinhamento,
+               final float tamanhoRotulo) {
         try {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
@@ -570,7 +599,7 @@ final class DanfeCanvas {
             throw new UncheckedIOException(e);
         }
         final float disponivel = largura - 4;
-        escrever(this.fonte, TAMANHO_ROTULO, Color.GRAY, this.margem + x + 2, this.y - 6.5f, cortar(limpar(rotulo), TAMANHO_ROTULO, disponivel));
+        escrever(this.fonte, tamanhoRotulo, Color.GRAY, this.margem + x + 2, this.y - 6.5f, cortar(limpar(rotulo), tamanhoRotulo, disponivel));
         final String texto = cortar(limpar(valor), TAMANHO_VALOR, disponivel);
         final float sobra = disponivel - larguraNaFonte(this.fonte, texto, TAMANHO_VALOR);
         final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
