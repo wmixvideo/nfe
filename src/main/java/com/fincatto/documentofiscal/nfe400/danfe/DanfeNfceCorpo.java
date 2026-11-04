@@ -42,7 +42,8 @@ final class DanfeNfceCorpo {
     private static final float LADO_QR_CODE = 25 * DanfeCanvas.MM;
     private static final float MARGEM_SEGURA_QR_CODE = 3 * DanfeCanvas.MM;
     /**
-     * Espaco que um item ou o inicio de um anexo precisa para nao ficar partido entre duas paginas (so vale quando o cupom e paginado).
+     * Espaco que um item ou o inicio de um anexo precisa para nao ficar partido entre duas paginas (so vale quando o cupom e paginado);
+     * o item que for mais alto reserva a propria altura.
      */
     private static final float ALTURA_MINIMA_BLOCO = 60f;
     /**
@@ -289,11 +290,16 @@ final class DanfeNfceCorpo {
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "CÓDIGO DESCRIÇÃO", "", "", "", true);
         linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QUANTIDADE", "UN", "VL.UNIT.", "VL.TOTAL", true);
         for (final NFNotaInfoItem item : itens) {
-            canvas.garantir(ALTURA_MINIMA_BLOCO);
-            separador(canvas, ESPESSURA_LINHA_FINA, false);
             final String codigoDescricao = valorOuVazio(item.getProduto().getCodigo()) + " " + valorOuVazio(item.getProduto().getDescricao());
+            final String quantidade = quantidade(item.getProduto().getQuantidadeComercial());
+            // altura real do item (separador, codigo e descricao e a linha das colunas, que cresce quando a quantidade quebra), para ele
+            // nao passar do fim da pagina quando nao couber no espaco minimo
+            final float alturaDoItem = 2 * ESPACO_LINHA + ESPESSURA_LINHA_FINA + canvas.alturaLinha(TAMANHO)
+                    * (canvas.quebrar(codigoDescricao, canvas.larguraUtil(), TAMANHO).size() + canvas.quebrar(quantidade, larguraQuantidade, TAMANHO).size());
+            canvas.garantir(Math.max(ALTURA_MINIMA_BLOCO, alturaDoItem));
+            separador(canvas, ESPESSURA_LINHA_FINA, false);
             canvas.avancar(canvas.texto(0, canvas.larguraUtil(), codigoDescricao, TAMANHO, ESQUERDA, false));
-            linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade(item.getProduto().getQuantidadeComercial()),
+            linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade,
                     valorOuVazio(item.getProduto().getUnidadeComercial()), dinheiro(item.getProduto().getValorUnitario(), 2),
                     dinheiro(item.getProduto().getValorTotalBruto(), 2), false);
         }

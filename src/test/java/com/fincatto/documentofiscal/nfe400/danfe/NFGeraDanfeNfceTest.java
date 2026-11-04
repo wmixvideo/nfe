@@ -519,6 +519,21 @@ class NFGeraDanfeNfceTest {
         Assertions.assertEquals(0, letrasAbaixoDaAreaUtil(pdf));
     }
 
+    @Test
+    void deveLevarParaAPaginaSeguinteOItemQueNaoCabeNoFimDaPagina() throws Exception {
+        final DanfeNfceFixtures.Builder nfce = DanfeNfceFixtures.nfce();
+        final String codigo = String.join("", java.util.Collections.nCopies(60, "C"));
+        final String descricao = String.join(" ", java.util.Collections.nCopies(20, "DESCRICAO"));
+        // codigo com o tamanho maximo do XSD e valores grandes, que estreitam a coluna da quantidade e a quebram em varias linhas;
+        // descricoes de tamanhos variados, para que os itens terminem em pontos diferentes das paginas
+        for (int i = 0; i < 1500; i++) {
+            nfce.item(codigo, descricao.substring(0, 20 + (i * 37) % 100), "1234567890.1234", "UNIDADE", "1234567890.1234567890", "999999999999.99");
+        }
+        final byte[] pdf = gerador.gerar(nfce.build(), null);
+        Assertions.assertTrue(paginas(pdf) > 1);
+        Assertions.assertEquals(0, letrasAbaixoDaAreaUtil(pdf));
+    }
+
     private static int paginas(final byte[] pdf) throws Exception {
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
             return documento.getNumberOfPages();
