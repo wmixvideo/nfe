@@ -142,6 +142,24 @@ class DanfeTotaisTest {
     }
 
     @Test
+    void deveImprimirOsDadosDaFaturaQuandoNaoHaDuplicatas() throws Exception {
+        final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoFatura fatura = new com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoFatura();
+        fatura.setNumeroFatura("FAT-123");
+        fatura.setValorOriginalFatura(new java.math.BigDecimal("300.00"));
+        fatura.setValorDesconto(new java.math.BigDecimal("30.18"));
+        fatura.setValorLiquidoFatura(new java.math.BigDecimal("269.82"));
+        info.getCobranca().setFatura(fatura);
+        info.getCobranca().setParcelas(null);
+        final String texto = desenhar(info);
+        Assertions.assertTrue(texto.contains("FATURA / DUPLICATAS"), texto);
+        for (final String esperado : new String[]{"NÚMERO DA FATURA", "FAT-123", "VALOR ORIGINAL", "300,00", "VALOR DO DESCONTO", "30,18", "VALOR LÍQUIDO", "269,82"}) {
+            Assertions.assertTrue(texto.contains(esperado), esperado);
+        }
+        Assertions.assertFalse(texto.contains("FATURA/DUPLICATA"), "sem duplicatas, sem as colunas das duplicatas");
+    }
+
+    @Test
     void deveContinuarEmNovaPaginaQuandoAFaturaTemMuitasParcelas() throws Exception {
         final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
         final java.util.List<com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoParcela> parcelas = new java.util.ArrayList<>();

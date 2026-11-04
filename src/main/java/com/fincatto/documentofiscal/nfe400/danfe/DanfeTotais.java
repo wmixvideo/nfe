@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfo;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoCobranca;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoDestinatario;
+import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoFatura;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoICMSTotal;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoIBSCBSTot;
 import com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoIdentificacao;
@@ -179,13 +180,24 @@ final class DanfeTotais {
     }
 
     /**
-     * Desenha a fatura e as duplicatas, somente se houver parcelas.
+     * Desenha as duplicatas ou, se a cobranca so tiver a fatura, os dados da fatura; sem nenhuma das duas, o quadro e suprimido.
      */
     private static void fatura(final DanfeCanvas canvas, final NFNotaInfoCobranca cobranca) {
-        if (cobranca == null || cobranca.getParcelas() == null || cobranca.getParcelas().isEmpty()) {
+        final boolean comParcelas = cobranca != null && cobranca.getParcelas() != null && !cobranca.getParcelas().isEmpty();
+        final NFNotaInfoFatura dadosDaFatura = cobranca == null ? null : cobranca.getFatura();
+        if (!comParcelas && dadosDaFatura == null) {
             return;
         }
         titulo(canvas, "FATURA / DUPLICATAS");
+        if (!comParcelas) {
+            // fat e dup sao independentes no XSD; o quadro impresso deve trazer os dados das suas tags (MOC 7.0, Anexo II, item 3.3.2)
+            linha(canvas, new float[]{1, 1, 1, 1},
+                    texto("NÚMERO DA FATURA", dadosDaFatura.getNumeroFatura()),
+                    numero("VALOR ORIGINAL", dadosDaFatura.getValorOriginalFatura()),
+                    numero("VALOR DO DESCONTO", dadosDaFatura.getValorDesconto()),
+                    numero("VALOR LÍQUIDO", dadosDaFatura.getValorLiquidoFatura()));
+            return;
+        }
         final List<NFNotaInfoParcela> parcelas = cobranca.getParcelas();
         for (int i = 0; i < parcelas.size(); i += 3) {
             canvas.garantir(ALTURA_QUADRO);
