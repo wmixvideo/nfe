@@ -102,8 +102,8 @@ final class DanfeCabecalho {
         final NFEndereco endereco = emitente.getEndereco();
         if (endereco != null) {
             linhas.add(texto(endereco.getLogradouro()) + ", " + texto(endereco.getNumero()) + " - " + texto(endereco.getBairro()));
-            linhas.add(texto(endereco.getDescricaoMunicipio()) + "/" + texto(endereco.getUf()) + " - CEP " + texto(endereco.getCep()));
-            linhas.add("Fone: " + texto(endereco.getTelefone()));
+            linhas.add(texto(endereco.getDescricaoMunicipio()) + "/" + texto(endereco.getUf()) + " - CEP " + DanfeFormatador.cep(endereco.getCep()));
+            linhas.add("Fone: " + DanfeFormatador.telefone(endereco.getTelefone()));
         }
         final float largura = LARGURA_EMITENTE - LARGURA_LOGO - 8;
         final DanfeCanvas.TextoAjustado ajustado = canvas.ajustarAoQuadro(String.join("\n", linhas), largura, ALTURA_CABECALHO - 8, 7f, 5.5f);

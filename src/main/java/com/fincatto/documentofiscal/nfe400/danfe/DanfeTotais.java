@@ -154,11 +154,11 @@ final class DanfeTotais {
         linha(canvas, new float[]{46, 24.5f, 11.5f, 18},
                 texto("ENDERE\u00c7O", endereco == null ? "" : junta(endereco.getLogradouro(), endereco.getNumero(), endereco.getComplemento())),
                 texto("BAIRRO / DISTRITO", endereco == null ? "" : endereco.getBairro()),
-                texto("CEP", endereco == null ? "" : endereco.getCep()),
+                texto("CEP", endereco == null ? "" : DanfeFormatador.cep(endereco.getCep())),
                 texto("DATA DE ENTRADA / SA\u00cdDA", identificacao == null ? "" : DanfeFormatador.data(identificacao.getDataHoraSaidaOuEntrada())));
         linha(canvas, new float[]{30, 18, 12, 22, 18},
                 texto("MUNIC\u00cdPIO", endereco == null ? "" : endereco.getDescricaoMunicipio()),
-                texto("FONE / FAX", endereco == null ? "" : endereco.getTelefone()),
+                texto("FONE / FAX", endereco == null ? "" : DanfeFormatador.telefone(endereco.getTelefone())),
                 texto("UF", endereco == null ? "" : endereco.getUf()),
                 texto("INSCRI\u00c7\u00c3O ESTADUAL", destinatario == null ? "" : destinatario.getInscricaoEstadual()),
                 texto("HORA DE SA\u00cdDA", identificacao == null ? "" : DanfeFormatador.hora(identificacao.getDataHoraSaidaOuEntrada())));
