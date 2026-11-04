@@ -46,13 +46,16 @@ final class DanfeCanvas {
     static final float MARGEM = 8 * MM;
     static final float LARGURA_UTIL = PDRectangle.A4.getWidth() - 2 * MARGEM;
 
-    static final float ALTURA_TITULO = 10f;
+    static final float ALTURA_TITULO = 8.5f;
+    /** Espaco vertical antes do titulo de cada bloco, como no modelo da NT 2026.010. */
+    static final float ESPACO_ENTRE_BLOCOS = 5f;
 
     private static final float TAMANHO_ROTULO = 5.5f;
+    private static final float TAMANHO_TITULO = 6.5f;
     private static final float TAMANHO_RODAPE = 6f;
     private static final Color COR_RODAPE = new Color(64, 64, 64);
     private static final float ALTURA_RODAPE = 10f;
-    private static final float TAMANHO_VALOR = 8f;
+    private static final float TAMANHO_VALOR = 6f;
     private static final float ESPACO_LINHA = 1.2f;
 
     private final PDDocument documento;
@@ -251,7 +254,7 @@ final class DanfeCanvas {
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
-        escrever(this.negrito, 7f, Color.BLACK, this.margem + 2, this.y - 7.5f, limpar(texto));
+        escrever(this.negrito, TAMANHO_TITULO, Color.BLACK, this.margem + 2, this.y - 6.3f, limpar(texto));
     }
 
     /**

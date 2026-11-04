@@ -128,6 +128,20 @@ class DanfeTotaisTest {
     }
 
     @Test
+    void deveAbreviarOFreteEFormatarCepTelefoneEPesosComoNoModeloDaNt() throws Exception {
+        final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
+        info.getTransporte().setModalidadeFrete(com.fincatto.documentofiscal.nfe400.classes.NFModalidadeFrete.CONTRATACAO_POR_CONTA_DO_REMETENTE);
+        info.getDestinatario().getEndereco().setCep("90035032");
+        info.getDestinatario().getEndereco().setTelefone("5130309700");
+        final String texto = desenhar(info);
+        Assertions.assertTrue(texto.contains("0 - Remetente"), texto);
+        Assertions.assertFalse(texto.contains("Contrata\u00e7\u00e3o do frete"), texto);
+        Assertions.assertTrue(texto.contains("90035-032"), "CEP do destinat\u00e1rio");
+        Assertions.assertTrue(texto.contains("(51) 3030-9700"), "telefone do destinat\u00e1rio");
+        Assertions.assertTrue(texto.matches(".*PESO BRUTO.* kg.*"), "peso em kg");
+    }
+
+    @Test
     void deveContinuarEmNovaPaginaQuandoAFaturaTemMuitasParcelas() throws Exception {
         final NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
         final java.util.List<com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfoParcela> parcelas = new java.util.ArrayList<>();

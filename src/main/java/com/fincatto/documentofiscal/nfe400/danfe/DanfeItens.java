@@ -83,7 +83,7 @@ final class DanfeItens {
      * @param itens itens da nota, ou null
      */
     static void desenhar(final DanfeCanvas canvas, final List<NFNotaInfoItem> itens) {
-        canvas.garantir(DanfeCanvas.ALTURA_TITULO + ALTURA_CABECALHO + 30f);
+        canvas.garantir(DanfeCanvas.ESPACO_ENTRE_BLOCOS + DanfeCanvas.ALTURA_TITULO + ALTURA_CABECALHO + 30f);
         cabecalho(canvas);
         if (itens == null) {
             return;
@@ -99,9 +99,9 @@ final class DanfeItens {
     }
 
     /**
-     * @return posicao, em pontos, em que a coluna comeca; usada para alinhar outros blocos com as colunas dos itens
+     * @return posicao, em pontos, em que a coluna comeca
      */
-    static float inicioDaColuna(final int coluna) {
+    private static float inicioDaColuna(final int coluna) {
         float inicio = 0;
         for (int i = 0; i < coluna; i++) {
             inicio += larguraDaColuna(i);
@@ -124,9 +124,10 @@ final class DanfeItens {
     }
 
     /**
-     * Desenha o titulo do bloco e o cabecalho das colunas, em negrito e centralizado.
+     * Desenha, depois do espaco entre blocos, o titulo do bloco e o cabecalho das colunas, em negrito e centralizado.
      */
     private static void cabecalho(final DanfeCanvas canvas) {
+        canvas.avancar(DanfeCanvas.ESPACO_ENTRE_BLOCOS);
         canvas.titulo("DADOS DOS PRODUTOS / SERVI\u00c7OS");
         canvas.avancar(DanfeCanvas.ALTURA_TITULO);
         for (int i = 0; i < TITULOS.length; i++) {

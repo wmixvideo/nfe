@@ -44,7 +44,8 @@ final class DanfeRodape {
         final List<String> complementares = canvas.quebrar(adicionais == null ? null : adicionais.getInformacoesComplementaresInteresseContribuinte(), larguraComplementares - 4, TAMANHO_FONTE);
         final List<String> fisco = canvas.quebrar(adicionais == null ? null : adicionais.getInformacoesAdicionaisInteresseFisco(), larguraFisco - 4, TAMANHO_FONTE);
 
-        canvas.garantir(DanfeCanvas.ALTURA_TITULO + (qrCode == null ? ALTURA_MINIMA : ALTURA_QR_CODE));
+        canvas.garantir(DanfeCanvas.ESPACO_ENTRE_BLOCOS + DanfeCanvas.ALTURA_TITULO + (qrCode == null ? ALTURA_MINIMA : ALTURA_QR_CODE));
+        canvas.avancar(DanfeCanvas.ESPACO_ENTRE_BLOCOS);
         canvas.titulo("DADOS ADICIONAIS");
         canvas.avancar(DanfeCanvas.ALTURA_TITULO);
 
@@ -92,6 +93,7 @@ final class DanfeRodape {
         int desenhadas = primeiraCapacidade;
         while (desenhadas < linhas.size()) {
             canvas.novaPagina();
+            canvas.avancar(DanfeCanvas.ESPACO_ENTRE_BLOCOS);
             canvas.titulo("DADOS ADICIONAIS (CONTINUA\u00c7\u00c3O)");
             canvas.avancar(DanfeCanvas.ALTURA_TITULO);
             final float altura = Math.min(canvas.restante(), (linhas.size() - desenhadas) * canvas.alturaLinha(TAMANHO_FONTE) + ALTURA_ROTULO);

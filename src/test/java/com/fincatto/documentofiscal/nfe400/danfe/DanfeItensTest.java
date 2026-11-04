@@ -161,7 +161,7 @@ class DanfeItensTest {
             DanfeItens.desenhar(canvas, Collections.singletonList(itemSimples()));
             final float antes = canvas.y();
             DanfeItens.desenhar(canvas, Collections.singletonList(itemSimples()));
-            final float alturaDaLinha = antes - canvas.y() - DanfeCanvas.ALTURA_TITULO - 14f;
+            final float alturaDaLinha = antes - canvas.y() - DanfeCanvas.ESPACO_ENTRE_BLOCOS - DanfeCanvas.ALTURA_TITULO - 14f;
             // descricao, NCM e as 2 linhas de CST/CFOP cabem nas 4 linhas das bases de calculo, como no modelo da NT 2026.010
             Assertions.assertEquals(4 * canvas.alturaLinha(5f) + 3f, alturaDaLinha, 0.01f);
         }
