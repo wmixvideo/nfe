@@ -381,19 +381,21 @@ Use a nota que veio em `getLoteAssinado()`: o XML assinado não pode ser alterad
 ### Gerar o DANFE em PDF
 O DANFE (NF-e modelo 55, A4 retrato, leiaute da NT 2026.010) é gerado a partir do XML autorizado (`nfeProc`), sem acessar a SEFAZ. Se a nota não tiver o protocolo de autorização, o método lança `IllegalArgumentException`.
 
+Fontes, negritos, alinhamentos e medidas seguem o modelo retrato da NT 2026.010. Quando a nota ocupa mais de uma folha, o topo de cada folha repete a identificação do emitente e da nota, e o quadro DANFE traz o número e o total de folhas ao lado da série (`SÉRIE 001   FOLHA 2/5`), como pede o MOC 7.0, Anexo II, itens 3.5 e 3.10.2.
+
 ```java
 byte[] pdf = facade.geraDanfe(xmlParaGuardar);
 Files.write(Paths.get("/caminho/danfe.pdf"), pdf);
 ```
 
-Também é possível passar a `NFNotaProcessada` no lugar do XML, e informar o logotipo do emitente (PNG, JPEG etc.). Sem logotipo, ou com uma imagem inválida, o espaço fica em branco:
+Também é possível passar a `NFNotaProcessada` no lugar do XML, e informar o logotipo do emitente (PNG, JPEG etc.). O logotipo ocupa o lado esquerdo do quadro do emitente, reduzido para caber sem distorcer, e os dados do emitente ficam alinhados à esquerda, depois dele. Sem logotipo, ou com uma imagem inválida, os dados do emitente ficam centralizados no quadro, como no modelo da NT:
 
 ```java
 byte[] logo = Files.readAllBytes(Paths.get("/caminho/logo.png"));
 byte[] pdf = facade.geraDanfe(notaProcessada, logo);
 ```
 
-Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber. O centro do rodapé de cada página traz, em cinza e letra pequena, o número da nota, sem zeros à esquerda, e a página (`NF-e 500 - Página 2/5`):
+Para imprimir um texto na base de **todas** as páginas, como a identificação do seu sistema, informe um `DanfeCreditos` com o texto da esquerda e o da direita (qualquer um pode ser `null`). Textos longos são cortados para caber:
 
 ```java
 DanfeCreditos creditos = new DanfeCreditos("Desenvolvido por Minha Empresa - (11) 99999-0000", "www.minhaempresa.com.br");
@@ -575,7 +577,7 @@ Para validar um XML contra os schemas oficiais sem enviá-lo, use `DFXMLValidado
 - Validação do XML contra os schemas (XSD) oficiais antes do envio.
 - Assinatura digital automática com certificado A1, e métodos que aceitam XML já assinado para A3.
 - Geração automática do QR Code da NFC-e.
-- Geração do DANFE da NF-e em PDF, com logotipo, créditos opcionais e numeração das páginas no rodapé.
+- Geração do DANFE da NF-e em PDF, no leiaute da NT 2026.010, com logotipo, créditos opcionais e identificação e numeração em todas as folhas.
 - Geração do cupom DANFE da NFC-e em PDF (80 mm), com créditos e anexos opcionais, como o comprovante do TEF.
 - Geração da cadeia de certificados da SEFAZ.
 - Conversão entre objetos Java e XML nos dois sentidos.
