@@ -6,14 +6,17 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.Code128Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDFormContentStream;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.PDResources;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.font.encoding.GlyphList;
 import org.apache.pdfbox.pdmodel.font.encoding.WinAnsiEncoding;
+import org.apache.pdfbox.pdmodel.graphics.form.PDFormXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.graphics.state.PDExtendedGraphicsState;
 import org.apache.pdfbox.util.Matrix;
@@ -64,6 +67,9 @@ final class DanfeCanvas {
     private boolean paginar = true;
     private boolean encolherUltimaPagina;
     private String identificacaoDoRodape = "";
+    private Runnable cabecalhoDasFolhasSeguintes;
+    private PDFormXObject totalDeFolhas;
+    private float tamanhoDoTotalDeFolhas;
     private final PDRectangle pagina;
     private final float margem;
 
@@ -129,7 +135,7 @@ final class DanfeCanvas {
     }
 
     /**
-     * Fecha a pagina corrente e abre uma nova.
+     * Fecha a pagina corrente e abre uma nova, ja com o cabecalho das folhas seguintes, se definido.
      */
     void novaPagina() {
         try {
@@ -138,6 +144,45 @@ final class DanfeCanvas {
             throw new UncheckedIOException(e);
         }
         abrirPagina();
+        if (this.cabecalhoDasFolhasSeguintes != null) {
+            this.cabecalhoDasFolhasSeguintes.run();
+        }
+    }
+
+    /**
+     * Define o que e desenhado no topo de cada pagina aberta por {@link #novaPagina()}, antes do restante do conteudo.
+     *
+     * @param cabecalho desenho do cabecalho, que deixa o cursor logo abaixo dele
+     */
+    void cabecalhoDasFolhasSeguintes(final Runnable cabecalho) {
+        this.cabecalhoDasFolhasSeguintes = cabecalho;
+    }
+
+    /**
+     * Escreve "FOLHA n/N" a partir do cursor, com o numero desta pagina; nao move o cursor. O total de folhas so e conhecido
+     * ao fechar o documento, entao fica num XObject desenhado em todas as paginas e preenchido em {@link #fechar()}.
+     *
+     * @param x deslocamento horizontal a partir da margem, em pontos
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     */
+    void folha(final float x, final float tamanhoFonte) {
+        final String folha = "FOLHA " + paginas() + "/";
+        final float yBase = this.y - tamanhoFonte;
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x, yBase, folha);
+        if (this.totalDeFolhas == null) {
+            this.totalDeFolhas = new PDFormXObject(this.documento);
+            this.totalDeFolhas.setResources(new PDResources());
+            this.totalDeFolhas.setBBox(new PDRectangle(0, -tamanhoFonte, 10 * tamanhoFonte, 3 * tamanhoFonte));
+            this.tamanhoDoTotalDeFolhas = tamanhoFonte;
+        }
+        try {
+            this.conteudo.saveGraphicsState();
+            this.conteudo.transform(Matrix.getTranslateInstance(this.margem + x + larguraNaFonte(this.fonte, folha, tamanhoFonte), yBase));
+            this.conteudo.drawForm(this.totalDeFolhas);
+            this.conteudo.restoreGraphicsState();
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     /**
@@ -641,11 +686,20 @@ final class DanfeCanvas {
     }
 
     /**
-     * Fecha a ultima pagina e aplica a marca d'agua, se houver, em todas elas.
+     * Fecha a ultima pagina, escreve o total de folhas de {@link #folha(float, float)} e aplica a marca d'agua, se houver, em todas elas.
      */
     void fechar() {
         try {
             this.conteudo.close();
+            if (this.totalDeFolhas != null) {
+                try (final PDFormContentStream fluxo = new PDFormContentStream(this.totalDeFolhas)) {
+                    fluxo.beginText();
+                    fluxo.setFont(this.fonte, this.tamanhoDoTotalDeFolhas);
+                    fluxo.newLineAtOffset(0, 0);
+                    fluxo.showText(String.valueOf(this.documento.getNumberOfPages()));
+                    fluxo.endText();
+                }
+            }
             if (this.encolherUltimaPagina) {
                 encolher(this.documento.getPage(this.documento.getNumberOfPages() - 1));
             }

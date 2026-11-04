@@ -247,4 +247,27 @@ class NFGeraDanfeTest {
             }
         }
     }
+
+    @Test
+    void deveRepetirAIdentificacaoComAFolhaNoTopoDeTodasAsPaginas() throws Exception {
+        final com.fincatto.documentofiscal.nfe400.classes.nota.NFNotaInfo info = DanfeFixtures.notaProcessada().getNota().getInfo();
+        try (final PDDocument documento = Loader.loadPDF(gerador.gerar(xmlComItens(8, DFAmbiente.PRODUCAO), null))) {
+            final int total = documento.getNumberOfPages();
+            Assertions.assertTrue(total > 1);
+            for (int pagina = 1; pagina <= total; pagina++) {
+                final String texto = textoDaPagina(documento, pagina).replaceAll("\\s+", " ");
+                final String naPagina = "p\u00e1gina " + pagina;
+                Assertions.assertTrue(texto.contains(info.getEmitente().getRazaoSocial().substring(0, 20)), naPagina);
+                Assertions.assertTrue(texto.contains("DOCUMENTO AUXILIAR DA NOTA FISCAL ELETR\u00d4NICA"), naPagina);
+                Assertions.assertTrue(texto.contains("N\u00ba 999.999.999"), naPagina);
+                Assertions.assertTrue(texto.contains("S\u00c9RIE 999 FOLHA " + pagina + "/" + total), naPagina);
+                Assertions.assertTrue(texto.contains(DanfeFormatador.chaveAcesso(info.getChaveAcesso())), naPagina);
+                Assertions.assertTrue(texto.contains("NATUREZA DA OPERA\u00c7\u00c3O"), naPagina);
+                Assertions.assertTrue(texto.contains("INSCRI\u00c7\u00c3O ESTADUAL"), naPagina);
+                Assertions.assertTrue(texto.contains("CNPJ / CPF"), naPagina);
+                // o canhoto fica so na primeira folha
+                Assertions.assertEquals(pagina == 1, texto.contains("RECEBEMOS DE"), naPagina);
+            }
+        }
+    }
 }

@@ -127,6 +127,7 @@ public class NFGeraDanfe {
             final NFNotaInfoIdentificacao identificacao = nota.getNota().getInfo().getIdentificacao();
             canvas.numerarFolhas("NF-e " + DanfeFormatador.numeroNotaSemZeros(identificacao.getNumeroNota()));
             DanfeCabecalho.desenhar(canvas, nota, logo);
+            canvas.cabecalhoDasFolhasSeguintes(() -> DanfeCabecalho.identificacao(canvas, nota, logo));
             DanfeTotais.desenhar(canvas, nota.getNota().getInfo());
             DanfeItens.desenhar(canvas, nota.getNota().getInfo().getItens());
             DanfeRodape.desenhar(canvas, nota.getNota());

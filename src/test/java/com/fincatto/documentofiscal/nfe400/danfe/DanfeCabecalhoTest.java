@@ -28,7 +28,14 @@ class DanfeCabecalhoTest {
 
     private static boolean temImagem(final byte[] pdf) throws Exception {
         try (final PDDocument documento = Loader.loadPDF(pdf)) {
-            return documento.getPage(0).getResources().getXObjectNames().iterator().hasNext();
+            // o total de folhas do "FOLHA n/N" tambem e um XObject, mas nao e imagem
+            final org.apache.pdfbox.pdmodel.PDResources recursos = documento.getPage(0).getResources();
+            for (final org.apache.pdfbox.cos.COSName nome : recursos.getXObjectNames()) {
+                if (recursos.isImageXObject(nome)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 

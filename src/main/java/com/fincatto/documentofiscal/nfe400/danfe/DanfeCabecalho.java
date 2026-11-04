@@ -46,9 +46,22 @@ final class DanfeCabecalho {
      */
     static void desenhar(final DanfeCanvas canvas, final NFNotaProcessada nota, final byte[] logoImage) {
         final NFNotaInfo info = nota.getNota().getInfo();
+        canhoto(canvas, info.getIdentificacao(), info.getEmitente());
+        identificacao(canvas, nota, logoImage);
+    }
+
+    /**
+     * Desenha o cabecalho sem o canhoto, do quadro do emitente ate o do regime tributario. E tambem o topo das folhas seguintes,
+     * que repetem a identificacao do emitente e da nota na mesma disposicao e tamanho da primeira (MOC 7.0, Anexo II, item 3.5).
+     *
+     * @param canvas area de desenho
+     * @param nota nota processada
+     * @param logoImage logotipo do emitente, ou null
+     */
+    static void identificacao(final DanfeCanvas canvas, final NFNotaProcessada nota, final byte[] logoImage) {
+        final NFNotaInfo info = nota.getNota().getInfo();
         final NFNotaInfoIdentificacao identificacao = info.getIdentificacao();
         final NFNotaInfoEmitente emitente = info.getEmitente();
-        canhoto(canvas, identificacao, emitente);
         emitente(canvas, emitente, logoImage);
         danfe(canvas, identificacao);
         chave(canvas, info.getChaveAcesso());
@@ -98,7 +111,7 @@ final class DanfeCabecalho {
     }
 
     /**
-     * Desenha o quadro "DANFE" com tipo de operacao, numero e serie.
+     * Desenha o quadro "DANFE" com tipo de operacao, numero, serie e folha.
      */
     private static void danfe(final DanfeCanvas canvas, final NFNotaInfoIdentificacao identificacao) {
         canvas.caixa(LARGURA_EMITENTE, LARGURA_DANFE, ALTURA_CABECALHO, "", "", ESQUERDA);
@@ -108,8 +121,13 @@ final class DanfeCabecalho {
         canvas.caixa(LARGURA_EMITENTE + (LARGURA_DANFE - 20) / 2, 20f, 14f, "", identificacao.getTipo() == null ? "" : identificacao.getTipo().getCodigo(), CENTRO);
         canvas.avancar(-34);
         escreverEm(canvas, 50, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, "0 - ENTRADA   1 - SA\u00cdDA", 5.5f);
-        escreverEm(canvas, 58, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4,
-                DanfeFormatador.numeroNota(identificacao.getNumeroNota()) + "\nS\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie()), 6.5f);
+        final String serie = "S\u00c9RIE " + DanfeFormatador.serie(identificacao.getSerie());
+        escreverEm(canvas, 58, LARGURA_EMITENTE + 2, LARGURA_DANFE - 4, DanfeFormatador.numeroNota(identificacao.getNumeroNota()) + "\n" + serie, 6.5f);
+        // numero da folha e total de folhas no alto de cada folha (MOC 7.0, Anexo II, item 3.10.2), ao lado da serie como no modelo da NT 2026.010
+        final float linhaDaSerie = 58 + canvas.alturaLinha(6.5f);
+        canvas.avancar(linhaDaSerie);
+        canvas.folha(LARGURA_EMITENTE + 2 + canvas.largura(serie + "  ", 6.5f), 6.5f);
+        canvas.avancar(-linhaDaSerie);
     }
 
     /**

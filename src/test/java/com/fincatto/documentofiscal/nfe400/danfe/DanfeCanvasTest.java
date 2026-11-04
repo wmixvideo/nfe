@@ -223,6 +223,35 @@ class DanfeCanvasTest {
     }
 
     @Test
+    void deveEscreverAFolhaComOTotalDePaginasConhecidoAoFechar() throws Exception {
+        final byte[] pdf = pdf(canvas -> {
+            canvas.folha(0, 6.5f);
+            canvas.novaPagina();
+            canvas.folha(0, 6.5f);
+            canvas.novaPagina();
+        });
+        Assertions.assertTrue(texto(pdf, 1).contains("FOLHA 1/3"), texto(pdf, 1));
+        Assertions.assertTrue(texto(pdf, 2).contains("FOLHA 2/3"), texto(pdf, 2));
+        Assertions.assertFalse(texto(pdf, 3).contains("FOLHA"), texto(pdf, 3));
+    }
+
+    @Test
+    void deveDesenharOCabecalhoDasFolhasSeguintesSoNasPaginasNovas() throws Exception {
+        final byte[] pdf = pdf(canvas -> {
+            canvas.caixa(0, 100f, 24f, "R", "PRIMEIRA", DanfeCanvas.Alinhamento.ESQUERDA);
+            canvas.cabecalhoDasFolhasSeguintes(() -> {
+                canvas.caixa(0, 100f, 24f, "R", "CABECALHO", DanfeCanvas.Alinhamento.ESQUERDA);
+                canvas.avancar(24f);
+            });
+            canvas.novaPagina();
+            // o conteudo da pagina nova continua abaixo do cabecalho
+            Assertions.assertEquals(org.apache.pdfbox.pdmodel.common.PDRectangle.A4.getHeight() - DanfeCanvas.MARGEM - 24f, canvas.y(), 0.01f);
+        });
+        Assertions.assertFalse(texto(pdf, 1).contains("CABECALHO"), texto(pdf, 1));
+        Assertions.assertTrue(texto(pdf, 2).contains("CABECALHO"), texto(pdf, 2));
+    }
+
+    @Test
     void imagemValidaDeveSerDesenhadaEInvalidaOuNulaIgnorada() throws Exception {
         final byte[] imagem = png();
         final byte[] comImagem = pdf(canvas -> canvas.imagem(0, 50f, 50f, imagem));
