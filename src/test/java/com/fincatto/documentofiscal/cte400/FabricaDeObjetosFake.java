@@ -74,6 +74,15 @@ public class FabricaDeObjetosFake {
         return cteValorPrestacaoServico;
     }
 
+    public static CTeNotaInfoIdeGrupoCompraGovernamental getGrupoCompraGovernamental() {
+        final CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental = new CTeNotaInfoIdeGrupoCompraGovernamental();
+        grupoCompraGovernamental.setTipoEntidadeGovernamental(CTTipoEntidadeGovernamental.UNIAO);
+        grupoCompraGovernamental.setPercentualRedutor(new BigDecimal("10"));
+        grupoCompraGovernamental.setTipoOperacaoGovernamental(CTTipoOperacaoGovernamental.RECEBIMENTO_PAGAMENTO_REALIZADO);
+        grupoCompraGovernamental.setDocumentosAnteriores(Collections.singletonList("12345678901234567890123456789012345678901234"));
+        return grupoCompraGovernamental;
+    }
+
     public static CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao getComponenteValorPrestacao() {
         final CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao cteNComponentesValorPrestacao = new CTeNotaInfoValorPrestacaoServicoComponentesValorPrestacao();
         cteNComponentesValorPrestacao.setNomeComponente("FRETE");
