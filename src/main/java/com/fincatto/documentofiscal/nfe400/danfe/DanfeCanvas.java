@@ -77,6 +77,8 @@ final class DanfeCanvas {
     private float tamanhoDoTotalDeFolhas;
     private final PDRectangle pagina;
     private final float margem;
+    private final float margemEsquerda;
+    private final float margemDireita;
 
     DanfeCanvas(final PDDocument documento) {
         this(documento, null);
@@ -87,7 +89,7 @@ final class DanfeCanvas {
      * @param creditos rodape personalizado impresso em todas as paginas, ou null; quando informado, reserva a faixa inferior da pagina
      */
     DanfeCanvas(final PDDocument documento, final DanfeCreditos creditos) {
-        this(documento, PDRectangle.A4, MARGEM, creditos);
+        this(documento, PDRectangle.A4, MARGEM, MARGEM, MARGEM, creditos);
     }
 
     /**
@@ -96,13 +98,27 @@ final class DanfeCanvas {
      * @param margem margem das quatro bordas, em pontos
      */
     DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem) {
-        this(documento, pagina, margem, null);
+        this(documento, pagina, margem, margem, margem, null);
     }
 
-    private DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem, final DanfeCreditos creditos) {
+    /**
+     * @param documento documento onde as paginas sao criadas
+     * @param pagina tamanho das paginas
+     * @param margem margem de cima e de baixo, em pontos
+     * @param margemEsquerda margem da esquerda, em pontos
+     * @param margemDireita margem da direita, em pontos
+     */
+    DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem, final float margemEsquerda, final float margemDireita) {
+        this(documento, pagina, margem, margemEsquerda, margemDireita, null);
+    }
+
+    private DanfeCanvas(final PDDocument documento, final PDRectangle pagina, final float margem, final float margemEsquerda, final float margemDireita,
+                        final DanfeCreditos creditos) {
         this.documento = documento;
         this.pagina = pagina;
         this.margem = margem;
+        this.margemEsquerda = margemEsquerda;
+        this.margemDireita = margemDireita;
         // sem nenhum texto nao ha o que imprimir, entao tambem nao reserva a faixa inferior
         this.creditos = creditos != null && (creditos.getEsquerda() != null || creditos.getDireita() != null) ? creditos : null;
         // fontes padrao do PDF, sem embutir: o WinAnsi delas cobre todo o Latin-1 que o XSD aceita nos textos da nota (TString)
@@ -176,7 +192,7 @@ final class DanfeCanvas {
     void folha(final float x, final float largura, final String texto, final float tamanhoFonte) {
         final String folha = limpar(texto) + "FOLHA " + paginas() + "/";
         final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, folha + paginas(), tamanhoFonte));
-        final float inicio = this.margem + x + sobra / 2;
+        final float inicio = this.margemEsquerda + x + sobra / 2;
         final float yBase = this.y - tamanhoFonte;
         escrever(this.fonte, tamanhoFonte, Color.BLACK, inicio, yBase, folha);
         if (this.totalDeFolhas == null) {
@@ -206,7 +222,7 @@ final class DanfeCanvas {
      * @return largura entre as margens esquerda e direita, em pontos
      */
     float larguraUtil() {
-        return this.pagina.getWidth() - 2 * this.margem;
+        return this.pagina.getWidth() - this.margemEsquerda - this.margemDireita;
     }
 
     /**
@@ -265,7 +281,7 @@ final class DanfeCanvas {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
             this.conteudo.setNonStrokingColor(new Color(225, 225, 225));
-            this.conteudo.addRect(this.margem + x, this.y - ALTURA_TITULO, largura, ALTURA_TITULO);
+            this.conteudo.addRect(this.margemEsquerda + x, this.y - ALTURA_TITULO, largura, ALTURA_TITULO);
             this.conteudo.fillAndStroke();
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
@@ -273,7 +289,7 @@ final class DanfeCanvas {
         final String limpo = limpar(texto);
         final float sobra = Math.max(0f, largura - 4 - larguraNaFonte(this.negrito, limpo, TAMANHO_TITULO));
         final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-        escrever(this.negrito, TAMANHO_TITULO, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - 6.3f, limpo);
+        escrever(this.negrito, TAMANHO_TITULO, Color.BLACK, this.margemEsquerda + x + 2 + deslocamento, this.y - 6.3f, limpo);
     }
 
     /**
@@ -476,7 +492,7 @@ final class DanfeCanvas {
         for (int i = 0; i < linhas.size(); i++) {
             final float sobra = Math.max(0f, largura - larguraNaFonte(fonteDoTexto, linhas.get(i), tamanhoFonte));
             final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-            escrever(fonteDoTexto, tamanhoFonte, cor, this.margem + x + deslocamento, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+            escrever(fonteDoTexto, tamanhoFonte, cor, this.margemEsquerda + x + deslocamento, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
         }
         return linhas.size() * alturaLinha(tamanhoFonte);
     }
@@ -504,8 +520,8 @@ final class DanfeCanvas {
                 rotuloComPontos.append('.');
             }
         }
-        escrever(this.fonte, tamanhoFonte, corDoRotulo, this.margem + x, this.y - tamanhoFonte, rotuloComPontos.toString());
-        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x + largura - larguraDoValor, this.y - tamanhoFonte, textoDoValor);
+        escrever(this.fonte, tamanhoFonte, corDoRotulo, this.margemEsquerda + x, this.y - tamanhoFonte, rotuloComPontos.toString());
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margemEsquerda + x + largura - larguraDoValor, this.y - tamanhoFonte, textoDoValor);
     }
 
     /**
@@ -525,7 +541,7 @@ final class DanfeCanvas {
             garantir(alturaLinha(tamanhoFonte));
             final float sobra = Math.max(0f, largura - larguraNaFonte(fonteDoTexto, linha, tamanhoFonte));
             final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-            escrever(fonteDoTexto, tamanhoFonte, Color.BLACK, this.margem + x + deslocamento, this.y - tamanhoFonte, linha);
+            escrever(fonteDoTexto, tamanhoFonte, Color.BLACK, this.margemEsquerda + x + deslocamento, this.y - tamanhoFonte, linha);
             avancar(alturaLinha(tamanhoFonte));
         }
     }
@@ -540,7 +556,7 @@ final class DanfeCanvas {
      */
     void textoCentralizado(final float x, final float largura, final String texto, final float tamanhoFonte) {
         final float sobra = Math.max(0f, largura - larguraNaFonte(this.fonte, texto, tamanhoFonte));
-        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margem + x + sobra / 2, this.y - tamanhoFonte, texto);
+        escrever(this.fonte, tamanhoFonte, Color.BLACK, this.margemEsquerda + x + sobra / 2, this.y - tamanhoFonte, texto);
     }
 
     /**
@@ -556,7 +572,7 @@ final class DanfeCanvas {
     float textoPreformatado(final float x, final float largura, final String texto, final float tamanhoFonte) {
         final List<String> linhas = linhasPreformatadas(largura, texto, tamanhoFonte);
         for (int i = 0; i < linhas.size(); i++) {
-            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
+            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margemEsquerda + x, this.y - tamanhoFonte - i * alturaLinha(tamanhoFonte), linhas.get(i));
         }
         return linhas.size() * alturaLinha(tamanhoFonte);
     }
@@ -573,7 +589,7 @@ final class DanfeCanvas {
     void textoPreformatadoPaginado(final float x, final float largura, final String texto, final float tamanhoFonte) {
         for (final String linha : linhasPreformatadas(largura, texto, tamanhoFonte)) {
             garantir(alturaLinha(tamanhoFonte));
-            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margem + x, this.y - tamanhoFonte, linha);
+            escrever(this.monoespacada, tamanhoFonte, Color.BLACK, this.margemEsquerda + x, this.y - tamanhoFonte, linha);
             avancar(alturaLinha(tamanhoFonte));
         }
     }
@@ -620,8 +636,8 @@ final class DanfeCanvas {
             this.conteudo.setStrokingColor(Color.BLACK);
             this.conteudo.setLineWidth(espessura);
             this.conteudo.setLineDashPattern(tracejada ? new float[]{3f, 2f} : new float[0], 0);
-            this.conteudo.moveTo(this.margem + x, this.y);
-            this.conteudo.lineTo(this.margem + x + largura, this.y);
+            this.conteudo.moveTo(this.margemEsquerda + x, this.y);
+            this.conteudo.lineTo(this.margemEsquerda + x + largura, this.y);
             this.conteudo.stroke();
             this.conteudo.setLineDashPattern(new float[0], 0);
         } catch (final IOException e) {
@@ -660,13 +676,13 @@ final class DanfeCanvas {
         try {
             this.conteudo.setLineWidth(0.5f);
             this.conteudo.setStrokingColor(Color.BLACK);
-            this.conteudo.addRect(this.margem + x, this.y - altura, largura, altura);
+            this.conteudo.addRect(this.margemEsquerda + x, this.y - altura, largura, altura);
             this.conteudo.stroke();
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
         final float disponivel = largura - 4;
-        escrever(this.fonte, tamanhoRotulo, Color.GRAY, this.margem + x + 2, this.y - 6.5f, cortar(limpar(rotulo), tamanhoRotulo, disponivel));
+        escrever(this.fonte, tamanhoRotulo, Color.GRAY, this.margemEsquerda + x + 2, this.y - 6.5f, cortar(limpar(rotulo), tamanhoRotulo, disponivel));
         // diminuir a fonte antes de cortar evita perder digitos e casas decimais de valores grandes
         final String limpo = limpar(valor);
         float tamanhoValor = TAMANHO_VALOR;
@@ -676,7 +692,7 @@ final class DanfeCanvas {
         final String texto = cortar(limpo, tamanhoValor, disponivel);
         final float sobra = disponivel - larguraNaFonte(this.fonte, texto, tamanhoValor);
         final float deslocamento = alinhamento == Alinhamento.DIREITA ? sobra : alinhamento == Alinhamento.CENTRO ? sobra / 2 : 0;
-        escrever(this.fonte, tamanhoValor, Color.BLACK, this.margem + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
+        escrever(this.fonte, tamanhoValor, Color.BLACK, this.margemEsquerda + x + 2 + deslocamento, this.y - Math.min(15.5f, altura - 2.5f), texto);
     }
 
     /**
@@ -732,7 +748,7 @@ final class DanfeCanvas {
                 while (fim < bits.length && bits[fim]) {
                     fim++;
                 }
-                this.conteudo.addRect(this.margem + x + i * modulo, this.y - altura, (fim - i) * modulo, altura);
+                this.conteudo.addRect(this.margemEsquerda + x + i * modulo, this.y - altura, (fim - i) * modulo, altura);
                 i = fim;
             }
             this.conteudo.fill();
@@ -761,7 +777,7 @@ final class DanfeCanvas {
             for (int linha = 0; linha < matriz.getHeight(); linha++) {
                 for (int coluna = 0; coluna < matriz.getWidth(); coluna++) {
                     if (matriz.get(coluna, linha)) {
-                        this.conteudo.addRect(this.margem + x + coluna * modulo, this.y - (linha + 1) * modulo, modulo, modulo);
+                        this.conteudo.addRect(this.margemEsquerda + x + coluna * modulo, this.y - (linha + 1) * modulo, modulo, modulo);
                     }
                 }
             }
@@ -788,7 +804,7 @@ final class DanfeCanvas {
             final float escala = Math.min(largura / figura.getWidth(), altura / figura.getHeight());
             final float w = figura.getWidth() * escala;
             final float h = figura.getHeight() * escala;
-            this.conteudo.drawImage(figura, this.margem + x + (largura - w) / 2, this.y - altura + (altura - h) / 2, w, h);
+            this.conteudo.drawImage(figura, this.margemEsquerda + x + (largura - w) / 2, this.y - altura + (altura - h) / 2, w, h);
         } catch (final Exception e) {
             // logotipo invalido: o espaco fica em branco
         }
@@ -855,8 +871,8 @@ final class DanfeCanvas {
         final String direita = cortar(limpar(this.creditos.getDireita()), TAMANHO_RODAPE, metade);
         try (final PDPageContentStream fluxo = new PDPageContentStream(this.documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
             fluxo.setNonStrokingColor(COR_RODAPE);
-            escreverRodape(fluxo, this.margem + 2, esquerda);
-            escreverRodape(fluxo, this.pagina.getWidth() - this.margem - 2 - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
+            escreverRodape(fluxo, this.margemEsquerda + 2, esquerda);
+            escreverRodape(fluxo, this.pagina.getWidth() - this.margemDireita - 2 - larguraNaFonte(this.fonte, direita, TAMANHO_RODAPE), direita);
         }
     }
 
