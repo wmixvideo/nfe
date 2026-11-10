@@ -97,6 +97,17 @@ class WSFacadeDanfeTest {
     }
 
     @Test
+    void deveGerarDanfeNfceComMargensLateraisPersonalizadas() throws Exception {
+        try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
+            final String xml = DanfeNfceFixtures.xml();
+            Assertions.assertTrue(ehPdf(facade.geraDanfeNfce(xml, null, null, 4f, 2f)));
+            final NFNotaProcessada nota = new com.fincatto.documentofiscal.utils.DFPersister().read(NFNotaProcessada.class, xml);
+            Assertions.assertTrue(ehPdf(facade.geraDanfeNfce(nota, null, null, 4f, 2f)));
+            Assertions.assertTrue(ehPdf(facade.geraDanfeNfce(xml, null, null, -1f, 2f)));
+        }
+    }
+
+    @Test
     void deveGerarDanfeNfceComAnexosAPartirDoXmlEDoObjeto() throws Exception {
         try (final WSFacade facade = new WSFacade(new NFeConfigFake())) {
             final String xml = DanfeNfceFixtures.xml();

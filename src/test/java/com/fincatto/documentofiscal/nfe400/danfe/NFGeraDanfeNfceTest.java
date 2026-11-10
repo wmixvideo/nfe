@@ -567,4 +567,55 @@ class NFGeraDanfeNfceTest {
             return abaixo;
         }
     }
+
+    @Test
+    void deveRespeitarMargensLateraisDiferentesNaEsquerdaENaDireita() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().build();
+        final float[] limites = limitesHorizontais(new NFGeraDanfeNfce(6f, 2f).gerar(xml, null));
+        Assertions.assertTrue(limites[0] >= 6f * PONTOS_POR_MM - 0.5f, "esquerda: " + limites[0]);
+        Assertions.assertTrue(limites[1] <= 78f * PONTOS_POR_MM + 0.5f, "direita: " + limites[1]);
+        final float[] padrao = limitesHorizontais(gerador.gerar(xml, null));
+        Assertions.assertTrue(limites[0] > padrao[0] + 3f * PONTOS_POR_MM, "a margem esquerda maior deve deslocar o conteudo");
+        Assertions.assertTrue(limites[1] < padrao[1], "a margem direita maior deve estreitar o conteudo");
+    }
+
+    @Test
+    void deveAceitarMargensNosLimitesDaFaixa() {
+        final String xml = DanfeNfceFixtures.nfce().build();
+        Assertions.assertTrue(new NFGeraDanfeNfce(0f, 0f).gerar(xml, null).length > 0);
+        Assertions.assertTrue(new NFGeraDanfeNfce(10f, 10f).gerar(xml, null).length > 0);
+    }
+
+    @Test
+    void deveUsarMargemPadraoQuandoMargemLateralForaDaFaixa() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().build();
+        final byte[] esperado = gerador.gerar(xml, null);
+        for (final float invalida : new float[]{-0.1f, 10.1f, Float.NaN}) {
+            final float[] limites = limitesHorizontais(new NFGeraDanfeNfce(invalida, invalida).gerar(xml, null));
+            final float[] padrao = limitesHorizontais(esperado);
+            Assertions.assertEquals(padrao[0], limites[0], 0.01f, "esquerda " + invalida);
+            Assertions.assertEquals(padrao[1], limites[1], 0.01f, "direita " + invalida);
+        }
+    }
+
+    /**
+     * @return menor x e maior x+largura dos textos da primeira pagina, em pontos
+     */
+    private static float[] limitesHorizontais(final byte[] pdf) throws Exception {
+        final float[] limites = {Float.MAX_VALUE, 0f};
+        try (final PDDocument documento = Loader.loadPDF(pdf)) {
+            new PDFTextStripper() {
+                @Override
+                protected void processTextPosition(final org.apache.pdfbox.text.TextPosition letra) {
+                    if (letra.getUnicode().trim().isEmpty()) {
+                        return;
+                    }
+                    limites[0] = Math.min(limites[0], letra.getXDirAdj());
+                    limites[1] = Math.max(limites[1], letra.getXDirAdj() + letra.getWidthDirAdj());
+                    super.processTextPosition(letra);
+                }
+            }.getText(documento);
+        }
+        return limites;
+    }
 }
