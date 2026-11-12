@@ -129,6 +129,9 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     @Element(name = "xJust", required = false)
     private String justificativa;
 
+    @Element(name = "gCompraGov", required = false)
+    private CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental;
+
     @Element(name = "tpPagAnt", required = false)
     private String tipoPagamentoAntecipado;
 
@@ -138,7 +141,14 @@ public class CTeNotaInfoIdentificacao extends DFBase {
     public DFUnidadeFederativa getCodigoUF() {
         return this.codigoUF;
     }
-    
+
+    public CTeNotaInfoIdeGrupoCompraGovernamental getGrupoCompraGovernamental() {
+        return grupoCompraGovernamental;
+    }
+
+    public void setGrupoCompraGovernamental(CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental) {
+        this.grupoCompraGovernamental = grupoCompraGovernamental;
+    }
     /**
      * Codigo da UF do emitente do CT-e.
      */
