@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Root(name = "gICMSPrevistoPagtoAntecip")
 public class CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip extends DFBase {
 
+    private static final long serialVersionUID = 1L;
+
     @Element(name = "vICMSPrevisto")
     private String valorICMSPrevisto;
 
