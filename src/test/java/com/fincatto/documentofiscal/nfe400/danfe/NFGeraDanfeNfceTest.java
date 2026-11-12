@@ -587,6 +587,15 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void deveUsarMargemPadraoQuandoMargemLateralNula() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().build();
+        final float[] padrao = limitesHorizontais(gerador.gerar(xml, null));
+        final float[] limites = limitesHorizontais(new NFGeraDanfeNfce(null, null).gerar(xml, null));
+        Assertions.assertEquals(padrao[0], limites[0], 0.01f, "esquerda");
+        Assertions.assertEquals(padrao[1], limites[1], 0.01f, "direita");
+    }
+
+    @Test
     void deveUsarMargemPadraoQuandoMargemLateralForaDaFaixa() throws Exception {
         final String xml = DanfeNfceFixtures.nfce().build();
         final byte[] esperado = gerador.gerar(xml, null);
