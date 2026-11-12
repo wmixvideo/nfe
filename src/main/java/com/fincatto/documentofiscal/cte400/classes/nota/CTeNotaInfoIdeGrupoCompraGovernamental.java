@@ -13,6 +13,7 @@ import java.util.List;
 
 @Root(name = "gCompraGov")
 public class CTeNotaInfoIdeGrupoCompraGovernamental extends DFBase {
+    private static final long serialVersionUID = 1L;
 
     @Element(required = true, name = "tpEnteGov")
     private CTTipoEntidadeGovernamental tipoEntidadeGovernamental;
