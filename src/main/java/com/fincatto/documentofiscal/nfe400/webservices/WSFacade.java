@@ -258,12 +258,12 @@ public class WSFacade implements Closeable {
      * @param xmlNfe XML do nfeProc (NFC-e autorizada) ou, em contingencia off-line, da NFe ainda sem protocolo
      * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
      * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
-     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
-     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
+     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
+     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
      * @return bytes do PDF
      * @throws IllegalArgumentException se o XML for invalido, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
      */
-    public byte[] geraDanfeNfce(final String xmlNfe, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos, final float margemEsquerdaMm, final float margemDireitaMm) {
+    public byte[] geraDanfeNfce(final String xmlNfe, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos, final Float margemEsquerdaMm, final Float margemDireitaMm) {
         return new NFGeraDanfeNfce(margemEsquerdaMm, margemDireitaMm).gerar(xmlNfe, creditos, anexos);
     }
 
@@ -274,12 +274,12 @@ public class WSFacade implements Closeable {
      * @param nota nota processada (NFC-e com o protocolo de autorizacao)
      * @param creditos creditos (textos do rodape); se nulo, o cupom sai sem rodape personalizado
      * @param anexos blocos de texto impressos depois do cupom, cada um depois de uma linha de corte; a lista pode ser nula ou vazia
-     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
-     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
+     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
+     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link NFGeraDanfeNfce#MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link NFGeraDanfeNfce#MARGEM_LATERAL_MM}
      * @return bytes do PDF
      * @throws IllegalArgumentException se a nota for nula, incompleta, nao for de uma NFC-e, nao tiver o protocolo de autorizacao ou a lista tiver um anexo nulo
      */
-    public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos, final float margemEsquerdaMm, final float margemDireitaMm) {
+    public byte[] geraDanfeNfce(final NFNotaProcessada nota, final DanfeCreditos creditos, final List<DanfeNfceAnexo> anexos, final Float margemEsquerdaMm, final Float margemDireitaMm) {
         return new NFGeraDanfeNfce(margemEsquerdaMm, margemDireitaMm).gerar(nota, creditos, anexos);
     }
 

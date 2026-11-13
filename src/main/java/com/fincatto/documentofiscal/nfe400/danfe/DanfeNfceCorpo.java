@@ -34,6 +34,8 @@ final class DanfeNfceCorpo {
     private static final float TAMANHO_TOTAL = 8f;
     private static final float ESPACO_SECAO = 4f;
     private static final float FOLGA_COLUNA = 4f;
+    /** Espaco entre a quantidade (alinhada a direita) e a unidade. */
+    private static final float FOLGA_QUANTIDADE = 8f;
     private static final float ESPESSURA_LINHA_INTEIRA = 1.2f;
     private static final float ESPESSURA_LINHA_FINA = 0.5f;
     private static final float ESPACO_ANTES_DO_CORTE = 12f;
@@ -268,54 +270,76 @@ final class DanfeNfceCorpo {
 
     /**
      * Divisao III: uma linha com codigo e descricao e outra com quantidade, unidade, valor unitario e valor total de cada item.
-     * As colunas da segunda linha tem a largura do maior valor impresso, para nada ser cortado em papel estreito.
+     * As colunas tem a largura do maior valor impresso, para nada ser cortado em papel estreito. O codigo ocupa uma coluna propria, para
+     * a descricao ficar alinhada com o titulo DESCRICAO, e a quantidade fica a direita, abaixo do titulo QTDE.
      */
     private static void itens(final DanfeCanvas canvas, final List<NFNotaInfoItem> itens) {
         if (itens == null || itens.isEmpty()) {
             return;
         }
+        float larguraCodigo = canvas.largura("CÓDIGO", TAMANHO);
+        float larguraQuantidade = canvas.largura("QTDE", TAMANHO);
         float larguraUnidade = canvas.largura("UN", TAMANHO);
-        float larguraUnitario = canvas.largura("VL.UNIT.", TAMANHO);
-        float larguraTotal = canvas.largura("VL.TOTAL", TAMANHO);
+        float larguraUnitario = canvas.largura("VL UNIT", TAMANHO);
+        float larguraTotal = canvas.largura("VL TOTAL", TAMANHO);
         for (final NFNotaInfoItem item : itens) {
+            larguraCodigo = Math.max(larguraCodigo, canvas.largura(valorOuVazio(item.getProduto().getCodigo()), TAMANHO));
+            larguraQuantidade = Math.max(larguraQuantidade, canvas.largura(quantidade(item.getProduto().getQuantidadeComercial()), TAMANHO));
             larguraUnidade = Math.max(larguraUnidade, canvas.largura(valorOuVazio(item.getProduto().getUnidadeComercial()), TAMANHO));
-            larguraUnitario = Math.max(larguraUnitario, canvas.largura(dinheiro(item.getProduto().getValorUnitario(), 2), TAMANHO));
-            larguraTotal = Math.max(larguraTotal, canvas.largura(dinheiro(item.getProduto().getValorTotalBruto(), 2), TAMANHO));
+            larguraUnitario = Math.max(larguraUnitario, canvas.largura(valorItem(item.getProduto().getValorUnitario()), TAMANHO));
+            larguraTotal = Math.max(larguraTotal, canvas.largura(valorItem(item.getProduto().getValorTotalBruto()), TAMANHO));
         }
+        // o codigo nao pode tomar mais que a metade da linha, para sobrar espaco para a descricao
+        larguraCodigo = Math.min(larguraCodigo, canvas.larguraUtil() / 2) + FOLGA_COLUNA;
+        larguraQuantidade += FOLGA_QUANTIDADE;
         larguraUnidade += FOLGA_COLUNA;
         larguraUnitario += FOLGA_COLUNA;
         larguraTotal += FOLGA_COLUNA;
-        final float larguraQuantidade = canvas.larguraUtil() - larguraUnidade - larguraUnitario - larguraTotal;
+        final float larguraDescricao = canvas.larguraUtil() - larguraCodigo - larguraQuantidade - larguraUnidade - larguraUnitario - larguraTotal;
+        final float larguraTexto = larguraCodigo + larguraDescricao;
         separador(canvas, ESPESSURA_LINHA_INTEIRA, false);
-        linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "CÓDIGO DESCRIÇÃO", "", "", "", true);
-        linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QUANTIDADE", "UN", "VL.UNIT.", "VL.TOTAL", true);
+        canvas.texto(0, larguraCodigo, "CÓDIGO", TAMANHO, ESQUERDA, true);
+        canvas.texto(larguraCodigo, larguraDescricao, "DESCRIÇÃO", TAMANHO, ESQUERDA, true);
+        linhaDeColunas(canvas, larguraTexto, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QTDE", "UN", "VL UNIT", "VL TOTAL", true);
         for (final NFNotaInfoItem item : itens) {
-            final String codigoDescricao = valorOuVazio(item.getProduto().getCodigo()) + " " + valorOuVazio(item.getProduto().getDescricao());
+            // codigo e descricao sempre em uma linha so: o que nao couber e cortado
+            final float larguraLinhaDescricao = canvas.larguraUtil() - larguraCodigo;
+            final String codigo = cortar(canvas, valorOuVazio(item.getProduto().getCodigo()), larguraCodigo - FOLGA_COLUNA);
+            final String descricao = cortar(canvas, valorOuVazio(item.getProduto().getDescricao()), larguraLinhaDescricao);
             final String quantidade = quantidade(item.getProduto().getQuantidadeComercial());
-            // altura real do item (separador, codigo e descricao e a linha das colunas, que cresce quando a quantidade quebra), para ele
-            // nao passar do fim da pagina quando nao couber no espaco minimo
-            final float alturaDoItem = 2 * ESPACO_LINHA + ESPESSURA_LINHA_FINA + canvas.alturaLinha(TAMANHO)
-                    * (canvas.quebrar(codigoDescricao, canvas.larguraUtil(), TAMANHO).size() + canvas.quebrar(quantidade, larguraQuantidade, TAMANHO).size());
-            canvas.garantir(Math.max(ALTURA_MINIMA_BLOCO, alturaDoItem));
+            canvas.garantir(Math.max(ALTURA_MINIMA_BLOCO, 2 * ESPACO_LINHA + ESPESSURA_LINHA_FINA + 2 * canvas.alturaLinha(TAMANHO)));
             separador(canvas, ESPESSURA_LINHA_FINA, false);
-            canvas.avancar(canvas.texto(0, canvas.larguraUtil(), codigoDescricao, TAMANHO, ESQUERDA, false));
-            linhaDeColunas(canvas, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade,
-                    valorOuVazio(item.getProduto().getUnidadeComercial()), dinheiro(item.getProduto().getValorUnitario(), 2),
-                    dinheiro(item.getProduto().getValorTotalBruto(), 2), false);
+            canvas.texto(0, larguraCodigo, codigo, TAMANHO, ESQUERDA, false);
+            canvas.avancar(canvas.texto(larguraCodigo, larguraLinhaDescricao, descricao, TAMANHO, ESQUERDA, false));
+            linhaDeColunas(canvas, larguraTexto, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade,
+                    valorOuVazio(item.getProduto().getUnidadeComercial()), valorItem(item.getProduto().getValorUnitario()),
+                    valorItem(item.getProduto().getValorTotalBruto()), false);
         }
         separador(canvas, ESPESSURA_LINHA_INTEIRA, false);
     }
 
     /**
-     * Desenha quatro colunas na mesma linha (a primeira e a segunda a esquerda, a terceira e a quarta a direita) e avanca o cursor.
+     * Corta o texto no fim para ele caber em uma linha da largura informada.
      */
-    private static void linhaDeColunas(final DanfeCanvas canvas, final float larguraQuantidade, final float larguraUnidade, final float larguraUnitario,
-                                       final float larguraTotal, final String quantidade, final String unidade, final String unitario, final String total,
-                                       final boolean negrito) {
-        final float altura = canvas.texto(0, larguraQuantidade, quantidade, TAMANHO, ESQUERDA, negrito);
-        canvas.texto(larguraQuantidade, larguraUnidade, unidade, TAMANHO, ESQUERDA, negrito);
-        canvas.texto(larguraQuantidade + larguraUnidade, larguraUnitario, unitario, TAMANHO, DIREITA, negrito);
-        canvas.texto(larguraQuantidade + larguraUnidade + larguraUnitario, larguraTotal, total, TAMANHO, DIREITA, negrito);
+    private static String cortar(final DanfeCanvas canvas, final String texto, final float largura) {
+        String cortado = texto;
+        while (cortado.length() > 1 && canvas.largura(cortado, TAMANHO) > largura) {
+            cortado = cortado.substring(0, cortado.length() - 1);
+        }
+        return cortado.trim();
+    }
+
+    /**
+     * Desenha quatro colunas na mesma linha, apos a largura reservada ao texto (codigo e descricao): quantidade, unidade, valor unitario e
+     * valor total, todas alinhadas a direita, exceto a unidade. Avanca o cursor.
+     */
+    private static void linhaDeColunas(final DanfeCanvas canvas, final float larguraTexto, final float larguraQuantidade, final float larguraUnidade,
+                                       final float larguraUnitario, final float larguraTotal, final String quantidade, final String unidade,
+                                       final String unitario, final String total, final boolean negrito) {
+        final float altura = canvas.texto(larguraTexto, larguraQuantidade - FOLGA_QUANTIDADE, quantidade, TAMANHO, DIREITA, negrito);
+        canvas.texto(larguraTexto + larguraQuantidade, larguraUnidade, unidade, TAMANHO, ESQUERDA, negrito);
+        canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade, larguraUnitario, unitario, TAMANHO, DIREITA, negrito);
+        canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade + larguraUnitario, larguraTotal, total, TAMANHO, DIREITA, negrito);
         canvas.avancar(altura);
     }
 
@@ -393,6 +417,13 @@ final class DanfeNfceCorpo {
             return "";
         }
         return "R$ " + DanfeFormatador.valor(semZerosAMais(valorXml, casasMinimas));
+    }
+
+    /**
+     * Valor do item no formato brasileiro, sem o "R$ " (a coluna ja e de valores em reais), com ao menos duas casas decimais.
+     */
+    private static String valorItem(final String valorXml) {
+        return valorXml == null ? "" : DanfeFormatador.valor(semZerosAMais(valorXml, 2));
     }
 
     /**
