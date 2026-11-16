@@ -376,6 +376,7 @@ public class DFRegistryMatcher extends RegistryMatcher {
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoFerrovia.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoFerroviaTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTIndicadoNegociavel.class, new com.fincatto.documentofiscal.cte400.transformers.CTIndicadoNegociavelTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeTributario.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoRegimeTributarioTransformer());
+    super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeIBSCBS.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoRegimeIBSCBSTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoEspecieGtv.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoEspecieGtvTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTMotivoInsucesso.class, new com.fincatto.documentofiscal.cte400.transformers.CTMotivoInsucessoTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTResponsavelSeguro.class, new com.fincatto.documentofiscal.cte400.transformers.CTResponsavelSeguroTransformer());
@@ -383,6 +384,8 @@ public class DFRegistryMatcher extends RegistryMatcher {
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoProprietario.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoProprietarioTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoServicoOS.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoServicoOSTransformer());
     super.bind(com.fincatto.documentofiscal.cte400.classes.CTipoComponenteGTVe.class, new com.fincatto.documentofiscal.cte400.transformers.CTipoComponenteGTVeTransformer());
+    super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoOperacaoGovernamental.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoOperacaoGovernamentalTransformer());
+    super.bind(com.fincatto.documentofiscal.cte400.classes.CTTipoEntidadeGovernamental.class, new com.fincatto.documentofiscal.cte400.transformers.CTTipoEntidadeGovernamentalTransformer());
 
     // MDF-e
     super.bind(MDFModalidadeTransporte.class, new MDFModalidadeTransporteTransformer());

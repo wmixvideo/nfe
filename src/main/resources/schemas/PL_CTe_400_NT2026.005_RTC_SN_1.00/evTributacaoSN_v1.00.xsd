@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2025 rel. 2 (x64) (https://www.altova.com) by PROCERGS (Procergs - Centro de Tecnologia da Informação e Comunicação do Estado do Rio Grande do Sul S.A.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/cte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/cte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="eventoCTeTiposBasico_v4.00.xsd"/>
+	<xs:include schemaLocation="DFeTiposBasicos_v1.00.xsd"/>
+	<xs:element name="evTributacaoSN">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do evento de Tributação do SN 412140</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="descEvento">
+					<xs:annotation>
+						<xs:documentation>Descrição do Evento - “Tributação do Simples Nacional”</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="Tributação do Simples Nacional"/>
+							<xs:enumeration value="Tributacao do Simples Nacional"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="nProt" type="TProt">
+					<xs:annotation>
+						<xs:documentation>Número do Protocolo de autorização do DFe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="gTribItemSN" type="TTribItemSN" maxOccurs="990">
+					<xs:annotation>
+						<xs:documentation>Detalhamento dos tributos.  </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="gTotalSN" type="TTotalSN"/>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="pk_nItem">
+			<xs:selector xpath="./*"/>
+			<xs:field xpath="@nItem"/>
+		</xs:unique>
+	</xs:element>
+</xs:schema>

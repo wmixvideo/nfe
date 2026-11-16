@@ -20,7 +20,7 @@ public class CTeGeraQRCode {
         final StringBuilder parametros = new StringBuilder();
         parametros.append("chCTe=").append(chaveAcesso).append("&");
         parametros.append("tpAmb=").append(this.config.getAmbiente().getCodigo());
-        if(this.config.getTipoEmissao().equals(CTTipoEmissao.CONTINGENCIA_EPEC)){
+        if(CTTipoEmissao.tiposPermitemSign().contains(this.config.getTipoEmissao())){
             parametros.append("&sign=").append(new DFAssinaturaDigital(this.config).assinarString(chaveAcesso));
         }
         // retorna a url do qrcode
