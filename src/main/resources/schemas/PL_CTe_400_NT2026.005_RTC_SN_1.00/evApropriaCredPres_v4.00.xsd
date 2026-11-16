@@ -76,7 +76,7 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="xDecPag">
+				<xs:element name="xDecPag" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Declaração de Pagamento ao TAC/MEI.</xs:documentation>
 						<xs:documentation>Preencher conforme exigência do indicador ind_xDecPag da tabela cCredPres, mediante o uso de um dos literais apresentados a seguir: 
