@@ -12,6 +12,7 @@ import org.simpleframework.xml.Order;
  * @author Edivaldo Merlo Stens
  * @author Ommega Data
  */
+@SuppressWarnings("removal")
 @Order(elements = {"gMonoPadrao", "gMonoReten", "gMonoRet", "gMonoDif", "gIBSMonoAdRem", "gIBSMonoAdValorem", "gCBSMonoAdRem", "gCBSMonoAdValorem", "vTotIBSMonoItem", "vTotCBSMonoItem"})
 public class NFNotaInfoItemImpostoIBSCBSMonofasia extends DFBase {
 
