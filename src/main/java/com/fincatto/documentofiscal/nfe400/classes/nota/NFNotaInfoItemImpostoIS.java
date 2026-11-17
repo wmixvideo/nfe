@@ -28,7 +28,7 @@ public class NFNotaInfoItemImpostoIS extends DFBase {
   @Element(required = false)
   private String pIS; // UB06
 
-  @Element(required = false)
+  @Element(name = "adRemIS", required = false)
   private String pISEspec; // UB07
 
   // UB08 -x- Sequência XML 0-1
