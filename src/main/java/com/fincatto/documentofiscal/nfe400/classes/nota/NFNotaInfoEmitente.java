@@ -40,6 +40,12 @@ public class NFNotaInfoEmitente extends DFBase {
     @Element(name = "CRT")
     private NFRegimeTributario regimeTributario;
 
+    /**
+     * C21a - Tipo de regime de apuração do IBS e da CBS (NT 2026.005). Informar somente nas situações previstas na NT.
+     */
+    @Element(name = "tpRegimeIBSCBS", required = false)
+    private String tipoRegimeIBSCBS;
+
     public void setCnpj(final String cnpj) {
         if (this.cpf != null && cnpj != null) {
             throw new IllegalStateException("Nao pode setar CNPJ caso CPF esteja setado");
@@ -147,5 +153,16 @@ public class NFNotaInfoEmitente extends DFBase {
 
     public NFRegimeTributario getRegimeTributario() {
         return this.regimeTributario;
+    }
+
+    public String getTipoRegimeIBSCBS() {
+        return this.tipoRegimeIBSCBS;
+    }
+
+    public void setTipoRegimeIBSCBS(final String tipoRegimeIBSCBS) {
+        if (tipoRegimeIBSCBS != null && !tipoRegimeIBSCBS.matches("[1-4]")) {
+            throw new IllegalStateException("Tipo de regime de apuracao do IBS e da CBS invalido: " + tipoRegimeIBSCBS);
+        }
+        this.tipoRegimeIBSCBS = tipoRegimeIBSCBS;
     }
 }
