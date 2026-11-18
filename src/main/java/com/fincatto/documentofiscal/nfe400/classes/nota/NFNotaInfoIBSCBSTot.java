@@ -32,6 +32,12 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
   @Element(name = "gEstornoCred", required = false)
   private NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito;
 
+  /**
+   * W59h - Grupo de totais do IBS e da CBS para o Simples Nacional (NT 2026.005)
+   */
+  @Element(name = "gTribSN", required = false)
+  private NFNotaInfoIBSCBSTot.GTribSN grupoTributacaoSimplesNacional;
+
   public String getVBCIBSCBS() {
     return vBCIBSCBS;
   }
@@ -70,6 +76,42 @@ public class NFNotaInfoIBSCBSTot extends DFBase {
 
   public void setGrupoEstornoCredito(NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito) {
     this.grupoEstornoCredito = grupoEstornoCredito;
+  }
+
+  public NFNotaInfoIBSCBSTot.GTribSN getGrupoTributacaoSimplesNacional() {
+    return grupoTributacaoSimplesNacional;
+  }
+
+  public void setGrupoTributacaoSimplesNacional(NFNotaInfoIBSCBSTot.GTribSN grupoTributacaoSimplesNacional) {
+    this.grupoTributacaoSimplesNacional = grupoTributacaoSimplesNacional;
+  }
+
+  // W59h
+  public static class GTribSN extends DFBase {
+
+    private static final long serialVersionUID = 3318506472910285561L;
+
+    @Element(name = "vIBSSN")
+    private String vIBSSN; // W59i
+
+    @Element(name = "vCBSSN")
+    private String vCBSSN; // W59j
+
+    public String getVIBSSN() {
+      return vIBSSN;
+    }
+
+    public void setVIBSSN(BigDecimal vIBSSN) {
+      this.vIBSSN = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vIBSSN, "Valor total do IBS para os optantes do Simples");
+    }
+
+    public String getVCBSSN() {
+      return vCBSSN;
+    }
+
+    public void setVCBSSN(BigDecimal vCBSSN) {
+      this.vCBSSN = DFBigDecimalValidador.tamanho13Com2CasasDecimais(vCBSSN, "Valor total da CBS para os optantes do Simples");
+    }
   }
 
   // W36
