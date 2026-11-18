@@ -32,7 +32,7 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
     @Element(name = "indDoacao", required = false)
     private String indicadorNaturezaOperacaoDoacao;
 
-    // UB14a -x- Sequencia XML
+    // Ordem dos campos segue a sequência do XSD (TTribNFe)
     @Element(required = false)
     private NFNotaInfoItemImpostoIBSCBSTIBS gIBSCBS; // UB15
 
@@ -43,10 +43,16 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
     private NFNotaInfoItemImpostoIBSCBSTransfCred gTransfCred; // UB106
 
     /**
-     * UB131 - Grupo para apropriação de crédito presumido de IBS sobre o saldo devedor na ZFM (art. 450, § 1º, LC 214/25)
+     * UB112 - Ajuste competência - apenas requerido quando ind_gAjusteCompet = 1
      */
-    @Element(required = false)
-    private NFNotaInfoItemImpostoIBSCBSCredPresIBSZFM gCredPresIBSZFM;
+    @Element(name = "gAjusteCompet", required = false)
+    private GrupoAjusteCompetencia grupoAjusteCompetencia;
+
+    /**
+     * UB115a - Grupo de informações do IBS e da CBS para o Simples Nacional (NT 2026.005)
+     */
+    @Element(name = "gTribSN", required = false)
+    private NFNotaInfoItemImpostoIBSCBSTribSN grupoTributacaoSimplesNacional;
 
     /**
      * UB116 - Estorno de crédito
@@ -61,10 +67,11 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
     private NFNotaInfoItemImpostoIBSCBSGCredPresOper grupoCreditoPresumidoOperacao;
 
     /**
-     * UB112 - Ajuste competência - apenas requerido quando ind_gAjusteCompet = 1
+     * UB131 - Grupo para apropriação de crédito presumido de IBS sobre o saldo devedor na ZFM (art. 450, § 1º, LC 214/25)
      */
-    @Element(name = "gAjusteCompet", required = false)
-    private GrupoAjusteCompetencia grupoAjusteCompetencia;
+    @Element(required = false)
+    private NFNotaInfoItemImpostoIBSCBSCredPresIBSZFM gCredPresIBSZFM;
+
 
     public NFNotaInfoImpostoTributacaoIBSCBS getCst() {
         return cst;
@@ -137,6 +144,14 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
 
     public void setGrupoEstornoCredito(NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito) {
         this.grupoEstornoCredito = grupoEstornoCredito;
+    }
+
+    public NFNotaInfoItemImpostoIBSCBSTribSN getGrupoTributacaoSimplesNacional() {
+        return grupoTributacaoSimplesNacional;
+    }
+
+    public void setGrupoTributacaoSimplesNacional(NFNotaInfoItemImpostoIBSCBSTribSN grupoTributacaoSimplesNacional) {
+        this.grupoTributacaoSimplesNacional = grupoTributacaoSimplesNacional;
     }
 
     public GrupoAjusteCompetencia getGrupoAjusteCompetencia() {

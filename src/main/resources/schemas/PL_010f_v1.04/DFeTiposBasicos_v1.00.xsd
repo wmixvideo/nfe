@@ -354,6 +354,31 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
+			<xs:element name="gTribSN" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Grupo de informações do IBS e da CBS para o Simples Nacional (NT 2026.005 - provisório)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="gIBSSN" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pIBSSN" type="TDec_0302_04RTC"/>
+									<xs:element name="vIBSSN" type="TDec1302RTC"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="gCBSSN">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="pCBSSN" type="TDec_0302_04RTC"/>
+									<xs:element name="vCBSSN" type="TDec1302RTC"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="gEstornoCred" type="TEstornoCred" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Informado conforme indicador no cClassTrib</xs:documentation>
@@ -727,6 +752,17 @@
 								<xs:documentation>Valor total da CBS estornada</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gTribSN" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Totais do IBS e da CBS para o Simples Nacional (NT 2026.005 - provisório)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="vIBSSN" type="TDec1302RTC"/>
+						<xs:element name="vCBSSN" type="TDec1302RTC"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
