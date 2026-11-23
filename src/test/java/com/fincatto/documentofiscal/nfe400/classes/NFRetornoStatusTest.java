@@ -16,6 +16,13 @@ public class NFRetornoStatusTest {
     }
 
     @Test
+    public void valueOfCodigoDeveEncontrarAutorizadoComAlertaTest() {
+        Assertions.assertEquals(NFRetornoStatus.CODIGO_120, NFRetornoStatus.valueOfCodigo("120"));
+        Assertions.assertFalse(NFRetornoStatus.CODIGO_120.isRejeitado());
+        Assertions.assertFalse(NFRetornoStatus.CODIGO_120.isDenegado());
+    }
+
+    @Test
     public void valueOfCodigoNaoMapeadoTest() {
         Assertions.assertNull(NFRetornoStatus.valueOfCodigo(666));
     }
@@ -23,6 +30,8 @@ public class NFRetornoStatusTest {
     @Test
     public void isAutorizadoTest() {
         Assertions.assertTrue(NFRetornoStatus.CODIGO_100.isAutorizado());
+        Assertions.assertTrue(NFRetornoStatus.CODIGO_120.isAutorizado());
+        Assertions.assertTrue(NFRetornoStatus.CODIGO_150.isAutorizado());
         Assertions.assertFalse(NFRetornoStatus.CODIGO_620.isAutorizado());
     }
 

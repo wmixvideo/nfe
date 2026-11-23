@@ -20,6 +20,7 @@ public enum NFRetornoStatus {
     CODIGO_112(112, "Consulta cadastro com mais de uma ocorr\u00eancia"),
     CODIGO_113(113, "SCAN ser\u00e1 desabilitado para a UF \u00e0s hh:mm"),
     CODIGO_114(114, "SCAN desabilitado pela SEFAZ Origem"),
+    CODIGO_120(120, "Autorizado o uso da NF-e, com alerta"),
     CODIGO_128(128, "Lote de Evento Processado"),
     CODIGO_124(124, "EPEC Autorizado"),
     CODIGO_135(135, "Evento registrado e vinculado a NF-e"),
@@ -623,7 +624,7 @@ public enum NFRetornoStatus {
     CODIGO_9302(9302, "CNPJ Inv\u00e1lido (Zeros, nulo, DV)");
 
     private static final List<NFRetornoStatus> DENEGADOS = Arrays.asList(CODIGO_110, CODIGO_301, CODIGO_302, CODIGO_303);
-    private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_150);
+    private static final List<NFRetornoStatus> AUTORIZADOS = Arrays.asList(CODIGO_100, CODIGO_120, CODIGO_150);
 
     private final int codigo;
     private final String motivo;

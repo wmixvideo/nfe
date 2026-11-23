@@ -30,7 +30,7 @@ public class NFDetGrupoControleEstoquePerecimento extends DFBase {
     }
 
     public void setUnidadePerecimento(String unidadePerecimento) {
-        DFStringValidador.tamanho6N(unidadePerecimento, "Unidade Perecimento");
+        DFStringValidador.tamanho6(unidadePerecimento, "Unidade Perecimento");
         this.unidadePerecimento = unidadePerecimento;
     }
 }
