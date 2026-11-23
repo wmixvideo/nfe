@@ -19,6 +19,7 @@ import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
 /**
  * Classe responsável por enviar o cancelamento do evento de Conciliação Financeira (ECONF), que desfaz um ECONF
@@ -57,6 +58,7 @@ class WSCancelamentoEconf {
     NFEnviaEventoRetorno enviaEvento(final String chaveAcesso, final int numeroSequencialEvento, final String protocoloEconf) throws Exception {
         final String cancelamentoEconfXml = this.gerarDadosXml(chaveAcesso, numeroSequencialEvento, protocoloEconf).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(cancelamentoEconfXml);
+        DFXMLValidador.validaCancelamentoEconf(xmlAssinado);
         final String xmlResultado = this.efetuaEnvio(xmlAssinado);
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }

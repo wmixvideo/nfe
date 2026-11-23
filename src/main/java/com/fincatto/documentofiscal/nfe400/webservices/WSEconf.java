@@ -21,6 +21,7 @@ import com.fincatto.documentofiscal.nfe400.utils.ChaveAcessoUtils;
 import com.fincatto.documentofiscal.utils.DFAssinaturaDigital;
 import com.fincatto.documentofiscal.utils.DFHttpClient;
 import com.fincatto.documentofiscal.utils.DFSoapFaultException;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
 /**
  * Classe responsável por enviar o evento de Conciliação Financeira (ECONF), que informa à SEFAZ os pagamentos
@@ -59,6 +60,7 @@ class WSEconf {
     NFEnviaEventoRetorno enviaEvento(final String chaveAcesso, final int numeroSequencialEvento, final List<NFDetPagEconf> pagamentos) throws Exception {
         final String econfXml = this.gerarDadosXml(chaveAcesso, numeroSequencialEvento, pagamentos).toString();
         final String xmlAssinado = new DFAssinaturaDigital(this.config).assinarDocumento(econfXml);
+        DFXMLValidador.validaEconf(xmlAssinado);
         final String xmlResultado = this.efetuaEnvio(xmlAssinado);
         return this.config.getPersister().read(NFEnviaEventoRetorno.class, xmlResultado);
     }
