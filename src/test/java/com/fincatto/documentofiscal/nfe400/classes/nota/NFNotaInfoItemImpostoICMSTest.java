@@ -135,6 +135,14 @@ public class NFNotaInfoItemImpostoICMSTest {
     }
 
     @Test
+    public void deveObterIcmsPrevistoPagtoAntecipComoFoiSetado() {
+        final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
+        final NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip icmsSetado = new NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip();
+        icms.setIcmsPrevistoPagtoAntecip(icmsSetado);
+        Assertions.assertEquals(icmsSetado, icms.getIcmsPrevistoPagtoAntecip());
+    }
+
+    @Test
     public void deveObterIcmsSTComoFoiSetado() {
         final NFNotaInfoItemImpostoICMS icms = new NFNotaInfoItemImpostoICMS();
         final NFNotaInfoItemImpostoICMSST icmsSetado = new NFNotaInfoItemImpostoICMSST();
@@ -239,6 +247,11 @@ public class NFNotaInfoItemImpostoICMSTest {
         }
         try {
             icms.setIcmssn900(new NFNotaInfoItemImpostoICMSSN900());
+            Assertions.fail("So pode permitir um icms cadastrado");
+        } catch (final IllegalStateException ignored) {
+        }
+        try {
+            icms.setIcmsPrevistoPagtoAntecip(new NFNotaInfoItemImpostoICMSPrevistoPagtoAntecip());
             Assertions.fail("So pode permitir um icms cadastrado");
         } catch (final IllegalStateException ignored) {
         }
