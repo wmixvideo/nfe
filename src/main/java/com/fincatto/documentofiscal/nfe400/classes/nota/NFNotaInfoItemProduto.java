@@ -69,6 +69,12 @@ public class NFNotaInfoItemProduto extends DFBase {
     @Element(name = "vProd")
     private String valorTotalBruto;
 
+    @Element(name = "vUnComLiq", required = false)
+    private String valorLiquidoUnitario;
+
+    @Element(name = "vProdLiq", required = false)
+    private String valorLiquidoTotal;
+
     @Element(name = "cEANTrib", required = false)
     @Convert(NFStringNullToEmptyConverter.class)
     private String codigoDeBarrasGtinTributavel;
@@ -205,6 +211,14 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public void setValorTotalBruto(final BigDecimal valorTotalBruto) {
         this.valorTotalBruto = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalBruto, "Valor Total Bruto Produto");
+    }
+
+    public void setValorLiquidoUnitario(final BigDecimal valorLiquidoUnitario) {
+        this.valorLiquidoUnitario = DFBigDecimalValidador.tamanho21ComAte10CasasDecimais(valorLiquidoUnitario, "Valor Líquido Unitário");
+    }
+
+    public void setValorLiquidoTotal(final BigDecimal valorLiquidoTotal) {
+        this.valorLiquidoTotal = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorLiquidoTotal, "Valor Líquido Total");
     }
 
     /**
@@ -414,6 +428,14 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public String getValorTotalBruto() {
         return this.valorTotalBruto;
+    }
+
+    public String getValorLiquidoUnitario() {
+        return this.valorLiquidoUnitario;
+    }
+
+    public String getValorLiquidoTotal() {
+        return this.valorLiquidoTotal;
     }
 
     /**
