@@ -111,8 +111,8 @@ class WSCancelamentoEconf {
     private NFDetEventoCancelamentoEconf gerarDetalhesEvento(final String protocoloEconf) {
         final NFDetEventoCancelamentoEconf detEvento = new NFDetEventoCancelamentoEconf();
         detEvento.setDescricaoEvento(WSCancelamentoEconf.DESCRICAO_EVENTO);
-        detEvento.setVersao(WSCancelamentoEconf.VERSAO_LAYOUT);
         detEvento.setVersaoAplicativo(WSCancelamentoEconf.VERSAO_LAYOUT.toString());
+        detEvento.setVersao(WSCancelamentoEconf.VERSAO_LAYOUT);
         detEvento.setNumeroProtocoloEvento(protocoloEconf);
         return detEvento;
     }

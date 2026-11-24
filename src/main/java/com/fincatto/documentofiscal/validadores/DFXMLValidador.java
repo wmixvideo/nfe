@@ -272,11 +272,11 @@ public final class DFXMLValidador {
         return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_EPEC, "EPEC_v1.00.xsd");
     }
 
-    public static boolean validaEconf(final String arquivoXML) throws Exception {
+    public static boolean validaEconf(final String arquivoXML) throws IOException, SAXException {
         return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_ECONF, "envEventoEConf_v1.00.xsd");
     }
 
-    public static boolean validaCancelamentoEconf(final String arquivoXML) throws Exception {
+    public static boolean validaCancelamentoEconf(final String arquivoXML) throws IOException, SAXException {
         return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_ECONF, "envEventoCancEConf_v1.00.xsd");
     }
 }

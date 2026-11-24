@@ -112,8 +112,8 @@ class WSEconf {
     private NFDetEventoEconf gerarDetalhesEvento(final List<NFDetPagEconf> pagamentos) {
         final NFDetEventoEconf detEvento = new NFDetEventoEconf();
         detEvento.setDescricaoEvento(WSEconf.DESCRICAO_EVENTO);
-        detEvento.setVersao(WSEconf.VERSAO_LAYOUT);
         detEvento.setVersaoAplicativo(WSEconf.VERSAO_LAYOUT.toString());
+        detEvento.setVersao(WSEconf.VERSAO_LAYOUT);
         detEvento.setPagamentos(pagamentos);
         return detEvento;
     }
