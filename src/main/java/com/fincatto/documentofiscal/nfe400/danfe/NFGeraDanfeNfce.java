@@ -10,11 +10,15 @@ import com.fincatto.documentofiscal.utils.DFPersister;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Gera o cupom DANFE NFC-e (modelo 65) em PDF a partir do XML da NFC-e, sem logotipo.
@@ -50,8 +54,6 @@ public class NFGeraDanfeNfce {
     private static final String MENSAGEM_ANEXO_NULO = "A lista de anexos tem um anexo nulo";
     private static final String MENSAGEM_XML_INVALIDO = "XML da NFC-e inválido";
     private static final String MENSAGEM_ERRO_GERAR_PDF = "Erro ao gerar o PDF do DANFE NFC-e";
-    /** Abertura do nfeProc, com ou sem prefixo de namespace (ex.: {@code <nfeProc} ou {@code <nfe:nfeProc}). */
-    private static final Pattern NFE_PROC = Pattern.compile("<([\\w.-]+:)?nfeProc[\\s>]");
 
     /**
      * Maior altura de pagina aceita pelos leitores de PDF (200 polegadas); tambem e a altura da pagina na primeira passada, que so mede o conteudo.
@@ -239,7 +241,7 @@ public class NFGeraDanfeNfce {
             throw new IllegalArgumentException(MENSAGEM_XML_NAO_INFORMADO);
         }
         try {
-            if (NFE_PROC.matcher(xmlNfe).find()) {
+            if (raizEhNfeProc(xmlNfe)) {
                 return new DFPersister().read(NFNotaProcessada.class, xmlNfe);
             }
             final NFNotaProcessada processada = new NFNotaProcessada();
@@ -247,6 +249,18 @@ public class NFGeraDanfeNfce {
             return processada;
         } catch (final Exception e) {
             throw new IllegalArgumentException(MENSAGEM_XML_INVALIDO, e);
+        }
+    }
+
+    /** Diz se o elemento raiz do XML e o nfeProc, com ou sem prefixo de namespace (ex.: {@code <nfe:nfeProc>}). */
+    private static boolean raizEhNfeProc(final String xml) throws XMLStreamException {
+        final XMLInputFactory fabrica = XMLInputFactory.newInstance();
+        fabrica.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        final XMLStreamReader leitor = fabrica.createXMLStreamReader(new StringReader(xml));
+        try {
+            return leitor.nextTag() == XMLStreamConstants.START_ELEMENT && "nfeProc".equals(leitor.getLocalName());
+        } finally {
+            leitor.close();
         }
     }
 }
