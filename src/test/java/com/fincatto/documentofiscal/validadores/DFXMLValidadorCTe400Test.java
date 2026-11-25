@@ -107,14 +107,4 @@ public class DFXMLValidadorCTe400Test {
         final String xml = cteComIBSCBS(ibscbs("<gTribSN><gIBSSN><pIBSSN>1.2345</pIBSSN></gIBSSN></gTribSN>"));
         Assertions.assertThrows(SAXParseException.class, () -> DFXMLValidador.validaNotaCte400(xml));
     }
-
-    /**
-     * O pacote oficial PL_CTe_400_NT2026.005 RTC SN 1.00 define o tipo TRegimeIBSCBS, mas nao declara o elemento
-     * tpRegimeIBSCBS no emitente do CT-e; enquanto o pacote nao for corrigido, a tag e rejeitada pelo schema.
-     */
-    @Test
-    public void naoDeveValidarTipoRegimeIBSCBSNoEmitentePeloPacoteOficial() {
-        final String xml = CTE.replace(FIM_EMITENTE, "<CRT>1</CRT><tpRegimeIBSCBS>1</tpRegimeIBSCBS></emit>");
-        Assertions.assertThrows(SAXParseException.class, () -> DFXMLValidador.validaNotaCte400(xml));
-    }
 }

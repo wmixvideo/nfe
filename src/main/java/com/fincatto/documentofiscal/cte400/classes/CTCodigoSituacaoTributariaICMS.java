@@ -12,7 +12,8 @@ public enum CTCodigoSituacaoTributariaICMS {
     DIFERIMENTO("51", "Diferimento"),
     ICMS_COBRADO_ANTERIORMENTE_POR_SUBSTITUICAO_TRIBUTARIA("60", "ICMS cobrado anteriormente por ST"),
     COM_REDUCAO_BASE_CALCULO_COBRANCA_ICMS_POR_SUBSTITUICAO_TRIBUTARIA_ICMS_SUBSTITUICAO_TRIBUTARIA("70", "Com redução da base de cálculo Cobrança ICMS por ST/ICMS ST"),
-    OUTROS("90", "Outros");
+    OUTROS("90", "Outros"),
+    SIMPLES_NACIONAL("01", "Simples nacional");
 
     private final String codigo;
     private final String descricao;
