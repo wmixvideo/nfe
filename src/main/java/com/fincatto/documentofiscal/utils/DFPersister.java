@@ -16,12 +16,30 @@ import java.io.Reader;
  */
 public class DFPersister extends Persister {
     
+    /**
+     * Define o modo de leitura (desserializacao) do XML, repassado ao Simple XML em todos os metodos {@code read}.
+     * <ul>
+     * <li>{@code true}: o XML deve corresponder exatamente ao modelo. Tags ou atributos que nao existem nas classes
+     * (por exemplo, campos de um leiaute mais novo que a biblioteca ainda nao implementa) lancam
+     * {@link org.simpleframework.xml.core.PersistenceException}.</li>
+     * <li>{@code false}: tags e atributos desconhecidos sao ignorados silenciosamente e o restante do XML e lido normalmente.</li>
+     * </ul>
+     * Nao afeta a escrita (serializacao) do XML.
+     */
     private final boolean strict;
-    
+
+    /**
+     * Cria um persister em modo estrito, equivalente a {@code new DFPersister(true)}.
+     */
     public DFPersister() {
         this(true);
     }
-    
+
+    /**
+     * @param strict {@code true} para falhar ao encontrar tags/atributos nao mapeados no XML lido;
+     *               {@code false} para ignora-los. Util para ler XMLs de terceiros ou de leiautes mais novos,
+     *               com o risco de perder campos desconhecidos sem aviso.
+     */
     public DFPersister(final boolean strict) {
         super(new AnnotationStrategy(), new DFRegistryMatcher(), new Format(0));
         this.strict = strict;
@@ -77,6 +95,10 @@ public class DFPersister extends Persister {
         return super.read(value, source, this.strict);
     }
 
+	/**
+	 * @return {@code true} se a leitura do XML e estrita (falha com tags/atributos desconhecidos),
+	 *         {@code false} se eles sao ignorados.
+	 */
 	public boolean isStrict() {
 		return strict;
 	}
