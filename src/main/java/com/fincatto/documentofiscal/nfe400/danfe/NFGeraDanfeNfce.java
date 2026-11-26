@@ -70,17 +70,17 @@ public class NFGeraDanfeNfce {
     /**
      * Cupom com margens laterais personalizadas, para compensar a area nao imprimivel de cada modelo de impressora termica.
      *
-     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link #MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link #MARGEM_LATERAL_MM}
-     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link #MARGEM_LATERAL_MAXIMA_MM}; fora da faixa (ou NaN) usa {@link #MARGEM_LATERAL_MM}
+     * @param margemEsquerdaMm margem da esquerda, em milimetros, de 0 a {@link #MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link #MARGEM_LATERAL_MM}
+     * @param margemDireitaMm margem da direita, em milimetros, de 0 a {@link #MARGEM_LATERAL_MAXIMA_MM}; nulo, fora da faixa ou NaN usa {@link #MARGEM_LATERAL_MM}
      */
-    public NFGeraDanfeNfce(final float margemEsquerdaMm, final float margemDireitaMm) {
+    public NFGeraDanfeNfce(final Float margemEsquerdaMm, final Float margemDireitaMm) {
         this.margemEsquerda = margemOuPadrao(margemEsquerdaMm) * DanfeCanvas.MM;
         this.margemDireita = margemOuPadrao(margemDireitaMm) * DanfeCanvas.MM;
     }
 
-    private static float margemOuPadrao(final float margemMm) {
+    private static float margemOuPadrao(final Float margemMm) {
         // comparacao negada: tambem cobre NaN
-        return margemMm >= 0f && margemMm <= MARGEM_LATERAL_MAXIMA_MM ? margemMm : MARGEM_LATERAL_MM;
+        return margemMm != null && margemMm >= 0f && margemMm <= MARGEM_LATERAL_MAXIMA_MM ? margemMm : MARGEM_LATERAL_MM;
     }
 
     /**

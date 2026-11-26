@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
+
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.CENTRO;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.DIREITA;
 import static com.fincatto.documentofiscal.nfe400.danfe.DanfeCanvas.Alinhamento.ESQUERDA;
@@ -117,7 +119,9 @@ final class DanfeCabecalho {
             final String complemento = endereco.getComplemento() == null || endereco.getComplemento().trim().isEmpty() ? "" : ", " + endereco.getComplemento();
             linhas.add(texto(endereco.getLogradouro()) + ", " + texto(endereco.getNumero()) + complemento + " \u2013 " + texto(endereco.getBairro()));
             linhas.add(texto(endereco.getDescricaoMunicipio()) + "/" + texto(endereco.getUf()) + " \u2013 CEP " + DanfeFormatador.cep(endereco.getCep()));
-            linhas.add("Fone: " + DanfeFormatador.telefone(endereco.getTelefone()));
+            if (StringUtils.isNotBlank(endereco.getTelefone())) {
+                linhas.add("Fone: " + DanfeFormatador.telefone(endereco.getTelefone()));
+            }
         }
         final float x = logoImage == null ? 4 : LARGURA_LOGO + 4;
         final float largura = LARGURA_EMITENTE - x - 4;

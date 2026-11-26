@@ -430,6 +430,43 @@ List<DanfeNfceAnexo> anexos = Arrays.asList(
 byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, creditos, anexos);
 ```
 
+**Margens laterais.** Cada modelo de impressora térmica tem uma área não imprimível diferente, então dá para informar a margem esquerda e a direita, em milímetros, pelo `WSFacade`. As margens são os dois últimos parâmetros de `geraDanfeNfce`, depois de `creditos` e `anexos` (passe `null` nos que não for usar):
+
+```java
+// margem esquerda de 3 mm e direita de 2 mm, sem créditos nem anexos
+byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, null, null, 3f, 2f);
+
+// com créditos e anexos
+byte[] pdf = facade.geraDanfeNfce(xmlParaGuardar, creditos, anexos, 3f, 2f);
+
+// também aceita a NFNotaProcessada no lugar do XML
+byte[] pdf = facade.geraDanfeNfce(notaProcessada, creditos, anexos, 3f, 2f);
+```
+
+- Valores de 0 a 10 mm. Sem informar margem, o padrão é 1 mm de cada lado (78 mm de área útil).
+- Os parâmetros são `Float`: `null`, valor fora da faixa ou `NaN` usa o padrão de 1 mm. Assim você pode repassar direto uma margem opcional do seu cadastro, sem decidir o padrão antes: `facade.geraDanfeNfce(xml, creditos, anexos, cadastro.getMargemEsquerda(), cadastro.getMargemDireita())`.
+
+**Margens pelo `NFGeraDanfeNfce`.** Sem o `WSFacade` (sem `NFeConfig` nem certificado), as margens vão no construtor, e o `gerar` não muda. O objeto guarda as margens, então dá para criá-lo uma vez e reutilizá-lo:
+
+```java
+// margem esquerda de 3 mm e direita de 2 mm
+NFGeraDanfeNfce gerador = new NFGeraDanfeNfce(3f, 2f);
+
+byte[] pdf = gerador.gerar(xmlParaGuardar, creditos);                    // só o cupom
+byte[] pdf = gerador.gerar(xmlParaGuardar, creditos, anexos);            // com anexos
+byte[] pdf = gerador.gerar(notaProcessada, creditos, anexos);            // com a NFNotaProcessada
+
+// margem opcional (null usa o padrão de 1 mm)
+Float esquerda = cadastro.getMargemEsquerda();
+Float direita = cadastro.getMargemDireita();
+byte[] pdf = new NFGeraDanfeNfce(esquerda, direita).gerar(xmlParaGuardar, null);
+
+// sem informar margem: 1 mm de cada lado
+byte[] pdf = new NFGeraDanfeNfce().gerar(xmlParaGuardar, null);
+```
+
+As mesmas regras valem aqui: de 0 a 10 mm (`NFGeraDanfeNfce.MARGEM_LATERAL_MAXIMA_MM`), e `null`, valor fora da faixa ou `NaN` usa `NFGeraDanfeNfce.MARGEM_LATERAL_MM` (1 mm).
+
 A lib não confere o conteúdo dos anexos. Cada UF tem suas regras para o comprovante: no RS (IN RE 81/2022) e no CE (IN 87/2025), por exemplo, se o DANFE NFC-e for impresso, o comprovante sai no mesmo equipamento, então basta passar os anexos na mesma chamada; na BA o comprovante pode sair em outro equipamento, desde que traga o CNPJ do estabelecimento. Confirme a regra vigente na legislação da sua UF.
 
 Só aceita o modelo 65 e exige o protocolo de autorização. A exceção é a contingência off-line (`tpEmis=9`), em que o cupom sai da `NFe` ainda sem protocolo, com a mensagem "EMITIDA EM CONTINGÊNCIA". Em homologação, sai "EMITIDA EM AMBIENTE DE HOMOLOGAÇÃO – SEM VALOR FISCAL". Também dá para usar direto `new NFGeraDanfeNfce().gerar(...)`, sem `NFeConfig` nem certificado.

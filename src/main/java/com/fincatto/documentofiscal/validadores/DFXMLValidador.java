@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 public final class DFXMLValidador {
 
     private static final String PACOTE_NFE310 = "schemas/PL_008i2";
-    private static final String PACOTE_NFE400 = "schemas/PL_010f_v1.04";
+    private static final String PACOTE_NFE400 = "schemas/PL_010g_v1.03";
     private static final String PACOTE_MDFE300 = "schemas/PL_MDFe_300b_NT012025_1.03";
     private static final String PACOTE_CTE300 = "schemas/PL_CTe_300a_NT2022.001";
     // PL_CTe_400_NT2026.005 RTC SN 1.00: pacote oficial (acumulativo, inclui a NT 2026.004) com o grupo gTribSN da NT 2026.005.
