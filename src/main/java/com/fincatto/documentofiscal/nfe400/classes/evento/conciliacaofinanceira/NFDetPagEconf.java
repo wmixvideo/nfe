@@ -123,11 +123,7 @@ public class NFDetPagEconf extends DFBase {
     }
 
     public NFDetPagEconf setUfTransacionalPagamento(final DFUnidadeFederativa ufTransacionalPagamento) {
-        if (ufTransacionalPagamento == null) {
-            this.ufTransacionalPagamento = null;
-        } else {
-            this.ufTransacionalPagamento = ufTransacionalPagamento.getCodigo();
-        }
+        this.ufTransacionalPagamento = NFDetPagEconf.validaUf(ufTransacionalPagamento, "UF do Pagamento");
         return this;
     }
 
@@ -173,11 +169,20 @@ public class NFDetPagEconf extends DFBase {
     }
 
     public NFDetPagEconf setUfBeneficiarioPagamento(final DFUnidadeFederativa ufBeneficiarioPagamento) {
-        if (ufBeneficiarioPagamento == null) {
-            this.ufBeneficiarioPagamento = null;
-        } else {
-            this.ufBeneficiarioPagamento = ufBeneficiarioPagamento.getCodigo();
-        }
+        this.ufBeneficiarioPagamento = NFDetPagEconf.validaUf(ufBeneficiarioPagamento, "UF do Beneficiario");
         return this;
+    }
+
+    /**
+     * O tipo TUfEmi do XSD aceita apenas as 27 UFs. NC, RFB, BRId e EX (código IBGE a partir de 90) são rejeitados.
+     */
+    private static String validaUf(final DFUnidadeFederativa uf, final String info) {
+        if (uf == null) {
+            return null;
+        }
+        if (Integer.parseInt(uf.getCodigoIbge()) >= 90) {
+            throw new IllegalArgumentException(String.format("%s deve ser uma das 27 UFs: %s", info, uf.getCodigo()));
+        }
+        return uf.getCodigo();
     }
 }

@@ -81,6 +81,18 @@ public class NFDetPagEconfTest {
     }
 
     @Test
+    public void naoDevePermitirUfForaDas27Ufs() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfTransacionalPagamento(DFUnidadeFederativa.NACIONAL));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfTransacionalPagamento(DFUnidadeFederativa.RFB));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfTransacionalPagamento(DFUnidadeFederativa.BRID));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfTransacionalPagamento(DFUnidadeFederativa.EX));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfBeneficiarioPagamento(DFUnidadeFederativa.NACIONAL));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfBeneficiarioPagamento(DFUnidadeFederativa.RFB));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfBeneficiarioPagamento(DFUnidadeFederativa.BRID));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new NFDetPagEconf().setUfBeneficiarioPagamento(DFUnidadeFederativa.EX));
+    }
+
+    @Test
     public void naoDeveGerarOsCamposOpcionaisNulosNoXml() {
         final String xmlEsperado = "<NFDetPagEconf><tPag>17</tPag><vPag>5000.00</vPag><dPag>2026-10-28</dPag></NFDetPagEconf>";
         final NFDetPagEconf detPag = new NFDetPagEconf()
