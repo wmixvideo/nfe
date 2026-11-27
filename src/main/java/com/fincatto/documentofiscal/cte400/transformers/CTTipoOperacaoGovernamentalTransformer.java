@@ -1,7 +1,6 @@
 package com.fincatto.documentofiscal.cte400.transformers;
 
 import com.fincatto.documentofiscal.cte400.classes.CTTipoOperacaoGovernamental;
-import com.fincatto.documentofiscal.cte400.classes.CTTipoProprietario;
 import org.simpleframework.xml.transform.Transform;
 
 public class CTTipoOperacaoGovernamentalTransformer implements Transform<CTTipoOperacaoGovernamental> {

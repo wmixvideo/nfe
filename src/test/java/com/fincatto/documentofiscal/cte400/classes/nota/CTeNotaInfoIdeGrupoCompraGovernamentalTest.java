@@ -58,6 +58,21 @@ public class CTeNotaInfoIdeGrupoCompraGovernamentalTest {
     }
 
     @Test
+    public void naoDevePermitirMaisDe99DocumentosAnteriores() {
+        final CTeNotaInfoIdeGrupoCompraGovernamental grupo = new CTeNotaInfoIdeGrupoCompraGovernamental();
+        Assertions.assertThrows(IllegalStateException.class, () -> grupo.setDocumentosAnteriores(Collections.nCopies(100, CHAVE)));
+        grupo.setDocumentosAnteriores(Collections.nCopies(99, CHAVE));
+        Assertions.assertEquals(99, grupo.getDocumentosAnteriores().size());
+    }
+
+    @Test
+    public void documentoAnteriorDeveTer44Caracteres() {
+        final CTeNotaInfoIdeGrupoCompraGovernamental grupo = new CTeNotaInfoIdeGrupoCompraGovernamental();
+        Assertions.assertThrows(IllegalStateException.class, () -> grupo.setDocumentosAnteriores(Collections.singletonList(CHAVE.substring(1))));
+        Assertions.assertThrows(IllegalStateException.class, () -> grupo.setDocumentosAnteriores(Collections.singletonList(CHAVE + "5")));
+    }
+
+    @Test
     public void deveLerXMLGerado() throws Exception {
         final CTeNotaInfoIdeGrupoCompraGovernamental grupo = new DFPersister().read(CTeNotaInfoIdeGrupoCompraGovernamental.class, XML_ESPERADO);
         Assertions.assertEquals(CTTipoEntidadeGovernamental.UNIAO, grupo.getTipoEntidadeGovernamental());
