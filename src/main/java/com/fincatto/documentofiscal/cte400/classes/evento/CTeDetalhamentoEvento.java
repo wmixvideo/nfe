@@ -5,6 +5,7 @@ import com.fincatto.documentofiscal.cte400.classes.evento.cancelamento.CTeEnviaE
 import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeEnviaEventoCartaCorrecao;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoCancelamentoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
+import com.fincatto.documentofiscal.cte400.classes.evento.creditopresumido.CTeEnviaEventoApropriacaoCreditoPresumido;
 import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEventoCancelamentoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.cte400.classes.evento.desacordo.CTeEnviaEventoPrestacaoEmDesacordo;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
@@ -39,6 +40,7 @@ public class CTeDetalhamentoEvento extends DFBase {
             @Element(name = "evCancPrestDesacordo", type = CTeEnviaEventoCancelamentoPrestacaoEmDesacordo.class, required = false),
             @Element(name = "evIECTe", type = CTeEnviaEventoInsucessoEntrega.class, required = false),
             @Element(name = "evCancIECTe", type = CTeEnviaEventoCancelamentoInsucessoEntrega.class, required = false),
+            @Element(name = "evApropriaCredPres", type = CTeEnviaEventoApropriacaoCreditoPresumido.class, required = false),
     })
     private CTeTipoEvento evento;
 
@@ -126,5 +128,12 @@ public class CTeDetalhamentoEvento extends DFBase {
             return (CTeEnviaEventoCancelamentoInsucessoEntrega) this.evento;
         }
         throw new IllegalStateException("Evento não é cancelamento de insucesso de entrega");
+    }
+
+    public CTeEnviaEventoApropriacaoCreditoPresumido getApropriacaoCreditoPresumido() {
+        if (this.evento instanceof CTeEnviaEventoApropriacaoCreditoPresumido) {
+            return (CTeEnviaEventoApropriacaoCreditoPresumido) this.evento;
+        }
+        throw new IllegalStateException("Evento não é apropriação de crédito presumido");
     }
 }

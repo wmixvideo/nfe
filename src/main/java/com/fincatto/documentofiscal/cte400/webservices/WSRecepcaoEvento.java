@@ -41,6 +41,20 @@ abstract class WSRecepcaoEvento implements DFLog {
     }
 
     protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final boolean contingencia) throws Exception {
+        final CTAutorizador400 autorizador;
+        if (contingencia) {
+            autorizador = CTAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
+        } else {
+            autorizador = CTAutorizador400.valueOfChaveAcesso(chaveAcesso);
+        }
+        return efetuaEvento(xmlAssinado, chaveAcesso, autorizador);
+    }
+
+    /**
+     * Envia o evento para um autorizador fixo, para eventos autorizados em um único ambiente
+     * independentemente da UF da chave de acesso.
+     */
+    protected String efetuaEvento(final String xmlAssinado, final String chaveAcesso, final CTAutorizador400 autorizador) throws Exception {
         final CTChaveParser ctChaveParser = new CTChaveParser(chaveAcesso);
         if (!modelosPermitidos.contains(ctChaveParser.getModelo())) {
             throw new IllegalArgumentException("CT-e do modelo \"" + ctChaveParser.getModelo().toString() + "\" não é permitido nesse evento.");
@@ -48,12 +62,6 @@ abstract class WSRecepcaoEvento implements DFLog {
 
         DFXMLValidador.validaEventoCTe400(xmlAssinado);
 
-        final CTAutorizador400 autorizador;
-        if (contingencia) {
-            autorizador = CTAutorizador400.valueOfTipoEmissao(this.config.getTipoEmissao(), this.config.getCUF());
-        } else {
-            autorizador = CTAutorizador400.valueOfChaveAcesso(chaveAcesso);
-        }
         final String urlWebService = autorizador.getRecepcaoEvento(this.config.getAmbiente());
         if (urlWebService == null) {
             throw new IllegalArgumentException("Nao foi possivel encontrar URL para RecepcaoEvento " + ctChaveParser.getModelo().name() + ", autorizador " + autorizador.name());

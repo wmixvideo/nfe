@@ -11,6 +11,7 @@ import com.fincatto.documentofiscal.cte400.classes.CTProcessoEmissao;
 import com.fincatto.documentofiscal.cte400.classes.CTRetirada;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoImpressao;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoServico;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoIdeGrupoCompraGovernamental;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
@@ -108,6 +109,9 @@ public class CTeNotaSimpInfoIdentificacao extends DFBase {
 
     @Element(name = "xJust", required = false)
     private String xJust;
+
+    @Element(name = "gCompraGov", required = false)
+    private CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental;
 
     public DFUnidadeFederativa getCUF() {
         return this.cUF;
@@ -414,5 +418,16 @@ public class CTeNotaSimpInfoIdentificacao extends DFBase {
     public void setXJust(final String xJust) {
         DFStringValidador.tamanho15a256(xJust, "Justificativa da entrada em contingencia");
         this.xJust = xJust;
+    }
+
+    public CTeNotaInfoIdeGrupoCompraGovernamental getGrupoCompraGovernamental() {
+        return this.grupoCompraGovernamental;
+    }
+
+    /**
+     * Grupo de Compras Governamentais
+     */
+    public void setGrupoCompraGovernamental(final CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental) {
+        this.grupoCompraGovernamental = grupoCompraGovernamental;
     }
 }

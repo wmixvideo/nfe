@@ -7,6 +7,7 @@ import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTTipoEmissao;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte400.classes.*;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoIdeGrupoCompraGovernamental;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
@@ -112,6 +113,9 @@ public class CTeOSInfoIdentificacao extends DFBase {
 
     @Element(name = "xJust", required = false)
     private String justificativa;
+
+    @Element(name = "gCompraGov", required = false)
+    private CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental;
 
     public DFUnidadeFederativa getCodigoUF() {
         return this.codigoUF;
@@ -505,5 +509,16 @@ public class CTeOSInfoIdentificacao extends DFBase {
 
     public void setIdentificacaoUfPercursos(List<CTeOSInfoIdentificacaoUfPercurso> identificacaoUfPercursos) {
         this.identificacaoUfPercursos = identificacaoUfPercursos;
+    }
+
+    public CTeNotaInfoIdeGrupoCompraGovernamental getGrupoCompraGovernamental() {
+        return this.grupoCompraGovernamental;
+    }
+
+    /**
+     * Grupo de Compras Governamentais
+     */
+    public void setGrupoCompraGovernamental(final CTeNotaInfoIdeGrupoCompraGovernamental grupoCompraGovernamental) {
+        this.grupoCompraGovernamental = grupoCompraGovernamental;
     }
 }

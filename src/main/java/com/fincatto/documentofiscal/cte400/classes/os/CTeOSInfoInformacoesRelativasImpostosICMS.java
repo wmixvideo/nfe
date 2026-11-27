@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte400.classes.os;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
@@ -30,6 +31,9 @@ public class CTeOSInfoInformacoesRelativasImpostosICMS extends DFBase {
 
     @Element(name = "ICMSSN", required = false)
     private CTeOSInfoInformacoesRelativasImpostosICMSSN icmssn;
+
+    @Element(name = "gICMSPrevistoPagtoAntecip", required = false)
+    private CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip grupoIcmsPrevistoPagamentoAntecipado;
 
     public CTeOSInfoInformacoesRelativasImpostosICMS() {
         this.icms00 = null;
@@ -116,5 +120,16 @@ public class CTeOSInfoInformacoesRelativasImpostosICMS extends DFBase {
      */
     public void setIcmssn(final CTeOSInfoInformacoesRelativasImpostosICMSSN icmssn) {
         this.icmssn = icmssn;
+    }
+
+    public CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip getGrupoIcmsPrevistoPagamentoAntecipado() {
+        return this.grupoIcmsPrevistoPagamentoAntecipado;
+    }
+
+    /**
+     * ICMS previsto, usado na base de cálculo do IBS e da CBS em pagamento antecipado (NT 2026.004)
+     */
+    public void setGrupoIcmsPrevistoPagamentoAntecipado(final CTeNotaInfoInformacoesRelativasImpostosICMSPrevistoPagtoAntecip grupoIcmsPrevistoPagamentoAntecipado) {
+        this.grupoIcmsPrevistoPagamentoAntecipado = grupoIcmsPrevistoPagamentoAntecipado;
     }
 }

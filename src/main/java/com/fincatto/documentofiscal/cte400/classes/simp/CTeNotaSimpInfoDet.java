@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte400.classes.simp;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosIBSCBS;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Attribute;
@@ -39,11 +40,17 @@ public class CTeNotaSimpInfoDet extends DFBase {
     @Element(name = "vPrest")
     private String vPrest;
 
+    @Element(name = "vPrestLiq", required = false)
+    private String vPrestLiq;
+
     @Element(name = "vRec")
     private String vRec;
 
     @ElementList(name = "Comp", inline = true, required = false)
     private List<CTeNotaSimpInfoDetComp> comp;
+
+    @Element(name = "IBSCBS", required = false)
+    private CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs;
 
     @ElementList(name = "infNFe", inline = true, required = false)
     private List<CTeNotaSimpInfoDetInfNFe> infNFe;
@@ -121,6 +128,17 @@ public class CTeNotaSimpInfoDet extends DFBase {
         this.vPrest = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vPrest, "Valor da Prestacao do Servico");
     }
 
+    public String getVPrestLiq() {
+        return this.vPrestLiq;
+    }
+
+    /**
+     * Valor Líquido da Prestação do Serviço, sem tributos (NT 2026.004)
+     */
+    public void setVPrestLiq(final BigDecimal vPrestLiq) {
+        this.vPrestLiq = DFBigDecimalValidador.tamanho15Com2CasasDecimais(vPrestLiq, "Valor Liquido da Prestacao do Servico");
+    }
+
     public String getVRec() {
         return this.vRec;
     }
@@ -138,6 +156,18 @@ public class CTeNotaSimpInfoDet extends DFBase {
 
     public void setComp(final List<CTeNotaSimpInfoDetComp> comp) {
         this.comp = comp;
+    }
+
+    public CTeNotaInfoInformacoesRelativasImpostosIBSCBS getIbsCbs() {
+        return this.ibsCbs;
+    }
+
+    /**
+     * Grupo de informações do IBS e da CBS da prestação (NT 2026.004: no CT-e Simplificado,
+     * o IBSCBS passou do grupo imp para cada det)
+     */
+    public void setIbsCbs(final CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs) {
+        this.ibsCbs = ibsCbs;
     }
 
     public List<CTeNotaSimpInfoDetInfNFe> getInfNFe() {
