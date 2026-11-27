@@ -22,7 +22,10 @@ public class CTeNotaInfoValorPrestacaoServico extends DFBase {
 
     @Element(name = "vTPrest")
     private String valorTotalPrestacaoServico;
-    
+
+    @Element(name = "vTPrestLiq", required = false)
+    private String valorTotalLiquidoPrestacaoServico;
+
     @Element(name = "vRec")
     private String valorReceber;
 
@@ -39,6 +42,14 @@ public class CTeNotaInfoValorPrestacaoServico extends DFBase {
      */
     public void setValorTotalPrestacaoServico(final BigDecimal valorTotalPrestacaoServico) {
         this.valorTotalPrestacaoServico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalPrestacaoServico, "Valor Total da Prestação do Serviço");
+    }
+
+    public void setValorTotalLiquidoPrestacaoServico(final BigDecimal valorTotalLiquidoPrestacaoServico) {
+        this.valorTotalLiquidoPrestacaoServico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalLiquidoPrestacaoServico, "Valor Total liquido da Prestação do Serviço");
+    }
+
+    public String getValorTotalLiquidoPrestacaoServico() {
+        return valorTotalLiquidoPrestacaoServico;
     }
 
     public String getValorReceber() {
