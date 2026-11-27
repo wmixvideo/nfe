@@ -39,11 +39,11 @@ public class CTeNotaInfoEmitente extends DFBase {
     @Element(name = "CRT")
     private CTTipoRegimeTributario tipoRegimeTributario;
 
-    @Element(name = "tpRegimeIBSCBS", required = false)
-    private CTTipoRegimeIBSCBS tipoRegimeIBSCBS; // NT 2026.005
-
     @Element(name = "ISUFEmit", required = false)
     private String inscricaoSuframa;
+
+    @Element(name = "tpRegimeIBSCBS", required = false)
+    private CTTipoRegimeIBSCBS tipoRegimeIBSCBS; // NT 2026.005
 
     public String getCnpj() {
         return this.cnpj;
