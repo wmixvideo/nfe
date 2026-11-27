@@ -27,7 +27,7 @@ public class CTeNotaInfoEmitenteTest {
         final CTeNotaInfoEmitente emitente = FabricaDeObjetosFake.getInfoEmitente();
         emitente.setTipoRegimeIBSCBS(CTTipoRegimeIBSCBS.NORMAL_PENDENTE_SIMPLES_NACIONAL_COM_REGIME_REGULAR);
         emitente.setISUFEmit("12345678");
-        Assertions.assertTrue(emitente.toString().contains("<CRT>3</CRT><tpRegimeIBSCBS>4</tpRegimeIBSCBS><ISUFEmit>12345678</ISUFEmit></emit>"));
+        Assertions.assertTrue(emitente.toString().contains("<CRT>3</CRT><ISUFEmit>12345678</ISUFEmit><tpRegimeIBSCBS>4</tpRegimeIBSCBS></emit>"));
     }
 
     @Test
