@@ -10,8 +10,13 @@ import com.fincatto.documentofiscal.utils.DFPersister;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Collections;
 import java.util.List;
 
@@ -236,7 +241,7 @@ public class NFGeraDanfeNfce {
             throw new IllegalArgumentException(MENSAGEM_XML_NAO_INFORMADO);
         }
         try {
-            if (xmlNfe.contains("<nfeProc")) {
+            if (raizEhNfeProc(xmlNfe)) {
                 return new DFPersister().read(NFNotaProcessada.class, xmlNfe);
             }
             final NFNotaProcessada processada = new NFNotaProcessada();
@@ -244,6 +249,18 @@ public class NFGeraDanfeNfce {
             return processada;
         } catch (final Exception e) {
             throw new IllegalArgumentException(MENSAGEM_XML_INVALIDO, e);
+        }
+    }
+
+    /** Diz se o elemento raiz do XML e o nfeProc, com ou sem prefixo de namespace (ex.: {@code <nfe:nfeProc>}). */
+    private static boolean raizEhNfeProc(final String xml) throws XMLStreamException {
+        final XMLInputFactory fabrica = XMLInputFactory.newInstance();
+        fabrica.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        final XMLStreamReader leitor = fabrica.createXMLStreamReader(new StringReader(xml));
+        try {
+            return leitor.nextTag() == XMLStreamConstants.START_ELEMENT && "nfeProc".equals(leitor.getLocalName());
+        } finally {
+            leitor.close();
         }
     }
 }
