@@ -535,6 +535,34 @@ class NFGeraDanfeNfceTest {
     }
 
     @Test
+    void deveImprimirOsTitulosDosItensEmUmaLinhaSoComValoresComuns() throws Exception {
+        Assertions.assertTrue(textoDe(DanfeNfceFixtures.nfce().build()).contains("CÓDIGO DESCRIÇÃO QTDE UN VL UNIT VL TOTAL"));
+    }
+
+    @Test
+    void deveManterOsItensNaAreaUtilComCodigoMaximoEValoresLongos() throws Exception {
+        final String codigo = String.join("", java.util.Collections.nCopies(60, "C"));
+        final String xml = DanfeNfceFixtures.nfce()
+                .item(codigo, "DESCRICAO", "1234567890.1234", "UNIDADE", "1234567890.1234567890", "999999999999.99").build();
+        final float[] limites = limitesHorizontais(gerador.gerar(xml, null));
+        final float margem = NFGeraDanfeNfce.MARGEM_LATERAL_MM * PONTOS_POR_MM;
+        Assertions.assertTrue(limites[0] >= margem - 0.5f, "texto invade a margem esquerda: " + limites[0]);
+        Assertions.assertTrue(limites[1] <= NFGeraDanfeNfce.LARGURA_80_MM * PONTOS_POR_MM - margem + 0.5f, "texto invade a margem direita: " + limites[1]);
+        final String texto = textoDe(xml);
+        Assertions.assertTrue(texto.contains("DESCRIÇÃO"), "o titulo da descricao deve caber inteiro");
+    }
+
+    @Test
+    void deveImprimirSemQuebrarOsValoresAteOLimiteDoCupomComCodigoMaximo() throws Exception {
+        // 200.000,00 e o valor maximo de uma NFC-e; vUnCom com 10 casas decimais e qCom com 4
+        final String codigo = String.join("", java.util.Collections.nCopies(60, "C"));
+        final String xml = DanfeNfceFixtures.nfce().desconto("")
+                .item(codigo, "ITEM NO LIMITE", "1234.5678", "UNIDAD", "161.9999999999", "200000.00").build();
+        final String texto = textoDe(xml);
+        Assertions.assertTrue(texto.contains("1.234,5678 UNIDAD 161,9999999999 200.000,00"), texto);
+    }
+
+    @Test
     void deveLevarParaAPaginaSeguinteOItemQueNaoCabeNoFimDaPagina() throws Exception {
         final DanfeNfceFixtures.Builder nfce = DanfeNfceFixtures.nfce();
         final String codigo = String.join("", java.util.Collections.nCopies(60, "C"));
