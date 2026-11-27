@@ -865,6 +865,32 @@ public class FabricaDeObjetosFake {
         return produto;
     }
 
+    /**
+     * gTribSN do item (NT 2026.005), com gIBSSN e gCBSSN.
+     */
+    public static NFNotaInfoItemImpostoIBSCBSTribSN getNFNotaInfoItemImpostoIBSCBSTribSN() {
+        final NFNotaInfoItemImpostoIBSCBSTribSN.GIBSSN ibs = new NFNotaInfoItemImpostoIBSCBSTribSN.GIBSSN();
+        ibs.setPIBSSN(new BigDecimal("1.25"));
+        ibs.setVIBSSN(new BigDecimal("12.50"));
+        final NFNotaInfoItemImpostoIBSCBSTribSN.GCBSSN cbs = new NFNotaInfoItemImpostoIBSCBSTribSN.GCBSSN();
+        cbs.setPCBSSN(new BigDecimal("2.7500"));
+        cbs.setVCBSSN(new BigDecimal("27.50"));
+        final NFNotaInfoItemImpostoIBSCBSTribSN tribSN = new NFNotaInfoItemImpostoIBSCBSTribSN();
+        tribSN.setGIBSSN(ibs);
+        tribSN.setGCBSSN(cbs);
+        return tribSN;
+    }
+
+    /**
+     * gTribSN do total (NT 2026.005).
+     */
+    public static NFNotaInfoIBSCBSTot.GTribSN getNFNotaInfoIBSCBSTotTribSN() {
+        final NFNotaInfoIBSCBSTot.GTribSN tribSN = new NFNotaInfoIBSCBSTot.GTribSN();
+        tribSN.setVIBSSN(new BigDecimal("12.50"));
+        tribSN.setVCBSSN(new BigDecimal("27.50"));
+        return tribSN;
+    }
+
     public static NFNotaInfoItemImposto getNFNotaInfoItemImposto() {
         final NFNotaInfoItemImposto imposto = new NFNotaInfoItemImposto();
         imposto.setCofins(FabricaDeObjetosFake.getNFNotaInfoItemImpostoCOFINS());

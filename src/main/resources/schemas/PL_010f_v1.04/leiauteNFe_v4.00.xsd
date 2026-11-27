@@ -628,20 +628,6 @@ Este campo será obrigatoriamente preenchido com:
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
-									<xs:element name="tpRegimeIBSCBS" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>Tipo de Regime de Apuração do IBS e da CBS (NT 2026.005 - incluído provisoriamente até o pacote oficial de schemas)</xs:documentation>
-										</xs:annotation>
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:whiteSpace value="preserve"/>
-												<xs:enumeration value="1"/>
-												<xs:enumeration value="2"/>
-												<xs:enumeration value="3"/>
-												<xs:enumeration value="4"/>
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -1159,17 +1145,6 @@ Formato ”CFOP9999”.</xs:documentation>
 														<xs:restriction base="xs:string">
 															<xs:whiteSpace value="preserve"/>
 															<xs:enumeration value="1"/>
-														</xs:restriction>
-													</xs:simpleType>
-												</xs:element>
-												<xs:element name="cAtivSN" minOccurs="0">
-													<xs:annotation>
-														<xs:documentation>Código de atividade do Simples Nacional (NT 2026.005 - incluído provisoriamente até o pacote oficial de schemas)</xs:documentation>
-													</xs:annotation>
-													<xs:simpleType>
-														<xs:restriction base="xs:string">
-															<xs:whiteSpace value="preserve"/>
-															<xs:pattern value="[0-9]{2}"/>
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:element>

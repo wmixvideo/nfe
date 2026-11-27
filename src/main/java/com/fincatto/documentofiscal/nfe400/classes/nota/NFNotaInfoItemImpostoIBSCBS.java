@@ -32,7 +32,8 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
     @Element(name = "indDoacao", required = false)
     private String indicadorNaturezaOperacaoDoacao;
 
-    // Ordem dos campos segue a sequência do XSD (TTribNFe)
+    // UB14a -x- Sequencia XML. Ordem dos campos segue a sequência do XSD (TTribNFe).
+    // xs:choice: gIBSCBS, gIBSCBSMono, gTransfCred e gAjusteCompet são mutuamente exclusivos; informe apenas um.
     @Element(required = false)
     private NFNotaInfoItemImpostoIBSCBSTIBS gIBSCBS; // UB15
 
@@ -60,6 +61,7 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
     @Element(name = "gEstornoCred", required = false)
     private NFNotaInfoIBSCBSGrupoEstornoCredito grupoEstornoCredito;
 
+    // xs:choice: gCredPresOper e gCredPresIBSZFM são mutuamente exclusivos; informe apenas um.
     /**
      * UB120 - Crédito Presumido da Operação
      */
@@ -71,7 +73,6 @@ public class NFNotaInfoItemImpostoIBSCBS extends DFBase {
      */
     @Element(required = false)
     private NFNotaInfoItemImpostoIBSCBSCredPresIBSZFM gCredPresIBSZFM;
-
 
     public NFNotaInfoImpostoTributacaoIBSCBS getCst() {
         return cst;
