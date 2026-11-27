@@ -13,6 +13,7 @@ import com.fincatto.documentofiscal.cte400.classes.evento.cartacorrecao.CTeInfor
 import com.fincatto.documentofiscal.cte400.classes.evento.comprovanteentrega.CTeEnviaEventoComprovanteEntrega;
 import com.fincatto.documentofiscal.cte400.classes.evento.epec.CTeEnviaEventoEpec;
 import com.fincatto.documentofiscal.cte400.classes.evento.gtv.CTeEnviaEventoGtv;
+import com.fincatto.documentofiscal.cte400.classes.evento.creditopresumido.CTeEnviaEventoApropriacaoCreditoPresumido;
 import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEnviaEventoInsucessoEntrega;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
@@ -61,6 +62,7 @@ public class WSFacade implements Closeable {
     private volatile WSCancelamentoPrestacaoEmDesacordo wsCancelamentoPrestacaoEmDesacordo;
     private volatile WSInsucessoEntrega wsInsucessoEntrega;
     private volatile WSCancelamentoInsucessoEntrega wsCancelamentoInsucessoEntrega;
+    private volatile WSApropriacaoCreditoPresumido wsApropriacaoCreditoPresumido;
     private volatile WSRecepcaoCTeOS wsRecepcaoCTeOS;
     private volatile WSRecepcaoCTeSimp wsRecepcaoCTeSimp;
 
@@ -475,6 +477,56 @@ public class WSFacade implements Closeable {
             this.wsGtv = new WSGtv(this.config, this.httpClient);
         }
         return this.wsGtv.getXmlAssinado(chave, eventoGtv, sequencialEvento);
+    }
+
+    /**
+     * Faz o registro do evento de apropriação de crédito presumido (211110, NT 2026.004).<br>
+     * O autor é o tomador do serviço e o evento é autorizado exclusivamente na SVRS, apenas para CT-e modelo 57
+     * emitido por TAC (tpEmis=3 ou procEmi=4) ou por MEI (CRT=4).
+     *
+     * @param chave            chave de acesso do CT-e
+     * @param apropriacao      dados do crédito presumido
+     * @param cpfOuCnpjTomador CPF ou CNPJ do tomador do serviço, autor do evento
+     * @return dados do evento retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno apropriacaoCreditoPresumido(final String chave, final CTeEnviaEventoApropriacaoCreditoPresumido apropriacao, final String cpfOuCnpjTomador) throws Exception {
+        if (this.wsApropriacaoCreditoPresumido == null) {
+            this.wsApropriacaoCreditoPresumido = new WSApropriacaoCreditoPresumido(this.config, this.httpClient);
+        }
+        return this.wsApropriacaoCreditoPresumido.apropriacaoCreditoPresumido(chave, apropriacao, cpfOuCnpjTomador);
+    }
+
+    /**
+     * Faz o registro do evento de apropriação de crédito presumido (211110), já assinado.
+     * ATENCAO: Esse metodo deve ser utilizado para assinaturas A3
+     *
+     * @param chave             chave de acesso do CT-e
+     * @param eventoAssinadoXml evento ja assinado em formato XML
+     * @return dados do evento retornado pelo webservice
+     * @throws Exception caso nao consiga gerar o xml ou problema de conexao com o sefaz
+     */
+    public CTeEventoRetorno apropriacaoCreditoPresumidoAssinada(final String chave, final String eventoAssinadoXml) throws Exception {
+        if (this.wsApropriacaoCreditoPresumido == null) {
+            this.wsApropriacaoCreditoPresumido = new WSApropriacaoCreditoPresumido(this.config, this.httpClient);
+        }
+        return this.wsApropriacaoCreditoPresumido.apropriacaoCreditoPresumidoAssinada(chave, eventoAssinadoXml);
+    }
+
+    /**
+     * Gera o XML assinado do evento de apropriação de crédito presumido (211110) sem enviar para a SEFAZ.
+     *
+     * @param chave            chave de acesso do CT-e
+     * @param apropriacao      dados do crédito presumido
+     * @param cpfOuCnpjTomador CPF ou CNPJ do tomador do serviço, autor do evento
+     * @return O XML do evento ja assinado
+     * @throws Exception caso nao consiga gerar o xml
+     */
+    public String getXmlAssinadoApropriacaoCreditoPresumido(final String chave, final CTeEnviaEventoApropriacaoCreditoPresumido apropriacao, final String cpfOuCnpjTomador) throws Exception {
+        if (this.wsApropriacaoCreditoPresumido == null) {
+            this.wsApropriacaoCreditoPresumido = new WSApropriacaoCreditoPresumido(this.config, this.httpClient);
+        }
+        return this.wsApropriacaoCreditoPresumido.getXmlAssinado(chave, apropriacao, cpfOuCnpjTomador);
     }
 
     /**

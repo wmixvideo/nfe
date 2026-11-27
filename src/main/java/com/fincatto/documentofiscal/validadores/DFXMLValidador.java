@@ -253,6 +253,10 @@ public final class DFXMLValidador {
         return DFXMLValidador.validaCTe400(arquivoXML, "evIECTe_v4.00.xsd");
     }
 
+    public static boolean validaEventoApropriacaoCreditoPresumidoCTe400(final String arquivoXML) throws Exception {
+        return DFXMLValidador.validaCTe400(arquivoXML, "evApropriaCredPres_v4.00.xsd");
+    }
+
     public static boolean validaDistribuicaoCTe(final String arquivoXML) throws IOException, SAXException, URISyntaxException {
         return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_CTE_DIST_DFE, "distDFeInt_v1.00.xsd");
     }

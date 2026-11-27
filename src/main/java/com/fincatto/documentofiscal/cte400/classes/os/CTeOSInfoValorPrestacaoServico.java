@@ -18,6 +18,9 @@ public class CTeOSInfoValorPrestacaoServico extends DFBase {
     
     @Element(name = "vTPrest")
     private String valorTotalPrestacaoServico;
+
+    @Element(name = "vTPrestLiq", required = false)
+    private String valorTotalLiquidoPrestacaoServico;
     
     @Element(name = "vRec")
     private String valorReceber;
@@ -35,6 +38,17 @@ public class CTeOSInfoValorPrestacaoServico extends DFBase {
      */
     public void setValorTotalPrestacaoServico(final BigDecimal valorTotalPrestacaoServico) {
         this.valorTotalPrestacaoServico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalPrestacaoServico, "Valor Total da Prestação do Serviço");
+    }
+
+    public String getValorTotalLiquidoPrestacaoServico() {
+        return this.valorTotalLiquidoPrestacaoServico;
+    }
+
+    /**
+     * Valor Total Líquido da Prestação do Serviço, sem tributos (NT 2026.004)
+     */
+    public void setValorTotalLiquidoPrestacaoServico(final BigDecimal valorTotalLiquidoPrestacaoServico) {
+        this.valorTotalLiquidoPrestacaoServico = DFBigDecimalValidador.tamanho15Com2CasasDecimais(valorTotalLiquidoPrestacaoServico, "Valor Total Líquido da Prestação do Serviço");
     }
 
     public String getValorReceber() {

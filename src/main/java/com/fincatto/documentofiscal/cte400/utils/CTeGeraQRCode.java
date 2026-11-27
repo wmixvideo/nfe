@@ -15,12 +15,12 @@ public class CTeGeraQRCode {
         this.config = config;
     }
 
-    private String getQRCode(String chaveAcesso) throws Exception {
+    private String getQRCode(String chaveAcesso, CTTipoEmissao tipoEmissao) throws Exception {
         String url = CTAutorizador400.valueOfChaveAcesso(chaveAcesso).getCteQrCode(this.config.getAmbiente());
         final StringBuilder parametros = new StringBuilder();
         parametros.append("chCTe=").append(chaveAcesso).append("&");
         parametros.append("tpAmb=").append(this.config.getAmbiente().getCodigo());
-        if(CTTipoEmissao.tiposPermitemSign().contains(this.config.getTipoEmissao())){
+        if(CTTipoEmissao.tiposPermitemSign().contains(tipoEmissao)){
             parametros.append("&sign=").append(new DFAssinaturaDigital(this.config).assinarString(chaveAcesso));
         }
         // retorna a url do qrcode
@@ -28,11 +28,11 @@ public class CTeGeraQRCode {
     }
 
     public String getQRCode(CTeNota cteNota) throws Exception {
-        return getQRCode(cteNota.getCteNotaInfo().getChaveAcesso());
+        return getQRCode(cteNota.getCteNotaInfo().getChaveAcesso(), cteNota.getCteNotaInfo().getIdentificacao().getTipoEmissao());
     }
 
     public String getQRCode(CTeOS cteOS) throws Exception {
-        return getQRCode(cteOS.getInfo().getChaveAcesso());
+        return getQRCode(cteOS.getInfo().getChaveAcesso(), cteOS.getInfo().getIdentificacao().getTipoEmissao());
     }
-    
+
 }
