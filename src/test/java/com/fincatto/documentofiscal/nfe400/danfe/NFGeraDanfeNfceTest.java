@@ -112,6 +112,22 @@ class NFGeraDanfeNfceTest {
         }
     }
 
+    @Test
+    void deveGerarOMesmoDocumentoQuandoOXmlUsaPrefixoDeNamespace() throws Exception {
+        final String xml = DanfeNfceFixtures.xml();
+        final String xmlComPrefixo = xml.replaceAll("<(/?)([A-Za-z])", "<$1nfe:$2").replace(" xmlns=\"", " xmlns:nfe=\"");
+        Assertions.assertTrue(xmlComPrefixo.startsWith("<nfe:nfeProc "));
+        Assertions.assertEquals(textoDe(xml), textoDe(xmlComPrefixo));
+    }
+
+    @Test
+    void deveLerANFeSozinhaMesmoComNfeProcCitadoEmComentario() throws Exception {
+        final String xml = DanfeNfceFixtures.nfce().tipoEmissao("9").semProtocolo().build();
+        final String xmlComComentario = xml.replace("<infNFe ", "<!-- <nfe:nfeProc> --><infNFe ");
+        Assertions.assertNotEquals(xml, xmlComComentario);
+        Assertions.assertEquals(textoDe(xml), textoDe(xmlComComentario));
+    }
+
     /** Texto do PDF com os espacos e quebras de linha normalizados em um espaco. */
     private static String texto(final byte[] pdf) throws Exception {
         try (final PDDocument documento = Loader.loadPDF(pdf)) {

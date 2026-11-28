@@ -7,7 +7,6 @@ import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalCobr
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCarga;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModal;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoEmitente;
-import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostos;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoResponsavelTecnico;
 import com.fincatto.documentofiscal.validadores.DFListValidador;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
@@ -22,7 +21,7 @@ import java.util.List;
 /**
  * Informações do CT-e Simplificado (grupo infCte). A ordem dos elementos segue o
  * XSD cteSimp_v4.00.xsd. Reaproveita os grupos comuns ao CT-e normal (emit,
- * infCarga, infModal, imp, cobr, autXML, infRespTec) e traz o próprio grupo det.
+ * infCarga, infModal, cobr, autXML, infRespTec) e traz os próprios grupos det, imp e total.
  */
 @Root(name = "infCte")
 @Namespace(reference = CTeConfig.NAMESPACE)
@@ -58,7 +57,7 @@ public class CTeNotaSimpInfo extends DFBase {
     private CTeNotaInfoCTeNormalCobranca cobr;
 
     @Element(name = "imp")
-    private CTeNotaInfoInformacoesRelativasImpostos imp;
+    private CTeNotaSimpInfoImpostos imp;
 
     @Element(name = "total")
     private CTeNotaSimpInfoTotal total;
@@ -160,11 +159,11 @@ public class CTeNotaSimpInfo extends DFBase {
         this.cobr = cobr;
     }
 
-    public CTeNotaInfoInformacoesRelativasImpostos getImp() {
+    public CTeNotaSimpInfoImpostos getImp() {
         return this.imp;
     }
 
-    public void setImp(final CTeNotaInfoInformacoesRelativasImpostos imp) {
+    public void setImp(final CTeNotaSimpInfoImpostos imp) {
         this.imp = imp;
     }
 
