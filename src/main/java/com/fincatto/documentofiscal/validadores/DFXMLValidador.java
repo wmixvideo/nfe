@@ -22,6 +22,7 @@ public final class DFXMLValidador {
     private static final String PACOTE_CTE_DIST_DFE = "schemas/PL_CTeDistDFe_100";
     private static final String PACOTE_MDFE_DIST_DFE = "schemas/PL_MDFeDistDFe_100";
     private static final String PACOTE_EPEC = "schemas/Evento_EPEC_PL_v1.01";
+    private static final String PACOTE_ECONF = "schemas/Evento_Econf_v1.00";
 
     /**
      * Limite de maxOccurs aceito na compilacao dos schemas (o padrao do JDK e 5000 e alguns
@@ -273,5 +274,13 @@ public final class DFXMLValidador {
 
     public static boolean validaEventoEpec(final String arquivoXML) throws Exception {
         return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_EPEC, "EPEC_v1.00.xsd");
+    }
+
+    public static boolean validaEconf(final String arquivoXML) throws IOException, SAXException {
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_ECONF, "envEventoEConf_v1.00.xsd");
+    }
+
+    public static boolean validaCancelamentoEconf(final String arquivoXML) throws IOException, SAXException {
+        return DFXMLValidador.valida(arquivoXML, DFXMLValidador.PACOTE_ECONF, "envEventoCancEConf_v1.00.xsd");
     }
 }

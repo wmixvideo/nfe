@@ -11,6 +11,15 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFEventoC
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cancelamento.NFInfoEventoCancelamento;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFEnviaEventoCartaCorrecao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFDetEventoCancelamentoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFDetEventoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFDetPagEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFEnviaEventoCancelamentoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFEnviaEventoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFEventoCancelamentoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFEventoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFInfoEventoCancelamentoEconf;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFInfoEventoEconf;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEnviaEventoInutilizacao;
 import com.fincatto.documentofiscal.nfe400.classes.evento.inutilizacao.NFEventoInutilizacaoDados;
 import com.fincatto.documentofiscal.nfe400.classes.evento.manifestacaodestinatario.NFEventoManifestacaoDestinatario;
@@ -1608,5 +1617,91 @@ public class FabricaDeObjetosFake {
         monofasia.setVTotCBSMonoItem(new BigDecimal("1234567890.12"));
 
         return monofasia;
+    }
+
+    public static NFDetPagEconf getNFDetPagEconf() {
+        final NFDetPagEconf detPag = new NFDetPagEconf();
+        detPag.setMeioPagamento(NFMeioPagamento.PIX_DINAMICO);
+        detPag.setValorPagamento(new BigDecimal("5000.00"));
+        detPag.setDataPagamento(LocalDate.of(2026, 10, 28));
+        return detPag;
+    }
+
+    public static NFDetEventoEconf getNFDetEventoEconf() {
+        final NFDetEventoEconf detEvento = new NFDetEventoEconf();
+        detEvento.setDescricaoEvento("ECONF");
+        detEvento.setVersao(new BigDecimal("1.00"));
+        detEvento.setVersaoAplicativo("1.00");
+        detEvento.setPagamentos(Collections.singletonList(FabricaDeObjetosFake.getNFDetPagEconf()));
+        return detEvento;
+    }
+
+    public static NFInfoEventoEconf getNFInfoEventoEconf() {
+        final NFInfoEventoEconf infoEvento = new NFInfoEventoEconf();
+        infoEvento.setId("ID1107503526107283499200016355001000000123100000001001");
+        infoEvento.setOrgao(DFUnidadeFederativa.BRID);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        infoEvento.setCnpj("72834992000163");
+        infoEvento.setChave("35261072834992000163550010000001231000000010");
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.of(2026, 10, 28, 10, 10, 10), DFConfig.TIMEZONE_SP.toZoneId()));
+        infoEvento.setCodigoEvento("110750");
+        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setVersaoEvento(new BigDecimal("1.00"));
+        infoEvento.setDetalhesEvento(FabricaDeObjetosFake.getNFDetEventoEconf());
+        return infoEvento;
+    }
+
+    public static NFEventoEconf getNFEventoEconf() {
+        final NFEventoEconf evento = new NFEventoEconf();
+        evento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoEconf());
+        evento.setVersao(new BigDecimal("1.00"));
+        return evento;
+    }
+
+    public static NFEnviaEventoEconf getNFEnviaEventoEconf() {
+        final NFEnviaEventoEconf enviaEvento = new NFEnviaEventoEconf();
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoEconf()));
+        enviaEvento.setIdLote("1793294973410");
+        enviaEvento.setVersao(new BigDecimal("1.00"));
+        return enviaEvento;
+    }
+
+    public static NFDetEventoCancelamentoEconf getNFDetEventoCancelamentoEconf() {
+        final NFDetEventoCancelamentoEconf detEvento = new NFDetEventoCancelamentoEconf();
+        detEvento.setDescricaoEvento("Cancelamento Conciliação Financeira");
+        detEvento.setVersao(new BigDecimal("1.00"));
+        detEvento.setVersaoAplicativo("1.00");
+        detEvento.setNumeroProtocoloEvento("135260000012345");
+        return detEvento;
+    }
+
+    public static NFInfoEventoCancelamentoEconf getNFInfoEventoCancelamentoEconf() {
+        final NFInfoEventoCancelamentoEconf infoEvento = new NFInfoEventoCancelamentoEconf();
+        infoEvento.setId("ID1107513526107283499200016355001000000123100000001001");
+        infoEvento.setOrgao(DFUnidadeFederativa.BRID);
+        infoEvento.setAmbiente(DFAmbiente.HOMOLOGACAO);
+        infoEvento.setCnpj("72834992000163");
+        infoEvento.setChave("35261072834992000163550010000001231000000010");
+        infoEvento.setDataHoraEvento(ZonedDateTime.of(LocalDateTime.of(2026, 10, 28, 10, 10, 10), DFConfig.TIMEZONE_SP.toZoneId()));
+        infoEvento.setCodigoEvento("110751");
+        infoEvento.setNumeroSequencialEvento(1);
+        infoEvento.setVersaoEvento(new BigDecimal("1.00"));
+        infoEvento.setDetalhesEvento(FabricaDeObjetosFake.getNFDetEventoCancelamentoEconf());
+        return infoEvento;
+    }
+
+    public static NFEventoCancelamentoEconf getNFEventoCancelamentoEconf() {
+        final NFEventoCancelamentoEconf evento = new NFEventoCancelamentoEconf();
+        evento.setInfoEvento(FabricaDeObjetosFake.getNFInfoEventoCancelamentoEconf());
+        evento.setVersao(new BigDecimal("1.00"));
+        return evento;
+    }
+
+    public static NFEnviaEventoCancelamentoEconf getNFEnviaEventoCancelamentoEconf() {
+        final NFEnviaEventoCancelamentoEconf enviaEvento = new NFEnviaEventoCancelamentoEconf();
+        enviaEvento.setEvento(Collections.singletonList(FabricaDeObjetosFake.getNFEventoCancelamentoEconf()));
+        enviaEvento.setIdLote("1793294973410");
+        enviaEvento.setVersao(new BigDecimal("1.00"));
+        return enviaEvento;
     }
 }
