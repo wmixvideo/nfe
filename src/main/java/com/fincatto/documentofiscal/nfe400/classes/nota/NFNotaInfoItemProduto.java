@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.nfe400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.nfe400.classes.NFProdutoCompoeValorNota;
+import com.fincatto.documentofiscal.nfe400.classes.NFCodigoAtividadeSimplesNacional;
 import com.fincatto.documentofiscal.nfe400.converters.NFStringNullToEmptyConverter;
 import com.fincatto.documentofiscal.validadores.DFBigDecimalValidador;
 import com.fincatto.documentofiscal.validadores.DFIntegerValidador;
@@ -108,6 +109,12 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     @Element(name = "indBemMovelUsado", required = false)
     private String indicadorBemMovelUsado;
+
+    /**
+     * I17d - Código de atividade do Simples Nacional (NT 2026.005)
+     */
+    @Element(name = "cAtivSN", required = false)
+    private NFCodigoAtividadeSimplesNacional codigoAtividadeSimplesNacional;
 
     @ElementList(entry = "DI", inline = true, required = false)
     private List<NFNotaInfoItemProdutoDeclaracaoImportacao> declaracoesImportacao;
@@ -484,6 +491,14 @@ public class NFNotaInfoItemProduto extends DFBase {
 
     public NFProdutoCompoeValorNota getCompoeValorNota() {
         return this.compoeValorNota;
+    }
+
+    public NFCodigoAtividadeSimplesNacional getCodigoAtividadeSimplesNacional() {
+        return codigoAtividadeSimplesNacional;
+    }
+
+    public void setCodigoAtividadeSimplesNacional(final NFCodigoAtividadeSimplesNacional codigoAtividadeSimplesNacional) {
+        this.codigoAtividadeSimplesNacional = codigoAtividadeSimplesNacional;
     }
 
     public String getIndicadorBemMovelUsado() {
