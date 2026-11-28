@@ -10,7 +10,7 @@ import com.fincatto.documentofiscal.cte400.classes.*;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCarga;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoCargaInformacoesQuantidadeCarga;
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoCTeNormalInfoModal;
-import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostos;
+import com.fincatto.documentofiscal.cte400.classes.nota.CTeNotaInfoInformacoesRelativasImpostosIBSCBS;
 import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,8 +39,41 @@ public class CTeNotaSimpTest {
             DFXMLValidador.validaNotaCteSimp400(xml);
             Assertions.fail("Esperava falha de validacao apenas pela ausencia da assinatura (Signature)");
         } catch (final SAXParseException e) {
-            Assertions.assertTrue(e.getMessage().contains("Signature"));
+            Assertions.assertTrue(e.getMessage().contains("Signature"), e.getMessage());
         }
+    }
+
+    /**
+     * Preenche os grupos da NT 2026.004 no CT-e Simplificado (IBSCBS e vPrestLiq no det,
+     * vTPrestLiq, IBSCBSTot e vTotDFe no total, gCompraGov no ide) e valida contra o XSD.
+     */
+    @Test
+    public void deveValidarGruposDaNT2026004ContraXSD() throws Exception {
+        final CTeNotaSimp cteSimp = novoCTeSimpRodoviario();
+        final CTeNotaSimpInfo info = cteSimp.getInfCte();
+        info.getIde().setGrupoCompraGovernamental(FabricaDeObjetosFake.getGrupoCompraGovernamental());
+        final CTeNotaSimpInfoDet det = info.getDet().get(0);
+        det.setVPrestLiq(new BigDecimal("90.00"));
+        det.setIbsCbs(ibsCbs());
+        info.getTotal().setVTPrestLiq(new BigDecimal("90.00"));
+        info.getTotal().setIbsCbsTot(CTeNotaSimpInfoTotalIBSCBSTest.getIbsCbsTot());
+        info.getTotal().setVTotDFe(new BigDecimal("100.00"));
+        final String xml = cteSimp.toString();
+        Assertions.assertTrue(xml.contains("<vPrest>100.00</vPrest><vPrestLiq>90.00</vPrestLiq><vRec>100.00</vRec><IBSCBS><CST>000</CST><cClassTrib>000001</cClassTrib></IBSCBS><infNFe>"), xml);
+        Assertions.assertFalse(xml.contains("<imp><IBSCBS>"), xml);
+        try {
+            DFXMLValidador.validaNotaCteSimp400(xml);
+            Assertions.fail("Esperava falha de validacao apenas pela ausencia da assinatura (Signature)");
+        } catch (final SAXParseException e) {
+            Assertions.assertTrue(e.getMessage().contains("Signature"), e.getMessage());
+        }
+    }
+
+    private CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs() {
+        final CTeNotaInfoInformacoesRelativasImpostosIBSCBS ibsCbs = new CTeNotaInfoInformacoesRelativasImpostosIBSCBS();
+        ibsCbs.setCST("000");
+        ibsCbs.setCClassTrib("000001");
+        return ibsCbs;
     }
 
     private CTeNotaSimp novoCTeSimpRodoviario() {
@@ -138,8 +171,8 @@ public class CTeNotaSimpTest {
         return det;
     }
 
-    private CTeNotaInfoInformacoesRelativasImpostos imp() {
-        final CTeNotaInfoInformacoesRelativasImpostos imp = new CTeNotaInfoInformacoesRelativasImpostos();
+    private CTeNotaSimpInfoImpostos imp() {
+        final CTeNotaSimpInfoImpostos imp = new CTeNotaSimpInfoImpostos();
         imp.setIcms(FabricaDeObjetosFake.getImpostosICMS());
         return imp;
     }
