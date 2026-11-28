@@ -10,3 +10,5 @@ release.properties
 pom.xml.releaseBackup
 .mvn
 .mvn/*
+.superpowers/
+/docs/

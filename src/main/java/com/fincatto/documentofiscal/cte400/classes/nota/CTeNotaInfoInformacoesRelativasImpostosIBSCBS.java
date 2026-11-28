@@ -34,6 +34,9 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
   @Element(name = "gIBSCBS", required = false)
   private TCIBS gIBSCBS;
 
+  @Element(name = "gTribSN", required = false)
+  private CTeTTribSN gTribSN; // NT 2026.005
+
   @Element(name = "gEstornoCred", required = false)
   private CTeTTribEstornoCred gEstornoCred;
 
@@ -67,6 +70,17 @@ public class CTeNotaInfoInformacoesRelativasImpostosIBSCBS extends DFBase {
 
   public void setGIBSCBS(TCIBS gIBSCBS) {
     this.gIBSCBS = gIBSCBS;
+  }
+
+  public CTeTTribSN getGTribSN() {
+    return gTribSN;
+  }
+
+  /**
+   * Grupo de informacoes da composicao do valor do IBS e da CBS para o Simples Nacional (gTribSN - NT 2026.005).
+   */
+  public void setGTribSN(CTeTTribSN gTribSN) {
+    this.gTribSN = gTribSN;
   }
 
   public CTeTTribEstornoCred getGEstornoCred() {

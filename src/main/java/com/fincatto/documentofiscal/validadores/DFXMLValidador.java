@@ -17,7 +17,9 @@ public final class DFXMLValidador {
     private static final String PACOTE_NFE400 = "schemas/PL_010g_v1.03";
     private static final String PACOTE_MDFE300 = "schemas/PL_MDFe_300b_NT012025_1.03";
     private static final String PACOTE_CTE300 = "schemas/PL_CTe_300a_NT2022.001";
-    private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.004_RTC_1.00";
+    // PL_CTe_400_NT2026.005 RTC SN 1.00: pacote oficial (acumulativo, inclui a NT 2026.004) com o grupo gTribSN da NT 2026.005.
+    // O pacote oficial nao declara o elemento tpRegimeIBSCBS no emitente do CT-e (apenas o tipo TRegimeIBSCBS).
+    private static final String PACOTE_CTE400 = "schemas/PL_CTe_400_NT2026.005_RTC_SN_1.00";
     private static final String PACOTE_NFE_DIST_DFE = "schemas/PL_NFeDistDFe_102";
     private static final String PACOTE_CTE_DIST_DFE = "schemas/PL_CTeDistDFe_100";
     private static final String PACOTE_MDFE_DIST_DFE = "schemas/PL_MDFeDistDFe_100";

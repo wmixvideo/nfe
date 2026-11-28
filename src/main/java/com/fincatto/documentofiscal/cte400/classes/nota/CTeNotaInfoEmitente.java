@@ -2,6 +2,7 @@ package com.fincatto.documentofiscal.cte400.classes.nota;
 
 import com.fincatto.documentofiscal.DFBase;
 import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeIBSCBS;
 import com.fincatto.documentofiscal.cte400.classes.CTTipoRegimeTributario;
 import com.fincatto.documentofiscal.validadores.DFStringValidador;
 import org.simpleframework.xml.Element;
@@ -40,6 +41,9 @@ public class CTeNotaInfoEmitente extends DFBase {
 
     @Element(name = "ISUFEmit", required = false)
     private String inscricaoSuframa;
+
+    @Element(name = "tpRegimeIBSCBS", required = false)
+    private CTTipoRegimeIBSCBS tipoRegimeIBSCBS; // NT 2026.005
 
     public String getCnpj() {
         return this.cnpj;
@@ -119,6 +123,20 @@ public class CTeNotaInfoEmitente extends DFBase {
 
     public CTeNotaInfoEmitente setTipoRegimeTributario(CTTipoRegimeTributario tipoRegimeTributario) {
         this.tipoRegimeTributario = tipoRegimeTributario;
+        return this;
+    }
+
+    public CTTipoRegimeIBSCBS getTipoRegimeIBSCBS() {
+        return this.tipoRegimeIBSCBS;
+    }
+
+    /**
+     * Tipo de Regime de Apuracao do IBS e da CBS (tpRegimeIBSCBS - NT 2026.005).<br>
+     * Informar somente para Simples Nacional (CRT=1 ou 2) com regime regular do IBS/CBS (1) ou Regime Normal (CRT=3)
+     * com opcao pendente pelo Simples Nacional (2, 3 ou 4). Nao informar para MEI (CRT=4).
+     */
+    public CTeNotaInfoEmitente setTipoRegimeIBSCBS(final CTTipoRegimeIBSCBS tipoRegimeIBSCBS) {
+        this.tipoRegimeIBSCBS = tipoRegimeIBSCBS;
         return this;
     }
 
