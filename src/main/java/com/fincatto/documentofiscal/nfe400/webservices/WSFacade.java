@@ -23,6 +23,7 @@ import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaobens.NFDetG
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocomb.NFDetGrupoConsumoCombustivel;
 import com.fincatto.documentofiscal.nfe400.classes.evento.apropriacaocredito.NFDetGrupoCreditoPresumido;
 import com.fincatto.documentofiscal.nfe400.classes.evento.cartacorrecao.NFProtocoloEventoCartaCorrecao;
+import com.fincatto.documentofiscal.nfe400.classes.evento.conciliacaofinanceira.NFDetPagEconf;
 import com.fincatto.documentofiscal.nfe400.classes.evento.consumopessoal.NFDetGrupoConsumo;
 import com.fincatto.documentofiscal.nfe400.classes.evento.epec.NFEnviaEventoEpecRetorno;
 import com.fincatto.documentofiscal.nfe400.classes.evento.imobilizacao.NFDetGrupoImobilizacao;
@@ -83,6 +84,8 @@ public class WSFacade implements Closeable {
     private volatile WSAceiteDebitoApuracao wsAceiteDebitoAPuracao;
     private volatile WSCancelametoEvento wsCancelametoEvento;
     private volatile WSInfoEfetPagIntegral wsInfoEfetPagIntegral;
+    private volatile WSEconf wsEconf;
+    private volatile WSCancelamentoEconf wsCancelamentoEconf;
     private volatile WSSolicitacaoApropriacaoCreditoPresumido wsSolicitacaoApropriacaoCreditoPresumido;
     private volatile WSSolicitacaoApropriacaoCreditoCombustivel wsSolicitacaoApropriacaoCreditoCombustivel;
     private volatile WSRouboTransporteAdquirente wsRouboTransporteAdquirente;
@@ -772,6 +775,40 @@ public class WSFacade implements Closeable {
         return this.wsInfoEfetPagIntegral
                 .adicionarDadosEvento(chaveAcesso, ufEmitenteEvento, numeroSequencialEvento)
                 .gerarEnviarEvento();
+    }
+
+    /**
+     * Gera XML e faz envio do evento de conciliação financeira (ECONF), que informa à SEFAZ os pagamentos
+     * relacionados a uma NF-e. Suportado apenas para a NF-e (modelo 55).
+     *
+     * @param chaveAcesso chave de acesso da NF-e
+     * @param numeroSequencialEvento número sequencial do evento (1 a 99)
+     * @param pagamentos pagamentos a informar (1 a 100)
+     * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
+     * @throws Exception
+     */
+    public NFEnviaEventoRetorno enviaEconf(final String chaveAcesso, final int numeroSequencialEvento, final List<NFDetPagEconf> pagamentos) throws Exception {
+        if (this.wsEconf == null) {
+            this.wsEconf = new WSEconf(this.config, this.httpClient);
+        }
+        return this.wsEconf.enviaEvento(chaveAcesso, numeroSequencialEvento, pagamentos);
+    }
+
+    /**
+     * Gera XML e faz envio do cancelamento do evento de conciliação financeira (ECONF).
+     * Suportado apenas para a NF-e (modelo 55).
+     *
+     * @param chaveAcesso chave de acesso da NF-e
+     * @param numeroSequencialEvento número sequencial do evento (1 a 99)
+     * @param protocoloEconf número do protocolo de autorização do ECONF a cancelar (15 dígitos)
+     * @return {@link NFEnviaEventoRetorno} dados do evento retornado pelo webservice
+     * @throws Exception
+     */
+    public NFEnviaEventoRetorno enviaCancelamentoEconf(final String chaveAcesso, final int numeroSequencialEvento, final String protocoloEconf) throws Exception {
+        if (this.wsCancelamentoEconf == null) {
+            this.wsCancelamentoEconf = new WSCancelamentoEconf(this.config, this.httpClient);
+        }
+        return this.wsCancelamentoEconf.enviaEvento(chaveAcesso, numeroSequencialEvento, protocoloEconf);
     }
 
     /**
