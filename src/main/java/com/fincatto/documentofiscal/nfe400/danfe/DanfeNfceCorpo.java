@@ -277,11 +277,11 @@ final class DanfeNfceCorpo {
         if (itens == null || itens.isEmpty()) {
             return;
         }
-        float larguraCodigo = canvas.largura("CÓDIGO", TAMANHO);
-        float larguraQuantidade = canvas.largura("QTDE", TAMANHO);
-        float larguraUnidade = canvas.largura("UN", TAMANHO);
-        float larguraUnitario = canvas.largura("VL UNIT", TAMANHO);
-        float larguraTotal = canvas.largura("VL TOTAL", TAMANHO);
+        float larguraCodigo = canvas.larguraNegrito("CÓDIGO", TAMANHO);
+        float larguraQuantidade = canvas.larguraNegrito("QTDE", TAMANHO);
+        float larguraUnidade = canvas.larguraNegrito("UN", TAMANHO);
+        float larguraUnitario = canvas.larguraNegrito("VL UNIT", TAMANHO);
+        float larguraTotal = canvas.larguraNegrito("VL TOTAL", TAMANHO);
         for (final NFNotaInfoItem item : itens) {
             larguraCodigo = Math.max(larguraCodigo, canvas.largura(valorOuVazio(item.getProduto().getCodigo()), TAMANHO));
             larguraQuantidade = Math.max(larguraQuantidade, canvas.largura(quantidade(item.getProduto().getQuantidadeComercial()), TAMANHO));
@@ -289,31 +289,46 @@ final class DanfeNfceCorpo {
             larguraUnitario = Math.max(larguraUnitario, canvas.largura(valorItem(item.getProduto().getValorUnitario()), TAMANHO));
             larguraTotal = Math.max(larguraTotal, canvas.largura(valorItem(item.getProduto().getValorTotalBruto()), TAMANHO));
         }
-        // o codigo nao pode tomar mais que a metade da linha, para sobrar espaco para a descricao
-        larguraCodigo = Math.min(larguraCodigo, canvas.larguraUtil() / 2) + FOLGA_COLUNA;
-        larguraQuantidade += FOLGA_QUANTIDADE;
-        larguraUnidade += FOLGA_COLUNA;
-        larguraUnitario += FOLGA_COLUNA;
-        larguraTotal += FOLGA_COLUNA;
-        final float larguraDescricao = canvas.larguraUtil() - larguraCodigo - larguraQuantidade - larguraUnidade - larguraUnitario - larguraTotal;
-        final float larguraTexto = larguraCodigo + larguraDescricao;
+        // os valores de uma NFC-e (ate R$ 200.000,00) cabem lado a lado; valores fora do comum podem passar da largura util: as colunas sao
+        // estreitadas ate caber, sem passar abaixo da largura do titulo, e o valor que nao couber quebra em mais linhas, sem perder digitos
+        final float[] colunas = estreitar(new float[]{larguraQuantidade + FOLGA_QUANTIDADE, larguraUnidade + FOLGA_COLUNA, larguraUnitario + FOLGA_COLUNA, larguraTotal + FOLGA_COLUNA},
+                new float[]{canvas.larguraNegrito("QTDE", TAMANHO) + FOLGA_QUANTIDADE, canvas.larguraNegrito("UN", TAMANHO) + FOLGA_COLUNA, canvas.larguraNegrito("VL UNIT", TAMANHO) + FOLGA_COLUNA,
+                        canvas.larguraNegrito("VL TOTAL", TAMANHO) + FOLGA_COLUNA},
+                canvas.larguraUtil());
+        larguraQuantidade = colunas[0];
+        larguraUnidade = colunas[1];
+        larguraUnitario = colunas[2];
+        larguraTotal = colunas[3];
+        final float larguraTexto = canvas.larguraUtil() - larguraQuantidade - larguraUnidade - larguraUnitario - larguraTotal;
+        // o codigo nao pode tomar mais que a metade da linha nem o espaco do titulo DESCRICAO
+        final float larguraTituloDescricao = canvas.larguraNegrito("DESCRIÇÃO", TAMANHO) + FOLGA_COLUNA;
+        larguraCodigo = Math.min(Math.min(larguraCodigo, canvas.larguraUtil() / 2) + FOLGA_COLUNA, canvas.larguraUtil() - larguraTituloDescricao);
+        // codigo e descricao sempre em uma linha so: o que nao couber e cortado
+        final float larguraLinhaDescricao = canvas.larguraUtil() - larguraCodigo;
         separador(canvas, ESPESSURA_LINHA_INTEIRA, false);
         canvas.texto(0, larguraCodigo, "CÓDIGO", TAMANHO, ESQUERDA, true);
-        canvas.texto(larguraCodigo, larguraDescricao, "DESCRIÇÃO", TAMANHO, ESQUERDA, true);
+        final float alturaTituloDescricao = canvas.texto(larguraCodigo, larguraLinhaDescricao, "DESCRIÇÃO", TAMANHO, ESQUERDA, true);
+        // QTDE fica alinhada a direita na sua coluna; se o titulo DESCRICAO chegar ate ela, os titulos das colunas vao para a linha de baixo, como nos itens
+        if (larguraCodigo + larguraTituloDescricao > larguraTexto + larguraQuantidade - FOLGA_QUANTIDADE - canvas.larguraNegrito("QTDE", TAMANHO)) {
+            canvas.avancar(alturaTituloDescricao);
+        }
         linhaDeColunas(canvas, larguraTexto, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, "QTDE", "UN", "VL UNIT", "VL TOTAL", true);
         for (final NFNotaInfoItem item : itens) {
-            // codigo e descricao sempre em uma linha so: o que nao couber e cortado
-            final float larguraLinhaDescricao = canvas.larguraUtil() - larguraCodigo;
             final String codigo = cortar(canvas, valorOuVazio(item.getProduto().getCodigo()), larguraCodigo - FOLGA_COLUNA);
             final String descricao = cortar(canvas, valorOuVazio(item.getProduto().getDescricao()), larguraLinhaDescricao);
             final String quantidade = quantidade(item.getProduto().getQuantidadeComercial());
-            canvas.garantir(Math.max(ALTURA_MINIMA_BLOCO, 2 * ESPACO_LINHA + ESPESSURA_LINHA_FINA + 2 * canvas.alturaLinha(TAMANHO)));
+            final String unidade = valorOuVazio(item.getProduto().getUnidadeComercial());
+            final String unitario = valorItem(item.getProduto().getValorUnitario());
+            final String total = valorItem(item.getProduto().getValorTotalBruto());
+            // a linha das colunas pode ocupar mais de uma linha de texto quando algum valor foi quebrado
+            final int linhasColunas = Math.max(Math.max(canvas.quebrar(quantidade, larguraQuantidade - FOLGA_QUANTIDADE, TAMANHO).size(),
+                    canvas.quebrar(unidade, larguraUnidade - FOLGA_COLUNA, TAMANHO).size()), Math.max(canvas.quebrar(unitario, larguraUnitario - FOLGA_COLUNA, TAMANHO).size(),
+                    canvas.quebrar(total, larguraTotal - FOLGA_COLUNA, TAMANHO).size()));
+            canvas.garantir(Math.max(ALTURA_MINIMA_BLOCO, 2 * ESPACO_LINHA + ESPESSURA_LINHA_FINA + (1 + linhasColunas) * canvas.alturaLinha(TAMANHO)));
             separador(canvas, ESPESSURA_LINHA_FINA, false);
             canvas.texto(0, larguraCodigo, codigo, TAMANHO, ESQUERDA, false);
             canvas.avancar(canvas.texto(larguraCodigo, larguraLinhaDescricao, descricao, TAMANHO, ESQUERDA, false));
-            linhaDeColunas(canvas, larguraTexto, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade,
-                    valorOuVazio(item.getProduto().getUnidadeComercial()), valorItem(item.getProduto().getValorUnitario()),
-                    valorItem(item.getProduto().getValorTotalBruto()), false);
+            linhaDeColunas(canvas, larguraTexto, larguraQuantidade, larguraUnidade, larguraUnitario, larguraTotal, quantidade, unidade, unitario, total, false);
         }
         separador(canvas, ESPESSURA_LINHA_INTEIRA, false);
     }
@@ -336,11 +351,41 @@ final class DanfeNfceCorpo {
     private static void linhaDeColunas(final DanfeCanvas canvas, final float larguraTexto, final float larguraQuantidade, final float larguraUnidade,
                                        final float larguraUnitario, final float larguraTotal, final String quantidade, final String unidade,
                                        final String unitario, final String total, final boolean negrito) {
-        final float altura = canvas.texto(larguraTexto, larguraQuantidade - FOLGA_QUANTIDADE, quantidade, TAMANHO, DIREITA, negrito);
-        canvas.texto(larguraTexto + larguraQuantidade, larguraUnidade, unidade, TAMANHO, ESQUERDA, negrito);
-        canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade, larguraUnitario, unitario, TAMANHO, DIREITA, negrito);
-        canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade + larguraUnitario, larguraTotal, total, TAMANHO, DIREITA, negrito);
+        float altura = canvas.texto(larguraTexto, larguraQuantidade - FOLGA_QUANTIDADE, quantidade, TAMANHO, DIREITA, negrito);
+        // a folga fica fora da largura do texto, para um valor quebrado nao encostar no da coluna vizinha
+        altura = Math.max(altura, canvas.texto(larguraTexto + larguraQuantidade, larguraUnidade - FOLGA_COLUNA, unidade, TAMANHO, ESQUERDA, negrito));
+        altura = Math.max(altura, canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade + FOLGA_COLUNA, larguraUnitario - FOLGA_COLUNA, unitario, TAMANHO, DIREITA, negrito));
+        altura = Math.max(altura, canvas.texto(larguraTexto + larguraQuantidade + larguraUnidade + larguraUnitario + FOLGA_COLUNA, larguraTotal - FOLGA_COLUNA, total, TAMANHO, DIREITA,
+                negrito));
         canvas.avancar(altura);
+    }
+
+    /**
+     * Estreita as colunas para que a soma caiba na largura disponivel: cada uma perde a mesma fracao do que tem acima da sua largura
+     * minima (a do titulo). Se nem as minimas couberem, todas encolhem na mesma proporcao.
+     *
+     * @param colunas larguras desejadas
+     * @param minimas larguras minimas, na mesma ordem
+     * @param disponivel largura total disponivel
+     * @return larguras ajustadas, com soma menor ou igual a disponivel
+     */
+    private static float[] estreitar(final float[] colunas, final float[] minimas, final float disponivel) {
+        float soma = 0f;
+        float somaMinimas = 0f;
+        for (int i = 0; i < colunas.length; i++) {
+            soma += colunas[i];
+            somaMinimas += minimas[i];
+        }
+        if (soma <= disponivel) {
+            return colunas;
+        }
+        final float[] ajustadas = new float[colunas.length];
+        for (int i = 0; i < colunas.length; i++) {
+            ajustadas[i] = somaMinimas <= disponivel
+                    ? minimas[i] + (colunas[i] - minimas[i]) * (disponivel - somaMinimas) / (soma - somaMinimas)
+                    : minimas[i] * Math.max(0f, disponivel) / somaMinimas;
+        }
+        return ajustadas;
     }
 
     /**

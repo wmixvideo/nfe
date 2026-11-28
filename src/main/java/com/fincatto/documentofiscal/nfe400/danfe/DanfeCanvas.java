@@ -319,6 +319,15 @@ final class DanfeCanvas {
     }
 
     /**
+     * @param texto texto a medir
+     * @param tamanhoFonte tamanho da fonte, em pontos
+     * @return largura do texto na fonte em negrito, em pontos
+     */
+    float larguraNegrito(final String texto, final float tamanhoFonte) {
+        return larguraNaFonte(this.negrito, limpar(texto), tamanhoFonte);
+    }
+
+    /**
      * Mede o texto na fonte informada.
      *
      * @return largura em pontos
